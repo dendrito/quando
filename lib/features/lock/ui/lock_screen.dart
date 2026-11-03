@@ -29,7 +29,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     final s = ref.watch(lockSettingsProvider);
     final n = ref.read(lockSettingsProvider.notifier);
     final periods = ref.watch(lockPeriodsProvider).take(5).toList();
-    final zone = ref.watch(placeProvider).timeZone;
+    final zone = ref.watch(homeZoneProvider);
     final calendarConnected = ref.watch(calendarProvider.select((c) => c.access));
     final text = Theme.of(context).textTheme;
     String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} ${hhmm(inZone(utc, zone))}';

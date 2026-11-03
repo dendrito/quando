@@ -28,11 +28,10 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
   Widget build(BuildContext context) {
     final cal = ref.watch(calendarProvider);
     final rules = ref.watch(calendarRulesProvider);
-    final place = ref.watch(placeProvider);
+    final home = ref.watch(homeZoneProvider);
     final text = Theme.of(context).textTheme;
     final upcoming = cal.events.where((e) => e.kind == EventKind.calendar).take(8).toList();
-    String when(DateTime utc) =>
-        '${dayLabel(inZone(utc, place.timeZone))} · ${hhmm(inZone(utc, place.timeZone))}';
+    String when(DateTime utc) => '${dayLabel(inZone(utc, home))} · ${hhmm(inZone(utc, home))}';
 
     return Scaffold(
       appBar: AppBar(title: const Text('Calendars'), backgroundColor: Colors.transparent),

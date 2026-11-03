@@ -16,6 +16,7 @@ class UserAlarm {
     this.enabled = true,
     this.onceAt,
     this.soundId,
+    this.zone,
   });
 
   final String id;
@@ -35,6 +36,10 @@ class UserAlarm {
 
   /// null = the default sound.
   final String? soundId;
+
+  /// Rings at this time in this zone, e.g. 7:00 in New York. null = your
+  /// home zone.
+  final String? zone;
 
   bool get repeats => days.isNotEmpty;
 
@@ -71,6 +76,7 @@ class UserAlarm {
     required Duration defaultRing,
   }) {
     if (!enabled) return const [];
+    zone = this.zone ?? zone;
     final end = now.add(horizon);
     final ring = ringSeconds == null ? defaultRing : Duration(seconds: ringSeconds!);
     final times = <DateTime>[];
@@ -92,7 +98,10 @@ class UserAlarm {
           id: stableId('user|$id|${at.millisecondsSinceEpoch ~/ 60000}'),
           at: at,
           title: title,
-          body: repeatLabel == 'Once' ? 'Alarm' : repeatLabel,
+          body: [
+            repeatLabel == 'Once' ? 'Alarm' : repeatLabel,
+            if (this.zone != null) '${hhmm(DateTime(2000, 1, 1, hour, minute))} ${cityOf(this.zone!)} time',
+          ].join(' · '),
           ringDuration: ring,
           ruleId: 'user.$id',
           eventId: 'user.$id',
@@ -113,6 +122,8 @@ class UserAlarm {
     DateTime? onceAt,
     String? soundId,
     bool defaultSound = false,
+    String? zone,
+    bool homeZone = false,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -123,6 +134,7 @@ class UserAlarm {
     enabled: enabled ?? this.enabled,
     onceAt: onceAt ?? this.onceAt,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
+    zone: homeZone ? null : (zone ?? this.zone),
   );
 
   Map<String, dynamic> toJson() => {
@@ -135,6 +147,7 @@ class UserAlarm {
     'enabled': enabled,
     'onceAt': onceAt?.toIso8601String(),
     'soundId': soundId,
+    'zone': zone,
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -147,5 +160,6 @@ class UserAlarm {
     enabled: j['enabled'] as bool? ?? true,
     onceAt: j['onceAt'] == null ? null : DateTime.parse(j['onceAt'] as String).toUtc(),
     soundId: j['soundId'] as String?,
+    zone: j['zone'] as String?,
   );
 }

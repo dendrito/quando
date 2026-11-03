@@ -32,6 +32,68 @@ final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw StateError('prefsProvider must be overridden in main()'),
 );
 
+// ---- Time zones ----
+
+/// The phone's own zone, e.g. `America/Sao_Paulo`. Read in main(); null in
+/// tests and when it can't be read.
+final deviceZoneProvider = Provider<String?>((ref) => null);
+
+class TimeZones {
+  const TimeZones({this.fixed, this.clocks = const []});
+
+  /// null = follow the phone.
+  final String? fixed;
+
+  /// Extra world clocks on the home screen.
+  final List<String> clocks;
+}
+
+class TimeZonesNotifier extends Notifier<TimeZones> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  TimeZones build() => TimeZones(
+    fixed: _prefs.getString('zone.fixed'),
+    clocks: _prefs.getStringList('zone.clocks') ?? const [],
+  );
+
+  void followPhone() {
+    _prefs.remove('zone.fixed');
+    state = TimeZones(clocks: state.clocks);
+  }
+
+  void setFixed(String zone) {
+    _prefs.setString('zone.fixed', zone);
+    state = TimeZones(fixed: zone, clocks: state.clocks);
+  }
+
+  void addClock(String zone) {
+    if (state.clocks.contains(zone)) return;
+    _setClocks([...state.clocks, zone]);
+  }
+
+  void removeClock(String zone) => _setClocks([
+    for (final z in state.clocks)
+      if (z != zone) z,
+  ]);
+
+  void _setClocks(List<String> clocks) {
+    _prefs.setStringList('zone.clocks', clocks);
+    state = TimeZones(fixed: state.fixed, clocks: clocks);
+  }
+}
+
+final timeZonesProvider = NotifierProvider<TimeZonesNotifier, TimeZones>(TimeZonesNotifier.new);
+
+/// The zone Quando shows times in and sets everyday alarms in: the one you
+/// picked, else the phone's, else your Shabbat city's.
+final homeZoneProvider = Provider<String>(
+  (ref) =>
+      ref.watch(timeZonesProvider).fixed ??
+      ref.watch(deviceZoneProvider) ??
+      ref.watch(placeProvider).timeZone,
+);
+
 class PlaceNotifier extends Notifier<Place> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
@@ -309,7 +371,7 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
               alarm.hour,
               alarm.minute,
               ref.read(clockProvider)(),
-              ref.read(placeProvider).timeZone,
+              alarm.zone ?? ref.read(homeZoneProvider),
             ),
           );
     _set([
@@ -476,7 +538,7 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
 
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
   final now = ref.watch(clockProvider)();
-  final zone = ref.watch(placeProvider).timeZone;
+  final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
   return [
     ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),

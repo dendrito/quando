@@ -7,6 +7,7 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../timezones/ui/zone_picker.dart';
 import 'ring_length_picker.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
@@ -51,6 +52,48 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     if (t != null) setState(() => _alarm = _alarm.copyWith(hour: t.hour, minute: t.minute));
   }
 
+  /// When an alarm set in another zone rings on your clock.
+  DateTime _ringsLocally() {
+    final home = ref.read(homeZoneProvider);
+    final at = UserAlarm.nextAt(_alarm.hour, _alarm.minute, ref.read(clockProvider)(), _alarm.zone ?? home);
+    return inZone(at, home);
+  }
+
+  Future<void> _pickZone() async {
+    final home = ref.read(homeZoneProvider);
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.home_outlined),
+              title: Text('Your time (${cityOf(home)})'),
+              onTap: () => Navigator.pop(context, 'home'),
+            ),
+            for (final z in ref.read(timeZonesProvider).clocks)
+              ListTile(
+                leading: const Icon(Icons.public),
+                title: Text('${cityOf(z)} time'),
+                onTap: () => Navigator.pop(context, z),
+              ),
+            ListTile(
+              leading: const Icon(Icons.search),
+              title: const Text('Another city…'),
+              onTap: () => Navigator.pop(context, 'pick'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (choice == null || !mounted) return;
+    if (choice == 'home') return setState(() => _alarm = _alarm.copyWith(homeZone: true));
+    final z = choice == 'pick' ? await pickZone(context, home: home) : choice;
+    if (z != null) setState(() => _alarm = _alarm.copyWith(zone: z));
+  }
+
   void _save() {
     ref.read(userAlarmsProvider.notifier).save(_alarm.copyWith(label: _label.text.trim(), enabled: true));
     final next = _alarm.repeats
@@ -59,7 +102,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             _alarm.hour,
             _alarm.minute,
             ref.read(clockProvider)(),
-            ref.read(placeProvider).timeZone,
+            _alarm.zone ?? ref.read(homeZoneProvider),
           );
     final messenger = ScaffoldMessenger.of(context);
     Navigator.of(context).pop();
@@ -111,6 +154,18 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             ),
           ),
           const SizedBox(height: 16),
+          Center(
+            child: TextButton.icon(
+              icon: const Icon(Icons.public, size: 18),
+              label: Text(
+                _alarm.zone == null
+                    ? 'Your time (${cityOf(ref.watch(homeZoneProvider))})'
+                    : '${cityOf(_alarm.zone!)} time · ${hhmm(_ringsLocally())} for you',
+              ),
+              onPressed: _pickZone,
+            ),
+          ),
+          const SizedBox(height: 8),
           Text('REPEAT · ${_alarm.repeatLabel.toUpperCase()}', style: text.labelSmall),
           const SizedBox(height: 8),
           Row(

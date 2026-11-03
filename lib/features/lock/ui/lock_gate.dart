@@ -140,7 +140,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
 
   @override
   Widget build(BuildContext context) {
-    final zone = ref.watch(placeProvider).timeZone;
+    final zone = ref.watch(homeZoneProvider);
     final now = widget.now();
     final next = ref.watch(planProvider).where((a) => a.at.isAfter(now) && a.ruleId != 'lock').firstOrNull;
     String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} · ${hhmm(inZone(utc, zone))}';

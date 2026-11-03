@@ -7,7 +7,10 @@ import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
 import '../../alarms/ui/ring_length_picker.dart';
+import '../../../app/theme.dart';
+import '../../../core/util/local_time.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
@@ -21,6 +24,7 @@ class SettingsScreen extends ConsumerWidget {
     final place = ref.watch(placeProvider);
     final havdalah = ref.watch(havdalahProvider);
     final o = ref.watch(alarmOptionsProvider);
+    final zones = ref.watch(timeZonesProvider);
     void setO(AlarmOptions Function(AlarmOptions) f) => ref.read(alarmOptionsProvider.notifier).update(f);
     final text = Theme.of(context).textTheme;
 
@@ -29,7 +33,21 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
-          Text('LOCATION', style: text.labelSmall),
+          Text('TIME ZONE', style: text.labelSmall),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.public, color: QuandoColors.amber),
+            title: Text(zones.fixed == null ? 'Follow the phone' : cityOf(zones.fixed!)),
+            subtitle: Text(
+              zones.fixed == null
+                  ? 'Now ${cityOf(ref.watch(homeZoneProvider))}. Changes by itself when you travel.'
+                  : 'Fixed. Alarms keep this time even when you travel.',
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickHomeZone(context, ref),
+          ),
+          const SizedBox(height: 16),
+          Text('SHABBAT CITY', style: text.labelSmall),
           DropdownButton<String>(
             isExpanded: true,
             value: place.name,
@@ -148,6 +166,36 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _pickHomeZone(BuildContext context, WidgetRef ref) async {
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) => SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.phone_android),
+              title: const Text('Follow the phone'),
+              subtitle: const Text('Recommended'),
+              onTap: () => Navigator.pop(context, 'phone'),
+            ),
+            ListTile(
+              leading: const Icon(Icons.search),
+              title: const Text('Choose a city'),
+              onTap: () => Navigator.pop(context, 'pick'),
+            ),
+          ],
+        ),
+      ),
+    );
+    if (choice == 'phone') ref.read(timeZonesProvider.notifier).followPhone();
+    if (choice == 'pick' && context.mounted) {
+      final z = await pickZone(context, home: ref.read(homeZoneProvider));
+      if (z != null) ref.read(timeZonesProvider.notifier).setFixed(z);
+    }
   }
 
   Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {

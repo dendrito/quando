@@ -5,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
+import '../../timezones/ui/world_clocks.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -19,8 +20,12 @@ class HomeScreen extends ConsumerWidget {
     final now = ref.watch(clockProvider)();
     final text = Theme.of(context).textTheme;
 
-    String local(DateTime utc) => hhmm(inZone(utc, place.timeZone));
-    String day(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
+    final home = ref.watch(homeZoneProvider);
+    // Shabbat times in the Shabbat city's clock; everything else in yours.
+    String cityTime(DateTime utc) => hhmm(inZone(utc, place.timeZone));
+    String cityDay(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
+    String local(DateTime utc) => hhmm(inZone(utc, home));
+    String day(DateTime utc) => dayLabel(inZone(utc, home));
 
     return Scaffold(
       floatingActionButton: FloatingActionButton(
@@ -53,6 +58,8 @@ class HomeScreen extends ConsumerWidget {
               ],
             ),
             Text('If not now, when?', style: text.bodySmall?.copyWith(fontStyle: FontStyle.italic)),
+            const SizedBox(height: 28),
+            const WorldClocks(),
             const SizedBox(height: 28),
             Text('YOUR ALARMS', style: text.labelSmall),
             if (mine.isEmpty)
@@ -91,9 +98,13 @@ class HomeScreen extends ConsumerWidget {
                       const SizedBox(height: 10),
                       Text(period.names.join(' · '), style: text.headlineSmall),
                       const SizedBox(height: 14),
-                      _TimeRow(label: 'Candle lighting', day: day(period.start), time: local(period.start)),
+                      _TimeRow(
+                        label: 'Candle lighting',
+                        day: cityDay(period.start),
+                        time: cityTime(period.start),
+                      ),
                       const SizedBox(height: 6),
-                      _TimeRow(label: 'Havdalah', day: day(period.end), time: local(period.end)),
+                      _TimeRow(label: 'Havdalah', day: cityDay(period.end), time: cityTime(period.end)),
                     ],
                   ),
                 ),
