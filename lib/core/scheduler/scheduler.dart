@@ -59,7 +59,10 @@ class Scheduler {
     final end = now.add(horizon);
     final byMinute = <String, ScheduledAlarm>{};
 
-    for (final rule in rules.where((r) => r.enabled)) {
+    // Labelled rules (reminders) go first, so their text wins a shared minute.
+    final ordered = rules.where((r) => r.enabled).toList()
+      ..sort((a, b) => (a.label == null ? 1 : 0).compareTo(b.label == null ? 1 : 0));
+    for (final rule in ordered) {
       for (final event in events.where(rule.matches)) {
         for (final offset in rule.offsets()) {
           final at = event.at.add(offset);
@@ -73,7 +76,7 @@ class Scheduler {
               id: stableId('${rule.id}|${event.id}|${offset.inMinutes}'),
               at: at,
               title: event.title,
-              body: offset == Duration.zero ? 'Now' : describeOffset(offset),
+              body: rule.label ?? (offset == Duration.zero ? 'Now' : describeOffset(offset)),
               ringDuration: rule.ringDuration,
               ruleId: rule.id,
               eventId: event.id,

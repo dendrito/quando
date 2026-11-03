@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
+import '../../../core/util/format.dart';
+import '../../alarms/data/permissions.dart';
+import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
+import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
 
 class SettingsScreen extends ConsumerWidget {
@@ -12,6 +17,8 @@ class SettingsScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final place = ref.watch(placeProvider);
     final havdalah = ref.watch(havdalahProvider);
+    final o = ref.watch(alarmOptionsProvider);
+    void setO(AlarmOptions Function(AlarmOptions) f) => ref.read(alarmOptionsProvider.notifier).update(f);
     final text = Theme.of(context).textTheme;
 
     return Scaffold(
@@ -67,6 +74,57 @@ class SettingsScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
+          Text('WHEN AN ALARM RINGS', style: text.labelSmall),
+          Text('Rings for ${formatSpan(Duration(seconds: o.ringSeconds))}, then stops by itself'),
+          Slider(
+            min: 10,
+            max: 300,
+            divisions: 29,
+            value: o.ringSeconds.toDouble().clamp(10, 300),
+            label: formatSpan(Duration(seconds: o.ringSeconds)),
+            onChanged: (v) => setO((x) => x.copyWith(ringSeconds: v.round())),
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Say it out loud'),
+            subtitle: const Text('Reads what the alarm is for, e.g. "Candle lighting, 15 minutes before"'),
+            value: o.spoken,
+            onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
+          ),
+          Text(o.maxSnoozes == 0 ? 'No snooze' : 'Snooze up to ${o.maxSnoozes}× of ${o.snoozeMinutes} min'),
+          Slider(
+            min: 0,
+            max: 5,
+            divisions: 5,
+            value: o.maxSnoozes.toDouble(),
+            label: '${o.maxSnoozes}',
+            onChanged: (v) => setO((x) => x.copyWith(maxSnoozes: v.round())),
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Wake-up check'),
+            subtitle: const Text('After you stop it, rings again in 3 minutes unless you tap "I\'m up"'),
+            value: o.wakeCheck,
+            onChanged: (v) => setO((x) => x.copyWith(wakeCheck: v)),
+          ),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Solve a sum to stop'),
+            subtitle: const Text('Proves you\'re awake'),
+            value: o.mathTask,
+            onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
+          ),
+          Text(
+            'On Shabbat and festivals none of these apply: alarms stop by themselves and never ask '
+            'you to touch the phone.',
+            style: text.bodySmall,
+          ),
+          const SizedBox(height: 16),
+          OutlinedButton(
+            onPressed: () => _testAlarm(context, ref, o),
+            child: const Text('Ring a test alarm in 1 minute'),
+          ),
+          const SizedBox(height: 24),
           Text(
             'Times are calculated on your phone. For borderline cases, check with your rabbi or '
             'community calendar.',
@@ -75,5 +133,42 @@ class SettingsScreen extends ConsumerWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {
+    final messenger = ScaffoldMessenger.of(context);
+    final supported =
+        !kIsWeb &&
+        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
+    if (!supported) {
+      messenger.showSnackBar(const SnackBar(content: Text('Test alarms only work on a phone.')));
+      return;
+    }
+    await ensureAlarmPermissions();
+    final at = DateTime.now().add(const Duration(minutes: 1));
+    final p = RingPayload.forAlarm(
+      title: 'Test alarm',
+      body: 'This is how your alarms will sound',
+      options: o,
+      shabbatSafe: false,
+    );
+    await ref
+        .read(registrarProvider)
+        .set(
+          stableId('test|${at.millisecondsSinceEpoch}'),
+          at,
+          RingPayload(
+            title: p.title,
+            body: p.body,
+            ringSeconds: p.ringSeconds,
+            spoken: p.spoken,
+            maxSnoozes: p.maxSnoozes,
+            snoozeMinutes: 1,
+            wakeCheck: p.wakeCheck,
+            mathTask: p.mathTask,
+            transient: true,
+          ),
+        );
+    messenger.showSnackBar(const SnackBar(content: Text('Test alarm in 1 minute. You can lock the phone.')));
   }
 }

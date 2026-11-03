@@ -48,5 +48,30 @@ class Presets {
     after: [Duration(minutes: 15)],
   );
 
-  static const all = [countdown, hourly, dailyWeek, secondNight, havdalah];
+  static const fridayReminder = AlarmRule(
+    id: 'preset.fridayReminder',
+    name: 'Reminder 3 hours before: charge your phone',
+    appliesTo: _candles,
+    before: [Duration(hours: 3)],
+    label: 'Charge your phone and set any alarms for tomorrow',
+  );
+
+  static const sunrise = AlarmRule(
+    id: 'preset.sunrise',
+    name: 'Sunrise',
+    appliesTo: {EventKind.sunrise},
+    atEvent: true,
+    enabled: false,
+  );
+
+  static const sunset = AlarmRule(
+    id: 'preset.sunset',
+    name: 'Sunset, and 15 minutes before',
+    appliesTo: {EventKind.sunset},
+    atEvent: true,
+    before: [Duration(minutes: 15)],
+    enabled: false,
+  );
+
+  static const all = [countdown, hourly, dailyWeek, fridayReminder, secondNight, havdalah, sunrise, sunset];
 }

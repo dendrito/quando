@@ -6,6 +6,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
+import '../../alarms/data/permissions.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -105,10 +106,11 @@ class HomeScreen extends ConsumerWidget {
       messenger.showSnackBar(const SnackBar(content: Text('Alarms can only be set on a phone.')));
       return;
     }
-    final registrar = ref.read(registrarProvider);
-    await registrar.init();
-    final added = await registrar.sync(ref.read(planProvider));
-    messenger.showSnackBar(SnackBar(content: Text('$added new alarms set.')));
+    await ensureAlarmPermissions();
+    final added = await ref
+        .read(registrarProvider)
+        .sync(ref.read(planProvider), ref.read(payloadForProvider));
+    messenger.showSnackBar(SnackBar(content: Text('$added alarms set for this week.')));
   }
 }
 

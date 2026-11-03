@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   testWidgets('home shows next Shabbat and this week\'s alarms', (tester) async {
@@ -10,9 +11,14 @@ void main() {
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
 
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12))],
+        overrides: [
+          clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+          prefsProvider.overrideWithValue(prefs),
+        ],
         child: const QuandoApp(),
       ),
     );

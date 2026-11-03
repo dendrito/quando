@@ -33,6 +33,7 @@ class AlarmRule {
     this.atEvent = false,
     this.ringDuration = const Duration(minutes: 1),
     this.enabled = true,
+    this.label,
   });
 
   final String id;
@@ -56,6 +57,9 @@ class AlarmRule {
   final Duration ringDuration;
 
   final bool enabled;
+
+  /// Text shown and spoken instead of "1 hour before", e.g. a reminder.
+  final String? label;
 
   bool matches(AnchorEvent e) => appliesTo.contains(e.kind);
 
@@ -86,5 +90,6 @@ class AlarmRule {
     atEvent: atEvent,
     ringDuration: ringDuration ?? this.ringDuration,
     enabled: enabled ?? this.enabled,
+    label: label,
   );
 }
