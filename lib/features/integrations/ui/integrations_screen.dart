@@ -18,6 +18,29 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
   late final _user = TextEditingController(text: ref.read(integrationsProvider).pushoverUser);
   late final _token = TextEditingController(text: ref.read(integrationsProvider).pushoverToken);
   var _testing = false;
+  var _loading = false;
+  Map<String, String> _sounds = const {};
+  List<String> _devices = const [];
+
+  Future<void> _loadPushover() async {
+    final s = ref.read(integrationsProvider);
+    final sender = ref.read(integrationSenderProvider);
+    setState(() => _loading = true);
+    try {
+      final sounds = await sender.pushoverSounds(s.pushoverToken);
+      final devices = await sender.pushoverDevices(s.pushoverToken, s.pushoverUser);
+      if (!mounted) return;
+      setState(() {
+        _sounds = sounds;
+        _devices = devices;
+      });
+      _say('Found ${sounds.length} sounds and ${devices.length} devices.');
+    } catch (e) {
+      if (mounted) _say('$e'.replaceFirst('Exception: ', ''));
+    } finally {
+      if (mounted) setState(() => _loading = false);
+    }
+  }
 
   @override
   void dispose() {
@@ -151,13 +174,78 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               decoration: const InputDecoration(labelText: 'App token'),
               onChanged: (v) => n.update((x) => x.copyWith(pushoverToken: v.trim())),
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: const Text('High priority'),
-              subtitle: const Text('Comes through even in Pushover quiet hours'),
-              value: s.pushoverHigh,
-              onChanged: (v) => n.update((x) => x.copyWith(pushoverHigh: v)),
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(child: Text('SOUND AND DEVICES', style: text.labelSmall)),
+                TextButton.icon(
+                  onPressed: s.pushoverUser.isNotEmpty && s.pushoverToken.isNotEmpty && !_loading
+                      ? _loadPushover
+                      : null,
+                  icon: const Icon(Icons.refresh, size: 18),
+                  label: Text(_loading ? 'Loading…' : 'Load from Pushover'),
+                ),
+              ],
             ),
+            DropdownButtonFormField<String?>(
+              initialValue: s.pushoverSound,
+              isExpanded: true,
+              decoration: const InputDecoration(labelText: 'Sound it plays'),
+              items: [
+                const DropdownMenuItem(value: null, child: Text('My Pushover default')),
+                for (final e in {
+                  ..._sounds,
+                  if (s.pushoverSound != null && !_sounds.containsKey(s.pushoverSound))
+                    s.pushoverSound!: s.pushoverSound!,
+                }.entries)
+                  DropdownMenuItem(value: e.key, child: Text(e.value)),
+              ],
+              onChanged: (v) => n.update(
+                (x) => v == null ? x.copyWith(defaultPushoverSound: true) : x.copyWith(pushoverSound: v),
+              ),
+            ),
+            const SizedBox(height: 4),
+            Text(
+              'Your own sounds appear here after you upload them at pushover.net/sounds.',
+              style: text.bodySmall,
+            ),
+            const SizedBox(height: 12),
+            Wrap(
+              spacing: 6,
+              children: [
+                FilterChip(
+                  label: const Text('All my devices'),
+                  selected: s.pushoverDevices.isEmpty,
+                  onSelected: (_) => n.update((x) => x.copyWith(pushoverDevices: {})),
+                ),
+                for (final d in {..._devices, ...s.pushoverDevices})
+                  FilterChip(
+                    label: Text(d),
+                    selected: s.pushoverDevices.contains(d),
+                    onSelected: (on) => n.update(
+                      (x) => x.copyWith(
+                        pushoverDevices: on ? {...x.pushoverDevices, d} : ({...x.pushoverDevices}..remove(d)),
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+            Text(
+              'Install the Pushover app on this phone too and it rings here with your Pushover sound.',
+              style: text.bodySmall,
+            ),
+            const SizedBox(height: 12),
+            DropdownButtonFormField<int>(
+              initialValue: s.pushoverPriority,
+              decoration: const InputDecoration(labelText: 'Priority'),
+              items: const [
+                DropdownMenuItem(value: 0, child: Text('Normal')),
+                DropdownMenuItem(value: 1, child: Text('High: through quiet hours')),
+                DropdownMenuItem(value: 2, child: Text('Emergency: repeats until acknowledged')),
+              ],
+              onChanged: (v) => n.update((x) => x.copyWith(pushoverPriority: v)),
+            ),
+            const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               children: [

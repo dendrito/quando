@@ -69,7 +69,9 @@ class IntegrationSettings {
     this.pushoverUser = '',
     this.pushoverToken = '',
     this.pushoverOn = false,
-    this.pushoverHigh = false,
+    this.pushoverPriority = 0,
+    this.pushoverSound,
+    this.pushoverDevices = const {},
     this.webhooks = const [],
     this.pauseOnShabbat = true,
   });
@@ -81,8 +83,16 @@ class IntegrationSettings {
   final String pushoverToken;
   final bool pushoverOn;
 
-  /// Pushover priority 1: breaks through quiet hours.
-  final bool pushoverHigh;
+  /// 0 normal, 1 high (through quiet hours), 2 emergency (Pushover keeps
+  /// ringing every 30 s until you acknowledge it, up to 10 minutes).
+  final int pushoverPriority;
+
+  /// A Pushover sound name: built-in (e.g. `cosmic`) or one you uploaded to
+  /// pushover.net. null = your Pushover default.
+  final String? pushoverSound;
+
+  /// Pushover device names to send to. Empty = all, this phone included.
+  final Set<String> pushoverDevices;
   final List<Webhook> webhooks;
 
   /// Send nothing for alarms inside Shabbat and festivals.
@@ -94,14 +104,19 @@ class IntegrationSettings {
     String? pushoverUser,
     String? pushoverToken,
     bool? pushoverOn,
-    bool? pushoverHigh,
+    int? pushoverPriority,
+    String? pushoverSound,
+    bool defaultPushoverSound = false,
+    Set<String>? pushoverDevices,
     List<Webhook>? webhooks,
     bool? pauseOnShabbat,
   }) => IntegrationSettings(
     pushoverUser: pushoverUser ?? this.pushoverUser,
     pushoverToken: pushoverToken ?? this.pushoverToken,
     pushoverOn: pushoverOn ?? this.pushoverOn,
-    pushoverHigh: pushoverHigh ?? this.pushoverHigh,
+    pushoverPriority: pushoverPriority ?? this.pushoverPriority,
+    pushoverSound: defaultPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
+    pushoverDevices: pushoverDevices ?? this.pushoverDevices,
     webhooks: webhooks ?? this.webhooks,
     pauseOnShabbat: pauseOnShabbat ?? this.pauseOnShabbat,
   );
@@ -110,7 +125,9 @@ class IntegrationSettings {
     'pushoverUser': pushoverUser,
     'pushoverToken': pushoverToken,
     'pushoverOn': pushoverOn,
-    'pushoverHigh': pushoverHigh,
+    'pushoverPriority': pushoverPriority,
+    'pushoverSound': pushoverSound,
+    'pushoverDevices': pushoverDevices.toList(),
     'webhooks': [for (final w in webhooks) w.toJson()],
     'pauseOnShabbat': pauseOnShabbat,
   };
@@ -119,7 +136,10 @@ class IntegrationSettings {
     pushoverUser: j['pushoverUser'] as String? ?? '',
     pushoverToken: j['pushoverToken'] as String? ?? '',
     pushoverOn: j['pushoverOn'] as bool? ?? false,
-    pushoverHigh: j['pushoverHigh'] as bool? ?? false,
+    pushoverPriority:
+        (j['pushoverPriority'] as num?)?.toInt() ?? ((j['pushoverHigh'] as bool? ?? false) ? 1 : 0),
+    pushoverSound: j['pushoverSound'] as String?,
+    pushoverDevices: {for (final d in (j['pushoverDevices'] as List? ?? const [])) d as String},
     webhooks: [
       for (final w in (j['webhooks'] as List? ?? const [])) Webhook.fromJson(w as Map<String, dynamic>),
     ],

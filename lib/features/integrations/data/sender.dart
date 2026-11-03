@@ -41,22 +41,53 @@ class IntegrationSender {
   Future<String?> _pushover(IntegrationSettings s, RingPayload p) async {
     try {
       final r = await _client
-          .post(
-            pushoverUrl,
-            body: {
-              'token': s.pushoverToken.trim(),
-              'user': s.pushoverUser.trim(),
-              'title': p.title,
-              'message': p.body.isEmpty ? 'Alarm' : p.body,
-              'priority': s.pushoverHigh ? '1' : '0',
-            },
-          )
+          .post(pushoverUrl, body: pushoverFields(s, p))
           .timeout(const Duration(seconds: 15));
       return r.statusCode == 200 ? null : 'Pushover said ${r.statusCode}: ${_short(r.body)}';
     } catch (e) {
       return 'Could not reach Pushover ($e)';
     }
   }
+
+  static Map<String, String> pushoverFields(IntegrationSettings s, RingPayload p) => {
+    'token': s.pushoverToken.trim(),
+    'user': s.pushoverUser.trim(),
+    'title': p.title,
+    'message': p.body.isEmpty ? 'Alarm' : p.body,
+    'priority': '${s.pushoverPriority}',
+    if (s.pushoverPriority == 2) ...{'retry': '30', 'expire': '600'},
+    if (s.pushoverSound != null) 'sound': s.pushoverSound!,
+    if (s.pushoverDevices.isNotEmpty) 'device': (s.pushoverDevices.toList()..sort()).join(','),
+  };
+
+  /// Sound names → labels, built-in plus any you uploaded. Throws with a
+  /// short reason on failure.
+  Future<Map<String, String>> pushoverSounds(String token) async {
+    final r = await _client
+        .get(
+          Uri.parse('https://api.pushover.net/1/sounds.json?token=${Uri.encodeQueryComponent(token.trim())}'),
+        )
+        .timeout(const Duration(seconds: 15));
+    final j = jsonDecode(r.body) as Map<String, dynamic>;
+    if (r.statusCode != 200) throw Exception(_reason(j, r.statusCode));
+    return (j['sounds'] as Map<String, dynamic>).map((k, v) => MapEntry(k, v as String));
+  }
+
+  /// Your Pushover device names.
+  Future<List<String>> pushoverDevices(String token, String user) async {
+    final r = await _client
+        .post(
+          Uri.parse('https://api.pushover.net/1/users/validate.json'),
+          body: {'token': token.trim(), 'user': user.trim()},
+        )
+        .timeout(const Duration(seconds: 15));
+    final j = jsonDecode(r.body) as Map<String, dynamic>;
+    if (r.statusCode != 200) throw Exception(_reason(j, r.statusCode));
+    return [for (final d in (j['devices'] as List? ?? const [])) d as String];
+  }
+
+  static String _reason(Map<String, dynamic> j, int code) =>
+      (j['errors'] as List?)?.join(', ') ?? 'Pushover said $code';
 
   Future<String?> _webhook(Webhook w, AlarmHappening what, RingPayload p, DateTime when) async {
     try {

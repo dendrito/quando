@@ -25,7 +25,9 @@ void main() {
         pushoverOn: true,
         pushoverUser: 'u123',
         pushoverToken: 'a456',
-        pushoverHigh: true,
+        pushoverPriority: 2,
+        pushoverSound: 'my_shofar',
+        pushoverDevices: {'pixel', 'ipad'},
       ),
     );
     await sender.send(AlarmHappening.ring, _alarm);
@@ -37,7 +39,11 @@ void main() {
       'user': 'u123',
       'title': 'Candle lighting · Shabbat',
       'message': '15 minutes before',
-      'priority': '1',
+      'priority': '2',
+      'retry': '30',
+      'expire': '600',
+      'sound': 'my_shofar',
+      'device': 'ipad,pixel',
     });
   });
 
@@ -120,5 +126,26 @@ void main() {
     final back = IntegrationSettings.fromJson(jsonDecode(jsonEncode(s.toJson())) as Map<String, dynamic>);
     expect(back.pushoverReady, isTrue);
     expect(back.webhooks.single.title, 'IFTTT · x');
+  });
+
+  test('loads Pushover sounds (custom ones included) and devices', () async {
+    final sender = IntegrationSender(
+      () => const IntegrationSettings(),
+      client: MockClient((r) async {
+        if (r.url.path.endsWith('sounds.json')) {
+          return http.Response(
+            '{"sounds":{"pushover":"Pushover (default)","my_shofar":"My shofar"},"status":1}',
+            200,
+          );
+        }
+        return http.Response('{"status":1,"devices":["pixel","ipad"]}', 200);
+      }),
+    );
+    expect(await sender.pushoverSounds('t'), containsPair('my_shofar', 'My shofar'));
+    expect(await sender.pushoverDevices('t', 'u'), ['pixel', 'ipad']);
+  });
+
+  test('old settings with high priority still load', () {
+    expect(IntegrationSettings.fromJson({'pushoverHigh': true}).pushoverPriority, 1);
   });
 }
