@@ -37,6 +37,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   StreamSubscription<AlarmSet>? _ringingSub;
   Timer? _speakTimer;
   var _stage = _Stage.ringing;
+  final _openedAt = DateTime.now();
+  Timer? _second;
   int? _checkId;
   late final (int, int) _sum = (Random().nextInt(60) + 12, Random().nextInt(30) + 7);
   String? _sumError;
@@ -47,6 +49,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     if (p.spoken) {
       _speakTimer = Timer(const Duration(seconds: 2), _speak);
     }
+    _second = Timer.periodic(const Duration(seconds: 1), (_) {
+      if (mounted) setState(() {});
+    });
     // Close when the alarm stops on its own (ring duration) or elsewhere.
     _ringingSub = Alarm.ringing.listen((set) {
       final stillRinging = set.alarms.any((a) => a.id == widget.alarm.id);
@@ -66,6 +71,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   @override
   void dispose() {
     _speakTimer?.cancel();
+    _second?.cancel();
     _ringingSub?.cancel();
     _tts.stop();
     _answer.dispose();
@@ -126,31 +132,56 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     final text = Theme.of(context).textTheme;
     final now = DateTime.now();
     final snoozesLeft = p.maxSnoozes - p.snoozeCount;
+    const ink = QuandoColors.ground;
+    final left = p.ringSeconds - now.difference(_openedAt).inSeconds;
 
     return PopScope(
       canPop: _stage == _Stage.done,
       child: Scaffold(
-        body: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(28, 40, 28, 28),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Text(hhmm(now), style: text.displayLarge?.copyWith(color: QuandoColors.amber)),
-                const SizedBox(height: 12),
-                Text(p.title, style: text.headlineSmall),
-                const SizedBox(height: 6),
-                Text(p.body, style: text.titleMedium?.copyWith(color: QuandoColors.muted)),
-                if (p.shabbatSafe) ...[
-                  const SizedBox(height: 16),
-                  Text(
-                    'Shabbat mode: this stops by itself in ${p.ringSeconds} seconds. No need to touch the phone.',
-                    style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+        backgroundColor: QuandoColors.coral,
+        body: DefaultTextStyle.merge(
+          style: const TextStyle(color: ink),
+          child: SafeArea(
+            child: Padding(
+              padding: const EdgeInsets.fromLTRB(28, 32, 28, 28),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(dayLabel(now).toUpperCase(), style: text.labelSmall?.copyWith(color: ink)),
+                  FittedBox(
+                    fit: BoxFit.scaleDown,
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      hhmm(now),
+                      style: text.displayLarge?.copyWith(color: ink, fontSize: 128, letterSpacing: -7),
+                    ),
                   ),
+                  const SizedBox(height: 8),
+                  Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
+                  const SizedBox(height: 6),
+                  Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
+                  const SizedBox(height: 10),
+                  Text(
+                    'If not now, when?',
+                    style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
+                  ),
+                  if (p.shabbatSafe) ...[
+                    const SizedBox(height: 16),
+                    Text(
+                      'Shabbat mode: this stops by itself in ${p.ringSeconds} seconds. No need to touch the phone.',
+                      style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                  Expanded(
+                    child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                        ? Center(
+                            child: _RingLeft(left: left, total: p.ringSeconds),
+                          )
+                        : const SizedBox.shrink(),
+                  ),
+                  ..._actions(text, snoozesLeft),
                 ],
-                const Spacer(),
-                ..._actions(text, snoozesLeft),
-              ],
+              ),
             ),
           ),
         ),
@@ -159,13 +190,14 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   List<Widget> _actions(TextTheme text, int snoozesLeft) {
+    const ink = QuandoColors.ground;
     switch (_stage) {
       case _Stage.sum:
         final (a, b) = _sum;
         return [
-          Text('Solve to stop', style: text.labelSmall),
+          Text('SOLVE TO STOP', style: text.labelSmall?.copyWith(color: ink)),
           const SizedBox(height: 8),
-          Text('$a + $b = ?', style: text.displaySmall),
+          Text('$a + $b = ?', style: text.displaySmall?.copyWith(color: ink)),
           const SizedBox(height: 12),
           TextField(
             controller: _answer,
@@ -176,40 +208,136 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             onSubmitted: (_) => _checkSum(),
           ),
           const SizedBox(height: 16),
-          _big(FilledButton(onPressed: _checkSum, child: const Text('Stop'))),
+          _StopButton(label: 'Stop', onPressed: _checkSum),
         ];
       case _Stage.awaitingUp:
         return [
           Text(
             'I\'ll ring again in ${AlarmRegistrar.checkDelay.inMinutes} minutes unless you tap below.',
-            style: text.bodyLarge,
+            style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 16),
-          _big(FilledButton(onPressed: _onUp, child: const Text('I\'m up'))),
+          _StopButton(label: 'I\'m up', onPressed: _onUp),
         ];
       case _Stage.ringing:
       case _Stage.done:
         return [
-          if (p.isCheck)
-            _big(FilledButton(onPressed: _stopNow, child: const Text('I\'m up')))
-          else
-            _big(FilledButton(onPressed: _onStop, child: const Text('Stop'))),
           if (!p.isCheck && p.canSnooze) ...[
-            const SizedBox(height: 12),
-            _big(
-              OutlinedButton(
+            SizedBox(
+              height: 64,
+              child: OutlinedButton(
                 onPressed: _onSnooze,
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: ink,
+                  side: const BorderSide(color: ink, width: 2.5),
+                ),
                 child: Text('Snooze ${p.snoozeMinutes} min · $snoozesLeft left'),
               ),
             ),
+            const SizedBox(height: 12),
           ],
           if (!p.isCheck && !p.canSnooze && p.maxSnoozes > 0) ...[
+            Text(
+              'No snoozes left',
+              textAlign: TextAlign.center,
+              style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+            ),
             const SizedBox(height: 12),
-            Text('No snoozes left', textAlign: TextAlign.center, style: text.bodyMedium),
           ],
+          if (p.isCheck)
+            _StopButton(label: 'I\'m up', onPressed: _stopNow)
+          else
+            _StopButton(label: 'Stop', onPressed: _onStop),
         ];
     }
   }
+}
 
-  Widget _big(Widget button) => SizedBox(height: 60, child: button);
+/// The big plum Stop button with its amber arrow.
+class _StopButton extends StatelessWidget {
+  const _StopButton({required this.label, required this.onPressed});
+
+  final String label;
+  final VoidCallback onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: 76,
+      child: FilledButton(
+        onPressed: onPressed,
+        style: FilledButton.styleFrom(
+          backgroundColor: QuandoColors.ground,
+          foregroundColor: QuandoColors.text,
+          padding: const EdgeInsets.symmetric(horizontal: 8),
+          textStyle: const TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 22),
+        ),
+        child: Row(
+          children: [
+            Container(
+              width: 60,
+              height: 60,
+              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
+              child: const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+            ),
+            Expanded(child: Text(label, textAlign: TextAlign.center)),
+            const SizedBox(width: 60),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+/// How long the alarm keeps ringing, as a shrinking ring.
+class _RingLeft extends StatelessWidget {
+  const _RingLeft({required this.left, required this.total});
+
+  final int left;
+  final int total;
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final m = left ~/ 60;
+    final s = (left % 60).toString().padLeft(2, '0');
+    return Semantics(
+      label: 'Rings for $left more seconds',
+      child: SizedBox.square(
+        dimension: 200,
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Container(
+              width: 120,
+              height: 120,
+              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
+            ),
+            SizedBox.square(
+              dimension: 170,
+              child: CircularProgressIndicator(
+                value: left / total,
+                strokeWidth: 8,
+                strokeCap: StrokeCap.round,
+                color: QuandoColors.ground,
+                backgroundColor: QuandoColors.ground.withValues(alpha: 0.15),
+              ),
+            ),
+            ExcludeSemantics(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('$m:$s', style: text.headlineMedium?.copyWith(color: QuandoColors.ground, height: 1)),
+                  Text(
+                    'left to ring',
+                    style: text.bodySmall?.copyWith(color: QuandoColors.ground, fontWeight: FontWeight.w600),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
