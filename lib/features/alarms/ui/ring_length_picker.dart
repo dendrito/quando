@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -63,10 +65,11 @@ class RingLengthPicker extends StatelessWidget {
       children: [
         Row(
           children: [
-            IconButton.outlined(
+            HoldToRepeatButton(
               tooltip: '1 second less',
-              onPressed: seconds > 1 ? () => _set(seconds - 1) : null,
-              icon: const Icon(Icons.remove),
+              icon: Icons.remove,
+              enabled: seconds > 1,
+              onStep: (step) => _set(seconds - step),
             ),
             Expanded(
               child: TextButton(
@@ -77,10 +80,11 @@ class RingLengthPicker extends StatelessWidget {
                 ),
               ),
             ),
-            IconButton.outlined(
+            HoldToRepeatButton(
               tooltip: '1 second more',
-              onPressed: seconds < maxSeconds ? () => _set(seconds + 1) : null,
-              icon: const Icon(Icons.add),
+              icon: Icons.add,
+              enabled: seconds < maxSeconds,
+              onStep: (step) => _set(seconds + step),
             ),
           ],
         ),
@@ -94,6 +98,91 @@ class RingLengthPicker extends StatelessWidget {
           ],
         ),
       ],
+    );
+  }
+}
+
+/// Tap: one step. Hold: keeps stepping, faster the longer you hold
+/// (1 second at a time, then 5, then 30).
+class HoldToRepeatButton extends StatefulWidget {
+  const HoldToRepeatButton({
+    super.key,
+    required this.icon,
+    required this.tooltip,
+    required this.enabled,
+    required this.onStep,
+  });
+
+  final IconData icon;
+  final String tooltip;
+  final bool enabled;
+
+  /// Called with how many seconds to move by.
+  final ValueChanged<int> onStep;
+
+  /// Step size after [ticks] repeats while held.
+  static int stepFor(int ticks) => ticks < 10
+      ? 1
+      : ticks < 22
+      ? 5
+      : 30;
+
+  @override
+  State<HoldToRepeatButton> createState() => _HoldToRepeatButtonState();
+}
+
+class _HoldToRepeatButtonState extends State<HoldToRepeatButton> {
+  Timer? _delay;
+  Timer? _repeat;
+  var _ticks = 0;
+
+  // Raw pointer events, so nothing else (tooltips, scrolling) steals the hold.
+  void _down(PointerDownEvent _) {
+    if (!widget.enabled) return;
+    widget.onStep(1);
+    _ticks = 0;
+    _delay = Timer(const Duration(milliseconds: 400), () {
+      _repeat = Timer.periodic(const Duration(milliseconds: 120), (_) {
+        if (!widget.enabled) return _stop();
+        widget.onStep(HoldToRepeatButton.stepFor(_ticks++));
+        HapticFeedback.selectionClick();
+      });
+    });
+  }
+
+  void _stop([PointerEvent? _]) {
+    _delay?.cancel();
+    _repeat?.cancel();
+    _delay = _repeat = null;
+  }
+
+  @override
+  void didUpdateWidget(HoldToRepeatButton old) {
+    super.didUpdateWidget(old);
+    if (!widget.enabled) _stop();
+  }
+
+  @override
+  void dispose() {
+    _stop();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      label: widget.tooltip,
+      button: true,
+      child: Listener(
+        onPointerDown: _down,
+        onPointerUp: _stop,
+        onPointerCancel: _stop,
+        child: IconButton.outlined(
+          // Steps are handled by the Listener above.
+          onPressed: widget.enabled ? () {} : null,
+          icon: Icon(widget.icon),
+        ),
+      ),
     );
   }
 }
