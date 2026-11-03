@@ -30,23 +30,25 @@ jobs:
       - run: flutter analyze
       - run: flutter test
 
-      - name: Build debug APK
-        run: flutter build apk --debug
+      - name: Build release APKs (one per phone type, much smaller)
+        run: flutter build apk --release --split-per-abi
 
       - uses: actions/upload-artifact@v4
         with:
-          name: quando-debug-apk
-          path: build/app/outputs/flutter-apk/app-debug.apk
+          name: quando-apks
+          path: build/app/outputs/flutter-apk/*-release.apk
           retention-days: 14
 
       - name: Publish as the "latest" download
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          cp build/app/outputs/flutter-apk/app-debug.apk quando-debug.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk quando.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk quando-older-phones.apk
+          ls -lh quando*.apk
           gh release delete latest --yes --cleanup-tag || true
-          gh release create latest quando-debug.apk \
+          gh release create latest quando.apk quando-older-phones.apk \
             --prerelease \
             --title "Latest test build" \
-            --notes "Debug build of ${GITHUB_SHA::7}. Download quando-debug.apk and install it on an Android phone."
+            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk."
         env:
           GH_TOKEN: ${{ github.token }}
