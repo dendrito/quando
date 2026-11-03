@@ -34,6 +34,8 @@ class AlarmRule {
     this.ringDuration = const Duration(minutes: 1),
     this.enabled = true,
     this.label,
+    this.sources,
+    this.keyword,
   });
 
   final String id;
@@ -61,7 +63,16 @@ class AlarmRule {
   /// Text shown and spoken instead of "1 hour before", e.g. a reminder.
   final String? label;
 
-  bool matches(AnchorEvent e) => appliesTo.contains(e.kind);
+  /// Only events from these sources (e.g. calendar ids). null = any.
+  final Set<String>? sources;
+
+  /// Only events whose title contains this, ignoring case. null = any.
+  final String? keyword;
+
+  bool matches(AnchorEvent e) =>
+      appliesTo.contains(e.kind) &&
+      (sources == null || sources!.contains(e.source)) &&
+      (keyword == null || keyword!.isEmpty || e.title.toLowerCase().contains(keyword!.toLowerCase()));
 
   /// Every offset from the event, negative = before, duplicates removed,
   /// sorted earliest first.
@@ -91,5 +102,7 @@ class AlarmRule {
     ringDuration: ringDuration ?? this.ringDuration,
     enabled: enabled ?? this.enabled,
     label: label,
+    sources: sources,
+    keyword: keyword,
   );
 }

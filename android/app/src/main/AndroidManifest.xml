@@ -1,4 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Calendar alarms: read events from the phone's calendars (Google included). -->
+    <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <!-- Required by the calendar plugin for full access. Quando never writes events. -->
+    <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <application
         android:label="Quando"
         android:name="${applicationName}"

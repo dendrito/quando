@@ -13,7 +13,12 @@ enum EventKind {
 
   sunrise,
   sunset,
+
+  /// A calendar event's start.
   calendar,
+
+  /// A calendar event's end.
+  calendarEnd,
   manual,
 }
 

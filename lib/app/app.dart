@@ -9,6 +9,8 @@ import 'package:go_router/go_router.dart';
 
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
+import '../features/calendar/ui/calendar_rule_screen.dart';
+import '../features/calendar/ui/calendar_screen.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/home/ui/settings_screen.dart';
 import '../features/ringing/ring_screen.dart';
@@ -22,6 +24,11 @@ final _router = GoRouter(
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
+    GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
+    GoRoute(
+      path: '/calendar/rule/:id',
+      builder: (context, state) => CalendarRuleScreen(id: state.pathParameters['id']!),
+    ),
     GoRoute(
       path: '/alarm/:id',
       builder: (context, state) => EditAlarmScreen(id: state.pathParameters['id']!),
@@ -54,12 +61,15 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       // Keep the phone's alarms in step with the plan, whatever changes it.
       ref.listenManual(planProvider, (_, _) => _scheduleSync());
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
+      // New calendar rules may reach further ahead: read events again.
+      ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
       _start();
     }
   }
 
   Future<void> _start() async {
     await ensureAlarmPermissions();
+    await ref.read(calendarProvider.notifier).refresh();
     await _sync();
   }
 
@@ -79,7 +89,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Back after a while: plan again from the real time now.
-    if (state == AppLifecycleState.resumed) ref.invalidate(clockProvider);
+    if (state == AppLifecycleState.resumed) {
+      ref.invalidate(clockProvider);
+      ref.read(calendarProvider.notifier).refresh();
+    }
   }
 
   Future<void> _listen() async {

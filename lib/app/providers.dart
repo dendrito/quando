@@ -6,6 +6,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../core/scheduler/scheduler.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
+import '../features/calendar/data/calendar_reader.dart';
+import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/ringing/ring_payload.dart';
@@ -129,19 +131,153 @@ final jewishTimesProvider = Provider<JewishTimes>(
 );
 
 /// Events wide enough to plan every rule's alarms for the next 7 days.
+// ---- Calendars ----
+
+final calendarReaderProvider = Provider<CalendarReader>((ref) => DeviceCalendarReader());
+
+class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  List<CalendarRule> build() {
+    try {
+      final raw = _prefs.getString('calendarRules');
+      if (raw == null) return const [];
+      return [for (final j in jsonDecode(raw) as List) CalendarRule.fromJson(j as Map<String, dynamic>)];
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  void save(CalendarRule rule) {
+    final i = state.indexWhere((r) => r.id == rule.id);
+    _set(i < 0 ? [...state, rule] : [for (final r in state) r.id == rule.id ? rule : r]);
+  }
+
+  void toggle(String id, bool enabled) =>
+      _set([for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r]);
+
+  void delete(String id) => _set([
+    for (final r in state)
+      if (r.id != id) r,
+  ]);
+
+  void _set(List<CalendarRule> rules) {
+    state = rules;
+    _prefs.setString('calendarRules', jsonEncode([for (final r in rules) r.toJson()]));
+  }
+}
+
+final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(
+  CalendarRulesNotifier.new,
+);
+
+/// What we know about the phone's calendars.
+class CalendarState {
+  const CalendarState({
+    this.access = false,
+    this.loaded = false,
+    this.calendars = const [],
+    this.selected = const {},
+    this.events = const [],
+    this.error,
+  });
+
+  final bool access;
+  final bool loaded;
+  final List<PhoneCalendar> calendars;
+
+  /// Calendars whose events can ring alarms.
+  final Set<String> selected;
+
+  /// Start and end events from the selected calendars.
+  final List<AnchorEvent> events;
+  final String? error;
+}
+
+class CalendarNotifier extends Notifier<CalendarState> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  CalendarState build() => const CalendarState();
+
+  /// null = never chosen: every calendar is used.
+  Set<String>? get _savedSelection => _prefs.getStringList('calendars.selected')?.toSet();
+
+  Future<void> connect() async {
+    final reader = ref.read(calendarReaderProvider);
+    try {
+      if (!await reader.requestAccess()) {
+        state = const CalendarState(loaded: true, error: 'Calendar access was not allowed.');
+        return;
+      }
+    } catch (e) {
+      state = CalendarState(loaded: true, error: '$e');
+      return;
+    }
+    await refresh();
+  }
+
+  /// Reads calendars and events again. Quietly does nothing without access.
+  Future<void> refresh() async {
+    final reader = ref.read(calendarReaderProvider);
+    try {
+      if (!await reader.hasAccess()) {
+        state = const CalendarState(loaded: true);
+        return;
+      }
+      final calendars = await reader.calendars();
+      final selected = _savedSelection ?? {for (final c in calendars) c.id};
+      final now = ref.read(clockProvider)();
+      final rules = [for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules()];
+      final window = scheduler.eventWindow(now, rules);
+      final to = window.to.isAfter(now.add(const Duration(days: 62)))
+          ? now.add(const Duration(days: 62))
+          : window.to;
+      final events = await reader.events(window.from.subtract(const Duration(days: 1)), to, selected);
+      state = CalendarState(
+        access: true,
+        loaded: true,
+        calendars: calendars,
+        selected: selected,
+        events: events,
+      );
+    } catch (e) {
+      state = CalendarState(loaded: true, access: state.access, calendars: state.calendars, error: '$e');
+    }
+  }
+
+  Future<void> select(String id, bool on) async {
+    final s = {...state.selected};
+    on ? s.add(id) : s.remove(id);
+    await _prefs.setStringList('calendars.selected', s.toList());
+    await refresh();
+  }
+}
+
+final calendarProvider = NotifierProvider<CalendarNotifier, CalendarState>(CalendarNotifier.new);
+
+/// Presets plus the user's calendar rules.
+final allRulesProvider = Provider<List<AlarmRule>>(
+  (ref) => [
+    ...ref.watch(rulesProvider),
+    for (final r in ref.watch(calendarRulesProvider)) ...r.toAlarmRules(),
+  ],
+);
+
 final eventsProvider = Provider<List<AnchorEvent>>((ref) {
   final now = ref.watch(clockProvider)();
   final rules = ref.watch(rulesProvider);
   final window = scheduler.eventWindow(now, rules);
-  final events = ref.watch(jewishTimesProvider).events(window.from, window.to);
+  final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
+    ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
   final wantsSun = rules.any(
     (r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset),
   );
   if (wantsSun) {
     events.addAll(SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to));
-    events.sort((a, b) => a.at.compareTo(b.at));
   }
-  return events;
+  return events..sort((a, b) => a.at.compareTo(b.at));
 });
 
 class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
@@ -207,7 +343,7 @@ final planProvider = Provider<List<ScheduledAlarm>>((ref) {
   final zone = ref.watch(placeProvider).timeZone;
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
   return [
-    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(rulesProvider)),
+    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),
     for (final a in ref.watch(userAlarmsProvider))
       ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
   ]..sort((a, b) => a.at.compareTo(b.at));

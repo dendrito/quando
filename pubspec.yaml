@@ -8,6 +8,7 @@ environment:
 
 dependencies:
   alarm: ^5.15.0
+  device_calendar_plus: ^0.12.0
   flutter:
     sdk: flutter
   flutter_riverpod: ^3.4.3

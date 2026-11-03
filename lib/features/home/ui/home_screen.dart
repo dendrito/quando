@@ -36,6 +36,11 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 Expanded(child: Text('Quando', style: text.headlineSmall)),
                 IconButton(
+                  tooltip: 'Calendars',
+                  icon: const Icon(Icons.event_outlined),
+                  onPressed: () => context.push('/calendar'),
+                ),
+                IconButton(
                   tooltip: 'Settings',
                   icon: const Icon(Icons.tune),
                   onPressed: () => context.push('/settings'),
