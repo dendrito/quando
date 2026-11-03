@@ -18,6 +18,7 @@ class RingPayload {
     this.shabbatSafe = false,
     this.isCheck = false,
     this.transient = false,
+    this.isLock = false,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -57,6 +58,9 @@ class RingPayload {
   /// Snoozes, checks and test alarms: not part of the plan, so re-planning
   /// leaves them alone.
   final bool transient;
+
+  /// Only opens Quando so lock mode can start. No ringing screen.
+  final bool isLock;
 
   RingPayload withRingSeconds(int seconds) => RingPayload(
     title: title,
@@ -115,6 +119,7 @@ class RingPayload {
     'shabbatSafe': shabbatSafe,
     'isCheck': isCheck,
     'transient': transient,
+    'isLock': isLock,
   });
 
   static RingPayload decode(String? raw, {String fallbackTitle = 'Alarm', String fallbackBody = ''}) {
@@ -133,6 +138,7 @@ class RingPayload {
         shabbatSafe: j['shabbatSafe'] as bool? ?? false,
         isCheck: j['isCheck'] as bool? ?? false,
         transient: j['transient'] as bool? ?? false,
+        isLock: j['isLock'] as bool? ?? false,
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle, body: fallbackBody, ringSeconds: 60);

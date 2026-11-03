@@ -13,6 +13,9 @@ import '../features/calendar/ui/calendar_rule_screen.dart';
 import '../features/calendar/ui/calendar_screen.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/home/ui/settings_screen.dart';
+import '../features/lock/ui/lock_gate.dart';
+import '../features/lock/ui/lock_screen.dart';
+import '../features/ringing/ring_payload.dart';
 import '../features/ringing/ring_screen.dart';
 import 'providers.dart';
 import 'theme.dart';
@@ -25,6 +28,7 @@ final _router = GoRouter(
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
+    GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) => CalendarRuleScreen(id: state.pathParameters['id']!),
@@ -102,7 +106,13 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       final ids = set.alarms.map((a) => a.id).toSet();
       _shown.removeWhere((id) => !ids.contains(id));
       for (final alarm in set.alarms) {
-        if (_shown.add(alarm.id)) _showRinging(alarm);
+        if (!_shown.add(alarm.id)) continue;
+        if (RingPayload.decode(alarm.payload).isLock) {
+          // Its only job was to open Quando; the lock screen takes over.
+          Alarm.stop(alarm.id);
+        } else {
+          _showRinging(alarm);
+        }
       }
     });
   }
@@ -130,6 +140,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       routerConfig: _router,
+      builder: (context, child) => LockGate(child: child!),
     );
   }
 }

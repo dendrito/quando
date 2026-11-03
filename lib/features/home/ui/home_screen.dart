@@ -36,6 +36,11 @@ class HomeScreen extends ConsumerWidget {
               children: [
                 Expanded(child: Text('Quando', style: text.headlineSmall)),
                 IconButton(
+                  tooltip: 'Lock mode',
+                  icon: const Icon(Icons.lock_outline),
+                  onPressed: () => context.push('/lock'),
+                ),
+                IconButton(
                   tooltip: 'Calendars',
                   icon: const Icon(Icons.event_outlined),
                   onPressed: () => context.push('/calendar'),

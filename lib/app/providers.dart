@@ -4,12 +4,14 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/scheduler/scheduler.dart';
+import '../core/util/format.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
+import '../features/lock/domain/lock.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
 import '../features/rules/domain/presets.dart';
@@ -338,6 +340,87 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
 
 final userAlarmsProvider = NotifierProvider<UserAlarmsNotifier, List<UserAlarm>>(UserAlarmsNotifier.new);
 
+// ---- Lock mode ----
+
+class LockSettingsNotifier extends Notifier<LockSettings> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  LockSettings build() {
+    try {
+      final raw = _prefs.getString('lock');
+      return raw == null
+          ? const LockSettings()
+          : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return const LockSettings();
+    }
+  }
+
+  void update(LockSettings Function(LockSettings) change) {
+    state = change(state);
+    _prefs.setString('lock', jsonEncode(state.toJson()));
+  }
+
+  void lockFor(Duration d) => update((s) => s.copyWith(manualUntil: DateTime.now().toUtc().add(d)));
+}
+
+final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings>(LockSettingsNotifier.new);
+
+/// Locks the user ended early with "hold to unlock".
+class DismissedLocksNotifier extends Notifier<Set<String>> {
+  @override
+  Set<String> build() => (ref.read(prefsProvider).getStringList('lock.dismissed') ?? const []).toSet();
+
+  void dismiss(LockPeriod p) {
+    // Keep the list short: only the latest few matter.
+    final next = {...state, ...p.allIds}.toList();
+    state = next.skip(next.length > 50 ? next.length - 50 : 0).toSet();
+    ref.read(prefsProvider).setStringList('lock.dismissed', state.toList());
+    if (p.allIds.any((id) => id.startsWith('manual.'))) {
+      ref.read(lockSettingsProvider.notifier).update((s) => s.copyWith(clearManual: true));
+    }
+  }
+}
+
+final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<String>>(
+  DismissedLocksNotifier.new,
+);
+
+/// Upcoming and current locks.
+final lockPeriodsProvider = Provider<List<LockPeriod>>(
+  (ref) => lockPeriods(
+    settings: ref.watch(lockSettingsProvider),
+    holy: ref.watch(periodsProvider),
+    calendarEvents: ref.watch(calendarProvider.select((c) => c.events)),
+    now: ref.watch(clockProvider)(),
+    dismissed: ref.watch(dismissedLocksProvider),
+  ),
+);
+
+/// A 1-second, silent-ish alarm when each lock starts: it opens Quando,
+/// which then locks (and pins itself).
+final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
+  final settings = ref.watch(lockSettingsProvider);
+  if (!settings.openAtStart) return const [];
+  final now = ref.watch(clockProvider)();
+  final end = now.add(scheduler.horizon);
+  return [
+    for (final p in ref.watch(lockPeriodsProvider))
+      if (p.start.isAfter(now) && !p.start.isAfter(end))
+        ScheduledAlarm(
+          id: stableId('lock|${p.id}'),
+          at: p.start,
+          title: 'Lock mode',
+          body: p.reason,
+          ringDuration: const Duration(seconds: 1),
+          ruleId: 'lock',
+          eventId: p.id,
+          offset: Duration.zero,
+        ),
+  ];
+});
+
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
   final now = ref.watch(clockProvider)();
   final zone = ref.watch(placeProvider).timeZone;
@@ -346,6 +429,7 @@ final planProvider = Provider<List<ScheduledAlarm>>((ref) {
     ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),
     for (final a in ref.watch(userAlarmsProvider))
       ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
+    ...ref.watch(lockStartAlarmsProvider),
   ]..sort((a, b) => a.at.compareTo(b.at));
 });
 
@@ -373,6 +457,9 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
       options: options,
       shabbatSafe: periods.any((p) => p.contains(a.at)),
     );
+    if (a.ruleId == 'lock') {
+      return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
+    }
     // A user alarm can have its own ring length.
     return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
   };
