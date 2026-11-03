@@ -5,12 +5,23 @@ import 'package:alarm/utils/alarm_set.dart';
 
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
+import '../../integrations/domain/integrations.dart';
 import '../../ringing/ring_payload.dart';
 
 /// Registers planned alarms with the phone and keeps them in step with the
 /// plan: alarms no longer planned are removed, new ones are added. Snoozes,
 /// wake-up checks and test alarms are left alone.
 class AlarmRegistrar {
+  /// Told when an alarm rings, is stopped, snoozed or stops by itself
+  /// (Pushover, Zapier, IFTTT...).
+  void Function(AlarmHappening what, RingPayload p)? onHappening;
+
+  void _tell(AlarmHappening what, AlarmSettings s) {
+    try {
+      onHappening?.call(what, RingPayload.decode(s.payload, fallbackTitle: s.notificationSettings.title));
+    } catch (_) {}
+  }
+
   final _stopTimers = <int, Timer>{};
   StreamSubscription<AlarmSet>? _ringingSub;
   bool _ready = false;
@@ -74,6 +85,7 @@ class AlarmRegistrar {
     final p = RingPayload.decode(ringing.payload, fallbackTitle: ringing.notificationSettings.title);
     if (!p.canSnooze) return false;
     await Alarm.stop(ringing.id);
+    _tell(AlarmHappening.snoozed, ringing);
     final next = p.snoozed();
     await set(
       stableId('snooze|${ringing.id}|${next.snoozeCount}'),
@@ -87,6 +99,7 @@ class AlarmRegistrar {
   /// up?" in 3 minutes and returns its id, so the screen can cancel it.
   Future<int?> stop(AlarmSettings ringing) async {
     await Alarm.stop(ringing.id);
+    _tell(AlarmHappening.stopped, ringing);
     return _scheduleCheck(ringing);
   }
 
@@ -111,11 +124,13 @@ class AlarmRegistrar {
   void _enforceRingDuration(AlarmSet ringing) {
     for (final settings in ringing.alarms) {
       if (_stopTimers.containsKey(settings.id)) continue;
+      _tell(AlarmHappening.ring, settings);
       final seconds = RingPayload.decode(settings.payload).ringSeconds;
       _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {
         _stopTimers.remove(settings.id);
         if (await Alarm.isRinging(settings.id)) {
           await Alarm.stop(settings.id);
+          _tell(AlarmHappening.autoStopped, settings);
           // Slept through it? The wake-up check still comes.
           await _scheduleCheck(settings);
         }

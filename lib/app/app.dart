@@ -12,6 +12,7 @@ import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
 import '../features/calendar/ui/calendar_screen.dart';
 import '../features/home/ui/home_screen.dart';
+import '../features/integrations/ui/integrations_screen.dart';
 import '../features/home/ui/settings_screen.dart';
 import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
@@ -31,6 +32,7 @@ final _router = GoRouter(
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
+    GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) => CalendarRuleScreen(id: state.pathParameters['id']!),

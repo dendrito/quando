@@ -11,6 +11,8 @@ import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
+import '../features/integrations/data/sender.dart';
+import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
@@ -585,8 +587,52 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
   return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
 }
 
+// ---- Integrations ----
+
+class IntegrationsNotifier extends Notifier<IntegrationSettings> {
+  @override
+  IntegrationSettings build() {
+    try {
+      final raw = ref.read(prefsProvider).getString('integrations');
+      return raw == null
+          ? const IntegrationSettings()
+          : IntegrationSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return const IntegrationSettings();
+    }
+  }
+
+  void update(IntegrationSettings Function(IntegrationSettings) change) {
+    state = change(state);
+    ref.read(prefsProvider).setString('integrations', jsonEncode(state.toJson()));
+  }
+
+  void addWebhook(Webhook w) => update((s) => s.copyWith(webhooks: [...s.webhooks, w]));
+
+  void replaceWebhook(Webhook w) =>
+      update((s) => s.copyWith(webhooks: [for (final x in s.webhooks) x.id == w.id ? w : x]));
+
+  void removeWebhook(String id) => update(
+    (s) => s.copyWith(
+      webhooks: [
+        for (final x in s.webhooks)
+          if (x.id != id) x,
+      ],
+    ),
+  );
+}
+
+final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationSettings>(
+  IntegrationsNotifier.new,
+);
+
+final integrationSenderProvider = Provider<IntegrationSender>(
+  (ref) => IntegrationSender(() => ref.read(integrationsProvider)),
+);
+
 final registrarProvider = Provider<AlarmRegistrar>((ref) {
-  final r = AlarmRegistrar();
+  final sender = ref.read(integrationSenderProvider);
+  final r = AlarmRegistrar()..onHappening = (what, p) => sender.send(what, p);
   ref.onDispose(r.dispose);
   return r;
 });

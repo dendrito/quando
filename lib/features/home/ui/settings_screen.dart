@@ -33,6 +33,15 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
+            title: const Text('Connections'),
+            subtitle: const Text('Pushover, Zapier, IFTTT'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/connections'),
+          ),
+          const SizedBox(height: 16),
           Text('TIME ZONE', style: text.labelSmall),
           ListTile(
             contentPadding: EdgeInsets.zero,

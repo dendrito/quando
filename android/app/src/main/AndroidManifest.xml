@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Calendar alarms: read events from the phone's calendars (Google included). -->
+    <!-- Pushover, Zapier and IFTTT. -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <!-- Record your own alarm sounds. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
@@ -52,6 +54,11 @@
         <!-- Spoken alarms: lets the app find the phone's text-to-speech engine. -->
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Open pushover.net links in the browser. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
         </intent>
     </queries>
 </manifest>
