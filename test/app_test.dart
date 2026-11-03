@@ -29,7 +29,13 @@ void main() {
     expect(find.text('Shabbat'), findsOneWidget);
     // Jerusalem, Fri 6 Nov 2026: candle lighting 16:05 local.
     expect(find.text('16:05'), findsOneWidget);
-    expect(find.text('2 hours before · Fri 6 Nov'), findsOneWidget);
+    // Friday's candle-lighting reminders fold into one row that opens.
+    final series = find.textContaining('alarms · ');
+    await tester.scrollUntilVisible(series.first, 400);
+    expect(find.text('2 hours before'), findsNothing);
+    await tester.tap(series.first);
+    await tester.pumpAndSettle();
+    expect(find.text('2 hours before'), findsOneWidget);
     await tester.scrollUntilVisible(find.textContaining('set themselves on this phone'), 400);
     expect(find.textContaining('set themselves on this phone'), findsOneWidget);
   });

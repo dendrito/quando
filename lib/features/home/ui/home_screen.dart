@@ -11,7 +11,11 @@ import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
 import '../../timezones/ui/world_clocks.dart';
 import '../domain/sky.dart';
+import '../../alarms/ui/group_picker.dart';
+import '../domain/week.dart';
+import 'alarm_group_card.dart';
 import 'day_arc.dart';
+import 'week_list.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -22,6 +26,14 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
+  final _openGroups = <String>{};
+
+  Future<void> _renameGroup(String from) async {
+    final name = await askGroupName(context, title: 'Rename group', initial: from);
+    if (name == null || name == from) return;
+    ref.read(userAlarmsProvider.notifier).renameGroup(from, name);
+    setState(() => _openGroups.remove(from));
+  }
 
   @override
   void initState() {
@@ -229,7 +241,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     padding: const EdgeInsets.only(bottom: 8),
                     child: Text('Tap When? to add an alarm.', style: text.bodySmall),
                   ),
-                for (final a in mine) ...[
+                for (final a in mine.where((a) => a.group.isEmpty)) ...[
                   _AlarmCard(
                     alarm: a,
                     onTap: () => context.push('/alarm/${a.id}'),
@@ -237,27 +249,37 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 10),
                 ],
+                for (final g in ref.read(userAlarmsProvider.notifier).groups) ...[
+                  AlarmGroupCard(
+                    name: g,
+                    alarms: [
+                      for (final a in mine)
+                        if (a.group == g) a,
+                    ],
+                    open: _openGroups.contains(g),
+                    onOpen: () =>
+                        setState(() => _openGroups.contains(g) ? _openGroups.remove(g) : _openGroups.add(g)),
+                    onToggleAll: (v) => ref.read(userAlarmsProvider.notifier).toggleGroup(g, v),
+                    onRename: () => _renameGroup(g),
+                    alarmCard: (a) => _AlarmCard(
+                      alarm: a,
+                      flat: true,
+                      onTap: () => context.push('/alarm/${a.id}'),
+                      onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
 
                 // ---- This week ----
                 const SizedBox(height: 18),
                 Text('ALARMS THIS WEEK', style: text.labelSmall),
-                const SizedBox(height: 6),
                 if (plan.isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Text('No alarms in the next 7 days.', style: text.bodySmall),
                   ),
-                for (final a in plan.take(12))
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    title: Text(a.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                    subtitle: Text('${a.body} · ${day(a.at)}', style: text.bodySmall),
-                    trailing: Text(
-                      local(a.at),
-                      style: text.titleLarge?.copyWith(color: QuandoColors.amber, fontSize: 24),
-                    ),
-                  ),
-                if (plan.length > 12) Text('and ${plan.length - 12} more', style: text.bodySmall),
+                WeekList(days: weekPlan(plan, home), today: inZone(now, home), zone: home),
 
                 // ---- World clocks ----
                 const SizedBox(height: 22),
@@ -368,9 +390,12 @@ class _TimeRow extends StatelessWidget {
 }
 
 class _AlarmCard extends StatelessWidget {
-  const _AlarmCard({required this.alarm, required this.onTap, required this.onToggle});
+  const _AlarmCard({required this.alarm, required this.onTap, required this.onToggle, this.flat = false});
 
   final UserAlarm alarm;
+
+  /// Inside a group card: no card of its own.
+  final bool flat;
   final VoidCallback onTap;
   final ValueChanged<bool> onToggle;
 
@@ -379,7 +404,7 @@ class _AlarmCard extends StatelessWidget {
     final text = Theme.of(context).textTheme;
     final on = alarm.enabled;
     return Material(
-      color: QuandoColors.surface,
+      color: flat ? Colors.transparent : QuandoColors.surface,
       borderRadius: const BorderRadius.all(Radius.circular(28)),
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(28)),

@@ -397,6 +397,23 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
       if (a.id != id) a,
   ]);
 
+  /// Every group name in use, A to Z.
+  List<String> get groups => {
+    for (final a in state)
+      if (a.group.isNotEmpty) a.group,
+  }.toList()..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+
+  /// Turns every alarm in [group] on or off at once.
+  void toggleGroup(String group, bool enabled) {
+    for (final a in [...state]) {
+      if (a.group == group && a.enabled != enabled) toggle(a.id, enabled);
+    }
+  }
+
+  /// Renames a group; an empty name takes its alarms out of any group.
+  void renameGroup(String from, String to) =>
+      _set([for (final a in state) a.group == from ? a.copyWith(group: to.trim()) : a]);
+
   void _set(List<UserAlarm> alarms) {
     state = alarms..sort(_byTime);
     _prefs.setString('userAlarms', jsonEncode([for (final a in state) a.toJson()]));

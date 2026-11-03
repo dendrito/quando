@@ -17,6 +17,7 @@ class UserAlarm {
     this.onceAt,
     this.soundId,
     this.zone,
+    this.group = '',
   });
 
   final String id;
@@ -40,6 +41,10 @@ class UserAlarm {
   /// Rings at this time in this zone, e.g. 7:00 in New York. null = your
   /// home zone.
   final String? zone;
+
+  /// A name the user files this alarm under, e.g. "Work" or "Kids".
+  /// Empty = no group.
+  final String group;
 
   bool get repeats => days.isNotEmpty;
 
@@ -124,6 +129,7 @@ class UserAlarm {
     bool defaultSound = false,
     String? zone,
     bool homeZone = false,
+    String? group,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -135,6 +141,7 @@ class UserAlarm {
     onceAt: onceAt ?? this.onceAt,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     zone: homeZone ? null : (zone ?? this.zone),
+    group: group ?? this.group,
   );
 
   Map<String, dynamic> toJson() => {
@@ -148,6 +155,7 @@ class UserAlarm {
     'onceAt': onceAt?.toIso8601String(),
     'soundId': soundId,
     'zone': zone,
+    'group': group,
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -161,5 +169,6 @@ class UserAlarm {
     onceAt: j['onceAt'] == null ? null : DateTime.parse(j['onceAt'] as String).toUtc(),
     soundId: j['soundId'] as String?,
     zone: j['zone'] as String?,
+    group: (j['group'] as String? ?? '').trim(),
   );
 }

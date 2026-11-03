@@ -8,6 +8,7 @@ import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
+import 'group_picker.dart';
 import 'ring_length_picker.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
@@ -189,7 +190,23 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             textCapitalization: TextCapitalization.sentences,
             decoration: const InputDecoration(labelText: 'Label (read aloud if spoken alarms are on)'),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.folder_outlined),
+            title: const Text('Group'),
+            subtitle: Text(_alarm.group.isEmpty ? 'No group' : _alarm.group),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final g = await pickGroup(
+                context,
+                groups: ref.read(userAlarmsProvider.notifier).groups,
+                current: _alarm.group,
+              );
+              if (g != null) setState(() => _alarm = _alarm.copyWith(group: g));
+            },
+          ),
+          const SizedBox(height: 4),
           SoundPickerTile(
             value: _alarm.soundId,
             onChanged: (id) => setState(
