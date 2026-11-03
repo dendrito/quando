@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/scheduler/scheduler.dart';
 import '../features/alarms/data/alarm_registrar.dart';
+import '../features/alarms/domain/user_alarm.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/ringing/ring_payload.dart';
@@ -143,12 +144,73 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
   return events;
 });
 
+class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  List<UserAlarm> build() {
+    try {
+      final raw = _prefs.getString('userAlarms');
+      if (raw == null) return const [];
+      return [for (final j in jsonDecode(raw) as List) UserAlarm.fromJson(j as Map<String, dynamic>)]
+        ..sort(_byTime);
+    } catch (_) {
+      return const [];
+    }
+  }
+
+  static int _byTime(UserAlarm a, UserAlarm b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
+
+  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time.
+  void save(UserAlarm alarm) {
+    final fixed = alarm.repeats
+        ? alarm
+        : alarm.copyWith(
+            onceAt: UserAlarm.nextAt(
+              alarm.hour,
+              alarm.minute,
+              ref.read(clockProvider)(),
+              ref.read(placeProvider).timeZone,
+            ),
+          );
+    _set([
+      for (final a in state)
+        if (a.id != alarm.id) a,
+      fixed,
+    ]);
+  }
+
+  void toggle(String id, bool enabled) {
+    final a = state.firstWhere((a) => a.id == id);
+    if (enabled && !a.repeats) {
+      save(a.copyWith(enabled: true));
+    } else {
+      _set([for (final x in state) x.id == id ? x.copyWith(enabled: enabled) : x]);
+    }
+  }
+
+  void delete(String id) => _set([
+    for (final a in state)
+      if (a.id != id) a,
+  ]);
+
+  void _set(List<UserAlarm> alarms) {
+    state = alarms..sort(_byTime);
+    _prefs.setString('userAlarms', jsonEncode([for (final a in state) a.toJson()]));
+  }
+}
+
+final userAlarmsProvider = NotifierProvider<UserAlarmsNotifier, List<UserAlarm>>(UserAlarmsNotifier.new);
+
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
-  return scheduler.plan(
-    now: ref.watch(clockProvider)(),
-    events: ref.watch(eventsProvider),
-    rules: ref.watch(rulesProvider),
-  );
+  final now = ref.watch(clockProvider)();
+  final zone = ref.watch(placeProvider).timeZone;
+  final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
+  return [
+    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(rulesProvider)),
+    for (final a in ref.watch(userAlarmsProvider))
+      ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
+  ]..sort((a, b) => a.at.compareTo(b.at));
 });
 
 /// Shabbat and festival periods over the planning horizon.
@@ -168,12 +230,16 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
-  return (a) => RingPayload.forAlarm(
-    title: a.title,
-    body: a.body,
-    options: options,
-    shabbatSafe: periods.any((p) => p.contains(a.at)),
-  );
+  return (a) {
+    final p = RingPayload.forAlarm(
+      title: a.title,
+      body: a.body,
+      options: options,
+      shabbatSafe: periods.any((p) => p.contains(a.at)),
+    );
+    // A user alarm can have its own ring length.
+    return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
+  };
 });
 
 final registrarProvider = Provider<AlarmRegistrar>((ref) {

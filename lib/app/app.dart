@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/alarms/data/permissions.dart';
+import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/home/ui/settings_screen.dart';
 import '../features/ringing/ring_screen.dart';
@@ -20,6 +22,10 @@ final _router = GoRouter(
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
+    GoRoute(
+      path: '/alarm/:id',
+      builder: (context, state) => EditAlarmScreen(id: state.pathParameters['id']!),
+    ),
   ],
 );
 
@@ -34,14 +40,46 @@ class QuandoApp extends ConsumerStatefulWidget {
   ConsumerState<QuandoApp> createState() => _QuandoAppState();
 }
 
-class _QuandoAppState extends ConsumerState<QuandoApp> {
+class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserver {
   StreamSubscription<AlarmSet>? _ringingSub;
   final _shown = <int>{};
+  Timer? _syncTimer;
 
   @override
   void initState() {
     super.initState();
-    if (_onPhone) _listen();
+    if (_onPhone) {
+      WidgetsBinding.instance.addObserver(this);
+      _listen();
+      // Keep the phone's alarms in step with the plan, whatever changes it.
+      ref.listenManual(planProvider, (_, _) => _scheduleSync());
+      ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
+      _start();
+    }
+  }
+
+  Future<void> _start() async {
+    await ensureAlarmPermissions();
+    await _sync();
+  }
+
+  void _scheduleSync() {
+    _syncTimer?.cancel();
+    _syncTimer = Timer(const Duration(seconds: 1), _sync);
+  }
+
+  Future<void> _sync() async {
+    try {
+      await ref.read(registrarProvider).sync(ref.read(planProvider), ref.read(payloadForProvider));
+    } catch (e) {
+      debugPrint('Quando: could not set alarms: $e');
+    }
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    // Back after a while: plan again from the real time now.
+    if (state == AppLifecycleState.resumed) ref.invalidate(clockProvider);
   }
 
   Future<void> _listen() async {
@@ -66,6 +104,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> {
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    _syncTimer?.cancel();
     _ringingSub?.cancel();
     super.dispose();
   }

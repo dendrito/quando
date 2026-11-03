@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,7 +5,6 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
-import '../../alarms/data/permissions.dart';
 
 class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
@@ -17,6 +15,7 @@ class HomeScreen extends ConsumerWidget {
     final plan = ref.watch(planProvider);
     final period = ref.watch(nextPeriodProvider);
     final rules = ref.watch(rulesProvider);
+    final mine = ref.watch(userAlarmsProvider);
     final now = ref.watch(clockProvider)();
     final text = Theme.of(context).textTheme;
 
@@ -24,6 +23,11 @@ class HomeScreen extends ConsumerWidget {
     String day(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
 
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        tooltip: 'New alarm',
+        onPressed: () => context.push('/alarm/new'),
+        child: const Icon(Icons.add),
+      ),
       body: SafeArea(
         child: ListView(
           padding: const EdgeInsets.fromLTRB(24, 24, 24, 40),
@@ -39,6 +43,29 @@ class HomeScreen extends ConsumerWidget {
               ],
             ),
             Text('If not now, when?', style: text.bodySmall?.copyWith(fontStyle: FontStyle.italic)),
+            const SizedBox(height: 28),
+            Text('YOUR ALARMS', style: text.labelSmall),
+            if (mine.isEmpty)
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 12),
+                child: Text('Tap + to add an alarm.', style: text.bodySmall),
+              ),
+            for (final a in mine)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                onTap: () => context.push('/alarm/${a.id}'),
+                title: Text(
+                  hhmm(DateTime(2000, 1, 1, a.hour, a.minute)),
+                  style: text.headlineMedium?.copyWith(
+                    color: a.enabled ? QuandoColors.text : QuandoColors.muted,
+                  ),
+                ),
+                subtitle: Text('${a.title} · ${a.repeatLabel}', style: text.bodySmall),
+                trailing: Switch(
+                  value: a.enabled,
+                  onChanged: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                ),
+              ),
             const SizedBox(height: 28),
             if (period != null)
               Card(
@@ -69,15 +96,16 @@ class HomeScreen extends ConsumerWidget {
                 padding: const EdgeInsets.symmetric(vertical: 16),
                 child: Text('No alarms in the next 7 days.', style: text.bodySmall),
               ),
-            for (final a in plan)
+            for (final a in plan.take(12))
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(a.title, style: text.bodyMedium),
                 subtitle: Text('${a.body} · ${day(a.at)}', style: text.bodySmall),
                 trailing: Text(local(a.at), style: text.titleMedium?.copyWith(color: QuandoColors.amber)),
               ),
+            if (plan.length > 12) Text('and ${plan.length - 12} more', style: text.bodySmall),
             const SizedBox(height: 28),
-            Text('PRESETS', style: text.labelSmall),
+            Text('SHABBAT AND SUN PRESETS', style: text.labelSmall),
             for (final r in rules)
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -85,32 +113,13 @@ class HomeScreen extends ConsumerWidget {
                 value: r.enabled,
                 onChanged: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
               ),
-            const SizedBox(height: 24),
-            FilledButton(
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-              onPressed: () => _setAlarms(context, ref),
-              child: Text('Set ${plan.length} alarms on this phone'),
-            ),
+            const SizedBox(height: 16),
+            Text('Alarms set themselves on this phone whenever you change something.', style: text.bodySmall),
+            const SizedBox(height: 64),
           ],
         ),
       ),
     );
-  }
-
-  Future<void> _setAlarms(BuildContext context, WidgetRef ref) async {
-    final messenger = ScaffoldMessenger.of(context);
-    final supported =
-        !kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
-    if (!supported) {
-      messenger.showSnackBar(const SnackBar(content: Text('Alarms can only be set on a phone.')));
-      return;
-    }
-    await ensureAlarmPermissions();
-    final added = await ref
-        .read(registrarProvider)
-        .sync(ref.read(planProvider), ref.read(payloadForProvider));
-    messenger.showSnackBar(SnackBar(content: Text('$added alarms set for this week.')));
   }
 }
 

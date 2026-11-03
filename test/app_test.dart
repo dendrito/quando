@@ -25,11 +25,12 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Quando'), findsOneWidget);
+    expect(find.text('Tap + to add an alarm.'), findsOneWidget);
     expect(find.text('Shabbat'), findsOneWidget);
     // Jerusalem, Fri 6 Nov 2026: candle lighting 16:05 local.
     expect(find.text('16:05'), findsOneWidget);
     expect(find.text('2 hours before · Fri 6 Nov'), findsOneWidget);
-    await tester.scrollUntilVisible(find.textContaining('alarms on this phone'), 400);
-    expect(find.textContaining('alarms on this phone'), findsOneWidget);
+    await tester.scrollUntilVisible(find.textContaining('set themselves on this phone'), 400);
+    expect(find.textContaining('set themselves on this phone'), findsOneWidget);
   });
 }

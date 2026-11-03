@@ -58,6 +58,21 @@ class RingPayload {
   /// leaves them alone.
   final bool transient;
 
+  RingPayload withRingSeconds(int seconds) => RingPayload(
+    title: title,
+    body: body,
+    ringSeconds: seconds,
+    spoken: spoken,
+    maxSnoozes: maxSnoozes,
+    snoozeMinutes: snoozeMinutes,
+    snoozeCount: snoozeCount,
+    wakeCheck: wakeCheck,
+    mathTask: mathTask,
+    shabbatSafe: shabbatSafe,
+    isCheck: isCheck,
+    transient: transient,
+  );
+
   bool get canSnooze => snoozeCount < maxSnoozes;
 
   /// What gets read aloud, e.g. "Candle lighting, Shabbat. 15 minutes before."
