@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:alarm/alarm.dart';
 import 'package:alarm/utils/alarm_set.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -13,6 +14,8 @@ import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
 import 'ring_payload.dart';
+import 'ring_style.dart';
+import 'shake_detector.dart';
 
 /// Full screen shown while an alarm rings: what it is for, Stop, Snooze,
 /// and the optional sum or wake-up check.
@@ -25,7 +28,7 @@ class RingScreen extends ConsumerStatefulWidget {
   ConsumerState<RingScreen> createState() => _RingScreenState();
 }
 
-enum _Stage { ringing, sum, awaitingUp, done }
+enum _Stage { ringing, sum, shake, awaitingUp, done }
 
 class _RingScreenState extends ConsumerState<RingScreen> {
   late final RingPayload p = RingPayload.decode(
@@ -43,6 +46,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   int? _checkId;
   late final (int, int) _sum = (Random().nextInt(60) + 12, Random().nextInt(30) + 7);
   String? _sumError;
+  ShakeDetector? _shakes;
+  var _shaken = 0;
+  static const shakesToStop = 30;
 
   @override
   void initState() {
@@ -53,6 +59,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     _second = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
+    if (p.snoozeBy.contains(StopWay.shake) || p.stopBy.contains(StopWay.shake) || p.shakeTask) {
+      _shakes = ShakeDetector(onShake: _onShake)..start();
+    }
+    HardwareKeyboard.instance.addHandler(_onKey);
     // Close when the alarm stops on its own (ring duration) or elsewhere.
     _ringingSub = Alarm.ringing.listen((set) {
       final stillRinging = set.alarms.any((a) => a.id == widget.alarm.id);
@@ -69,8 +79,42 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     }
   }
 
+  /// Volume buttons snooze or stop, when this alarm says so.
+  bool _onKey(KeyEvent e) {
+    if (e is! KeyDownEvent) return false;
+    final k = e.logicalKey;
+    if (k != LogicalKeyboardKey.audioVolumeUp && k != LogicalKeyboardKey.audioVolumeDown) return false;
+    if (_stage != _Stage.ringing || p.isCheck) return false;
+    if (p.stopBy.contains(StopWay.volumeKeys)) {
+      _onStop();
+      return true;
+    }
+    if (p.snoozeBy.contains(StopWay.volumeKeys) && p.canSnooze) {
+      _onSnooze();
+      return true;
+    }
+    return false;
+  }
+
+  void _onShake() {
+    if (!mounted) return;
+    if (_stage == _Stage.shake) {
+      setState(() => _shaken++);
+      if (_shaken >= shakesToStop) _stopNow();
+      return;
+    }
+    if (_stage != _Stage.ringing || p.isCheck) return;
+    if (p.stopBy.contains(StopWay.shake)) {
+      _onStop();
+    } else if (p.snoozeBy.contains(StopWay.shake) && p.canSnooze) {
+      _onSnooze();
+    }
+  }
+
   @override
   void dispose() {
+    HardwareKeyboard.instance.removeHandler(_onKey);
+    _shakes?.stop();
     _speakTimer?.cancel();
     _second?.cancel();
     _ringingSub?.cancel();
@@ -88,6 +132,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   Future<void> _onStop() async {
     if (p.mathTask && _stage == _Stage.ringing) {
       setState(() => _stage = _Stage.sum);
+      return;
+    }
+    if (p.shakeTask && _stage == _Stage.ringing) {
+      setState(() => _stage = _Stage.shake);
       return;
     }
     await _stopNow();
@@ -225,6 +273,33 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           const SizedBox(height: 16),
           _StopButton(label: 'Stop', onPressed: _checkSum),
         ];
+      case _Stage.shake:
+        return [
+          Text('SHAKE TO STOP', style: text.labelSmall?.copyWith(color: ink)),
+          const SizedBox(height: 8),
+          Text('$_shaken / $shakesToStop', style: text.displaySmall?.copyWith(color: ink)),
+          const SizedBox(height: 12),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(8),
+            child: LinearProgressIndicator(
+              value: _shaken / shakesToStop,
+              minHeight: 14,
+              color: ink,
+              backgroundColor: ink.withValues(alpha: 0.15),
+            ),
+          ),
+          const SizedBox(height: 12),
+          Text(
+            'Shake the phone hard until the bar fills.',
+            style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+          ),
+          // A phone without a motion sensor must still be able to stop.
+          TextButton(
+            onPressed: () => setState(() => _stage = _Stage.sum),
+            style: TextButton.styleFrom(foregroundColor: ink),
+            child: const Text('Can\'t shake? Solve a sum instead'),
+          ),
+        ];
       case _Stage.awaitingUp:
         return [
           Text(
@@ -262,10 +337,29 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           if (p.isCheck)
             _StopButton(label: 'I\'m up', onPressed: _stopNow)
           else
-            _StopButton(label: p.link == null ? 'Stop' : 'Stop · play my song', onPressed: _onStop),
+            _StopButton(label: p.link == null ? 'Stop' : 'Stop · then open', onPressed: _onStop),
+          if (!p.isCheck && _hints.isNotEmpty) ...[
+            const SizedBox(height: 10),
+            Text(
+              _hints.join(' · '),
+              textAlign: TextAlign.center,
+              style: text.bodyMedium?.copyWith(color: ink, fontWeight: FontWeight.w600),
+            ),
+          ],
         ];
     }
   }
+}
+
+extension on _RingScreenState {
+  /// "Volume buttons stop · shake to snooze".
+  List<String> get _hints => [
+    for (final w in StopWay.values)
+      if (p.stopBy.contains(w))
+        '${w.label} to stop'
+      else if (p.snoozeBy.contains(w) && p.canSnooze)
+        '${w.label} to snooze',
+  ];
 }
 
 /// The big plum Stop button with its amber arrow.

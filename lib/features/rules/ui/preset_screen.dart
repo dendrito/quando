@@ -6,6 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../ringing/ui/ring_style_screen.dart';
 
 /// Change a ready-made rule: when it rings around its event, and with which
 /// sound. Changes apply straight away.
@@ -69,6 +70,10 @@ class PresetScreen extends ConsumerWidget {
             value: rule.soundId,
             onChanged: (s) =>
                 notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),
+          ),
+          RingStyleTile(
+            value: rule.style,
+            onChanged: (s) => notifier.edit(id, (r) => r.copyWith(style: s)),
           ),
           const SizedBox(height: 24),
           if (notifier.isCustom(id))

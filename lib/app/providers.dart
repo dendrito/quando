@@ -654,11 +654,33 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
 /// The alarms that will ring: the full plan minus the ones you skipped.
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
   final skipped = ref.watch(skippedProvider);
+  final now = ref.watch(clockProvider)();
   return [
     for (final a in ref.watch(fullPlanProvider))
-      if (!skipped.contains(a.id)) a,
-  ];
+      if (!skipped.contains(a.id)) ...[?gentleBefore(a, now), a],
+  ]..sort((a, b) => a.at.compareTo(b.at));
 });
+
+/// The soft alarm some minutes before [a], if it asks for one and that
+/// moment is still ahead.
+ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
+  final m = a.style.gentleMinutes;
+  if (m <= 0 || a.ruleId == 'lock') return null;
+  final at = a.at.subtract(Duration(minutes: m));
+  if (!at.isAfter(now)) return null;
+  return ScheduledAlarm(
+    id: stableId('gentle|${a.id}'),
+    at: at,
+    title: a.title,
+    body: a.body,
+    ringDuration: a.ringDuration,
+    ruleId: 'gentle.${a.ruleId}',
+    eventId: a.eventId,
+    offset: a.offset,
+    soundId: a.soundId,
+    style: a.style,
+  );
+}
 
 /// Every alarm for the week ahead, skipped ones included.
 final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
@@ -694,9 +716,12 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   final links = {for (final s in ref.watch(soundsProvider)) s.id: s.link};
   return (a) {
     final id = a.soundId ?? options.soundId;
-    final p = _withSound(_payload(a, options, periods), sounds[id]);
+    var p = _withSound(_payload(a, options, periods), sounds[id]);
     // Never open another app on Shabbat or a festival.
-    return p.isLock || p.shabbatSafe ? p : p.withLink(links[id]);
+    if (!p.isLock && !p.shabbatSafe) p = p.withLink(links[id]);
+    if (p.isLock) return p;
+    p = p.withStyle(a.style);
+    return a.ruleId.startsWith('gentle.') ? p.gentle(a.style.gentleMinutes) : p;
   };
 });
 
@@ -713,7 +738,9 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
     return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
   }
   // A user alarm can have its own ring length.
-  return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
+  return a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
+      ? p.withRingSeconds(a.ringDuration.inSeconds)
+      : p;
 }
 
 // ---- Integrations ----

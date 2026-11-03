@@ -3,6 +3,7 @@ import 'package:timezone/timezone.dart' as tz;
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
+import '../../ringing/ring_style.dart';
 
 /// An everyday alarm the user sets: "7:00 on weekdays".
 class UserAlarm {
@@ -18,6 +19,7 @@ class UserAlarm {
     this.soundId,
     this.zone,
     this.group = '',
+    this.style = RingStyle.none,
   });
 
   final String id;
@@ -45,6 +47,9 @@ class UserAlarm {
   /// A name the user files this alarm under, e.g. "Work" or "Kids".
   /// Empty = no group.
   final String group;
+
+  /// Volume, fades, gentle wake-up, tasks and more for this alarm.
+  final RingStyle style;
 
   bool get repeats => days.isNotEmpty;
 
@@ -112,6 +117,7 @@ class UserAlarm {
           eventId: 'user.$id',
           offset: Duration.zero,
           soundId: soundId,
+          style: style,
         ),
     ];
   }
@@ -130,6 +136,7 @@ class UserAlarm {
     String? zone,
     bool homeZone = false,
     String? group,
+    RingStyle? style,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -142,6 +149,7 @@ class UserAlarm {
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     zone: homeZone ? null : (zone ?? this.zone),
     group: group ?? this.group,
+    style: style ?? this.style,
   );
 
   Map<String, dynamic> toJson() => {
@@ -156,6 +164,7 @@ class UserAlarm {
     'soundId': soundId,
     'zone': zone,
     'group': group,
+    'style': style.toJson(),
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -170,5 +179,6 @@ class UserAlarm {
     soundId: j['soundId'] as String?,
     zone: j['zone'] as String?,
     group: (j['group'] as String? ?? '').trim(),
+    style: RingStyle.fromJson(j['style']),
   );
 }

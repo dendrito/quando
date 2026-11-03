@@ -15,6 +15,7 @@ import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
+import '../../ringing/ui/ring_style_screen.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -124,6 +125,12 @@ class SettingsScreen extends ConsumerWidget {
           RingLengthPicker(
             seconds: o.ringSeconds,
             onChanged: (s) => setO((x) => x.copyWith(ringSeconds: s)),
+          ),
+          const SizedBox(height: 16),
+          const Text('Volume and fades'),
+          LoudnessEditor(
+            value: o.loudness,
+            onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
           ),
           const SizedBox(height: 8),
           SwitchListTile(
@@ -238,6 +245,7 @@ class SettingsScreen extends ConsumerWidget {
             snoozeMinutes: 1,
             wakeCheck: p.wakeCheck,
             mathTask: p.mathTask,
+            loudness: p.loudness,
             transient: true,
           ),
         );

@@ -62,17 +62,15 @@ class AlarmRegistrar {
         vibrate: true,
         androidFullScreenIntent: true,
         warningNotificationOnKill: true,
-        // Fade in gently, but a 2-second alarm must be loud from the start.
+        // Each alarm's own volume and fades, shrunk to fit a short ring.
         volumeSettings: p.isLock
             ? const VolumeSettings.fixed(volume: 0.15)
-            : p.ringSeconds >= 30
-            ? VolumeSettings.fade(fadeDuration: const Duration(seconds: 10))
-            : VolumeSettings.fixed(),
+            : p.loudness.toVolumeSettings(p.ringSeconds),
         notificationSettings: NotificationSettings(
           title: p.title,
           body: p.body,
           // A check must be answered on the ringing screen.
-          stopButton: p.isCheck || p.mathTask || p.isLock ? null : 'Stop',
+          stopButton: p.isCheck || p.hasTask || p.isLock ? null : 'Stop',
         ),
         payload: p.encode(),
       ),

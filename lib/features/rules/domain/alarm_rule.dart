@@ -1,5 +1,6 @@
 import '../../events/domain/event.dart';
 import '../../events/domain/event_query.dart';
+import '../../ringing/ring_style.dart';
 
 enum Direction { before, after }
 
@@ -38,6 +39,7 @@ class AlarmRule {
     this.sources,
     this.keyword,
     this.soundId,
+    this.style = RingStyle.none,
   });
 
   final String id;
@@ -74,6 +76,9 @@ class AlarmRule {
   /// The sound to ring with. null = the default sound.
   final String? soundId;
 
+  /// Volume, fades, tasks and more for this rule's alarms.
+  final RingStyle style;
+
   /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
   /// [EventQuery]). [sources] only narrows calendar events, so a rule can
   /// also catch Shabbat, festival and sun times.
@@ -108,6 +113,7 @@ class AlarmRule {
     bool? atEvent,
     String? soundId,
     bool defaultSound = false,
+    RingStyle? style,
   }) => AlarmRule(
     id: id,
     name: name,
@@ -122,6 +128,7 @@ class AlarmRule {
     sources: sources,
     keyword: keyword,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
+    style: style ?? this.style,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =
@@ -140,12 +147,14 @@ class AlarmRule {
   Map<String, dynamic> customJson() => {
     'offsets': [for (final d in offsets()) d.inMinutes],
     'soundId': soundId,
+    'style': style.toJson(),
   };
 
   AlarmRule withCustom(Map<String, dynamic> j) {
     final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
     final r = mins == null ? this : withOffsets(mins);
     final sound = j['soundId'] as String?;
-    return sound == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: sound);
+    final styled = r.copyWith(style: RingStyle.fromJson(j['style']));
+    return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
   }
 }

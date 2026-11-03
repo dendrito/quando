@@ -1,4 +1,5 @@
 import '../../events/domain/event.dart';
+import '../../ringing/ring_style.dart';
 import '../../rules/domain/alarm_rule.dart';
 
 /// Alarms around calendar events, as the user sets them up: "15 minutes and
@@ -18,6 +19,7 @@ class CalendarRule {
     this.enabled = true,
     this.soundId,
     this.includeTimes = false,
+    this.style = RingStyle.none,
   });
 
   final String id;
@@ -50,6 +52,9 @@ class CalendarRule {
   /// null = the default sound.
   final String? soundId;
 
+  /// Volume, fades, tasks and more for these alarms.
+  final RingStyle style;
+
   String get title {
     if (name.isNotEmpty) return name;
     if (keyword.isNotEmpty) return 'Events matching "$keyword"';
@@ -78,6 +83,7 @@ class CalendarRule {
         sources: sources,
         keyword: kw,
         soundId: soundId,
+        style: style,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -88,6 +94,7 @@ class CalendarRule {
         sources: sources,
         keyword: kw,
         soundId: soundId,
+        style: style,
       ),
       // Shabbat, festival and sun times are single moments: before, at and
       // after all hang off the moment itself.
@@ -108,6 +115,7 @@ class CalendarRule {
         enabled: enabled && includeTimes,
         keyword: kw,
         soundId: soundId,
+        style: style,
       ),
     ];
   }
@@ -124,6 +132,7 @@ class CalendarRule {
     bool clearRepeat = false,
     bool? enabled,
     String? soundId,
+    RingStyle? style,
     bool defaultSound = false,
     bool? includeTimes,
   }) => CalendarRule(
@@ -138,6 +147,7 @@ class CalendarRule {
     repeatFor: clearRepeat ? null : (repeatFor ?? this.repeatFor),
     enabled: enabled ?? this.enabled,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
+    style: style ?? this.style,
     includeTimes: includeTimes ?? this.includeTimes,
   );
 
@@ -158,6 +168,7 @@ class CalendarRule {
     'repeatFor': repeatFor?.inMinutes,
     'enabled': enabled,
     'soundId': soundId,
+    'style': style.toJson(),
     'includeTimes': includeTimes,
   };
 
@@ -173,6 +184,7 @@ class CalendarRule {
     repeatFor: j['repeatFor'] == null ? null : Duration(minutes: (j['repeatFor'] as num).toInt()),
     enabled: j['enabled'] as bool? ?? true,
     soundId: j['soundId'] as String?,
+    style: RingStyle.fromJson(j['style']),
     includeTimes: j['includeTimes'] as bool? ?? false,
   );
 }

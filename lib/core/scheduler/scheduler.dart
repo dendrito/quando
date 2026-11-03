@@ -1,4 +1,5 @@
 import '../../features/events/domain/event.dart';
+import '../../features/ringing/ring_style.dart';
 import '../../features/rules/domain/alarm_rule.dart';
 import '../util/format.dart';
 
@@ -14,6 +15,7 @@ class ScheduledAlarm {
     required this.eventId,
     required this.offset,
     this.soundId,
+    this.style = RingStyle.none,
   });
 
   /// Stable across re-planning, so the same alarm is never registered twice.
@@ -28,6 +30,9 @@ class ScheduledAlarm {
 
   /// The sound to ring with. null = the default sound.
   final String? soundId;
+
+  /// How this alarm rings and stops, beyond the shared settings.
+  final RingStyle style;
 
   @override
   String toString() => 'ScheduledAlarm(${at.toIso8601String()}, $title, $body)';
@@ -86,6 +91,7 @@ class Scheduler {
               eventId: event.id,
               offset: offset,
               soundId: rule.soundId,
+              style: rule.style,
             ),
           );
         }
