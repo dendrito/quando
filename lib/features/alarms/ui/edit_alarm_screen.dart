@@ -6,6 +6,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
+import 'ring_length_picker.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
 class EditAlarmScreen extends ConsumerStatefulWidget {
@@ -134,13 +135,10 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           ),
           const SizedBox(height: 24),
           Text('RINGS FOR ${formatSpan(Duration(seconds: ring)).toUpperCase()}', style: text.labelSmall),
-          Slider(
-            min: 10,
-            max: 600,
-            divisions: 59,
-            value: ring.toDouble().clamp(10, 600),
-            label: formatSpan(Duration(seconds: ring)),
-            onChanged: (v) => setState(() => _alarm = _alarm.copyWith(ringSeconds: v.round())),
+          const SizedBox(height: 8),
+          RingLengthPicker(
+            seconds: ring,
+            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
           ),
           if (_alarm.ringSeconds != null)
             Align(

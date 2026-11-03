@@ -5,10 +5,12 @@ String formatSpan(Duration d) {
   final days = d.inDays;
   final hours = d.inHours % 24;
   final minutes = d.inMinutes % 60;
+  final seconds = d.inSeconds % 60;
   String unit(int n, String one) => '$n $one${n == 1 ? '' : 's'}';
   if (days > 0) parts.add(unit(days, 'day'));
   if (hours > 0) parts.add(unit(hours, 'hour'));
   if (minutes > 0) parts.add(unit(minutes, 'minute'));
+  if (seconds > 0) parts.add(unit(seconds, 'second'));
   return parts.isEmpty ? 'now' : parts.join(' ');
 }
 

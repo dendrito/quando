@@ -51,7 +51,10 @@ class AlarmRegistrar {
         vibrate: true,
         androidFullScreenIntent: true,
         warningNotificationOnKill: true,
-        volumeSettings: VolumeSettings.fade(fadeDuration: const Duration(seconds: 10)),
+        // Fade in gently, but a 2-second alarm must be loud from the start.
+        volumeSettings: p.ringSeconds >= 30
+            ? VolumeSettings.fade(fadeDuration: const Duration(seconds: 10))
+            : VolumeSettings.fixed(),
         notificationSettings: NotificationSettings(
           title: p.title,
           body: p.body,

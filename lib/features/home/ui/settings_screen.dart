@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
+import '../../alarms/ui/ring_length_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
@@ -75,15 +76,13 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text('WHEN AN ALARM RINGS', style: text.labelSmall),
-          Text('Rings for ${formatSpan(Duration(seconds: o.ringSeconds))}, then stops by itself'),
-          Slider(
-            min: 10,
-            max: 300,
-            divisions: 29,
-            value: o.ringSeconds.toDouble().clamp(10, 300),
-            label: formatSpan(Duration(seconds: o.ringSeconds)),
-            onChanged: (v) => setO((x) => x.copyWith(ringSeconds: v.round())),
+          const Text('Rings for this long, then stops by itself'),
+          const SizedBox(height: 8),
+          RingLengthPicker(
+            seconds: o.ringSeconds,
+            onChanged: (s) => setO((x) => x.copyWith(ringSeconds: s)),
           ),
+          const SizedBox(height: 8),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: const Text('Say it out loud'),
