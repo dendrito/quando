@@ -5,6 +5,9 @@ on:
     branches: [main]
   pull_request:
 
+permissions:
+  contents: write
+
 jobs:
   test-and-build:
     runs-on: ubuntu-latest
@@ -35,3 +38,15 @@ jobs:
           name: quando-debug-apk
           path: build/app/outputs/flutter-apk/app-debug.apk
           retention-days: 14
+
+      - name: Publish as the "latest" download
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        run: |
+          cp build/app/outputs/flutter-apk/app-debug.apk quando-debug.apk
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest quando-debug.apk \
+            --prerelease \
+            --title "Latest test build" \
+            --notes "Debug build of ${GITHUB_SHA::7}. Download quando-debug.apk and install it on an Android phone."
+        env:
+          GH_TOKEN: ${{ github.token }}
