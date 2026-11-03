@@ -36,6 +36,7 @@ class AlarmRule {
     this.label,
     this.sources,
     this.keyword,
+    this.soundId,
   });
 
   final String id;
@@ -68,6 +69,9 @@ class AlarmRule {
 
   /// Only events whose title contains this, ignoring case. null = any.
   final String? keyword;
+
+  /// The sound to ring with. null = the default sound.
+  final String? soundId;
 
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
@@ -104,5 +108,6 @@ class AlarmRule {
     label: label,
     sources: sources,
     keyword: keyword,
+    soundId: soundId,
   );
 }

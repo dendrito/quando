@@ -1,11 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
 import '../../alarms/ui/ring_length_picker.dart';
+import '../../sounds/ui/sound_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
@@ -76,6 +78,20 @@ class SettingsScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           Text('WHEN AN ALARM RINGS', style: text.labelSmall),
+          SoundPickerTile(
+            value: o.soundId,
+            allowDefault: false,
+            onChanged: (id) =>
+                setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
+          ),
+          Align(
+            alignment: Alignment.centerLeft,
+            child: TextButton.icon(
+              onPressed: () => context.push('/sounds'),
+              icon: const Icon(Icons.mic_none),
+              label: const Text('Record or add sounds'),
+            ),
+          ),
           const Text('Rings for this long, then stops by itself'),
           const SizedBox(height: 8),
           RingLengthPicker(

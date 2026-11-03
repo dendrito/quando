@@ -15,6 +15,7 @@ class UserAlarm {
     this.ringSeconds,
     this.enabled = true,
     this.onceAt,
+    this.soundId,
   });
 
   final String id;
@@ -31,6 +32,9 @@ class UserAlarm {
 
   /// For a one-off alarm: the moment it was set for (UTC).
   final DateTime? onceAt;
+
+  /// null = the default sound.
+  final String? soundId;
 
   bool get repeats => days.isNotEmpty;
 
@@ -93,6 +97,7 @@ class UserAlarm {
           ruleId: 'user.$id',
           eventId: 'user.$id',
           offset: Duration.zero,
+          soundId: soundId,
         ),
     ];
   }
@@ -106,6 +111,8 @@ class UserAlarm {
     bool clearRingSeconds = false,
     bool? enabled,
     DateTime? onceAt,
+    String? soundId,
+    bool defaultSound = false,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -115,6 +122,7 @@ class UserAlarm {
     ringSeconds: clearRingSeconds ? null : (ringSeconds ?? this.ringSeconds),
     enabled: enabled ?? this.enabled,
     onceAt: onceAt ?? this.onceAt,
+    soundId: defaultSound ? null : (soundId ?? this.soundId),
   );
 
   Map<String, dynamic> toJson() => {
@@ -126,6 +134,7 @@ class UserAlarm {
     'ringSeconds': ringSeconds,
     'enabled': enabled,
     'onceAt': onceAt?.toIso8601String(),
+    'soundId': soundId,
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -137,5 +146,6 @@ class UserAlarm {
     ringSeconds: (j['ringSeconds'] as num?)?.toInt(),
     enabled: j['enabled'] as bool? ?? true,
     onceAt: j['onceAt'] == null ? null : DateTime.parse(j['onceAt'] as String).toUtc(),
+    soundId: j['soundId'] as String?,
   );
 }

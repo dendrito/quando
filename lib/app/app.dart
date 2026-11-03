@@ -17,6 +17,7 @@ import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/ringing/ring_screen.dart';
+import '../features/sounds/ui/sounds_screen.dart';
 import 'providers.dart';
 import 'theme.dart';
 
@@ -29,6 +30,7 @@ final _router = GoRouter(
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
+    GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) => CalendarRuleScreen(id: state.pathParameters['id']!),

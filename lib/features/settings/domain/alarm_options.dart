@@ -7,6 +7,7 @@ class AlarmOptions {
     this.snoozeMinutes = 5,
     this.wakeCheck = false,
     this.mathTask = false,
+    this.soundId,
   });
 
   /// Read the alarm's label aloud when it rings.
@@ -26,6 +27,9 @@ class AlarmOptions {
   /// Solve a sum before the alarm stops.
   final bool mathTask;
 
+  /// Default sound for every alarm. null = the phone's alarm sound.
+  final String? soundId;
+
   AlarmOptions copyWith({
     bool? spoken,
     int? ringSeconds,
@@ -33,6 +37,8 @@ class AlarmOptions {
     int? snoozeMinutes,
     bool? wakeCheck,
     bool? mathTask,
+    String? soundId,
+    bool phoneSound = false,
   }) => AlarmOptions(
     spoken: spoken ?? this.spoken,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -40,6 +46,7 @@ class AlarmOptions {
     snoozeMinutes: snoozeMinutes ?? this.snoozeMinutes,
     wakeCheck: wakeCheck ?? this.wakeCheck,
     mathTask: mathTask ?? this.mathTask,
+    soundId: phoneSound ? null : (soundId ?? this.soundId),
   );
 
   Map<String, dynamic> toJson() => {
@@ -49,6 +56,7 @@ class AlarmOptions {
     'snoozeMinutes': snoozeMinutes,
     'wakeCheck': wakeCheck,
     'mathTask': mathTask,
+    'soundId': soundId,
   };
 
   factory AlarmOptions.fromJson(Map<String, dynamic> j) => AlarmOptions(
@@ -58,5 +66,6 @@ class AlarmOptions {
     snoozeMinutes: (j['snoozeMinutes'] as num?)?.toInt() ?? 5,
     wakeCheck: j['wakeCheck'] as bool? ?? false,
     mathTask: j['mathTask'] as bool? ?? false,
+    soundId: j['soundId'] as String?,
   );
 }

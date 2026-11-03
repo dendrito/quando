@@ -1,0 +1,118 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
+
+import '../../../app/providers.dart';
+import '../../../app/theme.dart';
+import 'sound_player.dart';
+
+/// A row showing the chosen sound; tap to pick another.
+///
+/// [value] null means "use the default" when [allowDefault] is on, or the
+/// phone's alarm sound when it is off (the default itself).
+class SoundPickerTile extends ConsumerWidget {
+  const SoundPickerTile({super.key, required this.value, required this.onChanged, this.allowDefault = true});
+
+  final String? value;
+  final ValueChanged<String?> onChanged;
+  final bool allowDefault;
+
+  static const phone = '__phone__';
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sounds = ref.watch(soundsProvider);
+    final defaultId = ref.watch(alarmOptionsProvider).soundId;
+    final label = value == null
+        ? (allowDefault ? 'Default (${soundName(sounds, defaultId)})' : 'Phone alarm sound')
+        : value == phone
+        ? 'Phone alarm sound'
+        : soundName(sounds, value);
+
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: const Icon(Icons.music_note_outlined, color: QuandoColors.amber),
+      title: const Text('Sound'),
+      subtitle: Text(label),
+      trailing: const Icon(Icons.chevron_right),
+      onTap: () async {
+        final picked = await showModalBottomSheet<String>(
+          context: context,
+          showDragHandle: true,
+          builder: (context) => _Sheet(value: value, allowDefault: allowDefault),
+        );
+        await SoundPreview.instance.stop();
+        if (picked == null) return;
+        if (picked == '__manage__') {
+          if (context.mounted) context.push('/sounds');
+          return;
+        }
+        onChanged(picked == '__default__' ? null : (picked == phone && !allowDefault ? null : picked));
+      },
+    );
+  }
+}
+
+class _Sheet extends ConsumerStatefulWidget {
+  const _Sheet({required this.value, required this.allowDefault});
+
+  final String? value;
+  final bool allowDefault;
+
+  @override
+  ConsumerState<_Sheet> createState() => _SheetState();
+}
+
+class _SheetState extends ConsumerState<_Sheet> {
+  @override
+  Widget build(BuildContext context) {
+    final sounds = ref.watch(soundsProvider);
+    final current = widget.value ?? (widget.allowDefault ? '__default__' : SoundPickerTile.phone);
+    Widget option(String id, String name, {VoidCallback? onListen, bool playing = false}) => ListTile(
+      leading: Icon(
+        current == id ? Icons.radio_button_checked : Icons.radio_button_off,
+        color: QuandoColors.amber,
+      ),
+      title: Text(name),
+      trailing: onListen == null
+          ? null
+          : IconButton(
+              tooltip: 'Listen',
+              icon: Icon(playing ? Icons.stop_circle_outlined : Icons.play_circle_outline),
+              onPressed: onListen,
+            ),
+      onTap: () => Navigator.pop(context, id),
+    );
+
+    return SafeArea(
+      child: ListView(
+        shrinkWrap: true,
+        children: [
+          if (widget.allowDefault)
+            option('__default__', 'Default (${soundName(sounds, ref.watch(alarmOptionsProvider).soundId)})'),
+          option(SoundPickerTile.phone, 'Phone alarm sound'),
+          for (final s in sounds)
+            option(
+              s.id,
+              s.name,
+              playing: SoundPreview.instance.playingId == s.id,
+              onListen: () async {
+                final p = SoundPreview.instance;
+                if (p.playingId == s.id) {
+                  await p.stop();
+                } else {
+                  await p.play(s, onDone: () => mounted ? setState(() {}) : null);
+                }
+                if (mounted) setState(() {});
+              },
+            ),
+          ListTile(
+            leading: const Icon(Icons.mic_none),
+            title: const Text('Record or add a sound…'),
+            onTap: () => Navigator.pop(context, '__manage__'),
+          ),
+        ],
+      ),
+    );
+  }
+}

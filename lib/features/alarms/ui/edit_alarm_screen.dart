@@ -6,6 +6,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
+import '../../sounds/ui/sound_picker.dart';
 import 'ring_length_picker.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
@@ -133,7 +134,14 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             textCapitalization: TextCapitalization.sentences,
             decoration: const InputDecoration(labelText: 'Label (read aloud if spoken alarms are on)'),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+          SoundPickerTile(
+            value: _alarm.soundId,
+            onChanged: (id) => setState(
+              () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
+            ),
+          ),
+          const SizedBox(height: 16),
           Text('RINGS FOR ${formatSpan(Duration(seconds: ring)).toUpperCase()}', style: text.labelSmall),
           const SizedBox(height: 8),
           RingLengthPicker(

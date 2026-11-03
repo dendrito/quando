@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../events/domain/event.dart';
+import '../../sounds/ui/sound_picker.dart';
 import '../domain/calendar_rule.dart';
 
 /// Set up one calendar alarm: which events, and when to ring.
@@ -278,7 +279,14 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             runSpacing: 4,
             children: _chips(_afterChoices, _rule.after, (l) => _rule = _rule.copyWith(after: l)),
           ),
-          const SizedBox(height: 24),
+          const SizedBox(height: 16),
+          SoundPickerTile(
+            value: _rule.soundId,
+            onChanged: (id) => setState(
+              () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
+            ),
+          ),
+          const SizedBox(height: 8),
           TextField(
             controller: _name,
             decoration: const InputDecoration(labelText: 'Name (optional)'),

@@ -13,6 +13,7 @@ class ScheduledAlarm {
     required this.ruleId,
     required this.eventId,
     required this.offset,
+    this.soundId,
   });
 
   /// Stable across re-planning, so the same alarm is never registered twice.
@@ -24,6 +25,9 @@ class ScheduledAlarm {
   final String ruleId;
   final String eventId;
   final Duration offset;
+
+  /// The sound to ring with. null = the default sound.
+  final String? soundId;
 
   @override
   String toString() => 'ScheduledAlarm(${at.toIso8601String()}, $title, $body)';
@@ -81,6 +85,7 @@ class Scheduler {
               ruleId: rule.id,
               eventId: event.id,
               offset: offset,
+              soundId: rule.soundId,
             ),
           );
         }

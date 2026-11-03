@@ -16,6 +16,7 @@ class CalendarRule {
     this.repeatEvery,
     this.repeatFor,
     this.enabled = true,
+    this.soundId,
   });
 
   final String id;
@@ -39,6 +40,9 @@ class CalendarRule {
   final Duration? repeatFor;
 
   final bool enabled;
+
+  /// null = the default sound.
+  final String? soundId;
 
   String get title {
     if (name.isNotEmpty) return name;
@@ -67,6 +71,7 @@ class CalendarRule {
         enabled: enabled,
         sources: sources,
         keyword: kw,
+        soundId: soundId,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -76,6 +81,7 @@ class CalendarRule {
         enabled: enabled && after.isNotEmpty,
         sources: sources,
         keyword: kw,
+        soundId: soundId,
       ),
     ];
   }
@@ -91,6 +97,8 @@ class CalendarRule {
     Duration? repeatFor,
     bool clearRepeat = false,
     bool? enabled,
+    String? soundId,
+    bool defaultSound = false,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -102,6 +110,7 @@ class CalendarRule {
     repeatEvery: clearRepeat ? null : (repeatEvery ?? this.repeatEvery),
     repeatFor: clearRepeat ? null : (repeatFor ?? this.repeatFor),
     enabled: enabled ?? this.enabled,
+    soundId: defaultSound ? null : (soundId ?? this.soundId),
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -120,6 +129,7 @@ class CalendarRule {
     'repeatEvery': repeatEvery?.inMinutes,
     'repeatFor': repeatFor?.inMinutes,
     'enabled': enabled,
+    'soundId': soundId,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -133,5 +143,6 @@ class CalendarRule {
     repeatEvery: j['repeatEvery'] == null ? null : Duration(minutes: (j['repeatEvery'] as num).toInt()),
     repeatFor: j['repeatFor'] == null ? null : Duration(minutes: (j['repeatFor'] as num).toInt()),
     enabled: j['enabled'] as bool? ?? true,
+    soundId: j['soundId'] as String?,
   );
 }

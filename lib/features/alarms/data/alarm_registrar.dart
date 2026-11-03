@@ -45,8 +45,8 @@ class AlarmRegistrar {
       alarmSettings: AlarmSettings(
         id: id,
         dateTime: at.toLocal(),
-        // null = the phone's default alarm sound. Custom sounds come later.
-        assetAudioPath: null,
+        // null = the phone's alarm sound; otherwise built-in or the user's own.
+        assetAudioPath: p.sound,
         loopAudio: true,
         vibrate: true,
         androidFullScreenIntent: true,

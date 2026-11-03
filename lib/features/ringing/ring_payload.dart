@@ -19,6 +19,7 @@ class RingPayload {
     this.isCheck = false,
     this.transient = false,
     this.isLock = false,
+    this.sound,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -62,6 +63,10 @@ class RingPayload {
   /// Only opens Quando so lock mode can start. No ringing screen.
   final bool isLock;
 
+  /// Audio path for the alarm plugin: `assets/...` or relative to the app's
+  /// documents folder. null = the phone's alarm sound.
+  final String? sound;
+
   RingPayload withRingSeconds(int seconds) => RingPayload(
     title: title,
     body: body,
@@ -75,6 +80,23 @@ class RingPayload {
     shabbatSafe: shabbatSafe,
     isCheck: isCheck,
     transient: transient,
+    sound: sound,
+  );
+
+  RingPayload withSound(String? path) => RingPayload(
+    title: title,
+    body: body,
+    ringSeconds: ringSeconds,
+    spoken: spoken,
+    maxSnoozes: maxSnoozes,
+    snoozeMinutes: snoozeMinutes,
+    snoozeCount: snoozeCount,
+    wakeCheck: wakeCheck,
+    mathTask: mathTask,
+    shabbatSafe: shabbatSafe,
+    isCheck: isCheck,
+    transient: transient,
+    sound: path,
   );
 
   bool get canSnooze => snoozeCount < maxSnoozes;
@@ -94,6 +116,7 @@ class RingPayload {
     mathTask: mathTask,
     shabbatSafe: shabbatSafe,
     transient: true,
+    sound: sound,
   );
 
   RingPayload check() => RingPayload(
@@ -104,6 +127,7 @@ class RingPayload {
     mathTask: false,
     isCheck: true,
     transient: true,
+    sound: sound,
   );
 
   String encode() => jsonEncode({
@@ -120,6 +144,7 @@ class RingPayload {
     'isCheck': isCheck,
     'transient': transient,
     'isLock': isLock,
+    'sound': sound,
   });
 
   static RingPayload decode(String? raw, {String fallbackTitle = 'Alarm', String fallbackBody = ''}) {
@@ -139,6 +164,7 @@ class RingPayload {
         isCheck: j['isCheck'] as bool? ?? false,
         transient: j['transient'] as bool? ?? false,
         isLock: j['isLock'] as bool? ?? false,
+        sound: j['sound'] as String?,
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle, body: fallbackBody, ringSeconds: 60);

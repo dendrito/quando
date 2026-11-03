@@ -16,6 +16,7 @@ import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
 import '../features/rules/domain/presets.dart';
 import '../features/settings/domain/alarm_options.dart';
+import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 
@@ -340,6 +341,58 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
 
 final userAlarmsProvider = NotifierProvider<UserAlarmsNotifier, List<UserAlarm>>(UserAlarmsNotifier.new);
 
+// ---- Sounds ----
+
+/// Built-in sounds plus the user's recordings and files.
+class SoundsNotifier extends Notifier<List<AlarmSound>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  List<AlarmSound> build() {
+    try {
+      final raw = _prefs.getString('sounds');
+      final mine = raw == null
+          ? const <AlarmSound>[]
+          : [for (final j in jsonDecode(raw) as List) AlarmSound.fromJson(j as Map<String, dynamic>)];
+      return [...AlarmSound.builtIns, ...mine];
+    } catch (_) {
+      return AlarmSound.builtIns;
+    }
+  }
+
+  void add(AlarmSound s) => _set([...state, s]);
+
+  void rename(String id, String name) => _set([for (final s in state) s.id == id ? s.rename(name) : s]);
+
+  void delete(String id) {
+    _set([
+      for (final s in state)
+        if (s.id != id) s,
+    ]);
+    // Anything that used it goes back to the default.
+    final o = ref.read(alarmOptionsProvider);
+    if (o.soundId == id) ref.read(alarmOptionsProvider.notifier).update((x) => x.copyWith(phoneSound: true));
+  }
+
+  void _set(List<AlarmSound> all) {
+    state = all;
+    _prefs.setString(
+      'sounds',
+      jsonEncode([
+        for (final s in all)
+          if (!s.builtIn) s.toJson(),
+      ]),
+    );
+  }
+}
+
+final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(SoundsNotifier.new);
+
+/// "Phone alarm sound" for null, otherwise the sound's name.
+String soundName(List<AlarmSound> sounds, String? id) => id == null
+    ? 'Phone alarm sound'
+    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? 'Phone alarm sound');
+
 // ---- Lock mode ----
 
 class LockSettingsNotifier extends Notifier<LockSettings> {
@@ -450,20 +503,25 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
-  return (a) {
-    final p = RingPayload.forAlarm(
-      title: a.title,
-      body: a.body,
-      options: options,
-      shabbatSafe: periods.any((p) => p.contains(a.at)),
-    );
-    if (a.ruleId == 'lock') {
-      return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
-    }
-    // A user alarm can have its own ring length.
-    return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
-  };
+  final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
+  return (a) => _withSound(_payload(a, options, periods), sounds[a.soundId ?? options.soundId]);
 });
+
+RingPayload _withSound(RingPayload p, String? path) => p.isLock ? p : p.withSound(path);
+
+RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> periods) {
+  final p = RingPayload.forAlarm(
+    title: a.title,
+    body: a.body,
+    options: options,
+    shabbatSafe: periods.any((p) => p.contains(a.at)),
+  );
+  if (a.ruleId == 'lock') {
+    return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
+  }
+  // A user alarm can have its own ring length.
+  return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
+}
 
 final registrarProvider = Provider<AlarmRegistrar>((ref) {
   final r = AlarmRegistrar();
