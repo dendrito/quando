@@ -1,4 +1,5 @@
 import '../../events/domain/event.dart';
+import '../../events/domain/event_query.dart';
 
 enum Direction { before, after }
 
@@ -73,10 +74,13 @@ class AlarmRule {
   /// The sound to ring with. null = the default sound.
   final String? soundId;
 
+  /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
+  /// [EventQuery]). [sources] only narrows calendar events, so a rule can
+  /// also catch Shabbat, festival and sun times.
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
-      (sources == null || sources!.contains(e.source)) &&
-      (keyword == null || keyword!.isEmpty || e.title.toLowerCase().contains(keyword!.toLowerCase()));
+      (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
+      (keyword == null || keyword!.isEmpty || EventQuery.parse(keyword!).matches(e.title));
 
   /// Every offset from the event, negative = before, duplicates removed,
   /// sorted earliest first.

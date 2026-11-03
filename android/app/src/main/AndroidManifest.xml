@@ -60,5 +60,10 @@
             <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="https"/>
         </intent>
+        <!-- Song links: open them in Spotify. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="spotify"/>
+        </intent>
     </queries>
 </manifest>

@@ -179,4 +179,57 @@ void main() {
     expect(r.keyword, 'flight');
     expect(r.after, [const Duration(hours: 1)]);
   });
+
+  test('event alarms find events by search, Shabbat times included when asked', () async {
+    final (c, reader) = await _container();
+    reader.granted = true;
+    await c.read(calendarProvider.notifier).refresh();
+
+    c
+        .read(calendarRulesProvider.notifier)
+        .save(const CalendarRule(id: 'q', keyword: 'dent* OR "stand"', before: [Duration(minutes: 10)]));
+    final cal = c.read(planProvider).where((a) => a.ruleId == 'cal.q.start').map((a) => a.title).toSet();
+    expect(cal, {'Standup', 'Dentist'});
+
+    c
+        .read(calendarRulesProvider.notifier)
+        .save(const CalendarRule(id: 'q', keyword: 'stand* -dentist', before: [Duration(minutes: 10)]));
+    expect(c.read(planProvider).where((a) => a.ruleId == 'cal.q.start').map((a) => a.title).toSet(), {
+      'Standup',
+    });
+
+    c
+        .read(calendarRulesProvider.notifier)
+        .save(
+          const CalendarRule(
+            id: 'shab',
+            keyword: 'candle*',
+            includeTimes: true,
+            before: [Duration(minutes: 20)],
+          ),
+        );
+    final shab = c.read(planProvider).where((a) => a.ruleId == 'cal.shab.times').toList();
+    expect(shab, isNotEmpty);
+    expect(shab.every((a) => a.title.toLowerCase().startsWith('candle')), isTrue);
+    expect(c.read(planProvider).where((a) => a.ruleId == 'cal.shab.start'), isEmpty);
+
+    // Havdalah is a moment too: 10 minutes after it.
+    c
+        .read(calendarRulesProvider.notifier)
+        .save(
+          const CalendarRule(
+            id: 'hav',
+            keyword: 'havdalah',
+            includeTimes: true,
+            after: [Duration(minutes: 10)],
+          ),
+        );
+    final hav = c.read(planProvider).where((a) => a.ruleId == 'cal.hav.times').toList();
+    expect(hav, isNotEmpty);
+    expect(hav.every((a) => a.offset == const Duration(minutes: 10)), isTrue);
+
+    final found = await c.read(searchableEventsProvider.future);
+    expect(found.any((e) => e.title == 'Dentist'), isTrue);
+    expect(found.any((e) => e.kind == EventKind.holyDayStart), isTrue);
+  });
 }

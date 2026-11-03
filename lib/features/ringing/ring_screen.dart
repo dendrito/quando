@@ -6,6 +6,7 @@ import 'package:alarm/utils/alarm_set.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../app/providers.dart';
 import '../../app/theme.dart';
@@ -103,6 +104,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       });
     } else {
       _close();
+      _openLink();
     }
   }
 
@@ -125,6 +127,19 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   Future<void> _onUp() async {
     if (_checkId != null) await ref.read(registrarProvider).cancel(_checkId!);
     _close();
+    _openLink();
+  }
+
+  /// The song or playlist from Spotify, SoundCloud… that this alarm plays.
+  Future<void> _openLink() async {
+    final link = p.link;
+    final uri = link == null ? null : Uri.tryParse(link);
+    if (uri == null) return;
+    try {
+      await launchUrl(uri, mode: LaunchMode.externalApplication);
+    } catch (_) {
+      // No app for it: the alarm has already done its job.
+    }
   }
 
   @override
@@ -247,7 +262,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           if (p.isCheck)
             _StopButton(label: 'I\'m up', onPressed: _stopNow)
           else
-            _StopButton(label: 'Stop', onPressed: _onStop),
+            _StopButton(label: p.link == null ? 'Stop' : 'Stop · play my song', onPressed: _onStop),
         ];
     }
   }

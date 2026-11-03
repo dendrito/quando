@@ -17,13 +17,19 @@ class CalendarRule {
     this.repeatFor,
     this.enabled = true,
     this.soundId,
+    this.includeTimes = false,
   });
 
   final String id;
   final String name;
 
-  /// Only events whose title contains this. Empty = every event.
+  /// A search over event titles: words, wildcards, AND / OR / NOT, see
+  /// EventQuery. Empty = every event.
   final String keyword;
+
+  /// Also search Shabbat, festival, sunrise and sunset times, not only
+  /// calendar events.
+  final bool includeTimes;
 
   /// Only these calendars. Empty = every calendar you picked.
   final Set<String> calendarIds;
@@ -46,7 +52,7 @@ class CalendarRule {
 
   String get title {
     if (name.isNotEmpty) return name;
-    if (keyword.isNotEmpty) return 'Events with "$keyword"';
+    if (keyword.isNotEmpty) return 'Events matching "$keyword"';
     return 'Every event';
   }
 
@@ -83,6 +89,26 @@ class CalendarRule {
         keyword: kw,
         soundId: soundId,
       ),
+      // Shabbat, festival and sun times are single moments: before, at and
+      // after all hang off the moment itself.
+      AlarmRule(
+        id: 'cal.$id.times',
+        name: title,
+        appliesTo: const {
+          EventKind.holyDayStart,
+          EventKind.secondNightCandles,
+          EventKind.holyDayEnd,
+          EventKind.sunrise,
+          EventKind.sunset,
+        },
+        before: before,
+        atEvent: atStart,
+        after: after,
+        series: [?_series],
+        enabled: enabled && includeTimes,
+        keyword: kw,
+        soundId: soundId,
+      ),
     ];
   }
 
@@ -99,6 +125,7 @@ class CalendarRule {
     bool? enabled,
     String? soundId,
     bool defaultSound = false,
+    bool? includeTimes,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -111,6 +138,7 @@ class CalendarRule {
     repeatFor: clearRepeat ? null : (repeatFor ?? this.repeatFor),
     enabled: enabled ?? this.enabled,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
+    includeTimes: includeTimes ?? this.includeTimes,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -130,6 +158,7 @@ class CalendarRule {
     'repeatFor': repeatFor?.inMinutes,
     'enabled': enabled,
     'soundId': soundId,
+    'includeTimes': includeTimes,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -144,5 +173,6 @@ class CalendarRule {
     repeatFor: j['repeatFor'] == null ? null : Duration(minutes: (j['repeatFor'] as num).toInt()),
     enabled: j['enabled'] as bool? ?? true,
     soundId: j['soundId'] as String?,
+    includeTimes: j['includeTimes'] as bool? ?? false,
   );
 }

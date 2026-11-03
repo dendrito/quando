@@ -39,4 +39,29 @@ void main() {
     await tester.scrollUntilVisible(find.textContaining('set themselves on this phone'), 400);
     expect(find.textContaining('set themselves on this phone'), findsOneWidget);
   });
+
+  testWidgets('the Shabbat card opens the Shabbat screen', (tester) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+          prefsProvider.overrideWithValue(prefs),
+        ],
+        child: const QuandoApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('READY-MADE ALARMS'), findsNothing);
+    await tester.tap(find.text('Shabbat'));
+    await tester.pumpAndSettle();
+    expect(find.text('Shabbat & festivals'), findsOneWidget);
+    expect(find.text('Lock the phone for Shabbat'), findsOneWidget);
+    await tester.scrollUntilVisible(find.text('READY-MADE ALARMS'), 300);
+    expect(find.text('Countdown to candle lighting'), findsOneWidget);
+  });
 }

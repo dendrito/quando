@@ -178,6 +178,23 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
     state = [for (final r in state) r.id == id ? preset.copyWith(enabled: r.enabled) : r];
   }
 
+  /// Presets you deleted: off, and out of the list until restored.
+  Set<String> get hidden => (_prefs.getStringList('rules.hidden') ?? const []).toSet();
+
+  void hide(String id) {
+    toggle(id, false);
+    _prefs.setStringList('rules.hidden', {...hidden, id}.toList());
+    ref.notifyListeners();
+  }
+
+  void restore(String id) {
+    _prefs.setStringList('rules.hidden', [
+      for (final h in hidden)
+        if (h != id) h,
+    ]);
+    toggle(id, true);
+  }
+
   /// Whether the user has changed this preset.
   bool isCustom(String id) => _custom().containsKey(id);
 
@@ -392,17 +409,38 @@ final allRulesProvider = Provider<List<AlarmRule>>(
 
 final eventsProvider = Provider<List<AnchorEvent>>((ref) {
   final now = ref.watch(clockProvider)();
-  final rules = ref.watch(rulesProvider);
-  final window = scheduler.eventWindow(now, rules);
+  final window = scheduler.eventWindow(now, ref.watch(allRulesProvider));
   final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
     ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
-  final wantsSun = rules.any(
-    (r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset),
-  );
+  final wantsSun = ref
+      .watch(allRulesProvider)
+      .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));
   if (wantsSun) {
     events.addAll(SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to));
   }
   return events..sort((a, b) => a.at.compareTo(b.at));
+});
+
+/// Everything an event alarm can be set around, for the next 60 days:
+/// calendar events (start), Shabbat and festival times, and two weeks of
+/// sunrises and sunsets. Feeds the event search.
+final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((ref) async {
+  final now = ref.watch(clockProvider)();
+  final to = now.add(const Duration(days: 60));
+  final cal = ref.watch(calendarProvider);
+  final out = <AnchorEvent>[
+    ...ref.watch(jewishTimesProvider).events(now, to),
+    ...SunTimes(place: ref.watch(placeProvider)).events(now, now.add(const Duration(days: 14))),
+  ];
+  if (cal.access && cal.selected.isNotEmpty) {
+    try {
+      out.addAll(await ref.read(calendarReaderProvider).events(now, to, cal.selected));
+    } catch (_) {
+      // Calendar unreadable just now: search the rest.
+    }
+  }
+  return out.where((e) => e.at.isAfter(now) && e.kind != EventKind.calendarEnd).toList()
+    ..sort((a, b) => a.at.compareTo(b.at));
 });
 
 class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
@@ -653,7 +691,13 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
-  return (a) => _withSound(_payload(a, options, periods), sounds[a.soundId ?? options.soundId]);
+  final links = {for (final s in ref.watch(soundsProvider)) s.id: s.link};
+  return (a) {
+    final id = a.soundId ?? options.soundId;
+    final p = _withSound(_payload(a, options, periods), sounds[id]);
+    // Never open another app on Shabbat or a festival.
+    return p.isLock || p.shabbatSafe ? p : p.withLink(links[id]);
+  };
 });
 
 RingPayload _withSound(RingPayload p, String? path) => p.isLock ? p : p.withSound(path);

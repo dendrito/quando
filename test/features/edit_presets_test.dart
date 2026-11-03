@@ -75,4 +75,16 @@ void main() {
     c.read(skippedProvider.notifier).skip(first.id, false);
     expect(c.read(planProvider).length, count);
   });
+
+  test('a deleted preset is off and hidden until brought back', () {
+    final c = make();
+    final id = Presets.countdown.id;
+    c.read(rulesProvider.notifier).hide(id);
+    expect(c.read(rulesProvider.notifier).hidden, {id});
+    expect(c.read(planProvider).any((a) => a.ruleId == id), isFalse);
+    expect(make().read(rulesProvider.notifier).hidden, {id});
+    c.read(rulesProvider.notifier).restore(id);
+    expect(c.read(rulesProvider.notifier).hidden, isEmpty);
+    expect(c.read(planProvider).any((a) => a.ruleId == id), isTrue);
+  });
 }

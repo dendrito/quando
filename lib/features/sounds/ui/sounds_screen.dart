@@ -89,6 +89,81 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     }
   }
 
+  /// A song or playlist from Spotify, SoundCloud, YouTube…: Quando rings
+  /// first, then opens it when you stop the alarm.
+  Future<void> _addLink() async {
+    final url = TextEditingController();
+    final name = TextEditingController();
+    var ringWith = AlarmSound.builtIns[1];
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setLocal) => AlertDialog(
+          title: const Text('Add a song link'),
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                const Text(
+                  'Paste a link from Spotify, SoundCloud, YouTube or another app (use Share > Copy link). '
+                  'The alarm rings first, and Stop opens your song.',
+                ),
+                const SizedBox(height: 12),
+                TextField(
+                  controller: url,
+                  autofocus: true,
+                  keyboardType: TextInputType.url,
+                  decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: name,
+                  textCapitalization: TextCapitalization.sentences,
+                  decoration: const InputDecoration(hintText: 'Name, e.g. Morning playlist'),
+                ),
+                const SizedBox(height: 12),
+                const Text('Rings with'),
+                DropdownButton<AlarmSound>(
+                  value: ringWith,
+                  isExpanded: true,
+                  items: [
+                    for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
+                  ],
+                  onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
+                ),
+              ],
+            ),
+          ),
+          actions: [
+            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+            FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
+          ],
+        ),
+      ),
+    );
+    final link = url.text.trim();
+    final label = name.text.trim();
+    url.dispose();
+    name.dispose();
+    if (ok != true || !mounted) return;
+    final uri = Uri.tryParse(link);
+    if (uri == null || !(uri.scheme == 'https' || uri.scheme == 'http' || uri.scheme == 'spotify')) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(const SnackBar(content: Text('That doesn\'t look like a link.')));
+      return;
+    }
+    final sound = AlarmSound(
+      id: 'link.${DateTime.now().millisecondsSinceEpoch}',
+      name: '',
+      path: ringWith.path,
+      link: link,
+    );
+    ref
+        .read(soundsProvider.notifier)
+        .add(sound.rename(label.isNotEmpty ? label : 'Song on ${sound.linkApp ?? 'the web'}'));
+  }
+
   Future<void> _rename(AlarmSound s) async {
     final c = TextEditingController(text: s.name);
     final name = await showDialog<String>(
@@ -154,10 +229,17 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               ),
             ],
           ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            onPressed: recording ? null : _addLink,
+            icon: const Icon(Icons.link),
+            label: const Text('Add a song link (Spotify, SoundCloud…)'),
+          ),
           const SizedBox(height: 8),
           Text(
-            'Record your voice, a song or anything else, up to 5 minutes. Or add an MP3, M4A or WAV from '
-            'your phone. Spotify and SoundCloud come later.',
+            'Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from '
+            'your phone. Or link a song or playlist: the alarm rings, and Stop opens it in its app.',
             style: text.bodySmall,
           ),
           const SizedBox(height: 24),
@@ -177,7 +259,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               ),
               title: Text(s.name),
               subtitle: Text(
-                [if (s.builtIn) 'Built in', if (s.id == defaultId) 'Default'].join(' · '),
+                [
+                  if (s.builtIn) 'Built in',
+                  if (s.isLink) 'Opens in ${s.linkApp}',
+                  if (s.id == defaultId) 'Default',
+                ].join(' · '),
                 style: text.bodySmall,
               ),
               onTap: s.builtIn ? null : () => _rename(s),
@@ -188,7 +274,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () {
                         ref.read(soundsProvider.notifier).delete(s.id);
-                        SoundFiles.delete(s.path);
+                        if (!s.isLink) SoundFiles.delete(s.path);
                       },
                     ),
             ),

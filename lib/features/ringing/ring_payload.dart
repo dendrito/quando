@@ -20,6 +20,7 @@ class RingPayload {
     this.transient = false,
     this.isLock = false,
     this.sound,
+    this.link,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -67,6 +68,28 @@ class RingPayload {
   /// documents folder. null = the phone's alarm sound.
   final String? sound;
 
+  /// A song or playlist in another app (Spotify, SoundCloud…), opened when
+  /// you stop the alarm. The alarm itself rings with [sound].
+  final String? link;
+
+  RingPayload withLink(String? url) => RingPayload(
+    title: title,
+    body: body,
+    ringSeconds: ringSeconds,
+    spoken: spoken,
+    maxSnoozes: maxSnoozes,
+    snoozeMinutes: snoozeMinutes,
+    snoozeCount: snoozeCount,
+    wakeCheck: wakeCheck,
+    mathTask: mathTask,
+    shabbatSafe: shabbatSafe,
+    isCheck: isCheck,
+    transient: transient,
+    isLock: isLock,
+    sound: sound,
+    link: url,
+  );
+
   RingPayload withRingSeconds(int seconds) => RingPayload(
     title: title,
     body: body,
@@ -81,6 +104,7 @@ class RingPayload {
     isCheck: isCheck,
     transient: transient,
     sound: sound,
+    link: link,
   );
 
   RingPayload withSound(String? path) => RingPayload(
@@ -97,6 +121,7 @@ class RingPayload {
     isCheck: isCheck,
     transient: transient,
     sound: path,
+    link: link,
   );
 
   bool get canSnooze => snoozeCount < maxSnoozes;
@@ -117,6 +142,7 @@ class RingPayload {
     shabbatSafe: shabbatSafe,
     transient: true,
     sound: sound,
+    link: link,
   );
 
   RingPayload check() => RingPayload(
@@ -128,6 +154,7 @@ class RingPayload {
     isCheck: true,
     transient: true,
     sound: sound,
+    link: link,
   );
 
   String encode() => jsonEncode({
@@ -145,6 +172,7 @@ class RingPayload {
     'transient': transient,
     'isLock': isLock,
     'sound': sound,
+    'link': link,
   });
 
   static RingPayload decode(String? raw, {String fallbackTitle = 'Alarm', String fallbackBody = ''}) {
@@ -165,6 +193,7 @@ class RingPayload {
         transient: j['transient'] as bool? ?? false,
         isLock: j['isLock'] as bool? ?? false,
         sound: j['sound'] as String?,
+        link: j['link'] as String?,
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle, body: fallbackBody, ringSeconds: 60);

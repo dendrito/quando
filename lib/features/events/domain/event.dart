@@ -19,7 +19,9 @@ enum EventKind {
 
   /// A calendar event's end.
   calendarEnd,
-  manual,
+  manual;
+
+  bool get isCalendar => this == calendar || this == calendarEnd;
 }
 
 class AnchorEvent {

@@ -75,4 +75,28 @@ void main() {
     c.read(soundsProvider.notifier).delete('mine.1');
     expect(c.read(alarmOptionsProvider).soundId, isNull);
   });
+
+  test('a song link rings with a built-in sound and opens the link on stop', () async {
+    final c = await _container();
+    const song = AlarmSound(
+      id: 'link.1',
+      name: 'Morning playlist',
+      path: 'assets/sounds/morning_rise.wav',
+      link: 'https://open.spotify.com/playlist/abc',
+    );
+    c.read(soundsProvider.notifier).add(song);
+    expect(song.linkApp, 'Spotify');
+    c
+        .read(userAlarmsProvider.notifier)
+        .save(const UserAlarm(id: 's', hour: 7, minute: 0, days: {1, 2, 3, 4}, soundId: 'link.1'));
+    final p = _payloadOf(c, 'user.s');
+    expect(p.sound, 'assets/sounds/morning_rise.wav');
+    expect(p.link, 'https://open.spotify.com/playlist/abc');
+    expect(RingPayload.decode(p.encode()).link, p.link);
+    expect(RingPayload.decode(p.snoozed().encode()).link, p.link);
+
+    // Kept across a restart.
+    final again = c.read(soundsProvider).firstWhere((s) => s.id == 'link.1');
+    expect(AlarmSound.fromJson(again.toJson()).link, song.link);
+  });
 }

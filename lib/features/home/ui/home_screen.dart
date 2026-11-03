@@ -8,13 +8,14 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/brand.dart';
 import '../../../core/scheduler/scheduler.dart';
-import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../shabbat/ui/shabbat_card.dart';
 import '../../timezones/ui/world_clocks.dart';
 import '../domain/sky.dart';
 import '../../alarms/ui/group_picker.dart';
 import '../domain/week.dart';
+import '../../../app/widgets/tiles.dart';
 import 'alarm_group_card.dart';
 import 'day_arc.dart';
 import 'week_list.dart';
@@ -30,12 +31,60 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
   final _openGroups = <String>{};
 
-  static String _timesLabel(List<Duration> offsets) {
-    if (offsets.isEmpty) return 'No times set';
-    String one(Duration d) => d == Duration.zero ? 'at the moment' : describeOffset(d);
-    return offsets.length == 1
-        ? one(offsets.single)
-        : '${offsets.length} times · ${one(offsets.first)} to ${one(offsets.last)}';
+  void _undo(String message, VoidCallback undo) {
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message),
+          action: SnackBarAction(label: 'Undo', textColor: QuandoColors.ground, onPressed: undo),
+        ),
+      );
+  }
+
+  /// "When?": a time of day, or around events you search for.
+  Future<void> _newAlarm() async {
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) {
+        final text = Theme.of(context).textTheme;
+        Widget option(String value, IconData icon, String title, String sub) => ListTile(
+          contentPadding: const EdgeInsets.symmetric(horizontal: 24, vertical: 6),
+          leading: CircleAvatar(
+            radius: 24,
+            backgroundColor: QuandoColors.raised,
+            child: Icon(icon, color: QuandoColors.amber),
+          ),
+          title: Text(title, style: text.titleLarge),
+          subtitle: Text(sub, style: text.bodySmall),
+          onTap: () => Navigator.pop(context, value),
+        );
+        return SafeArea(
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Padding(
+                padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
+                child: Text('When?', style: text.headlineMedium),
+              ),
+              option('time', Icons.schedule, 'At a time', 'Every weekday at 7:00, once at 15:30…'),
+              option(
+                'event',
+                Icons.manage_search,
+                'Around an event',
+                'Search calendars, Shabbat and sun times, then ring before, at or after',
+              ),
+              const SizedBox(height: 12),
+            ],
+          ),
+        );
+      },
+    );
+    if (!mounted) return;
+    if (choice == 'time') context.push('/alarm/new');
+    if (choice == 'event') context.push('/calendar/rule/new');
   }
 
   /// Tapping one alarm in the week: skip it once, or change what set it.
@@ -147,7 +196,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final place = ref.watch(placeProvider);
     final plan = ref.watch(planProvider);
     final period = ref.watch(nextPeriodProvider);
-    final rules = ref.watch(rulesProvider);
+    final eventRules = ref.watch(calendarRulesProvider);
     final mine = ref.watch(userAlarmsProvider);
     final now = ref.watch(clockProvider)();
     final text = Theme.of(context).textTheme;
@@ -172,7 +221,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         height: 60,
         child: FloatingActionButton.extended(
           tooltip: 'New alarm',
-          onPressed: () => context.push('/alarm/new'),
+          onPressed: _newAlarm,
           icon: const Icon(Icons.add, size: 26),
           label: const Text('When?'),
         ),
@@ -292,17 +341,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
                 // ---- Shabbat ----
                 if (period != null) ...[
-                  _ShabbatCard(
+                  ShabbatCard(
+                    onTap: () => context.push('/shabbat'),
                     title: period.contains(now) ? 'SHABBAT MODE IS ON' : 'NEXT · ${place.name.toUpperCase()}',
                     names: period.names.join(' · '),
                     rows: [
-                      _TimeRow(
+                      ShabbatTimeRow(
                         label: 'Candle lighting',
                         day: cityDay(period.start),
                         time: cityTime(period.start),
                       ),
-                      _TimeRow(label: 'Havdalah', day: cityDay(period.end), time: cityTime(period.end)),
+                      ShabbatTimeRow(label: 'Havdalah', day: cityDay(period.end), time: cityTime(period.end)),
                     ],
+                  ),
+                  const SizedBox(height: 16),
+                ] else ...[
+                  OutlinedButton.icon(
+                    onPressed: () => context.push('/shabbat'),
+                    icon: const Icon(Icons.local_fire_department_outlined),
+                    label: const Text('Shabbat & festivals'),
                   ),
                   const SizedBox(height: 16),
                 ],
@@ -317,10 +374,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     child: Text('Tap When? to add an alarm.', style: text.bodySmall),
                   ),
                 for (final a in mine.where((a) => a.group.isEmpty)) ...[
-                  _AlarmCard(
-                    alarm: a,
-                    onTap: () => context.push('/alarm/${a.id}'),
-                    onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                  SwipeToDelete(
+                    id: 'user.${a.id}',
+                    onDelete: () {
+                      ref.read(userAlarmsProvider.notifier).delete(a.id);
+                      _undo('Deleted "${a.title}"', () => ref.read(userAlarmsProvider.notifier).save(a));
+                    },
+                    child: _AlarmCard(
+                      alarm: a,
+                      onTap: () => context.push('/alarm/${a.id}'),
+                      onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                    ),
                   ),
                   const SizedBox(height: 10),
                 ],
@@ -346,6 +410,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   const SizedBox(height: 10),
                 ],
 
+                // ---- Event alarms ----
+                if (eventRules.isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  Text('AROUND EVENTS', style: text.labelSmall),
+                  const SizedBox(height: 10),
+                  for (final r in eventRules) ...[
+                    SwipeToDelete(
+                      id: 'cal.${r.id}',
+                      onDelete: () {
+                        ref.read(calendarRulesProvider.notifier).delete(r.id);
+                        _undo('Deleted "${r.title}"', () => ref.read(calendarRulesProvider.notifier).save(r));
+                      },
+                      child: RuleTile(
+                        title: r.title,
+                        subtitle: [
+                          timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
+                          if (r.keyword.isNotEmpty && r.name.isNotEmpty) 'search: ${r.keyword}',
+                        ].join(' · '),
+                        on: r.enabled,
+                        onTap: () => context.push('/calendar/rule/${r.id}'),
+                        onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                ],
+
                 // ---- This week ----
                 const SizedBox(height: 18),
                 Text('ALARMS THIS WEEK', style: text.labelSmall),
@@ -366,22 +457,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 const SizedBox(height: 22),
                 const WorldClocks(),
 
-                // ---- Presets ----
-                const SizedBox(height: 22),
-                Text('SHABBAT AND SUN PRESETS', style: text.labelSmall),
-                const SizedBox(height: 6),
-                for (final r in rules)
-                  ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    onTap: () => context.push('/preset/${r.id}'),
-                    title: Text(r.name, style: text.bodyLarge),
-                    subtitle: Text(_timesLabel(r.offsets()), style: text.bodySmall),
-                    trailing: Switch(
-                      value: r.enabled,
-                      onChanged: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
-                    ),
-                  ),
-                Text('Tap a preset to change its times.', style: text.bodySmall),
                 const SizedBox(height: 16),
                 Text(
                   'Alarms set themselves on this phone whenever you change something.',
@@ -408,71 +483,6 @@ class _WhenChip extends StatelessWidget {
     onPressed: onTap,
     padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
   );
-}
-
-class _ShabbatCard extends StatelessWidget {
-  const _ShabbatCard({required this.title, required this.names, required this.rows});
-
-  final String title;
-  final String names;
-  final List<Widget> rows;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    const ink = QuandoColors.ground;
-    return Container(
-      padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
-      decoration: const BoxDecoration(
-        color: QuandoColors.amber,
-        borderRadius: BorderRadius.all(Radius.circular(28)),
-      ),
-      child: DefaultTextStyle.merge(
-        style: const TextStyle(color: ink),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            const Padding(padding: EdgeInsets.only(top: 4), child: Flame(height: 52)),
-            const SizedBox(width: 16),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(title, style: text.labelSmall?.copyWith(color: ink)),
-                  const SizedBox(height: 6),
-                  Text(names, style: text.headlineSmall?.copyWith(color: ink)),
-                  const SizedBox(height: 10),
-                  for (final r in rows) Padding(padding: const EdgeInsets.only(top: 4), child: r),
-                ],
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class _TimeRow extends StatelessWidget {
-  const _TimeRow({required this.label, required this.day, required this.time});
-
-  final String label;
-  final String day;
-  final String time;
-
-  @override
-  Widget build(BuildContext context) {
-    final text = Theme.of(context).textTheme;
-    const ink = QuandoColors.ground;
-    return Row(
-      children: [
-        Expanded(
-          child: Text('$label · $day', style: text.bodyMedium?.copyWith(color: ink)),
-        ),
-        Text(time, style: text.titleLarge?.copyWith(color: ink, fontSize: 22)),
-      ],
-    );
-  }
 }
 
 class _AlarmCard extends StatelessWidget {
