@@ -151,12 +151,42 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
   @override
   List<AlarmRule> build() {
     final saved = _decode(_prefs.getString('rules.enabled'));
-    return [for (final r in Presets.all) saved.containsKey(r.id) ? r.copyWith(enabled: saved[r.id]) : r];
+    final custom = _custom();
+    return [
+      for (final r in Presets.all.map((p) => p.withCustomFrom(custom)))
+        saved.containsKey(r.id) ? r.copyWith(enabled: saved[r.id]) : r,
+    ];
   }
 
   void toggle(String id, bool enabled) {
     state = [for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r];
     _prefs.setString('rules.enabled', jsonEncode({for (final r in state) r.id: r.enabled}));
+  }
+
+  /// Changes a preset's times or sound, and remembers the change.
+  void edit(String id, AlarmRule Function(AlarmRule) change) {
+    state = [for (final r in state) r.id == id ? change(r) : r];
+    final custom = _custom()..[id] = state.firstWhere((r) => r.id == id).customJson();
+    _prefs.setString('rules.custom', jsonEncode(custom));
+  }
+
+  /// Back to the preset as Quando ships it, keeping it on or off.
+  void reset(String id) {
+    final custom = _custom()..remove(id);
+    _prefs.setString('rules.custom', jsonEncode(custom));
+    final preset = Presets.all.firstWhere((p) => p.id == id);
+    state = [for (final r in state) r.id == id ? preset.copyWith(enabled: r.enabled) : r];
+  }
+
+  /// Whether the user has changed this preset.
+  bool isCustom(String id) => _custom().containsKey(id);
+
+  Map<String, dynamic> _custom() {
+    try {
+      return jsonDecode(_prefs.getString('rules.custom') ?? '{}') as Map<String, dynamic>;
+    } catch (_) {
+      return {};
+    }
   }
 
   static Map<String, bool> _decode(String? raw) {
@@ -169,6 +199,34 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 }
 
 final rulesProvider = NotifierProvider<RulesNotifier, List<AlarmRule>>(RulesNotifier.new);
+
+extension on AlarmRule {
+  AlarmRule withCustomFrom(Map<String, dynamic> custom) {
+    final j = custom[id];
+    return j is Map<String, dynamic> ? withCustom(j) : this;
+  }
+}
+
+/// Single alarms the user chose to skip, by their stable id.
+class SkippedNotifier extends Notifier<Set<int>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<int> build() => {
+    for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[]) ?int.tryParse(s),
+  };
+
+  void skip(int id, bool skipped) {
+    final next = {...state};
+    skipped ? next.add(id) : next.remove(id);
+    // Only the newest few hundred matter: the plan reaches a week ahead.
+    final kept = next.toList();
+    state = kept.length > 400 ? kept.sublist(kept.length - 400).toSet() : next;
+    _prefs.setStringList('plan.skipped', [for (final i in state) '$i']);
+  }
+}
+
+final skippedProvider = NotifierProvider<SkippedNotifier, Set<int>>(SkippedNotifier.new);
 
 class AlarmOptionsNotifier extends Notifier<AlarmOptions> {
   @override
@@ -555,7 +613,17 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
   ];
 });
 
+/// The alarms that will ring: the full plan minus the ones you skipped.
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
+  final skipped = ref.watch(skippedProvider);
+  return [
+    for (final a in ref.watch(fullPlanProvider))
+      if (!skipped.contains(a.id)) a,
+  ];
+});
+
+/// Every alarm for the week ahead, skipped ones included.
+final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
   final now = ref.watch(clockProvider)();
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);

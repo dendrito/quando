@@ -7,6 +7,8 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/brand.dart';
+import '../../../core/scheduler/scheduler.dart';
+import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
 import '../../timezones/ui/world_clocks.dart';
@@ -27,6 +29,79 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
   final _openGroups = <String>{};
+
+  static String _timesLabel(List<Duration> offsets) {
+    if (offsets.isEmpty) return 'No times set';
+    String one(Duration d) => d == Duration.zero ? 'at the moment' : describeOffset(d);
+    return offsets.length == 1
+        ? one(offsets.single)
+        : '${offsets.length} times · ${one(offsets.first)} to ${one(offsets.last)}';
+  }
+
+  /// Tapping one alarm in the week: skip it once, or change what set it.
+  Future<void> _alarmActions(ScheduledAlarm a) async {
+    final skipped = ref.read(skippedProvider).contains(a.id);
+    final home = ref.read(homeZoneProvider);
+    final at = inZone(a.at, home);
+    final rid = a.ruleId;
+    final (editLabel, editPath) = rid.startsWith('user.')
+        ? ('Edit this alarm', '/alarm/${rid.substring(5)}')
+        : rid.startsWith('preset.')
+        ? (
+            'Edit "${ref.read(rulesProvider).where((r) => r.id == rid).firstOrNull?.name ?? 'preset'}"',
+            '/preset/$rid',
+          )
+        : rid.startsWith('cal.')
+        ? ('Edit this calendar rule', '/calendar/rule/${rid.split('.')[1]}')
+        : (null, null);
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      builder: (context) {
+        final text = Theme.of(context).textTheme;
+        return SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('${dayLabel(at)} · ${hhmm(at)}', style: text.labelSmall),
+                      const SizedBox(height: 4),
+                      Text(a.title, style: text.headlineSmall),
+                      Text(a.body, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+                    ],
+                  ),
+                ),
+                ListTile(
+                  leading: Icon(skipped ? Icons.alarm_on : Icons.alarm_off),
+                  title: Text(skipped ? 'Ring this one after all' : 'Skip just this one'),
+                  onTap: () => Navigator.pop(context, 'skip'),
+                ),
+                if (editPath != null)
+                  ListTile(
+                    leading: const Icon(Icons.edit_outlined),
+                    title: Text(editLabel!),
+                    onTap: () => Navigator.pop(context, 'edit'),
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+    if (!mounted) return;
+    if (choice == 'skip') {
+      ref.read(skippedProvider.notifier).skip(a.id, !skipped);
+    } else if (choice == 'edit' && editPath != null) {
+      context.push(editPath);
+    }
+  }
 
   Future<void> _renameGroup(String from) async {
     final name = await askGroupName(context, title: 'Rename group', initial: from);
@@ -274,12 +349,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 // ---- This week ----
                 const SizedBox(height: 18),
                 Text('ALARMS THIS WEEK', style: text.labelSmall),
-                if (plan.isEmpty)
+                if (ref.watch(fullPlanProvider).isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
                     child: Text('No alarms in the next 7 days.', style: text.bodySmall),
                   ),
-                WeekList(days: weekPlan(plan, home), today: inZone(now, home), zone: home),
+                WeekList(
+                  days: weekPlan(ref.watch(fullPlanProvider), home),
+                  today: inZone(now, home),
+                  zone: home,
+                  skipped: ref.watch(skippedProvider),
+                  onTap: _alarmActions,
+                ),
 
                 // ---- World clocks ----
                 const SizedBox(height: 22),
@@ -290,12 +371,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 Text('SHABBAT AND SUN PRESETS', style: text.labelSmall),
                 const SizedBox(height: 6),
                 for (final r in rules)
-                  SwitchListTile(
+                  ListTile(
                     contentPadding: EdgeInsets.zero,
+                    onTap: () => context.push('/preset/${r.id}'),
                     title: Text(r.name, style: text.bodyLarge),
-                    value: r.enabled,
-                    onChanged: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
+                    subtitle: Text(_timesLabel(r.offsets()), style: text.bodySmall),
+                    trailing: Switch(
+                      value: r.enabled,
+                      onChanged: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
+                    ),
                   ),
+                Text('Tap a preset to change its times.', style: text.bodySmall),
                 const SizedBox(height: 16),
                 Text(
                   'Alarms set themselves on this phone whenever you change something.',

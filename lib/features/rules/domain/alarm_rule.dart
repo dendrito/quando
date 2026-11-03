@@ -95,19 +95,53 @@ class AlarmRule {
   Duration get maxBefore => offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
   Duration get maxAfter => offsets().fold(Duration.zero, (m, d) => d > m ? d : m);
 
-  AlarmRule copyWith({bool? enabled, Duration? ringDuration}) => AlarmRule(
+  AlarmRule copyWith({
+    bool? enabled,
+    Duration? ringDuration,
+    List<Duration>? before,
+    List<Duration>? after,
+    List<OffsetSeries>? series,
+    bool? atEvent,
+    String? soundId,
+    bool defaultSound = false,
+  }) => AlarmRule(
     id: id,
     name: name,
     appliesTo: appliesTo,
-    before: before,
-    after: after,
-    series: series,
-    atEvent: atEvent,
+    before: before ?? this.before,
+    after: after ?? this.after,
+    series: series ?? this.series,
+    atEvent: atEvent ?? this.atEvent,
     ringDuration: ringDuration ?? this.ringDuration,
     enabled: enabled ?? this.enabled,
     label: label,
     sources: sources,
     keyword: keyword,
-    soundId: soundId,
+    soundId: defaultSound ? null : (soundId ?? this.soundId),
   );
+
+  /// The same rule ringing at exactly [offsets] (negative = before, zero =
+  /// at the event), with any series spelled out.
+  AlarmRule withOffsets(Iterable<Duration> offsets) {
+    final all = offsets.toSet();
+    return copyWith(
+      before: [for (final d in all.where((d) => d.isNegative).toList()..sort()) -d],
+      after: [for (final d in all.where((d) => d > Duration.zero).toList()..sort()) d],
+      series: const [],
+      atEvent: all.contains(Duration.zero),
+    );
+  }
+
+  /// What a user changed on a preset, to keep across restarts.
+  Map<String, dynamic> customJson() => {
+    'offsets': [for (final d in offsets()) d.inMinutes],
+    'soundId': soundId,
+  };
+
+  AlarmRule withCustom(Map<String, dynamic> j) {
+    final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
+    final r = mins == null ? this : withOffsets(mins);
+    final sound = j['soundId'] as String?;
+    return sound == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: sound);
+  }
 }

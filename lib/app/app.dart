@@ -18,6 +18,7 @@ import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/ringing/ring_screen.dart';
+import '../features/rules/ui/preset_screen.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import 'providers.dart';
 import 'theme.dart';
@@ -36,6 +37,10 @@ final _router = GoRouter(
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) => CalendarRuleScreen(id: state.pathParameters['id']!),
+    ),
+    GoRoute(
+      path: '/preset/:id',
+      builder: (context, state) => PresetScreen(id: state.pathParameters['id']!),
     ),
     GoRoute(
       path: '/alarm/:id',
