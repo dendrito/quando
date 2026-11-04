@@ -116,24 +116,44 @@ class AlarmSound {
   /// alarm sounds. Made for Quando by tool/gen_gentle_sounds.py.
   static const calm = [
     AlarmSound(
+      id: 'calm.city',
+      name: 'Quiet city morning',
+      path: 'assets/sounds/gentle_city.ogg',
+      builtIn: true,
+    ),
+    AlarmSound(
+      id: 'calm.birds',
+      name: 'Birds at dawn',
+      path: 'assets/sounds/gentle_birds.ogg',
+      builtIn: true,
+    ),
+    AlarmSound(
       id: 'calm.waves',
       name: 'Waves on the shore',
       path: 'assets/sounds/gentle_waves.ogg',
       builtIn: true,
     ),
-    AlarmSound(
-      id: 'calm.birds',
-      name: 'Morning birds',
-      path: 'assets/sounds/gentle_birds.ogg',
-      builtIn: true,
-    ),
     AlarmSound(id: 'calm.rain', name: 'Soft rain', path: 'assets/sounds/gentle_rain.ogg', builtIn: true),
     AlarmSound(
-      id: 'calm.chimes',
-      name: 'Wind chimes',
-      path: 'assets/sounds/gentle_chimes.ogg',
+      id: 'calm.stream',
+      name: 'Forest stream',
+      path: 'assets/sounds/gentle_stream.ogg',
       builtIn: true,
     ),
+    AlarmSound(id: 'calm.wind', name: 'Gentle wind', path: 'assets/sounds/gentle_wind.ogg', builtIn: true),
+    AlarmSound(id: 'calm.fire', name: 'Crackling fire', path: 'assets/sounds/gentle_fire.ogg', builtIn: true),
     AlarmSound(id: 'calm.night', name: 'Summer night', path: 'assets/sounds/gentle_night.ogg', builtIn: true),
+  ];
+
+  /// Who recorded the calm sounds, as their licences ask.
+  static const calmCredits = [
+    ('Quiet city morning', 'gezortenplotz, freesound.org', 'CC BY'),
+    ('Birds at dawn', 'kvgarlic, freesound.org', 'CC0'),
+    ('Waves on the shore', 'Luftrum, freesound.org', 'CC BY'),
+    ('Soft rain', 'alex36917, freesound.org', 'CC BY'),
+    ('Forest stream', 'gluckose, freesound.org', 'CC0'),
+    ('Gentle wind', 'felix.blume, freesound.org', 'CC0'),
+    ('Crackling fire', 'ezwa, soundbible.com', 'Public domain'),
+    ('Summer night', 'Lisa Redfern, soundbible.com', 'Public domain'),
   ];
 }

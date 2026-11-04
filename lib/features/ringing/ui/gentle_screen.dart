@@ -134,6 +134,13 @@ class _GentleScreenState extends State<GentleScreen> {
                   ),
                   onTap: () => setState(() => _s = _s.copyWith(gentleSound: c.id)),
                 ),
+              Align(
+                alignment: Alignment.centerLeft,
+                child: TextButton(
+                  onPressed: () => _credits(context),
+                  child: const Text('Who recorded these'),
+                ),
+              ),
             ],
             const SizedBox(height: 24),
             FilledButton(
@@ -146,4 +153,17 @@ class _GentleScreenState extends State<GentleScreen> {
       ),
     );
   }
+
+  void _credits(BuildContext context) => showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: const Text('Sound credits'),
+      content: SingleChildScrollView(
+        child: Text(
+          [for (final (name, who, licence) in AlarmSound.calmCredits) '$name: $who ($licence)'].join('\n\n'),
+        ),
+      ),
+      actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK'))],
+    ),
+  );
 }

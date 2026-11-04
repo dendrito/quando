@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
@@ -232,5 +234,12 @@ void main() {
     expect(SpotifyPlay.uriOf('spotify:album:1'), 'spotify:album:1');
     expect(SpotifyPlay.uriOf('https://music.youtube.com/watch?v=abc'), isNull);
     expect(SpotifyPlay.uriOf('https://open.spotify.com/user/me'), isNull);
+  });
+
+  test('every gentle sound is bundled and credited', () {
+    for (final c in AlarmSound.calm) {
+      expect(File(c.path).existsSync(), isTrue, reason: c.path);
+      expect(AlarmSound.calmCredits.any((cr) => cr.$1 == c.name), isTrue, reason: c.name);
+    }
   });
 }
