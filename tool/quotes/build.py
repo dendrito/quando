@@ -11,7 +11,7 @@ meta.txt     one line per shared quote: id source tags [orig]
 A shared quote with no line in a language is shown there in its original words.
 Run: python3 tool/quotes/build.py
 """
-import os, re, sys
+import os, re, subprocess, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 OUT = os.path.join(HERE, '..', '..', 'lib', 'features', 'quotes', 'data', 'quote_bank.dart')
@@ -203,4 +203,9 @@ if problems:
     print('\n'.join(problems))
     sys.exit(f'{len(problems)} quotes broke the guard rails; nothing was written.')
 open(OUT, 'w', encoding='utf-8').write('\n'.join(out) + '\n')
+# CI checks formatting, so format the generated file the same way.
+try:
+    subprocess.run(['dart', 'format', OUT], check=True, capture_output=True)
+except (OSError, subprocess.CalledProcessError):
+    print('Run `dart format lib/features/quotes/data/quote_bank.dart` before committing.')
 print(', '.join(f'{k} {v}' for k, v in counts.items()))
