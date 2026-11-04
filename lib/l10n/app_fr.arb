@@ -23,7 +23,7 @@
   "settings": "Réglages",
   "nextAlarmHeading": "PROCHAINE ALARME",
   "nothingSet": "Rien de prévu",
-  "tagline": "Si ce n’est pas maintenant, quand ?",
+  "tagline": "Le temps, bien gardé.",
   "sunriseAt": "Lever du soleil {time}",
   "sunsetAt": "Coucher du soleil {time}",
   "alarmsMayNotRing": "Vos alarmes risquent de ne pas sonner",

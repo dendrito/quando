@@ -88,7 +88,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get nothingSet => 'Chưa đặt gì';
 
   @override
-  String get tagline => 'Không phải bây giờ, thì khi nào?';
+  String get tagline => 'Thời gian, được gìn giữ.';
 
   @override
   String sunriseAt(String time) {

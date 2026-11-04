@@ -87,7 +87,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get nothingSet => '未設定';
 
   @override
-  String get tagline => '今でなければ、いつ？';
+  String get tagline => '時間を、大切に。';
 
   @override
   String sunriseAt(String time) {

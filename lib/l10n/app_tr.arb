@@ -23,7 +23,7 @@
   "settings": "Ayarlar",
   "nextAlarmHeading": "SONRAKİ ALARM",
   "nothingSet": "Hiçbir şey ayarlanmadı",
-  "tagline": "Şimdi değilse, ne zaman?",
+  "tagline": "Zaman emin ellerde.",
   "sunriseAt": "Gün doğumu {time}",
   "sunsetAt": "Gün batımı {time}",
   "alarmsMayNotRing": "Alarmların çalmayabilir",

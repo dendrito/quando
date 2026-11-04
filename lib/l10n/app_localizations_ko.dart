@@ -87,7 +87,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get nothingSet => '설정된 알람 없음';
 
   @override
-  String get tagline => '지금이 아니면, 언제?';
+  String get tagline => '시간을, 소중하게.';
 
   @override
   String sunriseAt(String time) {

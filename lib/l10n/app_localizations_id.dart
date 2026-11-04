@@ -88,7 +88,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get nothingSet => 'Belum ada yang diatur';
 
   @override
-  String get tagline => 'Kalau bukan sekarang, kapan?';
+  String get tagline => 'Waktu yang terjaga.';
 
   @override
   String sunriseAt(String time) {

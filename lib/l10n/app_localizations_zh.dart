@@ -87,7 +87,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nothingSet => '未设置';
 
   @override
-  String get tagline => '此时不做，更待何时？';
+  String get tagline => '时间，妥善守护。';
 
   @override
   String sunriseAt(String time) {
@@ -1999,7 +1999,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get nothingSet => '未設定';
 
   @override
-  String get tagline => '此時不做，更待何時？';
+  String get tagline => '時間，妥善守護。';
 
   @override
   String sunriseAt(String time) {

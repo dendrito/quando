@@ -54,7 +54,7 @@
   "settings": "Settings",
   "nextAlarmHeading": "NEXT ALARM",
   "nothingSet": "Nothing set",
-  "tagline": "If not now, when?",
+  "tagline": "Time well kept.",
   "sunriseAt": "Sunrise {time}",
   "@sunriseAt": {
     "placeholders": {

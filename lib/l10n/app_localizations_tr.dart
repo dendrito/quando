@@ -88,7 +88,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get nothingSet => 'Hiçbir şey ayarlanmadı';
 
   @override
-  String get tagline => 'Şimdi değilse, ne zaman?';
+  String get tagline => 'Zaman emin ellerde.';
 
   @override
   String sunriseAt(String time) {

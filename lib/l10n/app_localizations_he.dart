@@ -87,7 +87,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get nothingSet => 'אין התראות';
 
   @override
-  String get tagline => 'אם לא עכשיו, אימתי?';
+  String get tagline => 'הזמן שלך, בידיים טובות.';
 
   @override
   String sunriseAt(String time) {

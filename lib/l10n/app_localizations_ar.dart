@@ -87,7 +87,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nothingSet => 'لا شيء مضبوط';
 
   @override
-  String get tagline => 'إن لم يكن الآن، فمتى؟';
+  String get tagline => 'وقتك في أيدٍ أمينة.';
 
   @override
   String sunriseAt(String time) {

@@ -271,7 +271,7 @@ abstract class AppLocalizations {
   /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
-  /// **'If not now, when?'**
+  /// **'Time well kept.'**
   String get tagline;
 
   /// No description provided for @sunriseAt.

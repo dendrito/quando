@@ -88,7 +88,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get nothingSet => 'कुछ सेट नहीं';
 
   @override
-  String get tagline => 'अभी नहीं, तो कब?';
+  String get tagline => 'आपका समय, सुरक्षित हाथों में।';
 
   @override
   String sunriseAt(String time) {

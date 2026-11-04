@@ -88,7 +88,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get nothingSet => 'Nichts gestellt';
 
   @override
-  String get tagline => 'Wenn nicht jetzt, wann?';
+  String get tagline => 'Zeit, gut bewahrt.';
 
   @override
   String sunriseAt(String time) {

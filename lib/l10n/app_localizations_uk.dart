@@ -88,7 +88,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get nothingSet => 'Нічого не задано';
 
   @override
-  String get tagline => 'Якщо не зараз, то коли?';
+  String get tagline => 'Час у надійних руках.';
 
   @override
   String sunriseAt(String time) {
