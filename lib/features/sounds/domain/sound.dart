@@ -72,11 +72,10 @@ class AlarmSound {
       path: 'assets/sounds/classic_beep.wav',
       builtIn: true,
     ),
-    ...calm,
   ];
 
-  /// Soft, looping sounds for the gentle wake-up (and any alarm). Made for
-  /// Quando by tool/gen_gentle_sounds.py.
+  /// Soft, looping lead-up sounds for the gentle wake-up only; they are not
+  /// alarm sounds. Made for Quando by tool/gen_gentle_sounds.py.
   static const calm = [
     AlarmSound(
       id: 'calm.waves',

@@ -36,6 +36,8 @@ void main() {
     final sounds = c.read(soundsProvider);
     expect(sounds.map((s) => s.name), containsAll(['Soft chime', 'Morning rise', 'Classic beep']));
     expect(sounds.every((s) => s.path.startsWith('assets/sounds/')), isTrue);
+    // Lead-up sounds belong to the gentle wake-up only.
+    expect(sounds.where((s) => s.id.startsWith('calm.')), isEmpty);
   });
 
   test('default sound, per-alarm sound, and phone sound', () async {
@@ -130,7 +132,7 @@ void main() {
     expect(real.at.difference(soft.at), const Duration(minutes: 15));
     final p = c.read(payloadForProvider)(soft);
     expect(p.loudness.volume, 42); // 60% of the default 70%
-    expect(p.sound, 'assets/sounds/gentle_waves.ogg');
+    expect(p.sound, 'assets/sounds/gentle_birds.ogg');
     expect(p.canSnooze, isFalse);
     // The week list shows only the real alarm.
     expect(c.read(fullPlanProvider).where((a) => a.ruleId.startsWith('gentle.')), isEmpty);

@@ -10,6 +10,7 @@ import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
 import 'ring_length_picker.dart';
+import '../../ringing/ui/gentle_screen.dart';
 import '../../ringing/ui/ring_style_screen.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
@@ -213,6 +214,10 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             onChanged: (id) => setState(
               () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
             ),
+          ),
+          GentleTile(
+            value: _alarm.style,
+            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
           ),
           RingStyleTile(
             value: _alarm.style,

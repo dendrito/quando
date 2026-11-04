@@ -5,7 +5,6 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../sounds/domain/loudness.dart';
-import '../../sounds/domain/sound.dart';
 import '../../sounds/ui/sound_player.dart';
 import '../data/apps.dart';
 import '../ring_style.dart';
@@ -24,7 +23,6 @@ class RingStyleTile extends ConsumerWidget {
     final s = value;
     final parts = [
       (s.loudness ?? o.loudness).summary,
-      if (s.gentleMinutes > 0) 'gentle ${s.gentleMinutes} min before',
       if (s.snooze != null) 'snooze ${s.snooze!.summary.toLowerCase()}',
       if ((s.task ?? (o.mathTask ? StopTask.sum : StopTask.none)) != StopTask.none)
         (s.task ?? StopTask.sum).label.toLowerCase(),
@@ -157,57 +155,6 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
                 onChanged: (l) => setState(() => _s = _s.copyWith(loudness: l)),
               ),
             const SizedBox(height: 20),
-            Text('GENTLE WAKE-UP', style: text.labelSmall),
-            const SizedBox(height: 4),
-            Text(
-              'Calm sounds that start softly before the alarm and rise slowly, so you surface from light '
-              'sleep instead of being jolted awake. They stop just before the real alarm.',
-              style: text.bodySmall,
-            ),
-            const SizedBox(height: 10),
-            Wrap(
-              spacing: 8,
-              runSpacing: 8,
-              children: [
-                for (final m in const [0, 5, 10, 15, 20, 30, 45, 60])
-                  ChoiceChip(
-                    label: Text(m == 0 ? 'Off' : '$m min before'),
-                    selected: _s.gentleMinutes == m,
-                    onSelected: (_) => setState(() => _s = _s.copyWith(gentleMinutes: m)),
-                  ),
-              ],
-            ),
-            if (_s.gentleMinutes > 0) ...[
-              const SizedBox(height: 8),
-              for (final c in AlarmSound.calm)
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: Icon(
-                    _s.gentleSound == c.id ? Icons.radio_button_checked : Icons.radio_button_off,
-                    color: QuandoColors.amber,
-                  ),
-                  title: Text(c.name),
-                  trailing: IconButton(
-                    tooltip: 'Listen',
-                    icon: Icon(
-                      SoundPreview.instance.playingId == c.id
-                          ? Icons.stop_circle_outlined
-                          : Icons.play_circle_outline,
-                    ),
-                    onPressed: () async {
-                      final p = SoundPreview.instance;
-                      if (p.playingId == c.id) {
-                        await p.stop();
-                      } else {
-                        await p.play(c, onDone: () => mounted ? setState(() {}) : null);
-                      }
-                      if (mounted) setState(() {});
-                    },
-                  ),
-                  onTap: () => setState(() => _s = _s.copyWith(gentleSound: c.id)),
-                ),
-            ],
-            const SizedBox(height: 24),
             Text('SNOOZE', style: text.labelSmall),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
