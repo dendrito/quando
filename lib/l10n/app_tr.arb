@@ -23,7 +23,7 @@
   "settings": "Ayarlar",
   "nextAlarmHeading": "SONRAKİ ALARM",
   "nothingSet": "Hiçbir şey ayarlanmadı",
-  "tagline": "Zaman emin ellerde.",
+  "tagline": "Her şey zamanında.",
   "sunriseAt": "Gün doğumu {time}",
   "sunsetAt": "Gün batımı {time}",
   "alarmsMayNotRing": "Alarmların çalmayabilir",
@@ -568,5 +568,18 @@
   "tomorrow": "Yarın",
   "notAWebAddress": "Bu https:// ile başlayan bir web adresine benzemiyor",
   "language": "Dil",
-  "phoneLanguage": "Telefonun dili"
+  "phoneLanguage": "Telefonun dili",
+  "ringQuote": "Şimdi değilse, ne zaman?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Zaman üzerine sözler",
+  "quotesHint": "Nereden geleceklerini seç. Günün her bölümü için bir tane; başka bir söz için dokun.",
+  "quotesOff": "Kapalı",
+  "quoteSongs": "Şarkılar",
+  "quoteMovies": "Filmler",
+  "quoteLiterature": "Kitaplar ve şiirler",
+  "quoteTanakh": "Tanah (İbranice Kutsal Kitap)",
+  "quoteSages": "Talmud ve bilgeler",
+  "quoteSpeeches": "Ünlü konuşmalar",
+  "quotePhilosophy": "Filozoflar",
+  "quoteProverbs": "Atasözleri ve deyişler"
 }

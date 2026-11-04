@@ -277,8 +277,16 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                           Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
                           const SizedBox(height: 10),
                           if (_stage == _Stage.ringing)
-                            Text(
-                              l10n.tagline,
+                            Text.rich(
+                              TextSpan(
+                                children: [
+                                  TextSpan(text: l10n.ringQuote),
+                                  TextSpan(
+                                    text: '  — ${l10n.ringQuoteBy}',
+                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
+                                  ),
+                                ],
+                              ),
                               style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
                             ),
                           if (p.shabbatSafe) ...[

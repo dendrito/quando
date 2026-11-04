@@ -88,7 +88,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nothingSet => 'Niets ingesteld';
 
   @override
-  String get tagline => 'Tijd, goed bewaard.';
+  String get tagline => 'Alles op zijn tijd.';
 
   @override
   String sunriseAt(String time) {
@@ -1962,4 +1962,44 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Taal van de telefoon';
+
+  @override
+  String get ringQuote => 'Als niet nu, wanneer dan?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Citaten over tijd';
+
+  @override
+  String get quotesHint =>
+      'Kies waar ze vandaan komen. Eén voor elk deel van de dag; tik op het citaat voor een ander.';
+
+  @override
+  String get quotesOff => 'Uit';
+
+  @override
+  String get quoteSongs => 'Liedjes';
+
+  @override
+  String get quoteMovies => 'Films';
+
+  @override
+  String get quoteLiterature => 'Boeken en gedichten';
+
+  @override
+  String get quoteTanakh => 'Tenach (Hebreeuwse Bijbel)';
+
+  @override
+  String get quoteSages => 'Talmoed en wijzen';
+
+  @override
+  String get quoteSpeeches => 'Beroemde toespraken';
+
+  @override
+  String get quotePhilosophy => 'Filosofen';
+
+  @override
+  String get quoteProverbs => 'Spreekwoorden en gezegden';
 }

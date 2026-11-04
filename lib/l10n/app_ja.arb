@@ -23,7 +23,7 @@
   "settings": "設定",
   "nextAlarmHeading": "次のアラーム",
   "nothingSet": "未設定",
-  "tagline": "時間を、大切に。",
+  "tagline": "何事にも時がある。",
   "sunriseAt": "日の出 {time}",
   "sunsetAt": "日の入り {time}",
   "alarmsMayNotRing": "アラームが鳴らない可能性があります",
@@ -568,5 +568,18 @@
   "tomorrow": "明日",
   "notAWebAddress": "https://で始まるウェブアドレスではないようです",
   "language": "言語",
-  "phoneLanguage": "スマホの言語"
+  "phoneLanguage": "スマホの言語",
+  "ringQuote": "今でなければ、いつ？",
+  "ringQuoteBy": "ヒレル",
+  "quotesTitle": "時についての言葉",
+  "quotesHint": "どこから選ぶか決めてください。一日の時間帯ごとに一つ。タップすると別の言葉が出ます。",
+  "quotesOff": "オフ",
+  "quoteSongs": "歌",
+  "quoteMovies": "映画",
+  "quoteLiterature": "本と詩",
+  "quoteTanakh": "タナハ（ヘブライ語聖書）",
+  "quoteSages": "タルムードと賢者",
+  "quoteSpeeches": "有名な演説",
+  "quotePhilosophy": "哲学者",
+  "quoteProverbs": "ことわざ・格言"
 }

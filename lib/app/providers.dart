@@ -15,6 +15,8 @@ import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
+import '../features/quotes/data/quote_bank.dart';
+import '../features/quotes/domain/quote.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
 import '../features/rules/domain/presets.dart';
@@ -67,6 +69,39 @@ class LocaleNotifier extends Notifier<Locale> {
 }
 
 final localeProvider = NotifierProvider<LocaleNotifier, Locale>(LocaleNotifier.new);
+
+// ---- Quotes about time ----
+
+/// Which kinds of quotes the home screen shows. Empty = none.
+class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteSource> build() {
+    final saved = _prefs.getStringList('quoteSources');
+    if (saved == null) return QuoteSource.values.toSet();
+    return {
+      for (final s in QuoteSource.values)
+        if (saved.contains(s.name)) s,
+    };
+  }
+
+  void toggle(QuoteSource s, bool on) {
+    state = on ? {...state, s} : ({...state}..remove(s));
+    _prefs.setStringList('quoteSources', [for (final x in state) x.name]);
+  }
+}
+
+final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
+  QuoteSourcesNotifier.new,
+);
+
+/// Every quote for the language in use.
+final quotesProvider = Provider<List<Quote>>((ref) {
+  final l = ref.watch(localeProvider);
+  final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
+  return [...?quoteBank[key] ?? quoteBank['en'], ...sharedQuotes];
+});
 
 // ---- Time zones ----
 

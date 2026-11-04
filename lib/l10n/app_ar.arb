@@ -23,7 +23,7 @@
   "settings": "الإعدادات",
   "nextAlarmHeading": "المنبه التالي",
   "nothingSet": "لا شيء مضبوط",
-  "tagline": "وقتك في أيدٍ أمينة.",
+  "tagline": "كلّ شيء في أوانه.",
   "sunriseAt": "الشروق {time}",
   "sunsetAt": "الغروب {time}",
   "alarmsMayNotRing": "قد لا ترنّ منبهاتك",
@@ -568,5 +568,18 @@
   "tomorrow": "غدًا",
   "notAWebAddress": "هذا لا يبدو عنوان ويب يبدأ بـ https://",
   "language": "اللغة",
-  "phoneLanguage": "لغة الهاتف"
+  "phoneLanguage": "لغة الهاتف",
+  "ringQuote": "إن لم يكن الآن، فمتى؟",
+  "ringQuoteBy": "هليل",
+  "quotesTitle": "أقوال عن الوقت",
+  "quotesHint": "اختر مصادرها. قول لكل جزء من اليوم؛ المس القول لرؤية غيره.",
+  "quotesOff": "متوقفة",
+  "quoteSongs": "أغانٍ",
+  "quoteMovies": "أفلام",
+  "quoteLiterature": "كتب وقصائد",
+  "quoteTanakh": "التناخ (الكتاب المقدس العبري)",
+  "quoteSages": "التلمود والحكماء",
+  "quoteSpeeches": "خطب شهيرة",
+  "quotePhilosophy": "فلاسفة",
+  "quoteProverbs": "أمثال وأقوال"
 }

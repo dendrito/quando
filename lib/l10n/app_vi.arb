@@ -23,7 +23,7 @@
   "settings": "Cài đặt",
   "nextAlarmHeading": "BÁO THỨC TIẾP THEO",
   "nothingSet": "Chưa đặt gì",
-  "tagline": "Thời gian, được gìn giữ.",
+  "tagline": "Mọi việc đều có lúc.",
   "sunriseAt": "Mặt trời mọc {time}",
   "sunsetAt": "Mặt trời lặn {time}",
   "alarmsMayNotRing": "Báo thức của bạn có thể không reo",
@@ -568,5 +568,18 @@
   "tomorrow": "Ngày mai",
   "notAWebAddress": "Đó có vẻ không phải địa chỉ web bắt đầu bằng https://",
   "language": "Ngôn ngữ",
-  "phoneLanguage": "Ngôn ngữ của điện thoại"
+  "phoneLanguage": "Ngôn ngữ của điện thoại",
+  "ringQuote": "Nếu không phải bây giờ, thì khi nào?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Trích dẫn về thời gian",
+  "quotesHint": "Chọn nguồn trích dẫn. Mỗi buổi trong ngày một câu; chạm vào câu để xem câu khác.",
+  "quotesOff": "Tắt",
+  "quoteSongs": "Bài hát",
+  "quoteMovies": "Phim",
+  "quoteLiterature": "Sách và thơ",
+  "quoteTanakh": "Tanakh (Kinh Thánh Hebrew)",
+  "quoteSages": "Talmud và các hiền triết",
+  "quoteSpeeches": "Bài phát biểu nổi tiếng",
+  "quotePhilosophy": "Triết gia",
+  "quoteProverbs": "Tục ngữ và châm ngôn"
 }

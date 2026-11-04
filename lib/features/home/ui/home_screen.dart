@@ -21,6 +21,8 @@ import 'alarm_group_card.dart';
 import 'day_arc.dart';
 import 'week_list.dart';
 
+import '../../quotes/ui/quote_line.dart';
+
 import 'package:quando/l10n/l10n.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
@@ -286,10 +288,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         ),
                       ),
                       const SizedBox(height: 6),
-                      Text(
-                        next == null ? l10n.tagline : '${next.title} · ${day(next.at)} · ${local(next.at)}',
-                        style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
-                      ),
+                      if (next != null) ...[
+                        Text(
+                          '${next.title} · ${day(next.at)} · ${local(next.at)}',
+                          style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
+                        ),
+                        const SizedBox(height: 8),
+                      ],
+                      QuoteLine(now: now, idle: next == null),
                       const SizedBox(height: 10),
                       DayArc(
                         sky: sky,

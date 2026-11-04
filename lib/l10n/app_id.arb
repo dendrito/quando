@@ -23,7 +23,7 @@
   "settings": "Pengaturan",
   "nextAlarmHeading": "ALARM BERIKUTNYA",
   "nothingSet": "Belum ada yang diatur",
-  "tagline": "Waktu yang terjaga.",
+  "tagline": "Semua ada waktunya.",
   "sunriseAt": "Matahari terbit {time}",
   "sunsetAt": "Matahari terbenam {time}",
   "alarmsMayNotRing": "Alarmmu mungkin tidak berbunyi",
@@ -568,5 +568,18 @@
   "tomorrow": "Besok",
   "notAWebAddress": "Itu tidak terlihat seperti alamat web yang diawali https://",
   "language": "Bahasa",
-  "phoneLanguage": "Bahasa ponsel"
+  "phoneLanguage": "Bahasa ponsel",
+  "ringQuote": "Kalau bukan sekarang, kapan?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Kutipan tentang waktu",
+  "quotesHint": "Pilih sumbernya. Satu untuk tiap bagian hari; ketuk kutipan untuk melihat yang lain.",
+  "quotesOff": "Mati",
+  "quoteSongs": "Lagu",
+  "quoteMovies": "Film",
+  "quoteLiterature": "Buku dan puisi",
+  "quoteTanakh": "Tanakh (Alkitab Ibrani)",
+  "quoteSages": "Talmud dan orang bijak",
+  "quoteSpeeches": "Pidato terkenal",
+  "quotePhilosophy": "Filsuf",
+  "quoteProverbs": "Peribahasa dan ungkapan"
 }

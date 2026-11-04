@@ -87,7 +87,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nothingSet => '未设置';
 
   @override
-  String get tagline => '时间，妥善守护。';
+  String get tagline => '凡事皆有时。';
 
   @override
   String sunriseAt(String time) {
@@ -1915,6 +1915,45 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get phoneLanguage => '手机语言';
+
+  @override
+  String get ringQuote => '此时不做，更待何时？';
+
+  @override
+  String get ringQuoteBy => '希勒尔';
+
+  @override
+  String get quotesTitle => '关于时间的名言';
+
+  @override
+  String get quotesHint => '选择名言的来源。每个时段一句；轻点名言可换一句。';
+
+  @override
+  String get quotesOff => '关闭';
+
+  @override
+  String get quoteSongs => '歌曲';
+
+  @override
+  String get quoteMovies => '电影';
+
+  @override
+  String get quoteLiterature => '书籍与诗歌';
+
+  @override
+  String get quoteTanakh => '塔纳赫（希伯来圣经）';
+
+  @override
+  String get quoteSages => '塔木德与贤哲';
+
+  @override
+  String get quoteSpeeches => '著名演讲';
+
+  @override
+  String get quotePhilosophy => '哲学家';
+
+  @override
+  String get quoteProverbs => '谚语与俗语';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -1999,7 +2038,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get nothingSet => '未設定';
 
   @override
-  String get tagline => '時間，妥善守護。';
+  String get tagline => '凡事皆有時。';
 
   @override
   String sunriseAt(String time) {
@@ -3827,4 +3866,43 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get phoneLanguage => '手機語言';
+
+  @override
+  String get ringQuote => '此時不做，更待何時？';
+
+  @override
+  String get ringQuoteBy => '希勒爾';
+
+  @override
+  String get quotesTitle => '關於時間的名言';
+
+  @override
+  String get quotesHint => '選擇名言的來源。每個時段一句；輕觸名言可換一句。';
+
+  @override
+  String get quotesOff => '關閉';
+
+  @override
+  String get quoteSongs => '歌曲';
+
+  @override
+  String get quoteMovies => '電影';
+
+  @override
+  String get quoteLiterature => '書籍與詩歌';
+
+  @override
+  String get quoteTanakh => '塔納赫（希伯來聖經）';
+
+  @override
+  String get quoteSages => '塔木德與賢哲';
+
+  @override
+  String get quoteSpeeches => '著名演講';
+
+  @override
+  String get quotePhilosophy => '哲學家';
+
+  @override
+  String get quoteProverbs => '諺語與俗語';
 }

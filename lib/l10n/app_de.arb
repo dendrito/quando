@@ -23,7 +23,7 @@
   "settings": "Einstellungen",
   "nextAlarmHeading": "NÄCHSTER WECKER",
   "nothingSet": "Nichts gestellt",
-  "tagline": "Zeit, gut bewahrt.",
+  "tagline": "Alles zu seiner Zeit.",
   "sunriseAt": "Sonnenaufgang {time}",
   "sunsetAt": "Sonnenuntergang {time}",
   "alarmsMayNotRing": "Deine Wecker klingeln vielleicht nicht",
@@ -568,5 +568,18 @@
   "tomorrow": "Morgen",
   "notAWebAddress": "Das sieht nicht wie eine Webadresse mit https:// aus",
   "language": "Sprache",
-  "phoneLanguage": "Sprache des Handys"
+  "phoneLanguage": "Sprache des Handys",
+  "ringQuote": "Wenn nicht jetzt, wann dann?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Zitate über die Zeit",
+  "quotesHint": "Wähle, woher sie kommen. Eines für jede Tageszeit; tippe auf das Zitat für ein anderes.",
+  "quotesOff": "Aus",
+  "quoteSongs": "Lieder",
+  "quoteMovies": "Filme",
+  "quoteLiterature": "Bücher und Gedichte",
+  "quoteTanakh": "Tanach (Hebräische Bibel)",
+  "quoteSages": "Talmud und Weise",
+  "quoteSpeeches": "Berühmte Reden",
+  "quotePhilosophy": "Philosophen",
+  "quoteProverbs": "Sprichwörter"
 }

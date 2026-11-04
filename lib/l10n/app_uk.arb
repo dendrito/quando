@@ -23,7 +23,7 @@
   "settings": "Налаштування",
   "nextAlarmHeading": "НАСТУПНИЙ БУДИЛЬНИК",
   "nothingSet": "Нічого не задано",
-  "tagline": "Час у надійних руках.",
+  "tagline": "Усьому свій час.",
   "sunriseAt": "Схід {time}",
   "sunsetAt": "Захід {time}",
   "alarmsMayNotRing": "Будильники можуть не задзвонити",
@@ -568,5 +568,18 @@
   "tomorrow": "Завтра",
   "notAWebAddress": "Це не схоже на адресу, що починається з https://",
   "language": "Мова",
-  "phoneLanguage": "Мова телефона"
+  "phoneLanguage": "Мова телефона",
+  "ringQuote": "Якщо не зараз, то коли?",
+  "ringQuoteBy": "Гілель",
+  "quotesTitle": "Цитати про час",
+  "quotesHint": "Виберіть, звідки вони беруться. Одна на кожну частину дня; торкніться цитати, щоб побачити іншу.",
+  "quotesOff": "Вимкнено",
+  "quoteSongs": "Пісні",
+  "quoteMovies": "Фільми",
+  "quoteLiterature": "Книги й вірші",
+  "quoteTanakh": "Танах (Єврейська Біблія)",
+  "quoteSages": "Талмуд і мудреці",
+  "quoteSpeeches": "Відомі промови",
+  "quotePhilosophy": "Філософи",
+  "quoteProverbs": "Прислів’я та приказки"
 }

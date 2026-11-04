@@ -1,0 +1,94 @@
+# id source moments [! = same text in every language]
+eccl3 tanakh any,sukkot
+ps30 tanakh morning
+lam3 tanakh morning
+ps90 tanakh any,yomkippur
+gen1 tanakh evening
+ps118 tanakh morning
+eccl1 tanakh morning,evening
+avot24 sages day
+avot215 sages day
+avot216 sages day
+avot43 sages any
+tamid sages any
+heschel sages erev
+karo sages morning
+rambam sages morning,roshhashana
+bahya sages any
+seneca philosophy day
+horace philosophy morning
+heraclitus philosophy any
+augustine philosophy any
+franklin philosophy day
+confucius philosophy any
+hasan philosophy any
+virgil literature day
+tolstoy literature any
+basho literature any
+shakespeare literature any
+rabbit literature morning
+littleprince literature any
+young literature day
+thoreau literature morning
+tolkien literature any
+machado literature morning
+lamartine literature evening
+goethe literature any
+dante literature day
+szymborska literature any
+lorenzo literature evening
+kabir literature day
+mlk speeches any
+churchill speeches evening
+jfk speeches day
+obama speeches morning
+irish proverbs any,idle
+yiddish proverbs day
+nanakorobi proverbs morning
+sword proverbs day
+morgen proverbs morning
+cienanos proverbs evening
+piano proverbs any
+tree proverbs any,tubishvat
+ichigo proverbs any
+oiseau proverbs any
+utro proverbs evening,night
+jago proverbs morning
+gd_sept songs 09-30,sep !
+gd_time songs evening !
+sun songs morning !
+lennon songs day !
+dylan songs any !
+seeger songs any !
+yesterday songs evening !
+dps movies morning !
+ferris movies day !
+groundhog movies morning !
+gwtw movies evening,night !
+nemo movies any !
+oogway movies any !
+terminator movies any !
+yoda movies morning !
+bttf movies any !
+lionking movies evening,night,idle !
+startrek movies any !
+ttafter songs any !
+seasons songs any !
+floyd songs day !
+stones songs any !
+marley songs morning !
+avicii songs morning !
+morningbroken songs morning !
+wonderful songs evening,night !
+closing songs evening,01-01 !
+chicago songs any !
+croce songs evening !
+gdsun songs morning !
+maiden songs event:rock,@night !
+bday songs event:birthday !
+mondays songs mon,@morning !
+cure songs fri !
+auld songs 12-31,@night !
+tanya sages chanukah
+haggadah tanakh pesach
+esther tanakh purim

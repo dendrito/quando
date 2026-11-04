@@ -23,7 +23,7 @@
   "settings": "הגדרות",
   "nextAlarmHeading": "ההתראה הבאה",
   "nothingSet": "אין התראות",
-  "tagline": "הזמן שלך, בידיים טובות.",
+  "tagline": "לַכֹּל זְמָן.",
   "sunriseAt": "זריחה {time}",
   "sunsetAt": "שקיעה {time}",
   "alarmsMayNotRing": "ייתכן שההתראות לא יצלצלו",
@@ -568,5 +568,18 @@
   "tomorrow": "מחר",
   "notAWebAddress": "זה לא נראה ככתובת אינטרנט שמתחילה ב־https://",
   "language": "שפה",
-  "phoneLanguage": "שפת הטלפון"
+  "phoneLanguage": "שפת הטלפון",
+  "ringQuote": "וְאִם לֹא עַכְשָׁיו, אֵימָתַי?",
+  "ringQuoteBy": "הלל",
+  "quotesTitle": "ציטוטים על זמן",
+  "quotesHint": "בחרו מאיפה הם יגיעו. אחד לכל חלק ביום; הקישו על הציטוט כדי לראות אחר.",
+  "quotesOff": "כבוי",
+  "quoteSongs": "שירים",
+  "quoteMovies": "סרטים",
+  "quoteLiterature": "ספרים ושירה",
+  "quoteTanakh": "תנ״ך",
+  "quoteSages": "תלמוד וחכמים",
+  "quoteSpeeches": "נאומים מפורסמים",
+  "quotePhilosophy": "פילוסופים",
+  "quoteProverbs": "פתגמים ואמרות"
 }

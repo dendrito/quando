@@ -23,7 +23,7 @@
   "settings": "Réglages",
   "nextAlarmHeading": "PROCHAINE ALARME",
   "nothingSet": "Rien de prévu",
-  "tagline": "Le temps, bien gardé.",
+  "tagline": "Chaque chose en son temps.",
   "sunriseAt": "Lever du soleil {time}",
   "sunsetAt": "Coucher du soleil {time}",
   "alarmsMayNotRing": "Vos alarmes risquent de ne pas sonner",
@@ -568,5 +568,18 @@
   "tomorrow": "Demain",
   "notAWebAddress": "Ça ne ressemble pas à une adresse web commençant par https://",
   "language": "Langue",
-  "phoneLanguage": "Langue du téléphone"
+  "phoneLanguage": "Langue du téléphone",
+  "ringQuote": "Si ce n’est pas maintenant, quand ?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Citations sur le temps",
+  "quotesHint": "Choisissez d’où elles viennent. Une pour chaque moment de la journée ; touchez la citation pour en voir une autre.",
+  "quotesOff": "Désactivé",
+  "quoteSongs": "Chansons",
+  "quoteMovies": "Films",
+  "quoteLiterature": "Livres et poèmes",
+  "quoteTanakh": "Tanakh (Bible hébraïque)",
+  "quoteSages": "Talmud et sages",
+  "quoteSpeeches": "Discours célèbres",
+  "quotePhilosophy": "Philosophes",
+  "quoteProverbs": "Proverbes et dictons"
 }

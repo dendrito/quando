@@ -88,7 +88,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get nothingSet => 'Нічого не задано';
 
   @override
-  String get tagline => 'Час у надійних руках.';
+  String get tagline => 'Усьому свій час.';
 
   @override
   String sunriseAt(String time) {
@@ -1998,4 +1998,44 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Мова телефона';
+
+  @override
+  String get ringQuote => 'Якщо не зараз, то коли?';
+
+  @override
+  String get ringQuoteBy => 'Гілель';
+
+  @override
+  String get quotesTitle => 'Цитати про час';
+
+  @override
+  String get quotesHint =>
+      'Виберіть, звідки вони беруться. Одна на кожну частину дня; торкніться цитати, щоб побачити іншу.';
+
+  @override
+  String get quotesOff => 'Вимкнено';
+
+  @override
+  String get quoteSongs => 'Пісні';
+
+  @override
+  String get quoteMovies => 'Фільми';
+
+  @override
+  String get quoteLiterature => 'Книги й вірші';
+
+  @override
+  String get quoteTanakh => 'Танах (Єврейська Біблія)';
+
+  @override
+  String get quoteSages => 'Талмуд і мудреці';
+
+  @override
+  String get quoteSpeeches => 'Відомі промови';
+
+  @override
+  String get quotePhilosophy => 'Філософи';
+
+  @override
+  String get quoteProverbs => 'Прислів’я та приказки';
 }

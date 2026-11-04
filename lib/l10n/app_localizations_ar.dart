@@ -87,7 +87,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nothingSet => 'لا شيء مضبوط';
 
   @override
-  String get tagline => 'وقتك في أيدٍ أمينة.';
+  String get tagline => 'كلّ شيء في أوانه.';
 
   @override
   String sunriseAt(String time) {
@@ -1995,4 +1995,43 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'لغة الهاتف';
+
+  @override
+  String get ringQuote => 'إن لم يكن الآن، فمتى؟';
+
+  @override
+  String get ringQuoteBy => 'هليل';
+
+  @override
+  String get quotesTitle => 'أقوال عن الوقت';
+
+  @override
+  String get quotesHint => 'اختر مصادرها. قول لكل جزء من اليوم؛ المس القول لرؤية غيره.';
+
+  @override
+  String get quotesOff => 'متوقفة';
+
+  @override
+  String get quoteSongs => 'أغانٍ';
+
+  @override
+  String get quoteMovies => 'أفلام';
+
+  @override
+  String get quoteLiterature => 'كتب وقصائد';
+
+  @override
+  String get quoteTanakh => 'التناخ (الكتاب المقدس العبري)';
+
+  @override
+  String get quoteSages => 'التلمود والحكماء';
+
+  @override
+  String get quoteSpeeches => 'خطب شهيرة';
+
+  @override
+  String get quotePhilosophy => 'فلاسفة';
+
+  @override
+  String get quoteProverbs => 'أمثال وأقوال';
 }

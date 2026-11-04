@@ -23,7 +23,7 @@
   "settings": "设置",
   "nextAlarmHeading": "下一个闹钟",
   "nothingSet": "未设置",
-  "tagline": "时间，妥善守护。",
+  "tagline": "凡事皆有时。",
   "sunriseAt": "日出 {time}",
   "sunsetAt": "日落 {time}",
   "alarmsMayNotRing": "你的闹钟可能不会响",
@@ -568,5 +568,18 @@
   "tomorrow": "明天",
   "notAWebAddress": "这看起来不像以 https:// 开头的网址",
   "language": "语言",
-  "phoneLanguage": "手机语言"
+  "phoneLanguage": "手机语言",
+  "ringQuote": "此时不做，更待何时？",
+  "ringQuoteBy": "希勒尔",
+  "quotesTitle": "关于时间的名言",
+  "quotesHint": "选择名言的来源。每个时段一句；轻点名言可换一句。",
+  "quotesOff": "关闭",
+  "quoteSongs": "歌曲",
+  "quoteMovies": "电影",
+  "quoteLiterature": "书籍与诗歌",
+  "quoteTanakh": "塔纳赫（希伯来圣经）",
+  "quoteSages": "塔木德与贤哲",
+  "quoteSpeeches": "著名演讲",
+  "quotePhilosophy": "哲学家",
+  "quoteProverbs": "谚语与俗语"
 }

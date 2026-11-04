@@ -87,7 +87,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get nothingSet => '未設定';
 
   @override
-  String get tagline => '時間を、大切に。';
+  String get tagline => '何事にも時がある。';
 
   @override
   String sunriseAt(String time) {
@@ -1920,4 +1920,43 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'スマホの言語';
+
+  @override
+  String get ringQuote => '今でなければ、いつ？';
+
+  @override
+  String get ringQuoteBy => 'ヒレル';
+
+  @override
+  String get quotesTitle => '時についての言葉';
+
+  @override
+  String get quotesHint => 'どこから選ぶか決めてください。一日の時間帯ごとに一つ。タップすると別の言葉が出ます。';
+
+  @override
+  String get quotesOff => 'オフ';
+
+  @override
+  String get quoteSongs => '歌';
+
+  @override
+  String get quoteMovies => '映画';
+
+  @override
+  String get quoteLiterature => '本と詩';
+
+  @override
+  String get quoteTanakh => 'タナハ（ヘブライ語聖書）';
+
+  @override
+  String get quoteSages => 'タルムードと賢者';
+
+  @override
+  String get quoteSpeeches => '有名な演説';
+
+  @override
+  String get quotePhilosophy => '哲学者';
+
+  @override
+  String get quoteProverbs => 'ことわざ・格言';
 }

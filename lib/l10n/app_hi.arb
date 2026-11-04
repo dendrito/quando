@@ -23,7 +23,7 @@
   "settings": "सेटिंग्स",
   "nextAlarmHeading": "अगला अलार्म",
   "nothingSet": "कुछ सेट नहीं",
-  "tagline": "आपका समय, सुरक्षित हाथों में।",
+  "tagline": "हर चीज़ अपने समय पर।",
   "sunriseAt": "सूर्योदय {time}",
   "sunsetAt": "सूर्यास्त {time}",
   "alarmsMayNotRing": "आपके अलार्म शायद न बजें",
@@ -568,5 +568,18 @@
   "tomorrow": "कल",
   "notAWebAddress": "यह https:// से शुरू होने वाला वेब पता नहीं लगता",
   "language": "भाषा",
-  "phoneLanguage": "फ़ोन की भाषा"
+  "phoneLanguage": "फ़ोन की भाषा",
+  "ringQuote": "अगर अभी नहीं, तो कब?",
+  "ringQuoteBy": "हिलेल",
+  "quotesTitle": "समय पर उद्धरण",
+  "quotesHint": "चुनें कि वे कहाँ से आएँ। दिन के हर हिस्से के लिए एक; दूसरा देखने के लिए उद्धरण पर टैप करें।",
+  "quotesOff": "बंद",
+  "quoteSongs": "गाने",
+  "quoteMovies": "फ़िल्में",
+  "quoteLiterature": "किताबें और कविताएँ",
+  "quoteTanakh": "तनख़ (हिब्रू बाइबिल)",
+  "quoteSages": "तलमूद और विद्वान",
+  "quoteSpeeches": "प्रसिद्ध भाषण",
+  "quotePhilosophy": "दार्शनिक",
+  "quoteProverbs": "कहावतें और सूक्तियाँ"
 }

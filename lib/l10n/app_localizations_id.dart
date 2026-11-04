@@ -88,7 +88,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get nothingSet => 'Belum ada yang diatur';
 
   @override
-  String get tagline => 'Waktu yang terjaga.';
+  String get tagline => 'Semua ada waktunya.';
 
   @override
   String sunriseAt(String time) {
@@ -1948,4 +1948,44 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Bahasa ponsel';
+
+  @override
+  String get ringQuote => 'Kalau bukan sekarang, kapan?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Kutipan tentang waktu';
+
+  @override
+  String get quotesHint =>
+      'Pilih sumbernya. Satu untuk tiap bagian hari; ketuk kutipan untuk melihat yang lain.';
+
+  @override
+  String get quotesOff => 'Mati';
+
+  @override
+  String get quoteSongs => 'Lagu';
+
+  @override
+  String get quoteMovies => 'Film';
+
+  @override
+  String get quoteLiterature => 'Buku dan puisi';
+
+  @override
+  String get quoteTanakh => 'Tanakh (Alkitab Ibrani)';
+
+  @override
+  String get quoteSages => 'Talmud dan orang bijak';
+
+  @override
+  String get quoteSpeeches => 'Pidato terkenal';
+
+  @override
+  String get quotePhilosophy => 'Filsuf';
+
+  @override
+  String get quoteProverbs => 'Peribahasa dan ungkapan';
 }

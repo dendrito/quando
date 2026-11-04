@@ -54,7 +54,7 @@
   "settings": "Settings",
   "nextAlarmHeading": "NEXT ALARM",
   "nothingSet": "Nothing set",
-  "tagline": "Time well kept.",
+  "tagline": "All in good time.",
   "sunriseAt": "Sunrise {time}",
   "@sunriseAt": {
     "placeholders": {
@@ -1283,5 +1283,18 @@
   "tomorrow": "Tomorrow",
   "notAWebAddress": "That doesn't look like a web address starting with https://",
   "language": "Language",
-  "phoneLanguage": "The phone's language"
+  "phoneLanguage": "The phone's language",
+  "ringQuote": "If not now, when?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Quotes about time",
+  "quotesHint": "Pick where they come from. You get one for each part of the day; tap a quote to see another.",
+  "quotesOff": "Off",
+  "quoteSongs": "Songs",
+  "quoteMovies": "Movies",
+  "quoteLiterature": "Books and poems",
+  "quoteTanakh": "Tanakh (Hebrew Bible)",
+  "quoteSages": "Talmud and sages",
+  "quoteSpeeches": "Famous speeches",
+  "quotePhilosophy": "Philosophers",
+  "quoteProverbs": "Proverbs and sayings"
 }

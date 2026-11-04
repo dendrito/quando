@@ -88,7 +88,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get nothingSet => 'कुछ सेट नहीं';
 
   @override
-  String get tagline => 'आपका समय, सुरक्षित हाथों में।';
+  String get tagline => 'हर चीज़ अपने समय पर।';
 
   @override
   String sunriseAt(String time) {
@@ -1951,4 +1951,44 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'फ़ोन की भाषा';
+
+  @override
+  String get ringQuote => 'अगर अभी नहीं, तो कब?';
+
+  @override
+  String get ringQuoteBy => 'हिलेल';
+
+  @override
+  String get quotesTitle => 'समय पर उद्धरण';
+
+  @override
+  String get quotesHint =>
+      'चुनें कि वे कहाँ से आएँ। दिन के हर हिस्से के लिए एक; दूसरा देखने के लिए उद्धरण पर टैप करें।';
+
+  @override
+  String get quotesOff => 'बंद';
+
+  @override
+  String get quoteSongs => 'गाने';
+
+  @override
+  String get quoteMovies => 'फ़िल्में';
+
+  @override
+  String get quoteLiterature => 'किताबें और कविताएँ';
+
+  @override
+  String get quoteTanakh => 'तनख़ (हिब्रू बाइबिल)';
+
+  @override
+  String get quoteSages => 'तलमूद और विद्वान';
+
+  @override
+  String get quoteSpeeches => 'प्रसिद्ध भाषण';
+
+  @override
+  String get quotePhilosophy => 'दार्शनिक';
+
+  @override
+  String get quoteProverbs => 'कहावतें और सूक्तियाँ';
 }

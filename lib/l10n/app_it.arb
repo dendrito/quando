@@ -23,7 +23,7 @@
   "settings": "Impostazioni",
   "nextAlarmHeading": "PROSSIMA SVEGLIA",
   "nothingSet": "Niente impostato",
-  "tagline": "Tempo ben custodito.",
+  "tagline": "Ogni cosa a suo tempo.",
   "sunriseAt": "Alba {time}",
   "sunsetAt": "Tramonto {time}",
   "alarmsMayNotRing": "Le tue sveglie potrebbero non suonare",
@@ -568,5 +568,18 @@
   "tomorrow": "Domani",
   "notAWebAddress": "Non sembra un indirizzo web che inizia con https://",
   "language": "Lingua",
-  "phoneLanguage": "Lingua del telefono"
+  "phoneLanguage": "Lingua del telefono",
+  "ringQuote": "Se non ora, quando?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Citazioni sul tempo",
+  "quotesHint": "Scegli da dove vengono. Una per ogni momento della giornata; tocca la citazione per vederne un’altra.",
+  "quotesOff": "Disattivate",
+  "quoteSongs": "Canzoni",
+  "quoteMovies": "Film",
+  "quoteLiterature": "Libri e poesie",
+  "quoteTanakh": "Tanakh (Bibbia ebraica)",
+  "quoteSages": "Talmud e saggi",
+  "quoteSpeeches": "Discorsi famosi",
+  "quotePhilosophy": "Filosofi",
+  "quoteProverbs": "Proverbi e detti"
 }

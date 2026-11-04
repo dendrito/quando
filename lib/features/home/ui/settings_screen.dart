@@ -16,6 +16,8 @@ import '../../ringing/ui/alarm_extras.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
+import '../../quotes/domain/quote.dart';
+import '../../quotes/ui/quote_sources_sheet.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -63,6 +65,28 @@ class SettingsScreen extends ConsumerWidget {
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _pickLanguage(context, ref),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
+            title: Text(l10n.quotesTitle),
+            subtitle: Text(
+              ref.watch(quoteSourcesProvider).isEmpty
+                  ? l10n.quotesOff
+                  : [
+                      for (final s in QuoteSource.values)
+                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
+                    ].join(', '),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => showModalBottomSheet<void>(
+              context: context,
+              showDragHandle: true,
+              isScrollControlled: true,
+              builder: (context) => const QuoteSourcesSheet(),
+            ),
           ),
           const SizedBox(height: 16),
           Text(l10n.timeZoneHeading, style: text.labelSmall),

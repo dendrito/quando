@@ -87,7 +87,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get nothingSet => 'אין התראות';
 
   @override
-  String get tagline => 'הזמן שלך, בידיים טובות.';
+  String get tagline => 'לַכֹּל זְמָן.';
 
   @override
   String sunriseAt(String time) {
@@ -1953,4 +1953,43 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'שפת הטלפון';
+
+  @override
+  String get ringQuote => 'וְאִם לֹא עַכְשָׁיו, אֵימָתַי?';
+
+  @override
+  String get ringQuoteBy => 'הלל';
+
+  @override
+  String get quotesTitle => 'ציטוטים על זמן';
+
+  @override
+  String get quotesHint => 'בחרו מאיפה הם יגיעו. אחד לכל חלק ביום; הקישו על הציטוט כדי לראות אחר.';
+
+  @override
+  String get quotesOff => 'כבוי';
+
+  @override
+  String get quoteSongs => 'שירים';
+
+  @override
+  String get quoteMovies => 'סרטים';
+
+  @override
+  String get quoteLiterature => 'ספרים ושירה';
+
+  @override
+  String get quoteTanakh => 'תנ״ך';
+
+  @override
+  String get quoteSages => 'תלמוד וחכמים';
+
+  @override
+  String get quoteSpeeches => 'נאומים מפורסמים';
+
+  @override
+  String get quotePhilosophy => 'פילוסופים';
+
+  @override
+  String get quoteProverbs => 'פתגמים ואמרות';
 }

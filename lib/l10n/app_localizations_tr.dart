@@ -88,7 +88,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get nothingSet => 'Hiçbir şey ayarlanmadı';
 
   @override
-  String get tagline => 'Zaman emin ellerde.';
+  String get tagline => 'Her şey zamanında.';
 
   @override
   String sunriseAt(String time) {
@@ -1952,4 +1952,44 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Telefonun dili';
+
+  @override
+  String get ringQuote => 'Şimdi değilse, ne zaman?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Zaman üzerine sözler';
+
+  @override
+  String get quotesHint =>
+      'Nereden geleceklerini seç. Günün her bölümü için bir tane; başka bir söz için dokun.';
+
+  @override
+  String get quotesOff => 'Kapalı';
+
+  @override
+  String get quoteSongs => 'Şarkılar';
+
+  @override
+  String get quoteMovies => 'Filmler';
+
+  @override
+  String get quoteLiterature => 'Kitaplar ve şiirler';
+
+  @override
+  String get quoteTanakh => 'Tanah (İbranice Kutsal Kitap)';
+
+  @override
+  String get quoteSages => 'Talmud ve bilgeler';
+
+  @override
+  String get quoteSpeeches => 'Ünlü konuşmalar';
+
+  @override
+  String get quotePhilosophy => 'Filozoflar';
+
+  @override
+  String get quoteProverbs => 'Atasözleri ve deyişler';
 }

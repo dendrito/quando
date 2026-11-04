@@ -23,7 +23,7 @@
   "settings": "設定",
   "nextAlarmHeading": "下一個鬧鐘",
   "nothingSet": "未設定",
-  "tagline": "時間，妥善守護。",
+  "tagline": "凡事皆有時。",
   "sunriseAt": "日出 {time}",
   "sunsetAt": "日落 {time}",
   "alarmsMayNotRing": "你的鬧鐘可能不會響",
@@ -568,5 +568,18 @@
   "tomorrow": "明天",
   "notAWebAddress": "這看起來不像以 https:// 開頭的網址",
   "language": "語言",
-  "phoneLanguage": "手機語言"
+  "phoneLanguage": "手機語言",
+  "ringQuote": "此時不做，更待何時？",
+  "ringQuoteBy": "希勒爾",
+  "quotesTitle": "關於時間的名言",
+  "quotesHint": "選擇名言的來源。每個時段一句；輕觸名言可換一句。",
+  "quotesOff": "關閉",
+  "quoteSongs": "歌曲",
+  "quoteMovies": "電影",
+  "quoteLiterature": "書籍與詩歌",
+  "quoteTanakh": "塔納赫（希伯來聖經）",
+  "quoteSages": "塔木德與賢哲",
+  "quoteSpeeches": "著名演講",
+  "quotePhilosophy": "哲學家",
+  "quoteProverbs": "諺語與俗語"
 }

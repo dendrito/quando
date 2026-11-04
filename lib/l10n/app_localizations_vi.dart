@@ -88,7 +88,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get nothingSet => 'Chưa đặt gì';
 
   @override
-  String get tagline => 'Thời gian, được gìn giữ.';
+  String get tagline => 'Mọi việc đều có lúc.';
 
   @override
   String sunriseAt(String time) {
@@ -1945,4 +1945,43 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Ngôn ngữ của điện thoại';
+
+  @override
+  String get ringQuote => 'Nếu không phải bây giờ, thì khi nào?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Trích dẫn về thời gian';
+
+  @override
+  String get quotesHint => 'Chọn nguồn trích dẫn. Mỗi buổi trong ngày một câu; chạm vào câu để xem câu khác.';
+
+  @override
+  String get quotesOff => 'Tắt';
+
+  @override
+  String get quoteSongs => 'Bài hát';
+
+  @override
+  String get quoteMovies => 'Phim';
+
+  @override
+  String get quoteLiterature => 'Sách và thơ';
+
+  @override
+  String get quoteTanakh => 'Tanakh (Kinh Thánh Hebrew)';
+
+  @override
+  String get quoteSages => 'Talmud và các hiền triết';
+
+  @override
+  String get quoteSpeeches => 'Bài phát biểu nổi tiếng';
+
+  @override
+  String get quotePhilosophy => 'Triết gia';
+
+  @override
+  String get quoteProverbs => 'Tục ngữ và châm ngôn';
 }

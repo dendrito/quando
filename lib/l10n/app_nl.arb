@@ -23,7 +23,7 @@
   "settings": "Instellingen",
   "nextAlarmHeading": "VOLGENDE WEKKER",
   "nothingSet": "Niets ingesteld",
-  "tagline": "Tijd, goed bewaard.",
+  "tagline": "Alles op zijn tijd.",
   "sunriseAt": "Zonsopgang {time}",
   "sunsetAt": "Zonsondergang {time}",
   "alarmsMayNotRing": "Je wekkers gaan misschien niet af",
@@ -568,5 +568,18 @@
   "tomorrow": "Morgen",
   "notAWebAddress": "Dat lijkt geen webadres dat begint met https://",
   "language": "Taal",
-  "phoneLanguage": "Taal van de telefoon"
+  "phoneLanguage": "Taal van de telefoon",
+  "ringQuote": "Als niet nu, wanneer dan?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Citaten over tijd",
+  "quotesHint": "Kies waar ze vandaan komen. Eén voor elk deel van de dag; tik op het citaat voor een ander.",
+  "quotesOff": "Uit",
+  "quoteSongs": "Liedjes",
+  "quoteMovies": "Films",
+  "quoteLiterature": "Boeken en gedichten",
+  "quoteTanakh": "Tenach (Hebreeuwse Bijbel)",
+  "quoteSages": "Talmoed en wijzen",
+  "quoteSpeeches": "Beroemde toespraken",
+  "quotePhilosophy": "Filosofen",
+  "quoteProverbs": "Spreekwoorden en gezegden"
 }

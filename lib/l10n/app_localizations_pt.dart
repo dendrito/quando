@@ -87,7 +87,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get nothingSet => 'Nada marcado';
 
   @override
-  String get tagline => 'Tempo bem cuidado.';
+  String get tagline => 'Tudo na sua hora.';
 
   @override
   String sunriseAt(String time) {
@@ -1960,4 +1960,44 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get phoneLanguage => 'Idioma do celular';
+
+  @override
+  String get ringQuote => 'Se não agora, quando?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Frases sobre o tempo';
+
+  @override
+  String get quotesHint =>
+      'Escolha de onde elas vêm. Uma para cada parte do dia; toque na frase para ver outra.';
+
+  @override
+  String get quotesOff => 'Desligado';
+
+  @override
+  String get quoteSongs => 'Músicas';
+
+  @override
+  String get quoteMovies => 'Filmes';
+
+  @override
+  String get quoteLiterature => 'Livros e poemas';
+
+  @override
+  String get quoteTanakh => 'Tanach (Bíblia hebraica)';
+
+  @override
+  String get quoteSages => 'Talmud e sábios';
+
+  @override
+  String get quoteSpeeches => 'Discursos famosos';
+
+  @override
+  String get quotePhilosophy => 'Filósofos';
+
+  @override
+  String get quoteProverbs => 'Provérbios e ditados';
 }

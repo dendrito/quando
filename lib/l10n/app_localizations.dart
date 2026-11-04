@@ -271,7 +271,7 @@ abstract class AppLocalizations {
   /// No description provided for @tagline.
   ///
   /// In en, this message translates to:
-  /// **'Time well kept.'**
+  /// **'All in good time.'**
   String get tagline;
 
   /// No description provided for @sunriseAt.
@@ -3543,6 +3543,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'The phone\'s language'**
   String get phoneLanguage;
+
+  /// No description provided for @ringQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'If not now, when?'**
+  String get ringQuote;
+
+  /// No description provided for @ringQuoteBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Hillel'**
+  String get ringQuoteBy;
+
+  /// No description provided for @quotesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quotes about time'**
+  String get quotesTitle;
+
+  /// No description provided for @quotesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick where they come from. You get one for each part of the day; tap a quote to see another.'**
+  String get quotesHint;
+
+  /// No description provided for @quotesOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get quotesOff;
+
+  /// No description provided for @quoteSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs'**
+  String get quoteSongs;
+
+  /// No description provided for @quoteMovies.
+  ///
+  /// In en, this message translates to:
+  /// **'Movies'**
+  String get quoteMovies;
+
+  /// No description provided for @quoteLiterature.
+  ///
+  /// In en, this message translates to:
+  /// **'Books and poems'**
+  String get quoteLiterature;
+
+  /// No description provided for @quoteTanakh.
+  ///
+  /// In en, this message translates to:
+  /// **'Tanakh (Hebrew Bible)'**
+  String get quoteTanakh;
+
+  /// No description provided for @quoteSages.
+  ///
+  /// In en, this message translates to:
+  /// **'Talmud and sages'**
+  String get quoteSages;
+
+  /// No description provided for @quoteSpeeches.
+  ///
+  /// In en, this message translates to:
+  /// **'Famous speeches'**
+  String get quoteSpeeches;
+
+  /// No description provided for @quotePhilosophy.
+  ///
+  /// In en, this message translates to:
+  /// **'Philosophers'**
+  String get quotePhilosophy;
+
+  /// No description provided for @quoteProverbs.
+  ///
+  /// In en, this message translates to:
+  /// **'Proverbs and sayings'**
+  String get quoteProverbs;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

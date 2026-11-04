@@ -23,7 +23,7 @@
   "settings": "Ustawienia",
   "nextAlarmHeading": "NASTĘPNY ALARM",
   "nothingSet": "Nic nie ustawiono",
-  "tagline": "Czas w dobrych rękach.",
+  "tagline": "Wszystko w swoim czasie.",
   "sunriseAt": "Wschód {time}",
   "sunsetAt": "Zachód {time}",
   "alarmsMayNotRing": "Twoje alarmy mogą nie zadzwonić",
@@ -568,5 +568,18 @@
   "tomorrow": "Jutro",
   "notAWebAddress": "To nie wygląda na adres zaczynający się od https://",
   "language": "Język",
-  "phoneLanguage": "Język telefonu"
+  "phoneLanguage": "Język telefonu",
+  "ringQuote": "Jeśli nie teraz, to kiedy?",
+  "ringQuoteBy": "Hillel",
+  "quotesTitle": "Cytaty o czasie",
+  "quotesHint": "Wybierz, skąd mają pochodzić. Jeden na każdą porę dnia; dotknij cytatu, by zobaczyć inny.",
+  "quotesOff": "Wyłączone",
+  "quoteSongs": "Piosenki",
+  "quoteMovies": "Filmy",
+  "quoteLiterature": "Książki i wiersze",
+  "quoteTanakh": "Tanach (Biblia hebrajska)",
+  "quoteSages": "Talmud i mędrcy",
+  "quoteSpeeches": "Słynne przemówienia",
+  "quotePhilosophy": "Filozofowie",
+  "quoteProverbs": "Przysłowia i powiedzenia"
 }

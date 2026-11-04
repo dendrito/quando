@@ -87,7 +87,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get nothingSet => '설정된 알람 없음';
 
   @override
-  String get tagline => '시간을, 소중하게.';
+  String get tagline => '모든 것에는 때가 있다.';
 
   @override
   String sunriseAt(String time) {
@@ -1922,4 +1922,43 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get phoneLanguage => '휴대폰 언어';
+
+  @override
+  String get ringQuote => '지금이 아니면, 언제?';
+
+  @override
+  String get ringQuoteBy => '힐렐';
+
+  @override
+  String get quotesTitle => '시간에 관한 명언';
+
+  @override
+  String get quotesHint => '어디서 가져올지 고르세요. 하루의 각 시간대마다 하나씩, 탭하면 다른 명언이 나옵니다.';
+
+  @override
+  String get quotesOff => '끔';
+
+  @override
+  String get quoteSongs => '노래';
+
+  @override
+  String get quoteMovies => '영화';
+
+  @override
+  String get quoteLiterature => '책과 시';
+
+  @override
+  String get quoteTanakh => '타나크 (히브리 성경)';
+
+  @override
+  String get quoteSages => '탈무드와 현자';
+
+  @override
+  String get quoteSpeeches => '유명한 연설';
+
+  @override
+  String get quotePhilosophy => '철학자';
+
+  @override
+  String get quoteProverbs => '속담과 격언';
 }
