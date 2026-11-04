@@ -156,6 +156,71 @@ class _SheetState extends ConsumerState<_Sheet> {
       child: ListView(
         shrinkWrap: true,
         children: [
+          // The hero: wake up to something of your own.
+          Padding(
+            padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+            child: Material(
+              borderRadius: BorderRadius.circular(24),
+              clipBehavior: Clip.antiAlias,
+              child: Ink(
+                decoration: const BoxDecoration(
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [QuandoColors.amber, QuandoColors.coral],
+                  ),
+                ),
+                child: InkWell(
+                  onTap: () => Navigator.pop(context, '__manage__'),
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(20, 18, 16, 18),
+                    child: Row(
+                      children: [
+                        Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'Wake up to your own sound',
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(color: QuandoColors.ground),
+                              ),
+                              const SizedBox(height: 4),
+                              Text(
+                                'Your voice, a song, Spotify or live radio',
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: QuandoColors.ground),
+                              ),
+                              const SizedBox(height: 12),
+                              Row(
+                                children: [
+                                  for (final i in const [
+                                    Icons.mic,
+                                    Icons.music_note,
+                                    Icons.library_music,
+                                    Icons.radio,
+                                  ])
+                                    Padding(
+                                      padding: const EdgeInsets.only(right: 8),
+                                      child: CircleAvatar(
+                                        radius: 18,
+                                        backgroundColor: QuandoColors.ground,
+                                        child: Icon(i, size: 18, color: QuandoColors.amber),
+                                      ),
+                                    ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
           if (widget.allowDefault)
             option('__default__', 'Default (${soundName(sounds, ref.watch(alarmOptionsProvider).soundId)})'),
           option(SoundPickerTile.phone, 'Phone alarm sound'),
@@ -174,11 +239,6 @@ class _SheetState extends ConsumerState<_Sheet> {
                 if (mounted) setState(() {});
               },
             ),
-          ListTile(
-            leading: const Icon(Icons.mic_none),
-            title: const Text('Record or add a sound…'),
-            onTap: () => Navigator.pop(context, '__manage__'),
-          ),
         ],
       ),
     );
