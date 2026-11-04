@@ -20,6 +20,8 @@ import 'ring_style.dart';
 import 'shake_detector.dart';
 import 'ui/tasks.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Full screen shown while an alarm rings: what it is for, Stop, Snooze,
 /// and the optional sum or wake-up check.
 class RingScreen extends ConsumerStatefulWidget {
@@ -183,7 +185,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     if (int.tryParse(_answer.text.trim()) == a + b) {
       _taskDone();
     } else {
-      setState(() => _sumError = 'Not quite. Try again.');
+      setState(() => _sumError = l10n.notQuite);
       _answer.clear();
     }
   }
@@ -276,13 +278,13 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                           const SizedBox(height: 10),
                           if (_stage == _Stage.ringing)
                             Text(
-                              'If not now, when?',
+                              l10n.tagline,
                               style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
                             ),
                           if (p.shabbatSafe) ...[
                             const SizedBox(height: 16),
                             Text(
-                              'Shabbat mode: this stops by itself in ${p.ringSeconds} seconds. No need to touch the phone.',
+                              l10n.shabbatStopsItself(p.ringSeconds),
                               style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
                             ),
                           ],
@@ -314,7 +316,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
         final (a, b) = _sum;
         return [
           Text(
-            _forSnooze ? 'SOLVE TO SNOOZE' : 'SOLVE TO STOP',
+            _forSnooze ? l10n.solveToSnooze : l10n.solveToStop,
             style: text.labelSmall?.copyWith(color: ink),
           ),
           const SizedBox(height: 8),
@@ -325,16 +327,16 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             autofocus: true,
             keyboardType: TextInputType.number,
             style: text.headlineSmall,
-            decoration: InputDecoration(errorText: _sumError, hintText: 'Answer'),
+            decoration: InputDecoration(errorText: _sumError, hintText: l10n.answer),
             onSubmitted: (_) => _checkSum(),
           ),
           const SizedBox(height: 16),
-          _StopButton(label: _forSnooze ? 'Snooze' : 'Stop', onPressed: _checkSum),
+          _StopButton(label: _forSnooze ? l10n.snooze : l10n.stop, onPressed: _checkSum),
         ];
       case _Stage.shake:
         return [
           Text(
-            _forSnooze ? 'SHAKE TO SNOOZE' : 'SHAKE TO STOP',
+            _forSnooze ? l10n.shakeToSnooze : l10n.shakeToStop,
             style: text.labelSmall?.copyWith(color: ink),
           ),
           const SizedBox(height: 8),
@@ -351,23 +353,22 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           ),
           const SizedBox(height: 12),
           Text(
-            'Shake the phone hard until the bar fills.',
+            l10n.shakeHard,
             style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
           ),
           // A phone without a motion sensor must still be able to stop.
           TextButton(
             onPressed: () => setState(() => _stage = _Stage.sum),
             style: TextButton.styleFrom(foregroundColor: ink),
-            child: const Text('Can\'t shake? Solve a sum instead'),
+            child: Text(l10n.cantShake),
           ),
         ];
       case _Stage.puzzle:
-        final verb = _forSnooze ? 'SNOOZE' : 'STOP';
         return [
           Text(switch (_puzzle) {
-            StopTask.memory => 'FIND THE PAIRS TO $verb',
-            StopTask.phrase => 'TYPE THIS TO $verb',
-            _ => 'SCAN YOUR CODE TO $verb',
+            StopTask.memory => _forSnooze ? l10n.pairsToSnooze : l10n.pairsToStop,
+            StopTask.phrase => _forSnooze ? l10n.typeToSnooze : l10n.typeToStop,
+            _ => _forSnooze ? l10n.scanToSnooze : l10n.scanToStop,
           }, style: text.labelSmall?.copyWith(color: ink)),
           const SizedBox(height: 10),
           switch (_puzzle) {
@@ -383,11 +384,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       case _Stage.awaitingUp:
         return [
           Text(
-            'I\'ll ring again in ${AlarmRegistrar.checkDelay.inMinutes} minutes unless you tap below.',
+            l10n.ringAgainUnless(AlarmRegistrar.checkDelay.inMinutes),
             style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
           ),
           const SizedBox(height: 16),
-          _StopButton(label: 'I\'m up', onPressed: _onUp),
+          _StopButton(label: l10n.imUp, onPressed: _onUp),
         ];
       case _Stage.ringing:
       case _Stage.done:
@@ -403,8 +404,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                 ),
                 child: Text(
                   p.maxSnoozes >= SnoozePlan.unlimited
-                      ? 'Snooze ${p.snoozeMinutes} min'
-                      : 'Snooze ${p.snoozeMinutes} min · $snoozesLeft left',
+                      ? l10n.snoozeMin(p.snoozeMinutes)
+                      : l10n.snoozeMinLeft(p.snoozeMinutes, snoozesLeft),
                 ),
               ),
             ),
@@ -412,16 +413,16 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           ],
           if (!p.isCheck && !p.canSnooze && p.maxSnoozes > 0) ...[
             Text(
-              'No snoozes left',
+              l10n.noSnoozesLeft,
               textAlign: TextAlign.center,
               style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
           ],
           if (p.isCheck)
-            _StopButton(label: 'I\'m up', onPressed: _stopNow)
+            _StopButton(label: l10n.imUp, onPressed: _stopNow)
           else
-            _StopButton(label: p.link == null ? 'Stop' : 'Stop · then open', onPressed: _onStop),
+            _StopButton(label: p.link == null ? l10n.stop : l10n.stopThenOpen, onPressed: _onStop),
           if (!p.isCheck && _hints.isNotEmpty) ...[
             const SizedBox(height: 10),
             Text(
@@ -438,12 +439,12 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 extension on _RingScreenState {
   /// "Volume buttons stop · shake to snooze".
   List<String> get _hints => [
-    if (p.song != null) 'Starting your song',
+    if (p.song != null) l10n.startingSong,
     for (final w in StopWay.values)
       if (p.stopBy.contains(w))
-        '${w.label} to stop'
+        l10n.wayToStop(w.label)
       else if (p.snoozeBy.contains(w) && p.canSnooze)
-        '${w.label} to snooze',
+        l10n.wayToSnooze(w.label),
   ];
 }
 
@@ -496,7 +497,7 @@ class _RingLeft extends StatelessWidget {
     final m = left ~/ 60;
     final s = (left % 60).toString().padLeft(2, '0');
     return Semantics(
-      label: 'Rings for $left more seconds',
+      label: l10n.ringsForMore(left),
       child: SizedBox.square(
         dimension: 200,
         child: Stack(
@@ -523,7 +524,7 @@ class _RingLeft extends StatelessWidget {
                 children: [
                   Text('$m:$s', style: text.headlineMedium?.copyWith(color: QuandoColors.ground, height: 1)),
                   Text(
-                    'left to ring',
+                    l10n.leftToRing,
                     style: text.bodySmall?.copyWith(color: QuandoColors.ground, fontWeight: FontWeight.w600),
                   ),
                 ],

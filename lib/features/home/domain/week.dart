@@ -1,6 +1,8 @@
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/local_time.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Alarms that belong together on one day: every "Candle lighting · Shabbat"
 /// reminder on Friday, say. Shown as one row that opens up.
 class AlarmSeries {
@@ -47,7 +49,7 @@ String dayHeading(DateTime day, DateTime today) {
   final d = DateTime(day.year, day.month, day.day);
   final t = DateTime(today.year, today.month, today.day);
   final diff = (d.difference(t).inHours / 24).round();
-  if (diff == 0) return 'Today';
-  if (diff == 1) return 'Tomorrow';
+  if (diff == 0) return l10n.today;
+  if (diff == 1) return l10n.tomorrow;
   return dayLabel(d);
 }

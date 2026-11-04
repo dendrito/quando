@@ -31,6 +31,7 @@ class AnchorEvent {
     required this.title,
     required this.at,
     required this.source,
+    this.alias,
   });
 
   /// Stable id: the same real-world event always gets the same id, so
@@ -44,6 +45,10 @@ class AnchorEvent {
 
   /// Where it came from, e.g. `jewish`, `google`, `manual`.
   final String source;
+
+  /// The English title of a built-in time ("Candle lighting · Shabbat"),
+  /// so searches like `candle*` work in every language. null = [title] only.
+  final String? alias;
 
   @override
   String toString() => 'AnchorEvent($kind, $title, ${at.toIso8601String()})';

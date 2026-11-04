@@ -1,3 +1,5 @@
+import 'package:quando/l10n/l10n.dart';
+
 /// A sound an alarm can ring with.
 class AlarmSound {
   const AlarmSound({
@@ -37,7 +39,8 @@ class AlarmSound {
   static const playLengths = [0, 5, 15, 30, 60, 300, 900];
 
   /// "Until you stop it", "5 s", "1 min"…
-  static String playLength(int s) => s == 0 ? 'Until you stop it' : (s < 60 ? '$s s' : '${s ~/ 60} min');
+  static String playLength(int s) =>
+      s == 0 ? l10n.untilYouStopIt : (s < 60 ? l10n.secondsShort(s) : l10n.minutesShort(s ~/ 60));
 
   /// An online radio station: [path] is the stream's address. If it can't
   /// connect, the phone's alarm sound rings instead.
@@ -96,17 +99,22 @@ class AlarmSound {
     playSeconds: (j['playSeconds'] as num?)?.toInt() ?? 0,
   );
 
-  static const builtIns = [
-    AlarmSound(id: 'builtin.chime', name: 'Soft chime', path: 'assets/sounds/soft_chime.wav', builtIn: true),
+  static List<AlarmSound> get builtIns => [
+    AlarmSound(
+      id: 'builtin.chime',
+      name: l10n.soundSoftChime,
+      path: 'assets/sounds/soft_chime.wav',
+      builtIn: true,
+    ),
     AlarmSound(
       id: 'builtin.rise',
-      name: 'Morning rise',
+      name: l10n.soundMorningRise,
       path: 'assets/sounds/morning_rise.wav',
       builtIn: true,
     ),
     AlarmSound(
       id: 'builtin.beep',
-      name: 'Classic beep',
+      name: l10n.soundClassicBeep,
       path: 'assets/sounds/classic_beep.wav',
       builtIn: true,
     ),
@@ -114,46 +122,31 @@ class AlarmSound {
 
   /// Soft, looping lead-up sounds for the gentle wake-up only; they are not
   /// alarm sounds. Made for Quando by tool/gen_gentle_sounds.py.
-  static const calm = [
-    AlarmSound(
-      id: 'calm.city',
-      name: 'Quiet city morning',
-      path: 'assets/sounds/gentle_city.ogg',
-      builtIn: true,
-    ),
-    AlarmSound(
-      id: 'calm.birds',
-      name: 'Birds at dawn',
-      path: 'assets/sounds/gentle_birds.ogg',
-      builtIn: true,
-    ),
-    AlarmSound(
-      id: 'calm.waves',
-      name: 'Waves on the shore',
-      path: 'assets/sounds/gentle_waves.ogg',
-      builtIn: true,
-    ),
-    AlarmSound(id: 'calm.rain', name: 'Soft rain', path: 'assets/sounds/gentle_rain.ogg', builtIn: true),
+  static List<AlarmSound> get calm => [
+    AlarmSound(id: 'calm.city', name: l10n.calmCity, path: 'assets/sounds/gentle_city.ogg', builtIn: true),
+    AlarmSound(id: 'calm.birds', name: l10n.calmBirds, path: 'assets/sounds/gentle_birds.ogg', builtIn: true),
+    AlarmSound(id: 'calm.waves', name: l10n.calmWaves, path: 'assets/sounds/gentle_waves.ogg', builtIn: true),
+    AlarmSound(id: 'calm.rain', name: l10n.calmRain, path: 'assets/sounds/gentle_rain.ogg', builtIn: true),
     AlarmSound(
       id: 'calm.stream',
-      name: 'Forest stream',
+      name: l10n.calmStream,
       path: 'assets/sounds/gentle_stream.ogg',
       builtIn: true,
     ),
-    AlarmSound(id: 'calm.wind', name: 'Gentle wind', path: 'assets/sounds/gentle_wind.ogg', builtIn: true),
-    AlarmSound(id: 'calm.fire', name: 'Crackling fire', path: 'assets/sounds/gentle_fire.ogg', builtIn: true),
-    AlarmSound(id: 'calm.night', name: 'Summer night', path: 'assets/sounds/gentle_night.ogg', builtIn: true),
+    AlarmSound(id: 'calm.wind', name: l10n.calmWind, path: 'assets/sounds/gentle_wind.ogg', builtIn: true),
+    AlarmSound(id: 'calm.fire', name: l10n.calmFire, path: 'assets/sounds/gentle_fire.ogg', builtIn: true),
+    AlarmSound(id: 'calm.night', name: l10n.calmNight, path: 'assets/sounds/gentle_night.ogg', builtIn: true),
   ];
 
   /// Who recorded the calm sounds, as their licences ask.
-  static const calmCredits = [
-    ('Quiet city morning', 'gezortenplotz, freesound.org', 'CC BY'),
-    ('Birds at dawn', 'kvgarlic, freesound.org', 'CC0'),
-    ('Waves on the shore', 'Luftrum, freesound.org', 'CC BY'),
-    ('Soft rain', 'alex36917, freesound.org', 'CC BY'),
-    ('Forest stream', 'gluckose, freesound.org', 'CC0'),
-    ('Gentle wind', 'felix.blume, freesound.org', 'CC0'),
-    ('Crackling fire', 'ezwa, soundbible.com', 'Public domain'),
-    ('Summer night', 'Lisa Redfern, soundbible.com', 'Public domain'),
+  static List<(String, String, String)> get calmCredits => [
+    (l10n.calmCity, 'gezortenplotz, freesound.org', 'CC BY'),
+    (l10n.calmBirds, 'kvgarlic, freesound.org', 'CC0'),
+    (l10n.calmWaves, 'Luftrum, freesound.org', 'CC BY'),
+    (l10n.calmRain, 'alex36917, freesound.org', 'CC BY'),
+    (l10n.calmStream, 'gluckose, freesound.org', 'CC0'),
+    (l10n.calmWind, 'felix.blume, freesound.org', 'CC0'),
+    (l10n.calmFire, 'ezwa, soundbible.com', l10n.publicDomain),
+    (l10n.calmNight, 'Lisa Redfern, soundbible.com', l10n.publicDomain),
   ];
 }

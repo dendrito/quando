@@ -3,13 +3,15 @@ import 'package:flutter/material.dart';
 import '../../core/util/format.dart';
 import '../theme.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// "5 times · 2 hours before to 5 minutes before", "at the moment".
 String timesLabel(List<Duration> offsets) {
-  if (offsets.isEmpty) return 'No times set';
-  String one(Duration d) => d == Duration.zero ? 'at the moment' : describeOffset(d);
+  if (offsets.isEmpty) return l10n.noTimesSet;
+  String one(Duration d) => d == Duration.zero ? l10n.atTheMoment : describeOffset(d);
   return offsets.length == 1
       ? one(offsets.single)
-      : '${offsets.length} times · ${one(offsets.first)} to ${one(offsets.last)}';
+      : l10n.timesRange(offsets.length, one(offsets.first), one(offsets.last));
 }
 
 /// Swipe left to delete.

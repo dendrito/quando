@@ -10,7 +10,7 @@
     <!-- Required by the calendar plugin for full access. Quando never writes events. -->
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <application
-        android:label="Quando"
+        android:label="Quando?"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher"
         android:usesCleartextTraffic="true">

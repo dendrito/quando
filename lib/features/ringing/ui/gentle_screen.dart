@@ -6,6 +6,8 @@ import '../../sounds/domain/sound.dart';
 import '../../sounds/ui/sound_player.dart';
 import '../ring_style.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// A row in the alarm editor: "Gentle wake-up · 30 min · Waves on the shore".
 class GentleTile extends StatelessWidget {
   const GentleTile({super.key, required this.value, required this.onChanged});
@@ -19,8 +21,8 @@ class GentleTile extends StatelessWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: const Icon(Icons.wb_twilight, color: QuandoColors.amber),
-      title: const Text('Gentle wake-up'),
-      subtitle: Text(on ? '${value.gentleMinutes} min before · ${calmName(value.gentleSound)}' : 'Off'),
+      title: Text(l10n.gentleWakeUp),
+      subtitle: Text(on ? l10n.gentleSummary(value.gentleMinutes, calmName(value.gentleSound)) : l10n.off),
       trailing: const Icon(Icons.chevron_right),
       onTap: () async {
         final changed = await Navigator.of(context)
@@ -75,27 +77,21 @@ class _GentleScreenState extends State<GentleScreen> {
         if (!didPop) Navigator.of(context).pop(_s);
       },
       child: Scaffold(
-        appBar: AppBar(title: const Text('Gentle wake-up')),
+        appBar: AppBar(title: Text(l10n.gentleWakeUp)),
         body: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
           children: [
-            const FeatureHeader(
-              icon: Icons.wb_twilight,
-              sentence: 'A calm sound starts softly before your alarm, so it never jolts you awake.',
-            ),
+            FeatureHeader(icon: Icons.wb_twilight, sentence: l10n.gentleSentence),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: Text('Gentle wake-up', style: text.titleLarge),
+              title: Text(l10n.gentleWakeUp, style: text.titleLarge),
               value: on,
               onChanged: (v) => setState(() => _s = _s.copyWith(gentleMinutes: v ? _lastMinutes : 0)),
             ),
-            Text(
-              'It grows slowly, easing you out of light sleep, and stops just before the alarm rings.',
-              style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
-            ),
+            Text(l10n.gentleExplain, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
             if (on) ...[
               const SizedBox(height: 24),
-              Text('STARTS BEFORE THE ALARM', style: text.labelSmall),
+              Text(l10n.startsBeforeHeading, style: text.labelSmall),
               const SizedBox(height: 10),
               Wrap(
                 spacing: 8,
@@ -103,7 +99,7 @@ class _GentleScreenState extends State<GentleScreen> {
                 children: [
                   for (final m in const [5, 10, 15, 20, 30, 45, 60])
                     ChoiceChip(
-                      label: Text('$m min'),
+                      label: Text(l10n.minutesShort(m)),
                       selected: _s.gentleMinutes == m,
                       onSelected: (_) => setState(() {
                         _lastMinutes = m;
@@ -113,7 +109,7 @@ class _GentleScreenState extends State<GentleScreen> {
                 ],
               ),
               const SizedBox(height: 24),
-              Text('LEAD-UP SOUND', style: text.labelSmall),
+              Text(l10n.leadUpSoundHeading, style: text.labelSmall),
               const SizedBox(height: 4),
               for (final c in AlarmSound.calm)
                 ListTile(
@@ -124,7 +120,7 @@ class _GentleScreenState extends State<GentleScreen> {
                   ),
                   title: Text(c.name),
                   trailing: IconButton(
-                    tooltip: 'Listen',
+                    tooltip: l10n.listen,
                     icon: Icon(
                       SoundPreview.instance.playingId == c.id
                           ? Icons.stop_circle_outlined
@@ -136,17 +132,14 @@ class _GentleScreenState extends State<GentleScreen> {
                 ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: TextButton(
-                  onPressed: () => _credits(context),
-                  child: const Text('Who recorded these'),
-                ),
+                child: TextButton(onPressed: () => _credits(context), child: Text(l10n.whoRecordedThese)),
               ),
             ],
             const SizedBox(height: 24),
             FilledButton(
               style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
               onPressed: () => Navigator.of(context).pop(_s),
-              child: const Text('Done'),
+              child: Text(l10n.done),
             ),
           ],
         ),
@@ -157,13 +150,13 @@ class _GentleScreenState extends State<GentleScreen> {
   void _credits(BuildContext context) => showDialog<void>(
     context: context,
     builder: (context) => AlertDialog(
-      title: const Text('Sound credits'),
+      title: Text(l10n.soundCredits),
       content: SingleChildScrollView(
         child: Text(
           [for (final (name, who, licence) in AlarmSound.calmCredits) '$name: $who ($licence)'].join('\n\n'),
         ),
       ),
-      actions: [TextButton(onPressed: () => Navigator.pop(context), child: const Text('OK'))],
+      actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.ok))],
     ),
   );
 }

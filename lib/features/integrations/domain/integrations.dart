@@ -1,13 +1,21 @@
+import 'package:quando/l10n/l10n.dart';
+
 /// Things that happen to an alarm, which can be sent elsewhere.
 enum AlarmHappening {
-  ring('ring', 'Rings'),
-  stopped('stopped', 'You stop it'),
-  snoozed('snoozed', 'You snooze it'),
-  autoStopped('auto_stopped', 'It stops by itself');
+  ring('ring'),
+  stopped('stopped'),
+  snoozed('snoozed'),
+  autoStopped('auto_stopped');
 
-  const AlarmHappening(this.key, this.label);
+  const AlarmHappening(this.key);
   final String key;
-  final String label;
+
+  String get label => switch (this) {
+    ring => l10n.happensRings,
+    stopped => l10n.happensStopped,
+    snoozed => l10n.happensSnoozed,
+    autoStopped => l10n.happensAutoStopped,
+  };
 }
 
 enum WebhookKind { zapier, ifttt, other }
@@ -32,7 +40,7 @@ class Webhook {
 
   String get title => switch (kind) {
     WebhookKind.zapier => 'Zapier',
-    WebhookKind.ifttt => 'IFTTT · ${iftttEvent(url) ?? 'event'}',
+    WebhookKind.ifttt => 'IFTTT · ${iftttEvent(url) ?? l10n.eventLower}',
     WebhookKind.other => Uri.tryParse(url)?.host ?? 'Webhook',
   };
 

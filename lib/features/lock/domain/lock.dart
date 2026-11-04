@@ -1,5 +1,7 @@
 import '../../events/domain/event.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// When lock mode is on, and what is allowed.
 class LockSettings {
   const LockSettings({
@@ -123,7 +125,7 @@ List<LockPeriod> lockPeriods({
         id: 'manual.${until.millisecondsSinceEpoch}',
         start: now.subtract(const Duration(seconds: 1)),
         end: until,
-        reason: 'Locked',
+        reason: l10n.locked,
       ),
     );
   }

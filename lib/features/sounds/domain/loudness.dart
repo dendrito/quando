@@ -1,4 +1,5 @@
 import 'package:alarm/alarm.dart';
+import 'package:quando/l10n/l10n.dart';
 
 /// How loud an alarm rings, and how it fades in at the start and out at the
 /// end, when it stops by itself.
@@ -53,16 +54,17 @@ class Loudness {
   /// "70% · fades in 10 s", "Phone volume · no fade".
   String get summary {
     final parts = [
-      volume == null ? 'Phone volume' : '$volume%',
-      if (fadeInSeconds > 0) 'fades in ${seconds(fadeInSeconds)}',
-      if (fadeOutSeconds > 0) 'fades out ${seconds(fadeOutSeconds)}',
-      if (fadeInSeconds == 0 && fadeOutSeconds == 0) 'no fade',
+      volume == null ? l10n.phoneVolume : '$volume%',
+      if (fadeInSeconds > 0) l10n.fadesIn(seconds(fadeInSeconds)),
+      if (fadeOutSeconds > 0) l10n.fadesOut(seconds(fadeOutSeconds)),
+      if (fadeInSeconds == 0 && fadeOutSeconds == 0) l10n.noFade,
     ];
     return parts.join(' · ');
   }
 
-  static String seconds(int s) =>
-      s < 60 ? '$s s' : (s % 60 == 0 ? '${s ~/ 60} min' : '${s ~/ 60} min ${s % 60} s');
+  static String seconds(int s) => s < 60
+      ? l10n.secondsShort(s)
+      : (s % 60 == 0 ? l10n.minutesShort(s ~/ 60) : l10n.minSecShort(s ~/ 60, s % 60));
 
   /// Quando's own sound under a song link: it starts softly, so the song
   /// has time to start and take over.

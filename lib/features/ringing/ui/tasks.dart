@@ -6,6 +6,8 @@ import 'package:mobile_scanner/mobile_scanner.dart';
 
 import '../../../app/theme.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// The ringing screen's tasks, drawn in plum on its coral background.
 const _ink = QuandoColors.ground;
 
@@ -71,7 +73,7 @@ class _MemoryTaskState extends State<MemoryTask> {
         for (var i = 0; i < _cards.length; i++)
           Semantics(
             button: true,
-            label: _matched.contains(i) || _up.contains(i) ? 'Card' : 'Hidden card',
+            label: _matched.contains(i) || _up.contains(i) ? l10n.card : l10n.hiddenCard,
             child: GestureDetector(
               onTap: () => _tap(i),
               child: AnimatedContainer(
@@ -97,13 +99,7 @@ class _MemoryTaskState extends State<MemoryTask> {
   }
 }
 
-const wakePhrases = [
-  'I am awake and the day is mine',
-  'If not now, then when',
-  'Good morning to me and everyone I love',
-  'My feet are on the floor and I am up',
-  'Today I begin again',
-];
+List<String> get wakePhrases => [l10n.phrase1, l10n.phrase2, l10n.phrase3, l10n.phrase4, l10n.phrase5];
 
 /// Type a phrase exactly (any case, extra spaces don't matter).
 class PhraseTask extends StatefulWidget {
@@ -131,7 +127,7 @@ class _PhraseTaskState extends State<PhraseTask> {
     if (norm(_c.text) == norm(_phrase)) {
       widget.onDone();
     } else {
-      setState(() => _error = 'Not quite, check each word.');
+      setState(() => _error = l10n.notQuiteWords);
     }
   }
 
@@ -154,7 +150,7 @@ class _PhraseTaskState extends State<PhraseTask> {
           autofocus: true,
           textCapitalization: TextCapitalization.sentences,
           style: text.titleMedium,
-          decoration: InputDecoration(errorText: _error, hintText: 'Type it here'),
+          decoration: InputDecoration(errorText: _error, hintText: l10n.typeItHere),
           onSubmitted: (_) => _check(),
         ),
         const SizedBox(height: 8),
@@ -163,7 +159,7 @@ class _PhraseTaskState extends State<PhraseTask> {
           child: FilledButton(
             style: FilledButton.styleFrom(backgroundColor: _ink, foregroundColor: QuandoColors.text),
             onPressed: _check,
-            child: const Text('Done'),
+            child: Text(l10n.done),
           ),
         ),
       ],
@@ -207,14 +203,14 @@ class _ScanTaskState extends State<ScanTask> {
                   _done = true;
                   widget.onDone();
                 } else if (capture.barcodes.isNotEmpty) {
-                  setState(() => _wrong = 'That\'s a different code.');
+                  setState(() => _wrong = l10n.differentCode);
                 }
               },
               errorBuilder: (context, error) => Container(
                 color: _ink,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(16),
-                child: const Text('The camera isn\'t available.', style: TextStyle(color: QuandoColors.text)),
+                child: Text(l10n.cameraUnavailable, style: const TextStyle(color: QuandoColors.text)),
               ),
             ),
           ),
@@ -229,7 +225,7 @@ class _ScanTaskState extends State<ScanTask> {
         TextButton(
           onPressed: widget.onGiveUp,
           style: TextButton.styleFrom(foregroundColor: _ink),
-          child: const Text('Can\'t scan? Solve a sum instead'),
+          child: Text(l10n.cantScan),
         ),
       ],
     );
@@ -252,15 +248,11 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('Save a code to scan')),
+      appBar: AppBar(title: Text(l10n.saveCodeToScan)),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
-          Text(
-            'Point the camera at a barcode or QR code somewhere you have to walk to, like a box in the '
-            'kitchen or toothpaste in the bathroom. To stop the alarm, you\'ll scan it again.',
-            style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
-          ),
+          Text(l10n.saveCodeHint, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
           const SizedBox(height: 16),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -277,7 +269,7 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
                   color: QuandoColors.surface,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(16),
-                  child: const Text('The camera isn\'t available. Allow camera access in Settings.'),
+                  child: Text(l10n.cameraUnavailableSettings),
                 ),
               ),
             ),

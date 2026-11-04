@@ -4,6 +4,8 @@ import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// A named group of alarms: one switch for all of them, and the alarms
 /// themselves when opened.
 class AlarmGroupCard extends StatelessWidget {
@@ -32,8 +34,8 @@ class AlarmGroupCard extends StatelessWidget {
     final on = alarms.where((a) => a.enabled).length;
     final times = [for (final a in alarms) hhmm(DateTime(2000, 1, 1, a.hour, a.minute))];
     final summary = [
-      alarms.length == 1 ? '1 alarm' : '${alarms.length} alarms',
-      on == alarms.length ? 'all on' : (on == 0 ? 'all off' : '$on on'),
+      l10n.alarmCount(alarms.length),
+      on == alarms.length ? l10n.allOn : (on == 0 ? l10n.allOff : l10n.someOn(on)),
     ].join(' · ');
 
     return Material(
@@ -105,7 +107,7 @@ class AlarmGroupCard extends StatelessWidget {
                           child: TextButton.icon(
                             onPressed: onRename,
                             icon: const Icon(Icons.edit_outlined, size: 18),
-                            label: const Text('Rename group'),
+                            label: Text(l10n.renameGroup),
                           ),
                         ),
                       ),

@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:quando/l10n/l10n.dart';
 
 /// One station from the free Radio Browser directory (radio-browser.info).
 class RadioStation {
@@ -90,7 +91,7 @@ class RadioDirectory {
         lastError = e;
       }
     }
-    throw lastError ?? Exception('No radio directory answered');
+    throw lastError ?? Exception(l10n.radioUnreachable);
   }
 }
 

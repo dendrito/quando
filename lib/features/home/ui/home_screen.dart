@@ -21,6 +21,8 @@ import 'alarm_group_card.dart';
 import 'day_arc.dart';
 import 'week_list.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
 
@@ -38,19 +40,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ..showSnackBar(
         SnackBar(
           content: Text(message),
-          action: SnackBarAction(label: 'Undo', textColor: QuandoColors.ground, onPressed: undo),
+          action: SnackBarAction(label: l10n.undo, textColor: QuandoColors.ground, onPressed: undo),
         ),
       );
   }
 
   void _duplicate(UserAlarm a) {
     final copy = ref.read(userAlarmsProvider.notifier).duplicate(a.id);
-    _undo('Duplicated "${a.title}"', () => ref.read(userAlarmsProvider.notifier).delete(copy.id));
+    _undo(l10n.duplicatedNamed(a.title), () => ref.read(userAlarmsProvider.notifier).delete(copy.id));
   }
 
   void _delete(UserAlarm a) {
     ref.read(userAlarmsProvider.notifier).delete(a.id);
-    _undo('Deleted "${a.title}"', () => ref.read(userAlarmsProvider.notifier).save(a));
+    _undo(l10n.deletedNamed(a.title), () => ref.read(userAlarmsProvider.notifier).save(a));
   }
 
   /// "When?": a time of day, or around events you search for.
@@ -78,15 +80,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             children: [
               Padding(
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
-                child: Text('When?', style: text.headlineMedium),
+                child: Text(l10n.when, style: text.headlineMedium),
               ),
-              option('time', Icons.schedule, 'At a time', 'Every weekday at 7:00, once at 15:30…'),
-              option(
-                'event',
-                Icons.manage_search,
-                'Around an event',
-                'Search calendars, Shabbat and sun times, then ring before, at or after',
-              ),
+              option('time', Icons.schedule, l10n.newAtTime, l10n.newAtTimeHint),
+              option('event', Icons.manage_search, l10n.newAroundEvent, l10n.newAroundEventHint),
               const SizedBox(height: 12),
             ],
           ),
@@ -105,14 +102,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final at = inZone(a.at, home);
     final rid = a.ruleId;
     final (editLabel, editPath) = rid.startsWith('user.')
-        ? ('Edit this alarm', '/alarm/${rid.substring(5)}')
+        ? (l10n.editThisAlarm, '/alarm/${rid.substring(5)}')
         : rid.startsWith('preset.')
         ? (
-            'Edit "${ref.read(rulesProvider).where((r) => r.id == rid).firstOrNull?.name ?? 'preset'}"',
+            l10n.editNamed(
+              ref.read(rulesProvider).where((r) => r.id == rid).firstOrNull?.name ?? l10n.preset,
+            ),
             '/preset/$rid',
           )
         : rid.startsWith('cal.')
-        ? ('Edit this calendar rule', '/calendar/rule/${rid.split('.')[1]}')
+        ? (l10n.editThisCalendarRule, '/calendar/rule/${rid.split('.')[1]}')
         : (null, null);
     final choice = await showModalBottomSheet<String>(
       context: context,
@@ -140,7 +139,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 ListTile(
                   leading: Icon(skipped ? Icons.alarm_on : Icons.alarm_off),
-                  title: Text(skipped ? 'Ring this one after all' : 'Skip just this one'),
+                  title: Text(skipped ? l10n.ringThisOneAfterAll : l10n.skipJustThisOne),
                   onTap: () => Navigator.pop(context, 'skip'),
                 ),
                 if (editPath != null)
@@ -164,7 +163,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   Future<void> _renameGroup(String from) async {
-    final name = await askGroupName(context, title: 'Rename group', initial: from);
+    final name = await askGroupName(context, title: l10n.renameGroup, initial: from);
     if (name == null || name == from) return;
     ref.read(userAlarmsProvider.notifier).renameGroup(from, name);
     setState(() => _openGroups.remove(from));
@@ -199,7 +198,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         );
     ScaffoldMessenger.of(context)
       ..hideCurrentSnackBar()
-      ..showSnackBar(SnackBar(content: Text('$label · rings at ${hhmm(local)}')));
+      ..showSnackBar(SnackBar(content: Text(l10n.quickSet(label, hhmm(local)))));
   }
 
   @override
@@ -231,10 +230,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         width: MediaQuery.sizeOf(context).width - 40,
         height: 60,
         child: FloatingActionButton.extended(
-          tooltip: 'New alarm',
+          tooltip: l10n.newAlarm,
           onPressed: _newAlarm,
           icon: const Icon(Icons.add, size: 26),
-          label: const Text('When?'),
+          label: Text(l10n.when),
         ),
       ),
       body: ListView(
@@ -252,19 +251,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   children: [
                     const QMark(size: 30),
                     const SizedBox(width: 10),
-                    Expanded(child: Text('Quando', style: text.titleLarge?.copyWith(fontSize: 23))),
+                    Expanded(child: Text(l10n.appName, style: text.titleLarge?.copyWith(fontSize: 23))),
                     IconButton(
-                      tooltip: 'Lock mode',
+                      tooltip: l10n.lockMode,
                       icon: const Icon(Icons.lock_outline),
                       onPressed: () => context.push('/lock'),
                     ),
                     IconButton(
-                      tooltip: 'Calendars',
+                      tooltip: l10n.calendars,
                       icon: const Icon(Icons.event_outlined),
                       onPressed: () => context.push('/calendar'),
                     ),
                     IconButton(
-                      tooltip: 'Settings',
+                      tooltip: l10n.settings,
                       icon: const Icon(Icons.tune),
                       onPressed: () => context.push('/settings'),
                     ),
@@ -276,21 +275,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('NEXT ALARM', style: text.labelSmall),
+                      Text(l10n.nextAlarmHeading, style: text.labelSmall),
                       const SizedBox(height: 6),
                       FittedBox(
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          next == null ? 'Nothing set' : countdown(next.at.difference(now)),
+                          next == null ? l10n.nothingSet : countdown(next.at.difference(now)),
                           style: text.displayMedium?.copyWith(fontSize: 60),
                         ),
                       ),
                       const SizedBox(height: 6),
                       Text(
-                        next == null
-                            ? 'If not now, when?'
-                            : '${next.title} · ${day(next.at)} · ${local(next.at)}',
+                        next == null ? l10n.tagline : '${next.title} · ${day(next.at)} · ${local(next.at)}',
                         style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
                       ),
                       const SizedBox(height: 10),
@@ -305,16 +302,15 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         children: [
                           Expanded(
                             child: Text(
-                              sky.sunrise == null ? '' : 'Sunrise ${hhmm(inZone(sky.sunrise!, sunTime))}',
+                              sky.sunrise == null ? '' : l10n.sunriseAt(hhmm(inZone(sky.sunrise!, sunTime))),
                               style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                             ),
                           ),
                           if (sky.sunset != null)
                             Text(
                               sky.sunset!.isAfter(now)
-                                  ? 'Sunset ${hhmm(inZone(sky.sunset!, sunTime))} · '
-                                        '${countdown(sky.sunset!.difference(now))}'
-                                  : 'Sunset ${hhmm(inZone(sky.sunset!, sunTime))}',
+                                  ? '${l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime)))} · ${countdown(sky.sunset!.difference(now))}'
+                                  : l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime))),
                               style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                             ),
                         ],
@@ -339,11 +335,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     child: ListTile(
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                       leading: const Icon(Icons.warning_amber_rounded, color: QuandoColors.ground),
-                      title: const Text(
-                        'Your alarms may not ring',
+                      title: Text(
+                        l10n.alarmsMayNotRing,
                         style: TextStyle(color: QuandoColors.ground, fontWeight: FontWeight.w700),
                       ),
-                      subtitle: const Text('Tap to fix it', style: TextStyle(color: QuandoColors.ground)),
+                      subtitle: Text(l10n.tapToFixIt, style: TextStyle(color: QuandoColors.ground)),
                       trailing: const Icon(Icons.chevron_right, color: QuandoColors.ground),
                       onTap: () => context.push('/ready'),
                     ),
@@ -357,14 +353,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   children: [
                     for (final m in const [10, 20, 60])
                       _WhenChip(
-                        label: m < 60 ? 'In $m min' : 'In 1 hour',
+                        label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
                         onTap: () => _quick(
                           DateTime.now().toUtc().add(Duration(minutes: m)),
-                          m < 60 ? 'In $m min' : 'In 1 hour',
+                          m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
                         ),
                       ),
                     if (nextSunset != null)
-                      _WhenChip(label: 'At sunset', onTap: () => _quick(nextSunset, 'Sunset')),
+                      _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
                   ],
                 ),
                 const SizedBox(height: 16),
@@ -373,15 +369,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 if (period != null) ...[
                   ShabbatCard(
                     onTap: () => context.push('/shabbat'),
-                    title: period.contains(now) ? 'SHABBAT MODE IS ON' : 'NEXT · ${place.name.toUpperCase()}',
+                    title: period.contains(now)
+                        ? l10n.shabbatModeIsOn
+                        : l10n.nextInCity(place.name.toUpperCase()),
                     names: period.names.join(' · '),
                     rows: [
                       ShabbatTimeRow(
-                        label: 'Candle lighting',
+                        label: l10n.candleLighting,
                         day: cityDay(period.start),
                         time: cityTime(period.start),
                       ),
-                      ShabbatTimeRow(label: 'Havdalah', day: cityDay(period.end), time: cityTime(period.end)),
+                      ShabbatTimeRow(
+                        label: l10n.havdalah,
+                        day: cityDay(period.end),
+                        time: cityTime(period.end),
+                      ),
                     ],
                   ),
                   const SizedBox(height: 16),
@@ -389,26 +391,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   OutlinedButton.icon(
                     onPressed: () => context.push('/shabbat'),
                     icon: const Icon(Icons.local_fire_department_outlined),
-                    label: const Text('Shabbat & festivals'),
+                    label: Text(l10n.shabbatAndFestivals),
                   ),
                   const SizedBox(height: 16),
                 ],
 
                 // ---- Your alarms ----
                 const SizedBox(height: 8),
-                Text('YOUR ALARMS', style: text.labelSmall),
+                Text(l10n.yourAlarmsHeading, style: text.labelSmall),
                 const SizedBox(height: 10),
                 if (mine.isEmpty)
                   Padding(
                     padding: const EdgeInsets.only(bottom: 8),
-                    child: Text('Tap When? to add an alarm.', style: text.bodySmall),
+                    child: Text(l10n.tapWhenToAdd, style: text.bodySmall),
                   ),
                 for (final a in mine.where((a) => a.group.isEmpty)) ...[
                   SwipeToDelete(
                     id: 'user.${a.id}',
                     onDelete: () {
                       ref.read(userAlarmsProvider.notifier).delete(a.id);
-                      _undo('Deleted "${a.title}"', () => ref.read(userAlarmsProvider.notifier).save(a));
+                      _undo(l10n.deletedNamed(a.title), () => ref.read(userAlarmsProvider.notifier).save(a));
                     },
                     child: _AlarmCard(
                       alarm: a,
@@ -447,20 +449,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 // ---- Event alarms ----
                 if (eventRules.isNotEmpty) ...[
                   const SizedBox(height: 18),
-                  Text('AROUND EVENTS', style: text.labelSmall),
+                  Text(l10n.aroundEventsHeading, style: text.labelSmall),
                   const SizedBox(height: 10),
                   for (final r in eventRules) ...[
                     SwipeToDelete(
                       id: 'cal.${r.id}',
                       onDelete: () {
                         ref.read(calendarRulesProvider.notifier).delete(r.id);
-                        _undo('Deleted "${r.title}"', () => ref.read(calendarRulesProvider.notifier).save(r));
+                        _undo(
+                          l10n.deletedNamed(r.title),
+                          () => ref.read(calendarRulesProvider.notifier).save(r),
+                        );
                       },
                       child: RuleTile(
                         title: r.title,
                         subtitle: [
                           timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
-                          if (r.keyword.isNotEmpty && r.name.isNotEmpty) 'search: ${r.keyword}',
+                          if (r.keyword.isNotEmpty && r.name.isNotEmpty) l10n.searchFor(r.keyword),
                         ].join(' · '),
                         on: r.enabled,
                         onTap: () => context.push('/calendar/rule/${r.id}'),
@@ -473,11 +478,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
                 // ---- This week ----
                 const SizedBox(height: 18),
-                Text('ALARMS THIS WEEK', style: text.labelSmall),
+                Text(l10n.thisWeekHeading, style: text.labelSmall),
                 if (ref.watch(fullPlanProvider).isEmpty)
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text('No alarms in the next 7 days.', style: text.bodySmall),
+                    child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
                   ),
                 WeekList(
                   days: weekPlan(ref.watch(fullPlanProvider), home),
@@ -492,10 +497,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 const WorldClocks(),
 
                 const SizedBox(height: 16),
-                Text(
-                  'Alarms set themselves on this phone whenever you change something.',
-                  style: text.bodySmall,
-                ),
+                Text(l10n.alarmsSetThemselves, style: text.bodySmall),
               ],
             ),
           ),
@@ -578,7 +580,7 @@ class _AlarmCard extends StatelessWidget {
                           borderRadius: BorderRadius.all(Radius.circular(12)),
                         ),
                         child: Text(
-                          '${cityOf(alarm.zone!)} time',
+                          l10n.cityTime(cityOf(alarm.zone!)),
                           style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                         ),
                       ),
@@ -588,7 +590,7 @@ class _AlarmCard extends StatelessWidget {
               ),
               Switch(value: on, onChanged: onToggle),
               PopupMenuButton<String>(
-                tooltip: 'More',
+                tooltip: l10n.more,
                 icon: const Icon(Icons.more_vert, color: QuandoColors.muted),
                 onSelected: (v) => switch (v) {
                   'toggle' => onToggle(!on),
@@ -600,16 +602,16 @@ class _AlarmCard extends StatelessWidget {
                     value: 'toggle',
                     child: ListTile(
                       leading: Icon(on ? Icons.alarm_off : Icons.alarm_on),
-                      title: Text(on ? 'Turn off' : 'Turn on'),
+                      title: Text(on ? l10n.turnOff : l10n.turnOn),
                     ),
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'copy',
-                    child: ListTile(leading: Icon(Icons.copy), title: Text('Duplicate')),
+                    child: ListTile(leading: const Icon(Icons.copy), title: Text(l10n.duplicate)),
                   ),
-                  const PopupMenuItem(
+                  PopupMenuItem(
                     value: 'delete',
-                    child: ListTile(leading: Icon(Icons.delete_outline), title: Text('Delete')),
+                    child: ListTile(leading: const Icon(Icons.delete_outline), title: Text(l10n.delete)),
                   ),
                 ],
               ),

@@ -15,6 +15,8 @@ import '../../home/domain/sky.dart';
 import '../../ringing/ring_payload.dart';
 import '../domain/lock.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 bool get _onAndroid => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
 /// Covers the whole app while a lock is on: a calm clock, what the lock is
@@ -150,10 +152,10 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
 
     final holy = widget.period.id.startsWith('holy.');
     final greeting = !holy
-        ? 'Locked'
-        : widget.period.reason.contains('Shabbat')
-        ? 'Shabbat shalom'
-        : 'Chag sameach';
+        ? l10n.locked
+        : widget.period.reason.contains(l10n.shabbat)
+        ? l10n.shabbatShalom
+        : l10n.chagSameach;
     final endLocal = inZone(widget.period.end, zone);
 
     return PopScope(
@@ -189,7 +191,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                   style: text.bodyLarge?.copyWith(color: QuandoColors.muted),
                 ),
                 const Spacer(),
-                Text('UNLOCKS', textAlign: TextAlign.center, style: text.labelSmall),
+                Text(l10n.unlocksHeading, textAlign: TextAlign.center, style: text.labelSmall),
                 Text(
                   hhmm(endLocal),
                   textAlign: TextAlign.center,
@@ -209,10 +211,10 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                   ),
                   child: Column(
                     children: [
-                      _Row('Now', hhmm(inZone(now, zone))),
+                      _Row(l10n.nowCap, hhmm(inZone(now, zone))),
                       if (next != null) ...[
                         const SizedBox(height: 8),
-                        _Row('Next alarm', '${next.title} · ${at(next.at)}'),
+                        _Row(l10n.nextAlarm, '${next.title} · ${at(next.at)}'),
                       ],
                     ],
                   ),
@@ -235,7 +237,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                         ),
                       ),
                       alignment: Alignment.center,
-                      child: Text('Hold to unlock', style: text.titleMedium),
+                      child: Text(l10n.holdToUnlock, style: text.titleMedium),
                     ),
                   ),
                 ),

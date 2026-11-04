@@ -22,6 +22,7 @@ import '../features/rules/ui/preset_screen.dart';
 import '../features/shabbat/ui/shabbat_screen.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import '../features/ready/ready_screen.dart';
+import '../l10n/l10n.dart';
 import 'providers.dart';
 import 'theme.dart';
 
@@ -101,7 +102,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     try {
       await ref.read(registrarProvider).sync(ref.read(planProvider), ref.read(payloadForProvider));
     } catch (e) {
-      debugPrint('Quando: could not set alarms: $e');
+      debugPrint('Quando?: could not set alarms: $e');
     }
   }
 
@@ -150,12 +151,28 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   @override
   Widget build(BuildContext context) {
+    final language = ref.watch(languageProvider);
     return MaterialApp.router(
-      title: 'Quando',
+      onGenerateTitle: (_) => l10n.appName,
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       routerConfig: _router,
-      builder: (context, child) => LockGate(child: child!),
+      locale: language == null ? null : localeFromTag(language),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      localeListResolutionCallback: (wanted, _) {
+        final locale = useLocale(wanted ?? const []);
+        // Words already made in the old language are made again.
+        WidgetsBinding.instance.addPostFrameCallback((_) {
+          if (mounted) ref.read(localeProvider.notifier).changed(locale);
+        });
+        return locale;
+      },
+      // A new language rebuilds every screen with the new words.
+      builder: (context, child) => KeyedSubtree(
+        key: ValueKey(Localizations.localeOf(context)),
+        child: LockGate(child: child!),
+      ),
     );
   }
 }

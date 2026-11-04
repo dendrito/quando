@@ -1,0 +1,1287 @@
+{
+  "@@locale": "en",
+  "undo": "Undo",
+  "duplicatedNamed": "Duplicated “{name}”",
+  "@duplicatedNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "deletedNamed": "Deleted “{name}”",
+  "@deletedNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "when": "When?",
+  "newAtTime": "At a time",
+  "newAtTimeHint": "Every weekday at 7:00, once at 15:30…",
+  "newAroundEvent": "Around an event",
+  "newAroundEventHint": "Search calendars, Shabbat and sun times, then ring before, at or after",
+  "editThisAlarm": "Edit this alarm",
+  "editNamed": "Edit “{name}”",
+  "@editNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "preset": "preset",
+  "editThisCalendarRule": "Edit this calendar rule",
+  "ringThisOneAfterAll": "Ring this one after all",
+  "skipJustThisOne": "Skip just this one",
+  "renameGroup": "Rename group",
+  "quickSet": "{label} · rings at {time}",
+  "@quickSet": {
+    "placeholders": {
+      "label": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "newAlarm": "New alarm",
+  "appName": "Quando?",
+  "lockMode": "Lock mode",
+  "calendars": "Calendars",
+  "settings": "Settings",
+  "nextAlarmHeading": "NEXT ALARM",
+  "nothingSet": "Nothing set",
+  "tagline": "If not now, when?",
+  "sunriseAt": "Sunrise {time}",
+  "@sunriseAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "sunsetAt": "Sunset {time}",
+  "@sunsetAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "alarmsMayNotRing": "Your alarms may not ring",
+  "tapToFixIt": "Tap to fix it",
+  "inMinutes": "In {minutes} min",
+  "@inMinutes": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "atSunset": "At sunset",
+  "sunset": "Sunset",
+  "shabbatModeIsOn": "SHABBAT MODE IS ON",
+  "nextInCity": "NEXT · {city}",
+  "@nextInCity": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "candleLighting": "Candle lighting",
+  "havdalah": "Havdalah",
+  "shabbatAndFestivals": "Shabbat & festivals",
+  "yourAlarmsHeading": "YOUR ALARMS",
+  "tapWhenToAdd": "Tap When? to add an alarm.",
+  "aroundEventsHeading": "AROUND EVENTS",
+  "searchFor": "search: {words}",
+  "@searchFor": {
+    "placeholders": {
+      "words": {
+        "type": "String"
+      }
+    }
+  },
+  "thisWeekHeading": "ALARMS THIS WEEK",
+  "noAlarmsThisWeek": "No alarms in the next 7 days.",
+  "alarmsSetThemselves": "Alarms set themselves on this phone whenever you change something.",
+  "cityTime": "{city} time",
+  "@cityTime": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "more": "More",
+  "turnOff": "Turn off",
+  "turnOn": "Turn on",
+  "duplicate": "Duplicate",
+  "delete": "Delete",
+  "inOneHour": "In 1 hour",
+  "logoLabel": "Quando? logo",
+  "noTimesSet": "No times set",
+  "atTheMoment": "at the moment",
+  "timesRange": "{count} times · {from} to {to}",
+  "@timesRange": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "spanDays": "{n, plural, =1{1 day} other{{n} days}}",
+  "@spanDays": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "spanHours": "{n, plural, =1{1 hour} other{{n} hours}}",
+  "@spanHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "spanMinutes": "{n, plural, =1{1 minute} other{{n} minutes}}",
+  "@spanMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "spanSeconds": "{n, plural, =1{1 second} other{{n} seconds}}",
+  "@spanSeconds": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "now": "now",
+  "spanBefore": "{span} before",
+  "@spanBefore": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "spanAfter": "{span} after",
+  "@spanAfter": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "alarmCount": "{n, plural, =1{1 alarm} other{{n} alarms}}",
+  "@alarmCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "allOn": "all on",
+  "allOff": "all off",
+  "someOn": "{n} on",
+  "@someOn": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "skippedBody": "Skipped · {body}",
+  "@skippedBody": {
+    "placeholders": {
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "timeToTime": "{from} to {to}",
+  "@timeToTime": {
+    "placeholders": {
+      "from": {
+        "type": "String"
+      },
+      "to": {
+        "type": "String"
+      }
+    }
+  },
+  "skippedCount": "{n} skipped",
+  "@skippedCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "sunNoRiseSet": "The sun does not rise or set here today",
+  "sunProgress": "The sun is {percent}% of the way through the day",
+  "@sunProgress": {
+    "placeholders": {
+      "percent": {
+        "type": "int"
+      }
+    }
+  },
+  "sunIsDown": "The sun is down",
+  "searchCity": "Search a city",
+  "tomorrowLower": "tomorrow",
+  "yesterdayLower": "yesterday",
+  "worldClocksHeading": "WORLD CLOCKS",
+  "add": "Add",
+  "cityHere": "{city} · here",
+  "@cityHere": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "worldClocksHint": "Add cities to see their time here. Swipe one left to remove it.",
+  "groupNameHint": "Work, Kids, Gym…",
+  "cancel": "Cancel",
+  "ok": "OK",
+  "noGroup": "No group",
+  "newGroupEllipsis": "New group…",
+  "newGroup": "New group",
+  "secondsShort": "{n} s",
+  "@secondsShort": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "minutesShort": "{n} min",
+  "@minutesShort": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "minutes": "Minutes",
+  "ringFor": "Ring for",
+  "seconds": "Seconds",
+  "oneSecondLess": "1 second less",
+  "oneSecondMore": "1 second more",
+  "inDays": "in {d}d",
+  "@inDays": {
+    "placeholders": {
+      "d": {
+        "type": "int"
+      }
+    }
+  },
+  "inDaysHours": "in {d}d {h}h",
+  "@inDaysHours": {
+    "placeholders": {
+      "d": {
+        "type": "int"
+      },
+      "h": {
+        "type": "int"
+      }
+    }
+  },
+  "inHours": "in {h}h",
+  "@inHours": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      }
+    }
+  },
+  "inHoursMinutes": "in {h}h {m}m",
+  "@inHoursMinutes": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "inMins": "in {m}m",
+  "@inMins": {
+    "placeholders": {
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "placeChange": "{city} · {where} · change",
+  "@placeChange": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "where": {
+        "type": "String"
+      }
+    }
+  },
+  "israel": "Israel",
+  "outsideIsrael": "outside Israel",
+  "comingUpHeading": "COMING UP",
+  "lockForShabbat": "Lock the phone for Shabbat",
+  "lockForShabbatHint": "From candle lighting to Havdalah, festivals too",
+  "ownShabbatAlarmsHeading": "YOUR OWN SHABBAT ALARMS",
+  "addShabbatAlarm": "Add a Shabbat or festival alarm",
+  "readyMadeHeading": "READY-MADE ALARMS",
+  "bringBackDeleted": "Bring back deleted ones ({n})",
+  "@bringBackDeleted": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "presetsHint": "Tap one to change its times. Swipe one away to delete it.",
+  "lockSentence": "Lock the phone down to the clock and your alarms, for Shabbat or a focused night.",
+  "lockExplain": "While locked, Quando? shows only the time, the next alarm and when the lock ends. Alarms keep working, and nothing can be changed until it unlocks.",
+  "lockNowHeading": "LOCK NOW",
+  "lockAutoHeading": "LOCK AUTOMATICALLY",
+  "shabbatAndFestivalsLong": "Shabbat and festivals",
+  "fromCandleToHavdalah": "From candle lighting to Havdalah",
+  "lockCalendarWord": "During calendar events with this word",
+  "lockCalendarWordHint": "e.g. lock, exam, focus",
+  "leaveEmptyForNone": "Leave empty for none",
+  "connectCalendarsFirst": "Connect calendars first (calendar icon)",
+  "openWhenLockStarts": "Open Quando? when a lock starts",
+  "openWhenLockStartsHint": "A soft 1-second chime brings Quando? to the front so it can lock",
+  "pinToScreen": "Pin Quando? to the screen",
+  "pinToScreenHint": "Other apps can't be opened while locked. Android asks you to confirm the first time.",
+  "noLocksComingUp": "No locks coming up.",
+  "leaveLockEarly": "To leave a lock early, hold “Hold to unlock” for 3 seconds.",
+  "locked": "Locked",
+  "shabbatShalom": "Shabbat shalom",
+  "chagSameach": "Chag sameach",
+  "unlocksHeading": "UNLOCKS",
+  "nowCap": "Now",
+  "nextAlarm": "Next alarm",
+  "holdToUnlock": "Hold to unlock",
+  "calendarAlarm": "Calendar alarm",
+  "calendarIntro": "Quando? can ring before and after events in your phone's calendars. Google Calendar is included once your Google account is on the phone.",
+  "connectCalendars": "Connect calendars",
+  "calendarAlarmsHeading": "CALENDAR ALARMS",
+  "calendarNoneYet": "None yet. Start with one, then change it as you like:",
+  "fifteenBeforeEvery": "15 minutes before every event",
+  "useTheseCalendarsHeading": "USE THESE CALENDARS",
+  "noTimedEvents": "No timed events coming up in these calendars.",
+  "atTheStart": "at the start",
+  "everyForBefore": "every {every} for {span} before",
+  "@everyForBefore": {
+    "placeholders": {
+      "every": {
+        "type": "String"
+      },
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "spanAfterItEnds": "{span} after it ends",
+  "@spanAfterItEnds": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "noAlarmsChosen": "No alarms chosen",
+  "gentleWakeUp": "Gentle wake-up",
+  "gentleSummary": "{minutes} min before · {sound}",
+  "@gentleSummary": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      },
+      "sound": {
+        "type": "String"
+      }
+    }
+  },
+  "off": "Off",
+  "gentleSentence": "A calm sound starts softly before your alarm, so it never jolts you awake.",
+  "gentleExplain": "It grows slowly, easing you out of light sleep, and stops just before the alarm rings.",
+  "startsBeforeHeading": "STARTS BEFORE THE ALARM",
+  "leadUpSoundHeading": "LEAD-UP SOUND",
+  "listen": "Listen",
+  "whoRecordedThese": "Who recorded these",
+  "done": "Done",
+  "soundCredits": "Sound credits",
+  "yourTimeCity": "Your time ({city})",
+  "@yourTimeCity": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "anotherCity": "Another city…",
+  "ringingIn5": "Ringing in 5 seconds…",
+  "alarmSaved": "Alarm saved.",
+  "alarmSetFor": "Alarm set for {span} from now.",
+  "@alarmSetFor": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "hoursMinutesShort": "{h} h {m} min",
+  "@hoursMinutesShort": {
+    "placeholders": {
+      "h": {
+        "type": "int"
+      },
+      "m": {
+        "type": "int"
+      }
+    }
+  },
+  "editAlarm": "Edit alarm",
+  "previewCaps": "PREVIEW",
+  "saveCaps": "SAVE",
+  "cityTimeForYou": "{city} time · {time} for you",
+  "@cityTimeForYou": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "repeatHeading": "REPEAT · {repeat}",
+  "@repeatHeading": {
+    "placeholders": {
+      "repeat": {
+        "type": "String"
+      }
+    }
+  },
+  "labelField": "Label (read aloud if spoken alarms are on)",
+  "group": "Group",
+  "ringsForHeading": "RINGS FOR {span}",
+  "@ringsForHeading": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "useDefault": "Use the default ({value})",
+  "@useDefault": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "save": "Save",
+  "sameTime": "same time",
+  "untilYouStopIt": "Until you stop it",
+  "alarm": "Alarm",
+  "once": "Once",
+  "everyDay": "Every day",
+  "weekdays": "Weekdays",
+  "weekends": "Weekends",
+  "timeInCity": "{time} {city} time",
+  "@timeInCity": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "eventsMatching": "Events matching “{words}”",
+  "@eventsMatching": {
+    "placeholders": {
+      "words": {
+        "type": "String"
+      }
+    }
+  },
+  "everyEvent": "Every event",
+  "sunrise": "Sunrise",
+  "havdalahEndOf": "Havdalah · end of {day}",
+  "@havdalahEndOf": {
+    "placeholders": {
+      "day": {
+        "type": "String"
+      }
+    }
+  },
+  "yomTov": "Yom Tov",
+  "shabbat": "Shabbat",
+  "presetCountdown": "Countdown to candle lighting",
+  "presetHourly": "Every hour, from 6 hours before",
+  "presetDailyWeek": "Once a day, for a week before",
+  "presetSecondNight": "Second-night candles",
+  "presetFridayReminder": "Reminder 3 hours before: charge your phone",
+  "presetFridayReminderLabel": "Charge your phone and set any alarms for tomorrow",
+  "presetSunset": "Sunset, and 15 minutes before",
+  "pesach": "Pesach",
+  "shavuot": "Shavuot",
+  "roshHashanah": "Rosh Hashanah",
+  "yomKippur": "Yom Kippur",
+  "sukkot": "Sukkot",
+  "sheminiAtzeret": "Shemini Atzeret",
+  "simchatTorah": "Simchat Torah",
+  "readyNotifications": "Show alarms",
+  "readyNotificationsWhy": "Lets the ringing screen and Stop button appear.",
+  "readyFullScreen": "Ring over the lock screen",
+  "readyFullScreenWhy": "Shows the alarm full screen, even when the phone is locked.",
+  "readyExact": "Ring on the minute",
+  "readyExactWhy": "Without it, the phone may ring alarms a few minutes late.",
+  "readyBattery": "Keep running on battery saver",
+  "readyBatteryWhy": "Stops battery saving from silencing alarms overnight.",
+  "tipXiaomi": "Xiaomi phones: in Settings › Apps › Quando?, turn on Autostart and set Battery saver to No restrictions.",
+  "tipSamsung": "Samsung phones: in Settings › Battery › Background usage limits, make sure Quando? isn't sleeping.",
+  "tipHuawei": "Huawei and Honor phones: in Settings › Battery › App launch, set Quando? to Manage manually and allow everything.",
+  "tipOther": "On this phone: in Settings › Battery, allow Quando? to run in the background and turn off Optimise for it.",
+  "testRing": "Test ring",
+  "testRingBody": "Quando? can wake you",
+  "ringsIn20": "Rings in 20 seconds. Lock your phone now and wait.",
+  "readyToRing": "Ready to ring",
+  "checkingPhone": "Checking your phone…",
+  "phoneReady": "Your phone is set up to ring every alarm on time.",
+  "thingsNeedFixing": "{n, plural, =1{1 thing needs fixing, or alarms may not ring.} other{{n} things need fixing, or alarms may not ring.}}",
+  "@thingsNeedFixing": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "fix": "Fix",
+  "testIn20": "Test it: ring in 20 seconds",
+  "testIn20Hint": "Lock the phone and put it down. If the alarm rings and shows full screen, you're all set.",
+  "readyToRingHint": "Check your phone lets every alarm ring on time",
+  "connections": "Connections",
+  "timeZoneHeading": "TIME ZONE",
+  "followPhone": "Follow the phone",
+  "followPhoneNow": "Now {city}. Changes by itself when you travel.",
+  "@followPhoneNow": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      }
+    }
+  },
+  "zoneFixed": "Fixed. Alarms keep this time even when you travel.",
+  "shabbatCityHeading": "SHABBAT CITY",
+  "inIsraelOneDay": "In Israel (one festival day)",
+  "candleMinutesHeading": "CANDLE LIGHTING: {n} MINUTES BEFORE SUNSET",
+  "@candleMinutesHeading": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "endOfShabbatHeading": "END OF SHABBAT AND FESTIVALS",
+  "nightfallGeonim": "Nightfall (Geonim, 8.5°)",
+  "rabbeinuTam": "72 minutes after sunset (Rabbeinu Tam)",
+  "whenAlarmRingsHeading": "WHEN AN ALARM RINGS",
+  "recordOrAddSounds": "Record or add sounds",
+  "ringsForThisLong": "Rings for this long, then stops by itself",
+  "sameFades": "Same fades for every alarm",
+  "sameFadesOn": "Overrides the fades set on each alarm. Each keeps its own volume.",
+  "sameFadesOff": "Off: each alarm uses the fades set under its Volume.",
+  "sayItOutLoud": "Say it out loud",
+  "sayItOutLoudHint": "Reads what the alarm is for, e.g. “Candle lighting, 15 minutes before”",
+  "noSnooze": "No snooze",
+  "snoozeUpTo": "Snooze up to {times}× of {minutes} min",
+  "@snoozeUpTo": {
+    "placeholders": {
+      "times": {
+        "type": "int"
+      },
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "wakeUpCheck": "Wake-up check",
+  "wakeUpCheckHint": "After you stop it, rings again in 3 minutes unless you tap “I'm up”",
+  "solveSum": "Solve a sum to stop",
+  "provesAwake": "Proves you're awake",
+  "shabbatNoTasks": "On Shabbat and festivals none of these apply: alarms stop by themselves and never ask you to touch the phone.",
+  "testAlarmIn1": "Ring a test alarm in 1 minute",
+  "timesDisclaimer": "Times are calculated on your phone. For borderline cases, check with your rabbi or community calendar.",
+  "recommended": "Recommended",
+  "chooseCity": "Choose a city",
+  "testOnlyOnPhone": "Test alarms only work on a phone.",
+  "testAlarm": "Test alarm",
+  "testAlarmBody": "This is how your alarms will sound",
+  "testAlarmIn1Set": "Test alarm in 1 minute. You can lock the phone.",
+  "presetGone": "This preset no longer exists.",
+  "editPreset": "Edit preset",
+  "on": "On",
+  "ringsHeading": "RINGS",
+  "noTimesYet": "No times yet. Add one below.",
+  "atTheMomentItself": "At the moment itself",
+  "remove": "Remove",
+  "addATime": "Add a time",
+  "resetPreset": "Reset to how it came",
+  "skipOneHint": "To skip just one alarm, tap it in “Alarms this week” on the home screen.",
+  "unitMinutes": "minutes",
+  "unitHours": "hours",
+  "unitDays": "days",
+  "before": "Before",
+  "after": "After",
+  "oneWeek": "1 week",
+  "daysShort": "{n} d",
+  "@daysShort": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "hoursShort": "{n} h",
+  "@hoursShort": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "howToSearch": "How to search",
+  "searchHelpWord": "The title contains “dentist”, any case",
+  "searchHelpStar": "* is any letters: dentist, dentures",
+  "searchHelpQuestion": "? is one letter: yoga, toga",
+  "searchHelpPhrase": "This exact phrase",
+  "searchHelpAnd": "Both words (AND)",
+  "searchHelpOr": "Either one. | works too",
+  "searchHelpNot": "Leave out. NOT and ! work too",
+  "searchHelpBrackets": "Brackets group words",
+  "searchHelpEmpty": "Leave it empty to ring for every event.",
+  "customTime": "Custom time",
+  "other": "Other",
+  "sun": "Sun",
+  "calendar": "Calendar",
+  "newEventAlarm": "New event alarm",
+  "eventAlarm": "Event alarm",
+  "findEventsHeading": "FIND THE EVENTS",
+  "searchEventsHint": "Search: dentist, gym OR yoga, dent*…",
+  "alsoBuiltInTimes": "Also Shabbat, festival and sun times",
+  "alsoBuiltInTimesHint": "e.g. “candle*”, “havdalah”, “sunset”",
+  "allMyCalendars": "All my calendars",
+  "connectToSearch": "Connect your calendars to search them",
+  "searching": "Searching…",
+  "nothingMatches60": "Nothing matches in the next 60 days",
+  "eventsIn60": "{n, plural, =1{1 event in the next 60 days} other{{n} events in the next 60 days}}",
+  "@eventsIn60": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "nextRingsAt": "Next: rings at {times} for “{title}”",
+  "@nextRingsAt": {
+    "placeholders": {
+      "times": {
+        "type": "String"
+      },
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "showMoreLeft": "Show more ({n} left)",
+  "@showMoreLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "ringBeforeStartsHeading": "RING BEFORE IT STARTS",
+  "ringWhenStarts": "Ring when it starts",
+  "repeatBeforeHeading": "AND REPEAT BEFORE IT",
+  "everyPrefix": "Every ",
+  "offLower": "off",
+  "forInfix": "  for ",
+  "ringAfterEndsHeading": "RING AFTER IT ENDS",
+  "nameOptional": "Name (optional)",
+  "toppedUp": "Alarms are set for the next 7 days and topped up each time you open Quando?.",
+  "back": "Back",
+  "next": "Next",
+  "stepWhichEvents": "Which events",
+  "stepWhenToRing": "When to ring",
+  "stepHowItRings": "How it rings",
+  "defaultNamed": "Default ({name})",
+  "@defaultNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "phoneAlarmSound": "Phone alarm sound",
+  "onlineRadio": "Online radio",
+  "songLinkOpens": "Song link · opens {app}",
+  "@songLinkOpens": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "builtIn": "Built in",
+  "yourRecording": "Your recording",
+  "sound": "Sound",
+  "wakeToOwnSound": "Wake up to your own sound",
+  "wakeToOwnSoundHint": "Your voice, a song, Spotify or live radio",
+  "musicAdded": "{name} added. Pick it as the sound for any alarm.",
+  "@musicAdded": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "playlists": "Playlists",
+  "likedSongs": "Liked songs",
+  "noPlaylists": "No playlists yet.",
+  "noLikedSongs": "No liked songs yet.",
+  "needsMic": "Quando? needs the microphone to record.",
+  "recordingN": "Recording {n}",
+  "@recordingN": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "couldNotAddFile": "Could not add that file: {error}",
+  "@couldNotAddFile": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "addSongLink": "Add a song link",
+  "songLink": "Song link",
+  "songLinkHowTo": "In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.",
+  "songNameHint": "Name, e.g. Morning playlist",
+  "whenAlarmGoesOffHeading": "WHEN THE ALARM GOES OFF",
+  "playTheSong": "Play the song",
+  "ringThenOpen": "Ring, then open",
+  "playTheSongHint": "Its app opens and plays it. If it stays silent for 10 seconds, the backup sound rings instead, so you always wake up. Alarms with a task ring, then open it.",
+  "ringThenOpenHint": "The backup sound rings. Stop opens the song in its app.",
+  "playForHeading": "PLAY FOR",
+  "pausesAfter": "Quando? pauses the song after this, using the phone's own pause button.",
+  "backupSoundHeading": "BACKUP SOUND",
+  "notALink": "That doesn't look like a link.",
+  "songOn": "Song on {app}",
+  "@songOn": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "theWeb": "the web",
+  "pickFromYouTube": "Pick from my YouTube",
+  "youTubeAndMusic": "YouTube and YouTube Music",
+  "youTubeOn": "Your playlists and liked songs. Long-press to sign out.",
+  "youTubeSignIn": "Sign in with Google to pick from your playlists and liked songs.",
+  "addSongLinkInstead": "Add a song link instead.",
+  "googleSignInFailed": "Google sign-in didn't finish. Try again.",
+  "myYouTube": "My YouTube",
+  "spotifyDirectOn": "Spotify direct play is on",
+  "spotifyDirect": "Spotify direct play",
+  "spotifyDirectOnHint": "Spotify plays your exact song as the alarm. Tap to turn off.",
+  "spotifyDirectHint": "Plays your exact Spotify song as the alarm, more reliably. Needs the Spotify app and Spotify Premium. Tap to sign in.",
+  "spotifyComingSoon": "Coming soon: plays your exact Spotify song as the alarm (needs Spotify Premium).",
+  "spotifyFailed": "Spotify didn't connect. Check the Spotify app is installed, you're signed in, and you have Premium.",
+  "nameThisSound": "Name this sound",
+  "sounds": "Sounds",
+  "soundsSentence": "Wake up to your own voice, a song, a playlist or live radio.",
+  "stopTimer": "Stop · {time}",
+  "@stopTimer": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "record": "Record",
+  "addAFile": "Add a file",
+  "addSongLinkLong": "Add a song link (Spotify, Apple Music, YouTube…)",
+  "musicAppsHeading": "MUSIC APPS",
+  "pickFromSpotify": "Pick from my Spotify",
+  "yourPlaylistsAndLiked": "Your playlists and liked songs",
+  "mySpotify": "My Spotify",
+  "spotifySignInFailed": "Couldn't sign in to Spotify.",
+  "appleMusicNote": "Sign-in coming with the iPhone version. For now, add a song link.",
+  "noSignInNote": "{service} doesn't allow sign-in from other apps. Add a song link instead.",
+  "@noSignInNote": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "wakeToRadio": "Wake up to online radio",
+  "soundsExplain": "Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from your phone. Link a song or playlist: its app plays it as the alarm, with a backup sound. Or pick a radio station: it plays live, and if it can't connect, the phone's alarm sound rings instead.",
+  "yourSoundsHeading": "YOUR SOUNDS",
+  "playsIn": "Plays in {app}",
+  "@playsIn": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "opensIn": "Opens in {app}",
+  "@opensIn": {
+    "placeholders": {
+      "app": {
+        "type": "String"
+      }
+    }
+  },
+  "forSpan": "for {span}",
+  "@forSpan": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "defaultLabel": "Default",
+  "radioUnreachable": "Couldn't reach the radio directory. Check your connection.",
+  "addStreamAddress": "Add a stream address",
+  "notAStream": "That doesn't look like a stream address (it starts with http).",
+  "anyGenre": "Any genre",
+  "stationName": "Station name",
+  "closeSearch": "Close search",
+  "searchByName": "Search by name",
+  "anywhere": "Anywhere",
+  "noStations": "No stations found. Try another genre or country.",
+  "wakeUpTo": "Wake up to {name}",
+  "@wakeUpTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "notQuite": "Not quite. Try again.",
+  "shabbatStopsItself": "Shabbat mode: this stops by itself in {n} seconds. No need to touch the phone.",
+  "@shabbatStopsItself": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "solveToSnooze": "SOLVE TO SNOOZE",
+  "solveToStop": "SOLVE TO STOP",
+  "answer": "Answer",
+  "snooze": "Snooze",
+  "stop": "Stop",
+  "shakeToSnooze": "SHAKE TO SNOOZE",
+  "shakeToStop": "SHAKE TO STOP",
+  "shakeHard": "Shake the phone hard until the bar fills.",
+  "cantShake": "Can't shake? Solve a sum instead",
+  "pairsToSnooze": "FIND THE PAIRS TO SNOOZE",
+  "pairsToStop": "FIND THE PAIRS TO STOP",
+  "typeToSnooze": "TYPE THIS TO SNOOZE",
+  "typeToStop": "TYPE THIS TO STOP",
+  "scanToSnooze": "SCAN YOUR CODE TO SNOOZE",
+  "scanToStop": "SCAN YOUR CODE TO STOP",
+  "ringAgainUnless": "I'll ring again in {n} minutes unless you tap below.",
+  "@ringAgainUnless": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "imUp": "I'm up",
+  "snoozeMin": "Snooze {n} min",
+  "@snoozeMin": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "snoozeMinLeft": "Snooze {n} min · {left} left",
+  "@snoozeMinLeft": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      },
+      "left": {
+        "type": "int"
+      }
+    }
+  },
+  "noSnoozesLeft": "No snoozes left",
+  "stopThenOpen": "Stop · then open",
+  "startingSong": "Starting your song",
+  "wayToStop": "{way} to stop",
+  "@wayToStop": {
+    "placeholders": {
+      "way": {
+        "type": "String"
+      }
+    }
+  },
+  "wayToSnooze": "{way} to snooze",
+  "@wayToSnooze": {
+    "placeholders": {
+      "way": {
+        "type": "String"
+      }
+    }
+  },
+  "ringsForMore": "Rings for {n} more seconds",
+  "@ringsForMore": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "leftToRing": "left to ring",
+  "wayVolumeButtons": "Volume buttons",
+  "wayShake": "Shake the phone",
+  "taskNothing": "Nothing",
+  "taskSum": "Solve a sum",
+  "taskShake": "Shake 30 times",
+  "taskMemory": "Memory game",
+  "taskPhrase": "Type a phrase",
+  "taskScan": "Scan a code",
+  "noLimit": "no limit",
+  "upToTimes": "up to {n}×",
+  "@upToTimes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "shorterEachTime": "{n} min shorter each time",
+  "@shorterEachTime": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "autoSnoozeAfter": "snoozes by itself after {n} min",
+  "@autoSnoozeAfter": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "card": "Card",
+  "hiddenCard": "Hidden card",
+  "phrase1": "I am awake and the day is mine",
+  "phrase2": "If not now, then when",
+  "phrase3": "Good morning to me and everyone I love",
+  "phrase4": "My feet are on the floor and I am up",
+  "phrase5": "Today I begin again",
+  "notQuiteWords": "Not quite, check each word.",
+  "typeItHere": "Type it here",
+  "differentCode": "That's a different code.",
+  "cameraUnavailable": "The camera isn't available.",
+  "cantScan": "Can't scan? Solve a sum instead",
+  "saveCodeToScan": "Save a code to scan",
+  "saveCodeHint": "Point the camera at a barcode or QR code somewhere you have to walk to, like a box in the kitchen or toothpaste in the bathroom. To stop the alarm, you'll scan it again.",
+  "cameraUnavailableSettings": "The camera isn't available. Allow camera access in Settings.",
+  "gentleToGo": "Gentle wake-up · {n} min to go",
+  "@gentleToGo": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "previewBody": "Preview · {body}",
+  "@previewBody": {
+    "placeholders": {
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "snoozedBody": "Snoozed: {body}",
+  "@snoozedBody": {
+    "placeholders": {
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "areYouUp": "Are you up?",
+  "tapImUp": "Tap “I'm up” to stop",
+  "volume": "Volume",
+  "wakeCheckOn": "Wake-up check on",
+  "stopsAtOnce": "Stops at once",
+  "ringsAgainIfNotUp": "Rings again if you're not up",
+  "openAppAfter": "Open an app after",
+  "noTask": "No task",
+  "codeSaved": "Code saved",
+  "tapToSaveDifferent": "Tap to save a different one",
+  "controlsHeading": "CONTROLS",
+  "onScreen": "On screen",
+  "taskHeading": "TASK",
+  "none": "None",
+  "snoozeSentence": "Five more minutes? Choose how long, how often, and what it takes.",
+  "settingsHeading": "SETTINGS",
+  "snoozeTime": "Snooze time",
+  "snoozeTimeHint": "How long the first snooze lasts",
+  "shortenSnoozes": "Shorten extra snoozes",
+  "shortenSnoozesHint": "Each snooze after the first is this much shorter",
+  "autoSnooze": "Auto-snooze",
+  "autoSnoozeHint": "If you don't touch it, it snoozes by itself after",
+  "never": "Never",
+  "snoozeLimit": "Snooze limit",
+  "snoozeLimitHint": "How many times you can snooze",
+  "unlimited": "Unlimited",
+  "useSnoozeFromSettings": "Use the snooze from Settings",
+  "stopSentence": "How you turn the alarm off, and what you must do first.",
+  "shabbatNoTask": "On Shabbat and festivals alarms stop by themselves and never ask for a task.",
+  "volumeSentence": "How loud it rings, and how gently it gets there.",
+  "openAfterAlarm": "Open after the alarm",
+  "pickAnApp": "Pick an app",
+  "orPasteLink": "Or paste a link: https://…",
+  "useThisLink": "Use this link",
+  "noAppsFound": "No apps found.",
+  "weather": "Weather",
+  "news": "News",
+  "usePhoneVolume": "Use the phone's alarm volume",
+  "setsPhoneVolume": "Sets the phone's alarm volume while it rings, then puts it back.",
+  "fadeInOff": "Fade in: off, full volume at once",
+  "fadeInOver": "Fade in over {span}",
+  "@fadeInOver": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "fadeOutOff": "Fade out: off",
+  "fadeOutOver": "Fade out over the last {span}",
+  "@fadeOutOver": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "fadesExplain": "Fading out happens as the alarm stops by itself. If the fades are longer than the alarm rings, both shrink to fit.",
+  "soundSoftChime": "Soft chime",
+  "soundMorningRise": "Morning rise",
+  "soundClassicBeep": "Classic beep",
+  "calmCity": "Quiet city morning",
+  "calmBirds": "Birds at dawn",
+  "calmWaves": "Waves on the shore",
+  "calmRain": "Soft rain",
+  "calmStream": "Forest stream",
+  "calmWind": "Gentle wind",
+  "calmFire": "Crackling fire",
+  "calmNight": "Summer night",
+  "publicDomain": "Public domain",
+  "phoneVolume": "Phone volume",
+  "fadesIn": "fades in {span}",
+  "@fadesIn": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "fadesOut": "fades out {span}",
+  "@fadesOut": {
+    "placeholders": {
+      "span": {
+        "type": "String"
+      }
+    }
+  },
+  "noFade": "no fade",
+  "minSecShort": "{m} min {s} s",
+  "@minSecShort": {
+    "placeholders": {
+      "m": {
+        "type": "int"
+      },
+      "s": {
+        "type": "int"
+      }
+    }
+  },
+  "happensRings": "Rings",
+  "happensStopped": "You stop it",
+  "happensSnoozed": "You snooze it",
+  "happensAutoStopped": "It stops by itself",
+  "eventLower": "event",
+  "appTest": "Quando? test",
+  "pushoverConnected": "Pushover is connected",
+  "webhookConnected": "Webhook is connected",
+  "pushoverSaid": "Pushover said {code}: {body}",
+  "@pushoverSaid": {
+    "placeholders": {
+      "code": {
+        "type": "int"
+      },
+      "body": {
+        "type": "String"
+      }
+    }
+  },
+  "couldNotReachPushover": "Could not reach Pushover ({error})",
+  "@couldNotReachPushover": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "itAnswered": "It answered {code}",
+  "@itAnswered": {
+    "placeholders": {
+      "code": {
+        "type": "int"
+      }
+    }
+  },
+  "couldNotReachIt": "Could not reach it ({error})",
+  "@couldNotReachIt": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "calendarNotAllowed": "Calendar access was not allowed.",
+  "playlist": "Playlist",
+  "songCount": "{n, plural, =1{1 song} other{{n} songs}}",
+  "@songCount": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "spotifySaidNo": "Spotify said no. In the Spotify dashboard, tick Web API for Quando? and add your account under User Management.",
+  "serviceDidntAnswer": "{service} didn't answer ({code}).",
+  "@serviceDidntAnswer": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      },
+      "code": {
+        "type": "int"
+      }
+    }
+  },
+  "youTubeSaidNo": "YouTube said no. Check your Google account is a test user of the Quando project.",
+  "event": "Event",
+  "eventEnds": "{title} (ends)",
+  "@eventEnds": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      }
+    }
+  },
+  "foundSoundsDevices": "Found {s} sounds and {d} devices.",
+  "@foundSoundsDevices": {
+    "placeholders": {
+      "s": {
+        "type": "int"
+      },
+      "d": {
+        "type": "int"
+      }
+    }
+  },
+  "sentCheckDevices": "Sent. Check your other devices.",
+  "sentTo": "Sent to {name}.",
+  "@sentTo": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "zapierHowTo": "In Zapier, make a Zap that starts with “Webhooks by Zapier → Catch Hook”, then paste its URL here.",
+  "catchHookUrl": "Catch Hook URL",
+  "iftttHowTo": "In IFTTT, make an applet that starts with “Webhooks → Receive a web request with a JSON payload”. Use the same event name here. Your key is on ifttt.com/maker_webhooks/settings.",
+  "eventName": "Event name",
+  "webhooksKey": "Webhooks key",
+  "webhookHowTo": "Quando? sends a JSON POST to this address.",
+  "connectionsSentence": "Tell your other apps and devices when an alarm rings, stops or snoozes.",
+  "pushWhenRings": "Send a push when an alarm rings",
+  "pushWhenRingsHint": "To your other phones, tablet, watch or computer",
+  "yourUserKey": "Your user key",
+  "appToken": "App token",
+  "soundAndDevicesHeading": "SOUND AND DEVICES",
+  "loading": "Loading…",
+  "loadFromPushover": "Load from Pushover",
+  "soundItPlays": "Sound it plays",
+  "myPushoverDefault": "My Pushover default",
+  "pushoverOwnSounds": "Your own sounds appear here after you upload them at pushover.net/sounds.",
+  "allMyDevices": "All my devices",
+  "pushoverOnThisPhone": "Install the Pushover app on this phone too and it rings here with your Pushover sound.",
+  "priority": "Priority",
+  "priorityNormal": "Normal",
+  "priorityHigh": "High: through quiet hours",
+  "priorityEmergency": "Emergency: repeats until acknowledged",
+  "sending": "Sending…",
+  "sendATest": "Send a test",
+  "findUserKey": "Find my user key",
+  "makeAppToken": "Make an app token",
+  "webhooksHeading": "ZAPIER, IFTTT AND WEBHOOKS",
+  "webhooksExplain": "Start anything when an alarm rings or you stop it: turn on lights, log your wake-up time, message someone.",
+  "sendWhenAlarm": "Send when the alarm:",
+  "pauseOnShabbat": "Pause on Shabbat and festivals",
+  "pauseOnShabbatHint": "Nothing is sent for alarms from candle lighting to Havdalah",
+  "webhookPayloadNote": "Each message carries: event (ring, stopped, snoozed, auto_stopped), title, body, time, shabbat and snoozes. Keys stay on this phone.",
+  "today": "Today",
+  "tomorrow": "Tomorrow",
+  "notAWebAddress": "That doesn't look like a web address starting with https://",
+  "language": "Language",
+  "phoneLanguage": "The phone's language"
+}

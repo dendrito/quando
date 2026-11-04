@@ -4,6 +4,8 @@ import '../settings/domain/alarm_options.dart';
 import '../sounds/domain/loudness.dart';
 import 'ring_style.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Everything the ringing screen needs, stored with the alarm itself so it
 /// still works when the phone launches the app cold.
 class RingPayload {
@@ -246,7 +248,7 @@ class RingPayload {
   /// rising slowly over the whole lead-up, asking nothing of you. It ends
   /// just before the real alarm.
   RingPayload gentleLeadUp(int minutesBefore, String? sound) => _copy(
-    body: 'Gentle wake-up · $minutesBefore min to go',
+    body: l10n.gentleToGo(minutesBefore),
     ringSeconds: (minutesBefore * 60 - 15).clamp(30, 3600),
     spoken: false,
     maxSnoozes: 0,
@@ -272,7 +274,7 @@ class RingPayload {
 
   /// A try-out ring from the editor: everything as the real alarm, but
   /// outside the plan.
-  RingPayload asPreview() => _copy(body: 'Preview · $body', transient: true);
+  RingPayload asPreview() => _copy(body: l10n.previewBody(body), transient: true);
 
   bool get canSnooze => snoozeCount < maxSnoozes;
 
@@ -280,15 +282,15 @@ class RingPayload {
   String get spokenText => '${title.replaceAll(' · ', ', ')}. $body.';
 
   RingPayload snoozed() => _copy(
-    body: body.startsWith('Snoozed: ') ? body : 'Snoozed: $body',
+    body: body.startsWith(l10n.snoozedBody('')) ? body : l10n.snoozedBody(body),
     snoozeCount: snoozeCount + 1,
     snoozeMinutes: (snoozeMinutes - shortenBy).clamp(1, 120),
     transient: true,
   );
 
   RingPayload check() => _copy(
-    title: 'Are you up?',
-    body: 'Tap "I\'m up" to stop',
+    title: l10n.areYouUp,
+    body: l10n.tapImUp,
     maxSnoozes: 0,
     wakeCheck: false,
     mathTask: false,
@@ -332,11 +334,11 @@ class RingPayload {
     'gentle': gentle,
   });
 
-  static RingPayload decode(String? raw, {String fallbackTitle = 'Alarm', String fallbackBody = ''}) {
+  static RingPayload decode(String? raw, {String? fallbackTitle, String fallbackBody = ''}) {
     try {
       final j = jsonDecode(raw ?? '{}') as Map<String, dynamic>;
       return RingPayload(
-        title: j['title'] as String? ?? fallbackTitle,
+        title: j['title'] as String? ?? fallbackTitle ?? l10n.alarm,
         body: j['body'] as String? ?? fallbackBody,
         ringSeconds: (j['ringSeconds'] as num?)?.toInt() ?? 60,
         spoken: j['spoken'] as bool? ?? false,
@@ -365,7 +367,7 @@ class RingPayload {
         gentle: j['gentle'] as bool? ?? false,
       );
     } catch (_) {
-      return RingPayload(title: fallbackTitle, body: fallbackBody, ringSeconds: 60);
+      return RingPayload(title: fallbackTitle ?? l10n.alarm, body: fallbackBody, ringSeconds: 60);
     }
   }
 

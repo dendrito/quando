@@ -5,6 +5,8 @@ import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/week.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// The week ahead, one heading per day and one row per series of alarms.
 /// A series with several alarms opens when tapped.
 class WeekList extends StatefulWidget {
@@ -53,7 +55,7 @@ class _WeekListState extends State<WeekList> {
                     style: text.titleLarge?.copyWith(fontSize: 20),
                   ),
                 ),
-                Text(day.count == 1 ? '1 alarm' : '${day.count} alarms', style: text.bodySmall),
+                Text(l10n.alarmCount(day.count), style: text.bodySmall),
               ],
             ),
           ),
@@ -86,7 +88,7 @@ class _WeekListState extends State<WeekList> {
         contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
         onTap: widget.onTap == null ? null : () => widget.onTap!(a),
         title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-        subtitle: Text(x ? 'Skipped · ${a.body}' : a.body, style: text.bodySmall),
+        subtitle: Text(x ? l10n.skippedBody(a.body) : a.body, style: text.bodySmall),
         trailing: Text(local(a.at), style: x ? timeStyle?.merge(off) : timeStyle),
       );
     }
@@ -100,9 +102,9 @@ class _WeekListState extends State<WeekList> {
           title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
           subtitle: Text(
             [
-              '${s.alarms.length} alarms',
-              '${local(s.first)} to ${local(s.last)}',
-              if (skipped > 0) '$skipped skipped',
+              l10n.alarmCount(s.alarms.length),
+              l10n.timeToTime(local(s.first), local(s.last)),
+              if (skipped > 0) l10n.skippedCount(skipped),
             ].join(' · '),
             style: text.bodySmall,
           ),

@@ -11,6 +11,8 @@ import '../../sounds/ui/sound_picker.dart';
 import '../domain/calendar_rule.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Set up one calendar alarm: which events, and when to ring.
 class CalendarRuleScreen extends ConsumerStatefulWidget {
   const CalendarRuleScreen({super.key, required this.id, this.timesQuery});
@@ -61,9 +63,9 @@ const _forChoices = [
 ];
 
 String _short(Duration d) {
-  if (d.inDays >= 1 && d.inHours % 24 == 0) return d.inDays == 7 ? '1 week' : '${d.inDays} d';
-  if (d.inHours >= 1 && d.inMinutes % 60 == 0) return '${d.inHours} h';
-  return '${d.inMinutes} min';
+  if (d.inDays >= 1 && d.inHours % 24 == 0) return d.inDays == 7 ? l10n.oneWeek : l10n.daysShort(d.inDays);
+  if (d.inHours >= 1 && d.inMinutes % 60 == 0) return l10n.hoursShort(d.inHours);
+  return l10n.minutesShort(d.inMinutes);
 }
 
 class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
@@ -107,18 +109,18 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
           shrinkWrap: true,
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 24),
           children: [
-            Text('How to search', style: text.headlineSmall),
+            Text(l10n.howToSearch, style: text.headlineSmall),
             const SizedBox(height: 12),
-            row('dentist', 'The title contains "dentist", any case'),
-            row('dent*', '* is any letters: dentist, dentures'),
-            row('?oga', '? is one letter: yoga, toga'),
-            row('"team sync"', 'This exact phrase'),
-            row('gym yoga', 'Both words (AND)'),
-            row('flight OR train', 'Either one. | works too'),
-            row('meeting -cancelled', 'Leave out. NOT and ! work too'),
-            row('(gym OR yoga) am', 'Brackets group words'),
+            row('dentist', l10n.searchHelpWord),
+            row('dent*', l10n.searchHelpStar),
+            row('?oga', l10n.searchHelpQuestion),
+            row('"team sync"', l10n.searchHelpPhrase),
+            row('gym yoga', l10n.searchHelpAnd),
+            row('flight OR train', l10n.searchHelpOr),
+            row('meeting -cancelled', l10n.searchHelpNot),
+            row('(gym OR yoga) am', l10n.searchHelpBrackets),
             const SizedBox(height: 8),
-            Text('Leave it empty to ring for every event.', style: text.bodySmall),
+            Text(l10n.searchHelpEmpty, style: text.bodySmall),
           ],
         ),
       );
@@ -162,7 +164,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
       context: context,
       builder: (context) => StatefulBuilder(
         builder: (context, setLocal) => AlertDialog(
-          title: const Text('Custom time'),
+          title: Text(l10n.customTime),
           content: Row(
             children: [
               Expanded(
@@ -176,20 +178,20 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               const SizedBox(width: 12),
               DropdownButton<int>(
                 value: unit,
-                items: const [
-                  DropdownMenuItem(value: 1, child: Text('minutes')),
-                  DropdownMenuItem(value: 60, child: Text('hours')),
-                  DropdownMenuItem(value: 1440, child: Text('days')),
+                items: [
+                  DropdownMenuItem(value: 1, child: Text(l10n.unitMinutes)),
+                  DropdownMenuItem(value: 60, child: Text(l10n.unitHours)),
+                  DropdownMenuItem(value: 1440, child: Text(l10n.unitDays)),
                 ],
                 onChanged: (v) => setLocal(() => unit = v!),
               ),
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
             FilledButton(
               onPressed: () => Navigator.pop(context, (int.tryParse(c.text) ?? 0) * unit),
-              child: const Text('Add'),
+              child: Text(l10n.add),
             ),
           ],
         ),
@@ -210,7 +212,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
       ),
     ActionChip(
       avatar: const Icon(Icons.add, size: 16),
-      label: const Text('Other'),
+      label: Text(l10n.other),
       onPressed: () => _custom(chosen, set),
     ),
   ];
@@ -243,9 +245,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     }
 
     String from(AnchorEvent e) => switch (e.source) {
-      'jewish' => 'Shabbat & festivals',
-      'sun' => 'Sun',
-      _ => cal.calendars.where((c) => c.id == e.source).firstOrNull?.name ?? 'Calendar',
+      'jewish' => l10n.shabbatAndFestivals,
+      'sun' => l10n.sun,
+      _ => cal.calendars.where((c) => c.id == e.source).firstOrNull?.name ?? l10n.calendar,
     };
 
     final next = matches.firstOrNull;
@@ -258,13 +260,13 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_isNew ? 'New event alarm' : 'Event alarm'),
+        title: Text(_isNew ? l10n.newEventAlarm : l10n.eventAlarm),
         backgroundColor: Colors.transparent,
         actions: [
-          if (!_isNew && _step < 2) TextButton(onPressed: _save, child: const Text('SAVE')),
+          if (!_isNew && _step < 2) TextButton(onPressed: _save, child: Text(l10n.saveCaps)),
           if (!_isNew)
             IconButton(
-              tooltip: 'Delete',
+              tooltip: l10n.delete,
               icon: const Icon(Icons.delete_outline),
               onPressed: () {
                 ref.read(calendarRulesProvider.notifier).delete(_rule.id);
@@ -279,17 +281,17 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
           _Steps(step: _step, onTap: (i) => setState(() => _step = i)),
           const SizedBox(height: 20),
           if (_step == 0) ...[
-            Text('FIND THE EVENTS', style: text.labelSmall),
+            Text(l10n.findEventsHeading, style: text.labelSmall),
             const SizedBox(height: 8),
             TextField(
               controller: _keyword,
               autofocus: _isNew,
               textInputAction: TextInputAction.search,
               decoration: InputDecoration(
-                hintText: 'Search: dentist, gym OR yoga, dent*…',
+                hintText: l10n.searchEventsHint,
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: IconButton(
-                  tooltip: 'How to search',
+                  tooltip: l10n.howToSearch,
                   icon: const Icon(Icons.help_outline),
                   onPressed: () => _searchHelp(context),
                 ),
@@ -318,8 +320,8 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Also Shabbat, festival and sun times'),
-              subtitle: const Text('e.g. "candle*", "havdalah", "sunset"'),
+              title: Text(l10n.alsoBuiltInTimes),
+              subtitle: Text(l10n.alsoBuiltInTimesHint),
               value: _rule.includeTimes,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
             ),
@@ -329,7 +331,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 runSpacing: 4,
                 children: [
                   FilterChip(
-                    label: const Text('All my calendars'),
+                    label: Text(l10n.allMyCalendars),
                     selected: _rule.calendarIds.isEmpty,
                     onSelected: (_) => setState(() => _rule = _rule.copyWith(calendarIds: {})),
                   ),
@@ -349,7 +351,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               ListTile(
                 contentPadding: EdgeInsets.zero,
                 leading: const Icon(Icons.event_outlined),
-                title: const Text('Connect your calendars to search them'),
+                title: Text(l10n.connectToSearch),
                 trailing: const Icon(Icons.chevron_right),
                 onTap: () => ref.read(calendarProvider.notifier).connect(),
               ),
@@ -365,18 +367,19 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   children: [
                     Text(
                       searchable.isLoading
-                          ? 'Searching…'
+                          ? l10n.searching
                           : matches.isEmpty
-                          ? 'Nothing matches in the next 60 days'
-                          : matches.length == 1
-                          ? '1 event in the next 60 days'
-                          : '${matches.length} events in the next 60 days',
+                          ? l10n.nothingMatches60
+                          : l10n.eventsIn60(matches.length),
                       style: text.titleMedium?.copyWith(fontWeight: FontWeight.w800),
                     ),
                     if (nextTimes.isNotEmpty) ...[
                       const SizedBox(height: 4),
                       Text(
-                        'Next: rings at ${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''} for "${next!.title}"',
+                        l10n.nextRingsAt(
+                          '${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''}',
+                          next!.title,
+                        ),
                         style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                       ),
                     ],
@@ -402,14 +405,14 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                     if (matches.length > _shown)
                       TextButton(
                         onPressed: () => setState(() => _shown += 20),
-                        child: Text('Show more (${matches.length - _shown} left)'),
+                        child: Text(l10n.showMoreLeft(matches.length - _shown)),
                       ),
                   ],
                 ),
               ),
             ),
           ] else if (_step == 1) ...[
-            Text('RING BEFORE IT STARTS', style: text.labelSmall),
+            Text(l10n.ringBeforeStartsHeading, style: text.labelSmall),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -418,19 +421,19 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              title: const Text('Ring when it starts'),
+              title: Text(l10n.ringWhenStarts),
               value: _rule.atStart,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(atStart: v)),
             ),
             const SizedBox(height: 8),
-            Text('AND REPEAT BEFORE IT', style: text.labelSmall),
+            Text(l10n.repeatBeforeHeading, style: text.labelSmall),
             Row(
               children: [
-                const Text('Every '),
+                Text(l10n.everyPrefix),
                 DropdownButton<Duration?>(
                   value: _rule.repeatEvery,
                   items: [
-                    const DropdownMenuItem(value: null, child: Text('off')),
+                    DropdownMenuItem(value: null, child: Text(l10n.offLower)),
                     for (final d in _everyChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
                   ],
                   onChanged: (d) => setState(
@@ -443,7 +446,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   ),
                 ),
                 if (_rule.repeatEvery != null) ...[
-                  const Text('  for '),
+                  Text(l10n.forInfix),
                   DropdownButton<Duration>(
                     value: _rule.repeatFor,
                     items: [
@@ -455,7 +458,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               ],
             ),
             const SizedBox(height: 16),
-            Text('RING AFTER IT ENDS', style: text.labelSmall),
+            Text(l10n.ringAfterEndsHeading, style: text.labelSmall),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
@@ -465,7 +468,10 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             if (nextTimes.isNotEmpty) ...[
               const SizedBox(height: 16),
               Text(
-                'Next: rings at ${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''} for "${next!.title}"',
+                l10n.nextRingsAt(
+                  '${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''}',
+                  next!.title,
+                ),
                 style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
               ),
             ],
@@ -484,13 +490,10 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             const SizedBox(height: 8),
             TextField(
               controller: _name,
-              decoration: const InputDecoration(labelText: 'Name (optional)'),
+              decoration: InputDecoration(labelText: l10n.nameOptional),
             ),
             const SizedBox(height: 16),
-            Text(
-              'Alarms are set for the next 7 days and topped up each time you open Quando.',
-              style: text.bodySmall,
-            ),
+            Text(l10n.toppedUp, style: text.bodySmall),
           ],
         ],
       ),
@@ -504,7 +507,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   child: OutlinedButton(
                     style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                     onPressed: () => setState(() => _step--),
-                    child: const Text('Back'),
+                    child: Text(l10n.back),
                   ),
                 ),
               if (_step > 0) const SizedBox(width: 12),
@@ -513,7 +516,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 child: FilledButton(
                   style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                   onPressed: _step < 2 ? () => setState(() => _step++) : _save,
-                  child: Text(_step < 2 ? 'Next' : 'Save'),
+                  child: Text(_step < 2 ? l10n.next : l10n.save),
                 ),
               ),
             ],
@@ -531,7 +534,7 @@ class _Steps extends StatelessWidget {
   final int step;
   final ValueChanged<int> onTap;
 
-  static const _names = ['Which events', 'When to ring', 'How it rings'];
+  static List<String> get _names => [l10n.stepWhichEvents, l10n.stepWhenToRing, l10n.stepHowItRings];
 
   @override
   Widget build(BuildContext context) {

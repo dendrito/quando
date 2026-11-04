@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quando/l10n/l10n.dart';
 
 /// Asks for a group name. Returns null when cancelled, '' to leave groups.
 Future<String?> askGroupName(BuildContext context, {required String title, String initial = ''}) {
@@ -11,12 +12,12 @@ Future<String?> askGroupName(BuildContext context, {required String title, Strin
         controller: controller,
         autofocus: true,
         textCapitalization: TextCapitalization.words,
-        decoration: const InputDecoration(hintText: 'Work, Kids, Gym…'),
+        decoration: InputDecoration(hintText: l10n.groupNameHint),
         onSubmitted: (v) => Navigator.pop(context, v.trim()),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-        TextButton(onPressed: () => Navigator.pop(context, controller.text.trim()), child: const Text('OK')),
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+        TextButton(onPressed: () => Navigator.pop(context, controller.text.trim()), child: Text(l10n.ok)),
       ],
     ),
   ).whenComplete(controller.dispose);
@@ -38,7 +39,7 @@ Future<String?> pickGroup(
         children: [
           ListTile(
             leading: const Icon(Icons.block),
-            title: const Text('No group'),
+            title: Text(l10n.noGroup),
             selected: current.isEmpty,
             onTap: () => Navigator.pop(context, ''),
           ),
@@ -51,7 +52,7 @@ Future<String?> pickGroup(
             ),
           ListTile(
             leading: const Icon(Icons.create_new_folder_outlined),
-            title: const Text('New group…'),
+            title: Text(l10n.newGroupEllipsis),
             onTap: () => Navigator.pop(context, '\u0000new'),
           ),
         ],
@@ -59,6 +60,6 @@ Future<String?> pickGroup(
     ),
   );
   if (choice != '\u0000new' || !context.mounted) return choice;
-  final name = await askGroupName(context, title: 'New group');
+  final name = await askGroupName(context, title: l10n.newGroup);
   return name == null || name.isEmpty ? null : name;
 }
