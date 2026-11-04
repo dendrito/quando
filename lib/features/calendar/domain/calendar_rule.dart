@@ -1,5 +1,8 @@
 import '../../events/domain/event.dart';
+import '../../ringing/ring_style.dart';
 import '../../rules/domain/alarm_rule.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Alarms around calendar events, as the user sets them up: "15 minutes and
 /// 1 hour before every event containing 'dentist'", "every day for a week
@@ -17,13 +20,20 @@ class CalendarRule {
     this.repeatFor,
     this.enabled = true,
     this.soundId,
+    this.includeTimes = false,
+    this.style = RingStyle.none,
   });
 
   final String id;
   final String name;
 
-  /// Only events whose title contains this. Empty = every event.
+  /// A search over event titles: words, wildcards, AND / OR / NOT, see
+  /// EventQuery. Empty = every event.
   final String keyword;
+
+  /// Also search Shabbat, festival, sunrise and sunset times, not only
+  /// calendar events.
+  final bool includeTimes;
 
   /// Only these calendars. Empty = every calendar you picked.
   final Set<String> calendarIds;
@@ -44,10 +54,13 @@ class CalendarRule {
   /// null = the default sound.
   final String? soundId;
 
+  /// Volume, fades, tasks and more for these alarms.
+  final RingStyle style;
+
   String get title {
     if (name.isNotEmpty) return name;
-    if (keyword.isNotEmpty) return 'Events with "$keyword"';
-    return 'Every event';
+    if (keyword.isNotEmpty) return l10n.eventsMatching(keyword);
+    return l10n.everyEvent;
   }
 
   bool get hasAlarms => before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
@@ -72,6 +85,7 @@ class CalendarRule {
         sources: sources,
         keyword: kw,
         soundId: soundId,
+        style: style,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -82,6 +96,28 @@ class CalendarRule {
         sources: sources,
         keyword: kw,
         soundId: soundId,
+        style: style,
+      ),
+      // Shabbat, festival and sun times are single moments: before, at and
+      // after all hang off the moment itself.
+      AlarmRule(
+        id: 'cal.$id.times',
+        name: title,
+        appliesTo: const {
+          EventKind.holyDayStart,
+          EventKind.secondNightCandles,
+          EventKind.holyDayEnd,
+          EventKind.sunrise,
+          EventKind.sunset,
+        },
+        before: before,
+        atEvent: atStart,
+        after: after,
+        series: [?_series],
+        enabled: enabled && includeTimes,
+        keyword: kw,
+        soundId: soundId,
+        style: style,
       ),
     ];
   }
@@ -98,7 +134,9 @@ class CalendarRule {
     bool clearRepeat = false,
     bool? enabled,
     String? soundId,
+    RingStyle? style,
     bool defaultSound = false,
+    bool? includeTimes,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -111,6 +149,8 @@ class CalendarRule {
     repeatFor: clearRepeat ? null : (repeatFor ?? this.repeatFor),
     enabled: enabled ?? this.enabled,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
+    style: style ?? this.style,
+    includeTimes: includeTimes ?? this.includeTimes,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -130,6 +170,8 @@ class CalendarRule {
     'repeatFor': repeatFor?.inMinutes,
     'enabled': enabled,
     'soundId': soundId,
+    'style': style.toJson(),
+    'includeTimes': includeTimes,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -144,5 +186,7 @@ class CalendarRule {
     repeatFor: j['repeatFor'] == null ? null : Duration(minutes: (j['repeatFor'] as num).toInt()),
     enabled: j['enabled'] as bool? ?? true,
     soundId: j['soundId'] as String?,
+    style: RingStyle.fromJson(j['style']),
+    includeTimes: j['includeTimes'] as bool? ?? false,
   );
 }

@@ -3,6 +3,8 @@ import 'package:kosher_dart/kosher_dart.dart';
 import '../../events/domain/event.dart';
 import 'place.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Which nightfall ends Shabbat and festivals.
 enum HavdalahOpinion {
   /// Sun 8.5° below the horizon (Geonim). Common default.
@@ -52,7 +54,8 @@ class JewishTimes {
           AnchorEvent(
             id: 'jewish.start.$key',
             kind: EventKind.holyDayStart,
-            title: 'Candle lighting · ${dayName(tomorrow)}',
+            title: '${l10n.candleLighting} · ${dayName(tomorrow)}',
+            alias: '${l10nEn.candleLighting} · ${dayName(tomorrow, l10nEn)}',
             at: sunset.toUtc().subtract(Duration(minutes: place.candleLightingMinutes)),
             source: 'jewish',
           ),
@@ -64,7 +67,8 @@ class JewishTimes {
           AnchorEvent(
             id: 'jewish.second.$key',
             kind: EventKind.secondNightCandles,
-            title: 'Candle lighting · ${dayName(tomorrow)}',
+            title: '${l10n.candleLighting} · ${dayName(tomorrow)}',
+            alias: '${l10nEn.candleLighting} · ${dayName(tomorrow, l10nEn)}',
             at: night,
             source: 'jewish',
           ),
@@ -76,7 +80,8 @@ class JewishTimes {
           AnchorEvent(
             id: 'jewish.end.$key',
             kind: EventKind.holyDayEnd,
-            title: 'Havdalah · end of ${dayName(today)}',
+            title: l10n.havdalahEndOf(dayName(today)),
+            alias: l10nEn.havdalahEndOf(dayName(today, l10nEn)),
             at: night,
             source: 'jewish',
           ),
@@ -119,12 +124,13 @@ class JewishTimes {
   /// "Candle lighting · Shabbat · Sukkot" → "Shabbat · Sukkot".
   static String _dayPart(String title) => title.substring(title.indexOf(' · ') + 3);
 
-  String dayName(JewishCalendar day) {
+  String dayName(JewishCalendar day, [AppLocalizations? t]) {
+    t ??= l10n;
     final isShabbat = day.getDayOfWeek() == 7;
-    final festival = day.isYomTovAssurBemelacha() ? (_festivalNames[day.getYomTovIndex()] ?? 'Yom Tov') : '';
-    if (isShabbat && festival.isNotEmpty) return 'Shabbat · $festival';
+    final festival = day.isYomTovAssurBemelacha() ? (_festivalName(day.getYomTovIndex(), t) ?? t.yomTov) : '';
+    if (isShabbat && festival.isNotEmpty) return '${t.shabbat} · $festival';
     if (festival.isNotEmpty) return festival;
-    return 'Shabbat';
+    return t.shabbat;
   }
 
   JewishCalendar _jewishDay(DateTime utcDay) {
@@ -148,13 +154,14 @@ class JewishTimes {
   }
 }
 
-/// English names for the festival days when work is forbidden.
-const _festivalNames = {
-  JewishCalendar.PESACH: 'Pesach',
-  JewishCalendar.SHAVUOS: 'Shavuot',
-  JewishCalendar.ROSH_HASHANA: 'Rosh Hashanah',
-  JewishCalendar.YOM_KIPPUR: 'Yom Kippur',
-  JewishCalendar.SUCCOS: 'Sukkot',
-  JewishCalendar.SHEMINI_ATZERES: 'Shemini Atzeret',
-  JewishCalendar.SIMCHAS_TORAH: 'Simchat Torah',
+/// Names for the festival days when work is forbidden, in the language in use.
+String? _festivalName(int index, AppLocalizations t) => switch (index) {
+  JewishCalendar.PESACH => t.pesach,
+  JewishCalendar.SHAVUOS => t.shavuot,
+  JewishCalendar.ROSH_HASHANA => t.roshHashanah,
+  JewishCalendar.YOM_KIPPUR => t.yomKippur,
+  JewishCalendar.SUCCOS => t.sukkot,
+  JewishCalendar.SHEMINI_ATZERES => t.sheminiAtzeret,
+  JewishCalendar.SIMCHAS_TORAH => t.simchatTorah,
+  _ => null,
 };

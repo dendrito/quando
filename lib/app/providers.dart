@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,8 @@ import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
+import '../features/quotes/data/quote_bank.dart';
+import '../features/quotes/domain/quote.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
 import '../features/rules/domain/presets.dart';
@@ -21,6 +24,10 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+
+import 'edition.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// The current time. Overridden in tests.
 final clockProvider = Provider<DateTime Function()>(
@@ -33,6 +40,106 @@ final clockProvider = Provider<DateTime Function()>(
 final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw StateError('prefsProvider must be overridden in main()'),
 );
+
+// ---- Language ----
+
+/// The language chosen in Settings, e.g. `pt` or `zh_Hant`. null = the phone's.
+class LanguageNotifier extends Notifier<String?> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  String? build() => _prefs.getString('language');
+
+  void set(String? tag) {
+    tag == null ? _prefs.remove('language') : _prefs.setString('language', tag);
+    state = tag;
+  }
+}
+
+final languageProvider = NotifierProvider<LanguageNotifier, String?>(LanguageNotifier.new);
+
+/// The language Quando speaks right now. Anything that builds words
+/// (event titles, preset names, alarm bodies) watches it, so all of it
+/// is made again in the new language when it changes.
+class LocaleNotifier extends Notifier<Locale> {
+  @override
+  Locale build() => currentLocale;
+
+  void changed(Locale l) {
+    if (l != state) state = l;
+  }
+}
+
+final localeProvider = NotifierProvider<LocaleNotifier, Locale>(LocaleNotifier.new);
+
+// ---- Quotes about time ----
+
+/// Which kinds of quotes the home screen shows. Empty = none.
+class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteSource> build() {
+    final saved = _prefs.getStringList('quoteSources');
+    final offered = kodesh ? jewishSources : QuoteSource.values.toSet();
+    if (saved == null) return offered;
+    return {
+      for (final s in offered)
+        if (saved.contains(s.name)) s,
+    };
+  }
+
+  void toggle(QuoteSource s, bool on) {
+    state = on ? {...state, s} : ({...state}..remove(s));
+    _prefs.setStringList('quoteSources', [for (final x in state) x.name]);
+  }
+}
+
+final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
+  QuoteSourcesNotifier.new,
+);
+
+/// Extra quotes the user opted into: Carnaval, near me. Off by default.
+class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteOccasion> build() {
+    if (kodesh) return const {};
+    final saved = _prefs.getStringList('quoteOccasions') ?? const [];
+    return {
+      for (final o in QuoteOccasion.values)
+        if (saved.contains(o.name)) o,
+    };
+  }
+
+  void toggle(QuoteOccasion o, bool on) {
+    state = on ? {...state, o} : ({...state}..remove(o));
+    _prefs.setStringList('quoteOccasions', [for (final x in state) x.name]);
+  }
+}
+
+final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
+  QuoteOccasionsNotifier.new,
+);
+
+/// Where the user is, for "Near me" quotes.
+final quotePlacesProvider = Provider<Set<String>>(
+  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name),
+);
+
+/// Every quote for the language in use.
+final quotesProvider = Provider<List<Quote>>((ref) {
+  final l = ref.watch(localeProvider);
+  final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
+  final all = quoteBank[key] ?? quoteBank['en']!;
+  return kodesh
+      ? [
+          for (final q in all)
+            if (q.isJewish) q,
+        ]
+      : all;
+});
 
 // ---- Time zones ----
 
@@ -150,13 +257,61 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 
   @override
   List<AlarmRule> build() {
+    ref.watch(localeProvider);
     final saved = _decode(_prefs.getString('rules.enabled'));
-    return [for (final r in Presets.all) saved.containsKey(r.id) ? r.copyWith(enabled: saved[r.id]) : r];
+    final custom = _custom();
+    return [
+      for (final r in Presets.all.map((p) => p.withCustomFrom(custom)))
+        saved.containsKey(r.id) ? r.copyWith(enabled: saved[r.id]) : r,
+    ];
   }
 
   void toggle(String id, bool enabled) {
     state = [for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r];
     _prefs.setString('rules.enabled', jsonEncode({for (final r in state) r.id: r.enabled}));
+  }
+
+  /// Changes a preset's times or sound, and remembers the change.
+  void edit(String id, AlarmRule Function(AlarmRule) change) {
+    state = [for (final r in state) r.id == id ? change(r) : r];
+    final custom = _custom()..[id] = state.firstWhere((r) => r.id == id).customJson();
+    _prefs.setString('rules.custom', jsonEncode(custom));
+  }
+
+  /// Back to the preset as Quando ships it, keeping it on or off.
+  void reset(String id) {
+    final custom = _custom()..remove(id);
+    _prefs.setString('rules.custom', jsonEncode(custom));
+    final preset = Presets.all.firstWhere((p) => p.id == id);
+    state = [for (final r in state) r.id == id ? preset.copyWith(enabled: r.enabled) : r];
+  }
+
+  /// Presets you deleted: off, and out of the list until restored.
+  Set<String> get hidden => (_prefs.getStringList('rules.hidden') ?? const []).toSet();
+
+  void hide(String id) {
+    toggle(id, false);
+    _prefs.setStringList('rules.hidden', {...hidden, id}.toList());
+    ref.notifyListeners();
+  }
+
+  void restore(String id) {
+    _prefs.setStringList('rules.hidden', [
+      for (final h in hidden)
+        if (h != id) h,
+    ]);
+    toggle(id, true);
+  }
+
+  /// Whether the user has changed this preset.
+  bool isCustom(String id) => _custom().containsKey(id);
+
+  Map<String, dynamic> _custom() {
+    try {
+      return jsonDecode(_prefs.getString('rules.custom') ?? '{}') as Map<String, dynamic>;
+    } catch (_) {
+      return {};
+    }
   }
 
   static Map<String, bool> _decode(String? raw) {
@@ -169,6 +324,34 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 }
 
 final rulesProvider = NotifierProvider<RulesNotifier, List<AlarmRule>>(RulesNotifier.new);
+
+extension on AlarmRule {
+  AlarmRule withCustomFrom(Map<String, dynamic> custom) {
+    final j = custom[id];
+    return j is Map<String, dynamic> ? withCustom(j) : this;
+  }
+}
+
+/// Single alarms the user chose to skip, by their stable id.
+class SkippedNotifier extends Notifier<Set<int>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<int> build() => {
+    for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[]) ?int.tryParse(s),
+  };
+
+  void skip(int id, bool skipped) {
+    final next = {...state};
+    skipped ? next.add(id) : next.remove(id);
+    // Only the newest few hundred matter: the plan reaches a week ahead.
+    final kept = next.toList();
+    state = kept.length > 400 ? kept.sublist(kept.length - 400).toSet() : next;
+    _prefs.setStringList('plan.skipped', [for (final i in state) '$i']);
+  }
+}
+
+final skippedProvider = NotifierProvider<SkippedNotifier, Set<int>>(SkippedNotifier.new);
 
 class AlarmOptionsNotifier extends Notifier<AlarmOptions> {
   @override
@@ -275,7 +458,7 @@ class CalendarNotifier extends Notifier<CalendarState> {
     final reader = ref.read(calendarReaderProvider);
     try {
       if (!await reader.requestAccess()) {
-        state = const CalendarState(loaded: true, error: 'Calendar access was not allowed.');
+        state = CalendarState(loaded: true, error: l10n.calendarNotAllowed);
         return;
       }
     } catch (e) {
@@ -333,18 +516,41 @@ final allRulesProvider = Provider<List<AlarmRule>>(
 );
 
 final eventsProvider = Provider<List<AnchorEvent>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
-  final rules = ref.watch(rulesProvider);
-  final window = scheduler.eventWindow(now, rules);
+  final window = scheduler.eventWindow(now, ref.watch(allRulesProvider));
   final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
     ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
-  final wantsSun = rules.any(
-    (r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset),
-  );
+  final wantsSun = ref
+      .watch(allRulesProvider)
+      .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));
   if (wantsSun) {
     events.addAll(SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to));
   }
   return events..sort((a, b) => a.at.compareTo(b.at));
+});
+
+/// Everything an event alarm can be set around, for the next 60 days:
+/// calendar events (start), Shabbat and festival times, and two weeks of
+/// sunrises and sunsets. Feeds the event search.
+final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((ref) async {
+  ref.watch(localeProvider);
+  final now = ref.watch(clockProvider)();
+  final to = now.add(const Duration(days: 60));
+  final cal = ref.watch(calendarProvider);
+  final out = <AnchorEvent>[
+    ...ref.watch(jewishTimesProvider).events(now, to),
+    ...SunTimes(place: ref.watch(placeProvider)).events(now, now.add(const Duration(days: 14))),
+  ];
+  if (cal.access && cal.selected.isNotEmpty) {
+    try {
+      out.addAll(await ref.read(calendarReaderProvider).events(now, to, cal.selected));
+    } catch (_) {
+      // Calendar unreadable just now: search the rest.
+    }
+  }
+  return out.where((e) => e.at.isAfter(now) && e.kind != EventKind.calendarEnd).toList()
+    ..sort((a, b) => a.at.compareTo(b.at));
 });
 
 class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
@@ -383,6 +589,17 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     ]);
   }
 
+  /// A copy of alarm [id], right after it in the list. Returns the copy.
+  UserAlarm duplicate(String id) {
+    final i = state.indexWhere((a) => a.id == id);
+    final copy = UserAlarm.fromJson({
+      ...state[i].toJson(),
+      'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+    });
+    _set([...state.sublist(0, i + 1), copy, ...state.sublist(i + 1)]);
+    return copy;
+  }
+
   void toggle(String id, bool enabled) {
     final a = state.firstWhere((a) => a.id == id);
     if (enabled && !a.repeats) {
@@ -396,6 +613,23 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     for (final a in state)
       if (a.id != id) a,
   ]);
+
+  /// Every group name in use, A to Z.
+  List<String> get groups => {
+    for (final a in state)
+      if (a.group.isNotEmpty) a.group,
+  }.toList()..sort((a, b) => a.toLowerCase().compareTo(b.toLowerCase()));
+
+  /// Turns every alarm in [group] on or off at once.
+  void toggleGroup(String group, bool enabled) {
+    for (final a in [...state]) {
+      if (a.group == group && a.enabled != enabled) toggle(a.id, enabled);
+    }
+  }
+
+  /// Renames a group; an empty name takes its alarms out of any group.
+  void renameGroup(String from, String to) =>
+      _set([for (final a in state) a.group == from ? a.copyWith(group: to.trim()) : a]);
 
   void _set(List<UserAlarm> alarms) {
     state = alarms..sort(_byTime);
@@ -413,6 +647,7 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
 
   @override
   List<AlarmSound> build() {
+    ref.watch(localeProvider);
     try {
       final raw = _prefs.getString('sounds');
       final mine = raw == null
@@ -425,6 +660,8 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
   }
 
   void add(AlarmSound s) => _set([...state, s]);
+
+  void replace(AlarmSound sound) => _set([for (final s in state) s.id == sound.id ? sound : s]);
 
   void rename(String id, String name) => _set([for (final s in state) s.id == id ? s.rename(name) : s]);
 
@@ -454,8 +691,8 @@ final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(Sounds
 
 /// "Phone alarm sound" for null, otherwise the sound's name.
 String soundName(List<AlarmSound> sounds, String? id) => id == null
-    ? 'Phone alarm sound'
-    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? 'Phone alarm sound');
+    ? l10n.phoneAlarmSound
+    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? l10n.phoneAlarmSound);
 
 // ---- Lock mode ----
 
@@ -467,7 +704,7 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     try {
       final raw = _prefs.getString('lock');
       return raw == null
-          ? const LockSettings()
+          ? const LockSettings(shabbat: kodesh)
           : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const LockSettings();
@@ -505,15 +742,16 @@ final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<Stri
 );
 
 /// Upcoming and current locks.
-final lockPeriodsProvider = Provider<List<LockPeriod>>(
-  (ref) => lockPeriods(
+final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
+  ref.watch(localeProvider);
+  return lockPeriods(
     settings: ref.watch(lockSettingsProvider),
     holy: ref.watch(periodsProvider),
     calendarEvents: ref.watch(calendarProvider.select((c) => c.events)),
     now: ref.watch(clockProvider)(),
     dismissed: ref.watch(dismissedLocksProvider),
-  ),
-);
+  );
+});
 
 /// A 1-second, silent-ish alarm when each lock starts: it opens Quando,
 /// which then locks (and pins itself).
@@ -528,7 +766,7 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
         ScheduledAlarm(
           id: stableId('lock|${p.id}'),
           at: p.start,
-          title: 'Lock mode',
+          title: l10n.lockMode,
           body: p.reason,
           ringDuration: const Duration(seconds: 1),
           ruleId: 'lock',
@@ -538,7 +776,41 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
   ];
 });
 
+/// The alarms that will ring: the full plan minus the ones you skipped.
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
+  ref.watch(localeProvider);
+  final skipped = ref.watch(skippedProvider);
+  final now = ref.watch(clockProvider)();
+  return [
+    for (final a in ref.watch(fullPlanProvider))
+      if (!skipped.contains(a.id)) ...[?gentleBefore(a, now), a],
+  ]..sort((a, b) => a.at.compareTo(b.at));
+});
+
+/// The soft alarm some minutes before [a], if it asks for one and that
+/// moment is still ahead.
+ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
+  final m = a.style.gentleMinutes;
+  if (m <= 0 || a.ruleId == 'lock') return null;
+  final at = a.at.subtract(Duration(minutes: m));
+  if (!at.isAfter(now)) return null;
+  return ScheduledAlarm(
+    id: stableId('gentle|${a.id}'),
+    at: at,
+    title: a.title,
+    body: a.body,
+    ringDuration: a.ringDuration,
+    ruleId: 'gentle.${a.ruleId}',
+    eventId: a.eventId,
+    offset: a.offset,
+    soundId: a.soundId,
+    style: a.style,
+  );
+}
+
+/// Every alarm for the week ahead, skipped ones included.
+final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
@@ -552,6 +824,7 @@ final planProvider = Provider<List<ScheduledAlarm>>((ref) {
 
 /// Shabbat and festival periods over the planning horizon.
 final periodsProvider = Provider<List<HolyPeriod>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   return ref.watch(jewishTimesProvider).periods(now, now.add(const Duration(days: 60)));
 });
@@ -565,10 +838,30 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 /// How each planned alarm behaves when it rings. Alarms inside Shabbat or a
 /// festival never ask to be touched.
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
+  ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
-  return (a) => _withSound(_payload(a, options, periods), sounds[a.soundId ?? options.soundId]);
+  final links = {for (final s in ref.watch(soundsProvider)) s.id: s};
+  return (a) {
+    final id = a.soundId ?? options.soundId;
+    var p = _payload(a, options, periods);
+    // No live radio on Shabbat or a festival: a built-in sound instead.
+    final path = sounds[id];
+    final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
+    p = _withSound(p, radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path);
+    // Never open another app on Shabbat or a festival.
+    final song = links[id];
+    if (!p.isLock && !p.shabbatSafe && song?.link != null) {
+      p = p.withSong(song!.link!, plays: song.plays, seconds: song.playSeconds);
+    }
+    if (p.isLock) return p;
+    p = p.withStyle(a.style);
+    if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
+    final calm =
+        (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
+    return p.gentleLeadUp(a.style.gentleMinutes, calm);
+  };
 });
 
 RingPayload _withSound(RingPayload p, String? path) => p.isLock ? p : p.withSound(path);
@@ -584,7 +877,9 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
     return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
   }
   // A user alarm can have its own ring length.
-  return a.ruleId.startsWith('user.') ? p.withRingSeconds(a.ringDuration.inSeconds) : p;
+  return a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
+      ? p.withRingSeconds(a.ringDuration.inSeconds)
+      : p;
 }
 
 // ---- Integrations ----

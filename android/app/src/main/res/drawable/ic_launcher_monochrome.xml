@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Quando "Q-hand": a Q drawn as a clock whose tail is the minute hand. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        android:translateX="18"
+        android:translateY="18">
+        <path
+            android:pathData="M40,84 a46,46 0 1,0 92,0 a46,46 0 1,0 -92,0"
+            android:strokeColor="#FFFFFF"
+            android:strokeWidth="17" />
+        <path
+            android:pathData="M86,84 L86,56"
+            android:strokeColor="#FFFFFF"
+            android:strokeLineCap="round"
+            android:strokeWidth="12" />
+        <path
+            android:pathData="M86,84 L146,144"
+            android:strokeColor="#FFFFFF"
+            android:strokeLineCap="round"
+            android:strokeWidth="17" />
+
+    </group>
+</vector>

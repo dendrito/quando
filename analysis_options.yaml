@@ -5,6 +5,8 @@ analyzer:
     - build/**
     - android/**
     - ios/**
+    # Quando's copy of the alarm plugin keeps its own style.
+    - packages/**
 
 formatter:
   page_width: 110

@@ -1,13 +1,15 @@
 import '../../events/domain/event.dart';
 import 'alarm_rule.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 const _candles = {EventKind.holyDayStart};
 
 /// Ready-made rules the user can switch on with one tap.
 class Presets {
-  static const countdown = AlarmRule(
+  static AlarmRule get countdown => AlarmRule(
     id: 'preset.countdown',
-    name: 'Countdown to candle lighting',
+    name: l10n.presetCountdown,
     appliesTo: _candles,
     before: [
       Duration(hours: 2),
@@ -18,60 +20,69 @@ class Presets {
     ],
   );
 
-  static const hourly = AlarmRule(
+  static AlarmRule get hourly => AlarmRule(
     id: 'preset.hourly',
-    name: 'Every hour, from 6 hours before',
+    name: l10n.presetHourly,
     appliesTo: _candles,
     series: [OffsetSeries(direction: Direction.before, every: Duration(hours: 1), span: Duration(hours: 6))],
   );
 
-  static const dailyWeek = AlarmRule(
+  static AlarmRule get dailyWeek => AlarmRule(
     id: 'preset.dailyWeek',
-    name: 'Once a day, for a week before',
+    name: l10n.presetDailyWeek,
     appliesTo: _candles,
     series: [OffsetSeries(direction: Direction.before, every: Duration(days: 1), span: Duration(days: 7))],
     enabled: false,
   );
 
-  static const secondNight = AlarmRule(
+  static AlarmRule get secondNight => AlarmRule(
     id: 'preset.secondNight',
-    name: 'Second-night candles',
+    name: l10n.presetSecondNight,
     appliesTo: {EventKind.secondNightCandles},
     atEvent: true,
   );
 
-  static const havdalah = AlarmRule(
+  static AlarmRule get havdalah => AlarmRule(
     id: 'preset.havdalah',
-    name: 'Havdalah',
+    name: l10n.havdalah,
     appliesTo: {EventKind.holyDayEnd},
     atEvent: true,
     after: [Duration(minutes: 15)],
   );
 
-  static const fridayReminder = AlarmRule(
+  static AlarmRule get fridayReminder => AlarmRule(
     id: 'preset.fridayReminder',
-    name: 'Reminder 3 hours before: charge your phone',
+    name: l10n.presetFridayReminder,
     appliesTo: _candles,
     before: [Duration(hours: 3)],
-    label: 'Charge your phone and set any alarms for tomorrow',
+    label: l10n.presetFridayReminderLabel,
   );
 
-  static const sunrise = AlarmRule(
+  static AlarmRule get sunrise => AlarmRule(
     id: 'preset.sunrise',
-    name: 'Sunrise',
+    name: l10n.sunrise,
     appliesTo: {EventKind.sunrise},
     atEvent: true,
     enabled: false,
   );
 
-  static const sunset = AlarmRule(
+  static AlarmRule get sunset => AlarmRule(
     id: 'preset.sunset',
-    name: 'Sunset, and 15 minutes before',
+    name: l10n.presetSunset,
     appliesTo: {EventKind.sunset},
     atEvent: true,
     before: [Duration(minutes: 15)],
     enabled: false,
   );
 
-  static const all = [countdown, hourly, dailyWeek, fridayReminder, secondNight, havdalah, sunrise, sunset];
+  static List<AlarmRule> get all => [
+    countdown,
+    hourly,
+    dailyWeek,
+    fridayReminder,
+    secondNight,
+    havdalah,
+    sunrise,
+    sunset,
+  ];
 }

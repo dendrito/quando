@@ -3,6 +3,9 @@ import 'package:timezone/timezone.dart' as tz;
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
+import '../../ringing/ring_style.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// An everyday alarm the user sets: "7:00 on weekdays".
 class UserAlarm {
@@ -17,6 +20,8 @@ class UserAlarm {
     this.onceAt,
     this.soundId,
     this.zone,
+    this.group = '',
+    this.style = RingStyle.none,
   });
 
   final String id;
@@ -41,20 +46,26 @@ class UserAlarm {
   /// home zone.
   final String? zone;
 
+  /// A name the user files this alarm under, e.g. "Work" or "Kids".
+  /// Empty = no group.
+  final String group;
+
+  /// Volume, fades, gentle wake-up, tasks and more for this alarm.
+  final RingStyle style;
+
   bool get repeats => days.isNotEmpty;
 
-  String get title => label.isEmpty ? 'Alarm' : label;
+  String get title => label.isEmpty ? l10n.alarm : label;
 
   /// "Weekdays", "Every day", "Mon, Wed" or "Once".
   String get repeatLabel {
-    if (days.isEmpty) return 'Once';
-    if (days.length == 7) return 'Every day';
-    if (days.length == 5 && !days.contains(6) && !days.contains(7)) return 'Weekdays';
-    if (days.length == 2 && days.contains(6) && days.contains(7)) return 'Weekends';
-    const names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    if (days.isEmpty) return l10n.once;
+    if (days.length == 7) return l10n.everyDay;
+    if (days.length == 5 && !days.contains(6) && !days.contains(7)) return l10n.weekdays;
+    if (days.length == 2 && days.contains(6) && days.contains(7)) return l10n.weekends;
     return [
       for (var d = 1; d <= 7; d++)
-        if (days.contains(d)) names[d - 1],
+        if (days.contains(d)) weekdayShort(d),
     ].join(', ');
   }
 
@@ -99,14 +110,16 @@ class UserAlarm {
           at: at,
           title: title,
           body: [
-            repeatLabel == 'Once' ? 'Alarm' : repeatLabel,
-            if (this.zone != null) '${hhmm(DateTime(2000, 1, 1, hour, minute))} ${cityOf(this.zone!)} time',
+            days.isEmpty ? l10n.alarm : repeatLabel,
+            if (this.zone != null)
+              l10n.timeInCity(hhmm(DateTime(2000, 1, 1, hour, minute)), cityOf(this.zone!)),
           ].join(' · '),
           ringDuration: ring,
           ruleId: 'user.$id',
           eventId: 'user.$id',
           offset: Duration.zero,
           soundId: soundId,
+          style: style,
         ),
     ];
   }
@@ -124,6 +137,8 @@ class UserAlarm {
     bool defaultSound = false,
     String? zone,
     bool homeZone = false,
+    String? group,
+    RingStyle? style,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -135,6 +150,8 @@ class UserAlarm {
     onceAt: onceAt ?? this.onceAt,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     zone: homeZone ? null : (zone ?? this.zone),
+    group: group ?? this.group,
+    style: style ?? this.style,
   );
 
   Map<String, dynamic> toJson() => {
@@ -148,6 +165,8 @@ class UserAlarm {
     'onceAt': onceAt?.toIso8601String(),
     'soundId': soundId,
     'zone': zone,
+    'group': group,
+    'style': style.toJson(),
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -161,5 +180,7 @@ class UserAlarm {
     onceAt: j['onceAt'] == null ? null : DateTime.parse(j['onceAt'] as String).toUtc(),
     soundId: j['soundId'] as String?,
     zone: j['zone'] as String?,
+    group: (j['group'] as String? ?? '').trim(),
+    style: RingStyle.fromJson(j['style']),
   );
 }

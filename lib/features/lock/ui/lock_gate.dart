@@ -9,9 +9,13 @@ import 'package:kiosk_mode/kiosk_mode.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/brand.dart';
 import '../../../core/util/local_time.dart';
+import '../../home/domain/sky.dart';
 import '../../ringing/ring_payload.dart';
 import '../domain/lock.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 bool get _onAndroid => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
@@ -146,32 +150,76 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
     String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} · ${hhmm(inZone(utc, zone))}';
     final text = Theme.of(context).textTheme;
 
+    final holy = widget.period.id.startsWith('holy.');
+    final greeting = !holy
+        ? l10n.locked
+        : widget.period.reason.contains(l10n.shabbat)
+        ? l10n.shabbatShalom
+        : l10n.chagSameach;
+    final endLocal = inZone(widget.period.end, zone);
+
     return PopScope(
       canPop: false,
       child: Material(
-        color: QuandoColors.ground,
+        color: QuandoColors.night,
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(28, 48, 28, 28),
+            padding: const EdgeInsets.fromLTRB(28, 32, 28, 28),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                Text('LOCKED', style: text.labelSmall),
-                const SizedBox(height: 12),
-                Text(widget.period.reason, style: text.headlineSmall),
-                const Spacer(),
+                if (holy)
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Flame(height: 130, candle: true, glow: true),
+                      SizedBox(width: 36),
+                      Flame(height: 130, candle: true, glow: true),
+                    ],
+                  )
+                else
+                  const Center(child: Icon(Icons.lock_outline, size: 64, color: QuandoColors.amber)),
+                const SizedBox(height: 20),
+                FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(greeting, textAlign: TextAlign.center, style: text.displaySmall),
+                ),
+                const SizedBox(height: 6),
                 Text(
-                  hhmm(inZone(now, zone)),
+                  widget.period.reason,
                   textAlign: TextAlign.center,
-                  style: text.displayLarge?.copyWith(color: QuandoColors.amber, fontSize: 88),
+                  style: text.bodyLarge?.copyWith(color: QuandoColors.muted),
                 ),
                 const Spacer(),
-                _Row('Unlocks', at(widget.period.end)),
-                if (next != null) ...[
-                  const SizedBox(height: 8),
-                  _Row('Next alarm', '${next.title} · ${at(next.at)}'),
-                ],
-                const SizedBox(height: 32),
+                Text(l10n.unlocksHeading, textAlign: TextAlign.center, style: text.labelSmall),
+                Text(
+                  hhmm(endLocal),
+                  textAlign: TextAlign.center,
+                  style: text.displayLarge?.copyWith(color: QuandoColors.amber, fontSize: 80),
+                ),
+                Text(
+                  '${dayLabel(endLocal)} · ${countdown(widget.period.end.difference(now))}',
+                  textAlign: TextAlign.center,
+                  style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+                ),
+                const Spacer(),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
+                  decoration: const BoxDecoration(
+                    color: QuandoColors.surface,
+                    borderRadius: BorderRadius.all(Radius.circular(28)),
+                  ),
+                  child: Column(
+                    children: [
+                      _Row(l10n.nowCap, hhmm(inZone(now, zone))),
+                      if (next != null) ...[
+                        const SizedBox(height: 8),
+                        _Row(l10n.nextAlarm, '${next.title} · ${at(next.at)}'),
+                      ],
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 16),
                 GestureDetector(
                   onTapDown: (_) => _hold.forward(),
                   onTapUp: (_) => _hold.reverse(),
@@ -179,17 +227,17 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                   child: AnimatedBuilder(
                     animation: _hold,
                     builder: (context, _) => Container(
-                      height: 56,
+                      height: 60,
                       decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(28),
-                        border: Border.all(color: QuandoColors.line),
+                        borderRadius: BorderRadius.circular(30),
+                        border: Border.all(color: QuandoColors.line, width: 1.5),
                         gradient: LinearGradient(
-                          colors: [QuandoColors.amber.withValues(alpha: 0.35), Colors.transparent],
+                          colors: [QuandoColors.amber.withValues(alpha: 0.4), Colors.transparent],
                           stops: [_hold.value, _hold.value],
                         ),
                       ),
                       alignment: Alignment.center,
-                      child: Text('Hold to unlock', style: text.titleMedium),
+                      child: Text(l10n.holdToUnlock, style: text.titleMedium),
                     ),
                   ),
                 ),
@@ -212,11 +260,14 @@ class _Row extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(label, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
-        const SizedBox(width: 16),
+        SizedBox(
+          width: 96,
+          child: Text(label, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+        ),
         Expanded(
-          child: Text(value, textAlign: TextAlign.end, style: text.bodyLarge),
+          child: Text(value, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
         ),
       ],
     );

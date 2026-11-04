@@ -8,6 +8,8 @@ import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import 'zone_picker.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Home-screen clocks for the zones you care about, ticking every 20 s.
 class WorldClocks extends ConsumerStatefulWidget {
   const WorldClocks({super.key, this.now});
@@ -49,7 +51,7 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
         l.month,
         l.day,
       ).difference(DateTime(homeLocal.year, homeLocal.month, homeLocal.day)).inDays;
-      return diff == 0 ? '' : (diff > 0 ? ' · tomorrow' : ' · yesterday');
+      return diff == 0 ? '' : (diff > 0 ? ' · ${l10n.tomorrowLower}' : ' · ${l10n.yesterdayLower}');
     }
 
     return Column(
@@ -57,21 +59,21 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
       children: [
         Row(
           children: [
-            Expanded(child: Text('WORLD CLOCKS', style: text.labelSmall)),
+            Expanded(child: Text(l10n.worldClocksHeading, style: text.labelSmall)),
             TextButton.icon(
               onPressed: () async {
                 final z = await pickZone(context, home: home);
                 if (z != null) ref.read(timeZonesProvider.notifier).addClock(z);
               },
               icon: const Icon(Icons.add, size: 18),
-              label: const Text('Add'),
+              label: Text(l10n.add),
             ),
           ],
         ),
         ListTile(
           contentPadding: EdgeInsets.zero,
           dense: true,
-          title: Text('${cityOf(home)} · here', style: text.bodyMedium),
+          title: Text(l10n.cityHere(cityOf(home)), style: text.bodyMedium),
           trailing: Text(hhmm(homeLocal), style: text.titleLarge?.copyWith(color: QuandoColors.amber)),
         ),
         for (final z in zones.clocks)
@@ -93,8 +95,7 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
               onLongPress: () => ref.read(timeZonesProvider.notifier).removeClock(z),
             ),
           ),
-        if (zones.clocks.isEmpty)
-          Text('Add cities to see their time here. Swipe one left to remove it.', style: text.bodySmall),
+        if (zones.clocks.isEmpty) Text(l10n.worldClocksHint, style: text.bodySmall),
       ],
     );
   }

@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../../../core/util/local_time.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Lock mode settings: when Quando locks itself, and "lock now".
 class LockScreen extends ConsumerStatefulWidget {
@@ -35,36 +38,33 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} ${hhmm(inZone(utc, zone))}';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Lock mode'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.lockMode), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
-          Text(
-            'While locked, Quando shows only the time, the next alarm and when the lock ends. Alarms keep '
-            'working, and nothing can be changed until it unlocks.',
-            style: text.bodyMedium,
-          ),
+          FeatureHeader(icon: Icons.lock_clock, sentence: l10n.lockSentence),
+          Text(l10n.lockExplain, style: text.bodyMedium),
           const SizedBox(height: 20),
-          Text('LOCK NOW', style: text.labelSmall),
+          Text(l10n.lockNowHeading, style: text.labelSmall),
           const SizedBox(height: 8),
           Wrap(
             spacing: 8,
             children: [
               for (final (label, d) in [
-                ('30 min', const Duration(minutes: 30)),
-                ('1 hour', const Duration(hours: 1)),
-                ('2 hours', const Duration(hours: 2)),
-                ('8 hours', const Duration(hours: 8)),
+                (l10n.minutesShort(30), const Duration(minutes: 30)),
+                (l10n.spanHours(1), const Duration(hours: 1)),
+                (l10n.spanHours(2), const Duration(hours: 2)),
+                (l10n.spanHours(8), const Duration(hours: 8)),
               ])
                 ActionChip(label: Text(label), onPressed: () => n.lockFor(d)),
             ],
           ),
           const SizedBox(height: 24),
-          Text('LOCK AUTOMATICALLY', style: text.labelSmall),
+          Text(l10n.lockAutoHeading, style: text.labelSmall),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Shabbat and festivals'),
-            subtitle: const Text('From candle lighting to havdalah'),
+            title: Text(l10n.shabbatAndFestivalsLong),
+            subtitle: Text(l10n.fromCandleToHavdalah),
             value: s.shabbat,
             onChanged: (v) => n.update((x) => x.copyWith(shabbat: v)),
           ),
@@ -72,37 +72,33 @@ class _LockScreenState extends ConsumerState<LockScreen> {
             controller: _keyword,
             enabled: calendarConnected,
             decoration: InputDecoration(
-              labelText: 'During calendar events with this word',
-              hintText: 'e.g. lock, exam, focus',
-              helperText: calendarConnected
-                  ? 'Leave empty for none'
-                  : 'Connect calendars first (calendar icon)',
+              labelText: l10n.lockCalendarWord,
+              hintText: l10n.lockCalendarWordHint,
+              helperText: calendarConnected ? l10n.leaveEmptyForNone : l10n.connectCalendarsFirst,
             ),
             onChanged: (v) => n.update((x) => x.copyWith(calendarKeyword: v.trim())),
           ),
           const SizedBox(height: 16),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Open Quando when a lock starts'),
-            subtitle: const Text('A soft 1-second chime brings Quando to the front so it can lock'),
+            title: Text(l10n.openWhenLockStarts),
+            subtitle: Text(l10n.openWhenLockStartsHint),
             value: s.openAtStart,
             onChanged: (v) => n.update((x) => x.copyWith(openAtStart: v)),
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Pin Quando to the screen'),
-            subtitle: const Text(
-              'Other apps can\'t be opened while locked. Android asks you to confirm the first time.',
-            ),
+            title: Text(l10n.pinToScreen),
+            subtitle: Text(l10n.pinToScreenHint),
             value: s.pin,
             onChanged: (v) => n.update((x) => x.copyWith(pin: v)),
           ),
           const SizedBox(height: 24),
-          Text('COMING UP', style: text.labelSmall),
+          Text(l10n.comingUpHeading, style: text.labelSmall),
           if (periods.isEmpty)
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 8),
-              child: Text('No locks coming up.', style: text.bodySmall),
+              child: Text(l10n.noLocksComingUp, style: text.bodySmall),
             ),
           for (final p in periods)
             ListTile(
@@ -113,7 +109,7 @@ class _LockScreenState extends ConsumerState<LockScreen> {
               trailing: const Icon(Icons.lock_outline, color: QuandoColors.amber, size: 18),
             ),
           const SizedBox(height: 16),
-          Text('To leave a lock early, hold "Hold to unlock" for 3 seconds.', style: text.bodySmall),
+          Text(l10n.leaveLockEarly, style: text.bodySmall),
         ],
       ),
     );

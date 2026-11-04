@@ -6,6 +6,8 @@ import 'package:flutter/services.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Picks how long an alarm rings, down to the second: quick choices,
 /// −/+ one second, or any minutes and seconds typed in.
 class RingLengthPicker extends StatelessWidget {
@@ -18,9 +20,9 @@ class RingLengthPicker extends StatelessWidget {
   static const _quick = [1, 2, 3, 5, 10, 30, 60, 120, 300];
 
   static String short(int s) => s < 60
-      ? '$s s'
+      ? l10n.secondsShort(s)
       : s % 60 == 0
-      ? '${s ~/ 60} min'
+      ? l10n.minutesShort(s ~/ 60)
       : '${s ~/ 60}:${(s % 60).toString().padLeft(2, '0')}';
 
   void _set(int s) => onChanged(s.clamp(1, maxSeconds));
@@ -34,21 +36,23 @@ class RingLengthPicker extends StatelessWidget {
         Widget field(TextEditingController c, String label) => Expanded(
           child: TextField(
             controller: c,
-            autofocus: label == 'Minutes',
+            autofocus: label == l10n.minutes,
             keyboardType: TextInputType.number,
             inputFormatters: [FilteringTextInputFormatter.digitsOnly],
             decoration: InputDecoration(labelText: label),
           ),
         );
         return AlertDialog(
-          title: const Text('Ring for'),
-          content: Row(children: [field(min, 'Minutes'), const SizedBox(width: 16), field(sec, 'Seconds')]),
+          title: Text(l10n.ringFor),
+          content: Row(
+            children: [field(min, l10n.minutes), const SizedBox(width: 16), field(sec, l10n.seconds)],
+          ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
             FilledButton(
               onPressed: () =>
                   Navigator.pop(context, (int.tryParse(min.text) ?? 0) * 60 + (int.tryParse(sec.text) ?? 0)),
-              child: const Text('OK'),
+              child: Text(l10n.ok),
             ),
           ],
         );
@@ -66,7 +70,7 @@ class RingLengthPicker extends StatelessWidget {
         Row(
           children: [
             HoldToRepeatButton(
-              tooltip: '1 second less',
+              tooltip: l10n.oneSecondLess,
               icon: Icons.remove,
               enabled: seconds > 1,
               onStep: (step) => _set(seconds - step),
@@ -81,7 +85,7 @@ class RingLengthPicker extends StatelessWidget {
               ),
             ),
             HoldToRepeatButton(
-              tooltip: '1 second more',
+              tooltip: l10n.oneSecondMore,
               icon: Icons.add,
               enabled: seconds < maxSeconds,
               onStep: (step) => _set(seconds + step),

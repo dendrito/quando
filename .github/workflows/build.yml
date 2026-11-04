@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # "Run workflow" on the Actions tab: builds everything, iPhone included.
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -29,9 +31,13 @@ jobs:
       - run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test
+      - name: Test the Jewish edition
+        run: flutter test --dart-define=QUANDO_EDITION=kodesh test/edition_test.dart test/quotes_test.dart
 
       - name: Build release APKs (one per phone type, much smaller)
-        run: flutter build apk --release --split-per-abi
+        run: |
+          flutter build apk --release --split-per-abi --flavor quando
+          flutter build apk --release --split-per-abi --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
 
       - uses: actions/upload-artifact@v4
         with:
@@ -39,16 +45,80 @@ jobs:
           path: build/app/outputs/flutter-apk/*-release.apk
           retention-days: 14
 
+      # The Play Store build. Signed with the upload key once it's saved in
+      # GitHub's secrets; until then it's only a check that the bundle builds.
+      - name: Build the Play Store bundle
+        run: |
+          if [ -n "$UPLOAD_KEYSTORE_BASE64" ]; then
+            echo "$UPLOAD_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+            export QUANDO_UPLOAD_KEYSTORE="$RUNNER_TEMP/upload.jks"
+            echo "Signing with the Play Store upload key"
+          else
+            echo "No upload key in secrets yet: bundle signed with the test key, not for the store"
+          fi
+          flutter build appbundle --release --flavor quando
+          flutter build appbundle --release --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
+        env:
+          UPLOAD_KEYSTORE_BASE64: ${{ secrets.QUANDO_UPLOAD_KEYSTORE_BASE64 }}
+          QUANDO_UPLOAD_STORE_PASSWORD: ${{ secrets.QUANDO_UPLOAD_STORE_PASSWORD }}
+          QUANDO_UPLOAD_KEY_ALIAS: ${{ secrets.QUANDO_UPLOAD_KEY_ALIAS }}
+          QUANDO_UPLOAD_KEY_PASSWORD: ${{ secrets.QUANDO_UPLOAD_KEY_PASSWORD }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quando-play-store-bundle
+          path: build/app/outputs/bundle/*Release/*.aab
+          retention-days: 14
+
       - name: Publish as the "latest" download
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          cp build/app/outputs/flutter-apk/app-arm64-v8a-release.apk quando.apk
-          cp build/app/outputs/flutter-apk/app-armeabi-v7a-release.apk quando-older-phones.apk
-          ls -lh quando*.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-quando-release.apk quando.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-quando-release.apk quando-older-phones.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-kodesh-release.apk matai.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-kodesh-release.apk matai-older-phones.apk
+          ls -lh quando*.apk matai*.apk
           gh release delete latest --yes --cleanup-tag || true
-          gh release create latest quando.apk quando-older-phones.apk \
+          gh release create latest quando.apk quando-older-phones.apk matai.apk matai-older-phones.apk \
             --prerelease \
             --title "Latest test build" \
-            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk."
+            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk. The Jewish edition: matai.apk (matai-older-phones.apk)."
         env:
           GH_TOKEN: ${{ github.token }}
+
+  # iPhone and iPad: proves the app builds. Unsigned until the Apple
+  # Developer account is set up, so it can't be installed yet.
+  # Mac minutes count ten times, so iPhone builds run on main and when asked
+  # (Actions → Build → Run workflow), not on every pull request push.
+  ios-build:
+    if: github.event_name != 'pull_request'
+    runs-on: macos-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        edition: [quando, kodesh]
+    name: ios-build (${{ matrix.edition }})
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.9
+          cache: true
+
+      - run: flutter pub get
+      # The Spotify kit for iOS isn't shipped with its Flutter package: fetch
+      # Spotify's framework next to it, as its own setup script does.
+      - name: Fetch Spotify's iOS framework
+        run: |
+          dir=$(python3 -c "import json,urllib.parse; c=json.load(open('.dart_tool/package_config.json')); print([urllib.parse.unquote(p['rootUri'][7:]) for p in c['packages'] if p['name']=='spotify_sdk_ios'][0])")
+          target="$dir/ios/spotify_sdk_ios/ios-sdk"
+          rm -rf "$target" && mkdir -p "$target"
+          git clone --depth 1 --branch v5.0.1 https://github.com/spotify/ios-sdk /tmp/spotify-ios-sdk
+          cp -R /tmp/spotify-ios-sdk/SpotifyiOS.xcframework "$target/"
+          ls "$target/SpotifyiOS.xcframework"
+      - name: Build for iPhone and iPad (unsigned)
+        run: |
+          tool/ios_edition.sh ${{ matrix.edition }}
+          flutter build ios --release --no-codesign --dart-define=QUANDO_EDITION=${{ matrix.edition }}

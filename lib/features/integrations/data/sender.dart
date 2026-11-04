@@ -5,6 +5,8 @@ import 'package:http/http.dart' as http;
 import '../../ringing/ring_payload.dart';
 import '../domain/integrations.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Sends alarm happenings to Pushover and webhooks. Failures are quiet:
 /// an integration must never get in the way of the alarm.
 class IntegrationSender {
@@ -28,12 +30,12 @@ class IntegrationSender {
   }
 
   Future<String?> testPushover(IntegrationSettings s) =>
-      _pushover(s, const RingPayload(title: 'Quando test', body: 'Pushover is connected', ringSeconds: 1));
+      _pushover(s, RingPayload(title: l10n.appTest, body: l10n.pushoverConnected, ringSeconds: 1));
 
   Future<String?> testWebhook(Webhook w) => _webhook(
     w,
     AlarmHappening.ring,
-    const RingPayload(title: 'Quando test', body: 'Webhook is connected', ringSeconds: 1),
+    RingPayload(title: l10n.appTest, body: l10n.webhookConnected, ringSeconds: 1),
     DateTime.now().toUtc(),
   );
 
@@ -43,9 +45,9 @@ class IntegrationSender {
       final r = await _client
           .post(pushoverUrl, body: pushoverFields(s, p))
           .timeout(const Duration(seconds: 15));
-      return r.statusCode == 200 ? null : 'Pushover said ${r.statusCode}: ${_short(r.body)}';
+      return r.statusCode == 200 ? null : l10n.pushoverSaid(r.statusCode, _short(r.body));
     } catch (e) {
-      return 'Could not reach Pushover ($e)';
+      return l10n.couldNotReachPushover('$e');
     }
   }
 
@@ -53,7 +55,7 @@ class IntegrationSender {
     'token': s.pushoverToken.trim(),
     'user': s.pushoverUser.trim(),
     'title': p.title,
-    'message': p.body.isEmpty ? 'Alarm' : p.body,
+    'message': p.body.isEmpty ? l10n.alarm : p.body,
     'priority': '${s.pushoverPriority}',
     if (s.pushoverPriority == 2) ...{'retry': '30', 'expire': '600'},
     if (s.pushoverSound != null) 'sound': s.pushoverSound!,
@@ -98,9 +100,9 @@ class IntegrationSender {
             body: jsonEncode(payloadJson(what, p, when)),
           )
           .timeout(const Duration(seconds: 15));
-      return r.statusCode >= 200 && r.statusCode < 300 ? null : 'It answered ${r.statusCode}';
+      return r.statusCode >= 200 && r.statusCode < 300 ? null : l10n.itAnswered(r.statusCode);
     } catch (e) {
-      return 'Could not reach it ($e)';
+      return l10n.couldNotReachIt('$e');
     }
   }
 

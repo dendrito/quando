@@ -6,7 +6,10 @@ import 'package:alarm/utils/alarm_set.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../integrations/domain/integrations.dart';
+import '../../ringing/data/music.dart';
 import '../../ringing/ring_payload.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Registers planned alarms with the phone and keeps them in step with the
 /// plan: alarms no longer planned are removed, new ones are added. Snoozes,
@@ -59,20 +62,19 @@ class AlarmRegistrar {
         // null = the phone's alarm sound; otherwise built-in or the user's own.
         assetAudioPath: p.sound,
         loopAudio: true,
-        vibrate: true,
-        androidFullScreenIntent: true,
+        // The gentle lead-up only plays sound: no buzzing, no screen.
+        vibrate: !p.gentle,
+        androidFullScreenIntent: !p.gentle,
         warningNotificationOnKill: true,
-        // Fade in gently, but a 2-second alarm must be loud from the start.
+        // Each alarm's own volume and fades, shrunk to fit a short ring.
         volumeSettings: p.isLock
             ? const VolumeSettings.fixed(volume: 0.15)
-            : p.ringSeconds >= 30
-            ? VolumeSettings.fade(fadeDuration: const Duration(seconds: 10))
-            : VolumeSettings.fixed(),
+            : (p.song == null ? p.loudness : p.loudness.backupForSong).toVolumeSettings(p.ringSeconds),
         notificationSettings: NotificationSettings(
           title: p.title,
           body: p.body,
           // A check must be answered on the ringing screen.
-          stopButton: p.isCheck || p.mathTask || p.isLock ? null : 'Stop',
+          stopButton: p.gentle ? l10n.stop : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
         ),
         payload: p.encode(),
       ),
@@ -125,14 +127,30 @@ class AlarmRegistrar {
     for (final settings in ringing.alarms) {
       if (_stopTimers.containsKey(settings.id)) continue;
       _tell(AlarmHappening.ring, settings);
-      final seconds = RingPayload.decode(settings.payload).ringSeconds;
+      final p = RingPayload.decode(settings.payload);
+      // The real alarm takes over from its gentle lead-up.
+      if (!p.gentle) {
+        for (final other in ringing.alarms) {
+          if (other.id != settings.id && RingPayload.decode(other.payload).gentle) {
+            unawaited(Alarm.stop(other.id));
+          }
+        }
+      }
+      if (p.song != null && !p.gentle) unawaited(_playSong(settings, p));
+      // Auto-snooze: untouched for its set time with snoozes left, so it
+      // snoozes instead of ringing on or stopping.
+      final autoSnooze = p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
+      final seconds = autoSnooze && p.autoSnoozeMinutes * 60 < p.ringSeconds
+          ? p.autoSnoozeMinutes * 60
+          : p.ringSeconds;
       _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {
         _stopTimers.remove(settings.id);
         if (await Alarm.isRinging(settings.id)) {
+          if (autoSnooze && await snooze(settings)) return;
           await Alarm.stop(settings.id);
           _tell(AlarmHappening.autoStopped, settings);
           // Slept through it? The wake-up check still comes.
-          await _scheduleCheck(settings);
+          if (!p.gentle) await _scheduleCheck(settings);
         }
       });
     }
@@ -143,6 +161,17 @@ class AlarmRegistrar {
       t.cancel();
       return true;
     });
+  }
+
+  /// The song is the alarm: once its app is playing it, Quando's own
+  /// backup sound stops. If it stays silent, the backup rings on as usual.
+  Future<void> _playSong(AlarmSettings settings, RingPayload p) async {
+    final ok = await Music.start(p.song!, playFor: Duration(seconds: p.songSeconds));
+    if (!ok || !await Alarm.isRinging(settings.id)) return;
+    _stopTimers.remove(settings.id)?.cancel();
+    await Alarm.stop(settings.id);
+    _tell(AlarmHappening.stopped, settings);
+    await _scheduleCheck(settings);
   }
 
   Future<void> dispose() async {

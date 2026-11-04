@@ -2,6 +2,8 @@ allprojects {
     repositories {
         google()
         mavenCentral()
+        // Spotify direct play needs a library that lives on JitPack.
+        maven { url = uri("https://jitpack.io") }
     }
 }
 

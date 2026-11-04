@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
@@ -8,7 +9,12 @@ import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
+import 'group_picker.dart';
 import 'ring_length_picker.dart';
+import '../../ringing/ui/alarm_extras.dart';
+import '../../../core/scheduler/scheduler.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
 class EditAlarmScreen extends ConsumerStatefulWidget {
@@ -70,18 +76,18 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           children: [
             ListTile(
               leading: const Icon(Icons.home_outlined),
-              title: Text('Your time (${cityOf(home)})'),
+              title: Text(l10n.yourTimeCity(cityOf(home))),
               onTap: () => Navigator.pop(context, 'home'),
             ),
             for (final z in ref.read(timeZonesProvider).clocks)
               ListTile(
                 leading: const Icon(Icons.public),
-                title: Text('${cityOf(z)} time'),
+                title: Text(l10n.cityTime(cityOf(z))),
                 onTap: () => Navigator.pop(context, z),
               ),
             ListTile(
               leading: const Icon(Icons.search),
-              title: const Text('Another city…'),
+              title: Text(l10n.anotherCity),
               onTap: () => Navigator.pop(context, 'pick'),
             ),
           ],
@@ -92,6 +98,32 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     if (choice == 'home') return setState(() => _alarm = _alarm.copyWith(homeZone: true));
     final z = choice == 'pick' ? await pickZone(context, home: home) : choice;
     if (z != null) setState(() => _alarm = _alarm.copyWith(zone: z));
+  }
+
+  /// Rings this alarm, exactly as set, in 5 seconds.
+  Future<void> _preview() async {
+    final a = _alarm.copyWith(label: _label.text.trim());
+    final at = DateTime.now().toUtc().add(const Duration(seconds: 5));
+    final payload = ref
+        .read(payloadForProvider)(
+          ScheduledAlarm(
+            id: 0,
+            at: at,
+            title: a.title,
+            body: a.repeatLabel,
+            ringDuration: Duration(seconds: a.ringSeconds ?? ref.read(alarmOptionsProvider).ringSeconds),
+            ruleId: 'user.${a.id}',
+            eventId: 'user.${a.id}',
+            offset: Duration.zero,
+            soundId: a.soundId,
+            style: a.style,
+          ),
+        )
+        .asPreview();
+    await ref.read(registrarProvider).set(stableId('preview|${at.millisecondsSinceEpoch}'), at, payload);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.ringingIn5)));
+    }
   }
 
   void _save() {
@@ -107,7 +139,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     final messenger = ScaffoldMessenger.of(context);
     Navigator.of(context).pop();
     messenger.showSnackBar(
-      SnackBar(content: Text(next == null ? 'Alarm saved.' : 'Alarm set for ${_until(next)} from now.')),
+      SnackBar(content: Text(next == null ? l10n.alarmSaved : l10n.alarmSetFor(_until(next)))),
     );
   }
 
@@ -115,7 +147,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     final d = at.difference(ref.read(clockProvider)());
     final h = d.inHours;
     final m = d.inMinutes % 60;
-    return h == 0 ? '$m min' : '$h h $m min';
+    return h == 0 ? l10n.minutesShort(m) : l10n.hoursMinutesShort(h, m);
   }
 
   @override
@@ -123,16 +155,32 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     final text = Theme.of(context).textTheme;
     final defaultRing = ref.watch(alarmOptionsProvider).ringSeconds;
     final ring = _alarm.ringSeconds ?? defaultRing;
-    const letters = ['M', 'T', 'W', 'T', 'F', 'S', 'S'];
+    final letters = [for (var d = 1; d <= 7; d++) weekdayNarrow(d)];
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(_isNew ? 'New alarm' : 'Edit alarm'),
+        title: Text(_isNew ? l10n.newAlarm : l10n.editAlarm),
         backgroundColor: Colors.transparent,
         actions: [
+          TextButton(onPressed: _preview, child: Text(l10n.previewCaps)),
+          TextButton(onPressed: _save, child: Text(l10n.saveCaps)),
           if (!_isNew)
             IconButton(
-              tooltip: 'Delete',
+              tooltip: l10n.duplicate,
+              icon: const Icon(Icons.copy),
+              onPressed: () {
+                // A copy of the alarm as it is on screen, opened for editing.
+                final copy = UserAlarm.fromJson({
+                  ..._alarm.toJson(),
+                  'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+                });
+                ref.read(userAlarmsProvider.notifier).save(copy);
+                context.pushReplacement('/alarm/${copy.id}');
+              },
+            ),
+          if (!_isNew)
+            IconButton(
+              tooltip: l10n.delete,
               icon: const Icon(Icons.delete_outline),
               onPressed: () {
                 ref.read(userAlarmsProvider.notifier).delete(_alarm.id);
@@ -159,14 +207,14 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               icon: const Icon(Icons.public, size: 18),
               label: Text(
                 _alarm.zone == null
-                    ? 'Your time (${cityOf(ref.watch(homeZoneProvider))})'
-                    : '${cityOf(_alarm.zone!)} time · ${hhmm(_ringsLocally())} for you',
+                    ? l10n.yourTimeCity(cityOf(ref.watch(homeZoneProvider)))
+                    : l10n.cityTimeForYou(cityOf(_alarm.zone!), hhmm(_ringsLocally())),
               ),
               onPressed: _pickZone,
             ),
           ),
           const SizedBox(height: 8),
-          Text('REPEAT · ${_alarm.repeatLabel.toUpperCase()}', style: text.labelSmall),
+          Text(l10n.repeatHeading(_alarm.repeatLabel.toUpperCase()), style: text.labelSmall),
           const SizedBox(height: 8),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -187,17 +235,41 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           TextField(
             controller: _label,
             textCapitalization: TextCapitalization.sentences,
-            decoration: const InputDecoration(labelText: 'Label (read aloud if spoken alarms are on)'),
+            decoration: InputDecoration(labelText: l10n.labelField),
           ),
-          const SizedBox(height: 16),
+          const SizedBox(height: 12),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.folder_outlined),
+            title: Text(l10n.group),
+            subtitle: Text(_alarm.group.isEmpty ? l10n.noGroup : _alarm.group),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () async {
+              final g = await pickGroup(
+                context,
+                groups: ref.read(userAlarmsProvider.notifier).groups,
+                current: _alarm.group,
+              );
+              if (g != null) setState(() => _alarm = _alarm.copyWith(group: g));
+            },
+          ),
+          const SizedBox(height: 4),
           SoundPickerTile(
+            large: true,
             value: _alarm.soundId,
             onChanged: (id) => setState(
               () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
             ),
           ),
+          AlarmExtras(
+            value: _alarm.style,
+            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
+          ),
           const SizedBox(height: 16),
-          Text('RINGS FOR ${formatSpan(Duration(seconds: ring)).toUpperCase()}', style: text.labelSmall),
+          Text(
+            l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()),
+            style: text.labelSmall,
+          ),
           const SizedBox(height: 8),
           RingLengthPicker(
             seconds: ring,
@@ -208,14 +280,14 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               alignment: Alignment.centerLeft,
               child: TextButton(
                 onPressed: () => setState(() => _alarm = _alarm.copyWith(clearRingSeconds: true)),
-                child: Text('Use the default (${formatSpan(Duration(seconds: defaultRing))})'),
+                child: Text(l10n.useDefault(formatSpan(Duration(seconds: defaultRing)))),
               ),
             ),
           const SizedBox(height: 24),
           FilledButton(
             style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
             onPressed: _save,
-            child: const Text('Save'),
+            child: Text(l10n.save),
           ),
         ],
       ),
@@ -236,13 +308,12 @@ class _DayChip extends StatelessWidget {
       customBorder: const CircleBorder(),
       onTap: onTap,
       child: Container(
-        width: 40,
-        height: 40,
+        width: 44,
+        height: 44,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: selected ? QuandoColors.amber : Colors.transparent,
-          border: Border.all(color: selected ? QuandoColors.amber : QuandoColors.line),
+          color: selected ? QuandoColors.amber : QuandoColors.surface,
         ),
         child: Text(
           letter,

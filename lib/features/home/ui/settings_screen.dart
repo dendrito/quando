@@ -12,9 +12,14 @@ import '../../../core/util/local_time.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
+import '../../ringing/ui/alarm_extras.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
+import '../../quotes/domain/quote.dart';
+import '../../quotes/ui/quote_sources_sheet.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -29,34 +34,74 @@ class SettingsScreen extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Settings'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.settings), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.verified_outlined, color: QuandoColors.amber),
+            title: Text(l10n.readyToRing),
+            subtitle: Text(l10n.readyToRingHint),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/ready'),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
-            title: const Text('Connections'),
+            title: Text(l10n.connections),
             subtitle: const Text('Pushover, Zapier, IFTTT'),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.push('/connections'),
           ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.translate, color: QuandoColors.amber),
+            title: Text(l10n.language),
+            subtitle: Text(
+              ref.watch(languageProvider) == null
+                  ? l10n.phoneLanguage
+                  : languageNames[ref.watch(languageProvider)] ?? '',
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickLanguage(context, ref),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
+            title: Text(l10n.quotesTitle),
+            subtitle: Text(
+              ref.watch(quoteSourcesProvider).isEmpty
+                  ? l10n.quotesOff
+                  : [
+                      for (final s in QuoteSource.values)
+                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
+                    ].join(', '),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => showModalBottomSheet<void>(
+              context: context,
+              showDragHandle: true,
+              isScrollControlled: true,
+              builder: (context) => const QuoteSourcesSheet(),
+            ),
+          ),
           const SizedBox(height: 16),
-          Text('TIME ZONE', style: text.labelSmall),
+          Text(l10n.timeZoneHeading, style: text.labelSmall),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public, color: QuandoColors.amber),
-            title: Text(zones.fixed == null ? 'Follow the phone' : cityOf(zones.fixed!)),
+            title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
             subtitle: Text(
-              zones.fixed == null
-                  ? 'Now ${cityOf(ref.watch(homeZoneProvider))}. Changes by itself when you travel.'
-                  : 'Fixed. Alarms keep this time even when you travel.',
+              zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _pickHomeZone(context, ref),
           ),
           const SizedBox(height: 16),
-          Text('SHABBAT CITY', style: text.labelSmall),
+          Text(l10n.shabbatCityHeading, style: text.labelSmall),
           DropdownButton<String>(
             isExpanded: true,
             value: place.name,
@@ -66,15 +111,12 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('In Israel (one festival day)'),
+            title: Text(l10n.inIsraelOneDay),
             value: place.inIsrael,
             onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
           ),
           const SizedBox(height: 16),
-          Text(
-            'CANDLE LIGHTING: ${place.candleLightingMinutes} MINUTES BEFORE SUNSET',
-            style: text.labelSmall,
-          ),
+          Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
           Slider(
             min: 10,
             max: 60,
@@ -84,27 +126,27 @@ class SettingsScreen extends ConsumerWidget {
             onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
           ),
           const SizedBox(height: 16),
-          Text('END OF SHABBAT AND FESTIVALS', style: text.labelSmall),
+          Text(l10n.endOfShabbatHeading, style: text.labelSmall),
           RadioGroup<HavdalahOpinion>(
             groupValue: havdalah,
             onChanged: (v) => ref.read(havdalahProvider.notifier).set(v!),
-            child: const Column(
+            child: Column(
               children: [
                 RadioListTile(
                   contentPadding: EdgeInsets.zero,
                   value: HavdalahOpinion.geonim,
-                  title: Text('Nightfall (Geonim, 8.5°)'),
+                  title: Text(l10n.nightfallGeonim),
                 ),
                 RadioListTile(
                   contentPadding: EdgeInsets.zero,
                   value: HavdalahOpinion.rabbeinuTam,
-                  title: Text('72 minutes after sunset (Rabbeinu Tam)'),
+                  title: Text(l10n.rabbeinuTam),
                 ),
               ],
             ),
           ),
           const SizedBox(height: 24),
-          Text('WHEN AN ALARM RINGS', style: text.labelSmall),
+          Text(l10n.whenAlarmRingsHeading, style: text.labelSmall),
           SoundPickerTile(
             value: o.soundId,
             allowDefault: false,
@@ -116,10 +158,10 @@ class SettingsScreen extends ConsumerWidget {
             child: TextButton.icon(
               onPressed: () => context.push('/sounds'),
               icon: const Icon(Icons.mic_none),
-              label: const Text('Record or add sounds'),
+              label: Text(l10n.recordOrAddSounds),
             ),
           ),
-          const Text('Rings for this long, then stops by itself'),
+          Text(l10n.ringsForThisLong),
           const SizedBox(height: 8),
           RingLengthPicker(
             seconds: o.ringSeconds,
@@ -128,12 +170,26 @@ class SettingsScreen extends ConsumerWidget {
           const SizedBox(height: 8),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Say it out loud'),
-            subtitle: const Text('Reads what the alarm is for, e.g. "Candle lighting, 15 minutes before"'),
+            title: Text(l10n.sameFades),
+            subtitle: Text(o.fadesForAll ? l10n.sameFadesOn : l10n.sameFadesOff),
+            value: o.fadesForAll,
+            onChanged: (v) => setO((x) => x.copyWith(fadesForAll: v)),
+          ),
+          if (o.fadesForAll)
+            LoudnessEditor(
+              fadesOnly: true,
+              value: o.loudness,
+              onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
+            ),
+          const SizedBox(height: 8),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.sayItOutLoud),
+            subtitle: Text(l10n.sayItOutLoudHint),
             value: o.spoken,
             onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
           ),
-          Text(o.maxSnoozes == 0 ? 'No snooze' : 'Snooze up to ${o.maxSnoozes}× of ${o.snoozeMinutes} min'),
+          Text(o.maxSnoozes == 0 ? l10n.noSnooze : l10n.snoozeUpTo(o.maxSnoozes, o.snoozeMinutes)),
           Slider(
             min: 0,
             max: 5,
@@ -144,37 +200,59 @@ class SettingsScreen extends ConsumerWidget {
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Wake-up check'),
-            subtitle: const Text('After you stop it, rings again in 3 minutes unless you tap "I\'m up"'),
+            title: Text(l10n.wakeUpCheck),
+            subtitle: Text(l10n.wakeUpCheckHint),
             value: o.wakeCheck,
             onChanged: (v) => setO((x) => x.copyWith(wakeCheck: v)),
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Solve a sum to stop'),
-            subtitle: const Text('Proves you\'re awake'),
+            title: Text(l10n.solveSum),
+            subtitle: Text(l10n.provesAwake),
             value: o.mathTask,
             onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
           ),
-          Text(
-            'On Shabbat and festivals none of these apply: alarms stop by themselves and never ask '
-            'you to touch the phone.',
-            style: text.bodySmall,
-          ),
+          Text(l10n.shabbatNoTasks, style: text.bodySmall),
           const SizedBox(height: 16),
-          OutlinedButton(
-            onPressed: () => _testAlarm(context, ref, o),
-            child: const Text('Ring a test alarm in 1 minute'),
-          ),
+          OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
           const SizedBox(height: 24),
-          Text(
-            'Times are calculated on your phone. For borderline cases, check with your rabbi or '
-            'community calendar.',
-            style: text.bodySmall,
-          ),
+          Text(l10n.timesDisclaimer, style: text.bodySmall),
         ],
       ),
     );
+  }
+
+  Future<void> _pickLanguage(BuildContext context, WidgetRef ref) async {
+    final current = ref.read(languageProvider);
+    final choice = await showModalBottomSheet<String>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        builder: (context, scroll) => ListView(
+          controller: scroll,
+          children: [
+            ListTile(
+              leading: const Icon(Icons.phone_android),
+              title: Text(l10n.phoneLanguage),
+              selected: current == null,
+              onTap: () => Navigator.pop(context, ''),
+            ),
+            for (final MapEntry(key: tag, value: name) in languageNames.entries)
+              ListTile(
+                leading: const SizedBox(width: 24),
+                title: Text(name),
+                selected: current == tag,
+                onTap: () => Navigator.pop(context, tag),
+              ),
+          ],
+        ),
+      ),
+    );
+    if (choice == null) return;
+    ref.read(languageProvider.notifier).set(choice.isEmpty ? null : choice);
   }
 
   Future<void> _pickHomeZone(BuildContext context, WidgetRef ref) async {
@@ -187,13 +265,13 @@ class SettingsScreen extends ConsumerWidget {
           children: [
             ListTile(
               leading: const Icon(Icons.phone_android),
-              title: const Text('Follow the phone'),
-              subtitle: const Text('Recommended'),
+              title: Text(l10n.followPhone),
+              subtitle: Text(l10n.recommended),
               onTap: () => Navigator.pop(context, 'phone'),
             ),
             ListTile(
               leading: const Icon(Icons.search),
-              title: const Text('Choose a city'),
+              title: Text(l10n.chooseCity),
               onTap: () => Navigator.pop(context, 'pick'),
             ),
           ],
@@ -213,14 +291,14 @@ class SettingsScreen extends ConsumerWidget {
         !kIsWeb &&
         (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
     if (!supported) {
-      messenger.showSnackBar(const SnackBar(content: Text('Test alarms only work on a phone.')));
+      messenger.showSnackBar(SnackBar(content: Text(l10n.testOnlyOnPhone)));
       return;
     }
     await ensureAlarmPermissions();
     final at = DateTime.now().add(const Duration(minutes: 1));
     final p = RingPayload.forAlarm(
-      title: 'Test alarm',
-      body: 'This is how your alarms will sound',
+      title: l10n.testAlarm,
+      body: l10n.testAlarmBody,
       options: o,
       shabbatSafe: false,
     );
@@ -238,9 +316,10 @@ class SettingsScreen extends ConsumerWidget {
             snoozeMinutes: 1,
             wakeCheck: p.wakeCheck,
             mathTask: p.mathTask,
+            loudness: p.loudness,
             transient: true,
           ),
         );
-    messenger.showSnackBar(const SnackBar(content: Text('Test alarm in 1 minute. You can lock the phone.')));
+    messenger.showSnackBar(SnackBar(content: Text(l10n.testAlarmIn1Set)));
   }
 }

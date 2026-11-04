@@ -7,9 +7,18 @@ import 'package:record/record.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../data/sound_files.dart';
+import '../data/spotify_library.dart';
+import '../data/youtube_library.dart';
+import '../../../core/util/platform.dart';
+import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
+import 'radio_screen.dart';
+import 'music_picker_screen.dart';
 import 'sound_player.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Your sounds: record one, add a file, listen, rename, delete.
 class SoundsScreen extends ConsumerStatefulWidget {
@@ -36,7 +45,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
   Future<void> _startRecording() async {
     final messenger = ScaffoldMessenger.of(context);
     if (!await _recorder.hasPermission()) {
-      messenger.showSnackBar(const SnackBar(content: Text('Quando needs the microphone to record.')));
+      messenger.showSnackBar(SnackBar(content: Text(l10n.needsMic)));
       return;
     }
     await SoundPreview.instance.stop();
@@ -65,7 +74,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final n = ref.read(soundsProvider).where((s) => !s.builtIn).length + 1;
     final sound = AlarmSound(
       id: 'mine.${DateTime.now().millisecondsSinceEpoch}',
-      name: 'Recording $n',
+      name: l10n.recordingN(n),
       path: rel,
     );
     ref.read(soundsProvider.notifier).add(sound);
@@ -85,8 +94,215 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           .read(soundsProvider.notifier)
           .add(AlarmSound(id: 'mine.${DateTime.now().millisecondsSinceEpoch}', name: name, path: rel));
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text('Could not add that file: $e')));
+      messenger.showSnackBar(SnackBar(content: Text(l10n.couldNotAddFile('$e'))));
     }
+  }
+
+  /// A song or playlist from Spotify, YouTube Music, Apple Music…: played
+  /// in its own app as the alarm, or opened when you stop it. [editing] is
+  /// a song link already saved.
+  Future<void> _addLink({AlarmSound? editing}) async {
+    final url = TextEditingController(text: editing?.link);
+    final name = TextEditingController(text: editing?.name);
+    var ringWith = AlarmSound.builtIns.firstWhere(
+      (b) => b.path == editing?.path,
+      orElse: () => AlarmSound.builtIns[1],
+    );
+    // Only Android can start and pause other apps' music.
+    var plays = isAndroid && (editing?.plays ?? true);
+    var playFor = editing?.playSeconds ?? 0;
+    final ok = await showDialog<bool>(
+      context: context,
+      builder: (context) => StatefulBuilder(
+        builder: (context, setLocal) {
+          final text = Theme.of(context).textTheme;
+          return AlertDialog(
+            title: Text(editing == null ? l10n.addSongLink : l10n.songLink),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (editing == null) ...[
+                    Text(l10n.songLinkHowTo),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: url,
+                      autofocus: true,
+                      keyboardType: TextInputType.url,
+                      decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                  TextField(
+                    controller: name,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: InputDecoration(hintText: l10n.songNameHint),
+                  ),
+                  const SizedBox(height: 16),
+                  if (isAndroid) ...[
+                    Text(l10n.whenAlarmGoesOffHeading, style: text.labelSmall),
+                    const SizedBox(height: 8),
+                    SegmentedButton<bool>(
+                      showSelectedIcon: false,
+                      segments: [
+                        ButtonSegment(value: true, label: Text(l10n.playTheSong)),
+                        ButtonSegment(value: false, label: Text(l10n.ringThenOpen)),
+                      ],
+                      selected: {plays},
+                      onSelectionChanged: (v) => setLocal(() => plays = v.first),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(plays ? l10n.playTheSongHint : l10n.ringThenOpenHint, style: text.bodySmall),
+                    const SizedBox(height: 16),
+                    Text(l10n.playForHeading, style: text.labelSmall),
+                    DropdownButton<int>(
+                      value: playFor,
+                      isExpanded: true,
+                      items: [
+                        for (final s in AlarmSound.playLengths)
+                          DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
+                      ],
+                      onChanged: (v) => setLocal(() => playFor = v ?? playFor),
+                    ),
+                    Text(l10n.pausesAfter, style: text.bodySmall),
+                  ],
+                  const SizedBox(height: 16),
+                  Text(l10n.backupSoundHeading, style: text.labelSmall),
+                  DropdownButton<AlarmSound>(
+                    value: ringWith,
+                    isExpanded: true,
+                    items: [
+                      for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
+                    ],
+                    onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
+                  ),
+                ],
+              ),
+            ),
+            actions: [
+              TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(editing == null ? l10n.add : l10n.save),
+              ),
+            ],
+          );
+        },
+      ),
+    );
+    final link = url.text.trim();
+    final label = name.text.trim();
+    url.dispose();
+    name.dispose();
+    if (ok != true || !mounted) return;
+    final sounds = ref.read(soundsProvider.notifier);
+    if (editing != null) {
+      sounds.replace(
+        editing.copyWith(
+          name: label.isNotEmpty ? label : null,
+          path: ringWith.path,
+          plays: plays,
+          playSeconds: playFor,
+        ),
+      );
+      return;
+    }
+    final uri = Uri.tryParse(link);
+    if (uri == null || !(uri.scheme == 'https' || uri.scheme == 'http' || uri.scheme == 'spotify')) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.notALink)));
+      return;
+    }
+    final sound = AlarmSound(
+      id: 'link.${DateTime.now().millisecondsSinceEpoch}',
+      name: '',
+      path: ringWith.path,
+      link: link,
+      plays: plays,
+      playSeconds: playFor,
+    );
+    sounds.add(sound.rename(label.isNotEmpty ? label : l10n.songOn(sound.linkApp ?? l10n.theWeb)));
+  }
+
+  /// YouTube and YouTube Music: sign in with Google, then pick from your
+  /// playlists and liked videos.
+  Widget _youTubeTile(TextTheme text) {
+    final on = YouTubeAccount.connected;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.smart_display_outlined, color: QuandoColors.amber),
+      title: Text(on ? l10n.pickFromYouTube : l10n.youTubeAndMusic),
+      subtitle: Text(
+        YouTubeAccount.available ? (on ? l10n.youTubeOn : l10n.youTubeSignIn) : l10n.addSongLinkInstead,
+        style: text.bodySmall,
+      ),
+      trailing: on ? const Icon(Icons.chevron_right) : null,
+      onLongPress: !on
+          ? null
+          : () async {
+              await YouTubeAccount.signOut();
+              YouTubeAccount.connected = false;
+              await ref.read(prefsProvider).setBool(YouTubeAccount.prefKey, false);
+              if (mounted) setState(() {});
+            },
+      onTap: !YouTubeAccount.available
+          ? null
+          : () async {
+              final prefs = ref.read(prefsProvider);
+              final token = await YouTubeAccount.token();
+              YouTubeAccount.connected = token != null;
+              await prefs.setBool(YouTubeAccount.prefKey, YouTubeAccount.connected);
+              if (!mounted) return;
+              setState(() {});
+              if (token == null) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.googleSignInFailed)));
+                return;
+              }
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => MusicPickerScreen(
+                    title: l10n.myYouTube,
+                    load: () async {
+                      final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
+                      return (await lib.playlists(), await lib.liked());
+                    },
+                  ),
+                ),
+              );
+            },
+    );
+  }
+
+  /// Spotify direct play: sign in once and Spotify plays the exact song.
+  Widget _spotifyTile(TextTheme text) {
+    final on = SpotifyPlay.connected;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      title: Text(on ? l10n.spotifyDirectOn : l10n.spotifyDirect),
+      subtitle: Text(
+        SpotifyPlay.available
+            ? (on ? l10n.spotifyDirectOnHint : l10n.spotifyDirectHint)
+            : l10n.spotifyComingSoon,
+        style: text.bodySmall,
+      ),
+      onTap: !SpotifyPlay.available
+          ? null
+          : () async {
+              final prefs = ref.read(prefsProvider);
+              if (on) {
+                await SpotifyPlay.signOut();
+                SpotifyPlay.connected = false;
+              } else {
+                SpotifyPlay.connected = await SpotifyPlay.signIn();
+                if (!SpotifyPlay.connected && mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.spotifyFailed)));
+                }
+              }
+              await prefs.setBool(SpotifyPlay.prefKey, SpotifyPlay.connected);
+              if (mounted) setState(() {});
+            },
+    );
   }
 
   Future<void> _rename(AlarmSound s) async {
@@ -94,11 +310,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final name = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Name this sound'),
+        title: Text(l10n.nameThisSound),
         content: TextField(controller: c, autofocus: true, textCapitalization: TextCapitalization.sentences),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: const Text('Save')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: Text(l10n.save)),
         ],
       ),
     );
@@ -124,10 +340,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final secs = _elapsed.inSeconds;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Sounds'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.sounds), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
+          FeatureHeader(icon: Icons.music_note, sentence: l10n.soundsSentence),
           Row(
             children: [
               Expanded(
@@ -139,7 +356,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   onPressed: recording ? _stopRecording : _startRecording,
                   icon: Icon(recording ? Icons.stop : Icons.mic),
                   label: Text(
-                    recording ? 'Stop · ${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}' : 'Record',
+                    recording
+                        ? l10n.stopTimer('${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}')
+                        : l10n.record,
                   ),
                 ),
               ),
@@ -149,24 +368,75 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                   onPressed: recording ? null : _pickFile,
                   icon: const Icon(Icons.library_music_outlined),
-                  label: const Text('Add a file'),
+                  label: Text(l10n.addAFile),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
-          Text(
-            'Record your voice, a song or anything else, up to 5 minutes. Or add an MP3, M4A or WAV from '
-            'your phone. Spotify and SoundCloud come later.',
-            style: text.bodySmall,
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            onPressed: recording ? null : _addLink,
+            icon: const Icon(Icons.link),
+            label: Text(l10n.addSongLinkLong),
           ),
+          const SizedBox(height: 20),
+          Text(l10n.musicAppsHeading, style: text.labelSmall),
+          _spotifyTile(text),
+          if (SpotifyPlay.connected)
+            ListTile(
+              contentPadding: const EdgeInsets.only(left: 40),
+              leading: const Icon(Icons.library_music, color: QuandoColors.amber),
+              title: Text(l10n.pickFromSpotify),
+              subtitle: Text(l10n.yourPlaylistsAndLiked, style: text.bodySmall),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => MusicPickerScreen(
+                    title: l10n.mySpotify,
+                    load: () async {
+                      final token = await SpotifyPlay.libraryToken();
+                      if (token == null) throw Exception(l10n.spotifySignInFailed);
+                      final lib = SpotifyLibrary(token);
+                      return (await lib.playlists(), await lib.likedSongs());
+                    },
+                  ),
+                ),
+              ),
+            ),
+          _youTubeTile(text),
+          for (final (app, note) in [
+            ('Apple Music', l10n.appleMusicNote),
+            ('Amazon Music', l10n.noSignInNote('Amazon')),
+            ('SoundCloud', l10n.noSignInNote('SoundCloud')),
+          ])
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.music_note_outlined, color: QuandoColors.faint),
+              title: Text(app),
+              subtitle: Text(note, style: text.bodySmall),
+              onTap: recording ? null : _addLink,
+            ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            onPressed: recording
+                ? null
+                : () =>
+                      Navigator.of(context)
+                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
+            icon: const Icon(Icons.radio),
+            label: Text(l10n.wakeToRadio),
+          ),
+          const SizedBox(height: 8),
+          Text(l10n.soundsExplain, style: text.bodySmall),
           const SizedBox(height: 24),
-          Text('YOUR SOUNDS', style: text.labelSmall),
+          Text(l10n.yourSoundsHeading, style: text.labelSmall),
           for (final s in sounds)
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: IconButton(
-                tooltip: 'Listen',
+                tooltip: l10n.listen,
                 icon: Icon(
                   SoundPreview.instance.playingId == s.id
                       ? Icons.stop_circle_outlined
@@ -177,18 +447,24 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               ),
               title: Text(s.name),
               subtitle: Text(
-                [if (s.builtIn) 'Built in', if (s.id == defaultId) 'Default'].join(' · '),
+                [
+                  if (s.builtIn) l10n.builtIn,
+                  if (s.isLink) s.plays ? l10n.playsIn(s.linkApp ?? '') : l10n.opensIn(s.linkApp ?? ''),
+                  if (s.isLink && s.playSeconds > 0) l10n.forSpan(AlarmSound.playLength(s.playSeconds)),
+                  if (s.isRadio) l10n.onlineRadio,
+                  if (s.id == defaultId) l10n.defaultLabel,
+                ].join(' · '),
                 style: text.bodySmall,
               ),
-              onTap: s.builtIn ? null : () => _rename(s),
+              onTap: s.builtIn ? null : () => s.isLink ? _addLink(editing: s) : _rename(s),
               trailing: s.builtIn
                   ? null
                   : IconButton(
-                      tooltip: 'Delete',
+                      tooltip: l10n.delete,
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () {
                         ref.read(soundsProvider.notifier).delete(s.id);
-                        SoundFiles.delete(s.path);
+                        if (!s.isLink && !s.isRadio) SoundFiles.delete(s.path);
                       },
                     ),
             ),

@@ -1,0 +1,36 @@
+Quando? is an alarm clock that knows when things actually happen. Set alarms around your meetings, sunrise and sunset, and the days you rest, then wake up the way you like.
+
+Time well kept.
+
+ALARMS AROUND YOUR DAY
+• Normal alarms with repeat days, labels and groups, plus duplicate, turn off and undo.
+• Calendar alarms: ring before, at or after any event in your phone's calendars, Google Calendar included. Search events by words, with AND, OR and NOT.
+• Sunrise and sunset alarms for the city you choose.
+• Several time zones and world clocks.
+
+REST DAYS AND HOLIDAYS
+• Lock mode: lock the phone down to the clock for a focused night, a day off or any calendar event.
+• Hands-free alarms that ring for a set time and stop by themselves, with nothing to tap.
+• Built-in Shabbat and Jewish holiday times for your city (Israel or diaspora), with more traditions to come.
+• A reminder to charge your phone before your day off.
+
+WAKE UP YOUR WAY
+• Gentle nature sounds before the alarm: city, birds, waves, rain, a stream, wind, fire and night.
+• Record your own sound or pick any audio file.
+• Online radio from thousands of stations, by genre and country.
+• Wake up to a song in Spotify or YouTube Music, with a backup sound if it doesn't start.
+• Fade in and fade out for each alarm, or the same fades for every alarm.
+• Choose exactly how long each alarm rings, to the second.
+
+GET UP FOR REAL
+• Snooze limits and spoken alarms.
+• Stop by solving a sum, shaking the phone or scanning a code.
+• A wake-up check a few minutes later.
+• Snooze or stop with the volume buttons.
+
+CONNECTED
+• Send alarms to Pushover, Zapier, IFTTT or any webhook.
+• "Ready to ring" checks your phone's settings so alarms always go off, with tips for your phone's brand.
+
+PRIVATE BY DESIGN
+No ads, no tracking, no account needed. Your alarms, sounds and calendar stay on your phone.

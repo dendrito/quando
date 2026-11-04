@@ -1,4 +1,6 @@
 import '../../events/domain/event.dart';
+import '../../events/domain/event_query.dart';
+import '../../ringing/ring_style.dart';
 
 enum Direction { before, after }
 
@@ -37,6 +39,7 @@ class AlarmRule {
     this.sources,
     this.keyword,
     this.soundId,
+    this.style = RingStyle.none,
   });
 
   final String id;
@@ -73,10 +76,21 @@ class AlarmRule {
   /// The sound to ring with. null = the default sound.
   final String? soundId;
 
+  /// Volume, fades, tasks and more for this rule's alarms.
+  final RingStyle style;
+
+  /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
+  /// [EventQuery]). [sources] only narrows calendar events, so a rule can
+  /// also catch Shabbat, festival and sun times.
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
-      (sources == null || sources!.contains(e.source)) &&
-      (keyword == null || keyword!.isEmpty || e.title.toLowerCase().contains(keyword!.toLowerCase()));
+      (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
+      (keyword == null || keyword!.isEmpty || _search(keyword!, e));
+
+  static bool _search(String keyword, AnchorEvent e) {
+    final q = EventQuery.parse(keyword);
+    return q.matches(e.title) || (e.alias != null && q.matches(e.alias!));
+  }
 
   /// Every offset from the event, negative = before, duplicates removed,
   /// sorted earliest first.
@@ -95,19 +109,57 @@ class AlarmRule {
   Duration get maxBefore => offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
   Duration get maxAfter => offsets().fold(Duration.zero, (m, d) => d > m ? d : m);
 
-  AlarmRule copyWith({bool? enabled, Duration? ringDuration}) => AlarmRule(
+  AlarmRule copyWith({
+    bool? enabled,
+    Duration? ringDuration,
+    List<Duration>? before,
+    List<Duration>? after,
+    List<OffsetSeries>? series,
+    bool? atEvent,
+    String? soundId,
+    bool defaultSound = false,
+    RingStyle? style,
+  }) => AlarmRule(
     id: id,
     name: name,
     appliesTo: appliesTo,
-    before: before,
-    after: after,
-    series: series,
-    atEvent: atEvent,
+    before: before ?? this.before,
+    after: after ?? this.after,
+    series: series ?? this.series,
+    atEvent: atEvent ?? this.atEvent,
     ringDuration: ringDuration ?? this.ringDuration,
     enabled: enabled ?? this.enabled,
     label: label,
     sources: sources,
     keyword: keyword,
-    soundId: soundId,
+    soundId: defaultSound ? null : (soundId ?? this.soundId),
+    style: style ?? this.style,
   );
+
+  /// The same rule ringing at exactly [offsets] (negative = before, zero =
+  /// at the event), with any series spelled out.
+  AlarmRule withOffsets(Iterable<Duration> offsets) {
+    final all = offsets.toSet();
+    return copyWith(
+      before: [for (final d in all.where((d) => d.isNegative).toList()..sort()) -d],
+      after: [for (final d in all.where((d) => d > Duration.zero).toList()..sort()) d],
+      series: const [],
+      atEvent: all.contains(Duration.zero),
+    );
+  }
+
+  /// What a user changed on a preset, to keep across restarts.
+  Map<String, dynamic> customJson() => {
+    'offsets': [for (final d in offsets()) d.inMinutes],
+    'soundId': soundId,
+    'style': style.toJson(),
+  };
+
+  AlarmRule withCustom(Map<String, dynamic> j) {
+    final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
+    final r = mins == null ? this : withOffsets(mins);
+    final sound = j['soundId'] as String?;
+    final styled = r.copyWith(style: RingStyle.fromJson(j['style']));
+    return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
+  }
 }
