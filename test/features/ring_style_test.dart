@@ -115,11 +115,14 @@ void main() {
       expect(gentleBefore(a, DateTime.utc(2026, 11, 2, 6, 55)), isNull);
 
       const base = RingPayload(title: 'Wake', body: 'Weekdays', ringSeconds: 300, maxSnoozes: 2);
-      final p = base.withStyle(style).gentle(10);
-      expect(p.loudness.volume, 14);
+      final p = base.withStyle(style).gentleLeadUp(10, 'assets/sounds/gentle_waves.ogg');
+      expect(p.gentle, isTrue);
+      expect(p.sound, 'assets/sounds/gentle_waves.ogg');
+      expect(p.loudness.volume, 24); // 60% of the alarm's 40%
+      expect(p.loudness.fadeInSeconds, 510); // rises over most of the 10 minutes
+      expect(p.ringSeconds, 585); // ends just before the real alarm
       expect(p.hasTask, isFalse);
       expect(p.canSnooze, isFalse);
-      expect(p.ringSeconds, 60);
       expect(p.link, isNull);
     });
   });
@@ -129,5 +132,39 @@ void main() {
       const Loudness(volume: 100, fadeInSeconds: 300, fadeOutSeconds: 300).toVolumeSettings(5),
       isA<VolumeSettings>(),
     );
+  });
+
+  test('snooze plan: length, limit, shorter each time, by itself, a task', () {
+    const style = RingStyle(
+      snooze: SnoozePlan(minutes: 10, times: 3, shortenBy: 3, autoSnooze: true),
+      snoozeTask: StopTask.sum,
+    );
+    expect(RingStyle.fromJson(style.toJson()), style);
+    const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60, maxSnoozes: 2);
+    var p = RingPayload.decode(base.withStyle(style).encode());
+    expect(p.maxSnoozes, 3);
+    expect(p.autoSnooze, isTrue);
+    expect(p.snoozeTask, StopTask.sum);
+    final lengths = <int>[];
+    while (p.canSnooze) {
+      lengths.add(p.snoozeMinutes);
+      p = p.snoozed();
+    }
+    expect(lengths, [10, 7, 4]);
+    expect(const SnoozePlan(minutes: 3, shortenBy: 5).lengthOf(2), 1);
+    expect(
+      const SnoozePlan(minutes: 10, times: 3, shortenBy: 2, autoSnooze: true).summary,
+      '10 min, up to 3×, 2 min shorter each time, snoozes by itself',
+    );
+
+    final shabbat = const RingPayload(
+      title: 'x',
+      body: 'y',
+      ringSeconds: 60,
+      shabbatSafe: true,
+    ).withStyle(style);
+    expect(shabbat.canSnooze, isFalse);
+    expect(shabbat.autoSnooze, isFalse);
+    expect(shabbat.snoozeTask, StopTask.none);
   });
 }

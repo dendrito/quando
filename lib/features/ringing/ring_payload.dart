@@ -27,6 +27,10 @@ class RingPayload {
     this.loudness = Loudness.standard,
     this.snoozeBy = const {},
     this.stopBy = const {},
+    this.shortenBy = 0,
+    this.autoSnooze = false,
+    this.snoozeTask = StopTask.none,
+    this.gentle = false,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -88,6 +92,18 @@ class RingPayload {
   final Set<StopWay> snoozeBy;
   final Set<StopWay> stopBy;
 
+  /// Each extra snooze is this many minutes shorter (never under 1).
+  final int shortenBy;
+
+  /// When it rings out, snooze instead of stopping, while snoozes are left.
+  final bool autoSnooze;
+
+  /// What you must do before it snoozes.
+  final StopTask snoozeTask;
+
+  /// The soft lead-up before the real alarm: no full screen, no vibration.
+  final bool gentle;
+
   /// Stopping needs more than one tap.
   bool get hasTask => mathTask || shakeTask;
 
@@ -112,13 +128,18 @@ class RingPayload {
     Loudness? loudness,
     Set<StopWay>? snoozeBy,
     Set<StopWay>? stopBy,
+    int? snoozeMinutes,
+    int? shortenBy,
+    bool? autoSnooze,
+    StopTask? snoozeTask,
+    bool? gentle,
   }) => RingPayload(
     title: title ?? this.title,
     body: body ?? this.body,
     ringSeconds: ringSeconds ?? this.ringSeconds,
     spoken: spoken ?? this.spoken,
     maxSnoozes: maxSnoozes ?? this.maxSnoozes,
-    snoozeMinutes: snoozeMinutes,
+    snoozeMinutes: snoozeMinutes ?? this.snoozeMinutes,
     snoozeCount: snoozeCount ?? this.snoozeCount,
     wakeCheck: wakeCheck ?? this.wakeCheck,
     mathTask: mathTask ?? this.mathTask,
@@ -132,6 +153,10 @@ class RingPayload {
     loudness: loudness ?? this.loudness,
     snoozeBy: snoozeBy ?? this.snoozeBy,
     stopBy: stopBy ?? this.stopBy,
+    shortenBy: shortenBy ?? this.shortenBy,
+    autoSnooze: autoSnooze ?? this.autoSnooze,
+    snoozeTask: snoozeTask ?? this.snoozeTask,
+    gentle: gentle ?? this.gentle,
   );
 
   RingPayload withLink(String? url) => _copy(link: url, keepLink: false);
@@ -146,7 +171,13 @@ class RingPayload {
     final safe = shabbatSafe || isLock;
     final task = safe ? null : s.task;
     final open = s.openAfter?.trim();
+    final plan = s.snooze;
     return _copy(
+      maxSnoozes: safe || plan == null ? null : plan.times,
+      snoozeMinutes: safe ? null : plan?.minutes,
+      shortenBy: safe ? null : plan?.shortenBy,
+      autoSnooze: safe ? null : plan?.autoSnooze,
+      snoozeTask: safe ? null : (s.snoozeTask ?? StopTask.none),
       loudness: s.loudness,
       snoozeBy: safe ? const {} : s.snoozeBy,
       stopBy: safe ? const {} : s.stopBy,
@@ -158,21 +189,29 @@ class RingPayload {
     );
   }
 
-  /// The soft alarm a few minutes before this one: quiet, rising slowly,
-  /// and asking nothing of you.
-  RingPayload gentle(int minutesBefore) => _copy(
+  /// The soft lead-up some minutes before this alarm: a calm [sound],
+  /// rising slowly over the whole lead-up, asking nothing of you. It ends
+  /// just before the real alarm.
+  RingPayload gentleLeadUp(int minutesBefore, String? sound) => _copy(
     body: 'Gentle wake-up · $minutesBefore min to go',
-    ringSeconds: ringSeconds < 60 ? ringSeconds : 60,
+    ringSeconds: (minutesBefore * 60 - 15).clamp(30, 3600),
     spoken: false,
     maxSnoozes: 0,
     wakeCheck: false,
     mathTask: false,
     shakeTask: false,
+    sound: sound,
+    keepSound: false,
     link: null,
     keepLink: false,
-    loudness: Loudness(volume: ((loudness.volume ?? 100) * 0.35).round(), fadeInSeconds: 40),
+    loudness: Loudness(
+      volume: ((loudness.volume ?? 70) * 0.6).round(),
+      fadeInSeconds: (minutesBefore * 60 * 0.85).round(),
+    ),
     snoozeBy: const {},
     stopBy: const {},
+    autoSnooze: false,
+    gentle: true,
   );
 
   bool get canSnooze => snoozeCount < maxSnoozes;
@@ -180,7 +219,12 @@ class RingPayload {
   /// What gets read aloud, e.g. "Candle lighting, Shabbat. 15 minutes before."
   String get spokenText => '${title.replaceAll(' · ', ', ')}. $body.';
 
-  RingPayload snoozed() => _copy(body: 'Snoozed: $body', snoozeCount: snoozeCount + 1, transient: true);
+  RingPayload snoozed() => _copy(
+    body: body.startsWith('Snoozed: ') ? body : 'Snoozed: $body',
+    snoozeCount: snoozeCount + 1,
+    snoozeMinutes: (snoozeMinutes - shortenBy).clamp(1, 120),
+    transient: true,
+  );
 
   RingPayload check() => _copy(
     title: 'Are you up?',
@@ -215,6 +259,10 @@ class RingPayload {
     'loudness': loudness.toJson(),
     'snoozeBy': [for (final w in snoozeBy) w.name],
     'stopBy': [for (final w in stopBy) w.name],
+    'shortenBy': shortenBy,
+    'autoSnooze': autoSnooze,
+    'snoozeTask': snoozeTask.name,
+    'gentle': gentle,
   });
 
   static RingPayload decode(String? raw, {String fallbackTitle = 'Alarm', String fallbackBody = ''}) {
@@ -240,6 +288,10 @@ class RingPayload {
         loudness: Loudness.fromJson(j['loudness']) ?? Loudness.standard,
         snoozeBy: _ways(j['snoozeBy']),
         stopBy: _ways(j['stopBy']),
+        shortenBy: (j['shortenBy'] as num?)?.toInt() ?? 0,
+        autoSnooze: j['autoSnooze'] as bool? ?? false,
+        snoozeTask: StopTask.values.where((t) => t.name == j['snoozeTask']).firstOrNull ?? StopTask.none,
+        gentle: j['gentle'] as bool? ?? false,
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle, body: fallbackBody, ringSeconds: 60);

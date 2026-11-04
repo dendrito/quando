@@ -725,7 +725,12 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     if (!p.isLock && !p.shabbatSafe) p = p.withLink(links[id]);
     if (p.isLock) return p;
     p = p.withStyle(a.style);
-    return a.ruleId.startsWith('gentle.') ? p.gentle(a.style.gentleMinutes) : p;
+    if (!a.ruleId.startsWith('gentle.')) return p;
+    final calm = sounds[a.style.gentleSound] ?? AlarmSound.calm.first.path;
+    return p.gentleLeadUp(
+      a.style.gentleMinutes,
+      calm.startsWith('http') && p.shabbatSafe ? AlarmSound.calm.first.path : calm,
+    );
   };
 });
 

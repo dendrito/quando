@@ -3,7 +3,10 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../settings/domain/alarm_options.dart';
 import '../../sounds/domain/loudness.dart';
+import '../../sounds/domain/sound.dart';
+import '../../sounds/ui/sound_player.dart';
 import '../ring_style.dart';
 
 /// A row under the sound picker: "Volume, fades & stopping", with a summary.
@@ -21,6 +24,7 @@ class RingStyleTile extends ConsumerWidget {
     final parts = [
       (s.loudness ?? o.loudness).summary,
       if (s.gentleMinutes > 0) 'gentle ${s.gentleMinutes} min before',
+      if (s.snooze != null) 'snooze ${s.snooze!.summary.toLowerCase()}',
       if ((s.task ?? (o.mathTask ? StopTask.sum : StopTask.none)) != StopTask.none)
         (s.task ?? StopTask.sum).label.toLowerCase(),
       for (final w in StopWay.values)
@@ -63,6 +67,7 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
 
   @override
   void dispose() {
+    SoundPreview.instance.stop();
     _link.dispose();
     super.dispose();
   }
@@ -84,6 +89,39 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
       stopBy: {..._s.stopBy.where((x) => x != w), if (d == _Does.stop) w},
     ),
   );
+
+  static SnoozePlan _defaultSnooze(AlarmOptions o) =>
+      SnoozePlan(minutes: o.snoozeMinutes, times: o.maxSnoozes);
+
+  void _setSnooze(SnoozePlan plan) => setState(() => _s = _s.copyWith(snooze: plan));
+
+  Widget _chipRow(
+    String title,
+    List<int> values,
+    int current,
+    String Function(int) label,
+    void Function(int) pick,
+  ) {
+    final text = Theme.of(context).textTheme;
+    return Padding(
+      padding: const EdgeInsets.only(top: 8, bottom: 4),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(title, style: text.titleMedium),
+          const SizedBox(height: 6),
+          Wrap(
+            spacing: 8,
+            runSpacing: 8,
+            children: [
+              for (final v in values)
+                ChoiceChip(label: Text(label(v)), selected: current == v, onSelected: (_) => pick(v)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +158,8 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
             Text('GENTLE WAKE-UP', style: text.labelSmall),
             const SizedBox(height: 4),
             Text(
-              'A soft alarm before the real one, quiet and slowly rising, so the real one doesn\'t jolt you.',
+              'Calm sounds that start softly before the alarm and rise slowly, so you surface from light '
+              'sleep instead of being jolted awake. They stop just before the real alarm.',
               style: text.bodySmall,
             ),
             const SizedBox(height: 10),
@@ -128,11 +167,112 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
               spacing: 8,
               runSpacing: 8,
               children: [
-                for (final m in const [0, 5, 10, 15, 20, 30])
+                for (final m in const [0, 5, 10, 15, 20, 30, 45, 60])
                   ChoiceChip(
                     label: Text(m == 0 ? 'Off' : '$m min before'),
                     selected: _s.gentleMinutes == m,
                     onSelected: (_) => setState(() => _s = _s.copyWith(gentleMinutes: m)),
+                  ),
+              ],
+            ),
+            if (_s.gentleMinutes > 0) ...[
+              const SizedBox(height: 8),
+              for (final c in AlarmSound.calm)
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: Icon(
+                    _s.gentleSound == c.id ? Icons.radio_button_checked : Icons.radio_button_off,
+                    color: QuandoColors.amber,
+                  ),
+                  title: Text(c.name),
+                  trailing: IconButton(
+                    tooltip: 'Listen',
+                    icon: Icon(
+                      SoundPreview.instance.playingId == c.id
+                          ? Icons.stop_circle_outlined
+                          : Icons.play_circle_outline,
+                    ),
+                    onPressed: () async {
+                      final p = SoundPreview.instance;
+                      if (p.playingId == c.id) {
+                        await p.stop();
+                      } else {
+                        await p.play(c, onDone: () => mounted ? setState(() {}) : null);
+                      }
+                      if (mounted) setState(() {});
+                    },
+                  ),
+                  onTap: () => setState(() => _s = _s.copyWith(gentleSound: c.id)),
+                ),
+            ],
+            const SizedBox(height: 24),
+            Text('SNOOZE', style: text.labelSmall),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Same as other alarms'),
+              subtitle: Text(_defaultSnooze(o).summary),
+              value: _s.snooze == null,
+              onChanged: (v) => setState(
+                () => _s = v ? _s.copyWith(defaultSnooze: true) : _s.copyWith(snooze: _defaultSnooze(o)),
+              ),
+            ),
+            if (_s.snooze case final plan?) ...[
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: const Text('Snooze allowed'),
+                value: plan.times > 0,
+                onChanged: (v) => _setSnooze(plan.copyWith(times: v ? 3 : 0)),
+              ),
+              if (plan.times > 0) ...[
+                _chipRow(
+                  'Snooze for',
+                  const [1, 3, 5, 10, 15, 20, 30],
+                  plan.minutes,
+                  (m) => '$m min',
+                  (m) => _setSnooze(plan.copyWith(minutes: m)),
+                ),
+                _chipRow(
+                  'Each extra snooze is shorter by',
+                  const [0, 1, 2, 3, 5],
+                  plan.shortenBy,
+                  (m) => m == 0 ? 'Not shorter' : '$m min',
+                  (m) => _setSnooze(plan.copyWith(shortenBy: m)),
+                ),
+                _chipRow(
+                  'How many times',
+                  const [1, 2, 3, 5, 10, SnoozePlan.unlimited],
+                  plan.times,
+                  (n) => n == SnoozePlan.unlimited ? 'No limit' : '$n×',
+                  (n) => _setSnooze(plan.copyWith(times: n)),
+                ),
+                SwitchListTile(
+                  contentPadding: EdgeInsets.zero,
+                  title: const Text('Snooze by itself'),
+                  subtitle: const Text(
+                    'When it has rung for its full time and you haven\'t touched it, it snoozes instead of '
+                    'stopping.',
+                  ),
+                  value: plan.autoSnooze,
+                  onChanged: (v) => _setSnooze(plan.copyWith(autoSnooze: v)),
+                ),
+              ],
+            ],
+            const SizedBox(height: 12),
+            Text('BEFORE IT SNOOZES', style: text.labelSmall),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 8,
+              children: [
+                for (final t in StopTask.values)
+                  ChoiceChip(
+                    label: Text(t.label),
+                    selected: (_s.snoozeTask ?? StopTask.none) == t,
+                    onSelected: (_) => setState(
+                      () => _s = t == StopTask.none
+                          ? _s.copyWith(noSnoozeTask: true)
+                          : _s.copyWith(snoozeTask: t),
+                    ),
                   ),
               ],
             ),

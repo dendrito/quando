@@ -50,6 +50,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   var _shaken = 0;
   static const shakesToStop = 30;
 
+  /// The task on screen is for snoozing, not stopping.
+  var _forSnooze = false;
+  void _taskDone() => _forSnooze ? _snoozeNow() : _stopNow();
+
   @override
   void initState() {
     super.initState();
@@ -100,7 +104,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     if (!mounted) return;
     if (_stage == _Stage.shake) {
       setState(() => _shaken++);
-      if (_shaken >= shakesToStop) _stopNow();
+      if (_shaken >= shakesToStop) _taskDone();
       return;
     }
     if (_stage != _Stage.ringing || p.isCheck) return;
@@ -130,6 +134,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   Future<void> _onStop() async {
+    _forSnooze = false;
     if (p.mathTask && _stage == _Stage.ringing) {
       setState(() => _stage = _Stage.sum);
       return;
@@ -159,7 +164,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   void _checkSum() {
     final (a, b) = _sum;
     if (int.tryParse(_answer.text.trim()) == a + b) {
-      _stopNow();
+      _taskDone();
     } else {
       setState(() => _sumError = 'Not quite. Try again.');
       _answer.clear();
@@ -167,6 +172,17 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   Future<void> _onSnooze() async {
+    if (_stage == _Stage.ringing && p.snoozeTask != StopTask.none) {
+      setState(() {
+        _forSnooze = true;
+        _stage = p.snoozeTask == StopTask.sum ? _Stage.sum : _Stage.shake;
+      });
+      return;
+    }
+    await _snoozeNow();
+  }
+
+  Future<void> _snoozeNow() async {
     _tts.stop();
     await ref.read(registrarProvider).snooze(widget.alarm);
     _close();
@@ -258,7 +274,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       case _Stage.sum:
         final (a, b) = _sum;
         return [
-          Text('SOLVE TO STOP', style: text.labelSmall?.copyWith(color: ink)),
+          Text(
+            _forSnooze ? 'SOLVE TO SNOOZE' : 'SOLVE TO STOP',
+            style: text.labelSmall?.copyWith(color: ink),
+          ),
           const SizedBox(height: 8),
           Text('$a + $b = ?', style: text.displaySmall?.copyWith(color: ink)),
           const SizedBox(height: 12),
@@ -271,11 +290,14 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             onSubmitted: (_) => _checkSum(),
           ),
           const SizedBox(height: 16),
-          _StopButton(label: 'Stop', onPressed: _checkSum),
+          _StopButton(label: _forSnooze ? 'Snooze' : 'Stop', onPressed: _checkSum),
         ];
       case _Stage.shake:
         return [
-          Text('SHAKE TO STOP', style: text.labelSmall?.copyWith(color: ink)),
+          Text(
+            _forSnooze ? 'SHAKE TO SNOOZE' : 'SHAKE TO STOP',
+            style: text.labelSmall?.copyWith(color: ink),
+          ),
           const SizedBox(height: 8),
           Text('$_shaken / $shakesToStop', style: text.displaySmall?.copyWith(color: ink)),
           const SizedBox(height: 12),
@@ -321,7 +343,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                   foregroundColor: ink,
                   side: const BorderSide(color: ink, width: 2.5),
                 ),
-                child: Text('Snooze ${p.snoozeMinutes} min · $snoozesLeft left'),
+                child: Text(
+                  p.maxSnoozes >= SnoozePlan.unlimited
+                      ? 'Snooze ${p.snoozeMinutes} min'
+                      : 'Snooze ${p.snoozeMinutes} min · $snoozesLeft left',
+                ),
               ),
             ),
             const SizedBox(height: 12),

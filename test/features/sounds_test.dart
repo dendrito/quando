@@ -129,7 +129,8 @@ void main() {
     final soft = plan.firstWhere((a) => a.ruleId == 'gentle.user.a');
     expect(real.at.difference(soft.at), const Duration(minutes: 15));
     final p = c.read(payloadForProvider)(soft);
-    expect(p.loudness.volume, 35);
+    expect(p.loudness.volume, 42); // 60% of the default 70%
+    expect(p.sound, 'assets/sounds/gentle_waves.ogg');
     expect(p.canSnooze, isFalse);
     // The week list shows only the real alarm.
     expect(c.read(fullPlanProvider).where((a) => a.ruleId.startsWith('gentle.')), isEmpty);

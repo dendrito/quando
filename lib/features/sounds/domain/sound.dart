@@ -72,5 +72,31 @@ class AlarmSound {
       path: 'assets/sounds/classic_beep.wav',
       builtIn: true,
     ),
+    ...calm,
+  ];
+
+  /// Soft, looping sounds for the gentle wake-up (and any alarm). Made for
+  /// Quando by tool/gen_gentle_sounds.py.
+  static const calm = [
+    AlarmSound(
+      id: 'calm.waves',
+      name: 'Waves on the shore',
+      path: 'assets/sounds/gentle_waves.ogg',
+      builtIn: true,
+    ),
+    AlarmSound(
+      id: 'calm.birds',
+      name: 'Morning birds',
+      path: 'assets/sounds/gentle_birds.ogg',
+      builtIn: true,
+    ),
+    AlarmSound(id: 'calm.rain', name: 'Soft rain', path: 'assets/sounds/gentle_rain.ogg', builtIn: true),
+    AlarmSound(
+      id: 'calm.chimes',
+      name: 'Wind chimes',
+      path: 'assets/sounds/gentle_chimes.ogg',
+      builtIn: true,
+    ),
+    AlarmSound(id: 'calm.night', name: 'Summer night', path: 'assets/sounds/gentle_night.ogg', builtIn: true),
   ];
 }

@@ -59,8 +59,9 @@ class AlarmRegistrar {
         // null = the phone's alarm sound; otherwise built-in or the user's own.
         assetAudioPath: p.sound,
         loopAudio: true,
-        vibrate: true,
-        androidFullScreenIntent: true,
+        // The gentle lead-up only plays sound: no buzzing, no screen.
+        vibrate: !p.gentle,
+        androidFullScreenIntent: !p.gentle,
         warningNotificationOnKill: true,
         // Each alarm's own volume and fades, shrunk to fit a short ring.
         volumeSettings: p.isLock
@@ -70,7 +71,7 @@ class AlarmRegistrar {
           title: p.title,
           body: p.body,
           // A check must be answered on the ringing screen.
-          stopButton: p.isCheck || p.hasTask || p.isLock ? null : 'Stop',
+          stopButton: p.gentle ? 'Stop' : (p.isCheck || p.hasTask || p.isLock ? null : 'Stop'),
         ),
         payload: p.encode(),
       ),
@@ -123,14 +124,24 @@ class AlarmRegistrar {
     for (final settings in ringing.alarms) {
       if (_stopTimers.containsKey(settings.id)) continue;
       _tell(AlarmHappening.ring, settings);
-      final seconds = RingPayload.decode(settings.payload).ringSeconds;
-      _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {
+      final p = RingPayload.decode(settings.payload);
+      // The real alarm takes over from its gentle lead-up.
+      if (!p.gentle) {
+        for (final other in ringing.alarms) {
+          if (other.id != settings.id && RingPayload.decode(other.payload).gentle) {
+            unawaited(Alarm.stop(other.id));
+          }
+        }
+      }
+      _stopTimers[settings.id] = Timer(Duration(seconds: p.ringSeconds), () async {
         _stopTimers.remove(settings.id);
         if (await Alarm.isRinging(settings.id)) {
+          // Auto-snooze: rang out with snoozes left, so ring again later.
+          if (p.autoSnooze && p.canSnooze && !p.isCheck && await snooze(settings)) return;
           await Alarm.stop(settings.id);
           _tell(AlarmHappening.autoStopped, settings);
           // Slept through it? The wake-up check still comes.
-          await _scheduleCheck(settings);
+          if (!p.gentle) await _scheduleCheck(settings);
         }
       });
     }
