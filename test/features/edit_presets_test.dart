@@ -2,6 +2,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/features/rules/domain/presets.dart';
+
+import '../shabbat_on.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -18,7 +21,7 @@ void main() {
   }
 
   setUp(() async {
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({...shabbatOn});
     prefs = await SharedPreferences.getInstance();
   });
 

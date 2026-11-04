@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Matai?: Quando?'s Q-hand on Shabbat. Amber ring, and a candle flame for the hour hand. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <group
+        android:scaleX="0.4"
+        android:scaleY="0.4"
+        android:translateX="18"
+        android:translateY="18">
+        <path
+            android:pathData="M40,84 a46,46 0 1,0 92,0 a46,46 0 1,0 -92,0"
+            android:strokeColor="#FFB547"
+            android:strokeWidth="17" />
+        <path
+            android:fillColor="#FF6B4A"
+            android:pathData="M86,50 C95,60 97,66 97,71 a11,11 0 0,1 -22,0 C75,66 77,60 86,50 Z" />
+        <path
+            android:fillColor="#FFF4E6"
+            android:pathData="M86,62 C90,67 91,70 91,73 a5,5 0 0,1 -10,0 C81,70 82,67 86,62 Z" />
+        <path
+            android:pathData="M86,84 L146,144"
+            android:strokeColor="#FFF4E6"
+            android:strokeLineCap="round"
+            android:strokeWidth="17" />
+        <path
+            android:fillColor="#FFF4E6"
+            android:pathData="M77,84 a9,9 0 1,0 18,0 a9,9 0 1,0 -18,0" />
+    </group>
+</vector>

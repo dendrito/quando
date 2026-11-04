@@ -7,10 +7,13 @@ import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/rules/domain/presets.dart';
 import 'package:quando/features/settings/domain/alarm_options.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
+
+import '../shabbat_on.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 Future<ProviderContainer> _container([Map<String, Object> saved = const {}]) async {
-  SharedPreferences.setMockInitialValues(saved);
+  SharedPreferences.setMockInitialValues({...shabbatOn, ...saved});
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(
     overrides: [

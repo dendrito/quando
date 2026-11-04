@@ -82,7 +82,8 @@ class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
   Set<QuoteSource> build() {
     final saved = _prefs.getStringList('quoteSources');
     final offered = kodesh ? jewishSources : QuoteSource.values.toSet();
-    if (saved == null) return offered;
+    // Nothing saved yet, or only names from an older version: show them all.
+    if (saved == null || (saved.isNotEmpty && !offered.any((s) => saved.contains(s.name)))) return offered;
     return {
       for (final s in offered)
         if (saved.contains(s.name)) s,
@@ -262,7 +263,10 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
     final custom = _custom();
     return [
       for (final r in Presets.all.map((p) => p.withCustomFrom(custom)))
-        saved.containsKey(r.id) ? r.copyWith(enabled: saved[r.id]) : r,
+        saved.containsKey(r.id)
+            ? r.copyWith(enabled: saved[r.id])
+            // Quando? asks first: Shabbat alarms start off until you turn them on.
+            : (kodesh ? r : r.copyWith(enabled: false)),
     ];
   }
 
@@ -720,6 +724,15 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
 }
 
 final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings>(LockSettingsNotifier.new);
+
+/// Whether Shabbat shows on Quando?'s home and settings: always in Matai?,
+/// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm.
+final shabbatInUseProvider = Provider<bool>(
+  (ref) =>
+      kodesh ||
+      ref.watch(lockSettingsProvider).shabbat ||
+      ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset'),
+);
 
 /// Locks the user ended early with "hold to unlock".
 class DismissedLocksNotifier extends Notifier<Set<String>> {
