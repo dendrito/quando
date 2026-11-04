@@ -72,6 +72,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
   late final TextEditingController _name;
   late final TextEditingController _keyword;
   var _shown = 6;
+  var _step = 0;
 
   static const _examples = [
     'dentist',
@@ -260,6 +261,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
         title: Text(_isNew ? 'New event alarm' : 'Event alarm'),
         backgroundColor: Colors.transparent,
         actions: [
+          if (!_isNew && _step < 2) TextButton(onPressed: _save, child: const Text('SAVE')),
           if (!_isNew)
             IconButton(
               tooltip: 'Delete',
@@ -274,219 +276,304 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
-          Text('FIND THE EVENTS', style: text.labelSmall),
-          const SizedBox(height: 8),
-          TextField(
-            controller: _keyword,
-            autofocus: _isNew,
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              hintText: 'Search: dentist, gym OR yoga, dent*…',
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: IconButton(
-                tooltip: 'How to search',
-                icon: const Icon(Icons.help_outline),
-                onPressed: () => _searchHelp(context),
+          _Steps(step: _step, onTap: (i) => setState(() => _step = i)),
+          const SizedBox(height: 20),
+          if (_step == 0) ...[
+            Text('FIND THE EVENTS', style: text.labelSmall),
+            const SizedBox(height: 8),
+            TextField(
+              controller: _keyword,
+              autofocus: _isNew,
+              textInputAction: TextInputAction.search,
+              decoration: InputDecoration(
+                hintText: 'Search: dentist, gym OR yoga, dent*…',
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: IconButton(
+                  tooltip: 'How to search',
+                  icon: const Icon(Icons.help_outline),
+                  onPressed: () => _searchHelp(context),
+                ),
+              ),
+              onChanged: (_) => setState(() {}),
+            ),
+            const SizedBox(height: 8),
+            SizedBox(
+              height: 44,
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                children: [
+                  for (final ex in _examples)
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8),
+                      child: ActionChip(
+                        label: Text(ex),
+                        onPressed: () => setState(() {
+                          _keyword.text = ex;
+                          _keyword.selection = TextSelection.collapsed(offset: ex.length);
+                        }),
+                      ),
+                    ),
+                ],
               ),
             ),
-            onChanged: (_) => setState(() {}),
-          ),
-          const SizedBox(height: 8),
-          SizedBox(
-            height: 44,
-            child: ListView(
-              scrollDirection: Axis.horizontal,
-              children: [
-                for (final ex in _examples)
-                  Padding(
-                    padding: const EdgeInsets.only(right: 8),
-                    child: ActionChip(
-                      label: Text(ex),
-                      onPressed: () => setState(() {
-                        _keyword.text = ex;
-                        _keyword.selection = TextSelection.collapsed(offset: ex.length);
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: const Text('Also Shabbat, festival and sun times'),
+              subtitle: const Text('e.g. "candle*", "havdalah", "sunset"'),
+              value: _rule.includeTimes,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
+            ),
+            if (cal.calendars.isNotEmpty)
+              Wrap(
+                spacing: 8,
+                runSpacing: 4,
+                children: [
+                  FilterChip(
+                    label: const Text('All my calendars'),
+                    selected: _rule.calendarIds.isEmpty,
+                    onSelected: (_) => setState(() => _rule = _rule.copyWith(calendarIds: {})),
+                  ),
+                  for (final c in cal.calendars.where((c) => cal.selected.contains(c.id)))
+                    FilterChip(
+                      label: Text(c.name),
+                      selected: _rule.calendarIds.contains(c.id),
+                      onSelected: (on) => setState(() {
+                        final ids = {..._rule.calendarIds};
+                        on ? ids.add(c.id) : ids.remove(c.id);
+                        _rule = _rule.copyWith(calendarIds: ids);
                       }),
                     ),
-                  ),
-              ],
+                ],
+              )
+            else if (!cal.access)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.event_outlined),
+                title: const Text('Connect your calendars to search them'),
+                trailing: const Icon(Icons.chevron_right),
+                onTap: () => ref.read(calendarProvider.notifier).connect(),
+              ),
+            const SizedBox(height: 12),
+            Material(
+              color: QuandoColors.surface,
+              borderRadius: const BorderRadius.all(Radius.circular(24)),
+              clipBehavior: Clip.antiAlias,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(18, 14, 18, 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      searchable.isLoading
+                          ? 'Searching…'
+                          : matches.isEmpty
+                          ? 'Nothing matches in the next 60 days'
+                          : matches.length == 1
+                          ? '1 event in the next 60 days'
+                          : '${matches.length} events in the next 60 days',
+                      style: text.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                    ),
+                    if (nextTimes.isNotEmpty) ...[
+                      const SizedBox(height: 4),
+                      Text(
+                        'Next: rings at ${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''} for "${next!.title}"',
+                        style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                      ),
+                    ],
+                    const SizedBox(height: 6),
+                    for (final e in matches.take(_shown))
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 6),
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(e.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
+                                  Text(from(e), style: text.bodySmall),
+                                ],
+                              ),
+                            ),
+                            Text(when(e.at), style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
+                          ],
+                        ),
+                      ),
+                    if (matches.length > _shown)
+                      TextButton(
+                        onPressed: () => setState(() => _shown += 20),
+                        child: Text('Show more (${matches.length - _shown} left)'),
+                      ),
+                  ],
+                ),
+              ),
             ),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: const Text('Also Shabbat, festival and sun times'),
-            subtitle: const Text('e.g. "candle*", "havdalah", "sunset"'),
-            value: _rule.includeTimes,
-            onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
-          ),
-          if (cal.calendars.isNotEmpty)
+          ] else if (_step == 1) ...[
+            Text('RING BEFORE IT STARTS', style: text.labelSmall),
+            const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 4,
-              children: [
-                FilterChip(
-                  label: const Text('All my calendars'),
-                  selected: _rule.calendarIds.isEmpty,
-                  onSelected: (_) => setState(() => _rule = _rule.copyWith(calendarIds: {})),
-                ),
-                for (final c in cal.calendars.where((c) => cal.selected.contains(c.id)))
-                  FilterChip(
-                    label: Text(c.name),
-                    selected: _rule.calendarIds.contains(c.id),
-                    onSelected: (on) => setState(() {
-                      final ids = {..._rule.calendarIds};
-                      on ? ids.add(c.id) : ids.remove(c.id);
-                      _rule = _rule.copyWith(calendarIds: ids);
-                    }),
-                  ),
-              ],
-            )
-          else if (!cal.access)
-            ListTile(
+              children: _chips(_beforeChoices, _rule.before, (l) => _rule = _rule.copyWith(before: l)),
+            ),
+            SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.event_outlined),
-              title: const Text('Connect your calendars to search them'),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => ref.read(calendarProvider.notifier).connect(),
+              title: const Text('Ring when it starts'),
+              value: _rule.atStart,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(atStart: v)),
             ),
-          const SizedBox(height: 12),
-          Material(
-            color: QuandoColors.surface,
-            borderRadius: const BorderRadius.all(Radius.circular(24)),
-            clipBehavior: Clip.antiAlias,
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(18, 14, 18, 10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    searchable.isLoading
-                        ? 'Searching…'
-                        : matches.isEmpty
-                        ? 'Nothing matches in the next 60 days'
-                        : matches.length == 1
-                        ? '1 event in the next 60 days'
-                        : '${matches.length} events in the next 60 days',
-                    style: text.titleMedium?.copyWith(fontWeight: FontWeight.w800),
-                  ),
-                  if (nextTimes.isNotEmpty) ...[
-                    const SizedBox(height: 4),
-                    Text(
-                      'Next: rings at ${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''} for "${next!.title}"',
-                      style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                    ),
-                  ],
-                  const SizedBox(height: 6),
-                  for (final e in matches.take(_shown))
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 6),
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(e.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-                                Text(from(e), style: text.bodySmall),
-                              ],
-                            ),
-                          ),
-                          Text(when(e.at), style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
-                        ],
-                      ),
-                    ),
-                  if (matches.length > _shown)
-                    TextButton(
-                      onPressed: () => setState(() => _shown += 20),
-                      child: Text('Show more (${matches.length - _shown} left)'),
-                    ),
-                ],
-              ),
-            ),
-          ),
-          const SizedBox(height: 24),
-          Text('RING BEFORE IT STARTS', style: text.labelSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: _chips(_beforeChoices, _rule.before, (l) => _rule = _rule.copyWith(before: l)),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: const Text('Ring when it starts'),
-            value: _rule.atStart,
-            onChanged: (v) => setState(() => _rule = _rule.copyWith(atStart: v)),
-          ),
-          const SizedBox(height: 8),
-          Text('AND REPEAT BEFORE IT', style: text.labelSmall),
-          Row(
-            children: [
-              const Text('Every '),
-              DropdownButton<Duration?>(
-                value: _rule.repeatEvery,
-                items: [
-                  const DropdownMenuItem(value: null, child: Text('off')),
-                  for (final d in _everyChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
-                ],
-                onChanged: (d) => setState(
-                  () => _rule = d == null
-                      ? _rule.copyWith(clearRepeat: true)
-                      : _rule.copyWith(
-                          repeatEvery: d,
-                          repeatFor: _rule.repeatFor ?? const Duration(hours: 6),
-                        ),
-                ),
-              ),
-              if (_rule.repeatEvery != null) ...[
-                const Text('  for '),
-                DropdownButton<Duration>(
-                  value: _rule.repeatFor,
+            const SizedBox(height: 8),
+            Text('AND REPEAT BEFORE IT', style: text.labelSmall),
+            Row(
+              children: [
+                const Text('Every '),
+                DropdownButton<Duration?>(
+                  value: _rule.repeatEvery,
                   items: [
-                    for (final d in _forChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
+                    const DropdownMenuItem(value: null, child: Text('off')),
+                    for (final d in _everyChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
                   ],
-                  onChanged: (d) => setState(() => _rule = _rule.copyWith(repeatFor: d)),
+                  onChanged: (d) => setState(
+                    () => _rule = d == null
+                        ? _rule.copyWith(clearRepeat: true)
+                        : _rule.copyWith(
+                            repeatEvery: d,
+                            repeatFor: _rule.repeatFor ?? const Duration(hours: 6),
+                          ),
+                  ),
                 ),
+                if (_rule.repeatEvery != null) ...[
+                  const Text('  for '),
+                  DropdownButton<Duration>(
+                    value: _rule.repeatFor,
+                    items: [
+                      for (final d in _forChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
+                    ],
+                    onChanged: (d) => setState(() => _rule = _rule.copyWith(repeatFor: d)),
+                  ),
+                ],
               ],
-            ],
-          ),
-          const SizedBox(height: 16),
-          Text('RING AFTER IT ENDS', style: text.labelSmall),
-          const SizedBox(height: 8),
-          Wrap(
-            spacing: 8,
-            runSpacing: 4,
-            children: _chips(_afterChoices, _rule.after, (l) => _rule = _rule.copyWith(after: l)),
-          ),
-          const SizedBox(height: 16),
-          SoundPickerTile(
-            large: true,
-            value: _rule.soundId,
-            onChanged: (id) => setState(
-              () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
             ),
-          ),
-          AlarmExtras(
-            value: _rule.style,
-            onChanged: (s) => setState(() => _rule = _rule.copyWith(style: s)),
-          ),
-          const SizedBox(height: 8),
-          TextField(
-            controller: _name,
-            decoration: const InputDecoration(labelText: 'Name (optional)'),
-          ),
-          const SizedBox(height: 24),
-          FilledButton(
-            style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-            onPressed: _save,
-            child: const Text('Save'),
-          ),
-          const SizedBox(height: 12),
-          Text(
-            'Alarms are set for the next 7 days and topped up each time you open Quando.',
-            style: text.bodySmall,
-          ),
+            const SizedBox(height: 16),
+            Text('RING AFTER IT ENDS', style: text.labelSmall),
+            const SizedBox(height: 8),
+            Wrap(
+              spacing: 8,
+              runSpacing: 4,
+              children: _chips(_afterChoices, _rule.after, (l) => _rule = _rule.copyWith(after: l)),
+            ),
+            if (nextTimes.isNotEmpty) ...[
+              const SizedBox(height: 16),
+              Text(
+                'Next: rings at ${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''} for "${next!.title}"',
+                style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
+              ),
+            ],
+          ] else ...[
+            SoundPickerTile(
+              large: true,
+              value: _rule.soundId,
+              onChanged: (id) => setState(
+                () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
+              ),
+            ),
+            AlarmExtras(
+              value: _rule.style,
+              onChanged: (s) => setState(() => _rule = _rule.copyWith(style: s)),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              controller: _name,
+              decoration: const InputDecoration(labelText: 'Name (optional)'),
+            ),
+            const SizedBox(height: 16),
+            Text(
+              'Alarms are set for the next 7 days and topped up each time you open Quando.',
+              style: text.bodySmall,
+            ),
+          ],
         ],
       ),
+      bottomNavigationBar: SafeArea(
+        child: Padding(
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 12),
+          child: Row(
+            children: [
+              if (_step > 0)
+                Expanded(
+                  child: OutlinedButton(
+                    style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                    onPressed: () => setState(() => _step--),
+                    child: const Text('Back'),
+                  ),
+                ),
+              if (_step > 0) const SizedBox(width: 12),
+              Expanded(
+                flex: 2,
+                child: FilledButton(
+                  style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                  onPressed: _step < 2 ? () => setState(() => _step++) : _save,
+                  child: Text(_step < 2 ? 'Next' : 'Save'),
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// "1 Events · 2 When · 3 How": where you are, and a tap to jump.
+class _Steps extends StatelessWidget {
+  const _Steps({required this.step, required this.onTap});
+
+  final int step;
+  final ValueChanged<int> onTap;
+
+  static const _names = ['Which events', 'When to ring', 'How it rings'];
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return Row(
+      children: [
+        for (var i = 0; i < _names.length; i++)
+          Expanded(
+            child: InkWell(
+              borderRadius: BorderRadius.circular(12),
+              onTap: () => onTap(i),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(vertical: 6),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 16,
+                      backgroundColor: i <= step ? QuandoColors.coral : QuandoColors.raised,
+                      child: i < step
+                          ? const Icon(Icons.check, size: 18, color: QuandoColors.ground)
+                          : Text(
+                              '${i + 1}',
+                              style: TextStyle(
+                                color: i == step ? QuandoColors.ground : QuandoColors.muted,
+                                fontWeight: FontWeight.w800,
+                              ),
+                            ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      _names[i],
+                      style: text.bodySmall?.copyWith(
+                        color: i == step ? QuandoColors.text : QuandoColors.muted,
+                        fontWeight: i == step ? FontWeight.w700 : null,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
