@@ -125,7 +125,15 @@ void main() {
     final c = await _container();
     c
         .read(userAlarmsProvider.notifier)
-        .save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {3}, style: RingStyle(gentleMinutes: 15)));
+        .save(
+          const UserAlarm(
+            id: 'a',
+            hour: 7,
+            minute: 0,
+            days: {3},
+            style: RingStyle(gentleMinutes: 15, gentleSound: 'calm.birds'),
+          ),
+        );
     final plan = c.read(planProvider);
     final real = plan.firstWhere((a) => a.ruleId == 'user.a');
     final soft = plan.firstWhere((a) => a.ruleId == 'gentle.user.a');

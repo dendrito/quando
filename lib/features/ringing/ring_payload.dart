@@ -28,7 +28,7 @@ class RingPayload {
     this.snoozeBy = const {},
     this.stopBy = const {},
     this.shortenBy = 0,
-    this.autoSnooze = false,
+    this.autoSnoozeMinutes = 0,
     this.snoozeTask = StopTask.none,
     this.gentle = false,
   });
@@ -95,8 +95,8 @@ class RingPayload {
   /// Each extra snooze is this many minutes shorter (never under 1).
   final int shortenBy;
 
-  /// When it rings out, snooze instead of stopping, while snoozes are left.
-  final bool autoSnooze;
+  /// Snooze by itself after ringing this long untouched. 0 = never.
+  final int autoSnoozeMinutes;
 
   /// What you must do before it snoozes.
   final StopTask snoozeTask;
@@ -130,7 +130,7 @@ class RingPayload {
     Set<StopWay>? stopBy,
     int? snoozeMinutes,
     int? shortenBy,
-    bool? autoSnooze,
+    int? autoSnoozeMinutes,
     StopTask? snoozeTask,
     bool? gentle,
   }) => RingPayload(
@@ -154,7 +154,7 @@ class RingPayload {
     snoozeBy: snoozeBy ?? this.snoozeBy,
     stopBy: stopBy ?? this.stopBy,
     shortenBy: shortenBy ?? this.shortenBy,
-    autoSnooze: autoSnooze ?? this.autoSnooze,
+    autoSnoozeMinutes: autoSnoozeMinutes ?? this.autoSnoozeMinutes,
     snoozeTask: snoozeTask ?? this.snoozeTask,
     gentle: gentle ?? this.gentle,
   );
@@ -176,7 +176,7 @@ class RingPayload {
       maxSnoozes: safe || plan == null ? null : plan.times,
       snoozeMinutes: safe ? null : plan?.minutes,
       shortenBy: safe ? null : plan?.shortenBy,
-      autoSnooze: safe ? null : plan?.autoSnooze,
+      autoSnoozeMinutes: safe ? 0 : plan?.autoSnoozeMinutes,
       snoozeTask: safe ? null : (s.snoozeTask ?? StopTask.none),
       loudness: s.loudness,
       snoozeBy: safe ? const {} : s.snoozeBy,
@@ -210,9 +210,13 @@ class RingPayload {
     ),
     snoozeBy: const {},
     stopBy: const {},
-    autoSnooze: false,
+    autoSnoozeMinutes: 0,
     gentle: true,
   );
+
+  /// A try-out ring from the editor: everything as the real alarm, but
+  /// outside the plan.
+  RingPayload asPreview() => _copy(body: 'Preview · $body', transient: true);
 
   bool get canSnooze => snoozeCount < maxSnoozes;
 
@@ -260,7 +264,7 @@ class RingPayload {
     'snoozeBy': [for (final w in snoozeBy) w.name],
     'stopBy': [for (final w in stopBy) w.name],
     'shortenBy': shortenBy,
-    'autoSnooze': autoSnooze,
+    'autoSnoozeMinutes': autoSnoozeMinutes,
     'snoozeTask': snoozeTask.name,
     'gentle': gentle,
   });
@@ -289,7 +293,7 @@ class RingPayload {
         snoozeBy: _ways(j['snoozeBy']),
         stopBy: _ways(j['stopBy']),
         shortenBy: (j['shortenBy'] as num?)?.toInt() ?? 0,
-        autoSnooze: j['autoSnooze'] as bool? ?? false,
+        autoSnoozeMinutes: (j['autoSnoozeMinutes'] as num?)?.toInt() ?? 0,
         snoozeTask: StopTask.values.where((t) => t.name == j['snoozeTask']).firstOrNull ?? StopTask.none,
         gentle: j['gentle'] as bool? ?? false,
       );

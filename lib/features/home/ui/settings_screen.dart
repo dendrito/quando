@@ -15,7 +15,7 @@ import '../../ringing/ring_payload.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
-import '../../ringing/ui/ring_style_screen.dart';
+import '../../ringing/ui/alarm_extras.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});

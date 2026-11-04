@@ -9,8 +9,7 @@ import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../domain/calendar_rule.dart';
-import '../../ringing/ui/gentle_screen.dart';
-import '../../ringing/ui/ring_style_screen.dart';
+import '../../ringing/ui/alarm_extras.dart';
 
 /// Set up one calendar alarm: which events, and when to ring.
 class CalendarRuleScreen extends ConsumerStatefulWidget {
@@ -465,11 +464,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
             ),
           ),
-          GentleTile(
-            value: _rule.style,
-            onChanged: (s) => setState(() => _rule = _rule.copyWith(style: s)),
-          ),
-          RingStyleTile(
+          AlarmExtras(
             value: _rule.style,
             onChanged: (s) => setState(() => _rule = _rule.copyWith(style: s)),
           ),

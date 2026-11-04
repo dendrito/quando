@@ -137,14 +137,14 @@ void main() {
 
   test('snooze plan: length, limit, shorter each time, by itself, a task', () {
     const style = RingStyle(
-      snooze: SnoozePlan(minutes: 10, times: 3, shortenBy: 3, autoSnooze: true),
+      snooze: SnoozePlan(minutes: 10, times: 3, shortenBy: 3, autoSnoozeMinutes: 2),
       snoozeTask: StopTask.sum,
     );
     expect(RingStyle.fromJson(style.toJson()), style);
     const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60, maxSnoozes: 2);
     var p = RingPayload.decode(base.withStyle(style).encode());
     expect(p.maxSnoozes, 3);
-    expect(p.autoSnooze, isTrue);
+    expect(p.autoSnoozeMinutes, 2);
     expect(p.snoozeTask, StopTask.sum);
     final lengths = <int>[];
     while (p.canSnooze) {
@@ -154,8 +154,8 @@ void main() {
     expect(lengths, [10, 7, 4]);
     expect(const SnoozePlan(minutes: 3, shortenBy: 5).lengthOf(2), 1);
     expect(
-      const SnoozePlan(minutes: 10, times: 3, shortenBy: 2, autoSnooze: true).summary,
-      '10 min, up to 3×, 2 min shorter each time, snoozes by itself',
+      const SnoozePlan(minutes: 10, times: 3, shortenBy: 2, autoSnoozeMinutes: 5).summary,
+      '10 min, up to 3×, 2 min shorter each time, snoozes by itself after 5 min',
     );
 
     final shabbat = const RingPayload(
@@ -165,7 +165,7 @@ void main() {
       shabbatSafe: true,
     ).withStyle(style);
     expect(shabbat.canSnooze, isFalse);
-    expect(shabbat.autoSnooze, isFalse);
+    expect(shabbat.autoSnoozeMinutes, 0);
     expect(shabbat.snoozeTask, StopTask.none);
   });
 

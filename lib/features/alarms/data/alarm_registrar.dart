@@ -133,11 +133,16 @@ class AlarmRegistrar {
           }
         }
       }
-      _stopTimers[settings.id] = Timer(Duration(seconds: p.ringSeconds), () async {
+      // Auto-snooze: untouched for its set time with snoozes left, so it
+      // snoozes instead of ringing on or stopping.
+      final autoSnooze = p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
+      final seconds = autoSnooze && p.autoSnoozeMinutes * 60 < p.ringSeconds
+          ? p.autoSnoozeMinutes * 60
+          : p.ringSeconds;
+      _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {
         _stopTimers.remove(settings.id);
         if (await Alarm.isRinging(settings.id)) {
-          // Auto-snooze: rang out with snoozes left, so ring again later.
-          if (p.autoSnooze && p.canSnooze && !p.isCheck && await snooze(settings)) return;
+          if (autoSnooze && await snooze(settings)) return;
           await Alarm.stop(settings.id);
           _tell(AlarmHappening.autoStopped, settings);
           // Slept through it? The wake-up check still comes.

@@ -22,7 +22,7 @@ enum StopTask {
 /// How snoozing works: how long, how many times, and how much shorter each
 /// extra snooze gets ("10, then 8, then 6 minutes").
 class SnoozePlan {
-  const SnoozePlan({this.minutes = 5, this.times = 2, this.shortenBy = 0, this.autoSnooze = false});
+  const SnoozePlan({this.minutes = 5, this.times = 2, this.shortenBy = 0, this.autoSnoozeMinutes = 0});
 
   final int minutes;
 
@@ -30,8 +30,8 @@ class SnoozePlan {
   final int times;
   final int shortenBy;
 
-  /// When the alarm rings out by itself, snooze instead of stopping.
-  final bool autoSnooze;
+  /// Snooze by itself after ringing this many minutes untouched. 0 = never.
+  final int autoSnoozeMinutes;
 
   /// Stands for "as many as you like".
   static const unlimited = 99;
@@ -46,21 +46,21 @@ class SnoozePlan {
           '$minutes min',
           times >= unlimited ? 'no limit' : 'up to $times×',
           if (shortenBy > 0) '$shortenBy min shorter each time',
-          if (autoSnooze) 'snoozes by itself',
+          if (autoSnoozeMinutes > 0) 'snoozes by itself after $autoSnoozeMinutes min',
         ].join(', ');
 
-  SnoozePlan copyWith({int? minutes, int? times, int? shortenBy, bool? autoSnooze}) => SnoozePlan(
+  SnoozePlan copyWith({int? minutes, int? times, int? shortenBy, int? autoSnoozeMinutes}) => SnoozePlan(
     minutes: minutes ?? this.minutes,
     times: times ?? this.times,
     shortenBy: shortenBy ?? this.shortenBy,
-    autoSnooze: autoSnooze ?? this.autoSnooze,
+    autoSnoozeMinutes: autoSnoozeMinutes ?? this.autoSnoozeMinutes,
   );
 
   Map<String, dynamic> toJson() => {
     'minutes': minutes,
     'times': times,
     'shortenBy': shortenBy,
-    'autoSnooze': autoSnooze,
+    'autoSnooze': autoSnoozeMinutes,
   };
 
   static SnoozePlan? fromJson(Object? j) => j is! Map
@@ -69,7 +69,7 @@ class SnoozePlan {
           minutes: (j['minutes'] as num?)?.toInt() ?? 5,
           times: (j['times'] as num?)?.toInt() ?? 2,
           shortenBy: (j['shortenBy'] as num?)?.toInt() ?? 0,
-          autoSnooze: j['autoSnooze'] as bool? ?? false,
+          autoSnoozeMinutes: (j['autoSnooze'] as num?)?.toInt() ?? 0,
         );
 
   @override
@@ -78,10 +78,10 @@ class SnoozePlan {
       other.minutes == minutes &&
       other.times == times &&
       other.shortenBy == shortenBy &&
-      other.autoSnooze == autoSnooze;
+      other.autoSnoozeMinutes == autoSnoozeMinutes;
 
   @override
-  int get hashCode => Object.hash(minutes, times, shortenBy, autoSnooze);
+  int get hashCode => Object.hash(minutes, times, shortenBy, autoSnoozeMinutes);
 }
 
 /// How one alarm rings and stops, on top of the settings every alarm shares.

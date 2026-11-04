@@ -10,8 +10,8 @@ import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
 import 'ring_length_picker.dart';
-import '../../ringing/ui/gentle_screen.dart';
-import '../../ringing/ui/ring_style_screen.dart';
+import '../../ringing/ui/alarm_extras.dart';
+import '../../../core/scheduler/scheduler.dart';
 
 /// Add or edit one everyday alarm. [id] is 'new' for a new alarm.
 class EditAlarmScreen extends ConsumerStatefulWidget {
@@ -97,6 +97,32 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     if (z != null) setState(() => _alarm = _alarm.copyWith(zone: z));
   }
 
+  /// Rings this alarm, exactly as set, in 5 seconds.
+  Future<void> _preview() async {
+    final a = _alarm.copyWith(label: _label.text.trim());
+    final at = DateTime.now().toUtc().add(const Duration(seconds: 5));
+    final payload = ref
+        .read(payloadForProvider)(
+          ScheduledAlarm(
+            id: 0,
+            at: at,
+            title: a.title,
+            body: a.repeatLabel,
+            ringDuration: Duration(seconds: a.ringSeconds ?? ref.read(alarmOptionsProvider).ringSeconds),
+            ruleId: 'user.${a.id}',
+            eventId: 'user.${a.id}',
+            offset: Duration.zero,
+            soundId: a.soundId,
+            style: a.style,
+          ),
+        )
+        .asPreview();
+    await ref.read(registrarProvider).set(stableId('preview|${at.millisecondsSinceEpoch}'), at, payload);
+    if (mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Ringing in 5 seconds…')));
+    }
+  }
+
   void _save() {
     ref.read(userAlarmsProvider.notifier).save(_alarm.copyWith(label: _label.text.trim(), enabled: true));
     final next = _alarm.repeats
@@ -133,6 +159,8 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
         title: Text(_isNew ? 'New alarm' : 'Edit alarm'),
         backgroundColor: Colors.transparent,
         actions: [
+          TextButton(onPressed: _preview, child: const Text('PREVIEW')),
+          TextButton(onPressed: _save, child: const Text('SAVE')),
           if (!_isNew)
             IconButton(
               tooltip: 'Delete',
@@ -215,11 +243,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
             ),
           ),
-          GentleTile(
-            value: _alarm.style,
-            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
-          ),
-          RingStyleTile(
+          AlarmExtras(
             value: _alarm.style,
             onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
           ),

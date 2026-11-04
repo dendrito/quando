@@ -6,8 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../sounds/ui/sound_picker.dart';
-import '../../ringing/ui/gentle_screen.dart';
-import '../../ringing/ui/ring_style_screen.dart';
+import '../../ringing/ui/alarm_extras.dart';
 
 /// Change a ready-made rule: when it rings around its event, and with which
 /// sound. Changes apply straight away.
@@ -72,11 +71,7 @@ class PresetScreen extends ConsumerWidget {
             onChanged: (s) =>
                 notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),
           ),
-          GentleTile(
-            value: rule.style,
-            onChanged: (s) => notifier.edit(id, (r) => r.copyWith(style: s)),
-          ),
-          RingStyleTile(
+          AlarmExtras(
             value: rule.style,
             onChanged: (s) => notifier.edit(id, (r) => r.copyWith(style: s)),
           ),
