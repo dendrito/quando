@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../data/radio_directory.dart';
 import '../domain/sound.dart';
 import 'sound_player.dart';
@@ -94,6 +95,10 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
+          const FeatureHeader(
+            icon: Icons.radio,
+            sentence: 'Wake up to a live station from anywhere in the world.',
+          ),
           TextField(
             controller: _query,
             autofocus: true,

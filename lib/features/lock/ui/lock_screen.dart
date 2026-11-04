@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../../../core/util/local_time.dart';
 
 /// Lock mode settings: when Quando locks itself, and "lock now".
@@ -39,6 +40,10 @@ class _LockScreenState extends ConsumerState<LockScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
+          const FeatureHeader(
+            icon: Icons.lock_clock,
+            sentence: 'Lock the phone down to the clock and your alarms, for Shabbat or a focused night.',
+          ),
           Text(
             'While locked, Quando shows only the time, the next alarm and when the lock ends. Alarms keep '
             'working, and nothing can be changed until it unlocks.',

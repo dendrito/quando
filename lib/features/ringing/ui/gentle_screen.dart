@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../../sounds/domain/sound.dart';
 import '../../sounds/ui/sound_player.dart';
 import '../ring_style.dart';
@@ -78,6 +79,10 @@ class _GentleScreenState extends State<GentleScreen> {
         body: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
           children: [
+            const FeatureHeader(
+              icon: Icons.wb_twilight,
+              sentence: 'A calm sound starts softly before your alarm, so it never jolts you awake.',
+            ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text('Gentle wake-up', style: text.titleLarge),
@@ -85,9 +90,7 @@ class _GentleScreenState extends State<GentleScreen> {
               onChanged: (v) => setState(() => _s = _s.copyWith(gentleMinutes: v ? _lastMinutes : 0)),
             ),
             Text(
-              'Before your alarm, a calm sound starts very softly and slowly grows. You won\'t notice it in '
-              'deep sleep, but as you drift into light sleep it eases you awake, so the alarm itself doesn\'t '
-              'jolt you. It stops just before the alarm rings.',
+              'It grows slowly, easing you out of light sleep, and stops just before the alarm rings.',
               style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
             ),
             if (on) ...[

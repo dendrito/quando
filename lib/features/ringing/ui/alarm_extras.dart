@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../sounds/domain/loudness.dart';
 import '../data/apps.dart';
@@ -213,6 +214,8 @@ abstract class _StyleScreen extends ConsumerStatefulWidget {
 abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T> {
   late RingStyle s = widget.initial;
   String get title;
+  IconData get icon;
+  String get sentence;
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o);
 
   void set(RingStyle v) => setState(() => s = v);
@@ -248,7 +251,13 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
       },
       child: Scaffold(
         appBar: AppBar(title: Text(title)),
-        body: ListView(padding: const EdgeInsets.fromLTRB(24, 8, 24, 40), children: body(context, text, o)),
+        body: ListView(
+          padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
+          children: [
+            FeatureHeader(icon: icon, sentence: sentence),
+            ...body(context, text, o),
+          ],
+        ),
       ),
     );
   }
@@ -381,6 +390,10 @@ class SnoozeScreen extends _StyleScreen {
 class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
   @override
   String get title => 'Snooze';
+  @override
+  IconData get icon => Icons.snooze;
+  @override
+  String get sentence => 'Five more minutes? Choose how long, how often, and what it takes.';
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) {
@@ -391,7 +404,6 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
       SwitchListTile(
         contentPadding: EdgeInsets.zero,
         title: Text('Snooze', style: text.titleLarge),
-        subtitle: const Text('Ring again a little later.'),
         value: on,
         onChanged: (v) => setPlan(plan.copyWith(times: v ? (plan.times > 0 ? plan.times : 3) : 0)),
       ),
@@ -476,11 +488,13 @@ class StopScreen extends _StyleScreen {
 class _StopScreenState extends _StyleScreenState<StopScreen> {
   @override
   String get title => 'Stop';
+  @override
+  IconData get icon => Icons.alarm_off;
+  @override
+  String get sentence => 'How you turn the alarm off, and what you must do first.';
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) => [
-    Text('How you turn the alarm off.', style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
-    const SizedBox(height: 20),
     _controls(
       text,
       s.stopBy,
@@ -516,6 +530,10 @@ class VolumeScreen extends _StyleScreen {
 class _VolumeScreenState extends _StyleScreenState<VolumeScreen> {
   @override
   String get title => 'Volume';
+  @override
+  IconData get icon => Icons.volume_up;
+  @override
+  String get sentence => 'How loud it rings, and how gently it gets there.';
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) => [

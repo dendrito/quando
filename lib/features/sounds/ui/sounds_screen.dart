@@ -7,6 +7,7 @@ import 'package:record/record.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../data/sound_files.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
@@ -308,6 +309,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
+          const FeatureHeader(
+            icon: Icons.music_note,
+            sentence: 'Wake up to your own voice, a song, a playlist or live radio.',
+          ),
           Row(
             children: [
               Expanded(

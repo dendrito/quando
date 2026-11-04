@@ -4,6 +4,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/widgets/feature_header.dart';
 import '../domain/integrations.dart';
 
 /// Pushover, Zapier, IFTTT and any other webhook.
@@ -155,6 +156,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
+          const FeatureHeader(
+            icon: Icons.hub,
+            sentence: 'Tell your other apps and devices when an alarm rings, stops or snoozes.',
+          ),
           Text('PUSHOVER', style: text.labelSmall),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
