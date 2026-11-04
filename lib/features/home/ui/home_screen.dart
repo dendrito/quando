@@ -307,11 +307,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                             ),
                           ),
                           if (sky.sunset != null)
-                            Text(
-                              sky.sunset!.isAfter(now)
-                                  ? '${l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime)))} · ${countdown(sky.sunset!.difference(now))}'
-                                  : l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime))),
-                              style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                            Flexible(
+                              child: Text(
+                                sky.sunset!.isAfter(now)
+                                    ? '${l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime)))} · ${countdown(sky.sunset!.difference(now))}'
+                                    : l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime))),
+                                textAlign: TextAlign.end,
+                                style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                              ),
                             ),
                         ],
                       ),

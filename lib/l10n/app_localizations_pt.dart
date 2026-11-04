@@ -1,0 +1,1963 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Portuguese (`pt`).
+class AppLocalizationsPt extends AppLocalizations {
+  AppLocalizationsPt([String locale = 'pt']) : super(locale);
+
+  @override
+  String get undo => 'Desfazer';
+
+  @override
+  String duplicatedNamed(String name) {
+    return '“$name” duplicado';
+  }
+
+  @override
+  String deletedNamed(String name) {
+    return '“$name” apagado';
+  }
+
+  @override
+  String get when => 'Quando?';
+
+  @override
+  String get newAtTime => 'Num horário';
+
+  @override
+  String get newAtTimeHint => 'Todo dia útil às 7:00, uma vez às 15:30…';
+
+  @override
+  String get newAroundEvent => 'Em torno de um evento';
+
+  @override
+  String get newAroundEventHint => 'Busque na agenda, no Shabat e no sol, e toque antes, na hora ou depois';
+
+  @override
+  String get editThisAlarm => 'Editar este alarme';
+
+  @override
+  String editNamed(String name) {
+    return 'Editar “$name”';
+  }
+
+  @override
+  String get preset => 'modelo';
+
+  @override
+  String get editThisCalendarRule => 'Editar esta regra da agenda';
+
+  @override
+  String get ringThisOneAfterAll => 'Tocar este afinal';
+
+  @override
+  String get skipJustThisOne => 'Pular só este';
+
+  @override
+  String get renameGroup => 'Renomear grupo';
+
+  @override
+  String quickSet(String label, String time) {
+    return '$label · toca às $time';
+  }
+
+  @override
+  String get newAlarm => 'Novo alarme';
+
+  @override
+  String get appName => 'Quando?';
+
+  @override
+  String get lockMode => 'Modo bloqueio';
+
+  @override
+  String get calendars => 'Agendas';
+
+  @override
+  String get settings => 'Ajustes';
+
+  @override
+  String get nextAlarmHeading => 'PRÓXIMO ALARME';
+
+  @override
+  String get nothingSet => 'Nada marcado';
+
+  @override
+  String get tagline => 'Se não agora, quando?';
+
+  @override
+  String sunriseAt(String time) {
+    return 'Nascer do sol $time';
+  }
+
+  @override
+  String sunsetAt(String time) {
+    return 'Pôr do sol $time';
+  }
+
+  @override
+  String get alarmsMayNotRing => 'Seus alarmes podem não tocar';
+
+  @override
+  String get tapToFixIt => 'Toque para resolver';
+
+  @override
+  String inMinutes(int minutes) {
+    return 'Em $minutes min';
+  }
+
+  @override
+  String get atSunset => 'No pôr do sol';
+
+  @override
+  String get sunset => 'Pôr do sol';
+
+  @override
+  String get shabbatModeIsOn => 'MODO SHABAT ATIVO';
+
+  @override
+  String nextInCity(String city) {
+    return 'PRÓXIMO · $city';
+  }
+
+  @override
+  String get candleLighting => 'Acendimento das velas';
+
+  @override
+  String get havdalah => 'Havdalá';
+
+  @override
+  String get shabbatAndFestivals => 'Shabat e festas';
+
+  @override
+  String get yourAlarmsHeading => 'SEUS ALARMES';
+
+  @override
+  String get tapWhenToAdd => 'Toque em Quando? para criar um alarme.';
+
+  @override
+  String get aroundEventsHeading => 'EM TORNO DE EVENTOS';
+
+  @override
+  String searchFor(String words) {
+    return 'busca: $words';
+  }
+
+  @override
+  String get thisWeekHeading => 'ALARMES DESTA SEMANA';
+
+  @override
+  String get noAlarmsThisWeek => 'Nenhum alarme nos próximos 7 dias.';
+
+  @override
+  String get alarmsSetThemselves => 'Os alarmes se ajustam sozinhos neste celular sempre que você muda algo.';
+
+  @override
+  String cityTime(String city) {
+    return 'horário de $city';
+  }
+
+  @override
+  String get more => 'Mais';
+
+  @override
+  String get turnOff => 'Desligar';
+
+  @override
+  String get turnOn => 'Ligar';
+
+  @override
+  String get duplicate => 'Duplicar';
+
+  @override
+  String get delete => 'Apagar';
+
+  @override
+  String get inOneHour => 'Em 1 hora';
+
+  @override
+  String get logoLabel => 'Logo do Quando?';
+
+  @override
+  String get noTimesSet => 'Nenhum horário';
+
+  @override
+  String get atTheMoment => 'na hora';
+
+  @override
+  String timesRange(int count, String from, String to) {
+    return '$count vezes · de $from a $to';
+  }
+
+  @override
+  String spanDays(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dias', one: '1 dia');
+    return '$_temp0';
+  }
+
+  @override
+  String spanHours(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n horas', one: '1 hora');
+    return '$_temp0';
+  }
+
+  @override
+  String spanMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutos', one: '1 minuto');
+    return '$_temp0';
+  }
+
+  @override
+  String spanSeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n segundos', one: '1 segundo');
+    return '$_temp0';
+  }
+
+  @override
+  String get now => 'agora';
+
+  @override
+  String spanBefore(String span) {
+    return '$span antes';
+  }
+
+  @override
+  String spanAfter(String span) {
+    return '$span depois';
+  }
+
+  @override
+  String alarmCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n alarmes', one: '1 alarme');
+    return '$_temp0';
+  }
+
+  @override
+  String get allOn => 'todos ligados';
+
+  @override
+  String get allOff => 'todos desligados';
+
+  @override
+  String someOn(int n) {
+    return '$n ligados';
+  }
+
+  @override
+  String skippedBody(String body) {
+    return 'Pulado · $body';
+  }
+
+  @override
+  String timeToTime(String from, String to) {
+    return '$from a $to';
+  }
+
+  @override
+  String skippedCount(int n) {
+    return '$n pulados';
+  }
+
+  @override
+  String get sunNoRiseSet => 'Hoje o sol não nasce nem se põe aqui';
+
+  @override
+  String sunProgress(int percent) {
+    return 'O sol já percorreu $percent% do dia';
+  }
+
+  @override
+  String get sunIsDown => 'O sol já se pôs';
+
+  @override
+  String get searchCity => 'Buscar uma cidade';
+
+  @override
+  String get tomorrowLower => 'amanhã';
+
+  @override
+  String get yesterdayLower => 'ontem';
+
+  @override
+  String get worldClocksHeading => 'RELÓGIOS DO MUNDO';
+
+  @override
+  String get add => 'Adicionar';
+
+  @override
+  String cityHere(String city) {
+    return '$city · aqui';
+  }
+
+  @override
+  String get worldClocksHint =>
+      'Adicione cidades para ver o horário delas aqui. Deslize para a esquerda para remover.';
+
+  @override
+  String get groupNameHint => 'Trabalho, Filhos, Academia…';
+
+  @override
+  String get cancel => 'Cancelar';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get noGroup => 'Sem grupo';
+
+  @override
+  String get newGroupEllipsis => 'Novo grupo…';
+
+  @override
+  String get newGroup => 'Novo grupo';
+
+  @override
+  String secondsShort(int n) {
+    return '$n s';
+  }
+
+  @override
+  String minutesShort(int n) {
+    return '$n min';
+  }
+
+  @override
+  String get minutes => 'Minutos';
+
+  @override
+  String get ringFor => 'Tocar por';
+
+  @override
+  String get seconds => 'Segundos';
+
+  @override
+  String get oneSecondLess => '1 segundo a menos';
+
+  @override
+  String get oneSecondMore => '1 segundo a mais';
+
+  @override
+  String inDays(int d) {
+    return 'em ${d}d';
+  }
+
+  @override
+  String inDaysHours(int d, int h) {
+    return 'em ${d}d ${h}h';
+  }
+
+  @override
+  String inHours(int h) {
+    return 'em ${h}h';
+  }
+
+  @override
+  String inHoursMinutes(int h, int m) {
+    return 'em ${h}h ${m}min';
+  }
+
+  @override
+  String inMins(int m) {
+    return 'em ${m}min';
+  }
+
+  @override
+  String placeChange(String city, String where) {
+    return '$city · $where · mudar';
+  }
+
+  @override
+  String get israel => 'Israel';
+
+  @override
+  String get outsideIsrael => 'fora de Israel';
+
+  @override
+  String get comingUpHeading => 'EM BREVE';
+
+  @override
+  String get lockForShabbat => 'Bloquear o celular no Shabat';
+
+  @override
+  String get lockForShabbatHint => 'Do acendimento das velas até a Havdalá, nas festas também';
+
+  @override
+  String get ownShabbatAlarmsHeading => 'SEUS ALARMES DE SHABAT';
+
+  @override
+  String get addShabbatAlarm => 'Adicionar um alarme de Shabat ou festa';
+
+  @override
+  String get readyMadeHeading => 'ALARMES PRONTOS';
+
+  @override
+  String bringBackDeleted(int n) {
+    return 'Trazer de volta os apagados ($n)';
+  }
+
+  @override
+  String get presetsHint => 'Toque em um para mudar os horários. Deslize para apagar.';
+
+  @override
+  String get lockSentence =>
+      'Deixe o celular só com o relógio e seus alarmes, para o Shabat ou uma noite de foco.';
+
+  @override
+  String get lockExplain =>
+      'Enquanto bloqueado, o Quando? mostra só a hora, o próximo alarme e quando o bloqueio termina. Os alarmes continuam funcionando e nada pode ser mudado até desbloquear.';
+
+  @override
+  String get lockNowHeading => 'BLOQUEAR AGORA';
+
+  @override
+  String get lockAutoHeading => 'BLOQUEAR AUTOMATICAMENTE';
+
+  @override
+  String get shabbatAndFestivalsLong => 'Shabat e festas';
+
+  @override
+  String get fromCandleToHavdalah => 'Do acendimento das velas até a Havdalá';
+
+  @override
+  String get lockCalendarWord => 'Durante eventos da agenda com esta palavra';
+
+  @override
+  String get lockCalendarWordHint => 'ex.: bloquear, prova, foco';
+
+  @override
+  String get leaveEmptyForNone => 'Deixe vazio para nenhum';
+
+  @override
+  String get connectCalendarsFirst => 'Conecte as agendas primeiro (ícone de agenda)';
+
+  @override
+  String get openWhenLockStarts => 'Abrir o Quando? quando um bloqueio começar';
+
+  @override
+  String get openWhenLockStartsHint =>
+      'Um toque suave de 1 segundo traz o Quando? para a frente para bloquear';
+
+  @override
+  String get pinToScreen => 'Fixar o Quando? na tela';
+
+  @override
+  String get pinToScreenHint =>
+      'Outros apps não abrem enquanto estiver bloqueado. O Android pede confirmação na primeira vez.';
+
+  @override
+  String get noLocksComingUp => 'Nenhum bloqueio previsto.';
+
+  @override
+  String get leaveLockEarly => 'Para sair antes, segure “Segure para desbloquear” por 3 segundos.';
+
+  @override
+  String get locked => 'Bloqueado';
+
+  @override
+  String get shabbatShalom => 'Shabat shalom';
+
+  @override
+  String get chagSameach => 'Chag sameach';
+
+  @override
+  String get unlocksHeading => 'DESBLOQUEIA';
+
+  @override
+  String get nowCap => 'Agora';
+
+  @override
+  String get nextAlarm => 'Próximo alarme';
+
+  @override
+  String get holdToUnlock => 'Segure para desbloquear';
+
+  @override
+  String get calendarAlarm => 'Alarme de agenda';
+
+  @override
+  String get calendarIntro =>
+      'O Quando? pode tocar antes e depois dos eventos das agendas do seu celular. O Google Agenda entra assim que sua conta Google estiver no celular.';
+
+  @override
+  String get connectCalendars => 'Conectar agendas';
+
+  @override
+  String get calendarAlarmsHeading => 'ALARMES DE AGENDA';
+
+  @override
+  String get calendarNoneYet => 'Nenhum ainda. Comece com este e depois ajuste como quiser:';
+
+  @override
+  String get fifteenBeforeEvery => '15 minutos antes de cada evento';
+
+  @override
+  String get useTheseCalendarsHeading => 'USAR ESTAS AGENDAS';
+
+  @override
+  String get noTimedEvents => 'Nenhum evento com horário nessas agendas.';
+
+  @override
+  String get atTheStart => 'no início';
+
+  @override
+  String everyForBefore(String every, String span) {
+    return 'a cada $every durante $span antes';
+  }
+
+  @override
+  String spanAfterItEnds(String span) {
+    return '$span depois que termina';
+  }
+
+  @override
+  String get noAlarmsChosen => 'Nenhum alarme escolhido';
+
+  @override
+  String get gentleWakeUp => 'Despertar suave';
+
+  @override
+  String gentleSummary(int minutes, String sound) {
+    return '$minutes min antes · $sound';
+  }
+
+  @override
+  String get off => 'Desligado';
+
+  @override
+  String get gentleSentence =>
+      'Um som calmo começa baixinho antes do alarme, para você nunca acordar num susto.';
+
+  @override
+  String get gentleExplain =>
+      'Ele cresce devagar, tirando você do sono leve, e para logo antes de o alarme tocar.';
+
+  @override
+  String get startsBeforeHeading => 'COMEÇA ANTES DO ALARME';
+
+  @override
+  String get leadUpSoundHeading => 'SOM DE PREPARAÇÃO';
+
+  @override
+  String get listen => 'Ouvir';
+
+  @override
+  String get whoRecordedThese => 'Quem gravou estes sons';
+
+  @override
+  String get done => 'Pronto';
+
+  @override
+  String get soundCredits => 'Créditos dos sons';
+
+  @override
+  String yourTimeCity(String city) {
+    return 'Seu horário ($city)';
+  }
+
+  @override
+  String get anotherCity => 'Outra cidade…';
+
+  @override
+  String get ringingIn5 => 'Tocando em 5 segundos…';
+
+  @override
+  String get alarmSaved => 'Alarme salvo.';
+
+  @override
+  String alarmSetFor(String span) {
+    return 'Alarme marcado para daqui a $span.';
+  }
+
+  @override
+  String hoursMinutesShort(int h, int m) {
+    return '$h h $m min';
+  }
+
+  @override
+  String get editAlarm => 'Editar alarme';
+
+  @override
+  String get previewCaps => 'TESTAR';
+
+  @override
+  String get saveCaps => 'SALVAR';
+
+  @override
+  String cityTimeForYou(String city, String time) {
+    return 'horário de $city · $time para você';
+  }
+
+  @override
+  String repeatHeading(String repeat) {
+    return 'REPETIR · $repeat';
+  }
+
+  @override
+  String get labelField => 'Nome (lido em voz alta se os alarmes falados estiverem ligados)';
+
+  @override
+  String get group => 'Grupo';
+
+  @override
+  String ringsForHeading(String span) {
+    return 'TOCA POR $span';
+  }
+
+  @override
+  String useDefault(String value) {
+    return 'Usar o padrão ($value)';
+  }
+
+  @override
+  String get save => 'Salvar';
+
+  @override
+  String get sameTime => 'mesmo horário';
+
+  @override
+  String get untilYouStopIt => 'Até você parar';
+
+  @override
+  String get alarm => 'Alarme';
+
+  @override
+  String get once => 'Uma vez';
+
+  @override
+  String get everyDay => 'Todo dia';
+
+  @override
+  String get weekdays => 'Dias úteis';
+
+  @override
+  String get weekends => 'Fins de semana';
+
+  @override
+  String timeInCity(String time, String city) {
+    return '$time horário de $city';
+  }
+
+  @override
+  String eventsMatching(String words) {
+    return 'Eventos com “$words”';
+  }
+
+  @override
+  String get everyEvent => 'Todo evento';
+
+  @override
+  String get sunrise => 'Nascer do sol';
+
+  @override
+  String havdalahEndOf(String day) {
+    return 'Havdalá · fim de $day';
+  }
+
+  @override
+  String get yomTov => 'Yom Tov';
+
+  @override
+  String get shabbat => 'Shabat';
+
+  @override
+  String get presetCountdown => 'Contagem até o acendimento das velas';
+
+  @override
+  String get presetHourly => 'De hora em hora, desde 6 horas antes';
+
+  @override
+  String get presetDailyWeek => 'Uma vez por dia, na semana anterior';
+
+  @override
+  String get presetSecondNight => 'Velas da segunda noite';
+
+  @override
+  String get presetFridayReminder => 'Lembrete 3 horas antes: carregue o celular';
+
+  @override
+  String get presetFridayReminderLabel => 'Carregue o celular e marque os alarmes de amanhã';
+
+  @override
+  String get presetSunset => 'Pôr do sol, e 15 minutos antes';
+
+  @override
+  String get pesach => 'Pessach';
+
+  @override
+  String get shavuot => 'Shavuot';
+
+  @override
+  String get roshHashanah => 'Rosh Hashaná';
+
+  @override
+  String get yomKippur => 'Yom Kipur';
+
+  @override
+  String get sukkot => 'Sucot';
+
+  @override
+  String get sheminiAtzeret => 'Shemini Atzeret';
+
+  @override
+  String get simchatTorah => 'Simchat Torá';
+
+  @override
+  String get readyNotifications => 'Mostrar alarmes';
+
+  @override
+  String get readyNotificationsWhy => 'Permite que a tela do alarme e o botão Parar apareçam.';
+
+  @override
+  String get readyFullScreen => 'Tocar sobre a tela de bloqueio';
+
+  @override
+  String get readyFullScreenWhy => 'Mostra o alarme em tela cheia, mesmo com o celular bloqueado.';
+
+  @override
+  String get readyExact => 'Tocar no minuto certo';
+
+  @override
+  String get readyExactWhy => 'Sem isso, o celular pode tocar os alarmes alguns minutos atrasado.';
+
+  @override
+  String get readyBattery => 'Continuar rodando na economia de bateria';
+
+  @override
+  String get readyBatteryWhy => 'Impede que a economia de bateria silencie os alarmes à noite.';
+
+  @override
+  String get tipXiaomi =>
+      'Celulares Xiaomi: em Configurações › Apps › Quando?, ative Início automático e coloque Economia de bateria em Sem restrições.';
+
+  @override
+  String get tipSamsung =>
+      'Celulares Samsung: em Configurações › Bateria › Limites de uso em segundo plano, confira se o Quando? não está em suspensão.';
+
+  @override
+  String get tipHuawei =>
+      'Celulares Huawei e Honor: em Configurações › Bateria › Inicialização de apps, coloque o Quando? em Gerenciar manualmente e permita tudo.';
+
+  @override
+  String get tipOther =>
+      'Neste celular: em Configurações › Bateria, permita que o Quando? rode em segundo plano e desative a otimização para ele.';
+
+  @override
+  String get testRing => 'Toque de teste';
+
+  @override
+  String get testRingBody => 'O Quando? consegue acordar você';
+
+  @override
+  String get ringsIn20 => 'Toca em 20 segundos. Bloqueie o celular agora e espere.';
+
+  @override
+  String get readyToRing => 'Pronto para tocar';
+
+  @override
+  String get checkingPhone => 'Verificando seu celular…';
+
+  @override
+  String get phoneReady => 'Seu celular está pronto para tocar todos os alarmes na hora.';
+
+  @override
+  String thingsNeedFixing(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n itens precisam de ajuste, ou os alarmes podem não tocar.',
+      one: '1 item precisa de ajuste, ou os alarmes podem não tocar.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fix => 'Resolver';
+
+  @override
+  String get testIn20 => 'Testar: tocar em 20 segundos';
+
+  @override
+  String get testIn20Hint =>
+      'Bloqueie o celular e deixe-o de lado. Se o alarme tocar em tela cheia, está tudo certo.';
+
+  @override
+  String get readyToRingHint => 'Confira se o celular deixa todo alarme tocar na hora';
+
+  @override
+  String get connections => 'Conexões';
+
+  @override
+  String get timeZoneHeading => 'FUSO HORÁRIO';
+
+  @override
+  String get followPhone => 'Seguir o celular';
+
+  @override
+  String followPhoneNow(String city) {
+    return 'Agora $city. Muda sozinho quando você viaja.';
+  }
+
+  @override
+  String get zoneFixed => 'Fixo. Os alarmes mantêm este horário mesmo em viagem.';
+
+  @override
+  String get shabbatCityHeading => 'CIDADE DO SHABAT';
+
+  @override
+  String get inIsraelOneDay => 'Em Israel (um dia de festa)';
+
+  @override
+  String candleMinutesHeading(int n) {
+    return 'VELAS: $n MINUTOS ANTES DO PÔR DO SOL';
+  }
+
+  @override
+  String get endOfShabbatHeading => 'FIM DO SHABAT E DAS FESTAS';
+
+  @override
+  String get nightfallGeonim => 'Saída das estrelas (Gueonim, 8,5°)';
+
+  @override
+  String get rabbeinuTam => '72 minutos após o pôr do sol (Rabeinu Tam)';
+
+  @override
+  String get whenAlarmRingsHeading => 'QUANDO UM ALARME TOCA';
+
+  @override
+  String get recordOrAddSounds => 'Gravar ou adicionar sons';
+
+  @override
+  String get ringsForThisLong => 'Toca por este tempo e depois para sozinho';
+
+  @override
+  String get sameFades => 'Mesmas transições para todos os alarmes';
+
+  @override
+  String get sameFadesOn => 'Substitui as transições de cada alarme. Cada um mantém seu volume.';
+
+  @override
+  String get sameFadesOff => 'Desligado: cada alarme usa as transições definidas em Volume.';
+
+  @override
+  String get sayItOutLoud => 'Falar em voz alta';
+
+  @override
+  String get sayItOutLoudHint => 'Lê para que é o alarme, ex.: “Acendimento das velas, 15 minutos antes”';
+
+  @override
+  String get noSnooze => 'Sem soneca';
+
+  @override
+  String snoozeUpTo(int times, int minutes) {
+    return 'Soneca até $times× de $minutes min';
+  }
+
+  @override
+  String get wakeUpCheck => 'Confirmação de despertar';
+
+  @override
+  String get wakeUpCheckHint => 'Depois de parar, toca de novo em 3 minutos se você não tocar em “Acordei”';
+
+  @override
+  String get solveSum => 'Resolver uma conta para parar';
+
+  @override
+  String get provesAwake => 'Prova que você está acordado';
+
+  @override
+  String get shabbatNoTasks =>
+      'No Shabat e nas festas nada disso vale: os alarmes param sozinhos e nunca pedem para você tocar no celular.';
+
+  @override
+  String get testAlarmIn1 => 'Tocar um alarme de teste em 1 minuto';
+
+  @override
+  String get timesDisclaimer =>
+      'Os horários são calculados no seu celular. Em casos limítrofes, consulte seu rabino ou o calendário da comunidade.';
+
+  @override
+  String get recommended => 'Recomendado';
+
+  @override
+  String get chooseCity => 'Escolher uma cidade';
+
+  @override
+  String get testOnlyOnPhone => 'Alarmes de teste só funcionam no celular.';
+
+  @override
+  String get testAlarm => 'Alarme de teste';
+
+  @override
+  String get testAlarmBody => 'É assim que seus alarmes vão soar';
+
+  @override
+  String get testAlarmIn1Set => 'Alarme de teste em 1 minuto. Pode bloquear o celular.';
+
+  @override
+  String get presetGone => 'Este modelo não existe mais.';
+
+  @override
+  String get editPreset => 'Editar modelo';
+
+  @override
+  String get on => 'Ligado';
+
+  @override
+  String get ringsHeading => 'TOCA';
+
+  @override
+  String get noTimesYet => 'Nenhum horário ainda. Adicione abaixo.';
+
+  @override
+  String get atTheMomentItself => 'Na hora exata';
+
+  @override
+  String get remove => 'Remover';
+
+  @override
+  String get addATime => 'Adicionar um horário';
+
+  @override
+  String get resetPreset => 'Voltar ao original';
+
+  @override
+  String get skipOneHint => 'Para pular só um alarme, toque nele em “Alarmes desta semana” na tela inicial.';
+
+  @override
+  String get unitMinutes => 'minutos';
+
+  @override
+  String get unitHours => 'horas';
+
+  @override
+  String get unitDays => 'dias';
+
+  @override
+  String get before => 'Antes';
+
+  @override
+  String get after => 'Depois';
+
+  @override
+  String get oneWeek => '1 semana';
+
+  @override
+  String daysShort(int n) {
+    return '$n d';
+  }
+
+  @override
+  String hoursShort(int n) {
+    return '$n h';
+  }
+
+  @override
+  String get howToSearch => 'Como buscar';
+
+  @override
+  String get searchHelpWord => 'O título contém “dentist”, maiúsculas ou não';
+
+  @override
+  String get searchHelpStar => '* é qualquer sequência de letras: dentist, dentures';
+
+  @override
+  String get searchHelpQuestion => '? é uma letra: yoga, toga';
+
+  @override
+  String get searchHelpPhrase => 'Esta frase exata';
+
+  @override
+  String get searchHelpAnd => 'As duas palavras (AND)';
+
+  @override
+  String get searchHelpOr => 'Qualquer uma. | também funciona';
+
+  @override
+  String get searchHelpNot => 'Excluir. NOT e ! também funcionam';
+
+  @override
+  String get searchHelpBrackets => 'Parênteses agrupam palavras';
+
+  @override
+  String get searchHelpEmpty => 'Deixe vazio para tocar em todo evento.';
+
+  @override
+  String get customTime => 'Outro tempo';
+
+  @override
+  String get other => 'Outro';
+
+  @override
+  String get sun => 'Sol';
+
+  @override
+  String get calendar => 'Agenda';
+
+  @override
+  String get newEventAlarm => 'Novo alarme de evento';
+
+  @override
+  String get eventAlarm => 'Alarme de evento';
+
+  @override
+  String get findEventsHeading => 'ENCONTRE OS EVENTOS';
+
+  @override
+  String get searchEventsHint => 'Buscar: dentista, academia OR yoga, dent*…';
+
+  @override
+  String get alsoBuiltInTimes => 'Também horários de Shabat, festas e sol';
+
+  @override
+  String get alsoBuiltInTimesHint => 'ex.: “velas*”, “havdalá”, “pôr do sol”';
+
+  @override
+  String get allMyCalendars => 'Todas as minhas agendas';
+
+  @override
+  String get connectToSearch => 'Conecte suas agendas para buscar nelas';
+
+  @override
+  String get searching => 'Buscando…';
+
+  @override
+  String get nothingMatches60 => 'Nada encontrado nos próximos 60 dias';
+
+  @override
+  String eventsIn60(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n eventos nos próximos 60 dias',
+      one: '1 evento nos próximos 60 dias',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String nextRingsAt(String times, String title) {
+    return 'Próximo: toca às $times para “$title”';
+  }
+
+  @override
+  String showMoreLeft(int n) {
+    return 'Mostrar mais (faltam $n)';
+  }
+
+  @override
+  String get ringBeforeStartsHeading => 'TOCAR ANTES DE COMEÇAR';
+
+  @override
+  String get ringWhenStarts => 'Tocar quando começar';
+
+  @override
+  String get repeatBeforeHeading => 'E REPETIR ANTES';
+
+  @override
+  String get everyPrefix => 'A cada ';
+
+  @override
+  String get offLower => 'desligado';
+
+  @override
+  String get forInfix => '  durante ';
+
+  @override
+  String get ringAfterEndsHeading => 'TOCAR DEPOIS QUE TERMINAR';
+
+  @override
+  String get nameOptional => 'Nome (opcional)';
+
+  @override
+  String get toppedUp =>
+      'Os alarmes são marcados para os próximos 7 dias e renovados sempre que você abre o Quando?.';
+
+  @override
+  String get back => 'Voltar';
+
+  @override
+  String get next => 'Avançar';
+
+  @override
+  String get stepWhichEvents => 'Quais eventos';
+
+  @override
+  String get stepWhenToRing => 'Quando tocar';
+
+  @override
+  String get stepHowItRings => 'Como toca';
+
+  @override
+  String defaultNamed(String name) {
+    return 'Padrão ($name)';
+  }
+
+  @override
+  String get phoneAlarmSound => 'Som de alarme do celular';
+
+  @override
+  String get onlineRadio => 'Rádio online';
+
+  @override
+  String songLinkOpens(String app) {
+    return 'Link de música · abre no $app';
+  }
+
+  @override
+  String get builtIn => 'Incluso';
+
+  @override
+  String get yourRecording => 'Sua gravação';
+
+  @override
+  String get sound => 'Som';
+
+  @override
+  String get wakeToOwnSound => 'Acorde com o seu som';
+
+  @override
+  String get wakeToOwnSoundHint => 'Sua voz, uma música, Spotify ou rádio ao vivo';
+
+  @override
+  String musicAdded(String name) {
+    return '$name adicionado. Escolha como som de qualquer alarme.';
+  }
+
+  @override
+  String get playlists => 'Playlists';
+
+  @override
+  String get likedSongs => 'Músicas curtidas';
+
+  @override
+  String get noPlaylists => 'Nenhuma playlist ainda.';
+
+  @override
+  String get noLikedSongs => 'Nenhuma música curtida ainda.';
+
+  @override
+  String get needsMic => 'O Quando? precisa do microfone para gravar.';
+
+  @override
+  String recordingN(int n) {
+    return 'Gravação $n';
+  }
+
+  @override
+  String couldNotAddFile(String error) {
+    return 'Não foi possível adicionar o arquivo: $error';
+  }
+
+  @override
+  String get addSongLink => 'Adicionar link de música';
+
+  @override
+  String get songLink => 'Link de música';
+
+  @override
+  String get songLinkHowTo =>
+      'No Spotify, Apple Music, Amazon Music, YouTube, YouTube Music ou SoundCloud, toque em Compartilhar, depois em Copiar link, e cole aqui.';
+
+  @override
+  String get songNameHint => 'Nome, ex.: Playlist da manhã';
+
+  @override
+  String get whenAlarmGoesOffHeading => 'QUANDO O ALARME TOCAR';
+
+  @override
+  String get playTheSong => 'Tocar a música';
+
+  @override
+  String get ringThenOpen => 'Tocar e depois abrir';
+
+  @override
+  String get playTheSongHint =>
+      'O app dela abre e toca. Se ficar em silêncio por 10 segundos, o som reserva toca no lugar, para você sempre acordar. Alarmes com tarefa tocam e depois abrem a música.';
+
+  @override
+  String get ringThenOpenHint => 'O som reserva toca. Parar abre a música no app dela.';
+
+  @override
+  String get playForHeading => 'TOCAR POR';
+
+  @override
+  String get pausesAfter =>
+      'O Quando? pausa a música depois disso, usando o botão de pausa do próprio celular.';
+
+  @override
+  String get backupSoundHeading => 'SOM RESERVA';
+
+  @override
+  String get notALink => 'Isso não parece um link.';
+
+  @override
+  String songOn(String app) {
+    return 'Música no $app';
+  }
+
+  @override
+  String get theWeb => 'a web';
+
+  @override
+  String get pickFromYouTube => 'Escolher do meu YouTube';
+
+  @override
+  String get youTubeAndMusic => 'YouTube e YouTube Music';
+
+  @override
+  String get youTubeOn => 'Suas playlists e músicas curtidas. Toque e segure para sair.';
+
+  @override
+  String get youTubeSignIn => 'Entre com o Google para escolher entre suas playlists e músicas curtidas.';
+
+  @override
+  String get addSongLinkInstead => 'Adicione um link de música.';
+
+  @override
+  String get googleSignInFailed => 'O login no Google não terminou. Tente de novo.';
+
+  @override
+  String get myYouTube => 'Meu YouTube';
+
+  @override
+  String get spotifyDirectOn => 'Spotify direto está ligado';
+
+  @override
+  String get spotifyDirect => 'Spotify direto';
+
+  @override
+  String get spotifyDirectOnHint =>
+      'O Spotify toca exatamente a sua música como alarme. Toque para desligar.';
+
+  @override
+  String get spotifyDirectHint =>
+      'Toca exatamente a sua música do Spotify como alarme, de forma mais confiável. Precisa do app do Spotify e do Spotify Premium. Toque para entrar.';
+
+  @override
+  String get spotifyComingSoon =>
+      'Em breve: toca exatamente a sua música do Spotify como alarme (precisa do Spotify Premium).';
+
+  @override
+  String get spotifyFailed =>
+      'O Spotify não conectou. Confira se o app do Spotify está instalado, se você entrou na conta e se tem Premium.';
+
+  @override
+  String get nameThisSound => 'Dê um nome a este som';
+
+  @override
+  String get sounds => 'Sons';
+
+  @override
+  String get soundsSentence => 'Acorde com a sua voz, uma música, uma playlist ou rádio ao vivo.';
+
+  @override
+  String stopTimer(String time) {
+    return 'Parar · $time';
+  }
+
+  @override
+  String get record => 'Gravar';
+
+  @override
+  String get addAFile => 'Adicionar arquivo';
+
+  @override
+  String get addSongLinkLong => 'Adicionar link de música (Spotify, Apple Music, YouTube…)';
+
+  @override
+  String get musicAppsHeading => 'APPS DE MÚSICA';
+
+  @override
+  String get pickFromSpotify => 'Escolher do meu Spotify';
+
+  @override
+  String get yourPlaylistsAndLiked => 'Suas playlists e músicas curtidas';
+
+  @override
+  String get mySpotify => 'Meu Spotify';
+
+  @override
+  String get spotifySignInFailed => 'Não foi possível entrar no Spotify.';
+
+  @override
+  String get appleMusicNote =>
+      'O login chega com a versão para iPhone. Por enquanto, adicione um link de música.';
+
+  @override
+  String noSignInNote(String service) {
+    return 'O $service não permite login por outros apps. Adicione um link de música.';
+  }
+
+  @override
+  String get wakeToRadio => 'Acordar com rádio online';
+
+  @override
+  String get soundsExplain =>
+      'Grave sua voz, uma música ou o que quiser, até 5 minutos. Adicione um MP3, M4A ou WAV do celular. Use o link de uma música ou playlist: o app dela toca como alarme, com um som reserva. Ou escolha uma rádio: toca ao vivo e, se não conectar, toca o som de alarme do celular.';
+
+  @override
+  String get yourSoundsHeading => 'SEUS SONS';
+
+  @override
+  String playsIn(String app) {
+    return 'Toca no $app';
+  }
+
+  @override
+  String opensIn(String app) {
+    return 'Abre no $app';
+  }
+
+  @override
+  String forSpan(String span) {
+    return 'por $span';
+  }
+
+  @override
+  String get defaultLabel => 'Padrão';
+
+  @override
+  String get radioUnreachable => 'Não foi possível acessar o diretório de rádios. Confira sua conexão.';
+
+  @override
+  String get addStreamAddress => 'Adicionar endereço de stream';
+
+  @override
+  String get notAStream => 'Isso não parece um endereço de stream (começa com http).';
+
+  @override
+  String get anyGenre => 'Qualquer gênero';
+
+  @override
+  String get stationName => 'Nome da rádio';
+
+  @override
+  String get closeSearch => 'Fechar busca';
+
+  @override
+  String get searchByName => 'Buscar por nome';
+
+  @override
+  String get anywhere => 'Qualquer lugar';
+
+  @override
+  String get noStations => 'Nenhuma rádio encontrada. Tente outro gênero ou país.';
+
+  @override
+  String wakeUpTo(String name) {
+    return 'Acordar com $name';
+  }
+
+  @override
+  String get notQuite => 'Quase. Tente de novo.';
+
+  @override
+  String shabbatStopsItself(int n) {
+    return 'Modo Shabat: para sozinho em $n segundos. Não precisa tocar no celular.';
+  }
+
+  @override
+  String get solveToSnooze => 'RESOLVA PARA SONECA';
+
+  @override
+  String get solveToStop => 'RESOLVA PARA PARAR';
+
+  @override
+  String get answer => 'Resposta';
+
+  @override
+  String get snooze => 'Soneca';
+
+  @override
+  String get stop => 'Parar';
+
+  @override
+  String get shakeToSnooze => 'SACUDA PARA SONECA';
+
+  @override
+  String get shakeToStop => 'SACUDA PARA PARAR';
+
+  @override
+  String get shakeHard => 'Sacuda o celular com força até a barra encher.';
+
+  @override
+  String get cantShake => 'Não dá para sacudir? Resolva uma conta';
+
+  @override
+  String get pairsToSnooze => 'ACHE OS PARES PARA SONECA';
+
+  @override
+  String get pairsToStop => 'ACHE OS PARES PARA PARAR';
+
+  @override
+  String get typeToSnooze => 'DIGITE ISTO PARA SONECA';
+
+  @override
+  String get typeToStop => 'DIGITE ISTO PARA PARAR';
+
+  @override
+  String get scanToSnooze => 'ESCANEIE SEU CÓDIGO PARA SONECA';
+
+  @override
+  String get scanToStop => 'ESCANEIE SEU CÓDIGO PARA PARAR';
+
+  @override
+  String ringAgainUnless(int n) {
+    return 'Vou tocar de novo em $n minutos se você não tocar abaixo.';
+  }
+
+  @override
+  String get imUp => 'Acordei';
+
+  @override
+  String snoozeMin(int n) {
+    return 'Soneca $n min';
+  }
+
+  @override
+  String snoozeMinLeft(int n, int left) {
+    return 'Soneca $n min · faltam $left';
+  }
+
+  @override
+  String get noSnoozesLeft => 'Acabaram as sonecas';
+
+  @override
+  String get stopThenOpen => 'Parar · e abrir';
+
+  @override
+  String get startingSong => 'Iniciando sua música';
+
+  @override
+  String wayToStop(String way) {
+    return '$way para parar';
+  }
+
+  @override
+  String wayToSnooze(String way) {
+    return '$way para soneca';
+  }
+
+  @override
+  String ringsForMore(int n) {
+    return 'Toca por mais $n segundos';
+  }
+
+  @override
+  String get leftToRing => 'restantes';
+
+  @override
+  String get wayVolumeButtons => 'Botões de volume';
+
+  @override
+  String get wayShake => 'Sacudir o celular';
+
+  @override
+  String get taskNothing => 'Nada';
+
+  @override
+  String get taskSum => 'Resolver uma conta';
+
+  @override
+  String get taskShake => 'Sacudir 30 vezes';
+
+  @override
+  String get taskMemory => 'Jogo da memória';
+
+  @override
+  String get taskPhrase => 'Digitar uma frase';
+
+  @override
+  String get taskScan => 'Escanear um código';
+
+  @override
+  String get noLimit => 'sem limite';
+
+  @override
+  String upToTimes(int n) {
+    return 'até $n×';
+  }
+
+  @override
+  String shorterEachTime(int n) {
+    return '$n min a menos a cada vez';
+  }
+
+  @override
+  String autoSnoozeAfter(int n) {
+    return 'soneca automática após $n min';
+  }
+
+  @override
+  String get card => 'Carta';
+
+  @override
+  String get hiddenCard => 'Carta virada';
+
+  @override
+  String get phrase1 => 'Estou acordado e o dia é meu';
+
+  @override
+  String get phrase2 => 'Se não agora, quando';
+
+  @override
+  String get phrase3 => 'Bom dia para mim e para todos que eu amo';
+
+  @override
+  String get phrase4 => 'Meus pés estão no chão e eu levantei';
+
+  @override
+  String get phrase5 => 'Hoje eu recomeço';
+
+  @override
+  String get notQuiteWords => 'Quase, confira cada palavra.';
+
+  @override
+  String get typeItHere => 'Digite aqui';
+
+  @override
+  String get differentCode => 'Esse é outro código.';
+
+  @override
+  String get cameraUnavailable => 'A câmera não está disponível.';
+
+  @override
+  String get cantScan => 'Não dá para escanear? Resolva uma conta';
+
+  @override
+  String get saveCodeToScan => 'Salvar um código para escanear';
+
+  @override
+  String get saveCodeHint =>
+      'Aponte a câmera para um código de barras ou QR num lugar até onde você precise andar, como uma caixa na cozinha ou a pasta de dentes no banheiro. Para parar o alarme, você vai escaneá-lo de novo.';
+
+  @override
+  String get cameraUnavailableSettings =>
+      'A câmera não está disponível. Permita o acesso à câmera nas Configurações.';
+
+  @override
+  String gentleToGo(int n) {
+    return 'Despertar suave · faltam $n min';
+  }
+
+  @override
+  String previewBody(String body) {
+    return 'Teste · $body';
+  }
+
+  @override
+  String snoozedBody(String body) {
+    return 'Soneca: $body';
+  }
+
+  @override
+  String get areYouUp => 'Você acordou?';
+
+  @override
+  String get tapImUp => 'Toque em “Acordei” para parar';
+
+  @override
+  String get volume => 'Volume';
+
+  @override
+  String get wakeCheckOn => 'Confirmação ligada';
+
+  @override
+  String get stopsAtOnce => 'Para na hora';
+
+  @override
+  String get ringsAgainIfNotUp => 'Toca de novo se você não levantar';
+
+  @override
+  String get openAppAfter => 'Abrir um app depois';
+
+  @override
+  String get noTask => 'Sem tarefa';
+
+  @override
+  String get codeSaved => 'Código salvo';
+
+  @override
+  String get tapToSaveDifferent => 'Toque para salvar outro';
+
+  @override
+  String get controlsHeading => 'CONTROLES';
+
+  @override
+  String get onScreen => 'Na tela';
+
+  @override
+  String get taskHeading => 'TAREFA';
+
+  @override
+  String get none => 'Nenhuma';
+
+  @override
+  String get snoozeSentence =>
+      'Mais cinco minutinhos? Escolha quanto tempo, quantas vezes e o que é preciso fazer.';
+
+  @override
+  String get settingsHeading => 'AJUSTES';
+
+  @override
+  String get snoozeTime => 'Tempo de soneca';
+
+  @override
+  String get snoozeTimeHint => 'Quanto dura a primeira soneca';
+
+  @override
+  String get shortenSnoozes => 'Encurtar as próximas sonecas';
+
+  @override
+  String get shortenSnoozesHint => 'Cada soneca depois da primeira fica este tanto mais curta';
+
+  @override
+  String get autoSnooze => 'Soneca automática';
+
+  @override
+  String get autoSnoozeHint => 'Se você não tocar, entra em soneca sozinho depois de';
+
+  @override
+  String get never => 'Nunca';
+
+  @override
+  String get snoozeLimit => 'Limite de sonecas';
+
+  @override
+  String get snoozeLimitHint => 'Quantas vezes você pode adiar';
+
+  @override
+  String get unlimited => 'Sem limite';
+
+  @override
+  String get useSnoozeFromSettings => 'Usar a soneca dos Ajustes';
+
+  @override
+  String get stopSentence => 'Como você desliga o alarme e o que precisa fazer antes.';
+
+  @override
+  String get shabbatNoTask => 'No Shabat e nas festas os alarmes param sozinhos e nunca pedem tarefa.';
+
+  @override
+  String get volumeSentence => 'Quão alto toca, e com que suavidade chega lá.';
+
+  @override
+  String get openAfterAlarm => 'Abrir depois do alarme';
+
+  @override
+  String get pickAnApp => 'Escolher um app';
+
+  @override
+  String get orPasteLink => 'Ou cole um link: https://…';
+
+  @override
+  String get useThisLink => 'Usar este link';
+
+  @override
+  String get noAppsFound => 'Nenhum app encontrado.';
+
+  @override
+  String get weather => 'Tempo';
+
+  @override
+  String get news => 'Notícias';
+
+  @override
+  String get usePhoneVolume => 'Usar o volume de alarme do celular';
+
+  @override
+  String get setsPhoneVolume =>
+      'Ajusta o volume de alarme do celular enquanto toca e depois volta ao que era.';
+
+  @override
+  String get fadeInOff => 'Aumento gradual: desligado, volume total de uma vez';
+
+  @override
+  String fadeInOver(String span) {
+    return 'Aumenta em $span';
+  }
+
+  @override
+  String get fadeOutOff => 'Diminuição gradual: desligada';
+
+  @override
+  String fadeOutOver(String span) {
+    return 'Diminui nos últimos $span';
+  }
+
+  @override
+  String get fadesExplain =>
+      'A diminuição acontece quando o alarme para sozinho. Se as transições forem mais longas que o toque, as duas encolhem para caber.';
+
+  @override
+  String get soundSoftChime => 'Sino suave';
+
+  @override
+  String get soundMorningRise => 'Manhã nascendo';
+
+  @override
+  String get soundClassicBeep => 'Bipe clássico';
+
+  @override
+  String get calmCity => 'Manhã tranquila na cidade';
+
+  @override
+  String get calmBirds => 'Pássaros ao amanhecer';
+
+  @override
+  String get calmWaves => 'Ondas na praia';
+
+  @override
+  String get calmRain => 'Chuva fina';
+
+  @override
+  String get calmStream => 'Riacho na floresta';
+
+  @override
+  String get calmWind => 'Vento suave';
+
+  @override
+  String get calmFire => 'Lareira crepitando';
+
+  @override
+  String get calmNight => 'Noite de verão';
+
+  @override
+  String get publicDomain => 'Domínio público';
+
+  @override
+  String get phoneVolume => 'Volume do celular';
+
+  @override
+  String fadesIn(String span) {
+    return 'aumenta em $span';
+  }
+
+  @override
+  String fadesOut(String span) {
+    return 'diminui em $span';
+  }
+
+  @override
+  String get noFade => 'sem transição';
+
+  @override
+  String minSecShort(int m, int s) {
+    return '$m min $s s';
+  }
+
+  @override
+  String get happensRings => 'Toca';
+
+  @override
+  String get happensStopped => 'Você para';
+
+  @override
+  String get happensSnoozed => 'Você adia';
+
+  @override
+  String get happensAutoStopped => 'Para sozinho';
+
+  @override
+  String get eventLower => 'evento';
+
+  @override
+  String get appTest => 'Teste do Quando?';
+
+  @override
+  String get pushoverConnected => 'O Pushover está conectado';
+
+  @override
+  String get webhookConnected => 'O webhook está conectado';
+
+  @override
+  String pushoverSaid(int code, String body) {
+    return 'O Pushover respondeu $code: $body';
+  }
+
+  @override
+  String couldNotReachPushover(String error) {
+    return 'Não foi possível acessar o Pushover ($error)';
+  }
+
+  @override
+  String itAnswered(int code) {
+    return 'Respondeu $code';
+  }
+
+  @override
+  String couldNotReachIt(String error) {
+    return 'Não foi possível acessar ($error)';
+  }
+
+  @override
+  String get calendarNotAllowed => 'O acesso à agenda não foi permitido.';
+
+  @override
+  String get playlist => 'Playlist';
+
+  @override
+  String songCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n músicas', one: '1 música');
+    return '$_temp0';
+  }
+
+  @override
+  String get spotifySaidNo =>
+      'O Spotify recusou. No painel do Spotify, marque Web API para o Quando? e adicione sua conta em User Management.';
+
+  @override
+  String serviceDidntAnswer(String service, int code) {
+    return 'O $service não respondeu ($code).';
+  }
+
+  @override
+  String get youTubeSaidNo =>
+      'O YouTube recusou. Confira se sua conta Google é usuária de teste do projeto Quando.';
+
+  @override
+  String get event => 'Evento';
+
+  @override
+  String eventEnds(String title) {
+    return '$title (fim)';
+  }
+
+  @override
+  String foundSoundsDevices(int s, int d) {
+    return '$s sons e $d aparelhos encontrados.';
+  }
+
+  @override
+  String get sentCheckDevices => 'Enviado. Confira seus outros aparelhos.';
+
+  @override
+  String sentTo(String name) {
+    return 'Enviado para $name.';
+  }
+
+  @override
+  String get zapierHowTo =>
+      'No Zapier, crie um Zap que comece com “Webhooks by Zapier → Catch Hook” e cole o URL dele aqui.';
+
+  @override
+  String get catchHookUrl => 'URL do Catch Hook';
+
+  @override
+  String get iftttHowTo =>
+      'No IFTTT, crie um applet que comece com “Webhooks → Receive a web request with a JSON payload”. Use o mesmo nome de evento aqui. Sua chave está em ifttt.com/maker_webhooks/settings.';
+
+  @override
+  String get eventName => 'Nome do evento';
+
+  @override
+  String get webhooksKey => 'Chave de webhooks';
+
+  @override
+  String get webhookHowTo => 'O Quando? envia um JSON POST para este endereço.';
+
+  @override
+  String get connectionsSentence =>
+      'Avise seus outros apps e aparelhos quando um alarme tocar, parar ou entrar em soneca.';
+
+  @override
+  String get pushWhenRings => 'Enviar notificação quando um alarme tocar';
+
+  @override
+  String get pushWhenRingsHint => 'Para seus outros celulares, tablet, relógio ou computador';
+
+  @override
+  String get yourUserKey => 'Sua chave de usuário';
+
+  @override
+  String get appToken => 'Token do app';
+
+  @override
+  String get soundAndDevicesHeading => 'SOM E APARELHOS';
+
+  @override
+  String get loading => 'Carregando…';
+
+  @override
+  String get loadFromPushover => 'Carregar do Pushover';
+
+  @override
+  String get soundItPlays => 'Som que toca';
+
+  @override
+  String get myPushoverDefault => 'Meu padrão do Pushover';
+
+  @override
+  String get pushoverOwnSounds =>
+      'Seus próprios sons aparecem aqui depois que você os envia em pushover.net/sounds.';
+
+  @override
+  String get allMyDevices => 'Todos os meus aparelhos';
+
+  @override
+  String get pushoverOnThisPhone =>
+      'Instale o app Pushover neste celular também e ele toca aqui com o seu som do Pushover.';
+
+  @override
+  String get priority => 'Prioridade';
+
+  @override
+  String get priorityNormal => 'Normal';
+
+  @override
+  String get priorityHigh => 'Alta: passa pelo horário de silêncio';
+
+  @override
+  String get priorityEmergency => 'Emergência: repete até ser confirmada';
+
+  @override
+  String get sending => 'Enviando…';
+
+  @override
+  String get sendATest => 'Enviar um teste';
+
+  @override
+  String get findUserKey => 'Achar minha chave de usuário';
+
+  @override
+  String get makeAppToken => 'Criar um token de app';
+
+  @override
+  String get webhooksHeading => 'ZAPIER, IFTTT E WEBHOOKS';
+
+  @override
+  String get webhooksExplain =>
+      'Dispare qualquer coisa quando um alarme tocar ou você pará-lo: acender luzes, registrar a hora em que acordou, mandar mensagem para alguém.';
+
+  @override
+  String get sendWhenAlarm => 'Enviar quando o alarme:';
+
+  @override
+  String get pauseOnShabbat => 'Pausar no Shabat e nas festas';
+
+  @override
+  String get pauseOnShabbatHint => 'Nada é enviado para alarmes entre o acendimento das velas e a Havdalá';
+
+  @override
+  String get webhookPayloadNote =>
+      'Cada mensagem leva: event (ring, stopped, snoozed, auto_stopped), title, body, time, shabbat e snoozes. As chaves ficam neste celular.';
+
+  @override
+  String get today => 'Hoje';
+
+  @override
+  String get tomorrow => 'Amanhã';
+
+  @override
+  String get notAWebAddress => 'Isso não parece um endereço da web começando com https://';
+
+  @override
+  String get language => 'Idioma';
+
+  @override
+  String get phoneLanguage => 'Idioma do celular';
+}
