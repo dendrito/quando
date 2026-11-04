@@ -4,6 +4,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
@@ -71,4 +72,42 @@ void main() {
     expect(find.text('שבת'), findsOneWidget);
     expect(Directionality.of(tester.element(find.text('Quando?'))), TextDirection.rtl);
   });
+
+  for (final locale in AppLocalizations.supportedLocales) {
+    testWidgets('home, Shabbat and settings fit on a phone in $locale', (tester) async {
+      tester.view.physicalSize = const Size(1080, 2160);
+      tester.view.devicePixelRatio = 3;
+      addTearDown(tester.view.reset);
+      addTearDown(() => useLocale(const [Locale('en')]));
+      final tag = locale.scriptCode == null
+          ? locale.languageCode
+          : '${locale.languageCode}_${locale.scriptCode}';
+      SharedPreferences.setMockInitialValues({'language': tag});
+      final prefs = await SharedPreferences.getInstance();
+      useLocale([locale]);
+      await tester.pumpWidget(
+        ProviderScope(
+          overrides: [
+            clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+            prefsProvider.overrideWithValue(prefs),
+          ],
+          child: const QuandoApp(),
+        ),
+      );
+      await tester.pumpAndSettle();
+      final router = GoRouter.of(tester.element(find.byType(Scaffold).first));
+      addTearDown(() => router.go('/'));
+      router.go('/');
+      await tester.pumpAndSettle();
+      expect(find.text('Quando?'), findsWidgets);
+
+      router.go('/shabbat');
+      await tester.pumpAndSettle();
+      expect(find.text(l10n.shabbatAndFestivals), findsWidgets);
+
+      router.go('/settings');
+      await tester.pumpAndSettle();
+      expect(find.text(l10n.language), findsWidgets);
+    });
+  }
 }
