@@ -11,6 +11,7 @@ import '../../../app/widgets/feature_header.dart';
 import '../data/sound_files.dart';
 import '../data/spotify_library.dart';
 import '../data/youtube_library.dart';
+import '../../../core/util/platform.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
 import 'radio_screen.dart';
@@ -105,7 +106,8 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       (b) => b.path == editing?.path,
       orElse: () => AlarmSound.builtIns[1],
     );
-    var plays = editing?.plays ?? true;
+    // Only Android can start and pause other apps' music.
+    var plays = isAndroid && (editing?.plays ?? true);
     var playFor = editing?.playSeconds ?? 0;
     final ok = await showDialog<bool>(
       context: context,
@@ -139,40 +141,42 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     decoration: const InputDecoration(hintText: 'Name, e.g. Morning playlist'),
                   ),
                   const SizedBox(height: 16),
-                  Text('WHEN THE ALARM GOES OFF', style: text.labelSmall),
-                  const SizedBox(height: 8),
-                  SegmentedButton<bool>(
-                    showSelectedIcon: false,
-                    segments: const [
-                      ButtonSegment(value: true, label: Text('Play the song')),
-                      ButtonSegment(value: false, label: Text('Ring, then open')),
-                    ],
-                    selected: {plays},
-                    onSelectionChanged: (v) => setLocal(() => plays = v.first),
-                  ),
-                  const SizedBox(height: 6),
-                  Text(
-                    plays
-                        ? 'Its app opens and plays it. If it stays silent for 10 seconds, the backup sound '
-                              'rings instead, so you always wake up. Alarms with a task ring, then open it.'
-                        : 'The backup sound rings. Stop opens the song in its app.',
-                    style: text.bodySmall,
-                  ),
-                  const SizedBox(height: 16),
-                  Text('PLAY FOR', style: text.labelSmall),
-                  DropdownButton<int>(
-                    value: playFor,
-                    isExpanded: true,
-                    items: [
-                      for (final s in AlarmSound.playLengths)
-                        DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
-                    ],
-                    onChanged: (v) => setLocal(() => playFor = v ?? playFor),
-                  ),
-                  Text(
-                    'Quando pauses the song after this, using the phone\'s own pause button.',
-                    style: text.bodySmall,
-                  ),
+                  if (isAndroid) ...[
+                    Text('WHEN THE ALARM GOES OFF', style: text.labelSmall),
+                    const SizedBox(height: 8),
+                    SegmentedButton<bool>(
+                      showSelectedIcon: false,
+                      segments: const [
+                        ButtonSegment(value: true, label: Text('Play the song')),
+                        ButtonSegment(value: false, label: Text('Ring, then open')),
+                      ],
+                      selected: {plays},
+                      onSelectionChanged: (v) => setLocal(() => plays = v.first),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(
+                      plays
+                          ? 'Its app opens and plays it. If it stays silent for 10 seconds, the backup sound '
+                                'rings instead, so you always wake up. Alarms with a task ring, then open it.'
+                          : 'The backup sound rings. Stop opens the song in its app.',
+                      style: text.bodySmall,
+                    ),
+                    const SizedBox(height: 16),
+                    Text('PLAY FOR', style: text.labelSmall),
+                    DropdownButton<int>(
+                      value: playFor,
+                      isExpanded: true,
+                      items: [
+                        for (final s in AlarmSound.playLengths)
+                          DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
+                      ],
+                      onChanged: (v) => setLocal(() => playFor = v ?? playFor),
+                    ),
+                    Text(
+                      'Quando pauses the song after this, using the phone\'s own pause button.',
+                      style: text.bodySmall,
+                    ),
+                  ],
                   const SizedBox(height: 16),
                   Text('BACKUP SOUND', style: text.labelSmall),
                   DropdownButton<AlarmSound>(

@@ -1,3 +1,4 @@
+import '../../core/util/platform.dart';
 import '../sounds/domain/loudness.dart';
 
 /// Ways to snooze or stop a ringing alarm besides the buttons on screen.
@@ -7,6 +8,9 @@ enum StopWay {
 
   const StopWay(this.label);
   final String label;
+
+  /// iOS doesn't let apps read the volume buttons.
+  static List<StopWay> get onThisPhone => isAndroid ? values : const [shake];
 }
 
 /// What you must do before an alarm stops.

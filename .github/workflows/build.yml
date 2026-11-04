@@ -52,3 +52,20 @@ jobs:
             --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk."
         env:
           GH_TOKEN: ${{ github.token }}
+
+  # iPhone and iPad: proves the app builds. Unsigned until the Apple
+  # Developer account is set up, so it can't be installed yet.
+  ios-build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: 3.47.9
+          cache: true
+
+      - run: flutter pub get
+      - name: Build for iPhone and iPad (unsigned)
+        run: flutter build ios --release --no-codesign

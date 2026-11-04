@@ -66,5 +66,32 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record your own voice or sound to wake up to.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan the code you saved, so you have to get up to stop the alarm.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Set alarms before and after the events in your calendars.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Set alarms before and after the events in your calendars.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>fetch</string>
+	</array>
+	<key>BGTaskSchedulerPermittedIdentifiers</key>
+	<array>
+		<string>com.gdelataillade.fetch</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>spotify</string>
+		<string>youtube</string>
+		<string>youtubemusic</string>
+		<string>music</string>
+		<string>https</string>
+	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 </dict>
 </plist>

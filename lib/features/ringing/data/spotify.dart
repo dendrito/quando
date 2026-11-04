@@ -2,6 +2,8 @@ import 'dart:async';
 
 import 'package:spotify_sdk/spotify_sdk.dart';
 
+import '../../../core/util/platform.dart';
+
 /// Spotify direct play: Spotify's own kit lets Quando tell the Spotify app
 /// exactly which song to play. Needs the Spotify app, Spotify Premium and
 /// a one-time sign-in.
@@ -14,7 +16,8 @@ class SpotifyPlay {
   static const _scope = 'app-remote-control';
   static const _libraryScope = 'playlist-read-private,playlist-read-collaborative,user-library-read';
 
-  static bool get available => clientId.isNotEmpty;
+  // iOS needs its own Spotify setup first.
+  static bool get available => clientId.isNotEmpty && isAndroid;
 
   /// Set once the user has signed in, kept under [prefKey].
   static bool connected = false;

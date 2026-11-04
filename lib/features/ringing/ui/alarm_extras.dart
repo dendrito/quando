@@ -185,7 +185,7 @@ class _ActionCard extends StatelessWidget {
                 children: [
                   dot(Icons.touch_app_outlined, true),
                   const SizedBox(width: 10),
-                  for (final w in StopWay.values) ...[
+                  for (final w in StopWay.onThisPhone) ...[
                     dot(_wayIcons[w]!, ways.contains(w)),
                     const SizedBox(width: 10),
                   ],
@@ -288,7 +288,7 @@ Widget _controls(
             selected: true,
             onSelected: null,
           ),
-          for (final w in StopWay.values)
+          for (final w in StopWay.onThisPhone)
             FilterChip(
               showCheckmark: false,
               avatar: Icon(_wayIcons[w], size: 18),
