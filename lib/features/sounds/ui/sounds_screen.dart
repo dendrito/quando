@@ -12,6 +12,7 @@ import '../data/sound_files.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
 import 'radio_screen.dart';
+import 'spotify_picker_screen.dart';
 import 'sound_player.dart';
 
 /// Your sounds: record one, add a file, listen, rename, delete.
@@ -346,7 +347,33 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             icon: const Icon(Icons.link),
             label: const Text('Add a song link (Spotify, Apple Music, YouTube…)'),
           ),
+          const SizedBox(height: 20),
+          Text('MUSIC APPS', style: text.labelSmall),
           _spotifyTile(text),
+          if (SpotifyPlay.connected)
+            ListTile(
+              contentPadding: const EdgeInsets.only(left: 40),
+              leading: const Icon(Icons.library_music, color: QuandoColors.amber),
+              title: const Text('Pick from my Spotify'),
+              subtitle: Text('Your playlists and liked songs', style: text.bodySmall),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () =>
+                  Navigator.of(context)
+                      .push(MaterialPageRoute<void>(builder: (_) => const SpotifyPickerScreen())),
+            ),
+          for (final (app, note) in const [
+            ('YouTube and YouTube Music', 'Sign-in coming soon. For now, add a song link.'),
+            ('Apple Music', 'Sign-in coming with the iPhone version. For now, add a song link.'),
+            ('Amazon Music', 'Amazon doesn\'t allow sign-in from other apps. Add a song link instead.'),
+            ('SoundCloud', 'SoundCloud doesn\'t allow sign-in from other apps. Add a song link instead.'),
+          ])
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.music_note_outlined, color: QuandoColors.faint),
+              title: Text(app),
+              subtitle: Text(note, style: text.bodySmall),
+              onTap: recording ? null : _addLink,
+            ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),

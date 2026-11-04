@@ -12,6 +12,7 @@ class SpotifyPlay {
   static const _clientId = '3949e2cc4f5e4afba699d9cb5c560d12';
   static const redirectUrl = 'spotify-sdk://auth';
   static const _scope = 'app-remote-control';
+  static const _libraryScope = 'playlist-read-private,playlist-read-collaborative,user-library-read';
 
   static bool get available => clientId.isNotEmpty;
 
@@ -42,6 +43,22 @@ class SpotifyPlay {
       );
     } catch (_) {
       return false;
+    }
+  }
+
+  /// A short-lived key to read your playlists and liked songs. Spotify may
+  /// show its consent screen the first time. null when it said no.
+  static Future<String?> libraryToken() async {
+    if (!available) return null;
+    try {
+      final t = await SpotifySdk.getAccessToken(
+        clientId: clientId,
+        redirectUrl: redirectUrl,
+        scope: _libraryScope,
+      );
+      return t.isEmpty ? null : t;
+    } catch (_) {
+      return null;
     }
   }
 

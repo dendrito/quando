@@ -12,6 +12,7 @@ import 'package:quando/features/ringing/data/spotify.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_style.dart';
 import 'package:quando/features/sounds/data/radio_directory.dart';
+import 'package:quando/features/sounds/data/spotify_library.dart';
 import 'package:quando/features/sounds/domain/sound.dart';
 import 'package:quando/features/sounds/ui/sound_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -241,5 +242,33 @@ void main() {
       expect(File(c.path).existsSync(), isTrue, reason: c.path);
       expect(AlarmSound.calmCredits.any((cr) => cr.$1 == c.name), isTrue, reason: c.name);
     }
+  });
+
+  test('Spotify playlists and liked songs become song links', () async {
+    final lib = SpotifyLibrary(
+      'tok',
+      client: MockClient((req) async {
+        expect(req.headers['Authorization'], 'Bearer tok');
+        if (req.url.path.endsWith('/playlists')) {
+          return http.Response(
+            '{"items":[{"name":"Morning","external_urls":{"spotify":"https://open.spotify.com/playlist/p1"},'
+            '"tracks":{"total":32},"images":[{"url":"https://i/big"},{"url":"https://i/small"}]},{"name":""}]}',
+            200,
+          );
+        }
+        return http.Response(
+          '{"items":[{"track":{"name":"Song","external_urls":{"spotify":"https://open.spotify.com/track/t1"},'
+          '"artists":[{"name":"A"},{"name":"B"}]}}]}',
+          200,
+        );
+      }),
+    );
+    final p = await lib.playlists();
+    expect(p.single.name, 'Morning');
+    expect(p.single.detail, '32 songs');
+    expect(p.single.image, 'https://i/small');
+    expect(SpotifyPlay.uriOf(p.single.url), 'spotify:playlist:p1');
+    final t = await lib.likedSongs();
+    expect(t.single.detail, 'A, B');
   });
 }
