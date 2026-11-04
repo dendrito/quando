@@ -13,6 +13,7 @@ import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
+import 'data/apps.dart';
 import 'ring_payload.dart';
 import 'ring_style.dart';
 import 'shake_detector.dart';
@@ -197,6 +198,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   /// The song or playlist from Spotify, SoundCloud… that this alarm plays.
   Future<void> _openLink() async {
     final link = p.link;
+    if (AppLink.isApp(link)) {
+      await Apps.launch(AppLink.package(link!));
+      return;
+    }
     final uri = link == null ? null : Uri.tryParse(link);
     if (uri == null) return;
     try {

@@ -61,6 +61,11 @@
             <action android:name="android.intent.action.VIEW"/>
             <data android:scheme="https"/>
         </intent>
+        <!-- App launcher: see the apps you can open after an alarm. -->
+        <intent>
+            <action android:name="android.intent.action.MAIN"/>
+            <category android:name="android.intent.category.LAUNCHER"/>
+        </intent>
         <!-- Song links: open them in Spotify. -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>

@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/scheduler/scheduler.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
+import 'package:quando/features/ringing/data/apps.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_style.dart';
 import 'package:quando/features/sounds/domain/loudness.dart';
@@ -166,5 +167,15 @@ void main() {
     expect(shabbat.canSnooze, isFalse);
     expect(shabbat.autoSnooze, isFalse);
     expect(shabbat.snoozeTask, StopTask.none);
+  });
+
+  test('an app to open after is kept by its package', () {
+    final s = AppLink.of(const PhoneApp(package: 'com.example.news', label: 'Daily News'));
+    expect(AppLink.isApp(s), isTrue);
+    expect(AppLink.package(s), 'com.example.news');
+    expect(AppLink.label(s), 'Daily News');
+    expect(AppLink.isApp('https://news.google.com'), isFalse);
+    const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60);
+    expect(RingPayload.decode(base.withStyle(RingStyle(openAfter: s)).encode()).link, s);
   });
 }

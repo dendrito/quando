@@ -7,6 +7,7 @@ import '../../settings/domain/alarm_options.dart';
 import '../../sounds/domain/loudness.dart';
 import '../../sounds/domain/sound.dart';
 import '../../sounds/ui/sound_player.dart';
+import '../data/apps.dart';
 import '../ring_style.dart';
 
 /// A row under the sound picker: "Volume, fades & stopping", with a summary.
@@ -32,7 +33,8 @@ class RingStyleTile extends ConsumerWidget {
           '${w.label.toLowerCase()} stop'
         else if (s.snoozeBy.contains(w))
           '${w.label.toLowerCase()} snooze',
-      if (s.openAfter != null && s.openAfter!.isNotEmpty) 'opens a link after',
+      if (s.openAfter != null && s.openAfter!.isNotEmpty)
+        'then opens ${AppLink.isApp(s.openAfter) ? AppLink.label(s.openAfter!) : 'a link'}',
     ];
     return ListTile(
       contentPadding: EdgeInsets.zero,
@@ -341,21 +343,43 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
             Text('OPEN AFTER STOPPING', style: text.labelSmall),
             const SizedBox(height: 4),
             Text(
-              'A link or app that opens once you\'re up: the news, the weather, a playlist.',
+              'Start your morning in one move: an app or link opens once you\'re up, like the news, the '
+              'weather or a playlist.',
               style: text.bodySmall,
             ),
             const SizedBox(height: 8),
-            TextField(
-              controller: _link,
-              keyboardType: TextInputType.url,
-              decoration: const InputDecoration(hintText: 'https://…'),
-              onChanged: (_) => setState(() {}),
-            ),
+            if (AppLink.isApp(_link.text))
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.apps, color: QuandoColors.amber),
+                title: Text(AppLink.label(_link.text)),
+                subtitle: const Text('Opens after the alarm'),
+                trailing: IconButton(
+                  tooltip: 'Remove',
+                  icon: const Icon(Icons.close),
+                  onPressed: () => setState(() => _link.clear()),
+                ),
+              )
+            else
+              TextField(
+                controller: _link,
+                keyboardType: TextInputType.url,
+                decoration: const InputDecoration(hintText: 'https://…'),
+                onChanged: (_) => setState(() {}),
+              ),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               runSpacing: 8,
               children: [
+                ActionChip(
+                  avatar: const Icon(Icons.apps, size: 18),
+                  label: const Text('Pick an app'),
+                  onPressed: () async {
+                    final a = await _pickApp(context);
+                    if (a != null) setState(() => _link.text = AppLink.of(a));
+                  },
+                ),
                 for (final (name, url) in _quickLinks)
                   ActionChip(label: Text(name), onPressed: () => setState(() => _link.text = url)),
               ],
@@ -377,6 +401,41 @@ class _RingStyleScreenState extends ConsumerState<RingStyleScreen> {
     );
   }
 }
+
+/// Every app on the phone that can be opened, with its icon.
+Future<PhoneApp?> _pickApp(BuildContext context) => showModalBottomSheet<PhoneApp>(
+  context: context,
+  showDragHandle: true,
+  isScrollControlled: true,
+  builder: (context) => DraggableScrollableSheet(
+    expand: false,
+    initialChildSize: 0.7,
+    builder: (context, scroll) => FutureBuilder<List<PhoneApp>>(
+      future: Apps.list(),
+      builder: (context, snap) {
+        if (!snap.hasData) return const Center(child: CircularProgressIndicator());
+        final apps = snap.data!;
+        if (apps.isEmpty) {
+          return const Padding(padding: EdgeInsets.all(24), child: Text('No apps found.'));
+        }
+        return ListView.builder(
+          controller: scroll,
+          itemCount: apps.length,
+          itemBuilder: (context, i) {
+            final a = apps[i];
+            return ListTile(
+              leading: a.icon == null
+                  ? const Icon(Icons.apps)
+                  : Image.memory(a.icon!, width: 40, height: 40, gaplessPlayback: true),
+              title: Text(a.label),
+              onTap: () => Navigator.pop(context, a),
+            );
+          },
+        );
+      },
+    ),
+  ),
+);
 
 const _quickLinks = [
   ('Weather', 'https://www.google.com/search?q=weather'),
