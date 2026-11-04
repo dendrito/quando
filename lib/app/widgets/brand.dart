@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 
+import '../edition.dart';
 import '../theme.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
 /// The Q-hand logo: a Q drawn as a clock whose tail is the minute hand.
-/// Drawn on a 180-unit grid, the same as the app icon.
+/// Drawn on a 180-unit grid, the same as the app icon. Matai? draws its own
+/// icon: plum tile, amber ring, and a candle flame for the hour hand.
 class QMark extends StatelessWidget {
   const QMark({super.key, this.size = 32, this.tile = true});
 
@@ -32,9 +34,10 @@ class _QMarkPainter extends CustomPainter {
     if (tile) {
       canvas.drawRRect(
         RRect.fromRectAndRadius(const Rect.fromLTWH(0, 0, 180, 180), const Radius.circular(44)),
-        Paint()..color = QuandoColors.coral,
+        Paint()..color = kodesh ? QuandoColors.ground : QuandoColors.coral,
       );
     }
+    if (kodesh) return _matai(canvas);
     final ink = tile ? QuandoColors.ground : QuandoColors.coral;
     final hand = tile ? QuandoColors.text : QuandoColors.coral;
     Paint stroke(Color c, double w) => Paint()
@@ -46,6 +49,50 @@ class _QMarkPainter extends CustomPainter {
     canvas.drawCircle(centre, 46, stroke(ink, 17));
     canvas.drawLine(centre, const Offset(86, 56), stroke(ink, 12));
     canvas.drawLine(centre, const Offset(146, 144), stroke(hand, 17));
+    if (tile) canvas.drawCircle(centre, 9, Paint()..color = QuandoColors.text);
+  }
+
+  void _matai(Canvas canvas) {
+    const centre = Offset(86, 84);
+    final ring = tile ? QuandoColors.amber : QuandoColors.coral;
+    canvas.drawCircle(
+      centre,
+      46,
+      Paint()
+        ..color = ring
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 17,
+    );
+    Path flame(double top, double halfWidth, double bottom) => Path()
+      ..moveTo(86, top)
+      ..cubicTo(
+        86 + halfWidth * .8,
+        top + (bottom - top) * .45,
+        86 + halfWidth,
+        bottom - halfWidth * 1.2,
+        86 + halfWidth,
+        bottom - halfWidth,
+      )
+      ..arcToPoint(Offset(86 - halfWidth, bottom - halfWidth), radius: Radius.circular(halfWidth))
+      ..cubicTo(
+        86 - halfWidth,
+        bottom - halfWidth * 1.2,
+        86 - halfWidth * .8,
+        top + (bottom - top) * .45,
+        86,
+        top,
+      )
+      ..close();
+    canvas.drawPath(flame(50, 11, 82), Paint()..color = QuandoColors.coral);
+    if (tile) canvas.drawPath(flame(62, 5, 78), Paint()..color = QuandoColors.text);
+    canvas.drawLine(
+      centre,
+      const Offset(146, 144),
+      Paint()
+        ..color = tile ? QuandoColors.text : QuandoColors.coral
+        ..strokeWidth = 17
+        ..strokeCap = StrokeCap.round,
+    );
     if (tile) canvas.drawCircle(centre, 9, Paint()..color = QuandoColors.text);
   }
 

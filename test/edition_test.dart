@@ -1,4 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:quando/app/widgets/brand.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/edition.dart';
 import 'package:quando/app/providers.dart';
@@ -70,5 +72,15 @@ void main() {
       isFalse,
     );
     if (kodesh) expect(radioGenres.map((g) => g.$2), isNot(contains('rock')));
+  });
+
+  testWidgets('the logo draws in both editions', (tester) async {
+    await tester.pumpWidget(
+      const Directionality(
+        textDirection: TextDirection.ltr,
+        child: Center(child: Row(children: [QMark(), QMark(tile: false)])),
+      ),
+    );
+    expect(tester.takeException(), isNull);
   });
 }

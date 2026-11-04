@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 # Switches the iPhone/iPad project to the Jewish edition before a build:
-# its own bundle ID and home-screen name, so it installs as a separate app.
+# its own bundle ID, home-screen name and icon, so it installs as a separate app.
 #   tool/ios_edition.sh kodesh && flutter build ios --dart-define=QUANDO_EDITION=kodesh
 # Android does the same with its "kodesh" flavor (android/app/build.gradle.kts).
 set -euo pipefail
 cd "$(dirname "$0")/.."
 case "${1:-}" in
   kodesh)
-    sed -i.bak 's/PRODUCT_BUNDLE_IDENTIFIER = com\.dendrito\.quando;/PRODUCT_BUNDLE_IDENTIFIER = com.dendrito.quando.kodesh;/' ios/Runner.xcodeproj/project.pbxproj
+    sed -i.bak -e 's/PRODUCT_BUNDLE_IDENTIFIER = com\.dendrito\.quando;/PRODUCT_BUNDLE_IDENTIFIER = com.dendrito.quando.kodesh;/' \
+      -e 's/ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;/ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Matai";/' \
+      ios/Runner.xcodeproj/project.pbxproj
     /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Matai?" ios/Runner/Info.plist 2>/dev/null \
       || sed -i.bak 's#<string>Quando?</string>#<string>Matai?</string>#' ios/Runner/Info.plist
     rm -f ios/Runner.xcodeproj/project.pbxproj.bak ios/Runner/Info.plist.bak
