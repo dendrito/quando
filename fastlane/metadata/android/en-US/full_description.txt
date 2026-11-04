@@ -1,6 +1,6 @@
 Quando? is an alarm clock that knows when things actually happen. Set alarms around your meetings, sunrise and sunset, and the days you rest, then wake up the way you like.
 
-If not now, when?
+Time well kept.
 
 ALARMS AROUND YOUR DAY
 • Normal alarms with repeat days, labels and groups, plus duplicate, turn off and undo.
