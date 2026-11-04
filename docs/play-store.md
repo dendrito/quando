@@ -15,10 +15,10 @@ What to fill in on the Play Console for Quando. Store texts are in
 
 ## App details
 
-- App name: Quando: Alarms & Shabbat
+- App name: Quando? Smart Alarm Clock
 - Default language: English (United States)
 - App or game: App. Free.
-- Category: Tools. Tags: Alarm clock, Calendar, Religion.
+- Category: Tools. Tags: Alarm clock, Calendar, Productivity. Keep Shabbat to the description only.
 - Package name: com.dendrito.alarmapp
 
 ## App content

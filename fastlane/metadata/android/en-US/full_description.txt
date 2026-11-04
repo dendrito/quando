@@ -1,4 +1,4 @@
-Quando is an alarm clock that knows when things actually happen. Set alarms around your calendar, sunrise and sunset, Shabbat and the festivals, then wake up the way you like.
+Quando? is an alarm clock that knows when things actually happen. Set alarms around your meetings, sunrise and sunset, and the days you rest, then wake up the way you like.
 
 If not now, when?
 
@@ -8,11 +8,11 @@ ALARMS AROUND YOUR DAY
 • Sunrise and sunset alarms for the city you choose.
 • Several time zones and world clocks.
 
-SHABBAT AND FESTIVALS
-• Candle lighting, Havdalah and yom tov times for your city, for Israel or the diaspora, including back-to-back holy days.
-• Shabbat-safe alarms: inside a holy period they ring for a set time and stop by themselves. No snooze, no speaking, nothing to tap.
-• Lock mode: lock the phone to Quando for Shabbat, a festival or any calendar event.
-• A Friday reminder to charge your phone.
+REST DAYS AND HOLIDAYS
+• Lock mode: lock the phone down to the clock for a focused night, a day off or any calendar event.
+• Hands-free alarms that ring for a set time and stop by themselves, with nothing to tap.
+• Built-in Shabbat and Jewish holiday times for your city (Israel or diaspora), with more traditions to come.
+• A reminder to charge your phone before your day off.
 
 WAKE UP YOUR WAY
 • Gentle nature sounds before the alarm: city, birds, waves, rain, a stream, wind, fire and night.
