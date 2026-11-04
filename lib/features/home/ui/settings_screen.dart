@@ -12,10 +12,10 @@ import '../../../core/util/local_time.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
+import '../../ringing/ui/alarm_extras.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
-import '../../ringing/ui/alarm_extras.dart';
 
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
@@ -134,12 +134,24 @@ class SettingsScreen extends ConsumerWidget {
             seconds: o.ringSeconds,
             onChanged: (s) => setO((x) => x.copyWith(ringSeconds: s)),
           ),
-          const SizedBox(height: 16),
-          const Text('Volume and fades'),
-          LoudnessEditor(
-            value: o.loudness,
-            onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
+          const SizedBox(height: 8),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Same fades for every alarm'),
+            subtitle: Text(
+              o.fadesForAll
+                  ? 'Overrides the fades set on each alarm. Each keeps its own volume.'
+                  : 'Off: each alarm uses the fades set under its Volume.',
+            ),
+            value: o.fadesForAll,
+            onChanged: (v) => setO((x) => x.copyWith(fadesForAll: v)),
           ),
+          if (o.fadesForAll)
+            LoudnessEditor(
+              fadesOnly: true,
+              value: o.loudness,
+              onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
+            ),
           const SizedBox(height: 8),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,

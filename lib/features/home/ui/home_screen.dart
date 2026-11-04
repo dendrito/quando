@@ -43,6 +43,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       );
   }
 
+  void _duplicate(UserAlarm a) {
+    final copy = ref.read(userAlarmsProvider.notifier).duplicate(a.id);
+    _undo('Duplicated "${a.title}"', () => ref.read(userAlarmsProvider.notifier).delete(copy.id));
+  }
+
+  void _delete(UserAlarm a) {
+    ref.read(userAlarmsProvider.notifier).delete(a.id);
+    _undo('Deleted "${a.title}"', () => ref.read(userAlarmsProvider.notifier).save(a));
+  }
+
   /// "When?": a time of day, or around events you search for.
   Future<void> _newAlarm() async {
     final choice = await showModalBottomSheet<String>(
@@ -404,6 +414,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       alarm: a,
                       onTap: () => context.push('/alarm/${a.id}'),
                       onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                      onDuplicate: () => _duplicate(a),
+                      onDelete: () => _delete(a),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -425,6 +437,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       flat: true,
                       onTap: () => context.push('/alarm/${a.id}'),
                       onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                      onDuplicate: () => _duplicate(a),
+                      onDelete: () => _delete(a),
                     ),
                   ),
                   const SizedBox(height: 10),
@@ -506,7 +520,14 @@ class _WhenChip extends StatelessWidget {
 }
 
 class _AlarmCard extends StatelessWidget {
-  const _AlarmCard({required this.alarm, required this.onTap, required this.onToggle, this.flat = false});
+  const _AlarmCard({
+    required this.alarm,
+    required this.onTap,
+    required this.onToggle,
+    required this.onDuplicate,
+    required this.onDelete,
+    this.flat = false,
+  });
 
   final UserAlarm alarm;
 
@@ -514,6 +535,8 @@ class _AlarmCard extends StatelessWidget {
   final bool flat;
   final VoidCallback onTap;
   final ValueChanged<bool> onToggle;
+  final VoidCallback onDuplicate;
+  final VoidCallback onDelete;
 
   @override
   Widget build(BuildContext context) {
@@ -564,6 +587,32 @@ class _AlarmCard extends StatelessWidget {
                 ),
               ),
               Switch(value: on, onChanged: onToggle),
+              PopupMenuButton<String>(
+                tooltip: 'More',
+                icon: const Icon(Icons.more_vert, color: QuandoColors.muted),
+                onSelected: (v) => switch (v) {
+                  'toggle' => onToggle(!on),
+                  'copy' => onDuplicate(),
+                  _ => onDelete(),
+                },
+                itemBuilder: (context) => [
+                  PopupMenuItem(
+                    value: 'toggle',
+                    child: ListTile(
+                      leading: Icon(on ? Icons.alarm_off : Icons.alarm_on),
+                      title: Text(on ? 'Turn off' : 'Turn on'),
+                    ),
+                  ),
+                  const PopupMenuItem(
+                    value: 'copy',
+                    child: ListTile(leading: Icon(Icons.copy), title: Text('Duplicate')),
+                  ),
+                  const PopupMenuItem(
+                    value: 'delete',
+                    child: ListTile(leading: Icon(Icons.delete_outline), title: Text('Delete')),
+                  ),
+                ],
+              ),
             ],
           ),
         ),

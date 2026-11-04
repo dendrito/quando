@@ -537,18 +537,11 @@ class _VolumeScreenState extends _StyleScreenState<VolumeScreen> {
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) => [
-    SwitchListTile(
-      contentPadding: EdgeInsets.zero,
-      title: const Text('Same as other alarms'),
-      subtitle: Text(o.loudness.summary),
-      value: s.loudness == null,
-      onChanged: (v) => set(v ? s.copyWith(defaultLoudness: true) : s.copyWith(loudness: o.loudness)),
+    // Each alarm has its own volume and fades.
+    LoudnessEditor(
+      value: s.loudness ?? o.loudness,
+      onChanged: (l) => set(s.copyWith(loudness: l)),
     ),
-    if (s.loudness != null)
-      LoudnessEditor(
-        value: s.loudness!,
-        onChanged: (l) => set(s.copyWith(loudness: l)),
-      ),
   ];
 }
 
@@ -656,9 +649,12 @@ const _quickLinks = [
 
 /// Volume slider plus fade-in and fade-out lengths.
 class LoudnessEditor extends StatelessWidget {
-  const LoudnessEditor({super.key, required this.value, required this.onChanged});
+  const LoudnessEditor({super.key, required this.value, required this.onChanged, this.fadesOnly = false});
 
   final Loudness value;
+
+  /// Only the fade sliders, no volume.
+  final bool fadesOnly;
   final ValueChanged<Loudness> onChanged;
 
   static const _fades = [0, 5, 10, 20, 30, 45, 60, 90, 120, 180, 300];
@@ -675,13 +671,14 @@ class LoudnessEditor extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SwitchListTile(
-          contentPadding: EdgeInsets.zero,
-          title: const Text('Use the phone\'s alarm volume'),
-          value: v.volume == null,
-          onChanged: (on) => onChanged(on ? v.copyWith(phoneVolume: true) : v.copyWith(volume: 80)),
-        ),
-        if (v.volume != null) ...[
+        if (!fadesOnly)
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: const Text('Use the phone\'s alarm volume'),
+            value: v.volume == null,
+            onChanged: (on) => onChanged(on ? v.copyWith(phoneVolume: true) : v.copyWith(volume: 80)),
+          ),
+        if (!fadesOnly && v.volume != null) ...[
           Row(
             children: [
               const Icon(Icons.volume_down, color: QuandoColors.muted),

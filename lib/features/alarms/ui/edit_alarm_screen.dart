@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
@@ -161,6 +162,20 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
         actions: [
           TextButton(onPressed: _preview, child: const Text('PREVIEW')),
           TextButton(onPressed: _save, child: const Text('SAVE')),
+          if (!_isNew)
+            IconButton(
+              tooltip: 'Duplicate',
+              icon: const Icon(Icons.copy),
+              onPressed: () {
+                // A copy of the alarm as it is on screen, opened for editing.
+                final copy = UserAlarm.fromJson({
+                  ..._alarm.toJson(),
+                  'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+                });
+                ref.read(userAlarmsProvider.notifier).save(copy);
+                context.pushReplacement('/alarm/${copy.id}');
+              },
+            ),
           if (!_isNew)
             IconButton(
               tooltip: 'Delete',

@@ -178,4 +178,17 @@ void main() {
     const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60);
     expect(RingPayload.decode(base.withStyle(RingStyle(openAfter: s)).encode()).link, s);
   });
+
+  test('a fades override keeps each alarm\'s volume', () {
+    const p = RingPayload(
+      title: 'Wake',
+      body: 'Alarm',
+      ringSeconds: 120,
+      loudness: Loudness(volume: 40, fadeInSeconds: 5),
+    );
+    final o = p.withFadesOf(const Loudness(volume: 90, fadeInSeconds: 60, fadeOutSeconds: 20));
+    expect(o.loudness.volume, 40);
+    expect(o.loudness.fadeInSeconds, 60);
+    expect(o.loudness.fadeOutSeconds, 20);
+  });
 }

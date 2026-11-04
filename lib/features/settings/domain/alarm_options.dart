@@ -11,7 +11,12 @@ class AlarmOptions {
     this.mathTask = false,
     this.soundId,
     this.loudness = Loudness.standard,
+    this.fadesForAll = false,
   });
+
+  /// Every alarm uses [loudness]'s fades instead of its own (each keeps its
+  /// own volume).
+  final bool fadesForAll;
 
   /// Read the alarm's label aloud when it rings.
   final bool spoken;
@@ -46,6 +51,7 @@ class AlarmOptions {
     String? soundId,
     bool phoneSound = false,
     Loudness? loudness,
+    bool? fadesForAll,
   }) => AlarmOptions(
     spoken: spoken ?? this.spoken,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -55,6 +61,7 @@ class AlarmOptions {
     mathTask: mathTask ?? this.mathTask,
     soundId: phoneSound ? null : (soundId ?? this.soundId),
     loudness: loudness ?? this.loudness,
+    fadesForAll: fadesForAll ?? this.fadesForAll,
   );
 
   Map<String, dynamic> toJson() => {
@@ -66,6 +73,7 @@ class AlarmOptions {
     'mathTask': mathTask,
     'soundId': soundId,
     'loudness': loudness.toJson(),
+    'fadesForAll': fadesForAll,
   };
 
   factory AlarmOptions.fromJson(Map<String, dynamic> j) => AlarmOptions(
@@ -77,5 +85,6 @@ class AlarmOptions {
     mathTask: j['mathTask'] as bool? ?? false,
     soundId: j['soundId'] as String?,
     loudness: Loudness.fromJson(j['loudness']) ?? Loudness.standard,
+    fadesForAll: j['fadesForAll'] as bool? ?? false,
   );
 }

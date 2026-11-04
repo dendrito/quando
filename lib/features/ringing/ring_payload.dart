@@ -193,6 +193,11 @@ class RingPayload {
       ? _copy(song: url, keepSong: false, link: null, keepLink: false, songSeconds: seconds)
       : _copy(link: url, keepLink: false, song: null, keepSong: false, songSeconds: seconds);
 
+  /// [fades]' fade in and out, keeping this alarm's own volume.
+  RingPayload withFadesOf(Loudness fades) => _copy(
+    loudness: loudness.copyWith(fadeInSeconds: fades.fadeInSeconds, fadeOutSeconds: fades.fadeOutSeconds),
+  );
+
   RingPayload withRingSeconds(int seconds) => _copy(ringSeconds: seconds);
 
   RingPayload withSound(String? path) => _copy(sound: path, keepSound: false);

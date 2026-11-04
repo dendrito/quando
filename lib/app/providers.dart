@@ -479,6 +479,17 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     ]);
   }
 
+  /// A copy of alarm [id], right after it in the list. Returns the copy.
+  UserAlarm duplicate(String id) {
+    final i = state.indexWhere((a) => a.id == id);
+    final copy = UserAlarm.fromJson({
+      ...state[i].toJson(),
+      'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+    });
+    _set([...state.sublist(0, i + 1), copy, ...state.sublist(i + 1)]);
+    return copy;
+  }
+
   void toggle(String id, bool enabled) {
     final a = state.firstWhere((a) => a.id == id);
     if (enabled && !a.repeats) {
@@ -730,7 +741,7 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     }
     if (p.isLock) return p;
     p = p.withStyle(a.style);
-    if (!a.ruleId.startsWith('gentle.')) return p;
+    if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
     final calm =
         (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
     return p.gentleLeadUp(a.style.gentleMinutes, calm);
