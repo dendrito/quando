@@ -67,5 +67,15 @@ jobs:
           cache: true
 
       - run: flutter pub get
+      # The Spotify kit for iOS isn't shipped with its Flutter package: fetch
+      # Spotify's framework next to it, as its own setup script does.
+      - name: Fetch Spotify's iOS framework
+        run: |
+          dir=$(python3 -c "import json,urllib.parse; c=json.load(open('.dart_tool/package_config.json')); print([urllib.parse.unquote(p['rootUri'][7:]) for p in c['packages'] if p['name']=='spotify_sdk_ios'][0])")
+          target="$dir/ios/spotify_sdk_ios/ios-sdk"
+          rm -rf "$target" && mkdir -p "$target"
+          git clone --depth 1 --branch v5.0.1 https://github.com/spotify/ios-sdk /tmp/spotify-ios-sdk
+          cp -R /tmp/spotify-ios-sdk/SpotifyiOS.xcframework "$target/"
+          ls "$target/SpotifyiOS.xcframework"
       - name: Build for iPhone and iPad (unsigned)
         run: flutter build ios --release --no-codesign
