@@ -539,6 +539,8 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
 
   void add(AlarmSound s) => _set([...state, s]);
 
+  void replace(AlarmSound sound) => _set([for (final s in state) s.id == sound.id ? sound : s]);
+
   void rename(String id, String name) => _set([for (final s in state) s.id == id ? s.rename(name) : s]);
 
   void delete(String id) {
@@ -713,7 +715,7 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
-  final links = {for (final s in ref.watch(soundsProvider)) s.id: s.link};
+  final links = {for (final s in ref.watch(soundsProvider)) s.id: s};
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
@@ -722,7 +724,10 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
     p = _withSound(p, radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path);
     // Never open another app on Shabbat or a festival.
-    if (!p.isLock && !p.shabbatSafe) p = p.withLink(links[id]);
+    final song = links[id];
+    if (!p.isLock && !p.shabbatSafe && song?.link != null) {
+      p = p.withSong(song!.link!, plays: song.plays, seconds: song.playSeconds);
+    }
     if (p.isLock) return p;
     p = p.withStyle(a.style);
     if (!a.ruleId.startsWith('gentle.')) return p;

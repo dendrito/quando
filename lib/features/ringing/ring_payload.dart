@@ -23,6 +23,8 @@ class RingPayload {
     this.isLock = false,
     this.sound,
     this.link,
+    this.song,
+    this.songSeconds = 0,
     this.shakeTask = false,
     this.loudness = Loudness.standard,
     this.snoozeBy = const {},
@@ -85,6 +87,13 @@ class RingPayload {
   /// you stop the alarm. The alarm itself rings with [sound].
   final String? link;
 
+  /// A song link played in its own app as the alarm goes off. [sound] is
+  /// the backup: it rings softly and stops once the song is playing.
+  final String? song;
+
+  /// Pause the song (played or opened) after this many seconds. 0 = never.
+  final int songSeconds;
+
   /// Shake the phone 30 times before it stops.
   final bool shakeTask;
 
@@ -133,6 +142,9 @@ class RingPayload {
     bool keepSound = true,
     String? link,
     bool keepLink = true,
+    String? song,
+    bool keepSong = true,
+    int? songSeconds,
     Loudness? loudness,
     Set<StopWay>? snoozeBy,
     Set<StopWay>? stopBy,
@@ -160,6 +172,8 @@ class RingPayload {
     isLock: isLock,
     sound: keepSound ? this.sound : sound,
     link: keepLink ? this.link : link,
+    song: keepSong ? this.song : song,
+    songSeconds: songSeconds ?? this.songSeconds,
     loudness: loudness ?? this.loudness,
     snoozeBy: snoozeBy ?? this.snoozeBy,
     stopBy: stopBy ?? this.stopBy,
@@ -172,6 +186,12 @@ class RingPayload {
   );
 
   RingPayload withLink(String? url) => _copy(link: url, keepLink: false);
+
+  /// A song link: played as the alarm ([plays]) or opened when you stop
+  /// it, and paused after [seconds] (0 = never).
+  RingPayload withSong(String url, {required bool plays, int seconds = 0}) => plays
+      ? _copy(song: url, keepSong: false, link: null, keepLink: false, songSeconds: seconds)
+      : _copy(link: url, keepLink: false, song: null, keepSong: false, songSeconds: seconds);
 
   RingPayload withRingSeconds(int seconds) => _copy(ringSeconds: seconds);
 
@@ -205,7 +225,16 @@ class RingPayload {
       wakeCheck: safe ? null : s.wakeCheck,
       link: open,
       keepLink: safe || open == null || open.isEmpty,
-    );
+    )._songFits();
+  }
+
+  /// Playing the song would stop the alarm by itself, so with a task the
+  /// song opens once the task is done instead.
+  RingPayload _songFits() {
+    if (song == null) return this;
+    if (shabbatSafe || isLock) return _copy(song: null, keepSong: false);
+    if (!hasTask) return this;
+    return _copy(song: null, keepSong: false, link: link ?? song, keepLink: false);
   }
 
   /// The soft lead-up some minutes before this alarm: a calm [sound],
@@ -224,6 +253,8 @@ class RingPayload {
     keepSound: false,
     link: null,
     keepLink: false,
+    song: null,
+    keepSong: false,
     loudness: Loudness(
       volume: ((loudness.volume ?? 70) * 0.6).round(),
       fadeInSeconds: (minutesBefore * 60 * 0.85).round(),
@@ -260,6 +291,8 @@ class RingPayload {
     puzzle: StopTask.none,
     isCheck: true,
     transient: true,
+    song: null,
+    keepSong: false,
     snoozeBy: const {},
     stopBy: const {},
   );
@@ -280,6 +313,8 @@ class RingPayload {
     'isLock': isLock,
     'sound': sound,
     'link': link,
+    'song': song,
+    'songSeconds': songSeconds,
     'shakeTask': shakeTask,
     'loudness': loudness.toJson(),
     'snoozeBy': [for (final w in snoozeBy) w.name],
@@ -311,6 +346,8 @@ class RingPayload {
         isLock: j['isLock'] as bool? ?? false,
         sound: j['sound'] as String?,
         link: j['link'] as String?,
+        song: j['song'] as String?,
+        songSeconds: (j['songSeconds'] as num?)?.toInt() ?? 0,
         shakeTask: j['shakeTask'] as bool? ?? false,
         loudness: Loudness.fromJson(j['loudness']) ?? Loudness.standard,
         snoozeBy: _ways(j['snoozeBy']),

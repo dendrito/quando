@@ -4,6 +4,11 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
+import android.media.AudioManager
+import android.net.Uri
+import android.os.Handler
+import android.os.Looper
+import android.view.KeyEvent
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -12,6 +17,8 @@ import java.util.concurrent.Executors
 
 class MainActivity : FlutterActivity() {
     private val worker = Executors.newSingleThreadExecutor()
+    private val main = Handler(Looper.getMainLooper())
+    private val pauseLater = Runnable { mediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE) }
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -40,6 +47,40 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
+        // Song links: open the song in its app, and play or pause it with the
+        // phone's own media signals (like a headphone button).
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/media").setMethodCallHandler { call, result ->
+            when (call.method) {
+                "open" -> {
+                    val url = call.argument<String>("url")
+                    try {
+                        startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(url)).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK))
+                        result.success(true)
+                    } catch (e: Exception) {
+                        result.success(false)
+                    }
+                }
+                "play" -> result.success(mediaKey(KeyEvent.KEYCODE_MEDIA_PLAY))
+                "pause" -> {
+                    val after = (call.argument<Number>("afterMs") ?: 0).toLong()
+                    main.removeCallbacks(pauseLater)
+                    if (after <= 0) result.success(mediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE))
+                    else result.success(main.postDelayed(pauseLater, after))
+                }
+                "playing" -> result.success(audio().isMusicActive)
+                else -> result.notImplemented()
+            }
+        }
+    }
+
+    private fun audio() = getSystemService(AUDIO_SERVICE) as AudioManager
+
+    private fun mediaKey(code: Int): Boolean = try {
+        audio().dispatchMediaKeyEvent(KeyEvent(KeyEvent.ACTION_DOWN, code))
+        audio().dispatchMediaKeyEvent(KeyEvent(KeyEvent.ACTION_UP, code))
+        true
+    } catch (e: Exception) {
+        false
     }
 
     private fun listApps(): List<Map<String, Any>> {

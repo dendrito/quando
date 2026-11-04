@@ -6,6 +6,8 @@ class AlarmSound {
     required this.path,
     this.builtIn = false,
     this.link,
+    this.plays = false,
+    this.playSeconds = 0,
   });
 
   final String id;
@@ -23,6 +25,19 @@ class AlarmSound {
   final String? link;
 
   bool get isLink => link != null;
+
+  /// The song itself is the alarm: its app opens and plays it when the
+  /// alarm goes off, and [path] rings only if it stays silent. Otherwise
+  /// [path] rings and Stop opens the song.
+  final bool plays;
+
+  /// Quando pauses the song after this long. 0 = it plays until you stop it.
+  final int playSeconds;
+
+  static const playLengths = [0, 5, 15, 30, 60, 300, 900];
+
+  /// "Until you stop it", "5 s", "1 min"…
+  static String playLength(int s) => s == 0 ? 'Until you stop it' : (s < 60 ? '$s s' : '${s ~/ 60} min');
 
   /// An online radio station: [path] is the stream's address. If it can't
   /// connect, the phone's alarm sound rings instead.
@@ -51,15 +66,34 @@ class AlarmSound {
     return Uri.tryParse(link!)?.host.replaceFirst('www.', '');
   }
 
-  AlarmSound rename(String name) => AlarmSound(id: id, name: name, path: path, builtIn: builtIn, link: link);
+  AlarmSound rename(String name) => copyWith(name: name);
 
-  Map<String, dynamic> toJson() => {'id': id, 'name': name, 'path': path, 'link': ?link};
+  AlarmSound copyWith({String? name, String? path, bool? plays, int? playSeconds}) => AlarmSound(
+    id: id,
+    name: name ?? this.name,
+    path: path ?? this.path,
+    builtIn: builtIn,
+    link: link,
+    plays: plays ?? this.plays,
+    playSeconds: playSeconds ?? this.playSeconds,
+  );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'name': name,
+    'path': path,
+    'link': ?link,
+    if (plays) 'plays': true,
+    if (playSeconds > 0) 'playSeconds': playSeconds,
+  };
 
   factory AlarmSound.fromJson(Map<String, dynamic> j) => AlarmSound(
     id: j['id'] as String,
     name: j['name'] as String,
     path: j['path'] as String,
     link: j['link'] as String?,
+    plays: j['plays'] as bool? ?? false,
+    playSeconds: (j['playSeconds'] as num?)?.toInt() ?? 0,
   );
 
   static const builtIns = [

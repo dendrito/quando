@@ -90,58 +90,106 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     }
   }
 
-  /// A song or playlist from Spotify, SoundCloud, YouTube…: Quando rings
-  /// first, then opens it when you stop the alarm.
-  Future<void> _addLink() async {
-    final url = TextEditingController();
-    final name = TextEditingController();
-    var ringWith = AlarmSound.builtIns[1];
+  /// A song or playlist from Spotify, YouTube Music, Apple Music…: played
+  /// in its own app as the alarm, or opened when you stop it. [editing] is
+  /// a song link already saved.
+  Future<void> _addLink({AlarmSound? editing}) async {
+    final url = TextEditingController(text: editing?.link);
+    final name = TextEditingController(text: editing?.name);
+    var ringWith = AlarmSound.builtIns.firstWhere(
+      (b) => b.path == editing?.path,
+      orElse: () => AlarmSound.builtIns[1],
+    );
+    var plays = editing?.plays ?? true;
+    var playFor = editing?.playSeconds ?? 0;
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => StatefulBuilder(
-        builder: (context, setLocal) => AlertDialog(
-          title: const Text('Add a song link'),
-          content: SingleChildScrollView(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, '
-                  'then Copy link, and paste it here. Those apps don\'t let other apps play their songs, so '
-                  'the alarm rings first and Stop opens your song in its app.',
-                ),
-                const SizedBox(height: 12),
-                TextField(
-                  controller: url,
-                  autofocus: true,
-                  keyboardType: TextInputType.url,
-                  decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
-                ),
-                const SizedBox(height: 8),
-                TextField(
-                  controller: name,
-                  textCapitalization: TextCapitalization.sentences,
-                  decoration: const InputDecoration(hintText: 'Name, e.g. Morning playlist'),
-                ),
-                const SizedBox(height: 12),
-                const Text('Rings with'),
-                DropdownButton<AlarmSound>(
-                  value: ringWith,
-                  isExpanded: true,
-                  items: [
-                    for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
+        builder: (context, setLocal) {
+          final text = Theme.of(context).textTheme;
+          return AlertDialog(
+            title: Text(editing == null ? 'Add a song link' : 'Song link'),
+            content: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  if (editing == null) ...[
+                    const Text(
+                      'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap '
+                      'Share, then Copy link, and paste it here.',
+                    ),
+                    const SizedBox(height: 12),
+                    TextField(
+                      controller: url,
+                      autofocus: true,
+                      keyboardType: TextInputType.url,
+                      decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
+                    ),
+                    const SizedBox(height: 8),
                   ],
-                  onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
-                ),
-              ],
+                  TextField(
+                    controller: name,
+                    textCapitalization: TextCapitalization.sentences,
+                    decoration: const InputDecoration(hintText: 'Name, e.g. Morning playlist'),
+                  ),
+                  const SizedBox(height: 16),
+                  Text('WHEN THE ALARM GOES OFF', style: text.labelSmall),
+                  const SizedBox(height: 8),
+                  SegmentedButton<bool>(
+                    showSelectedIcon: false,
+                    segments: const [
+                      ButtonSegment(value: true, label: Text('Play the song')),
+                      ButtonSegment(value: false, label: Text('Ring, then open')),
+                    ],
+                    selected: {plays},
+                    onSelectionChanged: (v) => setLocal(() => plays = v.first),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    plays
+                        ? 'Its app opens and plays it. If it stays silent for 10 seconds, the backup sound '
+                              'rings instead, so you always wake up. Alarms with a task ring, then open it.'
+                        : 'The backup sound rings. Stop opens the song in its app.',
+                    style: text.bodySmall,
+                  ),
+                  const SizedBox(height: 16),
+                  Text('PLAY FOR', style: text.labelSmall),
+                  DropdownButton<int>(
+                    value: playFor,
+                    isExpanded: true,
+                    items: [
+                      for (final s in AlarmSound.playLengths)
+                        DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
+                    ],
+                    onChanged: (v) => setLocal(() => playFor = v ?? playFor),
+                  ),
+                  Text(
+                    'Quando pauses the song after this, using the phone\'s own pause button.',
+                    style: text.bodySmall,
+                  ),
+                  const SizedBox(height: 16),
+                  Text('BACKUP SOUND', style: text.labelSmall),
+                  DropdownButton<AlarmSound>(
+                    value: ringWith,
+                    isExpanded: true,
+                    items: [
+                      for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
+                    ],
+                    onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
+                  ),
+                ],
+              ),
             ),
-          ),
-          actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-            FilledButton(onPressed: () => Navigator.pop(context, true), child: const Text('Add')),
-          ],
-        ),
+            actions: [
+              TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+              FilledButton(
+                onPressed: () => Navigator.pop(context, true),
+                child: Text(editing == null ? 'Add' : 'Save'),
+              ),
+            ],
+          );
+        },
       ),
     );
     final link = url.text.trim();
@@ -149,6 +197,18 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     url.dispose();
     name.dispose();
     if (ok != true || !mounted) return;
+    final sounds = ref.read(soundsProvider.notifier);
+    if (editing != null) {
+      sounds.replace(
+        editing.copyWith(
+          name: label.isNotEmpty ? label : null,
+          path: ringWith.path,
+          plays: plays,
+          playSeconds: playFor,
+        ),
+      );
+      return;
+    }
     final uri = Uri.tryParse(link);
     if (uri == null || !(uri.scheme == 'https' || uri.scheme == 'http' || uri.scheme == 'spotify')) {
       ScaffoldMessenger.of(context)
@@ -160,10 +220,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       name: '',
       path: ringWith.path,
       link: link,
+      plays: plays,
+      playSeconds: playFor,
     );
-    ref
-        .read(soundsProvider.notifier)
-        .add(sound.rename(label.isNotEmpty ? label : 'Song on ${sound.linkApp ?? 'the web'}'));
+    sounds.add(sound.rename(label.isNotEmpty ? label : 'Song on ${sound.linkApp ?? 'the web'}'));
   }
 
   Future<void> _rename(AlarmSound s) async {
@@ -252,7 +312,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           const SizedBox(height: 8),
           Text(
             'Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from '
-            'your phone. Link a song or playlist: the alarm rings, and Stop opens it in its app. Or pick a '
+            'your phone. Link a song or playlist: its app plays it as the alarm, with a backup sound. Or pick a '
             'radio station: it plays live, and if it can\'t connect, the phone\'s alarm sound rings instead.',
             style: text.bodySmall,
           ),
@@ -275,13 +335,14 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               subtitle: Text(
                 [
                   if (s.builtIn) 'Built in',
-                  if (s.isLink) 'Opens in ${s.linkApp}',
+                  if (s.isLink) s.plays ? 'Plays in ${s.linkApp}' : 'Opens in ${s.linkApp}',
+                  if (s.isLink && s.playSeconds > 0) 'for ${AlarmSound.playLength(s.playSeconds)}',
                   if (s.isRadio) 'Online radio',
                   if (s.id == defaultId) 'Default',
                 ].join(' · '),
                 style: text.bodySmall,
               ),
-              onTap: s.builtIn ? null : () => _rename(s),
+              onTap: s.builtIn ? null : () => s.isLink ? _addLink(editing: s) : _rename(s),
               trailing: s.builtIn
                   ? null
                   : IconButton(

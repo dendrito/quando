@@ -64,6 +64,10 @@ class Loudness {
   static String seconds(int s) =>
       s < 60 ? '$s s' : (s % 60 == 0 ? '${s ~/ 60} min' : '${s ~/ 60} min ${s % 60} s');
 
+  /// Quando's own sound under a song link: it starts softly, so the song
+  /// has time to start and take over.
+  Loudness get backupForSong => fadeInSeconds >= 30 ? this : copyWith(fadeInSeconds: 30);
+
   Loudness copyWith({int? volume, bool phoneVolume = false, int? fadeInSeconds, int? fadeOutSeconds}) =>
       Loudness(
         volume: phoneVolume ? null : (volume ?? this.volume),

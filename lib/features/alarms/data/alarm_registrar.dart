@@ -6,6 +6,7 @@ import 'package:alarm/utils/alarm_set.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../integrations/domain/integrations.dart';
+import '../../ringing/data/music.dart';
 import '../../ringing/ring_payload.dart';
 
 /// Registers planned alarms with the phone and keeps them in step with the
@@ -66,7 +67,7 @@ class AlarmRegistrar {
         // Each alarm's own volume and fades, shrunk to fit a short ring.
         volumeSettings: p.isLock
             ? const VolumeSettings.fixed(volume: 0.15)
-            : p.loudness.toVolumeSettings(p.ringSeconds),
+            : (p.song == null ? p.loudness : p.loudness.backupForSong).toVolumeSettings(p.ringSeconds),
         notificationSettings: NotificationSettings(
           title: p.title,
           body: p.body,
@@ -133,6 +134,7 @@ class AlarmRegistrar {
           }
         }
       }
+      if (p.song != null && !p.gentle) unawaited(_playSong(settings, p));
       // Auto-snooze: untouched for its set time with snoozes left, so it
       // snoozes instead of ringing on or stopping.
       final autoSnooze = p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
@@ -157,6 +159,17 @@ class AlarmRegistrar {
       t.cancel();
       return true;
     });
+  }
+
+  /// The song is the alarm: once its app is playing it, Quando's own
+  /// backup sound stops. If it stays silent, the backup rings on as usual.
+  Future<void> _playSong(AlarmSettings settings, RingPayload p) async {
+    final ok = await Music.start(p.song!, playFor: Duration(seconds: p.songSeconds));
+    if (!ok || !await Alarm.isRinging(settings.id)) return;
+    _stopTimers.remove(settings.id)?.cancel();
+    await Alarm.stop(settings.id);
+    _tell(AlarmHappening.stopped, settings);
+    await _scheduleCheck(settings);
   }
 
   Future<void> dispose() async {

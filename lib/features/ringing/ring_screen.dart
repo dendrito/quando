@@ -14,6 +14,7 @@ import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
 import 'data/apps.dart';
+import 'data/music.dart';
 import 'ring_payload.dart';
 import 'ring_style.dart';
 import 'shake_detector.dart';
@@ -162,6 +163,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 
   Future<void> _stopNow() async {
     _tts.stop();
+    // Stopped before the song took over: stop the song too.
+    if (p.song != null) unawaited(Music.pause());
     final registrar = ref.read(registrarProvider);
     final checkId = await registrar.stop(widget.alarm);
     if (checkId != null) {
@@ -195,6 +198,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 
   Future<void> _snoozeNow() async {
     _tts.stop();
+    if (p.song != null) unawaited(Music.pause());
     await ref.read(registrarProvider).snooze(widget.alarm);
     _close();
   }
@@ -214,6 +218,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     }
     final uri = link == null ? null : Uri.tryParse(link);
     if (uri == null) return;
+    if (p.songSeconds > 0) {
+      // A song link with a play length: play it, then pause it in time.
+      unawaited(Music.start(link!, playFor: Duration(seconds: p.songSeconds)));
+      return;
+    }
     try {
       await launchUrl(uri, mode: LaunchMode.externalApplication);
     } catch (_) {
@@ -429,6 +438,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 extension on _RingScreenState {
   /// "Volume buttons stop · shake to snooze".
   List<String> get _hints => [
+    if (p.song != null) 'Starting your song',
     for (final w in StopWay.values)
       if (p.stopBy.contains(w))
         '${w.label} to stop'

@@ -112,6 +112,60 @@ void main() {
     expect(AlarmSound.fromJson(again.toJson()).link, song.link);
   });
 
+  test('a song link can play as the alarm, with a backup sound and a play length', () async {
+    final c = await _container();
+    const song = AlarmSound(
+      id: 'link.2',
+      name: 'Wake song',
+      path: 'assets/sounds/soft_chime.wav',
+      link: 'https://music.youtube.com/watch?v=abc',
+      plays: true,
+      playSeconds: 5,
+    );
+    expect(AlarmSound.fromJson(song.toJson()).plays, isTrue);
+    expect(AlarmSound.fromJson(song.toJson()).playSeconds, 5);
+    c.read(soundsProvider.notifier).add(song);
+    final alarms = c.read(userAlarmsProvider.notifier);
+    alarms.save(const UserAlarm(id: 'tue', hour: 7, minute: 0, days: {3}, soundId: 'link.2'));
+    alarms.save(const UserAlarm(id: 'sat', hour: 10, minute: 0, days: {6}, soundId: 'link.2'));
+    alarms.save(
+      const UserAlarm(
+        id: 'sum',
+        hour: 8,
+        minute: 0,
+        days: {3},
+        soundId: 'link.2',
+        style: RingStyle(task: StopTask.sum),
+      ),
+    );
+
+    final p = RingPayload.decode(_payloadOf(c, 'user.tue').encode());
+    expect(p.song, song.link);
+    expect(p.link, isNull);
+    expect(p.songSeconds, 5);
+    expect(p.sound, 'assets/sounds/soft_chime.wav'); // the backup
+    expect(p.loudness.backupForSong.fadeInSeconds, greaterThanOrEqualTo(30));
+    expect(p.snoozed().song, song.link);
+    expect(p.check().song, isNull);
+
+    // Never on Shabbat.
+    final sat = _payloadOf(c, 'user.sat');
+    expect(sat.song, isNull);
+    expect(sat.link, isNull);
+
+    // With a task, it rings and opens the song after.
+    final sum = _payloadOf(c, 'user.sum');
+    expect(sum.song, isNull);
+    expect(sum.link, song.link);
+
+    // Switched to "ring, then open".
+    c.read(soundsProvider.notifier).replace(song.copyWith(plays: false));
+    final open = _payloadOf(c, 'user.tue');
+    expect(open.song, isNull);
+    expect(open.link, song.link);
+    expect(open.songSeconds, 5);
+  });
+
   test('radio rings live, but a built-in sound on Shabbat', () async {
     final c = await _container();
     const radio = AlarmSound(id: 'radio.1', name: 'Jazz', path: 'https://stream.example.com/jazz.mp3');
