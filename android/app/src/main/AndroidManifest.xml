@@ -2,6 +2,8 @@
     <!-- Calendar alarms: read events from the phone's calendars (Google included). -->
     <!-- Pushover, Zapier, IFTTT and online radio (many stations still use http). -->
     <uses-permission android:name="android.permission.INTERNET" />
+    <!-- "Ready to ring": ask to keep alarms running when battery saving. -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
     <!-- Record your own alarm sounds. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />

@@ -10,6 +10,7 @@ import '../../../app/widgets/brand.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../ready/ready_screen.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../timezones/ui/world_clocks.dart';
 import '../domain/sky.dart';
@@ -320,6 +321,25 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // ---- Something stops alarms from ringing ----
+                if ((ref.watch(readinessProvider).value?.values.where((ok) => !ok).length ?? 0) > 0) ...[
+                  Material(
+                    color: QuandoColors.coral,
+                    borderRadius: BorderRadius.circular(20),
+                    child: ListTile(
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                      leading: const Icon(Icons.warning_amber_rounded, color: QuandoColors.ground),
+                      title: const Text(
+                        'Your alarms may not ring',
+                        style: TextStyle(color: QuandoColors.ground, fontWeight: FontWeight.w700),
+                      ),
+                      subtitle: const Text('Tap to fix it', style: TextStyle(color: QuandoColors.ground)),
+                      trailing: const Icon(Icons.chevron_right, color: QuandoColors.ground),
+                      onTap: () => context.push('/ready'),
+                    ),
+                  ),
+                  const SizedBox(height: 16),
+                ],
                 // ---- One-tap "when" ----
                 Wrap(
                   spacing: 8,

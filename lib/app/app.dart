@@ -21,6 +21,7 @@ import '../features/ringing/ring_screen.dart';
 import '../features/rules/ui/preset_screen.dart';
 import '../features/shabbat/ui/shabbat_screen.dart';
 import '../features/sounds/ui/sounds_screen.dart';
+import '../features/ready/ready_screen.dart';
 import 'providers.dart';
 import 'theme.dart';
 
@@ -35,6 +36,7 @@ final _router = GoRouter(
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
+    GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) =>
@@ -85,6 +87,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   Future<void> _start() async {
     await ensureAlarmPermissions();
+    ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
     await _sync();
   }

@@ -36,6 +36,14 @@ class SettingsScreen extends ConsumerWidget {
         children: [
           ListTile(
             contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.verified_outlined, color: QuandoColors.amber),
+            title: const Text('Ready to ring'),
+            subtitle: const Text('Check your phone lets every alarm ring on time'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/ready'),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
             title: const Text('Connections'),
             subtitle: const Text('Pushover, Zapier, IFTTT'),

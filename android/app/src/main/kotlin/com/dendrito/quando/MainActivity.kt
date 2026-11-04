@@ -5,7 +5,10 @@ import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.media.AudioManager
+import android.app.NotificationManager
 import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.os.Handler
 import android.os.Looper
 import android.view.KeyEvent
@@ -47,6 +50,7 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
+        phoneChannel(flutterEngine)
         // Song links: open the song in its app, and play or pause it with the
         // phone's own media signals (like a headphone button).
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/media").setMethodCallHandler { call, result ->
@@ -68,6 +72,34 @@ class MainActivity : FlutterActivity() {
                     else result.success(main.postDelayed(pauseLater, after))
                 }
                 "playing" -> result.success(audio().isMusicActive)
+                else -> result.notImplemented()
+            }
+        }
+    }
+
+    // "Ready to ring" checks the plugins don't cover.
+    private fun phoneChannel(engine: FlutterEngine) {
+        MethodChannel(engine.dartExecutor.binaryMessenger, "quando/phone").setMethodCallHandler { call, result ->
+            when (call.method) {
+                "brand" -> result.success(Build.MANUFACTURER.lowercase())
+                "fullScreen" -> {
+                    val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+                    result.success(Build.VERSION.SDK_INT < 34 || nm.canUseFullScreenIntent())
+                }
+                "openFullScreen" -> {
+                    val ok = try {
+                        if (Build.VERSION.SDK_INT >= 34) {
+                            startActivity(
+                                Intent(Settings.ACTION_MANAGE_APP_USE_FULL_SCREEN_INTENT, Uri.parse("package:$packageName"))
+                                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            )
+                            true
+                        } else false
+                    } catch (e: Exception) {
+                        false
+                    }
+                    result.success(ok)
+                }
                 else -> result.notImplemented()
             }
         }
