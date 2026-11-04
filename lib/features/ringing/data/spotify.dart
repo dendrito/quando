@@ -9,7 +9,7 @@ class SpotifyPlay {
   /// From Spotify's developer dashboard. Empty = direct play is off and
   /// song links use the phone's media signals instead.
   static const clientId = String.fromEnvironment('SPOTIFY_CLIENT_ID', defaultValue: _clientId);
-  static const _clientId = '';
+  static const _clientId = '3949e2cc4f5e4afba699d9cb5c560d12';
   static const redirectUrl = 'spotify-sdk://auth';
   static const _scope = 'app-remote-control';
 
