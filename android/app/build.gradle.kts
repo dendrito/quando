@@ -52,6 +52,23 @@ android {
         }
     }
 
+    // Two apps from one codebase: Quando? for everyone, and the Jewish
+    // edition, Matai? On the Sabbath (Shabbat and Yom Tov first), powered by
+    // Quando?. Build the second with
+    //   flutter build apk --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
+    flavorDimensions += "edition"
+    productFlavors {
+        create("quando") {
+            dimension = "edition"
+            manifestPlaceholders["appLabel"] = "Quando?"
+        }
+        create("kodesh") {
+            dimension = "edition"
+            applicationId = "com.dendrito.quando.kodesh"
+            manifestPlaceholders["appLabel"] = "Matai?"
+        }
+    }
+
     buildTypes {
         debug {
             signingConfig = signingConfigs.getByName("test")

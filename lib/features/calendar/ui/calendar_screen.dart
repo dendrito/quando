@@ -9,6 +9,8 @@ import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
 import '../domain/calendar_rule.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Connect calendars, pick which ones count, and manage calendar alarms.
 class CalendarScreen extends ConsumerStatefulWidget {
   const CalendarScreen({super.key});
@@ -34,39 +36,35 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     String when(DateTime utc) => '${dayLabel(inZone(utc, home))} · ${hhmm(inZone(utc, home))}';
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Calendars'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.calendars), backgroundColor: Colors.transparent),
       floatingActionButton: cal.access
           ? FloatingActionButton.extended(
               onPressed: () => context.push('/calendar/rule/new'),
               icon: const Icon(Icons.add_alarm),
-              label: const Text('Calendar alarm'),
+              label: Text(l10n.calendarAlarm),
             )
           : null,
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 96),
         children: [
           if (!cal.access) ...[
-            Text(
-              'Quando can ring before and after events in your phone\'s calendars. Google Calendar is '
-              'included once your Google account is on the phone.',
-              style: text.bodyLarge,
-            ),
+            Text(l10n.calendarIntro, style: text.bodyLarge),
             const SizedBox(height: 16),
             FilledButton(
               style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
               onPressed: () => ref.read(calendarProvider.notifier).connect(),
-              child: const Text('Connect calendars'),
+              child: Text(l10n.connectCalendars),
             ),
             if (cal.error != null) ...[
               const SizedBox(height: 12),
               Text(cal.error!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
             ],
           ] else ...[
-            Text('CALENDAR ALARMS', style: text.labelSmall),
+            Text(l10n.calendarAlarmsHeading, style: text.labelSmall),
             if (rules.isEmpty) ...[
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text('None yet. Start with one, then change it as you like:', style: text.bodySmall),
+                child: Text(l10n.calendarNoneYet, style: text.bodySmall),
               ),
               OutlinedButton(
                 onPressed: () => ref
@@ -77,7 +75,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                         before: const [Duration(minutes: 15)],
                       ),
                     ),
-                child: const Text('15 minutes before every event'),
+                child: Text(l10n.fifteenBeforeEvery),
               ),
             ],
             for (final r in rules)
@@ -92,7 +90,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 ),
               ),
             const SizedBox(height: 28),
-            Text('USE THESE CALENDARS', style: text.labelSmall),
+            Text(l10n.useTheseCalendarsHeading, style: text.labelSmall),
             for (final c in cal.calendars)
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -105,11 +103,11 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 onChanged: (v) => ref.read(calendarProvider.notifier).select(c.id, v),
               ),
             const SizedBox(height: 28),
-            Text('COMING UP', style: text.labelSmall),
+            Text(l10n.comingUpHeading, style: text.labelSmall),
             if (upcoming.isEmpty)
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 8),
-                child: Text('No timed events coming up in these calendars.', style: text.bodySmall),
+                child: Text(l10n.noTimedEvents, style: text.bodySmall),
               ),
             for (final e in upcoming)
               ListTile(
@@ -135,11 +133,11 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
 /// "15 minutes before · every 1 hour for 6 hours · 5 minutes after it ends".
 String _describe(CalendarRule r) {
   final parts = <String>[
-    if (r.before.isNotEmpty) '${(r.before.toList()..sort()).reversed.map(formatSpan).join(', ')} before',
-    if (r.atStart) 'at the start',
+    if (r.before.isNotEmpty) l10n.spanBefore((r.before.toList()..sort()).reversed.map(formatSpan).join(', ')),
+    if (r.atStart) l10n.atTheStart,
     if (r.repeatEvery != null && r.repeatFor != null)
-      'every ${formatSpan(r.repeatEvery!)} for ${formatSpan(r.repeatFor!)} before',
-    if (r.after.isNotEmpty) '${(r.after.toList()..sort()).map(formatSpan).join(', ')} after it ends',
+      l10n.everyForBefore(formatSpan(r.repeatEvery!), formatSpan(r.repeatFor!)),
+    if (r.after.isNotEmpty) l10n.spanAfterItEnds((r.after.toList()..sort()).map(formatSpan).join(', ')),
   ];
-  return parts.isEmpty ? 'No alarms chosen' : parts.join(' · ');
+  return parts.isEmpty ? l10n.noAlarmsChosen : parts.join(' · ');
 }

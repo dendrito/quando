@@ -1,0 +1,6 @@
+# Original words for quotes first written in a language the app does not use.
+# id = text | language
+seneca = Dum differtur, vita transcurrit. | la
+horace = Carpe diem. | la
+virgil = Fugit inreparabile tempus. | la
+yiddish = דער מענטש טראַכט, און גאָט לאַכט. | yi

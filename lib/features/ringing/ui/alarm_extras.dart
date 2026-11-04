@@ -11,6 +11,8 @@ import '../ring_style.dart';
 import 'gentle_screen.dart';
 import 'tasks.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// One alarm's extras as short rows and cards, each opening its own small
 /// screen: Volume, Snooze, Stop, Gentle wake-up, Wake-up check, Open an app.
 class AlarmExtras extends ConsumerWidget {
@@ -39,7 +41,7 @@ class AlarmExtras extends ConsumerWidget {
       children: [
         _Row(
           icon: Icons.volume_up_outlined,
-          title: 'Volume',
+          title: l10n.volume,
           subtitle: (s.loudness ?? o.loudness).summary,
           onTap: () => _open(context, VolumeScreen(initial: s)),
         ),
@@ -49,10 +51,10 @@ class AlarmExtras extends ConsumerWidget {
           children: [
             Expanded(
               child: _ActionCard(
-                title: 'Snooze',
+                title: l10n.snooze,
                 ways: s.snoozeBy,
                 off: plan.times == 0,
-                line: plan.times == 0 ? 'Off' : '${plan.minutes} min',
+                line: plan.times == 0 ? l10n.off : l10n.minutesShort(plan.minutes),
                 task: s.snoozeTask ?? StopTask.none,
                 onTap: () => _open(context, SnoozeScreen(initial: s)),
               ),
@@ -60,9 +62,9 @@ class AlarmExtras extends ConsumerWidget {
             const SizedBox(width: 10),
             Expanded(
               child: _ActionCard(
-                title: 'Stop',
+                title: l10n.stop,
                 ways: s.stopBy,
-                line: wakeCheck ? 'Wake-up check on' : 'Stops at once',
+                line: wakeCheck ? l10n.wakeCheckOn : l10n.stopsAtOnce,
                 task: stopTask,
                 onTap: () => _open(context, StopScreen(initial: s)),
               ),
@@ -72,25 +74,25 @@ class AlarmExtras extends ConsumerWidget {
         const SizedBox(height: 10),
         _Row(
           icon: Icons.wb_twilight,
-          title: 'Gentle wake-up',
+          title: l10n.gentleWakeUp,
           subtitle: s.gentleMinutes > 0
-              ? '${s.gentleMinutes} min before · ${calmName(s.gentleSound)}'
-              : 'Off',
+              ? l10n.gentleSummary(s.gentleMinutes, calmName(s.gentleSound))
+              : l10n.off,
           on: s.gentleMinutes > 0,
           onSwitch: (v) => onChanged(s.copyWith(gentleMinutes: v ? 20 : 0)),
           onTap: () => _open(context, GentleScreen(initial: s)),
         ),
         _Row(
           icon: Icons.task_alt,
-          title: 'Wake-up check',
-          subtitle: 'Rings again if you\'re not up',
+          title: l10n.wakeUpCheck,
+          subtitle: l10n.ringsAgainIfNotUp,
           on: wakeCheck,
           onSwitch: (v) => onChanged(s.copyWith(wakeCheck: v)),
         ),
         _Row(
           icon: Icons.apps,
-          title: 'Open an app after',
-          subtitle: hasOpen ? AppLink.label(open) : 'Off',
+          title: l10n.openAppAfter,
+          subtitle: hasOpen ? AppLink.label(open) : l10n.off,
           on: hasOpen,
           onSwitch: (v) async {
             if (!v) return onChanged(s.copyWith(noOpenAfter: true));
@@ -194,7 +196,7 @@ class _ActionCard extends StatelessWidget {
               const SizedBox(height: 10),
               Text(line, style: text.bodySmall),
               Text(
-                task == StopTask.none ? 'No task' : task.label,
+                task == StopTask.none ? l10n.noTask : task.label,
                 style: text.bodySmall?.copyWith(color: task == StopTask.none ? null : QuandoColors.blush),
               ),
             ],
@@ -231,8 +233,8 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
   Widget _codeRow() => ListTile(
     contentPadding: EdgeInsets.zero,
     leading: const Icon(Icons.qr_code_2, color: QuandoColors.amber),
-    title: const Text('Code saved'),
-    subtitle: const Text('Tap to save a different one'),
+    title: Text(l10n.codeSaved),
+    subtitle: Text(l10n.tapToSaveDifferent),
     onTap: () async {
       final code = await Navigator.of(context)
           .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
@@ -275,16 +277,16 @@ Widget _controls(
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      Text('CONTROLS', style: text.labelSmall),
+      Text(l10n.controlsHeading, style: text.labelSmall),
       const SizedBox(height: 10),
       Wrap(
         spacing: 8,
         runSpacing: 8,
         children: [
-          const FilterChip(
+          FilterChip(
             showCheckmark: false,
-            avatar: Icon(Icons.touch_app_outlined, size: 18),
-            label: Text('On screen'),
+            avatar: const Icon(Icons.touch_app_outlined, size: 18),
+            label: Text(l10n.onScreen),
             selected: true,
             onSelected: null,
           ),
@@ -306,7 +308,7 @@ Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick,
     Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text('TASK', style: text.labelSmall),
+        Text(l10n.taskHeading, style: text.labelSmall),
         const SizedBox(height: 10),
         Wrap(
           spacing: 8,
@@ -314,7 +316,7 @@ Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick,
           children: [
             for (final t in StopTask.values)
               ChoiceChip(
-                label: Text(t == StopTask.none ? 'None' : t.label),
+                label: Text(t == StopTask.none ? l10n.none : t.label),
                 selected: current == t,
                 onSelected: enabled ? (_) => pick(t) : null,
               ),
@@ -378,7 +380,7 @@ class _Setting extends StatelessWidget {
   }
 }
 
-String _min(int m) => m == 0 ? '0 min' : '$m min';
+String _min(int m) => l10n.minutesShort(m);
 
 class SnoozeScreen extends _StyleScreen {
   const SnoozeScreen({super.key, required super.initial});
@@ -389,11 +391,11 @@ class SnoozeScreen extends _StyleScreen {
 
 class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
   @override
-  String get title => 'Snooze';
+  String get title => l10n.snooze;
   @override
   IconData get icon => Icons.snooze;
   @override
-  String get sentence => 'Five more minutes? Choose how long, how often, and what it takes.';
+  String get sentence => l10n.snoozeSentence;
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) {
@@ -403,7 +405,7 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
     return [
       SwitchListTile(
         contentPadding: EdgeInsets.zero,
-        title: Text('Snooze', style: text.titleLarge),
+        title: Text(l10n.snooze, style: text.titleLarge),
         value: on,
         onChanged: (v) => setPlan(plan.copyWith(times: v ? (plan.times > 0 ? plan.times : 3) : 0)),
       ),
@@ -432,37 +434,37 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
         ),
         if (s.snoozeTask == StopTask.scan) _codeRow(),
         const SizedBox(height: 24),
-        Text('SETTINGS', style: text.labelSmall),
+        Text(l10n.settingsHeading, style: text.labelSmall),
         _Setting(
-          title: 'Snooze time',
-          subtitle: 'How long the first snooze lasts',
+          title: l10n.snoozeTime,
+          subtitle: l10n.snoozeTimeHint,
           values: const [1, 2, 3, 5, 10, 15, 20, 30],
           current: plan.minutes,
           label: _min,
           onPick: (m) => setPlan(plan.copyWith(minutes: m)),
         ),
         _Setting(
-          title: 'Shorten extra snoozes',
-          subtitle: 'Each snooze after the first is this much shorter',
+          title: l10n.shortenSnoozes,
+          subtitle: l10n.shortenSnoozesHint,
           values: const [0, 1, 2, 3, 5],
           current: plan.shortenBy,
           label: _min,
           onPick: (m) => setPlan(plan.copyWith(shortenBy: m)),
         ),
         _Setting(
-          title: 'Auto-snooze',
-          subtitle: 'If you don\'t touch it, it snoozes by itself after',
+          title: l10n.autoSnooze,
+          subtitle: l10n.autoSnoozeHint,
           values: const [0, 1, 2, 3, 5, 10],
           current: plan.autoSnoozeMinutes,
-          label: (m) => m == 0 ? 'Never' : _min(m),
+          label: (m) => m == 0 ? l10n.never : _min(m),
           onPick: (m) => setPlan(plan.copyWith(autoSnoozeMinutes: m)),
         ),
         _Setting(
-          title: 'Snooze limit',
-          subtitle: 'How many times you can snooze',
+          title: l10n.snoozeLimit,
+          subtitle: l10n.snoozeLimitHint,
           values: const [1, 2, 3, 5, 10, SnoozePlan.unlimited],
           current: plan.times,
-          label: (n) => n >= SnoozePlan.unlimited ? 'Unlimited' : '$n',
+          label: (n) => n >= SnoozePlan.unlimited ? l10n.unlimited : '$n',
           onPick: (n) => setPlan(plan.copyWith(times: n)),
         ),
       ],
@@ -471,7 +473,7 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
           alignment: Alignment.centerLeft,
           child: TextButton(
             onPressed: () => set(s.copyWith(defaultSnooze: true)),
-            child: const Text('Use the snooze from Settings'),
+            child: Text(l10n.useSnoozeFromSettings),
           ),
         ),
     ];
@@ -487,11 +489,11 @@ class StopScreen extends _StyleScreen {
 
 class _StopScreenState extends _StyleScreenState<StopScreen> {
   @override
-  String get title => 'Stop';
+  String get title => l10n.stop;
   @override
   IconData get icon => Icons.alarm_off;
   @override
-  String get sentence => 'How you turn the alarm off, and what you must do first.';
+  String get sentence => l10n.stopSentence;
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) => [
@@ -513,10 +515,7 @@ class _StopScreenState extends _StyleScreenState<StopScreen> {
     ),
     if (s.task == StopTask.scan) _codeRow(),
     const SizedBox(height: 24),
-    Text(
-      'On Shabbat and festivals alarms stop by themselves and never ask for a task.',
-      style: text.bodySmall,
-    ),
+    Text(l10n.shabbatNoTask, style: text.bodySmall),
   ];
 }
 
@@ -529,11 +528,11 @@ class VolumeScreen extends _StyleScreen {
 
 class _VolumeScreenState extends _StyleScreenState<VolumeScreen> {
   @override
-  String get title => 'Volume';
+  String get title => l10n.volume;
   @override
   IconData get icon => Icons.volume_up;
   @override
-  String get sentence => 'How loud it rings, and how gently it gets there.';
+  String get sentence => l10n.volumeSentence;
 
   @override
   List<Widget> body(BuildContext context, TextTheme text, AlarmOptions o) => [
@@ -558,12 +557,12 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text('Open after the alarm', style: Theme.of(context).textTheme.titleLarge),
+          Text(l10n.openAfterAlarm, style: Theme.of(context).textTheme.titleLarge),
           const SizedBox(height: 12),
           FilledButton.icon(
             style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52)),
             icon: const Icon(Icons.apps),
-            label: const Text('Pick an app'),
+            label: Text(l10n.pickAnApp),
             onPressed: () async {
               final a = await _pickApp(context);
               if (a != null && context.mounted) Navigator.pop(context, AppLink.of(a));
@@ -573,7 +572,7 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
           TextField(
             controller: link,
             keyboardType: TextInputType.url,
-            decoration: const InputDecoration(hintText: 'Or paste a link: https://…'),
+            decoration: InputDecoration(hintText: l10n.orPasteLink),
             onSubmitted: (v) => Navigator.pop(context, v.trim().isEmpty ? null : v.trim()),
           ),
           const SizedBox(height: 10),
@@ -593,7 +592,7 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
                 final v = link.text.trim();
                 Navigator.pop(context, v.isEmpty ? null : v);
               },
-              child: const Text('Use this link'),
+              child: Text(l10n.useThisLink),
             ),
           ),
         ],
@@ -618,7 +617,7 @@ Future<PhoneApp?> _pickApp(BuildContext context) => showModalBottomSheet<PhoneAp
         if (!snap.hasData) return const Center(child: CircularProgressIndicator());
         final apps = snap.data!;
         if (apps.isEmpty) {
-          return const Padding(padding: EdgeInsets.all(24), child: Text('No apps found.'));
+          return Padding(padding: const EdgeInsets.all(24), child: Text(l10n.noAppsFound));
         }
         return ListView.builder(
           controller: scroll,
@@ -639,10 +638,10 @@ Future<PhoneApp?> _pickApp(BuildContext context) => showModalBottomSheet<PhoneAp
   ),
 );
 
-const _quickLinks = [
-  ('Weather', 'https://www.google.com/search?q=weather'),
-  ('News', 'https://news.google.com'),
-  ('Calendar', 'https://calendar.google.com'),
+List<(String, String)> get _quickLinks => [
+  (l10n.weather, 'https://www.google.com/search?q=weather'),
+  (l10n.news, 'https://news.google.com'),
+  (l10n.calendar, 'https://calendar.google.com'),
   ('YouTube', 'https://www.youtube.com'),
   ('Spotify', 'spotify:'),
 ];
@@ -674,7 +673,7 @@ class LoudnessEditor extends StatelessWidget {
         if (!fadesOnly)
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Use the phone\'s alarm volume'),
+            title: Text(l10n.usePhoneVolume),
             value: v.volume == null,
             onChanged: (on) => onChanged(on ? v.copyWith(phoneVolume: true) : v.copyWith(volume: 80)),
           ),
@@ -695,13 +694,11 @@ class LoudnessEditor extends StatelessWidget {
               SizedBox(width: 52, child: Text('${v.volume}%', style: text.titleMedium)),
             ],
           ),
-          Text('Sets the phone\'s alarm volume while it rings, then puts it back.', style: text.bodySmall),
+          Text(l10n.setsPhoneVolume, style: text.bodySmall),
         ],
         const SizedBox(height: 12),
         Text(
-          v.fadeInSeconds == 0
-              ? 'Fade in: off, full volume at once'
-              : 'Fade in over ${Loudness.seconds(v.fadeInSeconds)}',
+          v.fadeInSeconds == 0 ? l10n.fadeInOff : l10n.fadeInOver(Loudness.seconds(v.fadeInSeconds)),
           style: text.titleMedium,
         ),
         Slider(
@@ -712,9 +709,7 @@ class LoudnessEditor extends StatelessWidget {
           onChanged: (x) => onChanged(v.copyWith(fadeInSeconds: _fades[x.round()])),
         ),
         Text(
-          v.fadeOutSeconds == 0
-              ? 'Fade out: off'
-              : 'Fade out over the last ${Loudness.seconds(v.fadeOutSeconds)}',
+          v.fadeOutSeconds == 0 ? l10n.fadeOutOff : l10n.fadeOutOver(Loudness.seconds(v.fadeOutSeconds)),
           style: text.titleMedium,
         ),
         Slider(
@@ -724,11 +719,7 @@ class LoudnessEditor extends StatelessWidget {
           label: Loudness.seconds(v.fadeOutSeconds),
           onChanged: (x) => onChanged(v.copyWith(fadeOutSeconds: _fades[x.round()])),
         ),
-        Text(
-          'Fading out happens as the alarm stops by itself. If the fades are longer than the alarm rings, '
-          'both shrink to fit.',
-          style: text.bodySmall,
-        ),
+        Text(l10n.fadesExplain, style: text.bodySmall),
       ],
     );
   }

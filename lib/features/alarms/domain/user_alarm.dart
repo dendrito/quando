@@ -5,6 +5,8 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../ringing/ring_style.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// An everyday alarm the user sets: "7:00 on weekdays".
 class UserAlarm {
   const UserAlarm({
@@ -53,18 +55,17 @@ class UserAlarm {
 
   bool get repeats => days.isNotEmpty;
 
-  String get title => label.isEmpty ? 'Alarm' : label;
+  String get title => label.isEmpty ? l10n.alarm : label;
 
   /// "Weekdays", "Every day", "Mon, Wed" or "Once".
   String get repeatLabel {
-    if (days.isEmpty) return 'Once';
-    if (days.length == 7) return 'Every day';
-    if (days.length == 5 && !days.contains(6) && !days.contains(7)) return 'Weekdays';
-    if (days.length == 2 && days.contains(6) && days.contains(7)) return 'Weekends';
-    const names = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+    if (days.isEmpty) return l10n.once;
+    if (days.length == 7) return l10n.everyDay;
+    if (days.length == 5 && !days.contains(6) && !days.contains(7)) return l10n.weekdays;
+    if (days.length == 2 && days.contains(6) && days.contains(7)) return l10n.weekends;
     return [
       for (var d = 1; d <= 7; d++)
-        if (days.contains(d)) names[d - 1],
+        if (days.contains(d)) weekdayShort(d),
     ].join(', ');
   }
 
@@ -109,8 +110,9 @@ class UserAlarm {
           at: at,
           title: title,
           body: [
-            repeatLabel == 'Once' ? 'Alarm' : repeatLabel,
-            if (this.zone != null) '${hhmm(DateTime(2000, 1, 1, hour, minute))} ${cityOf(this.zone!)} time',
+            days.isEmpty ? l10n.alarm : repeatLabel,
+            if (this.zone != null)
+              l10n.timeInCity(hhmm(DateTime(2000, 1, 1, hour, minute)), cityOf(this.zone!)),
           ].join(' · '),
           ringDuration: ring,
           ruleId: 'user.$id',

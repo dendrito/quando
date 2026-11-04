@@ -3,6 +3,8 @@ import 'package:kosher_dart/kosher_dart.dart';
 import '../../shabbat/domain/place.dart';
 import 'event.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Sunrise and sunset for a place, for sun alarms. Uses the same astronomy
 /// engine as the Shabbat times.
 class SunTimes {
@@ -27,7 +29,8 @@ class SunTimes {
           AnchorEvent(
             id: 'sun.rise.$key',
             kind: EventKind.sunrise,
-            title: 'Sunrise',
+            title: l10n.sunrise,
+            alias: l10nEn.sunrise,
             at: rise.toUtc(),
             source: 'sun',
           ),
@@ -38,7 +41,8 @@ class SunTimes {
           AnchorEvent(
             id: 'sun.set.$key',
             kind: EventKind.sunset,
-            title: 'Sunset',
+            title: l10n.sunset,
+            alias: l10nEn.sunset,
             at: set.toUtc(),
             source: 'sun',
           ),

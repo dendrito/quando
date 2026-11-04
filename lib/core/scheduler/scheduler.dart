@@ -3,6 +3,8 @@ import '../../features/ringing/ring_style.dart';
 import '../../features/rules/domain/alarm_rule.dart';
 import '../util/format.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// One concrete ring at an exact moment.
 class ScheduledAlarm {
   const ScheduledAlarm({
@@ -85,7 +87,7 @@ class Scheduler {
               id: stableId('${rule.id}|${event.id}|${offset.inMinutes}'),
               at: at,
               title: event.title,
-              body: rule.label ?? (offset == Duration.zero ? 'Now' : describeOffset(offset)),
+              body: rule.label ?? (offset == Duration.zero ? l10n.nowCap : describeOffset(offset)),
               ringDuration: rule.ringDuration,
               ruleId: rule.id,
               eventId: event.id,

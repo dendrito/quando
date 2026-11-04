@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../theme.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// The Q-hand logo: a Q drawn as a clock whose tail is the minute hand.
 /// Drawn on a 180-unit grid, the same as the app icon.
 class QMark extends StatelessWidget {
@@ -14,7 +16,7 @@ class QMark extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Semantics(
-    label: 'Quando logo',
+    label: l10n.logoLabel,
     child: CustomPaint(size: Size.square(size), painter: _QMarkPainter(tile)),
   );
 }

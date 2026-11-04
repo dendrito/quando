@@ -24,7 +24,7 @@ void main() {
     );
     await tester.pumpAndSettle();
 
-    expect(find.text('Quando'), findsOneWidget);
+    expect(find.text('Quando?'), findsOneWidget);
     expect(find.text('Tap When? to add an alarm.'), findsOneWidget);
     expect(find.text('Shabbat'), findsOneWidget);
     // Jerusalem, Fri 6 Nov 2026: candle lighting 16:05 local.

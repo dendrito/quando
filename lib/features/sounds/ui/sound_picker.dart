@@ -6,6 +6,8 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import 'sound_player.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// A row showing the chosen sound; tap to pick another.
 ///
 /// [value] null means "use the default" when [allowDefault] is on, or the
@@ -33,21 +35,21 @@ class SoundPickerTile extends ConsumerWidget {
     final sounds = ref.watch(soundsProvider);
     final defaultId = ref.watch(alarmOptionsProvider).soundId;
     final label = value == null
-        ? (allowDefault ? 'Default (${soundName(sounds, defaultId)})' : 'Phone alarm sound')
+        ? (allowDefault ? l10n.defaultNamed(soundName(sounds, defaultId)) : l10n.phoneAlarmSound)
         : value == phone
-        ? 'Phone alarm sound'
+        ? l10n.phoneAlarmSound
         : soundName(sounds, value);
 
     final chosen = sounds.where((s) => s.id == (value ?? (allowDefault ? defaultId : null))).firstOrNull;
     final kind = chosen == null
-        ? 'Phone alarm sound'
+        ? l10n.phoneAlarmSound
         : chosen.isRadio
-        ? 'Online radio'
+        ? l10n.onlineRadio
         : chosen.isLink
-        ? 'Song link · opens ${chosen.linkApp}'
+        ? l10n.songLinkOpens(chosen.linkApp ?? '')
         : chosen.builtIn
-        ? 'Built in'
-        : 'Your recording';
+        ? l10n.builtIn
+        : l10n.yourRecording;
     Future<void> pick() async {
       final picked = await showModalBottomSheet<String>(
         context: context,
@@ -79,7 +81,7 @@ class SoundPickerTile extends ConsumerWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Sound', style: text.titleLarge),
+                      Text(l10n.sound, style: text.titleLarge),
                       const SizedBox(height: 8),
                       Text(kind, style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
                       Text(
@@ -113,7 +115,7 @@ class SoundPickerTile extends ConsumerWidget {
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: const Icon(Icons.music_note_outlined, color: QuandoColors.amber),
-      title: const Text('Sound'),
+      title: Text(l10n.sound),
       subtitle: Text(label),
       trailing: const Icon(Icons.chevron_right),
       onTap: pick,
@@ -145,7 +147,7 @@ class _SheetState extends ConsumerState<_Sheet> {
       trailing: onListen == null
           ? null
           : IconButton(
-              tooltip: 'Listen',
+              tooltip: l10n.listen,
               icon: Icon(playing ? Icons.stop_circle_outlined : Icons.play_circle_outline),
               onPressed: onListen,
             ),
@@ -181,13 +183,13 @@ class _SheetState extends ConsumerState<_Sheet> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Wake up to your own sound',
+                                l10n.wakeToOwnSound,
                                 style: Theme.of(context).textTheme.titleLarge
                                     ?.copyWith(color: QuandoColors.ground),
                               ),
                               const SizedBox(height: 4),
                               Text(
-                                'Your voice, a song, Spotify or live radio',
+                                l10n.wakeToOwnSoundHint,
                                 style: Theme.of(context).textTheme.bodyMedium
                                     ?.copyWith(color: QuandoColors.ground),
                               ),
@@ -222,8 +224,11 @@ class _SheetState extends ConsumerState<_Sheet> {
             ),
           ),
           if (widget.allowDefault)
-            option('__default__', 'Default (${soundName(sounds, ref.watch(alarmOptionsProvider).soundId)})'),
-          option(SoundPickerTile.phone, 'Phone alarm sound'),
+            option(
+              '__default__',
+              l10n.defaultNamed(soundName(sounds, ref.watch(alarmOptionsProvider).soundId)),
+            ),
+          option(SoundPickerTile.phone, l10n.phoneAlarmSound),
           for (final s in sounds)
             option(
               s.id,

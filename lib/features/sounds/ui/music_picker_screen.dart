@@ -6,6 +6,8 @@ import '../../../app/theme.dart';
 import '../data/spotify_library.dart';
 import '../domain/sound.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Your playlists and liked songs from a music app: tap one to wake up to
 /// it.
 class MusicPickerScreen extends ConsumerStatefulWidget {
@@ -55,8 +57,7 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       plays: true,
     );
     ref.read(soundsProvider.notifier).add(sound);
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('${item.name} added. Pick it as the sound for any alarm.')));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicAdded(item.name))));
     Navigator.of(context).pop();
   }
 
@@ -110,16 +111,14 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          bottom: const TabBar(
+          bottom: TabBar(
             tabs: [
-              Tab(text: 'Playlists'),
-              Tab(text: 'Liked songs'),
+              Tab(text: l10n.playlists),
+              Tab(text: l10n.likedSongs),
             ],
           ),
         ),
-        body: TabBarView(
-          children: [_list(_playlists, 'No playlists yet.'), _list(_liked, 'No liked songs yet.')],
-        ),
+        body: TabBarView(children: [_list(_playlists, l10n.noPlaylists), _list(_liked, l10n.noLikedSongs)]),
       ),
     );
   }

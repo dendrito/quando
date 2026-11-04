@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -6,6 +7,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app/app.dart';
 import 'app/providers.dart';
 import 'core/util/local_time.dart';
+import 'l10n/l10n.dart';
 import 'features/ringing/data/spotify.dart';
 import 'features/sounds/data/youtube_library.dart';
 
@@ -13,6 +15,13 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
+  // Speak the chosen language (or the phone's) from the very first word,
+  // including alarms set before any screen is built.
+  final language = prefs.getString('language');
+  useLocale(
+    language == null ? WidgetsBinding.instance.platformDispatcher.locales : [localeFromTag(language)],
+  );
+  await initializeDateFormatting();
   SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
   YouTubeAccount.connected = prefs.getBool(YouTubeAccount.prefKey) ?? false;
   String? deviceZone;

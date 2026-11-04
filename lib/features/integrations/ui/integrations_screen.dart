@@ -7,6 +7,8 @@ import '../../../app/theme.dart';
 import '../../../app/widgets/feature_header.dart';
 import '../domain/integrations.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Pushover, Zapier, IFTTT and any other webhook.
 class IntegrationsScreen extends ConsumerStatefulWidget {
   const IntegrationsScreen({super.key});
@@ -73,7 +75,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
         _sounds = {..._sounds, ...sounds};
         _devices = devices;
       });
-      if (!quiet) _say('Found ${sounds.length} sounds and ${devices.length} devices.');
+      if (!quiet) _say(l10n.foundSoundsDevices(sounds.length, devices.length));
     } catch (e) {
       if (mounted && !quiet) _say('$e'.replaceFirst('Exception: ', ''));
     } finally {
@@ -97,12 +99,12 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     final err = await ref.read(integrationSenderProvider).testPushover(ref.read(integrationsProvider));
     if (!mounted) return;
     setState(() => _testing = false);
-    _say(err ?? 'Sent. Check your other devices.');
+    _say(err ?? l10n.sentCheckDevices);
   }
 
   Future<void> _testWebhook(Webhook w) async {
     final err = await ref.read(integrationSenderProvider).testWebhook(w);
-    if (mounted) _say(err ?? 'Sent to ${w.title}.');
+    if (mounted) _say(err ?? l10n.sentTo(w.title));
   }
 
   Future<void> _addWebhook(WebhookKind kind) async {
@@ -123,31 +125,25 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: switch (kind) {
               WebhookKind.zapier => [
-                const Text(
-                  'In Zapier, make a Zap that starts with "Webhooks by Zapier → Catch Hook", then paste its '
-                  'URL here.',
-                ),
+                Text(l10n.zapierHowTo),
                 TextField(
                   controller: url,
-                  decoration: const InputDecoration(labelText: 'Catch Hook URL'),
+                  decoration: InputDecoration(labelText: l10n.catchHookUrl),
                 ),
               ],
               WebhookKind.ifttt => [
-                const Text(
-                  'In IFTTT, make an applet that starts with "Webhooks → Receive a web request with a JSON '
-                  'payload". Use the same event name here. Your key is on ifttt.com/maker_webhooks/settings.',
-                ),
+                Text(l10n.iftttHowTo),
                 TextField(
                   controller: event,
-                  decoration: const InputDecoration(labelText: 'Event name'),
+                  decoration: InputDecoration(labelText: l10n.eventName),
                 ),
                 TextField(
                   controller: key,
-                  decoration: const InputDecoration(labelText: 'Webhooks key'),
+                  decoration: InputDecoration(labelText: l10n.webhooksKey),
                 ),
               ],
               WebhookKind.other => [
-                const Text('Quando sends a JSON POST to this address.'),
+                Text(l10n.webhookHowTo),
                 TextField(
                   controller: url,
                   decoration: const InputDecoration(labelText: 'https://…'),
@@ -157,13 +153,13 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           FilledButton(
             onPressed: () => Navigator.pop(
               context,
               kind == WebhookKind.ifttt ? Webhook.iftttUrl(event.text, key.text) : url.text.trim(),
             ),
-            child: const Text('Add'),
+            child: Text(l10n.add),
           ),
         ],
       ),
@@ -173,7 +169,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     final bad =
         uri == null || !uri.isScheme('https') || (kind == WebhookKind.ifttt && key.text.trim().isEmpty);
     if (bad) {
-      _say('That doesn\'t look like a web address starting with https://');
+      _say(l10n.notAWebAddress);
       return;
     }
     ref
@@ -190,52 +186,49 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     final text = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Connections'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.connections), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
-          const FeatureHeader(
-            icon: Icons.hub,
-            sentence: 'Tell your other apps and devices when an alarm rings, stops or snoozes.',
-          ),
+          FeatureHeader(icon: Icons.hub, sentence: l10n.connectionsSentence),
           Text('PUSHOVER', style: text.labelSmall),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Send a push when an alarm rings'),
-            subtitle: const Text('To your other phones, tablet, watch or computer'),
+            title: Text(l10n.pushWhenRings),
+            subtitle: Text(l10n.pushWhenRingsHint),
             value: s.pushoverOn,
             onChanged: (v) => n.update((x) => x.copyWith(pushoverOn: v)),
           ),
           if (s.pushoverOn) ...[
             TextField(
               controller: _user,
-              decoration: const InputDecoration(labelText: 'Your user key'),
+              decoration: InputDecoration(labelText: l10n.yourUserKey),
               onChanged: (v) => n.update((x) => x.copyWith(pushoverUser: v.trim())),
             ),
             TextField(
               controller: _token,
-              decoration: const InputDecoration(labelText: 'App token'),
+              decoration: InputDecoration(labelText: l10n.appToken),
               onChanged: (v) => n.update((x) => x.copyWith(pushoverToken: v.trim())),
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(child: Text('SOUND AND DEVICES', style: text.labelSmall)),
+                Expanded(child: Text(l10n.soundAndDevicesHeading, style: text.labelSmall)),
                 TextButton.icon(
                   onPressed: s.pushoverUser.isNotEmpty && s.pushoverToken.isNotEmpty && !_loading
                       ? _loadPushover
                       : null,
                   icon: const Icon(Icons.refresh, size: 18),
-                  label: Text(_loading ? 'Loading…' : 'Load from Pushover'),
+                  label: Text(_loading ? l10n.loading : l10n.loadFromPushover),
                 ),
               ],
             ),
             DropdownButtonFormField<String?>(
               initialValue: s.pushoverSound,
               isExpanded: true,
-              decoration: const InputDecoration(labelText: 'Sound it plays'),
+              decoration: InputDecoration(labelText: l10n.soundItPlays),
               items: [
-                const DropdownMenuItem(value: null, child: Text('My Pushover default')),
+                DropdownMenuItem(value: null, child: Text(l10n.myPushoverDefault)),
                 for (final e in {
                   ..._sounds,
                   if (s.pushoverSound != null && !_sounds.containsKey(s.pushoverSound))
@@ -248,16 +241,13 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               ),
             ),
             const SizedBox(height: 4),
-            Text(
-              'Your own sounds appear here after you upload them at pushover.net/sounds.',
-              style: text.bodySmall,
-            ),
+            Text(l10n.pushoverOwnSounds, style: text.bodySmall),
             const SizedBox(height: 12),
             Wrap(
               spacing: 6,
               children: [
                 FilterChip(
-                  label: const Text('All my devices'),
+                  label: Text(l10n.allMyDevices),
                   selected: s.pushoverDevices.isEmpty,
                   onSelected: (_) => n.update((x) => x.copyWith(pushoverDevices: {})),
                 ),
@@ -273,18 +263,15 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                   ),
               ],
             ),
-            Text(
-              'Install the Pushover app on this phone too and it rings here with your Pushover sound.',
-              style: text.bodySmall,
-            ),
+            Text(l10n.pushoverOnThisPhone, style: text.bodySmall),
             const SizedBox(height: 12),
             DropdownButtonFormField<int>(
               initialValue: s.pushoverPriority,
-              decoration: const InputDecoration(labelText: 'Priority'),
-              items: const [
-                DropdownMenuItem(value: 0, child: Text('Normal')),
-                DropdownMenuItem(value: 1, child: Text('High: through quiet hours')),
-                DropdownMenuItem(value: 2, child: Text('Emergency: repeats until acknowledged')),
+              decoration: InputDecoration(labelText: l10n.priority),
+              items: [
+                DropdownMenuItem(value: 0, child: Text(l10n.priorityNormal)),
+                DropdownMenuItem(value: 1, child: Text(l10n.priorityHigh)),
+                DropdownMenuItem(value: 2, child: Text(l10n.priorityEmergency)),
               ],
               onChanged: (v) => n.update((x) => x.copyWith(pushoverPriority: v)),
             ),
@@ -294,27 +281,20 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               children: [
                 FilledButton.tonal(
                   onPressed: s.pushoverReady && !_testing ? _testPushover : null,
-                  child: Text(_testing ? 'Sending…' : 'Send a test'),
+                  child: Text(_testing ? l10n.sending : l10n.sendATest),
                 ),
-                TextButton(
-                  onPressed: () => _open('https://pushover.net'),
-                  child: const Text('Find my user key'),
-                ),
+                TextButton(onPressed: () => _open('https://pushover.net'), child: Text(l10n.findUserKey)),
                 TextButton(
                   onPressed: () => _open('https://pushover.net/apps/build'),
-                  child: const Text('Make an app token'),
+                  child: Text(l10n.makeAppToken),
                 ),
               ],
             ),
           ],
           const SizedBox(height: 28),
-          Text('ZAPIER, IFTTT AND WEBHOOKS', style: text.labelSmall),
+          Text(l10n.webhooksHeading, style: text.labelSmall),
           const SizedBox(height: 4),
-          Text(
-            'Start anything when an alarm rings or you stop it: turn on lights, log your wake-up time, '
-            'message someone.',
-            style: text.bodySmall,
-          ),
+          Text(l10n.webhooksExplain, style: text.bodySmall),
           for (final w in s.webhooks)
             Card(
               margin: const EdgeInsets.only(top: 12),
@@ -331,13 +311,13 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                           onChanged: (v) => n.replaceWebhook(w.copyWith(enabled: v)),
                         ),
                         IconButton(
-                          tooltip: 'Remove',
+                          tooltip: l10n.remove,
                           icon: const Icon(Icons.delete_outline),
                           onPressed: () => n.removeWebhook(w.id),
                         ),
                       ],
                     ),
-                    Text('Send when the alarm:', style: text.bodySmall),
+                    Text(l10n.sendWhenAlarm, style: text.bodySmall),
                     Wrap(
                       spacing: 6,
                       children: [
@@ -351,7 +331,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                           ),
                       ],
                     ),
-                    TextButton(onPressed: () => _testWebhook(w), child: const Text('Send a test')),
+                    TextButton(onPressed: () => _testWebhook(w), child: Text(l10n.sendATest)),
                   ],
                 ),
               ),
@@ -373,24 +353,20 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               OutlinedButton.icon(
                 onPressed: () => _addWebhook(WebhookKind.other),
                 icon: const Icon(Icons.add),
-                label: const Text('Other'),
+                label: Text(l10n.other),
               ),
             ],
           ),
           const SizedBox(height: 28),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: const Text('Pause on Shabbat and festivals'),
-            subtitle: const Text('Nothing is sent for alarms from candle lighting to havdalah'),
+            title: Text(l10n.pauseOnShabbat),
+            subtitle: Text(l10n.pauseOnShabbatHint),
             value: s.pauseOnShabbat,
             onChanged: (v) => n.update((x) => x.copyWith(pauseOnShabbat: v)),
           ),
           const SizedBox(height: 12),
-          Text(
-            'Each message carries: event (ring, stopped, snoozed, auto_stopped), title, body, time, shabbat and '
-            'snoozes. Keys stay on this phone.',
-            style: text.bodySmall?.copyWith(color: QuandoColors.muted),
-          ),
+          Text(l10n.webhookPayloadNote, style: text.bodySmall?.copyWith(color: QuandoColors.muted)),
         ],
       ),
     );

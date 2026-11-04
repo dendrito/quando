@@ -1,13 +1,17 @@
 import '../../core/util/platform.dart';
 import '../sounds/domain/loudness.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Ways to snooze or stop a ringing alarm besides the buttons on screen.
 enum StopWay {
-  volumeKeys('Volume buttons'),
-  shake('Shake the phone');
+  volumeKeys,
+  shake;
 
-  const StopWay(this.label);
-  final String label;
+  String get label => switch (this) {
+    volumeKeys => l10n.wayVolumeButtons,
+    shake => l10n.wayShake,
+  };
 
   /// iOS doesn't let apps read the volume buttons.
   static List<StopWay> get onThisPhone => isAndroid ? values : const [shake];
@@ -15,18 +19,24 @@ enum StopWay {
 
 /// What you must do before an alarm stops.
 enum StopTask {
-  none('Nothing'),
-  sum('Solve a sum'),
-  shake('Shake 30 times'),
-  memory('Memory game'),
-  phrase('Type a phrase'),
-  scan('Scan a code');
+  none,
+  sum,
+  shake,
+  memory,
+  phrase,
+  scan;
 
   /// Done in its own little screen, not on the ringing screen's buttons.
   bool get isPuzzle => this == memory || this == phrase || this == scan;
 
-  const StopTask(this.label);
-  final String label;
+  String get label => switch (this) {
+    none => l10n.taskNothing,
+    sum => l10n.taskSum,
+    shake => l10n.taskShake,
+    memory => l10n.taskMemory,
+    phrase => l10n.taskPhrase,
+    scan => l10n.taskScan,
+  };
 }
 
 /// How snoozing works: how long, how many times, and how much shorter each
@@ -51,12 +61,12 @@ class SnoozePlan {
 
   /// "10 min, up to 3×, 2 min shorter each time".
   String get summary => times == 0
-      ? 'No snooze'
+      ? l10n.noSnooze
       : [
-          '$minutes min',
-          times >= unlimited ? 'no limit' : 'up to $times×',
-          if (shortenBy > 0) '$shortenBy min shorter each time',
-          if (autoSnoozeMinutes > 0) 'snoozes by itself after $autoSnoozeMinutes min',
+          l10n.minutesShort(minutes),
+          times >= unlimited ? l10n.noLimit : l10n.upToTimes(times),
+          if (shortenBy > 0) l10n.shorterEachTime(shortenBy),
+          if (autoSnoozeMinutes > 0) l10n.autoSnoozeAfter(autoSnoozeMinutes),
         ].join(', ');
 
   SnoozePlan copyWith({int? minutes, int? times, int? shortenBy, int? autoSnoozeMinutes}) => SnoozePlan(

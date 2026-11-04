@@ -9,6 +9,8 @@ import '../../integrations/domain/integrations.dart';
 import '../../ringing/data/music.dart';
 import '../../ringing/ring_payload.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Registers planned alarms with the phone and keeps them in step with the
 /// plan: alarms no longer planned are removed, new ones are added. Snoozes,
 /// wake-up checks and test alarms are left alone.
@@ -72,7 +74,7 @@ class AlarmRegistrar {
           title: p.title,
           body: p.body,
           // A check must be answered on the ringing screen.
-          stopButton: p.gentle ? 'Stop' : (p.isCheck || p.hasTask || p.isLock ? null : 'Stop'),
+          stopButton: p.gentle ? l10n.stop : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
         ),
         payload: p.encode(),
       ),

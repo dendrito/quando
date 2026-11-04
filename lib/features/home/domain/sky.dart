@@ -5,6 +5,8 @@ import '../../events/domain/event.dart';
 import '../../events/domain/sun_times.dart';
 import '../../shabbat/domain/place.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Today's sun for the home screen's sky: when it rises and sets, and where
 /// it is now.
 class SkyDay {
@@ -85,11 +87,11 @@ class SkyColors {
 
 /// "in 1h 40m", "in 12m", "in 2d 5h", "now".
 String countdown(Duration d) {
-  if (d.inMinutes < 1) return 'now';
+  if (d.inMinutes < 1) return l10n.now;
   final days = d.inDays;
   final hours = d.inHours % 24;
   final minutes = d.inMinutes % 60;
-  if (days > 0) return hours == 0 ? 'in ${days}d' : 'in ${days}d ${hours}h';
-  if (d.inHours > 0) return minutes == 0 ? 'in ${d.inHours}h' : 'in ${d.inHours}h ${minutes}m';
-  return 'in ${minutes}m';
+  if (days > 0) return hours == 0 ? l10n.inDays(days) : l10n.inDaysHours(days, hours);
+  if (d.inHours > 0) return minutes == 0 ? l10n.inHours(d.inHours) : l10n.inHoursMinutes(d.inHours, minutes);
+  return l10n.inMins(minutes);
 }

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Full-screen search over every city time zone. Returns the zone id, or
 /// null if closed.
 Future<String?> pickZone(BuildContext context, {required String home}) =>
@@ -33,7 +35,7 @@ class _ZonePickerState extends State<_ZonePicker> {
         backgroundColor: Colors.transparent,
         title: TextField(
           autofocus: true,
-          decoration: const InputDecoration(hintText: 'Search a city', border: InputBorder.none),
+          decoration: InputDecoration(hintText: l10n.searchCity, border: InputBorder.none),
           onChanged: (v) => setState(() => _query = v.trim()),
         ),
       ),

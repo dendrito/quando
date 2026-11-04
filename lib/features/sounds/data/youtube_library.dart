@@ -6,6 +6,8 @@ import 'package:http/http.dart' as http;
 
 import 'spotify_library.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// YouTube and YouTube Music: sign in with Google and read your playlists
 /// and liked videos (liked songs in YouTube Music are among them).
 class YouTubeAccount {
@@ -75,7 +77,7 @@ class YouTubeLibrary {
         final count = (j['contentDetails'] as Map?)?['itemCount'] as num?;
         return SpotifyItem(
           name: name,
-          detail: count == null ? 'Playlist' : '$count songs',
+          detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
           url: '$_host/playlist?list=$id',
           image: _thumb(sn),
         );
@@ -100,9 +102,9 @@ class YouTubeLibrary {
         )
         .timeout(const Duration(seconds: 10));
     if (r.statusCode == 403) {
-      throw Exception('YouTube said no. Check your Google account is a test user of the Quando project.');
+      throw Exception(l10n.youTubeSaidNo);
     }
-    if (r.statusCode != 200) throw Exception('YouTube didn\'t answer (${r.statusCode}).');
+    if (r.statusCode != 200) throw Exception(l10n.serviceDidntAnswer('YouTube', r.statusCode));
     final items = (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ?? const [];
     return [
       for (final j in items)

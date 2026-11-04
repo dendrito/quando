@@ -8,6 +8,8 @@ import '../../../core/util/format.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Change a ready-made rule: when it rings around its event, and with which
 /// sound. Changes apply straight away.
 class PresetScreen extends ConsumerWidget {
@@ -19,12 +21,12 @@ class PresetScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rule = ref.watch(rulesProvider).where((r) => r.id == id).firstOrNull;
     final text = Theme.of(context).textTheme;
-    if (rule == null) return const Scaffold(body: Center(child: Text('This preset no longer exists.')));
+    if (rule == null) return Scaffold(body: Center(child: Text(l10n.presetGone)));
     final notifier = ref.read(rulesProvider.notifier);
     final offsets = rule.offsets();
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Edit preset')),
+      appBar: AppBar(title: Text(l10n.editPreset)),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
@@ -32,23 +34,23 @@ class PresetScreen extends ConsumerWidget {
           const SizedBox(height: 8),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: Text(rule.enabled ? 'On' : 'Off', style: text.titleMedium),
+            title: Text(rule.enabled ? l10n.on : l10n.off, style: text.titleMedium),
             value: rule.enabled,
             onChanged: (v) => notifier.toggle(id, v),
           ),
           const SizedBox(height: 12),
-          Text('RINGS', style: text.labelSmall),
+          Text(l10n.ringsHeading, style: text.labelSmall),
           const SizedBox(height: 10),
-          if (offsets.isEmpty) Text('No times yet. Add one below.', style: text.bodySmall),
+          if (offsets.isEmpty) Text(l10n.noTimesYet, style: text.bodySmall),
           Wrap(
             spacing: 8,
             runSpacing: 8,
             children: [
               for (final d in offsets)
                 InputChip(
-                  label: Text(d == Duration.zero ? 'At the moment itself' : describeOffset(d)),
+                  label: Text(d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d)),
                   deleteIcon: const Icon(Icons.close, size: 18),
-                  deleteButtonTooltipMessage: 'Remove',
+                  deleteButtonTooltipMessage: l10n.remove,
                   onDeleted: () => notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
                 ),
             ],
@@ -58,7 +60,7 @@ class PresetScreen extends ConsumerWidget {
             alignment: Alignment.centerLeft,
             child: OutlinedButton.icon(
               icon: const Icon(Icons.add),
-              label: const Text('Add a time'),
+              label: Text(l10n.addATime),
               onPressed: () async {
                 final d = await _askOffset(context);
                 if (d != null) notifier.edit(id, (r) => r.withOffsets([...r.offsets(), d]));
@@ -82,15 +84,12 @@ class PresetScreen extends ConsumerWidget {
               alignment: Alignment.centerLeft,
               child: TextButton.icon(
                 icon: const Icon(Icons.restart_alt),
-                label: const Text('Reset to how it came'),
+                label: Text(l10n.resetPreset),
                 onPressed: () => notifier.reset(id),
               ),
             ),
           const SizedBox(height: 8),
-          Text(
-            'To skip just one alarm, tap it in "Alarms this week" on the home screen.',
-            style: text.bodySmall,
-          ),
+          Text(l10n.skipOneHint, style: text.bodySmall),
         ],
       ),
     );
@@ -106,7 +105,7 @@ Future<Duration?> _askOffset(BuildContext context) {
     context: context,
     builder: (context) => StatefulBuilder(
       builder: (context, setState) => AlertDialog(
-        title: const Text('Add a time'),
+        title: Text(l10n.addATime),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -128,10 +127,10 @@ Future<Duration?> _askOffset(BuildContext context) {
                   child: DropdownButton<int>(
                     value: unit,
                     isExpanded: true,
-                    items: const [
-                      DropdownMenuItem(value: 1, child: Text('minutes')),
-                      DropdownMenuItem(value: 60, child: Text('hours')),
-                      DropdownMenuItem(value: 1440, child: Text('days')),
+                    items: [
+                      DropdownMenuItem(value: 1, child: Text(l10n.unitMinutes)),
+                      DropdownMenuItem(value: 60, child: Text(l10n.unitHours)),
+                      DropdownMenuItem(value: 1440, child: Text(l10n.unitDays)),
                     ],
                     onChanged: (v) => setState(() => unit = v ?? 1),
                   ),
@@ -140,9 +139,9 @@ Future<Duration?> _askOffset(BuildContext context) {
             ),
             const SizedBox(height: 16),
             SegmentedButton<bool>(
-              segments: const [
-                ButtonSegment(value: true, label: Text('Before')),
-                ButtonSegment(value: false, label: Text('After')),
+              segments: [
+                ButtonSegment(value: true, label: Text(l10n.before)),
+                ButtonSegment(value: false, label: Text(l10n.after)),
               ],
               selected: {before},
               onSelectionChanged: (s) => setState(() => before = s.first),
@@ -150,12 +149,12 @@ Future<Duration?> _askOffset(BuildContext context) {
             const SizedBox(height: 8),
             TextButton(
               onPressed: () => Navigator.pop(context, Duration.zero),
-              child: const Text('At the moment itself'),
+              child: Text(l10n.atTheMomentItself),
             ),
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
           TextButton(
             onPressed: () {
               final n = int.tryParse(amount.text) ?? 0;
@@ -163,7 +162,7 @@ Future<Duration?> _askOffset(BuildContext context) {
               final d = Duration(minutes: n * unit);
               Navigator.pop(context, before ? -d : d);
             },
-            child: const Text('Add', style: TextStyle(color: QuandoColors.amber)),
+            child: Text(l10n.add, style: const TextStyle(color: QuandoColors.amber)),
           ),
         ],
       ),

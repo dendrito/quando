@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -14,6 +15,8 @@ import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
+import '../features/quotes/data/quote_bank.dart';
+import '../features/quotes/domain/quote.dart';
 import '../features/ringing/ring_payload.dart';
 import '../features/rules/domain/alarm_rule.dart';
 import '../features/rules/domain/presets.dart';
@@ -21,6 +24,10 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+
+import 'edition.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// The current time. Overridden in tests.
 final clockProvider = Provider<DateTime Function()>(
@@ -33,6 +40,106 @@ final clockProvider = Provider<DateTime Function()>(
 final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw StateError('prefsProvider must be overridden in main()'),
 );
+
+// ---- Language ----
+
+/// The language chosen in Settings, e.g. `pt` or `zh_Hant`. null = the phone's.
+class LanguageNotifier extends Notifier<String?> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  String? build() => _prefs.getString('language');
+
+  void set(String? tag) {
+    tag == null ? _prefs.remove('language') : _prefs.setString('language', tag);
+    state = tag;
+  }
+}
+
+final languageProvider = NotifierProvider<LanguageNotifier, String?>(LanguageNotifier.new);
+
+/// The language Quando speaks right now. Anything that builds words
+/// (event titles, preset names, alarm bodies) watches it, so all of it
+/// is made again in the new language when it changes.
+class LocaleNotifier extends Notifier<Locale> {
+  @override
+  Locale build() => currentLocale;
+
+  void changed(Locale l) {
+    if (l != state) state = l;
+  }
+}
+
+final localeProvider = NotifierProvider<LocaleNotifier, Locale>(LocaleNotifier.new);
+
+// ---- Quotes about time ----
+
+/// Which kinds of quotes the home screen shows. Empty = none.
+class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteSource> build() {
+    final saved = _prefs.getStringList('quoteSources');
+    final offered = kodesh ? jewishSources : QuoteSource.values.toSet();
+    if (saved == null) return offered;
+    return {
+      for (final s in offered)
+        if (saved.contains(s.name)) s,
+    };
+  }
+
+  void toggle(QuoteSource s, bool on) {
+    state = on ? {...state, s} : ({...state}..remove(s));
+    _prefs.setStringList('quoteSources', [for (final x in state) x.name]);
+  }
+}
+
+final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
+  QuoteSourcesNotifier.new,
+);
+
+/// Extra quotes the user opted into: Carnaval, near me. Off by default.
+class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteOccasion> build() {
+    if (kodesh) return const {};
+    final saved = _prefs.getStringList('quoteOccasions') ?? const [];
+    return {
+      for (final o in QuoteOccasion.values)
+        if (saved.contains(o.name)) o,
+    };
+  }
+
+  void toggle(QuoteOccasion o, bool on) {
+    state = on ? {...state, o} : ({...state}..remove(o));
+    _prefs.setStringList('quoteOccasions', [for (final x in state) x.name]);
+  }
+}
+
+final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
+  QuoteOccasionsNotifier.new,
+);
+
+/// Where the user is, for "Near me" quotes.
+final quotePlacesProvider = Provider<Set<String>>(
+  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name),
+);
+
+/// Every quote for the language in use.
+final quotesProvider = Provider<List<Quote>>((ref) {
+  final l = ref.watch(localeProvider);
+  final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
+  final all = quoteBank[key] ?? quoteBank['en']!;
+  return kodesh
+      ? [
+          for (final q in all)
+            if (q.isJewish) q,
+        ]
+      : all;
+});
 
 // ---- Time zones ----
 
@@ -150,6 +257,7 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 
   @override
   List<AlarmRule> build() {
+    ref.watch(localeProvider);
     final saved = _decode(_prefs.getString('rules.enabled'));
     final custom = _custom();
     return [
@@ -350,7 +458,7 @@ class CalendarNotifier extends Notifier<CalendarState> {
     final reader = ref.read(calendarReaderProvider);
     try {
       if (!await reader.requestAccess()) {
-        state = const CalendarState(loaded: true, error: 'Calendar access was not allowed.');
+        state = CalendarState(loaded: true, error: l10n.calendarNotAllowed);
         return;
       }
     } catch (e) {
@@ -408,6 +516,7 @@ final allRulesProvider = Provider<List<AlarmRule>>(
 );
 
 final eventsProvider = Provider<List<AnchorEvent>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   final window = scheduler.eventWindow(now, ref.watch(allRulesProvider));
   final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
@@ -425,6 +534,7 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
 /// calendar events (start), Shabbat and festival times, and two weeks of
 /// sunrises and sunsets. Feeds the event search.
 final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((ref) async {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   final to = now.add(const Duration(days: 60));
   final cal = ref.watch(calendarProvider);
@@ -537,6 +647,7 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
 
   @override
   List<AlarmSound> build() {
+    ref.watch(localeProvider);
     try {
       final raw = _prefs.getString('sounds');
       final mine = raw == null
@@ -580,8 +691,8 @@ final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(Sounds
 
 /// "Phone alarm sound" for null, otherwise the sound's name.
 String soundName(List<AlarmSound> sounds, String? id) => id == null
-    ? 'Phone alarm sound'
-    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? 'Phone alarm sound');
+    ? l10n.phoneAlarmSound
+    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? l10n.phoneAlarmSound);
 
 // ---- Lock mode ----
 
@@ -593,7 +704,7 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     try {
       final raw = _prefs.getString('lock');
       return raw == null
-          ? const LockSettings()
+          ? const LockSettings(shabbat: kodesh)
           : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const LockSettings();
@@ -631,15 +742,16 @@ final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<Stri
 );
 
 /// Upcoming and current locks.
-final lockPeriodsProvider = Provider<List<LockPeriod>>(
-  (ref) => lockPeriods(
+final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
+  ref.watch(localeProvider);
+  return lockPeriods(
     settings: ref.watch(lockSettingsProvider),
     holy: ref.watch(periodsProvider),
     calendarEvents: ref.watch(calendarProvider.select((c) => c.events)),
     now: ref.watch(clockProvider)(),
     dismissed: ref.watch(dismissedLocksProvider),
-  ),
-);
+  );
+});
 
 /// A 1-second, silent-ish alarm when each lock starts: it opens Quando,
 /// which then locks (and pins itself).
@@ -654,7 +766,7 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
         ScheduledAlarm(
           id: stableId('lock|${p.id}'),
           at: p.start,
-          title: 'Lock mode',
+          title: l10n.lockMode,
           body: p.reason,
           ringDuration: const Duration(seconds: 1),
           ruleId: 'lock',
@@ -666,6 +778,7 @@ final lockStartAlarmsProvider = Provider<List<ScheduledAlarm>>((ref) {
 
 /// The alarms that will ring: the full plan minus the ones you skipped.
 final planProvider = Provider<List<ScheduledAlarm>>((ref) {
+  ref.watch(localeProvider);
   final skipped = ref.watch(skippedProvider);
   final now = ref.watch(clockProvider)();
   return [
@@ -697,6 +810,7 @@ ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
 
 /// Every alarm for the week ahead, skipped ones included.
 final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
@@ -710,6 +824,7 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
 
 /// Shabbat and festival periods over the planning horizon.
 final periodsProvider = Provider<List<HolyPeriod>>((ref) {
+  ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   return ref.watch(jewishTimesProvider).periods(now, now.add(const Duration(days: 60)));
 });
@@ -723,6 +838,7 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 /// How each planned alarm behaves when it rings. Alarms inside Shabbat or a
 /// festival never ask to be touched.
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
+  ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};

@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import '../../../app/theme.dart';
 import '../domain/sky.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Today as an arc from sunrise to sunset, with the sun where it is now and
 /// a dot for each alarm that rings in daylight.
 class DayArc extends StatelessWidget {
@@ -17,10 +19,10 @@ class DayArc extends StatelessWidget {
   Widget build(BuildContext context) {
     final p = sky.progress;
     final label = p == null
-        ? 'The sun does not rise or set here today'
+        ? l10n.sunNoRiseSet
         : sky.isDay
-        ? 'The sun is ${(p * 100).round()}% of the way through the day'
-        : 'The sun is down';
+        ? l10n.sunProgress((p * 100).round())
+        : l10n.sunIsDown;
     return Semantics(
       label: label,
       child: SizedBox(

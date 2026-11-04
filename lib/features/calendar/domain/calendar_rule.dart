@@ -2,6 +2,8 @@ import '../../events/domain/event.dart';
 import '../../ringing/ring_style.dart';
 import '../../rules/domain/alarm_rule.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Alarms around calendar events, as the user sets them up: "15 minutes and
 /// 1 hour before every event containing 'dentist'", "every day for a week
 /// before", "5 minutes after it ends".
@@ -57,8 +59,8 @@ class CalendarRule {
 
   String get title {
     if (name.isNotEmpty) return name;
-    if (keyword.isNotEmpty) return 'Events matching "$keyword"';
-    return 'Every event';
+    if (keyword.isNotEmpty) return l10n.eventsMatching(keyword);
+    return l10n.everyEvent;
   }
 
   bool get hasAlarms => before.isNotEmpty || atStart || after.isNotEmpty || _series != null;

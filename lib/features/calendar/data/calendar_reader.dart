@@ -2,6 +2,8 @@ import 'package:device_calendar_plus/device_calendar_plus.dart';
 
 import '../../events/domain/event.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// A calendar on the phone: Google accounts, Samsung, Outlook, local...
 class PhoneCalendar {
   const PhoneCalendar({required this.id, required this.name, this.account, this.colorHex});
@@ -50,14 +52,14 @@ class DeviceCalendarReader implements CalendarReader {
           AnchorEvent(
             id: 'cal.${e.instanceId}',
             kind: EventKind.calendar,
-            title: e.title.isEmpty ? 'Event' : e.title,
+            title: e.title.isEmpty ? l10n.event : e.title,
             at: e.startDate.toUtc(),
             source: e.calendarId,
           ),
           AnchorEvent(
             id: 'calend.${e.instanceId}',
             kind: EventKind.calendarEnd,
-            title: '${e.title.isEmpty ? 'Event' : e.title} (ends)',
+            title: l10n.eventEnds(e.title.isEmpty ? l10n.event : e.title),
             at: e.endDate.toUtc(),
             source: e.calendarId,
           ),

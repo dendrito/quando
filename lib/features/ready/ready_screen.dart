@@ -11,25 +11,31 @@ import '../../app/theme.dart';
 import '../../core/util/format.dart';
 import '../ringing/ring_payload.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// One thing the phone must allow for alarms to ring on time.
 enum ReadyCheck {
-  notifications('Show alarms', 'Lets the ringing screen and Stop button appear.', Icons.notifications_active),
-  fullScreen(
-    'Ring over the lock screen',
-    'Shows the alarm full screen, even when the phone is locked.',
-    Icons.fullscreen,
-  ),
-  exact('Ring on the minute', 'Without it, the phone may ring alarms a few minutes late.', Icons.schedule),
-  battery(
-    'Keep running on battery saver',
-    'Stops battery saving from silencing alarms overnight.',
-    Icons.battery_charging_full,
-  );
+  notifications(Icons.notifications_active),
+  fullScreen(Icons.fullscreen),
+  exact(Icons.schedule),
+  battery(Icons.battery_charging_full);
 
-  const ReadyCheck(this.title, this.why, this.icon);
-  final String title;
-  final String why;
+  const ReadyCheck(this.icon);
   final IconData icon;
+
+  String get title => switch (this) {
+    notifications => l10n.readyNotifications,
+    fullScreen => l10n.readyFullScreen,
+    exact => l10n.readyExact,
+    battery => l10n.readyBattery,
+  };
+
+  String get why => switch (this) {
+    notifications => l10n.readyNotificationsWhy,
+    fullScreen => l10n.readyFullScreenWhy,
+    exact => l10n.readyExactWhy,
+    battery => l10n.readyBatteryWhy,
+  };
 }
 
 /// Reads and fixes [ReadyCheck]s. Android only; elsewhere all is well.
@@ -83,11 +89,10 @@ class Readiness {
 
   /// Extra steps some phone makers add on top of Android.
   static String? brandTip(String brand) => switch (brand) {
-    'xiaomi' || 'redmi' || 'poco' => 'Xiaomi phones: in Settings › Apps › Quando, turn on Autostart and set Battery saver to No restrictions.',
-    'samsung' =>
-      'Samsung phones: in Settings › Battery › Background usage limits, make sure Quando isn\'t sleeping.',
-    'huawei' || 'honor' => 'Huawei and Honor phones: in Settings › Battery › App launch, set Quando to Manage manually and allow everything.',
-    'oppo' || 'realme' || 'oneplus' || 'vivo' => 'On this phone: in Settings › Battery, allow Quando to run in the background and turn off Optimise for it.',
+    'xiaomi' || 'redmi' || 'poco' => l10n.tipXiaomi,
+    'samsung' => l10n.tipSamsung,
+    'huawei' || 'honor' => l10n.tipHuawei,
+    'oppo' || 'realme' || 'oneplus' || 'vivo' => l10n.tipOther,
     _ => null,
   };
 }
@@ -136,17 +141,15 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
           stableId('ready|${at.millisecondsSinceEpoch}'),
           at,
           RingPayload(
-            title: 'Test ring',
-            body: 'Quando can wake you',
+            title: l10n.testRing,
+            body: l10n.testRingBody,
             ringSeconds: 30,
             spoken: false,
             loudness: o.loudness,
             transient: true,
           ),
         );
-    messenger.showSnackBar(
-      const SnackBar(content: Text('Rings in 20 seconds. Lock your phone now and wait.')),
-    );
+    messenger.showSnackBar(SnackBar(content: Text(l10n.ringsIn20)));
   }
 
   @override
@@ -157,7 +160,7 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
     final tip = Readiness.brandTip(_brand);
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Ready to ring'), backgroundColor: Colors.transparent),
+      appBar: AppBar(title: Text(l10n.readyToRing), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
@@ -178,11 +181,8 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
                 Expanded(
                   child: Text(
                     checks.isEmpty
-                        ? 'Checking your phone…'
-                        : (missing == 0
-                              ? 'Your phone is set up to ring every alarm on time.'
-                              : '$missing ${missing == 1 ? 'thing needs' : 'things need'} fixing, or alarms may '
-                                    'not ring.'),
+                        ? l10n.checkingPhone
+                        : (missing == 0 ? l10n.phoneReady : l10n.thingsNeedFixing(missing)),
                     style: text.titleMedium?.copyWith(color: missing == 0 ? null : QuandoColors.ground),
                   ),
                 ),
@@ -203,7 +203,7 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
                         await Readiness.fix(c);
                         ref.invalidate(readinessProvider);
                       },
-                      child: const Text('Fix'),
+                      child: Text(l10n.fix),
                     ),
             ),
           if (tip != null) ...[
@@ -215,13 +215,10 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
             style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
             onPressed: _testRing,
             icon: const Icon(Icons.alarm),
-            label: const Text('Test it: ring in 20 seconds'),
+            label: Text(l10n.testIn20),
           ),
           const SizedBox(height: 8),
-          Text(
-            'Lock the phone and put it down. If the alarm rings and shows full screen, you\'re all set.',
-            style: text.bodySmall,
-          ),
+          Text(l10n.testIn20Hint, style: text.bodySmall),
         ],
       ),
     );

@@ -85,7 +85,12 @@ class AlarmRule {
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
       (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
-      (keyword == null || keyword!.isEmpty || EventQuery.parse(keyword!).matches(e.title));
+      (keyword == null || keyword!.isEmpty || _search(keyword!, e));
+
+  static bool _search(String keyword, AnchorEvent e) {
+    final q = EventQuery.parse(keyword);
+    return q.matches(e.title) || (e.alias != null && q.matches(e.alias!));
+  }
 
   /// Every offset from the event, negative = before, duplicates removed,
   /// sorted earliest first.

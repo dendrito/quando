@@ -1,0 +1,2015 @@
+// ignore: unused_import
+import 'package:intl/intl.dart' as intl;
+
+import 'app_localizations.dart';
+
+// ignore_for_file: type=lint
+
+/// The translations for Vietnamese (`vi`).
+class AppLocalizationsVi extends AppLocalizations {
+  AppLocalizationsVi([String locale = 'vi']) : super(locale);
+
+  @override
+  String get undo => 'Hoàn tác';
+
+  @override
+  String duplicatedNamed(String name) {
+    return 'Đã nhân bản “$name”';
+  }
+
+  @override
+  String deletedNamed(String name) {
+    return 'Đã xóa “$name”';
+  }
+
+  @override
+  String get when => 'Khi nào?';
+
+  @override
+  String get newAtTime => 'Vào một giờ cụ thể';
+
+  @override
+  String get newAtTimeHint => 'Mỗi ngày làm việc lúc 7:00, một lần lúc 15:30…';
+
+  @override
+  String get newAroundEvent => 'Quanh một sự kiện';
+
+  @override
+  String get newAroundEventHint =>
+      'Tìm trong lịch, giờ Shabbat và giờ mặt trời, rồi reo trước, đúng lúc hoặc sau đó';
+
+  @override
+  String get editThisAlarm => 'Sửa báo thức này';
+
+  @override
+  String editNamed(String name) {
+    return 'Sửa “$name”';
+  }
+
+  @override
+  String get preset => 'mẫu';
+
+  @override
+  String get editThisCalendarRule => 'Sửa quy tắc lịch này';
+
+  @override
+  String get ringThisOneAfterAll => 'Vẫn reo lần này';
+
+  @override
+  String get skipJustThisOne => 'Chỉ bỏ qua lần này';
+
+  @override
+  String get renameGroup => 'Đổi tên nhóm';
+
+  @override
+  String quickSet(String label, String time) {
+    return '$label · reo lúc $time';
+  }
+
+  @override
+  String get newAlarm => 'Báo thức mới';
+
+  @override
+  String get appName => 'Quando?';
+
+  @override
+  String get lockMode => 'Chế độ khóa';
+
+  @override
+  String get calendars => 'Lịch';
+
+  @override
+  String get settings => 'Cài đặt';
+
+  @override
+  String get nextAlarmHeading => 'BÁO THỨC TIẾP THEO';
+
+  @override
+  String get nothingSet => 'Chưa đặt gì';
+
+  @override
+  String get tagline => 'Mọi việc đều có lúc.';
+
+  @override
+  String sunriseAt(String time) {
+    return 'Mặt trời mọc $time';
+  }
+
+  @override
+  String sunsetAt(String time) {
+    return 'Mặt trời lặn $time';
+  }
+
+  @override
+  String get alarmsMayNotRing => 'Báo thức của bạn có thể không reo';
+
+  @override
+  String get tapToFixIt => 'Chạm để sửa';
+
+  @override
+  String inMinutes(int minutes) {
+    return 'Sau $minutes phút';
+  }
+
+  @override
+  String get atSunset => 'Lúc mặt trời lặn';
+
+  @override
+  String get sunset => 'Mặt trời lặn';
+
+  @override
+  String get shabbatModeIsOn => 'CHẾ ĐỘ SHABBAT ĐANG BẬT';
+
+  @override
+  String nextInCity(String city) {
+    return 'TIẾP THEO · $city';
+  }
+
+  @override
+  String get candleLighting => 'Thắp nến';
+
+  @override
+  String get havdalah => 'Havdalah';
+
+  @override
+  String get shabbatAndFestivals => 'Shabbat và ngày lễ';
+
+  @override
+  String get yourAlarmsHeading => 'BÁO THỨC CỦA BẠN';
+
+  @override
+  String get tapWhenToAdd => 'Chạm Khi nào? để thêm báo thức.';
+
+  @override
+  String get aroundEventsHeading => 'QUANH SỰ KIỆN';
+
+  @override
+  String searchFor(String words) {
+    return 'tìm: $words';
+  }
+
+  @override
+  String get thisWeekHeading => 'BÁO THỨC TUẦN NÀY';
+
+  @override
+  String get noAlarmsThisWeek => 'Không có báo thức trong 7 ngày tới.';
+
+  @override
+  String get alarmsSetThemselves => 'Báo thức tự đặt trên điện thoại này mỗi khi bạn thay đổi gì đó.';
+
+  @override
+  String cityTime(String city) {
+    return 'giờ $city';
+  }
+
+  @override
+  String get more => 'Thêm';
+
+  @override
+  String get turnOff => 'Tắt';
+
+  @override
+  String get turnOn => 'Bật';
+
+  @override
+  String get duplicate => 'Nhân bản';
+
+  @override
+  String get delete => 'Xóa';
+
+  @override
+  String get inOneHour => 'Sau 1 giờ';
+
+  @override
+  String get logoLabel => 'Logo Quando?';
+
+  @override
+  String get noTimesSet => 'Chưa đặt giờ';
+
+  @override
+  String get atTheMoment => 'đúng lúc đó';
+
+  @override
+  String timesRange(int count, String from, String to) {
+    return '$count lần · $from đến $to';
+  }
+
+  @override
+  String spanDays(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n ngày');
+    return '$_temp0';
+  }
+
+  @override
+  String spanHours(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n giờ');
+    return '$_temp0';
+  }
+
+  @override
+  String spanMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n phút');
+    return '$_temp0';
+  }
+
+  @override
+  String spanSeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n giây');
+    return '$_temp0';
+  }
+
+  @override
+  String get now => 'bây giờ';
+
+  @override
+  String spanBefore(String span) {
+    return '$span trước';
+  }
+
+  @override
+  String spanAfter(String span) {
+    return '$span sau';
+  }
+
+  @override
+  String alarmCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n báo thức');
+    return '$_temp0';
+  }
+
+  @override
+  String get allOn => 'tất cả đang bật';
+
+  @override
+  String get allOff => 'tất cả đang tắt';
+
+  @override
+  String someOn(int n) {
+    return '$n đang bật';
+  }
+
+  @override
+  String skippedBody(String body) {
+    return 'Đã bỏ qua · $body';
+  }
+
+  @override
+  String timeToTime(String from, String to) {
+    return '$from – $to';
+  }
+
+  @override
+  String skippedCount(int n) {
+    return '$n đã bỏ qua';
+  }
+
+  @override
+  String get sunNoRiseSet => 'Hôm nay mặt trời không mọc hay lặn ở đây';
+
+  @override
+  String sunProgress(int percent) {
+    return 'Mặt trời đã đi qua $percent% ngày';
+  }
+
+  @override
+  String get sunIsDown => 'Mặt trời đã lặn';
+
+  @override
+  String get searchCity => 'Tìm thành phố';
+
+  @override
+  String get tomorrowLower => 'ngày mai';
+
+  @override
+  String get yesterdayLower => 'hôm qua';
+
+  @override
+  String get worldClocksHeading => 'ĐỒNG HỒ THẾ GIỚI';
+
+  @override
+  String get add => 'Thêm';
+
+  @override
+  String cityHere(String city) {
+    return '$city · tại đây';
+  }
+
+  @override
+  String get worldClocksHint => 'Thêm thành phố để xem giờ ở đây. Vuốt sang trái để xóa.';
+
+  @override
+  String get groupNameHint => 'Công việc, Con cái, Phòng tập…';
+
+  @override
+  String get cancel => 'Hủy';
+
+  @override
+  String get ok => 'OK';
+
+  @override
+  String get noGroup => 'Không nhóm';
+
+  @override
+  String get newGroupEllipsis => 'Nhóm mới…';
+
+  @override
+  String get newGroup => 'Nhóm mới';
+
+  @override
+  String secondsShort(int n) {
+    return '$n giây';
+  }
+
+  @override
+  String minutesShort(int n) {
+    return '$n phút';
+  }
+
+  @override
+  String get minutes => 'Phút';
+
+  @override
+  String get ringFor => 'Reo trong';
+
+  @override
+  String get seconds => 'Giây';
+
+  @override
+  String get oneSecondLess => 'Bớt 1 giây';
+
+  @override
+  String get oneSecondMore => 'Thêm 1 giây';
+
+  @override
+  String inDays(int d) {
+    return 'sau $d ngày';
+  }
+
+  @override
+  String inDaysHours(int d, int h) {
+    return 'sau $d ngày $h giờ';
+  }
+
+  @override
+  String inHours(int h) {
+    return 'sau $h giờ';
+  }
+
+  @override
+  String inHoursMinutes(int h, int m) {
+    return 'sau $h giờ $m phút';
+  }
+
+  @override
+  String inMins(int m) {
+    return 'sau $m phút';
+  }
+
+  @override
+  String placeChange(String city, String where) {
+    return '$city · $where · đổi';
+  }
+
+  @override
+  String get israel => 'Israel';
+
+  @override
+  String get outsideIsrael => 'ngoài Israel';
+
+  @override
+  String get comingUpHeading => 'SẮP TỚI';
+
+  @override
+  String get lockForShabbat => 'Khóa điện thoại cho Shabbat';
+
+  @override
+  String get lockForShabbatHint => 'Từ lúc thắp nến đến Havdalah, cả ngày lễ';
+
+  @override
+  String get ownShabbatAlarmsHeading => 'BÁO THỨC SHABBAT CỦA BẠN';
+
+  @override
+  String get addShabbatAlarm => 'Thêm báo thức Shabbat hoặc ngày lễ';
+
+  @override
+  String get readyMadeHeading => 'BÁO THỨC CÓ SẴN';
+
+  @override
+  String bringBackDeleted(int n) {
+    return 'Khôi phục mục đã xóa ($n)';
+  }
+
+  @override
+  String get presetsHint => 'Chạm vào một mục để đổi giờ. Vuốt để xóa.';
+
+  @override
+  String get lockSentence =>
+      'Thu gọn điện thoại chỉ còn đồng hồ và báo thức, cho Shabbat hoặc một đêm tập trung.';
+
+  @override
+  String get lockExplain =>
+      'Khi khóa, Quando? chỉ hiện giờ, báo thức tiếp theo và lúc khóa kết thúc. Báo thức vẫn hoạt động và không thể thay đổi gì cho đến khi mở khóa.';
+
+  @override
+  String get lockNowHeading => 'KHÓA NGAY';
+
+  @override
+  String get lockAutoHeading => 'TỰ ĐỘNG KHÓA';
+
+  @override
+  String get shabbatAndFestivalsLong => 'Shabbat và ngày lễ';
+
+  @override
+  String get fromCandleToHavdalah => 'Từ lúc thắp nến đến Havdalah';
+
+  @override
+  String get lockCalendarWord => 'Trong các sự kiện lịch có từ này';
+
+  @override
+  String get lockCalendarWordHint => 'vd. khóa, thi, tập trung';
+
+  @override
+  String get leaveEmptyForNone => 'Để trống nếu không dùng';
+
+  @override
+  String get connectCalendarsFirst => 'Hãy kết nối lịch trước (biểu tượng lịch)';
+
+  @override
+  String get openWhenLockStarts => 'Mở Quando? khi bắt đầu khóa';
+
+  @override
+  String get openWhenLockStartsHint => 'Một âm thanh nhỏ 1 giây đưa Quando? lên trước để khóa';
+
+  @override
+  String get pinToScreen => 'Ghim Quando? vào màn hình';
+
+  @override
+  String get pinToScreenHint =>
+      'Các ứng dụng khác không mở được khi đang khóa. Android sẽ hỏi xác nhận lần đầu.';
+
+  @override
+  String get noLocksComingUp => 'Không có lần khóa nào sắp tới.';
+
+  @override
+  String get leaveLockEarly => 'Để thoát sớm, giữ “Giữ để mở khóa” trong 3 giây.';
+
+  @override
+  String get locked => 'Đã khóa';
+
+  @override
+  String get shabbatShalom => 'Shabbat shalom';
+
+  @override
+  String get chagSameach => 'Chag sameach';
+
+  @override
+  String get unlocksHeading => 'MỞ KHÓA';
+
+  @override
+  String get nowCap => 'Bây giờ';
+
+  @override
+  String get nextAlarm => 'Báo thức tiếp theo';
+
+  @override
+  String get holdToUnlock => 'Giữ để mở khóa';
+
+  @override
+  String get calendarAlarm => 'Báo thức lịch';
+
+  @override
+  String get calendarIntro =>
+      'Quando? có thể reo trước và sau các sự kiện trong lịch của điện thoại. Google Lịch được bao gồm khi tài khoản Google có trên điện thoại.';
+
+  @override
+  String get connectCalendars => 'Kết nối lịch';
+
+  @override
+  String get calendarAlarmsHeading => 'BÁO THỨC LỊCH';
+
+  @override
+  String get calendarNoneYet => 'Chưa có. Bắt đầu với cái này, rồi thay đổi tùy ý:';
+
+  @override
+  String get fifteenBeforeEvery => '15 phút trước mỗi sự kiện';
+
+  @override
+  String get useTheseCalendarsHeading => 'DÙNG CÁC LỊCH NÀY';
+
+  @override
+  String get noTimedEvents => 'Không có sự kiện có giờ sắp tới trong các lịch này.';
+
+  @override
+  String get atTheStart => 'lúc bắt đầu';
+
+  @override
+  String everyForBefore(String every, String span) {
+    return 'mỗi $every trong $span trước';
+  }
+
+  @override
+  String spanAfterItEnds(String span) {
+    return '$span sau khi kết thúc';
+  }
+
+  @override
+  String get noAlarmsChosen => 'Chưa chọn báo thức';
+
+  @override
+  String get gentleWakeUp => 'Thức dậy nhẹ nhàng';
+
+  @override
+  String gentleSummary(int minutes, String sound) {
+    return '$minutes phút trước · $sound';
+  }
+
+  @override
+  String get off => 'Tắt';
+
+  @override
+  String get gentleSentence =>
+      'Một âm thanh êm dịu bắt đầu khẽ trước báo thức, để bạn không bao giờ giật mình tỉnh dậy.';
+
+  @override
+  String get gentleExplain => 'Nó to dần, đưa bạn ra khỏi giấc ngủ nông và dừng ngay trước khi báo thức reo.';
+
+  @override
+  String get startsBeforeHeading => 'BẮT ĐẦU TRƯỚC BÁO THỨC';
+
+  @override
+  String get leadUpSoundHeading => 'ÂM THANH DẪN';
+
+  @override
+  String get listen => 'Nghe thử';
+
+  @override
+  String get whoRecordedThese => 'Ai đã thu những âm thanh này';
+
+  @override
+  String get done => 'Xong';
+
+  @override
+  String get soundCredits => 'Nguồn âm thanh';
+
+  @override
+  String yourTimeCity(String city) {
+    return 'Giờ của bạn ($city)';
+  }
+
+  @override
+  String get anotherCity => 'Thành phố khác…';
+
+  @override
+  String get ringingIn5 => 'Reo sau 5 giây…';
+
+  @override
+  String get alarmSaved => 'Đã lưu báo thức.';
+
+  @override
+  String alarmSetFor(String span) {
+    return 'Báo thức sẽ reo sau $span.';
+  }
+
+  @override
+  String hoursMinutesShort(int h, int m) {
+    return '$h giờ $m phút';
+  }
+
+  @override
+  String get editAlarm => 'Sửa báo thức';
+
+  @override
+  String get previewCaps => 'NGHE THỬ';
+
+  @override
+  String get saveCaps => 'LƯU';
+
+  @override
+  String cityTimeForYou(String city, String time) {
+    return 'giờ $city · $time giờ của bạn';
+  }
+
+  @override
+  String repeatHeading(String repeat) {
+    return 'LẶP LẠI · $repeat';
+  }
+
+  @override
+  String get labelField => 'Nhãn (được đọc to nếu bật báo thức bằng giọng nói)';
+
+  @override
+  String get group => 'Nhóm';
+
+  @override
+  String ringsForHeading(String span) {
+    return 'REO TRONG $span';
+  }
+
+  @override
+  String useDefault(String value) {
+    return 'Dùng mặc định ($value)';
+  }
+
+  @override
+  String get save => 'Lưu';
+
+  @override
+  String get sameTime => 'cùng giờ';
+
+  @override
+  String get untilYouStopIt => 'Đến khi bạn tắt';
+
+  @override
+  String get alarm => 'Báo thức';
+
+  @override
+  String get once => 'Một lần';
+
+  @override
+  String get everyDay => 'Mỗi ngày';
+
+  @override
+  String get weekdays => 'Ngày làm việc';
+
+  @override
+  String get weekends => 'Cuối tuần';
+
+  @override
+  String timeInCity(String time, String city) {
+    return '$time giờ $city';
+  }
+
+  @override
+  String eventsMatching(String words) {
+    return 'Sự kiện có “$words”';
+  }
+
+  @override
+  String get everyEvent => 'Mọi sự kiện';
+
+  @override
+  String get sunrise => 'Mặt trời mọc';
+
+  @override
+  String havdalahEndOf(String day) {
+    return 'Havdalah · kết thúc $day';
+  }
+
+  @override
+  String get yomTov => 'Yom tov';
+
+  @override
+  String get shabbat => 'Shabbat';
+
+  @override
+  String get presetCountdown => 'Đếm ngược đến giờ thắp nến';
+
+  @override
+  String get presetHourly => 'Mỗi giờ, từ 6 giờ trước';
+
+  @override
+  String get presetDailyWeek => 'Mỗi ngày một lần, trong tuần trước';
+
+  @override
+  String get presetSecondNight => 'Nến đêm thứ hai';
+
+  @override
+  String get presetFridayReminder => 'Nhắc trước 3 giờ: sạc điện thoại';
+
+  @override
+  String get presetFridayReminderLabel => 'Sạc điện thoại và đặt báo thức cho ngày mai';
+
+  @override
+  String get presetSunset => 'Mặt trời lặn, và 15 phút trước đó';
+
+  @override
+  String get pesach => 'Lễ Vượt Qua';
+
+  @override
+  String get shavuot => 'Shavuot';
+
+  @override
+  String get roshHashanah => 'Rosh Hashanah';
+
+  @override
+  String get yomKippur => 'Yom Kippur';
+
+  @override
+  String get sukkot => 'Sukkot';
+
+  @override
+  String get sheminiAtzeret => 'Shemini Atzeret';
+
+  @override
+  String get simchatTorah => 'Simchat Torah';
+
+  @override
+  String get readyNotifications => 'Hiện báo thức';
+
+  @override
+  String get readyNotificationsWhy => 'Cho phép màn hình báo thức và nút Tắt hiện lên.';
+
+  @override
+  String get readyFullScreen => 'Reo trên màn hình khóa';
+
+  @override
+  String get readyFullScreenWhy => 'Hiện báo thức toàn màn hình, kể cả khi điện thoại đang khóa.';
+
+  @override
+  String get readyExact => 'Reo đúng phút';
+
+  @override
+  String get readyExactWhy => 'Nếu không, điện thoại có thể trễ báo thức vài phút.';
+
+  @override
+  String get readyBattery => 'Tiếp tục chạy khi tiết kiệm pin';
+
+  @override
+  String get readyBatteryWhy => 'Ngăn chế độ tiết kiệm pin tắt tiếng báo thức vào ban đêm.';
+
+  @override
+  String get tipXiaomi =>
+      'Điện thoại Xiaomi: trong Cài đặt › Ứng dụng › Quando?, bật Tự khởi động và đặt Tiết kiệm pin thành Không hạn chế.';
+
+  @override
+  String get tipSamsung =>
+      'Điện thoại Samsung: trong Cài đặt › Pin › Giới hạn sử dụng nền, đảm bảo Quando? không bị đưa vào ngủ.';
+
+  @override
+  String get tipHuawei =>
+      'Điện thoại Huawei và Honor: trong Cài đặt › Pin › Khởi chạy ứng dụng, đặt Quando? thành Quản lý thủ công và cho phép tất cả.';
+
+  @override
+  String get tipOther =>
+      'Trên điện thoại này: trong Cài đặt › Pin, cho phép Quando? chạy nền và tắt tối ưu hóa.';
+
+  @override
+  String get testRing => 'Reo thử';
+
+  @override
+  String get testRingBody => 'Quando? có thể đánh thức bạn';
+
+  @override
+  String get ringsIn20 => 'Reo sau 20 giây. Hãy khóa điện thoại ngay và chờ.';
+
+  @override
+  String get readyToRing => 'Sẵn sàng reo';
+
+  @override
+  String get checkingPhone => 'Đang kiểm tra điện thoại…';
+
+  @override
+  String get phoneReady => 'Điện thoại của bạn sẵn sàng reo mọi báo thức đúng giờ.';
+
+  @override
+  String thingsNeedFixing(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: 'Cần sửa $n mục, nếu không báo thức có thể không reo.',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get fix => 'Sửa';
+
+  @override
+  String get testIn20 => 'Thử: reo sau 20 giây';
+
+  @override
+  String get testIn20Hint =>
+      'Khóa điện thoại và đặt xuống. Nếu báo thức reo toàn màn hình, mọi thứ đã sẵn sàng.';
+
+  @override
+  String get readyToRingHint => 'Kiểm tra điện thoại reo mọi báo thức đúng giờ';
+
+  @override
+  String get connections => 'Kết nối';
+
+  @override
+  String get timeZoneHeading => 'MÚI GIỜ';
+
+  @override
+  String get followPhone => 'Theo điện thoại';
+
+  @override
+  String followPhoneNow(String city) {
+    return 'Hiện là $city. Tự đổi khi bạn đi xa.';
+  }
+
+  @override
+  String get zoneFixed => 'Cố định. Báo thức giữ giờ này kể cả khi bạn đi xa.';
+
+  @override
+  String get shabbatCityHeading => 'THÀNH PHỐ CHO SHABBAT';
+
+  @override
+  String get inIsraelOneDay => 'Ở Israel (một ngày lễ)';
+
+  @override
+  String candleMinutesHeading(int n) {
+    return 'NẾN: $n PHÚT TRƯỚC KHI MẶT TRỜI LẶN';
+  }
+
+  @override
+  String get endOfShabbatHeading => 'KẾT THÚC SHABBAT VÀ NGÀY LỄ';
+
+  @override
+  String get nightfallGeonim => 'Lúc sao mọc (Geonim, 8,5°)';
+
+  @override
+  String get rabbeinuTam => '72 phút sau khi mặt trời lặn (Rabbeinu Tam)';
+
+  @override
+  String get whenAlarmRingsHeading => 'KHI BÁO THỨC REO';
+
+  @override
+  String get recordOrAddSounds => 'Thu hoặc thêm âm thanh';
+
+  @override
+  String get ringsForThisLong => 'Reo trong khoảng này, rồi tự dừng';
+
+  @override
+  String get sameFades => 'Hiệu ứng to/nhỏ dần giống nhau cho mọi báo thức';
+
+  @override
+  String get sameFadesOn => 'Thay hiệu ứng của từng báo thức. Mỗi báo thức giữ âm lượng riêng.';
+
+  @override
+  String get sameFadesOff => 'Tắt: mỗi báo thức dùng hiệu ứng đặt trong Âm lượng của nó.';
+
+  @override
+  String get sayItOutLoud => 'Đọc to';
+
+  @override
+  String get sayItOutLoudHint => 'Đọc báo thức dùng để làm gì, vd. “Thắp nến, 15 phút trước”';
+
+  @override
+  String get noSnooze => 'Không báo lại';
+
+  @override
+  String snoozeUpTo(int times, int minutes) {
+    return 'Báo lại tối đa $times× mỗi lần $minutes phút';
+  }
+
+  @override
+  String get wakeUpCheck => 'Kiểm tra đã dậy';
+
+  @override
+  String get wakeUpCheckHint => 'Sau khi tắt, sẽ reo lại sau 3 phút nếu bạn không chạm “Tôi dậy rồi”';
+
+  @override
+  String get solveSum => 'Giải phép tính để tắt';
+
+  @override
+  String get provesAwake => 'Chứng minh bạn đã tỉnh';
+
+  @override
+  String get shabbatNoTasks =>
+      'Vào Shabbat và ngày lễ, những điều này không áp dụng: báo thức tự dừng và không bao giờ yêu cầu chạm vào điện thoại.';
+
+  @override
+  String get testAlarmIn1 => 'Reo báo thức thử sau 1 phút';
+
+  @override
+  String get timesDisclaimer =>
+      'Giờ được tính trên điện thoại. Với trường hợp khó, hãy hỏi rabbi của bạn hoặc xem lịch cộng đồng.';
+
+  @override
+  String get recommended => 'Khuyên dùng';
+
+  @override
+  String get chooseCity => 'Chọn thành phố';
+
+  @override
+  String get testOnlyOnPhone => 'Báo thức thử chỉ chạy trên điện thoại.';
+
+  @override
+  String get testAlarm => 'Báo thức thử';
+
+  @override
+  String get testAlarmBody => 'Báo thức của bạn sẽ reo như thế này';
+
+  @override
+  String get testAlarmIn1Set => 'Báo thức thử sau 1 phút. Bạn có thể khóa điện thoại.';
+
+  @override
+  String get presetGone => 'Mẫu này không còn nữa.';
+
+  @override
+  String get editPreset => 'Sửa mẫu';
+
+  @override
+  String get on => 'Bật';
+
+  @override
+  String get ringsHeading => 'REO';
+
+  @override
+  String get noTimesYet => 'Chưa có giờ. Thêm ở bên dưới.';
+
+  @override
+  String get atTheMomentItself => 'Đúng thời điểm đó';
+
+  @override
+  String get remove => 'Xóa';
+
+  @override
+  String get addATime => 'Thêm giờ';
+
+  @override
+  String get resetPreset => 'Khôi phục bản gốc';
+
+  @override
+  String get skipOneHint => 'Để bỏ qua một báo thức, chạm vào nó trong “Báo thức tuần này” ở màn hình chính.';
+
+  @override
+  String get unitMinutes => 'phút';
+
+  @override
+  String get unitHours => 'giờ';
+
+  @override
+  String get unitDays => 'ngày';
+
+  @override
+  String get before => 'Trước';
+
+  @override
+  String get after => 'Sau';
+
+  @override
+  String get oneWeek => '1 tuần';
+
+  @override
+  String daysShort(int n) {
+    return '$n ngày';
+  }
+
+  @override
+  String hoursShort(int n) {
+    return '$n giờ';
+  }
+
+  @override
+  String get howToSearch => 'Cách tìm';
+
+  @override
+  String get searchHelpWord => 'Tiêu đề có “dentist”, không phân biệt hoa thường';
+
+  @override
+  String get searchHelpStar => '* là chữ bất kỳ: dentist, dentures';
+
+  @override
+  String get searchHelpQuestion => '? là một chữ: yoga, toga';
+
+  @override
+  String get searchHelpPhrase => 'Đúng cụm từ này';
+
+  @override
+  String get searchHelpAnd => 'Cả hai từ (AND)';
+
+  @override
+  String get searchHelpOr => 'Một trong hai. | cũng được';
+
+  @override
+  String get searchHelpNot => 'Loại trừ. NOT và ! cũng được';
+
+  @override
+  String get searchHelpBrackets => 'Dấu ngoặc nhóm các từ';
+
+  @override
+  String get searchHelpEmpty => 'Để trống để reo ở mọi sự kiện.';
+
+  @override
+  String get customTime => 'Thời gian khác';
+
+  @override
+  String get other => 'Khác';
+
+  @override
+  String get sun => 'Mặt trời';
+
+  @override
+  String get calendar => 'Lịch';
+
+  @override
+  String get newEventAlarm => 'Báo thức sự kiện mới';
+
+  @override
+  String get eventAlarm => 'Báo thức sự kiện';
+
+  @override
+  String get findEventsHeading => 'TÌM SỰ KIỆN';
+
+  @override
+  String get searchEventsHint => 'Tìm: nha sĩ, gym OR yoga, nha*…';
+
+  @override
+  String get alsoBuiltInTimes => 'Cả giờ Shabbat, ngày lễ và mặt trời';
+
+  @override
+  String get alsoBuiltInTimesHint => 'vd. “nến*”, “havdalah”, “mặt trời lặn”';
+
+  @override
+  String get allMyCalendars => 'Tất cả lịch của tôi';
+
+  @override
+  String get connectToSearch => 'Kết nối lịch để tìm trong đó';
+
+  @override
+  String get searching => 'Đang tìm…';
+
+  @override
+  String get nothingMatches60 => 'Không có kết quả trong 60 ngày tới';
+
+  @override
+  String eventsIn60(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n sự kiện trong 60 ngày tới');
+    return '$_temp0';
+  }
+
+  @override
+  String nextRingsAt(String times, String title) {
+    return 'Tiếp theo: reo lúc $times cho “$title”';
+  }
+
+  @override
+  String showMoreLeft(int n) {
+    return 'Hiện thêm (còn $n)';
+  }
+
+  @override
+  String get ringBeforeStartsHeading => 'REO TRƯỚC KHI BẮT ĐẦU';
+
+  @override
+  String get ringWhenStarts => 'Reo khi bắt đầu';
+
+  @override
+  String get repeatBeforeHeading => 'VÀ LẶP LẠI TRƯỚC ĐÓ';
+
+  @override
+  String get everyPrefix => 'Mỗi ';
+
+  @override
+  String get offLower => 'tắt';
+
+  @override
+  String get forInfix => '  trong ';
+
+  @override
+  String get ringAfterEndsHeading => 'REO SAU KHI KẾT THÚC';
+
+  @override
+  String get nameOptional => 'Tên (không bắt buộc)';
+
+  @override
+  String get toppedUp => 'Báo thức đã được đặt cho 7 ngày tới và được bổ sung mỗi khi bạn mở Quando?.';
+
+  @override
+  String get back => 'Quay lại';
+
+  @override
+  String get next => 'Tiếp';
+
+  @override
+  String get stepWhichEvents => 'Sự kiện nào';
+
+  @override
+  String get stepWhenToRing => 'Khi nào reo';
+
+  @override
+  String get stepHowItRings => 'Reo thế nào';
+
+  @override
+  String defaultNamed(String name) {
+    return 'Mặc định ($name)';
+  }
+
+  @override
+  String get phoneAlarmSound => 'Âm báo thức của điện thoại';
+
+  @override
+  String get onlineRadio => 'Radio trực tuyến';
+
+  @override
+  String songLinkOpens(String app) {
+    return 'Liên kết bài hát · mở $app';
+  }
+
+  @override
+  String get builtIn => 'Có sẵn';
+
+  @override
+  String get yourRecording => 'Bản thu của bạn';
+
+  @override
+  String get sound => 'Âm thanh';
+
+  @override
+  String get wakeToOwnSound => 'Thức dậy với âm thanh của riêng bạn';
+
+  @override
+  String get wakeToOwnSoundHint => 'Giọng bạn, một bài hát, Spotify hoặc radio trực tiếp';
+
+  @override
+  String musicAdded(String name) {
+    return 'Đã thêm $name. Chọn làm âm thanh cho bất kỳ báo thức nào.';
+  }
+
+  @override
+  String get playlists => 'Danh sách phát';
+
+  @override
+  String get likedSongs => 'Bài hát đã thích';
+
+  @override
+  String get noPlaylists => 'Chưa có danh sách phát.';
+
+  @override
+  String get noLikedSongs => 'Chưa có bài hát đã thích.';
+
+  @override
+  String get needsMic => 'Quando? cần micrô để ghi âm.';
+
+  @override
+  String recordingN(int n) {
+    return 'Bản ghi $n';
+  }
+
+  @override
+  String couldNotAddFile(String error) {
+    return 'Không thể thêm tệp đó: $error';
+  }
+
+  @override
+  String get addSongLink => 'Thêm liên kết bài hát';
+
+  @override
+  String get songLink => 'Liên kết bài hát';
+
+  @override
+  String get songLinkHowTo =>
+      'Trong Spotify, Apple Music, Amazon Music, YouTube, YouTube Music hoặc SoundCloud, chạm Chia sẻ, rồi Sao chép liên kết, và dán vào đây.';
+
+  @override
+  String get songNameHint => 'Tên, vd. Danh sách buổi sáng';
+
+  @override
+  String get whenAlarmGoesOffHeading => 'KHI BÁO THỨC REO';
+
+  @override
+  String get playTheSong => 'Phát bài hát';
+
+  @override
+  String get ringThenOpen => 'Reo, rồi mở';
+
+  @override
+  String get playTheSongHint =>
+      'Ứng dụng của nó mở ra và phát. Nếu im lặng 10 giây, âm dự phòng sẽ reo để bạn luôn thức dậy. Báo thức có nhiệm vụ sẽ reo trước rồi mới mở.';
+
+  @override
+  String get ringThenOpenHint => 'Âm dự phòng reo. Tắt sẽ mở bài hát trong ứng dụng của nó.';
+
+  @override
+  String get playForHeading => 'PHÁT TRONG';
+
+  @override
+  String get pausesAfter =>
+      'Quando? tạm dừng bài hát sau khoảng thời gian này bằng phím tạm dừng của điện thoại.';
+
+  @override
+  String get backupSoundHeading => 'ÂM DỰ PHÒNG';
+
+  @override
+  String get notALink => 'Đó có vẻ không phải là liên kết.';
+
+  @override
+  String songOn(String app) {
+    return 'Bài hát trên $app';
+  }
+
+  @override
+  String get theWeb => 'web';
+
+  @override
+  String get pickFromYouTube => 'Chọn từ YouTube của tôi';
+
+  @override
+  String get youTubeAndMusic => 'YouTube và YouTube Music';
+
+  @override
+  String get youTubeOn => 'Danh sách phát và bài hát bạn thích. Nhấn giữ để đăng xuất.';
+
+  @override
+  String get youTubeSignIn => 'Đăng nhập Google để chọn từ danh sách phát và bài hát bạn thích.';
+
+  @override
+  String get addSongLinkInstead => 'Hãy thêm liên kết bài hát thay vào đó.';
+
+  @override
+  String get googleSignInFailed => 'Đăng nhập Google chưa hoàn tất. Hãy thử lại.';
+
+  @override
+  String get myYouTube => 'YouTube của tôi';
+
+  @override
+  String get spotifyDirectOn => 'Phát trực tiếp Spotify đang bật';
+
+  @override
+  String get spotifyDirect => 'Phát trực tiếp Spotify';
+
+  @override
+  String get spotifyDirectOnHint => 'Spotify phát đúng bài hát của bạn làm báo thức. Chạm để tắt.';
+
+  @override
+  String get spotifyDirectHint =>
+      'Phát đúng bài Spotify của bạn làm báo thức, đáng tin cậy hơn. Cần ứng dụng Spotify và Spotify Premium. Chạm để đăng nhập.';
+
+  @override
+  String get spotifyComingSoon => 'Sắp có: phát đúng bài Spotify của bạn làm báo thức (cần Spotify Premium).';
+
+  @override
+  String get spotifyFailed =>
+      'Spotify không kết nối được. Kiểm tra ứng dụng Spotify đã cài, bạn đã đăng nhập và có Premium.';
+
+  @override
+  String get nameThisSound => 'Đặt tên cho âm thanh này';
+
+  @override
+  String get sounds => 'Âm thanh';
+
+  @override
+  String get soundsSentence =>
+      'Thức dậy với giọng nói của bạn, một bài hát, danh sách phát hoặc radio trực tiếp.';
+
+  @override
+  String stopTimer(String time) {
+    return 'Dừng · $time';
+  }
+
+  @override
+  String get record => 'Ghi âm';
+
+  @override
+  String get addAFile => 'Thêm tệp';
+
+  @override
+  String get addSongLinkLong => 'Thêm liên kết bài hát (Spotify, Apple Music, YouTube…)';
+
+  @override
+  String get musicAppsHeading => 'ỨNG DỤNG NHẠC';
+
+  @override
+  String get pickFromSpotify => 'Chọn từ Spotify của tôi';
+
+  @override
+  String get yourPlaylistsAndLiked => 'Danh sách phát và bài hát bạn thích';
+
+  @override
+  String get mySpotify => 'Spotify của tôi';
+
+  @override
+  String get spotifySignInFailed => 'Không thể đăng nhập Spotify.';
+
+  @override
+  String get appleMusicNote => 'Đăng nhập sẽ có cùng phiên bản iPhone. Hiện tại, hãy thêm liên kết bài hát.';
+
+  @override
+  String noSignInNote(String service) {
+    return '$service không cho ứng dụng khác đăng nhập. Hãy thêm liên kết bài hát thay vào đó.';
+  }
+
+  @override
+  String get wakeToRadio => 'Thức dậy với radio trực tuyến';
+
+  @override
+  String get soundsExplain =>
+      'Ghi giọng bạn, một bài hát hoặc bất cứ thứ gì, tối đa 5 phút. Thêm MP3, M4A hoặc WAV từ điện thoại. Liên kết một bài hát hoặc danh sách phát: ứng dụng của nó phát làm báo thức, kèm âm dự phòng. Hoặc chọn một đài radio: phát trực tiếp, và nếu không kết nối được, báo thức của điện thoại sẽ reo.';
+
+  @override
+  String get yourSoundsHeading => 'ÂM THANH CỦA BẠN';
+
+  @override
+  String playsIn(String app) {
+    return 'Phát trong $app';
+  }
+
+  @override
+  String opensIn(String app) {
+    return 'Mở trong $app';
+  }
+
+  @override
+  String forSpan(String span) {
+    return 'trong $span';
+  }
+
+  @override
+  String get defaultLabel => 'Mặc định';
+
+  @override
+  String get radioUnreachable => 'Không thể tải danh sách đài. Kiểm tra kết nối của bạn.';
+
+  @override
+  String get addStreamAddress => 'Thêm địa chỉ stream';
+
+  @override
+  String get notAStream => 'Đó có vẻ không phải địa chỉ stream (bắt đầu bằng http).';
+
+  @override
+  String get anyGenre => 'Mọi thể loại';
+
+  @override
+  String get stationName => 'Tên đài';
+
+  @override
+  String get closeSearch => 'Đóng tìm kiếm';
+
+  @override
+  String get searchByName => 'Tìm theo tên';
+
+  @override
+  String get anywhere => 'Mọi nơi';
+
+  @override
+  String get noStations => 'Không tìm thấy đài. Thử thể loại hoặc quốc gia khác.';
+
+  @override
+  String wakeUpTo(String name) {
+    return 'Thức dậy với $name';
+  }
+
+  @override
+  String get notQuite => 'Gần đúng. Thử lại nhé.';
+
+  @override
+  String shabbatStopsItself(int n) {
+    return 'Chế độ Shabbat: tự dừng sau $n giây. Không cần chạm vào điện thoại.';
+  }
+
+  @override
+  String get solveToSnooze => 'GIẢI ĐỂ BÁO LẠI';
+
+  @override
+  String get solveToStop => 'GIẢI ĐỂ TẮT';
+
+  @override
+  String get answer => 'Đáp án';
+
+  @override
+  String get snooze => 'Báo lại';
+
+  @override
+  String get stop => 'Tắt';
+
+  @override
+  String get shakeToSnooze => 'LẮC ĐỂ BÁO LẠI';
+
+  @override
+  String get shakeToStop => 'LẮC ĐỂ TẮT';
+
+  @override
+  String get shakeHard => 'Lắc mạnh điện thoại đến khi thanh đầy.';
+
+  @override
+  String get cantShake => 'Không lắc được? Giải phép tính';
+
+  @override
+  String get pairsToSnooze => 'GHÉP CẶP ĐỂ BÁO LẠI';
+
+  @override
+  String get pairsToStop => 'GHÉP CẶP ĐỂ TẮT';
+
+  @override
+  String get typeToSnooze => 'GÕ CÂU NÀY ĐỂ BÁO LẠI';
+
+  @override
+  String get typeToStop => 'GÕ CÂU NÀY ĐỂ TẮT';
+
+  @override
+  String get scanToSnooze => 'QUÉT MÃ ĐỂ BÁO LẠI';
+
+  @override
+  String get scanToStop => 'QUÉT MÃ ĐỂ TẮT';
+
+  @override
+  String ringAgainUnless(int n) {
+    return 'Tôi sẽ reo lại sau $n phút nếu bạn không chạm bên dưới.';
+  }
+
+  @override
+  String get imUp => 'Tôi dậy rồi';
+
+  @override
+  String snoozeMin(int n) {
+    return 'Báo lại $n phút';
+  }
+
+  @override
+  String snoozeMinLeft(int n, int left) {
+    return 'Báo lại $n phút · còn $left';
+  }
+
+  @override
+  String get noSnoozesLeft => 'Hết lượt báo lại';
+
+  @override
+  String get stopThenOpen => 'Tắt · rồi mở';
+
+  @override
+  String get startingSong => 'Đang bắt đầu bài hát';
+
+  @override
+  String wayToStop(String way) {
+    return '$way để tắt';
+  }
+
+  @override
+  String wayToSnooze(String way) {
+    return '$way để báo lại';
+  }
+
+  @override
+  String ringsForMore(int n) {
+    return 'Reo thêm $n giây';
+  }
+
+  @override
+  String get leftToRing => 'còn lại';
+
+  @override
+  String get wayVolumeButtons => 'Nút âm lượng';
+
+  @override
+  String get wayShake => 'Lắc điện thoại';
+
+  @override
+  String get taskNothing => 'Không gì';
+
+  @override
+  String get taskSum => 'Giải phép tính';
+
+  @override
+  String get taskShake => 'Lắc 30 lần';
+
+  @override
+  String get taskMemory => 'Trò chơi trí nhớ';
+
+  @override
+  String get taskPhrase => 'Gõ một câu';
+
+  @override
+  String get taskScan => 'Quét mã';
+
+  @override
+  String get noLimit => 'không giới hạn';
+
+  @override
+  String upToTimes(int n) {
+    return 'tối đa $n×';
+  }
+
+  @override
+  String shorterEachTime(int n) {
+    return 'ngắn hơn $n phút mỗi lần';
+  }
+
+  @override
+  String autoSnoozeAfter(int n) {
+    return 'tự báo lại sau $n phút';
+  }
+
+  @override
+  String get card => 'Lá bài';
+
+  @override
+  String get hiddenCard => 'Lá bài úp';
+
+  @override
+  String get phrase1 => 'Tôi đã thức và hôm nay là của tôi';
+
+  @override
+  String get phrase2 => 'Không phải bây giờ thì khi nào';
+
+  @override
+  String get phrase3 => 'Chào buổi sáng tôi và những người tôi yêu';
+
+  @override
+  String get phrase4 => 'Chân tôi chạm đất và tôi đã dậy';
+
+  @override
+  String get phrase5 => 'Hôm nay tôi bắt đầu lại';
+
+  @override
+  String get notQuiteWords => 'Gần đúng, hãy kiểm tra từng từ.';
+
+  @override
+  String get typeItHere => 'Gõ vào đây';
+
+  @override
+  String get differentCode => 'Đó là mã khác.';
+
+  @override
+  String get cameraUnavailable => 'Máy ảnh không khả dụng.';
+
+  @override
+  String get cantScan => 'Không quét được? Giải phép tính';
+
+  @override
+  String get saveCodeToScan => 'Lưu một mã để quét';
+
+  @override
+  String get saveCodeHint =>
+      'Hướng vào mã vạch hoặc mã QR ở nơi bạn phải đi bộ tới, như một hộp trong bếp hoặc kem đánh răng trong phòng tắm. Để tắt báo thức, bạn sẽ quét lại nó.';
+
+  @override
+  String get cameraUnavailableSettings => 'Máy ảnh không khả dụng. Cho phép truy cập máy ảnh trong Cài đặt.';
+
+  @override
+  String gentleToGo(int n) {
+    return 'Thức dậy nhẹ nhàng · còn $n phút';
+  }
+
+  @override
+  String previewBody(String body) {
+    return 'Nghe thử · $body';
+  }
+
+  @override
+  String snoozedBody(String body) {
+    return 'Đã báo lại: $body';
+  }
+
+  @override
+  String get areYouUp => 'Bạn dậy chưa?';
+
+  @override
+  String get tapImUp => 'Chạm “Tôi dậy rồi” để tắt';
+
+  @override
+  String get volume => 'Âm lượng';
+
+  @override
+  String get wakeCheckOn => 'Kiểm tra đã dậy đang bật';
+
+  @override
+  String get stopsAtOnce => 'Dừng ngay';
+
+  @override
+  String get ringsAgainIfNotUp => 'Reo lại nếu bạn chưa dậy';
+
+  @override
+  String get openAppAfter => 'Mở ứng dụng sau đó';
+
+  @override
+  String get noTask => 'Không nhiệm vụ';
+
+  @override
+  String get codeSaved => 'Đã lưu mã';
+
+  @override
+  String get tapToSaveDifferent => 'Chạm để lưu mã khác';
+
+  @override
+  String get controlsHeading => 'ĐIỀU KHIỂN';
+
+  @override
+  String get onScreen => 'Trên màn hình';
+
+  @override
+  String get taskHeading => 'NHIỆM VỤ';
+
+  @override
+  String get none => 'Không';
+
+  @override
+  String get snoozeSentence => 'Thêm năm phút? Chọn bao lâu, bao nhiêu lần và cần làm gì.';
+
+  @override
+  String get settingsHeading => 'CÀI ĐẶT';
+
+  @override
+  String get snoozeTime => 'Thời gian báo lại';
+
+  @override
+  String get snoozeTimeHint => 'Lần báo lại đầu tiên dài bao lâu';
+
+  @override
+  String get shortenSnoozes => 'Rút ngắn các lần báo lại sau';
+
+  @override
+  String get shortenSnoozesHint => 'Mỗi lần báo lại sau lần đầu ngắn hơn chừng này';
+
+  @override
+  String get autoSnooze => 'Tự báo lại';
+
+  @override
+  String get autoSnoozeHint => 'Nếu bạn không chạm, nó tự báo lại sau';
+
+  @override
+  String get never => 'Không bao giờ';
+
+  @override
+  String get snoozeLimit => 'Giới hạn báo lại';
+
+  @override
+  String get snoozeLimitHint => 'Bạn có thể báo lại bao nhiêu lần';
+
+  @override
+  String get unlimited => 'Không giới hạn';
+
+  @override
+  String get useSnoozeFromSettings => 'Dùng báo lại từ Cài đặt';
+
+  @override
+  String get stopSentence => 'Cách tắt báo thức và việc phải làm trước.';
+
+  @override
+  String get shabbatNoTask => 'Vào Shabbat và ngày lễ, báo thức tự dừng và không bao giờ đòi nhiệm vụ.';
+
+  @override
+  String get volumeSentence => 'Reo to cỡ nào và lên đến đó nhẹ nhàng ra sao.';
+
+  @override
+  String get openAfterAlarm => 'Mở sau báo thức';
+
+  @override
+  String get pickAnApp => 'Chọn ứng dụng';
+
+  @override
+  String get orPasteLink => 'Hoặc dán liên kết: https://…';
+
+  @override
+  String get useThisLink => 'Dùng liên kết này';
+
+  @override
+  String get noAppsFound => 'Không tìm thấy ứng dụng.';
+
+  @override
+  String get weather => 'Thời tiết';
+
+  @override
+  String get news => 'Tin tức';
+
+  @override
+  String get usePhoneVolume => 'Dùng âm lượng báo thức của điện thoại';
+
+  @override
+  String get setsPhoneVolume => 'Đặt âm lượng báo thức của điện thoại khi reo, rồi trả lại như cũ.';
+
+  @override
+  String get fadeInOff => 'Không to dần, âm lượng tối đa ngay';
+
+  @override
+  String fadeInOver(String span) {
+    return 'To dần trong $span';
+  }
+
+  @override
+  String get fadeOutOff => 'Không nhỏ dần';
+
+  @override
+  String fadeOutOver(String span) {
+    return 'Nhỏ dần trong $span cuối';
+  }
+
+  @override
+  String get fadesExplain =>
+      'Nhỏ dần xảy ra khi báo thức tự dừng. Nếu hiệu ứng dài hơn thời gian reo, cả hai sẽ được rút ngắn.';
+
+  @override
+  String get soundSoftChime => 'Chuông nhẹ';
+
+  @override
+  String get soundMorningRise => 'Bình minh';
+
+  @override
+  String get soundClassicBeep => 'Tiếng bíp cổ điển';
+
+  @override
+  String get calmCity => 'Buổi sáng phố yên bình';
+
+  @override
+  String get calmBirds => 'Chim hót lúc bình minh';
+
+  @override
+  String get calmWaves => 'Sóng vỗ bờ';
+
+  @override
+  String get calmRain => 'Mưa nhẹ';
+
+  @override
+  String get calmStream => 'Suối trong rừng';
+
+  @override
+  String get calmWind => 'Gió nhẹ';
+
+  @override
+  String get calmFire => 'Lửa tí tách';
+
+  @override
+  String get calmNight => 'Đêm hè';
+
+  @override
+  String get publicDomain => 'Phạm vi công cộng';
+
+  @override
+  String get phoneVolume => 'Âm lượng điện thoại';
+
+  @override
+  String fadesIn(String span) {
+    return 'to dần trong $span';
+  }
+
+  @override
+  String fadesOut(String span) {
+    return 'nhỏ dần trong $span';
+  }
+
+  @override
+  String get noFade => 'không hiệu ứng';
+
+  @override
+  String minSecShort(int m, int s) {
+    return '$m phút $s giây';
+  }
+
+  @override
+  String get happensRings => 'Reo';
+
+  @override
+  String get happensStopped => 'Bạn tắt';
+
+  @override
+  String get happensSnoozed => 'Bạn báo lại';
+
+  @override
+  String get happensAutoStopped => 'Tự dừng';
+
+  @override
+  String get eventLower => 'sự kiện';
+
+  @override
+  String get appTest => 'Thử Quando?';
+
+  @override
+  String get pushoverConnected => 'Pushover đã kết nối';
+
+  @override
+  String get webhookConnected => 'Webhook đã kết nối';
+
+  @override
+  String pushoverSaid(int code, String body) {
+    return 'Pushover trả về $code: $body';
+  }
+
+  @override
+  String couldNotReachPushover(String error) {
+    return 'Không thể kết nối Pushover ($error)';
+  }
+
+  @override
+  String itAnswered(int code) {
+    return 'Trả về $code';
+  }
+
+  @override
+  String couldNotReachIt(String error) {
+    return 'Không thể kết nối ($error)';
+  }
+
+  @override
+  String get calendarNotAllowed => 'Chưa được cấp quyền truy cập lịch.';
+
+  @override
+  String get playlist => 'Danh sách phát';
+
+  @override
+  String songCount(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n bài hát');
+    return '$_temp0';
+  }
+
+  @override
+  String get spotifySaidNo =>
+      'Spotify từ chối. Trong bảng điều khiển Spotify, đánh dấu Web API cho Quando? và thêm tài khoản của bạn vào User Management.';
+
+  @override
+  String serviceDidntAnswer(String service, int code) {
+    return '$service không phản hồi ($code).';
+  }
+
+  @override
+  String get youTubeSaidNo =>
+      'YouTube từ chối. Kiểm tra tài khoản Google của bạn là người dùng thử của dự án Quando.';
+
+  @override
+  String get event => 'Sự kiện';
+
+  @override
+  String eventEnds(String title) {
+    return '$title (kết thúc)';
+  }
+
+  @override
+  String foundSoundsDevices(int s, int d) {
+    return 'Tìm thấy $s âm thanh và $d thiết bị.';
+  }
+
+  @override
+  String get sentCheckDevices => 'Đã gửi. Hãy kiểm tra các thiết bị khác.';
+
+  @override
+  String sentTo(String name) {
+    return 'Đã gửi đến $name.';
+  }
+
+  @override
+  String get zapierHowTo =>
+      'Trong Zapier, tạo một Zap bắt đầu bằng “Webhooks by Zapier → Catch Hook”, rồi dán URL của nó vào đây.';
+
+  @override
+  String get catchHookUrl => 'URL Catch Hook';
+
+  @override
+  String get iftttHowTo =>
+      'Trong IFTTT, tạo một applet bắt đầu bằng “Webhooks → Receive a web request with a JSON payload”. Dùng cùng tên sự kiện ở đây. Khóa của bạn ở ifttt.com/maker_webhooks/settings.';
+
+  @override
+  String get eventName => 'Tên sự kiện';
+
+  @override
+  String get webhooksKey => 'Khóa Webhooks';
+
+  @override
+  String get webhookHowTo => 'Quando? gửi JSON POST đến địa chỉ này.';
+
+  @override
+  String get connectionsSentence =>
+      'Báo cho ứng dụng và thiết bị khác khi báo thức reo, bị tắt hoặc báo lại.';
+
+  @override
+  String get pushWhenRings => 'Gửi thông báo khi báo thức reo';
+
+  @override
+  String get pushWhenRingsHint => 'Đến điện thoại, máy tính bảng, đồng hồ hoặc máy tính khác của bạn';
+
+  @override
+  String get yourUserKey => 'Khóa người dùng của bạn';
+
+  @override
+  String get appToken => 'Token ứng dụng';
+
+  @override
+  String get soundAndDevicesHeading => 'ÂM THANH VÀ THIẾT BỊ';
+
+  @override
+  String get loading => 'Đang tải…';
+
+  @override
+  String get loadFromPushover => 'Tải từ Pushover';
+
+  @override
+  String get soundItPlays => 'Âm thanh phát ra';
+
+  @override
+  String get myPushoverDefault => 'Mặc định Pushover của tôi';
+
+  @override
+  String get pushoverOwnSounds => 'Âm thanh riêng của bạn sẽ hiện ở đây sau khi tải lên pushover.net/sounds.';
+
+  @override
+  String get allMyDevices => 'Tất cả thiết bị của tôi';
+
+  @override
+  String get pushoverOnThisPhone =>
+      'Cài ứng dụng Pushover trên điện thoại này nữa, nó sẽ reo ở đây bằng âm Pushover của bạn.';
+
+  @override
+  String get priority => 'Mức ưu tiên';
+
+  @override
+  String get priorityNormal => 'Bình thường';
+
+  @override
+  String get priorityHigh => 'Cao: bỏ qua giờ yên lặng';
+
+  @override
+  String get priorityEmergency => 'Khẩn cấp: lặp lại đến khi xác nhận';
+
+  @override
+  String get sending => 'Đang gửi…';
+
+  @override
+  String get sendATest => 'Gửi thử';
+
+  @override
+  String get findUserKey => 'Tìm khóa người dùng của tôi';
+
+  @override
+  String get makeAppToken => 'Tạo token ứng dụng';
+
+  @override
+  String get webhooksHeading => 'ZAPIER, IFTTT VÀ WEBHOOK';
+
+  @override
+  String get webhooksExplain =>
+      'Khởi động bất cứ thứ gì khi báo thức reo hoặc bạn tắt nó: bật đèn, ghi giờ thức dậy, nhắn tin cho ai đó.';
+
+  @override
+  String get sendWhenAlarm => 'Gửi khi báo thức:';
+
+  @override
+  String get pauseOnShabbat => 'Tạm dừng vào Shabbat và ngày lễ';
+
+  @override
+  String get pauseOnShabbatHint => 'Không gửi gì cho báo thức trong khoảng từ thắp nến đến Havdalah';
+
+  @override
+  String get webhookPayloadNote =>
+      'Mỗi tin nhắn gồm: event (ring, stopped, snoozed, auto_stopped), title, body, time, shabbat và snoozes. Các khóa ở lại trên điện thoại này.';
+
+  @override
+  String get today => 'Hôm nay';
+
+  @override
+  String get tomorrow => 'Ngày mai';
+
+  @override
+  String get notAWebAddress => 'Đó có vẻ không phải địa chỉ web bắt đầu bằng https://';
+
+  @override
+  String get language => 'Ngôn ngữ';
+
+  @override
+  String get phoneLanguage => 'Ngôn ngữ của điện thoại';
+
+  @override
+  String get ringQuote => 'Nếu không phải bây giờ, thì khi nào?';
+
+  @override
+  String get ringQuoteBy => 'Hillel';
+
+  @override
+  String get quotesTitle => 'Trích dẫn về thời gian';
+
+  @override
+  String get quotesHint => 'Chọn nguồn trích dẫn. Mỗi buổi trong ngày một câu; chạm vào câu để xem câu khác.';
+
+  @override
+  String get quotesOff => 'Tắt';
+
+  @override
+  String get quoteSongs => 'Bài hát';
+
+  @override
+  String get quoteMovies => 'Phim';
+
+  @override
+  String get quoteLiterature => 'Sách và thơ';
+
+  @override
+  String get quoteTanakh => 'Tanakh (Kinh Thánh Hebrew)';
+
+  @override
+  String get quoteSages => 'Talmud và các hiền triết';
+
+  @override
+  String get quoteSpeeches => 'Bài phát biểu nổi tiếng';
+
+  @override
+  String get quotePhilosophy => 'Triết gia';
+
+  @override
+  String get quoteProverbs => 'Tục ngữ và châm ngôn';
+
+  @override
+  String get quotesAlso => 'Hiển thị thêm';
+
+  @override
+  String get quoteCarnaval => 'Lễ hội Carnaval';
+
+  @override
+  String get quoteCarnavalHint => 'Bài hát và câu nói trong dịp Carnaval ở Brazil';
+
+  @override
+  String get quoteNearMe => 'Gần tôi';
+
+  @override
+  String get quoteNearMeHint => 'Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat';
+
+  @override
+  String get quoteSiddur => 'Siddur (sách kinh)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parashat $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'chạy trên $name';
+  }
+}

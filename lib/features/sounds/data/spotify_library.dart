@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:quando/l10n/l10n.dart';
 
 /// A playlist or song from your Spotify library.
 class SpotifyItem {
@@ -25,7 +26,7 @@ class SpotifyItem {
     final count = ((j['tracks'] ?? j['items']) as Map?)?['total'] as num?;
     return SpotifyItem(
       name: name,
-      detail: count == null ? 'Playlist' : '$count songs',
+      detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
       url: url,
       image: _image(j['images']),
     );
@@ -57,12 +58,9 @@ class SpotifyLibrary {
         .get(Uri.parse('https://api.spotify.com$path'), headers: {'Authorization': 'Bearer $token'})
         .timeout(const Duration(seconds: 10));
     if (r.statusCode == 403) {
-      throw Exception(
-        'Spotify said no. In the Spotify dashboard, tick Web API for Quando and add your account '
-        'under User Management.',
-      );
+      throw Exception(l10n.spotifySaidNo);
     }
-    if (r.statusCode != 200) throw Exception('Spotify didn\'t answer (${r.statusCode}).');
+    if (r.statusCode != 200) throw Exception(l10n.serviceDidntAnswer('Spotify', r.statusCode));
     final items = (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ?? const [];
     return [
       for (final j in items)

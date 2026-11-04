@@ -5,9 +5,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/edition.dart';
 import '../data/radio_directory.dart';
 import '../domain/sound.dart';
 import 'sound_player.dart';
+
+import 'package:quando/l10n/l10n.dart';
 
 /// Browse radio by genre and country, tap a station to hear it, and use it
 /// as an alarm sound. Search by name and pasting a stream are in the top
@@ -62,11 +65,11 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     try {
       // Nothing chosen: the world's most listened.
       final r = name.isEmpty && _genre == null && _country == null
-          ? await _directory.search('', tag: 'pop')
+          ? await _directory.search('', tag: kodesh ? 'jewish' : 'pop')
           : await _directory.search(name, tag: _genre, countryCode: _country);
       if (mounted) setState(() => _results = r);
     } catch (_) {
-      if (mounted) setState(() => _error = 'Couldn\'t reach the radio directory. Check your connection.');
+      if (mounted) setState(() => _error = l10n.radioUnreachable);
     } finally {
       if (mounted) setState(() => _busy = false);
     }
@@ -92,8 +95,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     final notifier = ref.read(soundsProvider.notifier);
     if (!ref.read(soundsProvider).any((x) => x.id == s.id)) notifier.add(s);
     SoundPreview.instance.stop();
-    ScaffoldMessenger.of(context)
-        .showSnackBar(SnackBar(content: Text('${s.name} added. Pick it as the sound for any alarm.')));
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicAdded(s.name))));
     Navigator.of(context).pop();
   }
 
@@ -102,7 +104,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     final url = await showDialog<String>(
       context: context,
       builder: (context) => AlertDialog(
-        title: const Text('Add a stream address'),
+        title: Text(l10n.addStreamAddress),
         content: TextField(
           controller: c,
           autofocus: true,
@@ -110,17 +112,15 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
           decoration: const InputDecoration(hintText: 'https://stream.example.com/live.mp3'),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
-          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: const Text('Add')),
+          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: Text(l10n.add)),
         ],
       ),
     );
     c.dispose();
     if (url == null || !mounted) return;
     if (!isStreamUrl(url)) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('That doesn\'t look like a stream address (it starts with http).')),
-      );
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.notAStream)));
       return;
     }
     _add(_sound(Uri.parse(url).host.replaceFirst('www.', ''), url));
@@ -144,7 +144,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
           controller: scroll,
           children: [
             ListTile(
-              title: Text('Any $title'),
+              title: Text(title == 'genre' ? l10n.anyGenre : l10n.anywhere),
               leading: Icon(
                 current == null ? Icons.radio_button_checked : Icons.radio_button_off,
                 color: QuandoColors.amber,
@@ -185,23 +185,23 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 controller: _query,
                 autofocus: true,
                 textInputAction: TextInputAction.search,
-                decoration: const InputDecoration(
-                  hintText: 'Station name',
+                decoration: InputDecoration(
+                  hintText: l10n.stationName,
                   border: InputBorder.none,
                   filled: false,
                 ),
                 onSubmitted: (_) => _load(),
               )
-            : const Text('Online radio'),
+            : Text(l10n.onlineRadio),
         actions: [
           if (!_searching)
             IconButton(
-              tooltip: 'Add a stream address',
+              tooltip: l10n.addStreamAddress,
               icon: const Icon(Icons.add_circle_outline),
               onPressed: _paste,
             ),
           IconButton(
-            tooltip: _searching ? 'Close search' : 'Search by name',
+            tooltip: _searching ? l10n.closeSearch : l10n.searchByName,
             icon: Icon(_searching ? Icons.close : Icons.search),
             onPressed: () {
               setState(() {
@@ -221,7 +221,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
               children: [
                 _Filter(
                   icon: Icons.music_note,
-                  label: genreName ?? 'Any genre',
+                  label: genreName ?? l10n.anyGenre,
                   on: genreName != null,
                   onTap: () => _choose('genre', radioGenres, _genre, (v) => _genre = v),
                 ),
@@ -229,7 +229,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 Flexible(
                   child: _Filter(
                     icon: Icons.public,
-                    label: countryName ?? 'Anywhere',
+                    label: countryName ?? l10n.anywhere,
                     on: countryName != null,
                     onTap: () => _choose('country', radioCountries, _country, (v) => _country = v),
                   ),
@@ -249,9 +249,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 : results == null
                 ? const SizedBox()
                 : results.isEmpty
-                ? Center(
-                    child: Text('No stations found. Try another genre or country.', style: text.bodyLarge),
-                  )
+                ? Center(child: Text(l10n.noStations, style: text.bodyLarge))
                 : ListView.builder(
                     padding: const EdgeInsets.fromLTRB(8, 0, 8, 24),
                     itemCount: results.length,
@@ -295,7 +293,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 child: FilledButton(
                   style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
                   onPressed: () => _add(_sound(picked.name, picked.url)),
-                  child: Text('Wake up to ${picked.name}', maxLines: 1, overflow: TextOverflow.ellipsis),
+                  child: Text(l10n.wakeUpTo(picked.name), maxLines: 1, overflow: TextOverflow.ellipsis),
                 ),
               ),
             ),
