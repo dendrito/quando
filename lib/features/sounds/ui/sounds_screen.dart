@@ -9,10 +9,12 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/feature_header.dart';
 import '../data/sound_files.dart';
+import '../data/spotify_library.dart';
+import '../data/youtube_library.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
 import 'radio_screen.dart';
-import 'spotify_picker_screen.dart';
+import 'music_picker_screen.dart';
 import 'sound_player.dart';
 
 /// Your sounds: record one, add a file, listen, rename, delete.
@@ -229,6 +231,60 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     sounds.add(sound.rename(label.isNotEmpty ? label : 'Song on ${sound.linkApp ?? 'the web'}'));
   }
 
+  /// YouTube and YouTube Music: sign in with Google, then pick from your
+  /// playlists and liked videos.
+  Widget _youTubeTile(TextTheme text) {
+    final on = YouTubeAccount.connected;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.smart_display_outlined, color: QuandoColors.amber),
+      title: Text(on ? 'Pick from my YouTube' : 'YouTube and YouTube Music'),
+      subtitle: Text(
+        YouTubeAccount.available
+            ? (on
+                  ? 'Your playlists and liked songs. Long-press to sign out.'
+                  : 'Sign in with Google to pick from your playlists and liked songs.')
+            : 'Add a song link instead.',
+        style: text.bodySmall,
+      ),
+      trailing: on ? const Icon(Icons.chevron_right) : null,
+      onLongPress: !on
+          ? null
+          : () async {
+              await YouTubeAccount.signOut();
+              YouTubeAccount.connected = false;
+              await ref.read(prefsProvider).setBool(YouTubeAccount.prefKey, false);
+              if (mounted) setState(() {});
+            },
+      onTap: !YouTubeAccount.available
+          ? null
+          : () async {
+              final prefs = ref.read(prefsProvider);
+              final token = await YouTubeAccount.token();
+              YouTubeAccount.connected = token != null;
+              await prefs.setBool(YouTubeAccount.prefKey, YouTubeAccount.connected);
+              if (!mounted) return;
+              setState(() {});
+              if (token == null) {
+                ScaffoldMessenger.of(context)
+                    .showSnackBar(const SnackBar(content: Text('Google sign-in didn\'t finish. Try again.')));
+                return;
+              }
+              await Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => MusicPickerScreen(
+                    title: 'My YouTube',
+                    load: () async {
+                      final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
+                      return (await lib.playlists(), await lib.liked());
+                    },
+                  ),
+                ),
+              );
+            },
+    );
+  }
+
   /// Spotify direct play: sign in once and Spotify plays the exact song.
   Widget _spotifyTile(TextTheme text) {
     final on = SpotifyPlay.connected;
@@ -357,12 +413,22 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               title: const Text('Pick from my Spotify'),
               subtitle: Text('Your playlists and liked songs', style: text.bodySmall),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () =>
-                  Navigator.of(context)
-                      .push(MaterialPageRoute<void>(builder: (_) => const SpotifyPickerScreen())),
+              onTap: () => Navigator.of(context).push(
+                MaterialPageRoute<void>(
+                  builder: (_) => MusicPickerScreen(
+                    title: 'My Spotify',
+                    load: () async {
+                      final token = await SpotifyPlay.libraryToken();
+                      if (token == null) throw Exception('Couldn\'t sign in to Spotify.');
+                      final lib = SpotifyLibrary(token);
+                      return (await lib.playlists(), await lib.likedSongs());
+                    },
+                  ),
+                ),
+              ),
             ),
+          _youTubeTile(text),
           for (final (app, note) in const [
-            ('YouTube and YouTube Music', 'Sign-in coming soon. For now, add a song link.'),
             ('Apple Music', 'Sign-in coming with the iPhone version. For now, add a song link.'),
             ('Amazon Music', 'Amazon doesn\'t allow sign-in from other apps. Add a song link instead.'),
             ('SoundCloud', 'SoundCloud doesn\'t allow sign-in from other apps. Add a song link instead.'),

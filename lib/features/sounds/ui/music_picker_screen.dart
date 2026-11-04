@@ -3,22 +3,25 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
-import '../../ringing/data/spotify.dart';
 import '../data/spotify_library.dart';
 import '../domain/sound.dart';
 
-/// Your Spotify playlists and liked songs: tap one to wake up to it.
-class SpotifyPickerScreen extends ConsumerStatefulWidget {
-  const SpotifyPickerScreen({super.key, this.library});
+/// Your playlists and liked songs from a music app: tap one to wake up to
+/// it.
+class MusicPickerScreen extends ConsumerStatefulWidget {
+  const MusicPickerScreen({super.key, required this.title, required this.load});
 
-  /// For tests; otherwise signs in to Spotify.
-  final SpotifyLibrary? library;
+  /// "My Spotify".
+  final String title;
+
+  /// Signs in if needed, then reads playlists and liked songs.
+  final Future<(List<SpotifyItem>, List<SpotifyItem>)> Function() load;
 
   @override
-  ConsumerState<SpotifyPickerScreen> createState() => _SpotifyPickerScreenState();
+  ConsumerState<MusicPickerScreen> createState() => _MusicPickerScreenState();
 }
 
-class _SpotifyPickerScreenState extends ConsumerState<SpotifyPickerScreen> {
+class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
   List<SpotifyItem>? _playlists;
   List<SpotifyItem>? _liked;
   String? _error;
@@ -31,14 +34,7 @@ class _SpotifyPickerScreenState extends ConsumerState<SpotifyPickerScreen> {
 
   Future<void> _load() async {
     try {
-      var lib = widget.library;
-      if (lib == null) {
-        final token = await SpotifyPlay.libraryToken();
-        if (token == null) throw Exception('Couldn\'t sign in to Spotify.');
-        lib = SpotifyLibrary(token);
-      }
-      final playlists = await lib.playlists();
-      final liked = await lib.likedSongs();
+      final (playlists, liked) = await widget.load();
       if (mounted) {
         setState(() {
           _playlists = playlists;
@@ -113,7 +109,7 @@ class _SpotifyPickerScreenState extends ConsumerState<SpotifyPickerScreen> {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('My Spotify'),
+          title: Text(widget.title),
           bottom: const TabBar(
             tabs: [
               Tab(text: 'Playlists'),

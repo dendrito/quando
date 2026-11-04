@@ -13,6 +13,7 @@ import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_style.dart';
 import 'package:quando/features/sounds/data/radio_directory.dart';
 import 'package:quando/features/sounds/data/spotify_library.dart';
+import 'package:quando/features/sounds/data/youtube_library.dart';
 import 'package:quando/features/sounds/domain/sound.dart';
 import 'package:quando/features/sounds/ui/sound_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -270,5 +271,33 @@ void main() {
     expect(SpotifyPlay.uriOf(p.single.url), 'spotify:playlist:p1');
     final t = await lib.likedSongs();
     expect(t.single.detail, 'A, B');
+  });
+
+  test('YouTube playlists and liked videos open in YouTube Music', () async {
+    final lib = YouTubeLibrary(
+      'tok',
+      client: MockClient((req) async {
+        expect(req.headers['Authorization'], 'Bearer tok');
+        if (req.url.path.endsWith('/playlists')) {
+          expect(req.url.queryParameters['mine'], 'true');
+          return http.Response(
+            '{"items":[{"id":"PL1","snippet":{"title":"Wake up","thumbnails":{"default":{"url":"https://i/t"}}},'
+            '"contentDetails":{"itemCount":12}}]}',
+            200,
+          );
+        }
+        expect(req.url.queryParameters['myRating'], 'like');
+        return http.Response(
+          '{"items":[{"id":"v1","snippet":{"title":"Song","channelTitle":"Artist - Topic"}}]}',
+          200,
+        );
+      }),
+    );
+    final p = await lib.playlists();
+    expect(p.single.url, 'https://music.youtube.com/playlist?list=PL1');
+    expect(p.single.detail, '12 songs');
+    final l = await lib.liked();
+    expect(l.single.detail, 'Artist');
+    expect(AlarmSound(id: 'x', name: 'x', path: 'x', link: l.single.url).linkApp, 'YouTube Music');
   });
 }
