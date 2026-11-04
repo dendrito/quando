@@ -581,5 +581,11 @@
   "quoteSages": "タルムードと賢者",
   "quoteSpeeches": "有名な演説",
   "quotePhilosophy": "哲学者",
-  "quoteProverbs": "ことわざ・格言"
+  "quoteProverbs": "ことわざ・格言",
+  "quotesAlso": "こちらも表示",
+  "quoteCarnaval": "カーニバル",
+  "quoteCarnavalHint": "ブラジルのカーニバル期間の歌と言葉",
+  "quoteNearMe": "近くの言葉",
+  "quoteNearMeHint": "タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日",
+  "quoteSiddur": "シドゥール（祈祷書）"
 }

@@ -581,5 +581,11 @@
   "quoteSages": "Talmud và các hiền triết",
   "quoteSpeeches": "Bài phát biểu nổi tiếng",
   "quotePhilosophy": "Triết gia",
-  "quoteProverbs": "Tục ngữ và châm ngôn"
+  "quoteProverbs": "Tục ngữ và châm ngôn",
+  "quotesAlso": "Hiển thị thêm",
+  "quoteCarnaval": "Lễ hội Carnaval",
+  "quoteCarnavalHint": "Bài hát và câu nói trong dịp Carnaval ở Brazil",
+  "quoteNearMe": "Gần tôi",
+  "quoteNearMeHint": "Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat",
+  "quoteSiddur": "Siddur (sách kinh)"
 }

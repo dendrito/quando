@@ -1992,4 +1992,22 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'פתגמים ואמרות';
+
+  @override
+  String get quotesAlso => 'להציג גם';
+
+  @override
+  String get quoteCarnaval => 'קרנבל';
+
+  @override
+  String get quoteCarnavalHint => 'שירים ואמרות בזמן הקרנבל בברזיל';
+
+  @override
+  String get quoteNearMe => 'לידי';
+
+  @override
+  String get quoteNearMeHint => 'משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך';
+
+  @override
+  String get quoteSiddur => 'סידור';
 }

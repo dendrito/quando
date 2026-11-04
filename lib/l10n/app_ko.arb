@@ -581,5 +581,11 @@
   "quoteSages": "탈무드와 현자",
   "quoteSpeeches": "유명한 연설",
   "quotePhilosophy": "철학자",
-  "quoteProverbs": "속담과 격언"
+  "quoteProverbs": "속담과 격언",
+  "quotesAlso": "함께 보기",
+  "quoteCarnaval": "카니발",
+  "quoteCarnavalHint": "브라질 카니발 기간의 노래와 격언",
+  "quoteNearMe": "내 주변",
+  "quoteNearMeHint": "시간대와 안식일 도시를 기준으로 사는 곳의 시인과 기념일",
+  "quoteSiddur": "시두르 (기도서)"
 }

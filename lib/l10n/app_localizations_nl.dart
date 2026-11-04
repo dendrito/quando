@@ -2002,4 +2002,22 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Spreekwoorden en gezegden';
+
+  @override
+  String get quotesAlso => 'Ook tonen';
+
+  @override
+  String get quoteCarnaval => 'Carnaval';
+
+  @override
+  String get quoteCarnavalHint => 'Liedjes en gezegden tijdens het Braziliaanse carnaval';
+
+  @override
+  String get quoteNearMe => 'Bij mij in de buurt';
+
+  @override
+  String get quoteNearMeHint => 'Dichters en dagen van waar je bent, op basis van je tijdzone en sjabbatstad';
+
+  @override
+  String get quoteSiddur => 'Siddoer (gebedenboek)';
 }

@@ -581,5 +581,11 @@
   "quoteSages": "תלמוד וחכמים",
   "quoteSpeeches": "נאומים מפורסמים",
   "quotePhilosophy": "פילוסופים",
-  "quoteProverbs": "פתגמים ואמרות"
+  "quoteProverbs": "פתגמים ואמרות",
+  "quotesAlso": "להציג גם",
+  "quoteCarnaval": "קרנבל",
+  "quoteCarnavalHint": "שירים ואמרות בזמן הקרנבל בברזיל",
+  "quoteNearMe": "לידי",
+  "quoteNearMeHint": "משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך",
+  "quoteSiddur": "סידור"
 }

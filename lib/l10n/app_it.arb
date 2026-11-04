@@ -581,5 +581,11 @@
   "quoteSages": "Talmud e saggi",
   "quoteSpeeches": "Discorsi famosi",
   "quotePhilosophy": "Filosofi",
-  "quoteProverbs": "Proverbi e detti"
+  "quoteProverbs": "Proverbi e detti",
+  "quotesAlso": "Mostra anche",
+  "quoteCarnaval": "Carnevale",
+  "quoteCarnavalHint": "Canzoni e detti durante il Carnevale brasiliano",
+  "quoteNearMe": "Vicino a me",
+  "quoteNearMeHint": "Poeti e date del luogo in cui sei, dal fuso orario e dalla città dello Shabbat",
+  "quoteSiddur": "Siddur (libro di preghiere)"
 }

@@ -3621,6 +3621,42 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Proverbs and sayings'**
   String get quoteProverbs;
+
+  /// No description provided for @quotesAlso.
+  ///
+  /// In en, this message translates to:
+  /// **'Also show'**
+  String get quotesAlso;
+
+  /// No description provided for @quoteCarnaval.
+  ///
+  /// In en, this message translates to:
+  /// **'Carnaval'**
+  String get quoteCarnaval;
+
+  /// No description provided for @quoteCarnavalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs and sayings during Brazil’s Carnaval'**
+  String get quoteCarnavalHint;
+
+  /// No description provided for @quoteNearMe.
+  ///
+  /// In en, this message translates to:
+  /// **'Near me'**
+  String get quoteNearMe;
+
+  /// No description provided for @quoteNearMeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Poets and local days where you are, from your time zone and Shabbat city'**
+  String get quoteNearMeHint;
+
+  /// No description provided for @quoteSiddur.
+  ///
+  /// In en, this message translates to:
+  /// **'Siddur (prayer book)'**
+  String get quoteSiddur;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

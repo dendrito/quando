@@ -581,5 +581,11 @@
   "quoteSages": "तलमूद और विद्वान",
   "quoteSpeeches": "प्रसिद्ध भाषण",
   "quotePhilosophy": "दार्शनिक",
-  "quoteProverbs": "कहावतें और सूक्तियाँ"
+  "quoteProverbs": "कहावतें और सूक्तियाँ",
+  "quotesAlso": "यह भी दिखाएँ",
+  "quoteCarnaval": "कार्निवल",
+  "quoteCarnavalHint": "ब्राज़ील के कार्निवल के दौरान गाने और कहावतें",
+  "quoteNearMe": "मेरे पास",
+  "quoteNearMeHint": "आप जहाँ हैं वहाँ के कवि और दिन, आपके समय क्षेत्र और शब्बात शहर से",
+  "quoteSiddur": "सिद्दूर (प्रार्थना पुस्तक)"
 }

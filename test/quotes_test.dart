@@ -3,7 +3,7 @@ import 'package:quando/features/quotes/data/quote_bank.dart';
 import 'package:quando/features/quotes/domain/quote.dart';
 import 'package:quando/l10n/app_localizations.dart';
 
-List<Quote> quotesFor(String lang) => [...quoteBank[lang]!, ...sharedQuotes];
+List<Quote> quotesFor(String lang) => quoteBank[lang]!;
 
 void main() {
   const all = {...QuoteSource.values};
@@ -14,7 +14,7 @@ void main() {
     for (final l in AppLocalizations.supportedLocales) {
       final key = l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
       expect(quoteBank[key], isNotNull, reason: key);
-      expect(quotesFor(key).length, greaterThan(80), reason: key);
+      expect(quotesFor(key).length, greaterThan(120), reason: key);
     }
   });
 
@@ -45,15 +45,82 @@ void main() {
   test('only Jewish sources picked: every slot uses them', () {
     final q = quotesFor('he');
     for (final h in [7, 13, 19, 23]) {
-      expect(
-        pickQuote(quotes: q, sources: {QuoteSource.tanakh, QuoteSource.sages}, local: at(h))!.isJewish,
-        isTrue,
-      );
+      expect(pickQuote(quotes: q, sources: jewishSources, local: at(h))!.isJewish, isTrue);
     }
   });
 
   test('no sources: no quote', () {
     expect(pickQuote(quotes: quotesFor('en'), sources: {}, local: at(9)), isNull);
+  });
+
+  test('translations carry the original words', () {
+    final goethe = quotesFor('pt').firstWhere((q) => q.by == 'Goethe');
+    expect(goethe.original, 'Verweile doch! Du bist so schön!');
+    final daydream = quotesFor('pt').firstWhere((q) => q.by == 'The Monkees');
+    expect(daydream.original, contains('six o\'clock alarm'));
+    // In the original language, no second line.
+    expect(quotesFor('de').firstWhere((q) => q.by.contains('Goethe')).original, isNull);
+  });
+
+  test('Freddie Mercury gets the whole day on September 5, after the Jewish morning', () {
+    final picks = [
+      for (final h in [7, 13, 19, 23])
+        pickQuote(quotes: quotesFor('en'), sources: all, local: DateTime(2027, 9, 5, h))!,
+    ];
+    expect(picks.first.isJewish, isTrue);
+    expect(picks.skip(1).map((q) => q.by), everyElement('Queen'));
+  });
+
+  test('each night of Chanukah has its own quote', () {
+    // Chanukah 5787 starts on the evening of 4 December 2026; day one is 5 December.
+    final seen = <String>{};
+    for (var d = 0; d < 8; d++) {
+      final q = pickQuote(
+        quotes: quotesFor('en'),
+        sources: jewishSources,
+        local: DateTime(2026, 12, 5 + d, 8),
+      )!;
+      expect(q.tagSet, contains('chanukah${d + 1}'), reason: 'day ${d + 1}: $q');
+      seen.add(q.text);
+    }
+    expect(seen.length, 8);
+  });
+
+  test('Carnaval quotes only for those who want them', () {
+    // Carnaval Tuesday 2027 is February 9.
+    expect(isCarnaval(DateTime(2027, 2, 9)), isTrue);
+    expect(isCarnaval(DateTime(2027, 2, 20)), isFalse);
+    bool carnavalDay(Set<QuoteOccasion> o) => [
+      for (final h in [7, 13, 19, 23])
+        pickQuote(quotes: quotesFor('pt'), sources: all, occasions: o, local: DateTime(2027, 2, 9, h))!,
+    ].any((q) => q.tags.contains('carnaval'));
+    expect(carnavalDay({}), isFalse);
+    expect(carnavalDay({QuoteOccasion.carnaval}), isTrue);
+  });
+
+  test('25 de Abril in Lisbon, only near me', () {
+    final lisbon = placeTags('Europe/Lisbon');
+    expect(lisbon, containsAll(['place:pt', 'place:lisbon']));
+    bool grandola(Set<QuoteOccasion> o) => [
+      for (final h in [7, 13, 19, 23])
+        pickQuote(
+          quotes: quotesFor('pt'),
+          sources: all,
+          occasions: o,
+          places: lisbon,
+          local: DateTime(2027, 4, 25, h),
+        )!,
+    ].any((q) => q.by == 'José Afonso');
+    expect(grandola({}), isFalse);
+    expect(grandola({QuoteOccasion.nearMe}), isTrue);
+  });
+
+  test('no Christian figures or New Testament anywhere', () {
+    for (final list in quoteBank.values) {
+      for (final q in list) {
+        expect(q.by, isNot(matches(RegExp('Augustin|Agostinho|Agustín|Jesus|Matthew|Mateus'))), reason: '$q');
+      }
+    }
   });
 
   test('Rock Day in the calendar brings Iron Maiden at night', () {
@@ -94,7 +161,7 @@ void main() {
   });
 
   test('Shabbat quotes only come with Jewish sources', () {
-    for (final list in [...quoteBank.values, sharedQuotes]) {
+    for (final list in quoteBank.values) {
       for (final q in list) {
         if (q.tagSet.contains('erev')) expect(q.isJewish, isTrue, reason: '$q');
       }

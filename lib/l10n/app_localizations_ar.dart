@@ -2034,4 +2034,22 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'أمثال وأقوال';
+
+  @override
+  String get quotesAlso => 'اعرض أيضًا';
+
+  @override
+  String get quoteCarnaval => 'الكرنفال';
+
+  @override
+  String get quoteCarnavalHint => 'أغانٍ وأقوال خلال كرنفال البرازيل';
+
+  @override
+  String get quoteNearMe => 'بالقرب مني';
+
+  @override
+  String get quoteNearMeHint => 'شعراء ومناسبات المكان الذي أنت فيه، حسب منطقتك الزمنية ومدينة السبت';
+
+  @override
+  String get quoteSiddur => 'السيدور (كتاب الصلوات)';
 }

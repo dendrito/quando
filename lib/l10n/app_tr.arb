@@ -581,5 +581,11 @@
   "quoteSages": "Talmud ve bilgeler",
   "quoteSpeeches": "Ünlü konuşmalar",
   "quotePhilosophy": "Filozoflar",
-  "quoteProverbs": "Atasözleri ve deyişler"
+  "quoteProverbs": "Atasözleri ve deyişler",
+  "quotesAlso": "Ayrıca göster",
+  "quoteCarnaval": "Karnaval",
+  "quoteCarnavalHint": "Brezilya Karnavalı boyunca şarkılar ve sözler",
+  "quoteNearMe": "Yakınımda",
+  "quoteNearMeHint": "Bulunduğun yerin şairleri ve günleri; saat dilimine ve Şabat şehrine göre",
+  "quoteSiddur": "Sidur (dua kitabı)"
 }

@@ -45,6 +45,8 @@ class _QuoteLineState extends ConsumerState<QuoteLine> {
     final q = pickQuote(
       quotes: ref.watch(quotesProvider),
       sources: ref.watch(quoteSourcesProvider),
+      occasions: ref.watch(quoteOccasionsProvider),
+      places: ref.watch(quotePlacesProvider),
       local: local,
       eventTitles: today,
       idle: widget.idle,

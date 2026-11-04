@@ -1961,4 +1961,22 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get quoteProverbs => '속담과 격언';
+
+  @override
+  String get quotesAlso => '함께 보기';
+
+  @override
+  String get quoteCarnaval => '카니발';
+
+  @override
+  String get quoteCarnavalHint => '브라질 카니발 기간의 노래와 격언';
+
+  @override
+  String get quoteNearMe => '내 주변';
+
+  @override
+  String get quoteNearMeHint => '시간대와 안식일 도시를 기준으로 사는 곳의 시인과 기념일';
+
+  @override
+  String get quoteSiddur => '시두르 (기도서)';
 }

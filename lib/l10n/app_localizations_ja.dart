@@ -1959,4 +1959,22 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'ことわざ・格言';
+
+  @override
+  String get quotesAlso => 'こちらも表示';
+
+  @override
+  String get quoteCarnaval => 'カーニバル';
+
+  @override
+  String get quoteCarnavalHint => 'ブラジルのカーニバル期間の歌と言葉';
+
+  @override
+  String get quoteNearMe => '近くの言葉';
+
+  @override
+  String get quoteNearMeHint => 'タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日';
+
+  @override
+  String get quoteSiddur => 'シドゥール（祈祷書）';
 }

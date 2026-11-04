@@ -581,5 +581,11 @@
   "quoteSages": "Talmud und Weise",
   "quoteSpeeches": "Berühmte Reden",
   "quotePhilosophy": "Philosophen",
-  "quoteProverbs": "Sprichwörter"
+  "quoteProverbs": "Sprichwörter",
+  "quotesAlso": "Auch zeigen",
+  "quoteCarnaval": "Karneval",
+  "quoteCarnavalHint": "Lieder und Sprüche zum Karneval in Brasilien",
+  "quoteNearMe": "In meiner Nähe",
+  "quoteNearMeHint": "Dichter und Tage deines Ortes, nach Zeitzone und Schabbat-Stadt",
+  "quoteSiddur": "Siddur (Gebetbuch)"
 }

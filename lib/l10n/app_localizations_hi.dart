@@ -1991,4 +1991,22 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'कहावतें और सूक्तियाँ';
+
+  @override
+  String get quotesAlso => 'यह भी दिखाएँ';
+
+  @override
+  String get quoteCarnaval => 'कार्निवल';
+
+  @override
+  String get quoteCarnavalHint => 'ब्राज़ील के कार्निवल के दौरान गाने और कहावतें';
+
+  @override
+  String get quoteNearMe => 'मेरे पास';
+
+  @override
+  String get quoteNearMeHint => 'आप जहाँ हैं वहाँ के कवि और दिन, आपके समय क्षेत्र और शब्बात शहर से';
+
+  @override
+  String get quoteSiddur => 'सिद्दूर (प्रार्थना पुस्तक)';
 }

@@ -1296,5 +1296,11 @@
   "quoteSages": "Talmud and sages",
   "quoteSpeeches": "Famous speeches",
   "quotePhilosophy": "Philosophers",
-  "quoteProverbs": "Proverbs and sayings"
+  "quoteProverbs": "Proverbs and sayings",
+  "quotesAlso": "Also show",
+  "quoteCarnaval": "Carnaval",
+  "quoteCarnavalHint": "Songs and sayings during Brazil’s Carnaval",
+  "quoteNearMe": "Near me",
+  "quoteNearMeHint": "Poets and local days where you are, from your time zone and Shabbat city",
+  "quoteSiddur": "Siddur (prayer book)"
 }

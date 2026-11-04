@@ -2040,4 +2040,23 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Przysłowia i powiedzenia';
+
+  @override
+  String get quotesAlso => 'Pokazuj też';
+
+  @override
+  String get quoteCarnaval => 'Karnawał';
+
+  @override
+  String get quoteCarnavalHint => 'Piosenki i powiedzenia w czasie brazylijskiego karnawału';
+
+  @override
+  String get quoteNearMe => 'W pobliżu';
+
+  @override
+  String get quoteNearMeHint =>
+      'Poeci i dni miejsca, w którym jesteś, według strefy czasowej i miasta szabatu';
+
+  @override
+  String get quoteSiddur => 'Sidur (modlitewnik)';
 }

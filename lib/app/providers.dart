@@ -96,11 +96,39 @@ final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSou
   QuoteSourcesNotifier.new,
 );
 
+/// Extra quotes the user opted into: Carnaval, near me. Off by default.
+class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  @override
+  Set<QuoteOccasion> build() {
+    final saved = _prefs.getStringList('quoteOccasions') ?? const [];
+    return {
+      for (final o in QuoteOccasion.values)
+        if (saved.contains(o.name)) o,
+    };
+  }
+
+  void toggle(QuoteOccasion o, bool on) {
+    state = on ? {...state, o} : ({...state}..remove(o));
+    _prefs.setStringList('quoteOccasions', [for (final x in state) x.name]);
+  }
+}
+
+final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
+  QuoteOccasionsNotifier.new,
+);
+
+/// Where the user is, for "Near me" quotes.
+final quotePlacesProvider = Provider<Set<String>>(
+  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name),
+);
+
 /// Every quote for the language in use.
 final quotesProvider = Provider<List<Quote>>((ref) {
   final l = ref.watch(localeProvider);
   final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
-  return [...?quoteBank[key] ?? quoteBank['en'], ...sharedQuotes];
+  return quoteBank[key] ?? quoteBank['en']!;
 });
 
 // ---- Time zones ----

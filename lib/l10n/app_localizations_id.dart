@@ -1988,4 +1988,22 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Peribahasa dan ungkapan';
+
+  @override
+  String get quotesAlso => 'Tampilkan juga';
+
+  @override
+  String get quoteCarnaval => 'Karnaval';
+
+  @override
+  String get quoteCarnavalHint => 'Lagu dan ungkapan selama Karnaval Brasil';
+
+  @override
+  String get quoteNearMe => 'Di dekat saya';
+
+  @override
+  String get quoteNearMeHint => 'Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat';
+
+  @override
+  String get quoteSiddur => 'Siddur (buku doa)';
 }

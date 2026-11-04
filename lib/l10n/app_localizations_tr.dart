@@ -1992,4 +1992,22 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Atasözleri ve deyişler';
+
+  @override
+  String get quotesAlso => 'Ayrıca göster';
+
+  @override
+  String get quoteCarnaval => 'Karnaval';
+
+  @override
+  String get quoteCarnavalHint => 'Brezilya Karnavalı boyunca şarkılar ve sözler';
+
+  @override
+  String get quoteNearMe => 'Yakınımda';
+
+  @override
+  String get quoteNearMeHint => 'Bulunduğun yerin şairleri ve günleri; saat dilimine ve Şabat şehrine göre';
+
+  @override
+  String get quoteSiddur => 'Sidur (dua kitabı)';
 }

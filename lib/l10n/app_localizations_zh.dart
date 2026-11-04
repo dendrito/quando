@@ -1954,6 +1954,24 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get quoteProverbs => '谚语与俗语';
+
+  @override
+  String get quotesAlso => '同时显示';
+
+  @override
+  String get quoteCarnaval => '狂欢节';
+
+  @override
+  String get quoteCarnavalHint => '巴西狂欢节期间的歌曲与俗语';
+
+  @override
+  String get quoteNearMe => '我的附近';
+
+  @override
+  String get quoteNearMeHint => '根据你的时区和安息日城市，显示当地的诗人与节日';
+
+  @override
+  String get quoteSiddur => '祈祷书 (Siddur)';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3905,4 +3923,22 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get quoteProverbs => '諺語與俗語';
+
+  @override
+  String get quotesAlso => '同時顯示';
+
+  @override
+  String get quoteCarnaval => '嘉年華';
+
+  @override
+  String get quoteCarnavalHint => '巴西嘉年華期間的歌曲與俗語';
+
+  @override
+  String get quoteNearMe => '我的附近';
+
+  @override
+  String get quoteNearMeHint => '根據你的時區和安息日城市，顯示當地的詩人與節日';
+
+  @override
+  String get quoteSiddur => '祈禱書 (Siddur)';
 }

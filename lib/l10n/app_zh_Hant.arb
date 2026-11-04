@@ -581,5 +581,11 @@
   "quoteSages": "塔木德與賢哲",
   "quoteSpeeches": "著名演講",
   "quotePhilosophy": "哲學家",
-  "quoteProverbs": "諺語與俗語"
+  "quoteProverbs": "諺語與俗語",
+  "quotesAlso": "同時顯示",
+  "quoteCarnaval": "嘉年華",
+  "quoteCarnavalHint": "巴西嘉年華期間的歌曲與俗語",
+  "quoteNearMe": "我的附近",
+  "quoteNearMeHint": "根據你的時區和安息日城市，顯示當地的詩人與節日",
+  "quoteSiddur": "祈禱書 (Siddur)"
 }

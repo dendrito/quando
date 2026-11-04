@@ -581,5 +581,11 @@
   "quoteSages": "Talmoed en wijzen",
   "quoteSpeeches": "Beroemde toespraken",
   "quotePhilosophy": "Filosofen",
-  "quoteProverbs": "Spreekwoorden en gezegden"
+  "quoteProverbs": "Spreekwoorden en gezegden",
+  "quotesAlso": "Ook tonen",
+  "quoteCarnaval": "Carnaval",
+  "quoteCarnavalHint": "Liedjes en gezegden tijdens het Braziliaanse carnaval",
+  "quoteNearMe": "Bij mij in de buurt",
+  "quoteNearMeHint": "Dichters en dagen van waar je bent, op basis van je tijdzone en sjabbatstad",
+  "quoteSiddur": "Siddoer (gebedenboek)"
 }

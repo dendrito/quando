@@ -2038,4 +2038,22 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Прислів’я та приказки';
+
+  @override
+  String get quotesAlso => 'Також показувати';
+
+  @override
+  String get quoteCarnaval => 'Карнавал';
+
+  @override
+  String get quoteCarnavalHint => 'Пісні й приказки під час бразильського карнавалу';
+
+  @override
+  String get quoteNearMe => 'Поруч зі мною';
+
+  @override
+  String get quoteNearMeHint => 'Поети й дати вашого місця — за часовим поясом і містом для шабату';
+
+  @override
+  String get quoteSiddur => 'Сидур (молитовник)';
 }

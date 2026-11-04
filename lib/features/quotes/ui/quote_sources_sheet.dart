@@ -12,6 +12,7 @@ String quoteSourceName(QuoteSource s) => switch (s) {
   QuoteSource.literature => l10n.quoteLiterature,
   QuoteSource.tanakh => l10n.quoteTanakh,
   QuoteSource.sages => l10n.quoteSages,
+  QuoteSource.siddur => l10n.quoteSiddur,
   QuoteSource.speeches => l10n.quoteSpeeches,
   QuoteSource.philosophy => l10n.quotePhilosophy,
   QuoteSource.proverbs => l10n.quoteProverbs,
@@ -23,6 +24,7 @@ IconData _icon(QuoteSource s) => switch (s) {
   QuoteSource.literature => Icons.menu_book_outlined,
   QuoteSource.tanakh => Icons.auto_stories_outlined,
   QuoteSource.sages => Icons.school_outlined,
+  QuoteSource.siddur => Icons.import_contacts_outlined,
   QuoteSource.speeches => Icons.campaign_outlined,
   QuoteSource.philosophy => Icons.psychology_outlined,
   QuoteSource.proverbs => Icons.chat_bubble_outline,
@@ -35,6 +37,7 @@ class QuoteSourcesSheet extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final on = ref.watch(quoteSourcesProvider);
+    final extra = ref.watch(quoteOccasionsProvider);
     return SafeArea(
       child: SingleChildScrollView(
         padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
@@ -53,6 +56,24 @@ class QuoteSourcesSheet extends ConsumerWidget {
                 value: on.contains(s),
                 onChanged: (v) => ref.read(quoteSourcesProvider.notifier).toggle(s, v ?? false),
               ),
+            const SizedBox(height: 12),
+            Text(l10n.quotesAlso, style: Theme.of(context).textTheme.labelSmall),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.celebration_outlined),
+              title: Text(l10n.quoteCarnaval),
+              subtitle: Text(l10n.quoteCarnavalHint),
+              value: extra.contains(QuoteOccasion.carnaval),
+              onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.carnaval, v),
+            ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.place_outlined),
+              title: Text(l10n.quoteNearMe),
+              subtitle: Text(l10n.quoteNearMeHint),
+              value: extra.contains(QuoteOccasion.nearMe),
+              onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.nearMe, v),
+            ),
           ],
         ),
       ),

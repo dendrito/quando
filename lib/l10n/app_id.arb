@@ -581,5 +581,11 @@
   "quoteSages": "Talmud dan orang bijak",
   "quoteSpeeches": "Pidato terkenal",
   "quotePhilosophy": "Filsuf",
-  "quoteProverbs": "Peribahasa dan ungkapan"
+  "quoteProverbs": "Peribahasa dan ungkapan",
+  "quotesAlso": "Tampilkan juga",
+  "quoteCarnaval": "Karnaval",
+  "quoteCarnavalHint": "Lagu dan ungkapan selama Karnaval Brasil",
+  "quoteNearMe": "Di dekat saya",
+  "quoteNearMeHint": "Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat",
+  "quoteSiddur": "Siddur (buku doa)"
 }

@@ -581,5 +581,11 @@
   "quoteSages": "Талмуд і мудреці",
   "quoteSpeeches": "Відомі промови",
   "quotePhilosophy": "Філософи",
-  "quoteProverbs": "Прислів’я та приказки"
+  "quoteProverbs": "Прислів’я та приказки",
+  "quotesAlso": "Також показувати",
+  "quoteCarnaval": "Карнавал",
+  "quoteCarnavalHint": "Пісні й приказки під час бразильського карнавалу",
+  "quoteNearMe": "Поруч зі мною",
+  "quoteNearMeHint": "Поети й дати вашого місця — за часовим поясом і містом для шабату",
+  "quoteSiddur": "Сидур (молитовник)"
 }

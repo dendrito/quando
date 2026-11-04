@@ -581,5 +581,11 @@
   "quoteSages": "Talmud i mędrcy",
   "quoteSpeeches": "Słynne przemówienia",
   "quotePhilosophy": "Filozofowie",
-  "quoteProverbs": "Przysłowia i powiedzenia"
+  "quoteProverbs": "Przysłowia i powiedzenia",
+  "quotesAlso": "Pokazuj też",
+  "quoteCarnaval": "Karnawał",
+  "quoteCarnavalHint": "Piosenki i powiedzenia w czasie brazylijskiego karnawału",
+  "quoteNearMe": "W pobliżu",
+  "quoteNearMeHint": "Poeci i dni miejsca, w którym jesteś, według strefy czasowej i miasta szabatu",
+  "quoteSiddur": "Sidur (modlitewnik)"
 }

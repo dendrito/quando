@@ -1984,4 +1984,22 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get quoteProverbs => 'Tục ngữ và châm ngôn';
+
+  @override
+  String get quotesAlso => 'Hiển thị thêm';
+
+  @override
+  String get quoteCarnaval => 'Lễ hội Carnaval';
+
+  @override
+  String get quoteCarnavalHint => 'Bài hát và câu nói trong dịp Carnaval ở Brazil';
+
+  @override
+  String get quoteNearMe => 'Gần tôi';
+
+  @override
+  String get quoteNearMeHint => 'Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat';
+
+  @override
+  String get quoteSiddur => 'Siddur (sách kinh)';
 }
