@@ -1,19 +1,24 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
-import '../../../app/widgets/feature_header.dart';
 import '../data/radio_directory.dart';
 import '../domain/sound.dart';
 import 'sound_player.dart';
 
-/// Find a radio station by name, listen, and add it as an alarm sound. Or
-/// paste a stream address.
+/// Browse radio by genre and country, tap a station to hear it, and use it
+/// as an alarm sound. Search by name and pasting a stream are in the top
+/// bar.
 class RadioScreen extends ConsumerStatefulWidget {
-  const RadioScreen({super.key, this.directory});
+  const RadioScreen({super.key, this.directory, this.countryCode});
 
   final RadioDirectory? directory;
+
+  /// Where to start browsing. null = the phone's country.
+  final String? countryCode;
 
   @override
   ConsumerState<RadioScreen> createState() => _RadioScreenState();
@@ -22,28 +27,43 @@ class RadioScreen extends ConsumerStatefulWidget {
 class _RadioScreenState extends ConsumerState<RadioScreen> {
   late final _directory = widget.directory ?? RadioDirectory();
   final _query = TextEditingController();
-  final _url = TextEditingController();
+  String? _genre;
+  late String? _country = _startCountry();
+  var _searching = false;
   List<RadioStation>? _results;
+  RadioStation? _picked;
   String? _error;
   var _busy = false;
+
+  String? _startCountry() {
+    final code = widget.countryCode ?? PlatformDispatcher.instance.locale.countryCode;
+    return radioCountries.any((c) => c.$2 == code) ? code : null;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    _load();
+  }
 
   @override
   void dispose() {
     SoundPreview.instance.stop();
     _query.dispose();
-    _url.dispose();
     super.dispose();
   }
 
-  Future<void> _search() async {
-    final q = _query.text.trim();
-    if (q.isEmpty) return;
+  Future<void> _load() async {
+    final name = _searching ? _query.text.trim() : '';
     setState(() {
       _busy = true;
       _error = null;
     });
     try {
-      final r = await _directory.search(q);
+      // Nothing chosen: the world's most listened.
+      final r = name.isEmpty && _genre == null && _country == null
+          ? await _directory.search('', tag: 'pop')
+          : await _directory.search(name, tag: _genre, countryCode: _country);
       if (mounted) setState(() => _results = r);
     } catch (_) {
       if (mounted) setState(() => _error = 'Couldn\'t reach the radio directory. Check your connection.');
@@ -55,12 +75,14 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
   AlarmSound _sound(String name, String url) =>
       AlarmSound(id: 'radio.${url.hashCode.toUnsigned(32)}', name: name, path: url);
 
-  Future<void> _listen(AlarmSound s) async {
+  /// Tap once to pick and hear it, again to stop it.
+  Future<void> _tap(RadioStation r) async {
+    final s = _sound(r.name, r.url);
     final p = SoundPreview.instance;
-    if (p.playingId == s.id) {
+    if (_picked?.url == r.url && p.playingId == s.id) {
       await p.stop();
     } else {
-      setState(() {});
+      setState(() => _picked = r);
       await p.play(s, onDone: () => mounted ? setState(() {}) : null);
     }
     if (mounted) setState(() {});
@@ -75,13 +97,76 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     Navigator.of(context).pop();
   }
 
-  void _addPasted() {
-    final url = _url.text.trim();
+  Future<void> _paste() async {
+    final c = TextEditingController();
+    final url = await showDialog<String>(
+      context: context,
+      builder: (context) => AlertDialog(
+        title: const Text('Add a stream address'),
+        content: TextField(
+          controller: c,
+          autofocus: true,
+          keyboardType: TextInputType.url,
+          decoration: const InputDecoration(hintText: 'https://stream.example.com/live.mp3'),
+        ),
+        actions: [
+          TextButton(onPressed: () => Navigator.pop(context), child: const Text('Cancel')),
+          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: const Text('Add')),
+        ],
+      ),
+    );
+    c.dispose();
+    if (url == null || !mounted) return;
     if (!isStreamUrl(url)) {
-      setState(() => _error = 'That doesn\'t look like a stream address (it starts with http).');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('That doesn\'t look like a stream address (it starts with http).')),
+      );
       return;
     }
     _add(_sound(Uri.parse(url).host.replaceFirst('www.', ''), url));
+  }
+
+  /// A list to pick one genre or country from, or "any".
+  Future<void> _choose(
+    String title,
+    List<(String, String)> options,
+    String? current,
+    void Function(String?) set,
+  ) async {
+    final picked = await showModalBottomSheet<(String?,)>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        builder: (context, scroll) => ListView(
+          controller: scroll,
+          children: [
+            ListTile(
+              title: Text('Any $title'),
+              leading: Icon(
+                current == null ? Icons.radio_button_checked : Icons.radio_button_off,
+                color: QuandoColors.amber,
+              ),
+              onTap: () => Navigator.pop(context, (null,)),
+            ),
+            for (final (name, value) in options)
+              ListTile(
+                title: Text(name),
+                leading: Icon(
+                  current == value ? Icons.radio_button_checked : Icons.radio_button_off,
+                  color: QuandoColors.amber,
+                ),
+                onTap: () => Navigator.pop(context, (value,)),
+              ),
+          ],
+        ),
+      ),
+    );
+    if (picked == null) return;
+    set(picked.$1);
+    _load();
   }
 
   @override
@@ -89,85 +174,172 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     final text = Theme.of(context).textTheme;
     final mine = {for (final s in ref.watch(soundsProvider)) s.id};
     final results = _results;
+    final genreName = radioGenres.where((g) => g.$2 == _genre).firstOrNull?.$1;
+    final countryName = radioCountries.where((c) => c.$2 == _country).firstOrNull?.$1;
+    final picked = _picked;
 
     return Scaffold(
-      appBar: AppBar(title: const Text('Online radio')),
-      body: ListView(
-        padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
-        children: [
-          const FeatureHeader(
-            icon: Icons.radio,
-            sentence: 'Wake up to a live station from anywhere in the world.',
-          ),
-          TextField(
-            controller: _query,
-            autofocus: true,
-            textInputAction: TextInputAction.search,
-            decoration: InputDecoration(
-              hintText: 'Station name, e.g. BBC, jazz, Kol Chai',
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: _busy
-                  ? const Padding(
-                      padding: EdgeInsets.all(14),
-                      child: SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2)),
-                    )
-                  : IconButton(icon: const Icon(Icons.arrow_forward), onPressed: _search),
+      appBar: AppBar(
+        title: _searching
+            ? TextField(
+                controller: _query,
+                autofocus: true,
+                textInputAction: TextInputAction.search,
+                decoration: const InputDecoration(
+                  hintText: 'Station name',
+                  border: InputBorder.none,
+                  filled: false,
+                ),
+                onSubmitted: (_) => _load(),
+              )
+            : const Text('Online radio'),
+        actions: [
+          if (!_searching)
+            IconButton(
+              tooltip: 'Add a stream address',
+              icon: const Icon(Icons.add_circle_outline),
+              onPressed: _paste,
             ),
-            onSubmitted: (_) => _search(),
-          ),
-          const SizedBox(height: 8),
-          Text(
-            'Stations come from radio-browser.info. The alarm plays the station live; if it can\'t connect '
-            'within a few seconds, the phone\'s alarm sound rings instead. On Shabbat and festivals a '
-            'built-in sound rings, not the radio.',
-            style: text.bodySmall,
-          ),
-          if (_error != null) ...[
-            const SizedBox(height: 12),
-            Text(_error!, style: text.bodyMedium?.copyWith(color: QuandoColors.coral)),
-          ],
-          if (results != null) ...[
-            const SizedBox(height: 16),
-            Text(results.isEmpty ? 'NO STATIONS FOUND' : 'STATIONS', style: text.labelSmall),
-            for (final r in results)
-              Builder(
-                builder: (context) {
-                  final s = _sound(r.name, r.url);
-                  final playing = SoundPreview.instance.playingId == s.id;
-                  final added = mine.contains(s.id);
-                  return ListTile(
-                    contentPadding: EdgeInsets.zero,
-                    leading: IconButton(
-                      tooltip: 'Listen',
-                      icon: Icon(
-                        playing ? Icons.stop_circle_outlined : Icons.play_circle_outline,
-                        color: QuandoColors.amber,
-                      ),
-                      onPressed: () => _listen(s),
-                    ),
-                    title: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-                    subtitle: Text(r.details, style: text.bodySmall),
-                    trailing: added
-                        ? const Icon(Icons.check, color: QuandoColors.muted)
-                        : TextButton(onPressed: () => _add(s), child: const Text('Add')),
-                  );
-                },
-              ),
-          ],
-          const SizedBox(height: 28),
-          Text('OR PASTE A STREAM ADDRESS', style: text.labelSmall),
-          const SizedBox(height: 8),
-          TextField(
-            controller: _url,
-            keyboardType: TextInputType.url,
-            decoration: const InputDecoration(hintText: 'https://stream.example.com/live.mp3'),
-          ),
-          const SizedBox(height: 8),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: OutlinedButton(onPressed: _addPasted, child: const Text('Add this stream')),
+          IconButton(
+            tooltip: _searching ? 'Close search' : 'Search by name',
+            icon: Icon(_searching ? Icons.close : Icons.search),
+            onPressed: () {
+              setState(() {
+                _searching = !_searching;
+                if (!_searching) _query.clear();
+              });
+              if (!_searching) _load();
+            },
           ),
         ],
+      ),
+      body: Column(
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(20, 4, 20, 8),
+            child: Row(
+              children: [
+                _Filter(
+                  icon: Icons.music_note,
+                  label: genreName ?? 'Any genre',
+                  on: genreName != null,
+                  onTap: () => _choose('genre', radioGenres, _genre, (v) => _genre = v),
+                ),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: _Filter(
+                    icon: Icons.public,
+                    label: countryName ?? 'Anywhere',
+                    on: countryName != null,
+                    onTap: () => _choose('country', radioCountries, _country, (v) => _country = v),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          if (_busy) const LinearProgressIndicator(minHeight: 2),
+          Expanded(
+            child: _error != null
+                ? Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(32),
+                      child: Text(_error!, textAlign: TextAlign.center, style: text.bodyLarge),
+                    ),
+                  )
+                : results == null
+                ? const SizedBox()
+                : results.isEmpty
+                ? Center(
+                    child: Text('No stations found. Try another genre or country.', style: text.bodyLarge),
+                  )
+                : ListView.builder(
+                    padding: const EdgeInsets.fromLTRB(8, 0, 8, 24),
+                    itemCount: results.length,
+                    itemBuilder: (context, i) {
+                      final r = results[i];
+                      final s = _sound(r.name, r.url);
+                      final isPicked = picked?.url == r.url;
+                      final playing = SoundPreview.instance.playingId == s.id;
+                      return ListTile(
+                        leading: Icon(
+                          isPicked ? Icons.radio_button_checked : Icons.radio_button_off,
+                          color: isPicked ? QuandoColors.amber : QuandoColors.faint,
+                        ),
+                        title: Text(
+                          r.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: text.titleMedium,
+                        ),
+                        subtitle: Text(
+                          _country == null
+                              ? r.details
+                              : r.details.replaceFirst(RegExp('^${RegExp.escape(r.country)}( · )?'), ''),
+                          style: text.bodySmall,
+                        ),
+                        trailing: mine.contains(s.id)
+                            ? const Icon(Icons.check, color: QuandoColors.muted)
+                            : (playing ? const Icon(Icons.graphic_eq, color: QuandoColors.coral) : null),
+                        onTap: () => _tap(r),
+                      );
+                    },
+                  ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: picked == null
+          ? null
+          : SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
+                child: FilledButton(
+                  style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                  onPressed: () => _add(_sound(picked.name, picked.url)),
+                  child: Text('Wake up to ${picked.name}', maxLines: 1, overflow: TextOverflow.ellipsis),
+                ),
+              ),
+            ),
+    );
+  }
+}
+
+/// A rounded filter button: "Jazz", "United States".
+class _Filter extends StatelessWidget {
+  const _Filter({required this.icon, required this.label, required this.on, required this.onTap});
+
+  final IconData icon;
+  final String label;
+  final bool on;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: on ? QuandoColors.raised : QuandoColors.surface,
+      shape: StadiumBorder(side: BorderSide(color: on ? QuandoColors.amber : QuandoColors.line)),
+      child: InkWell(
+        customBorder: const StadiumBorder(),
+        onTap: onTap,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, size: 18, color: QuandoColors.amber),
+              const SizedBox(width: 8),
+              Flexible(
+                child: Text(
+                  label,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: const TextStyle(fontWeight: FontWeight.w700),
+                ),
+              ),
+              const SizedBox(width: 4),
+              const Icon(Icons.expand_more, size: 18),
+            ],
+          ),
+        ),
       ),
     );
   }

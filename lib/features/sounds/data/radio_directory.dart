@@ -59,15 +59,19 @@ class RadioDirectory {
     'at1.api.radio-browser.info',
   ];
 
-  Future<List<RadioStation>> search(String name) async {
+  /// Stations by [name], [tag] (a genre such as "jazz") and [countryCode]
+  /// ("US"), most listened first. Any of them may be left out.
+  Future<List<RadioStation>> search(String name, {String? tag, String? countryCode}) async {
     final q = name.trim();
-    if (q.isEmpty) return const [];
+    if (q.isEmpty && (tag ?? '').isEmpty && (countryCode ?? '').isEmpty) return const [];
     Object? lastError;
     for (final host in _mirrors) {
       try {
         final uri = Uri.https(host, '/json/stations/search', {
-          'name': q,
-          'limit': '40',
+          if (q.isNotEmpty) 'name': q,
+          if ((tag ?? '').isNotEmpty) 'tag': tag,
+          if ((countryCode ?? '').isNotEmpty) 'countrycode': countryCode,
+          'limit': '60',
           'hidebroken': 'true',
           'order': 'clickcount',
           'reverse': 'true',
@@ -89,3 +93,62 @@ class RadioDirectory {
     throw lastError ?? Exception('No radio directory answered');
   }
 }
+
+/// Genres to browse by, as Radio Browser tags.
+const radioGenres = [
+  ('Pop', 'pop'),
+  ('Rock', 'rock'),
+  ('Jazz', 'jazz'),
+  ('Classical', 'classical'),
+  ('News', 'news'),
+  ('Talk', 'talk'),
+  ('Chill', 'chillout'),
+  ('Lounge', 'lounge'),
+  ('Ambient', 'ambient'),
+  ('Jewish', 'jewish'),
+  ('Country', 'country'),
+  ('Hip hop', 'hip hop'),
+  ('Electronic', 'electronic'),
+  ('Oldies', 'oldies'),
+  ('80s', '80s'),
+  ('Latin', 'latin'),
+  ('Soul', 'soul'),
+  ('Reggae', 'reggae'),
+  ('Kids', 'kids'),
+  ('Religious', 'religious'),
+];
+
+/// Countries to browse by: name and ISO code.
+const radioCountries = [
+  ('Israel', 'IL'),
+  ('United States', 'US'),
+  ('United Kingdom', 'GB'),
+  ('Canada', 'CA'),
+  ('Australia', 'AU'),
+  ('Brazil', 'BR'),
+  ('Portugal', 'PT'),
+  ('Spain', 'ES'),
+  ('Mexico', 'MX'),
+  ('Argentina', 'AR'),
+  ('France', 'FR'),
+  ('Germany', 'DE'),
+  ('Italy', 'IT'),
+  ('Netherlands', 'NL'),
+  ('Belgium', 'BE'),
+  ('Switzerland', 'CH'),
+  ('Austria', 'AT'),
+  ('Ireland', 'IE'),
+  ('Sweden', 'SE'),
+  ('Norway', 'NO'),
+  ('Denmark', 'DK'),
+  ('Poland', 'PL'),
+  ('Russia', 'RU'),
+  ('Ukraine', 'UA'),
+  ('Turkey', 'TR'),
+  ('Greece', 'GR'),
+  ('South Africa', 'ZA'),
+  ('India', 'IN'),
+  ('Japan', 'JP'),
+  ('South Korea', 'KR'),
+  ('New Zealand', 'NZ'),
+];

@@ -20,10 +20,48 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
   late final _token = TextEditingController(text: ref.read(integrationsProvider).pushoverToken);
   var _testing = false;
   var _loading = false;
-  Map<String, String> _sounds = const {};
+
+  /// Pushover's own sounds, shown before anything is loaded. Loading adds
+  /// the ones you uploaded.
+  Map<String, String> _sounds = const {
+    'pushover': 'Pushover',
+    'bike': 'Bike',
+    'bugle': 'Bugle',
+    'cashregister': 'Cash Register',
+    'classical': 'Classical',
+    'cosmic': 'Cosmic',
+    'falling': 'Falling',
+    'gamelan': 'Gamelan',
+    'incoming': 'Incoming',
+    'intermission': 'Intermission',
+    'magic': 'Magic',
+    'mechanical': 'Mechanical',
+    'pianobar': 'Piano Bar',
+    'siren': 'Siren',
+    'spacealarm': 'Space Alarm',
+    'tugboat': 'Tug Boat',
+    'alien': 'Alien Alarm (long)',
+    'climb': 'Climb (long)',
+    'persistent': 'Persistent (long)',
+    'echo': 'Pushover Echo (long)',
+    'updown': 'Up Down (long)',
+    'vibrate': 'Vibrate only',
+    'none': 'None (silent)',
+  };
+
+  @override
+  void initState() {
+    super.initState();
+    // Keys already saved: fetch your own sounds and devices straight away.
+    final s = ref.read(integrationsProvider);
+    if (s.pushoverOn && s.pushoverUser.isNotEmpty && s.pushoverToken.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback((_) => _loadPushover(quiet: true));
+    }
+  }
+
   List<String> _devices = const [];
 
-  Future<void> _loadPushover() async {
+  Future<void> _loadPushover({bool quiet = false}) async {
     final s = ref.read(integrationsProvider);
     final sender = ref.read(integrationSenderProvider);
     setState(() => _loading = true);
@@ -32,12 +70,12 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
       final devices = await sender.pushoverDevices(s.pushoverToken, s.pushoverUser);
       if (!mounted) return;
       setState(() {
-        _sounds = sounds;
+        _sounds = {..._sounds, ...sounds};
         _devices = devices;
       });
-      _say('Found ${sounds.length} sounds and ${devices.length} devices.');
+      if (!quiet) _say('Found ${sounds.length} sounds and ${devices.length} devices.');
     } catch (e) {
-      if (mounted) _say('$e'.replaceFirst('Exception: ', ''));
+      if (mounted && !quiet) _say('$e'.replaceFirst('Exception: ', ''));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
