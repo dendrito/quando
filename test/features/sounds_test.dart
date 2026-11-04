@@ -6,6 +6,7 @@ import 'package:quando/features/alarms/domain/user_alarm.dart';
 import 'package:quando/features/calendar/domain/calendar_rule.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:quando/features/ringing/data/spotify.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_style.dart';
 import 'package:quando/features/sounds/data/radio_directory.dart';
@@ -223,5 +224,13 @@ void main() {
     expect(r.map((s) => s.name), ['Jazz FM']);
     expect(r.single.url, 'https://jazz.example/live');
     expect(r.single.details, 'France · MP3 128 kbps');
+  });
+
+  test('Spotify links turn into what Spotify plays', () {
+    expect(SpotifyPlay.uriOf('https://open.spotify.com/track/4uLU6hMC?si=x'), 'spotify:track:4uLU6hMC');
+    expect(SpotifyPlay.uriOf('https://open.spotify.com/intl-pt/playlist/37i9'), 'spotify:playlist:37i9');
+    expect(SpotifyPlay.uriOf('spotify:album:1'), 'spotify:album:1');
+    expect(SpotifyPlay.uriOf('https://music.youtube.com/watch?v=abc'), isNull);
+    expect(SpotifyPlay.uriOf('https://open.spotify.com/user/me'), isNull);
   });
 }

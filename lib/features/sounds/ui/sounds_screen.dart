@@ -8,6 +8,7 @@ import 'package:record/record.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../data/sound_files.dart';
+import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
 import 'radio_screen.dart';
 import 'sound_player.dart';
@@ -226,6 +227,48 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     sounds.add(sound.rename(label.isNotEmpty ? label : 'Song on ${sound.linkApp ?? 'the web'}'));
   }
 
+  /// Spotify direct play: sign in once and Spotify plays the exact song.
+  Widget _spotifyTile(TextTheme text) {
+    final on = SpotifyPlay.connected;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      title: Text(on ? 'Spotify direct play is on' : 'Spotify direct play'),
+      subtitle: Text(
+        SpotifyPlay.available
+            ? (on
+                  ? 'Spotify plays your exact song as the alarm. Tap to turn off.'
+                  : 'Plays your exact Spotify song as the alarm, more reliably. Needs the Spotify app and '
+                        'Spotify Premium. Tap to sign in.')
+            : 'Coming soon: plays your exact Spotify song as the alarm (needs Spotify Premium).',
+        style: text.bodySmall,
+      ),
+      onTap: !SpotifyPlay.available
+          ? null
+          : () async {
+              final prefs = ref.read(prefsProvider);
+              if (on) {
+                await SpotifyPlay.signOut();
+                SpotifyPlay.connected = false;
+              } else {
+                SpotifyPlay.connected = await SpotifyPlay.signIn();
+                if (!SpotifyPlay.connected && mounted) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    const SnackBar(
+                      content: Text(
+                        'Spotify didn\'t connect. Check the Spotify app is installed, you\'re signed in, and '
+                        'you have Premium.',
+                      ),
+                    ),
+                  );
+                }
+              }
+              await prefs.setBool(SpotifyPlay.prefKey, SpotifyPlay.connected);
+              if (mounted) setState(() {});
+            },
+    );
+  }
+
   Future<void> _rename(AlarmSound s) async {
     final c = TextEditingController(text: s.name);
     final name = await showDialog<String>(
@@ -298,6 +341,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             icon: const Icon(Icons.link),
             label: const Text('Add a song link (Spotify, Apple Music, YouTube…)'),
           ),
+          _spotifyTile(text),
           const SizedBox(height: 12),
           OutlinedButton.icon(
             style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),

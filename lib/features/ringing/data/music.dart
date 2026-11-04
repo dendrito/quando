@@ -1,5 +1,7 @@
 import 'package:flutter/services.dart';
 
+import 'spotify.dart';
+
 /// Plays a song link in its own app (Spotify, YouTube Music, Apple Music,
 /// Amazon Music…) using the phone's own media controls, the same ones as
 /// the play button on headphones. Quando can't play those songs itself.
@@ -27,15 +29,17 @@ class Music {
     Duration playFor = Duration.zero,
     Duration wait = const Duration(seconds: 10),
   }) async {
-    if (!await open(url)) return false;
+    // Spotify direct play first, when signed in; then the media signals.
+    final direct = await SpotifyPlay.play(url, playFor: playFor);
+    if (!direct && !await open(url)) return false;
     for (var s = 1; s <= wait.inSeconds; s++) {
       await Future<void>.delayed(const Duration(seconds: 1));
       if (await playing()) {
-        if (playFor > Duration.zero) await pause(after: playFor);
+        if (playFor > Duration.zero && !direct) await pause(after: playFor);
         return true;
       }
       // Some apps open the song without playing it.
-      if (s == 3) await play();
+      if (s == 3 && !direct) await play();
     }
     return false;
   }

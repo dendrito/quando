@@ -6,11 +6,13 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'app/app.dart';
 import 'app/providers.dart';
 import 'core/util/local_time.dart';
+import 'features/ringing/data/spotify.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
+  SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
   String? deviceZone;
   try {
     deviceZone = (await FlutterTimezone.getLocalTimezone()).identifier;

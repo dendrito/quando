@@ -29,11 +29,24 @@ android {
         versionName = flutter.versionName
     }
 
+    // One fixed key for test builds, so each new test APK installs over the
+    // last one and Spotify recognises the app. Not the Play Store key: Play
+    // signs store releases with its own.
+    signingConfigs {
+        create("test") {
+            storeFile = file("quando-test.jks")
+            storePassword = "quandotest"
+            keyAlias = "quando-test"
+            keyPassword = "quandotest"
+        }
+    }
+
     buildTypes {
+        debug {
+            signingConfig = signingConfigs.getByName("test")
+        }
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = signingConfigs.getByName("test")
         }
     }
 }

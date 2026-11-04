@@ -817,6 +817,46 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.10.2"
+  spotify_sdk:
+    dependency: "direct main"
+    description:
+      name: spotify_sdk
+      sha256: "00f50620ac7b6e64554546dbdda7dc08315fe3df18b47cd5f0eaad101d3592ce"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
+  spotify_sdk_android:
+    dependency: transitive
+    description:
+      name: spotify_sdk_android
+      sha256: "87999a6ae0c4b92ffca5cbe42d4b7613051d9c3f8623ac38de1b1bd13b829fa5"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
+  spotify_sdk_ios:
+    dependency: transitive
+    description:
+      name: spotify_sdk_ios
+      sha256: "2a1776ad7a6673e60cb6b83be7ce70f9bdc0ae764aa1bfe67ef661e002b0afc9"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
+  spotify_sdk_platform_interface:
+    dependency: transitive
+    description:
+      name: spotify_sdk_platform_interface
+      sha256: a021c6bee8f8da66542430c53db0184db43dc7ff57994f075c500ee9b4a680b5
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
+  spotify_sdk_web:
+    dependency: transitive
+    description:
+      name: spotify_sdk_web
+      sha256: "0a1e22e93f6acf82cc9b2dfdecb1a989491243881f92b91baa0258e5a2fd0e95"
+      url: "https://pub.dev"
+    source: hosted
+    version: "4.3.4"
   stack_trace:
     dependency: transitive
     description:
@@ -1035,4 +1075,4 @@ packages:
     version: "3.1.4"
 sdks:
   dart: ">=3.13.7 <4.0.0"
-  flutter: ">=3.47.0"
+  flutter: ">=3.47.1"
