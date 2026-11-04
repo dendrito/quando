@@ -20,6 +20,7 @@ dependencies:
   just_audio: ^0.10.6
   kiosk_mode: ^0.10.0
   kosher_dart: ^2.0.20
+  mobile_scanner: ^7.5.0
   path_provider: ^2.1.6
   permission_handler: ^13.0.2
   record: ^7.1.2

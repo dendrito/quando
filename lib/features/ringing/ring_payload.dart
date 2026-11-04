@@ -30,6 +30,8 @@ class RingPayload {
     this.shortenBy = 0,
     this.autoSnoozeMinutes = 0,
     this.snoozeTask = StopTask.none,
+    this.puzzle = StopTask.none,
+    this.scanCode,
     this.gentle = false,
   });
 
@@ -105,7 +107,13 @@ class RingPayload {
   final bool gentle;
 
   /// Stopping needs more than one tap.
-  bool get hasTask => mathTask || shakeTask;
+  bool get hasTask => mathTask || shakeTask || puzzle != StopTask.none;
+
+  /// A memory game, a phrase to type or a code to scan before it stops.
+  final StopTask puzzle;
+
+  /// What [StopTask.scan] must read.
+  final String? scanCode;
 
   /// The same payload with some fields changed. Every copy goes through
   /// here, so a new field is never dropped by accident.
@@ -132,6 +140,8 @@ class RingPayload {
     int? shortenBy,
     int? autoSnoozeMinutes,
     StopTask? snoozeTask,
+    StopTask? puzzle,
+    String? scanCode,
     bool? gentle,
   }) => RingPayload(
     title: title ?? this.title,
@@ -156,6 +166,8 @@ class RingPayload {
     shortenBy: shortenBy ?? this.shortenBy,
     autoSnoozeMinutes: autoSnoozeMinutes ?? this.autoSnoozeMinutes,
     snoozeTask: snoozeTask ?? this.snoozeTask,
+    puzzle: puzzle ?? this.puzzle,
+    scanCode: scanCode ?? this.scanCode,
     gentle: gentle ?? this.gentle,
   );
 
@@ -169,7 +181,8 @@ class RingPayload {
   /// asks to be touched, so tasks, wake-up checks and links are left out.
   RingPayload withStyle(RingStyle s) {
     final safe = shabbatSafe || isLock;
-    final task = safe ? null : s.task;
+    // Scanning needs a code saved first; without one it's a sum.
+    final task = safe ? null : (s.task == StopTask.scan && s.scanCode == null ? StopTask.sum : s.task);
     final open = s.openAfter?.trim();
     final plan = s.snooze;
     return _copy(
@@ -177,12 +190,18 @@ class RingPayload {
       snoozeMinutes: safe ? null : plan?.minutes,
       shortenBy: safe ? null : plan?.shortenBy,
       autoSnoozeMinutes: safe ? 0 : plan?.autoSnoozeMinutes,
-      snoozeTask: safe ? null : (s.snoozeTask ?? StopTask.none),
+      snoozeTask: safe
+          ? null
+          : (s.snoozeTask == StopTask.scan && s.scanCode == null
+                ? StopTask.sum
+                : (s.snoozeTask ?? StopTask.none)),
       loudness: s.loudness,
       snoozeBy: safe ? const {} : s.snoozeBy,
       stopBy: safe ? const {} : s.stopBy,
       mathTask: task == null ? null : task == StopTask.sum,
       shakeTask: task == null ? null : task == StopTask.shake,
+      puzzle: task == null ? StopTask.none : (task.isPuzzle ? task : StopTask.none),
+      scanCode: s.scanCode,
       wakeCheck: safe ? null : s.wakeCheck,
       link: open,
       keepLink: safe || open == null || open.isEmpty,
@@ -200,6 +219,7 @@ class RingPayload {
     wakeCheck: false,
     mathTask: false,
     shakeTask: false,
+    puzzle: StopTask.none,
     sound: sound,
     keepSound: false,
     link: null,
@@ -237,6 +257,7 @@ class RingPayload {
     wakeCheck: false,
     mathTask: false,
     shakeTask: false,
+    puzzle: StopTask.none,
     isCheck: true,
     transient: true,
     snoozeBy: const {},
@@ -266,6 +287,8 @@ class RingPayload {
     'shortenBy': shortenBy,
     'autoSnoozeMinutes': autoSnoozeMinutes,
     'snoozeTask': snoozeTask.name,
+    'puzzle': puzzle.name,
+    'scanCode': scanCode,
     'gentle': gentle,
   });
 
@@ -295,6 +318,8 @@ class RingPayload {
         shortenBy: (j['shortenBy'] as num?)?.toInt() ?? 0,
         autoSnoozeMinutes: (j['autoSnoozeMinutes'] as num?)?.toInt() ?? 0,
         snoozeTask: StopTask.values.where((t) => t.name == j['snoozeTask']).firstOrNull ?? StopTask.none,
+        puzzle: StopTask.values.where((t) => t.name == j['puzzle']).firstOrNull ?? StopTask.none,
+        scanCode: j['scanCode'] as String?,
         gentle: j['gentle'] as bool? ?? false,
       );
     } catch (_) {

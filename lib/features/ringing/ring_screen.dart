@@ -17,6 +17,7 @@ import 'data/apps.dart';
 import 'ring_payload.dart';
 import 'ring_style.dart';
 import 'shake_detector.dart';
+import 'ui/tasks.dart';
 
 /// Full screen shown while an alarm rings: what it is for, Stop, Snooze,
 /// and the optional sum or wake-up check.
@@ -29,7 +30,7 @@ class RingScreen extends ConsumerStatefulWidget {
   ConsumerState<RingScreen> createState() => _RingScreenState();
 }
 
-enum _Stage { ringing, sum, shake, awaitingUp, done }
+enum _Stage { ringing, sum, shake, puzzle, awaitingUp, done }
 
 class _RingScreenState extends ConsumerState<RingScreen> {
   late final RingPayload p = RingPayload.decode(
@@ -53,6 +54,20 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 
   /// The task on screen is for snoozing, not stopping.
   var _forSnooze = false;
+
+  /// The memory game, phrase or scan on screen.
+  var _puzzle = StopTask.none;
+
+  /// Shows the task for [t] on screen.
+  void _startTask(StopTask t) => setState(() {
+    if (t.isPuzzle) _puzzle = t;
+    _stage = switch (t) {
+      StopTask.sum => _Stage.sum,
+      StopTask.shake => _Stage.shake,
+      _ => _Stage.puzzle,
+    };
+    if (t == StopTask.shake && _shakes == null) _shakes = ShakeDetector(onShake: _onShake)..start();
+  });
   void _taskDone() => _forSnooze ? _snoozeNow() : _stopNow();
 
   @override
@@ -136,13 +151,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 
   Future<void> _onStop() async {
     _forSnooze = false;
-    if (p.mathTask && _stage == _Stage.ringing) {
-      setState(() => _stage = _Stage.sum);
-      return;
-    }
-    if (p.shakeTask && _stage == _Stage.ringing) {
-      setState(() => _stage = _Stage.shake);
-      return;
+    if (_stage == _Stage.ringing) {
+      final t = p.puzzle != StopTask.none
+          ? p.puzzle
+          : (p.mathTask ? StopTask.sum : (p.shakeTask ? StopTask.shake : StopTask.none));
+      if (t != StopTask.none) return _startTask(t);
     }
     await _stopNow();
   }
@@ -174,11 +187,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
 
   Future<void> _onSnooze() async {
     if (_stage == _Stage.ringing && p.snoozeTask != StopTask.none) {
-      setState(() {
-        _forSnooze = true;
-        _stage = p.snoozeTask == StopTask.sum ? _Stage.sum : _Stage.shake;
-      });
-      return;
+      _forSnooze = true;
+      return _startTask(p.snoozeTask);
     }
     await _snoozeNow();
   }
@@ -226,45 +236,60 @@ class _RingScreenState extends ConsumerState<RingScreen> {
         body: DefaultTextStyle.merge(
           style: const TextStyle(color: ink),
           child: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.fromLTRB(28, 32, 28, 28),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  Text(dayLabel(now).toUpperCase(), style: text.labelSmall?.copyWith(color: ink)),
-                  FittedBox(
-                    fit: BoxFit.scaleDown,
-                    alignment: Alignment.centerLeft,
-                    child: Text(
-                      hhmm(now),
-                      style: text.displayLarge?.copyWith(color: ink, fontSize: 128, letterSpacing: -7),
+            // Scrolls only when a task and the keyboard need more room.
+            child: LayoutBuilder(
+              builder: (context, box) => SingleChildScrollView(
+                child: ConstrainedBox(
+                  constraints: BoxConstraints(minHeight: box.maxHeight),
+                  child: IntrinsicHeight(
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(28, 32, 28, 28),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          Text(dayLabel(now).toUpperCase(), style: text.labelSmall?.copyWith(color: ink)),
+                          FittedBox(
+                            fit: BoxFit.scaleDown,
+                            alignment: Alignment.centerLeft,
+                            child: Text(
+                              hhmm(now),
+                              style: text.displayLarge?.copyWith(
+                                color: ink,
+                                fontSize: _stage == _Stage.ringing ? 128 : 64,
+                                letterSpacing: _stage == _Stage.ringing ? -7 : -3,
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 8),
+                          Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
+                          const SizedBox(height: 6),
+                          Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
+                          const SizedBox(height: 10),
+                          if (_stage == _Stage.ringing)
+                            Text(
+                              'If not now, when?',
+                              style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
+                            ),
+                          if (p.shabbatSafe) ...[
+                            const SizedBox(height: 16),
+                            Text(
+                              'Shabbat mode: this stops by itself in ${p.ringSeconds} seconds. No need to touch the phone.',
+                              style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                          Expanded(
+                            child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                                ? Center(
+                                    child: _RingLeft(left: left, total: p.ringSeconds),
+                                  )
+                                : const SizedBox.shrink(),
+                          ),
+                          ..._actions(text, snoozesLeft),
+                        ],
+                      ),
                     ),
                   ),
-                  const SizedBox(height: 8),
-                  Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
-                  const SizedBox(height: 6),
-                  Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
-                  const SizedBox(height: 10),
-                  Text(
-                    'If not now, when?',
-                    style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
-                  ),
-                  if (p.shabbatSafe) ...[
-                    const SizedBox(height: 16),
-                    Text(
-                      'Shabbat mode: this stops by itself in ${p.ringSeconds} seconds. No need to touch the phone.',
-                      style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
-                    ),
-                  ],
-                  Expanded(
-                    child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
-                        ? Center(
-                            child: _RingLeft(left: left, total: p.ringSeconds),
-                          )
-                        : const SizedBox.shrink(),
-                  ),
-                  ..._actions(text, snoozesLeft),
-                ],
+                ),
               ),
             ),
           ),
@@ -326,6 +351,25 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             style: TextButton.styleFrom(foregroundColor: ink),
             child: const Text('Can\'t shake? Solve a sum instead'),
           ),
+        ];
+      case _Stage.puzzle:
+        final verb = _forSnooze ? 'SNOOZE' : 'STOP';
+        return [
+          Text(switch (_puzzle) {
+            StopTask.memory => 'FIND THE PAIRS TO $verb',
+            StopTask.phrase => 'TYPE THIS TO $verb',
+            _ => 'SCAN YOUR CODE TO $verb',
+          }, style: text.labelSmall?.copyWith(color: ink)),
+          const SizedBox(height: 10),
+          switch (_puzzle) {
+            StopTask.memory => MemoryTask(onDone: _taskDone),
+            StopTask.phrase => PhraseTask(onDone: _taskDone),
+            _ => ScanTask(
+              code: p.scanCode ?? '',
+              onDone: _taskDone,
+              onGiveUp: () => setState(() => _stage = _Stage.sum),
+            ),
+          },
         ];
       case _Stage.awaitingUp:
         return [

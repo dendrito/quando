@@ -35,8 +35,12 @@ class AlarmSound {
     for (final (k, v) in const [
       ('spotify', 'Spotify'),
       ('soundcloud', 'SoundCloud'),
+      ('music.youtube', 'YouTube Music'),
       ('youtu', 'YouTube'),
       ('music.apple', 'Apple Music'),
+      ('music.amazon', 'Amazon Music'),
+      ('amazon.', 'Amazon Music'),
+      ('amzn', 'Amazon Music'),
       ('deezer', 'Deezer'),
       ('tidal', 'Tidal'),
       ('pandora', 'Pandora'),

@@ -107,8 +107,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 const Text(
-                  'Paste a link from Spotify, SoundCloud, YouTube or another app (use Share > Copy link). '
-                  'The alarm rings first, and Stop opens your song.',
+                  'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, '
+                  'then Copy link, and paste it here. Those apps don\'t let other apps play their songs, so '
+                  'the alarm rings first and Stop opens your song in its app.',
                 ),
                 const SizedBox(height: 12),
                 TextField(
@@ -235,7 +236,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
             onPressed: recording ? null : _addLink,
             icon: const Icon(Icons.link),
-            label: const Text('Add a song link (Spotify, SoundCloud…)'),
+            label: const Text('Add a song link (Spotify, Apple Music, YouTube…)'),
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(

@@ -92,6 +92,12 @@ void main() {
     );
     c.read(soundsProvider.notifier).add(song);
     expect(song.linkApp, 'Spotify');
+    String? app(String url) => AlarmSound(id: 'x', name: 'x', path: 'x', link: url).linkApp;
+    expect(app('https://music.youtube.com/watch?v=1'), 'YouTube Music');
+    expect(app('https://youtu.be/abc'), 'YouTube');
+    expect(app('https://music.apple.com/us/album/1'), 'Apple Music');
+    expect(app('https://music.amazon.com/albums/B0'), 'Amazon Music');
+    expect(app('https://amzn.to/xyz'), 'Amazon Music');
     c
         .read(userAlarmsProvider.notifier)
         .save(const UserAlarm(id: 's', hour: 7, minute: 0, days: {1, 2, 3, 4}, soundId: 'link.1'));

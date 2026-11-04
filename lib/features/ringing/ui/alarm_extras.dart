@@ -8,6 +8,7 @@ import '../../sounds/domain/loudness.dart';
 import '../data/apps.dart';
 import '../ring_style.dart';
 import 'gentle_screen.dart';
+import 'tasks.dart';
 
 /// One alarm's extras as short rows and cards, each opening its own small
 /// screen: Volume, Snooze, Stop, Gentle wake-up, Wake-up check, Open an app.
@@ -216,6 +217,26 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
 
   void set(RingStyle v) => setState(() => s = v);
 
+  /// Scanning needs a saved code: ask for one the first time.
+  Future<void> _withCode(StopTask t, void Function(String? code) apply) async {
+    if (t != StopTask.scan || s.scanCode != null) return apply(null);
+    final code = await Navigator.of(context)
+        .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+    if (code != null) apply(code);
+  }
+
+  Widget _codeRow() => ListTile(
+    contentPadding: EdgeInsets.zero,
+    leading: const Icon(Icons.qr_code_2, color: QuandoColors.amber),
+    title: const Text('Code saved'),
+    subtitle: const Text('Tap to save a different one'),
+    onTap: () async {
+      final code = await Navigator.of(context)
+          .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+      if (code != null) set(s.copyWith(scanCode: code));
+    },
+  );
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
@@ -390,8 +411,14 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
         _taskChips(
           text,
           s.snoozeTask ?? StopTask.none,
-          (t) => set(t == StopTask.none ? s.copyWith(noSnoozeTask: true) : s.copyWith(snoozeTask: t)),
+          (t) => _withCode(
+            t,
+            (code) => set(
+              t == StopTask.none ? s.copyWith(noSnoozeTask: true) : s.copyWith(snoozeTask: t, scanCode: code),
+            ),
+          ),
         ),
+        if (s.snoozeTask == StopTask.scan) _codeRow(),
         const SizedBox(height: 24),
         Text('SETTINGS', style: text.labelSmall),
         _Setting(
@@ -465,7 +492,12 @@ class _StopScreenState extends _StyleScreenState<StopScreen> {
       ),
     ),
     const SizedBox(height: 24),
-    _taskChips(text, s.task ?? (o.mathTask ? StopTask.sum : StopTask.none), (t) => set(s.copyWith(task: t))),
+    _taskChips(
+      text,
+      s.task ?? (o.mathTask ? StopTask.sum : StopTask.none),
+      (t) => _withCode(t, (code) => set(s.copyWith(task: t, scanCode: code))),
+    ),
+    if (s.task == StopTask.scan) _codeRow(),
     const SizedBox(height: 24),
     Text(
       'On Shabbat and festivals alarms stop by themselves and never ask for a task.',

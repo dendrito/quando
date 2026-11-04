@@ -13,7 +13,13 @@ enum StopWay {
 enum StopTask {
   none('Nothing'),
   sum('Solve a sum'),
-  shake('Shake 30 times');
+  shake('Shake 30 times'),
+  memory('Memory game'),
+  phrase('Type a phrase'),
+  scan('Scan a code');
+
+  /// Done in its own little screen, not on the ringing screen's buttons.
+  bool get isPuzzle => this == memory || this == phrase || this == scan;
 
   const StopTask(this.label);
   final String label;
@@ -98,7 +104,12 @@ class RingStyle {
     this.task,
     this.wakeCheck,
     this.openAfter,
+    this.scanCode,
   });
+
+  /// The barcode or QR code to scan for [StopTask.scan], e.g. one on a
+  /// box in the kitchen, so you have to get up.
+  final String? scanCode;
 
   final Loudness? loudness;
 
@@ -139,7 +150,8 @@ class RingStyle {
       stopBy.isEmpty &&
       task == null &&
       wakeCheck == null &&
-      (openAfter == null || openAfter!.isEmpty);
+      (openAfter == null || openAfter!.isEmpty) &&
+      scanCode == null;
 
   RingStyle copyWith({
     Loudness? loudness,
@@ -158,6 +170,7 @@ class RingStyle {
     bool defaultWakeCheck = false,
     String? openAfter,
     bool noOpenAfter = false,
+    String? scanCode,
   }) => RingStyle(
     loudness: defaultLoudness ? null : (loudness ?? this.loudness),
     gentleMinutes: gentleMinutes ?? this.gentleMinutes,
@@ -169,6 +182,7 @@ class RingStyle {
     task: defaultTask ? null : (task ?? this.task),
     wakeCheck: defaultWakeCheck ? null : (wakeCheck ?? this.wakeCheck),
     openAfter: noOpenAfter ? null : (openAfter ?? this.openAfter),
+    scanCode: scanCode ?? this.scanCode,
   );
 
   Map<String, dynamic>? toJson() => isDefault
@@ -184,6 +198,7 @@ class RingStyle {
           'task': task?.name,
           'wakeCheck': wakeCheck,
           'openAfter': openAfter,
+          'scanCode': scanCode,
         };
 
   static RingStyle fromJson(Object? j) {
@@ -202,6 +217,7 @@ class RingStyle {
       task: StopTask.values.where((t) => t.name == j['task']).firstOrNull,
       wakeCheck: j['wakeCheck'] as bool?,
       openAfter: j['openAfter'] as String?,
+      scanCode: j['scanCode'] as String?,
     );
   }
 
@@ -217,7 +233,8 @@ class RingStyle {
       _same(other.stopBy, stopBy) &&
       other.task == task &&
       other.wakeCheck == wakeCheck &&
-      other.openAfter == openAfter;
+      other.openAfter == openAfter &&
+      other.scanCode == scanCode;
 
   static bool _same(Set<StopWay> a, Set<StopWay> b) => a.length == b.length && a.containsAll(b);
 
