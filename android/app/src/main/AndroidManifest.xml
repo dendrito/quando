@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- Calendar alarms: read events from the phone's calendars (Google included). -->
-    <!-- Pushover, Zapier and IFTTT. -->
+    <!-- Pushover, Zapier, IFTTT and online radio (many stations still use http). -->
     <uses-permission android:name="android.permission.INTERNET" />
     <!-- Record your own alarm sounds. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -10,7 +10,8 @@
     <application
         android:label="Quando"
         android:name="${applicationName}"
-        android:icon="@mipmap/ic_launcher">
+        android:icon="@mipmap/ic_launcher"
+        android:usesCleartextTraffic="true">
         <activity
             android:name=".MainActivity"
             android:showWhenLocked="true"

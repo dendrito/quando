@@ -18,6 +18,8 @@ class SoundPreview {
     try {
       if (s.builtIn) {
         await player.setAsset(s.path);
+      } else if (s.isRadio) {
+        await player.setUrl(s.path);
       } else {
         await player.setFilePath(await SoundFiles.absolute(s.path));
       }

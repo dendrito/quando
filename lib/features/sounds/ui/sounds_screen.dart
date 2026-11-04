@@ -9,6 +9,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../data/sound_files.dart';
 import '../domain/sound.dart';
+import 'radio_screen.dart';
 import 'sound_player.dart';
 
 /// Your sounds: record one, add a file, listen, rename, delete.
@@ -236,10 +237,22 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             icon: const Icon(Icons.link),
             label: const Text('Add a song link (Spotify, SoundCloud…)'),
           ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            onPressed: recording
+                ? null
+                : () =>
+                      Navigator.of(context)
+                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
+            icon: const Icon(Icons.radio),
+            label: const Text('Wake up to online radio'),
+          ),
           const SizedBox(height: 8),
           Text(
             'Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from '
-            'your phone. Or link a song or playlist: the alarm rings, and Stop opens it in its app.',
+            'your phone. Link a song or playlist: the alarm rings, and Stop opens it in its app. Or pick a '
+            'radio station: it plays live, and if it can\'t connect, the phone\'s alarm sound rings instead.',
             style: text.bodySmall,
           ),
           const SizedBox(height: 24),
@@ -262,6 +275,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                 [
                   if (s.builtIn) 'Built in',
                   if (s.isLink) 'Opens in ${s.linkApp}',
+                  if (s.isRadio) 'Online radio',
                   if (s.id == defaultId) 'Default',
                 ].join(' · '),
                 style: text.bodySmall,
@@ -274,7 +288,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () {
                         ref.read(soundsProvider.notifier).delete(s.id);
-                        if (!s.isLink) SoundFiles.delete(s.path);
+                        if (!s.isLink && !s.isRadio) SoundFiles.delete(s.path);
                       },
                     ),
             ),

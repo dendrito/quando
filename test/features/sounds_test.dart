@@ -4,7 +4,11 @@ import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
 import 'package:quando/features/calendar/domain/calendar_rule.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
+import 'package:quando/features/ringing/ring_style.dart';
+import 'package:quando/features/sounds/data/radio_directory.dart';
 import 'package:quando/features/sounds/domain/sound.dart';
 import 'package:quando/features/sounds/ui/sound_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -98,5 +102,55 @@ void main() {
     // Kept across a restart.
     final again = c.read(soundsProvider).firstWhere((s) => s.id == 'link.1');
     expect(AlarmSound.fromJson(again.toJson()).link, song.link);
+  });
+
+  test('radio rings live, but a built-in sound on Shabbat', () async {
+    final c = await _container();
+    const radio = AlarmSound(id: 'radio.1', name: 'Jazz', path: 'https://stream.example.com/jazz.mp3');
+    expect(radio.isRadio, isTrue);
+    c.read(soundsProvider.notifier).add(radio);
+    final alarms = c.read(userAlarmsProvider.notifier);
+    // Tuesday is a weekday; Saturday morning is inside Shabbat.
+    alarms.save(const UserAlarm(id: 'tue', hour: 7, minute: 0, days: {3}, soundId: 'radio.1'));
+    alarms.save(const UserAlarm(id: 'sat', hour: 10, minute: 0, days: {6}, soundId: 'radio.1'));
+    expect(_payloadOf(c, 'user.tue').sound, radio.path);
+    final sat = _payloadOf(c, 'user.sat');
+    expect(sat.shabbatSafe, isTrue);
+    expect(sat.sound, startsWith('assets/sounds/'));
+  });
+
+  test('a gentle wake-up is planned before the alarm, quieter', () async {
+    final c = await _container();
+    c
+        .read(userAlarmsProvider.notifier)
+        .save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {3}, style: RingStyle(gentleMinutes: 15)));
+    final plan = c.read(planProvider);
+    final real = plan.firstWhere((a) => a.ruleId == 'user.a');
+    final soft = plan.firstWhere((a) => a.ruleId == 'gentle.user.a');
+    expect(real.at.difference(soft.at), const Duration(minutes: 15));
+    final p = c.read(payloadForProvider)(soft);
+    expect(p.loudness.volume, 35);
+    expect(p.canSnooze, isFalse);
+    // The week list shows only the real alarm.
+    expect(c.read(fullPlanProvider).where((a) => a.ruleId.startsWith('gentle.')), isEmpty);
+  });
+
+  test('radio search reads stations and skips broken ones', () async {
+    final dir = RadioDirectory(
+      client: MockClient((req) async {
+        expect(req.url.queryParameters['name'], 'jazz');
+        return http.Response(
+          '[{"name":"Jazz FM","url":"http://x/pls","url_resolved":"https://jazz.example/live",'
+          '"country":"France","codec":"MP3","bitrate":128},'
+          '{"name":"Broken","url":"ftp://nope","url_resolved":""},'
+          '{"name":"Jazz FM again","url_resolved":"https://jazz.example/live"}]',
+          200,
+        );
+      }),
+    );
+    final r = await dir.search('jazz');
+    expect(r.map((s) => s.name), ['Jazz FM']);
+    expect(r.single.url, 'https://jazz.example/live');
+    expect(r.single.details, 'France · MP3 128 kbps');
   });
 }

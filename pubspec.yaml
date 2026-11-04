@@ -28,6 +28,12 @@ dependencies:
   timezone: ^0.11.2
   url_launcher: ^6.3.3
 
+# Quando's copy of the alarm plugin: it can also ring an online radio
+# stream, falling back to the phone's alarm sound. See packages/alarm.
+dependency_overrides:
+  alarm:
+    path: packages/alarm
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

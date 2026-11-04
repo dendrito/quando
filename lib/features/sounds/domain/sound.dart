@@ -24,6 +24,10 @@ class AlarmSound {
 
   bool get isLink => link != null;
 
+  /// An online radio station: [path] is the stream's address. If it can't
+  /// connect, the phone's alarm sound rings instead.
+  bool get isRadio => path.startsWith('http://') || path.startsWith('https://');
+
   /// "Spotify", "SoundCloud", "YouTube"… for a link sound.
   String? get linkApp {
     final l = link?.toLowerCase();

@@ -4,10 +4,9 @@ packages:
   alarm:
     dependency: "direct main"
     description:
-      name: alarm
-      sha256: "38550afb9c43162b25147d88411973a759d6bef335048f7e5984a640b0ac152f"
-      url: "https://pub.dev"
-    source: hosted
+      path: "packages/alarm"
+      relative: true
+    source: path
     version: "5.15.0"
   android_file_picker:
     dependency: transitive

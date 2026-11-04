@@ -716,7 +716,11 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   final links = {for (final s in ref.watch(soundsProvider)) s.id: s.link};
   return (a) {
     final id = a.soundId ?? options.soundId;
-    var p = _withSound(_payload(a, options, periods), sounds[id]);
+    var p = _payload(a, options, periods);
+    // No live radio on Shabbat or a festival: a built-in sound instead.
+    final path = sounds[id];
+    final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
+    p = _withSound(p, radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path);
     // Never open another app on Shabbat or a festival.
     if (!p.isLock && !p.shabbatSafe) p = p.withLink(links[id]);
     if (p.isLock) return p;
