@@ -21,6 +21,8 @@ import '../../quotes/ui/quote_sources_sheet.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
+import '../../../app/edition.dart';
+
 class SettingsScreen extends ConsumerWidget {
   const SettingsScreen({super.key});
 
@@ -32,6 +34,7 @@ class SettingsScreen extends ConsumerWidget {
     final zones = ref.watch(timeZonesProvider);
     void setO(AlarmOptions Function(AlarmOptions) f) => ref.read(alarmOptionsProvider.notifier).update(f);
     final text = Theme.of(context).textTheme;
+    final shabbatOn = ref.watch(shabbatInUseProvider);
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settings), backgroundColor: Colors.transparent),
@@ -88,6 +91,15 @@ class SettingsScreen extends ConsumerWidget {
               builder: (context) => const QuoteSourcesSheet(),
             ),
           ),
+          if (!kodesh)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+              title: Text(l10n.shabbatAndFestivals),
+              subtitle: Text(shabbatOn ? l10n.on : l10n.off),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/shabbat'),
+            ),
           const SizedBox(height: 16),
           Text(l10n.timeZoneHeading, style: text.labelSmall),
           ListTile(
@@ -100,51 +112,53 @@ class SettingsScreen extends ConsumerWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _pickHomeZone(context, ref),
           ),
-          const SizedBox(height: 16),
-          Text(l10n.shabbatCityHeading, style: text.labelSmall),
-          DropdownButton<String>(
-            isExpanded: true,
-            value: place.name,
-            items: [for (final p in Places.all) DropdownMenuItem(value: p.name, child: Text(p.name))],
-            onChanged: (name) =>
-                ref.read(placeProvider.notifier).set(Places.all.firstWhere((p) => p.name == name)),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.inIsraelOneDay),
-            value: place.inIsrael,
-            onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
-          ),
-          const SizedBox(height: 16),
-          Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
-          Slider(
-            min: 10,
-            max: 60,
-            divisions: 50,
-            value: place.candleLightingMinutes.toDouble(),
-            label: '${place.candleLightingMinutes}',
-            onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
-          ),
-          const SizedBox(height: 16),
-          Text(l10n.endOfShabbatHeading, style: text.labelSmall),
-          RadioGroup<HavdalahOpinion>(
-            groupValue: havdalah,
-            onChanged: (v) => ref.read(havdalahProvider.notifier).set(v!),
-            child: Column(
-              children: [
-                RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  value: HavdalahOpinion.geonim,
-                  title: Text(l10n.nightfallGeonim),
-                ),
-                RadioListTile(
-                  contentPadding: EdgeInsets.zero,
-                  value: HavdalahOpinion.rabbeinuTam,
-                  title: Text(l10n.rabbeinuTam),
-                ),
-              ],
+          if (shabbatOn) ...[
+            const SizedBox(height: 16),
+            Text(l10n.shabbatCityHeading, style: text.labelSmall),
+            DropdownButton<String>(
+              isExpanded: true,
+              value: place.name,
+              items: [for (final p in Places.all) DropdownMenuItem(value: p.name, child: Text(p.name))],
+              onChanged: (name) =>
+                  ref.read(placeProvider.notifier).set(Places.all.firstWhere((p) => p.name == name)),
             ),
-          ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.inIsraelOneDay),
+              value: place.inIsrael,
+              onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
+            ),
+            const SizedBox(height: 16),
+            Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
+            Slider(
+              min: 10,
+              max: 60,
+              divisions: 50,
+              value: place.candleLightingMinutes.toDouble(),
+              label: '${place.candleLightingMinutes}',
+              onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
+            ),
+            const SizedBox(height: 16),
+            Text(l10n.endOfShabbatHeading, style: text.labelSmall),
+            RadioGroup<HavdalahOpinion>(
+              groupValue: havdalah,
+              onChanged: (v) => ref.read(havdalahProvider.notifier).set(v!),
+              child: Column(
+                children: [
+                  RadioListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: HavdalahOpinion.geonim,
+                    title: Text(l10n.nightfallGeonim),
+                  ),
+                  RadioListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: HavdalahOpinion.rabbeinuTam,
+                    title: Text(l10n.rabbeinuTam),
+                  ),
+                ],
+              ),
+            ),
+          ],
           const SizedBox(height: 24),
           Text(l10n.whenAlarmRingsHeading, style: text.labelSmall),
           SoundPickerTile(
@@ -212,7 +226,7 @@ class SettingsScreen extends ConsumerWidget {
             value: o.mathTask,
             onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
           ),
-          Text(l10n.shabbatNoTasks, style: text.bodySmall),
+          if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
           const SizedBox(height: 16),
           OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
           const SizedBox(height: 24),

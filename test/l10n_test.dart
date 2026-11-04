@@ -9,6 +9,9 @@ import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/l10n/l10n.dart';
+
+import 'shabbat_on.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -53,7 +56,7 @@ void main() {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
-    SharedPreferences.setMockInitialValues({'language': 'he'});
+    SharedPreferences.setMockInitialValues({...shabbatOn, 'language': 'he'});
     final prefs = await SharedPreferences.getInstance();
     useLocale(const [Locale('he')]);
     await tester.pumpWidget(

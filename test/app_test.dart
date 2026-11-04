@@ -3,15 +3,45 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
+
+import 'shabbat_on.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  // First: the app's router remembers the last screen between tests.
+  testWidgets('a fresh Quando? keeps Shabbat out of the way until you ask', (tester) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+          prefsProvider.overrideWithValue(prefs),
+        ],
+        child: const QuandoApp(),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(find.text('Shabbat'), findsNothing);
+    expect(find.text('16:05'), findsNothing);
+    expect(find.textContaining('— '), findsOneWidget); // a quote under the countdown
+    await tester.tap(find.byTooltip('Settings'));
+    await tester.pumpAndSettle();
+    expect(find.text('Shabbat & festivals'), findsOneWidget);
+    expect(find.text('Off'), findsWidgets);
+    await tester.pageBack();
+    await tester.pumpAndSettle();
+  });
   testWidgets('home shows next Shabbat and this week\'s alarms', (tester) async {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
 
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({...shabbatOn});
     final prefs = await SharedPreferences.getInstance();
     await tester.pumpWidget(
       ProviderScope(
@@ -44,7 +74,7 @@ void main() {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
-    SharedPreferences.setMockInitialValues({});
+    SharedPreferences.setMockInitialValues({...shabbatOn});
     final prefs = await SharedPreferences.getInstance();
     await tester.pumpWidget(
       ProviderScope(

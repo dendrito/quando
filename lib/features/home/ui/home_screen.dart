@@ -427,7 +427,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                if (!kodesh) ...shabbat,
+                if (!kodesh && ref.watch(shabbatInUseProvider)) ...shabbat,
                 // ---- Your alarms ----
                 const SizedBox(height: 8),
                 Text(l10n.yourAlarmsHeading, style: text.labelSmall),
