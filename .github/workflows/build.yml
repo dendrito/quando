@@ -73,14 +73,14 @@ jobs:
         run: |
           cp build/app/outputs/flutter-apk/app-arm64-v8a-quando-release.apk quando.apk
           cp build/app/outputs/flutter-apk/app-armeabi-v7a-quando-release.apk quando-older-phones.apk
-          cp build/app/outputs/flutter-apk/app-arm64-v8a-kodesh-release.apk zman.apk
-          cp build/app/outputs/flutter-apk/app-armeabi-v7a-kodesh-release.apk zman-older-phones.apk
-          ls -lh quando*.apk zman*.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-kodesh-release.apk matai.apk
+          cp build/app/outputs/flutter-apk/app-armeabi-v7a-kodesh-release.apk matai-older-phones.apk
+          ls -lh quando*.apk matai*.apk
           gh release delete latest --yes --cleanup-tag || true
-          gh release create latest quando.apk quando-older-phones.apk zman.apk zman-older-phones.apk \
+          gh release create latest quando.apk quando-older-phones.apk matai.apk matai-older-phones.apk \
             --prerelease \
             --title "Latest test build" \
-            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk. The Jewish edition: zman.apk (zman-older-phones.apk)."
+            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk. The Jewish edition: matai.apk (matai-older-phones.apk)."
         env:
           GH_TOKEN: ${{ github.token }}
 
