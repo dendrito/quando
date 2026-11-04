@@ -4,6 +4,8 @@ on:
   push:
     branches: [main]
   pull_request:
+  # "Run workflow" on the Actions tab: builds everything, iPhone included.
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -86,7 +88,10 @@ jobs:
 
   # iPhone and iPad: proves the app builds. Unsigned until the Apple
   # Developer account is set up, so it can't be installed yet.
+  # Mac minutes count ten times, so iPhone builds run on main and when asked
+  # (Actions → Build → Run workflow), not on every pull request push.
   ios-build:
+    if: github.event_name != 'pull_request'
     runs-on: macos-latest
     strategy:
       fail-fast: false
