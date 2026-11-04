@@ -81,7 +81,7 @@ class AlarmExtras extends ConsumerWidget {
         _Row(
           icon: Icons.task_alt,
           title: 'Wake-up check',
-          subtitle: 'Rings again in 3 min if you\'re not up',
+          subtitle: 'Rings again if you\'re not up',
           on: wakeCheck,
           onSwitch: (v) => onChanged(s.copyWith(wakeCheck: v)),
         ),

@@ -11,7 +11,16 @@ import 'sound_player.dart';
 /// [value] null means "use the default" when [allowDefault] is on, or the
 /// phone's alarm sound when it is off (the default itself).
 class SoundPickerTile extends ConsumerWidget {
-  const SoundPickerTile({super.key, required this.value, required this.onChanged, this.allowDefault = true});
+  const SoundPickerTile({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    this.allowDefault = true,
+    this.large = false,
+  });
+
+  /// A big card for the top of an alarm editor.
+  final bool large;
 
   final String? value;
   final ValueChanged<String?> onChanged;
@@ -29,26 +38,85 @@ class SoundPickerTile extends ConsumerWidget {
         ? 'Phone alarm sound'
         : soundName(sounds, value);
 
+    final chosen = sounds.where((s) => s.id == (value ?? (allowDefault ? defaultId : null))).firstOrNull;
+    final kind = chosen == null
+        ? 'Phone alarm sound'
+        : chosen.isRadio
+        ? 'Online radio'
+        : chosen.isLink
+        ? 'Song link · opens ${chosen.linkApp}'
+        : chosen.builtIn
+        ? 'Built in'
+        : 'Your recording';
+    Future<void> pick() async {
+      final picked = await showModalBottomSheet<String>(
+        context: context,
+        showDragHandle: true,
+        builder: (context) => _Sheet(value: value, allowDefault: allowDefault),
+      );
+      await SoundPreview.instance.stop();
+      if (picked == null) return;
+      if (picked == '__manage__') {
+        if (context.mounted) context.push('/sounds');
+        return;
+      }
+      onChanged(picked == '__default__' ? null : (picked == phone && !allowDefault ? null : picked));
+    }
+
+    if (large) {
+      final text = Theme.of(context).textTheme;
+      return Material(
+        color: QuandoColors.surface,
+        borderRadius: const BorderRadius.all(Radius.circular(24)),
+        clipBehavior: Clip.antiAlias,
+        child: InkWell(
+          onTap: pick,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 18, 16, 18),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text('Sound', style: text.titleLarge),
+                      const SizedBox(height: 8),
+                      Text(kind, style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
+                      Text(
+                        label,
+                        style: text.bodyLarge?.copyWith(
+                          color: QuandoColors.amber,
+                          fontWeight: FontWeight.w600,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  width: 64,
+                  height: 64,
+                  decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                  child: Icon(
+                    chosen?.isRadio ?? false ? Icons.radio : Icons.music_note,
+                    color: QuandoColors.coral,
+                    size: 32,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
     return ListTile(
       contentPadding: EdgeInsets.zero,
       leading: const Icon(Icons.music_note_outlined, color: QuandoColors.amber),
       title: const Text('Sound'),
       subtitle: Text(label),
       trailing: const Icon(Icons.chevron_right),
-      onTap: () async {
-        final picked = await showModalBottomSheet<String>(
-          context: context,
-          showDragHandle: true,
-          builder: (context) => _Sheet(value: value, allowDefault: allowDefault),
-        );
-        await SoundPreview.instance.stop();
-        if (picked == null) return;
-        if (picked == '__manage__') {
-          if (context.mounted) context.push('/sounds');
-          return;
-        }
-        onChanged(picked == '__default__' ? null : (picked == phone && !allowDefault ? null : picked));
-      },
+      onTap: pick,
     );
   }
 }

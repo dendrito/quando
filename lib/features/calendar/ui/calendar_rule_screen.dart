@@ -459,6 +459,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
           ),
           const SizedBox(height: 16),
           SoundPickerTile(
+            large: true,
             value: _rule.soundId,
             onChanged: (id) => setState(
               () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),

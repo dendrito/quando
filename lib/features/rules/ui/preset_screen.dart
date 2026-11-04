@@ -67,6 +67,7 @@ class PresetScreen extends ConsumerWidget {
           ),
           const SizedBox(height: 24),
           SoundPickerTile(
+            large: true,
             value: rule.soundId,
             onChanged: (s) =>
                 notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),

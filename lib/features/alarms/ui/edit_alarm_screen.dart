@@ -238,6 +238,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           ),
           const SizedBox(height: 4),
           SoundPickerTile(
+            large: true,
             value: _alarm.soundId,
             onChanged: (id) => setState(
               () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
@@ -287,13 +288,12 @@ class _DayChip extends StatelessWidget {
       customBorder: const CircleBorder(),
       onTap: onTap,
       child: Container(
-        width: 40,
-        height: 40,
+        width: 44,
+        height: 44,
         alignment: Alignment.center,
         decoration: BoxDecoration(
           shape: BoxShape.circle,
-          color: selected ? QuandoColors.amber : Colors.transparent,
-          border: Border.all(color: selected ? QuandoColors.amber : QuandoColors.line),
+          color: selected ? QuandoColors.amber : QuandoColors.surface,
         ),
         child: Text(
           letter,
