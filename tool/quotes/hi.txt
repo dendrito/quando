@@ -132,3 +132,4 @@ bowie_heroes = हम हीरो बन सकते हैं, बस एक 
 queen_dontstop = मुझे अभी मत रोको, मुझे बहुत मज़ा आ रहा है। | Queen
 queen_iwantit = मुझे सब कुछ चाहिए, और अभी चाहिए। | Queen
 queen_forever = कौन हमेशा जीना चाहता है? | Queen
+howsoon = अभी कितनी जल्दी है? | The Smiths

@@ -2010,4 +2010,14 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'סידור';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'פרשת $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'מבית $name';
+  }
 }

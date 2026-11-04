@@ -136,3 +136,4 @@ bowie_heroes = Wir können Helden sein, nur für einen Tag. | David Bowie
 queen_dontstop = Halt mich jetzt nicht auf, ich hab so viel Spaß. | Queen
 queen_iwantit = Ich will alles, und ich will es jetzt. | Queen
 queen_forever = Wer will schon ewig leben? | Queen
+howsoon = Wie bald ist jetzt? | The Smiths

@@ -2006,4 +2006,14 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Siddur (buku doa)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parasyah $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'didukung $name';
+  }
 }

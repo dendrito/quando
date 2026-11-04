@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Brezilya Karnavalı boyunca şarkılar ve sözler",
   "quoteNearMe": "Yakınımda",
   "quoteNearMeHint": "Bulunduğun yerin şairleri ve günleri; saat dilimine ve Şabat şehrine göre",
-  "quoteSiddur": "Sidur (dua kitabı)"
+  "quoteSiddur": "Sidur (dua kitabı)",
+  "weeklyParasha": "Paraşa {name}",
+  "poweredBy": "{name} altyapısıyla"
 }

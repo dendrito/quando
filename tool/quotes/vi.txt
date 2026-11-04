@@ -132,3 +132,4 @@ bowie_heroes = Chúng ta có thể là người hùng, dù chỉ một ngày. | 
 queen_dontstop = Đừng ngăn tôi lúc này, tôi đang vui quá. | Queen
 queen_iwantit = Tôi muốn tất cả, và muốn ngay bây giờ. | Queen
 queen_forever = Ai muốn sống mãi mãi? | Queen
+howsoon = Bây giờ là sớm đến mức nào? | The Smiths

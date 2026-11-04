@@ -1977,4 +1977,14 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'シドゥール（祈祷書）';
+
+  @override
+  String weeklyParasha(String name) {
+    return '今週のパラシャ $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '$name 搭載';
+  }
 }

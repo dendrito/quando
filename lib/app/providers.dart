@@ -25,6 +25,8 @@ import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 
+import 'edition.dart';
+
 import 'package:quando/l10n/l10n.dart';
 
 /// The current time. Overridden in tests.
@@ -79,9 +81,10 @@ class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
   @override
   Set<QuoteSource> build() {
     final saved = _prefs.getStringList('quoteSources');
-    if (saved == null) return QuoteSource.values.toSet();
+    final offered = kodesh ? jewishSources : QuoteSource.values.toSet();
+    if (saved == null) return offered;
     return {
-      for (final s in QuoteSource.values)
+      for (final s in offered)
         if (saved.contains(s.name)) s,
     };
   }
@@ -102,6 +105,7 @@ class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
 
   @override
   Set<QuoteOccasion> build() {
+    if (kodesh) return const {};
     final saved = _prefs.getStringList('quoteOccasions') ?? const [];
     return {
       for (final o in QuoteOccasion.values)
@@ -128,7 +132,13 @@ final quotePlacesProvider = Provider<Set<String>>(
 final quotesProvider = Provider<List<Quote>>((ref) {
   final l = ref.watch(localeProvider);
   final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
-  return quoteBank[key] ?? quoteBank['en']!;
+  final all = quoteBank[key] ?? quoteBank['en']!;
+  return kodesh
+      ? [
+          for (final q in all)
+            if (q.isJewish) q,
+        ]
+      : all;
 });
 
 // ---- Time zones ----
@@ -694,7 +704,7 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     try {
       final raw = _prefs.getString('lock');
       return raw == null
-          ? const LockSettings()
+          ? const LockSettings(shabbat: kodesh)
           : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const LockSettings();

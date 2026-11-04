@@ -133,3 +133,4 @@ bowie_heroes = Ми можемо бути героями, хоча б на од�
 queen_dontstop = Не зупиняй мене зараз, мені так добре. | Queen
 queen_iwantit = Я хочу все, і хочу зараз. | Queen
 queen_forever = Хто хоче жити вічно? | Queen
+howsoon = Як скоро настане «зараз»? | The Smiths

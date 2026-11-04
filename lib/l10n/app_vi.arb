@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Bài hát và câu nói trong dịp Carnaval ở Brazil",
   "quoteNearMe": "Gần tôi",
   "quoteNearMeHint": "Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat",
-  "quoteSiddur": "Siddur (sách kinh)"
+  "quoteSiddur": "Siddur (sách kinh)",
+  "weeklyParasha": "Parashat {name}",
+  "poweredBy": "chạy trên {name}"
 }

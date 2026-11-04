@@ -1972,6 +1972,16 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get quoteSiddur => '祈祷书 (Siddur)';
+
+  @override
+  String weeklyParasha(String name) {
+    return '本周经文 $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '由 $name 驱动';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3941,4 +3951,14 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get quoteSiddur => '祈禱書 (Siddur)';
+
+  @override
+  String weeklyParasha(String name) {
+    return '本週經文 $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '由 $name 驅動';
+  }
 }

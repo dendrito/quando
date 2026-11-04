@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../../app/edition.dart';
 import '../data/radio_directory.dart';
 import '../domain/sound.dart';
 import 'sound_player.dart';
@@ -64,7 +65,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     try {
       // Nothing chosen: the world's most listened.
       final r = name.isEmpty && _genre == null && _country == null
-          ? await _directory.search('', tag: 'pop')
+          ? await _directory.search('', tag: kodesh ? 'jewish' : 'pop')
           : await _directory.search(name, tag: _genre, countryCode: _country);
       if (mounted) setState(() => _results = r);
     } catch (_) {

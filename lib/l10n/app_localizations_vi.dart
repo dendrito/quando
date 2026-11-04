@@ -2002,4 +2002,14 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Siddur (sách kinh)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parashat $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'chạy trên $name';
+  }
 }

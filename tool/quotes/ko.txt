@@ -133,3 +133,4 @@ bowie_heroes = 우리는 영웅이 될 수 있어, 단 하루만이라도. | Dav
 queen_dontstop = 지금 날 멈추지 마, 정말 즐거우니까. | Queen
 queen_iwantit = 나는 전부를 원해, 그것도 지금. | Queen
 queen_forever = 누가 영원히 살고 싶어 할까? | Queen
+howsoon = 지금은 얼마나 곧인가? | The Smiths

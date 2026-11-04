@@ -133,3 +133,4 @@ bowie_heroes = Kita bisa jadi pahlawan, walau hanya sehari. | David Bowie
 queen_dontstop = Jangan hentikan aku sekarang, aku sedang sangat bersenang-senang. | Queen
 queen_iwantit = Aku mau semuanya, dan aku mau sekarang. | Queen
 queen_forever = Siapa yang ingin hidup selamanya? | Queen
+howsoon = Seberapa cepat itu sekarang? | The Smiths

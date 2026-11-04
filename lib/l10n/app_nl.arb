@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Liedjes en gezegden tijdens het Braziliaanse carnaval",
   "quoteNearMe": "Bij mij in de buurt",
   "quoteNearMeHint": "Dichters en dagen van waar je bent, op basis van je tijdzone en sjabbatstad",
-  "quoteSiddur": "Siddoer (gebedenboek)"
+  "quoteSiddur": "Siddoer (gebedenboek)",
+  "weeklyParasha": "Parasja {name}",
+  "poweredBy": "mogelijk gemaakt door {name}"
 }

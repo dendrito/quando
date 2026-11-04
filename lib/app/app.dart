@@ -23,6 +23,7 @@ import '../features/shabbat/ui/shabbat_screen.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import '../features/ready/ready_screen.dart';
 import '../l10n/l10n.dart';
+import 'edition.dart';
 import 'providers.dart';
 import 'theme.dart';
 
@@ -153,7 +154,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
     return MaterialApp.router(
-      onGenerateTitle: (_) => l10n.appName,
+      onGenerateTitle: (_) => appTitle,
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       routerConfig: _router,

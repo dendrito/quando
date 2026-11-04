@@ -2019,4 +2019,14 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Sidur (livro de rezas)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parashá $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'com tecnologia $name';
+  }
 }

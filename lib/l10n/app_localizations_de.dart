@@ -2020,4 +2020,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Siddur (Gebetbuch)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parascha $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'powered by $name';
+  }
 }

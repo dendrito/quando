@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "브라질 카니발 기간의 노래와 격언",
   "quoteNearMe": "내 주변",
   "quoteNearMeHint": "시간대와 안식일 도시를 기준으로 사는 곳의 시인과 기념일",
-  "quoteSiddur": "시두르 (기도서)"
+  "quoteSiddur": "시두르 (기도서)",
+  "weeklyParasha": "파라샤 {name}",
+  "poweredBy": "{name} 기반"
 }

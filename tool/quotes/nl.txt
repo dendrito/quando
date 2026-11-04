@@ -133,3 +133,4 @@ bowie_heroes = We kunnen helden zijn, voor één dag. | David Bowie
 queen_dontstop = Hou me nu niet tegen, ik heb zo'n plezier. | Queen
 queen_iwantit = Ik wil alles, en ik wil het nu. | Queen
 queen_forever = Wie wil er eeuwig leven? | Queen
+howsoon = Hoe gauw is nu? | The Smiths

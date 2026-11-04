@@ -2059,4 +2059,14 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Sidur (modlitewnik)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parsza $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'napędzane przez $name';
+  }
 }

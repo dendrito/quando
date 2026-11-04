@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Chansons et dictons pendant le Carnaval du Brésil",
   "quoteNearMe": "Près de moi",
   "quoteNearMeHint": "Poètes et dates de l’endroit où vous êtes, d’après votre fuseau horaire et votre ville de Chabbat",
-  "quoteSiddur": "Siddour (livre de prières)"
+  "quoteSiddur": "Siddour (livre de prières)",
+  "weeklyParasha": "Paracha {name}",
+  "poweredBy": "propulsé par {name}"
 }

@@ -1302,5 +1302,23 @@
   "quoteCarnavalHint": "Songs and sayings during Brazil’s Carnaval",
   "quoteNearMe": "Near me",
   "quoteNearMeHint": "Poets and local days where you are, from your time zone and Shabbat city",
-  "quoteSiddur": "Siddur (prayer book)"
+  "quoteSiddur": "Siddur (prayer book)",
+  "weeklyParasha": "Parashat {name}",
+  "@weeklyParasha": {
+    "description": "This week's Torah portion, shown under the Hebrew date in Quando? Shabbat.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "poweredBy": "powered by {name}",
+  "@poweredBy": {
+    "description": "Under the Jewish edition's name; {name} is Quando?.",
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

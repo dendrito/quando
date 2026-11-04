@@ -2052,4 +2052,14 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'السيدور (كتاب الصلوات)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'البارشاه $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'بدعم من $name';
+  }
 }

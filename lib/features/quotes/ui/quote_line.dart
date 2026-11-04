@@ -5,6 +5,8 @@ import '../../../app/providers.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/quote.dart';
 
+import '../../../app/edition.dart';
+
 import 'package:quando/l10n/l10n.dart';
 
 /// The line under the next alarm: a quote about time and who said it.
@@ -37,10 +39,11 @@ class _QuoteLineState extends ConsumerState<QuoteLine> {
       _skip = 0;
     }
     final today = [
-      for (final e in ref.watch(calendarProvider.select((c) => c.events)))
-        if (inZone(e.at, ref.read(homeZoneProvider)) case final d
-            when d.year == local.year && d.month == local.month && d.day == local.day)
-          e.title,
+      if (!kodesh)
+        for (final e in ref.watch(calendarProvider.select((c) => c.events)))
+          if (inZone(e.at, ref.read(homeZoneProvider)) case final d
+              when d.year == local.year && d.month == local.month && d.day == local.day)
+            e.title,
     ];
     final q = pickQuote(
       quotes: ref.watch(quotesProvider),

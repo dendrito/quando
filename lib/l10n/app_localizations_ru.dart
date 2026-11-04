@@ -2056,4 +2056,14 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Сидур (молитвенник)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Недельная глава $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'на базе $name';
+  }
 }

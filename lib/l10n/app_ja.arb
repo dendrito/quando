@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "ブラジルのカーニバル期間の歌と言葉",
   "quoteNearMe": "近くの言葉",
   "quoteNearMeHint": "タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日",
-  "quoteSiddur": "シドゥール（祈祷書）"
+  "quoteSiddur": "シドゥール（祈祷書）",
+  "weeklyParasha": "今週のパラシャ {name}",
+  "poweredBy": "{name} 搭載"
 }

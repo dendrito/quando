@@ -140,3 +140,4 @@ bowie_heroes = אנחנו יכולים להיות גיבורים, רק ליום 
 queen_dontstop = אל תעצרו אותי עכשיו, כל כך טוב לי. | Queen
 queen_iwantit = אני רוצה הכול, ואני רוצה את זה עכשיו. | Queen
 queen_forever = מי רוצה לחיות לנצח? | Queen
+howsoon = כמה קרוב זה עכשיו? | The Smiths

@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "أغانٍ وأقوال خلال كرنفال البرازيل",
   "quoteNearMe": "بالقرب مني",
   "quoteNearMeHint": "شعراء ومناسبات المكان الذي أنت فيه، حسب منطقتك الزمنية ومدينة السبت",
-  "quoteSiddur": "السيدور (كتاب الصلوات)"
+  "quoteSiddur": "السيدور (كتاب الصلوات)",
+  "weeklyParasha": "البارشاه {name}",
+  "poweredBy": "بدعم من {name}"
 }

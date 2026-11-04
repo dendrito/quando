@@ -135,3 +135,4 @@ bowie_heroes = 僕らはヒーローになれる、たった一日だけでも�
 queen_dontstop = 今は止めないで、最高に楽しいんだ。 | Queen
 queen_iwantit = すべてが欲しい、今すぐに。 | Queen
 queen_forever = 永遠に生きたいのは誰？ | Queen
+howsoon = 「今」はどれほどすぐなのか？ | The Smiths

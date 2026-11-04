@@ -2009,4 +2009,14 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'सिद्दूर (प्रार्थना पुस्तक)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'पराशा $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '$name द्वारा संचालित';
+  }
 }

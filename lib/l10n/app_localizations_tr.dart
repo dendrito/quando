@@ -2010,4 +2010,14 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Sidur (dua kitabı)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Paraşa $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '$name altyapısıyla';
+  }
 }

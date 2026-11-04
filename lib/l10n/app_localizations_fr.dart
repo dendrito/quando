@@ -2026,4 +2026,14 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Siddour (livre de prières)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Paracha $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'propulsé par $name';
+  }
 }

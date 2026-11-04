@@ -134,3 +134,4 @@ bowie_heroes = 我們可以成為英雄，哪怕只有一天。 | David Bowie
 queen_dontstop = 現在別阻止我，我玩得正開心。 | Queen
 queen_iwantit = 我全都要，而且現在就要。 | Queen
 queen_forever = 誰想永遠活著？ | Queen
+howsoon = 「現在」有多快？ | The Smiths

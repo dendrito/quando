@@ -4,6 +4,8 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/providers.dart';
 import '../domain/quote.dart';
 
+import '../../../app/edition.dart';
+
 import 'package:quando/l10n/l10n.dart';
 
 String quoteSourceName(QuoteSource s) => switch (s) {
@@ -49,31 +51,34 @@ class QuoteSourcesSheet extends ConsumerWidget {
             Text(l10n.quotesHint),
             const SizedBox(height: 8),
             for (final s in QuoteSource.values)
-              CheckboxListTile(
+              if (!kodesh || jewishSources.contains(s))
+                CheckboxListTile(
+                  contentPadding: EdgeInsets.zero,
+                  secondary: Icon(_icon(s)),
+                  title: Text(quoteSourceName(s)),
+                  value: on.contains(s),
+                  onChanged: (v) => ref.read(quoteSourcesProvider.notifier).toggle(s, v ?? false),
+                ),
+            if (!kodesh) ...[
+              const SizedBox(height: 12),
+              Text(l10n.quotesAlso, style: Theme.of(context).textTheme.labelSmall),
+              SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                secondary: Icon(_icon(s)),
-                title: Text(quoteSourceName(s)),
-                value: on.contains(s),
-                onChanged: (v) => ref.read(quoteSourcesProvider.notifier).toggle(s, v ?? false),
+                secondary: const Icon(Icons.celebration_outlined),
+                title: Text(l10n.quoteCarnaval),
+                subtitle: Text(l10n.quoteCarnavalHint),
+                value: extra.contains(QuoteOccasion.carnaval),
+                onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.carnaval, v),
               ),
-            const SizedBox(height: 12),
-            Text(l10n.quotesAlso, style: Theme.of(context).textTheme.labelSmall),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.celebration_outlined),
-              title: Text(l10n.quoteCarnaval),
-              subtitle: Text(l10n.quoteCarnavalHint),
-              value: extra.contains(QuoteOccasion.carnaval),
-              onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.carnaval, v),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.place_outlined),
-              title: Text(l10n.quoteNearMe),
-              subtitle: Text(l10n.quoteNearMeHint),
-              value: extra.contains(QuoteOccasion.nearMe),
-              onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.nearMe, v),
-            ),
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                secondary: const Icon(Icons.place_outlined),
+                title: Text(l10n.quoteNearMe),
+                subtitle: Text(l10n.quoteNearMeHint),
+                value: extra.contains(QuoteOccasion.nearMe),
+                onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.nearMe, v),
+              ),
+            ],
           ],
         ),
       ),

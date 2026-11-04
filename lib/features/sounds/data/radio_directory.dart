@@ -3,12 +3,16 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:quando/l10n/l10n.dart';
 
+import '../../../app/edition.dart';
+
 /// One station from the free Radio Browser directory (radio-browser.info).
 class RadioStation {
   const RadioStation({
     required this.name,
     required this.url,
     this.country = '',
+    this.countryCode = '',
+    this.tags = '',
     this.codec = '',
     this.bitrate = 0,
   });
@@ -18,6 +22,12 @@ class RadioStation {
   /// The stream itself, not a playlist file.
   final String url;
   final String country;
+
+  /// ISO code, such as "IL".
+  final String countryCode;
+
+  /// Radio Browser's comma-separated genre tags.
+  final String tags;
   final String codec;
   final int bitrate;
 
@@ -37,6 +47,8 @@ class RadioStation {
       name: name,
       url: url,
       country: (j['country'] as String? ?? '').trim(),
+      countryCode: (j['countrycode'] as String? ?? '').trim().toUpperCase(),
+      tags: (j['tags'] as String? ?? '').trim(),
       codec: (j['codec'] as String? ?? '').trim(),
       bitrate: (j['bitrate'] as num?)?.toInt() ?? 0,
     );
@@ -72,7 +84,7 @@ class RadioDirectory {
           if (q.isNotEmpty) 'name': q,
           if ((tag ?? '').isNotEmpty) 'tag': tag,
           if ((countryCode ?? '').isNotEmpty) 'countrycode': countryCode,
-          'limit': '60',
+          'limit': kodesh ? '300' : '60',
           'hidebroken': 'true',
           'order': 'clickcount',
           'reverse': 'true',
@@ -85,8 +97,10 @@ class RadioDirectory {
         final seen = <String>{};
         return [
           for (final j in list)
-            if (RadioStation.fromJson(j as Map<String, dynamic>) case final s? when seen.add(s.url)) s,
-        ];
+            if (RadioStation.fromJson(j as Map<String, dynamic>) case final s?
+                when (!kodesh || isJewishStation(s)) && seen.add(s.url))
+              s,
+        ].take(60).toList();
       } catch (e) {
         lastError = e;
       }
@@ -95,8 +109,29 @@ class RadioDirectory {
   }
 }
 
-/// Genres to browse by, as Radio Browser tags.
-const radioGenres = [
+/// Israeli or Jewish: the only stations Quando? Shabbat offers.
+bool isJewishStation(RadioStation s) => s.countryCode == 'IL' || _jewish.hasMatch('${s.name} ${s.tags}');
+
+final _jewish = RegExp(
+  r'jewish|judaic|judaism|hebrew|israel|torah|chassid|hassid|hasid|chabad|lubavitch|klezmer|yiddish|'
+  r'chazzan|hazzan|cantorial|kosher|yeshiva|shabbat|ישראל|יהוד|חסיד|תורה|קול חי|קול ברמה|מורשת',
+  caseSensitive: false,
+);
+
+/// Genres to browse by. Quando? Shabbat has only Jewish ones.
+List<(String, String)> get radioGenres => kodesh ? _jewishGenres : _allGenres;
+
+const _jewishGenres = [
+  ('Jewish', 'jewish'),
+  ('Hebrew', 'hebrew'),
+  ('Israeli', 'israeli'),
+  ('Chassidic', 'chassidic'),
+  ('Torah', 'torah'),
+  ('Klezmer', 'klezmer'),
+  ('Yiddish', 'yiddish'),
+];
+
+const _allGenres = [
   ('Pop', 'pop'),
   ('Rock', 'rock'),
   ('Jazz', 'jazz'),

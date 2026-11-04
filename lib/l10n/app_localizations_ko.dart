@@ -1979,4 +1979,14 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get quoteSiddur => '시두르 (기도서)';
+
+  @override
+  String weeklyParasha(String name) {
+    return '파라샤 $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return '$name 기반';
+  }
 }

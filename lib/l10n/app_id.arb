@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Lagu dan ungkapan selama Karnaval Brasil",
   "quoteNearMe": "Di dekat saya",
   "quoteNearMeHint": "Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat",
-  "quoteSiddur": "Siddur (buku doa)"
+  "quoteSiddur": "Siddur (buku doa)",
+  "weeklyParasha": "Parasyah {name}",
+  "poweredBy": "didukung {name}"
 }

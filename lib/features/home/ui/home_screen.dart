@@ -12,6 +12,8 @@ import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
 import '../../ready/ready_screen.dart';
 import '../../shabbat/ui/shabbat_card.dart';
+import '../../../app/edition.dart';
+import '../../shabbat/domain/hebrew_date.dart';
 import '../../timezones/ui/world_clocks.dart';
 import '../domain/sky.dart';
 import '../../alarms/ui/group_picker.dart';
@@ -226,6 +228,33 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final nextSunset = sky.nextSunset;
     final sunTime = place.timeZone;
 
+    // ---- Shabbat ---- (first thing on the screen in Quando? Shabbat)
+    final shabbat = <Widget>[
+      if (period != null) ...[
+        ShabbatCard(
+          onTap: () => context.push('/shabbat'),
+          title: period.contains(now) ? l10n.shabbatModeIsOn : l10n.nextInCity(place.name.toUpperCase()),
+          names: period.names.join(' · '),
+          rows: [
+            ShabbatTimeRow(
+              label: l10n.candleLighting,
+              day: cityDay(period.start),
+              time: cityTime(period.start),
+            ),
+            ShabbatTimeRow(label: l10n.havdalah, day: cityDay(period.end), time: cityTime(period.end)),
+          ],
+        ),
+        const SizedBox(height: 16),
+      ] else ...[
+        OutlinedButton.icon(
+          onPressed: () => context.push('/shabbat'),
+          icon: const Icon(Icons.local_fire_department_outlined),
+          label: Text(l10n.shabbatAndFestivals),
+        ),
+        const SizedBox(height: 16),
+      ],
+    ];
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
@@ -253,7 +282,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   children: [
                     const QMark(size: 30),
                     const SizedBox(width: 10),
-                    Expanded(child: Text(l10n.appName, style: text.titleLarge?.copyWith(fontSize: 23))),
+                    Expanded(child: Text(appTitle, style: text.titleLarge?.copyWith(fontSize: 23))),
                     IconButton(
                       tooltip: l10n.lockMode,
                       icon: const Icon(Icons.lock_outline),
@@ -271,6 +300,29 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ),
                   ],
                 ),
+                // Quando? Shabbat: the Hebrew date and this week's parasha.
+                if (kodesh)
+                  Builder(
+                    builder: (context) {
+                      final (date, parasha) = hebrewDate(
+                        inZone(now, place.timeZone),
+                        inIsrael: place.inIsrael,
+                        afterSunset: sky.sunset != null && now.isAfter(sky.sunset!),
+                        hebrew: l10n.localeName == 'he',
+                      );
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 4, left: 40),
+                        child: Text(
+                          [
+                            date,
+                            if (parasha.isNotEmpty) l10n.weeklyParasha(parasha),
+                            l10n.poweredBy(l10n.appName),
+                          ].join(' · '),
+                          style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
+                        ),
+                      );
+                    },
+                  ),
                 const SizedBox(height: 18),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
@@ -355,6 +407,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
                 ],
+                if (kodesh) ...shabbat,
                 // ---- One-tap "when" ----
                 Wrap(
                   spacing: 8,
@@ -374,37 +427,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 ),
                 const SizedBox(height: 16),
 
-                // ---- Shabbat ----
-                if (period != null) ...[
-                  ShabbatCard(
-                    onTap: () => context.push('/shabbat'),
-                    title: period.contains(now)
-                        ? l10n.shabbatModeIsOn
-                        : l10n.nextInCity(place.name.toUpperCase()),
-                    names: period.names.join(' · '),
-                    rows: [
-                      ShabbatTimeRow(
-                        label: l10n.candleLighting,
-                        day: cityDay(period.start),
-                        time: cityTime(period.start),
-                      ),
-                      ShabbatTimeRow(
-                        label: l10n.havdalah,
-                        day: cityDay(period.end),
-                        time: cityTime(period.end),
-                      ),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-                ] else ...[
-                  OutlinedButton.icon(
-                    onPressed: () => context.push('/shabbat'),
-                    icon: const Icon(Icons.local_fire_department_outlined),
-                    label: Text(l10n.shabbatAndFestivals),
-                  ),
-                  const SizedBox(height: 16),
-                ],
-
+                if (!kodesh) ...shabbat,
                 // ---- Your alarms ----
                 const SizedBox(height: 8),
                 Text(l10n.yourAlarmsHeading, style: text.labelSmall),

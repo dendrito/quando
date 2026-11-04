@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "שירים ואמרות בזמן הקרנבל בברזיל",
   "quoteNearMe": "לידי",
   "quoteNearMeHint": "משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך",
-  "quoteSiddur": "סידור"
+  "quoteSiddur": "סידור",
+  "weeklyParasha": "פרשת {name}",
+  "poweredBy": "מבית {name}"
 }

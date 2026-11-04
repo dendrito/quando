@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "Canciones y dichos durante el Carnaval de Brasil",
   "quoteNearMe": "Cerca de mí",
   "quoteNearMeHint": "Poetas y fechas del lugar donde estás, según tu zona horaria y ciudad de Shabat",
-  "quoteSiddur": "Sidur (libro de rezos)"
+  "quoteSiddur": "Sidur (libro de rezos)",
+  "weeklyParasha": "Parashá {name}",
+  "poweredBy": "con tecnología {name}"
 }

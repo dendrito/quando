@@ -137,3 +137,4 @@ bowie_heroes songs any en
 queen_dontstop songs morning,09-05 en
 queen_iwantit songs morning,09-05 en
 queen_forever songs night,09-05 en
+howsoon songs any,idle en

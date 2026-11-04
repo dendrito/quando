@@ -587,5 +587,7 @@
   "quoteCarnavalHint": "巴西狂欢节期间的歌曲与俗语",
   "quoteNearMe": "我的附近",
   "quoteNearMeHint": "根据你的时区和安息日城市，显示当地的诗人与节日",
-  "quoteSiddur": "祈祷书 (Siddur)"
+  "quoteSiddur": "祈祷书 (Siddur)",
+  "weeklyParasha": "本周经文 {name}",
+  "poweredBy": "由 {name} 驱动"
 }

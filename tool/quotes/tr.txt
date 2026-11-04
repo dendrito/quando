@@ -134,3 +134,4 @@ bowie_heroes = Kahraman olabiliriz, sadece bir günlüğüne. | David Bowie
 queen_dontstop = Beni şimdi durdurma, çok güzel vakit geçiriyorum. | Queen
 queen_iwantit = Her şeyi istiyorum, hem de şimdi. | Queen
 queen_forever = Kim sonsuza dek yaşamak ister? | Queen
+howsoon = Şimdi ne kadar yakın? | The Smiths

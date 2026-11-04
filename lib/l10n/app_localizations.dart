@@ -3657,6 +3657,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Siddur (prayer book)'**
   String get quoteSiddur;
+
+  /// This week's Torah portion, shown under the Hebrew date in Quando? Shabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Parashat {name}'**
+  String weeklyParasha(String name);
+
+  /// Under the Jewish edition's name; {name} is Quando?.
+  ///
+  /// In en, this message translates to:
+  /// **'powered by {name}'**
+  String poweredBy(String name);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

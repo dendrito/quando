@@ -2022,4 +2022,14 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get quoteSiddur => 'Sidur (libro de rezos)';
+
+  @override
+  String weeklyParasha(String name) {
+    return 'Parashá $name';
+  }
+
+  @override
+  String poweredBy(String name) {
+    return 'con tecnología $name';
+  }
 }
