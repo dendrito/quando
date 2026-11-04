@@ -39,6 +39,17 @@ android {
             keyAlias = "quando-test"
             keyPassword = "quandotest"
         }
+        // The Play Store upload key. It lives only in GitHub's secrets, and
+        // CI passes it in through these variables when it builds for the store.
+        val upload = System.getenv("QUANDO_UPLOAD_KEYSTORE")
+        if (!upload.isNullOrEmpty()) {
+            create("upload") {
+                storeFile = file(upload)
+                storePassword = System.getenv("QUANDO_UPLOAD_STORE_PASSWORD")
+                keyAlias = System.getenv("QUANDO_UPLOAD_KEY_ALIAS")
+                keyPassword = System.getenv("QUANDO_UPLOAD_KEY_PASSWORD")
+            }
+        }
     }
 
     buildTypes {
@@ -46,7 +57,7 @@ android {
             signingConfig = signingConfigs.getByName("test")
         }
         release {
-            signingConfig = signingConfigs.getByName("test")
+            signingConfig = signingConfigs.findByName("upload") ?: signingConfigs.getByName("test")
         }
     }
 }

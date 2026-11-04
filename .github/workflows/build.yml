@@ -39,6 +39,30 @@ jobs:
           path: build/app/outputs/flutter-apk/*-release.apk
           retention-days: 14
 
+      # The Play Store build. Signed with the upload key once it's saved in
+      # GitHub's secrets; until then it's only a check that the bundle builds.
+      - name: Build the Play Store bundle
+        run: |
+          if [ -n "$UPLOAD_KEYSTORE_BASE64" ]; then
+            echo "$UPLOAD_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/upload.jks"
+            export QUANDO_UPLOAD_KEYSTORE="$RUNNER_TEMP/upload.jks"
+            echo "Signing with the Play Store upload key"
+          else
+            echo "No upload key in secrets yet: bundle signed with the test key, not for the store"
+          fi
+          flutter build appbundle --release
+        env:
+          UPLOAD_KEYSTORE_BASE64: ${{ secrets.QUANDO_UPLOAD_KEYSTORE_BASE64 }}
+          QUANDO_UPLOAD_STORE_PASSWORD: ${{ secrets.QUANDO_UPLOAD_STORE_PASSWORD }}
+          QUANDO_UPLOAD_KEY_ALIAS: ${{ secrets.QUANDO_UPLOAD_KEY_ALIAS }}
+          QUANDO_UPLOAD_KEY_PASSWORD: ${{ secrets.QUANDO_UPLOAD_KEY_PASSWORD }}
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: quando-play-store-bundle
+          path: build/app/outputs/bundle/release/app-release.aab
+          retention-days: 14
+
       - name: Publish as the "latest" download
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
