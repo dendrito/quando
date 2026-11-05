@@ -5,6 +5,8 @@
 An alarm app built around the moments that matter: Shabbat and festivals, calendar events, and the
 times before and after them.
 
+See the [project roadmap](docs/ROADMAP.md) and [ElevenLabs voice business plan](docs/ELEVENLABS_VOICE_BUSINESS_PLAN.md) for future milestones and deferred premium features.
+
 ## What works today (milestone 1)
 
 - **Shabbat and festival times, calculated on the phone.** Candle lighting, second-night candles and
