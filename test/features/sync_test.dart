@@ -131,6 +131,34 @@ void main() {
     expect(server.items['language']!.s, contains('"en"'));
   });
 
+  test('server revisions resolve updates despite device clock skew', () async {
+    final (a, pa) = await device('a', {'language': 'pt'});
+    final engineA = SyncEngine(
+      pa,
+      server.remote(),
+      device: 'a',
+      now: () => DateTime.utc(2040),
+    );
+    await engineA.apply(server.items);
+    final first = server.items['language']!;
+
+    final (b, pb) = await device('b', {});
+    final engineB = SyncEngine(
+      pb,
+      server.remote(),
+      device: 'b',
+      now: () => DateTime.utc(1990),
+    );
+    await engineB.apply(server.items);
+    await pb.setString('language', 'en');
+    await engineB.pushLocal();
+
+    final second = server.items['language']!;
+    expect(second.t, greaterThan(first.t));
+    await engineA.apply(server.items);
+    expect(pa.getString('language'), 'en');
+  });
+
   test('equal versions use a stable device-id tie-break', () async {
     final (a, pa) = await device('a', {'language': 'pt'});
     await pa.setString('sync.stamps', '{"language":100}');
