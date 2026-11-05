@@ -77,8 +77,8 @@ Future<void> decodePref(SharedPreferences p, String key, String? s) async {
   }
 }
 
-/// Keeps this device's settings and the shared copy in step. The most recent
-/// change to each setting wins; changes made offline go up when it's back.
+/// Keeps this device's settings and the shared copy in step. Failed uploads
+/// remain dirty and are retried; remote updates and local pushes are serialized.
 class SyncEngine {
   SyncEngine(
     this.prefs,
@@ -101,9 +101,14 @@ class SyncEngine {
   StreamSubscription<Map<String, SyncItem>>? _sub;
   Timer? _timer;
   bool _heard = false;
+  Future<void> _pending = Future<void>.value();
 
-  Map<String, String?> get _last => _readMap('sync.last').map((k, v) => MapEntry(k, v as String?));
-  Map<String, int> get _stamps => _readMap('sync.stamps').map((k, v) => MapEntry(k, (v as num).toInt()));
+  Map<String, String?> get _last =>
+      _readMap('sync.last').map((k, v) => MapEntry(k, v as String?));
+  Map<String, int> get _stamps =>
+      _readMap('sync.stamps').map((k, v) => MapEntry(k, (v as num).toInt()));
+  Map<String, String> get _origins =>
+      _readMap('sync.origins').map((k, v) => MapEntry(k, '$v'));
 
   Map<String, Object?> _readMap(String key) {
     try {
@@ -113,13 +118,31 @@ class SyncEngine {
     }
   }
 
-  Future<void> _save(Map<String, String?> last, Map<String, int> stamps) async {
+  Future<void> _save(
+    Map<String, String?> last,
+    Map<String, int> stamps,
+    Map<String, String> origins,
+  ) async {
     await prefs.setString('sync.last', jsonEncode(last));
     await prefs.setString('sync.stamps', jsonEncode(stamps));
+    await prefs.setString('sync.origins', jsonEncode(origins));
+  }
+
+  /// Prevents a timer tick and a Firestore snapshot from mutating sync state
+  /// concurrently. A failed operation doesn't poison the queue.
+  Future<void> _enqueue(Future<void> Function() operation) {
+    final result = _pending.then((_) => operation());
+    _pending = result.catchError((Object _) {});
+    return result;
   }
 
   void start() {
-    _sub = remote.watch().listen((items) => apply(items));
+    _sub = remote.watch().listen(
+      (items) => apply(items),
+      onError: (Object error, StackTrace stack) {
+        // A later snapshot or timer tick can recover; don't kill local alarms.
+      },
+    );
     _timer = Timer.periodic(every, (_) => pushLocal());
   }
 
@@ -127,47 +150,61 @@ class SyncEngine {
     _timer?.cancel();
     await _sub?.cancel();
     _sub = null;
+    await _pending;
     _heard = false;
   }
 
-  /// Sends whatever changed here since the last time.
-  Future<void> pushLocal() async {
+  /// Sends whatever changed here since the last successful upload.
+  Future<void> pushLocal() => _enqueue(_pushLocal);
+
+  Future<void> _pushLocal() async {
     if (!_heard) return; // Hear the shared copy first, so it isn't overwritten.
-    final last = _last, stamps = _stamps;
+    final last = _last, stamps = _stamps, origins = _origins;
     final changed = <String, SyncItem>{};
-    final t = _now().millisecondsSinceEpoch;
+    final now = _now().millisecondsSinceEpoch;
+    final nextLogicalTime = stamps.values.fold<int>(now, (a, b) => a > b ? a : b + 1);
     for (final k in syncedKeys) {
       final cur = encodePref(prefs, k);
       if (cur == last[k]) continue;
-      changed[k] = SyncItem(t, device, cur);
-      last[k] = cur;
-      stamps[k] = t;
+      changed[k] = SyncItem(nextLogicalTime, device, cur);
     }
     if (changed.isEmpty) return;
-    await _save(last, stamps);
-    await remote.push(changed);
+
+    // Crucially, do not advance local sync markers before the remote confirms
+    // the write. If offline or denied, the next timer tick retries these keys.
+    try {
+      await remote.push(changed);
+    } catch (_) {
+      return;
+    }
+
+    for (final entry in changed.entries) {
+      last[entry.key] = entry.value.s;
+      stamps[entry.key] = entry.value.t;
+      origins[entry.key] = entry.value.d;
+    }
+    await _save(last, stamps, origins);
   }
 
-  /// Takes in the shared copy: newer settings are written here, and settings
-  /// the shared copy doesn't have yet are sent up.
-  Future<void> apply(Map<String, SyncItem> items) async {
-    final last = _last, stamps = _stamps;
+  /// Takes in the shared copy: newer settings are written here, and local
+  /// settings missing remotely are uploaded after the initial snapshot.
+  Future<void> apply(Map<String, SyncItem> items) => _enqueue(() => _apply(items));
+
+  Future<void> _apply(Map<String, SyncItem> items) async {
+    final last = _last, stamps = _stamps, origins = _origins;
     var applied = false;
-    final missing = <String, SyncItem>{};
-    final t = _now().millisecondsSinceEpoch;
     for (final k in syncedKeys) {
       final item = items[k];
+      if (item == null) continue;
+      final previousStamp = stamps[k] ?? 0;
+      final previousOrigin = origins[k] ?? '';
+      final newer = item.t > previousStamp ||
+          (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
+      if (!newer) continue;
+
       final cur = encodePref(prefs, k);
-      if (item == null) {
-        if (!_heard && cur != null) {
-          missing[k] = SyncItem(t, device, cur);
-          last[k] = cur;
-          stamps[k] = t;
-        }
-        continue;
-      }
-      if (item.t <= (stamps[k] ?? 0)) continue;
-      // A change made here that hasn't gone up yet, and is newer, stays.
+      // A local edit not yet uploaded wins over an incoming snapshot. Its
+      // dirty marker is retained, so _pushLocal will retry it.
       if (_heard && cur != last[k]) continue;
       if (item.s != cur) {
         await decodePref(prefs, k, item.s);
@@ -175,10 +212,14 @@ class SyncEngine {
       }
       last[k] = item.s;
       stamps[k] = item.t;
+      origins[k] = item.d;
     }
     _heard = true;
-    await _save(last, stamps);
-    if (missing.isNotEmpty) await remote.push(missing);
+    await _save(last, stamps, origins);
+
+    // Any local values absent from the initial remote snapshot are now dirty.
+    // Upload them through the same retry-safe path.
+    await _pushLocal();
     if (applied) onApplied?.call();
   }
 }
