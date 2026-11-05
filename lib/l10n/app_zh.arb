@@ -589,5 +589,12 @@
   "quoteNearMeHint": "根据你的时区和安息日城市，显示当地的诗人与节日",
   "quoteSiddur": "祈祷书 (Siddur)",
   "weeklyParasha": "本周经文 {name}",
-  "poweredBy": "由 {name} 驱动"
+  "poweredBy": "由 {name} 驱动",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。",
+  "spotifyLibraryOn": "你的歌单、喜欢的歌曲和搜索。长按退出登录。",
+  "spotifyLoginError": "Spotify 登录失败：{reason}",
+  "googleSignInError": "Google 登录失败：{reason}",
+  "searchSongsHint": "搜索歌曲、艺人、歌单",
+  "nothingFound": "没有找到“{query}”。"
 }

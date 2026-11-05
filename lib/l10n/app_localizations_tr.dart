@@ -2020,4 +2020,32 @@ class AppLocalizationsTr extends AppLocalizations {
   String poweredBy(String name) {
     return '$name altyapısıyla';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Çalma listelerinden ve beğendiğin şarkılardan seçmek ya da tüm Spotify\'da aramak için giriş yap. Premium gerekmez.';
+
+  @override
+  String get spotifyLibraryOn => 'Çalma listelerin, beğendiğin şarkılar ve arama. Çıkış için basılı tut.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify girişi olmadı: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google girişi olmadı: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Şarkı, sanatçı, çalma listesi ara';
+
+  @override
+  String nothingFound(String query) {
+    return '“$query” için sonuç yok.';
+  }
 }

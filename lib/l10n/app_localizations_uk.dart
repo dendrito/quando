@@ -2066,4 +2066,32 @@ class AppLocalizationsUk extends AppLocalizations {
   String poweredBy(String name) {
     return 'на основі $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Увійдіть, щоб вибирати зі своїх плейлистів і вподобаних треків або шукати по всьому Spotify. Premium не потрібен.';
+
+  @override
+  String get spotifyLibraryOn => 'Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Не вдалося увійти в Spotify: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Не вдалося увійти в Google: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Шукати пісні, виконавців, плейлисти';
+
+  @override
+  String nothingFound(String query) {
+    return 'За запитом «$query» нічого не знайдено.';
+  }
 }

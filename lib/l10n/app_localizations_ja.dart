@@ -1987,4 +1987,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String poweredBy(String name) {
     return '$name 搭載';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn => 'サインインすると、プレイリストやお気に入りの曲から選んだり、Spotify全体を検索したりできます。Premium不要。';
+
+  @override
+  String get spotifyLibraryOn => 'プレイリスト、お気に入りの曲、検索。長押しでサインアウト。';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotifyにサインインできませんでした：$reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Googleにサインインできませんでした：$reason';
+  }
+
+  @override
+  String get searchSongsHint => '曲、アーティスト、プレイリストを検索';
+
+  @override
+  String nothingFound(String query) {
+    return '「$query」は見つかりませんでした。';
+  }
 }

@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat",
   "quoteSiddur": "Siddur (sách kinh)",
   "weeklyParasha": "Parashat {name}",
-  "poweredBy": "chạy trên {name}"
+  "poweredBy": "chạy trên {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Đăng nhập để chọn từ danh sách phát và bài hát đã thích, hoặc tìm trên toàn Spotify. Không cần Premium.",
+  "spotifyLibraryOn": "Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.",
+  "spotifyLoginError": "Đăng nhập Spotify không thành công: {reason}",
+  "googleSignInError": "Đăng nhập Google không thành công: {reason}",
+  "searchSongsHint": "Tìm bài hát, nghệ sĩ, danh sách phát",
+  "nothingFound": "Không tìm thấy gì cho “{query}”."
 }

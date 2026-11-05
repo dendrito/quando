@@ -2036,4 +2036,33 @@ class AppLocalizationsFr extends AppLocalizations {
   String poweredBy(String name) {
     return 'propulsé par $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Connectez-vous pour choisir parmi vos playlists et titres likés, ou chercher dans tout Spotify. Premium non requis.';
+
+  @override
+  String get spotifyLibraryOn =>
+      'Vos playlists, titres likés et recherche. Appui long pour vous déconnecter.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'La connexion à Spotify n\'a pas marché : $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'La connexion à Google n\'a pas marché : $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Chercher titres, artistes, playlists';
+
+  @override
+  String nothingFound(String query) {
+    return 'Rien trouvé pour « $query ».';
+  }
 }

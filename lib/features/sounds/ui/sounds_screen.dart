@@ -10,6 +10,7 @@ import '../../../app/theme.dart';
 import '../../../app/widgets/feature_header.dart';
 import '../data/sound_files.dart';
 import '../data/spotify_library.dart';
+import '../data/spotify_account.dart';
 import '../data/youtube_library.dart';
 import '../../../core/util/platform.dart';
 import '../../ringing/data/spotify.dart';
@@ -255,7 +256,8 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               if (!mounted) return;
               setState(() {});
               if (token == null) {
-                ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.googleSignInFailed)));
+                final why = YouTubeAccount.lastError;
+                if (why != null) await _explain(l10n.youTubeAndMusic, l10n.googleSignInError(why));
                 return;
               }
               await Navigator.of(context).push(
@@ -266,10 +268,72 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
                       return (await lib.playlists(), await lib.liked());
                     },
+                    search: (q) async => YouTubeLibrary(await YouTubeAccount.token() ?? token).search(q),
                   ),
                 ),
               );
             },
+    );
+  }
+
+  /// A sign-in that didn't work, in the service's own words, so it can be
+  /// fixed (or sent to whoever can fix it).
+  Future<void> _explain(String title, String message) => showDialog<void>(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(title),
+      content: SingleChildScrollView(child: SelectableText(message)),
+      actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.ok))],
+    ),
+  );
+
+  /// Your Spotify library: playlists, liked songs and search. Signs in on
+  /// Spotify's web page, so it works without the Spotify app or Premium,
+  /// on iPhone too.
+  Widget _spotifyLibraryTile(TextTheme text) {
+    if (!SpotifyAccount.available) return const SizedBox.shrink();
+    final on = SpotifyAccount.connected;
+    final prefs = ref.read(prefsProvider);
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.library_music_outlined, color: QuandoColors.amber),
+      title: Text(on ? l10n.pickFromSpotify : l10n.spotifyLibrary),
+      subtitle: Text(on ? l10n.spotifyLibraryOn : l10n.spotifyLibrarySignIn, style: text.bodySmall),
+      trailing: on ? const Icon(Icons.chevron_right) : null,
+      onLongPress: !on
+          ? null
+          : () async {
+              await SpotifyAccount.signOut(prefs);
+              if (mounted) setState(() {});
+            },
+      onTap: () async {
+        final String? token;
+        try {
+          token = await SpotifyAccount.token(prefs);
+        } catch (e) {
+          if (mounted) {
+            setState(() {});
+            await _explain(l10n.spotifyLibrary, '$e');
+          }
+          return;
+        }
+        if (!mounted) return;
+        setState(() {});
+        if (token == null) return;
+        Future<SpotifyLibrary> library() async => SpotifyLibrary(await SpotifyAccount.token(prefs) ?? token!);
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => MusicPickerScreen(
+              title: l10n.mySpotify,
+              load: () async {
+                final lib = await library();
+                return (await lib.playlists(), await lib.likedSongs());
+              },
+              search: (q) async => (await library()).search(q),
+            ),
+          ),
+        );
+      },
     );
   }
 
@@ -383,27 +447,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           const SizedBox(height: 20),
           Text(l10n.musicAppsHeading, style: text.labelSmall),
           _spotifyTile(text),
-          if (SpotifyPlay.connected)
-            ListTile(
-              contentPadding: const EdgeInsets.only(left: 40),
-              leading: const Icon(Icons.library_music, color: QuandoColors.amber),
-              title: Text(l10n.pickFromSpotify),
-              subtitle: Text(l10n.yourPlaylistsAndLiked, style: text.bodySmall),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => Navigator.of(context).push(
-                MaterialPageRoute<void>(
-                  builder: (_) => MusicPickerScreen(
-                    title: l10n.mySpotify,
-                    load: () async {
-                      final token = await SpotifyPlay.libraryToken();
-                      if (token == null) throw Exception(l10n.spotifySignInFailed);
-                      final lib = SpotifyLibrary(token);
-                      return (await lib.playlists(), await lib.likedSongs());
-                    },
-                  ),
-                ),
-              ),
-            ),
+          _spotifyLibraryTile(text),
           _youTubeTile(text),
           for (final (app, note) in [
             ('Apple Music', l10n.appleMusicNote),

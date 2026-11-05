@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Poetas y fechas del lugar donde estás, según tu zona horaria y ciudad de Shabat",
   "quoteSiddur": "Sidur (libro de rezos)",
   "weeklyParasha": "Parashá {name}",
-  "poweredBy": "con tecnología {name}"
+  "poweredBy": "con tecnología {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Inicia sesión para elegir de tus playlists y canciones que te gustan, o buscar en todo Spotify. No hace falta Premium.",
+  "spotifyLibraryOn": "Tus playlists, canciones que te gustan y búsqueda. Mantén pulsado para cerrar sesión.",
+  "spotifyLoginError": "El inicio de sesión en Spotify no funcionó: {reason}",
+  "googleSignInError": "El inicio de sesión en Google no funcionó: {reason}",
+  "searchSongsHint": "Buscar canciones, artistas, playlists",
+  "nothingFound": "No se encontró nada para «{query}»."
 }

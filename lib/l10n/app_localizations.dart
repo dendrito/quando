@@ -3669,6 +3669,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'powered by {name}'**
   String poweredBy(String name);
+
+  /// No description provided for @spotifyLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify'**
+  String get spotifyLibrary;
+
+  /// No description provided for @spotifyLibrarySignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to pick from your playlists and liked songs, or search all of Spotify. No Premium needed.'**
+  String get spotifyLibrarySignIn;
+
+  /// No description provided for @spotifyLibraryOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your playlists, liked songs and search. Long-press to sign out.'**
+  String get spotifyLibraryOn;
+
+  /// No description provided for @spotifyLoginError.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify sign-in didn\'t work: {reason}'**
+  String spotifyLoginError(String reason);
+
+  /// No description provided for @googleSignInError.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in didn\'t work: {reason}'**
+  String googleSignInError(String reason);
+
+  /// No description provided for @searchSongsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search songs, artists, playlists'**
+  String get searchSongsHint;
+
+  /// No description provided for @nothingFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found for “{query}”.'**
+  String nothingFound(String query);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -2062,4 +2062,32 @@ class AppLocalizationsAr extends AppLocalizations {
   String poweredBy(String name) {
     return 'بدعم من $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'سجّل الدخول لتختار من قوائم التشغيل والأغاني التي أعجبتك، أو لتبحث في Spotify كله. لا حاجة إلى Premium.';
+
+  @override
+  String get spotifyLibraryOn => 'قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'لم ينجح تسجيل الدخول إلى Spotify: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'لم ينجح تسجيل الدخول إلى Google: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'ابحث عن أغانٍ وفنانين وقوائم تشغيل';
+
+  @override
+  String nothingFound(String query) {
+    return 'لا نتائج لـ «$query».';
+  }
 }

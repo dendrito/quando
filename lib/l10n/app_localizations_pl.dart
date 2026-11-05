@@ -2069,4 +2069,33 @@ class AppLocalizationsPl extends AppLocalizations {
   String poweredBy(String name) {
     return 'napędzane przez $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Zaloguj się, aby wybierać z playlist i polubionych utworów albo szukać w całym Spotify. Premium nie jest potrzebne.';
+
+  @override
+  String get spotifyLibraryOn =>
+      'Twoje playlisty, polubione utwory i wyszukiwanie. Przytrzymaj, aby się wylogować.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Logowanie do Spotify nie powiodło się: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Logowanie do Google nie powiodło się: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Szukaj utworów, wykonawców, playlist';
+
+  @override
+  String nothingFound(String query) {
+    return 'Nic nie znaleziono dla „$query”.';
+  }
 }

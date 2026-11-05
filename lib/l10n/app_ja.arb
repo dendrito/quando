@@ -589,5 +589,12 @@
   "quoteNearMeHint": "タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日",
   "quoteSiddur": "シドゥール（祈祷書）",
   "weeklyParasha": "今週のパラシャ {name}",
-  "poweredBy": "{name} 搭載"
+  "poweredBy": "{name} 搭載",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "サインインすると、プレイリストやお気に入りの曲から選んだり、Spotify全体を検索したりできます。Premium不要。",
+  "spotifyLibraryOn": "プレイリスト、お気に入りの曲、検索。長押しでサインアウト。",
+  "spotifyLoginError": "Spotifyにサインインできませんでした：{reason}",
+  "googleSignInError": "Googleにサインインできませんでした：{reason}",
+  "searchSongsHint": "曲、アーティスト、プレイリストを検索",
+  "nothingFound": "「{query}」は見つかりませんでした。"
 }

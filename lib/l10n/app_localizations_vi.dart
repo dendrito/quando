@@ -2012,4 +2012,32 @@ class AppLocalizationsVi extends AppLocalizations {
   String poweredBy(String name) {
     return 'chạy trên $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Đăng nhập để chọn từ danh sách phát và bài hát đã thích, hoặc tìm trên toàn Spotify. Không cần Premium.';
+
+  @override
+  String get spotifyLibraryOn => 'Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Đăng nhập Spotify không thành công: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Đăng nhập Google không thành công: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Tìm bài hát, nghệ sĩ, danh sách phát';
+
+  @override
+  String nothingFound(String query) {
+    return 'Không tìm thấy gì cho “$query”.';
+  }
 }

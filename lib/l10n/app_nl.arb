@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Dichters en dagen van waar je bent, op basis van je tijdzone en sjabbatstad",
   "quoteSiddur": "Siddoer (gebedenboek)",
   "weeklyParasha": "Parasja {name}",
-  "poweredBy": "mogelijk gemaakt door {name}"
+  "poweredBy": "mogelijk gemaakt door {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Log in om te kiezen uit je playlists en favoriete nummers, of heel Spotify te doorzoeken. Geen Premium nodig.",
+  "spotifyLibraryOn": "Je playlists, favoriete nummers en zoeken. Lang indrukken om uit te loggen.",
+  "spotifyLoginError": "Inloggen bij Spotify lukte niet: {reason}",
+  "googleSignInError": "Inloggen bij Google lukte niet: {reason}",
+  "searchSongsHint": "Zoek nummers, artiesten, playlists",
+  "nothingFound": "Niets gevonden voor ‘{query}’."
 }
