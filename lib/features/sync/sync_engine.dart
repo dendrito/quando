@@ -49,7 +49,7 @@ class SyncItem {
 /// Where the shared copy lives. Firestore in the app, a fake in tests.
 abstract class SyncRemote {
   Stream<Map<String, SyncItem>> watch();
-  Future<void> push(Map<String, SyncItem> items);
+  Future<Map<String, SyncItem>> push(Map<String, SyncItem> items);
 }
 
 String? encodePref(SharedPreferences p, String key) {
@@ -173,15 +173,18 @@ class SyncEngine {
     // Crucially, do not advance local sync markers before the remote confirms
     // the write. If offline or denied, the next timer tick retries these keys.
     try {
-      await remote.push(changed);
+      final committed = await remote.push(changed);
     } catch (_) {
       return;
     }
 
     for (final entry in changed.entries) {
-      last[entry.key] = entry.value.s;
-      stamps[entry.key] = entry.value.t;
-      origins[entry.key] = entry.value.d;
+      // The remote assigns an authoritative monotonically increasing version;
+      // this avoids trusting wall clocks that may disagree between devices.
+      final item = committed[entry.key] ?? entry.value;
+      last[entry.key] = item.s;
+      stamps[entry.key] = item.t;
+      origins[entry.key] = item.d;
     }
     await _save(last, stamps, origins);
   }
