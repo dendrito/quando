@@ -67,7 +67,11 @@ void main() {
     });
     await a.apply(server.items);
     expect(server.items.keys, containsAll(['userAlarms', 'quoteSources']));
-    expect(server.items.containsKey('sounds'), isFalse, reason: 'recorded sounds stay on their device');
+    expect(
+      server.items.containsKey('sounds'),
+      isFalse,
+      reason: 'recorded sounds stay on their device',
+    );
     expect(pa.getString('userAlarms'), '[1]');
 
     final (b, pb) = await device('b', {'userAlarms': '[]'});
@@ -124,8 +128,11 @@ void main() {
     await pa.setString('language', 'en');
     server.failNextPush = true;
     await a.pushLocal();
-    expect(server.items['language'], isNull,
-        reason: 'a failed remote write must not be recorded as synchronized');
+    expect(
+      server.items['language'],
+      isNull,
+      reason: 'a failed remote write must not be recorded as synchronized',
+    );
 
     await a.pushLocal();
     expect(server.items['language']!.s, contains('"en"'));
