@@ -28,6 +28,8 @@ jobs:
           cache: true
 
       - run: flutter pub get
+      - name: Inspect formatter output for sync changes
+        run: dart format --output=show lib/features/sync/sync_engine.dart lib/features/sync/sync_service.dart test/features/sync_test.dart
       - run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test
