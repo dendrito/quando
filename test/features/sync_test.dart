@@ -68,8 +68,11 @@ void main() {
     await a.apply(server.items);
     expect(server.items.keys, containsAll(['userAlarms', 'quoteSources']));
     expect(server.items.containsKey('sounds'), isFalse, reason: 'recorded sounds stay on their device');
-    expect(server.items.containsKey('integrations'), isFalse,
-        reason: 'Pushover tokens and webhook URLs stay on their device');
+    expect(
+      server.items.containsKey('integrations'),
+      isFalse,
+      reason: 'Pushover tokens and webhook URLs stay on their device',
+    );
     expect(pa.getString('userAlarms'), '[1]');
 
     final (b, pb) = await device('b', {'userAlarms': '[]'});
