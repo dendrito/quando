@@ -25,7 +25,6 @@ const syncedKeys = [
   'quoteSources',
   'quoteOccasions',
   'language',
-  'integrations',
 ];
 
 /// One setting as the server keeps it: when it changed, on which device,
