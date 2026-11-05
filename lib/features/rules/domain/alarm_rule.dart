@@ -1,6 +1,7 @@
 import '../../events/domain/event.dart';
 import '../../events/domain/event_query.dart';
 import '../../ringing/ring_style.dart';
+import 'reminder_delivery.dart';
 
 enum Direction { before, after }
 
@@ -40,6 +41,7 @@ class AlarmRule {
     this.keyword,
     this.soundId,
     this.style = RingStyle.none,
+    this.deliveries = const {},
   });
 
   final String id;
@@ -78,6 +80,13 @@ class AlarmRule {
 
   /// Volume, fades, tasks and more for this rule's alarms.
   final RingStyle style;
+
+  /// Per-offset overrides, keyed by signed minutes relative to the event.
+  /// Missing offsets inherit the rule's existing sound and notification settings.
+  final Map<int, ReminderDelivery> deliveries;
+
+  ReminderDelivery deliveryAt(Duration offset) =>
+      deliveries[offset.inMinutes] ?? const ReminderDelivery();
 
   /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
   /// [EventQuery]). [sources] only narrows calendar events, so a rule can
@@ -119,6 +128,7 @@ class AlarmRule {
     String? soundId,
     bool defaultSound = false,
     RingStyle? style,
+    Map<int, ReminderDelivery>? deliveries,
   }) => AlarmRule(
     id: id,
     name: name,
@@ -134,6 +144,7 @@ class AlarmRule {
     keyword: keyword,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     style: style ?? this.style,
+    deliveries: deliveries ?? this.deliveries,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =
@@ -145,6 +156,10 @@ class AlarmRule {
       after: [for (final d in all.where((d) => d > Duration.zero).toList()..sort()) d],
       series: const [],
       atEvent: all.contains(Duration.zero),
+      deliveries: {
+        for (final entry in deliveries.entries)
+          if (all.contains(Duration(minutes: entry.key))) entry.key: entry.value,
+      },
     );
   }
 
@@ -153,13 +168,31 @@ class AlarmRule {
     'offsets': [for (final d in offsets()) d.inMinutes],
     'soundId': soundId,
     'style': style.toJson(),
+    if (deliveries.isNotEmpty)
+      'deliveries': {for (final e in deliveries.entries) '${e.key}': e.value.toJson()},
   };
 
   AlarmRule withCustom(Map<String, dynamic> j) {
     final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
     final r = mins == null ? this : withOffsets(mins);
     final sound = j['soundId'] as String?;
-    final styled = r.copyWith(style: RingStyle.fromJson(j['style']));
+    final rawDeliveries = j['deliveries'];
+    final parsed = <int, ReminderDelivery>{};
+    if (rawDeliveries is Map) {
+      for (final entry in rawDeliveries.entries) {
+        final minute = int.tryParse('${entry.key}');
+        if (minute != null && entry.value is Map &&
+            r.offsets().contains(Duration(minutes: minute))) {
+          parsed[minute] = ReminderDelivery.fromJson(
+            Map<String, dynamic>.from(entry.value as Map),
+          );
+        }
+      }
+    }
+    final styled = r.copyWith(
+      style: RingStyle.fromJson(j['style']),
+      deliveries: parsed,
+    );
     return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
   }
 }
