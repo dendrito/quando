@@ -181,7 +181,8 @@ class AlarmRule {
     if (rawDeliveries is Map) {
       for (final entry in rawDeliveries.entries) {
         final minute = int.tryParse('${entry.key}');
-        if (minute != null && entry.value is Map &&
+        if (minute != null &&
+            entry.value is Map &&
             r.offsets().contains(Duration(minutes: minute))) {
           parsed[minute] = ReminderDelivery.fromJson(
             Map<String, dynamic>.from(entry.value as Map),
@@ -189,10 +190,7 @@ class AlarmRule {
         }
       }
     }
-    final styled = r.copyWith(
-      style: RingStyle.fromJson(j['style']),
-      deliveries: parsed,
-    );
+    final styled = r.copyWith(style: RingStyle.fromJson(j['style']), deliveries: parsed);
     return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
   }
 }
