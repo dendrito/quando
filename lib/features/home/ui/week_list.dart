@@ -17,6 +17,7 @@ class WeekList extends StatefulWidget {
     required this.zone,
     this.skipped = const {},
     this.onTap,
+    this.onSeries,
   });
 
   final List<DayPlan> days;
@@ -26,6 +27,9 @@ class WeekList extends StatefulWidget {
 
   /// Tapping one alarm: skip it, or edit what set it.
   final ValueChanged<ScheduledAlarm>? onTap;
+
+  /// The ⋯ button or a long press on a row: act on all its alarms at once.
+  final ValueChanged<AlarmSeries>? onSeries;
   final DateTime today;
   final String zone;
 
@@ -87,9 +91,16 @@ class _WeekListState extends State<WeekList> {
       return ListTile(
         contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
         onTap: widget.onTap == null ? null : () => widget.onTap!(a),
+        onLongPress: widget.onTap == null ? null : () => widget.onTap!(a),
         title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
         subtitle: Text(x ? l10n.skippedBody(a.body) : a.body, style: text.bodySmall),
-        trailing: Text(local(a.at), style: x ? timeStyle?.merge(off) : timeStyle),
+        trailing: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Text(local(a.at), style: x ? timeStyle?.merge(off) : timeStyle),
+            if (widget.onTap != null) _more(() => widget.onTap!(a)),
+          ],
+        ),
       );
     }
     final open = _open.contains(key);
@@ -99,6 +110,7 @@ class _WeekListState extends State<WeekList> {
         ListTile(
           contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
           onTap: () => setState(() => open ? _open.remove(key) : _open.add(key)),
+          onLongPress: widget.onSeries == null ? null : () => widget.onSeries!(s),
           title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
           subtitle: Text(
             [
@@ -118,6 +130,7 @@ class _WeekListState extends State<WeekList> {
                 duration: const Duration(milliseconds: 200),
                 child: const Icon(Icons.expand_more, color: QuandoColors.muted),
               ),
+              if (widget.onSeries != null) _more(() => widget.onSeries!(s)),
             ],
           ),
         ),
@@ -169,4 +182,11 @@ class _WeekListState extends State<WeekList> {
       ],
     );
   }
+
+  Widget _more(VoidCallback onPressed) => IconButton(
+    tooltip: l10n.more,
+    visualDensity: VisualDensity.compact,
+    onPressed: onPressed,
+    icon: const Icon(Icons.more_vert, color: QuandoColors.muted),
+  );
 }

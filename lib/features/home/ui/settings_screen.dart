@@ -18,6 +18,7 @@ import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
+import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -41,6 +42,7 @@ class SettingsScreen extends ConsumerWidget {
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
+          const _AccountCard(),
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.verified_outlined, color: QuandoColors.amber),
@@ -231,6 +233,7 @@ class SettingsScreen extends ConsumerWidget {
           OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
           const SizedBox(height: 24),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
+          const _VersionLine(),
         ],
       ),
     );
@@ -336,4 +339,252 @@ class SettingsScreen extends ConsumerWidget {
         );
     messenger.showSnackBar(SnackBar(content: Text(l10n.testAlarmIn1Set)));
   }
+}
+
+/// Your account: sign in with Google to keep alarms and settings the same
+/// on every device, see who you're signed in as, sign out.
+class _AccountCard extends ConsumerWidget {
+  const _AccountCard();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sync = ref.watch(syncProvider);
+    final notifier = ref.read(syncProvider.notifier);
+    if (!notifier.available) return const SizedBox.shrink();
+    final text = Theme.of(context).textTheme;
+    final on = sync.phase == SyncPhase.on;
+    final working = sync.phase == SyncPhase.working;
+    final who = sync.name?.isNotEmpty == true ? sync.name! : (sync.email ?? '');
+    final status = switch (sync.phase) {
+      SyncPhase.off => l10n.syncHint,
+      SyncPhase.working => l10n.syncWorking,
+      SyncPhase.on => l10n.syncOn(sync.email ?? ''),
+      SyncPhase.notAllowed => l10n.syncNotAllowed,
+      SyncPhase.failed => l10n.syncFailed,
+      SyncPhase.verify => l10n.emailCheckInbox(sync.email ?? ''),
+    };
+    return Padding(
+      padding: const EdgeInsets.only(top: 4, bottom: 12),
+      child: Material(
+        color: QuandoColors.surface,
+        borderRadius: const BorderRadius.all(Radius.circular(24)),
+        child: Padding(
+          padding: const EdgeInsets.all(16),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  CircleAvatar(
+                    radius: 24,
+                    backgroundColor: QuandoColors.raised,
+                    foregroundImage: on && sync.photo != null ? NetworkImage(sync.photo!) : null,
+                    child: on && who.isNotEmpty
+                        ? Text(who.characters.first.toUpperCase(), style: text.titleLarge)
+                        : const Icon(Icons.person_outline, color: QuandoColors.amber),
+                  ),
+                  const SizedBox(width: 14),
+                  Expanded(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(on && who.isNotEmpty ? who : l10n.syncTitle, style: text.titleMedium),
+                        const SizedBox(height: 2),
+                        Text(status, style: text.bodySmall),
+                      ],
+                    ),
+                  ),
+                  if (working)
+                    const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                ],
+              ),
+              if (!working) ...[
+                const SizedBox(height: 12),
+                if (on)
+                  OutlinedButton.icon(
+                    onPressed: notifier.signOut,
+                    icon: const Icon(Icons.logout, size: 18),
+                    label: Text(l10n.signOut),
+                  )
+                else if (sync.phase == SyncPhase.verify) ...[
+                  FilledButton(
+                    onPressed: () async {
+                      final ok = await notifier.confirmEmail();
+                      if (!ok && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailNotYet)));
+                      }
+                    },
+                    child: Text(l10n.emailConfirmed),
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () async {
+                          await notifier.resendConfirmation();
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                          }
+                        },
+                        child: Text(l10n.emailSendAgain),
+                      ),
+                      const Spacer(),
+                      TextButton(onPressed: notifier.signOut, child: Text(l10n.cancel)),
+                    ],
+                  ),
+                ] else ...[
+                  FilledButton.icon(
+                    onPressed: notifier.signIn,
+                    icon: const Icon(Icons.login, size: 18),
+                    label: Text(l10n.signInWithGoogle),
+                  ),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () => showDialog<void>(context: context, builder: (_) => const _EmailDialog()),
+                    icon: const Icon(Icons.mail_outline, size: 18),
+                    label: Text(l10n.signInWithEmail),
+                  ),
+                ],
+              ],
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Email and password: sign in, make an account, or reset the password.
+class _EmailDialog extends ConsumerStatefulWidget {
+  const _EmailDialog();
+
+  @override
+  ConsumerState<_EmailDialog> createState() => _EmailDialogState();
+}
+
+class _EmailDialogState extends ConsumerState<_EmailDialog> {
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  bool _create = false;
+  bool _busy = false;
+  String? _error;
+  String? _note;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _go() async {
+    setState(() {
+      _busy = true;
+      _error = null;
+      _note = null;
+    });
+    final error = await ref
+        .read(syncProvider.notifier)
+        .signInWithEmail(_email.text, _password.text, create: _create);
+    if (!mounted) return;
+    if (error == null) {
+      Navigator.pop(context);
+    } else {
+      setState(() {
+        _busy = false;
+        _error = error;
+      });
+    }
+  }
+
+  Future<void> _reset() async {
+    if (_email.text.trim().isEmpty) {
+      setState(() => _error = l10n.emailInvalid);
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+      _note = null;
+    });
+    final error = await ref.read(syncProvider.notifier).resetPassword(_email.text);
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _error = error;
+      _note = error == null ? l10n.passwordResetSent : null;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return AlertDialog(
+      title: Text(_create ? l10n.createAccount : l10n.signInWithEmail),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _email,
+              autofocus: true,
+              keyboardType: TextInputType.emailAddress,
+              autofillHints: const [AutofillHints.email],
+              decoration: InputDecoration(labelText: l10n.email),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              autofillHints: [_create ? AutofillHints.newPassword : AutofillHints.password],
+              decoration: InputDecoration(labelText: l10n.password),
+              onSubmitted: (_) => _go(),
+            ),
+            if (_error != null) ...[
+              const SizedBox(height: 10),
+              Text(_error!, style: text.bodySmall?.copyWith(color: QuandoColors.coral)),
+            ],
+            if (_note != null) ...[const SizedBox(height: 10), Text(_note!, style: text.bodySmall)],
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: _busy
+                      ? null
+                      : () => setState(() {
+                          _create = !_create;
+                          _error = null;
+                          _note = null;
+                        }),
+                  child: Text(_create ? l10n.haveAccount : l10n.createAccount),
+                ),
+                const Spacer(),
+                if (!_create) TextButton(onPressed: _busy ? null : _reset, child: Text(l10n.forgotPassword)),
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+        FilledButton(
+          onPressed: _busy ? null : _go,
+          child: _busy
+              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              : Text(_create ? l10n.createAccount : l10n.signIn),
+        ),
+      ],
+    );
+  }
+}
+
+class _VersionLine extends StatelessWidget {
+  const _VersionLine();
+
+  @override
+  Widget build(BuildContext context) => Padding(
+    padding: const EdgeInsets.symmetric(vertical: 16),
+    child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+  );
 }

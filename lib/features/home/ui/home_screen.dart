@@ -10,6 +10,8 @@ import '../../../app/widgets/brand.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../calendar/domain/calendar_rule.dart';
+import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../../app/edition.dart';
@@ -100,69 +102,190 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 
   /// Tapping one alarm in the week: skip it once, or change what set it.
-  Future<void> _alarmActions(ScheduledAlarm a) async {
-    final skipped = ref.read(skippedProvider).contains(a.id);
+  Future<void> _alarmActions(ScheduledAlarm a) => _actions([a]);
+
+  /// What set an alarm: one of your alarms, a preset, or a calendar rule.
+  _Source? _sourceOf(ScheduledAlarm a) {
+    final rid = a.ruleId.startsWith('gentle.') ? a.ruleId.substring(7) : a.ruleId;
+    if (rid.startsWith('user.')) {
+      final u = ref.read(userAlarmsProvider).where((u) => u.id == rid.substring(5)).firstOrNull;
+      return u == null ? null : _Source(rid, u.title, u.enabled, user: u);
+    }
+    if (rid.startsWith('preset.')) {
+      final p = ref.read(rulesProvider).where((r) => r.id == rid).firstOrNull;
+      return p == null ? null : _Source(rid, p.name, p.enabled, preset: p);
+    }
+    if (rid.startsWith('cal.')) {
+      final c = ref.read(calendarRulesProvider).where((r) => r.id == rid.split('.')[1]).firstOrNull;
+      return c == null ? null : _Source('cal.${c.id}', c.title, c.enabled, cal: c);
+    }
+    return null;
+  }
+
+  /// Everything you can do from the week list, for one alarm or a whole
+  /// row: skip, turn off, edit, duplicate, group, remove a time, delete.
+  /// A row can hold alarms from several rules; each gets its own actions.
+  Future<void> _actions(List<ScheduledAlarm> alarms) async {
+    final a = alarms.first;
+    final one = alarms.length == 1;
+    final skippedNow = ref.read(skippedProvider);
+    final allSkipped = alarms.every((x) => skippedNow.contains(x.id));
     final home = ref.read(homeZoneProvider);
     final at = inZone(a.at, home);
-    final rid = a.ruleId;
-    final (editLabel, editPath) = rid.startsWith('user.')
-        ? (l10n.editThisAlarm, '/alarm/${rid.substring(5)}')
-        : rid.startsWith('preset.')
-        ? (
-            l10n.editNamed(
-              ref.read(rulesProvider).where((r) => r.id == rid).firstOrNull?.name ?? l10n.preset,
-            ),
-            '/preset/$rid',
-          )
-        : rid.startsWith('cal.')
-        ? (l10n.editThisCalendarRule, '/calendar/rule/${rid.split('.')[1]}')
-        : (null, null);
+    final sources = <String, _Source>{for (final s in alarms.map(_sourceOf).nonNulls) s.key: s}.values
+        .toList();
+    final several = sources.length > 1;
+    // One time out of a preset's several, e.g. "2 hours before".
+    final p = one ? sources.firstOrNull?.preset : null;
+    final canDropTime =
+        p != null &&
+        !a.ruleId.startsWith('gentle.') &&
+        p.offsets().length > 1 &&
+        p.offsets().contains(a.offset);
+
     final choice = await showModalBottomSheet<String>(
       context: context,
       showDragHandle: true,
+      isScrollControlled: true,
       builder: (context) {
         final text = Theme.of(context).textTheme;
+        Widget item(String value, IconData icon, String title, {bool danger = false}) => ListTile(
+          leading: Icon(icon, color: danger ? QuandoColors.coral : null),
+          title: Text(title, style: danger ? const TextStyle(color: QuandoColors.coral) : null),
+          onTap: () => Navigator.pop(context, value),
+        );
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(8, 0, 8, 8),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('${dayLabel(at)} · ${hhmm(at)}', style: text.labelSmall),
-                      const SizedBox(height: 4),
-                      Text(a.title, style: text.headlineSmall),
-                      Text(a.body, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          one
+                              ? '${dayLabel(at)} · ${hhmm(at)}'
+                              : '${dayLabel(at)} · ${l10n.alarmCount(alarms.length)} · '
+                                    '${l10n.timeToTime(hhmm(at), hhmm(inZone(alarms.last.at, home)))}',
+                          style: text.labelSmall,
+                        ),
+                        const SizedBox(height: 4),
+                        Text(a.title, style: text.headlineSmall),
+                        if (one) Text(a.body, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+                      ],
+                    ),
+                  ),
+                  item(
+                    'skip',
+                    allSkipped ? Icons.alarm_on : Icons.alarm_off,
+                    one
+                        ? (allSkipped ? l10n.ringThisOneAfterAll : l10n.skipJustThisOne)
+                        : (allSkipped ? l10n.ringTheseAfterAll : l10n.skipTheseDay(alarms.length)),
+                  ),
+                  if (canDropTime)
+                    item('drop', Icons.timer_off_outlined, l10n.removeTimeFrom(a.body, p.name)),
+                  for (final (i, s) in sources.indexed) ...[
+                    if (several) ...[
+                      const Divider(indent: 16, endIndent: 16),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(16, 4, 16, 0),
+                        child: Text(s.name, style: text.labelSmall),
+                      ),
                     ],
-                  ),
-                ),
-                ListTile(
-                  leading: Icon(skipped ? Icons.alarm_on : Icons.alarm_off),
-                  title: Text(skipped ? l10n.ringThisOneAfterAll : l10n.skipJustThisOne),
-                  onTap: () => Navigator.pop(context, 'skip'),
-                ),
-                if (editPath != null)
-                  ListTile(
-                    leading: const Icon(Icons.edit_outlined),
-                    title: Text(editLabel!),
-                    onTap: () => Navigator.pop(context, 'edit'),
-                  ),
-              ],
+                    item(
+                      'toggle:$i',
+                      s.on ? Icons.toggle_off_outlined : Icons.toggle_on_outlined,
+                      s.on ? l10n.turnOffNamed(s.name) : l10n.turnOnNamed(s.name),
+                    ),
+                    item(
+                      'edit:$i',
+                      Icons.edit_outlined,
+                      s.user != null
+                          ? l10n.editThisAlarm
+                          : s.cal != null
+                          ? l10n.editThisCalendarRule
+                          : l10n.editNamed(s.name),
+                    ),
+                    if (s.user != null || s.cal != null) item('copy:$i', Icons.copy, l10n.duplicate),
+                    if (s.user case final u?)
+                      item(
+                        'group:$i',
+                        Icons.folder_outlined,
+                        u.group.isEmpty ? l10n.moveToGroup : l10n.inGroupMove(u.group),
+                      ),
+                    item('delete:$i', Icons.delete_outline, l10n.deleteNamed(s.name), danger: true),
+                  ],
+                ],
+              ),
             ),
           ),
         );
       },
     );
-    if (!mounted) return;
-    if (choice == 'skip') {
-      ref.read(skippedProvider.notifier).skip(a.id, !skipped);
-    } else if (choice == 'edit' && editPath != null) {
-      context.push(editPath);
+    if (!mounted || choice == null) return;
+    final [what, ...rest] = choice.split(':');
+    final s = rest.isEmpty ? null : sources[int.parse(rest.single)];
+    switch (what) {
+      case 'skip':
+        for (final x in alarms) {
+          ref.read(skippedProvider.notifier).skip(x.id, !allSkipped);
+        }
+      case 'drop':
+        final before = p!.offsets();
+        ref.read(rulesProvider.notifier).edit(p.id, (r) => r.withOffsets(before.where((d) => d != a.offset)));
+        _undo(
+          l10n.removedTimeFrom(a.body, p.name),
+          () => ref.read(rulesProvider.notifier).edit(p.id, (r) => r.withOffsets(before)),
+        );
+      case 'toggle':
+        s!.set(ref, !s.on);
+        if (s.on) _undo(l10n.turnedOffNamed(s.name), () => s.set(ref, true));
+      case 'edit':
+        context.push(s!.editPath);
+      case 'copy':
+        if (s!.user case final u?) _duplicate(u);
+        if (s.cal case final c?) {
+          final copy = CalendarRule.fromJson({
+            ...c.toJson(),
+            'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+          });
+          ref.read(calendarRulesProvider.notifier).save(copy);
+          _undo(
+            l10n.duplicatedNamed(c.title),
+            () => ref.read(calendarRulesProvider.notifier).delete(copy.id),
+          );
+        }
+      case 'group':
+        final u = s!.user!;
+        final g = await pickGroup(
+          context,
+          groups: ref.read(userAlarmsProvider.notifier).groups,
+          current: u.group,
+        );
+        if (g == null || g == u.group || !mounted) return;
+        ref.read(userAlarmsProvider.notifier).save(u.copyWith(group: g));
+        _undo(
+          g.isEmpty ? l10n.noGroup : l10n.movedToGroup(g),
+          () => ref.read(userAlarmsProvider.notifier).save(u),
+        );
+      case 'delete':
+        if (s!.user case final u?) _delete(u);
+        if (s.cal case final c?) {
+          ref.read(calendarRulesProvider.notifier).delete(c.id);
+          _undo(l10n.deletedNamed(c.title), () => ref.read(calendarRulesProvider.notifier).save(c));
+        }
+        if (s.preset case final r?) {
+          ref.read(rulesProvider.notifier).hide(r.id);
+          _undo(l10n.deletedNamed(r.name), () {
+            ref.read(rulesProvider.notifier).restore(r.id);
+            if (!r.enabled) ref.read(rulesProvider.notifier).toggle(r.id, false);
+          });
+        }
     }
   }
 
@@ -522,6 +645,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   zone: home,
                   skipped: ref.watch(skippedProvider),
                   onTap: _alarmActions,
+                  onSeries: (s) => _actions(s.alarms),
                 ),
 
                 // ---- World clocks ----
@@ -652,5 +776,29 @@ class _AlarmCard extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+/// One thing that sets alarms, as the week list's actions see it.
+class _Source {
+  const _Source(this.key, this.name, this.on, {this.user, this.preset, this.cal});
+
+  final String key;
+  final String name;
+  final bool on;
+  final UserAlarm? user;
+  final AlarmRule? preset;
+  final CalendarRule? cal;
+
+  String get editPath => user != null
+      ? '/alarm/${user!.id}'
+      : cal != null
+      ? '/calendar/rule/${cal!.id}'
+      : '/preset/${preset!.id}';
+
+  void set(WidgetRef ref, bool v) {
+    if (user != null) ref.read(userAlarmsProvider.notifier).toggle(user!.id, v);
+    if (preset != null) ref.read(rulesProvider.notifier).toggle(preset!.id, v);
+    if (cal != null) ref.read(calendarRulesProvider.notifier).toggle(cal!.id, v);
   }
 }

@@ -1,0 +1,22 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Only the configured Firebase Authentication owner may access their
+    // own user document. Email verification is also required.
+    function isAuthorizedOwner() {
+      return request.auth != null
+        && request.auth.uid == 'vBQiwi6r45Nxm2BShmtwaJsN5HZ2'
+        && request.auth.token.email_verified == true;
+    }
+
+    match /users/{userId} {
+      allow read, write: if isAuthorizedOwner() && request.auth.uid == userId;
+    }
+
+    // Explicit default deny for every other collection and document.
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

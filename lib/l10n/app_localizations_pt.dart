@@ -2031,6 +2031,151 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get syncTitle => 'Sincronizar meus aparelhos';
+
+  @override
+  String get syncHint =>
+      'Entre com o Google para manter alarmes e ajustes iguais em todos os seus aparelhos.';
+
+  @override
+  String syncOn(String email) {
+    return 'Ativada · $email';
+  }
+
+  @override
+  String get syncWorking => 'Conectando…';
+
+  @override
+  String get syncNotAllowed =>
+      'Esta conta ainda não pode sincronizar. Se entrou com e-mail, confirme-o primeiro.';
+
+  @override
+  String get syncFailed => 'Não deu para conectar. Toque para tentar de novo.';
+
+  @override
+  String get syncStop => 'Parar de sincronizar';
+
+  @override
+  String get syncNotSetUp => 'A sincronização ainda não está configurada nesta versão.';
+
+  @override
+  String get ringTheseAfterAll => 'Tocar estes, afinal';
+
+  @override
+  String skipTheseDay(int n) {
+    return 'Pular estes $n neste dia';
+  }
+
+  @override
+  String turnOffNamed(String name) {
+    return 'Desligar “$name”';
+  }
+
+  @override
+  String turnOnNamed(String name) {
+    return 'Ligar “$name”';
+  }
+
+  @override
+  String turnedOffNamed(String name) {
+    return '“$name” desligado';
+  }
+
+  @override
+  String removeTimeFrom(String time, String name) {
+    return 'Tirar “$time” de “$name”';
+  }
+
+  @override
+  String removedTimeFrom(String time, String name) {
+    return '“$time” tirado de “$name”';
+  }
+
+  @override
+  String get moveToGroup => 'Mover para um grupo';
+
+  @override
+  String inGroupMove(String group) {
+    return 'Em “$group”, mover';
+  }
+
+  @override
+  String movedToGroup(String group) {
+    return 'Movido para “$group”';
+  }
+
+  @override
+  String deleteNamed(String name) {
+    return 'Apagar “$name”';
+  }
+
+  @override
+  String get signInWithGoogle => 'Entrar com o Google';
+
+  @override
+  String get signOut => 'Sair';
+
+  @override
+  String get signInWithEmail => 'Entrar com e-mail';
+
+  @override
+  String get signIn => 'Entrar';
+
+  @override
+  String get createAccount => 'Criar conta';
+
+  @override
+  String get haveAccount => 'Já tenho conta';
+
+  @override
+  String get forgotPassword => 'Esqueci a senha';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get password => 'Senha';
+
+  @override
+  String get passwordResetSent => 'Enviamos um link para você criar uma nova senha.';
+
+  @override
+  String emailCheckInbox(String email) {
+    return 'Enviamos um link para $email. Abra e depois volte e toque em “Já confirmei”.';
+  }
+
+  @override
+  String get emailConfirmed => 'Já confirmei';
+
+  @override
+  String get emailNotYet => 'Ainda não confirmado. Abra o link do e-mail primeiro.';
+
+  @override
+  String get emailSendAgain => 'Reenviar o e-mail';
+
+  @override
+  String get emailSentAgain => 'Enviado. Veja a caixa de entrada e o spam.';
+
+  @override
+  String get emailInvalid => 'Isso não parece um endereço de e-mail.';
+
+  @override
+  String get emailWrong => 'E-mail ou senha incorretos.';
+
+  @override
+  String get emailInUse =>
+      'Já existe uma conta com este e-mail. Entre com ela, ou use o Google se ela foi criada pelo Google.';
+
+  @override
+  String get passwordWeak => 'Escolha uma senha com pelo menos 6 caracteres.';
+
+  @override
+  String get emailNotSwitchedOn => 'O login por e-mail ainda não está ativado.';
+
+  @override
+  String get tooManyTries => 'Tentativas demais. Espere alguns minutos.';
+
+  @override
   String get spotifyLibrary => 'Spotify';
 
   @override

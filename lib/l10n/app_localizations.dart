@@ -3670,6 +3670,246 @@ abstract class AppLocalizations {
   /// **'powered by {name}'**
   String poweredBy(String name);
 
+  /// No description provided for @syncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync my devices'**
+  String get syncTitle;
+
+  /// No description provided for @syncHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to keep alarms and settings the same on all your devices.'**
+  String get syncHint;
+
+  /// No description provided for @syncOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On · {email}'**
+  String syncOn(String email);
+
+  /// No description provided for @syncWorking.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get syncWorking;
+
+  /// No description provided for @syncNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This account can\'t sync yet. If you signed in with email, confirm it first.'**
+  String get syncNotAllowed;
+
+  /// No description provided for @syncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t connect. Tap to try again.'**
+  String get syncFailed;
+
+  /// No description provided for @syncStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop syncing'**
+  String get syncStop;
+
+  /// No description provided for @syncNotSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync isn\'t set up in this build yet.'**
+  String get syncNotSetUp;
+
+  /// No description provided for @ringTheseAfterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring these after all'**
+  String get ringTheseAfterAll;
+
+  /// No description provided for @skipTheseDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip these {n} today'**
+  String skipTheseDay(int n);
+
+  /// No description provided for @turnOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off “{name}”'**
+  String turnOffNamed(String name);
+
+  /// No description provided for @turnOnNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on “{name}”'**
+  String turnOnNamed(String name);
+
+  /// No description provided for @turnedOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off “{name}”'**
+  String turnedOffNamed(String name);
+
+  /// No description provided for @removeTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove “{time}” from “{name}”'**
+  String removeTimeFrom(String time, String name);
+
+  /// No description provided for @removedTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed “{time}” from “{name}”'**
+  String removedTimeFrom(String time, String name);
+
+  /// No description provided for @moveToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to a group'**
+  String get moveToGroup;
+
+  /// No description provided for @inGroupMove.
+  ///
+  /// In en, this message translates to:
+  /// **'In “{group}”, move'**
+  String inGroupMove(String group);
+
+  /// No description provided for @movedToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved to “{group}”'**
+  String movedToGroup(String group);
+
+  /// No description provided for @deleteNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete “{name}”'**
+  String deleteNamed(String name);
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
+
+  /// No description provided for @signInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with email'**
+  String get signInWithEmail;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'I have an account'**
+  String get haveAccount;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @passwordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent you a link to choose a new password.'**
+  String get passwordResetSent;
+
+  /// No description provided for @emailCheckInbox.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {email}. Open it, then come back and tap “I’ve confirmed”.'**
+  String emailCheckInbox(String email);
+
+  /// No description provided for @emailConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ve confirmed'**
+  String get emailConfirmed;
+
+  /// No description provided for @emailNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not confirmed yet. Open the link in the email first.'**
+  String get emailNotYet;
+
+  /// No description provided for @emailSendAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the email again'**
+  String get emailSendAgain;
+
+  /// No description provided for @emailSentAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent. Check your inbox and spam.'**
+  String get emailSentAgain;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That doesn’t look like an email address.'**
+  String get emailInvalid;
+
+  /// No description provided for @emailWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password.'**
+  String get emailWrong;
+
+  /// No description provided for @emailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.'**
+  String get emailInUse;
+
+  /// No description provided for @passwordWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a password of at least 6 characters.'**
+  String get passwordWeak;
+
+  /// No description provided for @emailNotSwitchedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Email sign-in isn’t switched on yet.'**
+  String get emailNotSwitchedOn;
+
+  /// No description provided for @tooManyTries.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Wait a few minutes.'**
+  String get tooManyTries;
+
   /// No description provided for @spotifyLibrary.
   ///
   /// In en, this message translates to:

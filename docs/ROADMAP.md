@@ -3,6 +3,20 @@
 Milestones are ordered by dependency. Basic alarms must remain independent of network services and paid providers.
 
 ## M0 — Repository and architecture audit
+
+**Status: audit and code review substantially complete; production sign-off remains gated.**
+
+- [x] Audit the current app, open pull requests, platform setup, and CI workflow.
+- [x] Document provider boundaries and the rule that local alarms cannot depend on network services.
+- [x] Fix the sync engine's premature local acknowledgement of failed uploads.
+- [x] Serialize sync operations and use Firestore transaction revisions instead of device wall clocks.
+- [x] Add fail-closed Firestore rules and document the owner-only deployment procedure.
+- [x] Exclude the full integrations preference from cloud sync because it contains Pushover credentials and potentially secret webhook URLs.
+- [ ] Confirm the owner Firebase Auth UID, replace the rules placeholder, deploy the rules, and verify the deployed policy.
+- [ ] Get green CI for the revised sync branch.
+- [ ] Reconcile PR #5 with the updated sync/Google OAuth base after PR #4 is reviewed.
+- [ ] Move Pushover credentials and webhook URLs from ordinary SharedPreferences into platform secure storage before production release.
+
 - Audit the app, open pull requests, platform behavior, and tests.
 - Confirm provider boundaries and document limitations.
 - Resolve integration conflicts before new feature work.
