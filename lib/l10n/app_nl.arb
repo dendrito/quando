@@ -589,5 +589,13 @@
   "quoteNearMeHint": "Dichters en dagen van waar je bent, op basis van je tijdzone en sjabbatstad",
   "quoteSiddur": "Siddoer (gebedenboek)",
   "weeklyParasha": "Parasja {name}",
-  "poweredBy": "mogelijk gemaakt door {name}"
+  "poweredBy": "mogelijk gemaakt door {name}",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

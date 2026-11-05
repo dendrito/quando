@@ -2020,4 +2020,30 @@ class AppLocalizationsHe extends AppLocalizations {
   String poweredBy(String name) {
     return 'מבית $name';
   }
+
+  @override
+  String get syncTitle => 'סנכרון המכשירים שלי';
+
+  @override
+  String get syncHint => 'התחברו עם Google כדי לשמור על אותן התראות והגדרות בכל המכשירים.';
+
+  @override
+  String syncOn(String email) {
+    return 'פעיל · $email';
+  }
+
+  @override
+  String get syncWorking => 'מתחבר…';
+
+  @override
+  String get syncNotAllowed => 'חשבון Google זה לא יכול לסנכרן.';
+
+  @override
+  String get syncFailed => 'החיבור נכשל. הקישו לנסות שוב.';
+
+  @override
+  String get syncStop => 'הפסקת סנכרון';
+
+  @override
+  String get syncNotSetUp => 'הסנכרון עוד לא מוגדר בגרסה זו.';
 }

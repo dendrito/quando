@@ -589,5 +589,13 @@
   "quoteNearMeHint": "タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日",
   "quoteSiddur": "シドゥール（祈祷書）",
   "weeklyParasha": "今週のパラシャ {name}",
-  "poweredBy": "{name} 搭載"
+  "poweredBy": "{name} 搭載",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

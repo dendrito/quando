@@ -2029,4 +2029,31 @@ class AppLocalizationsPt extends AppLocalizations {
   String poweredBy(String name) {
     return 'com tecnologia $name';
   }
+
+  @override
+  String get syncTitle => 'Sincronizar meus aparelhos';
+
+  @override
+  String get syncHint =>
+      'Entre com o Google para manter alarmes e ajustes iguais em todos os seus aparelhos.';
+
+  @override
+  String syncOn(String email) {
+    return 'Ativada · $email';
+  }
+
+  @override
+  String get syncWorking => 'Conectando…';
+
+  @override
+  String get syncNotAllowed => 'Esta conta Google não pode sincronizar.';
+
+  @override
+  String get syncFailed => 'Não deu para conectar. Toque para tentar de novo.';
+
+  @override
+  String get syncStop => 'Parar de sincronizar';
+
+  @override
+  String get syncNotSetUp => 'A sincronização ainda não está configurada nesta versão.';
 }

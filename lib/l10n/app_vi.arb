@@ -589,5 +589,13 @@
   "quoteNearMeHint": "Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat",
   "quoteSiddur": "Siddur (sách kinh)",
   "weeklyParasha": "Parashat {name}",
-  "poweredBy": "chạy trên {name}"
+  "poweredBy": "chạy trên {name}",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

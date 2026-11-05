@@ -589,5 +589,13 @@
   "quoteNearMeHint": "Поети й дати вашого місця — за часовим поясом і містом для шабату",
   "quoteSiddur": "Сидур (молитовник)",
   "weeklyParasha": "Тижнева глава {name}",
-  "poweredBy": "на основі {name}"
+  "poweredBy": "на основі {name}",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

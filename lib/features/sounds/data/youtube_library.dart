@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
+import '../../sync/sync_config.dart';
 import 'spotify_library.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -23,9 +24,10 @@ class YouTubeAccount {
 
   static var _ready = false;
 
-  static Future<void> _init() async {
+  /// Google sign-in is set up once, for YouTube and for sync alike.
+  static Future<void> init() async {
     if (_ready) return;
-    await GoogleSignIn.instance.initialize(serverClientId: serverClientId);
+    await GoogleSignIn.instance.initialize(clientId: SyncConfig.iosClient, serverClientId: serverClientId);
     _ready = true;
   }
 
@@ -33,7 +35,7 @@ class YouTubeAccount {
   /// permission (once). null when you said no or it failed.
   static Future<String?> token({bool prompt = true}) async {
     try {
-      await _init();
+      await init();
       final account =
           await GoogleSignIn.instance.attemptLightweightAuthentication() ??
           (prompt ? await GoogleSignIn.instance.authenticate(scopeHint: const [scope]) : null);
@@ -50,7 +52,7 @@ class YouTubeAccount {
 
   static Future<void> signOut() async {
     try {
-      await _init();
+      await init();
       await GoogleSignIn.instance.disconnect();
     } catch (_) {}
   }

@@ -2066,4 +2066,30 @@ class AppLocalizationsUk extends AppLocalizations {
   String poweredBy(String name) {
     return 'на основі $name';
   }
+
+  @override
+  String get syncTitle => 'Sync my devices';
+
+  @override
+  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+
+  @override
+  String syncOn(String email) {
+    return 'On · $email';
+  }
+
+  @override
+  String get syncWorking => 'Connecting…';
+
+  @override
+  String get syncNotAllowed => 'This Google account can\'t sync.';
+
+  @override
+  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+
+  @override
+  String get syncStop => 'Stop syncing';
+
+  @override
+  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
 }

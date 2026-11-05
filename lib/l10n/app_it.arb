@@ -589,5 +589,13 @@
   "quoteNearMeHint": "Poeti e date del luogo in cui sei, dal fuso orario e dalla città dello Shabbat",
   "quoteSiddur": "Siddur (libro di preghiere)",
   "weeklyParasha": "Parashà {name}",
-  "poweredBy": "realizzato con {name}"
+  "poweredBy": "realizzato con {name}",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

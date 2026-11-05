@@ -589,5 +589,13 @@
   "quoteNearMeHint": "根据你的时区和安息日城市，显示当地的诗人与节日",
   "quoteSiddur": "祈祷书 (Siddur)",
   "weeklyParasha": "本周经文 {name}",
-  "poweredBy": "由 {name} 驱动"
+  "poweredBy": "由 {name} 驱动",
+  "syncTitle": "Sync my devices",
+  "syncHint": "Sign in with Google to keep alarms and settings the same on all your devices.",
+  "syncOn": "On · {email}",
+  "syncWorking": "Connecting…",
+  "syncNotAllowed": "This Google account can't sync.",
+  "syncFailed": "Couldn't connect. Tap to try again.",
+  "syncStop": "Stop syncing",
+  "syncNotSetUp": "Sync isn't set up in this build yet."
 }

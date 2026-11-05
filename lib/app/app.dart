@@ -20,6 +20,7 @@ import '../features/ringing/ring_payload.dart';
 import '../features/ringing/ring_screen.dart';
 import '../features/rules/ui/preset_screen.dart';
 import '../features/shabbat/ui/shabbat_screen.dart';
+import '../features/sync/sync_service.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import '../features/ready/ready_screen.dart';
 import '../l10n/l10n.dart';
@@ -83,6 +84,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
+      // Signed in to sync: pick up where it left off.
+      ref.read(syncProvider);
       _start();
     }
   }

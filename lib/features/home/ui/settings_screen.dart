@@ -18,6 +18,7 @@ import '../../settings/domain/alarm_options.dart';
 import '../../shabbat/domain/place.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
+import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -231,6 +232,8 @@ class SettingsScreen extends ConsumerWidget {
           OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
           const SizedBox(height: 24),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
+          const _SyncRow(),
+          const _VersionLine(),
         ],
       ),
     );
@@ -336,4 +339,66 @@ class SettingsScreen extends ConsumerWidget {
         );
     messenger.showSnackBar(SnackBar(content: Text(l10n.testAlarmIn1Set)));
   }
+}
+
+/// Keeps alarms and settings the same on every device you sign in on.
+/// Hidden until the version line is tapped 7 times.
+class _SyncRow extends ConsumerWidget {
+  const _SyncRow();
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final sync = ref.watch(syncProvider);
+    if (!sync.revealed) return const SizedBox.shrink();
+    final notifier = ref.read(syncProvider.notifier);
+    final subtitle = !notifier.available
+        ? l10n.syncNotSetUp
+        : switch (sync.phase) {
+            SyncPhase.off => l10n.syncHint,
+            SyncPhase.working => l10n.syncWorking,
+            SyncPhase.on => l10n.syncOn(sync.email ?? ''),
+            SyncPhase.notAllowed => l10n.syncNotAllowed,
+            SyncPhase.failed => l10n.syncFailed,
+          };
+    return Padding(
+      padding: const EdgeInsets.only(top: 16),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.sync, color: QuandoColors.amber),
+        title: Text(l10n.syncTitle),
+        subtitle: Text(subtitle),
+        trailing: sync.phase == SyncPhase.on
+            ? TextButton(onPressed: notifier.signOut, child: Text(l10n.syncStop))
+            : sync.phase == SyncPhase.working
+            ? const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2))
+            : null,
+        onTap: notifier.available && sync.phase != SyncPhase.on && sync.phase != SyncPhase.working
+            ? notifier.signIn
+            : null,
+      ),
+    );
+  }
+}
+
+class _VersionLine extends ConsumerStatefulWidget {
+  const _VersionLine();
+
+  @override
+  ConsumerState<_VersionLine> createState() => _VersionLineState();
+}
+
+class _VersionLineState extends ConsumerState<_VersionLine> {
+  int _taps = 0;
+
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+    behavior: HitTestBehavior.opaque,
+    onTap: () {
+      if (++_taps == 7) ref.read(syncProvider.notifier).reveal();
+    },
+    child: Padding(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+    ),
+  );
 }

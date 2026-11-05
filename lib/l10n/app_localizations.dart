@@ -3669,6 +3669,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'powered by {name}'**
   String poweredBy(String name);
+
+  /// No description provided for @syncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync my devices'**
+  String get syncTitle;
+
+  /// No description provided for @syncHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to keep alarms and settings the same on all your devices.'**
+  String get syncHint;
+
+  /// No description provided for @syncOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On · {email}'**
+  String syncOn(String email);
+
+  /// No description provided for @syncWorking.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get syncWorking;
+
+  /// No description provided for @syncNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This Google account can\'t sync.'**
+  String get syncNotAllowed;
+
+  /// No description provided for @syncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t connect. Tap to try again.'**
+  String get syncFailed;
+
+  /// No description provided for @syncStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop syncing'**
+  String get syncStop;
+
+  /// No description provided for @syncNotSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync isn\'t set up in this build yet.'**
+  String get syncNotSetUp;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
