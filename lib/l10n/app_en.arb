@@ -1332,8 +1332,90 @@
     }
   },
   "syncWorking": "Connecting…",
-  "syncNotAllowed": "This Google account can't sync.",
+  "syncNotAllowed": "Sync is invite-only for now, and this Google account isn't on the list.",
   "syncFailed": "Couldn't connect. Tap to try again.",
   "syncStop": "Stop syncing",
-  "syncNotSetUp": "Sync isn't set up in this build yet."
+  "syncNotSetUp": "Sync isn't set up in this build yet.",
+  "ringTheseAfterAll": "Ring these after all",
+  "skipTheseDay": "Skip these {n} today",
+  "@skipTheseDay": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "turnOffNamed": "Turn off “{name}”",
+  "@turnOffNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "turnOnNamed": "Turn on “{name}”",
+  "@turnOnNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "turnedOffNamed": "Turned off “{name}”",
+  "@turnedOffNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removeTimeFrom": "Remove “{time}” from “{name}”",
+  "@removeTimeFrom": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "removedTimeFrom": "Removed “{time}” from “{name}”",
+  "@removedTimeFrom": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "moveToGroup": "Move to a group",
+  "inGroupMove": "In “{group}”, move",
+  "@inGroupMove": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "movedToGroup": "Moved to “{group}”",
+  "@movedToGroup": {
+    "placeholders": {
+      "group": {
+        "type": "String"
+      }
+    }
+  },
+  "deleteNamed": "Delete “{name}”",
+  "@deleteNamed": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "signInWithGoogle": "Sign in with Google",
+  "signOut": "Sign out"
 }

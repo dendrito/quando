@@ -3697,7 +3697,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncNotAllowed.
   ///
   /// In en, this message translates to:
-  /// **'This Google account can\'t sync.'**
+  /// **'Sync is invite-only for now, and this Google account isn\'t on the list.'**
   String get syncNotAllowed;
 
   /// No description provided for @syncFailed.
@@ -3717,6 +3717,84 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sync isn\'t set up in this build yet.'**
   String get syncNotSetUp;
+
+  /// No description provided for @ringTheseAfterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring these after all'**
+  String get ringTheseAfterAll;
+
+  /// No description provided for @skipTheseDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip these {n} today'**
+  String skipTheseDay(int n);
+
+  /// No description provided for @turnOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off “{name}”'**
+  String turnOffNamed(String name);
+
+  /// No description provided for @turnOnNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on “{name}”'**
+  String turnOnNamed(String name);
+
+  /// No description provided for @turnedOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off “{name}”'**
+  String turnedOffNamed(String name);
+
+  /// No description provided for @removeTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove “{time}” from “{name}”'**
+  String removeTimeFrom(String time, String name);
+
+  /// No description provided for @removedTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed “{time}” from “{name}”'**
+  String removedTimeFrom(String time, String name);
+
+  /// No description provided for @moveToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to a group'**
+  String get moveToGroup;
+
+  /// No description provided for @inGroupMove.
+  ///
+  /// In en, this message translates to:
+  /// **'In “{group}”, move'**
+  String inGroupMove(String group);
+
+  /// No description provided for @movedToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved to “{group}”'**
+  String movedToGroup(String group);
+
+  /// No description provided for @deleteNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete “{name}”'**
+  String deleteNamed(String name);
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

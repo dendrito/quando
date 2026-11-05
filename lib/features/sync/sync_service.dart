@@ -37,15 +37,25 @@ class FirestoreRemote implements SyncRemote {
 enum SyncPhase { off, working, on, notAllowed, failed }
 
 class SyncStatus {
-  const SyncStatus({this.revealed = false, this.phase = SyncPhase.off, this.email});
+  const SyncStatus({this.revealed = false, this.phase = SyncPhase.off, this.email, this.name, this.photo});
 
-  /// The Settings row shows only after tapping the version 7 times.
+  /// Kept for older builds; the account card now always shows.
   final bool revealed;
   final SyncPhase phase;
   final String? email;
 
-  SyncStatus copyWith({bool? revealed, SyncPhase? phase, String? email}) =>
-      SyncStatus(revealed: revealed ?? this.revealed, phase: phase ?? this.phase, email: email ?? this.email);
+  /// The Google account's name and picture, for the account card.
+  final String? name;
+  final String? photo;
+
+  SyncStatus copyWith({bool? revealed, SyncPhase? phase, String? email, String? name, String? photo}) =>
+      SyncStatus(
+        revealed: revealed ?? this.revealed,
+        phase: phase ?? this.phase,
+        email: email ?? this.email,
+        name: name ?? this.name,
+        photo: photo ?? this.photo,
+      );
 }
 
 /// Signs in with Google and keeps settings in step while signed in.
@@ -60,7 +70,13 @@ class SyncNotifier extends Notifier<SyncStatus> {
     final revealed = prefs.getBool('sync.revealed') ?? false;
     if (SyncConfig.ready && (prefs.getBool('sync.on') ?? false)) {
       Future.microtask(_resume);
-      return SyncStatus(revealed: revealed, phase: SyncPhase.working, email: prefs.getString('sync.email'));
+      return SyncStatus(
+        revealed: revealed,
+        phase: SyncPhase.working,
+        email: prefs.getString('sync.email'),
+        name: prefs.getString('sync.name'),
+        photo: prefs.getString('sync.photo'),
+      );
     }
     return SyncStatus(revealed: revealed);
   }
@@ -137,7 +153,14 @@ class SyncNotifier extends Notifier<SyncStatus> {
     _engine = SyncEngine(prefs, FirestoreRemote(user.uid), device: device, onApplied: _reload)..start();
     await prefs.setBool('sync.on', true);
     if (user.email != null) await prefs.setString('sync.email', user.email!);
-    state = state.copyWith(phase: SyncPhase.on, email: user.email);
+    if (user.displayName != null) await prefs.setString('sync.name', user.displayName!);
+    if (user.photoURL != null) await prefs.setString('sync.photo', user.photoURL!);
+    state = state.copyWith(
+      phase: SyncPhase.on,
+      email: user.email,
+      name: user.displayName,
+      photo: user.photoURL,
+    );
   }
 
   Future<void> signOut() async {
@@ -145,7 +168,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
     _engine = null;
     final prefs = ref.read(prefsProvider);
     await prefs.setBool('sync.on', false);
-    for (final k in ['sync.last', 'sync.stamps', 'sync.email']) {
+    for (final k in ['sync.last', 'sync.stamps', 'sync.email', 'sync.name', 'sync.photo']) {
       await prefs.remove(k);
     }
     try {

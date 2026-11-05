@@ -2032,7 +2032,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get syncWorking => 'Connecting…';
 
   @override
-  String get syncNotAllowed => 'This Google account can\'t sync.';
+  String get syncNotAllowed => 'Sync is invite-only for now, and this Google account isn\'t on the list.';
 
   @override
   String get syncFailed => 'Couldn\'t connect. Tap to try again.';
@@ -2042,4 +2042,61 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+
+  @override
+  String get ringTheseAfterAll => 'Ring these after all';
+
+  @override
+  String skipTheseDay(int n) {
+    return 'Skip these $n today';
+  }
+
+  @override
+  String turnOffNamed(String name) {
+    return 'Turn off “$name”';
+  }
+
+  @override
+  String turnOnNamed(String name) {
+    return 'Turn on “$name”';
+  }
+
+  @override
+  String turnedOffNamed(String name) {
+    return 'Turned off “$name”';
+  }
+
+  @override
+  String removeTimeFrom(String time, String name) {
+    return 'Remove “$time” from “$name”';
+  }
+
+  @override
+  String removedTimeFrom(String time, String name) {
+    return 'Removed “$time” from “$name”';
+  }
+
+  @override
+  String get moveToGroup => 'Move to a group';
+
+  @override
+  String inGroupMove(String group) {
+    return 'In “$group”, move';
+  }
+
+  @override
+  String movedToGroup(String group) {
+    return 'Moved to “$group”';
+  }
+
+  @override
+  String deleteNamed(String name) {
+    return 'Delete “$name”';
+  }
+
+  @override
+  String get signInWithGoogle => 'Sign in with Google';
+
+  @override
+  String get signOut => 'Sign out';
 }

@@ -2036,7 +2036,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get syncWorking => 'מתחבר…';
 
   @override
-  String get syncNotAllowed => 'חשבון Google זה לא יכול לסנכרן.';
+  String get syncNotAllowed => 'בינתיים הסנכרון בהזמנה בלבד, וחשבון Google הזה לא ברשימה.';
 
   @override
   String get syncFailed => 'החיבור נכשל. הקישו לנסות שוב.';
@@ -2046,4 +2046,61 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get syncNotSetUp => 'הסנכרון עוד לא מוגדר בגרסה זו.';
+
+  @override
+  String get ringTheseAfterAll => 'שיצלצלו בכל זאת';
+
+  @override
+  String skipTheseDay(int n) {
+    return 'לדלג על $n אלה ביום הזה';
+  }
+
+  @override
+  String turnOffNamed(String name) {
+    return 'לכבות את “$name”';
+  }
+
+  @override
+  String turnOnNamed(String name) {
+    return 'להפעיל את “$name”';
+  }
+
+  @override
+  String turnedOffNamed(String name) {
+    return '“$name” כובה';
+  }
+
+  @override
+  String removeTimeFrom(String time, String name) {
+    return 'להסיר את “$time” מ“$name”';
+  }
+
+  @override
+  String removedTimeFrom(String time, String name) {
+    return '“$time” הוסר מ“$name”';
+  }
+
+  @override
+  String get moveToGroup => 'להעביר לקבוצה';
+
+  @override
+  String inGroupMove(String group) {
+    return 'ב“$group”, להעביר';
+  }
+
+  @override
+  String movedToGroup(String group) {
+    return 'הועבר ל“$group”';
+  }
+
+  @override
+  String deleteNamed(String name) {
+    return 'למחוק את “$name”';
+  }
+
+  @override
+  String get signInWithGoogle => 'כניסה עם Google';
+
+  @override
+  String get signOut => 'יציאה';
 }

@@ -594,8 +594,21 @@
   "syncHint": "Entre com o Google para manter alarmes e ajustes iguais em todos os seus aparelhos.",
   "syncOn": "Ativada · {email}",
   "syncWorking": "Conectando…",
-  "syncNotAllowed": "Esta conta Google não pode sincronizar.",
+  "syncNotAllowed": "Por enquanto a sincronização é só para convidados, e esta conta Google não está na lista.",
   "syncFailed": "Não deu para conectar. Toque para tentar de novo.",
   "syncStop": "Parar de sincronizar",
-  "syncNotSetUp": "A sincronização ainda não está configurada nesta versão."
+  "syncNotSetUp": "A sincronização ainda não está configurada nesta versão.",
+  "ringTheseAfterAll": "Tocar estes, afinal",
+  "skipTheseDay": "Pular estes {n} neste dia",
+  "turnOffNamed": "Desligar “{name}”",
+  "turnOnNamed": "Ligar “{name}”",
+  "turnedOffNamed": "“{name}” desligado",
+  "removeTimeFrom": "Tirar “{time}” de “{name}”",
+  "removedTimeFrom": "“{time}” tirado de “{name}”",
+  "moveToGroup": "Mover para um grupo",
+  "inGroupMove": "Em “{group}”, mover",
+  "movedToGroup": "Movido para “{group}”",
+  "deleteNamed": "Apagar “{name}”",
+  "signInWithGoogle": "Entrar com o Google",
+  "signOut": "Sair"
 }

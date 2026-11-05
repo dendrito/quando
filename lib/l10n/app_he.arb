@@ -594,8 +594,21 @@
   "syncHint": "התחברו עם Google כדי לשמור על אותן התראות והגדרות בכל המכשירים.",
   "syncOn": "פעיל · {email}",
   "syncWorking": "מתחבר…",
-  "syncNotAllowed": "חשבון Google זה לא יכול לסנכרן.",
+  "syncNotAllowed": "בינתיים הסנכרון בהזמנה בלבד, וחשבון Google הזה לא ברשימה.",
   "syncFailed": "החיבור נכשל. הקישו לנסות שוב.",
   "syncStop": "הפסקת סנכרון",
-  "syncNotSetUp": "הסנכרון עוד לא מוגדר בגרסה זו."
+  "syncNotSetUp": "הסנכרון עוד לא מוגדר בגרסה זו.",
+  "ringTheseAfterAll": "שיצלצלו בכל זאת",
+  "skipTheseDay": "לדלג על {n} אלה ביום הזה",
+  "turnOffNamed": "לכבות את “{name}”",
+  "turnOnNamed": "להפעיל את “{name}”",
+  "turnedOffNamed": "“{name}” כובה",
+  "removeTimeFrom": "להסיר את “{time}” מ“{name}”",
+  "removedTimeFrom": "“{time}” הוסר מ“{name}”",
+  "moveToGroup": "להעביר לקבוצה",
+  "inGroupMove": "ב“{group}”, להעביר",
+  "movedToGroup": "הועבר ל“{group}”",
+  "deleteNamed": "למחוק את “{name}”",
+  "signInWithGoogle": "כניסה עם Google",
+  "signOut": "יציאה"
 }

@@ -597,5 +597,18 @@
   "syncNotAllowed": "This Google account can't sync.",
   "syncFailed": "Couldn't connect. Tap to try again.",
   "syncStop": "Stop syncing",
-  "syncNotSetUp": "Sync isn't set up in this build yet."
+  "syncNotSetUp": "Sync isn't set up in this build yet.",
+  "ringTheseAfterAll": "Ring these after all",
+  "skipTheseDay": "Skip these {n} today",
+  "turnOffNamed": "Turn off “{name}”",
+  "turnOnNamed": "Turn on “{name}”",
+  "turnedOffNamed": "Turned off “{name}”",
+  "removeTimeFrom": "Remove “{time}” from “{name}”",
+  "removedTimeFrom": "Removed “{time}” from “{name}”",
+  "moveToGroup": "Move to a group",
+  "inGroupMove": "In “{group}”, move",
+  "movedToGroup": "Moved to “{group}”",
+  "deleteNamed": "Delete “{name}”",
+  "signInWithGoogle": "Sign in with Google",
+  "signOut": "Sign out"
 }

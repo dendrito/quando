@@ -2046,7 +2046,8 @@ class AppLocalizationsPt extends AppLocalizations {
   String get syncWorking => 'Conectando…';
 
   @override
-  String get syncNotAllowed => 'Esta conta Google não pode sincronizar.';
+  String get syncNotAllowed =>
+      'Por enquanto a sincronização é só para convidados, e esta conta Google não está na lista.';
 
   @override
   String get syncFailed => 'Não deu para conectar. Toque para tentar de novo.';
@@ -2056,4 +2057,61 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get syncNotSetUp => 'A sincronização ainda não está configurada nesta versão.';
+
+  @override
+  String get ringTheseAfterAll => 'Tocar estes, afinal';
+
+  @override
+  String skipTheseDay(int n) {
+    return 'Pular estes $n neste dia';
+  }
+
+  @override
+  String turnOffNamed(String name) {
+    return 'Desligar “$name”';
+  }
+
+  @override
+  String turnOnNamed(String name) {
+    return 'Ligar “$name”';
+  }
+
+  @override
+  String turnedOffNamed(String name) {
+    return '“$name” desligado';
+  }
+
+  @override
+  String removeTimeFrom(String time, String name) {
+    return 'Tirar “$time” de “$name”';
+  }
+
+  @override
+  String removedTimeFrom(String time, String name) {
+    return '“$time” tirado de “$name”';
+  }
+
+  @override
+  String get moveToGroup => 'Mover para um grupo';
+
+  @override
+  String inGroupMove(String group) {
+    return 'Em “$group”, mover';
+  }
+
+  @override
+  String movedToGroup(String group) {
+    return 'Movido para “$group”';
+  }
+
+  @override
+  String deleteNamed(String name) {
+    return 'Apagar “$name”';
+  }
+
+  @override
+  String get signInWithGoogle => 'Entrar com o Google';
+
+  @override
+  String get signOut => 'Sair';
 }
