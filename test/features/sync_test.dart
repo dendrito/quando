@@ -9,16 +9,23 @@ class FakeServer {
   final items = <String, SyncItem>{};
   final _out = StreamController<Map<String, SyncItem>>.broadcast();
   bool failNextPush = false;
+  int revision = 0;
 
   SyncRemote remote() => _Remote(this);
 
-  Future<void> push(Map<String, SyncItem> changed) async {
+  Future<Map<String, SyncItem>> push(Map<String, SyncItem> changed) async {
     if (failNextPush) {
       failNextPush = false;
       throw StateError('simulated network failure');
     }
-    items.addAll(changed);
+    revision++;
+    final committed = <String, SyncItem>{
+      for (final entry in changed.entries)
+        entry.key: SyncItem(revision, entry.value.d, entry.value.s),
+    };
+    items.addAll(committed);
     _out.add(Map.of(items));
+    return committed;
   }
 }
 
@@ -27,7 +34,7 @@ class _Remote implements SyncRemote {
   final FakeServer server;
 
   @override
-  Future<void> push(Map<String, SyncItem> items) => server.push(items);
+  Future<Map<String, SyncItem>> push(Map<String, SyncItem> items) => server.push(items);
 
   @override
   Stream<Map<String, SyncItem>> watch() async* {
@@ -124,12 +131,12 @@ void main() {
     expect(server.items['language']!.s, contains('"en"'));
   });
 
-  test('equal timestamps use a stable device-id tie-break', () async {
+  test('equal versions use a stable device-id tie-break', () async {
     final (a, pa) = await device('a', {'language': 'pt'});
     await pa.setString('sync.stamps', '{"language":100}');
     await pa.setString('sync.origins', '{"language":"b"}');
     final engine = SyncEngine(pa, server.remote(), device: 'a', now: now);
-    await engine.apply({'language': SyncItem(100, 'z', '"en"')});
+    await engine.apply({'language': SyncItem(100, 'z', '{"v":"en"}')});
     expect(pa.getString('language'), 'en');
   });
 
