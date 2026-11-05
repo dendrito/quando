@@ -162,7 +162,10 @@ class SyncEngine {
     final last = _last, stamps = _stamps, origins = _origins;
     final changed = <String, SyncItem>{};
     final now = _now().millisecondsSinceEpoch;
-    final nextLogicalTime = stamps.values.fold<int>(now, (a, b) => a > b ? a : b + 1);
+    final nextLogicalTime = stamps.values.fold<int>(
+      now,
+      (a, b) => a > b ? a : b + 1,
+    );
     for (final k in syncedKeys) {
       final cur = encodePref(prefs, k);
       if (cur == last[k]) continue;
@@ -201,7 +204,8 @@ class SyncEngine {
       if (item == null) continue;
       final previousStamp = stamps[k] ?? 0;
       final previousOrigin = origins[k] ?? '';
-      final newer = item.t > previousStamp ||
+      final newer =
+          item.t > previousStamp ||
           (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
       if (!newer) continue;
 
