@@ -2032,7 +2032,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get syncWorking => 'Connecting…';
 
   @override
-  String get syncNotAllowed => 'Sync is invite-only for now, and this Google account isn\'t on the list.';
+  String get syncNotAllowed => 'This account can\'t sync yet. If you signed in with email, confirm it first.';
 
   @override
   String get syncFailed => 'Couldn\'t connect. Tap to try again.';

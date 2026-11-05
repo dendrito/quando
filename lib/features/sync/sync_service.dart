@@ -208,7 +208,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
 
   Future<void> _start(User user) async {
     final prefs = ref.read(prefsProvider);
-    // Only one account may sync: the server's rules turn everyone else away.
+    // The server's rules turn away anyone it doesn't let sync (e.g. an unconfirmed email).
     try {
       await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
     } on FirebaseException catch (e) {

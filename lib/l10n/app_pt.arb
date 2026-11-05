@@ -594,7 +594,7 @@
   "syncHint": "Entre com o Google para manter alarmes e ajustes iguais em todos os seus aparelhos.",
   "syncOn": "Ativada · {email}",
   "syncWorking": "Conectando…",
-  "syncNotAllowed": "Por enquanto a sincronização é só para convidados, e esta conta Google não está na lista.",
+  "syncNotAllowed": "Esta conta ainda não pode sincronizar. Se entrou com e-mail, confirme-o primeiro.",
   "syncFailed": "Não deu para conectar. Toque para tentar de novo.",
   "syncStop": "Parar de sincronizar",
   "syncNotSetUp": "A sincronização ainda não está configurada nesta versão.",

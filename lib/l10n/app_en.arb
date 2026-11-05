@@ -1332,7 +1332,7 @@
     }
   },
   "syncWorking": "Connecting…",
-  "syncNotAllowed": "Sync is invite-only for now, and this Google account isn't on the list.",
+  "syncNotAllowed": "This account can't sync yet. If you signed in with email, confirm it first.",
   "syncFailed": "Couldn't connect. Tap to try again.",
   "syncStop": "Stop syncing",
   "syncNotSetUp": "Sync isn't set up in this build yet.",

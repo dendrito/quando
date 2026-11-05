@@ -3697,7 +3697,7 @@ abstract class AppLocalizations {
   /// No description provided for @syncNotAllowed.
   ///
   /// In en, this message translates to:
-  /// **'Sync is invite-only for now, and this Google account isn\'t on the list.'**
+  /// **'This account can\'t sync yet. If you signed in with email, confirm it first.'**
   String get syncNotAllowed;
 
   /// No description provided for @syncFailed.

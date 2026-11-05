@@ -2036,7 +2036,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get syncWorking => 'מתחבר…';
 
   @override
-  String get syncNotAllowed => 'בינתיים הסנכרון בהזמנה בלבד, וחשבון Google הזה לא ברשימה.';
+  String get syncNotAllowed => 'החשבון הזה עדיין לא יכול לסנכרן. אם נכנסת עם אימייל, אשר אותו קודם.';
 
   @override
   String get syncFailed => 'החיבור נכשל. הקישו לנסות שוב.';

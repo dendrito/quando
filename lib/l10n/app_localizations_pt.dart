@@ -2047,7 +2047,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get syncNotAllowed =>
-      'Por enquanto a sincronização é só para convidados, e esta conta Google não está na lista.';
+      'Esta conta ainda não pode sincronizar. Se entrou com e-mail, confirme-o primeiro.';
 
   @override
   String get syncFailed => 'Não deu para conectar. Toque para tentar de novo.';
