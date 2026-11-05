@@ -19,7 +19,9 @@ void main() {
               'items': [
                 {
                   'name': 'Here Comes the Sun',
-                  'external_urls': {'spotify': 'https://open.spotify.com/track/abc'},
+                  'external_urls': {
+                    'spotify': 'https://open.spotify.com/track/abc',
+                  },
                   'artists': [
                     {'name': 'The Beatles'},
                   ],
@@ -31,7 +33,9 @@ void main() {
                 null,
                 {
                   'name': 'Morning',
-                  'external_urls': {'spotify': 'https://open.spotify.com/playlist/xyz'},
+                  'external_urls': {
+                    'spotify': 'https://open.spotify.com/playlist/xyz',
+                  },
                   'items': {'total': 12},
                 },
               ],
@@ -55,7 +59,10 @@ void main() {
       client: MockClient(
         (_) async => http.Response(
           jsonEncode({
-            'error': {'status': 403, 'message': 'User not registered in the Developer Dashboard'},
+            'error': {
+              'status': 403,
+              'message': 'User not registered in the Developer Dashboard',
+            },
           }),
           403,
         ),
@@ -63,39 +70,50 @@ void main() {
     );
     expect(
       () => lib.playlists(),
-      throwsA(predicate((e) => '$e'.contains('User not registered in the Developer Dashboard'))),
-    );
-  });
-
-  test('YouTube search finds songs and playlists with readable titles', () async {
-    final lib = YouTubeLibrary(
-      'key',
-      client: MockClient(
-        (req) async => http.Response(
-          jsonEncode({
-            'items': [
-              {
-                'id': {'kind': 'youtube#video', 'videoId': 'v1'},
-                'snippet': {'title': 'Rock &amp; Roll', 'channelTitle': 'Led Zeppelin - Topic'},
-              },
-              {
-                'id': {'kind': 'youtube#playlist', 'playlistId': 'p1'},
-                'snippet': {'title': 'Wake up', 'channelTitle': 'Me'},
-              },
-              {
-                'id': {'kind': 'youtube#channel', 'channelId': 'c1'},
-                'snippet': {'title': 'A channel'},
-              },
-            ],
-          }),
-          200,
+      throwsA(
+        predicate(
+          (e) =>
+              '$e'.contains('User not registered in the Developer Dashboard'),
         ),
       ),
     );
-    final found = await lib.search('rock');
-    expect(found.map((f) => f.name), ['Rock & Roll', 'Wake up']);
-    expect(found.first.detail, 'Led Zeppelin');
-    expect(found.first.url, 'https://music.youtube.com/watch?v=v1');
-    expect(found.last.url, 'https://music.youtube.com/playlist?list=p1');
   });
+
+  test(
+    'YouTube search finds songs and playlists with readable titles',
+    () async {
+      final lib = YouTubeLibrary(
+        'key',
+        client: MockClient(
+          (req) async => http.Response(
+            jsonEncode({
+              'items': [
+                {
+                  'id': {'kind': 'youtube#video', 'videoId': 'v1'},
+                  'snippet': {
+                    'title': 'Rock &amp; Roll',
+                    'channelTitle': 'Led Zeppelin - Topic',
+                  },
+                },
+                {
+                  'id': {'kind': 'youtube#playlist', 'playlistId': 'p1'},
+                  'snippet': {'title': 'Wake up', 'channelTitle': 'Me'},
+                },
+                {
+                  'id': {'kind': 'youtube#channel', 'channelId': 'c1'},
+                  'snippet': {'title': 'A channel'},
+                },
+              ],
+            }),
+            200,
+          ),
+        ),
+      );
+      final found = await lib.search('rock');
+      expect(found.map((f) => f.name), ['Rock & Roll', 'Wake up']);
+      expect(found.first.detail, 'Led Zeppelin');
+      expect(found.first.url, 'https://music.youtube.com/watch?v=v1');
+      expect(found.last.url, 'https://music.youtube.com/playlist?list=p1');
+    },
+  );
 }

@@ -11,7 +11,12 @@ import 'package:quando/l10n/l10n.dart';
 /// Your playlists and liked songs from a music app, or a search of the
 /// whole app: tap one to wake up to it.
 class MusicPickerScreen extends ConsumerStatefulWidget {
-  const MusicPickerScreen({super.key, required this.title, required this.load, this.search});
+  const MusicPickerScreen({
+    super.key,
+    required this.title,
+    required this.load,
+    this.search,
+  });
 
   /// "My Spotify".
   final String title;
@@ -61,7 +66,8 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       final found = await widget.search!(query);
       if (mounted && run == _searchRun) setState(() => _results = found);
     } catch (e) {
-      if (mounted && run == _searchRun) setState(() => _searchError = '$e'.replaceFirst('Exception: ', ''));
+      if (mounted && run == _searchRun)
+        setState(() => _searchError = '$e'.replaceFirst('Exception: ', ''));
     }
   }
 
@@ -91,7 +97,8 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
         });
       }
     } catch (e) {
-      if (mounted) setState(() => _error = '$e'.replaceFirst('Exception: ', ''));
+      if (mounted)
+        setState(() => _error = '$e'.replaceFirst('Exception: ', ''));
     }
   }
 
@@ -104,7 +111,8 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       plays: true,
     );
     ref.read(soundsProvider.notifier).add(sound);
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicAdded(item.name))));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(l10n.musicAdded(item.name))));
     Navigator.of(context).pop();
   }
 
@@ -114,7 +122,11 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       return Center(
         child: SingleChildScrollView(
           padding: const EdgeInsets.all(32),
-          child: SelectableText(error, textAlign: TextAlign.center, style: text.bodyLarge),
+          child: SelectableText(
+            error,
+            textAlign: TextAlign.center,
+            style: text.bodyLarge,
+          ),
         ),
       );
     }
@@ -138,13 +150,22 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
                   : Image.network(
                       it.image!,
                       fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => const ColoredBox(color: QuandoColors.raised),
+                      errorBuilder: (_, _, _) =>
+                          const ColoredBox(color: QuandoColors.raised),
                     ),
             ),
           ),
           title: Text(it.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-          subtitle: Text(it.detail, maxLines: 1, overflow: TextOverflow.ellipsis, style: text.bodySmall),
-          trailing: const Icon(Icons.add_circle_outline, color: QuandoColors.amber),
+          subtitle: Text(
+            it.detail,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: text.bodySmall,
+          ),
+          trailing: const Icon(
+            Icons.add_circle_outline,
+            color: QuandoColors.amber,
+          ),
           onTap: () => _pick(it),
         );
       },
@@ -166,7 +187,11 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
                 hintText: l10n.searchSongsHint,
                 prefixIcon: const Icon(Icons.search),
                 suffixIcon: searching
-                    ? IconButton(icon: const Icon(Icons.close), tooltip: l10n.cancel, onPressed: _clearSearch)
+                    ? IconButton(
+                        icon: const Icon(Icons.close),
+                        tooltip: l10n.cancel,
+                        onPressed: _clearSearch,
+                      )
                     : null,
                 isDense: true,
               ),
@@ -178,7 +203,9 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
         appBar: AppBar(
           title: Text(widget.title),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight((searchBar == null ? 0 : 56) + (searching ? 0 : 48)),
+            preferredSize: Size.fromHeight(
+              (searchBar == null ? 0 : 56) + (searching ? 0 : 48),
+            ),
             child: Column(
               children: [
                 ?searchBar,
@@ -194,7 +221,11 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
           ),
         ),
         body: searching
-            ? _list(_results, l10n.nothingFound(_searched!), error: _searchError)
+            ? _list(
+                _results,
+                l10n.nothingFound(_searched!),
+                error: _searchError,
+              )
             : TabBarView(
                 children: [
                   _list(_playlists, l10n.noPlaylists, error: _error),

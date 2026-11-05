@@ -70,8 +70,14 @@ class _WeekListState extends State<WeekList> {
             child: Column(
               children: [
                 for (final (i, s) in day.series.indexed) ...[
-                  if (i > 0) const Divider(height: 1, indent: 18, endIndent: 18),
-                  _series(s, '${day.day.toIso8601String()}|${s.title}', text, local),
+                  if (i > 0)
+                    const Divider(height: 1, indent: 18, endIndent: 18),
+                  _series(
+                    s,
+                    '${day.day.toIso8601String()}|${s.title}',
+                    text,
+                    local,
+                  ),
                 ],
               ],
             ),
@@ -81,9 +87,20 @@ class _WeekListState extends State<WeekList> {
     );
   }
 
-  Widget _series(AlarmSeries s, String key, TextTheme text, String Function(DateTime) local) {
-    final timeStyle = text.titleLarge?.copyWith(color: QuandoColors.amber, fontSize: 22);
-    const off = TextStyle(decoration: TextDecoration.lineThrough, color: QuandoColors.faint);
+  Widget _series(
+    AlarmSeries s,
+    String key,
+    TextTheme text,
+    String Function(DateTime) local,
+  ) {
+    final timeStyle = text.titleLarge?.copyWith(
+      color: QuandoColors.amber,
+      fontSize: 22,
+    );
+    const off = TextStyle(
+      decoration: TextDecoration.lineThrough,
+      color: QuandoColors.faint,
+    );
     bool skip(ScheduledAlarm a) => widget.skipped.contains(a.id);
     if (s.alarms.length == 1) {
       final a = s.alarms.single;
@@ -92,8 +109,14 @@ class _WeekListState extends State<WeekList> {
         contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
         onTap: widget.onTap == null ? null : () => widget.onTap!(a),
         onLongPress: widget.onTap == null ? null : () => widget.onTap!(a),
-        title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-        subtitle: Text(x ? l10n.skippedBody(a.body) : a.body, style: text.bodySmall),
+        title: Text(
+          s.title,
+          style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+        ),
+        subtitle: Text(
+          x ? l10n.skippedBody(a.body) : a.body,
+          style: text.bodySmall,
+        ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
@@ -108,10 +131,19 @@ class _WeekListState extends State<WeekList> {
     return Column(
       children: [
         ListTile(
-          contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
-          onTap: () => setState(() => open ? _open.remove(key) : _open.add(key)),
-          onLongPress: widget.onSeries == null ? null : () => widget.onSeries!(s),
-          title: Text(s.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
+          contentPadding: const EdgeInsets.symmetric(
+            horizontal: 18,
+            vertical: 2,
+          ),
+          onTap: () =>
+              setState(() => open ? _open.remove(key) : _open.add(key)),
+          onLongPress: widget.onSeries == null
+              ? null
+              : () => widget.onSeries!(s),
+          title: Text(
+            s.title,
+            style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+          ),
           subtitle: Text(
             [
               l10n.alarmCount(s.alarms.length),
@@ -145,16 +177,23 @@ class _WeekListState extends State<WeekList> {
                     children: [
                       for (final a in s.alarms)
                         InkWell(
-                          onTap: widget.onTap == null ? null : () => widget.onTap!(a),
+                          onTap: widget.onTap == null
+                              ? null
+                              : () => widget.onTap!(a),
                           child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 18,
+                              vertical: 10,
+                            ),
                             child: Row(
                               children: [
                                 Container(
                                   width: 6,
                                   height: 6,
                                   decoration: BoxDecoration(
-                                    color: skip(a) ? QuandoColors.faint : QuandoColors.coral,
+                                    color: skip(a)
+                                        ? QuandoColors.faint
+                                        : QuandoColors.coral,
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -162,7 +201,9 @@ class _WeekListState extends State<WeekList> {
                                 Expanded(
                                   child: Text(
                                     a.body,
-                                    style: skip(a) ? text.bodyMedium?.merge(off) : text.bodyMedium,
+                                    style: skip(a)
+                                        ? text.bodyMedium?.merge(off)
+                                        : text.bodyMedium,
                                   ),
                                 ),
                                 Text(

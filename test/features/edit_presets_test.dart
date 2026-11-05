@@ -25,8 +25,10 @@ void main() {
     prefs = await SharedPreferences.getInstance();
   });
 
-  List<Duration> countdownTimes(ProviderContainer c) =>
-      c.read(rulesProvider).firstWhere((r) => r.id == Presets.countdown.id).offsets();
+  List<Duration> countdownTimes(ProviderContainer c) => c
+      .read(rulesProvider)
+      .firstWhere((r) => r.id == Presets.countdown.id)
+      .offsets();
 
   test('a preset\'s times can be changed, are kept, and can be reset', () {
     final c = make();
@@ -47,7 +49,11 @@ void main() {
     final again = make();
     expect(countdownTimes(again), changed);
     expect(again.read(rulesProvider.notifier).isCustom(id), isTrue);
-    final planned = again.read(planProvider).where((a) => a.ruleId == id).map((a) => a.offset).toSet();
+    final planned = again
+        .read(planProvider)
+        .where((a) => a.ruleId == id)
+        .map((a) => a.offset)
+        .toSet();
     expect(planned, contains(const Duration(minutes: -45)));
     expect(planned, isNot(contains(const Duration(minutes: -30))));
 
@@ -61,7 +67,12 @@ void main() {
     final id = Presets.hourly.id;
     c
         .read(rulesProvider.notifier)
-        .edit(id, (r) => r.withOffsets(r.offsets().where((d) => d != const Duration(hours: -6))));
+        .edit(
+          id,
+          (r) => r.withOffsets(
+            r.offsets().where((d) => d != const Duration(hours: -6)),
+          ),
+        );
     final r = c.read(rulesProvider).firstWhere((r) => r.id == id);
     expect(r.series, isEmpty);
     expect(r.offsets(), [for (var h = 5; h >= 1; h--) Duration(hours: -h)]);

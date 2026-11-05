@@ -5,7 +5,13 @@ import '../../../app/widgets/brand.dart';
 
 /// The amber card with the next Shabbat or festival and its times.
 class ShabbatCard extends StatelessWidget {
-  const ShabbatCard({super.key, required this.title, required this.names, required this.rows, this.onTap});
+  const ShabbatCard({
+    super.key,
+    required this.title,
+    required this.names,
+    required this.rows,
+    this.onTap,
+  });
 
   /// Opens the Shabbat screen. null = not tappable.
   final VoidCallback? onTap;
@@ -31,7 +37,10 @@ class ShabbatCard extends StatelessWidget {
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Padding(padding: EdgeInsets.only(top: 4), child: Flame(height: 52)),
+                const Padding(
+                  padding: EdgeInsets.only(top: 4),
+                  child: Flame(height: 52),
+                ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Column(
@@ -40,15 +49,26 @@ class ShabbatCard extends StatelessWidget {
                       Row(
                         children: [
                           Expanded(
-                            child: Text(title, style: text.labelSmall?.copyWith(color: ink)),
+                            child: Text(
+                              title,
+                              style: text.labelSmall?.copyWith(color: ink),
+                            ),
                           ),
-                          if (onTap != null) const Icon(Icons.chevron_right, color: ink),
+                          if (onTap != null)
+                            const Icon(Icons.chevron_right, color: ink),
                         ],
                       ),
                       const SizedBox(height: 6),
-                      Text(names, style: text.headlineSmall?.copyWith(color: ink)),
+                      Text(
+                        names,
+                        style: text.headlineSmall?.copyWith(color: ink),
+                      ),
                       const SizedBox(height: 10),
-                      for (final r in rows) Padding(padding: const EdgeInsets.only(top: 4), child: r),
+                      for (final r in rows)
+                        Padding(
+                          padding: const EdgeInsets.only(top: 4),
+                          child: r,
+                        ),
                     ],
                   ),
                 ),
@@ -62,7 +82,12 @@ class ShabbatCard extends StatelessWidget {
 }
 
 class ShabbatTimeRow extends StatelessWidget {
-  const ShabbatTimeRow({super.key, required this.label, required this.day, required this.time});
+  const ShabbatTimeRow({
+    super.key,
+    required this.label,
+    required this.day,
+    required this.time,
+  });
 
   final String label;
   final String day;
@@ -75,7 +100,10 @@ class ShabbatTimeRow extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: Text('$label · $day', style: text.bodyMedium?.copyWith(color: ink)),
+          child: Text(
+            '$label · $day',
+            style: text.bodyMedium?.copyWith(color: ink),
+          ),
         ),
         Text(time, style: text.titleLarge?.copyWith(color: ink, fontSize: 22)),
       ],

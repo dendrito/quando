@@ -4,7 +4,11 @@ import 'package:quando/l10n/l10n.dart';
 /// How loud an alarm rings, and how it fades in at the start and out at the
 /// end, when it stops by itself.
 class Loudness {
-  const Loudness({this.volume, this.fadeInSeconds = 10, this.fadeOutSeconds = 0});
+  const Loudness({
+    this.volume,
+    this.fadeInSeconds = 10,
+    this.fadeOutSeconds = 0,
+  });
 
   /// Percent of the phone's alarm volume, 0 to 100. null = leave the phone's
   /// alarm volume as it is.
@@ -41,7 +45,10 @@ class Loudness {
     return VolumeSettings.staircaseFade(
       volume: v,
       fadeSteps: [
-        if (fadeIn > 0) ...[VolumeFadeStep(Duration.zero, 0), VolumeFadeStep(at(fadeIn), 1)],
+        if (fadeIn > 0) ...[
+          VolumeFadeStep(Duration.zero, 0),
+          VolumeFadeStep(at(fadeIn), 1),
+        ],
         if (fadeOut > 0) ...[
           if (fadeIn == 0) VolumeFadeStep(Duration.zero, 1),
           VolumeFadeStep(at(ring - fadeOut), 1),
@@ -64,20 +71,31 @@ class Loudness {
 
   static String seconds(int s) => s < 60
       ? l10n.secondsShort(s)
-      : (s % 60 == 0 ? l10n.minutesShort(s ~/ 60) : l10n.minSecShort(s ~/ 60, s % 60));
+      : (s % 60 == 0
+            ? l10n.minutesShort(s ~/ 60)
+            : l10n.minSecShort(s ~/ 60, s % 60));
 
   /// Quando's own sound under a song link: it starts softly, so the song
   /// has time to start and take over.
-  Loudness get backupForSong => fadeInSeconds >= 30 ? this : copyWith(fadeInSeconds: 30);
+  Loudness get backupForSong =>
+      fadeInSeconds >= 30 ? this : copyWith(fadeInSeconds: 30);
 
-  Loudness copyWith({int? volume, bool phoneVolume = false, int? fadeInSeconds, int? fadeOutSeconds}) =>
-      Loudness(
-        volume: phoneVolume ? null : (volume ?? this.volume),
-        fadeInSeconds: fadeInSeconds ?? this.fadeInSeconds,
-        fadeOutSeconds: fadeOutSeconds ?? this.fadeOutSeconds,
-      );
+  Loudness copyWith({
+    int? volume,
+    bool phoneVolume = false,
+    int? fadeInSeconds,
+    int? fadeOutSeconds,
+  }) => Loudness(
+    volume: phoneVolume ? null : (volume ?? this.volume),
+    fadeInSeconds: fadeInSeconds ?? this.fadeInSeconds,
+    fadeOutSeconds: fadeOutSeconds ?? this.fadeOutSeconds,
+  );
 
-  Map<String, dynamic> toJson() => {'volume': volume, 'fadeIn': fadeInSeconds, 'fadeOut': fadeOutSeconds};
+  Map<String, dynamic> toJson() => {
+    'volume': volume,
+    'fadeIn': fadeInSeconds,
+    'fadeOut': fadeOutSeconds,
+  };
 
   static Loudness? fromJson(Object? j) {
     if (j is! Map) return null;

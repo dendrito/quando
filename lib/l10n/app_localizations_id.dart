@@ -29,7 +29,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get newAtTime => 'Pada jam tertentu';
 
   @override
-  String get newAtTimeHint => 'Setiap hari kerja pukul 7.00, sekali pukul 15.30…';
+  String get newAtTimeHint =>
+      'Setiap hari kerja pukul 7.00, sekali pukul 15.30…';
 
   @override
   String get newAroundEvent => 'Di sekitar acara';
@@ -197,25 +198,41 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String spanDays(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n hari');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n hari',
+    );
     return '$_temp0';
   }
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n jam');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n jam',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n menit');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n menit',
+    );
     return '$_temp0';
   }
 
   @override
   String spanSeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n detik');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n detik',
+    );
     return '$_temp0';
   }
 
@@ -234,7 +251,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n alarm');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarm',
+    );
     return '$_temp0';
   }
 
@@ -265,7 +286,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get sunNoRiseSet => 'Matahari tidak terbit atau terbenam di sini hari ini';
+  String get sunNoRiseSet =>
+      'Matahari tidak terbit atau terbenam di sini hari ini';
 
   @override
   String sunProgress(int percent) {
@@ -385,7 +407,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get lockForShabbat => 'Kunci ponsel untuk Sabat';
 
   @override
-  String get lockForShabbatHint => 'Dari menyalakan lilin sampai havdalah, juga di hari raya';
+  String get lockForShabbatHint =>
+      'Dari menyalakan lilin sampai havdalah, juga di hari raya';
 
   @override
   String get ownShabbatAlarmsHeading => 'ALARM SABATMU';
@@ -402,10 +425,12 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get presetsHint => 'Ketuk salah satu untuk mengubah waktunya. Geser untuk menghapus.';
+  String get presetsHint =>
+      'Ketuk salah satu untuk mengubah waktunya. Geser untuk menghapus.';
 
   @override
-  String get lockSentence => 'Jadikan ponsel hanya jam dan alarm, untuk Sabat atau malam yang fokus.';
+  String get lockSentence =>
+      'Jadikan ponsel hanya jam dan alarm, untuk Sabat atau malam yang fokus.';
 
   @override
   String get lockExplain =>
@@ -439,7 +464,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get openWhenLockStarts => 'Buka Quando? saat kunci dimulai';
 
   @override
-  String get openWhenLockStartsHint => 'Bunyi pelan 1 detik membawa Quando? ke depan untuk mengunci';
+  String get openWhenLockStartsHint =>
+      'Bunyi pelan 1 detik membawa Quando? ke depan untuk mengunci';
 
   @override
   String get pinToScreen => 'Sematkan Quando? ke layar';
@@ -452,7 +478,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get noLocksComingUp => 'Tidak ada kunci yang akan datang.';
 
   @override
-  String get leaveLockEarly => 'Untuk keluar lebih awal, tahan “Tahan untuk membuka” selama 3 detik.';
+  String get leaveLockEarly =>
+      'Untuk keluar lebih awal, tahan “Tahan untuk membuka” selama 3 detik.';
 
   @override
   String get locked => 'Terkunci';
@@ -489,7 +516,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get calendarAlarmsHeading => 'ALARM KALENDER';
 
   @override
-  String get calendarNoneYet => 'Belum ada. Mulai dengan ini, lalu ubah sesukamu:';
+  String get calendarNoneYet =>
+      'Belum ada. Mulai dengan ini, lalu ubah sesukamu:';
 
   @override
   String get fifteenBeforeEvery => '15 menit sebelum setiap acara';
@@ -498,7 +526,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get useTheseCalendarsHeading => 'GUNAKAN KALENDER INI';
 
   @override
-  String get noTimedEvents => 'Tidak ada acara berjam yang akan datang di kalender ini.';
+  String get noTimedEvents =>
+      'Tidak ada acara berjam yang akan datang di kalender ini.';
 
   @override
   String get atTheStart => 'saat dimulai';
@@ -676,10 +705,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get presetSecondNight => 'Lilin malam kedua';
 
   @override
-  String get presetFridayReminder => 'Pengingat 3 jam sebelumnya: isi daya ponsel';
+  String get presetFridayReminder =>
+      'Pengingat 3 jam sebelumnya: isi daya ponsel';
 
   @override
-  String get presetFridayReminderLabel => 'Isi daya ponsel dan atur alarm untuk besok';
+  String get presetFridayReminderLabel =>
+      'Isi daya ponsel dan atur alarm untuk besok';
 
   @override
   String get presetSunset => 'Matahari terbenam, dan 15 menit sebelumnya';
@@ -709,25 +740,29 @@ class AppLocalizationsId extends AppLocalizations {
   String get readyNotifications => 'Tampilkan alarm';
 
   @override
-  String get readyNotificationsWhy => 'Membuat layar alarm dan tombol Berhenti bisa muncul.';
+  String get readyNotificationsWhy =>
+      'Membuat layar alarm dan tombol Berhenti bisa muncul.';
 
   @override
   String get readyFullScreen => 'Berbunyi di atas layar kunci';
 
   @override
-  String get readyFullScreenWhy => 'Menampilkan alarm layar penuh, bahkan saat ponsel terkunci.';
+  String get readyFullScreenWhy =>
+      'Menampilkan alarm layar penuh, bahkan saat ponsel terkunci.';
 
   @override
   String get readyExact => 'Berbunyi tepat pada menitnya';
 
   @override
-  String get readyExactWhy => 'Tanpa ini, ponsel bisa menunda alarm beberapa menit.';
+  String get readyExactWhy =>
+      'Tanpa ini, ponsel bisa menunda alarm beberapa menit.';
 
   @override
   String get readyBattery => 'Tetap berjalan saat hemat baterai';
 
   @override
-  String get readyBatteryWhy => 'Mencegah penghemat baterai membisukan alarm di malam hari.';
+  String get readyBatteryWhy =>
+      'Mencegah penghemat baterai membisukan alarm di malam hari.';
 
   @override
   String get tipXiaomi =>
@@ -752,7 +787,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get testRingBody => 'Quando? bisa membangunkanmu';
 
   @override
-  String get ringsIn20 => 'Berbunyi dalam 20 detik. Kunci ponselmu sekarang dan tunggu.';
+  String get ringsIn20 =>
+      'Berbunyi dalam 20 detik. Kunci ponselmu sekarang dan tunggu.';
 
   @override
   String get readyToRing => 'Siap berbunyi';
@@ -761,7 +797,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get checkingPhone => 'Memeriksa ponselmu…';
 
   @override
-  String get phoneReady => 'Ponselmu siap membunyikan setiap alarm tepat waktu.';
+  String get phoneReady =>
+      'Ponselmu siap membunyikan setiap alarm tepat waktu.';
 
   @override
   String thingsNeedFixing(int n) {
@@ -780,10 +817,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get testIn20 => 'Uji: berbunyi dalam 20 detik';
 
   @override
-  String get testIn20Hint => 'Kunci ponselmu dan letakkan. Jika alarm berbunyi layar penuh, semuanya siap.';
+  String get testIn20Hint =>
+      'Kunci ponselmu dan letakkan. Jika alarm berbunyi layar penuh, semuanya siap.';
 
   @override
-  String get readyToRingHint => 'Periksa bahwa ponselmu membunyikan setiap alarm tepat waktu';
+  String get readyToRingHint =>
+      'Periksa bahwa ponselmu membunyikan setiap alarm tepat waktu';
 
   @override
   String get connections => 'Koneksi';
@@ -800,7 +839,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get zoneFixed => 'Tetap. Alarm mempertahankan waktu ini meski bepergian.';
+  String get zoneFixed =>
+      'Tetap. Alarm mempertahankan waktu ini meski bepergian.';
 
   @override
   String get shabbatCityHeading => 'KOTA UNTUK SABAT';
@@ -835,10 +875,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get sameFades => 'Fade sama untuk semua alarm';
 
   @override
-  String get sameFadesOn => 'Menggantikan fade setiap alarm. Masing-masing tetap memakai volumenya.';
+  String get sameFadesOn =>
+      'Menggantikan fade setiap alarm. Masing-masing tetap memakai volumenya.';
 
   @override
-  String get sameFadesOff => 'Mati: setiap alarm memakai fade yang diatur di Volume-nya.';
+  String get sameFadesOff =>
+      'Mati: setiap alarm memakai fade yang diatur di Volume-nya.';
 
   @override
   String get sayItOutLoud => 'Ucapkan dengan suara';
@@ -895,7 +937,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get testAlarmBody => 'Beginilah alarmmu akan berbunyi';
 
   @override
-  String get testAlarmIn1Set => 'Alarm uji dalam 1 menit. Kamu bisa mengunci ponsel.';
+  String get testAlarmIn1Set =>
+      'Alarm uji dalam 1 menit. Kamu bisa mengunci ponsel.';
 
   @override
   String get presetGone => 'Templat ini sudah tidak ada.';
@@ -925,7 +968,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get resetPreset => 'Kembalikan ke asli';
 
   @override
-  String get skipOneHint => 'Untuk melewati satu alarm, ketuk di “Alarm minggu ini” di layar utama.';
+  String get skipOneHint =>
+      'Untuk melewati satu alarm, ketuk di “Alarm minggu ini” di layar utama.';
 
   @override
   String get unitMinutes => 'menit';
@@ -1029,7 +1073,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String eventsIn60(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n acara dalam 60 hari ke depan');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n acara dalam 60 hari ke depan',
+    );
     return '$_temp0';
   }
 
@@ -1115,7 +1163,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get wakeToOwnSound => 'Bangun dengan suaramu sendiri';
 
   @override
-  String get wakeToOwnSoundHint => 'Suaramu, lagu, Spotify, atau radio langsung';
+  String get wakeToOwnSoundHint =>
+      'Suaramu, lagu, Spotify, atau radio langsung';
 
   @override
   String musicAdded(String name) {
@@ -1174,13 +1223,15 @@ class AppLocalizationsId extends AppLocalizations {
       'Aplikasinya terbuka dan memutarnya. Jika diam selama 10 detik, suara cadangan berbunyi, jadi kamu selalu bangun. Alarm dengan tugas berbunyi dulu, lalu membukanya.';
 
   @override
-  String get ringThenOpenHint => 'Suara cadangan berbunyi. Berhenti membuka lagu di aplikasinya.';
+  String get ringThenOpenHint =>
+      'Suara cadangan berbunyi. Berhenti membuka lagu di aplikasinya.';
 
   @override
   String get playForHeading => 'PUTAR SELAMA';
 
   @override
-  String get pausesAfter => 'Quando? menjeda lagu setelah waktu ini, dengan tombol jeda ponsel.';
+  String get pausesAfter =>
+      'Quando? menjeda lagu setelah waktu ini, dengan tombol jeda ponsel.';
 
   @override
   String get backupSoundHeading => 'SUARA CADANGAN';
@@ -1203,10 +1254,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube dan YouTube Music';
 
   @override
-  String get youTubeOn => 'Playlist dan lagu yang kamu sukai. Tekan lama untuk keluar.';
+  String get youTubeOn =>
+      'Playlist dan lagu yang kamu sukai. Tekan lama untuk keluar.';
 
   @override
-  String get youTubeSignIn => 'Masuk dengan Google untuk memilih dari playlist dan lagu yang kamu sukai.';
+  String get youTubeSignIn =>
+      'Masuk dengan Google untuk memilih dari playlist dan lagu yang kamu sukai.';
 
   @override
   String get addSongLinkInstead => 'Tambahkan tautan lagu saja.';
@@ -1224,7 +1277,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get spotifyDirect => 'Pemutaran langsung Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify memutar lagumu persis sebagai alarm. Ketuk untuk mematikan.';
+  String get spotifyDirectOnHint =>
+      'Spotify memutar lagumu persis sebagai alarm. Ketuk untuk mematikan.';
 
   @override
   String get spotifyDirectHint =>
@@ -1245,7 +1299,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get sounds => 'Suara';
 
   @override
-  String get soundsSentence => 'Bangun dengan suaramu sendiri, lagu, playlist, atau radio langsung.';
+  String get soundsSentence =>
+      'Bangun dengan suaramu sendiri, lagu, playlist, atau radio langsung.';
 
   @override
   String stopTimer(String time) {
@@ -1259,7 +1314,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get addAFile => 'Tambah file';
 
   @override
-  String get addSongLinkLong => 'Tambah tautan lagu (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'Tambah tautan lagu (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'APLIKASI MUSIK';
@@ -1277,7 +1333,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get spotifySignInFailed => 'Tidak bisa masuk ke Spotify.';
 
   @override
-  String get appleMusicNote => 'Masuk akan hadir di versi iPhone. Untuk sekarang, tambahkan tautan lagu.';
+  String get appleMusicNote =>
+      'Masuk akan hadir di versi iPhone. Untuk sekarang, tambahkan tautan lagu.';
 
   @override
   String noSignInNote(String service) {
@@ -1313,13 +1370,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get defaultLabel => 'Bawaan';
 
   @override
-  String get radioUnreachable => 'Tidak bisa menjangkau daftar stasiun. Periksa koneksimu.';
+  String get radioUnreachable =>
+      'Tidak bisa menjangkau daftar stasiun. Periksa koneksimu.';
 
   @override
   String get addStreamAddress => 'Tambah alamat stream';
 
   @override
-  String get notAStream => 'Itu tidak terlihat seperti alamat stream (diawali http).';
+  String get notAStream =>
+      'Itu tidak terlihat seperti alamat stream (diawali http).';
 
   @override
   String get anyGenre => 'Semua genre';
@@ -1528,7 +1587,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Arahkan ke barcode atau kode QR di tempat yang harus kamu datangi, seperti kotak di dapur atau pasta gigi di kamar mandi. Untuk menghentikan alarm, kamu akan memindainya lagi.';
 
   @override
-  String get cameraUnavailableSettings => 'Kamera tidak tersedia. Izinkan akses kamera di Pengaturan.';
+  String get cameraUnavailableSettings =>
+      'Kamera tidak tersedia. Izinkan akses kamera di Pengaturan.';
 
   @override
   String gentleToGo(int n) {
@@ -1588,7 +1648,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get none => 'Tidak ada';
 
   @override
-  String get snoozeSentence => 'Lima menit lagi? Pilih berapa lama, berapa kali, dan apa yang diperlukan.';
+  String get snoozeSentence =>
+      'Lima menit lagi? Pilih berapa lama, berapa kali, dan apa yang diperlukan.';
 
   @override
   String get settingsHeading => 'PENGATURAN';
@@ -1603,13 +1664,15 @@ class AppLocalizationsId extends AppLocalizations {
   String get shortenSnoozes => 'Persingkat tunda berikutnya';
 
   @override
-  String get shortenSnoozesHint => 'Setiap tunda setelah yang pertama lebih singkat sebanyak ini';
+  String get shortenSnoozesHint =>
+      'Setiap tunda setelah yang pertama lebih singkat sebanyak ini';
 
   @override
   String get autoSnooze => 'Tunda otomatis';
 
   @override
-  String get autoSnoozeHint => 'Jika tidak kamu sentuh, menunda sendiri setelah';
+  String get autoSnoozeHint =>
+      'Jika tidak kamu sentuh, menunda sendiri setelah';
 
   @override
   String get never => 'Tidak pernah';
@@ -1627,13 +1690,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get useSnoozeFromSettings => 'Pakai tunda dari Pengaturan';
 
   @override
-  String get stopSentence => 'Cara mematikan alarm dan apa yang harus dilakukan dulu.';
+  String get stopSentence =>
+      'Cara mematikan alarm dan apa yang harus dilakukan dulu.';
 
   @override
-  String get shabbatNoTask => 'Di Sabat dan hari raya alarm berhenti sendiri dan tidak pernah meminta tugas.';
+  String get shabbatNoTask =>
+      'Di Sabat dan hari raya alarm berhenti sendiri dan tidak pernah meminta tugas.';
 
   @override
-  String get volumeSentence => 'Seberapa keras berbunyi dan seberapa lembut ia sampai ke sana.';
+  String get volumeSentence =>
+      'Seberapa keras berbunyi dan seberapa lembut ia sampai ke sana.';
 
   @override
   String get openAfterAlarm => 'Buka setelah alarm';
@@ -1660,7 +1726,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get usePhoneVolume => 'Pakai volume alarm ponsel';
 
   @override
-  String get setsPhoneVolume => 'Mengatur volume alarm ponsel saat berbunyi, lalu mengembalikannya.';
+  String get setsPhoneVolume =>
+      'Mengatur volume alarm ponsel saat berbunyi, lalu mengembalikannya.';
 
   @override
   String get fadeInOff => 'Tanpa fade in, langsung volume penuh';
@@ -1791,7 +1858,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n lagu');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n lagu',
+    );
     return '$_temp0';
   }
 
@@ -1805,7 +1876,8 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo => 'YouTube menolak. Pastikan akun Google-mu adalah pengguna uji proyek Quando.';
+  String get youTubeSaidNo =>
+      'YouTube menolak. Pastikan akun Google-mu adalah pengguna uji proyek Quando.';
 
   @override
   String get event => 'Acara';
@@ -1856,7 +1928,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get pushWhenRings => 'Kirim notifikasi saat alarm berbunyi';
 
   @override
-  String get pushWhenRingsHint => 'Ke ponsel, tablet, jam tangan, atau komputermu yang lain';
+  String get pushWhenRingsHint =>
+      'Ke ponsel, tablet, jam tangan, atau komputermu yang lain';
 
   @override
   String get yourUserKey => 'Kunci penggunamu';
@@ -1928,7 +2001,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get pauseOnShabbat => 'Jeda di Sabat dan hari raya';
 
   @override
-  String get pauseOnShabbatHint => 'Tidak ada yang dikirim untuk alarm antara menyalakan lilin dan havdalah';
+  String get pauseOnShabbatHint =>
+      'Tidak ada yang dikirim untuk alarm antara menyalakan lilin dan havdalah';
 
   @override
   String get webhookPayloadNote =>
@@ -1941,7 +2015,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get tomorrow => 'Besok';
 
   @override
-  String get notAWebAddress => 'Itu tidak terlihat seperti alamat web yang diawali https://';
+  String get notAWebAddress =>
+      'Itu tidak terlihat seperti alamat web yang diawali https://';
 
   @override
   String get language => 'Bahasa';
@@ -2002,7 +2077,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get quoteNearMe => 'Di dekat saya';
 
   @override
-  String get quoteNearMeHint => 'Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat';
+  String get quoteNearMeHint =>
+      'Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat';
 
   @override
   String get quoteSiddur => 'Siddur (buku doa)';
@@ -2021,7 +2097,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2122,7 +2199,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2133,7 +2211,8 @@ class AppLocalizationsId extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2168,7 +2247,8 @@ class AppLocalizationsId extends AppLocalizations {
       'Masuk untuk memilih dari playlist dan lagu yang kamu sukai, atau cari di seluruh Spotify. Tidak perlu Premium.';
 
   @override
-  String get spotifyLibraryOn => 'Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.';
+  String get spotifyLibraryOn =>
+      'Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.';
 
   @override
   String spotifyLoginError(String reason) {

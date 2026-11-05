@@ -83,5 +83,13 @@ class Places {
     timeZone: 'America/Los_Angeles',
   );
 
-  static const all = [jerusalem, telAviv, haifa, saoPaulo, newYork, london, losAngeles];
+  static const all = [
+    jerusalem,
+    telAviv,
+    haifa,
+    saoPaulo,
+    newYork,
+    london,
+    losAngeles,
+  ];
 }

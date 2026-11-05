@@ -57,7 +57,10 @@ class Scheduler {
 
   /// The window of events needed to plan from [now]: alarms can sit up to
   /// `maxBefore` ahead of their event and `maxAfter` behind it.
-  ({DateTime from, DateTime to}) eventWindow(DateTime now, Iterable<AlarmRule> rules) {
+  ({DateTime from, DateTime to}) eventWindow(
+    DateTime now,
+    Iterable<AlarmRule> rules,
+  ) {
     var maxBefore = Duration.zero;
     var maxAfter = Duration.zero;
     for (final r in rules.where((r) => r.enabled)) {
@@ -77,7 +80,9 @@ class Scheduler {
 
     // Labelled rules (reminders) go first, so their text wins a shared minute.
     final ordered = rules.where((r) => r.enabled).toList()
-      ..sort((a, b) => (a.label == null ? 1 : 0).compareTo(b.label == null ? 1 : 0));
+      ..sort(
+        (a, b) => (a.label == null ? 1 : 0).compareTo(b.label == null ? 1 : 0),
+      );
     for (final rule in ordered) {
       for (final event in events.where(rule.matches)) {
         for (final offset in rule.offsets()) {
@@ -92,7 +97,11 @@ class Scheduler {
               id: stableId('${rule.id}|${event.id}|${offset.inMinutes}'),
               at: at,
               title: event.title,
-              body: rule.label ?? (offset == Duration.zero ? l10n.nowCap : describeOffset(offset)),
+              body:
+                  rule.label ??
+                  (offset == Duration.zero
+                      ? l10n.nowCap
+                      : describeOffset(offset)),
               ringDuration: rule.ringDuration,
               ruleId: rule.id,
               eventId: event.id,

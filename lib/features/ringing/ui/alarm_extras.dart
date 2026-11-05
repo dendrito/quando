@@ -22,7 +22,8 @@ class AlarmExtras extends ConsumerWidget {
   final ValueChanged<RingStyle> onChanged;
 
   Future<void> _open(BuildContext context, Widget screen) async {
-    final changed = await Navigator.of(context).push<RingStyle>(MaterialPageRoute(builder: (_) => screen));
+    final changed = await Navigator.of(context)
+        .push<RingStyle>(MaterialPageRoute(builder: (_) => screen));
     if (changed != null) onChanged(changed);
   }
 
@@ -54,7 +55,9 @@ class AlarmExtras extends ConsumerWidget {
                 title: l10n.snooze,
                 ways: s.snoozeBy,
                 off: plan.times == 0,
-                line: plan.times == 0 ? l10n.off : l10n.minutesShort(plan.minutes),
+                line: plan.times == 0
+                    ? l10n.off
+                    : l10n.minutesShort(plan.minutes),
                 task: s.snoozeTask ?? StopTask.none,
                 onTap: () => _open(context, SnoozeScreen(initial: s)),
               ),
@@ -109,7 +112,8 @@ class AlarmExtras extends ConsumerWidget {
   }
 }
 
-SnoozePlan defaultSnooze(AlarmOptions o) => SnoozePlan(minutes: o.snoozeMinutes, times: o.maxSnoozes);
+SnoozePlan defaultSnooze(AlarmOptions o) =>
+    SnoozePlan(minutes: o.snoozeMinutes, times: o.maxSnoozes);
 
 /// A tappable row, optionally with a switch.
 class _Row extends StatelessWidget {
@@ -136,13 +140,20 @@ class _Row extends StatelessWidget {
       leading: Icon(icon, color: QuandoColors.amber),
       title: Text(title),
       subtitle: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
-      trailing: on == null ? const Icon(Icons.chevron_right) : Switch(value: on!, onChanged: onSwitch),
-      onTap: onTap ?? (onSwitch == null || on == null ? null : () => onSwitch!(!on!)),
+      trailing: on == null
+          ? const Icon(Icons.chevron_right)
+          : Switch(value: on!, onChanged: onSwitch),
+      onTap:
+          onTap ??
+          (onSwitch == null || on == null ? null : () => onSwitch!(!on!)),
     );
   }
 }
 
-const _wayIcons = {StopWay.volumeKeys: Icons.unfold_more, StopWay.shake: Icons.vibration};
+const _wayIcons = {
+  StopWay.volumeKeys: Icons.unfold_more,
+  StopWay.shake: Icons.vibration,
+};
 
 /// The Snooze or Stop card: which controls work, and the task.
 class _ActionCard extends StatelessWidget {
@@ -168,7 +179,9 @@ class _ActionCard extends StatelessWidget {
     Widget dot(IconData i, bool lit) => Icon(
       i,
       size: 22,
-      color: lit && !off ? QuandoColors.amber : QuandoColors.faint.withValues(alpha: 0.6),
+      color: lit && !off
+          ? QuandoColors.amber
+          : QuandoColors.faint.withValues(alpha: 0.6),
     );
     return Material(
       color: QuandoColors.surface,
@@ -197,7 +210,9 @@ class _ActionCard extends StatelessWidget {
               Text(line, style: text.bodySmall),
               Text(
                 task == StopTask.none ? l10n.noTask : task.label,
-                style: text.bodySmall?.copyWith(color: task == StopTask.none ? null : QuandoColors.blush),
+                style: text.bodySmall?.copyWith(
+                  color: task == StopTask.none ? null : QuandoColors.blush,
+                ),
               ),
             ],
           ),
@@ -213,7 +228,8 @@ abstract class _StyleScreen extends ConsumerStatefulWidget {
   final RingStyle initial;
 }
 
-abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T> {
+abstract class _StyleScreenState<T extends _StyleScreen>
+    extends ConsumerState<T> {
   late RingStyle s = widget.initial;
   String get title;
   IconData get icon;
@@ -225,8 +241,9 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
   /// Scanning needs a saved code: ask for one the first time.
   Future<void> _withCode(StopTask t, void Function(String? code) apply) async {
     if (t != StopTask.scan || s.scanCode != null) return apply(null);
-    final code = await Navigator.of(context)
-        .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+    final code = await Navigator.of(
+      context,
+    ).push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
     if (code != null) apply(code);
   }
 
@@ -236,8 +253,9 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
     title: Text(l10n.codeSaved),
     subtitle: Text(l10n.tapToSaveDifferent),
     onTap: () async {
-      final code = await Navigator.of(context)
-          .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+      final code = await Navigator.of(context).push<String>(
+        MaterialPageRoute(builder: (_) => const ScanSetupScreen()),
+      );
       if (code != null) set(s.copyWith(scanCode: code));
     },
   );
@@ -304,26 +322,30 @@ Widget _controls(
   );
 }
 
-Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick, {bool enabled = true}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+Widget _taskChips(
+  TextTheme text,
+  StopTask current,
+  ValueChanged<StopTask> pick, {
+  bool enabled = true,
+}) => Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(l10n.taskHeading, style: text.labelSmall),
+    const SizedBox(height: 10),
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
       children: [
-        Text(l10n.taskHeading, style: text.labelSmall),
-        const SizedBox(height: 10),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final t in StopTask.values)
-              ChoiceChip(
-                label: Text(t == StopTask.none ? l10n.none : t.label),
-                selected: current == t,
-                onSelected: enabled ? (_) => pick(t) : null,
-              ),
-          ],
-        ),
+        for (final t in StopTask.values)
+          ChoiceChip(
+            label: Text(t == StopTask.none ? l10n.none : t.label),
+            selected: current == t,
+            onSelected: enabled ? (_) => pick(t) : null,
+          ),
       ],
-    );
+    ),
+  ],
+);
 
 /// A setting row with its value in amber; tap to choose another.
 class _Setting extends StatelessWidget {
@@ -350,7 +372,10 @@ class _Setting extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(title, style: text.titleMedium),
       subtitle: Text(subtitle),
-      trailing: Text(label(current), style: text.titleMedium?.copyWith(color: QuandoColors.amber)),
+      trailing: Text(
+        label(current),
+        style: text.titleMedium?.copyWith(color: QuandoColors.amber),
+      ),
       onTap: () async {
         final v = await showDialog<int>(
           context: context,
@@ -363,7 +388,9 @@ class _Setting extends StatelessWidget {
                   child: Row(
                     children: [
                       Icon(
-                        v == current ? Icons.radio_button_checked : Icons.radio_button_off,
+                        v == current
+                            ? Icons.radio_button_checked
+                            : Icons.radio_button_off,
                         color: QuandoColors.amber,
                       ),
                       const SizedBox(width: 14),
@@ -407,7 +434,9 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
         contentPadding: EdgeInsets.zero,
         title: Text(l10n.snooze, style: text.titleLarge),
         value: on,
-        onChanged: (v) => setPlan(plan.copyWith(times: v ? (plan.times > 0 ? plan.times : 3) : 0)),
+        onChanged: (v) => setPlan(
+          plan.copyWith(times: v ? (plan.times > 0 ? plan.times : 3) : 0),
+        ),
       ),
       if (on) ...[
         const SizedBox(height: 16),
@@ -428,7 +457,9 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
           (t) => _withCode(
             t,
             (code) => set(
-              t == StopTask.none ? s.copyWith(noSnoozeTask: true) : s.copyWith(snoozeTask: t, scanCode: code),
+              t == StopTask.none
+                  ? s.copyWith(noSnoozeTask: true)
+                  : s.copyWith(snoozeTask: t, scanCode: code),
             ),
           ),
         ),
@@ -546,26 +577,39 @@ class _VolumeScreenState extends _StyleScreenState<VolumeScreen> {
 
 /// An app on the phone, or a link, to open once you're up.
 Future<String?> pickOpenAfter(BuildContext context, String? current) async {
-  final link = TextEditingController(text: AppLink.isApp(current) ? '' : (current ?? ''));
+  final link = TextEditingController(
+    text: AppLink.isApp(current) ? '' : (current ?? ''),
+  );
   final r = await showModalBottomSheet<String>(
     context: context,
     showDragHandle: true,
     isScrollControlled: true,
     builder: (context) => Padding(
-      padding: EdgeInsets.fromLTRB(24, 0, 24, 24 + MediaQuery.of(context).viewInsets.bottom),
+      padding: EdgeInsets.fromLTRB(
+        24,
+        0,
+        24,
+        24 + MediaQuery.of(context).viewInsets.bottom,
+      ),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Text(l10n.openAfterAlarm, style: Theme.of(context).textTheme.titleLarge),
+          Text(
+            l10n.openAfterAlarm,
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
           const SizedBox(height: 12),
           FilledButton.icon(
-            style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(52)),
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(52),
+            ),
             icon: const Icon(Icons.apps),
             label: Text(l10n.pickAnApp),
             onPressed: () async {
               final a = await _pickApp(context);
-              if (a != null && context.mounted) Navigator.pop(context, AppLink.of(a));
+              if (a != null && context.mounted)
+                Navigator.pop(context, AppLink.of(a));
             },
           ),
           const SizedBox(height: 16),
@@ -573,7 +617,8 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
             controller: link,
             keyboardType: TextInputType.url,
             decoration: InputDecoration(hintText: l10n.orPasteLink),
-            onSubmitted: (v) => Navigator.pop(context, v.trim().isEmpty ? null : v.trim()),
+            onSubmitted: (v) =>
+                Navigator.pop(context, v.trim().isEmpty ? null : v.trim()),
           ),
           const SizedBox(height: 10),
           Wrap(
@@ -581,7 +626,10 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
             runSpacing: 8,
             children: [
               for (final (name, url) in _quickLinks)
-                ActionChip(label: Text(name), onPressed: () => Navigator.pop(context, url)),
+                ActionChip(
+                  label: Text(name),
+                  onPressed: () => Navigator.pop(context, url),
+                ),
             ],
           ),
           const SizedBox(height: 12),
@@ -604,39 +652,49 @@ Future<String?> pickOpenAfter(BuildContext context, String? current) async {
 }
 
 /// Every app on the phone that can be opened, with its icon.
-Future<PhoneApp?> _pickApp(BuildContext context) => showModalBottomSheet<PhoneApp>(
-  context: context,
-  showDragHandle: true,
-  isScrollControlled: true,
-  builder: (context) => DraggableScrollableSheet(
-    expand: false,
-    initialChildSize: 0.7,
-    builder: (context, scroll) => FutureBuilder<List<PhoneApp>>(
-      future: Apps.list(),
-      builder: (context, snap) {
-        if (!snap.hasData) return const Center(child: CircularProgressIndicator());
-        final apps = snap.data!;
-        if (apps.isEmpty) {
-          return Padding(padding: const EdgeInsets.all(24), child: Text(l10n.noAppsFound));
-        }
-        return ListView.builder(
-          controller: scroll,
-          itemCount: apps.length,
-          itemBuilder: (context, i) {
-            final a = apps[i];
-            return ListTile(
-              leading: a.icon == null
-                  ? const Icon(Icons.apps)
-                  : Image.memory(a.icon!, width: 40, height: 40, gaplessPlayback: true),
-              title: Text(a.label),
-              onTap: () => Navigator.pop(context, a),
+Future<PhoneApp?> _pickApp(BuildContext context) =>
+    showModalBottomSheet<PhoneApp>(
+      context: context,
+      showDragHandle: true,
+      isScrollControlled: true,
+      builder: (context) => DraggableScrollableSheet(
+        expand: false,
+        initialChildSize: 0.7,
+        builder: (context, scroll) => FutureBuilder<List<PhoneApp>>(
+          future: Apps.list(),
+          builder: (context, snap) {
+            if (!snap.hasData)
+              return const Center(child: CircularProgressIndicator());
+            final apps = snap.data!;
+            if (apps.isEmpty) {
+              return Padding(
+                padding: const EdgeInsets.all(24),
+                child: Text(l10n.noAppsFound),
+              );
+            }
+            return ListView.builder(
+              controller: scroll,
+              itemCount: apps.length,
+              itemBuilder: (context, i) {
+                final a = apps[i];
+                return ListTile(
+                  leading: a.icon == null
+                      ? const Icon(Icons.apps)
+                      : Image.memory(
+                          a.icon!,
+                          width: 40,
+                          height: 40,
+                          gaplessPlayback: true,
+                        ),
+                  title: Text(a.label),
+                  onTap: () => Navigator.pop(context, a),
+                );
+              },
             );
           },
-        );
-      },
-    ),
-  ),
-);
+        ),
+      ),
+    );
 
 List<(String, String)> get _quickLinks => [
   (l10n.weather, 'https://www.google.com/search?q=weather'),
@@ -648,7 +706,12 @@ List<(String, String)> get _quickLinks => [
 
 /// Volume slider plus fade-in and fade-out lengths.
 class LoudnessEditor extends StatelessWidget {
-  const LoudnessEditor({super.key, required this.value, required this.onChanged, this.fadesOnly = false});
+  const LoudnessEditor({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    this.fadesOnly = false,
+  });
 
   final Loudness value;
 
@@ -675,7 +738,9 @@ class LoudnessEditor extends StatelessWidget {
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.usePhoneVolume),
             value: v.volume == null,
-            onChanged: (on) => onChanged(on ? v.copyWith(phoneVolume: true) : v.copyWith(volume: 80)),
+            onChanged: (on) => onChanged(
+              on ? v.copyWith(phoneVolume: true) : v.copyWith(volume: 80),
+            ),
           ),
         if (!fadesOnly && v.volume != null) ...[
           Row(
@@ -691,14 +756,19 @@ class LoudnessEditor extends StatelessWidget {
                   onChanged: (x) => onChanged(v.copyWith(volume: x.round())),
                 ),
               ),
-              SizedBox(width: 52, child: Text('${v.volume}%', style: text.titleMedium)),
+              SizedBox(
+                width: 52,
+                child: Text('${v.volume}%', style: text.titleMedium),
+              ),
             ],
           ),
           Text(l10n.setsPhoneVolume, style: text.bodySmall),
         ],
         const SizedBox(height: 12),
         Text(
-          v.fadeInSeconds == 0 ? l10n.fadeInOff : l10n.fadeInOver(Loudness.seconds(v.fadeInSeconds)),
+          v.fadeInSeconds == 0
+              ? l10n.fadeInOff
+              : l10n.fadeInOver(Loudness.seconds(v.fadeInSeconds)),
           style: text.titleMedium,
         ),
         Slider(
@@ -706,10 +776,13 @@ class LoudnessEditor extends StatelessWidget {
           divisions: _fades.length - 1,
           value: fadeIndex(v.fadeInSeconds).toDouble(),
           label: Loudness.seconds(v.fadeInSeconds),
-          onChanged: (x) => onChanged(v.copyWith(fadeInSeconds: _fades[x.round()])),
+          onChanged: (x) =>
+              onChanged(v.copyWith(fadeInSeconds: _fades[x.round()])),
         ),
         Text(
-          v.fadeOutSeconds == 0 ? l10n.fadeOutOff : l10n.fadeOutOver(Loudness.seconds(v.fadeOutSeconds)),
+          v.fadeOutSeconds == 0
+              ? l10n.fadeOutOff
+              : l10n.fadeOutOver(Loudness.seconds(v.fadeOutSeconds)),
           style: text.titleMedium,
         ),
         Slider(
@@ -717,7 +790,8 @@ class LoudnessEditor extends StatelessWidget {
           divisions: _fades.length - 1,
           value: fadeIndex(v.fadeOutSeconds).toDouble(),
           label: Loudness.seconds(v.fadeOutSeconds),
-          onChanged: (x) => onChanged(v.copyWith(fadeOutSeconds: _fades[x.round()])),
+          onChanged: (x) =>
+              onChanged(v.copyWith(fadeOutSeconds: _fades[x.round()])),
         ),
         Text(l10n.fadesExplain, style: text.bodySmall),
       ],

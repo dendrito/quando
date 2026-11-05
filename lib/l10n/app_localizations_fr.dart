@@ -29,7 +29,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get newAtTime => 'À une heure';
 
   @override
-  String get newAtTimeHint => 'Chaque jour de semaine à 7:00, une fois à 15:30…';
+  String get newAtTimeHint =>
+      'Chaque jour de semaine à 7:00, une fois à 15:30…';
 
   @override
   String get newAroundEvent => 'Autour d’un événement';
@@ -197,25 +198,45 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String spanDays(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n jours', one: '1 jour');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n jours',
+      one: '1 jour',
+    );
     return '$_temp0';
   }
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n heures', one: '1 heure');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n heures',
+      one: '1 heure',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n minutes',
+      one: '1 minute',
+    );
     return '$_temp0';
   }
 
   @override
   String spanSeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondes', one: '1 seconde');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n secondes',
+      one: '1 seconde',
+    );
     return '$_temp0';
   }
 
@@ -234,7 +255,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n alarmes', one: '1 alarme');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarmes',
+      one: '1 alarme',
+    );
     return '$_temp0';
   }
 
@@ -265,7 +291,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get sunNoRiseSet => 'Le soleil ne se lève ni ne se couche ici aujourd’hui';
+  String get sunNoRiseSet =>
+      'Le soleil ne se lève ni ne se couche ici aujourd’hui';
 
   @override
   String sunProgress(int percent) {
@@ -385,7 +412,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get lockForShabbat => 'Verrouiller le téléphone pendant Chabbat';
 
   @override
-  String get lockForShabbatHint => 'De l’allumage des bougies à la Havdala, fêtes comprises';
+  String get lockForShabbatHint =>
+      'De l’allumage des bougies à la Havdala, fêtes comprises';
 
   @override
   String get ownShabbatAlarmsHeading => 'VOS ALARMES DE CHABBAT';
@@ -402,7 +430,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get presetsHint => 'Touchez-en une pour changer ses horaires. Glissez pour la supprimer.';
+  String get presetsHint =>
+      'Touchez-en une pour changer ses horaires. Glissez pour la supprimer.';
 
   @override
   String get lockSentence =>
@@ -425,7 +454,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get fromCandleToHavdalah => 'De l’allumage des bougies à la Havdala';
 
   @override
-  String get lockCalendarWord => 'Pendant les événements d’agenda contenant ce mot';
+  String get lockCalendarWord =>
+      'Pendant les événements d’agenda contenant ce mot';
 
   @override
   String get lockCalendarWordHint => 'ex. verrou, examen, concentration';
@@ -434,7 +464,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get leaveEmptyForNone => 'Laisser vide pour aucun';
 
   @override
-  String get connectCalendarsFirst => 'Connectez d’abord les agendas (icône agenda)';
+  String get connectCalendarsFirst =>
+      'Connectez d’abord les agendas (icône agenda)';
 
   @override
   String get openWhenLockStarts => 'Ouvrir Quando? au début d’un verrouillage';
@@ -454,7 +485,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get noLocksComingUp => 'Aucun verrouillage à venir.';
 
   @override
-  String get leaveLockEarly => 'Pour sortir plus tôt, maintenez « Maintenir pour déverrouiller » 3 secondes.';
+  String get leaveLockEarly =>
+      'Pour sortir plus tôt, maintenez « Maintenir pour déverrouiller » 3 secondes.';
 
   @override
   String get locked => 'Verrouillé';
@@ -491,7 +523,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get calendarAlarmsHeading => 'ALARMES D’AGENDA';
 
   @override
-  String get calendarNoneYet => 'Aucune pour l’instant. Commencez par celle-ci, puis ajustez-la :';
+  String get calendarNoneYet =>
+      'Aucune pour l’instant. Commencez par celle-ci, puis ajustez-la :';
 
   @override
   String get fifteenBeforeEvery => '15 minutes avant chaque événement';
@@ -500,7 +533,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get useTheseCalendarsHeading => 'UTILISER CES AGENDAS';
 
   @override
-  String get noTimedEvents => 'Aucun événement horaire à venir dans ces agendas.';
+  String get noTimedEvents =>
+      'Aucun événement horaire à venir dans ces agendas.';
 
   @override
   String get atTheStart => 'au début';
@@ -599,7 +633,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get labelField => 'Libellé (lu à voix haute si les alarmes parlées sont activées)';
+  String get labelField =>
+      'Libellé (lu à voix haute si les alarmes parlées sont activées)';
 
   @override
   String get group => 'Groupe';
@@ -666,7 +701,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get shabbat => 'Chabbat';
 
   @override
-  String get presetCountdown => 'Compte à rebours jusqu’à l’allumage des bougies';
+  String get presetCountdown =>
+      'Compte à rebours jusqu’à l’allumage des bougies';
 
   @override
   String get presetHourly => 'Toutes les heures, dès 6 heures avant';
@@ -678,10 +714,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get presetSecondNight => 'Bougies du second soir';
 
   @override
-  String get presetFridayReminder => 'Rappel 3 heures avant : chargez votre téléphone';
+  String get presetFridayReminder =>
+      'Rappel 3 heures avant : chargez votre téléphone';
 
   @override
-  String get presetFridayReminderLabel => 'Chargez votre téléphone et réglez les alarmes de demain';
+  String get presetFridayReminderLabel =>
+      'Chargez votre téléphone et réglez les alarmes de demain';
 
   @override
   String get presetSunset => 'Coucher du soleil, et 15 minutes avant';
@@ -711,13 +749,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get readyNotifications => 'Afficher les alarmes';
 
   @override
-  String get readyNotificationsWhy => 'Permet d’afficher l’écran de sonnerie et le bouton Arrêter.';
+  String get readyNotificationsWhy =>
+      'Permet d’afficher l’écran de sonnerie et le bouton Arrêter.';
 
   @override
   String get readyFullScreen => 'Sonner par-dessus l’écran verrouillé';
 
   @override
-  String get readyFullScreenWhy => 'Affiche l’alarme en plein écran, même téléphone verrouillé.';
+  String get readyFullScreenWhy =>
+      'Affiche l’alarme en plein écran, même téléphone verrouillé.';
 
   @override
   String get readyExact => 'Sonner à la minute près';
@@ -730,7 +770,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get readyBattery => 'Continuer en économie de batterie';
 
   @override
-  String get readyBatteryWhy => 'Empêche l’économie de batterie de couper les alarmes la nuit.';
+  String get readyBatteryWhy =>
+      'Empêche l’économie de batterie de couper les alarmes la nuit.';
 
   @override
   String get tipXiaomi =>
@@ -755,7 +796,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get testRingBody => 'Quando? peut vous réveiller';
 
   @override
-  String get ringsIn20 => 'Sonne dans 20 secondes. Verrouillez le téléphone et attendez.';
+  String get ringsIn20 =>
+      'Sonne dans 20 secondes. Verrouillez le téléphone et attendez.';
 
   @override
   String get readyToRing => 'Prêt à sonner';
@@ -764,14 +806,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get checkingPhone => 'Vérification du téléphone…';
 
   @override
-  String get phoneReady => 'Votre téléphone est prêt à faire sonner chaque alarme à l’heure.';
+  String get phoneReady =>
+      'Votre téléphone est prêt à faire sonner chaque alarme à l’heure.';
 
   @override
   String thingsNeedFixing(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n points à corriger, sinon les alarmes risquent de ne pas sonner.',
+      other:
+          '$n points à corriger, sinon les alarmes risquent de ne pas sonner.',
       one: '1 point à corriger, sinon les alarmes risquent de ne pas sonner.',
     );
     return '$_temp0';
@@ -788,7 +832,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Verrouillez le téléphone et posez-le. Si l’alarme sonne en plein écran, tout est prêt.';
 
   @override
-  String get readyToRingHint => 'Vérifiez que votre téléphone laisse chaque alarme sonner à l’heure';
+  String get readyToRingHint =>
+      'Vérifiez que votre téléphone laisse chaque alarme sonner à l’heure';
 
   @override
   String get connections => 'Connexions';
@@ -805,7 +850,8 @@ class AppLocalizationsFr extends AppLocalizations {
   }
 
   @override
-  String get zoneFixed => 'Fixe. Les alarmes gardent cette heure même en voyage.';
+  String get zoneFixed =>
+      'Fixe. Les alarmes gardent cette heure même en voyage.';
 
   @override
   String get shabbatCityHeading => 'VILLE POUR CHABBAT';
@@ -825,7 +871,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get nightfallGeonim => 'Tombée de la nuit (Guéonim, 8,5°)';
 
   @override
-  String get rabbeinuTam => '72 minutes après le coucher du soleil (Rabbénou Tam)';
+  String get rabbeinuTam =>
+      '72 minutes après le coucher du soleil (Rabbénou Tam)';
 
   @override
   String get whenAlarmRingsHeading => 'QUAND UNE ALARME SONNE';
@@ -834,22 +881,26 @@ class AppLocalizationsFr extends AppLocalizations {
   String get recordOrAddSounds => 'Enregistrer ou ajouter des sons';
 
   @override
-  String get ringsForThisLong => 'Sonne pendant cette durée, puis s’arrête toute seule';
+  String get ringsForThisLong =>
+      'Sonne pendant cette durée, puis s’arrête toute seule';
 
   @override
   String get sameFades => 'Mêmes fondus pour toutes les alarmes';
 
   @override
-  String get sameFadesOn => 'Remplace les fondus de chaque alarme. Chacune garde son volume.';
+  String get sameFadesOn =>
+      'Remplace les fondus de chaque alarme. Chacune garde son volume.';
 
   @override
-  String get sameFadesOff => 'Désactivé : chaque alarme utilise les fondus réglés dans son Volume.';
+  String get sameFadesOff =>
+      'Désactivé : chaque alarme utilise les fondus réglés dans son Volume.';
 
   @override
   String get sayItOutLoud => 'Le dire à voix haute';
 
   @override
-  String get sayItOutLoudHint => 'Lit à quoi sert l’alarme, ex. « Allumage des bougies, 15 minutes avant »';
+  String get sayItOutLoudHint =>
+      'Lit à quoi sert l’alarme, ex. « Allumage des bougies, 15 minutes avant »';
 
   @override
   String get noSnooze => 'Pas de répétition';
@@ -890,7 +941,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chooseCity => 'Choisir une ville';
 
   @override
-  String get testOnlyOnPhone => 'Les alarmes test ne fonctionnent que sur un téléphone.';
+  String get testOnlyOnPhone =>
+      'Les alarmes test ne fonctionnent que sur un téléphone.';
 
   @override
   String get testAlarm => 'Alarme test';
@@ -899,7 +951,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get testAlarmBody => 'Voici comment vos alarmes sonneront';
 
   @override
-  String get testAlarmIn1Set => 'Alarme test dans 1 minute. Vous pouvez verrouiller le téléphone.';
+  String get testAlarmIn1Set =>
+      'Alarme test dans 1 minute. Vous pouvez verrouiller le téléphone.';
 
   @override
   String get presetGone => 'Ce modèle n’existe plus.';
@@ -964,7 +1017,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get howToSearch => 'Comment chercher';
 
   @override
-  String get searchHelpWord => 'Le titre contient « dentist », majuscules ou non';
+  String get searchHelpWord =>
+      'Le titre contient « dentist », majuscules ou non';
 
   @override
   String get searchHelpStar => '* remplace des lettres : dentist, dentures';
@@ -1015,10 +1069,12 @@ class AppLocalizationsFr extends AppLocalizations {
   String get searchEventsHint => 'Chercher : dentiste, sport OR yoga, dent*…';
 
   @override
-  String get alsoBuiltInTimes => 'Aussi les horaires de Chabbat, des fêtes et du soleil';
+  String get alsoBuiltInTimes =>
+      'Aussi les horaires de Chabbat, des fêtes et du soleil';
 
   @override
-  String get alsoBuiltInTimesHint => 'ex. « allumage* », « havdala », « coucher »';
+  String get alsoBuiltInTimesHint =>
+      'ex. « allumage* », « havdala », « coucher »';
 
   @override
   String get allMyCalendars => 'Tous mes agendas';
@@ -1030,7 +1086,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get searching => 'Recherche…';
 
   @override
-  String get nothingMatches60 => 'Rien ne correspond dans les 60 prochains jours';
+  String get nothingMatches60 =>
+      'Rien ne correspond dans les 60 prochains jours';
 
   @override
   String eventsIn60(int n) {
@@ -1125,7 +1182,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get wakeToOwnSound => 'Réveillez-vous avec votre son';
 
   @override
-  String get wakeToOwnSoundHint => 'Votre voix, un morceau, Spotify ou la radio en direct';
+  String get wakeToOwnSoundHint =>
+      'Votre voix, un morceau, Spotify ou la radio en direct';
 
   @override
   String musicAdded(String name) {
@@ -1184,7 +1242,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Son appli s’ouvre et le joue. S’il reste silencieux 10 secondes, le son de secours sonne à la place, pour toujours vous réveiller. Les alarmes avec tâche sonnent, puis l’ouvrent.';
 
   @override
-  String get ringThenOpenHint => 'Le son de secours sonne. Arrêter ouvre le morceau dans son appli.';
+  String get ringThenOpenHint =>
+      'Le son de secours sonne. Arrêter ouvre le morceau dans son appli.';
 
   @override
   String get playForHeading => 'JOUER PENDANT';
@@ -1214,16 +1273,19 @@ class AppLocalizationsFr extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube et YouTube Music';
 
   @override
-  String get youTubeOn => 'Vos playlists et titres likés. Appui long pour se déconnecter.';
+  String get youTubeOn =>
+      'Vos playlists et titres likés. Appui long pour se déconnecter.';
 
   @override
-  String get youTubeSignIn => 'Connectez-vous avec Google pour choisir dans vos playlists et titres likés.';
+  String get youTubeSignIn =>
+      'Connectez-vous avec Google pour choisir dans vos playlists et titres likés.';
 
   @override
   String get addSongLinkInstead => 'Ajoutez plutôt un lien de morceau.';
 
   @override
-  String get googleSignInFailed => 'La connexion Google n’a pas abouti. Réessayez.';
+  String get googleSignInFailed =>
+      'La connexion Google n’a pas abouti. Réessayez.';
 
   @override
   String get myYouTube => 'Mon YouTube';
@@ -1272,7 +1334,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get addAFile => 'Ajouter un fichier';
 
   @override
-  String get addSongLinkLong => 'Ajouter un lien de morceau (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'Ajouter un lien de morceau (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'APPLIS DE MUSIQUE';
@@ -1327,13 +1390,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get defaultLabel => 'Par défaut';
 
   @override
-  String get radioUnreachable => 'Impossible de joindre l’annuaire des radios. Vérifiez votre connexion.';
+  String get radioUnreachable =>
+      'Impossible de joindre l’annuaire des radios. Vérifiez votre connexion.';
 
   @override
   String get addStreamAddress => 'Ajouter une adresse de flux';
 
   @override
-  String get notAStream => 'Ça ne ressemble pas à une adresse de flux (elle commence par http).';
+  String get notAStream =>
+      'Ça ne ressemble pas à une adresse de flux (elle commence par http).';
 
   @override
   String get anyGenre => 'Tous les genres';
@@ -1351,7 +1416,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get anywhere => 'Partout';
 
   @override
-  String get noStations => 'Aucune station trouvée. Essayez un autre genre ou pays.';
+  String get noStations =>
+      'Aucune station trouvée. Essayez un autre genre ou pays.';
 
   @override
   String wakeUpTo(String name) {
@@ -1619,13 +1685,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get shortenSnoozes => 'Raccourcir les suivantes';
 
   @override
-  String get shortenSnoozesHint => 'Chaque répétition après la première est plus courte d’autant';
+  String get shortenSnoozesHint =>
+      'Chaque répétition après la première est plus courte d’autant';
 
   @override
   String get autoSnooze => 'Répétition automatique';
 
   @override
-  String get autoSnoozeHint => 'Si vous n’y touchez pas, elle se répète seule après';
+  String get autoSnoozeHint =>
+      'Si vous n’y touchez pas, elle se répète seule après';
 
   @override
   String get never => 'Jamais';
@@ -1643,14 +1711,16 @@ class AppLocalizationsFr extends AppLocalizations {
   String get useSnoozeFromSettings => 'Utiliser la répétition des Réglages';
 
   @override
-  String get stopSentence => 'Comment vous arrêtez l’alarme, et ce qu’il faut faire avant.';
+  String get stopSentence =>
+      'Comment vous arrêtez l’alarme, et ce qu’il faut faire avant.';
 
   @override
   String get shabbatNoTask =>
       'Pendant Chabbat et les fêtes, les alarmes s’arrêtent seules et ne demandent jamais de tâche.';
 
   @override
-  String get volumeSentence => 'À quel volume elle sonne, et avec quelle douceur elle y arrive.';
+  String get volumeSentence =>
+      'À quel volume elle sonne, et avec quelle douceur elle y arrive.';
 
   @override
   String get openAfterAlarm => 'Ouvrir après l’alarme';
@@ -1677,7 +1747,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get usePhoneVolume => 'Utiliser le volume d’alarme du téléphone';
 
   @override
-  String get setsPhoneVolume => 'Règle le volume d’alarme du téléphone pendant la sonnerie, puis le remet.';
+  String get setsPhoneVolume =>
+      'Règle le volume d’alarme du téléphone pendant la sonnerie, puis le remet.';
 
   @override
   String get fadeInOff => 'Fondu d’entrée : non, plein volume tout de suite';
@@ -1808,7 +1879,12 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n titres', one: '1 titre');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n titres',
+      one: '1 titre',
+    );
     return '$_temp0';
   }
 
@@ -1874,7 +1950,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get pushWhenRings => 'Envoyer une notification quand une alarme sonne';
 
   @override
-  String get pushWhenRingsHint => 'Vers vos autres téléphones, tablette, montre ou ordinateur';
+  String get pushWhenRingsHint =>
+      'Vers vos autres téléphones, tablette, montre ou ordinateur';
 
   @override
   String get yourUserKey => 'Votre clé utilisateur';
@@ -1960,7 +2037,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tomorrow => 'Demain';
 
   @override
-  String get notAWebAddress => 'Ça ne ressemble pas à une adresse web commençant par https://';
+  String get notAWebAddress =>
+      'Ça ne ressemble pas à une adresse web commençant par https://';
 
   @override
   String get language => 'Langue';
@@ -2015,7 +2093,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get quoteCarnaval => 'Carnaval';
 
   @override
-  String get quoteCarnavalHint => 'Chansons et dictons pendant le Carnaval du Brésil';
+  String get quoteCarnavalHint =>
+      'Chansons et dictons pendant le Carnaval du Brésil';
 
   @override
   String get quoteNearMe => 'Près de moi';
@@ -2041,7 +2120,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2142,7 +2222,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2153,7 +2234,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';

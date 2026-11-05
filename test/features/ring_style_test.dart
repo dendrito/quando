@@ -11,7 +11,11 @@ import 'package:quando/features/sounds/domain/loudness.dart';
 void main() {
   group('loudness', () {
     test('fades in, holds, fades out by the end of the ring', () {
-      final v = const Loudness(volume: 70, fadeInSeconds: 10, fadeOutSeconds: 20).toVolumeSettings(60);
+      final v = const Loudness(
+        volume: 70,
+        fadeInSeconds: 10,
+        fadeOutSeconds: 20,
+      ).toVolumeSettings(60);
       expect(v.volume, 0.7);
       expect(
         [for (final s in v.fadeSteps) (s.time.inSeconds, s.volume)],
@@ -20,7 +24,10 @@ void main() {
     });
 
     test('no fades plays at a fixed volume', () {
-      final v = const Loudness(volume: 50, fadeInSeconds: 0).toVolumeSettings(60);
+      final v = const Loudness(
+        volume: 50,
+        fadeInSeconds: 0,
+      ).toVolumeSettings(60);
       expect(v.fadeSteps, isEmpty);
       expect(v.fadeDuration, isNull);
       expect(v.volume, 0.5);
@@ -31,7 +38,10 @@ void main() {
     });
 
     test('fades longer than the ring shrink to fit', () {
-      final v = const Loudness(fadeInSeconds: 60, fadeOutSeconds: 60).toVolumeSettings(30);
+      final v = const Loudness(
+        fadeInSeconds: 60,
+        fadeOutSeconds: 60,
+      ).toVolumeSettings(30);
       final times = [for (final s in v.fadeSteps) s.time.inMilliseconds];
       expect(times.last, 30000);
       expect(times[1], 12000); // 60 / 120 of 80% of 30 s
@@ -41,16 +51,26 @@ void main() {
     });
 
     test('fade out alone starts loud', () {
-      final v = const Loudness(fadeInSeconds: 0, fadeOutSeconds: 10).toVolumeSettings(60);
+      final v = const Loudness(
+        fadeInSeconds: 0,
+        fadeOutSeconds: 10,
+      ).toVolumeSettings(60);
       expect([for (final s in v.fadeSteps) s.volume], [1.0, 1.0, 0.0]);
     });
 
     test('summary reads plainly', () {
       expect(
-        const Loudness(volume: 70, fadeInSeconds: 90, fadeOutSeconds: 0).summary,
+        const Loudness(
+          volume: 70,
+          fadeInSeconds: 90,
+          fadeOutSeconds: 0,
+        ).summary,
         '70% · fades in 1 min 30 s',
       );
-      expect(const Loudness(fadeInSeconds: 0).summary, 'Phone volume · no fade');
+      expect(
+        const Loudness(fadeInSeconds: 0).summary,
+        'Phone volume · no fade',
+      );
     });
   });
 
@@ -68,11 +88,19 @@ void main() {
     test('survives a restart with the alarm', () {
       const a = UserAlarm(id: 'a', hour: 7, minute: 0, days: {1}, style: style);
       expect(UserAlarm.fromJson(a.toJson()).style, style);
-      expect(const UserAlarm(id: 'b', hour: 7, minute: 0).toJson()['style'], isNull);
+      expect(
+        const UserAlarm(id: 'b', hour: 7, minute: 0).toJson()['style'],
+        isNull,
+      );
     });
 
     test('goes into the ringing payload and back', () {
-      const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60, maxSnoozes: 2);
+      const base = RingPayload(
+        title: 'Wake',
+        body: 'Alarm',
+        ringSeconds: 60,
+        maxSnoozes: 2,
+      );
       final p = RingPayload.decode(base.withStyle(style).encode());
       expect(p.loudness, style.loudness);
       expect(p.snoozeBy, {StopWay.volumeKeys});
@@ -87,7 +115,12 @@ void main() {
     });
 
     test('on Shabbat nothing asks to be touched, but volume still applies', () {
-      const base = RingPayload(title: 'Candles', body: 'Now', ringSeconds: 60, shabbatSafe: true);
+      const base = RingPayload(
+        title: 'Candles',
+        body: 'Now',
+        ringSeconds: 60,
+        shabbatSafe: true,
+      );
       final p = base.withStyle(style);
       expect(p.loudness, style.loudness);
       expect(p.hasTask, isFalse);
@@ -115,12 +148,22 @@ void main() {
       expect(g.id, isNot(a.id));
       expect(gentleBefore(a, DateTime.utc(2026, 11, 2, 6, 55)), isNull);
 
-      const base = RingPayload(title: 'Wake', body: 'Weekdays', ringSeconds: 300, maxSnoozes: 2);
-      final p = base.withStyle(style).gentleLeadUp(10, 'assets/sounds/gentle_waves.ogg');
+      const base = RingPayload(
+        title: 'Wake',
+        body: 'Weekdays',
+        ringSeconds: 300,
+        maxSnoozes: 2,
+      );
+      final p = base
+          .withStyle(style)
+          .gentleLeadUp(10, 'assets/sounds/gentle_waves.ogg');
       expect(p.gentle, isTrue);
       expect(p.sound, 'assets/sounds/gentle_waves.ogg');
       expect(p.loudness.volume, 24); // 60% of the alarm's 40%
-      expect(p.loudness.fadeInSeconds, 510); // rises over most of the 10 minutes
+      expect(
+        p.loudness.fadeInSeconds,
+        510,
+      ); // rises over most of the 10 minutes
       expect(p.ringSeconds, 585); // ends just before the real alarm
       expect(p.hasTask, isFalse);
       expect(p.canSnooze, isFalse);
@@ -130,18 +173,32 @@ void main() {
 
   test('VolumeSettings accepts what Quando builds', () {
     expect(
-      const Loudness(volume: 100, fadeInSeconds: 300, fadeOutSeconds: 300).toVolumeSettings(5),
+      const Loudness(
+        volume: 100,
+        fadeInSeconds: 300,
+        fadeOutSeconds: 300,
+      ).toVolumeSettings(5),
       isA<VolumeSettings>(),
     );
   });
 
   test('snooze plan: length, limit, shorter each time, by itself, a task', () {
     const style = RingStyle(
-      snooze: SnoozePlan(minutes: 10, times: 3, shortenBy: 3, autoSnoozeMinutes: 2),
+      snooze: SnoozePlan(
+        minutes: 10,
+        times: 3,
+        shortenBy: 3,
+        autoSnoozeMinutes: 2,
+      ),
       snoozeTask: StopTask.sum,
     );
     expect(RingStyle.fromJson(style.toJson()), style);
-    const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60, maxSnoozes: 2);
+    const base = RingPayload(
+      title: 'Wake',
+      body: 'Alarm',
+      ringSeconds: 60,
+      maxSnoozes: 2,
+    );
     var p = RingPayload.decode(base.withStyle(style).encode());
     expect(p.maxSnoozes, 3);
     expect(p.autoSnoozeMinutes, 2);
@@ -154,7 +211,12 @@ void main() {
     expect(lengths, [10, 7, 4]);
     expect(const SnoozePlan(minutes: 3, shortenBy: 5).lengthOf(2), 1);
     expect(
-      const SnoozePlan(minutes: 10, times: 3, shortenBy: 2, autoSnoozeMinutes: 5).summary,
+      const SnoozePlan(
+        minutes: 10,
+        times: 3,
+        shortenBy: 2,
+        autoSnoozeMinutes: 5,
+      ).summary,
       '10 min, up to 3×, 2 min shorter each time, snoozes by itself after 5 min',
     );
 
@@ -170,13 +232,18 @@ void main() {
   });
 
   test('an app to open after is kept by its package', () {
-    final s = AppLink.of(const PhoneApp(package: 'com.example.news', label: 'Daily News'));
+    final s = AppLink.of(
+      const PhoneApp(package: 'com.example.news', label: 'Daily News'),
+    );
     expect(AppLink.isApp(s), isTrue);
     expect(AppLink.package(s), 'com.example.news');
     expect(AppLink.label(s), 'Daily News');
     expect(AppLink.isApp('https://news.google.com'), isFalse);
     const base = RingPayload(title: 'Wake', body: 'Alarm', ringSeconds: 60);
-    expect(RingPayload.decode(base.withStyle(RingStyle(openAfter: s)).encode()).link, s);
+    expect(
+      RingPayload.decode(base.withStyle(RingStyle(openAfter: s)).encode()).link,
+      s,
+    );
   });
 
   test('a fades override keeps each alarm\'s volume', () {
@@ -186,7 +253,9 @@ void main() {
       ringSeconds: 120,
       loudness: Loudness(volume: 40, fadeInSeconds: 5),
     );
-    final o = p.withFadesOf(const Loudness(volume: 90, fadeInSeconds: 60, fadeOutSeconds: 20));
+    final o = p.withFadesOf(
+      const Loudness(volume: 90, fadeInSeconds: 60, fadeOutSeconds: 20),
+    );
     expect(o.loudness.volume, 40);
     expect(o.loudness.fadeInSeconds, 60);
     expect(o.loudness.fadeOutSeconds, 20);

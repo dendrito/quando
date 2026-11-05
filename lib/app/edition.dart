@@ -16,7 +16,9 @@ const kodeshName = 'Matai? On the Sabbath';
 const kodeshNameHe = 'מתי? בשבת';
 
 /// The app's name as people see it.
-String get appTitle => !kodesh ? l10n.appName : (l10n.localeName == 'he' ? kodeshNameHe : kodeshName);
+String get appTitle => !kodesh
+    ? l10n.appName
+    : (l10n.localeName == 'he' ? kodeshNameHe : kodeshName);
 
 /// Shown at the bottom of Settings. Keep in step with pubspec.yaml.
 const appVersion = '0.1.0';

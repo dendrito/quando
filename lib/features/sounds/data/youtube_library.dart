@@ -13,14 +13,16 @@ import 'package:quando/l10n/l10n.dart';
 /// and liked videos (liked songs in YouTube Music are among them).
 class YouTubeAccount {
   /// Quando's web client in Google Cloud (not a secret).
-  static const serverClientId = '299909596314-e9loi4jur2h3aqki3csa0h7h2s0rjrn5.apps.googleusercontent.com';
+  static const serverClientId =
+      '299909596314-e9loi4jur2h3aqki3csa0h7h2s0rjrn5.apps.googleusercontent.com';
   static const scope = 'https://www.googleapis.com/auth/youtube.readonly';
 
   /// Kept under [prefKey] once signed in.
   static bool connected = false;
   static const prefKey = 'youtube.connected';
 
-  static bool get available => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get available =>
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
   static var _ready = false;
 
@@ -29,7 +31,9 @@ class YouTubeAccount {
     if (_ready) return;
     await GoogleSignIn.instance.initialize(
       clientId: SyncConfig.iosClient,
-      serverClientId: SyncConfig.iosClient != null ? SyncConfig.webClientId : serverClientId,
+      serverClientId: SyncConfig.iosClient != null
+          ? SyncConfig.webClientId
+          : serverClientId,
     );
     _ready = true;
   }
@@ -46,7 +50,11 @@ class YouTubeAccount {
       await init();
       final account =
           await GoogleSignIn.instance.attemptLightweightAuthentication() ??
-          (prompt ? await GoogleSignIn.instance.authenticate(scopeHint: const [scope]) : null);
+          (prompt
+              ? await GoogleSignIn.instance.authenticate(
+                  scopeHint: const [scope],
+                )
+              : null);
       if (account == null) return null;
       final client = account.authorizationClient;
       final auth =
@@ -55,7 +63,8 @@ class YouTubeAccount {
       return auth?.accessToken;
     } on GoogleSignInException catch (e) {
       if (e.code != GoogleSignInExceptionCode.canceled) {
-        lastError = '${e.code.name}${e.description == null ? '' : ': ${e.description}'}';
+        lastError =
+            '${e.code.name}${e.description == null ? '' : ': ${e.description}'}';
       }
       return null;
     } catch (e) {
@@ -74,7 +83,8 @@ class YouTubeAccount {
 
 /// Reads playlists and liked videos from the YouTube Data API.
 class YouTubeLibrary {
-  YouTubeLibrary(this.token, {http.Client? client, this.music = true}) : _client = client ?? http.Client();
+  YouTubeLibrary(this.token, {http.Client? client, this.music = true})
+    : _client = client ?? http.Client();
 
   final String token;
   final http.Client _client;
@@ -82,41 +92,58 @@ class YouTubeLibrary {
   /// Links open in YouTube Music, otherwise in YouTube.
   final bool music;
 
-  String get _host => music ? 'https://music.youtube.com' : 'https://www.youtube.com';
+  String get _host =>
+      music ? 'https://music.youtube.com' : 'https://www.youtube.com';
 
-  Future<List<SpotifyItem>> playlists() =>
-      _get('playlists?part=snippet,contentDetails&mine=true&maxResults=50', (j) {
+  Future<List<SpotifyItem>> playlists() => _get(
+    'playlists?part=snippet,contentDetails&mine=true&maxResults=50',
+    (j) {
+      final id = j['id'] as String?;
+      final sn = j['snippet'] as Map?;
+      final name = sn?['title'] as String?;
+      if (id == null || name == null || name.isEmpty) return null;
+      final count = (j['contentDetails'] as Map?)?['itemCount'] as num?;
+      return SpotifyItem(
+        name: name,
+        detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
+        url: '$_host/playlist?list=$id',
+        image: _thumb(sn),
+      );
+    },
+  );
+
+  Future<List<SpotifyItem>> liked() =>
+      _get('videos?part=snippet&myRating=like&maxResults=50', (j) {
         final id = j['id'] as String?;
         final sn = j['snippet'] as Map?;
         final name = sn?['title'] as String?;
         if (id == null || name == null || name.isEmpty) return null;
-        final count = (j['contentDetails'] as Map?)?['itemCount'] as num?;
+        final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(
+          RegExp(r' - Topic$'),
+          '',
+        );
         return SpotifyItem(
           name: name,
-          detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
-          url: '$_host/playlist?list=$id',
+          detail: channel,
+          url: '$_host/watch?v=$id',
           image: _thumb(sn),
         );
       });
 
-  Future<List<SpotifyItem>> liked() => _get('videos?part=snippet&myRating=like&maxResults=50', (j) {
-    final id = j['id'] as String?;
-    final sn = j['snippet'] as Map?;
-    final name = sn?['title'] as String?;
-    if (id == null || name == null || name.isEmpty) return null;
-    final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(RegExp(r' - Topic$'), '');
-    return SpotifyItem(name: name, detail: channel, url: '$_host/watch?v=$id', image: _thumb(sn));
-  });
-
   /// Videos (songs) and playlists for anything you type.
   Future<List<SpotifyItem>> search(String query) {
     final q = Uri.encodeQueryComponent(query.trim());
-    return _get('search?part=snippet&type=video,playlist&maxResults=25&q=$q', (j) {
+    return _get('search?part=snippet&type=video,playlist&maxResults=25&q=$q', (
+      j,
+    ) {
       final id = j['id'] as Map?;
       final sn = j['snippet'] as Map?;
       final name = sn?['title'] as String?;
       if (id == null || name == null || name.isEmpty) return null;
-      final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(RegExp(r' - Topic$'), '');
+      final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(
+        RegExp(r' - Topic$'),
+        '',
+      );
       final video = id['videoId'] as String?;
       final list = id['playlistId'] as String?;
       if (video != null) {
@@ -147,7 +174,8 @@ class YouTubeLibrary {
       .replaceAll('&lt;', '<')
       .replaceAll('&gt;', '>');
 
-  static String? _thumb(Map? sn) => ((sn?['thumbnails'] as Map?)?['default'] as Map?)?['url'] as String?;
+  static String? _thumb(Map? sn) =>
+      ((sn?['thumbnails'] as Map?)?['default'] as Map?)?['url'] as String?;
 
   /// Google's own words, e.g. "YouTube Data API v3 has not been used in
   /// project … or it is disabled", so the fix is clear.
@@ -160,7 +188,10 @@ class YouTubeLibrary {
     }
   }
 
-  Future<List<SpotifyItem>> _get(String path, SpotifyItem? Function(Map<String, dynamic>) parse) async {
+  Future<List<SpotifyItem>> _get(
+    String path,
+    SpotifyItem? Function(Map<String, dynamic>) parse,
+  ) async {
     final r = await _client
         .get(
           Uri.parse('https://www.googleapis.com/youtube/v3/$path'),
@@ -171,9 +202,13 @@ class YouTubeLibrary {
       throw Exception('${l10n.youTubeSaidNo}${_why(r.body)}');
     }
     if (r.statusCode != 200) {
-      throw Exception('${l10n.serviceDidntAnswer('YouTube', r.statusCode)}${_why(r.body)}');
+      throw Exception(
+        '${l10n.serviceDidntAnswer('YouTube', r.statusCode)}${_why(r.body)}',
+      );
     }
-    final items = (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ?? const [];
+    final items =
+        (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ??
+        const [];
     return [
       for (final j in items)
         if (j is Map<String, dynamic>) ?parse(j),

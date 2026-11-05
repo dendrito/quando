@@ -8,7 +8,11 @@ enum Direction { before, after }
 /// "Every [every], for [span] before/after the event", e.g. every hour for
 /// 6 hours before, or every day for a week before.
 class OffsetSeries {
-  const OffsetSeries({required this.direction, required this.every, required this.span});
+  const OffsetSeries({
+    required this.direction,
+    required this.every,
+    required this.span,
+  });
 
   final Direction direction;
   final Duration every;
@@ -115,8 +119,10 @@ class AlarmRule {
 
   /// The furthest before and after any alarm can be, so callers know how
   /// wide a window of events they need.
-  Duration get maxBefore => offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
-  Duration get maxAfter => offsets().fold(Duration.zero, (m, d) => d > m ? d : m);
+  Duration get maxBefore =>
+      offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
+  Duration get maxAfter =>
+      offsets().fold(Duration.zero, (m, d) => d > m ? d : m);
 
   AlarmRule copyWith({
     bool? enabled,
@@ -152,13 +158,18 @@ class AlarmRule {
   AlarmRule withOffsets(Iterable<Duration> offsets) {
     final all = offsets.toSet();
     return copyWith(
-      before: [for (final d in all.where((d) => d.isNegative).toList()..sort()) -d],
-      after: [for (final d in all.where((d) => d > Duration.zero).toList()..sort()) d],
+      before: [
+        for (final d in all.where((d) => d.isNegative).toList()..sort()) -d,
+      ],
+      after: [
+        for (final d in all.where((d) => d > Duration.zero).toList()..sort()) d,
+      ],
       series: const [],
       atEvent: all.contains(Duration.zero),
       deliveries: {
         for (final entry in deliveries.entries)
-          if (all.contains(Duration(minutes: entry.key))) entry.key: entry.value,
+          if (all.contains(Duration(minutes: entry.key)))
+            entry.key: entry.value,
       },
     );
   }
@@ -169,11 +180,15 @@ class AlarmRule {
     'soundId': soundId,
     'style': style.toJson(),
     if (deliveries.isNotEmpty)
-      'deliveries': {for (final e in deliveries.entries) '${e.key}': e.value.toJson()},
+      'deliveries': {
+        for (final e in deliveries.entries) '${e.key}': e.value.toJson(),
+      },
   };
 
   AlarmRule withCustom(Map<String, dynamic> j) {
-    final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
+    final mins = (j['offsets'] as List?)?.map(
+      (m) => Duration(minutes: (m as num).toInt()),
+    );
     final r = mins == null ? this : withOffsets(mins);
     final sound = j['soundId'] as String?;
     final rawDeliveries = j['deliveries'];
@@ -190,7 +205,12 @@ class AlarmRule {
         }
       }
     }
-    final styled = r.copyWith(style: RingStyle.fromJson(j['style']), deliveries: parsed);
-    return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
+    final styled = r.copyWith(
+      style: RingStyle.fromJson(j['style']),
+      deliveries: parsed,
+    );
+    return sound == null
+        ? styled.copyWith(defaultSound: true)
+        : styled.copyWith(soundId: sound);
   }
 }

@@ -48,10 +48,16 @@ class Webhook {
   static String iftttUrl(String event, String key) =>
       'https://maker.ifttt.com/trigger/${Uri.encodeComponent(event.trim())}/json/with/key/${key.trim()}';
 
-  static String? iftttEvent(String url) => RegExp(r'/trigger/([^/]+)/').firstMatch(url)?.group(1);
+  static String? iftttEvent(String url) =>
+      RegExp(r'/trigger/([^/]+)/').firstMatch(url)?.group(1);
 
-  Webhook copyWith({Set<String>? events, bool? enabled}) =>
-      Webhook(id: id, kind: kind, url: url, events: events ?? this.events, enabled: enabled ?? this.enabled);
+  Webhook copyWith({Set<String>? events, bool? enabled}) => Webhook(
+    id: id,
+    kind: kind,
+    url: url,
+    events: events ?? this.events,
+    enabled: enabled ?? this.enabled,
+  );
 
   Map<String, dynamic> toJson() => {
     'id': id,
@@ -63,7 +69,10 @@ class Webhook {
 
   factory Webhook.fromJson(Map<String, dynamic> j) => Webhook(
     id: j['id'] as String,
-    kind: WebhookKind.values.firstWhere((k) => k.name == j['kind'], orElse: () => WebhookKind.other),
+    kind: WebhookKind.values.firstWhere(
+      (k) => k.name == j['kind'],
+      orElse: () => WebhookKind.other,
+    ),
     url: j['url'] as String,
     events: {
       for (final e in (j['events'] as List? ?? const ['ring'])) e as String,
@@ -106,7 +115,10 @@ class IntegrationSettings {
   /// Send nothing for alarms inside Shabbat and festivals.
   final bool pauseOnShabbat;
 
-  bool get pushoverReady => pushoverOn && pushoverUser.trim().isNotEmpty && pushoverToken.trim().isNotEmpty;
+  bool get pushoverReady =>
+      pushoverOn &&
+      pushoverUser.trim().isNotEmpty &&
+      pushoverToken.trim().isNotEmpty;
 
   IntegrationSettings copyWith({
     String? pushoverUser,
@@ -123,7 +135,9 @@ class IntegrationSettings {
     pushoverToken: pushoverToken ?? this.pushoverToken,
     pushoverOn: pushoverOn ?? this.pushoverOn,
     pushoverPriority: pushoverPriority ?? this.pushoverPriority,
-    pushoverSound: defaultPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
+    pushoverSound: defaultPushoverSound
+        ? null
+        : (pushoverSound ?? this.pushoverSound),
     pushoverDevices: pushoverDevices ?? this.pushoverDevices,
     webhooks: webhooks ?? this.webhooks,
     pauseOnShabbat: pauseOnShabbat ?? this.pauseOnShabbat,
@@ -140,17 +154,23 @@ class IntegrationSettings {
     'pauseOnShabbat': pauseOnShabbat,
   };
 
-  factory IntegrationSettings.fromJson(Map<String, dynamic> j) => IntegrationSettings(
-    pushoverUser: j['pushoverUser'] as String? ?? '',
-    pushoverToken: j['pushoverToken'] as String? ?? '',
-    pushoverOn: j['pushoverOn'] as bool? ?? false,
-    pushoverPriority:
-        (j['pushoverPriority'] as num?)?.toInt() ?? ((j['pushoverHigh'] as bool? ?? false) ? 1 : 0),
-    pushoverSound: j['pushoverSound'] as String?,
-    pushoverDevices: {for (final d in (j['pushoverDevices'] as List? ?? const [])) d as String},
-    webhooks: [
-      for (final w in (j['webhooks'] as List? ?? const [])) Webhook.fromJson(w as Map<String, dynamic>),
-    ],
-    pauseOnShabbat: j['pauseOnShabbat'] as bool? ?? true,
-  );
+  factory IntegrationSettings.fromJson(Map<String, dynamic> j) =>
+      IntegrationSettings(
+        pushoverUser: j['pushoverUser'] as String? ?? '',
+        pushoverToken: j['pushoverToken'] as String? ?? '',
+        pushoverOn: j['pushoverOn'] as bool? ?? false,
+        pushoverPriority:
+            (j['pushoverPriority'] as num?)?.toInt() ??
+            ((j['pushoverHigh'] as bool? ?? false) ? 1 : 0),
+        pushoverSound: j['pushoverSound'] as String?,
+        pushoverDevices: {
+          for (final d in (j['pushoverDevices'] as List? ?? const []))
+            d as String,
+        },
+        webhooks: [
+          for (final w in (j['webhooks'] as List? ?? const []))
+            Webhook.fromJson(w as Map<String, dynamic>),
+        ],
+        pauseOnShabbat: j['pauseOnShabbat'] as bool? ?? true,
+      );
 }

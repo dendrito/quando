@@ -10,11 +10,15 @@ import '../../../core/util/platform.dart';
 class SpotifyPlay {
   /// From Spotify's developer dashboard. Empty = direct play is off and
   /// song links use the phone's media signals instead.
-  static const clientId = String.fromEnvironment('SPOTIFY_CLIENT_ID', defaultValue: _clientId);
+  static const clientId = String.fromEnvironment(
+    'SPOTIFY_CLIENT_ID',
+    defaultValue: _clientId,
+  );
   static const _clientId = '3949e2cc4f5e4afba699d9cb5c560d12';
   static const redirectUrl = 'spotify-sdk://auth';
   static const _scope = 'app-remote-control';
-  static const _libraryScope = 'playlist-read-private,playlist-read-collaborative,user-library-read';
+  static const _libraryScope =
+      'playlist-read-private,playlist-read-collaborative,user-library-read';
 
   // iOS needs its own Spotify setup first.
   static bool get available => clientId.isNotEmpty && isAndroid;
@@ -31,7 +35,8 @@ class SpotifyPlay {
     if (u == null || !u.host.endsWith('spotify.com')) return null;
     final parts = u.pathSegments.where((s) => !s.startsWith('intl-')).toList();
     const kinds = {'track', 'album', 'playlist', 'artist', 'episode', 'show'};
-    if (parts.length < 2 || !kinds.contains(parts[0]) || parts[1].isEmpty) return null;
+    if (parts.length < 2 || !kinds.contains(parts[0]) || parts[1].isEmpty)
+      return null;
     return 'spotify:${parts[0]}:${parts[1]}';
   }
 
@@ -74,7 +79,10 @@ class SpotifyPlay {
   /// Plays [link] in Spotify, and pauses it after [playFor] (zero = never).
   /// false when it isn't a Spotify link, or Spotify said no (no Premium,
   /// signed out, not installed…).
-  static Future<bool> play(String link, {Duration playFor = Duration.zero}) async {
+  static Future<bool> play(
+    String link, {
+    Duration playFor = Duration.zero,
+  }) async {
     final uri = uriOf(link);
     if (!available || !connected || uri == null) return false;
     try {
@@ -84,7 +92,8 @@ class SpotifyPlay {
         scope: _scope,
       ).timeout(const Duration(seconds: 6));
       if (!ok) return false;
-      await SpotifySdk.play(spotifyUri: uri).timeout(const Duration(seconds: 4));
+      await SpotifySdk.play(spotifyUri: uri)
+          .timeout(const Duration(seconds: 4));
       if (playFor > Duration.zero) {
         Timer(playFor, () => SpotifySdk.pause().catchError((_) {}));
       }

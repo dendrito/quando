@@ -35,7 +35,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newAroundEvent => 'حول حدث';
 
   @override
-  String get newAroundEventHint => 'ابحث في التقويمات وأوقات السبت والشمس، ثم رنّ قبله أو عنده أو بعده';
+  String get newAroundEventHint =>
+      'ابحث في التقويمات وأوقات السبت والشمس، ثم رنّ قبله أو عنده أو بعده';
 
   @override
   String get editThisAlarm => 'تعديل هذا المنبه';
@@ -154,7 +155,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noAlarmsThisWeek => 'لا منبهات في الأيام السبعة القادمة.';
 
   @override
-  String get alarmsSetThemselves => 'تُضبط المنبهات تلقائيًا على هذا الهاتف كلما غيّرت شيئًا.';
+  String get alarmsSetThemselves =>
+      'تُضبط المنبهات تلقائيًا على هذا الهاتف كلما غيّرت شيئًا.';
 
   @override
   String cityTime(String city) {
@@ -334,7 +336,8 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'أضف مدنًا لترى وقتها هنا. اسحب لليسار لإزالة مدينة.';
+  String get worldClocksHint =>
+      'أضف مدنًا لترى وقتها هنا. اسحب لليسار لإزالة مدينة.';
 
   @override
   String get groupNameHint => 'العمل، الأطفال، النادي…';
@@ -422,7 +425,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get lockForShabbat => 'اقفل الهاتف للسبت';
 
   @override
-  String get lockForShabbatHint => 'من إشعال الشموع حتى الهفدالا، وفي الأعياد أيضًا';
+  String get lockForShabbatHint =>
+      'من إشعال الشموع حتى الهفدالا، وفي الأعياد أيضًا';
 
   @override
   String get ownShabbatAlarmsHeading => 'منبهات السبت الخاصة بك';
@@ -442,7 +446,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get presetsHint => 'انقر على منبه لتغيير أوقاته. اسحب لحذفه.';
 
   @override
-  String get lockSentence => 'اجعل الهاتف ساعة ومنبهات فقط، للسبت أو لليلة مركّزة.';
+  String get lockSentence =>
+      'اجعل الهاتف ساعة ومنبهات فقط، للسبت أو لليلة مركّزة.';
 
   @override
   String get lockExplain =>
@@ -476,7 +481,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get openWhenLockStarts => 'افتح Quando? عند بدء القفل';
 
   @override
-  String get openWhenLockStartsHint => 'صوت هادئ لثانية واحدة يُظهر Quando? ليقفل';
+  String get openWhenLockStartsHint =>
+      'صوت هادئ لثانية واحدة يُظهر Quando? ليقفل';
 
   @override
   String get pinToScreen => 'ثبّت Quando? على الشاشة';
@@ -489,7 +495,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get noLocksComingUp => 'لا أقفال قادمة.';
 
   @override
-  String get leaveLockEarly => 'للخروج مبكرًا، اضغط مطولًا على “اضغط مطولًا لفتح القفل” لمدة 3 ثوانٍ.';
+  String get leaveLockEarly =>
+      'للخروج مبكرًا، اضغط مطولًا على “اضغط مطولًا لفتح القفل” لمدة 3 ثوانٍ.';
 
   @override
   String get locked => 'مقفل';
@@ -565,10 +572,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get off => 'متوقف';
 
   @override
-  String get gentleSentence => 'يبدأ صوت هادئ بلطف قبل منبهك، فلا تستيقظ فجأة أبدًا.';
+  String get gentleSentence =>
+      'يبدأ صوت هادئ بلطف قبل منبهك، فلا تستيقظ فجأة أبدًا.';
 
   @override
-  String get gentleExplain => 'يعلو ببطء، ويخرجك من النوم الخفيف، ويتوقف قبيل رنين المنبه.';
+  String get gentleExplain =>
+      'يعلو ببطء، ويخرجك من النوم الخفيف، ويتوقف قبيل رنين المنبه.';
 
   @override
   String get startsBeforeHeading => 'يبدأ قبل المنبه';
@@ -632,7 +641,8 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get labelField => 'التسمية (تُقرأ بصوت عالٍ إذا كانت المنبهات الناطقة مفعّلة)';
+  String get labelField =>
+      'التسمية (تُقرأ بصوت عالٍ إذا كانت المنبهات الناطقة مفعّلة)';
 
   @override
   String get group => 'المجموعة';
@@ -818,7 +828,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get testIn20 => 'تجربة: يرنّ بعد 20 ثانية';
 
   @override
-  String get testIn20Hint => 'اقفل هاتفك وضعه جانبًا. إذا رنّ المنبه بملء الشاشة فكل شيء جاهز.';
+  String get testIn20Hint =>
+      'اقفل هاتفك وضعه جانبًا. إذا رنّ المنبه بملء الشاشة فكل شيء جاهز.';
 
   @override
   String get readyToRingHint => 'تحقق أن هاتفك يرنّ كل منبه في وقته';
@@ -876,13 +887,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sameFadesOn => 'يحل محل تلاشي كل منبه. يحتفظ كل منبه بمستوى صوته.';
 
   @override
-  String get sameFadesOff => 'متوقف: يستخدم كل منبه التلاشي المضبوط في إعدادات الصوت الخاصة به.';
+  String get sameFadesOff =>
+      'متوقف: يستخدم كل منبه التلاشي المضبوط في إعدادات الصوت الخاصة به.';
 
   @override
   String get sayItOutLoud => 'انطقه بصوت عالٍ';
 
   @override
-  String get sayItOutLoudHint => 'يقرأ الغرض من المنبه، مثل “إشعال الشموع، قبل 15 دقيقة”';
+  String get sayItOutLoudHint =>
+      'يقرأ الغرض من المنبه، مثل “إشعال الشموع، قبل 15 دقيقة”';
 
   @override
   String get noSnooze => 'بلا غفوة';
@@ -896,7 +909,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get wakeUpCheck => 'تحقق الاستيقاظ';
 
   @override
-  String get wakeUpCheckHint => 'بعد إيقافه يرنّ مجددًا بعد 3 دقائق ما لم تنقر “استيقظت”';
+  String get wakeUpCheckHint =>
+      'بعد إيقافه يرنّ مجددًا بعد 3 دقائق ما لم تنقر “استيقظت”';
 
   @override
   String get solveSum => 'حل مسألة حسابية للإيقاف';
@@ -961,7 +975,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get resetPreset => 'إعادة إلى الأصل';
 
   @override
-  String get skipOneHint => 'لتخطي منبه واحد، انقر عليه في “منبهات هذا الأسبوع” على الشاشة الرئيسية.';
+  String get skipOneHint =>
+      'لتخطي منبه واحد، انقر عليه في “منبهات هذا الأسبوع” على الشاشة الرئيسية.';
 
   @override
   String get unitMinutes => 'دقائق';
@@ -1111,7 +1126,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nameOptional => 'الاسم (اختياري)';
 
   @override
-  String get toppedUp => 'المنبهات مضبوطة للأيام السبعة القادمة وتُجدد كلما فتحت Quando?.';
+  String get toppedUp =>
+      'المنبهات مضبوطة للأيام السبعة القادمة وتُجدد كلما فتحت Quando?.';
 
   @override
   String get back => 'رجوع';
@@ -1216,13 +1232,15 @@ class AppLocalizationsAr extends AppLocalizations {
       'يفتح تطبيقها ويشغّلها. إذا بقي صامتًا 10 ثوانٍ يرنّ الصوت الاحتياطي، فتستيقظ دائمًا. المنبهات ذات المهمة ترنّ أولًا ثم تفتحها.';
 
   @override
-  String get ringThenOpenHint => 'يرنّ الصوت الاحتياطي. الإيقاف يفتح الأغنية في تطبيقها.';
+  String get ringThenOpenHint =>
+      'يرنّ الصوت الاحتياطي. الإيقاف يفتح الأغنية في تطبيقها.';
 
   @override
   String get playForHeading => 'مدة التشغيل';
 
   @override
-  String get pausesAfter => 'يوقف Quando? الأغنية مؤقتًا بعد هذه المدة بزر الإيقاف المؤقت في الهاتف.';
+  String get pausesAfter =>
+      'يوقف Quando? الأغنية مؤقتًا بعد هذه المدة بزر الإيقاف المؤقت في الهاتف.';
 
   @override
   String get backupSoundHeading => 'الصوت الاحتياطي';
@@ -1245,16 +1263,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube وYouTube Music';
 
   @override
-  String get youTubeOn => 'قوائم تشغيلك وأغانيك المفضلة. اضغط مطولًا لتسجيل الخروج.';
+  String get youTubeOn =>
+      'قوائم تشغيلك وأغانيك المفضلة. اضغط مطولًا لتسجيل الخروج.';
 
   @override
-  String get youTubeSignIn => 'سجّل الدخول عبر Google لتختار من قوائم تشغيلك وأغانيك المفضلة.';
+  String get youTubeSignIn =>
+      'سجّل الدخول عبر Google لتختار من قوائم تشغيلك وأغانيك المفضلة.';
 
   @override
   String get addSongLinkInstead => 'أضف رابط أغنية بدلًا من ذلك.';
 
   @override
-  String get googleSignInFailed => 'لم يكتمل تسجيل الدخول إلى Google. حاول مجددًا.';
+  String get googleSignInFailed =>
+      'لم يكتمل تسجيل الدخول إلى Google. حاول مجددًا.';
 
   @override
   String get myYouTube => 'YouTube الخاص بي';
@@ -1266,7 +1287,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get spotifyDirect => 'تشغيل Spotify المباشر';
 
   @override
-  String get spotifyDirectOnHint => 'يشغّل Spotify أغنيتك بالضبط كمنبه. انقر للإيقاف.';
+  String get spotifyDirectOnHint =>
+      'يشغّل Spotify أغنيتك بالضبط كمنبه. انقر للإيقاف.';
 
   @override
   String get spotifyDirectHint =>
@@ -1277,7 +1299,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'قريبًا: شغّل أغنية Spotify الخاصة بك بالضبط كمنبه (يتطلب Spotify Premium).';
 
   @override
-  String get spotifyFailed => 'لم يتصل Spotify. تأكد من تثبيت تطبيق Spotify وتسجيل الدخول وامتلاك Premium.';
+  String get spotifyFailed =>
+      'لم يتصل Spotify. تأكد من تثبيت تطبيق Spotify وتسجيل الدخول وامتلاك Premium.';
 
   @override
   String get nameThisSound => 'سمِّ هذا الصوت';
@@ -1286,7 +1309,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get sounds => 'الأصوات';
 
   @override
-  String get soundsSentence => 'استيقظ على صوتك أو أغنية أو قائمة تشغيل أو راديو مباشر.';
+  String get soundsSentence =>
+      'استيقظ على صوتك أو أغنية أو قائمة تشغيل أو راديو مباشر.';
 
   @override
   String stopTimer(String time) {
@@ -1300,7 +1324,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get addAFile => 'إضافة ملف';
 
   @override
-  String get addSongLinkLong => 'إضافة رابط أغنية (Spotify، Apple Music، YouTube…)';
+  String get addSongLinkLong =>
+      'إضافة رابط أغنية (Spotify، Apple Music، YouTube…)';
 
   @override
   String get musicAppsHeading => 'تطبيقات الموسيقى';
@@ -1318,7 +1343,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get spotifySignInFailed => 'تعذر تسجيل الدخول إلى Spotify.';
 
   @override
-  String get appleMusicNote => 'سيأتي تسجيل الدخول مع نسخة iPhone. أضف رابط أغنية حاليًا.';
+  String get appleMusicNote =>
+      'سيأتي تسجيل الدخول مع نسخة iPhone. أضف رابط أغنية حاليًا.';
 
   @override
   String noSignInNote(String service) {
@@ -1354,7 +1380,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get defaultLabel => 'الافتراضي';
 
   @override
-  String get radioUnreachable => 'تعذر الوصول إلى قائمة المحطات. تحقق من اتصالك.';
+  String get radioUnreachable =>
+      'تعذر الوصول إلى قائمة المحطات. تحقق من اتصالك.';
 
   @override
   String get addStreamAddress => 'إضافة عنوان بث';
@@ -1569,7 +1596,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'وجّه الكاميرا إلى رمز شريطي أو QR في مكان يجب أن تمشي إليه، مثل علبة في المطبخ أو معجون أسنان في الحمام. لإيقاف المنبه ستمسحه مجددًا.';
 
   @override
-  String get cameraUnavailableSettings => 'الكاميرا غير متاحة. اسمح بالوصول إلى الكاميرا في الإعدادات.';
+  String get cameraUnavailableSettings =>
+      'الكاميرا غير متاحة. اسمح بالوصول إلى الكاميرا في الإعدادات.';
 
   @override
   String gentleToGo(int n) {
@@ -1629,7 +1657,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get none => 'لا شيء';
 
   @override
-  String get snoozeSentence => 'خمس دقائق أخرى؟ اختر المدة وعدد المرات وما المطلوب.';
+  String get snoozeSentence =>
+      'خمس دقائق أخرى؟ اختر المدة وعدد المرات وما المطلوب.';
 
   @override
   String get settingsHeading => 'الإعدادات';
@@ -1671,7 +1700,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get stopSentence => 'كيف توقف المنبه وما الذي عليك فعله أولًا.';
 
   @override
-  String get shabbatNoTask => 'في السبت والأعياد تتوقف المنبهات وحدها ولا تطلب مهمة أبدًا.';
+  String get shabbatNoTask =>
+      'في السبت والأعياد تتوقف المنبهات وحدها ولا تطلب مهمة أبدًا.';
 
   @override
   String get volumeSentence => 'مدى ارتفاع رنينه ومدى لطف وصوله إلى ذلك.';
@@ -1701,7 +1731,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get usePhoneVolume => 'استخدم مستوى صوت منبه الهاتف';
 
   @override
-  String get setsPhoneVolume => 'يضبط مستوى صوت منبه الهاتف أثناء الرنين ثم يعيده.';
+  String get setsPhoneVolume =>
+      'يضبط مستوى صوت منبه الهاتف أثناء الرنين ثم يعيده.';
 
   @override
   String get fadeInOff => 'بلا تدرّج، الصوت كامل فورًا';
@@ -1854,7 +1885,8 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo => 'رفض YouTube. تأكد أن حساب Google الخاص بك مستخدم تجريبي في مشروع Quando.';
+  String get youTubeSaidNo =>
+      'رفض YouTube. تأكد أن حساب Google الخاص بك مستخدم تجريبي في مشروع Quando.';
 
   @override
   String get event => 'حدث';
@@ -1898,13 +1930,15 @@ class AppLocalizationsAr extends AppLocalizations {
   String get webhookHowTo => 'يرسل Quando? طلب JSON POST إلى هذا العنوان.';
 
   @override
-  String get connectionsSentence => 'أبلغ التطبيقات والأجهزة الأخرى عندما يرنّ المنبه أو يتوقف أو يُؤجَّل.';
+  String get connectionsSentence =>
+      'أبلغ التطبيقات والأجهزة الأخرى عندما يرنّ المنبه أو يتوقف أو يُؤجَّل.';
 
   @override
   String get pushWhenRings => 'أرسل إشعارًا عندما يرنّ منبه';
 
   @override
-  String get pushWhenRingsHint => 'إلى هواتفك الأخرى أو أجهزتك اللوحية أو ساعتك أو حاسوبك';
+  String get pushWhenRingsHint =>
+      'إلى هواتفك الأخرى أو أجهزتك اللوحية أو ساعتك أو حاسوبك';
 
   @override
   String get yourUserKey => 'مفتاح المستخدم الخاص بك';
@@ -1928,7 +1962,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get myPushoverDefault => 'الافتراضي في Pushover';
 
   @override
-  String get pushoverOwnSounds => 'تظهر أصواتك الخاصة هنا بعد رفعها إلى pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'تظهر أصواتك الخاصة هنا بعد رفعها إلى pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'كل أجهزتي';
@@ -1975,7 +2010,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pauseOnShabbat => 'إيقاف مؤقت في السبت والأعياد';
 
   @override
-  String get pauseOnShabbatHint => 'لا يُرسل شيء للمنبهات بين إشعال الشموع والهفدالا';
+  String get pauseOnShabbatHint =>
+      'لا يُرسل شيء للمنبهات بين إشعال الشموع والهفدالا';
 
   @override
   String get webhookPayloadNote =>
@@ -2006,7 +2042,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quotesTitle => 'أقوال عن الوقت';
 
   @override
-  String get quotesHint => 'اختر مصادرها. قول لكل جزء من اليوم؛ المس القول لرؤية غيره.';
+  String get quotesHint =>
+      'اختر مصادرها. قول لكل جزء من اليوم؛ المس القول لرؤية غيره.';
 
   @override
   String get quotesOff => 'متوقفة';
@@ -2048,7 +2085,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get quoteNearMe => 'بالقرب مني';
 
   @override
-  String get quoteNearMeHint => 'شعراء ومناسبات المكان الذي أنت فيه، حسب منطقتك الزمنية ومدينة السبت';
+  String get quoteNearMeHint =>
+      'شعراء ومناسبات المكان الذي أنت فيه، حسب منطقتك الزمنية ومدينة السبت';
 
   @override
   String get quoteSiddur => 'السيدور (كتاب الصلوات)';
@@ -2067,7 +2105,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2168,7 +2207,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2179,7 +2219,8 @@ class AppLocalizationsAr extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2214,7 +2255,8 @@ class AppLocalizationsAr extends AppLocalizations {
       'سجّل الدخول لتختار من قوائم التشغيل والأغاني التي أعجبتك، أو لتبحث في Spotify كله. لا حاجة إلى Premium.';
 
   @override
-  String get spotifyLibraryOn => 'قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.';
+  String get spotifyLibraryOn =>
+      'قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.';
 
   @override
   String spotifyLoginError(String reason) {

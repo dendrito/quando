@@ -19,7 +19,8 @@ import 'package:quando/l10n/l10n.dart';
 /// Uses the same developer app and redirect address as direct play, so
 /// nothing new needs registering in Spotify's dashboard.
 class SpotifyAccount {
-  static const _scopes = 'playlist-read-private playlist-read-collaborative user-library-read';
+  static const _scopes =
+      'playlist-read-private playlist-read-collaborative user-library-read';
   static const _callbackScheme = 'spotify-sdk';
 
   static const prefKey = 'spotify.library';
@@ -41,12 +42,18 @@ class SpotifyAccount {
   /// A key for Spotify's Web API: a saved one, a refreshed one, or (when
   /// [prompt]) a fresh sign-in. Throws with a reason you can read when it
   /// can't get one; returns null when you closed the sign-in page.
-  static Future<String?> token(SharedPreferences prefs, {bool prompt = true}) async {
+  static Future<String?> token(
+    SharedPreferences prefs, {
+    bool prompt = true,
+  }) async {
     if (_token != null && DateTime.now().isBefore(_expires)) return _token;
     final refresh = prefs.getString(_refreshKey);
     if (refresh != null) {
       try {
-        return await _exchange(prefs, {'grant_type': 'refresh_token', 'refresh_token': refresh});
+        return await _exchange(prefs, {
+          'grant_type': 'refresh_token',
+          'refresh_token': refresh,
+        });
       } on SpotifyAuthException {
         // Revoked or expired: sign in again below.
         await prefs.remove(_refreshKey);
@@ -58,7 +65,9 @@ class SpotifyAccount {
 
   static Future<String?> _signIn(SharedPreferences prefs) async {
     final verifier = _random(64);
-    final challenge = base64UrlEncode(sha256.convert(ascii.encode(verifier)).bytes).replaceAll('=', '');
+    final challenge = base64UrlEncode(
+      sha256.convert(ascii.encode(verifier)).bytes,
+    ).replaceAll('=', '');
     final state = _random(16);
     final url = Uri.https('accounts.spotify.com', '/authorize', {
       'client_id': SpotifyPlay.clientId,
@@ -71,7 +80,10 @@ class SpotifyAccount {
     });
     final String result;
     try {
-      result = await FlutterWebAuth2.authenticate(url: url.toString(), callbackUrlScheme: _callbackScheme);
+      result = await FlutterWebAuth2.authenticate(
+        url: url.toString(),
+        callbackUrlScheme: _callbackScheme,
+      );
     } on PlatformException catch (e) {
       if (e.code == 'CANCELED') return null;
       throw SpotifyAuthException(l10n.spotifyLoginError(e.message ?? e.code));
@@ -79,7 +91,8 @@ class SpotifyAccount {
     final back = Uri.parse(result).queryParameters;
     final error = back['error'];
     if (error == 'access_denied') return null;
-    if (error != null) throw SpotifyAuthException(l10n.spotifyLoginError(error));
+    if (error != null)
+      throw SpotifyAuthException(l10n.spotifyLoginError(error));
     final code = back['code'];
     if (code == null || back['state'] != state) {
       throw SpotifyAuthException(l10n.spotifyLoginError('no code'));
@@ -92,7 +105,10 @@ class SpotifyAccount {
     });
   }
 
-  static Future<String> _exchange(SharedPreferences prefs, Map<String, String> body) async {
+  static Future<String> _exchange(
+    SharedPreferences prefs,
+    Map<String, String> body,
+  ) async {
     final r = await http
         .post(
           Uri.https('accounts.spotify.com', '/api/token'),
@@ -132,7 +148,8 @@ class SpotifyAccount {
   }
 
   static String _random(int length) {
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
+    const chars =
+        'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~';
     final r = Random.secure();
     return List.generate(length, (_) => chars[r.nextInt(chars.length)]).join();
   }

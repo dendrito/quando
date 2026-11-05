@@ -29,7 +29,10 @@ void main() {
     final week = weekPlan(plan, 'Europe/London');
     expect(week.length, 2);
     expect(week.first.count, 4);
-    expect([for (final s in week.first.series) s.title], ['Wake up', 'Candle lighting']);
+    expect(
+      [for (final s in week.first.series) s.title],
+      ['Wake up', 'Candle lighting'],
+    );
     final candles = week.first.series.last;
     expect(candles.alarms.length, 3);
     expect(candles.first, DateTime.utc(2026, 11, 6, 8));
@@ -53,14 +56,23 @@ void main() {
     final c = make();
     addTearDown(c.dispose);
     final alarms = c.read(userAlarmsProvider.notifier);
-    alarms.save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {1}, group: 'Work'));
-    alarms.save(const UserAlarm(id: 'b', hour: 8, minute: 0, days: {2}, group: 'Work'));
-    alarms.save(const UserAlarm(id: 'c', hour: 9, minute: 0, days: {3}, group: 'Kids'));
+    alarms.save(
+      const UserAlarm(id: 'a', hour: 7, minute: 0, days: {1}, group: 'Work'),
+    );
+    alarms.save(
+      const UserAlarm(id: 'b', hour: 8, minute: 0, days: {2}, group: 'Work'),
+    );
+    alarms.save(
+      const UserAlarm(id: 'c', hour: 9, minute: 0, days: {3}, group: 'Kids'),
+    );
     alarms.save(const UserAlarm(id: 'd', hour: 10, minute: 0, days: {4}));
     expect(alarms.groups, ['Kids', 'Work']);
 
     alarms.toggleGroup('Work', false);
-    expect([for (final a in c.read(userAlarmsProvider)) a.enabled], [false, false, true, true]);
+    expect(
+      [for (final a in c.read(userAlarmsProvider)) a.enabled],
+      [false, false, true, true],
+    );
 
     alarms.renameGroup('Work', 'Office');
     expect(alarms.groups, ['Kids', 'Office']);

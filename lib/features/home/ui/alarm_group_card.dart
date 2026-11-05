@@ -32,10 +32,14 @@ class AlarmGroupCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final on = alarms.where((a) => a.enabled).length;
-    final times = [for (final a in alarms) hhmm(DateTime(2000, 1, 1, a.hour, a.minute))];
+    final times = [
+      for (final a in alarms) hhmm(DateTime(2000, 1, 1, a.hour, a.minute)),
+    ];
     final summary = [
       l10n.alarmCount(alarms.length),
-      on == alarms.length ? l10n.allOn : (on == 0 ? l10n.allOff : l10n.someOn(on)),
+      on == alarms.length
+          ? l10n.allOn
+          : (on == 0 ? l10n.allOff : l10n.someOn(on)),
     ].join(' · ');
 
     return Material(
@@ -55,10 +59,15 @@ class AlarmGroupCard extends StatelessWidget {
                     width: 44,
                     height: 44,
                     alignment: Alignment.center,
-                    decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                    decoration: const BoxDecoration(
+                      color: QuandoColors.raised,
+                      shape: BoxShape.circle,
+                    ),
                     child: Text(
                       name.characters.first.toUpperCase(),
-                      style: text.titleLarge?.copyWith(color: QuandoColors.amber),
+                      style: text.titleLarge?.copyWith(
+                        color: QuandoColors.amber,
+                      ),
                     ),
                   ),
                   const SizedBox(width: 14),
@@ -82,7 +91,10 @@ class AlarmGroupCard extends StatelessWidget {
                   AnimatedRotation(
                     turns: open ? 0.5 : 0,
                     duration: const Duration(milliseconds: 200),
-                    child: const Icon(Icons.expand_more, color: QuandoColors.muted),
+                    child: const Icon(
+                      Icons.expand_more,
+                      color: QuandoColors.muted,
+                    ),
                   ),
                   Switch(value: on > 0, onChanged: onToggleAll),
                 ],

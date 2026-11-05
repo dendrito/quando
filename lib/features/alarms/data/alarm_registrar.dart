@@ -21,7 +21,13 @@ class AlarmRegistrar {
 
   void _tell(AlarmHappening what, AlarmSettings s) {
     try {
-      onHappening?.call(what, RingPayload.decode(s.payload, fallbackTitle: s.notificationSettings.title));
+      onHappening?.call(
+        what,
+        RingPayload.decode(
+          s.payload,
+          fallbackTitle: s.notificationSettings.title,
+        ),
+      );
     } catch (_) {}
   }
 
@@ -36,7 +42,10 @@ class AlarmRegistrar {
     _ringingSub ??= Alarm.ringing.listen(_enforceRingDuration);
   }
 
-  Future<int> sync(List<ScheduledAlarm> plan, RingPayload Function(ScheduledAlarm) payloadFor) async {
+  Future<int> sync(
+    List<ScheduledAlarm> plan,
+    RingPayload Function(ScheduledAlarm) payloadFor,
+  ) async {
     await init();
     final existing = await Alarm.getAlarms();
     final wanted = {for (final a in plan) a.id: a};
@@ -69,12 +78,15 @@ class AlarmRegistrar {
         // Each alarm's own volume and fades, shrunk to fit a short ring.
         volumeSettings: p.isLock
             ? const VolumeSettings.fixed(volume: 0.15)
-            : (p.song == null ? p.loudness : p.loudness.backupForSong).toVolumeSettings(p.ringSeconds),
+            : (p.song == null ? p.loudness : p.loudness.backupForSong)
+                  .toVolumeSettings(p.ringSeconds),
         notificationSettings: NotificationSettings(
           title: p.title,
           body: p.body,
           // A check must be answered on the ringing screen.
-          stopButton: p.gentle ? l10n.stop : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
+          stopButton: p.gentle
+              ? l10n.stop
+              : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
         ),
         payload: p.encode(),
       ),
@@ -84,7 +96,10 @@ class AlarmRegistrar {
   /// Rings once more in [RingPayload.snoozeMinutes]. Returns false when the
   /// snooze limit is reached.
   Future<bool> snooze(AlarmSettings ringing) async {
-    final p = RingPayload.decode(ringing.payload, fallbackTitle: ringing.notificationSettings.title);
+    final p = RingPayload.decode(
+      ringing.payload,
+      fallbackTitle: ringing.notificationSettings.title,
+    );
     if (!p.canSnooze) return false;
     await Alarm.stop(ringing.id);
     _tell(AlarmHappening.snoozed, ringing);
@@ -131,7 +146,8 @@ class AlarmRegistrar {
       // The real alarm takes over from its gentle lead-up.
       if (!p.gentle) {
         for (final other in ringing.alarms) {
-          if (other.id != settings.id && RingPayload.decode(other.payload).gentle) {
+          if (other.id != settings.id &&
+              RingPayload.decode(other.payload).gentle) {
             unawaited(Alarm.stop(other.id));
           }
         }
@@ -166,7 +182,10 @@ class AlarmRegistrar {
   /// The song is the alarm: once its app is playing it, Quando's own
   /// backup sound stops. If it stays silent, the backup rings on as usual.
   Future<void> _playSong(AlarmSettings settings, RingPayload p) async {
-    final ok = await Music.start(p.song!, playFor: Duration(seconds: p.songSeconds));
+    final ok = await Music.start(
+      p.song!,
+      playFor: Duration(seconds: p.songSeconds),
+    );
     if (!ok || !await Alarm.isRinging(settings.id)) return;
     _stopTimers.remove(settings.id)?.cancel();
     await Alarm.stop(settings.id);

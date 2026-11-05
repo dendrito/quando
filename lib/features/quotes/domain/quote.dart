@@ -3,7 +3,17 @@ import 'dart:math';
 import 'package:kosher_dart/kosher_dart.dart';
 
 /// Where a quote comes from. The user picks which ones they want.
-enum QuoteSource { songs, movies, literature, tanakh, sages, siddur, speeches, philosophy, proverbs }
+enum QuoteSource {
+  songs,
+  movies,
+  literature,
+  tanakh,
+  sages,
+  siddur,
+  speeches,
+  philosophy,
+  proverbs,
+}
 
 /// A quote about time, with its author.
 ///
@@ -48,7 +58,11 @@ class Quote {
 }
 
 /// Tanakh, Talmud and sages, and the Siddur.
-const jewishSources = {QuoteSource.tanakh, QuoteSource.sages, QuoteSource.siddur};
+const jewishSources = {
+  QuoteSource.tanakh,
+  QuoteSource.sages,
+  QuoteSource.siddur,
+};
 
 /// The four parts of the day. One quote is shown in each.
 enum DaySlot { morning, day, evening, night }
@@ -63,18 +77,45 @@ DaySlot slotOf(DateTime local) => switch (local.hour) {
 /// Words in calendar event titles that turn on `event:` tags, in any language.
 const eventKeywords = <String, List<String>>{
   'rock': [
-    'rock day', 'dia do rock', 'dia mundial do rock', 'día del rock', 'día mundial del rock', //
+    'rock day',
+    'dia do rock',
+    'dia mundial do rock',
+    'día del rock',
+    'día mundial del rock', //
     'journée du rock', 'tag des rock', 'giornata del rock',
   ],
   'birthday': [
-    'birthday', 'aniversário', 'cumpleaños', 'geburtstag', 'anniversaire', 'compleanno', //
-    'verjaardag', 'urodziny', 'день рождения', 'день народження', 'doğum günü', 'عيد ميلاد',
+    'birthday',
+    'aniversário',
+    'cumpleaños',
+    'geburtstag',
+    'anniversaire',
+    'compleanno', //
+    'verjaardag',
+    'urodziny',
+    'день рождения',
+    'день народження',
+    'doğum günü',
+    'عيد ميلاد',
     'יום הולדת', 'जन्मदिन', 'ulang tahun', '誕生日', '생일', '生日', 'sinh nhật',
   ],
 };
 
 const _weekdays = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-const _months = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+const _months = [
+  'jan',
+  'feb',
+  'mar',
+  'apr',
+  'may',
+  'jun',
+  'jul',
+  'aug',
+  'sep',
+  'oct',
+  'nov',
+  'dec',
+];
 
 /// Extra kinds of quotes the user can opt into.
 enum QuoteOccasion { carnaval, nearMe }
@@ -82,9 +123,15 @@ enum QuoteOccasion { carnaval, nearMe }
 /// Easter Sunday (Gregorian), for Carnaval.
 DateTime easter(int year) {
   final a = year % 19, b = year ~/ 100, c = year % 100, d = b ~/ 4, e = b % 4;
-  final f = (b + 8) ~/ 25, g = (b - f + 1) ~/ 3, h = (19 * a + b - d - g + 15) % 30;
-  final i = c ~/ 4, k = c % 4, l = (32 + 2 * e + 2 * i - h - k) % 7, m = (a + 11 * h + 22 * l) ~/ 451;
-  final month = (h + l - 7 * m + 114) ~/ 31, day = ((h + l - 7 * m + 114) % 31) + 1;
+  final f = (b + 8) ~/ 25,
+      g = (b - f + 1) ~/ 3,
+      h = (19 * a + b - d - g + 15) % 30;
+  final i = c ~/ 4,
+      k = c % 4,
+      l = (32 + 2 * e + 2 * i - h - k) % 7,
+      m = (a + 11 * h + 22 * l) ~/ 451;
+  final month = (h + l - 7 * m + 114) ~/ 31,
+      day = ((h + l - 7 * m + 114) % 31) + 1;
   return DateTime(year, month, day);
 }
 
@@ -98,10 +145,31 @@ bool isCarnaval(DateTime day) {
 }
 
 const _brazil = {
-  'Sao_Paulo', 'Recife', 'Bahia', 'Fortaleza', 'Belem', 'Manaus', 'Cuiaba', 'Campo_Grande', //
-  'Porto_Velho', 'Boa_Vista', 'Maceio', 'Araguaina', 'Santarem', 'Rio_Branco', 'Noronha',
+  'Sao_Paulo',
+  'Recife',
+  'Bahia',
+  'Fortaleza',
+  'Belem',
+  'Manaus',
+  'Cuiaba',
+  'Campo_Grande', //
+  'Porto_Velho',
+  'Boa_Vista',
+  'Maceio',
+  'Araguaina',
+  'Santarem',
+  'Rio_Branco',
+  'Noronha',
 };
-const _us = {'New_York', 'Chicago', 'Denver', 'Los_Angeles', 'Phoenix', 'Anchorage', 'Detroit'};
+const _us = {
+  'New_York',
+  'Chicago',
+  'Denver',
+  'Los_Angeles',
+  'Phoenix',
+  'Anchorage',
+  'Detroit',
+};
 
 /// Where the user is, as `place:` tags, from the phone's time zone and the
 /// city picked for Shabbat times: a country (`place:br`) and a city
@@ -131,24 +199,31 @@ Set<String> placeTags(String zone, {String? city}) {
 bool _inRange(String tag, String mmdd) {
   final i = tag.indexOf('..');
   if (i < 0) return false;
-  return tag.substring(0, i).compareTo(mmdd) <= 0 && mmdd.compareTo(tag.substring(i + 2)) <= 0;
+  return tag.substring(0, i).compareTo(mmdd) <= 0 &&
+      mmdd.compareTo(tag.substring(i + 2)) <= 0;
 }
 
 /// Tags that are always true on [day], from the date alone.
 Set<String> dateTags(DateTime day, {Iterable<String> eventTitles = const []}) {
-  final mmdd = '${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
+  final mmdd =
+      '${day.month.toString().padLeft(2, '0')}-${day.day.toString().padLeft(2, '0')}';
   final tags = <String>{mmdd};
-  final jc = JewishCalendar.fromDateTime(DateTime(day.year, day.month, day.day));
+  final jc = JewishCalendar.fromDateTime(
+    DateTime(day.year, day.month, day.day),
+  );
   final festival = switch (jc.getYomTovIndex()) {
     JewishCalendar.ROSH_HASHANA => 'roshhashana',
     JewishCalendar.YOM_KIPPUR => 'yomkippur',
-    JewishCalendar.SUCCOS || JewishCalendar.CHOL_HAMOED_SUCCOS || JewishCalendar.HOSHANA_RABBA => 'sukkot',
+    JewishCalendar.SUCCOS ||
+    JewishCalendar.CHOL_HAMOED_SUCCOS ||
+    JewishCalendar.HOSHANA_RABBA => 'sukkot',
     JewishCalendar.CHANUKAH => 'chanukah',
     JewishCalendar.TU_BESHVAT => 'tubishvat',
     JewishCalendar.PURIM => 'purim',
     JewishCalendar.PESACH || JewishCalendar.CHOL_HAMOED_PESACH => 'pesach',
     JewishCalendar.SHAVUOS => 'shavuot',
-    JewishCalendar.SHEMINI_ATZERES || JewishCalendar.SIMCHAS_TORAH => 'simchattorah',
+    JewishCalendar.SHEMINI_ATZERES ||
+    JewishCalendar.SIMCHAS_TORAH => 'simchattorah',
     JewishCalendar.TISHA_BEAV => 'tishabav',
     JewishCalendar.YOM_HAATZMAUT => 'yomhaatzmaut',
     JewishCalendar.YOM_YERUSHALAYIM => 'yomyerushalayim',
@@ -170,7 +245,9 @@ Set<String> dateTags(DateTime day, {Iterable<String> eventTitles = const []}) {
 /// Fast days and days of mourning. When the user follows Jewish sources,
 /// songs, films, speeches and proverbs stay quiet on these days.
 bool isSolemnDay(DateTime day) {
-  final jc = JewishCalendar.fromDateTime(DateTime(day.year, day.month, day.day));
+  final jc = JewishCalendar.fromDateTime(
+    DateTime(day.year, day.month, day.day),
+  );
   return const {
     JewishCalendar.TISHA_BEAV,
     JewishCalendar.YOM_KIPPUR,
@@ -183,7 +260,11 @@ bool isSolemnDay(DateTime day) {
   }.contains(jc.getYomTovIndex());
 }
 
-const _quietSources = {...jewishSources, QuoteSource.literature, QuoteSource.philosophy};
+const _quietSources = {
+  ...jewishSources,
+  QuoteSource.literature,
+  QuoteSource.philosophy,
+};
 
 /// Picks the quote for a part of the day.
 ///
@@ -216,12 +297,15 @@ Quote? pickQuote({
   bool allowed(Quote q) {
     if (!sources.contains(q.source)) return false;
     final t = q.tagSet;
-    if (t.contains('carnaval') && !occasions.contains(QuoteOccasion.carnaval)) return false;
+    if (t.contains('carnaval') && !occasions.contains(QuoteOccasion.carnaval))
+      return false;
     final here = [
       for (final x in t)
         if (x.startsWith('place:')) x,
     ];
-    if (here.isNotEmpty && !(occasions.contains(QuoteOccasion.nearMe) && here.any(places.contains))) {
+    if (here.isNotEmpty &&
+        !(occasions.contains(QuoteOccasion.nearMe) &&
+            here.any(places.contains))) {
       return false;
     }
     return true;
@@ -239,7 +323,8 @@ Quote? pickQuote({
 
   // The day's special quotes, one per slot at most.
   if (skip == 0) {
-    final mmdd = '${local.month.toString().padLeft(2, '0')}-${local.day.toString().padLeft(2, '0')}';
+    final mmdd =
+        '${local.month.toString().padLeft(2, '0')}-${local.day.toString().padLeft(2, '0')}';
     final always = dateTags(local, eventTitles: eventTitles);
     final dayRnd = Random(dayKey);
     final sometimes = {
@@ -273,7 +358,9 @@ Quote? pickQuote({
       } else {
         // A Jewish special leads the day; others default to daytime.
         final fallback = q.isJewish ? 'morning' : 'day';
-        final name = pinned.isNotEmpty ? pinned.first : (tagged.isEmpty ? fallback : tagged.first);
+        final name = pinned.isNotEmpty
+            ? pinned.first
+            : (tagged.isEmpty ? fallback : tagged.first);
         want = DaySlot.values.byName(name);
         if (taken.containsKey(want) || (mixed && want == DaySlot.morning)) {
           want = [
@@ -305,7 +392,9 @@ Quote? pickQuote({
     ];
     if (idleOnes.isNotEmpty && rnd.nextInt(3) == 0) candidates = idleOnes;
   }
-  if (mixed && candidates.any((q) => q.isJewish) && candidates.any((q) => !q.isJewish)) {
+  if (mixed &&
+      candidates.any((q) => q.isJewish) &&
+      candidates.any((q) => !q.isJewish)) {
     final morning = slot == DaySlot.morning;
     candidates = [
       for (final q in candidates)
@@ -319,8 +408,9 @@ Quote? pickQuote({
 extension<T> on List<T> {
   /// Sorts by [rank], keeping the order of equal ones.
   void sortStable(int Function(T) rank) {
-    final ranked = [for (var i = 0; i < length; i++) (rank(this[i]), i, this[i])]
-      ..sort((a, b) => a.$1 != b.$1 ? a.$1 - b.$1 : a.$2 - b.$2);
+    final ranked = [
+      for (var i = 0; i < length; i++) (rank(this[i]), i, this[i]),
+    ]..sort((a, b) => a.$1 != b.$1 ? a.$1 - b.$1 : a.$2 - b.$2);
     setAll(0, ranked.map((r) => r.$3));
   }
 }

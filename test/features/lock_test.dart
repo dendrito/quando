@@ -14,25 +14,33 @@ Future<ProviderContainer> _container() async {
   SharedPreferences.setMockInitialValues({});
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(
-    overrides: [clockProvider.overrideWithValue(() => _now), prefsProvider.overrideWithValue(prefs)],
+    overrides: [
+      clockProvider.overrideWithValue(() => _now),
+      prefsProvider.overrideWithValue(prefs),
+    ],
   );
   addTearDown(c.dispose);
   return c;
 }
 
 void main() {
-  test('Shabbat lock runs from candle lighting to havdalah, with an opening chime', () async {
-    final c = await _container();
-    expect(c.read(lockPeriodsProvider), isEmpty);
-    c.read(lockSettingsProvider.notifier).update((s) => s.copyWith(shabbat: true));
-    final first = c.read(lockPeriodsProvider).first;
-    expect(first.start, DateTime.utc(2026, 11, 6, 14, 5, 34));
-    expect(first.reason, 'Shabbat');
-    final chime = c.read(planProvider).singleWhere((a) => a.ruleId == 'lock');
-    expect(chime.at, first.start);
-    final p = c.read(payloadForProvider)(chime);
-    expect((p.isLock, p.ringSeconds, p.spoken), (true, 1, false));
-  });
+  test(
+    'Shabbat lock runs from candle lighting to havdalah, with an opening chime',
+    () async {
+      final c = await _container();
+      expect(c.read(lockPeriodsProvider), isEmpty);
+      c
+          .read(lockSettingsProvider.notifier)
+          .update((s) => s.copyWith(shabbat: true));
+      final first = c.read(lockPeriodsProvider).first;
+      expect(first.start, DateTime.utc(2026, 11, 6, 14, 5, 34));
+      expect(first.reason, 'Shabbat');
+      final chime = c.read(planProvider).singleWhere((a) => a.ruleId == 'lock');
+      expect(chime.at, first.start);
+      final p = c.read(payloadForProvider)(chime);
+      expect((p.isLock, p.ringSeconds, p.spoken), (true, 1, false));
+    },
+  );
 
   test('calendar events with the keyword lock from start to end', () {
     final periods = lockPeriods(
@@ -121,7 +129,10 @@ void main() {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final c = ProviderContainer(
-      overrides: [clockProvider.overrideWithValue(() => _now), prefsProvider.overrideWithValue(prefs)],
+      overrides: [
+        clockProvider.overrideWithValue(() => _now),
+        prefsProvider.overrideWithValue(prefs),
+      ],
     );
     addTearDown(c.dispose);
     await tester.pumpWidget(
@@ -129,7 +140,10 @@ void main() {
         container: c,
         child: MaterialApp(
           theme: buildTheme(),
-          home: LockGate(now: () => DateTime.now().toUtc(), child: const Text('app')),
+          home: LockGate(
+            now: () => DateTime.now().toUtc(),
+            child: const Text('app'),
+          ),
         ),
       ),
     );
@@ -140,7 +154,9 @@ void main() {
     await tester.pump();
     expect(find.text('Hold to unlock'), findsOneWidget);
 
-    final hold = await tester.startGesture(tester.getCenter(find.text('Hold to unlock')));
+    final hold = await tester.startGesture(
+      tester.getCenter(find.text('Hold to unlock')),
+    );
     for (var i = 0; i < 10; i++) {
       await tester.pump(const Duration(milliseconds: 100));
     }

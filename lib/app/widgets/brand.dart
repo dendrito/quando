@@ -33,7 +33,10 @@ class _QMarkPainter extends CustomPainter {
     canvas.scale(size.width / 180);
     if (tile) {
       canvas.drawRRect(
-        RRect.fromRectAndRadius(const Rect.fromLTWH(0, 0, 180, 180), const Radius.circular(44)),
+        RRect.fromRectAndRadius(
+          const Rect.fromLTWH(0, 0, 180, 180),
+          const Radius.circular(44),
+        ),
         Paint()..color = kodesh ? QuandoColors.ground : QuandoColors.coral,
       );
     }
@@ -73,7 +76,10 @@ class _QMarkPainter extends CustomPainter {
         86 + halfWidth,
         bottom - halfWidth,
       )
-      ..arcToPoint(Offset(86 - halfWidth, bottom - halfWidth), radius: Radius.circular(halfWidth))
+      ..arcToPoint(
+        Offset(86 - halfWidth, bottom - halfWidth),
+        radius: Radius.circular(halfWidth),
+      )
       ..cubicTo(
         86 - halfWidth,
         bottom - halfWidth * 1.2,
@@ -84,7 +90,8 @@ class _QMarkPainter extends CustomPainter {
       )
       ..close();
     canvas.drawPath(flame(50, 11, 82), Paint()..color = QuandoColors.coral);
-    if (tile) canvas.drawPath(flame(62, 5, 78), Paint()..color = QuandoColors.text);
+    if (tile)
+      canvas.drawPath(flame(62, 5, 78), Paint()..color = QuandoColors.text);
     canvas.drawLine(
       centre,
       const Offset(146, 144),
@@ -102,7 +109,12 @@ class _QMarkPainter extends CustomPainter {
 
 /// A candle flame, for Shabbat and festivals.
 class Flame extends StatelessWidget {
-  const Flame({super.key, this.height = 52, this.candle = false, this.glow = false});
+  const Flame({
+    super.key,
+    this.height = 52,
+    this.candle = false,
+    this.glow = false,
+  });
 
   final double height;
 
@@ -143,7 +155,10 @@ class _FlamePainter extends CustomPainter {
       canvas.drawPath(_outer(), Paint()..color = QuandoColors.amber);
       canvas.drawPath(_inner(), Paint()..color = QuandoColors.coral);
       canvas.drawRRect(
-        RRect.fromRectAndRadius(const Rect.fromLTWH(20, 60, 24, 90), const Radius.circular(4)),
+        RRect.fromRectAndRadius(
+          const Rect.fromLTWH(20, 60, 24, 90),
+          const Radius.circular(4),
+        ),
         Paint()..color = QuandoColors.text,
       );
     } else {
@@ -152,7 +167,10 @@ class _FlamePainter extends CustomPainter {
       canvas.scale(s);
       canvas.translate(size.width / s / 2 - 32, -4);
       canvas.drawPath(_outer(), Paint()..color = QuandoColors.coral);
-      canvas.drawPath(_inner(), Paint()..color = QuandoColors.ground.withValues(alpha: 0.25));
+      canvas.drawPath(
+        _inner(),
+        Paint()..color = QuandoColors.ground.withValues(alpha: 0.25),
+      );
     }
   }
 
@@ -173,5 +191,6 @@ class _FlamePainter extends CustomPainter {
     ..close();
 
   @override
-  bool shouldRepaint(_FlamePainter old) => old.candle != candle || old.glow != glow;
+  bool shouldRepaint(_FlamePainter old) =>
+      old.candle != candle || old.glow != glow;
 }

@@ -42,7 +42,8 @@ enum ReadyCheck {
 class Readiness {
   static const _phone = MethodChannel('quando/phone');
 
-  static bool get applies => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get applies =>
+      !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
   static Future<Map<ReadyCheck, bool>> read() async {
     if (!applies) return {for (final c in ReadyCheck.values) c: true};
@@ -56,9 +57,13 @@ class Readiness {
 
     return {
       ReadyCheck.notifications: await safe(Permission.notification.isGranted),
-      ReadyCheck.fullScreen: await safe(_phone.invokeMethod<bool>('fullScreen').then((v) => v ?? true)),
+      ReadyCheck.fullScreen: await safe(
+        _phone.invokeMethod<bool>('fullScreen').then((v) => v ?? true),
+      ),
       ReadyCheck.exact: await safe(Permission.scheduleExactAlarm.isGranted),
-      ReadyCheck.battery: await safe(Permission.ignoreBatteryOptimizations.isGranted),
+      ReadyCheck.battery: await safe(
+        Permission.ignoreBatteryOptimizations.isGranted,
+      ),
     };
   }
 
@@ -66,9 +71,11 @@ class Readiness {
     try {
       switch (c) {
         case ReadyCheck.notifications:
-          if (await Permission.notification.request().isPermanentlyDenied) await openAppSettings();
+          if (await Permission.notification.request().isPermanentlyDenied)
+            await openAppSettings();
         case ReadyCheck.fullScreen:
-          if (await _phone.invokeMethod<bool>('openFullScreen') != true) await openAppSettings();
+          if (await _phone.invokeMethod<bool>('openFullScreen') != true)
+            await openAppSettings();
         case ReadyCheck.exact:
           await Permission.scheduleExactAlarm.request();
         case ReadyCheck.battery:
@@ -98,7 +105,9 @@ class Readiness {
 }
 
 /// Whether anything needs fixing, checked when the app starts and after a fix.
-final readinessProvider = FutureProvider<Map<ReadyCheck, bool>>((ref) => Readiness.read());
+final readinessProvider = FutureProvider<Map<ReadyCheck, bool>>(
+  (ref) => Readiness.read(),
+);
 
 /// "Ready to ring": what the phone allows, a fix button for each, and a
 /// quick test ring with the phone locked.
@@ -109,7 +118,8 @@ class ReadyScreen extends ConsumerStatefulWidget {
   ConsumerState<ReadyScreen> createState() => _ReadyScreenState();
 }
 
-class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingObserver {
+class _ReadyScreenState extends ConsumerState<ReadyScreen>
+    with WidgetsBindingObserver {
   String _brand = '';
 
   @override
@@ -160,7 +170,10 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
     final tip = Readiness.brandTip(_brand);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.readyToRing), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+        title: Text(l10n.readyToRing),
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
@@ -175,15 +188,21 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
                 Icon(
                   missing == 0 ? Icons.verified : Icons.warning_amber_rounded,
                   size: 40,
-                  color: missing == 0 ? QuandoColors.amber : QuandoColors.ground,
+                  color: missing == 0
+                      ? QuandoColors.amber
+                      : QuandoColors.ground,
                 ),
                 const SizedBox(width: 16),
                 Expanded(
                   child: Text(
                     checks.isEmpty
                         ? l10n.checkingPhone
-                        : (missing == 0 ? l10n.phoneReady : l10n.thingsNeedFixing(missing)),
-                    style: text.titleMedium?.copyWith(color: missing == 0 ? null : QuandoColors.ground),
+                        : (missing == 0
+                              ? l10n.phoneReady
+                              : l10n.thingsNeedFixing(missing)),
+                    style: text.titleMedium?.copyWith(
+                      color: missing == 0 ? null : QuandoColors.ground,
+                    ),
                   ),
                 ),
               ],
@@ -208,11 +227,16 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
             ),
           if (tip != null) ...[
             const SizedBox(height: 12),
-            Text(tip, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+            Text(
+              tip,
+              style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+            ),
           ],
           const SizedBox(height: 24),
           FilledButton.icon(
-            style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            style: FilledButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
             onPressed: _testRing,
             icon: const Icon(Icons.alarm),
             label: Text(l10n.testIn20),

@@ -12,7 +12,9 @@ import '../shabbat_on.dart';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<ProviderContainer> _container([Map<String, Object> saved = const {}]) async {
+Future<ProviderContainer> _container([
+  Map<String, Object> saved = const {},
+]) async {
   SharedPreferences.setMockInitialValues({...shabbatOn, ...saved});
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(
@@ -31,17 +33,28 @@ void main() {
         .events(DateTime.utc(2026, 11, 6), DateTime.utc(2026, 11, 7));
     final sunset = events.firstWhere((e) => e.kind == EventKind.sunset);
     // Candle lighting that day is 14:05:34Z, 40 minutes before sea-level sunset.
-    expect(sunset.at.difference(DateTime.utc(2026, 11, 6, 14, 45, 34)).inSeconds.abs(), lessThan(60));
+    expect(
+      sunset.at
+          .difference(DateTime.utc(2026, 11, 6, 14, 45, 34))
+          .inSeconds
+          .abs(),
+      lessThan(60),
+    );
     final sunrise = events.firstWhere((e) => e.kind == EventKind.sunrise);
     expect(sunrise.at.hour, inInclusiveRange(3, 4)); // ~06:00 local
   });
 
-  test('Friday reminder rings 3 hours before candle lighting with its label', () async {
-    final c = await _container();
-    final reminder = c.read(planProvider).firstWhere((a) => a.ruleId == Presets.fridayReminder.id);
-    expect(reminder.at, DateTime.utc(2026, 11, 6, 11, 5, 34));
-    expect(reminder.body, contains('Charge your phone'));
-  });
+  test(
+    'Friday reminder rings 3 hours before candle lighting with its label',
+    () async {
+      final c = await _container();
+      final reminder = c
+          .read(planProvider)
+          .firstWhere((a) => a.ruleId == Presets.fridayReminder.id);
+      expect(reminder.at, DateTime.utc(2026, 11, 6, 11, 5, 34));
+      expect(reminder.body, contains('Charge your phone'));
+    },
+  );
 
   test('sun alarms appear only when switched on', () async {
     final c = await _container();
@@ -52,12 +65,16 @@ void main() {
 
   test('alarms inside Shabbat never ask to be touched', () async {
     final c = await _container();
-    c.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(mathTask: true, wakeCheck: true));
+    c
+        .read(alarmOptionsProvider.notifier)
+        .update((o) => o.copyWith(mathTask: true, wakeCheck: true));
     c.read(rulesProvider.notifier).toggle(Presets.sunrise.id, true);
     final plan = c.read(planProvider);
     final payloadFor = c.read(payloadForProvider);
 
-    final shabbatSunrise = plan.firstWhere((a) => a.title == 'Sunrise' && a.at.day == 7);
+    final shabbatSunrise = plan.firstWhere(
+      (a) => a.title == 'Sunrise' && a.at.day == 7,
+    );
     final p = payloadFor(shabbatSunrise);
     expect(p.shabbatSafe, isTrue);
     expect(p.canSnooze, isFalse);
@@ -65,7 +82,9 @@ void main() {
     expect(p.wakeCheck, isFalse);
     expect(p.spoken, isFalse);
 
-    final weekday = payloadFor(plan.firstWhere((a) => a.title == 'Sunrise' && a.at.day == 4));
+    final weekday = payloadFor(
+      plan.firstWhere((a) => a.title == 'Sunrise' && a.at.day == 4),
+    );
     expect(weekday.shabbatSafe, isFalse);
     expect(weekday.mathTask, isTrue);
     expect(weekday.canSnooze, isTrue);
@@ -93,14 +112,24 @@ void main() {
     c.read(placeProvider.notifier).set(Places.london);
     c.read(placeProvider.notifier).setCandleMinutes(25);
     c.read(rulesProvider.notifier).toggle(Presets.hourly.id, false);
-    c.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(maxSnoozes: 4));
+    c
+        .read(alarmOptionsProvider.notifier)
+        .update((o) => o.copyWith(maxSnoozes: 4));
     final prefs = c.read(prefsProvider);
 
-    final again = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
+    final again = ProviderContainer(
+      overrides: [prefsProvider.overrideWithValue(prefs)],
+    );
     addTearDown(again.dispose);
     expect(again.read(placeProvider).name, 'London');
     expect(again.read(placeProvider).candleLightingMinutes, 25);
-    expect(again.read(rulesProvider).firstWhere((r) => r.id == Presets.hourly.id).enabled, isFalse);
+    expect(
+      again
+          .read(rulesProvider)
+          .firstWhere((r) => r.id == Presets.hourly.id)
+          .enabled,
+      isFalse,
+    );
     expect(again.read(alarmOptionsProvider).maxSnoozes, 4);
   });
 }

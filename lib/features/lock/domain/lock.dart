@@ -55,7 +55,9 @@ class LockSettings {
     calendarKeyword: j['calendarKeyword'] as String? ?? '',
     pin: j['pin'] as bool? ?? true,
     openAtStart: j['openAtStart'] as bool? ?? true,
-    manualUntil: j['manualUntil'] == null ? null : DateTime.parse(j['manualUntil'] as String).toUtc(),
+    manualUntil: j['manualUntil'] == null
+        ? null
+        : DateTime.parse(j['manualUntil'] as String).toUtc(),
   );
 }
 
@@ -109,10 +111,12 @@ List<LockPeriod> lockPeriods({
   if (kw.isNotEmpty) {
     final ends = {
       for (final e in calendarEvents)
-        if (e.kind == EventKind.calendarEnd) e.id.replaceFirst('calend.', ''): e.at,
+        if (e.kind == EventKind.calendarEnd)
+          e.id.replaceFirst('calend.', ''): e.at,
     };
     for (final e in calendarEvents) {
-      if (e.kind != EventKind.calendar || !e.title.toLowerCase().contains(kw)) continue;
+      if (e.kind != EventKind.calendar || !e.title.toLowerCase().contains(kw))
+        continue;
       final end = ends[e.id.replaceFirst('cal.', '')];
       if (end == null || !end.isAfter(e.at)) continue;
       out.add(LockPeriod(id: e.id, start: e.at, end: end, reason: e.title));
@@ -142,7 +146,9 @@ List<LockPeriod> lockPeriods({
           id: last.id,
           start: last.start,
           end: p.end.isAfter(last.end) ? p.end : last.end,
-          reason: last.reason == p.reason ? last.reason : '${last.reason} · ${p.reason}',
+          reason: last.reason == p.reason
+              ? last.reason
+              : '${last.reason} · ${p.reason}',
           ids: {...last.allIds, ...p.allIds},
         ),
       );

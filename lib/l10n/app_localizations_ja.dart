@@ -232,7 +232,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n件のアラーム');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n件のアラーム',
+    );
     return '$_temp0';
   }
 
@@ -405,7 +409,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get lockSentence => 'シャバットや集中したい夜のために、スマホを時計とアラームだけにします。';
 
   @override
-  String get lockExplain => 'ロック中、Quando?は時刻、次のアラーム、ロック終了時刻だけを表示します。アラームは動き続け、ロック解除まで何も変更できません。';
+  String get lockExplain =>
+      'ロック中、Quando?は時刻、次のアラーム、ロック終了時刻だけを表示します。アラームは動き続け、ロック解除まで何も変更できません。';
 
   @override
   String get lockNowHeading => '今すぐロック';
@@ -474,7 +479,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get calendarAlarm => 'カレンダーアラーム';
 
   @override
-  String get calendarIntro => 'Quando?はスマホのカレンダーの予定の前後に鳴らせます。スマホにGoogleアカウントがあればGoogleカレンダーも含まれます。';
+  String get calendarIntro =>
+      'Quando?はスマホのカレンダーの予定の前後に鳴らせます。スマホにGoogleアカウントがあればGoogleカレンダーも含まれます。';
 
   @override
   String get connectCalendars => 'カレンダーを接続';
@@ -722,16 +728,20 @@ class AppLocalizationsJa extends AppLocalizations {
   String get readyBatteryWhy => '省電力機能が夜間にアラームを止めないようにします。';
 
   @override
-  String get tipXiaomi => 'Xiaomiのスマホ：設定 › アプリ › Quando?で自動起動をオンにし、省電力を「制限なし」にします。';
+  String get tipXiaomi =>
+      'Xiaomiのスマホ：設定 › アプリ › Quando?で自動起動をオンにし、省電力を「制限なし」にします。';
 
   @override
-  String get tipSamsung => 'Samsungのスマホ：設定 › バッテリー › バックグラウンドでの使用制限で、Quando?がスリープになっていないか確認します。';
+  String get tipSamsung =>
+      'Samsungのスマホ：設定 › バッテリー › バックグラウンドでの使用制限で、Quando?がスリープになっていないか確認します。';
 
   @override
-  String get tipHuawei => 'HuaweiとHonorのスマホ：設定 › バッテリー › アプリ起動でQuando?を手動管理にし、すべて許可します。';
+  String get tipHuawei =>
+      'HuaweiとHonorのスマホ：設定 › バッテリー › アプリ起動でQuando?を手動管理にし、すべて許可します。';
 
   @override
-  String get tipOther => 'このスマホでは：設定 › バッテリーでQuando?のバックグラウンド実行を許可し、最適化をオフにします。';
+  String get tipOther =>
+      'このスマホでは：設定 › バッテリーでQuando?のバックグラウンド実行を許可し、最適化をオフにします。';
 
   @override
   String get testRing => 'テスト音';
@@ -855,13 +865,15 @@ class AppLocalizationsJa extends AppLocalizations {
   String get provesAwake => '起きていることを確かめます';
 
   @override
-  String get shabbatNoTasks => 'シャバットと祝祭日には、これらは適用されません。アラームは自動で止まり、スマホに触れる必要はありません。';
+  String get shabbatNoTasks =>
+      'シャバットと祝祭日には、これらは適用されません。アラームは自動で止まり、スマホに触れる必要はありません。';
 
   @override
   String get testAlarmIn1 => '1分後にテストアラームを鳴らす';
 
   @override
-  String get timesDisclaimer => '時刻はスマホ上で計算されます。判断が難しい場合はラビに相談するか、コミュニティのカレンダーを確認してください。';
+  String get timesDisclaimer =>
+      '時刻はスマホ上で計算されます。判断が難しい場合はラビに相談するか、コミュニティのカレンダーを確認してください。';
 
   @override
   String get recommended => 'おすすめ';
@@ -1013,7 +1025,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String eventsIn60(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '今後60日間に$n件の予定');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '今後60日間に$n件の予定',
+    );
     return '$_temp0';
   }
 
@@ -1153,7 +1169,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get ringThenOpen => '鳴らしてから開く';
 
   @override
-  String get playTheSongHint => 'アプリが開いて再生します。10秒間無音ならバックアップ音が鳴るので、必ず目覚めます。タスク付きのアラームは先に鳴ってから開きます。';
+  String get playTheSongHint =>
+      'アプリが開いて再生します。10秒間無音ならバックアップ音が鳴るので、必ず目覚めます。タスク付きのアラームは先に鳴ってから開きます。';
 
   @override
   String get ringThenOpenHint => 'バックアップ音が鳴ります。停止するとアプリで曲が開きます。';
@@ -1209,13 +1226,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get spotifyDirectOnHint => 'Spotifyがあなたの曲そのものをアラームとして再生します。タップでオフ。';
 
   @override
-  String get spotifyDirectHint => 'Spotifyの曲そのものをより確実にアラームとして再生します。SpotifyアプリとSpotify Premiumが必要です。タップでログイン。';
+  String get spotifyDirectHint =>
+      'Spotifyの曲そのものをより確実にアラームとして再生します。SpotifyアプリとSpotify Premiumが必要です。タップでログイン。';
 
   @override
-  String get spotifyComingSoon => '近日対応：Spotifyの曲そのものをアラームに（Spotify Premiumが必要）。';
+  String get spotifyComingSoon =>
+      '近日対応：Spotifyの曲そのものをアラームに（Spotify Premiumが必要）。';
 
   @override
-  String get spotifyFailed => 'Spotifyに接続できませんでした。Spotifyアプリがインストール済みで、ログインしていてPremiumであるか確認してください。';
+  String get spotifyFailed =>
+      'Spotifyに接続できませんでした。Spotifyアプリがインストール済みで、ログインしていてPremiumであるか確認してください。';
 
   @override
   String get nameThisSound => 'この音に名前をつける';
@@ -1503,7 +1523,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get saveCodeToScan => 'スキャン用のコードを保存';
 
   @override
-  String get saveCodeHint => 'キッチンの箱や洗面所の歯磨き粉など、歩いて行く必要がある場所のバーコードやQRコードを写します。アラームを止めるときにもう一度スキャンします。';
+  String get saveCodeHint =>
+      'キッチンの箱や洗面所の歯磨き粉など、歩いて行く必要がある場所のバーコードやQRコードを写します。アラームを止めるときにもう一度スキャンします。';
 
   @override
   String get cameraUnavailableSettings => 'カメラを使用できません。設定でカメラへのアクセスを許可してください。';
@@ -1657,7 +1678,8 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get fadesExplain => 'フェードアウトはアラームが自動で止まるときに起こります。フェードが鳴る時間より長い場合、両方短くなります。';
+  String get fadesExplain =>
+      'フェードアウトはアラームが自動で止まるときに起こります。フェードが鳴る時間より長い場合、両方短くなります。';
 
   @override
   String get soundSoftChime => 'やわらかなチャイム';
@@ -1782,7 +1804,8 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo => 'YouTubeに拒否されました。GoogleアカウントがQuandoプロジェクトのテストユーザーか確認してください。';
+  String get youTubeSaidNo =>
+      'YouTubeに拒否されました。GoogleアカウントがQuandoプロジェクトのテストユーザーか確認してください。';
 
   @override
   String get event => '予定';
@@ -1806,7 +1829,8 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get zapierHowTo => 'Zapierで「Webhooks by Zapier → Catch Hook」から始まるZapを作り、そのURLをここに貼り付けます。';
+  String get zapierHowTo =>
+      'Zapierで「Webhooks by Zapier → Catch Hook」から始まるZapを作り、そのURLをここに貼り付けます。';
 
   @override
   String get catchHookUrl => 'Catch HookのURL';
@@ -1825,7 +1849,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get webhookHowTo => 'Quando?はこのアドレスにJSON POSTを送ります。';
 
   @override
-  String get connectionsSentence => 'アラームが鳴った・止まった・スヌーズされたときに、他のアプリやデバイスに知らせます。';
+  String get connectionsSentence =>
+      'アラームが鳴った・止まった・スヌーズされたときに、他のアプリやデバイスに知らせます。';
 
   @override
   String get pushWhenRings => 'アラームが鳴ったら通知を送る';
@@ -1861,7 +1886,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get allMyDevices => 'すべてのデバイス';
 
   @override
-  String get pushoverOnThisPhone => 'このスマホにもPushoverアプリを入れると、ここでもPushoverの音で鳴ります。';
+  String get pushoverOnThisPhone =>
+      'このスマホにもPushoverアプリを入れると、ここでもPushoverの音で鳴ります。';
 
   @override
   String get priority => '優先度';
@@ -1891,7 +1917,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get webhooksHeading => 'ZAPIER、IFTTT、WEBHOOK';
 
   @override
-  String get webhooksExplain => 'アラームが鳴ったり止めたりしたときに何でも起動できます。照明をつける、起床時刻を記録する、誰かにメッセージを送るなど。';
+  String get webhooksExplain =>
+      'アラームが鳴ったり止めたりしたときに何でも起動できます。照明をつける、起床時刻を記録する、誰かにメッセージを送るなど。';
 
   @override
   String get sendWhenAlarm => 'アラームが次のとき送信：';
@@ -1992,7 +2019,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2093,7 +2121,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2104,7 +2133,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2135,7 +2165,8 @@ class AppLocalizationsJa extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => 'サインインすると、プレイリストやお気に入りの曲から選んだり、Spotify全体を検索したりできます。Premium不要。';
+  String get spotifyLibrarySignIn =>
+      'サインインすると、プレイリストやお気に入りの曲から選んだり、Spotify全体を検索したりできます。Premium不要。';
 
   @override
   String get spotifyLibraryOn => 'プレイリスト、お気に入りの曲、検索。長押しでサインアウト。';

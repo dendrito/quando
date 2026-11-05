@@ -6,7 +6,12 @@ import 'package:quando/l10n/l10n.dart';
 
 /// A calendar on the phone: Google accounts, Samsung, Outlook, local...
 class PhoneCalendar {
-  const PhoneCalendar({required this.id, required this.name, this.account, this.colorHex});
+  const PhoneCalendar({
+    required this.id,
+    required this.name,
+    this.account,
+    this.colorHex,
+  });
 
   final String id;
   final String name;
@@ -23,14 +28,19 @@ abstract class CalendarReader {
 
   /// Start and end events for every timed event between [from] and [to].
   /// All-day events are skipped: they "start" at midnight.
-  Future<List<AnchorEvent>> events(DateTime from, DateTime to, Set<String> calendarIds);
+  Future<List<AnchorEvent>> events(
+    DateTime from,
+    DateTime to,
+    Set<String> calendarIds,
+  );
 }
 
 class DeviceCalendarReader implements CalendarReader {
   DeviceCalendar get _plugin => DeviceCalendar.instance;
 
   @override
-  Future<bool> hasAccess() async => await _plugin.hasPermissions() == CalendarPermissionStatus.granted;
+  Future<bool> hasAccess() async =>
+      await _plugin.hasPermissions() == CalendarPermissionStatus.granted;
 
   @override
   Future<bool> requestAccess() async =>
@@ -39,13 +49,27 @@ class DeviceCalendarReader implements CalendarReader {
   @override
   Future<List<PhoneCalendar>> calendars() async => [
     for (final c in await _plugin.listCalendars())
-      if (!c.hidden) PhoneCalendar(id: c.id, name: c.name, account: c.accountName, colorHex: c.colorHex),
+      if (!c.hidden)
+        PhoneCalendar(
+          id: c.id,
+          name: c.name,
+          account: c.accountName,
+          colorHex: c.colorHex,
+        ),
   ];
 
   @override
-  Future<List<AnchorEvent>> events(DateTime from, DateTime to, Set<String> calendarIds) async {
+  Future<List<AnchorEvent>> events(
+    DateTime from,
+    DateTime to,
+    Set<String> calendarIds,
+  ) async {
     if (calendarIds.isEmpty) return const [];
-    final raw = await _plugin.listEvents(from.toLocal(), to.toLocal(), calendarIds: calendarIds.toList());
+    final raw = await _plugin.listEvents(
+      from.toLocal(),
+      to.toLocal(),
+      calendarIds: calendarIds.toList(),
+    );
     return [
       for (final e in raw)
         if (!e.isAllDay && e.status != EventStatus.canceled) ...[

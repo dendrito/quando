@@ -20,14 +20,18 @@ import 'sync_engine.dart';
 /// setting under `items`. Dots aren't allowed in its field names, so they
 /// travel as `~`.
 class FirestoreRemote implements SyncRemote {
-  FirestoreRemote(String uid) : _doc = FirebaseFirestore.instance.collection('users').doc(uid);
+  FirestoreRemote(String uid)
+    : _doc = FirebaseFirestore.instance.collection('users').doc(uid);
 
   final DocumentReference<Map<String, dynamic>> _doc;
 
   @override
   Stream<Map<String, SyncItem>> watch() => _doc.snapshots().map((s) {
     final raw = (s.data()?['items'] as Map?) ?? const {};
-    return {for (final e in raw.entries) '${e.key}'.replaceAll('~', '.'): ?SyncItem.fromJson(e.value)};
+    return {
+      for (final e in raw.entries)
+        '${e.key}'.replaceAll('~', '.'): ?SyncItem.fromJson(e.value),
+    };
   });
 
   @override
@@ -36,7 +40,9 @@ class FirestoreRemote implements SyncRemote {
         final snapshot = await transaction.get(_doc);
         final data = snapshot.data() ?? <String, dynamic>{};
         final raw = (data['items'] as Map?) ?? const {};
-        final merged = <String, dynamic>{for (final entry in raw.entries) '${entry.key}': entry.value};
+        final merged = <String, dynamic>{
+          for (final entry in raw.entries) '${entry.key}': entry.value,
+        };
 
         // Use a server-serialized revision rather than client wall-clock time.
         // Seed from existing item timestamps to migrate older sync documents.
@@ -74,7 +80,13 @@ enum SyncPhase {
 }
 
 class SyncStatus {
-  const SyncStatus({this.revealed = false, this.phase = SyncPhase.off, this.email, this.name, this.photo});
+  const SyncStatus({
+    this.revealed = false,
+    this.phase = SyncPhase.off,
+    this.email,
+    this.name,
+    this.photo,
+  });
 
   /// Kept for older builds; the account card now always shows.
   final bool revealed;
@@ -85,14 +97,19 @@ class SyncStatus {
   final String? name;
   final String? photo;
 
-  SyncStatus copyWith({bool? revealed, SyncPhase? phase, String? email, String? name, String? photo}) =>
-      SyncStatus(
-        revealed: revealed ?? this.revealed,
-        phase: phase ?? this.phase,
-        email: email ?? this.email,
-        name: name ?? this.name,
-        photo: photo ?? this.photo,
-      );
+  SyncStatus copyWith({
+    bool? revealed,
+    SyncPhase? phase,
+    String? email,
+    String? name,
+    String? photo,
+  }) => SyncStatus(
+    revealed: revealed ?? this.revealed,
+    phase: phase ?? this.phase,
+    email: email ?? this.email,
+    name: name ?? this.name,
+    photo: photo ?? this.photo,
+  );
 }
 
 /// Signs in with Google and keeps settings in step while signed in.
@@ -127,7 +144,8 @@ class SyncNotifier extends Notifier<SyncStatus> {
 
   static Future<void> _firebase() async {
     if (_firebaseUp) return;
-    if (Firebase.apps.isEmpty) await Firebase.initializeApp(options: SyncConfig.options);
+    if (Firebase.apps.isEmpty)
+      await Firebase.initializeApp(options: SyncConfig.options);
     _firebaseUp = true;
   }
 
@@ -160,7 +178,9 @@ class SyncNotifier extends Notifier<SyncStatus> {
       await _start(cred.user!);
     } on GoogleSignInException catch (e) {
       state = state.copyWith(
-        phase: e.code == GoogleSignInExceptionCode.canceled ? SyncPhase.off : SyncPhase.failed,
+        phase: e.code == GoogleSignInExceptionCode.canceled
+            ? SyncPhase.off
+            : SyncPhase.failed,
       );
     } catch (e) {
       debugPrint('Quando? sync: $e');
@@ -170,14 +190,24 @@ class SyncNotifier extends Notifier<SyncStatus> {
 
   /// Signs in with an email and password, or makes a new account when
   /// [create] is set. Returns what went wrong, in words, or null.
-  Future<String?> signInWithEmail(String email, String password, {bool create = false}) async {
+  Future<String?> signInWithEmail(
+    String email,
+    String password, {
+    bool create = false,
+  }) async {
     if (!available) return l10n.syncNotSetUp;
     try {
       await _firebase();
       final auth = FirebaseAuth.instance;
       final cred = create
-          ? await auth.createUserWithEmailAndPassword(email: email.trim(), password: password)
-          : await auth.signInWithEmailAndPassword(email: email.trim(), password: password);
+          ? await auth.createUserWithEmailAndPassword(
+              email: email.trim(),
+              password: password,
+            )
+          : await auth.signInWithEmailAndPassword(
+              email: email.trim(),
+              password: password,
+            );
       final user = cred.user!;
       if (!user.emailVerified) {
         if (create) await user.sendEmailVerification();
@@ -202,13 +232,16 @@ class SyncNotifier extends Notifier<SyncStatus> {
     await user.reload();
     final fresh = FirebaseAuth.instance.currentUser!;
     if (!fresh.emailVerified) return false;
-    await fresh.getIdToken(true); // the server reads "verified" from a fresh token
+    await fresh.getIdToken(
+      true,
+    ); // the server reads "verified" from a fresh token
     state = state.copyWith(phase: SyncPhase.working);
     await _start(fresh);
     return true;
   }
 
-  Future<void> resendConfirmation() async => FirebaseAuth.instance.currentUser?.sendEmailVerification();
+  Future<void> resendConfirmation() async =>
+      FirebaseAuth.instance.currentUser?.sendEmailVerification();
 
   /// Emails a link to choose a new password. Returns what went wrong, or null.
   Future<String?> resetPassword(String email) async {
@@ -223,7 +256,9 @@ class SyncNotifier extends Notifier<SyncStatus> {
 
   static String emailError(String code) => switch (code) {
     'invalid-email' => l10n.emailInvalid,
-    'user-not-found' || 'wrong-password' || 'invalid-credential' => l10n.emailWrong,
+    'user-not-found' ||
+    'wrong-password' ||
+    'invalid-credential' => l10n.emailWrong,
     'email-already-in-use' => l10n.emailInUse,
     'weak-password' => l10n.passwordWeak,
     'operation-not-allowed' => l10n.emailNotSwitchedOn,
@@ -246,15 +281,25 @@ class SyncNotifier extends Notifier<SyncStatus> {
     }
     var device = prefs.getString('sync.device');
     if (device == null) {
-      device = List.generate(12, (_) => Random.secure().nextInt(36).toRadixString(36)).join();
+      device = List.generate(
+        12,
+        (_) => Random.secure().nextInt(36).toRadixString(36),
+      ).join();
       await prefs.setString('sync.device', device);
     }
     await _engine?.stop();
-    _engine = SyncEngine(prefs, FirestoreRemote(user.uid), device: device, onApplied: _reload)..start();
+    _engine = SyncEngine(
+      prefs,
+      FirestoreRemote(user.uid),
+      device: device,
+      onApplied: _reload,
+    )..start();
     await prefs.setBool('sync.on', true);
     if (user.email != null) await prefs.setString('sync.email', user.email!);
-    if (user.displayName != null) await prefs.setString('sync.name', user.displayName!);
-    if (user.photoURL != null) await prefs.setString('sync.photo', user.photoURL!);
+    if (user.displayName != null)
+      await prefs.setString('sync.name', user.displayName!);
+    if (user.photoURL != null)
+      await prefs.setString('sync.photo', user.photoURL!);
     state = state.copyWith(
       phase: SyncPhase.on,
       email: user.email,
@@ -268,7 +313,14 @@ class SyncNotifier extends Notifier<SyncStatus> {
     _engine = null;
     final prefs = ref.read(prefsProvider);
     await prefs.setBool('sync.on', false);
-    for (final k in ['sync.last', 'sync.stamps', 'sync.origins', 'sync.email', 'sync.name', 'sync.photo']) {
+    for (final k in [
+      'sync.last',
+      'sync.stamps',
+      'sync.origins',
+      'sync.email',
+      'sync.name',
+      'sync.photo',
+    ]) {
       await prefs.remove(k);
     }
     try {
@@ -300,4 +352,6 @@ class SyncNotifier extends Notifier<SyncStatus> {
   }
 }
 
-final syncProvider = NotifierProvider<SyncNotifier, SyncStatus>(SyncNotifier.new);
+final syncProvider = NotifierProvider<SyncNotifier, SyncStatus>(
+  SyncNotifier.new,
+);

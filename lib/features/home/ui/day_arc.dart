@@ -105,7 +105,11 @@ class _ArcPainter extends CustomPainter {
     // The sun, or where it will rise or has set.
     final sun = point(done);
     if (p >= 0 && p <= 1) {
-      canvas.drawCircle(sun, 20, Paint()..color = QuandoColors.coral.withValues(alpha: 0.3));
+      canvas.drawCircle(
+        sun,
+        20,
+        Paint()..color = QuandoColors.coral.withValues(alpha: 0.3),
+      );
       canvas.drawCircle(sun, 11, Paint()..color = QuandoColors.amber);
     } else {
       canvas.drawCircle(
@@ -120,5 +124,6 @@ class _ArcPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_ArcPainter old) => old.progress != progress || old.marks.length != marks.length;
+  bool shouldRepaint(_ArcPainter old) =>
+      old.progress != progress || old.marks.length != marks.length;
 }

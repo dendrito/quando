@@ -22,11 +22,19 @@ class GentleTile extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       leading: const Icon(Icons.wb_twilight, color: QuandoColors.amber),
       title: Text(l10n.gentleWakeUp),
-      subtitle: Text(on ? l10n.gentleSummary(value.gentleMinutes, calmName(value.gentleSound)) : l10n.off),
+      subtitle: Text(
+        on
+            ? l10n.gentleSummary(
+                value.gentleMinutes,
+                calmName(value.gentleSound),
+              )
+            : l10n.off,
+      ),
       trailing: const Icon(Icons.chevron_right),
       onTap: () async {
-        final changed = await Navigator.of(context)
-            .push<RingStyle>(MaterialPageRoute(builder: (_) => GentleScreen(initial: value)));
+        final changed = await Navigator.of(context).push<RingStyle>(
+          MaterialPageRoute(builder: (_) => GentleScreen(initial: value)),
+        );
         if (changed != null) onChanged(changed);
       },
     );
@@ -34,7 +42,9 @@ class GentleTile extends StatelessWidget {
 }
 
 String calmName(String id) =>
-    (AlarmSound.calm.where((c) => c.id == id).firstOrNull ?? AlarmSound.calm.first).name;
+    (AlarmSound.calm.where((c) => c.id == id).firstOrNull ??
+            AlarmSound.calm.first)
+        .name;
 
 /// Calm sounds that start before the alarm and rise slowly, so you wake from
 /// light sleep. The alarm's own sound is chosen elsewhere. Back saves.
@@ -49,7 +59,9 @@ class GentleScreen extends StatefulWidget {
 
 class _GentleScreenState extends State<GentleScreen> {
   late RingStyle _s = widget.initial;
-  late int _lastMinutes = widget.initial.gentleMinutes > 0 ? widget.initial.gentleMinutes : 20;
+  late int _lastMinutes = widget.initial.gentleMinutes > 0
+      ? widget.initial.gentleMinutes
+      : 20;
 
   @override
   void dispose() {
@@ -81,14 +93,22 @@ class _GentleScreenState extends State<GentleScreen> {
         body: ListView(
           padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
           children: [
-            FeatureHeader(icon: Icons.wb_twilight, sentence: l10n.gentleSentence),
+            FeatureHeader(
+              icon: Icons.wb_twilight,
+              sentence: l10n.gentleSentence,
+            ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.gentleWakeUp, style: text.titleLarge),
               value: on,
-              onChanged: (v) => setState(() => _s = _s.copyWith(gentleMinutes: v ? _lastMinutes : 0)),
+              onChanged: (v) => setState(
+                () => _s = _s.copyWith(gentleMinutes: v ? _lastMinutes : 0),
+              ),
             ),
-            Text(l10n.gentleExplain, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+            Text(
+              l10n.gentleExplain,
+              style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+            ),
             if (on) ...[
               const SizedBox(height: 24),
               Text(l10n.startsBeforeHeading, style: text.labelSmall),
@@ -115,7 +135,9 @@ class _GentleScreenState extends State<GentleScreen> {
                 ListTile(
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(
-                    _s.gentleSound == c.id ? Icons.radio_button_checked : Icons.radio_button_off,
+                    _s.gentleSound == c.id
+                        ? Icons.radio_button_checked
+                        : Icons.radio_button_off,
                     color: QuandoColors.amber,
                   ),
                   title: Text(c.name),
@@ -128,16 +150,22 @@ class _GentleScreenState extends State<GentleScreen> {
                     ),
                     onPressed: () => _listen(c),
                   ),
-                  onTap: () => setState(() => _s = _s.copyWith(gentleSound: c.id)),
+                  onTap: () =>
+                      setState(() => _s = _s.copyWith(gentleSound: c.id)),
                 ),
               Align(
                 alignment: Alignment.centerLeft,
-                child: TextButton(onPressed: () => _credits(context), child: Text(l10n.whoRecordedThese)),
+                child: TextButton(
+                  onPressed: () => _credits(context),
+                  child: Text(l10n.whoRecordedThese),
+                ),
               ),
             ],
             const SizedBox(height: 24),
             FilledButton(
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+              style: FilledButton.styleFrom(
+                minimumSize: const Size.fromHeight(56),
+              ),
               onPressed: () => Navigator.of(context).pop(_s),
               child: Text(l10n.done),
             ),
@@ -153,10 +181,18 @@ class _GentleScreenState extends State<GentleScreen> {
       title: Text(l10n.soundCredits),
       content: SingleChildScrollView(
         child: Text(
-          [for (final (name, who, licence) in AlarmSound.calmCredits) '$name: $who ($licence)'].join('\n\n'),
+          [
+            for (final (name, who, licence) in AlarmSound.calmCredits)
+              '$name: $who ($licence)',
+          ].join('\n\n'),
         ),
       ),
-      actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.ok))],
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.ok),
+        ),
+      ],
     ),
   );
 }

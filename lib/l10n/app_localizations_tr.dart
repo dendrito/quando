@@ -197,25 +197,45 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String spanDays(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n gün', one: '1 gün');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n gün',
+      one: '1 gün',
+    );
     return '$_temp0';
   }
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saat', one: '1 saat');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n saat',
+      one: '1 saat',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n dakika',
+      one: '1 dakika',
+    );
     return '$_temp0';
   }
 
   @override
   String spanSeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n saniye',
+      one: '1 saniye',
+    );
     return '$_temp0';
   }
 
@@ -234,7 +254,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n alarm', one: '1 alarm');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n alarm',
+      one: '1 alarm',
+    );
     return '$_temp0';
   }
 
@@ -296,7 +321,8 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'Saatlerini burada görmek için şehir ekle. Kaldırmak için sola kaydır.';
+  String get worldClocksHint =>
+      'Saatlerini burada görmek için şehir ekle. Kaldırmak için sola kaydır.';
 
   @override
   String get groupNameHint => 'İş, Çocuklar, Spor salonu…';
@@ -401,10 +427,12 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get presetsHint => 'Saatlerini değiştirmek için birine dokun. Silmek için kaydır.';
+  String get presetsHint =>
+      'Saatlerini değiştirmek için birine dokun. Silmek için kaydır.';
 
   @override
-  String get lockSentence => 'Telefonu Şabat ya da odaklı bir gece için yalnızca saat ve alarmlara indir.';
+  String get lockSentence =>
+      'Telefonu Şabat ya da odaklı bir gece için yalnızca saat ve alarmlara indir.';
 
   @override
   String get lockExplain =>
@@ -438,19 +466,22 @@ class AppLocalizationsTr extends AppLocalizations {
   String get openWhenLockStarts => 'Kilit başlayınca Quando?’yu aç';
 
   @override
-  String get openWhenLockStartsHint => '1 saniyelik sessiz bir ses, kilitlemek için Quando?’yu öne getirir';
+  String get openWhenLockStartsHint =>
+      '1 saniyelik sessiz bir ses, kilitlemek için Quando?’yu öne getirir';
 
   @override
   String get pinToScreen => 'Quando?’yu ekrana sabitle';
 
   @override
-  String get pinToScreenHint => 'Kilitliyken diğer uygulamalar açılmaz. Android ilk seferde onay ister.';
+  String get pinToScreenHint =>
+      'Kilitliyken diğer uygulamalar açılmaz. Android ilk seferde onay ister.';
 
   @override
   String get noLocksComingUp => 'Yaklaşan kilit yok.';
 
   @override
-  String get leaveLockEarly => 'Erken çıkmak için “Kilidi açmak için basılı tut”a 3 saniye basılı tut.';
+  String get leaveLockEarly =>
+      'Erken çıkmak için “Kilidi açmak için basılı tut”a 3 saniye basılı tut.';
 
   @override
   String get locked => 'Kilitli';
@@ -487,7 +518,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get calendarAlarmsHeading => 'TAKVİM ALARMLARI';
 
   @override
-  String get calendarNoneYet => 'Henüz yok. Bununla başla, sonra istediğin gibi değiştir:';
+  String get calendarNoneYet =>
+      'Henüz yok. Bununla başla, sonra istediğin gibi değiştir:';
 
   @override
   String get fifteenBeforeEvery => 'Her etkinlikten 15 dakika önce';
@@ -674,10 +706,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get presetSecondNight => 'İkinci gece mumları';
 
   @override
-  String get presetFridayReminder => '3 saat önce hatırlatma: telefonunu şarj et';
+  String get presetFridayReminder =>
+      '3 saat önce hatırlatma: telefonunu şarj et';
 
   @override
-  String get presetFridayReminderLabel => 'Telefonunu şarj et ve yarının alarmlarını kur';
+  String get presetFridayReminderLabel =>
+      'Telefonunu şarj et ve yarının alarmlarını kur';
 
   @override
   String get presetSunset => 'Gün batımı ve 15 dakika öncesi';
@@ -707,25 +741,29 @@ class AppLocalizationsTr extends AppLocalizations {
   String get readyNotifications => 'Alarmları göster';
 
   @override
-  String get readyNotificationsWhy => 'Alarm ekranının ve Durdur düğmesinin görünmesini sağlar.';
+  String get readyNotificationsWhy =>
+      'Alarm ekranının ve Durdur düğmesinin görünmesini sağlar.';
 
   @override
   String get readyFullScreen => 'Kilit ekranının üstünde çal';
 
   @override
-  String get readyFullScreenWhy => 'Telefon kilitliyken bile alarmı tam ekran gösterir.';
+  String get readyFullScreenWhy =>
+      'Telefon kilitliyken bile alarmı tam ekran gösterir.';
 
   @override
   String get readyExact => 'Tam dakikasında çal';
 
   @override
-  String get readyExactWhy => 'Bu olmadan telefon alarmları birkaç dakika geciktirebilir.';
+  String get readyExactWhy =>
+      'Bu olmadan telefon alarmları birkaç dakika geciktirebilir.';
 
   @override
   String get readyBattery => 'Pil tasarrufunda çalışmaya devam et';
 
   @override
-  String get readyBatteryWhy => 'Pil tasarrufunun gece alarmları susturmasını önler.';
+  String get readyBatteryWhy =>
+      'Pil tasarrufunun gece alarmları susturmasını önler.';
 
   @override
   String get tipXiaomi =>
@@ -750,7 +788,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get testRingBody => 'Quando? seni uyandırabilir';
 
   @override
-  String get ringsIn20 => '20 saniye içinde çalacak. Şimdi telefonunu kilitle ve bekle.';
+  String get ringsIn20 =>
+      '20 saniye içinde çalacak. Şimdi telefonunu kilitle ve bekle.';
 
   @override
   String get readyToRing => 'Çalmaya hazır';
@@ -779,10 +818,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get testIn20 => 'Dene: 20 saniye içinde çalar';
 
   @override
-  String get testIn20Hint => 'Telefonunu kilitle ve bırak. Alarm tam ekran çalarsa her şey hazır.';
+  String get testIn20Hint =>
+      'Telefonunu kilitle ve bırak. Alarm tam ekran çalarsa her şey hazır.';
 
   @override
-  String get readyToRingHint => 'Telefonunun her alarmı zamanında çaldığını kontrol et';
+  String get readyToRingHint =>
+      'Telefonunun her alarmı zamanında çaldığını kontrol et';
 
   @override
   String get connections => 'Bağlantılar';
@@ -834,16 +875,19 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sameFades => 'Tüm alarmlar için aynı geçişler';
 
   @override
-  String get sameFadesOn => 'Her alarmın geçişlerinin yerine geçer. Her biri kendi ses düzeyini korur.';
+  String get sameFadesOn =>
+      'Her alarmın geçişlerinin yerine geçer. Her biri kendi ses düzeyini korur.';
 
   @override
-  String get sameFadesOff => 'Kapalı: her alarm kendi Ses ayarındaki geçişleri kullanır.';
+  String get sameFadesOff =>
+      'Kapalı: her alarm kendi Ses ayarındaki geçişleri kullanır.';
 
   @override
   String get sayItOutLoud => 'Yüksek sesle söyle';
 
   @override
-  String get sayItOutLoudHint => 'Alarmın ne için olduğunu okur, örn. “Mum yakma, 15 dakika önce”';
+  String get sayItOutLoudHint =>
+      'Alarmın ne için olduğunu okur, örn. “Mum yakma, 15 dakika önce”';
 
   @override
   String get noSnooze => 'Erteleme yok';
@@ -857,7 +901,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get wakeUpCheck => 'Uyanma kontrolü';
 
   @override
-  String get wakeUpCheckHint => 'Durdurduktan sonra “Uyandım”a dokunmazsan 3 dakika sonra yine çalar';
+  String get wakeUpCheckHint =>
+      'Durdurduktan sonra “Uyandım”a dokunmazsan 3 dakika sonra yine çalar';
 
   @override
   String get solveSum => 'Durdurmak için işlem çöz';
@@ -892,7 +937,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get testAlarmBody => 'Alarmların böyle çalacak';
 
   @override
-  String get testAlarmIn1Set => 'Deneme alarmı 1 dakika içinde. Telefonunu kilitleyebilirsin.';
+  String get testAlarmIn1Set =>
+      'Deneme alarmı 1 dakika içinde. Telefonunu kilitleyebilirsin.';
 
   @override
   String get presetGone => 'Bu şablon artık yok.';
@@ -957,7 +1003,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get howToSearch => 'Nasıl aranır';
 
   @override
-  String get searchHelpWord => 'Başlıkta “dentist” geçer, büyük küçük harf fark etmez';
+  String get searchHelpWord =>
+      'Başlıkta “dentist” geçer, büyük küçük harf fark etmez';
 
   @override
   String get searchHelpStar => '* herhangi harfler demek: dentist, dentures';
@@ -1071,7 +1118,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get nameOptional => 'Ad (isteğe bağlı)';
 
   @override
-  String get toppedUp => 'Alarmlar önümüzdeki 7 gün için kurulu ve Quando?’yu her açtığında yenilenir.';
+  String get toppedUp =>
+      'Alarmlar önümüzdeki 7 gün için kurulu ve Quando?’yu her açtığında yenilenir.';
 
   @override
   String get back => 'Geri';
@@ -1117,7 +1165,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get wakeToOwnSound => 'Kendi sesinle uyan';
 
   @override
-  String get wakeToOwnSoundHint => 'Kendi sesin, bir şarkı, Spotify veya canlı radyo';
+  String get wakeToOwnSoundHint =>
+      'Kendi sesin, bir şarkı, Spotify veya canlı radyo';
 
   @override
   String musicAdded(String name) {
@@ -1176,13 +1225,15 @@ class AppLocalizationsTr extends AppLocalizations {
       'Uygulaması açılır ve çalar. 10 saniye sessiz kalırsa yedek ses çalar, böylece hep uyanırsın. Görevli alarmlar önce çalar, sonra açar.';
 
   @override
-  String get ringThenOpenHint => 'Yedek ses çalar. Durdur, şarkıyı kendi uygulamasında açar.';
+  String get ringThenOpenHint =>
+      'Yedek ses çalar. Durdur, şarkıyı kendi uygulamasında açar.';
 
   @override
   String get playForHeading => 'ÇALMA SÜRESİ';
 
   @override
-  String get pausesAfter => 'Quando? bu süreden sonra telefonun duraklat tuşuyla şarkıyı duraklatır.';
+  String get pausesAfter =>
+      'Quando? bu süreden sonra telefonun duraklat tuşuyla şarkıyı duraklatır.';
 
   @override
   String get backupSoundHeading => 'YEDEK SES';
@@ -1205,7 +1256,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube ve YouTube Music';
 
   @override
-  String get youTubeOn => 'Çalma listelerin ve beğendiğin şarkılar. Çıkmak için basılı tut.';
+  String get youTubeOn =>
+      'Çalma listelerin ve beğendiğin şarkılar. Çıkmak için basılı tut.';
 
   @override
   String get youTubeSignIn =>
@@ -1249,7 +1301,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get sounds => 'Sesler';
 
   @override
-  String get soundsSentence => 'Kendi sesinle, bir şarkıyla, çalma listesiyle veya canlı radyoyla uyan.';
+  String get soundsSentence =>
+      'Kendi sesinle, bir şarkıyla, çalma listesiyle veya canlı radyoyla uyan.';
 
   @override
   String stopTimer(String time) {
@@ -1263,7 +1316,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get addAFile => 'Dosya ekle';
 
   @override
-  String get addSongLinkLong => 'Şarkı bağlantısı ekle (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'Şarkı bağlantısı ekle (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'MÜZİK UYGULAMALARI';
@@ -1281,7 +1335,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get spotifySignInFailed => 'Spotify’a giriş yapılamadı.';
 
   @override
-  String get appleMusicNote => 'Giriş iPhone sürümüyle gelecek. Şimdilik bir şarkı bağlantısı ekle.';
+  String get appleMusicNote =>
+      'Giriş iPhone sürümüyle gelecek. Şimdilik bir şarkı bağlantısı ekle.';
 
   @override
   String noSignInNote(String service) {
@@ -1317,13 +1372,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get defaultLabel => 'Varsayılan';
 
   @override
-  String get radioUnreachable => 'İstasyon listesine ulaşılamadı. Bağlantını kontrol et.';
+  String get radioUnreachable =>
+      'İstasyon listesine ulaşılamadı. Bağlantını kontrol et.';
 
   @override
   String get addStreamAddress => 'Yayın adresi ekle';
 
   @override
-  String get notAStream => 'Bu bir yayın adresine benzemiyor (http ile başlar).';
+  String get notAStream =>
+      'Bu bir yayın adresine benzemiyor (http ile başlar).';
 
   @override
   String get anyGenre => 'Herhangi bir tür';
@@ -1341,7 +1398,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get anywhere => 'Her yerde';
 
   @override
-  String get noStations => 'İstasyon bulunamadı. Başka bir tür ya da ülke dene.';
+  String get noStations =>
+      'İstasyon bulunamadı. Başka bir tür ya da ülke dene.';
 
   @override
   String wakeUpTo(String name) {
@@ -1532,7 +1590,8 @@ class AppLocalizationsTr extends AppLocalizations {
       'Yürüyerek gitmen gereken bir yerdeki barkod veya QR koda tut, mutfaktaki bir kutu ya da banyodaki diş macunu gibi. Alarmı durdurmak için onu yeniden tarayacaksın.';
 
   @override
-  String get cameraUnavailableSettings => 'Kamera kullanılamıyor. Ayarlar’da kamera erişimine izin ver.';
+  String get cameraUnavailableSettings =>
+      'Kamera kullanılamıyor. Ayarlar’da kamera erişimine izin ver.';
 
   @override
   String gentleToGo(int n) {
@@ -1592,7 +1651,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get none => 'Yok';
 
   @override
-  String get snoozeSentence => 'Beş dakika daha mı? Ne kadar, kaç kez ve ne gerektiğini seç.';
+  String get snoozeSentence =>
+      'Beş dakika daha mı? Ne kadar, kaç kez ve ne gerektiğini seç.';
 
   @override
   String get settingsHeading => 'AYARLAR';
@@ -1607,7 +1667,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get shortenSnoozes => 'Sonraki ertelemeleri kısalt';
 
   @override
-  String get shortenSnoozesHint => 'İlkinden sonraki her erteleme bu kadar kısalır';
+  String get shortenSnoozesHint =>
+      'İlkinden sonraki her erteleme bu kadar kısalır';
 
   @override
   String get autoSnooze => 'Otomatik erteleme';
@@ -1631,13 +1692,16 @@ class AppLocalizationsTr extends AppLocalizations {
   String get useSnoozeFromSettings => 'Ayarlar’daki ertelemeyi kullan';
 
   @override
-  String get stopSentence => 'Alarmı nasıl kapatacağın ve önce ne yapman gerektiği.';
+  String get stopSentence =>
+      'Alarmı nasıl kapatacağın ve önce ne yapman gerektiği.';
 
   @override
-  String get shabbatNoTask => 'Şabat ve bayramlarda alarmlar kendiliğinden durur ve asla görev istemez.';
+  String get shabbatNoTask =>
+      'Şabat ve bayramlarda alarmlar kendiliğinden durur ve asla görev istemez.';
 
   @override
-  String get volumeSentence => 'Ne kadar yüksek çaldığı ve oraya ne kadar yumuşak ulaştığı.';
+  String get volumeSentence =>
+      'Ne kadar yüksek çaldığı ve oraya ne kadar yumuşak ulaştığı.';
 
   @override
   String get openAfterAlarm => 'Alarmdan sonra aç';
@@ -1664,7 +1728,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get usePhoneVolume => 'Telefonun alarm sesini kullan';
 
   @override
-  String get setsPhoneVolume => 'Çalarken telefonun alarm sesini ayarlar, sonra geri getirir.';
+  String get setsPhoneVolume =>
+      'Çalarken telefonun alarm sesini ayarlar, sonra geri getirir.';
 
   @override
   String get fadeInOff => 'Yükselme kapalı, hemen tam ses';
@@ -1795,7 +1860,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n şarkı', one: '1 şarkı');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n şarkı',
+      one: '1 şarkı',
+    );
     return '$_temp0';
   }
 
@@ -1861,7 +1931,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pushWhenRings => 'Alarm çalınca bildirim gönder';
 
   @override
-  String get pushWhenRingsHint => 'Diğer telefonlarına, tabletlerine, saatine veya bilgisayarına';
+  String get pushWhenRingsHint =>
+      'Diğer telefonlarına, tabletlerine, saatine veya bilgisayarına';
 
   @override
   String get yourUserKey => 'Kullanıcı anahtarın';
@@ -1885,7 +1956,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get myPushoverDefault => 'Pushover varsayılanım';
 
   @override
-  String get pushoverOwnSounds => 'Kendi seslerin pushover.net/sounds’a yükledikten sonra burada görünür.';
+  String get pushoverOwnSounds =>
+      'Kendi seslerin pushover.net/sounds’a yükledikten sonra burada görünür.';
 
   @override
   String get allMyDevices => 'Tüm cihazlarım';
@@ -1932,7 +2004,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pauseOnShabbat => 'Şabat ve bayramlarda duraklat';
 
   @override
-  String get pauseOnShabbatHint => 'Mum yakma ile havdala arasındaki alarmlar için hiçbir şey gönderilmez';
+  String get pauseOnShabbatHint =>
+      'Mum yakma ile havdala arasındaki alarmlar için hiçbir şey gönderilmez';
 
   @override
   String get webhookPayloadNote =>
@@ -1945,7 +2018,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tomorrow => 'Yarın';
 
   @override
-  String get notAWebAddress => 'Bu https:// ile başlayan bir web adresine benzemiyor';
+  String get notAWebAddress =>
+      'Bu https:// ile başlayan bir web adresine benzemiyor';
 
   @override
   String get language => 'Dil';
@@ -2000,13 +2074,15 @@ class AppLocalizationsTr extends AppLocalizations {
   String get quoteCarnaval => 'Karnaval';
 
   @override
-  String get quoteCarnavalHint => 'Brezilya Karnavalı boyunca şarkılar ve sözler';
+  String get quoteCarnavalHint =>
+      'Brezilya Karnavalı boyunca şarkılar ve sözler';
 
   @override
   String get quoteNearMe => 'Yakınımda';
 
   @override
-  String get quoteNearMeHint => 'Bulunduğun yerin şairleri ve günleri; saat dilimine ve Şabat şehrine göre';
+  String get quoteNearMeHint =>
+      'Bulunduğun yerin şairleri ve günleri; saat dilimine ve Şabat şehrine göre';
 
   @override
   String get quoteSiddur => 'Sidur (dua kitabı)';
@@ -2025,7 +2101,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2126,7 +2203,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2137,7 +2215,8 @@ class AppLocalizationsTr extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2172,7 +2251,8 @@ class AppLocalizationsTr extends AppLocalizations {
       'Çalma listelerinden ve beğendiğin şarkılardan seçmek ya da tüm Spotify\'da aramak için giriş yap. Premium gerekmez.';
 
   @override
-  String get spotifyLibraryOn => 'Çalma listelerin, beğendiğin şarkılar ve arama. Çıkış için basılı tut.';
+  String get spotifyLibraryOn =>
+      'Çalma listelerin, beğendiğin şarkılar ve arama. Çıkış için basılı tut.';
 
   @override
   String spotifyLoginError(String reason) {

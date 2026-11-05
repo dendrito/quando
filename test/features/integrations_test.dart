@@ -7,7 +7,11 @@ import 'package:quando/features/integrations/data/sender.dart';
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 
-const _alarm = RingPayload(title: 'Candle lighting · Shabbat', body: '15 minutes before', ringSeconds: 60);
+const _alarm = RingPayload(
+  title: 'Candle lighting · Shabbat',
+  body: '15 minutes before',
+  ringSeconds: 60,
+);
 
 (IntegrationSender, List<http.Request>) _sender(IntegrationSettings s) {
   final sent = <http.Request>[];
@@ -48,7 +52,9 @@ void main() {
   });
 
   test('Pushover needs both keys', () async {
-    final (sender, sent) = _sender(const IntegrationSettings(pushoverOn: true, pushoverUser: 'u'));
+    final (sender, sent) = _sender(
+      const IntegrationSettings(pushoverOn: true, pushoverUser: 'u'),
+    );
     await sender.send(AlarmHappening.ring, _alarm);
     expect(sent, isEmpty);
   });
@@ -72,8 +78,15 @@ void main() {
         ],
       ),
     );
-    await sender.send(AlarmHappening.ring, _alarm, at: DateTime.utc(2026, 11, 6, 13, 50));
-    expect(sent.single.url.toString(), 'https://maker.ifttt.com/trigger/wake%20up/json/with/key/KEY');
+    await sender.send(
+      AlarmHappening.ring,
+      _alarm,
+      at: DateTime.utc(2026, 11, 6, 13, 50),
+    );
+    expect(
+      sent.single.url.toString(),
+      'https://maker.ifttt.com/trigger/wake%20up/json/with/key/KEY',
+    );
     final body = jsonDecode(sent.single.body) as Map<String, dynamic>;
     expect(body['event'], 'ring');
     expect(body['title'], 'Candle lighting · Shabbat');
@@ -88,12 +101,23 @@ void main() {
         pushoverOn: true,
         pushoverUser: 'u',
         pushoverToken: 't',
-        webhooks: [Webhook(id: 'w', kind: WebhookKind.other, url: 'https://example.com/h')],
+        webhooks: [
+          Webhook(
+            id: 'w',
+            kind: WebhookKind.other,
+            url: 'https://example.com/h',
+          ),
+        ],
       ),
     );
     await sender.send(
       AlarmHappening.ring,
-      const RingPayload(title: 'Sunrise', body: 'Now', ringSeconds: 60, shabbatSafe: true),
+      const RingPayload(
+        title: 'Sunrise',
+        body: 'Now',
+        ringSeconds: 60,
+        shabbatSafe: true,
+      ),
     );
     await sender.send(
       AlarmHappening.ring,
@@ -104,12 +128,18 @@ void main() {
 
   test('a failing service never throws', () async {
     final sender = IntegrationSender(
-      () => const IntegrationSettings(pushoverOn: true, pushoverUser: 'u', pushoverToken: 't'),
+      () => const IntegrationSettings(
+        pushoverOn: true,
+        pushoverUser: 'u',
+        pushoverToken: 't',
+      ),
       client: MockClient((_) async => throw Exception('offline')),
     );
     await sender.send(AlarmHappening.ring, _alarm);
     expect(
-      await sender.testPushover(const IntegrationSettings(pushoverUser: 'u', pushoverToken: 't')),
+      await sender.testPushover(
+        const IntegrationSettings(pushoverUser: 'u', pushoverToken: 't'),
+      ),
       contains('Could not reach'),
     );
   });
@@ -120,10 +150,16 @@ void main() {
       pushoverUser: 'u',
       pushoverToken: 't',
       webhooks: [
-        Webhook(id: 'w', kind: WebhookKind.ifttt, url: 'https://maker.ifttt.com/trigger/x/json/with/key/k'),
+        Webhook(
+          id: 'w',
+          kind: WebhookKind.ifttt,
+          url: 'https://maker.ifttt.com/trigger/x/json/with/key/k',
+        ),
       ],
     );
-    final back = IntegrationSettings.fromJson(jsonDecode(jsonEncode(s.toJson())) as Map<String, dynamic>);
+    final back = IntegrationSettings.fromJson(
+      jsonDecode(jsonEncode(s.toJson())) as Map<String, dynamic>,
+    );
     expect(back.pushoverReady, isTrue);
     expect(back.webhooks.single.title, 'IFTTT · x');
   });
@@ -141,11 +177,17 @@ void main() {
         return http.Response('{"status":1,"devices":["pixel","ipad"]}', 200);
       }),
     );
-    expect(await sender.pushoverSounds('t'), containsPair('my_shofar', 'My shofar'));
+    expect(
+      await sender.pushoverSounds('t'),
+      containsPair('my_shofar', 'My shofar'),
+    );
     expect(await sender.pushoverDevices('t', 'u'), ['pixel', 'ipad']);
   });
 
   test('old settings with high priority still load', () {
-    expect(IntegrationSettings.fromJson({'pushoverHigh': true}).pushoverPriority, 1);
+    expect(
+      IntegrationSettings.fromJson({'pushoverHigh': true}).pushoverPriority,
+      1,
+    );
   });
 }

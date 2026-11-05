@@ -191,13 +191,29 @@ class RingPayload {
 
   /// A song link: played as the alarm ([plays]) or opened when you stop
   /// it, and paused after [seconds] (0 = never).
-  RingPayload withSong(String url, {required bool plays, int seconds = 0}) => plays
-      ? _copy(song: url, keepSong: false, link: null, keepLink: false, songSeconds: seconds)
-      : _copy(link: url, keepLink: false, song: null, keepSong: false, songSeconds: seconds);
+  RingPayload withSong(String url, {required bool plays, int seconds = 0}) =>
+      plays
+      ? _copy(
+          song: url,
+          keepSong: false,
+          link: null,
+          keepLink: false,
+          songSeconds: seconds,
+        )
+      : _copy(
+          link: url,
+          keepLink: false,
+          song: null,
+          keepSong: false,
+          songSeconds: seconds,
+        );
 
   /// [fades]' fade in and out, keeping this alarm's own volume.
   RingPayload withFadesOf(Loudness fades) => _copy(
-    loudness: loudness.copyWith(fadeInSeconds: fades.fadeInSeconds, fadeOutSeconds: fades.fadeOutSeconds),
+    loudness: loudness.copyWith(
+      fadeInSeconds: fades.fadeInSeconds,
+      fadeOutSeconds: fades.fadeOutSeconds,
+    ),
   );
 
   RingPayload withRingSeconds(int seconds) => _copy(ringSeconds: seconds);
@@ -209,7 +225,11 @@ class RingPayload {
   RingPayload withStyle(RingStyle s) {
     final safe = shabbatSafe || isLock;
     // Scanning needs a code saved first; without one it's a sum.
-    final task = safe ? null : (s.task == StopTask.scan && s.scanCode == null ? StopTask.sum : s.task);
+    final task = safe
+        ? null
+        : (s.task == StopTask.scan && s.scanCode == null
+              ? StopTask.sum
+              : s.task);
     final open = s.openAfter?.trim();
     final plan = s.snooze;
     return _copy(
@@ -227,7 +247,9 @@ class RingPayload {
       stopBy: safe ? const {} : s.stopBy,
       mathTask: task == null ? null : task == StopTask.sum,
       shakeTask: task == null ? null : task == StopTask.shake,
-      puzzle: task == null ? StopTask.none : (task.isPuzzle ? task : StopTask.none),
+      puzzle: task == null
+          ? StopTask.none
+          : (task.isPuzzle ? task : StopTask.none),
       scanCode: s.scanCode,
       wakeCheck: safe ? null : s.wakeCheck,
       link: open,
@@ -241,7 +263,12 @@ class RingPayload {
     if (song == null) return this;
     if (shabbatSafe || isLock) return _copy(song: null, keepSong: false);
     if (!hasTask) return this;
-    return _copy(song: null, keepSong: false, link: link ?? song, keepLink: false);
+    return _copy(
+      song: null,
+      keepSong: false,
+      link: link ?? song,
+      keepLink: false,
+    );
   }
 
   /// The soft lead-up some minutes before this alarm: a calm [sound],
@@ -274,7 +301,8 @@ class RingPayload {
 
   /// A try-out ring from the editor: everything as the real alarm, but
   /// outside the plan.
-  RingPayload asPreview() => _copy(body: l10n.previewBody(body), transient: true);
+  RingPayload asPreview() =>
+      _copy(body: l10n.previewBody(body), transient: true);
 
   bool get canSnooze => snoozeCount < maxSnoozes;
 
@@ -334,7 +362,11 @@ class RingPayload {
     'gentle': gentle,
   });
 
-  static RingPayload decode(String? raw, {String? fallbackTitle, String fallbackBody = ''}) {
+  static RingPayload decode(
+    String? raw, {
+    String? fallbackTitle,
+    String fallbackBody = '',
+  }) {
     try {
       final j = jsonDecode(raw ?? '{}') as Map<String, dynamic>;
       return RingPayload(
@@ -361,17 +393,28 @@ class RingPayload {
         stopBy: _ways(j['stopBy']),
         shortenBy: (j['shortenBy'] as num?)?.toInt() ?? 0,
         autoSnoozeMinutes: (j['autoSnoozeMinutes'] as num?)?.toInt() ?? 0,
-        snoozeTask: StopTask.values.where((t) => t.name == j['snoozeTask']).firstOrNull ?? StopTask.none,
-        puzzle: StopTask.values.where((t) => t.name == j['puzzle']).firstOrNull ?? StopTask.none,
+        snoozeTask:
+            StopTask.values
+                .where((t) => t.name == j['snoozeTask'])
+                .firstOrNull ??
+            StopTask.none,
+        puzzle:
+            StopTask.values.where((t) => t.name == j['puzzle']).firstOrNull ??
+            StopTask.none,
         scanCode: j['scanCode'] as String?,
         gentle: j['gentle'] as bool? ?? false,
       );
     } catch (_) {
-      return RingPayload(title: fallbackTitle ?? l10n.alarm, body: fallbackBody, ringSeconds: 60);
+      return RingPayload(
+        title: fallbackTitle ?? l10n.alarm,
+        body: fallbackBody,
+        ringSeconds: 60,
+      );
     }
   }
 
   static Set<StopWay> _ways(Object? l) => {
-    for (final n in (l is List ? l : const [])) ?StopWay.values.where((w) => w.name == n).firstOrNull,
+    for (final n in (l is List ? l : const []))
+      ?StopWay.values.where((w) => w.name == n).firstOrNull,
   };
 }

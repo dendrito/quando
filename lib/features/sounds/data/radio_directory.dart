@@ -57,7 +57,9 @@ class RadioStation {
 
 bool isStreamUrl(String url) {
   final u = Uri.tryParse(url);
-  return u != null && (u.scheme == 'http' || u.scheme == 'https') && u.host.isNotEmpty;
+  return u != null &&
+      (u.scheme == 'http' || u.scheme == 'https') &&
+      u.host.isNotEmpty;
 }
 
 /// Searches Radio Browser by station name. Tries a few of its mirrors.
@@ -74,9 +76,14 @@ class RadioDirectory {
 
   /// Stations by [name], [tag] (a genre such as "jazz") and [countryCode]
   /// ("US"), most listened first. Any of them may be left out.
-  Future<List<RadioStation>> search(String name, {String? tag, String? countryCode}) async {
+  Future<List<RadioStation>> search(
+    String name, {
+    String? tag,
+    String? countryCode,
+  }) async {
     final q = name.trim();
-    if (q.isEmpty && (tag ?? '').isEmpty && (countryCode ?? '').isEmpty) return const [];
+    if (q.isEmpty && (tag ?? '').isEmpty && (countryCode ?? '').isEmpty)
+      return const [];
     Object? lastError;
     for (final host in _mirrors) {
       try {
@@ -110,7 +117,8 @@ class RadioDirectory {
 }
 
 /// Israeli or Jewish: the only stations Quando? Shabbat offers.
-bool isJewishStation(RadioStation s) => s.countryCode == 'IL' || _jewish.hasMatch('${s.name} ${s.tags}');
+bool isJewishStation(RadioStation s) =>
+    s.countryCode == 'IL' || _jewish.hasMatch('${s.name} ${s.tags}');
 
 final _jewish = RegExp(
   r'jewish|judaic|judaism|hebrew|israel|torah|chassid|hassid|hasid|chabad|lubavitch|klezmer|yiddish|'

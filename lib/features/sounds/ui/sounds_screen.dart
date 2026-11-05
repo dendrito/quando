@@ -93,9 +93,17 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       final name = file.name.replaceAll(RegExp(r'\.[^.]+$'), '');
       ref
           .read(soundsProvider.notifier)
-          .add(AlarmSound(id: 'mine.${DateTime.now().millisecondsSinceEpoch}', name: name, path: rel));
+          .add(
+            AlarmSound(
+              id: 'mine.${DateTime.now().millisecondsSinceEpoch}',
+              name: name,
+              path: rel,
+            ),
+          );
     } catch (e) {
-      messenger.showSnackBar(SnackBar(content: Text(l10n.couldNotAddFile('$e'))));
+      messenger.showSnackBar(
+        SnackBar(content: Text(l10n.couldNotAddFile('$e'))),
+      );
     }
   }
 
@@ -131,7 +139,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       controller: url,
                       autofocus: true,
                       keyboardType: TextInputType.url,
-                      decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
+                      decoration: const InputDecoration(
+                        hintText: 'https://open.spotify.com/track/…',
+                      ),
                     ),
                     const SizedBox(height: 8),
                   ],
@@ -147,14 +157,24 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     SegmentedButton<bool>(
                       showSelectedIcon: false,
                       segments: [
-                        ButtonSegment(value: true, label: Text(l10n.playTheSong)),
-                        ButtonSegment(value: false, label: Text(l10n.ringThenOpen)),
+                        ButtonSegment(
+                          value: true,
+                          label: Text(l10n.playTheSong),
+                        ),
+                        ButtonSegment(
+                          value: false,
+                          label: Text(l10n.ringThenOpen),
+                        ),
                       ],
                       selected: {plays},
-                      onSelectionChanged: (v) => setLocal(() => plays = v.first),
+                      onSelectionChanged: (v) =>
+                          setLocal(() => plays = v.first),
                     ),
                     const SizedBox(height: 6),
-                    Text(plays ? l10n.playTheSongHint : l10n.ringThenOpenHint, style: text.bodySmall),
+                    Text(
+                      plays ? l10n.playTheSongHint : l10n.ringThenOpenHint,
+                      style: text.bodySmall,
+                    ),
                     const SizedBox(height: 16),
                     Text(l10n.playForHeading, style: text.labelSmall),
                     DropdownButton<int>(
@@ -162,7 +182,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       isExpanded: true,
                       items: [
                         for (final s in AlarmSound.playLengths)
-                          DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
+                          DropdownMenuItem(
+                            value: s,
+                            child: Text(AlarmSound.playLength(s)),
+                          ),
                       ],
                       onChanged: (v) => setLocal(() => playFor = v ?? playFor),
                     ),
@@ -174,7 +197,8 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     value: ringWith,
                     isExpanded: true,
                     items: [
-                      for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
+                      for (final b in AlarmSound.builtIns)
+                        DropdownMenuItem(value: b, child: Text(b.name)),
                     ],
                     onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
                   ),
@@ -182,7 +206,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               ),
             ),
             actions: [
-              TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+              TextButton(
+                onPressed: () => Navigator.pop(context),
+                child: Text(l10n.cancel),
+              ),
               FilledButton(
                 onPressed: () => Navigator.pop(context, true),
                 child: Text(editing == null ? l10n.add : l10n.save),
@@ -210,8 +237,12 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       return;
     }
     final uri = Uri.tryParse(link);
-    if (uri == null || !(uri.scheme == 'https' || uri.scheme == 'http' || uri.scheme == 'spotify')) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.notALink)));
+    if (uri == null ||
+        !(uri.scheme == 'https' ||
+            uri.scheme == 'http' ||
+            uri.scheme == 'spotify')) {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.notALink)));
       return;
     }
     final sound = AlarmSound(
@@ -222,7 +253,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       plays: plays,
       playSeconds: playFor,
     );
-    sounds.add(sound.rename(label.isNotEmpty ? label : l10n.songOn(sound.linkApp ?? l10n.theWeb)));
+    sounds.add(
+      sound.rename(
+        label.isNotEmpty ? label : l10n.songOn(sound.linkApp ?? l10n.theWeb),
+      ),
+    );
   }
 
   /// YouTube and YouTube Music: sign in with Google, then pick from your
@@ -231,10 +266,15 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = YouTubeAccount.connected;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.smart_display_outlined, color: QuandoColors.amber),
+      leading: Icon(
+        on ? Icons.check_circle : Icons.smart_display_outlined,
+        color: QuandoColors.amber,
+      ),
       title: Text(on ? l10n.pickFromYouTube : l10n.youTubeAndMusic),
       subtitle: Text(
-        YouTubeAccount.available ? (on ? l10n.youTubeOn : l10n.youTubeSignIn) : l10n.addSongLinkInstead,
+        YouTubeAccount.available
+            ? (on ? l10n.youTubeOn : l10n.youTubeSignIn)
+            : l10n.addSongLinkInstead,
         style: text.bodySmall,
       ),
       trailing: on ? const Icon(Icons.chevron_right) : null,
@@ -243,7 +283,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           : () async {
               await YouTubeAccount.signOut();
               YouTubeAccount.connected = false;
-              await ref.read(prefsProvider).setBool(YouTubeAccount.prefKey, false);
+              await ref
+                  .read(prefsProvider)
+                  .setBool(YouTubeAccount.prefKey, false);
               if (mounted) setState(() {});
             },
       onTap: !YouTubeAccount.available
@@ -252,12 +294,19 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               final prefs = ref.read(prefsProvider);
               final token = await YouTubeAccount.token();
               YouTubeAccount.connected = token != null;
-              await prefs.setBool(YouTubeAccount.prefKey, YouTubeAccount.connected);
+              await prefs.setBool(
+                YouTubeAccount.prefKey,
+                YouTubeAccount.connected,
+              );
               if (!mounted) return;
               setState(() {});
               if (token == null) {
                 final why = YouTubeAccount.lastError;
-                if (why != null) await _explain(l10n.youTubeAndMusic, l10n.googleSignInError(why));
+                if (why != null)
+                  await _explain(
+                    l10n.youTubeAndMusic,
+                    l10n.googleSignInError(why),
+                  );
                 return;
               }
               await Navigator.of(context).push(
@@ -265,10 +314,14 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   builder: (_) => MusicPickerScreen(
                     title: l10n.myYouTube,
                     load: () async {
-                      final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
+                      final lib = YouTubeLibrary(
+                        await YouTubeAccount.token() ?? token,
+                      );
                       return (await lib.playlists(), await lib.liked());
                     },
-                    search: (q) async => YouTubeLibrary(await YouTubeAccount.token() ?? token).search(q),
+                    search: (q) async =>
+                        YouTubeLibrary(await YouTubeAccount.token() ?? token)
+                            .search(q),
                   ),
                 ),
               );
@@ -283,7 +336,12 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     builder: (context) => AlertDialog(
       title: Text(title),
       content: SingleChildScrollView(child: SelectableText(message)),
-      actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.ok))],
+      actions: [
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.ok),
+        ),
+      ],
     ),
   );
 
@@ -296,9 +354,15 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final prefs = ref.read(prefsProvider);
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.library_music_outlined, color: QuandoColors.amber),
+      leading: Icon(
+        on ? Icons.check_circle : Icons.library_music_outlined,
+        color: QuandoColors.amber,
+      ),
       title: Text(on ? l10n.pickFromSpotify : l10n.spotifyLibrary),
-      subtitle: Text(on ? l10n.spotifyLibraryOn : l10n.spotifyLibrarySignIn, style: text.bodySmall),
+      subtitle: Text(
+        on ? l10n.spotifyLibraryOn : l10n.spotifyLibrarySignIn,
+        style: text.bodySmall,
+      ),
       trailing: on ? const Icon(Icons.chevron_right) : null,
       onLongPress: !on
           ? null
@@ -320,7 +384,8 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
         if (!mounted) return;
         setState(() {});
         if (token == null) return;
-        Future<SpotifyLibrary> library() async => SpotifyLibrary(await SpotifyAccount.token(prefs) ?? token!);
+        Future<SpotifyLibrary> library() async =>
+            SpotifyLibrary(await SpotifyAccount.token(prefs) ?? token!);
         await Navigator.of(context).push(
           MaterialPageRoute<void>(
             builder: (_) => MusicPickerScreen(
@@ -342,7 +407,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = SpotifyPlay.connected;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      leading: Icon(
+        on ? Icons.check_circle : Icons.play_circle_outline,
+        color: QuandoColors.amber,
+      ),
       title: Text(on ? l10n.spotifyDirectOn : l10n.spotifyDirect),
       subtitle: Text(
         SpotifyPlay.available
@@ -360,7 +428,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               } else {
                 SpotifyPlay.connected = await SpotifyPlay.signIn();
                 if (!SpotifyPlay.connected && mounted) {
-                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.spotifyFailed)));
+                  ScaffoldMessenger.of(
+                    context,
+                  ).showSnackBar(SnackBar(content: Text(l10n.spotifyFailed)));
                 }
               }
               await prefs.setBool(SpotifyPlay.prefKey, SpotifyPlay.connected);
@@ -375,14 +445,25 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       context: context,
       builder: (context) => AlertDialog(
         title: Text(l10n.nameThisSound),
-        content: TextField(controller: c, autofocus: true, textCapitalization: TextCapitalization.sentences),
+        content: TextField(
+          controller: c,
+          autofocus: true,
+          textCapitalization: TextCapitalization.sentences,
+        ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
-          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: Text(l10n.save)),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, c.text.trim()),
+            child: Text(l10n.save),
+          ),
         ],
       ),
     );
-    if (name != null && name.isNotEmpty) ref.read(soundsProvider.notifier).rename(s.id, name);
+    if (name != null && name.isNotEmpty)
+      ref.read(soundsProvider.notifier).rename(s.id, name);
   }
 
   Future<void> _toggle(AlarmSound s) async {
@@ -404,7 +485,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final secs = _elapsed.inSeconds;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.sounds), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+        title: Text(l10n.sounds),
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
@@ -421,7 +505,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   icon: Icon(recording ? Icons.stop : Icons.mic),
                   label: Text(
                     recording
-                        ? l10n.stopTimer('${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}')
+                        ? l10n.stopTimer(
+                            '${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}',
+                          )
                         : l10n.record,
                   ),
                 ),
@@ -429,7 +515,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               const SizedBox(width: 12),
               Expanded(
                 child: OutlinedButton.icon(
-                  style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                  style: OutlinedButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                  ),
                   onPressed: recording ? null : _pickFile,
                   icon: const Icon(Icons.library_music_outlined),
                   label: Text(l10n.addAFile),
@@ -439,7 +527,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
             onPressed: recording ? null : _addLink,
             icon: const Icon(Icons.link),
             label: Text(l10n.addSongLinkLong),
@@ -456,19 +546,26 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           ])
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.music_note_outlined, color: QuandoColors.faint),
+              leading: const Icon(
+                Icons.music_note_outlined,
+                color: QuandoColors.faint,
+              ),
               title: Text(app),
               subtitle: Text(note, style: text.bodySmall),
               onTap: recording ? null : _addLink,
             ),
           const SizedBox(height: 12),
           OutlinedButton.icon(
-            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            style: OutlinedButton.styleFrom(
+              minimumSize: const Size.fromHeight(56),
+            ),
             onPressed: recording
                 ? null
-                : () =>
-                      Navigator.of(context)
-                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
+                : () => Navigator.of(context).push(
+                    MaterialPageRoute<void>(
+                      builder: (_) => const RadioScreen(),
+                    ),
+                  ),
             icon: const Icon(Icons.radio),
             label: Text(l10n.wakeToRadio),
           ),
@@ -493,14 +590,20 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               subtitle: Text(
                 [
                   if (s.builtIn) l10n.builtIn,
-                  if (s.isLink) s.plays ? l10n.playsIn(s.linkApp ?? '') : l10n.opensIn(s.linkApp ?? ''),
-                  if (s.isLink && s.playSeconds > 0) l10n.forSpan(AlarmSound.playLength(s.playSeconds)),
+                  if (s.isLink)
+                    s.plays
+                        ? l10n.playsIn(s.linkApp ?? '')
+                        : l10n.opensIn(s.linkApp ?? ''),
+                  if (s.isLink && s.playSeconds > 0)
+                    l10n.forSpan(AlarmSound.playLength(s.playSeconds)),
                   if (s.isRadio) l10n.onlineRadio,
                   if (s.id == defaultId) l10n.defaultLabel,
                 ].join(' · '),
                 style: text.bodySmall,
               ),
-              onTap: s.builtIn ? null : () => s.isLink ? _addLink(editing: s) : _rename(s),
+              onTap: s.builtIn
+                  ? null
+                  : () => s.isLink ? _addLink(editing: s) : _rename(s),
               trailing: s.builtIn
                   ? null
                   : IconButton(

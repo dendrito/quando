@@ -16,7 +16,10 @@ class FeatureHeader extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.only(bottom: 20),
       padding: const EdgeInsets.fromLTRB(20, 24, 20, 20),
-      decoration: BoxDecoration(color: QuandoColors.surface, borderRadius: BorderRadius.circular(28)),
+      decoration: BoxDecoration(
+        color: QuandoColors.surface,
+        borderRadius: BorderRadius.circular(28),
+      ),
       child: Column(
         children: [
           Container(

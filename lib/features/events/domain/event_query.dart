@@ -60,7 +60,9 @@ List<_Tok> _tokenize(String q) {
     } else if (c == '&') {
       out.add(const _Tok(_T.and));
       i++;
-    } else if ((c == '-' || c == '!') && i + 1 < q.length && q[i + 1].trim().isNotEmpty) {
+    } else if ((c == '-' || c == '!') &&
+        i + 1 < q.length &&
+        q[i + 1].trim().isNotEmpty) {
       out.add(const _Tok(_T.not));
       i++;
     } else if (c == '"' || c == '“' || c == '”') {
@@ -70,7 +72,9 @@ List<_Tok> _tokenize(String q) {
       i = end < 0 ? q.length : end + 1;
     } else {
       var j = i;
-      while (j < q.length && q[j].trim().isNotEmpty && !'()|&"“”'.contains(q[j])) {
+      while (j < q.length &&
+          q[j].trim().isNotEmpty &&
+          !'()|&"“”'.contains(q[j])) {
         j++;
       }
       final word = q.substring(i, j);
@@ -95,7 +99,9 @@ abstract class _Node {
 
 class _Match implements _Node {
   _Match(this.text, {required bool phrase})
-    : _glob = text.contains(RegExp(r'[*?]')) ? _globToRegex(text, anchored: !phrase) : null;
+    : _glob = text.contains(RegExp(r'[*?]'))
+          ? _globToRegex(text, anchored: !phrase)
+          : null;
 
   final String text;
   final RegExp? _glob;
@@ -135,7 +141,8 @@ class _Not implements _Node {
   bool test(String title) => !inner.test(title);
 
   @override
-  List<String> terms({required bool positive}) => inner.terms(positive: !positive);
+  List<String> terms({required bool positive}) =>
+      inner.terms(positive: !positive);
 }
 
 class _All implements _Node {
@@ -146,7 +153,9 @@ class _All implements _Node {
   bool test(String title) => parts.every((p) => p.test(title));
 
   @override
-  List<String> terms({required bool positive}) => [for (final p in parts) ...p.terms(positive: positive)];
+  List<String> terms({required bool positive}) => [
+    for (final p in parts) ...p.terms(positive: positive),
+  ];
 }
 
 class _Any implements _Node {
@@ -157,7 +166,9 @@ class _Any implements _Node {
   bool test(String title) => parts.any((p) => p.test(title));
 
   @override
-  List<String> terms({required bool positive}) => [for (final p in parts) ...p.terms(positive: positive)];
+  List<String> terms({required bool positive}) => [
+    for (final p in parts) ...p.terms(positive: positive),
+  ];
 }
 
 // ---- Parser ----

@@ -155,7 +155,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get noAlarmsThisWeek => 'Немає будильників у найближчі 7 днів.';
 
   @override
-  String get alarmsSetThemselves => 'Будильники самі налаштовуються на цьому телефоні після кожної зміни.';
+  String get alarmsSetThemselves =>
+      'Будильники самі налаштовуються на цьому телефоні після кожної зміни.';
 
   @override
   String cityTime(String city) {
@@ -330,7 +331,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'Додайте міста, щоб бачити тут їхній час. Проведіть ліворуч, щоб видалити.';
+  String get worldClocksHint =>
+      'Додайте міста, щоб бачити тут їхній час. Проведіть ліворуч, щоб видалити.';
 
   @override
   String get groupNameHint => 'Робота, Діти, Спортзал…';
@@ -418,7 +420,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get lockForShabbat => 'Блокувати телефон на шабат';
 
   @override
-  String get lockForShabbatHint => 'Від запалювання свічок до авдали, і у свята теж';
+  String get lockForShabbatHint =>
+      'Від запалювання свічок до авдали, і у свята теж';
 
   @override
   String get ownShabbatAlarmsHeading => 'ВАШІ БУДИЛЬНИКИ НА ШАБАТ';
@@ -435,7 +438,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get presetsHint => 'Торкніться, щоб змінити час. Проведіть, щоб видалити.';
+  String get presetsHint =>
+      'Торкніться, щоб змінити час. Проведіть, щоб видалити.';
 
   @override
   String get lockSentence =>
@@ -467,13 +471,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get leaveEmptyForNone => 'Залиште порожнім, щоб вимкнути';
 
   @override
-  String get connectCalendarsFirst => 'Спочатку підключіть календарі (значок календаря)';
+  String get connectCalendarsFirst =>
+      'Спочатку підключіть календарі (значок календаря)';
 
   @override
   String get openWhenLockStarts => 'Відкривати Quando? на початку блокування';
 
   @override
-  String get openWhenLockStartsHint => 'Тихий звук на 1 секунду виводить Quando? на екран для блокування';
+  String get openWhenLockStartsHint =>
+      'Тихий звук на 1 секунду виводить Quando? на екран для блокування';
 
   @override
   String get pinToScreen => 'Закріпити Quando? на екрані';
@@ -486,7 +492,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get noLocksComingUp => 'Блокувань не заплановано.';
 
   @override
-  String get leaveLockEarly => 'Щоб вийти раніше, утримуйте «Утримуйте для розблокування» 3 секунди.';
+  String get leaveLockEarly =>
+      'Щоб вийти раніше, утримуйте «Утримуйте для розблокування» 3 секунди.';
 
   @override
   String get locked => 'Заблоковано';
@@ -523,7 +530,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get calendarAlarmsHeading => 'БУДИЛЬНИКИ КАЛЕНДАРЯ';
 
   @override
-  String get calendarNoneYet => 'Поки немає. Почніть із цього й змініть як завгодно:';
+  String get calendarNoneYet =>
+      'Поки немає. Почніть із цього й змініть як завгодно:';
 
   @override
   String get fifteenBeforeEvery => 'За 15 хвилин до кожної події';
@@ -532,7 +540,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get useTheseCalendarsHeading => 'ВИКОРИСТОВУВАТИ ЦІ КАЛЕНДАРІ';
 
   @override
-  String get noTimedEvents => 'У цих календарях немає майбутніх подій із часом.';
+  String get noTimedEvents =>
+      'У цих календарях немає майбутніх подій із часом.';
 
   @override
   String get atTheStart => 'на початку';
@@ -631,7 +640,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get labelField => 'Мітка (читається вголос, якщо увімкнено голосові будильники)';
+  String get labelField =>
+      'Мітка (читається вголос, якщо увімкнено голосові будильники)';
 
   @override
   String get group => 'Група';
@@ -710,10 +720,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get presetSecondNight => 'Свічки другого вечора';
 
   @override
-  String get presetFridayReminder => 'Нагадування за 3 години: зарядіть телефон';
+  String get presetFridayReminder =>
+      'Нагадування за 3 години: зарядіть телефон';
 
   @override
-  String get presetFridayReminderLabel => 'Зарядіть телефон і поставте будильники на завтра';
+  String get presetFridayReminderLabel =>
+      'Зарядіть телефон і поставте будильники на завтра';
 
   @override
   String get presetSunset => 'Захід сонця і за 15 хвилин до нього';
@@ -743,25 +755,29 @@ class AppLocalizationsUk extends AppLocalizations {
   String get readyNotifications => 'Показувати будильники';
 
   @override
-  String get readyNotificationsWhy => 'Дозволяє показати екран будильника й кнопку «Стоп».';
+  String get readyNotificationsWhy =>
+      'Дозволяє показати екран будильника й кнопку «Стоп».';
 
   @override
   String get readyFullScreen => 'Дзвонити поверх екрана блокування';
 
   @override
-  String get readyFullScreenWhy => 'Показує будильник на весь екран, навіть якщо телефон заблоковано.';
+  String get readyFullScreenWhy =>
+      'Показує будильник на весь екран, навіть якщо телефон заблоковано.';
 
   @override
   String get readyExact => 'Дзвонити точно в хвилину';
 
   @override
-  String get readyExactWhy => 'Без цього телефон може затримувати будильники на кілька хвилин.';
+  String get readyExactWhy =>
+      'Без цього телефон може затримувати будильники на кілька хвилин.';
 
   @override
   String get readyBattery => 'Працювати в режимі економії батареї';
 
   @override
-  String get readyBatteryWhy => 'Не дає економії батареї заглушити будильники вночі.';
+  String get readyBatteryWhy =>
+      'Не дає економії батареї заглушити будильники вночі.';
 
   @override
   String get tipXiaomi =>
@@ -786,7 +802,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get testRingBody => 'Quando? може вас розбудити';
 
   @override
-  String get ringsIn20 => 'Задзвонить за 20 секунд. Заблокуйте телефон і зачекайте.';
+  String get ringsIn20 =>
+      'Задзвонить за 20 секунд. Заблокуйте телефон і зачекайте.';
 
   @override
   String get readyToRing => 'Готовність до дзвінка';
@@ -795,15 +812,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String get checkingPhone => 'Перевіряємо телефон…';
 
   @override
-  String get phoneReady => 'Телефон готовий дзвонити кожним будильником вчасно.';
+  String get phoneReady =>
+      'Телефон готовий дзвонити кожним будильником вчасно.';
 
   @override
   String thingsNeedFixing(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: 'Треба виправити $n пункту, інакше будильники можуть не задзвонити.',
-      many: 'Треба виправити $n пунктів, інакше будильники можуть не задзвонити.',
+      other:
+          'Треба виправити $n пункту, інакше будильники можуть не задзвонити.',
+      many:
+          'Треба виправити $n пунктів, інакше будильники можуть не задзвонити.',
       few: 'Треба виправити $n пункти, інакше будильники можуть не задзвонити.',
       one: 'Треба виправити $n пункт, інакше будильники можуть не задзвонити.',
     );
@@ -821,7 +841,8 @@ class AppLocalizationsUk extends AppLocalizations {
       'Заблокуйте телефон і відкладіть. Якщо будильник задзвонить на весь екран, усе готово.';
 
   @override
-  String get readyToRingHint => 'Перевірте, що телефон дзвонить кожним будильником вчасно';
+  String get readyToRingHint =>
+      'Перевірте, що телефон дзвонить кожним будильником вчасно';
 
   @override
   String get connections => 'Підключення';
@@ -838,7 +859,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get zoneFixed => 'Фіксований. Будильники тримають цей час і в подорожах.';
+  String get zoneFixed =>
+      'Фіксований. Будильники тримають цей час і в подорожах.';
 
   @override
   String get shabbatCityHeading => 'МІСТО ДЛЯ ШАБАТУ';
@@ -873,16 +895,19 @@ class AppLocalizationsUk extends AppLocalizations {
   String get sameFades => 'Однакові затухання для всіх будильників';
 
   @override
-  String get sameFadesOn => 'Замінює затухання кожного будильника. Гучність у кожного своя.';
+  String get sameFadesOn =>
+      'Замінює затухання кожного будильника. Гучність у кожного своя.';
 
   @override
-  String get sameFadesOff => 'Вимк.: кожен будильник використовує затухання зі своєї «Гучності».';
+  String get sameFadesOff =>
+      'Вимк.: кожен будильник використовує затухання зі своєї «Гучності».';
 
   @override
   String get sayItOutLoud => 'Промовляти вголос';
 
   @override
-  String get sayItOutLoudHint => 'Читає, для чого будильник, напр. «Запалювання свічок, за 15 хвилин»';
+  String get sayItOutLoudHint =>
+      'Читає, для чого будильник, напр. «Запалювання свічок, за 15 хвилин»';
 
   @override
   String get noSnooze => 'Без повтору';
@@ -896,7 +921,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get wakeUpCheck => 'Перевірка пробудження';
 
   @override
-  String get wakeUpCheckHint => 'Після зупинки знову дзвонить за 3 хвилини, якщо не натиснути «Я встав»';
+  String get wakeUpCheckHint =>
+      'Після зупинки знову дзвонить за 3 хвилини, якщо не натиснути «Я встав»';
 
   @override
   String get solveSum => 'Розв’яжіть приклад, щоб зупинити';
@@ -931,7 +957,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get testAlarmBody => 'Так звучатимуть ваші будильники';
 
   @override
-  String get testAlarmIn1Set => 'Тестовий будильник за 1 хвилину. Можна заблокувати телефон.';
+  String get testAlarmIn1Set =>
+      'Тестовий будильник за 1 хвилину. Можна заблокувати телефон.';
 
   @override
   String get presetGone => 'Цього шаблону більше немає.';
@@ -1020,7 +1047,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get searchHelpBrackets => 'Дужки групують слова';
 
   @override
-  String get searchHelpEmpty => 'Залиште порожнім, щоб дзвонити на кожну подію.';
+  String get searchHelpEmpty =>
+      'Залиште порожнім, щоб дзвонити на кожну подію.';
 
   @override
   String get customTime => 'Інший час';
@@ -1218,13 +1246,15 @@ class AppLocalizationsUk extends AppLocalizations {
       'Відкриється його застосунок і ввімкне трек. Якщо 10 секунд тиша, задзвонить запасний звук, тож ви точно прокинетеся. Будильники із завданням спершу дзвонять, потім відкривають трек.';
 
   @override
-  String get ringThenOpenHint => 'Дзвонить запасний звук. «Стоп» відкриває трек у його застосунку.';
+  String get ringThenOpenHint =>
+      'Дзвонить запасний звук. «Стоп» відкриває трек у його застосунку.';
 
   @override
   String get playForHeading => 'ГРАТИ';
 
   @override
-  String get pausesAfter => 'Quando? ставить трек на паузу після цього часу кнопкою паузи телефона.';
+  String get pausesAfter =>
+      'Quando? ставить трек на паузу після цього часу кнопкою паузи телефона.';
 
   @override
   String get backupSoundHeading => 'ЗАПАСНИЙ ЗВУК';
@@ -1247,16 +1277,19 @@ class AppLocalizationsUk extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube і YouTube Music';
 
   @override
-  String get youTubeOn => 'Ваші плейлисти й улюблені треки. Утримуйте, щоб вийти.';
+  String get youTubeOn =>
+      'Ваші плейлисти й улюблені треки. Утримуйте, щоб вийти.';
 
   @override
-  String get youTubeSignIn => 'Увійдіть через Google, щоб вибирати з плейлистів і улюблених треків.';
+  String get youTubeSignIn =>
+      'Увійдіть через Google, щоб вибирати з плейлистів і улюблених треків.';
 
   @override
   String get addSongLinkInstead => 'Натомість додайте посилання на трек.';
 
   @override
-  String get googleSignInFailed => 'Вхід у Google не завершено. Спробуйте ще раз.';
+  String get googleSignInFailed =>
+      'Вхід у Google не завершено. Спробуйте ще раз.';
 
   @override
   String get myYouTube => 'Мій YouTube';
@@ -1268,14 +1301,16 @@ class AppLocalizationsUk extends AppLocalizations {
   String get spotifyDirect => 'Пряме відтворення Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify грає саме ваш трек як будильник. Торкніться, щоб вимкнути.';
+  String get spotifyDirectOnHint =>
+      'Spotify грає саме ваш трек як будильник. Торкніться, щоб вимкнути.';
 
   @override
   String get spotifyDirectHint =>
       'Грає саме ваш трек Spotify як будильник, надійніше. Потрібні застосунок Spotify і Spotify Premium. Торкніться, щоб увійти.';
 
   @override
-  String get spotifyComingSoon => 'Незабаром: ваш трек Spotify як будильник (потрібен Spotify Premium).';
+  String get spotifyComingSoon =>
+      'Незабаром: ваш трек Spotify як будильник (потрібен Spotify Premium).';
 
   @override
   String get spotifyFailed =>
@@ -1288,7 +1323,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get sounds => 'Звуки';
 
   @override
-  String get soundsSentence => 'Прокидайтеся під свій голос, пісню, плейлист чи радіо.';
+  String get soundsSentence =>
+      'Прокидайтеся під свій голос, пісню, плейлист чи радіо.';
 
   @override
   String stopTimer(String time) {
@@ -1302,7 +1338,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get addAFile => 'Додати файл';
 
   @override
-  String get addSongLinkLong => 'Додати посилання на трек (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'Додати посилання на трек (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'МУЗИЧНІ ЗАСТОСУНКИ';
@@ -1320,7 +1357,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get spotifySignInFailed => 'Не вдалося увійти в Spotify.';
 
   @override
-  String get appleMusicNote => 'Вхід з’явиться у версії для iPhone. Поки що додайте посилання на трек.';
+  String get appleMusicNote =>
+      'Вхід з’явиться у версії для iPhone. Поки що додайте посилання на трек.';
 
   @override
   String noSignInNote(String service) {
@@ -1356,7 +1394,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get defaultLabel => 'За замовчуванням';
 
   @override
-  String get radioUnreachable => 'Не вдалося завантажити список станцій. Перевірте з’єднання.';
+  String get radioUnreachable =>
+      'Не вдалося завантажити список станцій. Перевірте з’єднання.';
 
   @override
   String get addStreamAddress => 'Додати адресу потоку';
@@ -1380,7 +1419,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get anywhere => 'Усюди';
 
   @override
-  String get noStations => 'Станцій не знайдено. Спробуйте інший жанр чи країну.';
+  String get noStations =>
+      'Станцій не знайдено. Спробуйте інший жанр чи країну.';
 
   @override
   String wakeUpTo(String name) {
@@ -1571,7 +1611,8 @@ class AppLocalizationsUk extends AppLocalizations {
       'Наведіть на штрих- чи QR-код там, куди треба дійти, наприклад коробку на кухні чи зубну пасту у ванній. Щоб зупинити будильник, відскануєте його знову.';
 
   @override
-  String get cameraUnavailableSettings => 'Камера недоступна. Дозвольте доступ до камери в Налаштуваннях.';
+  String get cameraUnavailableSettings =>
+      'Камера недоступна. Дозвольте доступ до камери в Налаштуваннях.';
 
   @override
   String gentleToGo(int n) {
@@ -1631,7 +1672,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get none => 'Немає';
 
   @override
-  String get snoozeSentence => 'Ще п’ять хвилин? Виберіть, на скільки, скільки разів і що для цього треба.';
+  String get snoozeSentence =>
+      'Ще п’ять хвилин? Виберіть, на скільки, скільки разів і що для цього треба.';
 
   @override
   String get settingsHeading => 'НАЛАШТУВАННЯ';
@@ -1646,13 +1688,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get shortenSnoozes => 'Скорочувати наступні повтори';
 
   @override
-  String get shortenSnoozesHint => 'Кожен повтор після першого коротший на стільки';
+  String get shortenSnoozesHint =>
+      'Кожен повтор після першого коротший на стільки';
 
   @override
   String get autoSnooze => 'Автоповтор';
 
   @override
-  String get autoSnoozeHint => 'Якщо не торкатися, будильник сам відкладеться через';
+  String get autoSnoozeHint =>
+      'Якщо не торкатися, будильник сам відкладеться через';
 
   @override
   String get never => 'Ніколи';
@@ -1673,10 +1717,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get stopSentence => 'Як вимкнути будильник і що треба зробити спершу.';
 
   @override
-  String get shabbatNoTask => 'У шабат і свята будильники зупиняються самі й ніколи не вимагають завдання.';
+  String get shabbatNoTask =>
+      'У шабат і свята будильники зупиняються самі й ніколи не вимагають завдання.';
 
   @override
-  String get volumeSentence => 'Наскільки гучно дзвонить і як плавно до цього доходить.';
+  String get volumeSentence =>
+      'Наскільки гучно дзвонить і як плавно до цього доходить.';
 
   @override
   String get openAfterAlarm => 'Відкрити після будильника';
@@ -1703,7 +1749,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get usePhoneVolume => 'Гучність будильника телефона';
 
   @override
-  String get setsPhoneVolume => 'Задає гучність будильника телефона на час дзвінка, потім повертає її.';
+  String get setsPhoneVolume =>
+      'Задає гучність будильника телефона на час дзвінка, потім повертає її.';
 
   @override
   String get fadeInOff => 'Без наростання, одразу повна гучність';
@@ -1907,7 +1954,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get pushWhenRings => 'Надсилати сповіщення, коли дзвонить будильник';
 
   @override
-  String get pushWhenRingsHint => 'На інші телефони, планшети, годинник чи комп’ютер';
+  String get pushWhenRingsHint =>
+      'На інші телефони, планшети, годинник чи комп’ютер';
 
   @override
   String get yourUserKey => 'Ваш ключ користувача';
@@ -1931,7 +1979,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get myPushoverDefault => 'Мій звук Pushover за замовчуванням';
 
   @override
-  String get pushoverOwnSounds => 'Власні звуки з’являться тут після завантаження на pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'Власні звуки з’являться тут після завантаження на pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'Усі мої пристрої';
@@ -1978,7 +2027,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get pauseOnShabbat => 'Пауза в шабат і свята';
 
   @override
-  String get pauseOnShabbatHint => 'Нічого не надсилається для будильників між запалюванням свічок і авдалою';
+  String get pauseOnShabbatHint =>
+      'Нічого не надсилається для будильників між запалюванням свічок і авдалою';
 
   @override
   String get webhookPayloadNote =>
@@ -1991,7 +2041,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get tomorrow => 'Завтра';
 
   @override
-  String get notAWebAddress => 'Це не схоже на адресу, що починається з https://';
+  String get notAWebAddress =>
+      'Це не схоже на адресу, що починається з https://';
 
   @override
   String get language => 'Мова';
@@ -2046,13 +2097,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get quoteCarnaval => 'Карнавал';
 
   @override
-  String get quoteCarnavalHint => 'Пісні й приказки під час бразильського карнавалу';
+  String get quoteCarnavalHint =>
+      'Пісні й приказки під час бразильського карнавалу';
 
   @override
   String get quoteNearMe => 'Поруч зі мною';
 
   @override
-  String get quoteNearMeHint => 'Поети й дати вашого місця — за часовим поясом і містом для шабату';
+  String get quoteNearMeHint =>
+      'Поети й дати вашого місця — за часовим поясом і містом для шабату';
 
   @override
   String get quoteSiddur => 'Сидур (молитовник)';
@@ -2071,7 +2124,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2172,7 +2226,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2183,7 +2238,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2218,7 +2274,8 @@ class AppLocalizationsUk extends AppLocalizations {
       'Увійдіть, щоб вибирати зі своїх плейлистів і вподобаних треків або шукати по всьому Spotify. Premium не потрібен.';
 
   @override
-  String get spotifyLibraryOn => 'Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.';
+  String get spotifyLibraryOn =>
+      'Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.';
 
   @override
   String spotifyLoginError(String reason) {

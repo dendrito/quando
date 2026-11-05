@@ -5,7 +5,11 @@ import 'package:sensors_plus/sensors_plus.dart';
 
 /// Calls [onShake] for each firm shake of the phone.
 class ShakeDetector {
-  ShakeDetector({required this.onShake, this.threshold = 14, this.gap = const Duration(milliseconds: 250)});
+  ShakeDetector({
+    required this.onShake,
+    this.threshold = 14,
+    this.gap = const Duration(milliseconds: 250),
+  });
 
   final void Function() onShake;
 

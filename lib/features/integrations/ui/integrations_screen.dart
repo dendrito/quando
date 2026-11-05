@@ -18,8 +18,12 @@ class IntegrationsScreen extends ConsumerStatefulWidget {
 }
 
 class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
-  late final _user = TextEditingController(text: ref.read(integrationsProvider).pushoverUser);
-  late final _token = TextEditingController(text: ref.read(integrationsProvider).pushoverToken);
+  late final _user = TextEditingController(
+    text: ref.read(integrationsProvider).pushoverUser,
+  );
+  late final _token = TextEditingController(
+    text: ref.read(integrationsProvider).pushoverToken,
+  );
   var _testing = false;
   var _loading = false;
 
@@ -56,8 +60,12 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     super.initState();
     // Keys already saved: fetch your own sounds and devices straight away.
     final s = ref.read(integrationsProvider);
-    if (s.pushoverOn && s.pushoverUser.isNotEmpty && s.pushoverToken.isNotEmpty) {
-      WidgetsBinding.instance.addPostFrameCallback((_) => _loadPushover(quiet: true));
+    if (s.pushoverOn &&
+        s.pushoverUser.isNotEmpty &&
+        s.pushoverToken.isNotEmpty) {
+      WidgetsBinding.instance.addPostFrameCallback(
+        (_) => _loadPushover(quiet: true),
+      );
     }
   }
 
@@ -69,7 +77,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     setState(() => _loading = true);
     try {
       final sounds = await sender.pushoverSounds(s.pushoverToken);
-      final devices = await sender.pushoverDevices(s.pushoverToken, s.pushoverUser);
+      final devices = await sender.pushoverDevices(
+        s.pushoverToken,
+        s.pushoverUser,
+      );
       if (!mounted) return;
       setState(() {
         _sounds = {..._sounds, ...sounds};
@@ -90,13 +101,17 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     super.dispose();
   }
 
-  void _say(String msg) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+  void _say(String msg) =>
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
 
-  Future<void> _open(String url) => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
+  Future<void> _open(String url) =>
+      launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
 
   Future<void> _testPushover() async {
     setState(() => _testing = true);
-    final err = await ref.read(integrationSenderProvider).testPushover(ref.read(integrationsProvider));
+    final err = await ref
+        .read(integrationSenderProvider)
+        .testPushover(ref.read(integrationsProvider));
     if (!mounted) return;
     setState(() => _testing = false);
     _say(err ?? l10n.sentCheckDevices);
@@ -153,11 +168,16 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
           ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
           FilledButton(
             onPressed: () => Navigator.pop(
               context,
-              kind == WebhookKind.ifttt ? Webhook.iftttUrl(event.text, key.text) : url.text.trim(),
+              kind == WebhookKind.ifttt
+                  ? Webhook.iftttUrl(event.text, key.text)
+                  : url.text.trim(),
             ),
             child: Text(l10n.add),
           ),
@@ -167,7 +187,9 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     if (result == null) return;
     final uri = Uri.tryParse(result);
     final bad =
-        uri == null || !uri.isScheme('https') || (kind == WebhookKind.ifttt && key.text.trim().isEmpty);
+        uri == null ||
+        !uri.isScheme('https') ||
+        (kind == WebhookKind.ifttt && key.text.trim().isEmpty);
     if (bad) {
       _say(l10n.notAWebAddress);
       return;
@@ -175,7 +197,11 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     ref
         .read(integrationsProvider.notifier)
         .addWebhook(
-          Webhook(id: DateTime.now().microsecondsSinceEpoch.toRadixString(36), kind: kind, url: result),
+          Webhook(
+            id: DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+            kind: kind,
+            url: result,
+          ),
         );
   }
 
@@ -186,7 +212,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     final text = Theme.of(context).textTheme;
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.connections), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+        title: Text(l10n.connections),
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
@@ -203,19 +232,29 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
             TextField(
               controller: _user,
               decoration: InputDecoration(labelText: l10n.yourUserKey),
-              onChanged: (v) => n.update((x) => x.copyWith(pushoverUser: v.trim())),
+              onChanged: (v) =>
+                  n.update((x) => x.copyWith(pushoverUser: v.trim())),
             ),
             TextField(
               controller: _token,
               decoration: InputDecoration(labelText: l10n.appToken),
-              onChanged: (v) => n.update((x) => x.copyWith(pushoverToken: v.trim())),
+              onChanged: (v) =>
+                  n.update((x) => x.copyWith(pushoverToken: v.trim())),
             ),
             const SizedBox(height: 16),
             Row(
               children: [
-                Expanded(child: Text(l10n.soundAndDevicesHeading, style: text.labelSmall)),
+                Expanded(
+                  child: Text(
+                    l10n.soundAndDevicesHeading,
+                    style: text.labelSmall,
+                  ),
+                ),
                 TextButton.icon(
-                  onPressed: s.pushoverUser.isNotEmpty && s.pushoverToken.isNotEmpty && !_loading
+                  onPressed:
+                      s.pushoverUser.isNotEmpty &&
+                          s.pushoverToken.isNotEmpty &&
+                          !_loading
                       ? _loadPushover
                       : null,
                   icon: const Icon(Icons.refresh, size: 18),
@@ -228,16 +267,22 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               isExpanded: true,
               decoration: InputDecoration(labelText: l10n.soundItPlays),
               items: [
-                DropdownMenuItem(value: null, child: Text(l10n.myPushoverDefault)),
+                DropdownMenuItem(
+                  value: null,
+                  child: Text(l10n.myPushoverDefault),
+                ),
                 for (final e in {
                   ..._sounds,
-                  if (s.pushoverSound != null && !_sounds.containsKey(s.pushoverSound))
+                  if (s.pushoverSound != null &&
+                      !_sounds.containsKey(s.pushoverSound))
                     s.pushoverSound!: s.pushoverSound!,
                 }.entries)
                   DropdownMenuItem(value: e.key, child: Text(e.value)),
               ],
               onChanged: (v) => n.update(
-                (x) => v == null ? x.copyWith(defaultPushoverSound: true) : x.copyWith(pushoverSound: v),
+                (x) => v == null
+                    ? x.copyWith(defaultPushoverSound: true)
+                    : x.copyWith(pushoverSound: v),
               ),
             ),
             const SizedBox(height: 4),
@@ -249,7 +294,8 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                 FilterChip(
                   label: Text(l10n.allMyDevices),
                   selected: s.pushoverDevices.isEmpty,
-                  onSelected: (_) => n.update((x) => x.copyWith(pushoverDevices: {})),
+                  onSelected: (_) =>
+                      n.update((x) => x.copyWith(pushoverDevices: {})),
                 ),
                 for (final d in {..._devices, ...s.pushoverDevices})
                   FilterChip(
@@ -257,7 +303,9 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                     selected: s.pushoverDevices.contains(d),
                     onSelected: (on) => n.update(
                       (x) => x.copyWith(
-                        pushoverDevices: on ? {...x.pushoverDevices, d} : ({...x.pushoverDevices}..remove(d)),
+                        pushoverDevices: on
+                            ? {...x.pushoverDevices, d}
+                            : ({...x.pushoverDevices}..remove(d)),
                       ),
                     ),
                   ),
@@ -273,17 +321,23 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                 DropdownMenuItem(value: 1, child: Text(l10n.priorityHigh)),
                 DropdownMenuItem(value: 2, child: Text(l10n.priorityEmergency)),
               ],
-              onChanged: (v) => n.update((x) => x.copyWith(pushoverPriority: v)),
+              onChanged: (v) =>
+                  n.update((x) => x.copyWith(pushoverPriority: v)),
             ),
             const SizedBox(height: 8),
             Wrap(
               spacing: 8,
               children: [
                 FilledButton.tonal(
-                  onPressed: s.pushoverReady && !_testing ? _testPushover : null,
+                  onPressed: s.pushoverReady && !_testing
+                      ? _testPushover
+                      : null,
                   child: Text(_testing ? l10n.sending : l10n.sendATest),
                 ),
-                TextButton(onPressed: () => _open('https://pushover.net'), child: Text(l10n.findUserKey)),
+                TextButton(
+                  onPressed: () => _open('https://pushover.net'),
+                  child: Text(l10n.findUserKey),
+                ),
                 TextButton(
                   onPressed: () => _open('https://pushover.net/apps/build'),
                   child: Text(l10n.makeAppToken),
@@ -308,7 +362,8 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                         Expanded(child: Text(w.title, style: text.titleMedium)),
                         Switch(
                           value: w.enabled,
-                          onChanged: (v) => n.replaceWebhook(w.copyWith(enabled: v)),
+                          onChanged: (v) =>
+                              n.replaceWebhook(w.copyWith(enabled: v)),
                         ),
                         IconButton(
                           tooltip: l10n.remove,
@@ -326,12 +381,19 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                             label: Text(h.label),
                             selected: w.events.contains(h.key),
                             onSelected: (on) => n.replaceWebhook(
-                              w.copyWith(events: on ? {...w.events, h.key} : ({...w.events}..remove(h.key))),
+                              w.copyWith(
+                                events: on
+                                    ? {...w.events, h.key}
+                                    : ({...w.events}..remove(h.key)),
+                              ),
                             ),
                           ),
                       ],
                     ),
-                    TextButton(onPressed: () => _testWebhook(w), child: Text(l10n.sendATest)),
+                    TextButton(
+                      onPressed: () => _testWebhook(w),
+                      child: Text(l10n.sendATest),
+                    ),
                   ],
                 ),
               ),
@@ -366,7 +428,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
             onChanged: (v) => n.update((x) => x.copyWith(pauseOnShabbat: v)),
           ),
           const SizedBox(height: 12),
-          Text(l10n.webhookPayloadNote, style: text.bodySmall?.copyWith(color: QuandoColors.muted)),
+          Text(
+            l10n.webhookPayloadNote,
+            style: text.bodySmall?.copyWith(color: QuandoColors.muted),
+          ),
         ],
       ),
     );

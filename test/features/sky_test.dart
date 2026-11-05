@@ -8,7 +8,10 @@ void main() {
     expect(countdown(const Duration(minutes: 12)), 'in 12m');
     expect(countdown(const Duration(hours: 1, minutes: 40)), 'in 1h 40m');
     expect(countdown(const Duration(hours: 3)), 'in 3h');
-    expect(countdown(const Duration(days: 2, hours: 5, minutes: 9)), 'in 2d 5h');
+    expect(
+      countdown(const Duration(days: 2, hours: 5, minutes: 9)),
+      'in 2d 5h',
+    );
   });
 
   test('the sky follows the sun in Jerusalem', () {

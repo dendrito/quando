@@ -39,7 +39,10 @@ List<DayPlan> weekPlan(List<ScheduledAlarm> plan, String zone) {
   }
   final out = [
     for (final MapEntry(key: day, value: byTitle) in days.entries)
-      DayPlan(day, [for (final MapEntry(:key, :value) in byTitle.entries) AlarmSeries(key, value)]),
+      DayPlan(day, [
+        for (final MapEntry(:key, :value) in byTitle.entries)
+          AlarmSeries(key, value),
+      ]),
   ]..sort((a, b) => a.day.compareTo(b.day));
   return out;
 }

@@ -21,7 +21,8 @@ class PresetScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final rule = ref.watch(rulesProvider).where((r) => r.id == id).firstOrNull;
     final text = Theme.of(context).textTheme;
-    if (rule == null) return Scaffold(body: Center(child: Text(l10n.presetGone)));
+    if (rule == null)
+      return Scaffold(body: Center(child: Text(l10n.presetGone)));
     final notifier = ref.read(rulesProvider.notifier);
     final offsets = rule.offsets();
 
@@ -34,7 +35,10 @@ class PresetScreen extends ConsumerWidget {
           const SizedBox(height: 8),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            title: Text(rule.enabled ? l10n.on : l10n.off, style: text.titleMedium),
+            title: Text(
+              rule.enabled ? l10n.on : l10n.off,
+              style: text.titleMedium,
+            ),
             value: rule.enabled,
             onChanged: (v) => notifier.toggle(id, v),
           ),
@@ -48,10 +52,17 @@ class PresetScreen extends ConsumerWidget {
             children: [
               for (final d in offsets)
                 InputChip(
-                  label: Text(d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d)),
+                  label: Text(
+                    d == Duration.zero
+                        ? l10n.atTheMomentItself
+                        : describeOffset(d),
+                  ),
                   deleteIcon: const Icon(Icons.close, size: 18),
                   deleteButtonTooltipMessage: l10n.remove,
-                  onDeleted: () => notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
+                  onDeleted: () => notifier.edit(
+                    id,
+                    (r) => r.withOffsets(r.offsets().where((o) => o != d)),
+                  ),
                 ),
             ],
           ),
@@ -63,7 +74,8 @@ class PresetScreen extends ConsumerWidget {
               label: Text(l10n.addATime),
               onPressed: () async {
                 final d = await _askOffset(context);
-                if (d != null) notifier.edit(id, (r) => r.withOffsets([...r.offsets(), d]));
+                if (d != null)
+                  notifier.edit(id, (r) => r.withOffsets([...r.offsets(), d]));
               },
             ),
           ),
@@ -71,8 +83,12 @@ class PresetScreen extends ConsumerWidget {
           SoundPickerTile(
             large: true,
             value: rule.soundId,
-            onChanged: (s) =>
-                notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),
+            onChanged: (s) => notifier.edit(
+              id,
+              (r) => s == null
+                  ? r.copyWith(defaultSound: true)
+                  : r.copyWith(soundId: s),
+            ),
           ),
           AlarmExtras(
             value: rule.style,
@@ -119,7 +135,10 @@ Future<Duration?> _askOffset(BuildContext context) {
                     keyboardType: TextInputType.number,
                     inputFormatters: [FilteringTextInputFormatter.digitsOnly],
                     textAlign: TextAlign.center,
-                    style: const TextStyle(fontSize: 22, fontWeight: FontWeight.w800),
+                    style: const TextStyle(
+                      fontSize: 22,
+                      fontWeight: FontWeight.w800,
+                    ),
                   ),
                 ),
                 const SizedBox(width: 12),
@@ -154,7 +173,10 @@ Future<Duration?> _askOffset(BuildContext context) {
           ],
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
           TextButton(
             onPressed: () {
               final n = int.tryParse(amount.text) ?? 0;
@@ -162,7 +184,10 @@ Future<Duration?> _askOffset(BuildContext context) {
               final d = Duration(minutes: n * unit);
               Navigator.pop(context, before ? -d : d);
             },
-            child: Text(l10n.add, style: const TextStyle(color: QuandoColors.amber)),
+            child: Text(
+              l10n.add,
+              style: const TextStyle(color: QuandoColors.amber),
+            ),
           ),
         ],
       ),

@@ -31,7 +31,8 @@ class _MemoryTaskState extends State<MemoryTask> {
     Icons.star,
     Icons.spa,
   ];
-  late final List<IconData> _cards = [..._icons, ..._icons]..shuffle(Random(widget.seed));
+  late final List<IconData> _cards = [..._icons, ..._icons]
+    ..shuffle(Random(widget.seed));
   @visibleForTesting
   List<IconData> get cardsForTest => _cards;
   final _matched = <int>{};
@@ -73,7 +74,9 @@ class _MemoryTaskState extends State<MemoryTask> {
         for (var i = 0; i < _cards.length; i++)
           Semantics(
             button: true,
-            label: _matched.contains(i) || _up.contains(i) ? l10n.card : l10n.hiddenCard,
+            label: _matched.contains(i) || _up.contains(i)
+                ? l10n.card
+                : l10n.hiddenCard,
             child: GestureDetector(
               onTap: () => _tap(i),
               child: AnimatedContainer(
@@ -87,10 +90,16 @@ class _MemoryTaskState extends State<MemoryTask> {
                 child: _matched.contains(i) || _up.contains(i)
                     ? Icon(
                         _cards[i],
-                        color: _matched.contains(i) ? QuandoColors.text : QuandoColors.coral,
+                        color: _matched.contains(i)
+                            ? QuandoColors.text
+                            : QuandoColors.coral,
                         size: 30,
                       )
-                    : const Icon(Icons.question_mark, color: QuandoColors.faint, size: 22),
+                    : const Icon(
+                        Icons.question_mark,
+                        color: QuandoColors.faint,
+                        size: 22,
+                      ),
               ),
             ),
           ),
@@ -99,7 +108,13 @@ class _MemoryTaskState extends State<MemoryTask> {
   }
 }
 
-List<String> get wakePhrases => [l10n.phrase1, l10n.phrase2, l10n.phrase3, l10n.phrase4, l10n.phrase5];
+List<String> get wakePhrases => [
+  l10n.phrase1,
+  l10n.phrase2,
+  l10n.phrase3,
+  l10n.phrase4,
+  l10n.phrase5,
+];
 
 /// Type a phrase exactly (any case, extra spaces don't matter).
 class PhraseTask extends StatefulWidget {
@@ -113,7 +128,8 @@ class PhraseTask extends StatefulWidget {
 }
 
 class _PhraseTaskState extends State<PhraseTask> {
-  late final String _phrase = wakePhrases[Random(widget.seed).nextInt(wakePhrases.length)];
+  late final String _phrase =
+      wakePhrases[Random(widget.seed).nextInt(wakePhrases.length)];
   final _c = TextEditingController();
   String? _error;
 
@@ -150,14 +166,20 @@ class _PhraseTaskState extends State<PhraseTask> {
           autofocus: true,
           textCapitalization: TextCapitalization.sentences,
           style: text.titleMedium,
-          decoration: InputDecoration(errorText: _error, hintText: l10n.typeItHere),
+          decoration: InputDecoration(
+            errorText: _error,
+            hintText: l10n.typeItHere,
+          ),
           onSubmitted: (_) => _check(),
         ),
         const SizedBox(height: 8),
         Align(
           alignment: Alignment.centerRight,
           child: FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: _ink, foregroundColor: QuandoColors.text),
+            style: FilledButton.styleFrom(
+              backgroundColor: _ink,
+              foregroundColor: QuandoColors.text,
+            ),
             onPressed: _check,
             child: Text(l10n.done),
           ),
@@ -169,7 +191,12 @@ class _PhraseTaskState extends State<PhraseTask> {
 
 /// Point the camera at the code you saved, e.g. on a box in the kitchen.
 class ScanTask extends StatefulWidget {
-  const ScanTask({super.key, required this.code, required this.onDone, required this.onGiveUp});
+  const ScanTask({
+    super.key,
+    required this.code,
+    required this.onDone,
+    required this.onGiveUp,
+  });
 
   final String code;
   final VoidCallback onDone;
@@ -198,7 +225,9 @@ class _ScanTaskState extends State<ScanTask> {
             child: MobileScanner(
               onDetect: (capture) {
                 if (_done) return;
-                final hit = capture.barcodes.any((b) => b.rawValue == widget.code);
+                final hit = capture.barcodes.any(
+                  (b) => b.rawValue == widget.code,
+                );
                 if (hit) {
                   _done = true;
                   widget.onDone();
@@ -210,7 +239,10 @@ class _ScanTaskState extends State<ScanTask> {
                 color: _ink,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(16),
-                child: Text(l10n.cameraUnavailable, style: const TextStyle(color: QuandoColors.text)),
+                child: Text(
+                  l10n.cameraUnavailable,
+                  style: const TextStyle(color: QuandoColors.text),
+                ),
               ),
             ),
           ),
@@ -219,7 +251,10 @@ class _ScanTaskState extends State<ScanTask> {
           const SizedBox(height: 8),
           Text(
             _wrong!,
-            style: text.bodyLarge?.copyWith(color: _ink, fontWeight: FontWeight.w600),
+            style: text.bodyLarge?.copyWith(
+              color: _ink,
+              fontWeight: FontWeight.w600,
+            ),
           ),
         ],
         TextButton(
@@ -252,7 +287,10 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
-          Text(l10n.saveCodeHint, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+          Text(
+            l10n.saveCodeHint,
+            style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+          ),
           const SizedBox(height: 16),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -260,7 +298,10 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
               height: 320,
               child: MobileScanner(
                 onDetect: (capture) {
-                  final code = capture.barcodes.map((b) => b.rawValue).nonNulls.firstOrNull;
+                  final code = capture.barcodes
+                      .map((b) => b.rawValue)
+                      .nonNulls
+                      .firstOrNull;
                   if (_done || code == null || code.isEmpty) return;
                   _done = true;
                   Navigator.of(context).pop(code);

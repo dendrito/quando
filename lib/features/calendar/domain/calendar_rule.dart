@@ -63,10 +63,16 @@ class CalendarRule {
     return l10n.everyEvent;
   }
 
-  bool get hasAlarms => before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
+  bool get hasAlarms =>
+      before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
 
-  OffsetSeries? get _series => repeatEvery != null && repeatFor != null && repeatEvery! > Duration.zero
-      ? OffsetSeries(direction: Direction.before, every: repeatEvery!, span: repeatFor!)
+  OffsetSeries? get _series =>
+      repeatEvery != null && repeatFor != null && repeatEvery! > Duration.zero
+      ? OffsetSeries(
+          direction: Direction.before,
+          every: repeatEvery!,
+          span: repeatFor!,
+        )
       : null;
 
   /// The scheduler's rules for this: one off the start, one off the end.
@@ -155,7 +161,8 @@ class CalendarRule {
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
   static List<Duration> _durs(Object? l) => [
-    for (final m in (l as List? ?? const [])) Duration(minutes: (m as num).toInt()),
+    for (final m in (l as List? ?? const []))
+      Duration(minutes: (m as num).toInt()),
   ];
 
   Map<String, dynamic> toJson() => {
@@ -178,12 +185,18 @@ class CalendarRule {
     id: j['id'] as String,
     name: j['name'] as String? ?? '',
     keyword: j['keyword'] as String? ?? '',
-    calendarIds: {for (final c in (j['calendarIds'] as List? ?? const [])) c as String},
+    calendarIds: {
+      for (final c in (j['calendarIds'] as List? ?? const [])) c as String,
+    },
     before: _durs(j['before']),
     atStart: j['atStart'] as bool? ?? false,
     after: _durs(j['after']),
-    repeatEvery: j['repeatEvery'] == null ? null : Duration(minutes: (j['repeatEvery'] as num).toInt()),
-    repeatFor: j['repeatFor'] == null ? null : Duration(minutes: (j['repeatFor'] as num).toInt()),
+    repeatEvery: j['repeatEvery'] == null
+        ? null
+        : Duration(minutes: (j['repeatEvery'] as num).toInt()),
+    repeatFor: j['repeatFor'] == null
+        ? null
+        : Duration(minutes: (j['repeatFor'] as num).toInt()),
     enabled: j['enabled'] as bool? ?? true,
     soundId: j['soundId'] as String?,
     style: RingStyle.fromJson(j['style']),

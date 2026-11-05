@@ -50,7 +50,10 @@ void main() {
   testWidgets('typing the phrase, in any case, stops it', (t) async {
     var done = false;
     await t.pumpWidget(_wrap(PhraseTask(seed: 0, onDone: () => done = true)));
-    await t.enterText(find.byType(TextField), 'i AM awake  and the day is mine.');
+    await t.enterText(
+      find.byType(TextField),
+      'i AM awake  and the day is mine.',
+    );
     await t.tap(find.text('Done'));
     expect(done, isTrue);
   });
@@ -71,12 +74,16 @@ void main() {
     expect(none.puzzle, StopTask.none);
     expect(none.mathTask, isTrue);
     final p = RingPayload.decode(
-      base.withStyle(const RingStyle(task: StopTask.scan, scanCode: '4006381')).encode(),
+      base
+          .withStyle(const RingStyle(task: StopTask.scan, scanCode: '4006381'))
+          .encode(),
     );
     expect(p.puzzle, StopTask.scan);
     expect(p.scanCode, '4006381');
     expect(p.hasTask, isTrue);
-    final memory = base.withStyle(const RingStyle(task: StopTask.memory, snoozeTask: StopTask.phrase));
+    final memory = base.withStyle(
+      const RingStyle(task: StopTask.memory, snoozeTask: StopTask.phrase),
+    );
     expect(memory.puzzle, StopTask.memory);
     expect(memory.snoozeTask, StopTask.phrase);
     expect(memory.mathTask, isFalse);

@@ -155,7 +155,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get noAlarmsThisWeek => 'Không có báo thức trong 7 ngày tới.';
 
   @override
-  String get alarmsSetThemselves => 'Báo thức tự đặt trên điện thoại này mỗi khi bạn thay đổi gì đó.';
+  String get alarmsSetThemselves =>
+      'Báo thức tự đặt trên điện thoại này mỗi khi bạn thay đổi gì đó.';
 
   @override
   String cityTime(String city) {
@@ -196,25 +197,41 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String spanDays(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n ngày');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n ngày',
+    );
     return '$_temp0';
   }
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n giờ');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n giờ',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n phút');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n phút',
+    );
     return '$_temp0';
   }
 
   @override
   String spanSeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n giây');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n giây',
+    );
     return '$_temp0';
   }
 
@@ -233,7 +250,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n báo thức');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n báo thức',
+    );
     return '$_temp0';
   }
 
@@ -295,7 +316,8 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'Thêm thành phố để xem giờ ở đây. Vuốt sang trái để xóa.';
+  String get worldClocksHint =>
+      'Thêm thành phố để xem giờ ở đây. Vuốt sang trái để xóa.';
 
   @override
   String get groupNameHint => 'Công việc, Con cái, Phòng tập…';
@@ -432,13 +454,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get leaveEmptyForNone => 'Để trống nếu không dùng';
 
   @override
-  String get connectCalendarsFirst => 'Hãy kết nối lịch trước (biểu tượng lịch)';
+  String get connectCalendarsFirst =>
+      'Hãy kết nối lịch trước (biểu tượng lịch)';
 
   @override
   String get openWhenLockStarts => 'Mở Quando? khi bắt đầu khóa';
 
   @override
-  String get openWhenLockStartsHint => 'Một âm thanh nhỏ 1 giây đưa Quando? lên trước để khóa';
+  String get openWhenLockStartsHint =>
+      'Một âm thanh nhỏ 1 giây đưa Quando? lên trước để khóa';
 
   @override
   String get pinToScreen => 'Ghim Quando? vào màn hình';
@@ -451,7 +475,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get noLocksComingUp => 'Không có lần khóa nào sắp tới.';
 
   @override
-  String get leaveLockEarly => 'Để thoát sớm, giữ “Giữ để mở khóa” trong 3 giây.';
+  String get leaveLockEarly =>
+      'Để thoát sớm, giữ “Giữ để mở khóa” trong 3 giây.';
 
   @override
   String get locked => 'Đã khóa';
@@ -488,7 +513,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get calendarAlarmsHeading => 'BÁO THỨC LỊCH';
 
   @override
-  String get calendarNoneYet => 'Chưa có. Bắt đầu với cái này, rồi thay đổi tùy ý:';
+  String get calendarNoneYet =>
+      'Chưa có. Bắt đầu với cái này, rồi thay đổi tùy ý:';
 
   @override
   String get fifteenBeforeEvery => '15 phút trước mỗi sự kiện';
@@ -497,7 +523,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get useTheseCalendarsHeading => 'DÙNG CÁC LỊCH NÀY';
 
   @override
-  String get noTimedEvents => 'Không có sự kiện có giờ sắp tới trong các lịch này.';
+  String get noTimedEvents =>
+      'Không có sự kiện có giờ sắp tới trong các lịch này.';
 
   @override
   String get atTheStart => 'lúc bắt đầu';
@@ -531,7 +558,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Một âm thanh êm dịu bắt đầu khẽ trước báo thức, để bạn không bao giờ giật mình tỉnh dậy.';
 
   @override
-  String get gentleExplain => 'Nó to dần, đưa bạn ra khỏi giấc ngủ nông và dừng ngay trước khi báo thức reo.';
+  String get gentleExplain =>
+      'Nó to dần, đưa bạn ra khỏi giấc ngủ nông và dừng ngay trước khi báo thức reo.';
 
   @override
   String get startsBeforeHeading => 'BẮT ĐẦU TRƯỚC BÁO THỨC';
@@ -677,7 +705,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get presetFridayReminder => 'Nhắc trước 3 giờ: sạc điện thoại';
 
   @override
-  String get presetFridayReminderLabel => 'Sạc điện thoại và đặt báo thức cho ngày mai';
+  String get presetFridayReminderLabel =>
+      'Sạc điện thoại và đặt báo thức cho ngày mai';
 
   @override
   String get presetSunset => 'Mặt trời lặn, và 15 phút trước đó';
@@ -707,25 +736,29 @@ class AppLocalizationsVi extends AppLocalizations {
   String get readyNotifications => 'Hiện báo thức';
 
   @override
-  String get readyNotificationsWhy => 'Cho phép màn hình báo thức và nút Tắt hiện lên.';
+  String get readyNotificationsWhy =>
+      'Cho phép màn hình báo thức và nút Tắt hiện lên.';
 
   @override
   String get readyFullScreen => 'Reo trên màn hình khóa';
 
   @override
-  String get readyFullScreenWhy => 'Hiện báo thức toàn màn hình, kể cả khi điện thoại đang khóa.';
+  String get readyFullScreenWhy =>
+      'Hiện báo thức toàn màn hình, kể cả khi điện thoại đang khóa.';
 
   @override
   String get readyExact => 'Reo đúng phút';
 
   @override
-  String get readyExactWhy => 'Nếu không, điện thoại có thể trễ báo thức vài phút.';
+  String get readyExactWhy =>
+      'Nếu không, điện thoại có thể trễ báo thức vài phút.';
 
   @override
   String get readyBattery => 'Tiếp tục chạy khi tiết kiệm pin';
 
   @override
-  String get readyBatteryWhy => 'Ngăn chế độ tiết kiệm pin tắt tiếng báo thức vào ban đêm.';
+  String get readyBatteryWhy =>
+      'Ngăn chế độ tiết kiệm pin tắt tiếng báo thức vào ban đêm.';
 
   @override
   String get tipXiaomi =>
@@ -759,7 +792,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get checkingPhone => 'Đang kiểm tra điện thoại…';
 
   @override
-  String get phoneReady => 'Điện thoại của bạn sẵn sàng reo mọi báo thức đúng giờ.';
+  String get phoneReady =>
+      'Điện thoại của bạn sẵn sàng reo mọi báo thức đúng giờ.';
 
   @override
   String thingsNeedFixing(int n) {
@@ -834,16 +868,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sameFades => 'Hiệu ứng to/nhỏ dần giống nhau cho mọi báo thức';
 
   @override
-  String get sameFadesOn => 'Thay hiệu ứng của từng báo thức. Mỗi báo thức giữ âm lượng riêng.';
+  String get sameFadesOn =>
+      'Thay hiệu ứng của từng báo thức. Mỗi báo thức giữ âm lượng riêng.';
 
   @override
-  String get sameFadesOff => 'Tắt: mỗi báo thức dùng hiệu ứng đặt trong Âm lượng của nó.';
+  String get sameFadesOff =>
+      'Tắt: mỗi báo thức dùng hiệu ứng đặt trong Âm lượng của nó.';
 
   @override
   String get sayItOutLoud => 'Đọc to';
 
   @override
-  String get sayItOutLoudHint => 'Đọc báo thức dùng để làm gì, vd. “Thắp nến, 15 phút trước”';
+  String get sayItOutLoudHint =>
+      'Đọc báo thức dùng để làm gì, vd. “Thắp nến, 15 phút trước”';
 
   @override
   String get noSnooze => 'Không báo lại';
@@ -857,7 +894,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wakeUpCheck => 'Kiểm tra đã dậy';
 
   @override
-  String get wakeUpCheckHint => 'Sau khi tắt, sẽ reo lại sau 3 phút nếu bạn không chạm “Tôi dậy rồi”';
+  String get wakeUpCheckHint =>
+      'Sau khi tắt, sẽ reo lại sau 3 phút nếu bạn không chạm “Tôi dậy rồi”';
 
   @override
   String get solveSum => 'Giải phép tính để tắt';
@@ -892,7 +930,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get testAlarmBody => 'Báo thức của bạn sẽ reo như thế này';
 
   @override
-  String get testAlarmIn1Set => 'Báo thức thử sau 1 phút. Bạn có thể khóa điện thoại.';
+  String get testAlarmIn1Set =>
+      'Báo thức thử sau 1 phút. Bạn có thể khóa điện thoại.';
 
   @override
   String get presetGone => 'Mẫu này không còn nữa.';
@@ -922,7 +961,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get resetPreset => 'Khôi phục bản gốc';
 
   @override
-  String get skipOneHint => 'Để bỏ qua một báo thức, chạm vào nó trong “Báo thức tuần này” ở màn hình chính.';
+  String get skipOneHint =>
+      'Để bỏ qua một báo thức, chạm vào nó trong “Báo thức tuần này” ở màn hình chính.';
 
   @override
   String get unitMinutes => 'phút';
@@ -956,7 +996,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get howToSearch => 'Cách tìm';
 
   @override
-  String get searchHelpWord => 'Tiêu đề có “dentist”, không phân biệt hoa thường';
+  String get searchHelpWord =>
+      'Tiêu đề có “dentist”, không phân biệt hoa thường';
 
   @override
   String get searchHelpStar => '* là chữ bất kỳ: dentist, dentures';
@@ -1026,7 +1067,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String eventsIn60(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n sự kiện trong 60 ngày tới');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n sự kiện trong 60 ngày tới',
+    );
     return '$_temp0';
   }
 
@@ -1065,7 +1110,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get nameOptional => 'Tên (không bắt buộc)';
 
   @override
-  String get toppedUp => 'Báo thức đã được đặt cho 7 ngày tới và được bổ sung mỗi khi bạn mở Quando?.';
+  String get toppedUp =>
+      'Báo thức đã được đặt cho 7 ngày tới và được bổ sung mỗi khi bạn mở Quando?.';
 
   @override
   String get back => 'Quay lại';
@@ -1111,7 +1157,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get wakeToOwnSound => 'Thức dậy với âm thanh của riêng bạn';
 
   @override
-  String get wakeToOwnSoundHint => 'Giọng bạn, một bài hát, Spotify hoặc radio trực tiếp';
+  String get wakeToOwnSoundHint =>
+      'Giọng bạn, một bài hát, Spotify hoặc radio trực tiếp';
 
   @override
   String musicAdded(String name) {
@@ -1170,7 +1217,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Ứng dụng của nó mở ra và phát. Nếu im lặng 10 giây, âm dự phòng sẽ reo để bạn luôn thức dậy. Báo thức có nhiệm vụ sẽ reo trước rồi mới mở.';
 
   @override
-  String get ringThenOpenHint => 'Âm dự phòng reo. Tắt sẽ mở bài hát trong ứng dụng của nó.';
+  String get ringThenOpenHint =>
+      'Âm dự phòng reo. Tắt sẽ mở bài hát trong ứng dụng của nó.';
 
   @override
   String get playForHeading => 'PHÁT TRONG';
@@ -1200,16 +1248,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube và YouTube Music';
 
   @override
-  String get youTubeOn => 'Danh sách phát và bài hát bạn thích. Nhấn giữ để đăng xuất.';
+  String get youTubeOn =>
+      'Danh sách phát và bài hát bạn thích. Nhấn giữ để đăng xuất.';
 
   @override
-  String get youTubeSignIn => 'Đăng nhập Google để chọn từ danh sách phát và bài hát bạn thích.';
+  String get youTubeSignIn =>
+      'Đăng nhập Google để chọn từ danh sách phát và bài hát bạn thích.';
 
   @override
   String get addSongLinkInstead => 'Hãy thêm liên kết bài hát thay vào đó.';
 
   @override
-  String get googleSignInFailed => 'Đăng nhập Google chưa hoàn tất. Hãy thử lại.';
+  String get googleSignInFailed =>
+      'Đăng nhập Google chưa hoàn tất. Hãy thử lại.';
 
   @override
   String get myYouTube => 'YouTube của tôi';
@@ -1221,14 +1272,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get spotifyDirect => 'Phát trực tiếp Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify phát đúng bài hát của bạn làm báo thức. Chạm để tắt.';
+  String get spotifyDirectOnHint =>
+      'Spotify phát đúng bài hát của bạn làm báo thức. Chạm để tắt.';
 
   @override
   String get spotifyDirectHint =>
       'Phát đúng bài Spotify của bạn làm báo thức, đáng tin cậy hơn. Cần ứng dụng Spotify và Spotify Premium. Chạm để đăng nhập.';
 
   @override
-  String get spotifyComingSoon => 'Sắp có: phát đúng bài Spotify của bạn làm báo thức (cần Spotify Premium).';
+  String get spotifyComingSoon =>
+      'Sắp có: phát đúng bài Spotify của bạn làm báo thức (cần Spotify Premium).';
 
   @override
   String get spotifyFailed =>
@@ -1256,7 +1309,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get addAFile => 'Thêm tệp';
 
   @override
-  String get addSongLinkLong => 'Thêm liên kết bài hát (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'Thêm liên kết bài hát (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'ỨNG DỤNG NHẠC';
@@ -1274,7 +1328,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get spotifySignInFailed => 'Không thể đăng nhập Spotify.';
 
   @override
-  String get appleMusicNote => 'Đăng nhập sẽ có cùng phiên bản iPhone. Hiện tại, hãy thêm liên kết bài hát.';
+  String get appleMusicNote =>
+      'Đăng nhập sẽ có cùng phiên bản iPhone. Hiện tại, hãy thêm liên kết bài hát.';
 
   @override
   String noSignInNote(String service) {
@@ -1310,13 +1365,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get defaultLabel => 'Mặc định';
 
   @override
-  String get radioUnreachable => 'Không thể tải danh sách đài. Kiểm tra kết nối của bạn.';
+  String get radioUnreachable =>
+      'Không thể tải danh sách đài. Kiểm tra kết nối của bạn.';
 
   @override
   String get addStreamAddress => 'Thêm địa chỉ stream';
 
   @override
-  String get notAStream => 'Đó có vẻ không phải địa chỉ stream (bắt đầu bằng http).';
+  String get notAStream =>
+      'Đó có vẻ không phải địa chỉ stream (bắt đầu bằng http).';
 
   @override
   String get anyGenre => 'Mọi thể loại';
@@ -1334,7 +1391,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get anywhere => 'Mọi nơi';
 
   @override
-  String get noStations => 'Không tìm thấy đài. Thử thể loại hoặc quốc gia khác.';
+  String get noStations =>
+      'Không tìm thấy đài. Thử thể loại hoặc quốc gia khác.';
 
   @override
   String wakeUpTo(String name) {
@@ -1525,7 +1583,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hướng vào mã vạch hoặc mã QR ở nơi bạn phải đi bộ tới, như một hộp trong bếp hoặc kem đánh răng trong phòng tắm. Để tắt báo thức, bạn sẽ quét lại nó.';
 
   @override
-  String get cameraUnavailableSettings => 'Máy ảnh không khả dụng. Cho phép truy cập máy ảnh trong Cài đặt.';
+  String get cameraUnavailableSettings =>
+      'Máy ảnh không khả dụng. Cho phép truy cập máy ảnh trong Cài đặt.';
 
   @override
   String gentleToGo(int n) {
@@ -1585,7 +1644,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get none => 'Không';
 
   @override
-  String get snoozeSentence => 'Thêm năm phút? Chọn bao lâu, bao nhiêu lần và cần làm gì.';
+  String get snoozeSentence =>
+      'Thêm năm phút? Chọn bao lâu, bao nhiêu lần và cần làm gì.';
 
   @override
   String get settingsHeading => 'CÀI ĐẶT';
@@ -1600,7 +1660,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get shortenSnoozes => 'Rút ngắn các lần báo lại sau';
 
   @override
-  String get shortenSnoozesHint => 'Mỗi lần báo lại sau lần đầu ngắn hơn chừng này';
+  String get shortenSnoozesHint =>
+      'Mỗi lần báo lại sau lần đầu ngắn hơn chừng này';
 
   @override
   String get autoSnooze => 'Tự báo lại';
@@ -1627,7 +1688,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get stopSentence => 'Cách tắt báo thức và việc phải làm trước.';
 
   @override
-  String get shabbatNoTask => 'Vào Shabbat và ngày lễ, báo thức tự dừng và không bao giờ đòi nhiệm vụ.';
+  String get shabbatNoTask =>
+      'Vào Shabbat và ngày lễ, báo thức tự dừng và không bao giờ đòi nhiệm vụ.';
 
   @override
   String get volumeSentence => 'Reo to cỡ nào và lên đến đó nhẹ nhàng ra sao.';
@@ -1657,7 +1719,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get usePhoneVolume => 'Dùng âm lượng báo thức của điện thoại';
 
   @override
-  String get setsPhoneVolume => 'Đặt âm lượng báo thức của điện thoại khi reo, rồi trả lại như cũ.';
+  String get setsPhoneVolume =>
+      'Đặt âm lượng báo thức của điện thoại khi reo, rồi trả lại như cũ.';
 
   @override
   String get fadeInOff => 'Không to dần, âm lượng tối đa ngay';
@@ -1788,7 +1851,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n bài hát');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n bài hát',
+    );
     return '$_temp0';
   }
 
@@ -1854,7 +1921,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pushWhenRings => 'Gửi thông báo khi báo thức reo';
 
   @override
-  String get pushWhenRingsHint => 'Đến điện thoại, máy tính bảng, đồng hồ hoặc máy tính khác của bạn';
+  String get pushWhenRingsHint =>
+      'Đến điện thoại, máy tính bảng, đồng hồ hoặc máy tính khác của bạn';
 
   @override
   String get yourUserKey => 'Khóa người dùng của bạn';
@@ -1878,7 +1946,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get myPushoverDefault => 'Mặc định Pushover của tôi';
 
   @override
-  String get pushoverOwnSounds => 'Âm thanh riêng của bạn sẽ hiện ở đây sau khi tải lên pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'Âm thanh riêng của bạn sẽ hiện ở đây sau khi tải lên pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'Tất cả thiết bị của tôi';
@@ -1925,7 +1994,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pauseOnShabbat => 'Tạm dừng vào Shabbat và ngày lễ';
 
   @override
-  String get pauseOnShabbatHint => 'Không gửi gì cho báo thức trong khoảng từ thắp nến đến Havdalah';
+  String get pauseOnShabbatHint =>
+      'Không gửi gì cho báo thức trong khoảng từ thắp nến đến Havdalah';
 
   @override
   String get webhookPayloadNote =>
@@ -1938,7 +2008,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get tomorrow => 'Ngày mai';
 
   @override
-  String get notAWebAddress => 'Đó có vẻ không phải địa chỉ web bắt đầu bằng https://';
+  String get notAWebAddress =>
+      'Đó có vẻ không phải địa chỉ web bắt đầu bằng https://';
 
   @override
   String get language => 'Ngôn ngữ';
@@ -1956,7 +2027,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get quotesTitle => 'Trích dẫn về thời gian';
 
   @override
-  String get quotesHint => 'Chọn nguồn trích dẫn. Mỗi buổi trong ngày một câu; chạm vào câu để xem câu khác.';
+  String get quotesHint =>
+      'Chọn nguồn trích dẫn. Mỗi buổi trong ngày một câu; chạm vào câu để xem câu khác.';
 
   @override
   String get quotesOff => 'Tắt';
@@ -1992,13 +2064,15 @@ class AppLocalizationsVi extends AppLocalizations {
   String get quoteCarnaval => 'Lễ hội Carnaval';
 
   @override
-  String get quoteCarnavalHint => 'Bài hát và câu nói trong dịp Carnaval ở Brazil';
+  String get quoteCarnavalHint =>
+      'Bài hát và câu nói trong dịp Carnaval ở Brazil';
 
   @override
   String get quoteNearMe => 'Gần tôi';
 
   @override
-  String get quoteNearMeHint => 'Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat';
+  String get quoteNearMeHint =>
+      'Nhà thơ và ngày lễ nơi bạn ở, theo múi giờ và thành phố Shabbat';
 
   @override
   String get quoteSiddur => 'Siddur (sách kinh)';
@@ -2017,7 +2091,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2118,7 +2193,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2129,7 +2205,8 @@ class AppLocalizationsVi extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2164,7 +2241,8 @@ class AppLocalizationsVi extends AppLocalizations {
       'Đăng nhập để chọn từ danh sách phát và bài hát đã thích, hoặc tìm trên toàn Spotify. Không cần Premium.';
 
   @override
-  String get spotifyLibraryOn => 'Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.';
+  String get spotifyLibraryOn =>
+      'Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.';
 
   @override
   String spotifyLoginError(String reason) {

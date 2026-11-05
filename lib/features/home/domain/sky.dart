@@ -20,12 +20,16 @@ class SkyDay {
   final DateTime? nextSunset;
 
   static SkyDay of(Place place, DateTime now) {
-    final events = SunTimes(place: place)
-        .events(now.subtract(const Duration(hours: 30)), now.add(const Duration(hours: 40)));
+    final events = SunTimes(place: place).events(
+      now.subtract(const Duration(hours: 30)),
+      now.add(const Duration(hours: 40)),
+    );
     final today = inZone(now, place.timeZone);
     bool isToday(AnchorEvent e) {
       final l = inZone(e.at, place.timeZone);
-      return l.year == today.year && l.month == today.month && l.day == today.day;
+      return l.year == today.year &&
+          l.month == today.month &&
+          l.day == today.day;
     }
 
     DateTime? first(EventKind kind, bool Function(AnchorEvent) test) =>
@@ -69,11 +73,15 @@ class SkyDay {
     final fromSet = mins(set);
     // An hour either side of sunrise and sunset blends between shades.
     if (fromRise < -60) return SkyColors.night;
-    if (fromRise < 0) return Color.lerp(SkyColors.night, SkyColors.dawn, (fromRise + 60) / 60)!;
-    if (fromRise < 60) return Color.lerp(SkyColors.dawn, SkyColors.day, fromRise / 60)!;
+    if (fromRise < 0)
+      return Color.lerp(SkyColors.night, SkyColors.dawn, (fromRise + 60) / 60)!;
+    if (fromRise < 60)
+      return Color.lerp(SkyColors.dawn, SkyColors.day, fromRise / 60)!;
     if (fromSet < -60) return SkyColors.day;
-    if (fromSet < 0) return Color.lerp(SkyColors.day, SkyColors.dusk, (fromSet + 60) / 60)!;
-    if (fromSet < 60) return Color.lerp(SkyColors.dusk, SkyColors.night, fromSet / 60)!;
+    if (fromSet < 0)
+      return Color.lerp(SkyColors.day, SkyColors.dusk, (fromSet + 60) / 60)!;
+    if (fromSet < 60)
+      return Color.lerp(SkyColors.dusk, SkyColors.night, fromSet / 60)!;
     return SkyColors.night;
   }
 }
@@ -91,7 +99,11 @@ String countdown(Duration d) {
   final days = d.inDays;
   final hours = d.inHours % 24;
   final minutes = d.inMinutes % 60;
-  if (days > 0) return hours == 0 ? l10n.inDays(days) : l10n.inDaysHours(days, hours);
-  if (d.inHours > 0) return minutes == 0 ? l10n.inHours(d.inHours) : l10n.inHoursMinutes(d.inHours, minutes);
+  if (days > 0)
+    return hours == 0 ? l10n.inDays(days) : l10n.inDaysHours(days, hours);
+  if (d.inHours > 0)
+    return minutes == 0
+        ? l10n.inHours(d.inHours)
+        : l10n.inHoursMinutes(d.inHours, minutes);
   return l10n.inMins(minutes);
 }

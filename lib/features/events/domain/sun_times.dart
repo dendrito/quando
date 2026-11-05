@@ -14,12 +14,25 @@ class SunTimes {
 
   List<AnchorEvent> events(DateTime from, DateTime to) {
     final out = <AnchorEvent>[];
-    var day = DateTime.utc(from.year, from.month, from.day).subtract(const Duration(days: 1));
-    final last = DateTime.utc(to.year, to.month, to.day).add(const Duration(days: 1));
+    var day = DateTime.utc(
+      from.year,
+      from.month,
+      from.day,
+    ).subtract(const Duration(days: 1));
+    final last = DateTime.utc(
+      to.year,
+      to.month,
+      to.day,
+    ).add(const Duration(days: 1));
     for (; !day.isAfter(last); day = day.add(const Duration(days: 1))) {
       final noon = DateTime.utc(day.year, day.month, day.day, 12);
       final cal = ComplexZmanimCalendar.intGeoLocation(
-        GeoLocation.setLocation(place.name, place.latitude, place.longitude, noon),
+        GeoLocation.setLocation(
+          place.name,
+          place.latitude,
+          place.longitude,
+          noon,
+        ),
       );
       final key = '${day.year}-${day.month}-${day.day}';
       final rise = cal.getSeaLevelSunrise();

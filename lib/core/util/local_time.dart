@@ -27,19 +27,24 @@ String get _lang {
     initializeDateFormatting();
     _dates = true;
   }
-  return currentLocale.scriptCode == 'Hant' ? 'zh_TW' : currentLocale.languageCode;
+  return currentLocale.scriptCode == 'Hant'
+      ? 'zh_TW'
+      : currentLocale.languageCode;
 }
 
-String hhmm(DateTime t) => '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
+String hhmm(DateTime t) =>
+    '${t.hour.toString().padLeft(2, '0')}:${t.minute.toString().padLeft(2, '0')}';
 
 /// "Fri 6 Nov", in the language in use.
 String dayLabel(DateTime t) => DateFormat('EEE d MMM', _lang).format(t);
 
 /// "M" for Monday ([weekday] 1) to "S" for Sunday (7), in the language in use.
-String weekdayNarrow(int weekday) => DateFormat('EEEEE', _lang).format(DateTime(2024, 1, weekday));
+String weekdayNarrow(int weekday) =>
+    DateFormat('EEEEE', _lang).format(DateTime(2024, 1, weekday));
 
 /// "Mon" for Monday ([weekday] 1) to "Sun" for Sunday (7), in the language in use.
-String weekdayShort(int weekday) => DateFormat('EEE', _lang).format(DateTime(2024, 1, weekday));
+String weekdayShort(int weekday) =>
+    DateFormat('EEE', _lang).format(DateTime(2024, 1, weekday));
 
 /// "New York" for `America/New_York`.
 String cityOf(String zone) => zone.split('/').last.replaceAll('_', ' ');
@@ -48,7 +53,12 @@ String cityOf(String zone) => zone.split('/').last.replaceAll('_', ' ');
 List<String> allZones() {
   ensureTimeZones();
   return tz.timeZoneDatabase.locations.keys
-      .where((z) => z.contains('/') && !z.startsWith('Etc/') && !z.startsWith('SystemV/'))
+      .where(
+        (z) =>
+            z.contains('/') &&
+            !z.startsWith('Etc/') &&
+            !z.startsWith('SystemV/'),
+      )
       .toList()
     ..sort((a, b) => cityOf(a).compareTo(cityOf(b)));
 }
@@ -59,5 +69,7 @@ String offsetFrom(String zone, String home, DateTime utc) {
   if (d == Duration.zero) return l10n.sameTime;
   final sign = d.isNegative ? '−' : '+';
   final m = d.inMinutes.abs();
-  return m % 60 == 0 ? '$sign${m ~/ 60} h' : '$sign${m ~/ 60}:${(m % 60).toString().padLeft(2, '0')} h';
+  return m % 60 == 0
+      ? '$sign${m ~/ 60} h'
+      : '$sign${m ~/ 60}:${(m % 60).toString().padLeft(2, '0')} h';
 }

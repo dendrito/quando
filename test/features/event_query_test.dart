@@ -38,7 +38,20 @@ void main() {
   });
 
   test('odd input never throws', () {
-    for (final q in ['(', ')', 'OR', 'AND OR', '"', '"open', '((a', 'a))', '-', '!!', '*', '?']) {
+    for (final q in [
+      '(',
+      ')',
+      'OR',
+      'AND OR',
+      '"',
+      '"open',
+      '((a',
+      'a))',
+      '-',
+      '!!',
+      '*',
+      '?',
+    ]) {
       expect(() => m(q, 'Some event'), returnsNormally, reason: q);
     }
     expect(m('*', 'x'), isTrue);
@@ -46,6 +59,9 @@ void main() {
   });
 
   test('terms lists what to highlight', () {
-    expect(EventQuery.parse('gym -cancelled "team sync"').terms, ['gym', 'team sync']);
+    expect(EventQuery.parse('gym -cancelled "team sync"').terms, [
+      'gym',
+      'team sync',
+    ]);
   });
 }

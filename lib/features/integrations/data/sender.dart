@@ -10,12 +10,15 @@ import 'package:quando/l10n/l10n.dart';
 /// Sends alarm happenings to Pushover and webhooks. Failures are quiet:
 /// an integration must never get in the way of the alarm.
 class IntegrationSender {
-  IntegrationSender(this._settings, {http.Client? client}) : _client = client ?? http.Client();
+  IntegrationSender(this._settings, {http.Client? client})
+    : _client = client ?? http.Client();
 
   final IntegrationSettings Function() _settings;
   final http.Client _client;
 
-  static final pushoverUrl = Uri.parse('https://api.pushover.net/1/messages.json');
+  static final pushoverUrl = Uri.parse(
+    'https://api.pushover.net/1/messages.json',
+  );
 
   Future<void> send(AlarmHappening what, RingPayload p, {DateTime? at}) async {
     final s = _settings();
@@ -25,17 +28,28 @@ class IntegrationSender {
     await Future.wait([
       if (s.pushoverReady && what == AlarmHappening.ring) _pushover(s, p),
       for (final w in s.webhooks)
-        if (w.enabled && w.events.contains(what.key)) _webhook(w, what, p, when),
+        if (w.enabled && w.events.contains(what.key))
+          _webhook(w, what, p, when),
     ]);
   }
 
-  Future<String?> testPushover(IntegrationSettings s) =>
-      _pushover(s, RingPayload(title: l10n.appTest, body: l10n.pushoverConnected, ringSeconds: 1));
+  Future<String?> testPushover(IntegrationSettings s) => _pushover(
+    s,
+    RingPayload(
+      title: l10n.appTest,
+      body: l10n.pushoverConnected,
+      ringSeconds: 1,
+    ),
+  );
 
   Future<String?> testWebhook(Webhook w) => _webhook(
     w,
     AlarmHappening.ring,
-    RingPayload(title: l10n.appTest, body: l10n.webhookConnected, ringSeconds: 1),
+    RingPayload(
+      title: l10n.appTest,
+      body: l10n.webhookConnected,
+      ringSeconds: 1,
+    ),
     DateTime.now().toUtc(),
   );
 
@@ -45,13 +59,18 @@ class IntegrationSender {
       final r = await _client
           .post(pushoverUrl, body: pushoverFields(s, p))
           .timeout(const Duration(seconds: 15));
-      return r.statusCode == 200 ? null : l10n.pushoverSaid(r.statusCode, _short(r.body));
+      return r.statusCode == 200
+          ? null
+          : l10n.pushoverSaid(r.statusCode, _short(r.body));
     } catch (e) {
       return l10n.couldNotReachPushover('$e');
     }
   }
 
-  static Map<String, String> pushoverFields(IntegrationSettings s, RingPayload p) => {
+  static Map<String, String> pushoverFields(
+    IntegrationSettings s,
+    RingPayload p,
+  ) => {
     'token': s.pushoverToken.trim(),
     'user': s.pushoverUser.trim(),
     'title': p.title,
@@ -59,7 +78,8 @@ class IntegrationSender {
     'priority': '${s.pushoverPriority}',
     if (s.pushoverPriority == 2) ...{'retry': '30', 'expire': '600'},
     if (s.pushoverSound != null) 'sound': s.pushoverSound!,
-    if (s.pushoverDevices.isNotEmpty) 'device': (s.pushoverDevices.toList()..sort()).join(','),
+    if (s.pushoverDevices.isNotEmpty)
+      'device': (s.pushoverDevices.toList()..sort()).join(','),
   };
 
   /// Sound names → labels, built-in plus any you uploaded. Throws with a
@@ -67,12 +87,16 @@ class IntegrationSender {
   Future<Map<String, String>> pushoverSounds(String token) async {
     final r = await _client
         .get(
-          Uri.parse('https://api.pushover.net/1/sounds.json?token=${Uri.encodeQueryComponent(token.trim())}'),
+          Uri.parse(
+            'https://api.pushover.net/1/sounds.json?token=${Uri.encodeQueryComponent(token.trim())}',
+          ),
         )
         .timeout(const Duration(seconds: 15));
     final j = jsonDecode(r.body) as Map<String, dynamic>;
     if (r.statusCode != 200) throw Exception(_reason(j, r.statusCode));
-    return (j['sounds'] as Map<String, dynamic>).map((k, v) => MapEntry(k, v as String));
+    return (j['sounds'] as Map<String, dynamic>).map(
+      (k, v) => MapEntry(k, v as String),
+    );
   }
 
   /// Your Pushover device names.
@@ -91,7 +115,12 @@ class IntegrationSender {
   static String _reason(Map<String, dynamic> j, int code) =>
       (j['errors'] as List?)?.join(', ') ?? 'Pushover said $code';
 
-  Future<String?> _webhook(Webhook w, AlarmHappening what, RingPayload p, DateTime when) async {
+  Future<String?> _webhook(
+    Webhook w,
+    AlarmHappening what,
+    RingPayload p,
+    DateTime when,
+  ) async {
     try {
       final r = await _client
           .post(
@@ -100,14 +129,20 @@ class IntegrationSender {
             body: jsonEncode(payloadJson(what, p, when)),
           )
           .timeout(const Duration(seconds: 15));
-      return r.statusCode >= 200 && r.statusCode < 300 ? null : l10n.itAnswered(r.statusCode);
+      return r.statusCode >= 200 && r.statusCode < 300
+          ? null
+          : l10n.itAnswered(r.statusCode);
     } catch (e) {
       return l10n.couldNotReachIt('$e');
     }
   }
 
   /// What Zapier, IFTTT or any webhook receives.
-  static Map<String, dynamic> payloadJson(AlarmHappening what, RingPayload p, DateTime when) => {
+  static Map<String, dynamic> payloadJson(
+    AlarmHappening what,
+    RingPayload p,
+    DateTime when,
+  ) => {
     'app': 'Quando',
     'event': what.key,
     'title': p.title,
@@ -117,5 +152,6 @@ class IntegrationSender {
     'snoozes': p.snoozeCount,
   };
 
-  static String _short(String s) => s.length > 120 ? '${s.substring(0, 120)}…' : s;
+  static String _short(String s) =>
+      s.length > 120 ? '${s.substring(0, 120)}…' : s;
 }

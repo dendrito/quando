@@ -6,8 +6,10 @@ import 'package:permission_handler/permission_handler.dart';
 Future<void> ensureAlarmPermissions() async {
   if (kIsWeb || defaultTargetPlatform != TargetPlatform.android) return;
   try {
-    if (await Permission.notification.isDenied) await Permission.notification.request();
-    if (await Permission.scheduleExactAlarm.isDenied) await Permission.scheduleExactAlarm.request();
+    if (await Permission.notification.isDenied)
+      await Permission.notification.request();
+    if (await Permission.scheduleExactAlarm.isDenied)
+      await Permission.scheduleExactAlarm.request();
   } catch (_) {
     // Older Android: nothing to ask.
   }

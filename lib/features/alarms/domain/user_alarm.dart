@@ -61,8 +61,10 @@ class UserAlarm {
   String get repeatLabel {
     if (days.isEmpty) return l10n.once;
     if (days.length == 7) return l10n.everyDay;
-    if (days.length == 5 && !days.contains(6) && !days.contains(7)) return l10n.weekdays;
-    if (days.length == 2 && days.contains(6) && days.contains(7)) return l10n.weekends;
+    if (days.length == 5 && !days.contains(6) && !days.contains(7))
+      return l10n.weekdays;
+    if (days.length == 2 && days.contains(6) && days.contains(7))
+      return l10n.weekends;
     return [
       for (var d = 1; d <= 7; d++)
         if (days.contains(d)) weekdayShort(d),
@@ -72,9 +74,23 @@ class UserAlarm {
   /// The next time this alarm rings after [now], in [zone]'s wall clock.
   static DateTime nextAt(int hour, int minute, DateTime now, String zone) {
     final local = inZone(now, zone);
-    var t = tz.TZDateTime(local.location, local.year, local.month, local.day, hour, minute);
+    var t = tz.TZDateTime(
+      local.location,
+      local.year,
+      local.month,
+      local.day,
+      hour,
+      minute,
+    );
     if (!t.isAfter(local)) {
-      t = tz.TZDateTime(local.location, local.year, local.month, local.day + 1, hour, minute);
+      t = tz.TZDateTime(
+        local.location,
+        local.year,
+        local.month,
+        local.day + 1,
+        hour,
+        minute,
+      );
     }
     return t.toUtc();
   }
@@ -89,7 +105,9 @@ class UserAlarm {
     if (!enabled) return const [];
     zone = this.zone ?? zone;
     final end = now.add(horizon);
-    final ring = ringSeconds == null ? defaultRing : Duration(seconds: ringSeconds!);
+    final ring = ringSeconds == null
+        ? defaultRing
+        : Duration(seconds: ringSeconds!);
     final times = <DateTime>[];
     if (!repeats) {
       final at = onceAt;
@@ -97,7 +115,14 @@ class UserAlarm {
     } else {
       final local = inZone(now, zone);
       for (var i = 0; i <= horizon.inDays + 1; i++) {
-        final t = tz.TZDateTime(local.location, local.year, local.month, local.day + i, hour, minute);
+        final t = tz.TZDateTime(
+          local.location,
+          local.year,
+          local.month,
+          local.day + i,
+          hour,
+          minute,
+        );
         if (!days.contains(t.weekday)) continue;
         final utc = t.toUtc();
         if (utc.isAfter(now) && !utc.isAfter(end)) times.add(utc);
@@ -112,7 +137,10 @@ class UserAlarm {
           body: [
             days.isEmpty ? l10n.alarm : repeatLabel,
             if (this.zone != null)
-              l10n.timeInCity(hhmm(DateTime(2000, 1, 1, hour, minute)), cityOf(this.zone!)),
+              l10n.timeInCity(
+                hhmm(DateTime(2000, 1, 1, hour, minute)),
+                cityOf(this.zone!),
+              ),
           ].join(' · '),
           ringDuration: ring,
           ruleId: 'user.$id',
@@ -173,11 +201,15 @@ class UserAlarm {
     id: j['id'] as String,
     hour: (j['hour'] as num).toInt(),
     minute: (j['minute'] as num).toInt(),
-    days: {for (final d in (j['days'] as List? ?? const [])) (d as num).toInt()},
+    days: {
+      for (final d in (j['days'] as List? ?? const [])) (d as num).toInt(),
+    },
     label: j['label'] as String? ?? '',
     ringSeconds: (j['ringSeconds'] as num?)?.toInt(),
     enabled: j['enabled'] as bool? ?? true,
-    onceAt: j['onceAt'] == null ? null : DateTime.parse(j['onceAt'] as String).toUtc(),
+    onceAt: j['onceAt'] == null
+        ? null
+        : DateTime.parse(j['onceAt'] as String).toUtc(),
     soundId: j['soundId'] as String?,
     zone: j['zone'] as String?,
     group: (j['group'] as String? ?? '').trim(),

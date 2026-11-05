@@ -201,13 +201,21 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 小时');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 小时',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分钟');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分钟',
+    );
     return '$_temp0';
   }
 
@@ -232,7 +240,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 个闹钟');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 个闹钟',
+    );
     return '$_temp0';
   }
 
@@ -405,7 +417,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get lockSentence => '让手机只剩时钟和闹钟，用于安息日或专注的夜晚。';
 
   @override
-  String get lockExplain => '锁定期间，Quando? 只显示时间、下一个闹钟和锁定结束时间。闹钟照常工作，解锁前无法更改任何内容。';
+  String get lockExplain =>
+      '锁定期间，Quando? 只显示时间、下一个闹钟和锁定结束时间。闹钟照常工作，解锁前无法更改任何内容。';
 
   @override
   String get lockNowHeading => '立即锁定';
@@ -474,7 +487,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calendarAlarm => '日历闹钟';
 
   @override
-  String get calendarIntro => 'Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。';
+  String get calendarIntro =>
+      'Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。';
 
   @override
   String get connectCalendars => '连接日历';
@@ -753,7 +767,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String thingsNeedFixing(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '有 $n 项需要修复，否则闹钟可能不会响。');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '有 $n 项需要修复，否则闹钟可能不会响。',
+    );
     return '$_temp0';
   }
 
@@ -1009,7 +1027,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String eventsIn60(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '未来 60 天内有 $n 个事件');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '未来 60 天内有 $n 个事件',
+    );
     return '$_temp0';
   }
 
@@ -1149,7 +1171,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get ringThenOpen => '先响铃，再打开';
 
   @override
-  String get playTheSongHint => '它的应用会打开并播放。如果 10 秒内没有声音，就会响起备用铃声，确保你能醒来。带任务的闹钟会先响铃，然后再打开。';
+  String get playTheSongHint =>
+      '它的应用会打开并播放。如果 10 秒内没有声音，就会响起备用铃声，确保你能醒来。带任务的闹钟会先响铃，然后再打开。';
 
   @override
   String get ringThenOpenHint => '响起备用铃声。停止后在其应用中打开歌曲。';
@@ -1205,10 +1228,12 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spotifyDirectOnHint => 'Spotify 会把你的那首歌作为闹钟播放。点按关闭。';
 
   @override
-  String get spotifyDirectHint => '把你的 Spotify 歌曲作为闹钟播放，更加可靠。需要 Spotify 应用和 Spotify Premium。点按登录。';
+  String get spotifyDirectHint =>
+      '把你的 Spotify 歌曲作为闹钟播放，更加可靠。需要 Spotify 应用和 Spotify Premium。点按登录。';
 
   @override
-  String get spotifyComingSoon => '即将推出：把你的 Spotify 歌曲作为闹钟播放（需要 Spotify Premium）。';
+  String get spotifyComingSoon =>
+      '即将推出：把你的 Spotify 歌曲作为闹钟播放（需要 Spotify Premium）。';
 
   @override
   String get spotifyFailed => 'Spotify 未能连接。请确认已安装 Spotify 应用、已登录并拥有 Premium。';
@@ -1499,7 +1524,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get saveCodeToScan => '保存一个要扫描的码';
 
   @override
-  String get saveCodeHint => '对准一个需要走过去才能找到的条形码或二维码，比如厨房里的盒子或浴室里的牙膏。要停止闹钟，你需要再扫描一次。';
+  String get saveCodeHint =>
+      '对准一个需要走过去才能找到的条形码或二维码，比如厨房里的盒子或浴室里的牙膏。要停止闹钟，你需要再扫描一次。';
 
   @override
   String get cameraUnavailableSettings => '相机不可用。请在设置中允许访问相机。';
@@ -1764,12 +1790,17 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 首歌');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 首歌',
+    );
     return '$_temp0';
   }
 
   @override
-  String get spotifySaidNo => 'Spotify 拒绝了。在 Spotify 控制台中为 Quando? 勾选 Web API，并在 User Management 中添加你的帐号。';
+  String get spotifySaidNo =>
+      'Spotify 拒绝了。在 Spotify 控制台中为 Quando? 勾选 Web API，并在 User Management 中添加你的帐号。';
 
   @override
   String serviceDidntAnswer(String service, int code) {
@@ -1801,7 +1832,8 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get zapierHowTo => '在 Zapier 中创建一个以“Webhooks by Zapier → Catch Hook”开头的 Zap，然后把它的 URL 粘贴到这里。';
+  String get zapierHowTo =>
+      '在 Zapier 中创建一个以“Webhooks by Zapier → Catch Hook”开头的 Zap，然后把它的 URL 粘贴到这里。';
 
   @override
   String get catchHookUrl => 'Catch Hook URL';
@@ -1856,7 +1888,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get allMyDevices => '我的所有设备';
 
   @override
-  String get pushoverOnThisPhone => '在这部手机上也安装 Pushover 应用，它就会在这里用你的 Pushover 声音响铃。';
+  String get pushoverOnThisPhone =>
+      '在这部手机上也安装 Pushover 应用，它就会在这里用你的 Pushover 声音响铃。';
 
   @override
   String get priority => '优先级';
@@ -1987,7 +2020,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -2088,7 +2122,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -2099,7 +2134,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -2130,7 +2166,8 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。';
+  String get spotifyLibrarySignIn =>
+      '登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。';
 
   @override
   String get spotifyLibraryOn => '你的歌单、喜欢的歌曲和搜索。长按退出登录。';
@@ -2350,13 +2387,21 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 小時');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 小時',
+    );
     return '$_temp0';
   }
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分鐘');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分鐘',
+    );
     return '$_temp0';
   }
 
@@ -2381,7 +2426,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 個鬧鐘');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 個鬧鐘',
+    );
     return '$_temp0';
   }
 
@@ -2554,7 +2603,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get lockSentence => '讓手機只剩時鐘和鬧鐘，用於安息日或專注的夜晚。';
 
   @override
-  String get lockExplain => '鎖定期間，Quando? 只顯示時間、下一個鬧鐘和鎖定結束時間。鬧鐘照常工作，解鎖前無法更改任何內容。';
+  String get lockExplain =>
+      '鎖定期間，Quando? 只顯示時間、下一個鬧鐘和鎖定結束時間。鬧鐘照常工作，解鎖前無法更改任何內容。';
 
   @override
   String get lockNowHeading => '立即鎖定';
@@ -2623,7 +2673,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get calendarAlarm => '日曆鬧鐘';
 
   @override
-  String get calendarIntro => 'Quando? 可以在手機日曆中的事件前後響鈴。手機上登入 Google 帳號後，Google 日曆也會包含在內。';
+  String get calendarIntro =>
+      'Quando? 可以在手機日曆中的事件前後響鈴。手機上登入 Google 帳號後，Google 日曆也會包含在內。';
 
   @override
   String get connectCalendars => '連線日曆';
@@ -2877,7 +2928,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get tipSamsung => '三星手機：在 設定 › 電池 › 後臺使用限制 中確認 Quando? 未被設為休眠。';
 
   @override
-  String get tipHuawei => '華為和榮耀手機：在 設定 › 電池 › App 啟動管理 中將 Quando? 設為手動管理並全部允許。';
+  String get tipHuawei =>
+      '華為和榮耀手機：在 設定 › 電池 › App 啟動管理 中將 Quando? 設為手動管理並全部允許。';
 
   @override
   String get tipOther => '在這部手機上：在 設定 › 電池 中允許 Quando? 後臺執行並關閉最佳化。';
@@ -2902,7 +2954,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String thingsNeedFixing(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '有 $n 項需要修復，否則鬧鐘可能不會響。');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '有 $n 項需要修復，否則鬧鐘可能不會響。',
+    );
     return '$_temp0';
   }
 
@@ -3158,7 +3214,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String eventsIn60(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '未來 60 天內有 $n 個事件');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '未來 60 天內有 $n 個事件',
+    );
     return '$_temp0';
   }
 
@@ -3298,7 +3358,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get ringThenOpen => '先響鈴，再開啟';
 
   @override
-  String get playTheSongHint => '它的 App 會開啟並播放。如果 10 秒內沒有聲音，就會響起備用鈴聲，確保你能醒來。帶任務的鬧鐘會先響鈴，然後再開啟。';
+  String get playTheSongHint =>
+      '它的 App 會開啟並播放。如果 10 秒內沒有聲音，就會響起備用鈴聲，確保你能醒來。帶任務的鬧鐘會先響鈴，然後再開啟。';
 
   @override
   String get ringThenOpenHint => '響起備用鈴聲。停止後在其 App 中開啟歌曲。';
@@ -3354,10 +3415,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get spotifyDirectOnHint => 'Spotify 會把你的那首歌作為鬧鐘播放。點按關閉。';
 
   @override
-  String get spotifyDirectHint => '把你的 Spotify 歌曲作為鬧鐘播放，更加可靠。需要 Spotify App 和 Spotify Premium。點按登入。';
+  String get spotifyDirectHint =>
+      '把你的 Spotify 歌曲作為鬧鐘播放，更加可靠。需要 Spotify App 和 Spotify Premium。點按登入。';
 
   @override
-  String get spotifyComingSoon => '即將推出：把你的 Spotify 歌曲作為鬧鐘播放（需要 Spotify Premium）。';
+  String get spotifyComingSoon =>
+      '即將推出：把你的 Spotify 歌曲作為鬧鐘播放（需要 Spotify Premium）。';
 
   @override
   String get spotifyFailed => 'Spotify 未能連線。請確認已安裝 Spotify App、已登入並擁有 Premium。';
@@ -3648,7 +3711,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get saveCodeToScan => '儲存一個要掃描的碼';
 
   @override
-  String get saveCodeHint => '對準一個需要走過去才能找到的條形碼或QR 碼，比如廚房裡的盒子或浴室裡的牙膏。要停止鬧鐘，你需要再掃描一次。';
+  String get saveCodeHint =>
+      '對準一個需要走過去才能找到的條形碼或QR 碼，比如廚房裡的盒子或浴室裡的牙膏。要停止鬧鐘，你需要再掃描一次。';
 
   @override
   String get cameraUnavailableSettings => '相機不可用。請在設定中允許訪問相機。';
@@ -3913,12 +3977,17 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 首歌');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 首歌',
+    );
     return '$_temp0';
   }
 
   @override
-  String get spotifySaidNo => 'Spotify 拒絕了。在 Spotify 控制檯中為 Quando? 勾選 Web API，並在 User Management 中新增你的帳號。';
+  String get spotifySaidNo =>
+      'Spotify 拒絕了。在 Spotify 控制檯中為 Quando? 勾選 Web API，並在 User Management 中新增你的帳號。';
 
   @override
   String serviceDidntAnswer(String service, int code) {
@@ -3950,7 +4019,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get zapierHowTo => '在 Zapier 中建立一個以“Webhooks by Zapier → Catch Hook”開頭的 Zap，然後把它的 URL 貼上到這裡。';
+  String get zapierHowTo =>
+      '在 Zapier 中建立一個以“Webhooks by Zapier → Catch Hook”開頭的 Zap，然後把它的 URL 貼上到這裡。';
 
   @override
   String get catchHookUrl => 'Catch Hook URL';
@@ -4005,7 +4075,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get allMyDevices => '我的所有裝置';
 
   @override
-  String get pushoverOnThisPhone => '在這部手機上也安裝 Pushover App，它就會在這裡用你的 Pushover 聲音響鈴。';
+  String get pushoverOnThisPhone =>
+      '在這部手機上也安裝 Pushover App，它就會在這裡用你的 Pushover 聲音響鈴。';
 
   @override
   String get priority => '優先順序';
@@ -4136,7 +4207,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get syncTitle => 'Sync my devices';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Sign in with Google to keep alarms and settings the same on all your devices.';
 
   @override
   String syncOn(String email) {
@@ -4237,7 +4309,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent =>
+      'We sent you a link to choose a new password.';
 
   @override
   String emailCheckInbox(String email) {
@@ -4248,7 +4321,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get emailConfirmed => 'I’ve confirmed';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet =>
+      'Not confirmed yet. Open the link in the email first.';
 
   @override
   String get emailSendAgain => 'Send the email again';
@@ -4279,7 +4353,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '登入後可從你的播放清單和喜歡的歌曲中選擇，或搜尋整個 Spotify。不需要 Premium。';
+  String get spotifyLibrarySignIn =>
+      '登入後可從你的播放清單和喜歡的歌曲中選擇，或搜尋整個 Spotify。不需要 Premium。';
 
   @override
   String get spotifyLibraryOn => '你的播放清單、喜歡的歌曲和搜尋。長按以登出。';

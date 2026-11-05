@@ -46,12 +46,14 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
 
     String dayNote(String z) {
       final l = inZone(now, z);
-      final diff = DateTime(
-        l.year,
-        l.month,
-        l.day,
-      ).difference(DateTime(homeLocal.year, homeLocal.month, homeLocal.day)).inDays;
-      return diff == 0 ? '' : (diff > 0 ? ' · ${l10n.tomorrowLower}' : ' · ${l10n.yesterdayLower}');
+      final diff = DateTime(l.year, l.month, l.day)
+          .difference(DateTime(homeLocal.year, homeLocal.month, homeLocal.day))
+          .inDays;
+      return diff == 0
+          ? ''
+          : (diff > 0
+                ? ' · ${l10n.tomorrowLower}'
+                : ' · ${l10n.yesterdayLower}');
     }
 
     return Column(
@@ -59,7 +61,9 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
       children: [
         Row(
           children: [
-            Expanded(child: Text(l10n.worldClocksHeading, style: text.labelSmall)),
+            Expanded(
+              child: Text(l10n.worldClocksHeading, style: text.labelSmall),
+            ),
             TextButton.icon(
               onPressed: () async {
                 final z = await pickZone(context, home: home);
@@ -74,13 +78,17 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
           contentPadding: EdgeInsets.zero,
           dense: true,
           title: Text(l10n.cityHere(cityOf(home)), style: text.bodyMedium),
-          trailing: Text(hhmm(homeLocal), style: text.titleLarge?.copyWith(color: QuandoColors.amber)),
+          trailing: Text(
+            hhmm(homeLocal),
+            style: text.titleLarge?.copyWith(color: QuandoColors.amber),
+          ),
         ),
         for (final z in zones.clocks)
           Dismissible(
             key: ValueKey(z),
             direction: DismissDirection.endToStart,
-            onDismissed: (_) => ref.read(timeZonesProvider.notifier).removeClock(z),
+            onDismissed: (_) =>
+                ref.read(timeZonesProvider.notifier).removeClock(z),
             background: Container(
               alignment: Alignment.centerRight,
               padding: const EdgeInsets.only(right: 16),
@@ -90,12 +98,17 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
               contentPadding: EdgeInsets.zero,
               dense: true,
               title: Text(cityOf(z), style: text.bodyMedium),
-              subtitle: Text('${offsetFrom(z, home, now)}${dayNote(z)}', style: text.bodySmall),
+              subtitle: Text(
+                '${offsetFrom(z, home, now)}${dayNote(z)}',
+                style: text.bodySmall,
+              ),
               trailing: Text(hhmm(inZone(now, z)), style: text.titleLarge),
-              onLongPress: () => ref.read(timeZonesProvider.notifier).removeClock(z),
+              onLongPress: () =>
+                  ref.read(timeZonesProvider.notifier).removeClock(z),
             ),
           ),
-        if (zones.clocks.isEmpty) Text(l10n.worldClocksHint, style: text.bodySmall),
+        if (zones.clocks.isEmpty)
+          Text(l10n.worldClocksHint, style: text.bodySmall),
       ],
     );
   }

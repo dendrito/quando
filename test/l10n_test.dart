@@ -20,10 +20,14 @@ void main() {
   test('every language has every phrase, with the same placeholders', () {
     final dir = Directory('lib/l10n');
     Map<String, dynamic> read(String f) =>
-        jsonDecode(File('${dir.path}/$f').readAsStringSync()) as Map<String, dynamic>;
+        jsonDecode(File('${dir.path}/$f').readAsStringSync())
+            as Map<String, dynamic>;
     final en = read('app_en.arb');
     final keys = en.keys.where((k) => !k.startsWith('@')).toSet();
-    final files = dir.listSync().map((f) => f.uri.pathSegments.last).where((f) => f.endsWith('.arb'));
+    final files = dir
+        .listSync()
+        .map((f) => f.uri.pathSegments.last)
+        .where((f) => f.endsWith('.arb'));
     final holes = RegExp(r'\{(\w+)[,}]');
     for (final f in files) {
       final arb = read(f);
@@ -32,7 +36,11 @@ void main() {
       for (final k in keys) {
         final want = holes.allMatches(en[k] as String).map((m) => m[1]).toSet();
         final got = holes.allMatches(arb[k] as String).map((m) => m[1]).toSet();
-        expect(got.containsAll(want), isTrue, reason: '$f $k needs $want, has $got');
+        expect(
+          got.containsAll(want),
+          isTrue,
+          reason: '$f $k needs $want, has $got',
+        );
       }
     }
   });
@@ -42,7 +50,10 @@ void main() {
     expect(resolveLocale(const [Locale('iw')]), const Locale('he'));
     expect(resolveLocale(const [Locale('zh', 'TW')]).scriptCode, 'Hant');
     expect(resolveLocale(const [Locale('zh', 'CN')]), const Locale('zh'));
-    expect(resolveLocale(const [Locale('xx'), Locale('es', 'MX')]), const Locale('es'));
+    expect(
+      resolveLocale(const [Locale('xx'), Locale('es', 'MX')]),
+      const Locale('es'),
+    );
     expect(resolveLocale(const [Locale('xx')]), const Locale('en'));
   });
 
@@ -52,7 +63,9 @@ void main() {
     expect(l10n.spanHours(2), '2 horas');
   });
 
-  testWidgets('Hebrew reads right to left, with Hebrew Shabbat words', (tester) async {
+  testWidgets('Hebrew reads right to left, with Hebrew Shabbat words', (
+    tester,
+  ) async {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
@@ -73,11 +86,16 @@ void main() {
     expect(find.text('Quando?'), findsOneWidget);
     expect(find.textContaining('הדלקת נרות'), findsWidgets);
     expect(find.text('שבת'), findsOneWidget);
-    expect(Directionality.of(tester.element(find.text('Quando?'))), TextDirection.rtl);
+    expect(
+      Directionality.of(tester.element(find.text('Quando?'))),
+      TextDirection.rtl,
+    );
   });
 
   for (final locale in AppLocalizations.supportedLocales) {
-    testWidgets('home, Shabbat and settings fit on a phone in $locale', (tester) async {
+    testWidgets('home, Shabbat and settings fit on a phone in $locale', (
+      tester,
+    ) async {
       tester.view.physicalSize = const Size(1080, 2160);
       tester.view.devicePixelRatio = 3;
       addTearDown(tester.view.reset);
@@ -91,7 +109,9 @@ void main() {
       await tester.pumpWidget(
         ProviderScope(
           overrides: [
-            clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+            clockProvider.overrideWithValue(
+              () => DateTime.utc(2026, 11, 3, 12),
+            ),
             prefsProvider.overrideWithValue(prefs),
           ],
           child: const QuandoApp(),

@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:quando/l10n/l10n.dart';
 
 /// Asks for a group name. Returns null when cancelled, '' to leave groups.
-Future<String?> askGroupName(BuildContext context, {required String title, String initial = ''}) {
+Future<String?> askGroupName(
+  BuildContext context, {
+  required String title,
+  String initial = '',
+}) {
   final controller = TextEditingController(text: initial);
   return showDialog<String>(
     context: context,
@@ -16,8 +20,14 @@ Future<String?> askGroupName(BuildContext context, {required String title, Strin
         onSubmitted: (v) => Navigator.pop(context, v.trim()),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
-        TextButton(onPressed: () => Navigator.pop(context, controller.text.trim()), child: Text(l10n.ok)),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
+        TextButton(
+          onPressed: () => Navigator.pop(context, controller.text.trim()),
+          child: Text(l10n.ok),
+        ),
       ],
     ),
   ).whenComplete(controller.dispose);

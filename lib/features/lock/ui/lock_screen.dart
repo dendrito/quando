@@ -33,12 +33,18 @@ class _LockScreenState extends ConsumerState<LockScreen> {
     final n = ref.read(lockSettingsProvider.notifier);
     final periods = ref.watch(lockPeriodsProvider).take(5).toList();
     final zone = ref.watch(homeZoneProvider);
-    final calendarConnected = ref.watch(calendarProvider.select((c) => c.access));
+    final calendarConnected = ref.watch(
+      calendarProvider.select((c) => c.access),
+    );
     final text = Theme.of(context).textTheme;
-    String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} ${hhmm(inZone(utc, zone))}';
+    String at(DateTime utc) =>
+        '${dayLabel(inZone(utc, zone))} ${hhmm(inZone(utc, zone))}';
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.lockMode), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+        title: Text(l10n.lockMode),
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
@@ -74,9 +80,12 @@ class _LockScreenState extends ConsumerState<LockScreen> {
             decoration: InputDecoration(
               labelText: l10n.lockCalendarWord,
               hintText: l10n.lockCalendarWordHint,
-              helperText: calendarConnected ? l10n.leaveEmptyForNone : l10n.connectCalendarsFirst,
+              helperText: calendarConnected
+                  ? l10n.leaveEmptyForNone
+                  : l10n.connectCalendarsFirst,
             ),
-            onChanged: (v) => n.update((x) => x.copyWith(calendarKeyword: v.trim())),
+            onChanged: (v) =>
+                n.update((x) => x.copyWith(calendarKeyword: v.trim())),
           ),
           const SizedBox(height: 16),
           SwitchListTile(
@@ -105,8 +114,15 @@ class _LockScreenState extends ConsumerState<LockScreen> {
               contentPadding: EdgeInsets.zero,
               dense: true,
               title: Text(p.reason),
-              subtitle: Text('${at(p.start)} → ${at(p.end)}', style: text.bodySmall),
-              trailing: const Icon(Icons.lock_outline, color: QuandoColors.amber, size: 18),
+              subtitle: Text(
+                '${at(p.start)} → ${at(p.end)}',
+                style: text.bodySmall,
+              ),
+              trailing: const Icon(
+                Icons.lock_outline,
+                color: QuandoColors.amber,
+                size: 18,
+              ),
             ),
           const SizedBox(height: 16),
           Text(l10n.leaveLockEarly, style: text.bodySmall),

@@ -35,12 +35,16 @@ class SoundPickerTile extends ConsumerWidget {
     final sounds = ref.watch(soundsProvider);
     final defaultId = ref.watch(alarmOptionsProvider).soundId;
     final label = value == null
-        ? (allowDefault ? l10n.defaultNamed(soundName(sounds, defaultId)) : l10n.phoneAlarmSound)
+        ? (allowDefault
+              ? l10n.defaultNamed(soundName(sounds, defaultId))
+              : l10n.phoneAlarmSound)
         : value == phone
         ? l10n.phoneAlarmSound
         : soundName(sounds, value);
 
-    final chosen = sounds.where((s) => s.id == (value ?? (allowDefault ? defaultId : null))).firstOrNull;
+    final chosen = sounds
+        .where((s) => s.id == (value ?? (allowDefault ? defaultId : null)))
+        .firstOrNull;
     final kind = chosen == null
         ? l10n.phoneAlarmSound
         : chosen.isRadio
@@ -62,7 +66,11 @@ class SoundPickerTile extends ConsumerWidget {
         if (context.mounted) context.push('/sounds');
         return;
       }
-      onChanged(picked == '__default__' ? null : (picked == phone && !allowDefault ? null : picked));
+      onChanged(
+        picked == '__default__'
+            ? null
+            : (picked == phone && !allowDefault ? null : picked),
+      );
     }
 
     if (large) {
@@ -83,7 +91,12 @@ class SoundPickerTile extends ConsumerWidget {
                     children: [
                       Text(l10n.sound, style: text.titleLarge),
                       const SizedBox(height: 8),
-                      Text(kind, style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
+                      Text(
+                        kind,
+                        style: text.bodyMedium?.copyWith(
+                          color: QuandoColors.amber,
+                        ),
+                      ),
                       Text(
                         label,
                         style: text.bodyLarge?.copyWith(
@@ -99,7 +112,10 @@ class SoundPickerTile extends ConsumerWidget {
                 Container(
                   width: 64,
                   height: 64,
-                  decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                  decoration: const BoxDecoration(
+                    color: QuandoColors.raised,
+                    shape: BoxShape.circle,
+                  ),
                   child: Icon(
                     chosen?.isRadio ?? false ? Icons.radio : Icons.music_note,
                     color: QuandoColors.coral,
@@ -137,8 +153,15 @@ class _SheetState extends ConsumerState<_Sheet> {
   @override
   Widget build(BuildContext context) {
     final sounds = ref.watch(soundsProvider);
-    final current = widget.value ?? (widget.allowDefault ? '__default__' : SoundPickerTile.phone);
-    Widget option(String id, String name, {VoidCallback? onListen, bool playing = false}) => ListTile(
+    final current =
+        widget.value ??
+        (widget.allowDefault ? '__default__' : SoundPickerTile.phone);
+    Widget option(
+      String id,
+      String name, {
+      VoidCallback? onListen,
+      bool playing = false,
+    }) => ListTile(
       leading: Icon(
         current == id ? Icons.radio_button_checked : Icons.radio_button_off,
         color: QuandoColors.amber,
@@ -148,7 +171,11 @@ class _SheetState extends ConsumerState<_Sheet> {
           ? null
           : IconButton(
               tooltip: l10n.listen,
-              icon: Icon(playing ? Icons.stop_circle_outlined : Icons.play_circle_outline),
+              icon: Icon(
+                playing
+                    ? Icons.stop_circle_outlined
+                    : Icons.play_circle_outline,
+              ),
               onPressed: onListen,
             ),
       onTap: () => Navigator.pop(context, id),
@@ -207,7 +234,11 @@ class _SheetState extends ConsumerState<_Sheet> {
                                       child: CircleAvatar(
                                         radius: 18,
                                         backgroundColor: QuandoColors.ground,
-                                        child: Icon(i, size: 18, color: QuandoColors.amber),
+                                        child: Icon(
+                                          i,
+                                          size: 18,
+                                          color: QuandoColors.amber,
+                                        ),
                                       ),
                                     ),
                                 ],
@@ -215,7 +246,11 @@ class _SheetState extends ConsumerState<_Sheet> {
                             ],
                           ),
                         ),
-                        const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+                        const Icon(
+                          Icons.arrow_forward,
+                          color: QuandoColors.ground,
+                          size: 28,
+                        ),
                       ],
                     ),
                   ),
@@ -226,7 +261,9 @@ class _SheetState extends ConsumerState<_Sheet> {
           if (widget.allowDefault)
             option(
               '__default__',
-              l10n.defaultNamed(soundName(sounds, ref.watch(alarmOptionsProvider).soundId)),
+              l10n.defaultNamed(
+                soundName(sounds, ref.watch(alarmOptionsProvider).soundId),
+              ),
             ),
           option(SoundPickerTile.phone, l10n.phoneAlarmSound),
           for (final s in sounds)
@@ -239,7 +276,10 @@ class _SheetState extends ConsumerState<_Sheet> {
                 if (p.playingId == s.id) {
                   await p.stop();
                 } else {
-                  await p.play(s, onDone: () => mounted ? setState(() {}) : null);
+                  await p.play(
+                    s,
+                    onDone: () => mounted ? setState(() {}) : null,
+                  );
                 }
                 if (mounted) setState(() {});
               },

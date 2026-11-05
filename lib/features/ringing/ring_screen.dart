@@ -49,7 +49,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   final _openedAt = DateTime.now();
   Timer? _second;
   int? _checkId;
-  late final (int, int) _sum = (Random().nextInt(60) + 12, Random().nextInt(30) + 7);
+  late final (int, int) _sum = (
+    Random().nextInt(60) + 12,
+    Random().nextInt(30) + 7,
+  );
   String? _sumError;
   ShakeDetector? _shakes;
   var _shaken = 0;
@@ -69,7 +72,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       StopTask.shake => _Stage.shake,
       _ => _Stage.puzzle,
     };
-    if (t == StopTask.shake && _shakes == null) _shakes = ShakeDetector(onShake: _onShake)..start();
+    if (t == StopTask.shake && _shakes == null)
+      _shakes = ShakeDetector(onShake: _onShake)..start();
   });
   void _taskDone() => _forSnooze ? _snoozeNow() : _stopNow();
 
@@ -82,7 +86,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     _second = Timer.periodic(const Duration(seconds: 1), (_) {
       if (mounted) setState(() {});
     });
-    if (p.snoozeBy.contains(StopWay.shake) || p.stopBy.contains(StopWay.shake) || p.shakeTask) {
+    if (p.snoozeBy.contains(StopWay.shake) ||
+        p.stopBy.contains(StopWay.shake) ||
+        p.shakeTask) {
       _shakes = ShakeDetector(onShake: _onShake)..start();
     }
     HardwareKeyboard.instance.addHandler(_onKey);
@@ -106,7 +112,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   bool _onKey(KeyEvent e) {
     if (e is! KeyDownEvent) return false;
     final k = e.logicalKey;
-    if (k != LogicalKeyboardKey.audioVolumeUp && k != LogicalKeyboardKey.audioVolumeDown) return false;
+    if (k != LogicalKeyboardKey.audioVolumeUp &&
+        k != LogicalKeyboardKey.audioVolumeDown)
+      return false;
     if (_stage != _Stage.ringing || p.isCheck) return false;
     if (p.stopBy.contains(StopWay.volumeKeys)) {
       _onStop();
@@ -157,7 +165,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     if (_stage == _Stage.ringing) {
       final t = p.puzzle != StopTask.none
           ? p.puzzle
-          : (p.mathTask ? StopTask.sum : (p.shakeTask ? StopTask.shake : StopTask.none));
+          : (p.mathTask
+                ? StopTask.sum
+                : (p.shakeTask ? StopTask.shake : StopTask.none));
       if (t != StopTask.none) return _startTask(t);
     }
     await _stopNow();
@@ -258,7 +268,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: [
-                          Text(dayLabel(now).toUpperCase(), style: text.labelSmall?.copyWith(color: ink)),
+                          Text(
+                            dayLabel(now).toUpperCase(),
+                            style: text.labelSmall?.copyWith(color: ink),
+                          ),
                           FittedBox(
                             fit: BoxFit.scaleDown,
                             alignment: Alignment.centerLeft,
@@ -267,14 +280,22 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                               style: text.displayLarge?.copyWith(
                                 color: ink,
                                 fontSize: _stage == _Stage.ringing ? 128 : 64,
-                                letterSpacing: _stage == _Stage.ringing ? -7 : -3,
+                                letterSpacing: _stage == _Stage.ringing
+                                    ? -7
+                                    : -3,
                               ),
                             ),
                           ),
                           const SizedBox(height: 8),
-                          Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
+                          Text(
+                            p.title,
+                            style: text.headlineMedium?.copyWith(color: ink),
+                          ),
                           const SizedBox(height: 6),
-                          Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
+                          Text(
+                            p.body,
+                            style: text.titleMedium?.copyWith(color: ink),
+                          ),
                           const SizedBox(height: 10),
                           if (_stage == _Stage.ringing)
                             Text.rich(
@@ -283,23 +304,38 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                                   TextSpan(text: l10n.ringQuote),
                                   TextSpan(
                                     text: '  — ${l10n.ringQuoteBy}',
-                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
+                                    style: const TextStyle(
+                                      fontStyle: FontStyle.normal,
+                                      fontSize: 13,
+                                    ),
                                   ),
                                 ],
                               ),
-                              style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
+                              style: text.bodyLarge?.copyWith(
+                                color: ink,
+                                fontStyle: FontStyle.italic,
+                              ),
                             ),
                           if (p.shabbatSafe) ...[
                             const SizedBox(height: 16),
                             Text(
                               l10n.shabbatStopsItself(p.ringSeconds),
-                              style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+                              style: text.bodyLarge?.copyWith(
+                                color: ink,
+                                fontWeight: FontWeight.w600,
+                              ),
                             ),
                           ],
                           Expanded(
-                            child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                            child:
+                                _stage == _Stage.ringing &&
+                                    p.ringSeconds > 0 &&
+                                    left > 0
                                 ? Center(
-                                    child: _RingLeft(left: left, total: p.ringSeconds),
+                                    child: _RingLeft(
+                                      left: left,
+                                      total: p.ringSeconds,
+                                    ),
                                   )
                                 : const SizedBox.shrink(),
                           ),
@@ -335,11 +371,17 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             autofocus: true,
             keyboardType: TextInputType.number,
             style: text.headlineSmall,
-            decoration: InputDecoration(errorText: _sumError, hintText: l10n.answer),
+            decoration: InputDecoration(
+              errorText: _sumError,
+              hintText: l10n.answer,
+            ),
             onSubmitted: (_) => _checkSum(),
           ),
           const SizedBox(height: 16),
-          _StopButton(label: _forSnooze ? l10n.snooze : l10n.stop, onPressed: _checkSum),
+          _StopButton(
+            label: _forSnooze ? l10n.snooze : l10n.stop,
+            onPressed: _checkSum,
+          ),
         ];
       case _Stage.shake:
         return [
@@ -348,7 +390,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             style: text.labelSmall?.copyWith(color: ink),
           ),
           const SizedBox(height: 8),
-          Text('$_shaken / $shakesToStop', style: text.displaySmall?.copyWith(color: ink)),
+          Text(
+            '$_shaken / $shakesToStop',
+            style: text.displaySmall?.copyWith(color: ink),
+          ),
           const SizedBox(height: 12),
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
@@ -362,7 +407,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           const SizedBox(height: 12),
           Text(
             l10n.shakeHard,
-            style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+            style: text.bodyLarge?.copyWith(
+              color: ink,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           // A phone without a motion sensor must still be able to stop.
           TextButton(
@@ -374,7 +422,8 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       case _Stage.puzzle:
         return [
           Text(switch (_puzzle) {
-            StopTask.memory => _forSnooze ? l10n.pairsToSnooze : l10n.pairsToStop,
+            StopTask.memory =>
+              _forSnooze ? l10n.pairsToSnooze : l10n.pairsToStop,
             StopTask.phrase => _forSnooze ? l10n.typeToSnooze : l10n.typeToStop,
             _ => _forSnooze ? l10n.scanToSnooze : l10n.scanToStop,
           }, style: text.labelSmall?.copyWith(color: ink)),
@@ -393,7 +442,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
         return [
           Text(
             l10n.ringAgainUnless(AlarmRegistrar.checkDelay.inMinutes),
-            style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+            style: text.bodyLarge?.copyWith(
+              color: ink,
+              fontWeight: FontWeight.w600,
+            ),
           ),
           const SizedBox(height: 16),
           _StopButton(label: l10n.imUp, onPressed: _onUp),
@@ -423,20 +475,29 @@ class _RingScreenState extends ConsumerState<RingScreen> {
             Text(
               l10n.noSnoozesLeft,
               textAlign: TextAlign.center,
-              style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+              style: text.bodyLarge?.copyWith(
+                color: ink,
+                fontWeight: FontWeight.w600,
+              ),
             ),
             const SizedBox(height: 12),
           ],
           if (p.isCheck)
             _StopButton(label: l10n.imUp, onPressed: _stopNow)
           else
-            _StopButton(label: p.link == null ? l10n.stop : l10n.stopThenOpen, onPressed: _onStop),
+            _StopButton(
+              label: p.link == null ? l10n.stop : l10n.stopThenOpen,
+              onPressed: _onStop,
+            ),
           if (!p.isCheck && _hints.isNotEmpty) ...[
             const SizedBox(height: 10),
             Text(
               _hints.join(' · '),
               textAlign: TextAlign.center,
-              style: text.bodyMedium?.copyWith(color: ink, fontWeight: FontWeight.w600),
+              style: text.bodyMedium?.copyWith(
+                color: ink,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           ],
         ];
@@ -473,15 +534,26 @@ class _StopButton extends StatelessWidget {
           backgroundColor: QuandoColors.ground,
           foregroundColor: QuandoColors.text,
           padding: const EdgeInsets.symmetric(horizontal: 8),
-          textStyle: const TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 22),
+          textStyle: const TextStyle(
+            fontFamily: quandoFont,
+            fontWeight: FontWeight.w800,
+            fontSize: 22,
+          ),
         ),
         child: Row(
           children: [
             Container(
               width: 60,
               height: 60,
-              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
-              child: const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+              decoration: const BoxDecoration(
+                color: QuandoColors.amber,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(
+                Icons.arrow_forward,
+                color: QuandoColors.ground,
+                size: 28,
+              ),
             ),
             Expanded(child: Text(label, textAlign: TextAlign.center)),
             const SizedBox(width: 60),
@@ -514,7 +586,10 @@ class _RingLeft extends StatelessWidget {
             Container(
               width: 120,
               height: 120,
-              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
+              decoration: const BoxDecoration(
+                color: QuandoColors.amber,
+                shape: BoxShape.circle,
+              ),
             ),
             SizedBox.square(
               dimension: 170,
@@ -530,10 +605,19 @@ class _RingLeft extends StatelessWidget {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('$m:$s', style: text.headlineMedium?.copyWith(color: QuandoColors.ground, height: 1)),
+                  Text(
+                    '$m:$s',
+                    style: text.headlineMedium?.copyWith(
+                      color: QuandoColors.ground,
+                      height: 1,
+                    ),
+                  ),
                   Text(
                     l10n.leftToRing,
-                    style: text.bodySmall?.copyWith(color: QuandoColors.ground, fontWeight: FontWeight.w600),
+                    style: text.bodySmall?.copyWith(
+                      color: QuandoColors.ground,
+                      fontWeight: FontWeight.w600,
+                    ),
                   ),
                 ],
               ),

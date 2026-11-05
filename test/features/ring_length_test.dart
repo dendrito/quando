@@ -16,8 +16,10 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: StatefulBuilder(
-            builder: (context, setState) =>
-                RingLengthPicker(seconds: value, onChanged: (s) => setState(() => value = s)),
+            builder: (context, setState) => RingLengthPicker(
+              seconds: value,
+              onChanged: (s) => setState(() => value = s),
+            ),
           ),
         ),
       ),
@@ -41,13 +43,17 @@ void main() {
       MaterialApp(
         home: Scaffold(
           body: StatefulBuilder(
-            builder: (context, setState) =>
-                RingLengthPicker(seconds: value, onChanged: (s) => setState(() => value = s)),
+            builder: (context, setState) => RingLengthPicker(
+              seconds: value,
+              onChanged: (s) => setState(() => value = s),
+            ),
           ),
         ),
       ),
     );
-    final gesture = await tester.startGesture(tester.getCenter(find.byIcon(Icons.add)));
+    final gesture = await tester.startGesture(
+      tester.getCenter(find.byIcon(Icons.add)),
+    );
     await tester.pump(const Duration(milliseconds: 450));
     for (var i = 0; i < 30; i++) {
       await tester.pump(const Duration(milliseconds: 120));

@@ -6,7 +6,10 @@ import 'package:quando/features/shabbat/domain/place.dart';
 void main() {
   group('Ordinary Shabbat', () {
     final times = JewishTimes(place: Places.jerusalem);
-    final events = times.events(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9));
+    final events = times.events(
+      DateTime.utc(2026, 11, 5),
+      DateTime.utc(2026, 11, 9),
+    );
 
     test('Jerusalem lights 40 minutes before sunset on Friday', () {
       final start = events.singleWhere((e) => e.kind == EventKind.holyDayStart);
@@ -23,15 +26,22 @@ void main() {
     });
 
     test('one period of about 25 hours', () {
-      final periods = times.periods(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9));
+      final periods = times.periods(
+        DateTime.utc(2026, 11, 5),
+        DateTime.utc(2026, 11, 9),
+      );
       expect(periods, hasLength(1));
       expect(periods.single.length.inHours, inInclusiveRange(24, 26));
     });
 
     test('Rabbeinu Tam ends later than the Geonim', () {
-      final rt = JewishTimes(place: Places.jerusalem, havdalah: HavdalahOpinion.rabbeinuTam)
-          .events(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9))
-          .singleWhere((e) => e.kind == EventKind.holyDayEnd);
+      final rt =
+          JewishTimes(
+                place: Places.jerusalem,
+                havdalah: HavdalahOpinion.rabbeinuTam,
+              )
+              .events(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9))
+              .singleWhere((e) => e.kind == EventKind.holyDayEnd);
       final geonim = events.singleWhere((e) => e.kind == EventKind.holyDayEnd);
       expect(rt.at.isAfter(geonim.at), isTrue);
     });
@@ -52,7 +62,11 @@ void main() {
     test('second night candles are after nightfall on Saturday, no havdalah in between', () {
       final events = JewishTimes(place: Places.newYork).events(from, to);
       final kinds = events.map((e) => e.kind).toList();
-      expect(kinds, [EventKind.holyDayStart, EventKind.secondNightCandles, EventKind.holyDayEnd]);
+      expect(kinds, [
+        EventKind.holyDayStart,
+        EventKind.secondNightCandles,
+        EventKind.holyDayEnd,
+      ]);
       expect(events[1].title, 'Candle lighting · Rosh Hashanah');
     });
 
@@ -87,11 +101,14 @@ void main() {
     expect(start.at.day, 20);
   });
 
-  test('works far west of UTC: Los Angeles Friday sunset falls on Saturday UTC', () {
-    final start = JewishTimes(place: Places.losAngeles)
-        .events(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9))
-        .firstWhere((e) => e.kind == EventKind.holyDayStart);
-    // About 16:37 local on Friday 6 Nov = 00:37 UTC on Saturday.
-    expect(start.at, DateTime.utc(2026, 11, 7, 0, 37, 28));
-  });
+  test(
+    'works far west of UTC: Los Angeles Friday sunset falls on Saturday UTC',
+    () {
+      final start = JewishTimes(place: Places.losAngeles)
+          .events(DateTime.utc(2026, 11, 5), DateTime.utc(2026, 11, 9))
+          .firstWhere((e) => e.kind == EventKind.holyDayStart);
+      // About 16:37 local on Friday 6 Nov = 00:37 UTC on Saturday.
+      expect(start.at, DateTime.utc(2026, 11, 7, 0, 37, 28));
+    },
+  );
 }

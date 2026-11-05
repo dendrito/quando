@@ -8,7 +8,8 @@ List<Quote> quotesFor(String lang) => quoteBank[lang]!;
 void main() {
   const all = {...QuoteSource.values};
   // A plain Wednesday in March 2026, nothing special about it.
-  DateTime at(int hour, {int day = 11, int month = 3}) => DateTime(2026, month, day, hour);
+  DateTime at(int hour, {int day = 11, int month = 3}) =>
+      DateTime(2026, month, day, hour);
 
   test('every app language has plenty of quotes', () {
     for (final l in AppLocalizations.supportedLocales) {
@@ -22,7 +23,10 @@ void main() {
     final q = quotesFor('pt');
     final a = pickQuote(quotes: q, sources: all, local: at(13));
     expect(pickQuote(quotes: q, sources: all, local: at(16)), a);
-    expect(pickQuote(quotes: q, sources: all, local: at(13), skip: 1), isNot(a));
+    expect(
+      pickQuote(quotes: q, sources: all, local: at(13), skip: 1),
+      isNot(a),
+    );
     expect(pickQuote(quotes: q, sources: all, local: at(19)), isNot(a));
   });
 
@@ -37,7 +41,11 @@ void main() {
             local: at(h, day: d, month: 2),
           )!,
       ];
-      expect(picks.where((p) => p.isJewish).length, 1, reason: 'Feb $d: $picks');
+      expect(
+        picks.where((p) => p.isJewish).length,
+        1,
+        reason: 'Feb $d: $picks',
+      );
       expect(picks.first.isJewish, isTrue);
     }
   });
@@ -45,12 +53,18 @@ void main() {
   test('only Jewish sources picked: every slot uses them', () {
     final q = quotesFor('he');
     for (final h in [7, 13, 19, 23]) {
-      expect(pickQuote(quotes: q, sources: jewishSources, local: at(h))!.isJewish, isTrue);
+      expect(
+        pickQuote(quotes: q, sources: jewishSources, local: at(h))!.isJewish,
+        isTrue,
+      );
     }
   });
 
   test('no sources: no quote', () {
-    expect(pickQuote(quotes: quotesFor('en'), sources: {}, local: at(9)), isNull);
+    expect(
+      pickQuote(quotes: quotesFor('en'), sources: {}, local: at(9)),
+      isNull,
+    );
   });
 
   test('translations carry the original words', () {
@@ -59,13 +73,20 @@ void main() {
     final daydream = quotesFor('pt').firstWhere((q) => q.by == 'The Monkees');
     expect(daydream.original, contains('six o\'clock alarm'));
     // In the original language, no second line.
-    expect(quotesFor('de').firstWhere((q) => q.by.contains('Goethe')).original, isNull);
+    expect(
+      quotesFor('de').firstWhere((q) => q.by.contains('Goethe')).original,
+      isNull,
+    );
   });
 
   test('Freddie Mercury gets the whole day on September 5, after the Jewish morning', () {
     final picks = [
       for (final h in [7, 13, 19, 23])
-        pickQuote(quotes: quotesFor('en'), sources: all, local: DateTime(2027, 9, 5, h))!,
+        pickQuote(
+          quotes: quotesFor('en'),
+          sources: all,
+          local: DateTime(2027, 9, 5, h),
+        )!,
     ];
     expect(picks.first.isJewish, isTrue);
     expect(picks.skip(1).map((q) => q.by), everyElement('Queen'));
@@ -80,7 +101,11 @@ void main() {
         sources: jewishSources,
         local: DateTime(2026, 12, 5 + d, 8),
       )!;
-      expect(q.tagSet, contains('chanukah${d + 1}'), reason: 'day ${d + 1}: $q');
+      expect(
+        q.tagSet,
+        contains('chanukah${d + 1}'),
+        reason: 'day ${d + 1}: $q',
+      );
       seen.add(q.text);
     }
     expect(seen.length, 8);
@@ -92,7 +117,12 @@ void main() {
     expect(isCarnaval(DateTime(2027, 2, 20)), isFalse);
     bool carnavalDay(Set<QuoteOccasion> o) => [
       for (final h in [7, 13, 19, 23])
-        pickQuote(quotes: quotesFor('pt'), sources: all, occasions: o, local: DateTime(2027, 2, 9, h))!,
+        pickQuote(
+          quotes: quotesFor('pt'),
+          sources: all,
+          occasions: o,
+          local: DateTime(2027, 2, 9, h),
+        )!,
     ].any((q) => q.tags.contains('carnaval'));
     expect(carnavalDay({}), isFalse);
     expect(carnavalDay({QuoteOccasion.carnaval}), isTrue);
@@ -118,7 +148,13 @@ void main() {
   test('no Christian figures or New Testament anywhere', () {
     for (final list in quoteBank.values) {
       for (final q in list) {
-        expect(q.by, isNot(matches(RegExp('Augustin|Agostinho|Agustín|Jesus|Matthew|Mateus'))), reason: '$q');
+        expect(
+          q.by,
+          isNot(
+            matches(RegExp('Augustin|Agostinho|Agustín|Jesus|Matthew|Mateus')),
+          ),
+          reason: '$q',
+        );
       }
     }
   });
@@ -135,30 +171,49 @@ void main() {
 
   test('September 30 wakes Green Day up', () {
     expect(
-      pickQuote(quotes: quotesFor('en'), sources: all, local: DateTime(2026, 9, 30, 13))!.by,
+      pickQuote(
+        quotes: quotesFor('en'),
+        sources: all,
+        local: DateTime(2026, 9, 30, 13),
+      )!.by,
       'Green Day',
     );
   });
 
-  test('on Tisha B\'Av, users of Jewish sources get no songs, films or proverbs', () {
-    // 9 Av 5786 falls on 23 July 2026.
-    final loud = {QuoteSource.songs, QuoteSource.movies, QuoteSource.proverbs, QuoteSource.speeches};
-    expect(isSolemnDay(DateTime(2026, 7, 23)), isTrue);
-    for (final h in [7, 13, 19, 23]) {
-      for (var skip = 0; skip < 10; skip++) {
-        final q = pickQuote(
-          quotes: quotesFor('en'),
-          sources: all,
-          local: DateTime(2026, 7, 23, h),
-          skip: skip,
-        )!;
-        expect(loud.contains(q.source), isFalse, reason: '$q');
+  test(
+    'on Tisha B\'Av, users of Jewish sources get no songs, films or proverbs',
+    () {
+      // 9 Av 5786 falls on 23 July 2026.
+      final loud = {
+        QuoteSource.songs,
+        QuoteSource.movies,
+        QuoteSource.proverbs,
+        QuoteSource.speeches,
+      };
+      expect(isSolemnDay(DateTime(2026, 7, 23)), isTrue);
+      for (final h in [7, 13, 19, 23]) {
+        for (var skip = 0; skip < 10; skip++) {
+          final q = pickQuote(
+            quotes: quotesFor('en'),
+            sources: all,
+            local: DateTime(2026, 7, 23, h),
+            skip: skip,
+          )!;
+          expect(loud.contains(q.source), isFalse, reason: '$q');
+        }
       }
-    }
-    // Without Jewish sources the day is an ordinary day.
-    final secular = {QuoteSource.songs};
-    expect(pickQuote(quotes: quotesFor('en'), sources: secular, local: DateTime(2026, 7, 23, 13)), isNotNull);
-  });
+      // Without Jewish sources the day is an ordinary day.
+      final secular = {QuoteSource.songs};
+      expect(
+        pickQuote(
+          quotes: quotesFor('en'),
+          sources: secular,
+          local: DateTime(2026, 7, 23, 13),
+        ),
+        isNotNull,
+      );
+    },
+  );
 
   test('Shabbat quotes only come with Jewish sources', () {
     for (final list in quoteBank.values) {

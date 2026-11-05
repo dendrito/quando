@@ -57,7 +57,11 @@ class AnchorEvent {
 /// A stretch of time when Shabbat or festival mode is on: from the first
 /// candle lighting until havdalah. Back-to-back holy days are one period.
 class HolyPeriod {
-  const HolyPeriod({required this.start, required this.end, required this.names});
+  const HolyPeriod({
+    required this.start,
+    required this.end,
+    required this.names,
+  });
 
   final DateTime start;
   final DateTime end;

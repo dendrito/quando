@@ -18,14 +18,7 @@ enum PushoverBehavior {
 
 /// Media selected for one reminder. IDs refer to Quando's existing sound
 /// catalog for local, radio, Spotify and YouTube sources.
-enum ReminderAudioKind {
-  inherit,
-  local,
-  radio,
-  spotify,
-  youtube,
-  elevenLabs,
-}
+enum ReminderAudioKind { inherit, local, radio, spotify, youtube, elevenLabs }
 
 /// The per-reminder audio and notification configuration.
 ///
@@ -83,15 +76,21 @@ class ReminderDelivery {
     audioKind: audioKind ?? this.audioKind,
     audioId: clearAudioId ? null : (audioId ?? this.audioId),
     pushoverBehavior: pushoverBehavior ?? this.pushoverBehavior,
-    pushoverSound: clearPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
-    pushoverPriority: clearPushoverPriority ? null : (pushoverPriority ?? this.pushoverPriority),
+    pushoverSound: clearPushoverSound
+        ? null
+        : (pushoverSound ?? this.pushoverSound),
+    pushoverPriority: clearPushoverPriority
+        ? null
+        : (pushoverPriority ?? this.pushoverPriority),
     announcementTemplate: clearAnnouncementTemplate
         ? null
         : (announcementTemplate ?? this.announcementTemplate),
     elevenLabsVoiceId: clearElevenLabsVoiceId
         ? null
         : (elevenLabsVoiceId ?? this.elevenLabsVoiceId),
-    cachedSpeechId: clearCachedSpeechId ? null : (cachedSpeechId ?? this.cachedSpeechId),
+    cachedSpeechId: clearCachedSpeechId
+        ? null
+        : (cachedSpeechId ?? this.cachedSpeechId),
   );
 
   Map<String, dynamic> toJson() => {
@@ -100,25 +99,27 @@ class ReminderDelivery {
     'pushoverBehavior': pushoverBehavior.name,
     if (pushoverSound != null) 'pushoverSound': pushoverSound,
     if (pushoverPriority != null) 'pushoverPriority': pushoverPriority,
-    if (announcementTemplate != null) 'announcementTemplate': announcementTemplate,
+    if (announcementTemplate != null)
+      'announcementTemplate': announcementTemplate,
     if (elevenLabsVoiceId != null) 'elevenLabsVoiceId': elevenLabsVoiceId,
     if (cachedSpeechId != null) 'cachedSpeechId': cachedSpeechId,
   };
 
-  factory ReminderDelivery.fromJson(Map<String, dynamic> json) => ReminderDelivery(
-    audioKind: ReminderAudioKind.values.firstWhere(
-      (v) => v.name == json['audioKind'],
-      orElse: () => ReminderAudioKind.inherit,
-    ),
-    audioId: json['audioId'] as String?,
-    pushoverBehavior: PushoverBehavior.values.firstWhere(
-      (v) => v.name == json['pushoverBehavior'],
-      orElse: () => PushoverBehavior.inherit,
-    ),
-    pushoverSound: json['pushoverSound'] as String?,
-    pushoverPriority: (json['pushoverPriority'] as num?)?.toInt(),
-    announcementTemplate: json['announcementTemplate'] as String?,
-    elevenLabsVoiceId: json['elevenLabsVoiceId'] as String?,
-    cachedSpeechId: json['cachedSpeechId'] as String?,
-  );
+  factory ReminderDelivery.fromJson(Map<String, dynamic> json) =>
+      ReminderDelivery(
+        audioKind: ReminderAudioKind.values.firstWhere(
+          (v) => v.name == json['audioKind'],
+          orElse: () => ReminderAudioKind.inherit,
+        ),
+        audioId: json['audioId'] as String?,
+        pushoverBehavior: PushoverBehavior.values.firstWhere(
+          (v) => v.name == json['pushoverBehavior'],
+          orElse: () => PushoverBehavior.inherit,
+        ),
+        pushoverSound: json['pushoverSound'] as String?,
+        pushoverPriority: (json['pushoverPriority'] as num?)?.toInt(),
+        announcementTemplate: json['announcementTemplate'] as String?,
+        elevenLabsVoiceId: json['elevenLabsVoiceId'] as String?,
+        cachedSpeechId: json['cachedSpeechId'] as String?,
+      );
 }

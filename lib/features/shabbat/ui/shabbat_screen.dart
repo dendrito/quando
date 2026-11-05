@@ -23,19 +23,27 @@ class ShabbatScreen extends ConsumerWidget {
     final periods = ref.watch(periodsProvider);
     final rules = ref.watch(rulesProvider);
     final hiddenPresets = ref.read(rulesProvider.notifier).hidden;
-    final mine = ref.watch(calendarRulesProvider).where((r) => r.includeTimes).toList();
+    final mine = ref
+        .watch(calendarRulesProvider)
+        .where((r) => r.includeTimes)
+        .toList();
     final lock = ref.watch(lockSettingsProvider);
     String day(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
     String time(DateTime utc) => hhmm(inZone(utc, place.timeZone));
 
-    void undo(String message, VoidCallback action) => ScaffoldMessenger.of(context)
-      ..hideCurrentSnackBar()
-      ..showSnackBar(
-        SnackBar(
-          content: Text(message),
-          action: SnackBarAction(label: l10n.undo, textColor: QuandoColors.ground, onPressed: action),
-        ),
-      );
+    void undo(String message, VoidCallback action) =>
+        ScaffoldMessenger.of(context)
+          ..hideCurrentSnackBar()
+          ..showSnackBar(
+            SnackBar(
+              content: Text(message),
+              action: SnackBarAction(
+                label: l10n.undo,
+                textColor: QuandoColors.ground,
+                onPressed: action,
+              ),
+            ),
+          );
 
     final next = periods.firstOrNull;
     return Scaffold(
@@ -45,11 +53,21 @@ class ShabbatScreen extends ConsumerWidget {
         children: [
           if (next != null)
             ShabbatCard(
-              title: next.contains(now) ? l10n.shabbatModeIsOn : l10n.nextInCity(place.name.toUpperCase()),
+              title: next.contains(now)
+                  ? l10n.shabbatModeIsOn
+                  : l10n.nextInCity(place.name.toUpperCase()),
               names: next.names.join(' · '),
               rows: [
-                ShabbatTimeRow(label: l10n.candleLighting, day: day(next.start), time: time(next.start)),
-                ShabbatTimeRow(label: l10n.havdalah, day: day(next.end), time: time(next.end)),
+                ShabbatTimeRow(
+                  label: l10n.candleLighting,
+                  day: day(next.start),
+                  time: time(next.start),
+                ),
+                ShabbatTimeRow(
+                  label: l10n.havdalah,
+                  day: day(next.end),
+                  time: time(next.end),
+                ),
               ],
             ),
           const SizedBox(height: 8),
@@ -57,7 +75,12 @@ class ShabbatScreen extends ConsumerWidget {
             alignment: Alignment.centerLeft,
             child: TextButton.icon(
               icon: const Icon(Icons.place_outlined, size: 18),
-              label: Text(l10n.placeChange(place.name, place.inIsrael ? l10n.israel : l10n.outsideIsrael)),
+              label: Text(
+                l10n.placeChange(
+                  place.name,
+                  place.inIsrael ? l10n.israel : l10n.outsideIsrael,
+                ),
+              ),
               onPressed: () => context.push('/settings'),
             ),
           ),
@@ -74,12 +97,18 @@ class ShabbatScreen extends ConsumerWidget {
               child: Column(
                 children: [
                   for (final (i, p) in periods.skip(1).take(8).indexed) ...[
-                    if (i > 0) const Divider(height: 1, indent: 18, endIndent: 18),
+                    if (i > 0)
+                      const Divider(height: 1, indent: 18, endIndent: 18),
                     ListTile(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
+                      contentPadding: const EdgeInsets.symmetric(
+                        horizontal: 18,
+                        vertical: 2,
+                      ),
                       title: Text(
                         p.names.join(' · '),
-                        style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+                        style: text.bodyLarge?.copyWith(
+                          fontWeight: FontWeight.w600,
+                        ),
                       ),
                       subtitle: Text(
                         l10n.timeToTime(
@@ -103,11 +132,19 @@ class ShabbatScreen extends ConsumerWidget {
             clipBehavior: Clip.antiAlias,
             child: SwitchListTile(
               contentPadding: const EdgeInsets.fromLTRB(18, 6, 10, 6),
-              secondary: const Icon(Icons.lock_outline, color: QuandoColors.amber),
-              title: Text(l10n.lockForShabbat, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
+              secondary: const Icon(
+                Icons.lock_outline,
+                color: QuandoColors.amber,
+              ),
+              title: Text(
+                l10n.lockForShabbat,
+                style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+              ),
               subtitle: Text(l10n.lockForShabbatHint, style: text.bodySmall),
               value: lock.shabbat,
-              onChanged: (v) => ref.read(lockSettingsProvider.notifier).update((s) => s.copyWith(shabbat: v)),
+              onChanged: (v) => ref
+                  .read(lockSettingsProvider.notifier)
+                  .update((s) => s.copyWith(shabbat: v)),
             ),
           ),
 
@@ -120,14 +157,21 @@ class ShabbatScreen extends ConsumerWidget {
               id: 'cal.${r.id}',
               onDelete: () {
                 ref.read(calendarRulesProvider.notifier).delete(r.id);
-                undo(l10n.deletedNamed(r.title), () => ref.read(calendarRulesProvider.notifier).save(r));
+                undo(
+                  l10n.deletedNamed(r.title),
+                  () => ref.read(calendarRulesProvider.notifier).save(r),
+                );
               },
               child: RuleTile(
                 title: r.title,
-                subtitle: timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
+                subtitle: timesLabel(
+                  r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()
+                    ..sort(),
+                ),
                 on: r.enabled,
                 onTap: () => context.push('/calendar/rule/${r.id}'),
-                onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
+                onToggle: (v) =>
+                    ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
               ),
             ),
             const SizedBox(height: 8),
@@ -142,19 +186,25 @@ class ShabbatScreen extends ConsumerWidget {
           const SizedBox(height: 22),
           Text(l10n.readyMadeHeading, style: text.labelSmall),
           const SizedBox(height: 10),
-          for (final r in rules.where((r) => !hiddenPresets.contains(r.id))) ...[
+          for (final r in rules.where(
+            (r) => !hiddenPresets.contains(r.id),
+          )) ...[
             SwipeToDelete(
               id: 'preset.${r.id}',
               onDelete: () {
                 ref.read(rulesProvider.notifier).hide(r.id);
-                undo(l10n.deletedNamed(r.name), () => ref.read(rulesProvider.notifier).restore(r.id));
+                undo(
+                  l10n.deletedNamed(r.name),
+                  () => ref.read(rulesProvider.notifier).restore(r.id),
+                );
               },
               child: RuleTile(
                 title: r.name,
                 subtitle: timesLabel(r.offsets()),
                 on: r.enabled,
                 onTap: () => context.push('/preset/${r.id}'),
-                onToggle: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
+                onToggle: (v) =>
+                    ref.read(rulesProvider.notifier).toggle(r.id, v),
               ),
             ),
             const SizedBox(height: 8),

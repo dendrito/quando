@@ -18,7 +18,9 @@ String formatSpan(Duration d) {
 /// "1 hour before", "15 minutes after", "now".
 String describeOffset(Duration offset) {
   if (offset == Duration.zero) return l10n.now;
-  return offset.isNegative ? l10n.spanBefore(formatSpan(offset)) : l10n.spanAfter(formatSpan(offset));
+  return offset.isNegative
+      ? l10n.spanBefore(formatSpan(offset))
+      : l10n.spanAfter(formatSpan(offset));
 }
 
 /// 32-bit FNV-1a, masked to a positive int. Used for stable alarm ids.

@@ -56,7 +56,9 @@ class LanguageNotifier extends Notifier<String?> {
   }
 }
 
-final languageProvider = NotifierProvider<LanguageNotifier, String?>(LanguageNotifier.new);
+final languageProvider = NotifierProvider<LanguageNotifier, String?>(
+  LanguageNotifier.new,
+);
 
 /// The language Quando speaks right now. Anything that builds words
 /// (event titles, preset names, alarm bodies) watches it, so all of it
@@ -70,7 +72,9 @@ class LocaleNotifier extends Notifier<Locale> {
   }
 }
 
-final localeProvider = NotifierProvider<LocaleNotifier, Locale>(LocaleNotifier.new);
+final localeProvider = NotifierProvider<LocaleNotifier, Locale>(
+  LocaleNotifier.new,
+);
 
 // ---- Quotes about time ----
 
@@ -83,7 +87,9 @@ class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
     final saved = _prefs.getStringList('quoteSources');
     final offered = kodesh ? jewishSources : QuoteSource.values.toSet();
     // Nothing saved yet, or only names from an older version: show them all.
-    if (saved == null || (saved.isNotEmpty && !offered.any((s) => saved.contains(s.name)))) return offered;
+    if (saved == null ||
+        (saved.isNotEmpty && !offered.any((s) => saved.contains(s.name))))
+      return offered;
     return {
       for (final s in offered)
         if (saved.contains(s.name)) s,
@@ -96,9 +102,10 @@ class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
   }
 }
 
-final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
-  QuoteSourcesNotifier.new,
-);
+final quoteSourcesProvider =
+    NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
+      QuoteSourcesNotifier.new,
+    );
 
 /// Extra quotes the user opted into: Carnaval, near me. Off by default.
 class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
@@ -120,19 +127,25 @@ class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
   }
 }
 
-final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
-  QuoteOccasionsNotifier.new,
-);
+final quoteOccasionsProvider =
+    NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
+      QuoteOccasionsNotifier.new,
+    );
 
 /// Where the user is, for "Near me" quotes.
 final quotePlacesProvider = Provider<Set<String>>(
-  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name),
+  (ref) => placeTags(
+    ref.watch(homeZoneProvider),
+    city: ref.watch(placeProvider).name,
+  ),
 );
 
 /// Every quote for the language in use.
 final quotesProvider = Provider<List<Quote>>((ref) {
   final l = ref.watch(localeProvider);
-  final key = l.languageCode == 'zh' && l.scriptCode == 'Hant' ? 'zh_Hant' : l.languageCode;
+  final key = l.languageCode == 'zh' && l.scriptCode == 'Hant'
+      ? 'zh_Hant'
+      : l.languageCode;
   final all = quoteBank[key] ?? quoteBank['en']!;
   return kodesh
       ? [
@@ -193,7 +206,9 @@ class TimeZonesNotifier extends Notifier<TimeZones> {
   }
 }
 
-final timeZonesProvider = NotifierProvider<TimeZonesNotifier, TimeZones>(TimeZonesNotifier.new);
+final timeZonesProvider = NotifierProvider<TimeZonesNotifier, TimeZones>(
+  TimeZonesNotifier.new,
+);
 
 /// The zone Quando shows times in and sets everyday alarms in: the one you
 /// picked, else the phone's, else your Shabbat city's.
@@ -210,7 +225,10 @@ class PlaceNotifier extends Notifier<Place> {
   @override
   Place build() {
     final name = _prefs.getString('place.name');
-    final base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
+    final base = Places.all.firstWhere(
+      (p) => p.name == name,
+      orElse: () => Places.jerusalem,
+    );
     return base.copyWith(
       inIsrael: _prefs.getBool('place.inIsrael'),
       candleLightingMinutes: _prefs.getInt('place.candleMinutes'),
@@ -242,7 +260,10 @@ class HavdalahNotifier extends Notifier<HavdalahOpinion> {
   @override
   HavdalahOpinion build() {
     final name = ref.read(prefsProvider).getString('havdalah');
-    return HavdalahOpinion.values.firstWhere((h) => h.name == name, orElse: () => HavdalahOpinion.geonim);
+    return HavdalahOpinion.values.firstWhere(
+      (h) => h.name == name,
+      orElse: () => HavdalahOpinion.geonim,
+    );
   }
 
   void set(HavdalahOpinion value) {
@@ -251,7 +272,9 @@ class HavdalahNotifier extends Notifier<HavdalahOpinion> {
   }
 }
 
-final havdalahProvider = NotifierProvider<HavdalahNotifier, HavdalahOpinion>(HavdalahNotifier.new);
+final havdalahProvider = NotifierProvider<HavdalahNotifier, HavdalahOpinion>(
+  HavdalahNotifier.new,
+);
 
 class RulesNotifier extends Notifier<List<AlarmRule>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
@@ -271,14 +294,20 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
   }
 
   void toggle(String id, bool enabled) {
-    state = [for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r];
-    _prefs.setString('rules.enabled', jsonEncode({for (final r in state) r.id: r.enabled}));
+    state = [
+      for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r,
+    ];
+    _prefs.setString(
+      'rules.enabled',
+      jsonEncode({for (final r in state) r.id: r.enabled}),
+    );
   }
 
   /// Changes a preset's times or sound, and remembers the change.
   void edit(String id, AlarmRule Function(AlarmRule) change) {
     state = [for (final r in state) r.id == id ? change(r) : r];
-    final custom = _custom()..[id] = state.firstWhere((r) => r.id == id).customJson();
+    final custom = _custom()
+      ..[id] = state.firstWhere((r) => r.id == id).customJson();
     _prefs.setString('rules.custom', jsonEncode(custom));
   }
 
@@ -287,11 +316,15 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
     final custom = _custom()..remove(id);
     _prefs.setString('rules.custom', jsonEncode(custom));
     final preset = Presets.all.firstWhere((p) => p.id == id);
-    state = [for (final r in state) r.id == id ? preset.copyWith(enabled: r.enabled) : r];
+    state = [
+      for (final r in state)
+        r.id == id ? preset.copyWith(enabled: r.enabled) : r,
+    ];
   }
 
   /// Presets you deleted: off, and out of the list until restored.
-  Set<String> get hidden => (_prefs.getStringList('rules.hidden') ?? const []).toSet();
+  Set<String> get hidden =>
+      (_prefs.getStringList('rules.hidden') ?? const []).toSet();
 
   void hide(String id) {
     toggle(id, false);
@@ -312,7 +345,8 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 
   Map<String, dynamic> _custom() {
     try {
-      return jsonDecode(_prefs.getString('rules.custom') ?? '{}') as Map<String, dynamic>;
+      return jsonDecode(_prefs.getString('rules.custom') ?? '{}')
+          as Map<String, dynamic>;
     } catch (_) {
       return {};
     }
@@ -320,14 +354,18 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
 
   static Map<String, bool> _decode(String? raw) {
     try {
-      return (jsonDecode(raw ?? '{}') as Map<String, dynamic>).map((k, v) => MapEntry(k, v as bool));
+      return (jsonDecode(raw ?? '{}') as Map<String, dynamic>).map(
+        (k, v) => MapEntry(k, v as bool),
+      );
     } catch (_) {
       return {};
     }
   }
 }
 
-final rulesProvider = NotifierProvider<RulesNotifier, List<AlarmRule>>(RulesNotifier.new);
+final rulesProvider = NotifierProvider<RulesNotifier, List<AlarmRule>>(
+  RulesNotifier.new,
+);
 
 extension on AlarmRule {
   AlarmRule withCustomFrom(Map<String, dynamic> custom) {
@@ -342,7 +380,8 @@ class SkippedNotifier extends Notifier<Set<int>> {
 
   @override
   Set<int> build() => {
-    for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[]) ?int.tryParse(s),
+    for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[])
+      ?int.tryParse(s),
   };
 
   void skip(int id, bool skipped) {
@@ -355,7 +394,9 @@ class SkippedNotifier extends Notifier<Set<int>> {
   }
 }
 
-final skippedProvider = NotifierProvider<SkippedNotifier, Set<int>>(SkippedNotifier.new);
+final skippedProvider = NotifierProvider<SkippedNotifier, Set<int>>(
+  SkippedNotifier.new,
+);
 
 class AlarmOptionsNotifier extends Notifier<AlarmOptions> {
   @override
@@ -372,22 +413,32 @@ class AlarmOptionsNotifier extends Notifier<AlarmOptions> {
 
   void update(AlarmOptions Function(AlarmOptions) change) {
     state = change(state);
-    ref.read(prefsProvider).setString('alarmOptions', jsonEncode(state.toJson()));
+    ref
+        .read(prefsProvider)
+        .setString('alarmOptions', jsonEncode(state.toJson()));
   }
 }
 
-final alarmOptionsProvider = NotifierProvider<AlarmOptionsNotifier, AlarmOptions>(AlarmOptionsNotifier.new);
+final alarmOptionsProvider =
+    NotifierProvider<AlarmOptionsNotifier, AlarmOptions>(
+      AlarmOptionsNotifier.new,
+    );
 
 const scheduler = Scheduler();
 
 final jewishTimesProvider = Provider<JewishTimes>(
-  (ref) => JewishTimes(place: ref.watch(placeProvider), havdalah: ref.watch(havdalahProvider)),
+  (ref) => JewishTimes(
+    place: ref.watch(placeProvider),
+    havdalah: ref.watch(havdalahProvider),
+  ),
 );
 
 /// Events wide enough to plan every rule's alarms for the next 7 days.
 // ---- Calendars ----
 
-final calendarReaderProvider = Provider<CalendarReader>((ref) => DeviceCalendarReader());
+final calendarReaderProvider = Provider<CalendarReader>(
+  (ref) => DeviceCalendarReader(),
+);
 
 class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
@@ -397,7 +448,10 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
     try {
       final raw = _prefs.getString('calendarRules');
       if (raw == null) return const [];
-      return [for (final j in jsonDecode(raw) as List) CalendarRule.fromJson(j as Map<String, dynamic>)];
+      return [
+        for (final j in jsonDecode(raw) as List)
+          CalendarRule.fromJson(j as Map<String, dynamic>),
+      ];
     } catch (_) {
       return const [];
     }
@@ -405,11 +459,16 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
 
   void save(CalendarRule rule) {
     final i = state.indexWhere((r) => r.id == rule.id);
-    _set(i < 0 ? [...state, rule] : [for (final r in state) r.id == rule.id ? rule : r]);
+    _set(
+      i < 0
+          ? [...state, rule]
+          : [for (final r in state) r.id == rule.id ? rule : r],
+    );
   }
 
-  void toggle(String id, bool enabled) =>
-      _set([for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r]);
+  void toggle(String id, bool enabled) => _set([
+    for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r,
+  ]);
 
   void delete(String id) => _set([
     for (final r in state)
@@ -418,13 +477,17 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
 
   void _set(List<CalendarRule> rules) {
     state = rules;
-    _prefs.setString('calendarRules', jsonEncode([for (final r in rules) r.toJson()]));
+    _prefs.setString(
+      'calendarRules',
+      jsonEncode([for (final r in rules) r.toJson()]),
+    );
   }
 }
 
-final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(
-  CalendarRulesNotifier.new,
-);
+final calendarRulesProvider =
+    NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(
+      CalendarRulesNotifier.new,
+    );
 
 /// What we know about the phone's calendars.
 class CalendarState {
@@ -456,7 +519,8 @@ class CalendarNotifier extends Notifier<CalendarState> {
   CalendarState build() => const CalendarState();
 
   /// null = never chosen: every calendar is used.
-  Set<String>? get _savedSelection => _prefs.getStringList('calendars.selected')?.toSet();
+  Set<String>? get _savedSelection =>
+      _prefs.getStringList('calendars.selected')?.toSet();
 
   Future<void> connect() async {
     final reader = ref.read(calendarReaderProvider);
@@ -483,12 +547,18 @@ class CalendarNotifier extends Notifier<CalendarState> {
       final calendars = await reader.calendars();
       final selected = _savedSelection ?? {for (final c in calendars) c.id};
       final now = ref.read(clockProvider)();
-      final rules = [for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules()];
+      final rules = [
+        for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules(),
+      ];
       final window = scheduler.eventWindow(now, rules);
       final to = window.to.isAfter(now.add(const Duration(days: 62)))
           ? now.add(const Duration(days: 62))
           : window.to;
-      final events = await reader.events(window.from.subtract(const Duration(days: 1)), to, selected);
+      final events = await reader.events(
+        window.from.subtract(const Duration(days: 1)),
+        to,
+        selected,
+      );
       state = CalendarState(
         access: true,
         loaded: true,
@@ -497,7 +567,12 @@ class CalendarNotifier extends Notifier<CalendarState> {
         events: events,
       );
     } catch (e) {
-      state = CalendarState(loaded: true, access: state.access, calendars: state.calendars, error: '$e');
+      state = CalendarState(
+        loaded: true,
+        access: state.access,
+        calendars: state.calendars,
+        error: '$e',
+      );
     }
   }
 
@@ -509,7 +584,9 @@ class CalendarNotifier extends Notifier<CalendarState> {
   }
 }
 
-final calendarProvider = NotifierProvider<CalendarNotifier, CalendarState>(CalendarNotifier.new);
+final calendarProvider = NotifierProvider<CalendarNotifier, CalendarState>(
+  CalendarNotifier.new,
+);
 
 /// Presets plus the user's calendar rules.
 final allRulesProvider = Provider<List<AlarmRule>>(
@@ -527,9 +604,17 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
     ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
   final wantsSun = ref
       .watch(allRulesProvider)
-      .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));
+      .any(
+        (r) =>
+            r.enabled &&
+            r.appliesTo.any(
+              (k) => k == EventKind.sunrise || k == EventKind.sunset,
+            ),
+      );
   if (wantsSun) {
-    events.addAll(SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to));
+    events.addAll(
+      SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to),
+    );
   }
   return events..sort((a, b) => a.at.compareTo(b.at));
 });
@@ -537,23 +622,30 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
 /// Everything an event alarm can be set around, for the next 60 days:
 /// calendar events (start), Shabbat and festival times, and two weeks of
 /// sunrises and sunsets. Feeds the event search.
-final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((ref) async {
+final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((
+  ref,
+) async {
   ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
   final to = now.add(const Duration(days: 60));
   final cal = ref.watch(calendarProvider);
   final out = <AnchorEvent>[
     ...ref.watch(jewishTimesProvider).events(now, to),
-    ...SunTimes(place: ref.watch(placeProvider)).events(now, now.add(const Duration(days: 14))),
+    ...SunTimes(place: ref.watch(placeProvider))
+        .events(now, now.add(const Duration(days: 14))),
   ];
   if (cal.access && cal.selected.isNotEmpty) {
     try {
-      out.addAll(await ref.read(calendarReaderProvider).events(now, to, cal.selected));
+      out.addAll(
+        await ref.read(calendarReaderProvider).events(now, to, cal.selected),
+      );
     } catch (_) {
       // Calendar unreadable just now: search the rest.
     }
   }
-  return out.where((e) => e.at.isAfter(now) && e.kind != EventKind.calendarEnd).toList()
+  return out
+      .where((e) => e.at.isAfter(now) && e.kind != EventKind.calendarEnd)
+      .toList()
     ..sort((a, b) => a.at.compareTo(b.at));
 });
 
@@ -565,14 +657,17 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     try {
       final raw = _prefs.getString('userAlarms');
       if (raw == null) return const [];
-      return [for (final j in jsonDecode(raw) as List) UserAlarm.fromJson(j as Map<String, dynamic>)]
-        ..sort(_byTime);
+      return [
+        for (final j in jsonDecode(raw) as List)
+          UserAlarm.fromJson(j as Map<String, dynamic>),
+      ]..sort(_byTime);
     } catch (_) {
       return const [];
     }
   }
 
-  static int _byTime(UserAlarm a, UserAlarm b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
+  static int _byTime(UserAlarm a, UserAlarm b) =>
+      (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
 
   /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time.
   void save(UserAlarm alarm) {
@@ -609,7 +704,9 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     if (enabled && !a.repeats) {
       save(a.copyWith(enabled: true));
     } else {
-      _set([for (final x in state) x.id == id ? x.copyWith(enabled: enabled) : x]);
+      _set([
+        for (final x in state) x.id == id ? x.copyWith(enabled: enabled) : x,
+      ]);
     }
   }
 
@@ -632,16 +729,23 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
   }
 
   /// Renames a group; an empty name takes its alarms out of any group.
-  void renameGroup(String from, String to) =>
-      _set([for (final a in state) a.group == from ? a.copyWith(group: to.trim()) : a]);
+  void renameGroup(String from, String to) => _set([
+    for (final a in state) a.group == from ? a.copyWith(group: to.trim()) : a,
+  ]);
 
   void _set(List<UserAlarm> alarms) {
     state = alarms..sort(_byTime);
-    _prefs.setString('userAlarms', jsonEncode([for (final a in state) a.toJson()]));
+    _prefs.setString(
+      'userAlarms',
+      jsonEncode([for (final a in state) a.toJson()]),
+    );
   }
 }
 
-final userAlarmsProvider = NotifierProvider<UserAlarmsNotifier, List<UserAlarm>>(UserAlarmsNotifier.new);
+final userAlarmsProvider =
+    NotifierProvider<UserAlarmsNotifier, List<UserAlarm>>(
+      UserAlarmsNotifier.new,
+    );
 
 // ---- Sounds ----
 
@@ -656,7 +760,10 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
       final raw = _prefs.getString('sounds');
       final mine = raw == null
           ? const <AlarmSound>[]
-          : [for (final j in jsonDecode(raw) as List) AlarmSound.fromJson(j as Map<String, dynamic>)];
+          : [
+              for (final j in jsonDecode(raw) as List)
+                AlarmSound.fromJson(j as Map<String, dynamic>),
+            ];
       return [...AlarmSound.builtIns, ...mine];
     } catch (_) {
       return AlarmSound.builtIns;
@@ -665,9 +772,11 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
 
   void add(AlarmSound s) => _set([...state, s]);
 
-  void replace(AlarmSound sound) => _set([for (final s in state) s.id == sound.id ? sound : s]);
+  void replace(AlarmSound sound) =>
+      _set([for (final s in state) s.id == sound.id ? sound : s]);
 
-  void rename(String id, String name) => _set([for (final s in state) s.id == id ? s.rename(name) : s]);
+  void rename(String id, String name) =>
+      _set([for (final s in state) s.id == id ? s.rename(name) : s]);
 
   void delete(String id) {
     _set([
@@ -676,7 +785,10 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
     ]);
     // Anything that used it goes back to the default.
     final o = ref.read(alarmOptionsProvider);
-    if (o.soundId == id) ref.read(alarmOptionsProvider.notifier).update((x) => x.copyWith(phoneSound: true));
+    if (o.soundId == id)
+      ref
+          .read(alarmOptionsProvider.notifier)
+          .update((x) => x.copyWith(phoneSound: true));
   }
 
   void _set(List<AlarmSound> all) {
@@ -691,12 +803,15 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
   }
 }
 
-final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(SoundsNotifier.new);
+final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(
+  SoundsNotifier.new,
+);
 
 /// "Phone alarm sound" for null, otherwise the sound's name.
 String soundName(List<AlarmSound> sounds, String? id) => id == null
     ? l10n.phoneAlarmSound
-    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? l10n.phoneAlarmSound);
+    : (sounds.where((s) => s.id == id).firstOrNull?.name ??
+          l10n.phoneAlarmSound);
 
 // ---- Lock mode ----
 
@@ -720,10 +835,14 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     _prefs.setString('lock', jsonEncode(state.toJson()));
   }
 
-  void lockFor(Duration d) => update((s) => s.copyWith(manualUntil: DateTime.now().toUtc().add(d)));
+  void lockFor(Duration d) =>
+      update((s) => s.copyWith(manualUntil: DateTime.now().toUtc().add(d)));
 }
 
-final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings>(LockSettingsNotifier.new);
+final lockSettingsProvider =
+    NotifierProvider<LockSettingsNotifier, LockSettings>(
+      LockSettingsNotifier.new,
+    );
 
 /// Whether Shabbat shows on Quando?'s home and settings: always in Matai?,
 /// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm.
@@ -731,13 +850,22 @@ final shabbatInUseProvider = Provider<bool>(
   (ref) =>
       kodesh ||
       ref.watch(lockSettingsProvider).shabbat ||
-      ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset'),
+      ref
+          .watch(rulesProvider)
+          .any(
+            (r) =>
+                r.enabled &&
+                r.id != 'preset.sunrise' &&
+                r.id != 'preset.sunset',
+          ),
 );
 
 /// Locks the user ended early with "hold to unlock".
 class DismissedLocksNotifier extends Notifier<Set<String>> {
   @override
-  Set<String> build() => (ref.read(prefsProvider).getStringList('lock.dismissed') ?? const []).toSet();
+  Set<String> build() =>
+      (ref.read(prefsProvider).getStringList('lock.dismissed') ?? const [])
+          .toSet();
 
   void dismiss(LockPeriod p) {
     // Keep the list short: only the latest few matter.
@@ -745,14 +873,17 @@ class DismissedLocksNotifier extends Notifier<Set<String>> {
     state = next.skip(next.length > 50 ? next.length - 50 : 0).toSet();
     ref.read(prefsProvider).setStringList('lock.dismissed', state.toList());
     if (p.allIds.any((id) => id.startsWith('manual.'))) {
-      ref.read(lockSettingsProvider.notifier).update((s) => s.copyWith(clearManual: true));
+      ref
+          .read(lockSettingsProvider.notifier)
+          .update((s) => s.copyWith(clearManual: true));
     }
   }
 }
 
-final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<String>>(
-  DismissedLocksNotifier.new,
-);
+final dismissedLocksProvider =
+    NotifierProvider<DismissedLocksNotifier, Set<String>>(
+      DismissedLocksNotifier.new,
+    );
 
 /// Upcoming and current locks.
 final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
@@ -828,9 +959,18 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
   return [
-    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),
+    ...scheduler.plan(
+      now: now,
+      events: ref.watch(eventsProvider),
+      rules: ref.watch(allRulesProvider),
+    ),
     for (final a in ref.watch(userAlarmsProvider))
-      ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
+      ...a.plan(
+        now: now,
+        horizon: scheduler.horizon,
+        zone: zone,
+        defaultRing: ring,
+      ),
     ...ref.watch(lockStartAlarmsProvider),
   ]..sort((a, b) => a.at.compareTo(b.at));
 });
@@ -839,7 +979,9 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
 final periodsProvider = Provider<List<HolyPeriod>>((ref) {
   ref.watch(localeProvider);
   final now = ref.watch(clockProvider)();
-  return ref.watch(jewishTimesProvider).periods(now, now.add(const Duration(days: 60)));
+  return ref
+      .watch(jewishTimesProvider)
+      .periods(now, now.add(const Duration(days: 60)));
 });
 
 /// The Shabbat or festival period that is on now or comes next.
@@ -850,7 +992,9 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 
 /// How each planned alarm behaves when it rings. Alarms inside Shabbat or a
 /// festival never ask to be touched.
-final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
+final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((
+  ref,
+) {
   ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
   final periods = ref.watch(periodsProvider);
@@ -861,8 +1005,13 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     var p = _payload(a, options, periods);
     // No live radio on Shabbat or a festival: a built-in sound instead.
     final path = sounds[id];
-    final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
-    p = _withSound(p, radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path);
+    final radio =
+        path != null &&
+        (path.startsWith('http://') || path.startsWith('https://'));
+    p = _withSound(
+      p,
+      radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path,
+    );
     // Never open another app on Shabbat or a festival.
     final song = links[id];
     if (!p.isLock && !p.shabbatSafe && song?.link != null) {
@@ -870,16 +1019,26 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     }
     if (p.isLock) return p;
     p = p.withStyle(a.style);
-    if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
+    if (!a.ruleId.startsWith('gentle.'))
+      return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
     final calm =
-        (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
+        (AlarmSound.calm
+                    .where((c) => c.id == a.style.gentleSound)
+                    .firstOrNull ??
+                AlarmSound.calm.first)
+            .path;
     return p.gentleLeadUp(a.style.gentleMinutes, calm);
   };
 });
 
-RingPayload _withSound(RingPayload p, String? path) => p.isLock ? p : p.withSound(path);
+RingPayload _withSound(RingPayload p, String? path) =>
+    p.isLock ? p : p.withSound(path);
 
-RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> periods) {
+RingPayload _payload(
+  ScheduledAlarm a,
+  AlarmOptions options,
+  List<HolyPeriod> periods,
+) {
   final p = RingPayload.forAlarm(
     title: a.title,
     body: a.body,
@@ -887,7 +1046,13 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
     shabbatSafe: periods.any((p) => p.contains(a.at)),
   );
   if (a.ruleId == 'lock') {
-    return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
+    return RingPayload(
+      title: a.title,
+      body: a.body,
+      ringSeconds: 1,
+      spoken: false,
+      isLock: true,
+    );
   }
   // A user alarm can have its own ring length.
   return a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
@@ -904,7 +1069,9 @@ class IntegrationsNotifier extends Notifier<IntegrationSettings> {
       final raw = ref.read(prefsProvider).getString('integrations');
       return raw == null
           ? const IntegrationSettings()
-          : IntegrationSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+          : IntegrationSettings.fromJson(
+              jsonDecode(raw) as Map<String, dynamic>,
+            );
     } catch (_) {
       return const IntegrationSettings();
     }
@@ -912,13 +1079,19 @@ class IntegrationsNotifier extends Notifier<IntegrationSettings> {
 
   void update(IntegrationSettings Function(IntegrationSettings) change) {
     state = change(state);
-    ref.read(prefsProvider).setString('integrations', jsonEncode(state.toJson()));
+    ref
+        .read(prefsProvider)
+        .setString('integrations', jsonEncode(state.toJson()));
   }
 
-  void addWebhook(Webhook w) => update((s) => s.copyWith(webhooks: [...s.webhooks, w]));
+  void addWebhook(Webhook w) =>
+      update((s) => s.copyWith(webhooks: [...s.webhooks, w]));
 
-  void replaceWebhook(Webhook w) =>
-      update((s) => s.copyWith(webhooks: [for (final x in s.webhooks) x.id == w.id ? w : x]));
+  void replaceWebhook(Webhook w) => update(
+    (s) => s.copyWith(
+      webhooks: [for (final x in s.webhooks) x.id == w.id ? w : x],
+    ),
+  );
 
   void removeWebhook(String id) => update(
     (s) => s.copyWith(
@@ -930,9 +1103,10 @@ class IntegrationsNotifier extends Notifier<IntegrationSettings> {
   );
 }
 
-final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationSettings>(
-  IntegrationsNotifier.new,
-);
+final integrationsProvider =
+    NotifierProvider<IntegrationsNotifier, IntegrationSettings>(
+      IntegrationsNotifier.new,
+    );
 
 final integrationSenderProvider = Provider<IntegrationSender>(
   (ref) => IntegrationSender(() => ref.read(integrationsProvider)),

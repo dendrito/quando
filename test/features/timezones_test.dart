@@ -27,19 +27,24 @@ DateTime _first(ProviderContainer c, String id) =>
     c.read(planProvider).firstWhere((a) => a.ruleId == 'user.$id').at;
 
 void main() {
-  test('home zone: picked city, else the phone, else the Shabbat city', () async {
-    expect((await _container()).read(homeZoneProvider), 'Asia/Jerusalem');
-    final c = await _container(deviceZone: 'America/Sao_Paulo');
-    expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
-    c.read(timeZonesProvider.notifier).setFixed('Europe/Lisbon');
-    expect(c.read(homeZoneProvider), 'Europe/Lisbon');
-    c.read(timeZonesProvider.notifier).followPhone();
-    expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
-  });
+  test(
+    'home zone: picked city, else the phone, else the Shabbat city',
+    () async {
+      expect((await _container()).read(homeZoneProvider), 'Asia/Jerusalem');
+      final c = await _container(deviceZone: 'America/Sao_Paulo');
+      expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
+      c.read(timeZonesProvider.notifier).setFixed('Europe/Lisbon');
+      expect(c.read(homeZoneProvider), 'Europe/Lisbon');
+      c.read(timeZonesProvider.notifier).followPhone();
+      expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
+    },
+  );
 
   test('everyday alarms follow the phone\'s zone', () async {
     final c = await _container(deviceZone: 'America/Sao_Paulo');
-    c.read(userAlarmsProvider.notifier).save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {3}));
+    c
+        .read(userAlarmsProvider.notifier)
+        .save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {3}));
     // Wed 4 Nov 07:00 in São Paulo (UTC-3) = 10:00 UTC.
     expect(_first(c, 'a'), DateTime.utc(2026, 11, 4, 10));
   });
@@ -48,9 +53,23 @@ void main() {
     final c = await _container(deviceZone: 'Asia/Jerusalem');
     c
         .read(userAlarmsProvider.notifier)
-        .save(const UserAlarm(id: 'ny', hour: 7, minute: 0, days: {3}, zone: 'America/New_York'));
-    expect(_first(c, 'ny'), DateTime.utc(2026, 11, 4, 12)); // NY is UTC-5 in November
-    final body = c.read(planProvider).firstWhere((a) => a.ruleId == 'user.ny').body;
+        .save(
+          const UserAlarm(
+            id: 'ny',
+            hour: 7,
+            minute: 0,
+            days: {3},
+            zone: 'America/New_York',
+          ),
+        );
+    expect(
+      _first(c, 'ny'),
+      DateTime.utc(2026, 11, 4, 12),
+    ); // NY is UTC-5 in November
+    final body = c
+        .read(planProvider)
+        .firstWhere((a) => a.ruleId == 'user.ny')
+        .body;
     expect(body, contains('07:00 New York time'));
   });
 
@@ -61,7 +80,9 @@ void main() {
     n.addClock('Asia/Tokyo');
     n.addClock('America/Los_Angeles');
     n.removeClock('Asia/Tokyo');
-    final again = ProviderContainer(overrides: [prefsProvider.overrideWithValue(c.read(prefsProvider))]);
+    final again = ProviderContainer(
+      overrides: [prefsProvider.overrideWithValue(c.read(prefsProvider))],
+    );
     addTearDown(again.dispose);
     expect(again.read(timeZonesProvider).clocks, ['America/Los_Angeles']);
   });

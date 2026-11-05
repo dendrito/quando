@@ -46,7 +46,10 @@ class QuoteSourcesSheet extends ConsumerWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(l10n.quotesTitle, style: Theme.of(context).textTheme.titleLarge),
+            Text(
+              l10n.quotesTitle,
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
             const SizedBox(height: 6),
             Text(l10n.quotesHint),
             const SizedBox(height: 8),
@@ -57,18 +60,25 @@ class QuoteSourcesSheet extends ConsumerWidget {
                   secondary: Icon(_icon(s)),
                   title: Text(quoteSourceName(s)),
                   value: on.contains(s),
-                  onChanged: (v) => ref.read(quoteSourcesProvider.notifier).toggle(s, v ?? false),
+                  onChanged: (v) => ref
+                      .read(quoteSourcesProvider.notifier)
+                      .toggle(s, v ?? false),
                 ),
             if (!kodesh) ...[
               const SizedBox(height: 12),
-              Text(l10n.quotesAlso, style: Theme.of(context).textTheme.labelSmall),
+              Text(
+                l10n.quotesAlso,
+                style: Theme.of(context).textTheme.labelSmall,
+              ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 secondary: const Icon(Icons.celebration_outlined),
                 title: Text(l10n.quoteCarnaval),
                 subtitle: Text(l10n.quoteCarnavalHint),
                 value: extra.contains(QuoteOccasion.carnaval),
-                onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.carnaval, v),
+                onChanged: (v) => ref
+                    .read(quoteOccasionsProvider.notifier)
+                    .toggle(QuoteOccasion.carnaval, v),
               ),
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
@@ -76,7 +86,9 @@ class QuoteSourcesSheet extends ConsumerWidget {
                 title: Text(l10n.quoteNearMe),
                 subtitle: Text(l10n.quoteNearMeHint),
                 value: extra.contains(QuoteOccasion.nearMe),
-                onChanged: (v) => ref.read(quoteOccasionsProvider.notifier).toggle(QuoteOccasion.nearMe, v),
+                onChanged: (v) => ref
+                    .read(quoteOccasionsProvider.notifier)
+                    .toggle(QuoteOccasion.nearMe, v),
               ),
             ],
           ],

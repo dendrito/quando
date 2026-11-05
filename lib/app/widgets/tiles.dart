@@ -8,7 +8,8 @@ import 'package:quando/l10n/l10n.dart';
 /// "5 times · 2 hours before to 5 minutes before", "at the moment".
 String timesLabel(List<Duration> offsets) {
   if (offsets.isEmpty) return l10n.noTimesSet;
-  String one(Duration d) => d == Duration.zero ? l10n.atTheMoment : describeOffset(d);
+  String one(Duration d) =>
+      d == Duration.zero ? l10n.atTheMoment : describeOffset(d);
   return offsets.length == 1
       ? one(offsets.single)
       : l10n.timesRange(offsets.length, one(offsets.first), one(offsets.last));
@@ -16,7 +17,12 @@ String timesLabel(List<Duration> offsets) {
 
 /// Swipe left to delete.
 class SwipeToDelete extends StatelessWidget {
-  const SwipeToDelete({super.key, required this.id, required this.onDelete, required this.child});
+  const SwipeToDelete({
+    super.key,
+    required this.id,
+    required this.onDelete,
+    required this.child,
+  });
 
   final String id;
   final VoidCallback onDelete;

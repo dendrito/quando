@@ -42,7 +42,12 @@ enum StopTask {
 /// How snoozing works: how long, how many times, and how much shorter each
 /// extra snooze gets ("10, then 8, then 6 minutes").
 class SnoozePlan {
-  const SnoozePlan({this.minutes = 5, this.times = 2, this.shortenBy = 0, this.autoSnoozeMinutes = 0});
+  const SnoozePlan({
+    this.minutes = 5,
+    this.times = 2,
+    this.shortenBy = 0,
+    this.autoSnoozeMinutes = 0,
+  });
 
   final int minutes;
 
@@ -69,7 +74,12 @@ class SnoozePlan {
           if (autoSnoozeMinutes > 0) l10n.autoSnoozeAfter(autoSnoozeMinutes),
         ].join(', ');
 
-  SnoozePlan copyWith({int? minutes, int? times, int? shortenBy, int? autoSnoozeMinutes}) => SnoozePlan(
+  SnoozePlan copyWith({
+    int? minutes,
+    int? times,
+    int? shortenBy,
+    int? autoSnoozeMinutes,
+  }) => SnoozePlan(
     minutes: minutes ?? this.minutes,
     times: times ?? this.times,
     shortenBy: shortenBy ?? this.shortenBy,
@@ -218,14 +228,17 @@ class RingStyle {
   static RingStyle fromJson(Object? j) {
     if (j is! Map) return none;
     Set<StopWay> ways(Object? l) => {
-      for (final n in (l is List ? l : const [])) ?StopWay.values.where((w) => w.name == n).firstOrNull,
+      for (final n in (l is List ? l : const []))
+        ?StopWay.values.where((w) => w.name == n).firstOrNull,
     };
     return RingStyle(
       loudness: Loudness.fromJson(j['loudness']),
       gentleMinutes: (j['gentle'] as num?)?.toInt() ?? 0,
       gentleSound: j['gentleSound'] as String? ?? 'calm.waves',
       snooze: SnoozePlan.fromJson(j['snooze']),
-      snoozeTask: StopTask.values.where((t) => t.name == j['snoozeTask']).firstOrNull,
+      snoozeTask: StopTask.values
+          .where((t) => t.name == j['snoozeTask'])
+          .firstOrNull,
       snoozeBy: ways(j['snoozeBy']),
       stopBy: ways(j['stopBy']),
       task: StopTask.values.where((t) => t.name == j['task']).firstOrNull,
@@ -250,7 +263,8 @@ class RingStyle {
       other.openAfter == openAfter &&
       other.scanCode == scanCode;
 
-  static bool _same(Set<StopWay> a, Set<StopWay> b) => a.length == b.length && a.containsAll(b);
+  static bool _same(Set<StopWay> a, Set<StopWay> b) =>
+      a.length == b.length && a.containsAll(b);
 
   @override
   int get hashCode => Object.hash(

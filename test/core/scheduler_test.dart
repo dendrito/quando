@@ -21,7 +21,13 @@ void main() {
       events: [candles],
       rules: [Presets.countdown],
     );
-    expect(plan.map((a) => a.at.difference(candles.at).inMinutes), [-120, -60, -30, -15, -5]);
+    expect(plan.map((a) => a.at.difference(candles.at).inMinutes), [
+      -120,
+      -60,
+      -30,
+      -15,
+      -5,
+    ]);
     expect(plan.first.body, '2 hours before');
     expect(plan.last.title, 'Candle lighting · Shabbat');
   });
@@ -45,7 +51,11 @@ void main() {
   });
 
   test('a series of every hour for 6 hours gives 6 alarms', () {
-    final plan = scheduler.plan(now: DateTime.utc(2026, 11, 6), events: [candles], rules: [Presets.hourly]);
+    final plan = scheduler.plan(
+      now: DateTime.utc(2026, 11, 6),
+      events: [candles],
+      rules: [Presets.hourly],
+    );
     expect(plan, hasLength(6));
     expect(plan.first.body, '6 hours before');
   });
@@ -62,7 +72,11 @@ void main() {
 
   test('ids are stable when planning again', () {
     List<int> ids() => scheduler
-        .plan(now: DateTime.utc(2026, 11, 6), events: [candles], rules: [Presets.countdown])
+        .plan(
+          now: DateTime.utc(2026, 11, 6),
+          events: [candles],
+          rules: [Presets.countdown],
+        )
         .map((a) => a.id)
         .toList();
     expect(ids(), ids());
@@ -90,14 +104,31 @@ void main() {
       id: 'r',
       name: 'After',
       appliesTo: {EventKind.holyDayStart},
-      series: [OffsetSeries(direction: Direction.after, every: Duration(days: 1), span: Duration(days: 3))],
+      series: [
+        OffsetSeries(
+          direction: Direction.after,
+          every: Duration(days: 1),
+          span: Duration(days: 3),
+        ),
+      ],
     );
-    final plan = scheduler.plan(now: DateTime.utc(2026, 11, 6), events: [candles], rules: [rule]);
-    expect(plan.map((a) => a.body), ['1 day after', '2 days after', '3 days after']);
+    final plan = scheduler.plan(
+      now: DateTime.utc(2026, 11, 6),
+      events: [candles],
+      rules: [rule],
+    );
+    expect(plan.map((a) => a.body), [
+      '1 day after',
+      '2 days after',
+      '3 days after',
+    ]);
   });
 
   test('formatting', () {
-    expect(formatSpan(const Duration(hours: 1, minutes: 30)), '1 hour 30 minutes');
+    expect(
+      formatSpan(const Duration(hours: 1, minutes: 30)),
+      '1 hour 30 minutes',
+    );
     expect(describeOffset(Duration.zero), 'now');
     expect(stableId('abc'), stableId('abc'));
     expect(stableId('abc'), isNot(stableId('abd')));

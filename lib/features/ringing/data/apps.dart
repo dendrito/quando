@@ -18,7 +18,8 @@ class AppLink {
 
   static bool isApp(String? s) => s != null && s.startsWith(prefix);
 
-  static String package(String s) => s.substring(prefix.length).split('|').first;
+  static String package(String s) =>
+      s.substring(prefix.length).split('|').first;
 
   /// The app's name, or the link itself.
   static String label(String s) {
@@ -50,7 +51,10 @@ class Apps {
 
   static Future<bool> launch(String package) async {
     try {
-      return await _channel.invokeMethod<bool>('launch', {'package': package}) ?? false;
+      return await _channel.invokeMethod<bool>('launch', {
+            'package': package,
+          }) ??
+          false;
     } catch (_) {
       return false;
     }

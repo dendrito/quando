@@ -34,8 +34,16 @@ class JewishTimes {
     final out = <AnchorEvent>[];
     // Pad by a day each side so events near the edges are not missed in
     // places far from UTC.
-    var day = DateTime.utc(from.year, from.month, from.day).subtract(const Duration(days: 1));
-    final last = DateTime.utc(to.year, to.month, to.day).add(const Duration(days: 1));
+    var day = DateTime.utc(
+      from.year,
+      from.month,
+      from.day,
+    ).subtract(const Duration(days: 1));
+    final last = DateTime.utc(
+      to.year,
+      to.month,
+      to.day,
+    ).add(const Duration(days: 1));
 
     for (; !day.isAfter(last); day = day.add(const Duration(days: 1))) {
       final today = _jewishDay(day);
@@ -56,7 +64,9 @@ class JewishTimes {
             kind: EventKind.holyDayStart,
             title: '${l10n.candleLighting} · ${dayName(tomorrow)}',
             alias: '${l10nEn.candleLighting} · ${dayName(tomorrow, l10nEn)}',
-            at: sunset.toUtc().subtract(Duration(minutes: place.candleLightingMinutes)),
+            at: sunset.toUtc().subtract(
+              Duration(minutes: place.candleLightingMinutes),
+            ),
             source: 'jewish',
           ),
         );
@@ -96,7 +106,10 @@ class JewishTimes {
   /// Shabbat and festival mode windows: first candle lighting to havdalah.
   List<HolyPeriod> periods(DateTime from, DateTime to) {
     // Look a few days wider so a period that started before [from] is whole.
-    final evs = events(from.subtract(const Duration(days: 4)), to.add(const Duration(days: 4)));
+    final evs = events(
+      from.subtract(const Duration(days: 4)),
+      to.add(const Duration(days: 4)),
+    );
     final out = <HolyPeriod>[];
     DateTime? start;
     final names = <String>[];
@@ -118,30 +131,42 @@ class JewishTimes {
           break;
       }
     }
-    return out.where((p) => p.end.isAfter(from) && p.start.isBefore(to)).toList();
+    return out
+        .where((p) => p.end.isAfter(from) && p.start.isBefore(to))
+        .toList();
   }
 
   /// "Candle lighting · Shabbat · Sukkot" → "Shabbat · Sukkot".
-  static String _dayPart(String title) => title.substring(title.indexOf(' · ') + 3);
+  static String _dayPart(String title) =>
+      title.substring(title.indexOf(' · ') + 3);
 
   String dayName(JewishCalendar day, [AppLocalizations? t]) {
     t ??= l10n;
     final isShabbat = day.getDayOfWeek() == 7;
-    final festival = day.isYomTovAssurBemelacha() ? (_festivalName(day.getYomTovIndex(), t) ?? t.yomTov) : '';
+    final festival = day.isYomTovAssurBemelacha()
+        ? (_festivalName(day.getYomTovIndex(), t) ?? t.yomTov)
+        : '';
     if (isShabbat && festival.isNotEmpty) return '${t.shabbat} · $festival';
     if (festival.isNotEmpty) return festival;
     return t.shabbat;
   }
 
   JewishCalendar _jewishDay(DateTime utcDay) {
-    final jc = JewishCalendar.fromDateTime(DateTime(utcDay.year, utcDay.month, utcDay.day));
+    final jc = JewishCalendar.fromDateTime(
+      DateTime(utcDay.year, utcDay.month, utcDay.day),
+    );
     jc.inIsrael = place.inIsrael;
     return jc;
   }
 
   ComplexZmanimCalendar _zmanim(DateTime utcDay) {
     final noon = DateTime.utc(utcDay.year, utcDay.month, utcDay.day, 12);
-    final location = GeoLocation.setLocation(place.name, place.latitude, place.longitude, noon);
+    final location = GeoLocation.setLocation(
+      place.name,
+      place.latitude,
+      place.longitude,
+      noon,
+    );
     return ComplexZmanimCalendar.intGeoLocation(location);
   }
 

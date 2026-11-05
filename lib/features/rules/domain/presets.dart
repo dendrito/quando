@@ -24,14 +24,26 @@ class Presets {
     id: 'preset.hourly',
     name: l10n.presetHourly,
     appliesTo: _candles,
-    series: [OffsetSeries(direction: Direction.before, every: Duration(hours: 1), span: Duration(hours: 6))],
+    series: [
+      OffsetSeries(
+        direction: Direction.before,
+        every: Duration(hours: 1),
+        span: Duration(hours: 6),
+      ),
+    ],
   );
 
   static AlarmRule get dailyWeek => AlarmRule(
     id: 'preset.dailyWeek',
     name: l10n.presetDailyWeek,
     appliesTo: _candles,
-    series: [OffsetSeries(direction: Direction.before, every: Duration(days: 1), span: Duration(days: 7))],
+    series: [
+      OffsetSeries(
+        direction: Direction.before,
+        every: Duration(days: 1),
+        span: Duration(days: 7),
+      ),
+    ],
     enabled: false,
   );
 

@@ -17,7 +17,8 @@ import '../domain/lock.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
-bool get _onAndroid => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+bool get _onAndroid =>
+    !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
 
 /// Covers the whole app while a lock is on: a calm clock, what the lock is
 /// for, when it ends and the next alarm. Nothing can be changed. Ringing
@@ -48,9 +49,12 @@ class _LockGateState extends ConsumerState<LockGate> {
     super.initState();
     _tick = Timer.periodic(const Duration(seconds: 15), (_) => _check());
     if (!kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {
+        (defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS)) {
       _ringingSub = Alarm.ringing.listen((set) {
-        final ringing = set.alarms.any((a) => !RingPayload.decode(a.payload).isLock);
+        final ringing = set.alarms.any(
+          (a) => !RingPayload.decode(a.payload).isLock,
+        );
         if (ringing != _ringing && mounted) setState(() => _ringing = ringing);
       });
     }
@@ -60,7 +64,10 @@ class _LockGateState extends ConsumerState<LockGate> {
   void _check() {
     if (!mounted) return;
     final now = _now();
-    final active = ref.read(lockPeriodsProvider).where((p) => p.contains(now)).firstOrNull;
+    final active = ref
+        .read(lockPeriodsProvider)
+        .where((p) => p.contains(now))
+        .firstOrNull;
     if (active?.id != _active?.id) setState(() => _active = active);
     _syncPin(active != null && ref.read(lockSettingsProvider).pin);
   }
@@ -108,7 +115,11 @@ class _LockGateState extends ConsumerState<LockGate> {
 }
 
 class _LockView extends ConsumerStatefulWidget {
-  const _LockView({required this.period, required this.now, required this.onUnlock});
+  const _LockView({
+    required this.period,
+    required this.now,
+    required this.onUnlock,
+  });
 
   final LockPeriod period;
   final DateTime Function() now;
@@ -118,21 +129,26 @@ class _LockView extends ConsumerStatefulWidget {
   ConsumerState<_LockView> createState() => _LockViewState();
 }
 
-class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderStateMixin {
+class _LockViewState extends ConsumerState<_LockView>
+    with SingleTickerProviderStateMixin {
   static const holdFor = Duration(seconds: 3);
-  late final AnimationController _hold = AnimationController(vsync: this, duration: holdFor)
-    ..addStatusListener((s) {
-      if (s == AnimationStatus.completed) {
-        HapticFeedback.heavyImpact();
-        widget.onUnlock();
-      }
-    });
+  late final AnimationController _hold =
+      AnimationController(vsync: this, duration: holdFor)
+        ..addStatusListener((s) {
+          if (s == AnimationStatus.completed) {
+            HapticFeedback.heavyImpact();
+            widget.onUnlock();
+          }
+        });
   Timer? _clock;
 
   @override
   void initState() {
     super.initState();
-    _clock = Timer.periodic(const Duration(seconds: 20), (_) => setState(() {}));
+    _clock = Timer.periodic(
+      const Duration(seconds: 20),
+      (_) => setState(() {}),
+    );
   }
 
   @override
@@ -146,8 +162,12 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
   Widget build(BuildContext context) {
     final zone = ref.watch(homeZoneProvider);
     final now = widget.now();
-    final next = ref.watch(planProvider).where((a) => a.at.isAfter(now) && a.ruleId != 'lock').firstOrNull;
-    String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} · ${hhmm(inZone(utc, zone))}';
+    final next = ref
+        .watch(planProvider)
+        .where((a) => a.at.isAfter(now) && a.ruleId != 'lock')
+        .firstOrNull;
+    String at(DateTime utc) =>
+        '${dayLabel(inZone(utc, zone))} · ${hhmm(inZone(utc, zone))}';
     final text = Theme.of(context).textTheme;
 
     final holy = widget.period.id.startsWith('holy.');
@@ -178,11 +198,21 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                     ],
                   )
                 else
-                  const Center(child: Icon(Icons.lock_outline, size: 64, color: QuandoColors.amber)),
+                  const Center(
+                    child: Icon(
+                      Icons.lock_outline,
+                      size: 64,
+                      color: QuandoColors.amber,
+                    ),
+                  ),
                 const SizedBox(height: 20),
                 FittedBox(
                   fit: BoxFit.scaleDown,
-                  child: Text(greeting, textAlign: TextAlign.center, style: text.displaySmall),
+                  child: Text(
+                    greeting,
+                    textAlign: TextAlign.center,
+                    style: text.displaySmall,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Text(
@@ -191,11 +221,18 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                   style: text.bodyLarge?.copyWith(color: QuandoColors.muted),
                 ),
                 const Spacer(),
-                Text(l10n.unlocksHeading, textAlign: TextAlign.center, style: text.labelSmall),
+                Text(
+                  l10n.unlocksHeading,
+                  textAlign: TextAlign.center,
+                  style: text.labelSmall,
+                ),
                 Text(
                   hhmm(endLocal),
                   textAlign: TextAlign.center,
-                  style: text.displayLarge?.copyWith(color: QuandoColors.amber, fontSize: 80),
+                  style: text.displayLarge?.copyWith(
+                    color: QuandoColors.amber,
+                    fontSize: 80,
+                  ),
                 ),
                 Text(
                   '${dayLabel(endLocal)} · ${countdown(widget.period.end.difference(now))}',
@@ -230,9 +267,15 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                       height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: QuandoColors.line, width: 1.5),
+                        border: Border.all(
+                          color: QuandoColors.line,
+                          width: 1.5,
+                        ),
                         gradient: LinearGradient(
-                          colors: [QuandoColors.amber.withValues(alpha: 0.4), Colors.transparent],
+                          colors: [
+                            QuandoColors.amber.withValues(alpha: 0.4),
+                            Colors.transparent,
+                          ],
                           stops: [_hold.value, _hold.value],
                         ),
                       ),
@@ -264,10 +307,16 @@ class _Row extends StatelessWidget {
       children: [
         SizedBox(
           width: 96,
-          child: Text(label, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+          child: Text(
+            label,
+            style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+          ),
         ),
         Expanded(
-          child: Text(value, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
+          child: Text(
+            value,
+            style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
+          ),
         ),
       ],
     );

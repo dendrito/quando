@@ -54,8 +54,12 @@ Locale localeFromTag(String tag) {
 Locale resolveLocale(Iterable<Locale> wanted) {
   for (final w in wanted) {
     if (w.languageCode == 'zh') {
-      final hant = w.scriptCode == 'Hant' || const {'TW', 'HK', 'MO'}.contains(w.countryCode);
-      return hant ? const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant') : const Locale('zh');
+      final hant =
+          w.scriptCode == 'Hant' ||
+          const {'TW', 'HK', 'MO'}.contains(w.countryCode);
+      return hant
+          ? const Locale.fromSubtags(languageCode: 'zh', scriptCode: 'Hant')
+          : const Locale('zh');
     }
     // Old Hebrew and Indonesian codes some phones still send.
     final code = switch (w.languageCode) {
@@ -63,7 +67,8 @@ Locale resolveLocale(Iterable<Locale> wanted) {
       'in' => 'id',
       final c => c,
     };
-    if (AppLocalizations.supportedLocales.any((s) => s.languageCode == code)) return Locale(code);
+    if (AppLocalizations.supportedLocales.any((s) => s.languageCode == code))
+      return Locale(code);
   }
   return const Locale('en');
 }

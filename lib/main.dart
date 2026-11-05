@@ -20,7 +20,9 @@ Future<void> main() async {
   // including alarms set before any screen is built.
   final language = prefs.getString('language');
   useLocale(
-    language == null ? WidgetsBinding.instance.platformDispatcher.locales : [localeFromTag(language)],
+    language == null
+        ? WidgetsBinding.instance.platformDispatcher.locales
+        : [localeFromTag(language)],
   );
   await initializeDateFormatting();
   SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
@@ -35,7 +37,10 @@ Future<void> main() async {
   }
   runApp(
     ProviderScope(
-      overrides: [prefsProvider.overrideWithValue(prefs), deviceZoneProvider.overrideWithValue(deviceZone)],
+      overrides: [
+        prefsProvider.overrideWithValue(prefs),
+        deviceZoneProvider.overrideWithValue(deviceZone),
+      ],
       child: const QuandoApp(),
     ),
   );

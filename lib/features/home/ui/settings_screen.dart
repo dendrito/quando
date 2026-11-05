@@ -33,19 +33,26 @@ class SettingsScreen extends ConsumerWidget {
     final havdalah = ref.watch(havdalahProvider);
     final o = ref.watch(alarmOptionsProvider);
     final zones = ref.watch(timeZonesProvider);
-    void setO(AlarmOptions Function(AlarmOptions) f) => ref.read(alarmOptionsProvider.notifier).update(f);
+    void setO(AlarmOptions Function(AlarmOptions) f) =>
+        ref.read(alarmOptionsProvider.notifier).update(f);
     final text = Theme.of(context).textTheme;
     final shabbatOn = ref.watch(shabbatInUseProvider);
 
     return Scaffold(
-      appBar: AppBar(title: Text(l10n.settings), backgroundColor: Colors.transparent),
+      appBar: AppBar(
+        title: Text(l10n.settings),
+        backgroundColor: Colors.transparent,
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
           const _AccountCard(),
           ListTile(
             contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.verified_outlined, color: QuandoColors.amber),
+            leading: const Icon(
+              Icons.verified_outlined,
+              color: QuandoColors.amber,
+            ),
             title: Text(l10n.readyToRing),
             subtitle: Text(l10n.readyToRingHint),
             trailing: const Icon(Icons.chevron_right),
@@ -80,7 +87,8 @@ class SettingsScreen extends ConsumerWidget {
                   ? l10n.quotesOff
                   : [
                       for (final s in QuoteSource.values)
-                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
+                        if (ref.watch(quoteSourcesProvider).contains(s))
+                          quoteSourceName(s),
                     ].join(', '),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -96,7 +104,10 @@ class SettingsScreen extends ConsumerWidget {
           if (!kodesh)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+              leading: const Icon(
+                Icons.local_fire_department_outlined,
+                color: QuandoColors.amber,
+              ),
               title: Text(l10n.shabbatAndFestivals),
               subtitle: Text(shabbatOn ? l10n.on : l10n.off),
               trailing: const Icon(Icons.chevron_right),
@@ -107,9 +118,13 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.public, color: QuandoColors.amber),
-            title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
+            title: Text(
+              zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!),
+            ),
             subtitle: Text(
-              zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+              zones.fixed == null
+                  ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider)))
+                  : l10n.zoneFixed,
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _pickHomeZone(context, ref),
@@ -120,9 +135,13 @@ class SettingsScreen extends ConsumerWidget {
             DropdownButton<String>(
               isExpanded: true,
               value: place.name,
-              items: [for (final p in Places.all) DropdownMenuItem(value: p.name, child: Text(p.name))],
-              onChanged: (name) =>
-                  ref.read(placeProvider.notifier).set(Places.all.firstWhere((p) => p.name == name)),
+              items: [
+                for (final p in Places.all)
+                  DropdownMenuItem(value: p.name, child: Text(p.name)),
+              ],
+              onChanged: (name) => ref
+                  .read(placeProvider.notifier)
+                  .set(Places.all.firstWhere((p) => p.name == name)),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
@@ -131,14 +150,18 @@ class SettingsScreen extends ConsumerWidget {
               onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
             ),
             const SizedBox(height: 16),
-            Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
+            Text(
+              l10n.candleMinutesHeading(place.candleLightingMinutes),
+              style: text.labelSmall,
+            ),
             Slider(
               min: 10,
               max: 60,
               divisions: 50,
               value: place.candleLightingMinutes.toDouble(),
               label: '${place.candleLightingMinutes}',
-              onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
+              onChanged: (v) =>
+                  ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
             ),
             const SizedBox(height: 16),
             Text(l10n.endOfShabbatHeading, style: text.labelSmall),
@@ -166,8 +189,11 @@ class SettingsScreen extends ConsumerWidget {
           SoundPickerTile(
             value: o.soundId,
             allowDefault: false,
-            onChanged: (id) =>
-                setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
+            onChanged: (id) => setO(
+              (x) => id == null
+                  ? x.copyWith(phoneSound: true)
+                  : x.copyWith(soundId: id),
+            ),
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -187,7 +213,9 @@ class SettingsScreen extends ConsumerWidget {
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.sameFades),
-            subtitle: Text(o.fadesForAll ? l10n.sameFadesOn : l10n.sameFadesOff),
+            subtitle: Text(
+              o.fadesForAll ? l10n.sameFadesOn : l10n.sameFadesOff,
+            ),
             value: o.fadesForAll,
             onChanged: (v) => setO((x) => x.copyWith(fadesForAll: v)),
           ),
@@ -205,7 +233,11 @@ class SettingsScreen extends ConsumerWidget {
             value: o.spoken,
             onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
           ),
-          Text(o.maxSnoozes == 0 ? l10n.noSnooze : l10n.snoozeUpTo(o.maxSnoozes, o.snoozeMinutes)),
+          Text(
+            o.maxSnoozes == 0
+                ? l10n.noSnooze
+                : l10n.snoozeUpTo(o.maxSnoozes, o.snoozeMinutes),
+          ),
           Slider(
             min: 0,
             max: 5,
@@ -230,7 +262,10 @@ class SettingsScreen extends ConsumerWidget {
           ),
           if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
           const SizedBox(height: 16),
-          OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
+          OutlinedButton(
+            onPressed: () => _testAlarm(context, ref, o),
+            child: Text(l10n.testAlarmIn1),
+          ),
           const SizedBox(height: 24),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
           const _VersionLine(),
@@ -302,11 +337,16 @@ class SettingsScreen extends ConsumerWidget {
     }
   }
 
-  Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {
+  Future<void> _testAlarm(
+    BuildContext context,
+    WidgetRef ref,
+    AlarmOptions o,
+  ) async {
     final messenger = ScaffoldMessenger.of(context);
     final supported =
         !kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
+        (defaultTargetPlatform == TargetPlatform.android ||
+            defaultTargetPlatform == TargetPlatform.iOS);
     if (!supported) {
       messenger.showSnackBar(SnackBar(content: Text(l10n.testOnlyOnPhone)));
       return;
@@ -378,24 +418,38 @@ class _AccountCard extends ConsumerWidget {
                   CircleAvatar(
                     radius: 24,
                     backgroundColor: QuandoColors.raised,
-                    foregroundImage: on && sync.photo != null ? NetworkImage(sync.photo!) : null,
+                    foregroundImage: on && sync.photo != null
+                        ? NetworkImage(sync.photo!)
+                        : null,
                     child: on && who.isNotEmpty
-                        ? Text(who.characters.first.toUpperCase(), style: text.titleLarge)
-                        : const Icon(Icons.person_outline, color: QuandoColors.amber),
+                        ? Text(
+                            who.characters.first.toUpperCase(),
+                            style: text.titleLarge,
+                          )
+                        : const Icon(
+                            Icons.person_outline,
+                            color: QuandoColors.amber,
+                          ),
                   ),
                   const SizedBox(width: 14),
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(on && who.isNotEmpty ? who : l10n.syncTitle, style: text.titleMedium),
+                        Text(
+                          on && who.isNotEmpty ? who : l10n.syncTitle,
+                          style: text.titleMedium,
+                        ),
                         const SizedBox(height: 2),
                         Text(status, style: text.bodySmall),
                       ],
                     ),
                   ),
                   if (working)
-                    const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                    const SizedBox.square(
+                      dimension: 20,
+                      child: CircularProgressIndicator(strokeWidth: 2),
+                    ),
                 ],
               ),
               if (!working) ...[
@@ -411,7 +465,9 @@ class _AccountCard extends ConsumerWidget {
                     onPressed: () async {
                       final ok = await notifier.confirmEmail();
                       if (!ok && context.mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailNotYet)));
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text(l10n.emailNotYet)),
+                        );
                       }
                     },
                     child: Text(l10n.emailConfirmed),
@@ -422,14 +478,18 @@ class _AccountCard extends ConsumerWidget {
                         onPressed: () async {
                           await notifier.resendConfirmation();
                           if (context.mounted) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              SnackBar(content: Text(l10n.emailSentAgain)),
+                            );
                           }
                         },
                         child: Text(l10n.emailSendAgain),
                       ),
                       const Spacer(),
-                      TextButton(onPressed: notifier.signOut, child: Text(l10n.cancel)),
+                      TextButton(
+                        onPressed: notifier.signOut,
+                        child: Text(l10n.cancel),
+                      ),
                     ],
                   ),
                 ] else ...[
@@ -440,7 +500,10 @@ class _AccountCard extends ConsumerWidget {
                   ),
                   const SizedBox(height: 8),
                   OutlinedButton.icon(
-                    onPressed: () => showDialog<void>(context: context, builder: (_) => const _EmailDialog()),
+                    onPressed: () => showDialog<void>(
+                      context: context,
+                      builder: (_) => const _EmailDialog(),
+                    ),
                     icon: const Icon(Icons.mail_outline, size: 18),
                     label: Text(l10n.signInWithEmail),
                   ),
@@ -507,7 +570,9 @@ class _EmailDialogState extends ConsumerState<_EmailDialog> {
       _error = null;
       _note = null;
     });
-    final error = await ref.read(syncProvider.notifier).resetPassword(_email.text);
+    final error = await ref
+        .read(syncProvider.notifier)
+        .resetPassword(_email.text);
     if (!mounted) return;
     setState(() {
       _busy = false;
@@ -537,15 +602,23 @@ class _EmailDialogState extends ConsumerState<_EmailDialog> {
             TextField(
               controller: _password,
               obscureText: true,
-              autofillHints: [_create ? AutofillHints.newPassword : AutofillHints.password],
+              autofillHints: [
+                _create ? AutofillHints.newPassword : AutofillHints.password,
+              ],
               decoration: InputDecoration(labelText: l10n.password),
               onSubmitted: (_) => _go(),
             ),
             if (_error != null) ...[
               const SizedBox(height: 10),
-              Text(_error!, style: text.bodySmall?.copyWith(color: QuandoColors.coral)),
+              Text(
+                _error!,
+                style: text.bodySmall?.copyWith(color: QuandoColors.coral),
+              ),
             ],
-            if (_note != null) ...[const SizedBox(height: 10), Text(_note!, style: text.bodySmall)],
+            if (_note != null) ...[
+              const SizedBox(height: 10),
+              Text(_note!, style: text.bodySmall),
+            ],
             const SizedBox(height: 8),
             Row(
               children: [
@@ -560,18 +633,28 @@ class _EmailDialogState extends ConsumerState<_EmailDialog> {
                   child: Text(_create ? l10n.haveAccount : l10n.createAccount),
                 ),
                 const Spacer(),
-                if (!_create) TextButton(onPressed: _busy ? null : _reset, child: Text(l10n.forgotPassword)),
+                if (!_create)
+                  TextButton(
+                    onPressed: _busy ? null : _reset,
+                    child: Text(l10n.forgotPassword),
+                  ),
               ],
             ),
           ],
         ),
       ),
       actions: [
-        TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+        TextButton(
+          onPressed: () => Navigator.pop(context),
+          child: Text(l10n.cancel),
+        ),
         FilledButton(
           onPressed: _busy ? null : _go,
           child: _busy
-              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              ? const SizedBox.square(
+                  dimension: 18,
+                  child: CircularProgressIndicator(strokeWidth: 2),
+                )
               : Text(_create ? l10n.createAccount : l10n.signIn),
         ),
       ],
@@ -585,6 +668,9 @@ class _VersionLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 16),
-    child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+    child: Text(
+      '$appTitle $appVersion',
+      style: Theme.of(context).textTheme.bodySmall,
+    ),
   );
 }

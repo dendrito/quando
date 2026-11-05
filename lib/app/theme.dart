@@ -19,25 +19,33 @@ class QuandoColors {
 const quandoFont = 'Bricolage';
 
 ThemeData buildTheme() {
-  final scheme = ColorScheme.fromSeed(seedColor: QuandoColors.coral, brightness: Brightness.dark).copyWith(
-    primary: QuandoColors.coral,
-    onPrimary: QuandoColors.ground,
-    secondary: QuandoColors.amber,
-    onSecondary: QuandoColors.ground,
-    surface: QuandoColors.ground,
-    onSurface: QuandoColors.text,
-    onSurfaceVariant: QuandoColors.muted,
-    surfaceContainerLowest: QuandoColors.night,
-    surfaceContainerLow: QuandoColors.surface,
-    surfaceContainer: QuandoColors.surface,
-    surfaceContainerHigh: QuandoColors.raised,
-    surfaceContainerHighest: QuandoColors.raised,
-    outline: QuandoColors.line,
-    outlineVariant: QuandoColors.line,
-  );
+  final scheme =
+      ColorScheme.fromSeed(
+        seedColor: QuandoColors.coral,
+        brightness: Brightness.dark,
+      ).copyWith(
+        primary: QuandoColors.coral,
+        onPrimary: QuandoColors.ground,
+        secondary: QuandoColors.amber,
+        onSecondary: QuandoColors.ground,
+        surface: QuandoColors.ground,
+        onSurface: QuandoColors.text,
+        onSurfaceVariant: QuandoColors.muted,
+        surfaceContainerLowest: QuandoColors.night,
+        surfaceContainerLow: QuandoColors.surface,
+        surfaceContainer: QuandoColors.surface,
+        surfaceContainerHigh: QuandoColors.raised,
+        surfaceContainerHighest: QuandoColors.raised,
+        outline: QuandoColors.line,
+        outlineVariant: QuandoColors.line,
+      );
 
   const pill = StadiumBorder();
-  const bold = TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 18);
+  const bold = TextStyle(
+    fontFamily: quandoFont,
+    fontWeight: FontWeight.w800,
+    fontSize: 18,
+  );
 
   return ThemeData(
     useMaterial3: true,
@@ -45,12 +53,29 @@ ThemeData buildTheme() {
     fontFamily: quandoFont,
     scaffoldBackgroundColor: QuandoColors.ground,
     textTheme: const TextTheme(
-      displayLarge: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -4, height: 0.95),
-      displayMedium: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -2.5, height: 0.95),
+      displayLarge: TextStyle(
+        fontWeight: FontWeight.w800,
+        letterSpacing: -4,
+        height: 0.95,
+      ),
+      displayMedium: TextStyle(
+        fontWeight: FontWeight.w800,
+        letterSpacing: -2.5,
+        height: 0.95,
+      ),
       displaySmall: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -1.5),
-      headlineLarge: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -1.5),
-      headlineMedium: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -1.2),
-      headlineSmall: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.5),
+      headlineLarge: TextStyle(
+        fontWeight: FontWeight.w800,
+        letterSpacing: -1.5,
+      ),
+      headlineMedium: TextStyle(
+        fontWeight: FontWeight.w800,
+        letterSpacing: -1.2,
+      ),
+      headlineSmall: TextStyle(
+        fontWeight: FontWeight.w800,
+        letterSpacing: -0.5,
+      ),
       titleLarge: TextStyle(fontWeight: FontWeight.w800, letterSpacing: -0.3),
       titleMedium: TextStyle(fontWeight: FontWeight.w600),
       titleSmall: TextStyle(fontWeight: FontWeight.w600),
@@ -69,7 +94,9 @@ ThemeData buildTheme() {
       color: QuandoColors.surface,
       elevation: 0,
       margin: EdgeInsets.zero,
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(28))),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.all(Radius.circular(28)),
+      ),
     ),
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
@@ -103,21 +130,32 @@ ThemeData buildTheme() {
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
         foregroundColor: QuandoColors.amber,
-        textStyle: const TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w600),
+        textStyle: const TextStyle(
+          fontFamily: quandoFont,
+          fontWeight: FontWeight.w600,
+        ),
       ),
     ),
     floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: QuandoColors.coral,
       foregroundColor: QuandoColors.ground,
       shape: pill,
-      extendedTextStyle: TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 19),
+      extendedTextStyle: TextStyle(
+        fontFamily: quandoFont,
+        fontWeight: FontWeight.w800,
+        fontSize: 19,
+      ),
     ),
     switchTheme: SwitchThemeData(
       thumbColor: WidgetStateProperty.resolveWith(
-        (s) => s.contains(WidgetState.selected) ? QuandoColors.text : QuandoColors.faint,
+        (s) => s.contains(WidgetState.selected)
+            ? QuandoColors.text
+            : QuandoColors.faint,
       ),
       trackColor: WidgetStateProperty.resolveWith(
-        (s) => s.contains(WidgetState.selected) ? QuandoColors.coral : QuandoColors.raised,
+        (s) => s.contains(WidgetState.selected)
+            ? QuandoColors.coral
+            : QuandoColors.raised,
       ),
       trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
     ),
@@ -125,7 +163,11 @@ ThemeData buildTheme() {
       backgroundColor: Colors.transparent,
       side: BorderSide(color: QuandoColors.line, width: 1.5),
       shape: StadiumBorder(),
-      labelStyle: TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w600, color: QuandoColors.text),
+      labelStyle: TextStyle(
+        fontFamily: quandoFont,
+        fontWeight: FontWeight.w600,
+        color: QuandoColors.text,
+      ),
     ),
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
@@ -145,7 +187,9 @@ ThemeData buildTheme() {
       behavior: SnackBarBehavior.floating,
       shape: StadiumBorder(),
     ),
-    bottomSheetTheme: const BottomSheetThemeData(backgroundColor: QuandoColors.surface),
+    bottomSheetTheme: const BottomSheetThemeData(
+      backgroundColor: QuandoColors.surface,
+    ),
     dialogTheme: const DialogThemeData(backgroundColor: QuandoColors.surface),
     dividerColor: QuandoColors.line,
   );

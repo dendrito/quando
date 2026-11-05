@@ -35,7 +35,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get newAroundEvent => 'סביב אירוע';
 
   @override
-  String get newAroundEventHint => 'חיפוש ביומנים, בזמני שבת ובזמני השמש, וצלצול לפני, בזמן או אחרי';
+  String get newAroundEventHint =>
+      'חיפוש ביומנים, בזמני שבת ובזמני השמש, וצלצול לפני, בזמן או אחרי';
 
   @override
   String get editThisAlarm => 'עריכת ההתראה';
@@ -154,7 +155,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get noAlarmsThisWeek => 'אין התראות ב־7 הימים הקרובים.';
 
   @override
-  String get alarmsSetThemselves => 'ההתראות נקבעות מעצמן בטלפון הזה בכל פעם שמשנים משהו.';
+  String get alarmsSetThemselves =>
+      'ההתראות נקבעות מעצמן בטלפון הזה בכל פעם שמשנים משהו.';
 
   @override
   String cityTime(String city) {
@@ -219,13 +221,23 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String spanMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n דקות',
+      one: 'דקה אחת',
+    );
     return '$_temp0';
   }
 
   @override
   String spanSeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n שניות',
+      one: 'שנייה אחת',
+    );
     return '$_temp0';
   }
 
@@ -244,7 +256,12 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String alarmCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n התראות', one: 'התראה אחת');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n התראות',
+      one: 'התראה אחת',
+    );
     return '$_temp0';
   }
 
@@ -306,7 +323,8 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'הוסיפו ערים כדי לראות כאן את השעה בהן. החליקו שמאלה כדי להסיר.';
+  String get worldClocksHint =>
+      'הוסיפו ערים כדי לראות כאן את השעה בהן. החליקו שמאלה כדי להסיר.';
 
   @override
   String get groupNameHint => 'עבודה, ילדים, חדר כושר…';
@@ -411,10 +429,12 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get presetsHint => 'הקישו על אחת כדי לשנות את הזמנים. החליקו כדי למחוק.';
+  String get presetsHint =>
+      'הקישו על אחת כדי לשנות את הזמנים. החליקו כדי למחוק.';
 
   @override
-  String get lockSentence => 'נועלים את הטלפון רק לשעון ולהתראות, לשבת או ללילה של ריכוז.';
+  String get lockSentence =>
+      'נועלים את הטלפון רק לשעון ולהתראות, לשבת או ללילה של ריכוז.';
 
   @override
   String get lockExplain =>
@@ -448,19 +468,22 @@ class AppLocalizationsHe extends AppLocalizations {
   String get openWhenLockStarts => 'פתיחת Quando? כשנעילה מתחילה';
 
   @override
-  String get openWhenLockStartsHint => 'צליל עדין של שנייה מביא את Quando? לקדמת המסך כדי לנעול';
+  String get openWhenLockStartsHint =>
+      'צליל עדין של שנייה מביא את Quando? לקדמת המסך כדי לנעול';
 
   @override
   String get pinToScreen => 'הצמדת Quando? למסך';
 
   @override
-  String get pinToScreenHint => 'אי אפשר לפתוח אפליקציות אחרות בזמן הנעילה. Android מבקש אישור בפעם הראשונה.';
+  String get pinToScreenHint =>
+      'אי אפשר לפתוח אפליקציות אחרות בזמן הנעילה. Android מבקש אישור בפעם הראשונה.';
 
   @override
   String get noLocksComingUp => 'אין נעילות קרובות.';
 
   @override
-  String get leaveLockEarly => 'כדי לצאת מנעילה מוקדם, לחצו לחיצה ארוכה על „החזיקו לשחרור” במשך 3 שניות.';
+  String get leaveLockEarly =>
+      'כדי לצאת מנעילה מוקדם, לחצו לחיצה ארוכה על „החזיקו לשחרור” במשך 3 שניות.';
 
   @override
   String get locked => 'נעול';
@@ -536,10 +559,12 @@ class AppLocalizationsHe extends AppLocalizations {
   String get off => 'כבוי';
 
   @override
-  String get gentleSentence => 'צליל רגוע מתחיל בשקט לפני ההתראה, כך שלעולם לא תתעוררו בבהלה.';
+  String get gentleSentence =>
+      'צליל רגוע מתחיל בשקט לפני ההתראה, כך שלעולם לא תתעוררו בבהלה.';
 
   @override
-  String get gentleExplain => 'הוא מתגבר לאט, מוציא אתכם משינה קלה, ונעצר ממש לפני שההתראה מצלצלת.';
+  String get gentleExplain =>
+      'הוא מתגבר לאט, מוציא אתכם משינה קלה, ונעצר ממש לפני שההתראה מצלצלת.';
 
   @override
   String get startsBeforeHeading => 'מתחיל לפני ההתראה';
@@ -715,7 +740,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get readyNotifications => 'הצגת התראות';
 
   @override
-  String get readyNotificationsWhy => 'מאפשר למסך הצלצול ולכפתור העצירה להופיע.';
+  String get readyNotificationsWhy =>
+      'מאפשר למסך הצלצול ולכפתור העצירה להופיע.';
 
   @override
   String get readyFullScreen => 'צלצול מעל מסך הנעילה';
@@ -787,7 +813,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get testIn20 => 'בדיקה: צלצול בעוד 20 שניות';
 
   @override
-  String get testIn20Hint => 'נעלו את הטלפון והניחו אותו. אם ההתראה מצלצלת ומוצגת במסך מלא, הכול מוכן.';
+  String get testIn20Hint =>
+      'נעלו את הטלפון והניחו אותו. אם ההתראה מצלצלת ומוצגת במסך מלא, הכול מוכן.';
 
   @override
   String get readyToRingHint => 'בדיקה שהטלפון מאפשר לכל התראה לצלצל בזמן';
@@ -842,16 +869,19 @@ class AppLocalizationsHe extends AppLocalizations {
   String get sameFades => 'אותם מעברים לכל ההתראות';
 
   @override
-  String get sameFadesOn => 'גובר על המעברים של כל התראה. כל אחת שומרת על עוצמת הקול שלה.';
+  String get sameFadesOn =>
+      'גובר על המעברים של כל התראה. כל אחת שומרת על עוצמת הקול שלה.';
 
   @override
-  String get sameFadesOff => 'כבוי: כל התראה משתמשת במעברים שנקבעו תחת עוצמת הקול שלה.';
+  String get sameFadesOff =>
+      'כבוי: כל התראה משתמשת במעברים שנקבעו תחת עוצמת הקול שלה.';
 
   @override
   String get sayItOutLoud => 'הקראה בקול';
 
   @override
-  String get sayItOutLoudHint => 'מקריא למה ההתראה, למשל „הדלקת נרות, 15 דקות לפני”';
+  String get sayItOutLoudHint =>
+      'מקריא למה ההתראה, למשל „הדלקת נרות, 15 דקות לפני”';
 
   @override
   String get noSnooze => 'ללא נודניק';
@@ -865,7 +895,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get wakeUpCheck => 'בדיקת השכמה';
 
   @override
-  String get wakeUpCheckHint => 'אחרי העצירה, מצלצל שוב בעוד 3 דקות אם לא מקישים „קמתי”';
+  String get wakeUpCheckHint =>
+      'אחרי העצירה, מצלצל שוב בעוד 3 דקות אם לא מקישים „קמתי”';
 
   @override
   String get solveSum => 'לפתור תרגיל כדי לעצור';
@@ -881,7 +912,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get testAlarmIn1 => 'צלצול ניסיון בעוד דקה';
 
   @override
-  String get timesDisclaimer => 'הזמנים מחושבים בטלפון. במקרי גבול, התייעצו עם הרב או עם לוח הקהילה.';
+  String get timesDisclaimer =>
+      'הזמנים מחושבים בטלפון. במקרי גבול, התייעצו עם הרב או עם לוח הקהילה.';
 
   @override
   String get recommended => 'מומלץ';
@@ -929,7 +961,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get resetPreset => 'איפוס לברירת המחדל';
 
   @override
-  String get skipOneHint => 'כדי לדלג על התראה אחת, הקישו עליה ב„ההתראות השבוע” במסך הבית.';
+  String get skipOneHint =>
+      'כדי לדלג על התראה אחת, הקישו עליה ב„ההתראות השבוע” במסך הבית.';
 
   @override
   String get unitMinutes => 'דקות';
@@ -963,7 +996,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get howToSearch => 'איך מחפשים';
 
   @override
-  String get searchHelpWord => 'הכותרת מכילה „dentist”, בלי הבדל בין אותיות גדולות לקטנות';
+  String get searchHelpWord =>
+      'הכותרת מכילה „dentist”, בלי הבדל בין אותיות גדולות לקטנות';
 
   @override
   String get searchHelpStar => '‏* הוא כל רצף אותיות: dentist, dentures';
@@ -1077,7 +1111,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get nameOptional => 'שם (לא חובה)';
 
   @override
-  String get toppedUp => 'ההתראות נקבעות ל־7 הימים הקרובים ומתחדשות בכל פעם שפותחים את Quando?.';
+  String get toppedUp =>
+      'ההתראות נקבעות ל־7 הימים הקרובים ומתחדשות בכל פעם שפותחים את Quando?.';
 
   @override
   String get back => 'חזרה';
@@ -1182,13 +1217,15 @@ class AppLocalizationsHe extends AppLocalizations {
       'האפליקציה שלו נפתחת ומנגנת אותו. אם יש שקט 10 שניות, צליל הגיבוי מצלצל במקום, כדי שתמיד תתעוררו. התראות עם משימה מצלצלות ואז פותחות אותו.';
 
   @override
-  String get ringThenOpenHint => 'צליל הגיבוי מצלצל. עצירה פותחת את השיר באפליקציה שלו.';
+  String get ringThenOpenHint =>
+      'צליל הגיבוי מצלצל. עצירה פותחת את השיר באפליקציה שלו.';
 
   @override
   String get playForHeading => 'לנגן במשך';
 
   @override
-  String get pausesAfter => 'Quando? משהה את השיר אחרי הזמן הזה, בעזרת כפתור ההשהיה של הטלפון.';
+  String get pausesAfter =>
+      'Quando? משהה את השיר אחרי הזמן הזה, בעזרת כפתור ההשהיה של הטלפון.';
 
   @override
   String get backupSoundHeading => 'צליל גיבוי';
@@ -1214,7 +1251,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get youTubeOn => 'הפלייליסטים והשירים שאהבתם. לחיצה ארוכה ליציאה.';
 
   @override
-  String get youTubeSignIn => 'התחברו עם Google כדי לבחור מהפלייליסטים ומהשירים שאהבתם.';
+  String get youTubeSignIn =>
+      'התחברו עם Google כדי לבחור מהפלייליסטים ומהשירים שאהבתם.';
 
   @override
   String get addSongLinkInstead => 'הוסיפו קישור לשיר במקום.';
@@ -1232,14 +1270,16 @@ class AppLocalizationsHe extends AppLocalizations {
   String get spotifyDirect => 'ניגון ישיר מ־Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify מנגן בדיוק את השיר שלכם כהתראה. הקישו לכיבוי.';
+  String get spotifyDirectOnHint =>
+      'Spotify מנגן בדיוק את השיר שלכם כהתראה. הקישו לכיבוי.';
 
   @override
   String get spotifyDirectHint =>
       'מנגן בדיוק את השיר שלכם מ־Spotify כהתראה, באמינות גבוהה יותר. נדרשים אפליקציית Spotify ו־Spotify Premium. הקישו להתחברות.';
 
   @override
-  String get spotifyComingSoon => 'בקרוב: ניגון בדיוק של השיר שלכם מ־Spotify כהתראה (נדרש Spotify Premium).';
+  String get spotifyComingSoon =>
+      'בקרוב: ניגון בדיוק של השיר שלכם מ־Spotify כהתראה (נדרש Spotify Premium).';
 
   @override
   String get spotifyFailed =>
@@ -1266,7 +1306,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get addAFile => 'הוספת קובץ';
 
   @override
-  String get addSongLinkLong => 'הוספת קישור לשיר (Spotify, Apple Music, YouTube…)';
+  String get addSongLinkLong =>
+      'הוספת קישור לשיר (Spotify, Apple Music, YouTube…)';
 
   @override
   String get musicAppsHeading => 'אפליקציות מוזיקה';
@@ -1284,7 +1325,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get spotifySignInFailed => 'לא ניתן להתחבר ל־Spotify.';
 
   @override
-  String get appleMusicNote => 'ההתחברות תגיע עם גרסת ה־iPhone. בינתיים, הוסיפו קישור לשיר.';
+  String get appleMusicNote =>
+      'ההתחברות תגיע עם גרסת ה־iPhone. בינתיים, הוסיפו קישור לשיר.';
 
   @override
   String noSignInNote(String service) {
@@ -1535,7 +1577,8 @@ class AppLocalizationsHe extends AppLocalizations {
       'כוונו את המצלמה לברקוד או לקוד QR במקום שצריך ללכת אליו, כמו קופסה במטבח או משחת שיניים באמבטיה. כדי לעצור את ההתראה, תסרקו אותו שוב.';
 
   @override
-  String get cameraUnavailableSettings => 'המצלמה לא זמינה. אפשרו גישה למצלמה בהגדרות.';
+  String get cameraUnavailableSettings =>
+      'המצלמה לא זמינה. אפשרו גישה למצלמה בהגדרות.';
 
   @override
   String gentleToGo(int n) {
@@ -1595,7 +1638,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get none => 'ללא';
 
   @override
-  String get snoozeSentence => 'עוד חמש דקות? בחרו לכמה זמן, כמה פעמים ומה צריך לעשות.';
+  String get snoozeSentence =>
+      'עוד חמש דקות? בחרו לכמה זמן, כמה פעמים ומה צריך לעשות.';
 
   @override
   String get settingsHeading => 'הגדרות';
@@ -1637,7 +1681,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get stopSentence => 'איך מכבים את ההתראה ומה צריך לעשות קודם.';
 
   @override
-  String get shabbatNoTask => 'בשבת ובחג ההתראות נעצרות מעצמן ולעולם לא מבקשות משימה.';
+  String get shabbatNoTask =>
+      'בשבת ובחג ההתראות נעצרות מעצמן ולעולם לא מבקשות משימה.';
 
   @override
   String get volumeSentence => 'כמה חזק זה מצלצל, ובאיזו עדינות מגיע לשם.';
@@ -1667,7 +1712,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get usePhoneVolume => 'עוצמת ההתראה של הטלפון';
 
   @override
-  String get setsPhoneVolume => 'קובע את עוצמת ההתראה של הטלפון בזמן הצלצול, ואחר כך מחזיר אותה.';
+  String get setsPhoneVolume =>
+      'קובע את עוצמת ההתראה של הטלפון בזמן הצלצול, ואחר כך מחזיר אותה.';
 
   @override
   String get fadeInOff => 'הגברה הדרגתית: כבוי, עוצמה מלאה מיד';
@@ -1798,7 +1844,12 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String songCount(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שירים', one: 'שיר אחד');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n שירים',
+      one: 'שיר אחד',
+    );
     return '$_temp0';
   }
 
@@ -1812,7 +1863,8 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo => 'YouTube סירב. ודאו שחשבון Google שלכם הוא משתמש ניסיון בפרויקט Quando.';
+  String get youTubeSaidNo =>
+      'YouTube סירב. ודאו שחשבון Google שלכם הוא משתמש ניסיון בפרויקט Quando.';
 
   @override
   String get event => 'אירוע';
@@ -1856,7 +1908,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get webhookHowTo => 'Quando? שולח JSON POST לכתובת הזו.';
 
   @override
-  String get connectionsSentence => 'עדכנו אפליקציות ומכשירים אחרים כשהתראה מצלצלת, נעצרת או נדחית.';
+  String get connectionsSentence =>
+      'עדכנו אפליקציות ומכשירים אחרים כשהתראה מצלצלת, נעצרת או נדחית.';
 
   @override
   String get pushWhenRings => 'שליחת הודעה כשהתראה מצלצלת';
@@ -1886,7 +1939,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get myPushoverDefault => 'ברירת המחדל שלי ב־Pushover';
 
   @override
-  String get pushoverOwnSounds => 'הצלילים שלכם מופיעים כאן אחרי שמעלים אותם ב־pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'הצלילים שלכם מופיעים כאן אחרי שמעלים אותם ב־pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'כל המכשירים שלי';
@@ -1933,7 +1987,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get pauseOnShabbat => 'השהיה בשבת ובחגים';
 
   @override
-  String get pauseOnShabbatHint => 'שום דבר לא נשלח עבור התראות מהדלקת נרות ועד הבדלה';
+  String get pauseOnShabbatHint =>
+      'שום דבר לא נשלח עבור התראות מהדלקת נרות ועד הבדלה';
 
   @override
   String get webhookPayloadNote =>
@@ -1964,7 +2019,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get quotesTitle => 'ציטוטים על זמן';
 
   @override
-  String get quotesHint => 'בחרו מאיפה הם יגיעו. אחד לכל חלק ביום; הקישו על הציטוט כדי לראות אחר.';
+  String get quotesHint =>
+      'בחרו מאיפה הם יגיעו. אחד לכל חלק ביום; הקישו על הציטוט כדי לראות אחר.';
 
   @override
   String get quotesOff => 'כבוי';
@@ -2006,7 +2062,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get quoteNearMe => 'לידי';
 
   @override
-  String get quoteNearMeHint => 'משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך';
+  String get quoteNearMeHint =>
+      'משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך';
 
   @override
   String get quoteSiddur => 'סידור';
@@ -2025,7 +2082,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get syncTitle => 'סנכרון המכשירים שלי';
 
   @override
-  String get syncHint => 'התחברו עם Google כדי לשמור על אותן התראות והגדרות בכל המכשירים.';
+  String get syncHint =>
+      'התחברו עם Google כדי לשמור על אותן התראות והגדרות בכל המכשירים.';
 
   @override
   String syncOn(String email) {
@@ -2036,7 +2094,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get syncWorking => 'מתחבר…';
 
   @override
-  String get syncNotAllowed => 'החשבון הזה עדיין לא יכול לסנכרן. אם נכנסת עם אימייל, אשר אותו קודם.';
+  String get syncNotAllowed =>
+      'החשבון הזה עדיין לא יכול לסנכרן. אם נכנסת עם אימייל, אשר אותו קודם.';
 
   @override
   String get syncFailed => 'החיבור נכשל. הקישו לנסות שוב.';
@@ -2152,7 +2211,8 @@ class AppLocalizationsHe extends AppLocalizations {
   String get emailWrong => 'אימייל או סיסמה שגויים.';
 
   @override
-  String get emailInUse => 'כבר יש חשבון עם האימייל הזה. היכנס אליו, או השתמש ב-Google אם נוצר דרך Google.';
+  String get emailInUse =>
+      'כבר יש חשבון עם האימייל הזה. היכנס אליו, או השתמש ב-Google אם נוצר דרך Google.';
 
   @override
   String get passwordWeak => 'בחר סיסמה של 6 תווים לפחות.';
@@ -2171,7 +2231,8 @@ class AppLocalizationsHe extends AppLocalizations {
       'התחברו כדי לבחור מהפלייליסטים והשירים שאהבתם, או לחפש בכל Spotify. לא צריך Premium.';
 
   @override
-  String get spotifyLibraryOn => 'הפלייליסטים, השירים שאהבתם וחיפוש. לחיצה ארוכה להתנתקות.';
+  String get spotifyLibraryOn =>
+      'הפלייליסטים, השירים שאהבתם וחיפוש. לחיצה ארוכה להתנתקות.';
 
   @override
   String spotifyLoginError(String reason) {

@@ -51,7 +51,12 @@ const _afterChoices = [
   Duration(days: 1),
 ];
 
-const _everyChoices = [Duration(minutes: 30), Duration(hours: 1), Duration(hours: 2), Duration(days: 1)];
+const _everyChoices = [
+  Duration(minutes: 30),
+  Duration(hours: 1),
+  Duration(hours: 2),
+  Duration(days: 1),
+];
 const _forChoices = [
   Duration(hours: 3),
   Duration(hours: 6),
@@ -63,8 +68,10 @@ const _forChoices = [
 ];
 
 String _short(Duration d) {
-  if (d.inDays >= 1 && d.inHours % 24 == 0) return d.inDays == 7 ? l10n.oneWeek : l10n.daysShort(d.inDays);
-  if (d.inHours >= 1 && d.inMinutes % 60 == 0) return l10n.hoursShort(d.inHours);
+  if (d.inDays >= 1 && d.inHours % 24 == 0)
+    return d.inDays == 7 ? l10n.oneWeek : l10n.daysShort(d.inDays);
+  if (d.inHours >= 1 && d.inMinutes % 60 == 0)
+    return l10n.hoursShort(d.inHours);
   return l10n.minutesShort(d.inMinutes);
 }
 
@@ -98,7 +105,10 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
           children: [
             SizedBox(
               width: 170,
-              child: Text(q, style: text.titleMedium?.copyWith(color: QuandoColors.amber)),
+              child: Text(
+                q,
+                style: text.titleMedium?.copyWith(color: QuandoColors.amber),
+              ),
             ),
             Expanded(child: Text(means, style: text.bodyMedium)),
           ],
@@ -130,7 +140,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
   @override
   void initState() {
     super.initState();
-    final existing = ref.read(calendarRulesProvider).where((r) => r.id == widget.id);
+    final existing = ref
+        .read(calendarRulesProvider)
+        .where((r) => r.id == widget.id);
     _isNew = existing.isEmpty;
     _rule = _isNew
         ? CalendarRule(
@@ -151,13 +163,20 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     super.dispose();
   }
 
-  void _toggle(List<Duration> list, Duration d, void Function(List<Duration>) set) {
+  void _toggle(
+    List<Duration> list,
+    Duration d,
+    void Function(List<Duration>) set,
+  ) {
     final next = [...list];
     next.contains(d) ? next.remove(d) : next.add(d);
     setState(() => set(next..sort()));
   }
 
-  Future<void> _custom(List<Duration> list, void Function(List<Duration>) set) async {
+  Future<void> _custom(
+    List<Duration> list,
+    void Function(List<Duration>) set,
+  ) async {
     final c = TextEditingController();
     var unit = 1; // minutes
     final minutes = await showDialog<int>(
@@ -188,9 +207,13 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l10n.cancel),
+            ),
             FilledButton(
-              onPressed: () => Navigator.pop(context, (int.tryParse(c.text) ?? 0) * unit),
+              onPressed: () =>
+                  Navigator.pop(context, (int.tryParse(c.text) ?? 0) * unit),
               child: Text(l10n.add),
             ),
           ],
@@ -203,8 +226,15 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     }
   }
 
-  List<Widget> _chips(List<Duration> choices, List<Duration> chosen, void Function(List<Duration>) set) => [
-    for (final d in {...choices, ...chosen}.toList()..sort((a, b) => b.compareTo(a)))
+  List<Widget> _chips(
+    List<Duration> choices,
+    List<Duration> chosen,
+    void Function(List<Duration>) set,
+  ) => [
+    for (final d in {
+      ...choices,
+      ...chosen,
+    }.toList()..sort((a, b) => b.compareTo(a)))
       FilterChip(
         label: Text(_short(d)),
         selected: chosen.contains(d),
@@ -220,7 +250,12 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
   void _save() {
     ref
         .read(calendarRulesProvider.notifier)
-        .save(_rule.copyWith(name: _name.text.trim(), keyword: _keyword.text.trim()));
+        .save(
+          _rule.copyWith(
+            name: _name.text.trim(),
+            keyword: _keyword.text.trim(),
+          ),
+        );
     // The search may now reach further ahead: read the calendars again.
     ref.read(calendarProvider.notifier).refresh();
     Navigator.of(context).pop();
@@ -237,7 +272,11 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     final timesRule = rules.last;
     final searchable = ref.watch(searchableEventsProvider);
     final matches = (searchable.value ?? const <AnchorEvent>[])
-        .where((e) => startRule.matches(e) || (timesRule.enabled && timesRule.matches(e)))
+        .where(
+          (e) =>
+              startRule.matches(e) ||
+              (timesRule.enabled && timesRule.matches(e)),
+        )
         .toList();
     String when(DateTime utc) {
       final l = inZone(utc, home);
@@ -247,15 +286,19 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     String from(AnchorEvent e) => switch (e.source) {
       'jewish' => l10n.shabbatAndFestivals,
       'sun' => l10n.sun,
-      _ => cal.calendars.where((c) => c.id == e.source).firstOrNull?.name ?? l10n.calendar,
+      _ =>
+        cal.calendars.where((c) => c.id == e.source).firstOrNull?.name ??
+            l10n.calendar,
     };
 
     final next = matches.firstOrNull;
     final nextTimes = next == null
         ? const <String>[]
         : [
-            for (final o in (next.kind.isCalendar ? startRule : timesRule).offsets())
-              if (next.at.add(o).isAfter(ref.read(clockProvider)())) hhmm(inZone(next.at.add(o), home)),
+            for (final o
+                in (next.kind.isCalendar ? startRule : timesRule).offsets())
+              if (next.at.add(o).isAfter(ref.read(clockProvider)()))
+                hhmm(inZone(next.at.add(o), home)),
           ];
 
     return Scaffold(
@@ -263,7 +306,8 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
         title: Text(_isNew ? l10n.newEventAlarm : l10n.eventAlarm),
         backgroundColor: Colors.transparent,
         actions: [
-          if (!_isNew && _step < 2) TextButton(onPressed: _save, child: Text(l10n.saveCaps)),
+          if (!_isNew && _step < 2)
+            TextButton(onPressed: _save, child: Text(l10n.saveCaps)),
           if (!_isNew)
             IconButton(
               tooltip: l10n.delete,
@@ -311,7 +355,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                         label: Text(ex),
                         onPressed: () => setState(() {
                           _keyword.text = ex;
-                          _keyword.selection = TextSelection.collapsed(offset: ex.length);
+                          _keyword.selection = TextSelection.collapsed(
+                            offset: ex.length,
+                          );
                         }),
                       ),
                     ),
@@ -323,7 +369,8 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               title: Text(l10n.alsoBuiltInTimes),
               subtitle: Text(l10n.alsoBuiltInTimesHint),
               value: _rule.includeTimes,
-              onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
+              onChanged: (v) =>
+                  setState(() => _rule = _rule.copyWith(includeTimes: v)),
             ),
             if (cal.calendars.isNotEmpty)
               Wrap(
@@ -333,9 +380,12 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   FilterChip(
                     label: Text(l10n.allMyCalendars),
                     selected: _rule.calendarIds.isEmpty,
-                    onSelected: (_) => setState(() => _rule = _rule.copyWith(calendarIds: {})),
+                    onSelected: (_) =>
+                        setState(() => _rule = _rule.copyWith(calendarIds: {})),
                   ),
-                  for (final c in cal.calendars.where((c) => cal.selected.contains(c.id)))
+                  for (final c in cal.calendars.where(
+                    (c) => cal.selected.contains(c.id),
+                  ))
                     FilterChip(
                       label: Text(c.name),
                       selected: _rule.calendarIds.contains(c.id),
@@ -371,7 +421,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                           : matches.isEmpty
                           ? l10n.nothingMatches60
                           : l10n.eventsIn60(matches.length),
-                      style: text.titleMedium?.copyWith(fontWeight: FontWeight.w800),
+                      style: text.titleMedium?.copyWith(
+                        fontWeight: FontWeight.w800,
+                      ),
                     ),
                     if (nextTimes.isNotEmpty) ...[
                       const SizedBox(height: 4),
@@ -380,7 +432,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                           '${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''}',
                           next!.title,
                         ),
-                        style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                        style: text.bodySmall?.copyWith(
+                          color: QuandoColors.blush,
+                        ),
                       ),
                     ],
                     const SizedBox(height: 6),
@@ -393,12 +447,22 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(e.title, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
+                                  Text(
+                                    e.title,
+                                    style: text.bodyLarge?.copyWith(
+                                      fontWeight: FontWeight.w600,
+                                    ),
+                                  ),
                                   Text(from(e), style: text.bodySmall),
                                 ],
                               ),
                             ),
-                            Text(when(e.at), style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
+                            Text(
+                              when(e.at),
+                              style: text.bodyMedium?.copyWith(
+                                color: QuandoColors.amber,
+                              ),
+                            ),
                           ],
                         ),
                       ),
@@ -417,13 +481,18 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             Wrap(
               spacing: 8,
               runSpacing: 4,
-              children: _chips(_beforeChoices, _rule.before, (l) => _rule = _rule.copyWith(before: l)),
+              children: _chips(
+                _beforeChoices,
+                _rule.before,
+                (l) => _rule = _rule.copyWith(before: l),
+              ),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.ringWhenStarts),
               value: _rule.atStart,
-              onChanged: (v) => setState(() => _rule = _rule.copyWith(atStart: v)),
+              onChanged: (v) =>
+                  setState(() => _rule = _rule.copyWith(atStart: v)),
             ),
             const SizedBox(height: 8),
             Text(l10n.repeatBeforeHeading, style: text.labelSmall),
@@ -434,14 +503,16 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   value: _rule.repeatEvery,
                   items: [
                     DropdownMenuItem(value: null, child: Text(l10n.offLower)),
-                    for (final d in _everyChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
+                    for (final d in _everyChoices)
+                      DropdownMenuItem(value: d, child: Text(formatSpan(d))),
                   ],
                   onChanged: (d) => setState(
                     () => _rule = d == null
                         ? _rule.copyWith(clearRepeat: true)
                         : _rule.copyWith(
                             repeatEvery: d,
-                            repeatFor: _rule.repeatFor ?? const Duration(hours: 6),
+                            repeatFor:
+                                _rule.repeatFor ?? const Duration(hours: 6),
                           ),
                   ),
                 ),
@@ -450,9 +521,11 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   DropdownButton<Duration>(
                     value: _rule.repeatFor,
                     items: [
-                      for (final d in _forChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
+                      for (final d in _forChoices)
+                        DropdownMenuItem(value: d, child: Text(formatSpan(d))),
                     ],
-                    onChanged: (d) => setState(() => _rule = _rule.copyWith(repeatFor: d)),
+                    onChanged: (d) =>
+                        setState(() => _rule = _rule.copyWith(repeatFor: d)),
                   ),
                 ],
               ],
@@ -463,7 +536,11 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             Wrap(
               spacing: 8,
               runSpacing: 4,
-              children: _chips(_afterChoices, _rule.after, (l) => _rule = _rule.copyWith(after: l)),
+              children: _chips(
+                _afterChoices,
+                _rule.after,
+                (l) => _rule = _rule.copyWith(after: l),
+              ),
             ),
             if (nextTimes.isNotEmpty) ...[
               const SizedBox(height: 16),
@@ -480,12 +557,15 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               large: true,
               value: _rule.soundId,
               onChanged: (id) => setState(
-                () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
+                () => _rule = id == null
+                    ? _rule.copyWith(defaultSound: true)
+                    : _rule.copyWith(soundId: id),
               ),
             ),
             AlarmExtras(
               value: _rule.style,
-              onChanged: (s) => setState(() => _rule = _rule.copyWith(style: s)),
+              onChanged: (s) =>
+                  setState(() => _rule = _rule.copyWith(style: s)),
             ),
             const SizedBox(height: 8),
             TextField(
@@ -505,7 +585,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               if (_step > 0)
                 Expanded(
                   child: OutlinedButton(
-                    style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                    style: OutlinedButton.styleFrom(
+                      minimumSize: const Size.fromHeight(56),
+                    ),
                     onPressed: () => setState(() => _step--),
                     child: Text(l10n.back),
                   ),
@@ -514,7 +596,9 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               Expanded(
                 flex: 2,
                 child: FilledButton(
-                  style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                  ),
                   onPressed: _step < 2 ? () => setState(() => _step++) : _save,
                   child: Text(_step < 2 ? l10n.next : l10n.save),
                 ),
@@ -534,7 +618,11 @@ class _Steps extends StatelessWidget {
   final int step;
   final ValueChanged<int> onTap;
 
-  static List<String> get _names => [l10n.stepWhichEvents, l10n.stepWhenToRing, l10n.stepHowItRings];
+  static List<String> get _names => [
+    l10n.stepWhichEvents,
+    l10n.stepWhenToRing,
+    l10n.stepHowItRings,
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -552,13 +640,21 @@ class _Steps extends StatelessWidget {
                   children: [
                     CircleAvatar(
                       radius: 16,
-                      backgroundColor: i <= step ? QuandoColors.coral : QuandoColors.raised,
+                      backgroundColor: i <= step
+                          ? QuandoColors.coral
+                          : QuandoColors.raised,
                       child: i < step
-                          ? const Icon(Icons.check, size: 18, color: QuandoColors.ground)
+                          ? const Icon(
+                              Icons.check,
+                              size: 18,
+                              color: QuandoColors.ground,
+                            )
                           : Text(
                               '${i + 1}',
                               style: TextStyle(
-                                color: i == step ? QuandoColors.ground : QuandoColors.muted,
+                                color: i == step
+                                    ? QuandoColors.ground
+                                    : QuandoColors.muted,
                                 fontWeight: FontWeight.w800,
                               ),
                             ),
@@ -567,7 +663,9 @@ class _Steps extends StatelessWidget {
                     Text(
                       _names[i],
                       style: text.bodySmall?.copyWith(
-                        color: i == step ? QuandoColors.text : QuandoColors.muted,
+                        color: i == step
+                            ? QuandoColors.text
+                            : QuandoColors.muted,
                         fontWeight: i == step ? FontWeight.w700 : null,
                       ),
                     ),

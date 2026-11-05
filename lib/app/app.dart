@@ -34,32 +34,49 @@ final _router = GoRouter(
   navigatorKey: _navigatorKey,
   routes: [
     GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
-    GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
-    GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
+    GoRoute(
+      path: '/settings',
+      builder: (context, state) => const SettingsScreen(),
+    ),
+    GoRoute(
+      path: '/calendar',
+      builder: (context, state) => const CalendarScreen(),
+    ),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
-    GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
+    GoRoute(
+      path: '/connections',
+      builder: (context, state) => const IntegrationsScreen(),
+    ),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
-      builder: (context, state) =>
-          CalendarRuleScreen(id: state.pathParameters['id']!, timesQuery: state.uri.queryParameters['times']),
+      builder: (context, state) => CalendarRuleScreen(
+        id: state.pathParameters['id']!,
+        timesQuery: state.uri.queryParameters['times'],
+      ),
     ),
-    GoRoute(path: '/shabbat', builder: (context, state) => const ShabbatScreen()),
+    GoRoute(
+      path: '/shabbat',
+      builder: (context, state) => const ShabbatScreen(),
+    ),
     GoRoute(
       path: '/preset/:id',
-      builder: (context, state) => PresetScreen(id: state.pathParameters['id']!),
+      builder: (context, state) =>
+          PresetScreen(id: state.pathParameters['id']!),
     ),
     GoRoute(
       path: '/alarm/:id',
-      builder: (context, state) => EditAlarmScreen(id: state.pathParameters['id']!),
+      builder: (context, state) =>
+          EditAlarmScreen(id: state.pathParameters['id']!),
     ),
   ],
 );
 
 bool get _onPhone =>
     !kIsWeb &&
-    (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
+    (defaultTargetPlatform == TargetPlatform.android ||
+        defaultTargetPlatform == TargetPlatform.iOS);
 
 class QuandoApp extends ConsumerStatefulWidget {
   const QuandoApp({super.key});
@@ -68,7 +85,8 @@ class QuandoApp extends ConsumerStatefulWidget {
   ConsumerState<QuandoApp> createState() => _QuandoAppState();
 }
 
-class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserver {
+class _QuandoAppState extends ConsumerState<QuandoApp>
+    with WidgetsBindingObserver {
   StreamSubscription<AlarmSet>? _ringingSub;
   final _shown = <int>{};
   Timer? _syncTimer;
@@ -83,7 +101,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(planProvider, (_, _) => _scheduleSync());
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
-      ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
+      ref.listenManual(
+        calendarRulesProvider,
+        (_, _) => ref.read(calendarProvider.notifier).refresh(),
+      );
       // Signed in to sync: pick up where it left off.
       ref.read(syncProvider);
       _start();
@@ -104,7 +125,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   Future<void> _sync() async {
     try {
-      await ref.read(registrarProvider).sync(ref.read(planProvider), ref.read(payloadForProvider));
+      await ref
+          .read(registrarProvider)
+          .sync(ref.read(planProvider), ref.read(payloadForProvider));
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }
@@ -140,7 +163,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   void _showRinging(AlarmSettings alarm) {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       _navigatorKey.currentState?.push(
-        MaterialPageRoute<void>(fullscreenDialog: true, builder: (_) => RingScreen(alarm: alarm)),
+        MaterialPageRoute<void>(
+          fullscreenDialog: true,
+          builder: (_) => RingScreen(alarm: alarm),
+        ),
       );
     });
   }

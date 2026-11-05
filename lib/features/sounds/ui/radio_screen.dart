@@ -39,7 +39,8 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
   var _busy = false;
 
   String? _startCountry() {
-    final code = widget.countryCode ?? PlatformDispatcher.instance.locale.countryCode;
+    final code =
+        widget.countryCode ?? PlatformDispatcher.instance.locale.countryCode;
     return radioCountries.any((c) => c.$2 == code) ? code : null;
   }
 
@@ -75,8 +76,11 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     }
   }
 
-  AlarmSound _sound(String name, String url) =>
-      AlarmSound(id: 'radio.${url.hashCode.toUnsigned(32)}', name: name, path: url);
+  AlarmSound _sound(String name, String url) => AlarmSound(
+    id: 'radio.${url.hashCode.toUnsigned(32)}',
+    name: name,
+    path: url,
+  );
 
   /// Tap once to pick and hear it, again to stop it.
   Future<void> _tap(RadioStation r) async {
@@ -95,7 +99,8 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     final notifier = ref.read(soundsProvider.notifier);
     if (!ref.read(soundsProvider).any((x) => x.id == s.id)) notifier.add(s);
     SoundPreview.instance.stop();
-    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicAdded(s.name))));
+    ScaffoldMessenger.of(context)
+        .showSnackBar(SnackBar(content: Text(l10n.musicAdded(s.name))));
     Navigator.of(context).pop();
   }
 
@@ -109,18 +114,27 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
           controller: c,
           autofocus: true,
           keyboardType: TextInputType.url,
-          decoration: const InputDecoration(hintText: 'https://stream.example.com/live.mp3'),
+          decoration: const InputDecoration(
+            hintText: 'https://stream.example.com/live.mp3',
+          ),
         ),
         actions: [
-          TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
-          FilledButton(onPressed: () => Navigator.pop(context, c.text.trim()), child: Text(l10n.add)),
+          TextButton(
+            onPressed: () => Navigator.pop(context),
+            child: Text(l10n.cancel),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, c.text.trim()),
+            child: Text(l10n.add),
+          ),
         ],
       ),
     );
     c.dispose();
     if (url == null || !mounted) return;
     if (!isStreamUrl(url)) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.notAStream)));
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text(l10n.notAStream)));
       return;
     }
     _add(_sound(Uri.parse(url).host.replaceFirst('www.', ''), url));
@@ -146,7 +160,9 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
             ListTile(
               title: Text(title == 'genre' ? l10n.anyGenre : l10n.anywhere),
               leading: Icon(
-                current == null ? Icons.radio_button_checked : Icons.radio_button_off,
+                current == null
+                    ? Icons.radio_button_checked
+                    : Icons.radio_button_off,
                 color: QuandoColors.amber,
               ),
               onTap: () => Navigator.pop(context, (null,)),
@@ -155,7 +171,9 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
               ListTile(
                 title: Text(name),
                 leading: Icon(
-                  current == value ? Icons.radio_button_checked : Icons.radio_button_off,
+                  current == value
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_off,
                   color: QuandoColors.amber,
                 ),
                 onTap: () => Navigator.pop(context, (value,)),
@@ -175,7 +193,10 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
     final mine = {for (final s in ref.watch(soundsProvider)) s.id};
     final results = _results;
     final genreName = radioGenres.where((g) => g.$2 == _genre).firstOrNull?.$1;
-    final countryName = radioCountries.where((c) => c.$2 == _country).firstOrNull?.$1;
+    final countryName = radioCountries
+        .where((c) => c.$2 == _country)
+        .firstOrNull
+        ?.$1;
     final picked = _picked;
 
     return Scaffold(
@@ -223,7 +244,8 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                   icon: Icons.music_note,
                   label: genreName ?? l10n.anyGenre,
                   on: genreName != null,
-                  onTap: () => _choose('genre', radioGenres, _genre, (v) => _genre = v),
+                  onTap: () =>
+                      _choose('genre', radioGenres, _genre, (v) => _genre = v),
                 ),
                 const SizedBox(width: 8),
                 Flexible(
@@ -231,7 +253,12 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                     icon: Icons.public,
                     label: countryName ?? l10n.anywhere,
                     on: countryName != null,
-                    onTap: () => _choose('country', radioCountries, _country, (v) => _country = v),
+                    onTap: () => _choose(
+                      'country',
+                      radioCountries,
+                      _country,
+                      (v) => _country = v,
+                    ),
                   ),
                 ),
               ],
@@ -243,7 +270,11 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 ? Center(
                     child: Padding(
                       padding: const EdgeInsets.all(32),
-                      child: Text(_error!, textAlign: TextAlign.center, style: text.bodyLarge),
+                      child: Text(
+                        _error!,
+                        textAlign: TextAlign.center,
+                        style: text.bodyLarge,
+                      ),
                     ),
                   )
                 : results == null
@@ -260,8 +291,12 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                       final playing = SoundPreview.instance.playingId == s.id;
                       return ListTile(
                         leading: Icon(
-                          isPicked ? Icons.radio_button_checked : Icons.radio_button_off,
-                          color: isPicked ? QuandoColors.amber : QuandoColors.faint,
+                          isPicked
+                              ? Icons.radio_button_checked
+                              : Icons.radio_button_off,
+                          color: isPicked
+                              ? QuandoColors.amber
+                              : QuandoColors.faint,
                         ),
                         title: Text(
                           r.name,
@@ -272,12 +307,20 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                         subtitle: Text(
                           _country == null
                               ? r.details
-                              : r.details.replaceFirst(RegExp('^${RegExp.escape(r.country)}( · )?'), ''),
+                              : r.details.replaceFirst(
+                                  RegExp('^${RegExp.escape(r.country)}( · )?'),
+                                  '',
+                                ),
                           style: text.bodySmall,
                         ),
                         trailing: mine.contains(s.id)
                             ? const Icon(Icons.check, color: QuandoColors.muted)
-                            : (playing ? const Icon(Icons.graphic_eq, color: QuandoColors.coral) : null),
+                            : (playing
+                                  ? const Icon(
+                                      Icons.graphic_eq,
+                                      color: QuandoColors.coral,
+                                    )
+                                  : null),
                         onTap: () => _tap(r),
                       );
                     },
@@ -291,9 +334,15 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
               child: Padding(
                 padding: const EdgeInsets.fromLTRB(20, 8, 20, 12),
                 child: FilledButton(
-                  style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size.fromHeight(56),
+                  ),
                   onPressed: () => _add(_sound(picked.name, picked.url)),
-                  child: Text(l10n.wakeUpTo(picked.name), maxLines: 1, overflow: TextOverflow.ellipsis),
+                  child: Text(
+                    l10n.wakeUpTo(picked.name),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  ),
                 ),
               ),
             ),
@@ -303,7 +352,12 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
 
 /// A rounded filter button: "Jazz", "United States".
 class _Filter extends StatelessWidget {
-  const _Filter({required this.icon, required this.label, required this.on, required this.onTap});
+  const _Filter({
+    required this.icon,
+    required this.label,
+    required this.on,
+    required this.onTap,
+  });
 
   final IconData icon;
   final String label;
@@ -314,7 +368,9 @@ class _Filter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: on ? QuandoColors.raised : QuandoColors.surface,
-      shape: StadiumBorder(side: BorderSide(color: on ? QuandoColors.amber : QuandoColors.line)),
+      shape: StadiumBorder(
+        side: BorderSide(color: on ? QuandoColors.amber : QuandoColors.line),
+      ),
       child: InkWell(
         customBorder: const StadiumBorder(),
         onTap: onTap,

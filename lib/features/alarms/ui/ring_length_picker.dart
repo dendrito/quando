@@ -11,7 +11,11 @@ import 'package:quando/l10n/l10n.dart';
 /// Picks how long an alarm rings, down to the second: quick choices,
 /// −/+ one second, or any minutes and seconds typed in.
 class RingLengthPicker extends StatelessWidget {
-  const RingLengthPicker({super.key, required this.seconds, required this.onChanged});
+  const RingLengthPicker({
+    super.key,
+    required this.seconds,
+    required this.onChanged,
+  });
 
   final int seconds;
   final ValueChanged<int> onChanged;
@@ -45,13 +49,23 @@ class RingLengthPicker extends StatelessWidget {
         return AlertDialog(
           title: Text(l10n.ringFor),
           content: Row(
-            children: [field(min, l10n.minutes), const SizedBox(width: 16), field(sec, l10n.seconds)],
+            children: [
+              field(min, l10n.minutes),
+              const SizedBox(width: 16),
+              field(sec, l10n.seconds),
+            ],
           ),
           actions: [
-            TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(l10n.cancel),
+            ),
             FilledButton(
-              onPressed: () =>
-                  Navigator.pop(context, (int.tryParse(min.text) ?? 0) * 60 + (int.tryParse(sec.text) ?? 0)),
+              onPressed: () => Navigator.pop(
+                context,
+                (int.tryParse(min.text) ?? 0) * 60 +
+                    (int.tryParse(sec.text) ?? 0),
+              ),
               child: Text(l10n.ok),
             ),
           ],
@@ -98,7 +112,11 @@ class RingLengthPicker extends StatelessWidget {
           runSpacing: 4,
           children: [
             for (final s in _quick)
-              ChoiceChip(label: Text(short(s)), selected: s == seconds, onSelected: (_) => _set(s)),
+              ChoiceChip(
+                label: Text(short(s)),
+                selected: s == seconds,
+                onSelected: (_) => _set(s),
+              ),
           ],
         ),
       ],
