@@ -474,9 +474,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calendarAlarm => '日历闹钟';
 
   @override
-  String get calendarIntro => 'Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。';
-
-  @override
   String get connectCalendars => '连接日历';
 
   @override
@@ -1982,6 +1979,41 @@ class AppLocalizationsZh extends AppLocalizations {
   String poweredBy(String name) {
     return '由 $name 驱动';
   }
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在日历活动前后响铃。选择活动来自哪里。';
+
+  @override
+  String get deviceCalendarsHeading => '此设备';
+
+  @override
+  String get deviceCalendarsTitle => '此设备的日历应用';
+
+  @override
+  String get deviceCalendarsHint => '设备上的所有账户：Google、Samsung、Outlook、iCloud，以及只存在这里的日历。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日历';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登录，直接从 Google 读取日历，即使此设备上没有你的 Google 账户。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登录：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '退出登录';
+
+  @override
+  String get googleCalendarNotHere => '此设备暂不支持 Google 登录。请在设备设置（日历 › 账户）中添加 Google 账户，其日历会显示在此设备下。';
+
+  @override
+  String get googleCalendarUnreachable => '现在无法连接 Google 日历。已根据它设置的闹钟仍会响。';
+
+  @override
+  String get googleCalendarTwiceHint => '此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -2451,9 +2483,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get calendarAlarm => '日曆鬧鐘';
-
-  @override
-  String get calendarIntro => 'Quando? 可以在手機日曆中的事件前後響鈴。手機上登入 Google 帳號後，Google 日曆也會包含在內。';
 
   @override
   String get connectCalendars => '連線日曆';
@@ -3961,4 +3990,39 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String poweredBy(String name) {
     return '由 $name 驅動';
   }
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在行事曆活動前後響鈴。選擇活動來自哪裡。';
+
+  @override
+  String get deviceCalendarsHeading => '此裝置';
+
+  @override
+  String get deviceCalendarsTitle => '此裝置的行事曆 App';
+
+  @override
+  String get deviceCalendarsHint => '裝置上的所有帳號：Google、Samsung、Outlook、iCloud，以及只存在這裡的行事曆。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日曆';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登入，直接從 Google 讀取行事曆，即使此裝置上沒有你的 Google 帳號。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登入：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '登出';
+
+  @override
+  String get googleCalendarNotHere => '此裝置暫不支援 Google 登入。請在裝置設定（行事曆 › 帳號）中加入 Google 帳號，其行事曆會顯示在此裝置下。';
+
+  @override
+  String get googleCalendarUnreachable => '現在無法連線到 Google 日曆。已依它設定的鬧鐘仍會響。';
+
+  @override
+  String get googleCalendarTwiceHint => '此裝置已顯示的同一 Google 帳號行事曆預設關閉，避免重複響鈴。';
 }

@@ -479,10 +479,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get calendarAlarm => 'Alarm kalender';
 
   @override
-  String get calendarIntro =>
-      'Quando? bisa berbunyi sebelum dan sesudah acara di kalender ponselmu. Google Kalender ikut setelah akun Google-mu ada di ponsel.';
-
-  @override
   String get connectCalendars => 'Hubungkan kalender';
 
   @override
@@ -2016,4 +2012,45 @@ class AppLocalizationsId extends AppLocalizations {
   String poweredBy(String name) {
     return 'didukung $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? bisa berbunyi sebelum dan sesudah acara di kalendermu. Pilih dari mana asalnya.';
+
+  @override
+  String get deviceCalendarsHeading => 'DI PERANGKAT INI';
+
+  @override
+  String get deviceCalendarsTitle => 'Aplikasi kalender perangkat ini';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Semua akun di dalamnya: Google, Samsung, Outlook, iCloud, dan kalender yang hanya disimpan di sini.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE KALENDER';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Masuk dengan Google untuk membaca kalendermu langsung dari Google, meski akun Google-mu tidak ada di perangkat ini.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Masuk sebagai $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Keluar';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Masuk dengan Google belum tersedia di perangkat ini. Tambahkan akun Google di pengaturan perangkat (Kalender › Akun) dan kalendernya muncul di perangkat ini.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Kalender tidak bisa dijangkau sekarang. Alarm yang sudah dipasang darinya tetap berbunyi.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Kalender dari akun Google yang sama yang sudah tampil di perangkat ini mulai dalam keadaan mati, agar tidak ada yang berbunyi dua kali.';
 }

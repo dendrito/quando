@@ -383,7 +383,6 @@
   "nextAlarm": "Next alarm",
   "holdToUnlock": "Hold to unlock",
   "calendarAlarm": "Calendar alarm",
-  "calendarIntro": "Quando? can ring before and after events in your phone's calendars. Google Calendar is included once your Google account is on the phone.",
   "connectCalendars": "Connect calendars",
   "calendarAlarmsHeading": "CALENDAR ALARMS",
   "calendarNoneYet": "None yet. Start with one, then change it as you like:",
@@ -1317,6 +1316,24 @@
     "description": "Under the Jewish edition's name; {name} is Quando?.",
     "placeholders": {
       "name": {
+        "type": "String"
+      }
+    }
+  },
+  "calendarSourcesIntro": "Quando? can ring before and after events in your calendars. Pick where they come from.",
+  "deviceCalendarsHeading": "ON THIS DEVICE",
+  "deviceCalendarsTitle": "This device's calendar app",
+  "deviceCalendarsHint": "Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.",
+  "googleCalendarHeading": "GOOGLE CALENDAR",
+  "googleCalendarSignIn": "Sign in with Google to read your calendars straight from Google, even when your Google account isn't on this device.",
+  "googleCalendarSignedIn": "Signed in as {email}",
+  "googleCalendarSignOut": "Sign out",
+  "googleCalendarNotHere": "Google sign-in isn't available on this device yet. Add your Google account in the device's settings (Calendar › Accounts) and its calendars appear under this device.",
+  "googleCalendarUnreachable": "Couldn't reach Google Calendar just now. Alarms already set from it still ring.",
+  "googleCalendarTwiceHint": "Calendars this device already shows from the same Google account start off, so nothing rings twice.",
+  "@googleCalendarSignedIn": {
+    "placeholders": {
+      "email": {
         "type": "String"
       }
     }

@@ -9,6 +9,7 @@ import '../core/util/format.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
+import '../features/calendar/data/google_calendar.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
@@ -389,6 +390,9 @@ final jewishTimesProvider = Provider<JewishTimes>(
 
 final calendarReaderProvider = Provider<CalendarReader>((ref) => DeviceCalendarReader());
 
+/// Google Calendar read online, for when it isn't on the phone.
+final onlineCalendarsProvider = Provider<OnlineCalendars>((ref) => GoogleCalendars());
+
 class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
@@ -426,18 +430,29 @@ final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<Calen
   CalendarRulesNotifier.new,
 );
 
-/// What we know about the phone's calendars.
+/// What we know about your calendars: the phone's own, and Google
+/// Calendar read online.
 class CalendarState {
   const CalendarState({
-    this.access = false,
+    this.phone = false,
+    this.google,
     this.loaded = false,
     this.calendars = const [],
     this.selected = const {},
     this.events = const [],
     this.error,
+    this.googleError,
   });
 
-  final bool access;
+  /// Allowed to read the phone's calendars.
+  final bool phone;
+
+  /// The Google account read online, when signed in.
+  final String? google;
+
+  /// Some calendar is connected.
+  bool get access => phone || google != null;
+
   final bool loaded;
   final List<PhoneCalendar> calendars;
 
@@ -447,64 +462,197 @@ class CalendarState {
   /// Start and end events from the selected calendars.
   final List<AnchorEvent> events;
   final String? error;
+
+  /// Google Calendar couldn't be read just now (offline, or signed out).
+  final String? googleError;
 }
 
 class CalendarNotifier extends Notifier<CalendarState> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
+  CalendarReader get _phone => ref.read(calendarReaderProvider);
+  OnlineCalendars get _online => ref.read(onlineCalendarsProvider);
+
+  static const _googleKey = 'calendars.google';
+  static const _selectedKey = 'calendars.selected';
 
   @override
   CalendarState build() => const CalendarState();
 
   /// null = never chosen: every calendar is used.
-  Set<String>? get _savedSelection => _prefs.getStringList('calendars.selected')?.toSet();
+  Set<String>? get _savedSelection => _prefs.getStringList(_selectedKey)?.toSet();
 
+  /// Ask for the phone's calendars.
   Future<void> connect() async {
-    final reader = ref.read(calendarReaderProvider);
     try {
-      if (!await reader.requestAccess()) {
-        state = CalendarState(loaded: true, error: l10n.calendarNotAllowed);
+      if (!await _phone.requestAccess()) {
+        state = CalendarState(
+          loaded: true,
+          google: state.google,
+          calendars: state.calendars,
+          selected: state.selected,
+          events: state.events,
+          error: l10n.calendarNotAllowed,
+        );
         return;
       }
     } catch (e) {
-      state = CalendarState(loaded: true, error: '$e');
+      state = CalendarState(loaded: true, google: state.google, error: '$e');
       return;
     }
     await refresh();
   }
 
+  /// Sign in to Google and read its calendars online. Calendars you hide in
+  /// Google Calendar, and ones this phone already shows from the same
+  /// account, start switched off so nothing rings twice.
+  Future<bool> connectGoogle() async {
+    final email = await _online.signIn();
+    if (email == null) return false;
+    await _prefs.setString(_googleKey, email);
+    try {
+      final phoneCals = await _phoneCalendars();
+      final googleCals = await _online.calendars();
+      final selected = _savedSelection ?? {for (final c in phoneCals) c.id};
+      final onPhone = {
+        for (final c in phoneCals)
+          if (c.account?.toLowerCase() == email.toLowerCase()) c.name.toLowerCase(),
+      };
+      selected.addAll([
+        for (final c in googleCals)
+          if (c.suggested && !onPhone.contains(c.name.toLowerCase())) c.id,
+      ]);
+      await _prefs.setStringList(_selectedKey, selected.toList());
+    } catch (_) {
+      // Read again below, and say so there.
+    }
+    await refresh();
+    return true;
+  }
+
+  Future<void> disconnectGoogle() async {
+    await _online.signOut();
+    await _prefs.remove(_googleKey);
+    final saved = _savedSelection;
+    if (saved != null) {
+      await _prefs.setStringList(_selectedKey, [
+        for (final id in saved)
+          if (!GoogleCalendarApi.owns(id)) id,
+      ]);
+    }
+    await refresh();
+  }
+
+  Future<List<PhoneCalendar>> _phoneCalendars() async =>
+      await _phone.hasAccess() ? await _phone.calendars() : const [];
+
+  /// Events from every selected calendar, wherever it lives.
+  Future<List<AnchorEvent>> read(DateTime from, DateTime to) async {
+    final ids = state.selected;
+    if (ids.isEmpty) return const [];
+    final phoneIds = {
+      for (final id in ids)
+        if (!GoogleCalendarApi.owns(id)) id,
+    };
+    return [
+      if (state.phone && phoneIds.isNotEmpty) ...await _phone.events(from, to, phoneIds),
+      if (state.google != null) ...await _online.events(from, to, ids),
+    ];
+  }
+
   /// Reads calendars and events again. Quietly does nothing without access.
   Future<void> refresh() async {
-    final reader = ref.read(calendarReaderProvider);
+    final google = _prefs.getString(_googleKey);
+    final now = ref.read(clockProvider)();
+    final rules = [for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules()];
+    final window = scheduler.eventWindow(now, rules);
+    final from = window.from.subtract(const Duration(days: 1));
+    final to = window.to.isAfter(now.add(const Duration(days: 62)))
+        ? now.add(const Duration(days: 62))
+        : window.to;
+
+    var phone = false;
+    var phoneCals = <PhoneCalendar>[];
+    String? error;
     try {
-      if (!await reader.hasAccess()) {
-        state = const CalendarState(loaded: true);
-        return;
-      }
-      final calendars = await reader.calendars();
-      final selected = _savedSelection ?? {for (final c in calendars) c.id};
-      final now = ref.read(clockProvider)();
-      final rules = [for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules()];
-      final window = scheduler.eventWindow(now, rules);
-      final to = window.to.isAfter(now.add(const Duration(days: 62)))
-          ? now.add(const Duration(days: 62))
-          : window.to;
-      final events = await reader.events(window.from.subtract(const Duration(days: 1)), to, selected);
-      state = CalendarState(
-        access: true,
-        loaded: true,
-        calendars: calendars,
-        selected: selected,
-        events: events,
-      );
+      phone = await _phone.hasAccess();
+      if (phone) phoneCals = await _phone.calendars();
     } catch (e) {
-      state = CalendarState(loaded: true, access: state.access, calendars: state.calendars, error: '$e');
+      phone = state.phone;
+      phoneCals = [
+        for (final c in state.calendars)
+          if (c.source == CalendarSource.phone) c,
+      ];
+      error = '$e';
     }
+
+    // Google online. When it can't be read, keep what we had: alarms
+    // already planned from it still ring.
+    var googleCals = <PhoneCalendar>[];
+    String? googleError;
+    if (google != null) {
+      try {
+        googleCals = await _online.calendars();
+      } catch (_) {
+        googleCals = [
+          for (final c in state.calendars)
+            if (c.source == CalendarSource.google) c,
+        ];
+        googleError = l10n.googleCalendarUnreachable;
+      }
+    }
+
+    if (!phone && google == null) {
+      state = CalendarState(loaded: true, error: error);
+      return;
+    }
+
+    final calendars = [...phoneCals, ...googleCals];
+    final selected =
+        _savedSelection ??
+        {
+          for (final c in calendars)
+            if (c.suggested) c.id,
+        };
+    final phoneIds = {
+      for (final id in selected)
+        if (!GoogleCalendarApi.owns(id)) id,
+    };
+    final googleIds = selected.difference(phoneIds);
+
+    final events = <AnchorEvent>[];
+    if (phone && phoneIds.isNotEmpty) {
+      try {
+        events.addAll(await _phone.events(from, to, phoneIds));
+      } catch (e) {
+        error = '$e';
+        events.addAll(state.events.where((e) => !GoogleCalendarApi.owns(e.source)));
+      }
+    }
+    if (google != null && googleIds.isNotEmpty) {
+      try {
+        if (googleError != null) throw StateError('offline');
+        events.addAll(await _online.events(from, to, googleIds));
+      } catch (_) {
+        googleError ??= l10n.googleCalendarUnreachable;
+        events.addAll(state.events.where((e) => googleIds.contains(e.source)));
+      }
+    }
+    state = CalendarState(
+      phone: phone,
+      google: google,
+      loaded: true,
+      calendars: calendars,
+      selected: selected,
+      events: events,
+      error: error,
+      googleError: googleError,
+    );
   }
 
   Future<void> select(String id, bool on) async {
     final s = {...state.selected};
     on ? s.add(id) : s.remove(id);
-    await _prefs.setStringList('calendars.selected', s.toList());
+    await _prefs.setStringList(_selectedKey, s.toList());
     await refresh();
   }
 }
@@ -548,7 +696,7 @@ final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((
   ];
   if (cal.access && cal.selected.isNotEmpty) {
     try {
-      out.addAll(await ref.read(calendarReaderProvider).events(now, to, cal.selected));
+      out.addAll(await ref.read(calendarProvider.notifier).read(now, to));
     } catch (_) {
       // Calendar unreadable just now: search the rest.
     }

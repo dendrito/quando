@@ -479,10 +479,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get calendarAlarm => 'Alarme de agenda';
 
   @override
-  String get calendarIntro =>
-      'O Quando? pode tocar antes e depois dos eventos das agendas do seu celular. O Google Agenda entra assim que sua conta Google estiver no celular.';
-
-  @override
   String get connectCalendars => 'Conectar agendas';
 
   @override
@@ -2029,4 +2025,45 @@ class AppLocalizationsPt extends AppLocalizations {
   String poweredBy(String name) {
     return 'com tecnologia $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'O Quando? pode tocar antes e depois dos eventos das suas agendas. Escolha de onde eles vêm.';
+
+  @override
+  String get deviceCalendarsHeading => 'NESTE APARELHO';
+
+  @override
+  String get deviceCalendarsTitle => 'App de agenda deste aparelho';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Todas as contas dele: Google, Samsung, Outlook, iCloud e agendas guardadas só aqui.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE AGENDA';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Entre com o Google para ler suas agendas direto do Google, mesmo se sua conta Google não estiver neste aparelho.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Conectado como $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Sair';
+
+  @override
+  String get googleCalendarNotHere =>
+      'O login com Google ainda não está disponível neste aparelho. Adicione sua conta Google nos ajustes do aparelho (Calendário › Contas) e as agendas dela aparecem neste aparelho.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Não deu para acessar o Google Agenda agora. Os alarmes já marcados a partir dele continuam tocando.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Agendas que este aparelho já mostra da mesma conta Google começam desligadas, para nada tocar duas vezes.';
 }

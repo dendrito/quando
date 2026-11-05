@@ -514,10 +514,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get calendarAlarm => 'Будильник календаря';
 
   @override
-  String get calendarIntro =>
-      'Quando? может звонить до и после событий в календарях телефона. Google Календарь подключится, как только ваш аккаунт Google есть на телефоне.';
-
-  @override
   String get connectCalendars => 'Подключить календари';
 
   @override
@@ -2066,4 +2062,45 @@ class AppLocalizationsRu extends AppLocalizations {
   String poweredBy(String name) {
     return 'на базе $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? может звонить до и после событий в ваших календарях. Выберите, откуда они берутся.';
+
+  @override
+  String get deviceCalendarsHeading => 'НА ЭТОМ УСТРОЙСТВЕ';
+
+  @override
+  String get deviceCalendarsTitle => 'Календарь этого устройства';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Все аккаунты на нём: Google, Samsung, Outlook, iCloud и календари, которые хранятся только здесь.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE КАЛЕНДАРЬ';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Войдите через Google, чтобы читать календари прямо из Google, даже если вашего аккаунта Google нет на этом устройстве.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Вход выполнен: $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Выйти';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Вход через Google на этом устройстве пока недоступен. Добавьте аккаунт Google в настройках устройства (Календарь › Учётные записи), и его календари появятся здесь.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Сейчас не удалось связаться с Google Календарём. Будильники, уже поставленные по нему, всё равно зазвонят.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Календари того же аккаунта Google, которые это устройство уже показывает, сначала выключены, чтобы ничего не звонило дважды.';
 }

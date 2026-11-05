@@ -131,7 +131,6 @@
   "nextAlarm": "Prossima sveglia",
   "holdToUnlock": "Tieni premuto per sbloccare",
   "calendarAlarm": "Sveglia del calendario",
-  "calendarIntro": "Quando? può suonare prima e dopo gli eventi nei calendari del telefono. Google Calendar è incluso appena il tuo account Google è sul telefono.",
   "connectCalendars": "Collega i calendari",
   "calendarAlarmsHeading": "SVEGLIE DEL CALENDARIO",
   "calendarNoneYet": "Ancora nessuna. Inizia con questa, poi cambiala come vuoi:",
@@ -589,5 +588,16 @@
   "quoteNearMeHint": "Poeti e date del luogo in cui sei, dal fuso orario e dalla città dello Shabbat",
   "quoteSiddur": "Siddur (libro di preghiere)",
   "weeklyParasha": "Parashà {name}",
-  "poweredBy": "realizzato con {name}"
+  "poweredBy": "realizzato con {name}",
+  "calendarSourcesIntro": "Quando? può suonare prima e dopo gli eventi dei tuoi calendari. Scegli da dove arrivano.",
+  "deviceCalendarsHeading": "SU QUESTO DISPOSITIVO",
+  "deviceCalendarsTitle": "L'app calendario di questo dispositivo",
+  "deviceCalendarsHint": "Tutti i suoi account: Google, Samsung, Outlook, iCloud e i calendari tenuti solo qui.",
+  "googleCalendarHeading": "GOOGLE CALENDAR",
+  "googleCalendarSignIn": "Accedi con Google per leggere i tuoi calendari direttamente da Google, anche se il tuo account Google non è su questo dispositivo.",
+  "googleCalendarSignedIn": "Accesso come {email}",
+  "googleCalendarSignOut": "Esci",
+  "googleCalendarNotHere": "L'accesso con Google non è ancora disponibile su questo dispositivo. Aggiungi il tuo account Google nelle impostazioni del dispositivo (Calendario › Account) e i suoi calendari compariranno qui.",
+  "googleCalendarUnreachable": "Google Calendar non è raggiungibile ora. Le sveglie già impostate da lì suonano comunque.",
+  "googleCalendarTwiceHint": "I calendari dello stesso account Google già presenti su questo dispositivo partono spenti, così niente suona due volte."
 }

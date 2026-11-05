@@ -481,10 +481,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get calendarAlarm => 'Alarme d’agenda';
 
   @override
-  String get calendarIntro =>
-      'Quando? peut sonner avant et après les événements des agendas de votre téléphone. Google Agenda est inclus dès que votre compte Google est sur le téléphone.';
-
-  @override
   String get connectCalendars => 'Connecter les agendas';
 
   @override
@@ -2036,4 +2032,45 @@ class AppLocalizationsFr extends AppLocalizations {
   String poweredBy(String name) {
     return 'propulsé par $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? peut sonner avant et après les événements de vos agendas. Choisissez d\'où ils viennent.';
+
+  @override
+  String get deviceCalendarsHeading => 'SUR CET APPAREIL';
+
+  @override
+  String get deviceCalendarsTitle => 'L\'agenda de cet appareil';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Tous ses comptes : Google, Samsung, Outlook, iCloud et les agendas gardés uniquement ici.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE AGENDA';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Connectez-vous avec Google pour lire vos agendas directement chez Google, même si votre compte Google n\'est pas sur cet appareil.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Connecté en tant que $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Se déconnecter';
+
+  @override
+  String get googleCalendarNotHere =>
+      'La connexion Google n\'est pas encore disponible sur cet appareil. Ajoutez votre compte Google dans les réglages de l\'appareil (Calendrier › Comptes) et ses agendas apparaîtront sur cet appareil.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Impossible de joindre Google Agenda pour l\'instant. Les alarmes déjà réglées à partir de lui sonnent toujours.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Les agendas que cet appareil affiche déjà pour le même compte Google démarrent désactivés, pour que rien ne sonne deux fois.';
 }
