@@ -2,8 +2,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/features/rules/domain/reminder_delivery.dart';
 import 'package:quando/features/rules/domain/alarm_rule.dart';
 import 'package:quando/features/events/domain/event.dart';
+import 'package:quando/core/scheduler/scheduler.dart';
 
 void main() {
+  test('scheduler carries independent per-offset delivery into planned alarms', () {
+    final now = DateTime.utc(2026, 11, 5, 10);
+    final event = AnchorEvent(
+      id: 'event-1', kind: EventKind.calendar, title: 'Meeting',
+      at: now.add(const Duration(hours: 2)), source: 'google',
+    );
+    const rule = AlarmRule(
+      id: 'r1', name: 'Meetings', appliesTo: {EventKind.calendar},
+      before: [Duration(minutes: 30), Duration(minutes: 5)],
+      deliveries: {
+        -30: ReminderDelivery(pushoverBehavior: PushoverBehavior.alongside),
+        -5: ReminderDelivery(audioKind: ReminderAudioKind.radio, audioId: 'station'),
+      },
+    );
+    final plan = const Scheduler().plan(now: now, events: [event], rules: [rule]);
+    expect(plan, hasLength(2));
+    expect(plan[0].offset, const Duration(minutes: -30));
+    expect(plan[0].delivery.pushoverBehavior, PushoverBehavior.alongside);
+    expect(plan[1].delivery.audioId, 'station');
+  });
+
   test('rule persists different delivery choices at different offsets', () {
     const rule = AlarmRule(
       id: 'meeting', name: 'Meeting', appliesTo: {EventKind.calendar},
