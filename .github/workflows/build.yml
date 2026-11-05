@@ -28,16 +28,7 @@ jobs:
           cache: true
 
       - run: flutter pub get
-      # Formatting is temporarily advisory for PRs while the repository-wide
-      # baseline is normalized. Never block analysis, tests or release builds
-      # on pre-existing formatting drift.
-      - name: Report Dart formatting differences
-        if: github.event_name == 'pull_request'
-        continue-on-error: true
-        run: dart format --output=none --set-exit-if-changed lib test
-      - name: Check Dart formatting on main
-        if: github.event_name != 'pull_request'
-        run: dart format --output=none --set-exit-if-changed lib test
+      - run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test
       - name: Test the Jewish edition
