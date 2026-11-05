@@ -131,7 +131,6 @@
   "nextAlarm": "Nächster Wecker",
   "holdToUnlock": "Zum Entsperren halten",
   "calendarAlarm": "Kalenderwecker",
-  "calendarIntro": "Quando? kann vor und nach Terminen in den Kalendern deines Handys klingeln. Google Kalender ist dabei, sobald dein Google-Konto auf dem Handy ist.",
   "connectCalendars": "Kalender verbinden",
   "calendarAlarmsHeading": "KALENDERWECKER",
   "calendarNoneYet": "Noch keine. Starte mit diesem und passe ihn an:",
@@ -589,5 +588,16 @@
   "quoteNearMeHint": "Dichter und Tage deines Ortes, nach Zeitzone und Schabbat-Stadt",
   "quoteSiddur": "Siddur (Gebetbuch)",
   "weeklyParasha": "Parascha {name}",
-  "poweredBy": "powered by {name}"
+  "poweredBy": "powered by {name}",
+  "calendarSourcesIntro": "Quando? kann vor und nach Terminen in deinen Kalendern klingeln. Wähle, woher sie kommen.",
+  "deviceCalendarsHeading": "AUF DIESEM GERÄT",
+  "deviceCalendarsTitle": "Kalender-App dieses Geräts",
+  "deviceCalendarsHint": "Alle Konten darauf: Google, Samsung, Outlook, iCloud und Kalender, die nur hier liegen.",
+  "googleCalendarHeading": "GOOGLE KALENDER",
+  "googleCalendarSignIn": "Melde dich mit Google an, um deine Kalender direkt von Google zu lesen, auch wenn dein Google-Konto nicht auf diesem Gerät ist.",
+  "googleCalendarSignedIn": "Angemeldet als {email}",
+  "googleCalendarSignOut": "Abmelden",
+  "googleCalendarNotHere": "Die Google-Anmeldung gibt es auf diesem Gerät noch nicht. Füge dein Google-Konto in den Geräteeinstellungen hinzu (Kalender › Accounts), dann erscheinen seine Kalender unter diesem Gerät.",
+  "googleCalendarUnreachable": "Google Kalender ist gerade nicht erreichbar. Wecker, die schon daraus gestellt sind, klingeln trotzdem.",
+  "googleCalendarTwiceHint": "Kalender desselben Google-Kontos, die dieses Gerät schon zeigt, sind zuerst aus, damit nichts doppelt klingelt."
 }

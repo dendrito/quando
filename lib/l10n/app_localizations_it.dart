@@ -481,10 +481,6 @@ class AppLocalizationsIt extends AppLocalizations {
   String get calendarAlarm => 'Sveglia del calendario';
 
   @override
-  String get calendarIntro =>
-      'Quando? può suonare prima e dopo gli eventi nei calendari del telefono. Google Calendar è incluso appena il tuo account Google è sul telefono.';
-
-  @override
   String get connectCalendars => 'Collega i calendari';
 
   @override
@@ -2035,4 +2031,45 @@ class AppLocalizationsIt extends AppLocalizations {
   String poweredBy(String name) {
     return 'realizzato con $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? può suonare prima e dopo gli eventi dei tuoi calendari. Scegli da dove arrivano.';
+
+  @override
+  String get deviceCalendarsHeading => 'SU QUESTO DISPOSITIVO';
+
+  @override
+  String get deviceCalendarsTitle => 'L\'app calendario di questo dispositivo';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Tutti i suoi account: Google, Samsung, Outlook, iCloud e i calendari tenuti solo qui.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE CALENDAR';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Accedi con Google per leggere i tuoi calendari direttamente da Google, anche se il tuo account Google non è su questo dispositivo.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Accesso come $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Esci';
+
+  @override
+  String get googleCalendarNotHere =>
+      'L\'accesso con Google non è ancora disponibile su questo dispositivo. Aggiungi il tuo account Google nelle impostazioni del dispositivo (Calendario › Account) e i suoi calendari compariranno qui.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Calendar non è raggiungibile ora. Le sveglie già impostate da lì suonano comunque.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'I calendari dello stesso account Google già presenti su questo dispositivo partono spenti, così niente suona due volte.';
 }

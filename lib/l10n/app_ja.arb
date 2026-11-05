@@ -131,7 +131,6 @@
   "nextAlarm": "次のアラーム",
   "holdToUnlock": "長押しでロック解除",
   "calendarAlarm": "カレンダーアラーム",
-  "calendarIntro": "Quando?はスマホのカレンダーの予定の前後に鳴らせます。スマホにGoogleアカウントがあればGoogleカレンダーも含まれます。",
   "connectCalendars": "カレンダーを接続",
   "calendarAlarmsHeading": "カレンダーアラーム",
   "calendarNoneYet": "まだありません。まずはこれから始めて、自由に変更してください：",
@@ -589,5 +588,16 @@
   "quoteNearMeHint": "タイムゾーンとシャバットの都市から、あなたの土地の詩人や記念日",
   "quoteSiddur": "シドゥール（祈祷書）",
   "weeklyParasha": "今週のパラシャ {name}",
-  "poweredBy": "{name} 搭載"
+  "poweredBy": "{name} 搭載",
+  "calendarSourcesIntro": "Quando? はカレンダーの予定の前後に鳴らせます。どこから読むか選んでください。",
+  "deviceCalendarsHeading": "このデバイス",
+  "deviceCalendarsTitle": "このデバイスのカレンダーアプリ",
+  "deviceCalendarsHint": "このデバイスのすべてのアカウント：Google、Samsung、Outlook、iCloud、ここだけのカレンダー。",
+  "googleCalendarHeading": "GOOGLE カレンダー",
+  "googleCalendarSignIn": "Google でログインすると、Google アカウントがこのデバイスになくても Google から直接カレンダーを読み込めます。",
+  "googleCalendarSignedIn": "{email} でログイン中",
+  "googleCalendarSignOut": "ログアウト",
+  "googleCalendarNotHere": "このデバイスではまだ Google ログインを使えません。デバイスの設定（カレンダー › アカウント）で Google アカウントを追加すると、そのカレンダーがこのデバイスの欄に表示されます。",
+  "googleCalendarUnreachable": "今は Google カレンダーにつながりません。すでに設定したアラームは鳴ります。",
+  "googleCalendarTwiceHint": "同じ Google アカウントのカレンダーがすでにこのデバイスにある場合、二重に鳴らないよう最初はオフです。"
 }

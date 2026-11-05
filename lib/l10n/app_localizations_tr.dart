@@ -477,10 +477,6 @@ class AppLocalizationsTr extends AppLocalizations {
   String get calendarAlarm => 'Takvim alarmı';
 
   @override
-  String get calendarIntro =>
-      'Quando? telefonundaki takvimlerin etkinliklerinden önce ve sonra çalabilir. Google hesabın telefondaysa Google Takvim de dahildir.';
-
-  @override
   String get connectCalendars => 'Takvimleri bağla';
 
   @override
@@ -2020,4 +2016,45 @@ class AppLocalizationsTr extends AppLocalizations {
   String poweredBy(String name) {
     return '$name altyapısıyla';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? takvimlerindeki etkinliklerden önce ve sonra çalabilir. Nereden geleceklerini seç.';
+
+  @override
+  String get deviceCalendarsHeading => 'BU CİHAZDA';
+
+  @override
+  String get deviceCalendarsTitle => 'Bu cihazın takvim uygulaması';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Üzerindeki tüm hesaplar: Google, Samsung, Outlook, iCloud ve yalnızca burada tutulan takvimler.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE TAKVİM';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Google hesabın bu cihazda olmasa bile takvimlerini doğrudan Google\'dan okumak için Google ile giriş yap.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '$email olarak giriş yapıldı';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Çıkış yap';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Google ile giriş bu cihazda henüz yok. Google hesabını cihaz ayarlarından ekle (Takvim › Hesaplar), takvimleri bu cihazın altında görünür.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Takvim\'e şu an ulaşılamadı. Ondan kurulmuş alarmlar yine de çalar.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Bu cihazın aynı Google hesabından zaten gösterdiği takvimler kapalı başlar, böylece hiçbir şey iki kez çalmaz.';
 }

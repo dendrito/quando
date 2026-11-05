@@ -916,12 +916,6 @@ abstract class AppLocalizations {
   /// **'Calendar alarm'**
   String get calendarAlarm;
 
-  /// No description provided for @calendarIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Quando? can ring before and after events in your phone\'s calendars. Google Calendar is included once your Google account is on the phone.'**
-  String get calendarIntro;
-
   /// No description provided for @connectCalendars.
   ///
   /// In en, this message translates to:
@@ -3669,6 +3663,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'powered by {name}'**
   String poweredBy(String name);
+
+  /// No description provided for @calendarSourcesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? can ring before and after events in your calendars. Pick where they come from.'**
+  String get calendarSourcesIntro;
+
+  /// No description provided for @deviceCalendarsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'ON THIS DEVICE'**
+  String get deviceCalendarsHeading;
+
+  /// No description provided for @deviceCalendarsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This device\'s calendar app'**
+  String get deviceCalendarsTitle;
+
+  /// No description provided for @deviceCalendarsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.'**
+  String get deviceCalendarsHint;
+
+  /// No description provided for @googleCalendarHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'GOOGLE CALENDAR'**
+  String get googleCalendarHeading;
+
+  /// No description provided for @googleCalendarSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to read your calendars straight from Google, even when your Google account isn\'t on this device.'**
+  String get googleCalendarSignIn;
+
+  /// No description provided for @googleCalendarSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String googleCalendarSignedIn(String email);
+
+  /// No description provided for @googleCalendarSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get googleCalendarSignOut;
+
+  /// No description provided for @googleCalendarNotHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in isn\'t available on this device yet. Add your Google account in the device\'s settings (Calendar › Accounts) and its calendars appear under this device.'**
+  String get googleCalendarNotHere;
+
+  /// No description provided for @googleCalendarUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach Google Calendar just now. Alarms already set from it still ring.'**
+  String get googleCalendarUnreachable;
+
+  /// No description provided for @googleCalendarTwiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendars this device already shows from the same Google account start off, so nothing rings twice.'**
+  String get googleCalendarTwiceHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

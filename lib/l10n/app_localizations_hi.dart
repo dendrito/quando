@@ -477,10 +477,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get calendarAlarm => 'कैलेंडर अलार्म';
 
   @override
-  String get calendarIntro =>
-      'Quando? आपके फ़ोन के कैलेंडर के इवेंट से पहले और बाद में बज सकता है। फ़ोन पर Google खाता होते ही Google Calendar शामिल हो जाता है।';
-
-  @override
   String get connectCalendars => 'कैलेंडर जोड़ें';
 
   @override
@@ -2019,4 +2015,45 @@ class AppLocalizationsHi extends AppLocalizations {
   String poweredBy(String name) {
     return '$name द्वारा संचालित';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? आपके कैलेंडर के इवेंट से पहले और बाद में बज सकता है। चुनें कि वे कहाँ से आएँ।';
+
+  @override
+  String get deviceCalendarsHeading => 'इस डिवाइस पर';
+
+  @override
+  String get deviceCalendarsTitle => 'इस डिवाइस का कैलेंडर ऐप';
+
+  @override
+  String get deviceCalendarsHint =>
+      'इस पर हर खाता: Google, Samsung, Outlook, iCloud और सिर्फ़ यहीं रखे कैलेंडर।';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE कैलेंडर';
+
+  @override
+  String get googleCalendarSignIn =>
+      'अपने कैलेंडर सीधे Google से पढ़ने के लिए Google से साइन इन करें, भले ही आपका Google खाता इस डिवाइस पर न हो।';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '$email के रूप में साइन इन';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'साइन आउट';
+
+  @override
+  String get googleCalendarNotHere =>
+      'इस डिवाइस पर Google साइन-इन अभी उपलब्ध नहीं है। डिवाइस की सेटिंग में (कैलेंडर › खाते) अपना Google खाता जोड़ें, उसके कैलेंडर इस डिवाइस में दिखेंगे।';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'अभी Google कैलेंडर तक नहीं पहुँच सके। उससे पहले से लगे अलार्म फिर भी बजेंगे।';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'इसी Google खाते के जो कैलेंडर यह डिवाइस पहले से दिखाता है, वे बंद से शुरू होते हैं, ताकि कुछ भी दो बार न बजे।';
 }

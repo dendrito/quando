@@ -4,14 +4,41 @@ import '../../events/domain/event.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
-/// A calendar on the phone: Google accounts, Samsung, Outlook, local...
+/// Where a calendar is read from.
+enum CalendarSource {
+  /// The phone's own calendars: every account on it (Google, iCloud,
+  /// Samsung, Outlook...) and calendars kept only on the phone.
+  phone,
+
+  /// Google Calendar, read straight from Google after signing in here.
+  google,
+}
+
+/// A calendar you can pick: one of the phone's (Google accounts, Samsung,
+/// Outlook, local...) or one read online from Google.
 class PhoneCalendar {
-  const PhoneCalendar({required this.id, required this.name, this.account, this.colorHex});
+  const PhoneCalendar({
+    required this.id,
+    required this.name,
+    this.account,
+    this.colorHex,
+    this.source = CalendarSource.phone,
+    this.suggested = true,
+    this.primary = false,
+  });
 
   final String id;
   final String name;
   final String? account;
   final String? colorHex;
+  final CalendarSource source;
+
+  /// Switched on when first seen. Google calendars you hide in Google
+  /// Calendar start off here too.
+  final bool suggested;
+
+  /// The account's main calendar.
+  final bool primary;
 }
 
 /// Reads the phone's calendars. Google Calendar shows up here once the

@@ -23,7 +23,8 @@ class YouTubeAccount {
 
   static var _ready = false;
 
-  static Future<void> _init() async {
+  /// Google sign-in is set up once, for YouTube and for calendars alike.
+  static Future<void> init() async {
     if (_ready) return;
     await GoogleSignIn.instance.initialize(serverClientId: serverClientId);
     _ready = true;
@@ -33,7 +34,7 @@ class YouTubeAccount {
   /// permission (once). null when you said no or it failed.
   static Future<String?> token({bool prompt = true}) async {
     try {
-      await _init();
+      await init();
       final account =
           await GoogleSignIn.instance.attemptLightweightAuthentication() ??
           (prompt ? await GoogleSignIn.instance.authenticate(scopeHint: const [scope]) : null);
@@ -50,7 +51,7 @@ class YouTubeAccount {
 
   static Future<void> signOut() async {
     try {
-      await _init();
+      await init();
       await GoogleSignIn.instance.disconnect();
     } catch (_) {}
   }

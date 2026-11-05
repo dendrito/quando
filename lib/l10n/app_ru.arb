@@ -131,7 +131,6 @@
   "nextAlarm": "Следующий будильник",
   "holdToUnlock": "Удерживайте для разблокировки",
   "calendarAlarm": "Будильник календаря",
-  "calendarIntro": "Quando? может звонить до и после событий в календарях телефона. Google Календарь подключится, как только ваш аккаунт Google есть на телефоне.",
   "connectCalendars": "Подключить календари",
   "calendarAlarmsHeading": "БУДИЛЬНИКИ КАЛЕНДАРЯ",
   "calendarNoneYet": "Пока нет. Начните с этого и измените как угодно:",
@@ -589,5 +588,16 @@
   "quoteNearMeHint": "Поэты и даты вашего места — по часовому поясу и городу для шаббата",
   "quoteSiddur": "Сидур (молитвенник)",
   "weeklyParasha": "Недельная глава {name}",
-  "poweredBy": "на базе {name}"
+  "poweredBy": "на базе {name}",
+  "calendarSourcesIntro": "Quando? может звонить до и после событий в ваших календарях. Выберите, откуда они берутся.",
+  "deviceCalendarsHeading": "НА ЭТОМ УСТРОЙСТВЕ",
+  "deviceCalendarsTitle": "Календарь этого устройства",
+  "deviceCalendarsHint": "Все аккаунты на нём: Google, Samsung, Outlook, iCloud и календари, которые хранятся только здесь.",
+  "googleCalendarHeading": "GOOGLE КАЛЕНДАРЬ",
+  "googleCalendarSignIn": "Войдите через Google, чтобы читать календари прямо из Google, даже если вашего аккаунта Google нет на этом устройстве.",
+  "googleCalendarSignedIn": "Вход выполнен: {email}",
+  "googleCalendarSignOut": "Выйти",
+  "googleCalendarNotHere": "Вход через Google на этом устройстве пока недоступен. Добавьте аккаунт Google в настройках устройства (Календарь › Учётные записи), и его календари появятся здесь.",
+  "googleCalendarUnreachable": "Сейчас не удалось связаться с Google Календарём. Будильники, уже поставленные по нему, всё равно зазвонят.",
+  "googleCalendarTwiceHint": "Календари того же аккаунта Google, которые это устройство уже показывает, сначала выключены, чтобы ничего не звонило дважды."
 }

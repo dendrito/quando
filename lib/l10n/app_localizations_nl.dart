@@ -480,10 +480,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get calendarAlarm => 'Agendawekker';
 
   @override
-  String get calendarIntro =>
-      'Quando? kan voor en na afspraken in de agenda’s van je telefoon afgaan. Google Agenda zit erbij zodra je Google-account op de telefoon staat.';
-
-  @override
   String get connectCalendars => 'Agenda’s koppelen';
 
   @override
@@ -2030,4 +2026,45 @@ class AppLocalizationsNl extends AppLocalizations {
   String poweredBy(String name) {
     return 'mogelijk gemaakt door $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? kan voor en na afspraken in je agenda\'s afgaan. Kies waar ze vandaan komen.';
+
+  @override
+  String get deviceCalendarsHeading => 'OP DIT APPARAAT';
+
+  @override
+  String get deviceCalendarsTitle => 'Agenda-app van dit apparaat';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Alle accounts erop: Google, Samsung, Outlook, iCloud en agenda\'s die alleen hier staan.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE AGENDA';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Log in met Google om je agenda\'s rechtstreeks bij Google te lezen, ook als je Google-account niet op dit apparaat staat.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Ingelogd als $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Uitloggen';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Inloggen met Google kan nog niet op dit apparaat. Voeg je Google-account toe in de instellingen van het apparaat (Agenda › Accounts) en de agenda\'s verschijnen onder dit apparaat.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Agenda is nu niet bereikbaar. Wekkers die er al uit zijn gezet, gaan gewoon af.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Agenda\'s van hetzelfde Google-account die dit apparaat al toont, staan eerst uit, zodat niets twee keer afgaat.';
 }

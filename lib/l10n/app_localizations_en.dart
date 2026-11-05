@@ -477,10 +477,6 @@ class AppLocalizationsEn extends AppLocalizations {
   String get calendarAlarm => 'Calendar alarm';
 
   @override
-  String get calendarIntro =>
-      'Quando? can ring before and after events in your phone\'s calendars. Google Calendar is included once your Google account is on the phone.';
-
-  @override
   String get connectCalendars => 'Connect calendars';
 
   @override
@@ -2016,4 +2012,45 @@ class AppLocalizationsEn extends AppLocalizations {
   String poweredBy(String name) {
     return 'powered by $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? can ring before and after events in your calendars. Pick where they come from.';
+
+  @override
+  String get deviceCalendarsHeading => 'ON THIS DEVICE';
+
+  @override
+  String get deviceCalendarsTitle => 'This device\'s calendar app';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE CALENDAR';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Sign in with Google to read your calendars straight from Google, even when your Google account isn\'t on this device.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Signed in as $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Sign out';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Google sign-in isn\'t available on this device yet. Add your Google account in the device\'s settings (Calendar › Accounts) and its calendars appear under this device.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Couldn\'t reach Google Calendar just now. Alarms already set from it still ring.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Calendars this device already shows from the same Google account start off, so nothing rings twice.';
 }

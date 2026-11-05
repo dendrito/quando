@@ -131,7 +131,6 @@
   "nextAlarm": "Próximo alarme",
   "holdToUnlock": "Segure para desbloquear",
   "calendarAlarm": "Alarme de agenda",
-  "calendarIntro": "O Quando? pode tocar antes e depois dos eventos das agendas do seu celular. O Google Agenda entra assim que sua conta Google estiver no celular.",
   "connectCalendars": "Conectar agendas",
   "calendarAlarmsHeading": "ALARMES DE AGENDA",
   "calendarNoneYet": "Nenhum ainda. Comece com este e depois ajuste como quiser:",
@@ -589,5 +588,16 @@
   "quoteNearMeHint": "Poetas e datas do lugar onde você está, pelo seu fuso horário e cidade do Shabat",
   "quoteSiddur": "Sidur (livro de rezas)",
   "weeklyParasha": "Parashá {name}",
-  "poweredBy": "com tecnologia {name}"
+  "poweredBy": "com tecnologia {name}",
+  "calendarSourcesIntro": "O Quando? pode tocar antes e depois dos eventos das suas agendas. Escolha de onde eles vêm.",
+  "deviceCalendarsHeading": "NESTE APARELHO",
+  "deviceCalendarsTitle": "App de agenda deste aparelho",
+  "deviceCalendarsHint": "Todas as contas dele: Google, Samsung, Outlook, iCloud e agendas guardadas só aqui.",
+  "googleCalendarHeading": "GOOGLE AGENDA",
+  "googleCalendarSignIn": "Entre com o Google para ler suas agendas direto do Google, mesmo se sua conta Google não estiver neste aparelho.",
+  "googleCalendarSignedIn": "Conectado como {email}",
+  "googleCalendarSignOut": "Sair",
+  "googleCalendarNotHere": "O login com Google ainda não está disponível neste aparelho. Adicione sua conta Google nos ajustes do aparelho (Calendário › Contas) e as agendas dela aparecem neste aparelho.",
+  "googleCalendarUnreachable": "Não deu para acessar o Google Agenda agora. Os alarmes já marcados a partir dele continuam tocando.",
+  "googleCalendarTwiceHint": "Agendas que este aparelho já mostra da mesma conta Google começam desligadas, para nada tocar duas vezes."
 }

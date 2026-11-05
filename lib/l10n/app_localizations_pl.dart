@@ -514,10 +514,6 @@ class AppLocalizationsPl extends AppLocalizations {
   String get calendarAlarm => 'Alarm z kalendarza';
 
   @override
-  String get calendarIntro =>
-      'Quando? może dzwonić przed wydarzeniami i po nich w kalendarzach telefonu. Kalendarz Google jest uwzględniony, gdy Twoje konto Google jest na telefonie.';
-
-  @override
   String get connectCalendars => 'Połącz kalendarze';
 
   @override
@@ -2069,4 +2065,45 @@ class AppLocalizationsPl extends AppLocalizations {
   String poweredBy(String name) {
     return 'napędzane przez $name';
   }
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? może dzwonić przed wydarzeniami z twoich kalendarzy i po nich. Wybierz, skąd pochodzą.';
+
+  @override
+  String get deviceCalendarsHeading => 'NA TYM URZĄDZENIU';
+
+  @override
+  String get deviceCalendarsTitle => 'Aplikacja kalendarza tego urządzenia';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Wszystkie konta na nim: Google, Samsung, Outlook, iCloud i kalendarze trzymane tylko tutaj.';
+
+  @override
+  String get googleCalendarHeading => 'KALENDARZ GOOGLE';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Zaloguj się przez Google, aby czytać kalendarze prosto z Google, nawet gdy twojego konta Google nie ma na tym urządzeniu.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Zalogowano jako $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Wyloguj';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Logowanie przez Google nie jest jeszcze dostępne na tym urządzeniu. Dodaj konto Google w ustawieniach urządzenia (Kalendarz › Konta), a jego kalendarze pojawią się przy tym urządzeniu.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Nie udało się teraz połączyć z Kalendarzem Google. Alarmy już z niego ustawione nadal zadzwonią.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Kalendarze tego samego konta Google, które urządzenie już pokazuje, są na start wyłączone, żeby nic nie dzwoniło dwa razy.';
 }
