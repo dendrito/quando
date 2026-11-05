@@ -9,6 +9,9 @@ import 'package:flutter_riverpod/misc.dart' show ProviderOrFamily;
 import 'package:google_sign_in/google_sign_in.dart';
 
 import '../../app/providers.dart';
+
+import 'package:quando/l10n/l10n.dart';
+
 import '../sounds/data/youtube_library.dart';
 import 'sync_config.dart';
 import 'sync_engine.dart';
@@ -34,7 +37,16 @@ class FirestoreRemote implements SyncRemote {
   }, SetOptions(merge: true));
 }
 
-enum SyncPhase { off, working, on, notAllowed, failed }
+enum SyncPhase {
+  off,
+  working,
+  on,
+  notAllowed,
+  failed,
+
+  /// Signed in with email, waiting for the link in the confirmation email.
+  verify,
+}
 
 class SyncStatus {
   const SyncStatus({this.revealed = false, this.phase = SyncPhase.off, this.email, this.name, this.photo});
@@ -130,6 +142,69 @@ class SyncNotifier extends Notifier<SyncStatus> {
       state = state.copyWith(phase: SyncPhase.failed);
     }
   }
+
+  /// Signs in with an email and password, or makes a new account when
+  /// [create] is set. Returns what went wrong, in words, or null.
+  Future<String?> signInWithEmail(String email, String password, {bool create = false}) async {
+    if (!available) return l10n.syncNotSetUp;
+    try {
+      await _firebase();
+      final auth = FirebaseAuth.instance;
+      final cred = create
+          ? await auth.createUserWithEmailAndPassword(email: email.trim(), password: password)
+          : await auth.signInWithEmailAndPassword(email: email.trim(), password: password);
+      final user = cred.user!;
+      if (!user.emailVerified) {
+        if (create) await user.sendEmailVerification();
+        state = state.copyWith(phase: SyncPhase.verify, email: user.email);
+        return null;
+      }
+      state = state.copyWith(phase: SyncPhase.working);
+      await _start(user);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return emailError(e.code);
+    } catch (e) {
+      debugPrint('Quando? sync: $e');
+      return l10n.syncFailed;
+    }
+  }
+
+  /// After tapping the link in the confirmation email.
+  Future<bool> confirmEmail() async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user == null) return false;
+    await user.reload();
+    final fresh = FirebaseAuth.instance.currentUser!;
+    if (!fresh.emailVerified) return false;
+    await fresh.getIdToken(true); // the server reads "verified" from a fresh token
+    state = state.copyWith(phase: SyncPhase.working);
+    await _start(fresh);
+    return true;
+  }
+
+  Future<void> resendConfirmation() async => FirebaseAuth.instance.currentUser?.sendEmailVerification();
+
+  /// Emails a link to choose a new password. Returns what went wrong, or null.
+  Future<String?> resetPassword(String email) async {
+    try {
+      await _firebase();
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email.trim());
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return emailError(e.code);
+    }
+  }
+
+  static String emailError(String code) => switch (code) {
+    'invalid-email' => l10n.emailInvalid,
+    'user-not-found' || 'wrong-password' || 'invalid-credential' => l10n.emailWrong,
+    'email-already-in-use' => l10n.emailInUse,
+    'weak-password' => l10n.passwordWeak,
+    'operation-not-allowed' => l10n.emailNotSwitchedOn,
+    'too-many-requests' => l10n.tooManyTries,
+    _ => l10n.syncFailed,
+  };
 
   Future<void> _start(User user) async {
     final prefs = ref.read(prefsProvider);

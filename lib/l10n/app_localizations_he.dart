@@ -2103,4 +2103,63 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get signOut => 'יציאה';
+
+  @override
+  String get signInWithEmail => 'כניסה עם אימייל';
+
+  @override
+  String get signIn => 'כניסה';
+
+  @override
+  String get createAccount => 'יצירת חשבון';
+
+  @override
+  String get haveAccount => 'יש לי חשבון';
+
+  @override
+  String get forgotPassword => 'שכחתי סיסמה';
+
+  @override
+  String get email => 'אימייל';
+
+  @override
+  String get password => 'סיסמה';
+
+  @override
+  String get passwordResetSent => 'שלחנו לך קישור לבחירת סיסמה חדשה.';
+
+  @override
+  String emailCheckInbox(String email) {
+    return 'שלחנו קישור אל $email. פתח אותו, חזור והקש “אישרתי”.';
+  }
+
+  @override
+  String get emailConfirmed => 'אישרתי';
+
+  @override
+  String get emailNotYet => 'עדיין לא אושר. פתח קודם את הקישור באימייל.';
+
+  @override
+  String get emailSendAgain => 'לשלוח שוב את האימייל';
+
+  @override
+  String get emailSentAgain => 'נשלח. בדוק את תיבת הדואר והספאם.';
+
+  @override
+  String get emailInvalid => 'זו לא נראית כתובת אימייל.';
+
+  @override
+  String get emailWrong => 'אימייל או סיסמה שגויים.';
+
+  @override
+  String get emailInUse => 'כבר יש חשבון עם האימייל הזה. היכנס אליו, או השתמש ב-Google אם נוצר דרך Google.';
+
+  @override
+  String get passwordWeak => 'בחר סיסמה של 6 תווים לפחות.';
+
+  @override
+  String get emailNotSwitchedOn => 'הכניסה עם אימייל עדיין לא הופעלה.';
+
+  @override
+  String get tooManyTries => 'יותר מדי ניסיונות. המתן כמה דקות.';
 }

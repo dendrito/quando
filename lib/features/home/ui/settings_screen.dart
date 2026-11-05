@@ -361,6 +361,7 @@ class _AccountCard extends ConsumerWidget {
       SyncPhase.on => l10n.syncOn(sync.email ?? ''),
       SyncPhase.notAllowed => l10n.syncNotAllowed,
       SyncPhase.failed => l10n.syncFailed,
+      SyncPhase.verify => l10n.emailCheckInbox(sync.email ?? ''),
     };
     return Padding(
       padding: const EdgeInsets.only(top: 4, bottom: 12),
@@ -405,17 +406,175 @@ class _AccountCard extends ConsumerWidget {
                     icon: const Icon(Icons.logout, size: 18),
                     label: Text(l10n.signOut),
                   )
-                else
+                else if (sync.phase == SyncPhase.verify) ...[
+                  FilledButton(
+                    onPressed: () async {
+                      final ok = await notifier.confirmEmail();
+                      if (!ok && context.mounted) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailNotYet)));
+                      }
+                    },
+                    child: Text(l10n.emailConfirmed),
+                  ),
+                  Row(
+                    children: [
+                      TextButton(
+                        onPressed: () async {
+                          await notifier.resendConfirmation();
+                          if (context.mounted) {
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                          }
+                        },
+                        child: Text(l10n.emailSendAgain),
+                      ),
+                      const Spacer(),
+                      TextButton(onPressed: notifier.signOut, child: Text(l10n.cancel)),
+                    ],
+                  ),
+                ] else ...[
                   FilledButton.icon(
                     onPressed: notifier.signIn,
                     icon: const Icon(Icons.login, size: 18),
                     label: Text(l10n.signInWithGoogle),
                   ),
+                  const SizedBox(height: 8),
+                  OutlinedButton.icon(
+                    onPressed: () => showDialog<void>(context: context, builder: (_) => const _EmailDialog()),
+                    icon: const Icon(Icons.mail_outline, size: 18),
+                    label: Text(l10n.signInWithEmail),
+                  ),
+                ],
               ],
             ],
           ),
         ),
       ),
+    );
+  }
+}
+
+/// Email and password: sign in, make an account, or reset the password.
+class _EmailDialog extends ConsumerStatefulWidget {
+  const _EmailDialog();
+
+  @override
+  ConsumerState<_EmailDialog> createState() => _EmailDialogState();
+}
+
+class _EmailDialogState extends ConsumerState<_EmailDialog> {
+  final _email = TextEditingController();
+  final _password = TextEditingController();
+  bool _create = false;
+  bool _busy = false;
+  String? _error;
+  String? _note;
+
+  @override
+  void dispose() {
+    _email.dispose();
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _go() async {
+    setState(() {
+      _busy = true;
+      _error = null;
+      _note = null;
+    });
+    final error = await ref
+        .read(syncProvider.notifier)
+        .signInWithEmail(_email.text, _password.text, create: _create);
+    if (!mounted) return;
+    if (error == null) {
+      Navigator.pop(context);
+    } else {
+      setState(() {
+        _busy = false;
+        _error = error;
+      });
+    }
+  }
+
+  Future<void> _reset() async {
+    if (_email.text.trim().isEmpty) {
+      setState(() => _error = l10n.emailInvalid);
+      return;
+    }
+    setState(() {
+      _busy = true;
+      _error = null;
+      _note = null;
+    });
+    final error = await ref.read(syncProvider.notifier).resetPassword(_email.text);
+    if (!mounted) return;
+    setState(() {
+      _busy = false;
+      _error = error;
+      _note = error == null ? l10n.passwordResetSent : null;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    return AlertDialog(
+      title: Text(_create ? l10n.createAccount : l10n.signInWithEmail),
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            TextField(
+              controller: _email,
+              autofocus: true,
+              keyboardType: TextInputType.emailAddress,
+              autofillHints: const [AutofillHints.email],
+              decoration: InputDecoration(labelText: l10n.email),
+            ),
+            const SizedBox(height: 8),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              autofillHints: [_create ? AutofillHints.newPassword : AutofillHints.password],
+              decoration: InputDecoration(labelText: l10n.password),
+              onSubmitted: (_) => _go(),
+            ),
+            if (_error != null) ...[
+              const SizedBox(height: 10),
+              Text(_error!, style: text.bodySmall?.copyWith(color: QuandoColors.coral)),
+            ],
+            if (_note != null) ...[const SizedBox(height: 10), Text(_note!, style: text.bodySmall)],
+            const SizedBox(height: 8),
+            Row(
+              children: [
+                TextButton(
+                  onPressed: _busy
+                      ? null
+                      : () => setState(() {
+                          _create = !_create;
+                          _error = null;
+                          _note = null;
+                        }),
+                  child: Text(_create ? l10n.haveAccount : l10n.createAccount),
+                ),
+                const Spacer(),
+                if (!_create) TextButton(onPressed: _busy ? null : _reset, child: Text(l10n.forgotPassword)),
+              ],
+            ),
+          ],
+        ),
+      ),
+      actions: [
+        TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
+        FilledButton(
+          onPressed: _busy ? null : _go,
+          child: _busy
+              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              : Text(_create ? l10n.createAccount : l10n.signIn),
+        ),
+      ],
     );
   }
 }

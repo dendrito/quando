@@ -3795,6 +3795,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign out'**
   String get signOut;
+
+  /// No description provided for @signInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with email'**
+  String get signInWithEmail;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'I have an account'**
+  String get haveAccount;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @passwordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent you a link to choose a new password.'**
+  String get passwordResetSent;
+
+  /// No description provided for @emailCheckInbox.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {email}. Open it, then come back and tap “I’ve confirmed”.'**
+  String emailCheckInbox(String email);
+
+  /// No description provided for @emailConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ve confirmed'**
+  String get emailConfirmed;
+
+  /// No description provided for @emailNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not confirmed yet. Open the link in the email first.'**
+  String get emailNotYet;
+
+  /// No description provided for @emailSendAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the email again'**
+  String get emailSendAgain;
+
+  /// No description provided for @emailSentAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent. Check your inbox and spam.'**
+  String get emailSentAgain;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That doesn’t look like an email address.'**
+  String get emailInvalid;
+
+  /// No description provided for @emailWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password.'**
+  String get emailWrong;
+
+  /// No description provided for @emailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.'**
+  String get emailInUse;
+
+  /// No description provided for @passwordWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a password of at least 6 characters.'**
+  String get passwordWeak;
+
+  /// No description provided for @emailNotSwitchedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Email sign-in isn’t switched on yet.'**
+  String get emailNotSwitchedOn;
+
+  /// No description provided for @tooManyTries.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Wait a few minutes.'**
+  String get tooManyTries;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

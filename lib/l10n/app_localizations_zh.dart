@@ -2065,6 +2065,66 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get signOut => 'Sign out';
+
+  @override
+  String get signInWithEmail => 'Sign in with email';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get haveAccount => 'I have an account';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get passwordResetSent => 'We sent you a link to choose a new password.';
+
+  @override
+  String emailCheckInbox(String email) {
+    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+  }
+
+  @override
+  String get emailConfirmed => 'I’ve confirmed';
+
+  @override
+  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+
+  @override
+  String get emailSendAgain => 'Send the email again';
+
+  @override
+  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+
+  @override
+  String get emailInvalid => 'That doesn’t look like an email address.';
+
+  @override
+  String get emailWrong => 'Wrong email or password.';
+
+  @override
+  String get emailInUse =>
+      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+
+  @override
+  String get passwordWeak => 'Choose a password of at least 6 characters.';
+
+  @override
+  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+
+  @override
+  String get tooManyTries => 'Too many tries. Wait a few minutes.';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -4127,4 +4187,64 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get signOut => 'Sign out';
+
+  @override
+  String get signInWithEmail => 'Sign in with email';
+
+  @override
+  String get signIn => 'Sign in';
+
+  @override
+  String get createAccount => 'Create account';
+
+  @override
+  String get haveAccount => 'I have an account';
+
+  @override
+  String get forgotPassword => 'Forgot password?';
+
+  @override
+  String get email => 'Email';
+
+  @override
+  String get password => 'Password';
+
+  @override
+  String get passwordResetSent => 'We sent you a link to choose a new password.';
+
+  @override
+  String emailCheckInbox(String email) {
+    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+  }
+
+  @override
+  String get emailConfirmed => 'I’ve confirmed';
+
+  @override
+  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+
+  @override
+  String get emailSendAgain => 'Send the email again';
+
+  @override
+  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+
+  @override
+  String get emailInvalid => 'That doesn’t look like an email address.';
+
+  @override
+  String get emailWrong => 'Wrong email or password.';
+
+  @override
+  String get emailInUse =>
+      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+
+  @override
+  String get passwordWeak => 'Choose a password of at least 6 characters.';
+
+  @override
+  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+
+  @override
+  String get tooManyTries => 'Too many tries. Wait a few minutes.';
 }

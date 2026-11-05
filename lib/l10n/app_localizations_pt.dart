@@ -2114,4 +2114,64 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get signOut => 'Sair';
+
+  @override
+  String get signInWithEmail => 'Entrar com e-mail';
+
+  @override
+  String get signIn => 'Entrar';
+
+  @override
+  String get createAccount => 'Criar conta';
+
+  @override
+  String get haveAccount => 'Já tenho conta';
+
+  @override
+  String get forgotPassword => 'Esqueci a senha';
+
+  @override
+  String get email => 'E-mail';
+
+  @override
+  String get password => 'Senha';
+
+  @override
+  String get passwordResetSent => 'Enviamos um link para você criar uma nova senha.';
+
+  @override
+  String emailCheckInbox(String email) {
+    return 'Enviamos um link para $email. Abra e depois volte e toque em “Já confirmei”.';
+  }
+
+  @override
+  String get emailConfirmed => 'Já confirmei';
+
+  @override
+  String get emailNotYet => 'Ainda não confirmado. Abra o link do e-mail primeiro.';
+
+  @override
+  String get emailSendAgain => 'Reenviar o e-mail';
+
+  @override
+  String get emailSentAgain => 'Enviado. Veja a caixa de entrada e o spam.';
+
+  @override
+  String get emailInvalid => 'Isso não parece um endereço de e-mail.';
+
+  @override
+  String get emailWrong => 'E-mail ou senha incorretos.';
+
+  @override
+  String get emailInUse =>
+      'Já existe uma conta com este e-mail. Entre com ela, ou use o Google se ela foi criada pelo Google.';
+
+  @override
+  String get passwordWeak => 'Escolha uma senha com pelo menos 6 caracteres.';
+
+  @override
+  String get emailNotSwitchedOn => 'O login por e-mail ainda não está ativado.';
+
+  @override
+  String get tooManyTries => 'Tentativas demais. Espere alguns minutos.';
 }
