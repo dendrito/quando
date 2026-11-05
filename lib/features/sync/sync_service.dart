@@ -32,36 +32,38 @@ class FirestoreRemote implements SyncRemote {
 
   @override
   Future<Map<String, SyncItem>> push(Map<String, SyncItem> items) =>
-      FirebaseFirestore.instance.runTransaction((transaction) async {
-        final snapshot = await transaction.get(_doc);
-        final data = snapshot.data() ?? <String, dynamic>{};
-        final raw = (data['items'] as Map?) ?? const {};
-        final merged = <String, dynamic>{
-          for (final entry in raw.entries) '${entry.key}': entry.value,
-        };
+      FirebaseFirestore.instance.runTransaction(
+        (transaction) async {
+          final snapshot = await transaction.get(_doc);
+          final data = snapshot.data() ?? <String, dynamic>{};
+          final raw = (data['items'] as Map?) ?? const {};
+          final merged = <String, dynamic>{
+            for (final entry in raw.entries) '${entry.key}': entry.value,
+          };
 
-        // Use a server-serialized revision rather than client wall-clock time.
-        // Seed from existing item timestamps to migrate older sync documents.
-        var revision = (data['revision'] as num?)?.toInt() ?? 0;
-        for (final value in raw.values) {
-          final item = SyncItem.fromJson(value);
-          if (item != null && item.t > revision) revision = item.t;
-        }
-        revision++;
+          // Use a server-serialized revision rather than client wall-clock time.
+          // Seed from existing item timestamps to migrate older sync documents.
+          var revision = (data['revision'] as num?)?.toInt() ?? 0;
+          for (final value in raw.values) {
+            final item = SyncItem.fromJson(value);
+            if (item != null && item.t > revision) revision = item.t;
+          }
+          revision++;
 
-        final committed = <String, SyncItem>{};
-        for (final entry in items.entries) {
-          final item = SyncItem(revision, entry.value.d, entry.value.s);
-          committed[entry.key] = item;
-          merged[entry.key.replaceAll('.', '~')] = item.toJson();
-        }
-        transaction.set(_doc, {
-          'items': merged,
-          'revision': revision,
-          'updated': FieldValue.serverTimestamp(),
-        });
-        return committed;
-      });
+          final committed = <String, SyncItem>{};
+          for (final entry in items.entries) {
+            final item = SyncItem(revision, entry.value.d, entry.value.s);
+            committed[entry.key] = item;
+            merged[entry.key.replaceAll('.', '~')] = item.toJson();
+          }
+          transaction.set(_doc, {
+            'items': merged,
+            'revision': revision,
+            'updated': FieldValue.serverTimestamp(),
+          });
+          return committed;
+        },
+      );
 }
 
 enum SyncPhase {
