@@ -8,10 +8,15 @@ import 'package:shared_preferences/shared_preferences.dart';
 class FakeServer {
   final items = <String, SyncItem>{};
   final _out = StreamController<Map<String, SyncItem>>.broadcast();
+  bool failNextPush = false;
 
   SyncRemote remote() => _Remote(this);
 
   Future<void> push(Map<String, SyncItem> changed) async {
+    if (failNextPush) {
+      failNextPush = false;
+      throw StateError('simulated network failure');
+    }
     items.addAll(changed);
     _out.add(Map.of(items));
   }
@@ -102,6 +107,30 @@ void main() {
     await a.pushLocal();
     expect(server.items, isEmpty);
     expect(pa.getString('language'), 'pt');
+  });
+
+  test('a failed upload stays dirty and is retried successfully', () async {
+    final (a, pa) = await device('a', {'language': 'pt'});
+    await a.apply(server.items);
+    expect(server.items['language'], isNull);
+
+    await pa.setString('language', 'en');
+    server.failNextPush = true;
+    await a.pushLocal();
+    expect(server.items['language'], isNull,
+        reason: 'a failed remote write must not be recorded as synchronized');
+
+    await a.pushLocal();
+    expect(server.items['language']!.s, contains('"en"'));
+  });
+
+  test('equal timestamps use a stable device-id tie-break', () async {
+    final (a, pa) = await device('a', {'language': 'pt'});
+    await pa.setString('sync.stamps', '{"language":100}');
+    await pa.setString('sync.origins', '{"language":"b"}');
+    final engine = SyncEngine(pa, server.remote(), device: 'a', now: now);
+    await engine.apply({'language': SyncItem(100, 'z', '"en"')});
+    expect(pa.getString('language'), 'en');
   });
 
   test('values keep their kind on the way through', () async {
