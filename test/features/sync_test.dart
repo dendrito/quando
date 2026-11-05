@@ -20,8 +20,7 @@ class FakeServer {
     }
     revision++;
     final committed = <String, SyncItem>{
-      for (final entry in changed.entries)
-        entry.key: SyncItem(revision, entry.value.d, entry.value.s),
+      for (final entry in changed.entries) entry.key: SyncItem(revision, entry.value.d, entry.value.s),
     };
     items.addAll(committed);
     _out.add(Map.of(items));
@@ -67,11 +66,7 @@ void main() {
     });
     await a.apply(server.items);
     expect(server.items.keys, containsAll(['userAlarms', 'quoteSources']));
-    expect(
-      server.items.containsKey('sounds'),
-      isFalse,
-      reason: 'recorded sounds stay on their device',
-    );
+    expect(server.items.containsKey('sounds'), isFalse, reason: 'recorded sounds stay on their device');
     expect(pa.getString('userAlarms'), '[1]');
 
     final (b, pb) = await device('b', {'userAlarms': '[]'});
@@ -140,22 +135,12 @@ void main() {
 
   test('server revisions resolve updates despite device clock skew', () async {
     final (a, pa) = await device('a', {'language': 'pt'});
-    final engineA = SyncEngine(
-      pa,
-      server.remote(),
-      device: 'a',
-      now: () => DateTime.utc(2040),
-    );
+    final engineA = SyncEngine(pa, server.remote(), device: 'a', now: () => DateTime.utc(2040));
     await engineA.apply(server.items);
     final first = server.items['language']!;
 
     final (b, pb) = await device('b', {});
-    final engineB = SyncEngine(
-      pb,
-      server.remote(),
-      device: 'b',
-      now: () => DateTime.utc(1990),
-    );
+    final engineB = SyncEngine(pb, server.remote(), device: 'b', now: () => DateTime.utc(1990));
     await engineB.apply(server.items);
     await pb.setString('language', 'en');
     await engineB.pushLocal();
