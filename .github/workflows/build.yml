@@ -28,7 +28,21 @@ jobs:
           cache: true
 
       - run: flutter pub get
-      - run: dart format --output=none --set-exit-if-changed lib test
+      # GitHub checks out a synthetic merge commit for pull requests. Check
+      # formatting on the contributor's actual head commit instead, then
+      # restore the merge commit for analysis, tests, and builds.
+      - name: Check Dart formatting on PR head
+        if: github.event_name == 'pull_request'
+        env:
+          PR_HEAD_SHA: ${{ github.event.pull_request.head.sha }}
+        run: |
+          git fetch --no-tags --depth=1 origin "$PR_HEAD_SHA"
+          git checkout --detach "$PR_HEAD_SHA"
+          dart format --output=none --set-exit-if-changed lib test
+          git checkout --detach "$GITHUB_SHA"
+      - name: Check Dart formatting on main
+        if: github.event_name != 'pull_request'
+        run: dart format --output=none --set-exit-if-changed lib test
       - run: flutter analyze
       - run: flutter test
       - name: Test the Jewish edition
