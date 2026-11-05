@@ -124,15 +124,15 @@ void main() {
   test('a failed upload stays dirty and is retried successfully', () async {
     final (a, pa) = await device('a', {'language': 'pt'});
     await a.apply(server.items);
-    expect(server.items['language'], isNull);
+    final original = server.items['language']!.s;
 
     await pa.setString('language', 'en');
     server.failNextPush = true;
     await a.pushLocal();
     expect(
-      server.items['language'],
-      isNull,
-      reason: 'a failed remote write must not be recorded as synchronized',
+      server.items['language']!.s,
+      original,
+      reason: 'a failed remote write must leave the previous server value intact',
     );
 
     await a.pushLocal();
