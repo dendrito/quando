@@ -42,9 +42,16 @@ cannot prove which rules are currently deployed in the Firebase project.
 
 The app writes one document per account. The `items` map contains settings
 that are intended to follow the account between devices. Device-local audio
-files, native calendar selections, and Spotify/YouTube sign-ins are not
-synced. Do not add API keys, OAuth refresh tokens, or other credentials to
-the synchronized settings list.
+files, native calendar selections, Spotify/YouTube sign-ins, and the entire
+`integrations` preference are not synced. The integrations preference contains
+the Pushover user key/token and webhook URLs, which may themselves contain
+secrets. Do not add API keys, OAuth refresh tokens, Pushover credentials,
+webhook URLs, or other secrets to the synchronized settings list.
+
+The current app stores Pushover credentials and webhook URLs in ordinary
+SharedPreferences on each device. Before production release, migrate these
+values to platform secure storage and add a migration path. Device-local does
+not mean encrypted-at-rest by the app.
 
 ## Revision ordering
 
