@@ -2174,4 +2174,32 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tooManyTries => 'Tentativas demais. Espere alguns minutos.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Entre para escolher das suas playlists e músicas curtidas, ou buscar em todo o Spotify. Não precisa de Premium.';
+
+  @override
+  String get spotifyLibraryOn => 'Suas playlists, músicas curtidas e busca. Toque e segure para sair.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'O login no Spotify não funcionou: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'O login no Google não funcionou: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Buscar músicas, artistas, playlists';
+
+  @override
+  String nothingFound(String query) {
+    return 'Nada encontrado para “$query”.';
+  }
 }

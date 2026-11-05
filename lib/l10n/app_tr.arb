@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Çalma listelerinden ve beğendiğin şarkılardan seçmek ya da tüm Spotify'da aramak için giriş yap. Premium gerekmez.",
+  "spotifyLibraryOn": "Çalma listelerin, beğendiğin şarkılar ve arama. Çıkış için basılı tut.",
+  "spotifyLoginError": "Spotify girişi olmadı: {reason}",
+  "googleSignInError": "Google girişi olmadı: {reason}",
+  "searchSongsHint": "Şarkı, sanatçı, çalma listesi ara",
+  "nothingFound": "“{query}” için sonuç yok."
 }

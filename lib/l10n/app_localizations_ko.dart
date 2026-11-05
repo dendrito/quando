@@ -2132,4 +2132,31 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tooManyTries => 'Too many tries. Wait a few minutes.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn => '로그인하면 내 플레이리스트와 좋아요한 곡에서 고르거나 Spotify 전체를 검색할 수 있어요. Premium 필요 없음.';
+
+  @override
+  String get spotifyLibraryOn => '내 플레이리스트, 좋아요한 곡, 검색. 길게 눌러 로그아웃.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify 로그인 실패: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google 로그인 실패: $reason';
+  }
+
+  @override
+  String get searchSongsHint => '곡, 아티스트, 플레이리스트 검색';
+
+  @override
+  String nothingFound(String query) {
+    return '“$query”에 대한 결과가 없어요.';
+  }
 }

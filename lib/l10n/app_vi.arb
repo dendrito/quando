@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Đăng nhập để chọn từ danh sách phát và bài hát đã thích, hoặc tìm trên toàn Spotify. Không cần Premium.",
+  "spotifyLibraryOn": "Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.",
+  "spotifyLoginError": "Đăng nhập Spotify không thành công: {reason}",
+  "googleSignInError": "Đăng nhập Google không thành công: {reason}",
+  "searchSongsHint": "Tìm bài hát, nghệ sĩ, danh sách phát",
+  "nothingFound": "Không tìm thấy gì cho “{query}”."
 }

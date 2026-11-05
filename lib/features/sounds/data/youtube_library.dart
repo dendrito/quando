@@ -36,7 +36,12 @@ class YouTubeAccount {
 
   /// A key to read your YouTube library: signs in (once) and asks for
   /// permission (once). null when you said no or it failed.
+  /// Why the last sign-in failed, in Google's words. null when it worked
+  /// or you cancelled.
+  static String? lastError;
+
   static Future<String?> token({bool prompt = true}) async {
+    lastError = null;
     try {
       await init();
       final account =
@@ -48,7 +53,13 @@ class YouTubeAccount {
           await client.authorizationForScopes(const [scope]) ??
           (prompt ? await client.authorizeScopes(const [scope]) : null);
       return auth?.accessToken;
-    } catch (_) {
+    } on GoogleSignInException catch (e) {
+      if (e.code != GoogleSignInExceptionCode.canceled) {
+        lastError = '${e.code.name}${e.description == null ? '' : ': ${e.description}'}';
+      }
+      return null;
+    } catch (e) {
+      lastError = '$e';
       return null;
     }
   }
@@ -97,7 +108,57 @@ class YouTubeLibrary {
     return SpotifyItem(name: name, detail: channel, url: '$_host/watch?v=$id', image: _thumb(sn));
   });
 
+  /// Videos (songs) and playlists for anything you type.
+  Future<List<SpotifyItem>> search(String query) {
+    final q = Uri.encodeQueryComponent(query.trim());
+    return _get('search?part=snippet&type=video,playlist&maxResults=25&q=$q', (j) {
+      final id = j['id'] as Map?;
+      final sn = j['snippet'] as Map?;
+      final name = sn?['title'] as String?;
+      if (id == null || name == null || name.isEmpty) return null;
+      final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(RegExp(r' - Topic$'), '');
+      final video = id['videoId'] as String?;
+      final list = id['playlistId'] as String?;
+      if (video != null) {
+        return SpotifyItem(
+          name: _unescape(name),
+          detail: channel,
+          url: '$_host/watch?v=$video',
+          image: _thumb(sn),
+        );
+      }
+      if (list != null) {
+        return SpotifyItem(
+          name: _unescape(name),
+          detail: '${l10n.playlist} · $channel',
+          url: '$_host/playlist?list=$list',
+          image: _thumb(sn),
+        );
+      }
+      return null;
+    });
+  }
+
+  /// Search titles come HTML-escaped ("Rock &amp; Roll").
+  static String _unescape(String s) => s
+      .replaceAll('&amp;', '&')
+      .replaceAll('&quot;', '"')
+      .replaceAll('&#39;', "'")
+      .replaceAll('&lt;', '<')
+      .replaceAll('&gt;', '>');
+
   static String? _thumb(Map? sn) => ((sn?['thumbnails'] as Map?)?['default'] as Map?)?['url'] as String?;
+
+  /// Google's own words, e.g. "YouTube Data API v3 has not been used in
+  /// project … or it is disabled", so the fix is clear.
+  static String _why(String body) {
+    try {
+      final m = ((jsonDecode(body) as Map)['error'] as Map)['message'];
+      return m is String && m.isNotEmpty ? '\n\n($m)' : '';
+    } catch (_) {
+      return '';
+    }
+  }
 
   Future<List<SpotifyItem>> _get(String path, SpotifyItem? Function(Map<String, dynamic>) parse) async {
     final r = await _client
@@ -107,9 +168,11 @@ class YouTubeLibrary {
         )
         .timeout(const Duration(seconds: 10));
     if (r.statusCode == 403) {
-      throw Exception(l10n.youTubeSaidNo);
+      throw Exception('${l10n.youTubeSaidNo}${_why(r.body)}');
     }
-    if (r.statusCode != 200) throw Exception(l10n.serviceDidntAnswer('YouTube', r.statusCode));
+    if (r.statusCode != 200) {
+      throw Exception('${l10n.serviceDidntAnswer('YouTube', r.statusCode)}${_why(r.body)}');
+    }
     final items = (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ?? const [];
     return [
       for (final j in items)

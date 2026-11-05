@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Melde dich an, um aus deinen Playlists und Lieblingssongs zu wählen oder ganz Spotify zu durchsuchen. Kein Premium nötig.",
+  "spotifyLibraryOn": "Deine Playlists, Lieblingssongs und Suche. Lange drücken zum Abmelden.",
+  "spotifyLoginError": "Spotify-Anmeldung hat nicht geklappt: {reason}",
+  "googleSignInError": "Google-Anmeldung hat nicht geklappt: {reason}",
+  "searchSongsHint": "Songs, Künstler, Playlists suchen",
+  "nothingFound": "Nichts gefunden für „{query}“."
 }

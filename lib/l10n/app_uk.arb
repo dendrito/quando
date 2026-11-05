@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Увійдіть, щоб вибирати зі своїх плейлистів і вподобаних треків або шукати по всьому Spotify. Premium не потрібен.",
+  "spotifyLibraryOn": "Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.",
+  "spotifyLoginError": "Не вдалося увійти в Spotify: {reason}",
+  "googleSignInError": "Не вдалося увійти в Google: {reason}",
+  "searchSongsHint": "Шукати пісні, виконавців, плейлисти",
+  "nothingFound": "За запитом «{query}» нічого не знайдено."
 }

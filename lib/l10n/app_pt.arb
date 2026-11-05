@@ -629,5 +629,12 @@
   "emailInUse": "Já existe uma conta com este e-mail. Entre com ela, ou use o Google se ela foi criada pelo Google.",
   "passwordWeak": "Escolha uma senha com pelo menos 6 caracteres.",
   "emailNotSwitchedOn": "O login por e-mail ainda não está ativado.",
-  "tooManyTries": "Tentativas demais. Espere alguns minutos."
+  "tooManyTries": "Tentativas demais. Espere alguns minutos.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Entre para escolher das suas playlists e músicas curtidas, ou buscar em todo o Spotify. Não precisa de Premium.",
+  "spotifyLibraryOn": "Suas playlists, músicas curtidas e busca. Toque e segure para sair.",
+  "spotifyLoginError": "O login no Spotify não funcionou: {reason}",
+  "googleSignInError": "O login no Google não funcionou: {reason}",
+  "searchSongsHint": "Buscar músicas, artistas, playlists",
+  "nothingFound": "Nada encontrado para “{query}”."
 }

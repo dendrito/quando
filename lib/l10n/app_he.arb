@@ -629,5 +629,12 @@
   "emailInUse": "כבר יש חשבון עם האימייל הזה. היכנס אליו, או השתמש ב-Google אם נוצר דרך Google.",
   "passwordWeak": "בחר סיסמה של 6 תווים לפחות.",
   "emailNotSwitchedOn": "הכניסה עם אימייל עדיין לא הופעלה.",
-  "tooManyTries": "יותר מדי ניסיונות. המתן כמה דקות."
+  "tooManyTries": "יותר מדי ניסיונות. המתן כמה דקות.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "התחברו כדי לבחור מהפלייליסטים והשירים שאהבתם, או לחפש בכל Spotify. לא צריך Premium.",
+  "spotifyLibraryOn": "הפלייליסטים, השירים שאהבתם וחיפוש. לחיצה ארוכה להתנתקות.",
+  "spotifyLoginError": "ההתחברות ל-Spotify לא הצליחה: {reason}",
+  "googleSignInError": "ההתחברות ל-Google לא הצליחה: {reason}",
+  "searchSongsHint": "חיפוש שירים, אמנים, פלייליסטים",
+  "nothingFound": "לא נמצא דבר עבור „{query}”."
 }

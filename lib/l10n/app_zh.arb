@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。",
+  "spotifyLibraryOn": "你的歌单、喜欢的歌曲和搜索。长按退出登录。",
+  "spotifyLoginError": "Spotify 登录失败：{reason}",
+  "googleSignInError": "Google 登录失败：{reason}",
+  "searchSongsHint": "搜索歌曲、艺人、歌单",
+  "nothingFound": "没有找到“{query}”。"
 }

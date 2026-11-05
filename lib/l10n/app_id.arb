@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Masuk untuk memilih dari playlist dan lagu yang kamu sukai, atau cari di seluruh Spotify. Tidak perlu Premium.",
+  "spotifyLibraryOn": "Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.",
+  "spotifyLoginError": "Masuk ke Spotify gagal: {reason}",
+  "googleSignInError": "Masuk ke Google gagal: {reason}",
+  "searchSongsHint": "Cari lagu, artis, playlist",
+  "nothingFound": "Tidak ada hasil untuk “{query}”."
 }

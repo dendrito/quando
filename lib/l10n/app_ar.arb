@@ -629,5 +629,12 @@
   "emailInUse": "There’s already an account with this email. Sign in instead, or use Google if you made it with Google.",
   "passwordWeak": "Choose a password of at least 6 characters.",
   "emailNotSwitchedOn": "Email sign-in isn’t switched on yet.",
-  "tooManyTries": "Too many tries. Wait a few minutes."
+  "tooManyTries": "Too many tries. Wait a few minutes.",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "سجّل الدخول لتختار من قوائم التشغيل والأغاني التي أعجبتك، أو لتبحث في Spotify كله. لا حاجة إلى Premium.",
+  "spotifyLibraryOn": "قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.",
+  "spotifyLoginError": "لم ينجح تسجيل الدخول إلى Spotify: {reason}",
+  "googleSignInError": "لم ينجح تسجيل الدخول إلى Google: {reason}",
+  "searchSongsHint": "ابحث عن أغانٍ وفنانين وقوائم تشغيل",
+  "nothingFound": "لا نتائج لـ «{query}»."
 }

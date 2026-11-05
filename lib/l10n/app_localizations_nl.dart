@@ -2173,4 +2173,33 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tooManyTries => 'Too many tries. Wait a few minutes.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Log in om te kiezen uit je playlists en favoriete nummers, of heel Spotify te doorzoeken. Geen Premium nodig.';
+
+  @override
+  String get spotifyLibraryOn =>
+      'Je playlists, favoriete nummers en zoeken. Lang indrukken om uit te loggen.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Inloggen bij Spotify lukte niet: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Inloggen bij Google lukte niet: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Zoek nummers, artiesten, playlists';
+
+  @override
+  String nothingFound(String query) {
+    return 'Niets gevonden voor ‘$query’.';
+  }
 }

@@ -9,6 +9,7 @@ import 'app/providers.dart';
 import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
 import 'features/ringing/data/spotify.dart';
+import 'features/sounds/data/spotify_account.dart';
 import 'features/sounds/data/youtube_library.dart';
 
 Future<void> main() async {
@@ -23,6 +24,7 @@ Future<void> main() async {
   );
   await initializeDateFormatting();
   SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
+  SpotifyAccount.load(prefs);
   YouTubeAccount.connected = prefs.getBool(YouTubeAccount.prefKey) ?? false;
   String? deviceZone;
   try {

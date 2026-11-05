@@ -2162,4 +2162,32 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tooManyTries => 'יותר מדי ניסיונות. המתן כמה דקות.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'התחברו כדי לבחור מהפלייליסטים והשירים שאהבתם, או לחפש בכל Spotify. לא צריך Premium.';
+
+  @override
+  String get spotifyLibraryOn => 'הפלייליסטים, השירים שאהבתם וחיפוש. לחיצה ארוכה להתנתקות.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'ההתחברות ל-Spotify לא הצליחה: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'ההתחברות ל-Google לא הצליחה: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'חיפוש שירים, אמנים, פלייליסטים';
+
+  @override
+  String nothingFound(String query) {
+    return 'לא נמצא דבר עבור „$query”.';
+  }
 }

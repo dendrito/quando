@@ -2162,4 +2162,32 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get tooManyTries => 'Too many tries. Wait a few minutes.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'अपनी प्लेलिस्ट और पसंद किए गाने चुनने या पूरे Spotify में खोजने के लिए साइन इन करें। Premium ज़रूरी नहीं।';
+
+  @override
+  String get spotifyLibraryOn => 'आपकी प्लेलिस्ट, पसंद किए गाने और खोज। साइन आउट के लिए देर तक दबाएँ।';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify साइन-इन नहीं हुआ: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google साइन-इन नहीं हुआ: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'गाने, कलाकार, प्लेलिस्ट खोजें';
+
+  @override
+  String nothingFound(String query) {
+    return '“$query” के लिए कुछ नहीं मिला।';
+  }
 }

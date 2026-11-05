@@ -2159,4 +2159,32 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tooManyTries => 'Too many tries. Wait a few minutes.';
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Sign in to pick from your playlists and liked songs, or search all of Spotify. No Premium needed.';
+
+  @override
+  String get spotifyLibraryOn => 'Your playlists, liked songs and search. Long-press to sign out.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify sign-in didn\'t work: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google sign-in didn\'t work: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Search songs, artists, playlists';
+
+  @override
+  String nothingFound(String query) {
+    return 'Nothing found for “$query”.';
+  }
 }
