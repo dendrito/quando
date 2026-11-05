@@ -5,10 +5,13 @@
 enum PushoverBehavior {
   /// Use the account-wide Pushover preference.
   inherit,
+
   /// Send a Pushover notification in addition to Quando's local alarm.
   alongside,
+
   /// Deliver through Pushover only; do not start Quando audio.
   replace,
+
   /// Do not send a Pushover notification for this reminder.
   disabled,
 }
