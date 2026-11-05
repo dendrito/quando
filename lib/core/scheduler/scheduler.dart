@@ -1,6 +1,7 @@
 import '../../features/events/domain/event.dart';
 import '../../features/ringing/ring_style.dart';
 import '../../features/rules/domain/alarm_rule.dart';
+import '../../features/rules/domain/reminder_delivery.dart';
 import '../util/format.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -18,6 +19,7 @@ class ScheduledAlarm {
     required this.offset,
     this.soundId,
     this.style = RingStyle.none,
+    this.delivery = const ReminderDelivery(),
   });
 
   /// Stable across re-planning, so the same alarm is never registered twice.
@@ -35,6 +37,9 @@ class ScheduledAlarm {
 
   /// How this alarm rings and stops, beyond the shared settings.
   final RingStyle style;
+
+  /// Delivery override selected for this precise event-relative offset.
+  final ReminderDelivery delivery;
 
   @override
   String toString() => 'ScheduledAlarm(${at.toIso8601String()}, $title, $body)';
@@ -94,6 +99,7 @@ class Scheduler {
               offset: offset,
               soundId: rule.soundId,
               style: rule.style,
+              delivery: rule.deliveryAt(offset),
             ),
           );
         }
