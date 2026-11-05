@@ -27,7 +27,10 @@ class YouTubeAccount {
   /// Google sign-in is set up once, for YouTube and for sync alike.
   static Future<void> init() async {
     if (_ready) return;
-    await GoogleSignIn.instance.initialize(clientId: SyncConfig.iosClient, serverClientId: serverClientId);
+    await GoogleSignIn.instance.initialize(
+      clientId: SyncConfig.iosClient,
+      serverClientId: SyncConfig.iosClient != null ? SyncConfig.webClientId : serverClientId,
+    );
     _ready = true;
   }
 
