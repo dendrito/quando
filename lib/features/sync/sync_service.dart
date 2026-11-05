@@ -268,7 +268,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
     _engine = null;
     final prefs = ref.read(prefsProvider);
     await prefs.setBool('sync.on', false);
-    for (final k in ['sync.last', 'sync.stamps', 'sync.email', 'sync.name', 'sync.photo']) {
+    for (final k in ['sync.last', 'sync.stamps', 'sync.origins', 'sync.email', 'sync.name', 'sync.photo']) {
       await prefs.remove(k);
     }
     try {
