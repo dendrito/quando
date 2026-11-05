@@ -103,12 +103,9 @@ class SyncEngine {
   bool _heard = false;
   Future<void> _pending = Future<void>.value();
 
-  Map<String, String?> get _last =>
-      _readMap('sync.last').map((k, v) => MapEntry(k, v as String?));
-  Map<String, int> get _stamps =>
-      _readMap('sync.stamps').map((k, v) => MapEntry(k, (v as num).toInt()));
-  Map<String, String> get _origins =>
-      _readMap('sync.origins').map((k, v) => MapEntry(k, '$v'));
+  Map<String, String?> get _last => _readMap('sync.last').map((k, v) => MapEntry(k, v as String?));
+  Map<String, int> get _stamps => _readMap('sync.stamps').map((k, v) => MapEntry(k, (v as num).toInt()));
+  Map<String, String> get _origins => _readMap('sync.origins').map((k, v) => MapEntry(k, '$v'));
 
   Map<String, Object?> _readMap(String key) {
     try {
@@ -118,11 +115,7 @@ class SyncEngine {
     }
   }
 
-  Future<void> _save(
-    Map<String, String?> last,
-    Map<String, int> stamps,
-    Map<String, String> origins,
-  ) async {
+  Future<void> _save(Map<String, String?> last, Map<String, int> stamps, Map<String, String> origins) async {
     await prefs.setString('sync.last', jsonEncode(last));
     await prefs.setString('sync.stamps', jsonEncode(stamps));
     await prefs.setString('sync.origins', jsonEncode(origins));
@@ -162,10 +155,7 @@ class SyncEngine {
     final last = _last, stamps = _stamps, origins = _origins;
     final changed = <String, SyncItem>{};
     final now = _now().millisecondsSinceEpoch;
-    final nextLogicalTime = stamps.values.fold<int>(
-      now,
-      (a, b) => a > b ? a : b + 1,
-    );
+    final nextLogicalTime = stamps.values.fold<int>(now, (a, b) => a > b ? a : b + 1);
     for (final k in syncedKeys) {
       final cur = encodePref(prefs, k);
       if (cur == last[k]) continue;
@@ -175,8 +165,9 @@ class SyncEngine {
 
     // Crucially, do not advance local sync markers before the remote confirms
     // the write. If offline or denied, the next timer tick retries these keys.
+    late final Map<String, SyncItem> committed;
     try {
-      final committed = await remote.push(changed);
+      committed = await remote.push(changed);
     } catch (_) {
       return;
     }
@@ -205,8 +196,7 @@ class SyncEngine {
       final previousStamp = stamps[k] ?? 0;
       final previousOrigin = origins[k] ?? '';
       final newer =
-          item.t > previousStamp ||
-          (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
+          item.t > previousStamp || (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
       if (!newer) continue;
 
       final cur = encodePref(prefs, k);
