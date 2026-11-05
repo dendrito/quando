@@ -132,9 +132,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final allSkipped = alarms.every((x) => skippedNow.contains(x.id));
     final home = ref.read(homeZoneProvider);
     final at = inZone(a.at, home);
-    final sources = <String, _Source>{
-      for (final s in alarms.map(_sourceOf).nonNulls) s.key: s,
-    }.values.toList();
+    final sources = <String, _Source>{for (final s in alarms.map(_sourceOf).nonNulls) s.key: s}.values
+        .toList();
     final several = sources.length > 1;
     // One time out of a preset's several, e.g. "2 hours before".
     final p = one ? sources.firstOrNull?.preset : null;
