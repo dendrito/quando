@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Dichter und Tage deines Ortes, nach Zeitzone und Schabbat-Stadt",
   "quoteSiddur": "Siddur (Gebetbuch)",
   "weeklyParasha": "Parascha {name}",
-  "poweredBy": "powered by {name}"
+  "poweredBy": "powered by {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Melde dich an, um aus deinen Playlists und Lieblingssongs zu wählen oder ganz Spotify zu durchsuchen. Kein Premium nötig.",
+  "spotifyLibraryOn": "Deine Playlists, Lieblingssongs und Suche. Lange drücken zum Abmelden.",
+  "spotifyLoginError": "Spotify-Anmeldung hat nicht geklappt: {reason}",
+  "googleSignInError": "Google-Anmeldung hat nicht geklappt: {reason}",
+  "searchSongsHint": "Songs, Künstler, Playlists suchen",
+  "nothingFound": "Nichts gefunden für „{query}“."
 }

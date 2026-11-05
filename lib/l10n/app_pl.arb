@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Poeci i dni miejsca, w którym jesteś, według strefy czasowej i miasta szabatu",
   "quoteSiddur": "Sidur (modlitewnik)",
   "weeklyParasha": "Parsza {name}",
-  "poweredBy": "napędzane przez {name}"
+  "poweredBy": "napędzane przez {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Zaloguj się, aby wybierać z playlist i polubionych utworów albo szukać w całym Spotify. Premium nie jest potrzebne.",
+  "spotifyLibraryOn": "Twoje playlisty, polubione utwory i wyszukiwanie. Przytrzymaj, aby się wylogować.",
+  "spotifyLoginError": "Logowanie do Spotify nie powiodło się: {reason}",
+  "googleSignInError": "Logowanie do Google nie powiodło się: {reason}",
+  "searchSongsHint": "Szukaj utworów, wykonawców, playlist",
+  "nothingFound": "Nic nie znaleziono dla „{query}”."
 }

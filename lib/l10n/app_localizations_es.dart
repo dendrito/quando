@@ -2032,4 +2032,33 @@ class AppLocalizationsEs extends AppLocalizations {
   String poweredBy(String name) {
     return 'con tecnología $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Inicia sesión para elegir de tus playlists y canciones que te gustan, o buscar en todo Spotify. No hace falta Premium.';
+
+  @override
+  String get spotifyLibraryOn =>
+      'Tus playlists, canciones que te gustan y búsqueda. Mantén pulsado para cerrar sesión.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'El inicio de sesión en Spotify no funcionó: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'El inicio de sesión en Google no funcionó: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Buscar canciones, artistas, playlists';
+
+  @override
+  String nothingFound(String query) {
+    return 'No se encontró nada para «$query».';
+  }
 }

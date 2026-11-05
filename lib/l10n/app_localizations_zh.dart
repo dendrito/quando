@@ -1982,6 +1982,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String poweredBy(String name) {
     return '由 $name 驱动';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn => '登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。';
+
+  @override
+  String get spotifyLibraryOn => '你的歌单、喜欢的歌曲和搜索。长按退出登录。';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify 登录失败：$reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google 登录失败：$reason';
+  }
+
+  @override
+  String get searchSongsHint => '搜索歌曲、艺人、歌单';
+
+  @override
+  String nothingFound(String query) {
+    return '没有找到“$query”。';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3960,5 +3987,32 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String poweredBy(String name) {
     return '由 $name 驅動';
+  }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn => '登入後可從你的播放清單和喜歡的歌曲中選擇，或搜尋整個 Spotify。不需要 Premium。';
+
+  @override
+  String get spotifyLibraryOn => '你的播放清單、喜歡的歌曲和搜尋。長按以登出。';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify 登入失敗：$reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google 登入失敗：$reason';
+  }
+
+  @override
+  String get searchSongsHint => '搜尋歌曲、藝人、播放清單';
+
+  @override
+  String nothingFound(String query) {
+    return '找不到「$query」。';
   }
 }

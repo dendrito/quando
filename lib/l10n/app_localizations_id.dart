@@ -2016,4 +2016,32 @@ class AppLocalizationsId extends AppLocalizations {
   String poweredBy(String name) {
     return 'didukung $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Masuk untuk memilih dari playlist dan lagu yang kamu sukai, atau cari di seluruh Spotify. Tidak perlu Premium.';
+
+  @override
+  String get spotifyLibraryOn => 'Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Masuk ke Spotify gagal: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Masuk ke Google gagal: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Cari lagu, artis, playlist';
+
+  @override
+  String nothingFound(String query) {
+    return 'Tidak ada hasil untuk “$query”.';
+  }
 }

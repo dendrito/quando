@@ -589,5 +589,12 @@
   "quoteNearMeHint": "根據你的時區和安息日城市，顯示當地的詩人與節日",
   "quoteSiddur": "祈禱書 (Siddur)",
   "weeklyParasha": "本週經文 {name}",
-  "poweredBy": "由 {name} 驅動"
+  "poweredBy": "由 {name} 驅動",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "登入後可從你的播放清單和喜歡的歌曲中選擇，或搜尋整個 Spotify。不需要 Premium。",
+  "spotifyLibraryOn": "你的播放清單、喜歡的歌曲和搜尋。長按以登出。",
+  "spotifyLoginError": "Spotify 登入失敗：{reason}",
+  "googleSignInError": "Google 登入失敗：{reason}",
+  "searchSongsHint": "搜尋歌曲、藝人、播放清單",
+  "nothingFound": "找不到「{query}」。"
 }

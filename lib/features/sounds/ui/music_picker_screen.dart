@@ -8,16 +8,19 @@ import '../domain/sound.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
-/// Your playlists and liked songs from a music app: tap one to wake up to
-/// it.
+/// Your playlists and liked songs from a music app, or a search of the
+/// whole app: tap one to wake up to it.
 class MusicPickerScreen extends ConsumerStatefulWidget {
-  const MusicPickerScreen({super.key, required this.title, required this.load});
+  const MusicPickerScreen({super.key, required this.title, required this.load, this.search});
 
   /// "My Spotify".
   final String title;
 
   /// Signs in if needed, then reads playlists and liked songs.
   final Future<(List<SpotifyItem>, List<SpotifyItem>)> Function() load;
+
+  /// Searches the whole app for songs and playlists.
+  final Future<List<SpotifyItem>> Function(String query)? search;
 
   @override
   ConsumerState<MusicPickerScreen> createState() => _MusicPickerScreenState();
@@ -27,6 +30,50 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
   List<SpotifyItem>? _playlists;
   List<SpotifyItem>? _liked;
   String? _error;
+
+  final _query = TextEditingController();
+
+  /// The search being shown, its results (null while loading) and error.
+  String? _searched;
+  List<SpotifyItem>? _results;
+  String? _searchError;
+  var _searchRun = 0;
+
+  @override
+  void dispose() {
+    _query.dispose();
+    super.dispose();
+  }
+
+  Future<void> _search(String q) async {
+    final query = q.trim();
+    if (query.isEmpty) {
+      _clearSearch();
+      return;
+    }
+    final run = ++_searchRun;
+    setState(() {
+      _searched = query;
+      _results = null;
+      _searchError = null;
+    });
+    try {
+      final found = await widget.search!(query);
+      if (mounted && run == _searchRun) setState(() => _results = found);
+    } catch (e) {
+      if (mounted && run == _searchRun) setState(() => _searchError = '$e'.replaceFirst('Exception: ', ''));
+    }
+  }
+
+  void _clearSearch() {
+    _searchRun++;
+    _query.clear();
+    setState(() {
+      _searched = null;
+      _results = null;
+      _searchError = null;
+    });
+  }
 
   @override
   void initState() {
@@ -61,13 +108,13 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
     Navigator.of(context).pop();
   }
 
-  Widget _list(List<SpotifyItem>? items, String empty) {
+  Widget _list(List<SpotifyItem>? items, String empty, {String? error}) {
     final text = Theme.of(context).textTheme;
-    if (_error != null) {
+    if (error != null) {
       return Center(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.all(32),
-          child: Text(_error!, textAlign: TextAlign.center, style: text.bodyLarge),
+          child: SelectableText(error, textAlign: TextAlign.center, style: text.bodyLarge),
         ),
       );
     }
@@ -106,19 +153,54 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final searching = _searched != null;
+    final searchBar = widget.search == null
+        ? null
+        : Padding(
+            padding: const EdgeInsets.fromLTRB(16, 0, 16, 8),
+            child: TextField(
+              controller: _query,
+              textInputAction: TextInputAction.search,
+              onSubmitted: _search,
+              decoration: InputDecoration(
+                hintText: l10n.searchSongsHint,
+                prefixIcon: const Icon(Icons.search),
+                suffixIcon: searching
+                    ? IconButton(icon: const Icon(Icons.close), tooltip: l10n.cancel, onPressed: _clearSearch)
+                    : null,
+                isDense: true,
+              ),
+            ),
+          );
     return DefaultTabController(
       length: 2,
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
-          bottom: TabBar(
-            tabs: [
-              Tab(text: l10n.playlists),
-              Tab(text: l10n.likedSongs),
-            ],
+          bottom: PreferredSize(
+            preferredSize: Size.fromHeight((searchBar == null ? 0 : 56) + (searching ? 0 : 48)),
+            child: Column(
+              children: [
+                ?searchBar,
+                if (!searching)
+                  TabBar(
+                    tabs: [
+                      Tab(text: l10n.playlists),
+                      Tab(text: l10n.likedSongs),
+                    ],
+                  ),
+              ],
+            ),
           ),
         ),
-        body: TabBarView(children: [_list(_playlists, l10n.noPlaylists), _list(_liked, l10n.noLikedSongs)]),
+        body: searching
+            ? _list(_results, l10n.nothingFound(_searched!), error: _searchError)
+            : TabBarView(
+                children: [
+                  _list(_playlists, l10n.noPlaylists, error: _error),
+                  _list(_liked, l10n.noLikedSongs, error: _error),
+                ],
+              ),
       ),
     );
   }

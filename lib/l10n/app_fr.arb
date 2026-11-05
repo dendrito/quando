@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Poètes et dates de l’endroit où vous êtes, d’après votre fuseau horaire et votre ville de Chabbat",
   "quoteSiddur": "Siddour (livre de prières)",
   "weeklyParasha": "Paracha {name}",
-  "poweredBy": "propulsé par {name}"
+  "poweredBy": "propulsé par {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Connectez-vous pour choisir parmi vos playlists et titres likés, ou chercher dans tout Spotify. Premium non requis.",
+  "spotifyLibraryOn": "Vos playlists, titres likés et recherche. Appui long pour vous déconnecter.",
+  "spotifyLoginError": "La connexion à Spotify n'a pas marché : {reason}",
+  "googleSignInError": "La connexion à Google n'a pas marché : {reason}",
+  "searchSongsHint": "Chercher titres, artistes, playlists",
+  "nothingFound": "Rien trouvé pour « {query} »."
 }

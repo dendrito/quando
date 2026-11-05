@@ -589,5 +589,12 @@
   "quoteNearMeHint": "شعراء ومناسبات المكان الذي أنت فيه، حسب منطقتك الزمنية ومدينة السبت",
   "quoteSiddur": "السيدور (كتاب الصلوات)",
   "weeklyParasha": "البارشاه {name}",
-  "poweredBy": "بدعم من {name}"
+  "poweredBy": "بدعم من {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "سجّل الدخول لتختار من قوائم التشغيل والأغاني التي أعجبتك، أو لتبحث في Spotify كله. لا حاجة إلى Premium.",
+  "spotifyLibraryOn": "قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.",
+  "spotifyLoginError": "لم ينجح تسجيل الدخول إلى Spotify: {reason}",
+  "googleSignInError": "لم ينجح تسجيل الدخول إلى Google: {reason}",
+  "searchSongsHint": "ابحث عن أغانٍ وفنانين وقوائم تشغيل",
+  "nothingFound": "لا نتائج لـ «{query}»."
 }

@@ -2030,4 +2030,32 @@ class AppLocalizationsDe extends AppLocalizations {
   String poweredBy(String name) {
     return 'powered by $name';
   }
+
+  @override
+  String get spotifyLibrary => 'Spotify';
+
+  @override
+  String get spotifyLibrarySignIn =>
+      'Melde dich an, um aus deinen Playlists und Lieblingssongs zu wählen oder ganz Spotify zu durchsuchen. Kein Premium nötig.';
+
+  @override
+  String get spotifyLibraryOn => 'Deine Playlists, Lieblingssongs und Suche. Lange drücken zum Abmelden.';
+
+  @override
+  String spotifyLoginError(String reason) {
+    return 'Spotify-Anmeldung hat nicht geklappt: $reason';
+  }
+
+  @override
+  String googleSignInError(String reason) {
+    return 'Google-Anmeldung hat nicht geklappt: $reason';
+  }
+
+  @override
+  String get searchSongsHint => 'Songs, Künstler, Playlists suchen';
+
+  @override
+  String nothingFound(String query) {
+    return 'Nichts gefunden für „$query“.';
+  }
 }

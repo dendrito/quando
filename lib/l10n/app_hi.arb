@@ -589,5 +589,12 @@
   "quoteNearMeHint": "आप जहाँ हैं वहाँ के कवि और दिन, आपके समय क्षेत्र और शब्बात शहर से",
   "quoteSiddur": "सिद्दूर (प्रार्थना पुस्तक)",
   "weeklyParasha": "पराशा {name}",
-  "poweredBy": "{name} द्वारा संचालित"
+  "poweredBy": "{name} द्वारा संचालित",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "अपनी प्लेलिस्ट और पसंद किए गाने चुनने या पूरे Spotify में खोजने के लिए साइन इन करें। Premium ज़रूरी नहीं।",
+  "spotifyLibraryOn": "आपकी प्लेलिस्ट, पसंद किए गाने और खोज। साइन आउट के लिए देर तक दबाएँ।",
+  "spotifyLoginError": "Spotify साइन-इन नहीं हुआ: {reason}",
+  "googleSignInError": "Google साइन-इन नहीं हुआ: {reason}",
+  "searchSongsHint": "गाने, कलाकार, प्लेलिस्ट खोजें",
+  "nothingFound": "“{query}” के लिए कुछ नहीं मिला।"
 }

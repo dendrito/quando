@@ -1320,5 +1320,33 @@
         "type": "String"
       }
     }
+  },
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Sign in to pick from your playlists and liked songs, or search all of Spotify. No Premium needed.",
+  "spotifyLibraryOn": "Your playlists, liked songs and search. Long-press to sign out.",
+  "spotifyLoginError": "Spotify sign-in didn't work: {reason}",
+  "@spotifyLoginError": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "googleSignInError": "Google sign-in didn't work: {reason}",
+  "@googleSignInError": {
+    "placeholders": {
+      "reason": {
+        "type": "String"
+      }
+    }
+  },
+  "searchSongsHint": "Search songs, artists, playlists",
+  "nothingFound": "Nothing found for “{query}”.",
+  "@nothingFound": {
+    "placeholders": {
+      "query": {
+        "type": "String"
+      }
+    }
   }
 }

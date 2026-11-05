@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Поети й дати вашого місця — за часовим поясом і містом для шабату",
   "quoteSiddur": "Сидур (молитовник)",
   "weeklyParasha": "Тижнева глава {name}",
-  "poweredBy": "на основі {name}"
+  "poweredBy": "на основі {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Увійдіть, щоб вибирати зі своїх плейлистів і вподобаних треків або шукати по всьому Spotify. Premium не потрібен.",
+  "spotifyLibraryOn": "Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.",
+  "spotifyLoginError": "Не вдалося увійти в Spotify: {reason}",
+  "googleSignInError": "Не вдалося увійти в Google: {reason}",
+  "searchSongsHint": "Шукати пісні, виконавців, плейлисти",
+  "nothingFound": "За запитом «{query}» нічого не знайдено."
 }

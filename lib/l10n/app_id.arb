@@ -589,5 +589,12 @@
   "quoteNearMeHint": "Penyair dan hari lokal tempatmu, dari zona waktu dan kota Shabbat",
   "quoteSiddur": "Siddur (buku doa)",
   "weeklyParasha": "Parasyah {name}",
-  "poweredBy": "didukung {name}"
+  "poweredBy": "didukung {name}",
+  "spotifyLibrary": "Spotify",
+  "spotifyLibrarySignIn": "Masuk untuk memilih dari playlist dan lagu yang kamu sukai, atau cari di seluruh Spotify. Tidak perlu Premium.",
+  "spotifyLibraryOn": "Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.",
+  "spotifyLoginError": "Masuk ke Spotify gagal: {reason}",
+  "googleSignInError": "Masuk ke Google gagal: {reason}",
+  "searchSongsHint": "Cari lagu, artis, playlist",
+  "nothingFound": "Tidak ada hasil untuk “{query}”."
 }
