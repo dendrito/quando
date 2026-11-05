@@ -1,7 +1,27 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/features/rules/domain/reminder_delivery.dart';
+import 'package:quando/features/rules/domain/alarm_rule.dart';
+import 'package:quando/features/events/domain/event.dart';
 
 void main() {
+  test('rule persists different delivery choices at different offsets', () {
+    const rule = AlarmRule(
+      id: 'meeting', name: 'Meeting', appliesTo: {EventKind.calendar},
+      before: [Duration(minutes: 30), Duration(minutes: 5)],
+      deliveries: {
+        -30: ReminderDelivery(pushoverBehavior: PushoverBehavior.alongside),
+        -5: ReminderDelivery(audioKind: ReminderAudioKind.radio, audioId: 'station'),
+      },
+    );
+    final restored = rule.withCustom(rule.customJson());
+    expect(restored.deliveryAt(const Duration(minutes: -30)).pushoverBehavior,
+        PushoverBehavior.alongside);
+    expect(restored.deliveryAt(const Duration(minutes: -5)).audioId, 'station');
+    expect(restored.deliveryAt(Duration.zero).audioKind, ReminderAudioKind.inherit);
+    final trimmed = restored.withOffsets([const Duration(minutes: -5)]);
+    expect(trimmed.deliveries.keys, [-5]);
+  });
+
   test('ReminderDelivery round-trips per-reminder audio and Pushover choices', () {
     const delivery = ReminderDelivery(
       audioKind: ReminderAudioKind.elevenLabs,
