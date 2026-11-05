@@ -130,12 +130,16 @@ class SyncEngine {
 
   void start() {
     _sub = remote.watch().listen(
-      (items) => apply(items),
+      (items) {
+        unawaited(apply(items).catchError((Object _) {}));
+      },
       onError: (Object error, StackTrace stack) {
         // A later snapshot or timer tick can recover; don't kill local alarms.
       },
     );
-    _timer = Timer.periodic(every, (_) => pushLocal());
+    _timer = Timer.periodic(every, (_) {
+      unawaited(pushLocal().catchError((Object _) {}));
+    });
   }
 
   Future<void> stop() async {
