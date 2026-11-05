@@ -1,0 +1,45 @@
+name: Independent PR verification
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  verify-pr-scope:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Inspect PR changes independently
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request;
+            const files = await github.paginate(github.rest.pulls.listFiles, {
+              owner: context.repo.owner, repo: context.repo.repo,
+              pull_number: pr.number, per_page: 100
+            });
+            const names = files.map(f => f.filename);
+            const workflowChanges = names.filter(n => n.startsWith('.github/workflows/'));
+            const generated = names.filter(n => n.startsWith('lib/l10n/app_localizations_'));
+            const changed = files.length;
+            const warnings = [];
+            if (changed > 30) warnings.push('Broad diff: ' + changed + ' files (review scope manually).');
+            if (workflowChanges.length) warnings.push('Workflow changes require explicit security review: ' + workflowChanges.join(', '));
+            if (generated.length > 5) warnings.push('Generated localization churn: ' + generated.length + ' files.');
+            const summary = [
+              '### Independent PR scope verification',
+              'Head SHA: ' + pr.head.sha,
+              'Changed files: ' + changed,
+              'Workflow files: ' + workflowChanges.length,
+              'Generated localization files: ' + generated.length,
+              '',
+              ...(warnings.length ? warnings.map(w => '- WARNING: ' + w) : ['- No scope threshold warnings.']),
+              '',
+              'This check does NOT verify runtime functionality, test results, or correctness of assistant claims.',
+              'Review the Build workflow separately for this exact SHA.'
+            ].join('\n');
+            await core.summary.addRaw(summary).write();
+            if (warnings.length) core.setFailed(warnings.join('\n'));
