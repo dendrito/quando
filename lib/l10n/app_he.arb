@@ -665,5 +665,9 @@
   "locationCoordinates": "קו רוחב {latitude} · קו אורך {longitude}",
   "currentLocation": "מיקום נוכחי",
   "testPushoverSound": "בדיקת צליל ב־Pushover",
-  "pushoverSoundTestHint": "משמיע את הצליל שנבחר במכשירי Pushover שנבחרו. הגדרות השקט עדיין חלות."
+  "pushoverSoundTestHint": "משמיע את הצליל שנבחר במכשירי Pushover שנבחרו. הגדרות השקט עדיין חלות.",
+  "pushoverShareDevices": "שיתוף פרטי חיבור עם המכשירים שלי",
+  "pushoverShareHint": "מפתח המשתמש ואסימון האפליקציה של Pushover יכולים להסתנכרן דרך החשבון שלך ב־Quando? וב־Matai?.",
+  "pushoverShareQueued": "פרטי החיבור ממתינים לסנכרון עם המכשירים המחוברים שלך.",
+  "pushoverShareSignIn": "יש להתחבר לאותו חשבון אפליקציה בכל מכשיר לשיתוף פרטי Pushover."
 }

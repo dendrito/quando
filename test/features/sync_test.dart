@@ -71,7 +71,7 @@ void main() {
     expect(
       server.items.containsKey('integrations'),
       isFalse,
-      reason: 'Pushover tokens and webhook URLs stay on their device',
+      reason: 'only the dedicated Pushover key pair can be shared; integration settings stay local',
     );
     expect(pa.getString('userAlarms'), '[1]');
 

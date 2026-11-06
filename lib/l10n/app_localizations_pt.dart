@@ -2298,4 +2298,18 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get pushoverSoundTestHint =>
       'Toca o som escolhido nos seus dispositivos Pushover selecionados. Silêncio e horários silenciosos continuam valendo.';
+
+  @override
+  String get pushoverShareDevices => 'Compartilhar credenciais com meus dispositivos';
+
+  @override
+  String get pushoverShareHint =>
+      'Sua chave de usuário e token do Pushover podem acompanhar sua conta no Quando? e no Matai?.';
+
+  @override
+  String get pushoverShareQueued => 'Credenciais na fila de sincronização dos seus dispositivos conectados.';
+
+  @override
+  String get pushoverShareSignIn =>
+      'Entre na mesma conta do app em cada dispositivo para compartilhar as credenciais Pushover.';
 }

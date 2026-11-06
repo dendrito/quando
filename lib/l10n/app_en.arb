@@ -1520,5 +1520,9 @@
     }
   },
   "testPushoverSound": "Test sound on Pushover",
-  "pushoverSoundTestHint": "Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply."
+  "pushoverSoundTestHint": "Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.",
+  "pushoverShareDevices": "Share credentials with my devices",
+  "pushoverShareHint": "Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.",
+  "pushoverShareQueued": "Credentials queued for your signed-in devices.",
+  "pushoverShareSignIn": "Sign in to the same app account on each device to share Pushover credentials."
 }

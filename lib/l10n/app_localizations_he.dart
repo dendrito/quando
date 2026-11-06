@@ -2282,4 +2282,17 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get pushoverSoundTestHint => 'משמיע את הצליל שנבחר במכשירי Pushover שנבחרו. הגדרות השקט עדיין חלות.';
+
+  @override
+  String get pushoverShareDevices => 'שיתוף פרטי חיבור עם המכשירים שלי';
+
+  @override
+  String get pushoverShareHint =>
+      'מפתח המשתמש ואסימון האפליקציה של Pushover יכולים להסתנכרן דרך החשבון שלך ב־Quando? וב־Matai?.';
+
+  @override
+  String get pushoverShareQueued => 'פרטי החיבור ממתינים לסנכרון עם המכשירים המחוברים שלך.';
+
+  @override
+  String get pushoverShareSignIn => 'יש להתחבר לאותו חשבון אפליקציה בכל מכשיר לשיתוף פרטי Pushover.';
 }

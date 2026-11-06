@@ -7,6 +7,8 @@ import '../../../app/theme.dart';
 import '../../../app/widgets/feature_header.dart';
 import '../domain/integrations.dart';
 import 'pushover_icon.dart';
+import '../data/pushover_credentials_sync.dart';
+import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -100,7 +102,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     final err = await ref.read(integrationSenderProvider).testPushover(ref.read(integrationsProvider));
     if (!mounted) return;
     setState(() => _testing = false);
-    _say(err ?? l10n.sentCheckDevices);
+    if (err == null) {
+      await PushoverCredentialsSync.publish(ref.read(prefsProvider), ref.read(integrationsProvider));
+    }
+    if (mounted) _say(err ?? l10n.sentCheckDevices);
   }
 
   Future<void> _testWebhook(Webhook w) async {
@@ -182,6 +187,11 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
 
   @override
   Widget build(BuildContext context) {
+    ref.listen(integrationsProvider, (before, after) {
+      if (_user.text == (before?.pushoverUser ?? '')) _user.text = after.pushoverUser;
+      if (_token.text == (before?.pushoverToken ?? '')) _token.text = after.pushoverToken;
+    });
+    final account = ref.watch(syncProvider);
     final s = ref.watch(integrationsProvider);
     final n = ref.read(integrationsProvider.notifier);
     final text = Theme.of(context).textTheme;
@@ -207,6 +217,18 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
             onChanged: (v) => n.update((x) => x.copyWith(pushoverOn: v)),
           ),
           if (s.pushoverOn) ...[
+            Text(l10n.pushoverShareHint, style: text.bodySmall),
+            TextButton.icon(
+              onPressed: account.phase == SyncPhase.on && s.pushoverReady
+                  ? () async {
+                      final shared = await PushoverCredentialsSync.publish(ref.read(prefsProvider), s);
+                      if (mounted) _say(shared ? l10n.pushoverShareQueued : l10n.pushoverShareSignIn);
+                    }
+                  : null,
+              icon: const Icon(Icons.devices),
+              label: Text(l10n.pushoverShareDevices),
+            ),
+            if (account.phase != SyncPhase.on) Text(l10n.pushoverShareSignIn, style: text.bodySmall),
             TextField(
               controller: _user,
               decoration: InputDecoration(labelText: l10n.yourUserKey),

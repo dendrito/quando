@@ -4125,6 +4125,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.'**
   String get pushoverSoundTestHint;
+
+  /// No description provided for @pushoverShareDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'Share credentials with my devices'**
+  String get pushoverShareDevices;
+
+  /// No description provided for @pushoverShareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.'**
+  String get pushoverShareHint;
+
+  /// No description provided for @pushoverShareQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials queued for your signed-in devices.'**
+  String get pushoverShareQueued;
+
+  /// No description provided for @pushoverShareSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to the same app account on each device to share Pushover credentials.'**
+  String get pushoverShareSignIn;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

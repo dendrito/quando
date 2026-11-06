@@ -43,10 +43,24 @@ cannot prove which rules are currently deployed in the Firebase project.
 The app writes one document per account. The `items` map contains settings
 that are intended to follow the account between devices. Device-local audio
 files, native calendar selections, Spotify/YouTube sign-ins, and the entire
-`integrations` preference are not synced. The integrations preference contains
-the Pushover user key/token and webhook URLs, which may themselves contain
-secrets. Do not add API keys, OAuth refresh tokens, Pushover credentials,
-webhook URLs, or other secrets to the synchronized settings list.
+`integrations` preference are not synced.
+
+At Leandro's explicit request (6 November 2026), the separate
+`pushover.credentials` item shares only the Pushover user key and application
+token across Quando? and Matai? devices signed in to the same authorized
+account. Existing complete keys join on sign-in; Connections also offers a
+sharing button, and a successful Pushover test queues the pair. Receiving keys
+does not enable Pushover or change local sound, destination devices, priority,
+Shabbat pause settings or webhooks. Account ownership is checked before applying
+received keys; switching accounts clears the active pair and restores only that
+account's local cache. Clearing local fields does not revoke a previously shared
+pair; revoke compromised tokens at Pushover and share the replacement.
+
+The key pair is stored inside the private Firestore account document. This is
+not end-to-end encryption. The deployed owner-only access policy still needs
+verification; this feature does not deploy or broaden those rules. All other
+provider secrets, OAuth refresh tokens and webhook URLs remain excluded from
+the synchronized settings list.
 
 The current app stores Pushover credentials and webhook URLs in ordinary
 SharedPreferences on each device. Before production release, migrate these
