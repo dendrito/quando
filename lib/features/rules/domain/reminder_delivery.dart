@@ -3,6 +3,8 @@
 class ReminderDelivery {
   const ReminderDelivery({
     this.soundId,
+    this.localAudio = true,
+    this.pushoverDevices,
     this.useDefaultSound = false,
     this.pushoverEnabled,
     this.pushoverSound,
@@ -12,6 +14,28 @@ class ReminderDelivery {
 
   /// Reference to an existing local, recording, radio or music sound entry.
   final String? soundId;
+  final bool localAudio;
+
+  /// Null inherits the connected account; an empty set targets all devices.
+  final Set<String>? pushoverDevices;
+
+  ReminderDelivery copyWith({
+    String? soundId,
+    bool clearSound = false,
+    bool? useDefaultSound,
+    bool? localAudio,
+    bool? pushoverEnabled,
+    String? pushoverSound,
+    bool clearPushoverSound = false,
+    Set<String>? pushoverDevices,
+  }) => ReminderDelivery(
+    soundId: clearSound ? null : (soundId ?? this.soundId),
+    useDefaultSound: useDefaultSound ?? this.useDefaultSound,
+    localAudio: localAudio ?? this.localAudio,
+    pushoverEnabled: pushoverEnabled ?? this.pushoverEnabled,
+    pushoverSound: clearPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
+    pushoverDevices: pushoverDevices ?? this.pushoverDevices,
+  );
 
   /// Explicitly use the app default instead of this rule's chosen sound.
   final bool useDefaultSound;
@@ -22,6 +46,8 @@ class ReminderDelivery {
 
   Map<String, dynamic> toJson() => {
     if (soundId != null) 'soundId': soundId,
+    if (!localAudio) 'localAudio': false,
+    if (pushoverDevices != null) 'pushoverDevices': pushoverDevices!.toList()..sort(),
     if (useDefaultSound) 'useDefaultSound': true,
     if (pushoverEnabled != null) 'pushoverEnabled': pushoverEnabled,
     if (pushoverSound != null) 'pushoverSound': pushoverSound,
@@ -29,6 +55,10 @@ class ReminderDelivery {
 
   factory ReminderDelivery.fromJson(Map<String, dynamic> j) => ReminderDelivery(
     soundId: j['soundId'] as String?,
+    localAudio: j['localAudio'] as bool? ?? true,
+    pushoverDevices: j['pushoverDevices'] == null
+        ? null
+        : {for (final d in j['pushoverDevices'] as List) d as String},
     useDefaultSound: j['useDefaultSound'] as bool? ?? false,
     pushoverEnabled: j['pushoverEnabled'] as bool?,
     pushoverSound: j['pushoverSound'] as String?,

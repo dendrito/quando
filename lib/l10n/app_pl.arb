@@ -636,5 +636,14 @@
   "spotifyLoginError": "Logowanie do Spotify nie powiodło się: {reason}",
   "googleSignInError": "Logowanie do Google nie powiodło się: {reason}",
   "searchSongsHint": "Szukaj utworów, wykonawców, playlist",
-  "nothingFound": "Nic nie znaleziono dla „{query}”."
+  "nothingFound": "Nic nie znaleziono dla „{query}”.",
+  "deliveryTitle": "Powiadomienie",
+  "deliveryLocal": "Dźwięk lokalny",
+  "deliveryBoth": "Oba",
+  "deliveryConnect": "Połącz Pushover",
+  "deliveryLoadFailed": "Nie udało się wczytać dźwięków i urządzeń. Spróbuj ponownie.",
+  "deliveryBothHint": "Dźwięk lokalny działa także przy awarii Pushover.",
+  "deliveryPushHint": "Tylko Pushover. Urządzenie musi być wtedy online.",
+  "deliveryFallback": "Dźwięk lokalny pozostaje aktywny, gdy Pushover jest rozłączony lub wstrzymany.",
+  "deliveryReset": "Użyj istniejących ustawień"
 }

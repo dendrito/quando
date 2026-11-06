@@ -2157,4 +2157,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String nothingFound(String query) {
     return '「$query」は見つかりませんでした。';
   }
+
+  @override
+  String get deliveryTitle => '通知方法';
+
+  @override
+  String get deliveryLocal => '本体の音';
+
+  @override
+  String get deliveryBoth => '両方';
+
+  @override
+  String get deliveryConnect => 'Pushoverを接続';
+
+  @override
+  String get deliveryLoadFailed => '音とデバイスを読み込めませんでした。再試行してください。';
+
+  @override
+  String get deliveryBothHint => 'Pushoverが失敗しても本体の音は鳴ります。';
+
+  @override
+  String get deliveryPushHint => 'Pushoverのみ。通知時にこのデバイスがオンラインである必要があります。';
+
+  @override
+  String get deliveryFallback => 'Pushoverが未接続または一時停止中は本体の音を使用します。';
+
+  @override
+  String get deliveryReset => '既存の設定を使う';
 }

@@ -636,5 +636,14 @@
   "spotifyLoginError": "L'accesso a Spotify non è riuscito: {reason}",
   "googleSignInError": "L'accesso a Google non è riuscito: {reason}",
   "searchSongsHint": "Cerca brani, artisti, playlist",
-  "nothingFound": "Nessun risultato per “{query}”."
+  "nothingFound": "Nessun risultato per “{query}”.",
+  "deliveryTitle": "Avviso",
+  "deliveryLocal": "Audio locale",
+  "deliveryBoth": "Entrambi",
+  "deliveryConnect": "Collega Pushover",
+  "deliveryLoadFailed": "Impossibile caricare suoni e dispositivi. Riprova.",
+  "deliveryBothHint": "L’audio locale suona anche se Pushover non funziona.",
+  "deliveryPushHint": "Solo Pushover. Questo dispositivo deve essere online al momento dell’avviso.",
+  "deliveryFallback": "L’audio locale resta attivo se Pushover è scollegato o in pausa.",
+  "deliveryReset": "Usa le impostazioni esistenti"
 }

@@ -636,5 +636,14 @@
   "spotifyLoginError": "Не удалось войти в Spotify: {reason}",
   "googleSignInError": "Не удалось войти в Google: {reason}",
   "searchSongsHint": "Искать песни, исполнителей, плейлисты",
-  "nothingFound": "По запросу «{query}» ничего не найдено."
+  "nothingFound": "По запросу «{query}» ничего не найдено.",
+  "deliveryTitle": "Оповещение",
+  "deliveryLocal": "Местный звук",
+  "deliveryBoth": "Оба",
+  "deliveryConnect": "Подключить Pushover",
+  "deliveryLoadFailed": "Не удалось загрузить звуки и устройства. Повторите попытку.",
+  "deliveryBothHint": "Местный звук прозвучит, даже если Pushover не сработает.",
+  "deliveryPushHint": "Только Pushover. В момент сигнала устройство должно быть в сети.",
+  "deliveryFallback": "Местный звук сохраняется, если Pushover отключён или приостановлен.",
+  "deliveryReset": "Использовать текущие настройки"
 }

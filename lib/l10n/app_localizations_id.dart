@@ -2187,4 +2187,31 @@ class AppLocalizationsId extends AppLocalizations {
   String nothingFound(String query) {
     return 'Tidak ada hasil untuk “$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'Pengiriman';
+
+  @override
+  String get deliveryLocal => 'Audio lokal';
+
+  @override
+  String get deliveryBoth => 'Keduanya';
+
+  @override
+  String get deliveryConnect => 'Hubungkan Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Suara dan perangkat tidak dapat dimuat. Coba lagi.';
+
+  @override
+  String get deliveryBothHint => 'Audio lokal tetap berbunyi jika Pushover gagal.';
+
+  @override
+  String get deliveryPushHint => 'Hanya Pushover. Perangkat ini harus online saat alarm berbunyi.';
+
+  @override
+  String get deliveryFallback => 'Audio lokal tetap aktif jika Pushover terputus atau dijeda.';
+
+  @override
+  String get deliveryReset => 'Gunakan pengaturan yang ada';
 }

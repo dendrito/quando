@@ -55,31 +55,33 @@ class AlarmRegistrar {
 
   Future<bool> set(int id, DateTime at, RingPayload p) async {
     await init();
-    return Alarm.set(
-      alarmSettings: AlarmSettings(
-        id: id,
-        dateTime: at.toLocal(),
-        // null = the phone's alarm sound; otherwise built-in or the user's own.
-        assetAudioPath: p.sound,
-        loopAudio: true,
-        // The gentle lead-up only plays sound: no buzzing, no screen.
-        vibrate: !p.gentle,
-        androidFullScreenIntent: !p.gentle,
-        warningNotificationOnKill: true,
-        // Each alarm's own volume and fades, shrunk to fit a short ring.
-        volumeSettings: p.isLock
-            ? const VolumeSettings.fixed(volume: 0.15)
-            : (p.song == null ? p.loudness : p.loudness.backupForSong).toVolumeSettings(p.ringSeconds),
-        notificationSettings: NotificationSettings(
-          title: p.title,
-          body: p.body,
-          // A check must be answered on the ringing screen.
-          stopButton: p.gentle ? l10n.stop : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
-        ),
-        payload: p.encode(),
-      ),
-    );
+    return Alarm.set(alarmSettings: settingsFor(id, at, p));
   }
+
+  static AlarmSettings settingsFor(int id, DateTime at, RingPayload p) => AlarmSettings(
+    id: id,
+    dateTime: at.toLocal(),
+    // null = the phone's alarm sound; otherwise built-in or the user's own.
+    assetAudioPath: p.localAudio ? p.sound : null,
+    loopAudio: true,
+    // The gentle lead-up only plays sound: no buzzing, no screen.
+    vibrate: p.localAudio && !p.gentle,
+    androidFullScreenIntent: p.localAudio && !p.gentle,
+    warningNotificationOnKill: true,
+    // Each alarm's own volume and fades, shrunk to fit a short ring.
+    volumeSettings: !p.localAudio
+        ? const VolumeSettings.fixed(volume: 0, showSystemUI: false)
+        : p.isLock
+        ? const VolumeSettings.fixed(volume: 0.15)
+        : (p.song == null ? p.loudness : p.loudness.backupForSong).toVolumeSettings(p.ringSeconds),
+    notificationSettings: NotificationSettings(
+      title: p.title,
+      body: p.body,
+      // A check must be answered on the ringing screen.
+      stopButton: p.gentle ? l10n.stop : (p.isCheck || p.hasTask || p.isLock ? null : l10n.stop),
+    ),
+    payload: p.encode(),
+  );
 
   /// Rings once more in [RingPayload.snoozeMinutes]. Returns false when the
   /// snooze limit is reached.
@@ -111,7 +113,7 @@ class AlarmRegistrar {
 
   Future<int?> _scheduleCheck(AlarmSettings ringing) async {
     final p = RingPayload.decode(ringing.payload);
-    if (!p.wakeCheck || p.isCheck) return null;
+    if (!p.localAudio || !p.wakeCheck || p.isCheck) return null;
     final id = stableId('check|${ringing.id}');
     await set(id, DateTime.now().add(checkDelay), p.check());
     return id;
@@ -136,11 +138,13 @@ class AlarmRegistrar {
           }
         }
       }
-      if (p.song != null && !p.gentle) unawaited(_playSong(settings, p));
+      if (p.localAudio && p.song != null && !p.gentle) unawaited(_playSong(settings, p));
       // Auto-snooze: untouched for its set time with snoozes left, so it
       // snoozes instead of ringing on or stopping.
-      final autoSnooze = p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
-      final seconds = autoSnooze && p.autoSnoozeMinutes * 60 < p.ringSeconds
+      final autoSnooze = p.localAudio && p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
+      final seconds = !p.localAudio
+          ? 1
+          : autoSnooze && p.autoSnoozeMinutes * 60 < p.ringSeconds
           ? p.autoSnoozeMinutes * 60
           : p.ringSeconds;
       _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {

@@ -2183,4 +2183,31 @@ class AppLocalizationsVi extends AppLocalizations {
   String nothingFound(String query) {
     return 'Không tìm thấy gì cho “$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'Cách thông báo';
+
+  @override
+  String get deliveryLocal => 'Âm thanh tại máy';
+
+  @override
+  String get deliveryBoth => 'Cả hai';
+
+  @override
+  String get deliveryConnect => 'Kết nối Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Không tải được âm thanh và thiết bị. Hãy thử lại.';
+
+  @override
+  String get deliveryBothHint => 'Âm thanh tại máy vẫn phát nếu Pushover lỗi.';
+
+  @override
+  String get deliveryPushHint => 'Chỉ Pushover. Thiết bị này phải trực tuyến khi đến giờ.';
+
+  @override
+  String get deliveryFallback => 'Giữ âm thanh tại máy nếu Pushover ngắt kết nối hoặc tạm dừng.';
+
+  @override
+  String get deliveryReset => 'Dùng cài đặt hiện có';
 }

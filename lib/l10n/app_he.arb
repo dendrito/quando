@@ -636,5 +636,14 @@
   "spotifyLoginError": "ההתחברות ל-Spotify לא הצליחה: {reason}",
   "googleSignInError": "ההתחברות ל-Google לא הצליחה: {reason}",
   "searchSongsHint": "חיפוש שירים, אמנים, פלייליסטים",
-  "nothingFound": "לא נמצא דבר עבור „{query}”."
+  "nothingFound": "לא נמצא דבר עבור „{query}”.",
+  "deliveryTitle": "אופן התראה",
+  "deliveryLocal": "צליל מקומי",
+  "deliveryBoth": "שניהם",
+  "deliveryConnect": "חיבור ל־Pushover",
+  "deliveryLoadFailed": "לא ניתן לטעון צלילים ומכשירים. נסו שוב.",
+  "deliveryBothHint": "הצליל המקומי יושמע גם אם Pushover נכשל.",
+  "deliveryPushHint": "Pushover בלבד. המכשיר חייב להיות מחובר בזמן ההתראה.",
+  "deliveryFallback": "הצליל המקומי נשמר אם Pushover מנותק או מושהה.",
+  "deliveryReset": "שימוש בהגדרות הקיימות"
 }

@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotify girişi olmadı: {reason}",
   "googleSignInError": "Google girişi olmadı: {reason}",
   "searchSongsHint": "Şarkı, sanatçı, çalma listesi ara",
-  "nothingFound": "“{query}” için sonuç yok."
+  "nothingFound": "“{query}” için sonuç yok.",
+  "deliveryTitle": "Bildirim biçimi",
+  "deliveryLocal": "Yerel ses",
+  "deliveryBoth": "İkisi de",
+  "deliveryConnect": "Pushover bağla",
+  "deliveryLoadFailed": "Sesler ve cihazlar yüklenemedi. Tekrar deneyin.",
+  "deliveryBothHint": "Pushover başarısız olsa da yerel ses çalar.",
+  "deliveryPushHint": "Yalnızca Pushover. Bildirim anında bu cihaz çevrimiçi olmalıdır.",
+  "deliveryFallback": "Pushover bağlantısı kesildiğinde veya duraklatıldığında yerel ses korunur.",
+  "deliveryReset": "Mevcut ayarları kullan"
 }

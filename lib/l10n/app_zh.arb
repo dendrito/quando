@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotify 登录失败：{reason}",
   "googleSignInError": "Google 登录失败：{reason}",
   "searchSongsHint": "搜索歌曲、艺人、歌单",
-  "nothingFound": "没有找到“{query}”。"
+  "nothingFound": "没有找到“{query}”。",
+  "deliveryTitle": "提醒方式",
+  "deliveryLocal": "本机音频",
+  "deliveryBoth": "两者",
+  "deliveryConnect": "连接 Pushover",
+  "deliveryLoadFailed": "无法加载声音和设备，请重试。",
+  "deliveryBothHint": "即使 Pushover 失败，本机仍会响铃。",
+  "deliveryPushHint": "仅用 Pushover。提醒触发时本设备必须联网。",
+  "deliveryFallback": "Pushover 未连接或暂停时保留本机音频。",
+  "deliveryReset": "使用现有设置"
 }

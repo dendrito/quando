@@ -2187,4 +2187,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String nothingFound(String query) {
     return 'Nothing found for “$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'Delivery';
+
+  @override
+  String get deliveryLocal => 'Local audio';
+
+  @override
+  String get deliveryBoth => 'Both';
+
+  @override
+  String get deliveryConnect => 'Connect Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Could not load sounds and devices. Try again.';
+
+  @override
+  String get deliveryBothHint => 'Local audio still rings if Pushover fails.';
+
+  @override
+  String get deliveryPushHint => 'Pushover only. This device must be online when it fires.';
+
+  @override
+  String get deliveryFallback => 'Local audio is kept if Pushover is disconnected or paused.';
+
+  @override
+  String get deliveryReset => 'Use existing settings';
 }

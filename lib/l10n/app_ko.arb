@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotify 로그인 실패: {reason}",
   "googleSignInError": "Google 로그인 실패: {reason}",
   "searchSongsHint": "곡, 아티스트, 플레이리스트 검색",
-  "nothingFound": "“{query}”에 대한 결과가 없어요."
+  "nothingFound": "“{query}”에 대한 결과가 없어요.",
+  "deliveryTitle": "알림 방식",
+  "deliveryLocal": "기기 소리",
+  "deliveryBoth": "둘 다",
+  "deliveryConnect": "Pushover 연결",
+  "deliveryLoadFailed": "소리와 기기를 불러오지 못했습니다. 다시 시도하세요.",
+  "deliveryBothHint": "Pushover가 실패해도 기기 소리는 울립니다.",
+  "deliveryPushHint": "Pushover만 사용합니다. 알림 시 이 기기가 온라인이어야 합니다.",
+  "deliveryFallback": "Pushover가 연결 해제되거나 일시 중지되면 기기 소리를 유지합니다.",
+  "deliveryReset": "기존 설정 사용"
 }

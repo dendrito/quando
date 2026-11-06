@@ -2152,6 +2152,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String nothingFound(String query) {
     return '没有找到“$query”。';
   }
+
+  @override
+  String get deliveryTitle => '提醒方式';
+
+  @override
+  String get deliveryLocal => '本机音频';
+
+  @override
+  String get deliveryBoth => '两者';
+
+  @override
+  String get deliveryConnect => '连接 Pushover';
+
+  @override
+  String get deliveryLoadFailed => '无法加载声音和设备，请重试。';
+
+  @override
+  String get deliveryBothHint => '即使 Pushover 失败，本机仍会响铃。';
+
+  @override
+  String get deliveryPushHint => '仅用 Pushover。提醒触发时本设备必须联网。';
+
+  @override
+  String get deliveryFallback => 'Pushover 未连接或暂停时保留本机音频。';
+
+  @override
+  String get deliveryReset => '使用现有设置';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -4301,4 +4328,31 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String nothingFound(String query) {
     return '找不到「$query」。';
   }
+
+  @override
+  String get deliveryTitle => '提醒方式';
+
+  @override
+  String get deliveryLocal => '本機音訊';
+
+  @override
+  String get deliveryBoth => '兩者';
+
+  @override
+  String get deliveryConnect => '連接 Pushover';
+
+  @override
+  String get deliveryLoadFailed => '無法載入聲音和裝置，請重試。';
+
+  @override
+  String get deliveryBothHint => '即使 Pushover 失敗，本機仍會響鈴。';
+
+  @override
+  String get deliveryPushHint => '僅用 Pushover。提醒觸發時本裝置必須連線。';
+
+  @override
+  String get deliveryFallback => 'Pushover 未連接或暫停時保留本機音訊。';
+
+  @override
+  String get deliveryReset => '使用現有設定';
 }

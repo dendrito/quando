@@ -2208,4 +2208,31 @@ class AppLocalizationsFr extends AppLocalizations {
   String nothingFound(String query) {
     return 'Rien trouvé pour « $query ».';
   }
+
+  @override
+  String get deliveryTitle => 'Diffusion';
+
+  @override
+  String get deliveryLocal => 'Audio local';
+
+  @override
+  String get deliveryBoth => 'Les deux';
+
+  @override
+  String get deliveryConnect => 'Connecter Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Impossible de charger les sons et appareils. Réessayez.';
+
+  @override
+  String get deliveryBothHint => 'Le son local fonctionne même si Pushover échoue.';
+
+  @override
+  String get deliveryPushHint => 'Pushover seul. Cet appareil doit être connecté au déclenchement.';
+
+  @override
+  String get deliveryFallback => 'Le son local est conservé si Pushover est déconnecté ou en pause.';
+
+  @override
+  String get deliveryReset => 'Utiliser les réglages existants';
 }

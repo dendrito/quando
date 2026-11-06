@@ -636,5 +636,14 @@
   "spotifyLoginError": "Masuk ke Spotify gagal: {reason}",
   "googleSignInError": "Masuk ke Google gagal: {reason}",
   "searchSongsHint": "Cari lagu, artis, playlist",
-  "nothingFound": "Tidak ada hasil untuk “{query}”."
+  "nothingFound": "Tidak ada hasil untuk “{query}”.",
+  "deliveryTitle": "Pengiriman",
+  "deliveryLocal": "Audio lokal",
+  "deliveryBoth": "Keduanya",
+  "deliveryConnect": "Hubungkan Pushover",
+  "deliveryLoadFailed": "Suara dan perangkat tidak dapat dimuat. Coba lagi.",
+  "deliveryBothHint": "Audio lokal tetap berbunyi jika Pushover gagal.",
+  "deliveryPushHint": "Hanya Pushover. Perangkat ini harus online saat alarm berbunyi.",
+  "deliveryFallback": "Audio lokal tetap aktif jika Pushover terputus atau dijeda.",
+  "deliveryReset": "Gunakan pengaturan yang ada"
 }

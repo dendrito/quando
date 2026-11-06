@@ -23,7 +23,8 @@ class IntegrationSender {
     if (s.pauseOnShabbat && p.shabbatSafe) return;
     final when = (at ?? DateTime.now()).toUtc();
     await Future.wait([
-      if (s.pushoverReady && what == AlarmHappening.ring) _pushover(s, p),
+      if (s.pushoverReady && p.delivery.pushoverEnabled != false && what == AlarmHappening.ring)
+        _pushover(s, p),
       for (final w in s.webhooks)
         if (w.enabled && w.events.contains(what.key)) _webhook(w, what, p, when),
     ]);
@@ -58,8 +59,9 @@ class IntegrationSender {
     'message': p.body.isEmpty ? l10n.alarm : p.body,
     'priority': '${s.pushoverPriority}',
     if (s.pushoverPriority == 2) ...{'retry': '30', 'expire': '600'},
-    if (s.pushoverSound != null) 'sound': s.pushoverSound!,
-    if (s.pushoverDevices.isNotEmpty) 'device': (s.pushoverDevices.toList()..sort()).join(','),
+    if ((p.delivery.pushoverSound ?? s.pushoverSound) case final String sound) 'sound': sound,
+    if ((p.delivery.pushoverDevices ?? s.pushoverDevices).isNotEmpty)
+      'device': ((p.delivery.pushoverDevices ?? s.pushoverDevices).toList()..sort()).join(','),
   };
 
   /// Sound names → labels, built-in plus any you uploaded. Throws with a

@@ -3951,6 +3951,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing found for “{query}”.'**
   String nothingFound(String query);
+
+  /// No description provided for @deliveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get deliveryTitle;
+
+  /// No description provided for @deliveryLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio'**
+  String get deliveryLocal;
+
+  /// No description provided for @deliveryBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get deliveryBoth;
+
+  /// No description provided for @deliveryConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Pushover'**
+  String get deliveryConnect;
+
+  /// No description provided for @deliveryLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load sounds and devices. Try again.'**
+  String get deliveryLoadFailed;
+
+  /// No description provided for @deliveryBothHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio still rings if Pushover fails.'**
+  String get deliveryBothHint;
+
+  /// No description provided for @deliveryPushHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pushover only. This device must be online when it fires.'**
+  String get deliveryPushHint;
+
+  /// No description provided for @deliveryFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio is kept if Pushover is disconnected or paused.'**
+  String get deliveryFallback;
+
+  /// No description provided for @deliveryReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Use existing settings'**
+  String get deliveryReset;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

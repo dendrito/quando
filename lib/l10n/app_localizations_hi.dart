@@ -2190,4 +2190,31 @@ class AppLocalizationsHi extends AppLocalizations {
   String nothingFound(String query) {
     return '“$query” के लिए कुछ नहीं मिला।';
   }
+
+  @override
+  String get deliveryTitle => 'सूचना का तरीका';
+
+  @override
+  String get deliveryLocal => 'स्थानीय ऑडियो';
+
+  @override
+  String get deliveryBoth => 'दोनों';
+
+  @override
+  String get deliveryConnect => 'Pushover जोड़ें';
+
+  @override
+  String get deliveryLoadFailed => 'ध्वनियाँ और डिवाइस लोड नहीं हुए। फिर कोशिश करें।';
+
+  @override
+  String get deliveryBothHint => 'Pushover विफल होने पर भी स्थानीय ऑडियो बजता है।';
+
+  @override
+  String get deliveryPushHint => 'केवल Pushover। सूचना के समय यह डिवाइस ऑनलाइन होना चाहिए।';
+
+  @override
+  String get deliveryFallback => 'Pushover डिस्कनेक्ट या रुका होने पर स्थानीय ऑडियो बना रहता है।';
+
+  @override
+  String get deliveryReset => 'मौजूदा सेटिंग इस्तेमाल करें';
 }

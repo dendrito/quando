@@ -2202,4 +2202,31 @@ class AppLocalizationsNl extends AppLocalizations {
   String nothingFound(String query) {
     return 'Niets gevonden voor ‘$query’.';
   }
+
+  @override
+  String get deliveryTitle => 'Melding';
+
+  @override
+  String get deliveryLocal => 'Lokaal geluid';
+
+  @override
+  String get deliveryBoth => 'Beide';
+
+  @override
+  String get deliveryConnect => 'Pushover verbinden';
+
+  @override
+  String get deliveryLoadFailed => 'Geluiden en apparaten laden mislukt. Probeer opnieuw.';
+
+  @override
+  String get deliveryBothHint => 'Het lokale geluid klinkt ook als Pushover niet werkt.';
+
+  @override
+  String get deliveryPushHint => 'Alleen Pushover. Dit apparaat moet online zijn als de melding afgaat.';
+
+  @override
+  String get deliveryFallback => 'Lokaal geluid blijft actief als Pushover is losgekoppeld of gepauzeerd.';
+
+  @override
+  String get deliveryReset => 'Bestaande instellingen gebruiken';
 }

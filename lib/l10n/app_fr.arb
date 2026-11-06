@@ -636,5 +636,14 @@
   "spotifyLoginError": "La connexion à Spotify n'a pas marché : {reason}",
   "googleSignInError": "La connexion à Google n'a pas marché : {reason}",
   "searchSongsHint": "Chercher titres, artistes, playlists",
-  "nothingFound": "Rien trouvé pour « {query} »."
+  "nothingFound": "Rien trouvé pour « {query} ».",
+  "deliveryTitle": "Diffusion",
+  "deliveryLocal": "Audio local",
+  "deliveryBoth": "Les deux",
+  "deliveryConnect": "Connecter Pushover",
+  "deliveryLoadFailed": "Impossible de charger les sons et appareils. Réessayez.",
+  "deliveryBothHint": "Le son local fonctionne même si Pushover échoue.",
+  "deliveryPushHint": "Pushover seul. Cet appareil doit être connecté au déclenchement.",
+  "deliveryFallback": "Le son local est conservé si Pushover est déconnecté ou en pause.",
+  "deliveryReset": "Utiliser les réglages existants"
 }

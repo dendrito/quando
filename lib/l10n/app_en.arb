@@ -1471,5 +1471,14 @@
         "type": "String"
       }
     }
-  }
+  },
+  "deliveryTitle": "Delivery",
+  "deliveryLocal": "Local audio",
+  "deliveryBoth": "Both",
+  "deliveryConnect": "Connect Pushover",
+  "deliveryLoadFailed": "Could not load sounds and devices. Try again.",
+  "deliveryBothHint": "Local audio still rings if Pushover fails.",
+  "deliveryPushHint": "Pushover only. This device must be online when it fires.",
+  "deliveryFallback": "Local audio is kept if Pushover is disconnected or paused.",
+  "deliveryReset": "Use existing settings"
 }

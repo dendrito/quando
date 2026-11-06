@@ -636,5 +636,14 @@
   "spotifyLoginError": "Inloggen bij Spotify lukte niet: {reason}",
   "googleSignInError": "Inloggen bij Google lukte niet: {reason}",
   "searchSongsHint": "Zoek nummers, artiesten, playlists",
-  "nothingFound": "Niets gevonden voor ‘{query}’."
+  "nothingFound": "Niets gevonden voor ‘{query}’.",
+  "deliveryTitle": "Melding",
+  "deliveryLocal": "Lokaal geluid",
+  "deliveryBoth": "Beide",
+  "deliveryConnect": "Pushover verbinden",
+  "deliveryLoadFailed": "Geluiden en apparaten laden mislukt. Probeer opnieuw.",
+  "deliveryBothHint": "Het lokale geluid klinkt ook als Pushover niet werkt.",
+  "deliveryPushHint": "Alleen Pushover. Dit apparaat moet online zijn als de melding afgaat.",
+  "deliveryFallback": "Lokaal geluid blijft actief als Pushover is losgekoppeld of gepauzeerd.",
+  "deliveryReset": "Bestaande instellingen gebruiken"
 }

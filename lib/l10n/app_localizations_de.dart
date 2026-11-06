@@ -2201,4 +2201,32 @@ class AppLocalizationsDe extends AppLocalizations {
   String nothingFound(String query) {
     return 'Nichts gefunden für „$query“.';
   }
+
+  @override
+  String get deliveryTitle => 'Ausgabe';
+
+  @override
+  String get deliveryLocal => 'Lokaler Ton';
+
+  @override
+  String get deliveryBoth => 'Beides';
+
+  @override
+  String get deliveryConnect => 'Pushover verbinden';
+
+  @override
+  String get deliveryLoadFailed => 'Töne und Geräte konnten nicht geladen werden. Erneut versuchen.';
+
+  @override
+  String get deliveryBothHint => 'Der lokale Ton klingelt auch bei einem Pushover-Fehler.';
+
+  @override
+  String get deliveryPushHint => 'Nur Pushover. Dieses Gerät muss beim Auslösen online sein.';
+
+  @override
+  String get deliveryFallback =>
+      'Bei getrennter oder pausierter Pushover-Verbindung bleibt der lokale Ton aktiv.';
+
+  @override
+  String get deliveryReset => 'Bisherige Einstellungen verwenden';
 }

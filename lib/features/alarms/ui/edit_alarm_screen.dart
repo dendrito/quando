@@ -7,7 +7,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
-import '../../sounds/ui/sound_picker.dart';
+import '../../rules/ui/delivery_tile.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
 import 'ring_length_picker.dart';
@@ -115,7 +115,8 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             ruleId: 'user.${a.id}',
             eventId: 'user.${a.id}',
             offset: Duration.zero,
-            soundId: a.soundId,
+            soundId: a.delivery.resolveSound(a.soundId),
+            delivery: a.delivery,
             style: a.style,
           ),
         )
@@ -254,12 +255,12 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             },
           ),
           const SizedBox(height: 4),
-          SoundPickerTile(
-            large: true,
-            value: _alarm.soundId,
-            onChanged: (id) => setState(
-              () => _alarm = id == null ? _alarm.copyWith(defaultSound: true) : _alarm.copyWith(soundId: id),
-            ),
+          DeliveryTile(
+            title: l10n.deliveryTitle,
+            value: _alarm.delivery,
+            ruleSound: _alarm.soundId,
+            initiallyExpanded: _isNew,
+            onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
           ),
           AlarmExtras(
             value: _alarm.style,

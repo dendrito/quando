@@ -13,6 +13,7 @@ import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
+import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
 import '../features/quotes/data/quote_bank.dart';
@@ -804,7 +805,7 @@ final planProvider = Provider<List<ScheduledAlarm>>((ref) {
 /// moment is still ahead.
 ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
   final m = a.style.gentleMinutes;
-  if (m <= 0 || a.ruleId == 'lock') return null;
+  if (m <= 0 || a.ruleId == 'lock' || !a.delivery.localAudio) return null;
   final at = a.at.subtract(Duration(minutes: m));
   if (!at.isAfter(now)) return null;
   return ScheduledAlarm(
@@ -853,12 +854,22 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
   ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
+  final integrations = ref.watch(integrationsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
   final links = {for (final s in ref.watch(soundsProvider)) s.id: s};
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
+    final delivery = a.ruleId.startsWith('gentle.')
+        ? const ReminderDelivery(pushoverEnabled: false)
+        : a.delivery;
+    // A disconnected/paused account must not silently disable the local fallback.
+    final remoteReady =
+        integrations.pushoverReady &&
+        !(integrations.pauseOnShabbat && p.shabbatSafe) &&
+        delivery.pushoverEnabled != false;
+    p = p.withDelivery(!delivery.localAudio && !remoteReady ? delivery.copyWith(localAudio: true) : delivery);
     // No live radio on Shabbat or a festival: a built-in sound instead.
     final path = sounds[id];
     final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));

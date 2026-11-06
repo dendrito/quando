@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotify-Anmeldung hat nicht geklappt: {reason}",
   "googleSignInError": "Google-Anmeldung hat nicht geklappt: {reason}",
   "searchSongsHint": "Songs, Künstler, Playlists suchen",
-  "nothingFound": "Nichts gefunden für „{query}“."
+  "nothingFound": "Nichts gefunden für „{query}“.",
+  "deliveryTitle": "Ausgabe",
+  "deliveryLocal": "Lokaler Ton",
+  "deliveryBoth": "Beides",
+  "deliveryConnect": "Pushover verbinden",
+  "deliveryLoadFailed": "Töne und Geräte konnten nicht geladen werden. Erneut versuchen.",
+  "deliveryBothHint": "Der lokale Ton klingelt auch bei einem Pushover-Fehler.",
+  "deliveryPushHint": "Nur Pushover. Dieses Gerät muss beim Auslösen online sein.",
+  "deliveryFallback": "Bei getrennter oder pausierter Pushover-Verbindung bleibt der lokale Ton aktiv.",
+  "deliveryReset": "Bisherige Einstellungen verwenden"
 }

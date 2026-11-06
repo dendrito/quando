@@ -636,5 +636,14 @@
   "spotifyLoginError": "El inicio de sesión en Spotify no funcionó: {reason}",
   "googleSignInError": "El inicio de sesión en Google no funcionó: {reason}",
   "searchSongsHint": "Buscar canciones, artistas, playlists",
-  "nothingFound": "No se encontró nada para «{query}»."
+  "nothingFound": "No se encontró nada para «{query}».",
+  "deliveryTitle": "Entrega",
+  "deliveryLocal": "Audio local",
+  "deliveryBoth": "Ambos",
+  "deliveryConnect": "Conectar Pushover",
+  "deliveryLoadFailed": "No se pudieron cargar sonidos y dispositivos. Inténtalo de nuevo.",
+  "deliveryBothHint": "El audio local suena aunque Pushover falle.",
+  "deliveryPushHint": "Solo Pushover. Este dispositivo debe estar conectado al activarse.",
+  "deliveryFallback": "Se mantiene el audio local si Pushover está desconectado o en pausa.",
+  "deliveryReset": "Usar ajustes existentes"
 }

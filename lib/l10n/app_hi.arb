@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotify साइन-इन नहीं हुआ: {reason}",
   "googleSignInError": "Google साइन-इन नहीं हुआ: {reason}",
   "searchSongsHint": "गाने, कलाकार, प्लेलिस्ट खोजें",
-  "nothingFound": "“{query}” के लिए कुछ नहीं मिला।"
+  "nothingFound": "“{query}” के लिए कुछ नहीं मिला।",
+  "deliveryTitle": "सूचना का तरीका",
+  "deliveryLocal": "स्थानीय ऑडियो",
+  "deliveryBoth": "दोनों",
+  "deliveryConnect": "Pushover जोड़ें",
+  "deliveryLoadFailed": "ध्वनियाँ और डिवाइस लोड नहीं हुए। फिर कोशिश करें।",
+  "deliveryBothHint": "Pushover विफल होने पर भी स्थानीय ऑडियो बजता है।",
+  "deliveryPushHint": "केवल Pushover। सूचना के समय यह डिवाइस ऑनलाइन होना चाहिए।",
+  "deliveryFallback": "Pushover डिस्कनेक्ट या रुका होने पर स्थानीय ऑडियो बना रहता है।",
+  "deliveryReset": "मौजूदा सेटिंग इस्तेमाल करें"
 }

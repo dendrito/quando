@@ -2159,4 +2159,31 @@ class AppLocalizationsKo extends AppLocalizations {
   String nothingFound(String query) {
     return '“$query”에 대한 결과가 없어요.';
   }
+
+  @override
+  String get deliveryTitle => '알림 방식';
+
+  @override
+  String get deliveryLocal => '기기 소리';
+
+  @override
+  String get deliveryBoth => '둘 다';
+
+  @override
+  String get deliveryConnect => 'Pushover 연결';
+
+  @override
+  String get deliveryLoadFailed => '소리와 기기를 불러오지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get deliveryBothHint => 'Pushover가 실패해도 기기 소리는 울립니다.';
+
+  @override
+  String get deliveryPushHint => 'Pushover만 사용합니다. 알림 시 이 기기가 온라인이어야 합니다.';
+
+  @override
+  String get deliveryFallback => 'Pushover가 연결 해제되거나 일시 중지되면 기기 소리를 유지합니다.';
+
+  @override
+  String get deliveryReset => '기존 설정 사용';
 }

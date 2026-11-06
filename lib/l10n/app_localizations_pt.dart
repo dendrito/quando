@@ -2202,4 +2202,31 @@ class AppLocalizationsPt extends AppLocalizations {
   String nothingFound(String query) {
     return 'Nada encontrado para “$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'Como avisar';
+
+  @override
+  String get deliveryLocal => 'Áudio local';
+
+  @override
+  String get deliveryBoth => 'Ambos';
+
+  @override
+  String get deliveryConnect => 'Conectar Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Não foi possível carregar sons e dispositivos. Tente novamente.';
+
+  @override
+  String get deliveryBothHint => 'O áudio local toca mesmo se o Pushover falhar.';
+
+  @override
+  String get deliveryPushHint => 'Só Pushover. Este dispositivo precisa estar conectado na hora.';
+
+  @override
+  String get deliveryFallback => 'O áudio local é mantido se o Pushover estiver desconectado ou pausado.';
+
+  @override
+  String get deliveryReset => 'Usar ajustes existentes';
 }

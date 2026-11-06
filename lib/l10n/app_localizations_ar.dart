@@ -2233,4 +2233,31 @@ class AppLocalizationsAr extends AppLocalizations {
   String nothingFound(String query) {
     return 'لا نتائج لـ «$query».';
   }
+
+  @override
+  String get deliveryTitle => 'طريقة التنبيه';
+
+  @override
+  String get deliveryLocal => 'صوت محلي';
+
+  @override
+  String get deliveryBoth => 'كلاهما';
+
+  @override
+  String get deliveryConnect => 'ربط Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'تعذر تحميل الأصوات والأجهزة. حاول مجددًا.';
+
+  @override
+  String get deliveryBothHint => 'يعمل الصوت المحلي حتى عند تعطل Pushover.';
+
+  @override
+  String get deliveryPushHint => 'Pushover فقط. يجب أن يكون هذا الجهاز متصلًا عند التنبيه.';
+
+  @override
+  String get deliveryFallback => 'يبقى الصوت المحلي عند قطع اتصال Pushover أو إيقافه مؤقتًا.';
+
+  @override
+  String get deliveryReset => 'استخدام الإعدادات الحالية';
 }

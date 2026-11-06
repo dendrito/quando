@@ -2237,4 +2237,31 @@ class AppLocalizationsRu extends AppLocalizations {
   String nothingFound(String query) {
     return 'По запросу «$query» ничего не найдено.';
   }
+
+  @override
+  String get deliveryTitle => 'Оповещение';
+
+  @override
+  String get deliveryLocal => 'Местный звук';
+
+  @override
+  String get deliveryBoth => 'Оба';
+
+  @override
+  String get deliveryConnect => 'Подключить Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Не удалось загрузить звуки и устройства. Повторите попытку.';
+
+  @override
+  String get deliveryBothHint => 'Местный звук прозвучит, даже если Pushover не сработает.';
+
+  @override
+  String get deliveryPushHint => 'Только Pushover. В момент сигнала устройство должно быть в сети.';
+
+  @override
+  String get deliveryFallback => 'Местный звук сохраняется, если Pushover отключён или приостановлен.';
+
+  @override
+  String get deliveryReset => 'Использовать текущие настройки';
 }

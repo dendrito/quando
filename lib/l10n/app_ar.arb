@@ -636,5 +636,14 @@
   "spotifyLoginError": "لم ينجح تسجيل الدخول إلى Spotify: {reason}",
   "googleSignInError": "لم ينجح تسجيل الدخول إلى Google: {reason}",
   "searchSongsHint": "ابحث عن أغانٍ وفنانين وقوائم تشغيل",
-  "nothingFound": "لا نتائج لـ «{query}»."
+  "nothingFound": "لا نتائج لـ «{query}».",
+  "deliveryTitle": "طريقة التنبيه",
+  "deliveryLocal": "صوت محلي",
+  "deliveryBoth": "كلاهما",
+  "deliveryConnect": "ربط Pushover",
+  "deliveryLoadFailed": "تعذر تحميل الأصوات والأجهزة. حاول مجددًا.",
+  "deliveryBothHint": "يعمل الصوت المحلي حتى عند تعطل Pushover.",
+  "deliveryPushHint": "Pushover فقط. يجب أن يكون هذا الجهاز متصلًا عند التنبيه.",
+  "deliveryFallback": "يبقى الصوت المحلي عند قطع اتصال Pushover أو إيقافه مؤقتًا.",
+  "deliveryReset": "استخدام الإعدادات الحالية"
 }

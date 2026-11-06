@@ -636,5 +636,14 @@
   "spotifyLoginError": "Spotifyにサインインできませんでした：{reason}",
   "googleSignInError": "Googleにサインインできませんでした：{reason}",
   "searchSongsHint": "曲、アーティスト、プレイリストを検索",
-  "nothingFound": "「{query}」は見つかりませんでした。"
+  "nothingFound": "「{query}」は見つかりませんでした。",
+  "deliveryTitle": "通知方法",
+  "deliveryLocal": "本体の音",
+  "deliveryBoth": "両方",
+  "deliveryConnect": "Pushoverを接続",
+  "deliveryLoadFailed": "音とデバイスを読み込めませんでした。再試行してください。",
+  "deliveryBothHint": "Pushoverが失敗しても本体の音は鳴ります。",
+  "deliveryPushHint": "Pushoverのみ。通知時にこのデバイスがオンラインである必要があります。",
+  "deliveryFallback": "Pushoverが未接続または一時停止中は本体の音を使用します。",
+  "deliveryReset": "既存の設定を使う"
 }

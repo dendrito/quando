@@ -2241,4 +2241,32 @@ class AppLocalizationsPl extends AppLocalizations {
   String nothingFound(String query) {
     return 'Nic nie znaleziono dla „$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'Powiadomienie';
+
+  @override
+  String get deliveryLocal => 'Dźwięk lokalny';
+
+  @override
+  String get deliveryBoth => 'Oba';
+
+  @override
+  String get deliveryConnect => 'Połącz Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Nie udało się wczytać dźwięków i urządzeń. Spróbuj ponownie.';
+
+  @override
+  String get deliveryBothHint => 'Dźwięk lokalny działa także przy awarii Pushover.';
+
+  @override
+  String get deliveryPushHint => 'Tylko Pushover. Urządzenie musi być wtedy online.';
+
+  @override
+  String get deliveryFallback =>
+      'Dźwięk lokalny pozostaje aktywny, gdy Pushover jest rozłączony lub wstrzymany.';
+
+  @override
+  String get deliveryReset => 'Użyj istniejących ustawień';
 }

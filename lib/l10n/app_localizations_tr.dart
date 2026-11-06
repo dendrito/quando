@@ -2191,4 +2191,31 @@ class AppLocalizationsTr extends AppLocalizations {
   String nothingFound(String query) {
     return '“$query” için sonuç yok.';
   }
+
+  @override
+  String get deliveryTitle => 'Bildirim biçimi';
+
+  @override
+  String get deliveryLocal => 'Yerel ses';
+
+  @override
+  String get deliveryBoth => 'İkisi de';
+
+  @override
+  String get deliveryConnect => 'Pushover bağla';
+
+  @override
+  String get deliveryLoadFailed => 'Sesler ve cihazlar yüklenemedi. Tekrar deneyin.';
+
+  @override
+  String get deliveryBothHint => 'Pushover başarısız olsa da yerel ses çalar.';
+
+  @override
+  String get deliveryPushHint => 'Yalnızca Pushover. Bildirim anında bu cihaz çevrimiçi olmalıdır.';
+
+  @override
+  String get deliveryFallback => 'Pushover bağlantısı kesildiğinde veya duraklatıldığında yerel ses korunur.';
+
+  @override
+  String get deliveryReset => 'Mevcut ayarları kullan';
 }

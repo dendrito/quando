@@ -8,6 +8,8 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../rules/ui/delivery_tile.dart';
+import '../../rules/domain/reminder_delivery.dart';
 import '../domain/calendar_rule.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
@@ -476,6 +478,18 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               ),
             ],
           ] else ...[
+            for (final offset in {..._rule.toAlarmRules().first.offsets(), ..._rule.after}.toList()..sort())
+              DeliveryTile(
+                key: ValueKey(offset.inMinutes),
+                title: offset == Duration.zero ? l10n.atTheMomentItself : describeOffset(offset),
+                value: _rule.deliveries[offset.inMinutes] ?? ReminderDelivery.inherit,
+                ruleSound: _rule.soundId,
+                onChanged: (choice) => setState(
+                  () => _rule = _rule.copyWith(deliveries: {..._rule.deliveries, offset.inMinutes: choice}),
+                ),
+              ),
+            const SizedBox(height: 16),
+            Text(l10n.defaultLabel, style: text.labelSmall),
             SoundPickerTile(
               large: true,
               value: _rule.soundId,

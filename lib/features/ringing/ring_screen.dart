@@ -76,7 +76,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   @override
   void initState() {
     super.initState();
-    if (p.spoken) {
+    if (p.localAudio && p.spoken) {
       _speakTimer = Timer(const Duration(seconds: 2), _speak);
     }
     _second = Timer.periodic(const Duration(seconds: 1), (_) {

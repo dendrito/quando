@@ -130,7 +130,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
         if (RingPayload.decode(alarm.payload).isLock) {
           // Its only job was to open Quando; the lock screen takes over.
           Alarm.stop(alarm.id);
-        } else {
+        } else if (RingPayload.decode(alarm.payload).localAudio) {
           _showRinging(alarm);
         }
       }

@@ -2190,4 +2190,31 @@ class AppLocalizationsHe extends AppLocalizations {
   String nothingFound(String query) {
     return 'לא נמצא דבר עבור „$query”.';
   }
+
+  @override
+  String get deliveryTitle => 'אופן התראה';
+
+  @override
+  String get deliveryLocal => 'צליל מקומי';
+
+  @override
+  String get deliveryBoth => 'שניהם';
+
+  @override
+  String get deliveryConnect => 'חיבור ל־Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'לא ניתן לטעון צלילים ומכשירים. נסו שוב.';
+
+  @override
+  String get deliveryBothHint => 'הצליל המקומי יושמע גם אם Pushover נכשל.';
+
+  @override
+  String get deliveryPushHint => 'Pushover בלבד. המכשיר חייב להיות מחובר בזמן ההתראה.';
+
+  @override
+  String get deliveryFallback => 'הצליל המקומי נשמר אם Pushover מנותק או מושהה.';
+
+  @override
+  String get deliveryReset => 'שימוש בהגדרות הקיימות';
 }

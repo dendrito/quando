@@ -2237,4 +2237,31 @@ class AppLocalizationsUk extends AppLocalizations {
   String nothingFound(String query) {
     return 'За запитом «$query» нічого не знайдено.';
   }
+
+  @override
+  String get deliveryTitle => 'Сповіщення';
+
+  @override
+  String get deliveryLocal => 'Місцевий звук';
+
+  @override
+  String get deliveryBoth => 'Обидва';
+
+  @override
+  String get deliveryConnect => 'Підключити Pushover';
+
+  @override
+  String get deliveryLoadFailed => 'Не вдалося завантажити звуки та пристрої. Спробуйте ще раз.';
+
+  @override
+  String get deliveryBothHint => 'Місцевий звук лунає навіть у разі збою Pushover.';
+
+  @override
+  String get deliveryPushHint => 'Лише Pushover. У момент сигналу пристрій має бути в мережі.';
+
+  @override
+  String get deliveryFallback => 'Місцевий звук зберігається, якщо Pushover відключено або призупинено.';
+
+  @override
+  String get deliveryReset => 'Використати поточні налаштування';
 }
