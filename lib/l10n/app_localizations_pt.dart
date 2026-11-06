@@ -2390,4 +2390,152 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get smartHomeDeviceOff =>
       'As ações de alarme estão desligadas neste aparelho. Ative em Conexões; os testes manuais de cenas continuam funcionando.';
+
+  @override
+  String get homeDisplay => 'Tela inicial';
+
+  @override
+  String get skyDay => 'Dia';
+
+  @override
+  String get skyDayNight => 'Dia + noite';
+
+  @override
+  String get showMoonPhase => 'Fase da lua';
+
+  @override
+  String get weatherLabel => 'Clima';
+
+  @override
+  String get skyLabel => 'Céu';
+
+  @override
+  String get weatherSwipeHint => 'Deslize entre céu e clima';
+
+  @override
+  String get parashaHeading => 'Parashá da semana';
+
+  @override
+  String get dailyStudyHeading => 'Estudo diário';
+
+  @override
+  String get courseDaf => 'Daf Yomi';
+
+  @override
+  String get courseRambam1 => 'Rambam · 1 capítulo/dia';
+
+  @override
+  String get courseRambam3 => 'Rambam · 3 capítulos/dia';
+
+  @override
+  String get courseMitzvot => 'Sefer HaMitzvot';
+
+  @override
+  String get courseMishnah => 'Mishná Yomit';
+
+  @override
+  String get courseNach => 'Nach Yomi';
+
+  @override
+  String get moonriseLabel => 'Nascer da lua';
+
+  @override
+  String get moonsetLabel => 'Pôr da lua';
+
+  @override
+  String get nightfallLabel => 'Anoitecer';
+
+  @override
+  String get moonAlwaysUp => 'Lua acima do horizonte o dia todo';
+
+  @override
+  String get moonAlwaysDown => 'Lua abaixo do horizonte o dia todo';
+
+  @override
+  String get noRiseToday => 'Não nasce hoje';
+
+  @override
+  String get noSetToday => 'Não se põe hoje';
+
+  @override
+  String get moonNew => 'Lua nova';
+
+  @override
+  String get moonWaxingCrescent => 'Lua crescente';
+
+  @override
+  String get moonFirstQuarter => 'Quarto crescente';
+
+  @override
+  String get moonWaxingGibbous => 'Gibosa crescente';
+
+  @override
+  String get moonFull => 'Lua cheia';
+
+  @override
+  String get moonWaningGibbous => 'Gibosa minguante';
+
+  @override
+  String get moonLastQuarter => 'Quarto minguante';
+
+  @override
+  String get moonWaningCrescent => 'Lua minguante';
+
+  @override
+  String get moonIlluminated => 'iluminada';
+
+  @override
+  String get weatherClear => 'Céu limpo';
+
+  @override
+  String get weatherClouds => 'Nublado';
+
+  @override
+  String get weatherRain => 'Chuva';
+
+  @override
+  String get weatherSnow => 'Neve / neve com chuva';
+
+  @override
+  String get weatherFog => 'Neblina';
+
+  @override
+  String get weatherThunder => 'Trovoadas';
+
+  @override
+  String get weatherUnavailable => 'O clima está temporariamente indisponível';
+
+  @override
+  String get weatherCached => 'Previsão salva';
+
+  @override
+  String get weatherUpdated => 'Atualizado';
+
+  @override
+  String get weatherForecast => 'Previsão';
+
+  @override
+  String get weatherThunderExpected => 'Trovoadas previstas';
+
+  @override
+  String get learningUnavailable => 'Conecte-se para carregar o calendário de estudos deste mês';
+
+  @override
+  String get festivalReading => 'Leitura de Torá da festa';
+
+  @override
+  String get learningCalendarSource => 'Calendário de estudos · Hebcal · CC BY 4.0';
+
+  @override
+  String get weatherSource => 'Previsão · MET Norway · CC BY 4.0';
+
+  @override
+  String get weatherConsent => 'Clima da cidade selecionada. Usa coordenadas arredondadas com MET Norway.';
+
+  @override
+  String get learningConsent =>
+      'Os calendários de Rambam e outros estudos são carregados do Hebcal e salvos para uso offline.';
+
+  @override
+  String get homeRefresh => 'Atualizar';
 }

@@ -35,7 +35,7 @@ void main() {
 
   test('Quando? Shabbat locks the phone on Shabbat out of the box', () async {
     final c = await container();
-    expect(c.read(lockSettingsProvider).shabbat, kodesh);
+    expect(c.read(lockSettingsProvider).shabbat, jewishHome);
   });
 
   test('Quando? Shabbat never shows a secular quote, any day of the year', () async {
@@ -72,6 +72,10 @@ void main() {
       isFalse,
     );
     if (kodesh) expect(radioGenres.map((g) => g.$2), isNot(contains('rock')));
+    if (mine) {
+      expect(radioGenres.map((g) => g.$2), contains('rock'));
+      expect(appTitle, 'Quando Mine');
+    }
   });
 
   testWidgets('the logo draws in both editions', (tester) async {

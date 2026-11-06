@@ -4287,6 +4287,300 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.'**
   String get smartHomeDeviceOff;
+
+  /// No description provided for @homeDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Home display'**
+  String get homeDisplay;
+
+  /// No description provided for @skyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get skyDay;
+
+  /// No description provided for @skyDayNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Day + night'**
+  String get skyDayNight;
+
+  /// No description provided for @showMoonPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase'**
+  String get showMoonPhase;
+
+  /// No description provided for @weatherLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get weatherLabel;
+
+  /// No description provided for @skyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky'**
+  String get skyLabel;
+
+  /// No description provided for @weatherSwipeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe between sky and weather'**
+  String get weatherSwipeHint;
+
+  /// No description provided for @parashaHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly parashah'**
+  String get parashaHeading;
+
+  /// No description provided for @dailyStudyHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily learning'**
+  String get dailyStudyHeading;
+
+  /// No description provided for @courseDaf.
+  ///
+  /// In en, this message translates to:
+  /// **'Daf Yomi'**
+  String get courseDaf;
+
+  /// No description provided for @courseRambam1.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam · 1 chapter/day'**
+  String get courseRambam1;
+
+  /// No description provided for @courseRambam3.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam · 3 chapters/day'**
+  String get courseRambam3;
+
+  /// No description provided for @courseMitzvot.
+  ///
+  /// In en, this message translates to:
+  /// **'Sefer HaMitzvot'**
+  String get courseMitzvot;
+
+  /// No description provided for @courseMishnah.
+  ///
+  /// In en, this message translates to:
+  /// **'Mishnah Yomit'**
+  String get courseMishnah;
+
+  /// No description provided for @courseNach.
+  ///
+  /// In en, this message translates to:
+  /// **'Nach Yomi'**
+  String get courseNach;
+
+  /// No description provided for @moonriseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonrise'**
+  String get moonriseLabel;
+
+  /// No description provided for @moonsetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonset'**
+  String get moonsetLabel;
+
+  /// No description provided for @nightfallLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightfall'**
+  String get nightfallLabel;
+
+  /// No description provided for @moonAlwaysUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon above horizon all day'**
+  String get moonAlwaysUp;
+
+  /// No description provided for @moonAlwaysDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon below horizon all day'**
+  String get moonAlwaysDown;
+
+  /// No description provided for @noRiseToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No rise today'**
+  String get noRiseToday;
+
+  /// No description provided for @noSetToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No set today'**
+  String get noSetToday;
+
+  /// No description provided for @moonNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New moon'**
+  String get moonNew;
+
+  /// No description provided for @moonWaxingCrescent.
+  ///
+  /// In en, this message translates to:
+  /// **'Waxing crescent'**
+  String get moonWaxingCrescent;
+
+  /// No description provided for @moonFirstQuarter.
+  ///
+  /// In en, this message translates to:
+  /// **'First quarter'**
+  String get moonFirstQuarter;
+
+  /// No description provided for @moonWaxingGibbous.
+  ///
+  /// In en, this message translates to:
+  /// **'Waxing gibbous'**
+  String get moonWaxingGibbous;
+
+  /// No description provided for @moonFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full moon'**
+  String get moonFull;
+
+  /// No description provided for @moonWaningGibbous.
+  ///
+  /// In en, this message translates to:
+  /// **'Waning gibbous'**
+  String get moonWaningGibbous;
+
+  /// No description provided for @moonLastQuarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Last quarter'**
+  String get moonLastQuarter;
+
+  /// No description provided for @moonWaningCrescent.
+  ///
+  /// In en, this message translates to:
+  /// **'Waning crescent'**
+  String get moonWaningCrescent;
+
+  /// No description provided for @moonIlluminated.
+  ///
+  /// In en, this message translates to:
+  /// **'illuminated'**
+  String get moonIlluminated;
+
+  /// No description provided for @weatherClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get weatherClear;
+
+  /// No description provided for @weatherClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloudy'**
+  String get weatherClouds;
+
+  /// No description provided for @weatherRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get weatherRain;
+
+  /// No description provided for @weatherSnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Snow / sleet'**
+  String get weatherSnow;
+
+  /// No description provided for @weatherFog.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog'**
+  String get weatherFog;
+
+  /// No description provided for @weatherThunder.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorms'**
+  String get weatherThunder;
+
+  /// No description provided for @weatherUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather is temporarily unavailable'**
+  String get weatherUnavailable;
+
+  /// No description provided for @weatherCached.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved forecast'**
+  String get weatherCached;
+
+  /// No description provided for @weatherUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get weatherUpdated;
+
+  /// No description provided for @weatherForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast'**
+  String get weatherForecast;
+
+  /// No description provided for @weatherThunderExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorms forecast'**
+  String get weatherThunderExpected;
+
+  /// No description provided for @learningUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to load this month’s learning schedule'**
+  String get learningUnavailable;
+
+  /// No description provided for @festivalReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival Torah reading'**
+  String get festivalReading;
+
+  /// No description provided for @learningCalendarSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning calendar · Hebcal · CC BY 4.0'**
+  String get learningCalendarSource;
+
+  /// No description provided for @weatherSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast · MET Norway · CC BY 4.0'**
+  String get weatherSource;
+
+  /// No description provided for @weatherConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather for your selected city. Uses rounded coordinates with MET Norway.'**
+  String get weatherConsent;
+
+  /// No description provided for @learningConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam and other study schedules are loaded from Hebcal and saved for offline use.'**
+  String get learningConsent;
+
+  /// No description provided for @homeRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get homeRefresh;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

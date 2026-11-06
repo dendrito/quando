@@ -1,20 +1,29 @@
 #!/usr/bin/env bash
-# Switches the iPhone/iPad project to the Jewish edition before a build:
-# its own bundle ID, home-screen name and icon, so it installs as a separate app.
-#   tool/ios_edition.sh kodesh && flutter build ios --dart-define=QUANDO_EDITION=kodesh
-# Android does the same with its "kodesh" flavor (android/app/build.gradle.kts).
+# Select an edition before building; safe to switch repeatedly in one checkout.
 set -euo pipefail
 cd "$(dirname "$0")/.."
 case "${1:-}" in
-  kodesh)
-    sed -i.bak -e 's/PRODUCT_BUNDLE_IDENTIFIER = com\.dendrito\.quando;/PRODUCT_BUNDLE_IDENTIFIER = com.dendrito.quando.kodesh;/' \
-      -e 's/ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;/ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Matai";/' \
-      ios/Runner.xcodeproj/project.pbxproj
-    /usr/libexec/PlistBuddy -c "Set :CFBundleDisplayName Matai?" ios/Runner/Info.plist 2>/dev/null \
-      || sed -i.bak 's#<string>Quando?</string>#<string>Matai?</string>#' ios/Runner/Info.plist
-    rm -f ios/Runner.xcodeproj/project.pbxproj.bak ios/Runner/Info.plist.bak
-    echo "iOS project set to Matai? (com.dendrito.quando.kodesh)"
-    ;;
-  quando) echo "iOS project is Quando? by default; nothing to change." ;;
-  *) echo "usage: $0 quando|kodesh" >&2; exit 2 ;;
+  quando) bundle=com.dendrito.quando; name='Quando?'; icon=AppIcon ;;
+  kodesh) bundle=com.dendrito.quando.kodesh; name='Matai?'; icon=AppIcon-Matai ;;
+  mine) bundle=com.dendrito.quando.mine; name='Quando Mine'; icon=AppIcon ;;
+  *) echo "usage: $0 quando|kodesh|mine" >&2; exit 2 ;;
 esac
+python3 - "$bundle" "$name" "$icon" <<'PYTHON'
+from pathlib import Path
+import re, sys
+bundle, name, icon = sys.argv[1:]
+p = Path('ios/Runner.xcodeproj/project.pbxproj')
+s = p.read_text()
+s = re.sub(r'PRODUCT_BUNDLE_IDENTIFIER = com\.dendrito\.quando(?:\.(?:kodesh|mine))?;',
+           f'PRODUCT_BUNDLE_IDENTIFIER = {bundle};', s)
+s = re.sub(r'ASSETCATALOG_COMPILER_APPICON_NAME = (?:AppIcon|"AppIcon-Matai");',
+           f'ASSETCATALOG_COMPILER_APPICON_NAME = "{icon}";' if '-' in icon else
+           f'ASSETCATALOG_COMPILER_APPICON_NAME = {icon};', s)
+p.write_text(s)
+p = Path('ios/Runner/Info.plist')
+s = p.read_text()
+s = re.sub(r'(<key>CFBundleDisplayName</key>\s*<string>)[^<]*(</string>)',
+           lambda m: m[1] + name + m[2], s)
+p.write_text(s)
+PYTHON
+echo "iOS project set to $name ($bundle)"

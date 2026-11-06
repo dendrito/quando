@@ -265,8 +265,8 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(find.text(l10n.allAlarms), kodesh ? findsOneWidget : findsNothing);
-    if (kodesh) {
+    expect(find.text(l10n.allAlarms), jewishHome ? findsOneWidget : findsNothing);
+    if (jewishHome) {
       expect(find.text(l10n.preparationReminders), findsOneWidget);
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();

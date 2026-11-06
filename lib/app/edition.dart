@@ -10,13 +10,19 @@ library;
 import 'package:quando/l10n/l10n.dart';
 
 const bool kodesh = String.fromEnvironment('QUANDO_EDITION') == 'kodesh';
+const bool mine = String.fromEnvironment('QUANDO_EDITION') == 'mine';
+const bool jewishHome = kodesh || mine;
 
 /// The Jewish edition's own name, shown with "powered by Quando?".
 const kodeshName = 'Matai? On the Sabbath';
 const kodeshNameHe = 'מתי? בשבת';
 
 /// The app's name as people see it.
-String get appTitle => !kodesh ? l10n.appName : (l10n.localeName == 'he' ? kodeshNameHe : kodeshName);
+String get appTitle => mine
+    ? 'Quando Mine'
+    : !kodesh
+    ? l10n.appName
+    : (l10n.localeName == 'he' ? kodeshNameHe : kodeshName);
 
 /// Shown at the bottom of Settings. Keep in step with pubspec.yaml.
 const appVersion = '0.1.0';

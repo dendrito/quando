@@ -291,6 +291,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
     SpotifyAccount.load(ref.read(prefsProvider));
     for (final p in <ProviderOrFamily>[
       languageProvider,
+      homeDisplayProvider,
       quoteSourcesProvider,
       quoteOccasionsProvider,
       timeZonesProvider,

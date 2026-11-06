@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show LicenseEntryWithLineBreaks, LicenseRegistry;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -14,6 +16,11 @@ import 'features/sounds/data/youtube_library.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(() async* {
+    yield LicenseEntryWithLineBreaks([
+      'SunCalc lunar astronomy',
+    ], await rootBundle.loadString('third_party/suncalc/LICENSE'));
+  });
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
   // Speak the chosen language (or the phone's) from the very first word,

@@ -23,7 +23,8 @@ import '../../alarms/ui/group_picker.dart';
 import '../domain/week.dart';
 import '../../../app/widgets/tiles.dart';
 import 'alarm_group_card.dart';
-import 'day_arc.dart';
+import 'sky_panel.dart';
+import 'learning_card.dart';
 import 'week_list.dart';
 
 import '../../quotes/ui/quote_line.dart';
@@ -302,7 +303,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   void initState() {
     super.initState();
     // Keep the countdown and the sky moving.
-    _tick = Timer.periodic(const Duration(seconds: 30), (_) => setState(() {}));
+    _tick = Timer.periodic(const Duration(seconds: 30), (_) {
+      final state = WidgetsBinding.instance.lifecycleState;
+      if (mounted && (state == null || state == AppLifecycleState.resumed)) setState(() {});
+    });
   }
 
   @override
@@ -341,6 +345,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final text = Theme.of(context).textTheme;
     final home = ref.watch(homeZoneProvider);
     final sky = SkyDay.of(place, now);
+    final display = ref.watch(homeDisplayProvider);
 
     // Shabbat times in the Shabbat city's clock; everything else in yours.
     String cityTime(DateTime utc) => hhmm(inZone(utc, place.timeZone));
@@ -351,7 +356,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final upcoming = plan.where((a) => a.at.isAfter(now) && a.ruleId != 'lock').toList();
     final next = upcoming.firstOrNull;
     final nextSunset = sky.nextSunset;
-    final sunTime = place.timeZone;
 
     // ---- Shabbat ---- (first thing on the screen in Quando? Shabbat)
     final shabbat = <Widget>[
@@ -426,7 +430,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ),
                 // Quando? Shabbat: the Hebrew date and this week's parasha.
-                if (kodesh)
+                if (jewishHome || display.parasha)
                   Builder(
                     builder: (context) {
                       final (date, parasha) = hebrewDate(
@@ -439,9 +443,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         padding: const EdgeInsets.only(top: 4, left: 40),
                         child: Text(
                           [
-                            date,
-                            if (parasha.isNotEmpty) l10n.weeklyParasha(parasha),
-                            l10n.poweredBy(l10n.appName),
+                            if (jewishHome) date,
+                            if (display.parasha)
+                              parasha.isNotEmpty ? l10n.weeklyParasha(parasha) : l10n.festivalReading,
+                            if (kodesh) l10n.poweredBy(l10n.appName),
                           ].join(' · '),
                           style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
                         ),
@@ -474,35 +479,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       ],
                       QuoteLine(now: now, idle: next == null),
                       const SizedBox(height: 10),
-                      Text(
-                        l10n.timesIn(place.name, place.timeZone),
-                        style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                      ),
-                      DayArc(
+                      SkyPanel(
                         sky: sky,
                         marks: [
                           for (final a in upcoming)
                             if (sky.at(a.at) case final t? when t >= 0 && t <= 1) t,
-                        ],
-                      ),
-                      Row(
-                        children: [
-                          Expanded(
-                            child: Text(
-                              sky.sunrise == null ? '' : l10n.sunriseAt(hhmm(inZone(sky.sunrise!, sunTime))),
-                              style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                            ),
-                          ),
-                          if (sky.sunset != null)
-                            Flexible(
-                              child: Text(
-                                sky.sunset!.isAfter(now)
-                                    ? '${l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime)))} · ${countdown(sky.sunset!.difference(now))}'
-                                    : l10n.sunsetAt(hhmm(inZone(sky.sunset!, sunTime))),
-                                textAlign: TextAlign.end,
-                                style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                              ),
-                            ),
                         ],
                       ),
                     ],
@@ -536,7 +517,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
                 ],
-                if (kodesh) ...[
+                if (jewishHome) const SizedBox(height: 4),
+                if (jewishHome) LearningCard(now: now),
+                if (jewishHome) ...[
                   SegmentedButton<bool>(
                     segments: [
                       ButtonSegment(value: true, label: Text(l10n.shabbat)),
@@ -552,7 +535,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const PreparationControls(showActions: false),
                   ],
                 ],
-                if (!kodesh || !_showShabbat) ...[
+                if (!jewishHome || !_showShabbat) ...[
                   // ---- One-tap "when" ----
                   Wrap(
                     spacing: 8,
@@ -572,7 +555,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
 
-                  if (!kodesh && ref.watch(shabbatInUseProvider)) ...shabbat,
+                  if (!jewishHome && ref.watch(shabbatInUseProvider)) ...shabbat,
                   // ---- Your alarms ----
                   const SizedBox(height: 8),
                   Text(l10n.yourAlarmsHeading, style: text.labelSmall),

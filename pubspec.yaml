@@ -57,6 +57,7 @@ flutter:
   assets:
     - assets/sounds/
     - assets/brands/
+    - third_party/suncalc/LICENSE
   fonts:
     - family: Bricolage
       fonts:

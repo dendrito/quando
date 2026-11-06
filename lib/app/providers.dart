@@ -29,6 +29,7 @@ import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 import '../features/shabbat/domain/preparation.dart';
+import '../features/home/domain/home_display.dart';
 
 import 'edition.dart';
 
@@ -45,6 +46,27 @@ final clockProvider = Provider<DateTime Function()>(
 final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw StateError('prefsProvider must be overridden in main()'),
 );
+
+class HomeDisplayNotifier extends Notifier<HomeDisplay> {
+  @override
+  HomeDisplay build() {
+    try {
+      return HomeDisplay.fromJson(
+        jsonDecode(ref.read(prefsProvider).getString('home.display') ?? '{}') as Map<String, dynamic>,
+        parashaDefault: jewishHome,
+      );
+    } catch (_) {
+      return HomeDisplay(parasha: jewishHome);
+    }
+  }
+
+  Future<void> set(HomeDisplay value) async {
+    state = value;
+    await ref.read(prefsProvider).setString('home.display', jsonEncode(value.toJson()));
+  }
+}
+
+final homeDisplayProvider = NotifierProvider<HomeDisplayNotifier, HomeDisplay>(HomeDisplayNotifier.new);
 
 // ---- Language ----
 
@@ -314,7 +336,7 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
         saved.containsKey(r.id)
             ? r.copyWith(enabled: saved[r.id])
             // Quando? asks first: Shabbat alarms start off until you turn them on.
-            : (kodesh ? r : r.copyWith(enabled: false)),
+            : (jewishHome ? r : r.copyWith(enabled: false)),
     ];
   }
 
@@ -756,7 +778,7 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     try {
       final raw = _prefs.getString('lock');
       return raw == null
-          ? const LockSettings(shabbat: kodesh)
+          ? const LockSettings(shabbat: jewishHome)
           : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const LockSettings();
@@ -777,7 +799,7 @@ final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings
 /// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm.
 final shabbatInUseProvider = Provider<bool>(
   (ref) =>
-      kodesh ||
+      jewishHome ||
       ref.watch(lockSettingsProvider).shabbat ||
       ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset'),
 );

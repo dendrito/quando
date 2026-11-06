@@ -4,6 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
+import '../../../app/edition.dart';
 import '../../sync/sync_config.dart';
 import 'spotify_library.dart';
 
@@ -29,7 +30,7 @@ class YouTubeAccount {
     if (_ready) return;
     await GoogleSignIn.instance.initialize(
       clientId: SyncConfig.iosClient,
-      serverClientId: SyncConfig.iosClient != null ? SyncConfig.webClientId : serverClientId,
+      serverClientId: SyncConfig.iosClient != null || mine ? SyncConfig.webClientId : serverClientId,
     );
     _ready = true;
   }

@@ -19,18 +19,30 @@ class SyncConfig {
   static const appIdAndroidMatai = '1:216517788382:android:c0d17f9cc4c601139e384f';
   static const appIdIos = '1:216517788382:ios:99aa2bf02a4239099e384f';
   static const appIdIosMatai = '1:216517788382:ios:234bb24b72d1084f9e384f';
+  static const appIdIosMine = '1:216517788382:ios:ea9e3645d42216019e384f';
+  static const appIdAndroidMine = '1:216517788382:android:e0d7034659b730059e384f';
 
   /// The iOS sign-in client from GoogleService-Info.plist (CLIENT_ID).
   static const iosClientId = '216517788382-nv4cmk4sa7boc2ebp7ddd6htdj4f9jku.apps.googleusercontent.com';
   static const iosClientIdMatai = '216517788382-u2m9fn9n6nul6co31svplmktcjlgpgvk.apps.googleusercontent.com';
+  static const iosClientIdMine = '216517788382-1stg3hhfun5fqik91bnkjactuevb7v34.apps.googleusercontent.com';
 
   static bool get _android => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
   static bool get _apple =>
       !kIsWeb &&
       (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS);
 
-  static String get _appId =>
-      _android ? (kodesh ? appIdAndroidMatai : appIdAndroid) : (kodesh ? appIdIosMatai : appIdIos);
+  static String get _appId => _android
+      ? (mine
+            ? appIdAndroidMine
+            : kodesh
+            ? appIdAndroidMatai
+            : appIdAndroid)
+      : (mine
+            ? appIdIosMine
+            : kodesh
+            ? appIdIosMatai
+            : appIdIos);
 
   /// The Firebase project's own web client. Apple devices ask Google for a
   /// sign-in token meant for it. Android keeps the YouTube project's web
@@ -38,7 +50,13 @@ class SyncConfig {
   /// "Safelist client IDs from external projects").
   static const webClientId = '216517788382-8ko4t17hcqe5na1mnbvk2d3ad6rg032a.apps.googleusercontent.com';
 
-  static String? get iosClient => _apple ? (kodesh ? iosClientIdMatai : iosClientId) : null;
+  static String? get iosClient => _apple
+      ? (mine
+            ? iosClientIdMine
+            : kodesh
+            ? iosClientIdMatai
+            : iosClientId)
+      : null;
 
   /// Whether this build knows its Firebase project.
   static bool get ready => projectId.isNotEmpty && _appId.isNotEmpty && (_android || _apple);
@@ -50,6 +68,12 @@ class SyncConfig {
     projectId: projectId,
     storageBucket: '$projectId.firebasestorage.app',
     iosClientId: iosClient,
-    iosBundleId: _apple ? (kodesh ? 'com.dendrito.quando.kodesh' : 'com.dendrito.quando') : null,
+    iosBundleId: _apple
+        ? (mine
+              ? 'com.dendrito.quando.mine'
+              : kodesh
+              ? 'com.dendrito.quando.kodesh'
+              : 'com.dendrito.quando')
+        : null,
   );
 }
