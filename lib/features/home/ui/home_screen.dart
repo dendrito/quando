@@ -14,6 +14,7 @@ import '../../calendar/domain/calendar_rule.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
 import '../../shabbat/ui/shabbat_card.dart';
+import '../../shabbat/ui/preparation_controls.dart';
 import '../../../app/edition.dart';
 import '../../shabbat/domain/hebrew_date.dart';
 import '../../timezones/ui/world_clocks.dart';
@@ -38,6 +39,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
+  bool _showShabbat = true;
   final _openGroups = <String>{};
 
   void _undo(String message, VoidCallback undo) {
@@ -465,13 +467,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       const SizedBox(height: 6),
                       if (next != null) ...[
                         Text(
-                          '${next.title} · ${day(next.at)} · ${local(next.at)}',
+                          '${next.title} · ${day(next.at)} · ${local(next.at)} · $home',
                           style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
                         ),
                         const SizedBox(height: 8),
                       ],
                       QuoteLine(now: now, idle: next == null),
                       const SizedBox(height: 10),
+                      Text(
+                        l10n.timesIn(place.name, place.timeZone),
+                        style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                      ),
                       DayArc(
                         sky: sky,
                         marks: [
@@ -530,130 +536,151 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
                 ],
-                if (kodesh) ...shabbat,
-                // ---- One-tap "when" ----
-                Wrap(
-                  spacing: 8,
-                  runSpacing: 8,
-                  children: [
-                    for (final m in const [10, 20, 60])
-                      _WhenChip(
-                        label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-                        onTap: () => _quick(
-                          DateTime.now().toUtc().add(Duration(minutes: m)),
-                          m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-                        ),
-                      ),
-                    if (nextSunset != null)
-                      _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
-                  ],
-                ),
-                const SizedBox(height: 16),
-
-                if (!kodesh && ref.watch(shabbatInUseProvider)) ...shabbat,
-                // ---- Your alarms ----
-                const SizedBox(height: 8),
-                Text(l10n.yourAlarmsHeading, style: text.labelSmall),
-                const SizedBox(height: 10),
-                if (mine.isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(bottom: 8),
-                    child: Text(l10n.tapWhenToAdd, style: text.bodySmall),
-                  ),
-                for (final a in mine.where((a) => a.group.isEmpty)) ...[
-                  SwipeToDelete(
-                    id: 'user.${a.id}',
-                    onDelete: () {
-                      ref.read(userAlarmsProvider.notifier).delete(a.id);
-                      _undo(l10n.deletedNamed(a.title), () => ref.read(userAlarmsProvider.notifier).save(a));
-                    },
-                    child: _AlarmCard(
-                      alarm: a,
-                      onTap: () => context.push('/alarm/${a.id}'),
-                      onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
-                      onDuplicate: () => _duplicate(a),
-                      onDelete: () => _delete(a),
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                ],
-                for (final g in ref.read(userAlarmsProvider.notifier).groups) ...[
-                  AlarmGroupCard(
-                    name: g,
-                    alarms: [
-                      for (final a in mine)
-                        if (a.group == g) a,
+                if (kodesh) ...[
+                  SegmentedButton<bool>(
+                    segments: [
+                      ButtonSegment(value: true, label: Text(l10n.shabbat)),
+                      ButtonSegment(value: false, label: Text(l10n.allAlarms)),
                     ],
-                    open: _openGroups.contains(g),
-                    onOpen: () =>
-                        setState(() => _openGroups.contains(g) ? _openGroups.remove(g) : _openGroups.add(g)),
-                    onToggleAll: (v) => ref.read(userAlarmsProvider.notifier).toggleGroup(g, v),
-                    onRename: () => _renameGroup(g),
-                    alarmCard: (a) => _AlarmCard(
-                      alarm: a,
-                      flat: true,
-                      onTap: () => context.push('/alarm/${a.id}'),
-                      onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
-                      onDuplicate: () => _duplicate(a),
-                      onDelete: () => _delete(a),
-                    ),
+                    selected: {_showShabbat},
+                    onSelectionChanged: (v) => setState(() => _showShabbat = v.first),
                   ),
-                  const SizedBox(height: 10),
+                  const SizedBox(height: 16),
+                  if (_showShabbat) ...[
+                    const PreparationActions(),
+                    ...shabbat,
+                    const PreparationControls(showActions: false),
+                  ],
                 ],
+                if (!kodesh || !_showShabbat) ...[
+                  // ---- One-tap "when" ----
+                  Wrap(
+                    spacing: 8,
+                    runSpacing: 8,
+                    children: [
+                      for (final m in const [10, 20, 60])
+                        _WhenChip(
+                          label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+                          onTap: () => _quick(
+                            DateTime.now().toUtc().add(Duration(minutes: m)),
+                            m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+                          ),
+                        ),
+                      if (nextSunset != null)
+                        _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
+                    ],
+                  ),
+                  const SizedBox(height: 16),
 
-                // ---- Event alarms ----
-                if (eventRules.isNotEmpty) ...[
-                  const SizedBox(height: 18),
-                  Text(l10n.aroundEventsHeading, style: text.labelSmall),
+                  if (!kodesh && ref.watch(shabbatInUseProvider)) ...shabbat,
+                  // ---- Your alarms ----
+                  const SizedBox(height: 8),
+                  Text(l10n.yourAlarmsHeading, style: text.labelSmall),
                   const SizedBox(height: 10),
-                  for (final r in eventRules) ...[
+                  if (mine.isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 8),
+                      child: Text(l10n.tapWhenToAdd, style: text.bodySmall),
+                    ),
+                  for (final a in mine.where((a) => a.group.isEmpty)) ...[
                     SwipeToDelete(
-                      id: 'cal.${r.id}',
+                      id: 'user.${a.id}',
                       onDelete: () {
-                        ref.read(calendarRulesProvider.notifier).delete(r.id);
+                        ref.read(userAlarmsProvider.notifier).delete(a.id);
                         _undo(
-                          l10n.deletedNamed(r.title),
-                          () => ref.read(calendarRulesProvider.notifier).save(r),
+                          l10n.deletedNamed(a.title),
+                          () => ref.read(userAlarmsProvider.notifier).save(a),
                         );
                       },
-                      child: RuleTile(
-                        title: r.title,
-                        subtitle: [
-                          timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
-                          if (r.keyword.isNotEmpty && r.name.isNotEmpty) l10n.searchFor(r.keyword),
-                        ].join(' · '),
-                        on: r.enabled,
-                        onTap: () => context.push('/calendar/rule/${r.id}'),
-                        onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
+                      child: _AlarmCard(
+                        alarm: a,
+                        onTap: () => context.push('/alarm/${a.id}'),
+                        onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                        onDuplicate: () => _duplicate(a),
+                        onDelete: () => _delete(a),
                       ),
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: 10),
                   ],
-                ],
+                  for (final g in ref.read(userAlarmsProvider.notifier).groups) ...[
+                    AlarmGroupCard(
+                      name: g,
+                      alarms: [
+                        for (final a in mine)
+                          if (a.group == g) a,
+                      ],
+                      open: _openGroups.contains(g),
+                      onOpen: () => setState(
+                        () => _openGroups.contains(g) ? _openGroups.remove(g) : _openGroups.add(g),
+                      ),
+                      onToggleAll: (v) => ref.read(userAlarmsProvider.notifier).toggleGroup(g, v),
+                      onRename: () => _renameGroup(g),
+                      alarmCard: (a) => _AlarmCard(
+                        alarm: a,
+                        flat: true,
+                        onTap: () => context.push('/alarm/${a.id}'),
+                        onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                        onDuplicate: () => _duplicate(a),
+                        onDelete: () => _delete(a),
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                  ],
 
-                // ---- This week ----
-                const SizedBox(height: 18),
-                Text(l10n.thisWeekHeading, style: text.labelSmall),
-                if (ref.watch(fullPlanProvider).isEmpty)
-                  Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 12),
-                    child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
+                  // ---- Event alarms ----
+                  if (eventRules.isNotEmpty) ...[
+                    const SizedBox(height: 18),
+                    Text(l10n.aroundEventsHeading, style: text.labelSmall),
+                    const SizedBox(height: 10),
+                    for (final r in eventRules) ...[
+                      SwipeToDelete(
+                        id: 'cal.${r.id}',
+                        onDelete: () {
+                          ref.read(calendarRulesProvider.notifier).delete(r.id);
+                          _undo(
+                            l10n.deletedNamed(r.title),
+                            () => ref.read(calendarRulesProvider.notifier).save(r),
+                          );
+                        },
+                        child: RuleTile(
+                          title: r.title,
+                          subtitle: [
+                            timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
+                            if (r.keyword.isNotEmpty && r.name.isNotEmpty) l10n.searchFor(r.keyword),
+                          ].join(' · '),
+                          on: r.enabled,
+                          onTap: () => context.push('/calendar/rule/${r.id}'),
+                          onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                    ],
+                  ],
+
+                  // ---- This week ----
+                  const SizedBox(height: 18),
+                  Text(l10n.thisWeekHeading, style: text.labelSmall),
+                  if (ref.watch(fullPlanProvider).isEmpty)
+                    Padding(
+                      padding: const EdgeInsets.symmetric(vertical: 12),
+                      child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
+                    ),
+                  WeekList(
+                    days: weekPlan(ref.watch(fullPlanProvider), home),
+                    today: inZone(now, home),
+                    zone: home,
+                    skipped: ref.watch(skippedProvider),
+                    onTap: _alarmActions,
+                    onSeries: (s) => _actions(s.alarms),
                   ),
-                WeekList(
-                  days: weekPlan(ref.watch(fullPlanProvider), home),
-                  today: inZone(now, home),
-                  zone: home,
-                  skipped: ref.watch(skippedProvider),
-                  onTap: _alarmActions,
-                  onSeries: (s) => _actions(s.alarms),
-                ),
 
-                // ---- World clocks ----
-                const SizedBox(height: 22),
-                const WorldClocks(),
+                  // ---- World clocks ----
+                  const SizedBox(height: 22),
+                  const WorldClocks(),
 
-                const SizedBox(height: 16),
-                Text(l10n.alarmsSetThemselves, style: text.bodySmall),
+                  const SizedBox(height: 16),
+                  Text(l10n.alarmsSetThemselves, style: text.bodySmall),
+                ],
               ],
             ),
           ),

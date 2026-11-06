@@ -1,4 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <!-- Calendar alarms: read events from the phone's calendars (Google included). -->
     <!-- Pushover, Zapier, IFTTT and online radio (many stations still use http). -->
     <uses-permission android:name="android.permission.INTERNET" />

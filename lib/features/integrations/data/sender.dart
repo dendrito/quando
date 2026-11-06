@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../ringing/ring_payload.dart';
+import '../../rules/domain/reminder_delivery.dart';
 import '../domain/integrations.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -30,8 +31,13 @@ class IntegrationSender {
     ]);
   }
 
-  Future<String?> testPushover(IntegrationSettings s) =>
-      _pushover(s, RingPayload(title: l10n.appTest, body: l10n.pushoverConnected, ringSeconds: 1));
+  Future<String?> testPushover(
+    IntegrationSettings s, {
+    ReminderDelivery delivery = ReminderDelivery.inherit,
+  }) => _pushover(
+    s.copyWith(pushoverPriority: 0),
+    RingPayload(title: l10n.appTest, body: l10n.testPushoverSound, ringSeconds: 1).withDelivery(delivery),
+  );
 
   Future<String?> testWebhook(Webhook w) => _webhook(
     w,

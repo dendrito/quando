@@ -4005,6 +4005,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Use existing settings'**
   String get deliveryReset;
+
+  /// No description provided for @beforeShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Before Shabbat'**
+  String get beforeShabbat;
+
+  /// No description provided for @preparationReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders'**
+  String get preparationReminders;
+
+  /// No description provided for @skipThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip this week'**
+  String get skipThisWeek;
+
+  /// No description provided for @restoreThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore this week'**
+  String get restoreThisWeek;
+
+  /// No description provided for @allAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'All alarms'**
+  String get allAlarms;
+
+  /// No description provided for @timesAndSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Times & sound'**
+  String get timesAndSound;
+
+  /// No description provided for @changeCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Change city'**
+  String get changeCity;
+
+  /// No description provided for @useMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my location'**
+  String get useMyLocation;
+
+  /// No description provided for @locationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not get your location. Check location permission or choose a city.'**
+  String get locationUnavailable;
+
+  /// No description provided for @locationReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm this location'**
+  String get locationReview;
+
+  /// No description provided for @locationDeviceOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This location is saved only on this device. Check the timezone and Israel setting before using these times.'**
+  String get locationDeviceOnly;
+
+  /// No description provided for @timesIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} · {zone} · city time'**
+  String timesIn(String city, String zone);
+
+  /// No description provided for @preparationOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.'**
+  String get preparationOff;
+
+  /// No description provided for @preparationSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders are skipped this week. Your weekly settings are kept.'**
+  String get preparationSkipped;
+
+  /// No description provided for @shabbatControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat controls'**
+  String get shabbatControls;
+
+  /// No description provided for @duringAfterShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'During / after Shabbat'**
+  String get duringAfterShabbat;
+
+  /// No description provided for @locationCoordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude {latitude} · longitude {longitude}'**
+  String locationCoordinates(String latitude, String longitude);
+
+  /// No description provided for @currentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get currentLocation;
+
+  /// No description provided for @testPushoverSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Test sound on Pushover'**
+  String get testPushoverSound;
+
+  /// No description provided for @pushoverSoundTestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.'**
+  String get pushoverSoundTestHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

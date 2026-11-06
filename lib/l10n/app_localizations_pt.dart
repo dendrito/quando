@@ -2229,4 +2229,73 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get deliveryReset => 'Usar ajustes existentes';
+
+  @override
+  String get beforeShabbat => 'Antes do Shabbat';
+
+  @override
+  String get preparationReminders => 'Lembretes de preparação';
+
+  @override
+  String get skipThisWeek => 'Pular esta semana';
+
+  @override
+  String get restoreThisWeek => 'Restaurar esta semana';
+
+  @override
+  String get allAlarms => 'Todos os alarmes';
+
+  @override
+  String get timesAndSound => 'Horários e som';
+
+  @override
+  String get changeCity => 'Mudar cidade';
+
+  @override
+  String get useMyLocation => 'Usar minha localização';
+
+  @override
+  String get locationUnavailable =>
+      'Não foi possível obter sua localização. Verifique a permissão ou escolha uma cidade.';
+
+  @override
+  String get locationReview => 'Confirmar esta localização';
+
+  @override
+  String get locationDeviceOnly =>
+      'Esta localização fica apenas neste dispositivo. Confira o fuso horário e a opção Israel antes de usar os horários.';
+
+  @override
+  String timesIn(String city, String zone) {
+    return '$city · $zone · horário da cidade';
+  }
+
+  @override
+  String get preparationOff =>
+      'Os lembretes de preparação estão desligados. Havdalá e alarmes comuns não mudam.';
+
+  @override
+  String get preparationSkipped =>
+      'Os lembretes de preparação foram pulados nesta semana. Seus ajustes semanais foram mantidos.';
+
+  @override
+  String get shabbatControls => 'Controles do Shabbat';
+
+  @override
+  String get duringAfterShabbat => 'Durante / depois do Shabbat';
+
+  @override
+  String locationCoordinates(String latitude, String longitude) {
+    return 'Latitude $latitude · longitude $longitude';
+  }
+
+  @override
+  String get currentLocation => 'Localização atual';
+
+  @override
+  String get testPushoverSound => 'Testar som no Pushover';
+
+  @override
+  String get pushoverSoundTestHint =>
+      'Toca o som escolhido nos seus dispositivos Pushover selecionados. Silêncio e horários silenciosos continuam valendo.';
 }

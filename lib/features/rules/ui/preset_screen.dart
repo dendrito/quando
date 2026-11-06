@@ -7,6 +7,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../sounds/ui/sound_picker.dart';
 import 'delivery_tile.dart';
+import '../../alarms/ui/ring_length_picker.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -46,15 +47,34 @@ class PresetScreen extends ConsumerWidget {
           for (final d in offsets)
             Column(
               children: [
-                DeliveryTile(
-                  key: ValueKey(d.inMinutes),
-                  title: d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d),
-                  value: rule.deliveryAt(d),
-                  ruleSound: rule.soundId,
-                  onChanged: (choice) => notifier.edit(
-                    id,
-                    (r) => r.copyWith(deliveries: {...r.deliveries, d.inMinutes: choice}),
-                  ),
+                Row(
+                  children: [
+                    Expanded(
+                      child: DeliveryTile(
+                        key: ValueKey(d.inMinutes),
+                        title: d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d),
+                        value: rule.deliveryAt(d),
+                        ruleSound: rule.soundId,
+                        defaultRingSeconds: rule.useRingDuration ? rule.ringDuration.inSeconds : null,
+                        onChanged: (choice) => notifier.edit(
+                          id,
+                          (r) => r.copyWith(deliveries: {...r.deliveries, d.inMinutes: choice}),
+                        ),
+                      ),
+                    ),
+                    Switch(
+                      value: rule.deliveryAt(d).enabled,
+                      onChanged: (v) => notifier.edit(
+                        id,
+                        (r) => r.copyWith(
+                          deliveries: {
+                            ...r.deliveries,
+                            d.inMinutes: r.deliveryAt(d).copyWith(enabled: v),
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 Align(
                   alignment: AlignmentDirectional.centerEnd,
@@ -86,6 +106,22 @@ class PresetScreen extends ConsumerWidget {
             value: rule.soundId,
             onChanged: (s) =>
                 notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),
+          ),
+          Text(
+            l10n.ringsForHeading(
+              formatSpan(
+                rule.useRingDuration
+                    ? rule.ringDuration
+                    : Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds),
+              ),
+            ),
+          ),
+          RingLengthPicker(
+            seconds: rule.useRingDuration
+                ? rule.ringDuration.inSeconds
+                : ref.watch(alarmOptionsProvider).ringSeconds,
+            onChanged: (seconds) =>
+                notifier.edit(id, (r) => r.copyWith(ringDuration: Duration(seconds: seconds))),
           ),
           AlarmExtras(
             value: rule.style,

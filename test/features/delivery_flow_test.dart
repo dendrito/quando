@@ -244,9 +244,12 @@ void main() {
     expect(first.pushoverEnabled, isTrue);
     expect(second.pushoverEnabled, isFalse);
     await tester.ensureVisible(find.text('Load from Pushover').first);
+    await tester.pumpAndSettle();
     await tester.tap(find.text('Load from Pushover').first);
     await tester.pumpAndSettle();
     expect(find.text('ipad'), findsOneWidget);
+    await tester.ensureVisible(find.text('ipad'));
+    await tester.pumpAndSettle();
     await tester.tap(find.text('ipad'));
     await tester.pumpAndSettle();
     expect(first.pushoverDevices, {'ipad'});

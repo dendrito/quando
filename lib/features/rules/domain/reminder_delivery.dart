@@ -3,6 +3,8 @@
 class ReminderDelivery {
   const ReminderDelivery({
     this.soundId,
+    this.enabled = true,
+    this.ringSeconds,
     this.localAudio = true,
     this.pushoverDevices,
     this.useDefaultSound = false,
@@ -14,6 +16,8 @@ class ReminderDelivery {
 
   /// Reference to an existing local, recording, radio or music sound entry.
   final String? soundId;
+  final bool enabled;
+  final int? ringSeconds;
   final bool localAudio;
 
   /// Null inherits the connected account; an empty set targets all devices.
@@ -21,6 +25,8 @@ class ReminderDelivery {
 
   ReminderDelivery copyWith({
     String? soundId,
+    bool? enabled,
+    int? ringSeconds,
     bool clearSound = false,
     bool? useDefaultSound,
     bool? localAudio,
@@ -29,6 +35,8 @@ class ReminderDelivery {
     bool clearPushoverSound = false,
     Set<String>? pushoverDevices,
   }) => ReminderDelivery(
+    enabled: enabled ?? this.enabled,
+    ringSeconds: ringSeconds ?? this.ringSeconds,
     soundId: clearSound ? null : (soundId ?? this.soundId),
     useDefaultSound: useDefaultSound ?? this.useDefaultSound,
     localAudio: localAudio ?? this.localAudio,
@@ -45,6 +53,8 @@ class ReminderDelivery {
   String? resolveSound(String? ruleSound) => useDefaultSound ? null : (soundId ?? ruleSound);
 
   Map<String, dynamic> toJson() => {
+    if (!enabled) 'enabled': false,
+    if (ringSeconds != null) 'ringSeconds': ringSeconds,
     if (soundId != null) 'soundId': soundId,
     if (!localAudio) 'localAudio': false,
     if (pushoverDevices != null) 'pushoverDevices': pushoverDevices!.toList()..sort(),
@@ -54,6 +64,8 @@ class ReminderDelivery {
   };
 
   factory ReminderDelivery.fromJson(Map<String, dynamic> j) => ReminderDelivery(
+    enabled: j['enabled'] as bool? ?? true,
+    ringSeconds: (j['ringSeconds'] as num?)?.toInt(),
     soundId: j['soundId'] as String?,
     localAudio: j['localAudio'] as bool? ?? true,
     pushoverDevices: j['pushoverDevices'] == null

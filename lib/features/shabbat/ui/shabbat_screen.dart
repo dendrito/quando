@@ -7,6 +7,7 @@ import '../../../app/theme.dart';
 import '../../../app/widgets/tiles.dart';
 import '../../../core/util/local_time.dart';
 import 'shabbat_card.dart';
+import 'preparation_controls.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -24,7 +25,6 @@ class ShabbatScreen extends ConsumerWidget {
     final rules = ref.watch(rulesProvider);
     final hiddenPresets = ref.read(rulesProvider.notifier).hidden;
     final mine = ref.watch(calendarRulesProvider).where((r) => r.includeTimes).toList();
-    final lock = ref.watch(lockSettingsProvider);
     String day(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
     String time(DateTime utc) => hhmm(inZone(utc, place.timeZone));
 
@@ -62,6 +62,9 @@ class ShabbatScreen extends ConsumerWidget {
             ),
           ),
 
+          Text(l10n.readyMadeHeading, style: text.labelSmall),
+          const PreparationControls(detailed: true),
+
           // ---- Coming up ----
           if (periods.length > 1) ...[
             const SizedBox(height: 14),
@@ -95,22 +98,6 @@ class ShabbatScreen extends ConsumerWidget {
             ),
           ],
 
-          // ---- Lock ----
-          const SizedBox(height: 22),
-          Material(
-            color: QuandoColors.surface,
-            borderRadius: const BorderRadius.all(Radius.circular(24)),
-            clipBehavior: Clip.antiAlias,
-            child: SwitchListTile(
-              contentPadding: const EdgeInsets.fromLTRB(18, 6, 10, 6),
-              secondary: const Icon(Icons.lock_outline, color: QuandoColors.amber),
-              title: Text(l10n.lockForShabbat, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
-              subtitle: Text(l10n.lockForShabbatHint, style: text.bodySmall),
-              value: lock.shabbat,
-              onChanged: (v) => ref.read(lockSettingsProvider.notifier).update((s) => s.copyWith(shabbat: v)),
-            ),
-          ),
-
           // ---- Your own ----
           const SizedBox(height: 22),
           Text(l10n.ownShabbatAlarmsHeading, style: text.labelSmall),
@@ -138,27 +125,6 @@ class ShabbatScreen extends ConsumerWidget {
             onPressed: () => context.push('/calendar/rule/new?times=candle*'),
           ),
 
-          // ---- Presets ----
-          const SizedBox(height: 22),
-          Text(l10n.readyMadeHeading, style: text.labelSmall),
-          const SizedBox(height: 10),
-          for (final r in rules.where((r) => !hiddenPresets.contains(r.id))) ...[
-            SwipeToDelete(
-              id: 'preset.${r.id}',
-              onDelete: () {
-                ref.read(rulesProvider.notifier).hide(r.id);
-                undo(l10n.deletedNamed(r.name), () => ref.read(rulesProvider.notifier).restore(r.id));
-              },
-              child: RuleTile(
-                title: r.name,
-                subtitle: timesLabel(r.offsets()),
-                on: r.enabled,
-                onTap: () => context.push('/preset/${r.id}'),
-                onToggle: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
-              ),
-            ),
-            const SizedBox(height: 8),
-          ],
           if (hiddenPresets.isNotEmpty)
             Align(
               alignment: Alignment.centerLeft,

@@ -15,7 +15,7 @@ import '../../ringing/ring_payload.dart';
 import '../../ringing/ui/alarm_extras.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
-import '../../shabbat/domain/place.dart';
+import '../../shabbat/ui/city_picker.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
 import '../../sync/sync_service.dart';
@@ -117,12 +117,12 @@ class SettingsScreen extends ConsumerWidget {
           if (shabbatOn) ...[
             const SizedBox(height: 16),
             Text(l10n.shabbatCityHeading, style: text.labelSmall),
-            DropdownButton<String>(
-              isExpanded: true,
-              value: place.name,
-              items: [for (final p in Places.all) DropdownMenuItem(value: p.name, child: Text(p.name))],
-              onChanged: (name) =>
-                  ref.read(placeProvider.notifier).set(Places.all.firstWhere((p) => p.name == name)),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(place.name),
+              subtitle: Text(place.timeZone),
+              trailing: const Icon(Icons.search),
+              onTap: () => pickShabbatPlace(context),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,

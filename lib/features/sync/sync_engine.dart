@@ -10,6 +10,7 @@ const syncedKeys = [
   'userAlarms',
   'alarmOptions',
   'rules.enabled',
+  'shabbat.preparation',
   'rules.custom',
   'rules.hidden',
   'plan.skipped',

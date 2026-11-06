@@ -6,6 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/feature_header.dart';
 import '../domain/integrations.dart';
+import 'pushover_icon.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -191,7 +192,13 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
           FeatureHeader(icon: Icons.hub, sentence: l10n.connectionsSentence),
-          Text('PUSHOVER', style: text.labelSmall),
+          Row(
+            children: [
+              const PushoverIcon(),
+              const SizedBox(width: 8),
+              Text('PUSHOVER', style: text.labelSmall),
+            ],
+          ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.pushWhenRings),
@@ -264,6 +271,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               ],
             ),
             Text(l10n.pushoverOnThisPhone, style: text.bodySmall),
+            Text(l10n.pushoverSoundTestHint, style: text.bodySmall),
             const SizedBox(height: 12),
             DropdownButtonFormField<int>(
               initialValue: s.pushoverPriority,
@@ -281,7 +289,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               children: [
                 FilledButton.tonal(
                   onPressed: s.pushoverReady && !_testing ? _testPushover : null,
-                  child: Text(_testing ? l10n.sending : l10n.sendATest),
+                  child: Text(_testing ? l10n.sending : l10n.testPushoverSound),
                 ),
                 TextButton(onPressed: () => _open('https://pushover.net'), child: Text(l10n.findUserKey)),
                 TextButton(

@@ -6,6 +6,8 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../l10n/l10n.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../alarms/ui/ring_length_picker.dart';
+import '../../integrations/ui/pushover_icon.dart';
 import '../domain/reminder_delivery.dart';
 
 /// Inline controls at the reminder time, shared with the everyday alarm editor.
@@ -18,6 +20,7 @@ class DeliveryTile extends ConsumerStatefulWidget {
     this.ruleSound,
     this.initiallyExpanded = false,
     this.showSoundPicker = true,
+    this.defaultRingSeconds,
   });
   final String title;
   final ReminderDelivery value;
@@ -25,6 +28,7 @@ class DeliveryTile extends ConsumerStatefulWidget {
   final String? ruleSound;
   final bool initiallyExpanded;
   final bool showSoundPicker;
+  final int? defaultRingSeconds;
 
   @override
   ConsumerState<DeliveryTile> createState() => _DeliveryTileState();
@@ -34,6 +38,7 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
   Map<String, String> _sounds = const {};
   List<String> _devices = const [];
   bool _loading = false;
+  bool _testing = false;
   String? _error;
 
   Future<void> _load() async {
@@ -59,9 +64,21 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
     }
   }
 
+  Future<void> _testSound() async {
+    setState(() => _testing = true);
+    final error = await ref
+        .read(integrationSenderProvider)
+        .testPushover(ref.read(integrationsProvider), delivery: widget.value);
+    if (!mounted) return;
+    setState(() => _testing = false);
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(error ?? l10n.sentCheckDevices)));
+  }
+
   @override
   Widget build(BuildContext context) {
     final value = widget.value;
+    final ringSeconds =
+        value.ringSeconds ?? widget.defaultRingSeconds ?? ref.watch(alarmOptionsProvider).ringSeconds;
     final settings = ref.watch(integrationsProvider);
     final push = value.pushoverEnabled ?? settings.pushoverReady;
     final mode = !value.localAudio
@@ -84,13 +101,24 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
         clipBehavior: Clip.antiAlias,
         child: ExpansionTile(
           initiallyExpanded: widget.initiallyExpanded,
-          leading: widget.showSoundPicker
-              ? null
-              : const Icon(Icons.notifications_active_outlined, color: Color(0xFF64B5F6)),
+          leading: widget.showSoundPicker ? null : const PushoverIcon(),
           title: Text(widget.title),
           subtitle: Text(labels[mode]!),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
           children: [
+            if (widget.showSoundPicker) ...[
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                title: Text(value.enabled ? l10n.on : l10n.off),
+                value: value.enabled,
+                onChanged: (on) => widget.onChanged(value.copyWith(enabled: on)),
+              ),
+              Text(l10n.ringsForHeading('$ringSeconds s')),
+              RingLengthPicker(
+                seconds: ringSeconds,
+                onChanged: (seconds) => widget.onChanged(value.copyWith(ringSeconds: seconds)),
+              ),
+            ],
             Wrap(
               spacing: 8,
               runSpacing: 4,
@@ -152,6 +180,12 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                   ),
                 ),
               ),
+              TextButton.icon(
+                onPressed: settings.pushoverReady && !_testing ? _testSound : null,
+                icon: const PushoverIcon(size: 22),
+                label: Text(_testing ? l10n.sending : l10n.testPushoverSound),
+              ),
+              Text(l10n.pushoverSoundTestHint, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 8),
               Align(
                 alignment: AlignmentDirectional.centerStart,
@@ -171,6 +205,8 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                     selected: value.pushoverDevices == null,
                     onSelected: (_) => widget.onChanged(
                       ReminderDelivery(
+                        enabled: value.enabled,
+                        ringSeconds: value.ringSeconds,
                         soundId: value.soundId,
                         useDefaultSound: value.useDefaultSound,
                         localAudio: value.localAudio,

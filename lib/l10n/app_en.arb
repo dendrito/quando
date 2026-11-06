@@ -1480,5 +1480,45 @@
   "deliveryBothHint": "Local audio still rings if Pushover fails.",
   "deliveryPushHint": "Pushover only. This device must be online when it fires.",
   "deliveryFallback": "Local audio is kept if Pushover is disconnected or paused.",
-  "deliveryReset": "Use existing settings"
+  "deliveryReset": "Use existing settings",
+  "beforeShabbat": "Before Shabbat",
+  "preparationReminders": "Preparation reminders",
+  "skipThisWeek": "Skip this week",
+  "restoreThisWeek": "Restore this week",
+  "allAlarms": "All alarms",
+  "timesAndSound": "Times & sound",
+  "changeCity": "Change city",
+  "useMyLocation": "Use my location",
+  "locationUnavailable": "Could not get your location. Check location permission or choose a city.",
+  "locationReview": "Confirm this location",
+  "locationDeviceOnly": "This location is saved only on this device. Check the timezone and Israel setting before using these times.",
+  "timesIn": "{city} · {zone} · city time",
+  "preparationOff": "Preparation reminders are off. Havdalah and ordinary alarms are unchanged.",
+  "preparationSkipped": "Preparation reminders are skipped this week. Your weekly settings are kept.",
+  "shabbatControls": "Shabbat controls",
+  "duringAfterShabbat": "During / after Shabbat",
+  "locationCoordinates": "Latitude {latitude} · longitude {longitude}",
+  "currentLocation": "Current location",
+  "@timesIn": {
+    "placeholders": {
+      "city": {
+        "type": "String"
+      },
+      "zone": {
+        "type": "String"
+      }
+    }
+  },
+  "@locationCoordinates": {
+    "placeholders": {
+      "latitude": {
+        "type": "String"
+      },
+      "longitude": {
+        "type": "String"
+      }
+    }
+  },
+  "testPushoverSound": "Test sound on Pushover",
+  "pushoverSoundTestHint": "Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply."
 }

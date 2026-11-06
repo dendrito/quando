@@ -36,6 +36,7 @@ class AlarmRule {
     this.atEvent = false,
     this.ringDuration = const Duration(minutes: 1),
     this.enabled = true,
+    this.useRingDuration = false,
     this.label,
     this.sources,
     this.keyword,
@@ -63,6 +64,7 @@ class AlarmRule {
 
   /// How long the alarm rings before stopping by itself.
   final Duration ringDuration;
+  final bool useRingDuration;
 
   final bool enabled;
 
@@ -136,6 +138,7 @@ class AlarmRule {
     series: series ?? this.series,
     atEvent: atEvent ?? this.atEvent,
     ringDuration: ringDuration ?? this.ringDuration,
+    useRingDuration: ringDuration != null || useRingDuration,
     enabled: enabled ?? this.enabled,
     label: label,
     sources: sources,
@@ -161,6 +164,7 @@ class AlarmRule {
   Map<String, dynamic> customJson() => {
     'offsets': [for (final d in offsets()) d.inMinutes],
     'soundId': soundId,
+    if (useRingDuration) 'ringSeconds': ringDuration.inSeconds,
     'style': style.toJson(),
     if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
   };
@@ -170,6 +174,9 @@ class AlarmRule {
     final r = mins == null ? this : withOffsets(mins);
     final sound = j['soundId'] as String?;
     final styled = r.copyWith(
+      ringDuration: j['ringSeconds'] == null
+          ? null
+          : Duration(seconds: (j['ringSeconds'] as num).toInt().clamp(1, 3600)),
       style: RingStyle.fromJson(j['style']),
       deliveries: ReminderDelivery.decode(j['deliveries']),
     );

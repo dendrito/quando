@@ -287,6 +287,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
       placeProvider,
       havdalahProvider,
       rulesProvider,
+      preparationProvider,
       skippedProvider,
       alarmOptionsProvider,
       calendarRulesProvider,

@@ -25,6 +25,7 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+import '../features/shabbat/domain/preparation.dart';
 
 import 'edition.dart';
 
@@ -211,7 +212,13 @@ class PlaceNotifier extends Notifier<Place> {
   @override
   Place build() {
     final name = _prefs.getString('place.name');
-    final base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
+    Place base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
+    try {
+      final raw = _prefs.getString('place.local');
+      if (raw != null) base = Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      // Preserve the saved catalog city if a local location is invalid.
+    }
     return base.copyWith(
       inIsrael: _prefs.getBool('place.inIsrael'),
       candleLightingMinutes: _prefs.getInt('place.candleMinutes'),
@@ -220,10 +227,19 @@ class PlaceNotifier extends Notifier<Place> {
 
   void set(Place place) {
     state = place;
+    _prefs.remove('place.local');
     _prefs
       ..setString('place.name', place.name)
       ..remove('place.inIsrael')
       ..remove('place.candleMinutes');
+  }
+
+  /// Coordinates from location services stay on this device.
+  void setLocal(Place place) {
+    state = place;
+    _prefs.setString('place.local', jsonEncode(place.toJson()));
+    _prefs.remove('place.inIsrael');
+    _prefs.remove('place.candleMinutes');
   }
 
   void setInIsrael(bool value) {
@@ -238,6 +254,28 @@ class PlaceNotifier extends Notifier<Place> {
 }
 
 final placeProvider = NotifierProvider<PlaceNotifier, Place>(PlaceNotifier.new);
+
+class PreparationNotifier extends Notifier<Preparation> {
+  @override
+  Preparation build() {
+    try {
+      return Preparation.fromJson(
+        jsonDecode(ref.read(prefsProvider).getString('shabbat.preparation') ?? '{}') as Map<String, dynamic>,
+      );
+    } catch (_) {
+      return const Preparation();
+    }
+  }
+
+  void setEnabled(bool enabled) => _save(Preparation(enabled: enabled, skipUntil: state.skipUntil));
+  void skipUntil(DateTime? until) => _save(Preparation(enabled: state.enabled, skipUntil: until));
+  void _save(Preparation value) {
+    state = value;
+    ref.read(prefsProvider).setString('shabbat.preparation', jsonEncode(value.toJson()));
+  }
+}
+
+final preparationProvider = NotifierProvider<PreparationNotifier, Preparation>(PreparationNotifier.new);
 
 class HavdalahNotifier extends Notifier<HavdalahOpinion> {
   @override
@@ -814,6 +852,7 @@ ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
     title: a.title,
     body: a.body,
     ringDuration: a.ringDuration,
+    ringDurationOverride: a.ringDurationOverride,
     ruleId: 'gentle.${a.ruleId}',
     eventId: a.eventId,
     offset: a.offset,
@@ -829,7 +868,12 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
   return [
-    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),
+    ...scheduler.plan(
+      now: now,
+      events: ref.watch(eventsProvider),
+      rules: ref.watch(allRulesProvider),
+      allowReminder: ref.watch(preparationProvider).allows,
+    ),
     for (final a in ref.watch(userAlarmsProvider))
       ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
     ...ref.watch(lockStartAlarmsProvider),
@@ -901,7 +945,7 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
     return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
   }
   // A user alarm can have its own ring length.
-  return a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
+  return a.ringDurationOverride || a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
       ? p.withRingSeconds(a.ringDuration.inSeconds)
       : p;
 }

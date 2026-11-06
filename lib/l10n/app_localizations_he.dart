@@ -2217,4 +2217,69 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get deliveryReset => 'שימוש בהגדרות הקיימות';
+
+  @override
+  String get beforeShabbat => 'לפני שבת';
+
+  @override
+  String get preparationReminders => 'תזכורות להכנות';
+
+  @override
+  String get skipThisWeek => 'דלג השבוע';
+
+  @override
+  String get restoreThisWeek => 'שחזר השבוע';
+
+  @override
+  String get allAlarms => 'כל השעונים';
+
+  @override
+  String get timesAndSound => 'זמנים וצליל';
+
+  @override
+  String get changeCity => 'שינוי עיר';
+
+  @override
+  String get useMyLocation => 'המיקום שלי';
+
+  @override
+  String get locationUnavailable => 'לא ניתן לקבל את מיקומך. בדוק הרשאות מיקום או בחר עיר.';
+
+  @override
+  String get locationReview => 'אישור מיקום';
+
+  @override
+  String get locationDeviceOnly =>
+      'המיקום נשמר רק במכשיר זה. בדוק את אזור הזמן ואת הגדרת ישראל לפני השימוש בזמנים.';
+
+  @override
+  String timesIn(String city, String zone) {
+    return '$city · $zone · זמן מקומי בעיר';
+  }
+
+  @override
+  String get preparationOff => 'תזכורות ההכנה כבויות. הבדלה ושעונים רגילים לא השתנו.';
+
+  @override
+  String get preparationSkipped => 'תזכורות ההכנה דולגו השבוע. ההגדרות השבועיות נשמרו.';
+
+  @override
+  String get shabbatControls => 'הגדרות שבת';
+
+  @override
+  String get duringAfterShabbat => 'במהלך שבת / אחרי שבת';
+
+  @override
+  String locationCoordinates(String latitude, String longitude) {
+    return 'קו רוחב $latitude · קו אורך $longitude';
+  }
+
+  @override
+  String get currentLocation => 'מיקום נוכחי';
+
+  @override
+  String get testPushoverSound => 'בדיקת צליל ב־Pushover';
+
+  @override
+  String get pushoverSoundTestHint => 'משמיע את הצליל שנבחר במכשירי Pushover שנבחרו. הגדרות השקט עדיין חלות.';
 }
