@@ -8,6 +8,7 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../rules/ui/delivery_tile.dart';
+import '../../integrations/ui/smart_home_tile.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
@@ -274,6 +275,10 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             value: _alarm.delivery,
             ruleSound: _alarm.soundId,
             showSoundPicker: false,
+            onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
+          ),
+          SmartHomeTile(
+            value: _alarm.delivery,
             onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
           ),
           AlarmExtras(

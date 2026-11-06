@@ -2312,4 +2312,82 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get pushoverShareSignIn =>
       'Entre na mesma conta do app em cada dispositivo para compartilhar as credenciais Pushover.';
+
+  @override
+  String get smartHomeHeading => 'Casa inteligente';
+
+  @override
+  String get smartHomeHint =>
+      'Execute cenas Tuya diretamente ou conecte suas automações do Home Assistant e Node-RED.';
+
+  @override
+  String get shareServices => 'Compartilhar conexões dos serviços';
+
+  @override
+  String get shareServicesHint =>
+      'Use a mesma conta do app nos seus dispositivos para compartilhar Pushover, Tuya, biblioteca Spotify e automações. YouTube e permissões do aparelho ainda podem exigir aprovação em cada dispositivo.';
+
+  @override
+  String get tuyaSetupHint =>
+      'Use seu projeto Tuya vinculado. Informe o centro de dados, Access ID, Access Secret e o UID em Link App Account. Não precisa de Home Assistant.';
+
+  @override
+  String get tuyaDataCenter => 'Centro de dados';
+
+  @override
+  String get tuyaUserId => 'UID da conta vinculada';
+
+  @override
+  String get tuyaAccessId => 'Access ID / Client ID';
+
+  @override
+  String get tuyaAccessSecret => 'Access Secret / Client Secret';
+
+  @override
+  String get tuyaLoadScenes => 'Carregar cenas';
+
+  @override
+  String get tuyaNoScenes =>
+      'Nenhuma cena Tap-to-Run disponível. Confira a conta vinculada, o centro de dados e as permissões da API de cenas.';
+
+  @override
+  String get tuyaRunNow => 'Executar cena agora';
+
+  @override
+  String get tuyaRunConfirm => 'Executar esta cena nos seus dispositivos Tuya agora?';
+
+  @override
+  String get tuyaSent => 'Tuya aceitou o comando da cena. Confira seus dispositivos.';
+
+  @override
+  String get tuyaFailed =>
+      'Tuya não concluiu a solicitação. Confira as permissões, o centro de dados e a assinatura do projeto. Erro:';
+
+  @override
+  String get tuyaAlarmScene => 'Cena Tuya quando este alarme tocar';
+
+  @override
+  String get homeAssistantHowTo =>
+      'Crie uma automação no Home Assistant com gatilho Webhook aceitando POST e JSON. Cole a URL aqui. Use o evento do alarme (ring, stopped, snoozed ou auto_stopped) para escolher as ações. Em novos aparelhos, esta conexão começa desligada.';
+
+  @override
+  String get nodeRedHowTo =>
+      'Use um nó HTTP In do Node-RED aceitando POST, seguido da sua automação e de um nó HTTP Response. Cole o endereço aqui. Aceita hubs HTTP locais e endereços HTTPS.';
+
+  @override
+  String get smartHomeConnect => 'Conectar um serviço de casa inteligente';
+
+  @override
+  String get automationTestHint => 'O teste executa a automação conectada imediatamente.';
+
+  @override
+  String get smartHomeDeviceOn => 'Executar ações de casa inteligente neste aparelho';
+
+  @override
+  String get smartHomeDeviceHint =>
+      'Escolha um aparelho para executar suas automações. As conexões são compartilhadas; este controle fica neste aparelho.';
+
+  @override
+  String get smartHomeDeviceOff =>
+      'As ações de alarme estão desligadas neste aparelho. Ative em Conexões; os testes manuais de cenas continuam funcionando.';
 }

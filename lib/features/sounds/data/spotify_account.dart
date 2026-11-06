@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../ringing/data/spotify.dart';
+import '../../integrations/data/service_connections_sync.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -31,25 +32,35 @@ class SpotifyAccount {
   static bool get available => !kIsWeb && SpotifyPlay.clientId.isNotEmpty;
 
   static String? _token;
+  static String? _tokenRefresh;
   static DateTime _expires = DateTime(2000);
 
   /// Loads whether you're signed in, at launch.
   static void load(SharedPreferences prefs) {
+    if (_tokenRefresh != prefs.getString(_refreshKey)) _token = null;
     connected = prefs.getBool(prefKey) ?? false;
   }
 
   /// A key for Spotify's Web API: a saved one, a refreshed one, or (when
   /// [prompt]) a fresh sign-in. Throws with a reason you can read when it
   /// can't get one; returns null when you closed the sign-in page.
-  static Future<String?> token(SharedPreferences prefs, {bool prompt = true}) async {
+  static Future<String?> token(SharedPreferences prefs, {bool prompt = true, http.Client? client}) async {
+    load(prefs);
     if (_token != null && DateTime.now().isBefore(_expires)) return _token;
     final refresh = prefs.getString(_refreshKey);
     if (refresh != null) {
       try {
-        return await _exchange(prefs, {'grant_type': 'refresh_token', 'refresh_token': refresh});
-      } on SpotifyAuthException {
+        return await _exchange(prefs, {
+          'grant_type': 'refresh_token',
+          'refresh_token': refresh,
+        }, client: client);
+      } on SpotifyAuthException catch (e) {
+        if (e.code != 'invalid_grant') rethrow;
         // Revoked or expired: sign in again below.
         await prefs.remove(_refreshKey);
+        connected = false;
+        await prefs.setBool(prefKey, false);
+        await ServiceConnectionsSync.publish(prefs);
       }
     }
     if (!prompt) return null;
@@ -92,26 +103,30 @@ class SpotifyAccount {
     });
   }
 
-  static Future<String> _exchange(SharedPreferences prefs, Map<String, String> body) async {
-    final r = await http
-        .post(
-          Uri.https('accounts.spotify.com', '/api/token'),
-          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
-          body: {...body, 'client_id': SpotifyPlay.clientId},
-        )
-        .timeout(const Duration(seconds: 15));
+  static Future<String> _exchange(
+    SharedPreferences prefs,
+    Map<String, String> body, {
+    http.Client? client,
+  }) async {
+    final r = await (client?.post ?? http.post)(
+      Uri.https('accounts.spotify.com', '/api/token'),
+      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+      body: {...body, 'client_id': SpotifyPlay.clientId},
+    ).timeout(const Duration(seconds: 15));
     final j = _json(r.body);
     if (r.statusCode != 200 || j['access_token'] is! String) {
       final why = j['error_description'] ?? j['error'] ?? r.statusCode;
-      throw SpotifyAuthException(l10n.spotifyLoginError('$why'));
+      throw SpotifyAuthException(l10n.spotifyLoginError('$why'), code: j['error'] as String?);
     }
     _token = j['access_token'] as String;
     final secs = (j['expires_in'] as num?)?.toInt() ?? 3600;
     _expires = DateTime.now().add(Duration(seconds: secs - 60));
     final refresh = j['refresh_token'] as String?;
     if (refresh != null) await prefs.setString(_refreshKey, refresh);
+    _tokenRefresh = prefs.getString(_refreshKey);
     connected = true;
     await prefs.setBool(prefKey, true);
+    await ServiceConnectionsSync.publish(prefs);
     return _token!;
   }
 
@@ -120,6 +135,8 @@ class SpotifyAccount {
     connected = false;
     await prefs.remove(_refreshKey);
     await prefs.setBool(prefKey, false);
+    _tokenRefresh = null;
+    await ServiceConnectionsSync.publish(prefs);
   }
 
   static Map<String, dynamic> _json(String body) {
@@ -139,8 +156,9 @@ class SpotifyAccount {
 }
 
 class SpotifyAuthException implements Exception {
-  SpotifyAuthException(this.message);
+  SpotifyAuthException(this.message, {this.code});
   final String message;
+  final String? code;
 
   @override
   String toString() => message;

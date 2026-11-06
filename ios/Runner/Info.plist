@@ -116,6 +116,13 @@
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Use your location once to calculate local Shabbat, sunrise and sunset times. No background tracking.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Connect to your Home Assistant or Node-RED hub when you add a local smart-home automation.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleURLTypes</key>

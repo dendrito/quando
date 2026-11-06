@@ -1,4 +1,6 @@
-/// Per-reminder overrides. Credentials stay in device integration settings.
+import '../../integrations/domain/tuya.dart';
+
+/// Per-reminder overrides. Credentials stay out of alarm/rule data.
 /// Null values inherit existing rule/global choices, preserving old rules.
 class ReminderDelivery {
   const ReminderDelivery({
@@ -10,6 +12,7 @@ class ReminderDelivery {
     this.useDefaultSound = false,
     this.pushoverEnabled,
     this.pushoverSound,
+    this.tuyaScene,
   });
 
   static const inherit = ReminderDelivery();
@@ -19,6 +22,7 @@ class ReminderDelivery {
   final bool enabled;
   final int? ringSeconds;
   final bool localAudio;
+  final TuyaScene? tuyaScene;
 
   /// Null inherits the connected account; an empty set targets all devices.
   final Set<String>? pushoverDevices;
@@ -34,6 +38,9 @@ class ReminderDelivery {
     String? pushoverSound,
     bool clearPushoverSound = false,
     Set<String>? pushoverDevices,
+    TuyaScene? tuyaScene,
+    bool clearTuyaScene = false,
+    bool inheritPushoverDevices = false,
   }) => ReminderDelivery(
     enabled: enabled ?? this.enabled,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -42,7 +49,8 @@ class ReminderDelivery {
     localAudio: localAudio ?? this.localAudio,
     pushoverEnabled: pushoverEnabled ?? this.pushoverEnabled,
     pushoverSound: clearPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
-    pushoverDevices: pushoverDevices ?? this.pushoverDevices,
+    pushoverDevices: inheritPushoverDevices ? null : pushoverDevices ?? this.pushoverDevices,
+    tuyaScene: clearTuyaScene ? null : tuyaScene ?? this.tuyaScene,
   );
 
   /// Explicitly use the app default instead of this rule's chosen sound.
@@ -61,6 +69,7 @@ class ReminderDelivery {
     if (useDefaultSound) 'useDefaultSound': true,
     if (pushoverEnabled != null) 'pushoverEnabled': pushoverEnabled,
     if (pushoverSound != null) 'pushoverSound': pushoverSound,
+    if (tuyaScene != null) 'tuyaScene': tuyaScene!.toJson(),
   };
 
   factory ReminderDelivery.fromJson(Map<String, dynamic> j) => ReminderDelivery(
@@ -74,6 +83,9 @@ class ReminderDelivery {
     useDefaultSound: j['useDefaultSound'] as bool? ?? false,
     pushoverEnabled: j['pushoverEnabled'] as bool?,
     pushoverSound: j['pushoverSound'] as String?,
+    tuyaScene: j['tuyaScene'] is Map
+        ? TuyaScene.fromJson((j['tuyaScene'] as Map).cast<String, dynamic>())
+        : null,
   );
 
   /// JSON object keys are signed minute offsets: negative before, zero at,

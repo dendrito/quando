@@ -13,6 +13,9 @@ import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
+import '../features/integrations/data/tuya_client.dart';
+import '../features/integrations/data/tuya_scene_cache.dart';
+import '../features/integrations/domain/tuya.dart';
 import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
@@ -997,6 +1000,11 @@ final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationS
 
 final integrationSenderProvider = Provider<IntegrationSender>(
   (ref) => IntegrationSender(() => ref.read(integrationsProvider)),
+);
+
+final tuyaClientProvider = Provider<TuyaClient>((ref) => TuyaClient());
+final tuyaScenesProvider = Provider<List<TuyaScene>>(
+  (ref) => TuyaSceneCache.read(ref.read(prefsProvider), ref.watch(integrationsProvider).tuya),
 );
 
 final registrarProvider = Provider<AlarmRegistrar>((ref) {

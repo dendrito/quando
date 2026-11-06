@@ -265,11 +265,13 @@ void main() {
         child: MaterialApp(
           theme: buildTheme(),
           home: Scaffold(
-            body: DeliveryTile(
-              title: 'Reminder',
-              value: local,
-              initiallyExpanded: true,
-              onChanged: (_) => changed = true,
+            body: SingleChildScrollView(
+              child: DeliveryTile(
+                title: 'Reminder',
+                value: local,
+                initiallyExpanded: true,
+                onChanged: (_) => changed = true,
+              ),
             ),
           ),
         ),

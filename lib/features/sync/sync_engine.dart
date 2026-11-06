@@ -12,6 +12,7 @@ const syncedKeys = [
   'rules.enabled',
   'shabbat.preparation',
   'pushover.credentials',
+  'services.connections',
   'rules.custom',
   'rules.hidden',
   'plan.skipped',

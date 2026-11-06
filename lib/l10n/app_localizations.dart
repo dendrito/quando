@@ -4149,6 +4149,144 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sign in to the same app account on each device to share Pushover credentials.'**
   String get pushoverShareSignIn;
+
+  /// No description provided for @smartHomeHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart home'**
+  String get smartHomeHeading;
+
+  /// No description provided for @smartHomeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.'**
+  String get smartHomeHint;
+
+  /// No description provided for @shareServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Share service connections'**
+  String get shareServices;
+
+  /// No description provided for @shareServicesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.'**
+  String get shareServicesHint;
+
+  /// No description provided for @tuyaSetupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.'**
+  String get tuyaSetupHint;
+
+  /// No description provided for @tuyaDataCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Data center'**
+  String get tuyaDataCenter;
+
+  /// No description provided for @tuyaUserId.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked account UID'**
+  String get tuyaUserId;
+
+  /// No description provided for @tuyaAccessId.
+  ///
+  /// In en, this message translates to:
+  /// **'Access ID / Client ID'**
+  String get tuyaAccessId;
+
+  /// No description provided for @tuyaAccessSecret.
+  ///
+  /// In en, this message translates to:
+  /// **'Access Secret / Client Secret'**
+  String get tuyaAccessSecret;
+
+  /// No description provided for @tuyaLoadScenes.
+  ///
+  /// In en, this message translates to:
+  /// **'Load scenes'**
+  String get tuyaLoadScenes;
+
+  /// No description provided for @tuyaNoScenes.
+  ///
+  /// In en, this message translates to:
+  /// **'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.'**
+  String get tuyaNoScenes;
+
+  /// No description provided for @tuyaRunNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Run scene now'**
+  String get tuyaRunNow;
+
+  /// No description provided for @tuyaRunConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Run this scene on your Tuya devices now?'**
+  String get tuyaRunConfirm;
+
+  /// No description provided for @tuyaSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya accepted the scene command. Check your devices.'**
+  String get tuyaSent;
+
+  /// No description provided for @tuyaFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya could not complete the request. Check project permissions, data center and subscription. Error:'**
+  String get tuyaFailed;
+
+  /// No description provided for @tuyaAlarmScene.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya scene when this alarm rings'**
+  String get tuyaAlarmScene;
+
+  /// No description provided for @homeAssistantHowTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.'**
+  String get homeAssistantHowTo;
+
+  /// No description provided for @nodeRedHowTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.'**
+  String get nodeRedHowTo;
+
+  /// No description provided for @smartHomeConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a smart-home service'**
+  String get smartHomeConnect;
+
+  /// No description provided for @automationTestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing runs the connected automation immediately.'**
+  String get automationTestHint;
+
+  /// No description provided for @smartHomeDeviceOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Run smart-home alarm actions on this device'**
+  String get smartHomeDeviceOn;
+
+  /// No description provided for @smartHomeDeviceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one device to run your automations. Connections are shared; this switch stays on this device.'**
+  String get smartHomeDeviceHint;
+
+  /// No description provided for @smartHomeDeviceOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.'**
+  String get smartHomeDeviceOff;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

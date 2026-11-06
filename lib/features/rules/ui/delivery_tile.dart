@@ -8,6 +8,7 @@ import '../../../l10n/l10n.dart';
 import '../../sounds/ui/sound_picker.dart';
 import '../../alarms/ui/ring_length_picker.dart';
 import '../../integrations/ui/pushover_icon.dart';
+import '../../integrations/ui/smart_home_tile.dart';
 import '../domain/reminder_delivery.dart';
 
 /// Inline controls at the reminder time, shared with the everyday alarm editor.
@@ -203,17 +204,7 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                   ChoiceChip(
                     label: Text(l10n.defaultLabel),
                     selected: value.pushoverDevices == null,
-                    onSelected: (_) => widget.onChanged(
-                      ReminderDelivery(
-                        enabled: value.enabled,
-                        ringSeconds: value.ringSeconds,
-                        soundId: value.soundId,
-                        useDefaultSound: value.useDefaultSound,
-                        localAudio: value.localAudio,
-                        pushoverEnabled: value.pushoverEnabled,
-                        pushoverSound: value.pushoverSound,
-                      ),
-                    ),
+                    onSelected: (_) => widget.onChanged(value.copyWith(inheritPushoverDevices: true)),
                   ),
                   ChoiceChip(
                     label: Text(l10n.allMyDevices),
@@ -233,6 +224,7 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                 ],
               ),
             ],
+            if (widget.showSoundPicker) SmartHomeTile(value: value, onChanged: widget.onChanged),
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton(

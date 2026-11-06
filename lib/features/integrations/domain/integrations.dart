@@ -1,5 +1,7 @@
 import 'package:quando/l10n/l10n.dart';
 
+import 'tuya.dart';
+
 /// Things that happen to an alarm, which can be sent elsewhere.
 enum AlarmHappening {
   ring('ring'),
@@ -18,7 +20,7 @@ enum AlarmHappening {
   };
 }
 
-enum WebhookKind { zapier, ifttt, other }
+enum WebhookKind { zapier, ifttt, other, homeAssistant, nodeRed }
 
 /// A web address Quando calls with the alarm's details (JSON POST).
 class Webhook {
@@ -42,7 +44,28 @@ class Webhook {
     WebhookKind.zapier => 'Zapier',
     WebhookKind.ifttt => 'IFTTT · ${iftttEvent(url) ?? l10n.eventLower}',
     WebhookKind.other => Uri.tryParse(url)?.host ?? 'Webhook',
+    WebhookKind.homeAssistant => 'Home Assistant',
+    WebhookKind.nodeRed => 'Node-RED',
   };
+
+  /// Cloud endpoints require HTTPS; private home hubs may use local HTTP.
+  static bool acceptsUrl(String value, WebhookKind kind) {
+    final u = Uri.tryParse(value.trim());
+    if (u == null || u.host.isEmpty || u.userInfo.isNotEmpty || u.hasFragment) return false;
+    if (u.isScheme('https')) return true;
+    if (!u.isScheme('http') || (kind != WebhookKind.homeAssistant && kind != WebhookKind.nodeRed)) {
+      return false;
+    }
+    final host = u.host.toLowerCase();
+    final parts = host.split('.').map(int.tryParse).toList();
+    final privateV4 =
+        parts.length == 4 &&
+        parts.every((p) => p != null && p >= 0 && p <= 255) &&
+        (parts[0] == 10 ||
+            parts[0] == 192 && parts[1] == 168 ||
+            parts[0] == 172 && parts[1]! >= 16 && parts[1]! <= 31);
+    return host.endsWith('.local') || privateV4;
+  }
 
   /// IFTTT's Webhooks service: any JSON goes to the applet.
   static String iftttUrl(String event, String key) =>
@@ -82,6 +105,8 @@ class IntegrationSettings {
     this.pushoverDevices = const {},
     this.webhooks = const [],
     this.pauseOnShabbat = true,
+    this.tuya = const TuyaSettings(),
+    this.smartHomeOn = false,
   });
 
   /// Your Pushover user key (pushover.net, top of the page after sign-in).
@@ -105,6 +130,8 @@ class IntegrationSettings {
 
   /// Send nothing for alarms inside Shabbat and festivals.
   final bool pauseOnShabbat;
+  final TuyaSettings tuya;
+  final bool smartHomeOn;
 
   bool get pushoverReady => pushoverOn && pushoverUser.trim().isNotEmpty && pushoverToken.trim().isNotEmpty;
 
@@ -118,6 +145,8 @@ class IntegrationSettings {
     Set<String>? pushoverDevices,
     List<Webhook>? webhooks,
     bool? pauseOnShabbat,
+    TuyaSettings? tuya,
+    bool? smartHomeOn,
   }) => IntegrationSettings(
     pushoverUser: pushoverUser ?? this.pushoverUser,
     pushoverToken: pushoverToken ?? this.pushoverToken,
@@ -127,6 +156,8 @@ class IntegrationSettings {
     pushoverDevices: pushoverDevices ?? this.pushoverDevices,
     webhooks: webhooks ?? this.webhooks,
     pauseOnShabbat: pauseOnShabbat ?? this.pauseOnShabbat,
+    tuya: tuya ?? this.tuya,
+    smartHomeOn: smartHomeOn ?? this.smartHomeOn,
   );
 
   Map<String, dynamic> toJson() => {
@@ -138,6 +169,8 @@ class IntegrationSettings {
     'pushoverDevices': pushoverDevices.toList(),
     'webhooks': [for (final w in webhooks) w.toJson()],
     'pauseOnShabbat': pauseOnShabbat,
+    'tuya': tuya.toJson(),
+    'smartHomeOn': smartHomeOn,
   };
 
   factory IntegrationSettings.fromJson(Map<String, dynamic> j) => IntegrationSettings(
@@ -152,5 +185,7 @@ class IntegrationSettings {
       for (final w in (j['webhooks'] as List? ?? const [])) Webhook.fromJson(w as Map<String, dynamic>),
     ],
     pauseOnShabbat: j['pauseOnShabbat'] as bool? ?? true,
+    tuya: TuyaSettings.fromJson((j['tuya'] as Map?)?.cast<String, dynamic>() ?? {}),
+    smartHomeOn: j['smartHomeOn'] as bool? ?? false,
   );
 }

@@ -8,6 +8,8 @@ import '../../../app/widgets/feature_header.dart';
 import '../domain/integrations.dart';
 import 'pushover_icon.dart';
 import '../data/pushover_credentials_sync.dart';
+import '../data/service_connections_sync.dart';
+import 'tuya_connection_card.dart';
 import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -124,6 +126,8 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
           WebhookKind.zapier => 'Zapier',
           WebhookKind.ifttt => 'IFTTT',
           WebhookKind.other => 'Webhook',
+          WebhookKind.homeAssistant => 'Home Assistant',
+          WebhookKind.nodeRed => 'Node-RED',
         }),
         content: SingleChildScrollView(
           child: Column(
@@ -148,8 +152,12 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                   decoration: InputDecoration(labelText: l10n.webhooksKey),
                 ),
               ],
-              WebhookKind.other => [
-                Text(l10n.webhookHowTo),
+              WebhookKind.other || WebhookKind.homeAssistant || WebhookKind.nodeRed => [
+                Text(switch (kind) {
+                  WebhookKind.homeAssistant => l10n.homeAssistantHowTo,
+                  WebhookKind.nodeRed => l10n.nodeRedHowTo,
+                  _ => l10n.webhookHowTo,
+                }),
                 TextField(
                   controller: url,
                   decoration: const InputDecoration(labelText: 'https://…'),
@@ -171,9 +179,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
       ),
     );
     if (result == null) return;
-    final uri = Uri.tryParse(result);
-    final bad =
-        uri == null || !uri.isScheme('https') || (kind == WebhookKind.ifttt && key.text.trim().isEmpty);
+    final bad = !Webhook.acceptsUrl(result, kind) || (kind == WebhookKind.ifttt && key.text.trim().isEmpty);
     if (bad) {
       _say(l10n.notAWebAddress);
       return;
@@ -202,6 +208,19 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
           FeatureHeader(icon: Icons.hub, sentence: l10n.connectionsSentence),
+          Text(l10n.shareServicesHint, style: text.bodySmall),
+          TextButton.icon(
+            icon: const Icon(Icons.devices),
+            label: Text(l10n.shareServices),
+            onPressed: account.phase != SyncPhase.on
+                ? null
+                : () async {
+                    final p = ref.read(prefsProvider);
+                    await PushoverCredentialsSync.publish(p, ref.read(integrationsProvider));
+                    final shared = await ServiceConnectionsSync.publish(p);
+                    if (mounted) _say(shared ? l10n.pushoverShareQueued : l10n.pushoverShareSignIn);
+                  },
+          ),
           Row(
             children: [
               const PushoverIcon(),
@@ -322,6 +341,34 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
             ),
           ],
           const SizedBox(height: 28),
+          Text(l10n.smartHomeHeading, style: text.labelSmall),
+          Text(l10n.smartHomeHint, style: text.bodySmall),
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.smartHomeDeviceOn),
+            subtitle: Text(l10n.smartHomeDeviceHint),
+            value: s.smartHomeOn,
+            onChanged: (on) => n.update((s) => s.copyWith(smartHomeOn: on)),
+          ),
+          const SizedBox(height: 12),
+          const TuyaConnectionCard(),
+          const SizedBox(height: 12),
+          Wrap(
+            spacing: 8,
+            children: [
+              OutlinedButton.icon(
+                onPressed: () => _addWebhook(WebhookKind.homeAssistant),
+                icon: const Icon(Icons.home_outlined),
+                label: const Text('Home Assistant'),
+              ),
+              OutlinedButton.icon(
+                onPressed: () => _addWebhook(WebhookKind.nodeRed),
+                icon: const Icon(Icons.account_tree_outlined),
+                label: const Text('Node-RED'),
+              ),
+            ],
+          ),
+          const SizedBox(height: 24),
           Text(l10n.webhooksHeading, style: text.labelSmall),
           const SizedBox(height: 4),
           Text(l10n.webhooksExplain, style: text.bodySmall),
@@ -361,6 +408,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                           ),
                       ],
                     ),
+                    Text(l10n.automationTestHint, style: text.bodySmall),
                     TextButton(onPressed: () => _testWebhook(w), child: Text(l10n.sendATest)),
                   ],
                 ),
