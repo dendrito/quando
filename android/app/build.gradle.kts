@@ -6,7 +6,11 @@ plugins {
 
 android {
     namespace = "com.dendrito.quando"
-    compileSdk = maxOf(flutter.compileSdkVersion, 37)
+    compileSdk {
+        version = release(maxOf(flutter.compileSdkVersion, 37)) {
+            minorApiLevel = 0
+        }
+    }
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
