@@ -335,11 +335,12 @@ void main() {
                 child: ListView(
                   padding: const EdgeInsets.all(16),
                   children: [
+                    SoundPickerTile(large: true, value: null, onChanged: (_) {}),
                     DeliveryTile(
                       key: ValueKey(lang),
-                      title: l10n.minutesShort(15),
+                      title: 'Pushover',
                       value: both,
-                      initiallyExpanded: true,
+                      showSoundPicker: false,
                       onChanged: (_) {},
                     ),
                   ],

@@ -93,6 +93,28 @@ class SoundPickerTile extends ConsumerWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 14,
+                        runSpacing: 10,
+                        children: [
+                          for (final (icon, name, color) in [
+                            (Icons.graphic_eq, 'Spotify', const Color(0xFF1DB954)),
+                            (Icons.smart_display, 'YouTube', const Color(0xFFFF5252)),
+                            (Icons.audio_file_outlined, l10n.addAFile, QuandoColors.amber),
+                            (Icons.radio_outlined, l10n.onlineRadio, QuandoColors.coral),
+                            (Icons.notifications_active_outlined, 'Pushover', const Color(0xFF64B5F6)),
+                          ])
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Icon(icon, size: 20, color: color),
+                                const SizedBox(width: 5),
+                                Text(name, style: text.labelMedium),
+                              ],
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
