@@ -9,12 +9,16 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:go_router/go_router.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/core/scheduler/scheduler.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/alarms/data/alarm_registrar.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
+import 'package:quando/features/alarms/ui/edit_alarm_screen.dart';
+import 'package:quando/features/sounds/ui/sound_picker.dart';
+import 'package:quando/features/sounds/ui/sounds_screen.dart';
 import 'package:quando/features/integrations/data/sender.dart';
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
@@ -55,6 +59,45 @@ void main() {
     ensureTimeZones();
   });
   tearDown(() => useLocale([const Locale('en')]));
+
+  testWidgets('original alarm sound card opens uploads and music without expanding Pushover', (tester) async {
+    final saved = await prefs();
+    const record = MethodChannel('com.llfbandit.record/messages');
+    tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(record, (_) async => null);
+    addTearDown(() => tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(record, null));
+    final router = GoRouter(
+      routes: [
+        GoRoute(
+          path: '/',
+          builder: (_, _) => const EditAlarmScreen(id: 'new'),
+        ),
+        GoRoute(path: '/sounds', builder: (_, _) => const SoundsScreen()),
+      ],
+    );
+    addTearDown(router.dispose);
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [prefsProvider.overrideWithValue(saved)],
+        child: MaterialApp.router(theme: buildTheme(), routerConfig: router),
+      ),
+    );
+    await tester.pumpAndSettle();
+    expect(tester.widget<SoundPickerTile>(find.byType(SoundPickerTile)).large, isTrue);
+    expect(find.byKey(const ValueKey('delivery-push')).hitTestable(), findsNothing);
+    await tester.ensureVisible(find.byType(SoundPickerTile));
+    await tester.tap(find.byType(SoundPickerTile));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.wakeToOwnSound));
+    await tester.pumpAndSettle();
+    expect(find.text(l10n.addAFile), findsOneWidget);
+    expect(find.text(l10n.record), findsOneWidget);
+    await tester.scrollUntilVisible(find.text(l10n.youTubeAndMusic), 150);
+    expect(find.text(l10n.spotifyDirect), findsOneWidget);
+    expect(find.text(l10n.youTubeAndMusic), findsOneWidget);
+    expect(tester.takeException(), isNull);
+    await tester.pumpWidget(const SizedBox());
+    await tester.pumpAndSettle();
+  });
 
   test('normal alarms persist delivery, keep IDs, and carry choices into cold-start payloads', () {
     final at = DateTime.utc(2026, 11, 7, 12);

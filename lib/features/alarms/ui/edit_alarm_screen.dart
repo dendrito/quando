@@ -8,6 +8,7 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../rules/ui/delivery_tile.dart';
+import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
 import 'ring_length_picker.dart';
@@ -255,11 +256,24 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             },
           ),
           const SizedBox(height: 4),
+          SoundPickerTile(
+            large: true,
+            value: _alarm.delivery.resolveSound(_alarm.soundId),
+            onChanged: (id) => setState(
+              () => _alarm = _alarm.copyWith(
+                delivery: _alarm.delivery.copyWith(
+                  soundId: id,
+                  clearSound: id == null,
+                  useDefaultSound: id == null,
+                ),
+              ),
+            ),
+          ),
           DeliveryTile(
-            title: l10n.deliveryTitle,
+            title: 'Pushover',
             value: _alarm.delivery,
             ruleSound: _alarm.soundId,
-            initiallyExpanded: _isNew,
+            showSoundPicker: false,
             onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
           ),
           AlarmExtras(

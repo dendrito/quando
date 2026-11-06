@@ -17,12 +17,14 @@ class DeliveryTile extends ConsumerStatefulWidget {
     required this.onChanged,
     this.ruleSound,
     this.initiallyExpanded = false,
+    this.showSoundPicker = true,
   });
   final String title;
   final ReminderDelivery value;
   final ValueChanged<ReminderDelivery> onChanged;
   final String? ruleSound;
   final bool initiallyExpanded;
+  final bool showSoundPicker;
 
   @override
   ConsumerState<DeliveryTile> createState() => _DeliveryTileState();
@@ -112,7 +114,7 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                 icon: const Icon(Icons.link),
                 label: Text(l10n.deliveryConnect),
               ),
-            if (value.localAudio)
+            if (value.localAudio && widget.showSoundPicker)
               SoundPickerTile(
                 value: value.resolveSound(widget.ruleSound),
                 onChanged: (id) => widget.onChanged(
