@@ -146,10 +146,22 @@ void main() {
       longitude: -46.63,
       timeZone: 'America/Sao_Paulo',
     );
+    await prefs.setBool('place.inIsrael', true);
+    await prefs.setInt('place.candleMinutes', 40);
     c.read(placeProvider.notifier).setLocal(custom);
+    expect(prefs.getBool('place.inIsrael'), isTrue);
+    expect(prefs.getInt('place.candleMinutes'), 40);
     c.invalidate(placeProvider);
     expect(c.read(placeProvider).latitude, custom.latitude);
     expect(c.read(placeProvider).timeZone, custom.timeZone);
+    expect(c.read(placeProvider).inIsrael, isFalse);
+    expect(c.read(placeProvider).candleLightingMinutes, 18);
+    c.read(placeProvider.notifier).setCandleMinutes(22);
+    c.read(placeProvider.notifier).setInIsrael(false);
+    c.invalidate(placeProvider);
+    expect(c.read(placeProvider).candleLightingMinutes, 22);
+    expect(prefs.getInt('place.candleMinutes'), 40);
+    expect(prefs.getBool('place.inIsrael'), isTrue);
     expect(syncedKeys, isNot(contains('place.local')));
     c.read(placeProvider.notifier).set(Places.london);
     c.invalidate(placeProvider);

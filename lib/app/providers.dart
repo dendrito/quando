@@ -212,10 +212,10 @@ class PlaceNotifier extends Notifier<Place> {
   @override
   Place build() {
     final name = _prefs.getString('place.name');
-    Place base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
+    final base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
     try {
       final raw = _prefs.getString('place.local');
-      if (raw != null) base = Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      if (raw != null) return Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       // Preserve the saved catalog city if a local location is invalid.
     }
@@ -238,18 +238,24 @@ class PlaceNotifier extends Notifier<Place> {
   void setLocal(Place place) {
     state = place;
     _prefs.setString('place.local', jsonEncode(place.toJson()));
-    _prefs.remove('place.inIsrael');
-    _prefs.remove('place.candleMinutes');
   }
 
   void setInIsrael(bool value) {
     state = state.copyWith(inIsrael: value);
-    _prefs.setBool('place.inIsrael', value);
+    if (_prefs.containsKey('place.local')) {
+      _prefs.setString('place.local', jsonEncode(state.toJson()));
+    } else {
+      _prefs.setBool('place.inIsrael', value);
+    }
   }
 
   void setCandleMinutes(int minutes) {
     state = state.copyWith(candleLightingMinutes: minutes);
-    _prefs.setInt('place.candleMinutes', minutes);
+    if (_prefs.containsKey('place.local')) {
+      _prefs.setString('place.local', jsonEncode(state.toJson()));
+    } else {
+      _prefs.setInt('place.candleMinutes', minutes);
+    }
   }
 }
 
