@@ -1,50 +1,35 @@
-# Quando privacy policy
+# Quando and Matai privacy policy
 
-_Last updated: 4 November 2026_
+_Development policy updated 6 November 2026. Contact and cloud deletion procedures must be finalized before public release._
 
-Quando is an alarm clock app. It is built to keep your information on your phone. Quando has no accounts of its own, no ads, no analytics and no tracking, and we don't sell or share anything about you.
+Quando is an alarm and reminder app. Matai is its Jewish edition; Quando Mine is a private edition. Local alarms work without an account. The current apps contain no advertising or analytics SDK and do not sell user data.
 
-## What stays on your phone
+## Local information
 
-These are stored only on your device, and are deleted when you uninstall Quando:
+Alarms, preferences, recorded/imported sounds and cached schedules are stored on your device. Calendar access reads events to create reminders. Scanning a stop code uses the camera locally without saving a picture. Recording uses the microphone while recording. Optional foreground location finds a local city; there is no background location tracking. The precise local location entry is excluded from configuration sync.
 
-- Your alarms, settings, chosen city and time zones.
-- Sounds you record or add. Recording uses the microphone only while you press record.
-- Calendar events. Quando reads your phone's calendars, including Google Calendar, only to set alarms around events. It never changes your calendars and never sends events anywhere.
-- Camera images. If you pick "scan a code" to stop an alarm, the camera is used live on the phone to read the code. No picture is saved or sent.
-- Keys you enter for Pushover, Zapier or IFTTT, and sign-in tokens for Spotify and Google.
+## Optional account sync
 
-## When Quando talks to other services
+If enabled, Google sign-in identifies your Firebase account. Configuration selected by the app's sync allowlist, including alarms, settings, selected catalog city, home display and learning preferences, is stored in Google Firebase Firestore and received by your signed-in devices. Recorded/imported audio files and calendar event caches are not uploaded by configuration sync. Jewish preferences can reveal religious interests.
 
-Quando only connects to another service when you turn that feature on:
+Account-bound connection sharing can include Pushover keys, Tuya credentials, Spotify library refresh credentials and webhook URLs. Google/YouTube native sessions and Spotify App Remote sessions are not copied. New received home automation hooks remain disabled until enabled on that device. The current development implementation uses local preferences and private cloud records; it does not provide end-to-end encryption. Public release requires secure-storage migration and verification of deployed account-isolation rules. Do not describe private records as a guarantee against service-operator access.
 
-| Feature | Service | What is sent |
-| --- | --- | --- |
-| Online radio | Radio Browser (radio-browser.info) and the station you pick | Your search, genre or country filter; then the station's stream is played |
-| Pushover | Pushover (pushover.net) | Your Pushover keys, plus the alarm's title and message when it rings |
-| Zapier, IFTTT, webhooks | The address you enter | The alarm's title, message and time when it rings |
-| Spotify | Spotify | Sign-in with your Spotify account, to list your playlists and play the song you chose |
-| YouTube | Google (YouTube Data API) | Sign-in with your Google account, read-only, to list your playlists and liked videos |
-| Song links | The app that owns the link | The link is opened in that app (for example Spotify or YouTube Music) |
+## Optional external services
 
-An alarm's title can come from a calendar event if you created a calendar alarm. It is sent only to the Pushover or webhook services you set up yourself.
+- Pushover receives your keys and alarm title/message for requested notifications and tests. A title may contain calendar-event information.
+- Webhooks, including Home Assistant, Node-RED, Zapier and IFTTT, receive alarm-event details at the address you configure. URLs may contain credentials.
+- Tuya receives signed account requests to list homes/scenes and run the scene you select. Scene names/identifiers are saved for selection and can accompany synchronized alarm settings. Smart-home execution is enabled separately on each device.
+- Spotify receives its sign-in/library/playback requests. Google/YouTube receives sign-in and read-only playlist/liked-video requests. Song links open in their owning app. Provider and OS restrictions still apply.
+- Radio Browser receives station searches/filters; your chosen station receives the stream request.
+- MET Norway receives coordinates rounded to two decimal places when you opt into weather and view that page while the app is active. Forecasts are cached locally. Network services also receive ordinary request metadata such as IP address and app identification.
+- Hebcal receives date ranges and the Israel/diaspora setting for selected daily learning schedules. It does not receive coordinates, credentials or a user account from this feature. Schedules are cached locally. Opening a reading link contacts that source directly. Daf Yomi alone can be calculated offline.
 
-Each of these services has its own privacy policy. Quando's use of information received from Google APIs follows the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including the Limited Use requirements. Quando only reads your YouTube playlists and liked videos to show them to you so you can pick an alarm sound. It doesn't store them on any server, use them for ads, or share them with anyone.
+Each provider has its own privacy policy. Google's API information is used only for the requested library/calendar experience, consistent with the [Google API Services User Data Policy](https://developers.google.com/terms/api-services-user-data-policy), including Limited Use. Playlist contents are not uploaded by configuration sync or used for advertising.
 
-## Removing access
+## Disconnecting and deletion
 
-- To sign out of Spotify or Google, long-press their tile on Quando's Sounds screen.
-- You can also remove Quando's access at [Google account permissions](https://myaccount.google.com/permissions) and [Spotify apps](https://www.spotify.com/account/apps/).
-- Uninstalling Quando deletes everything it stored on your phone.
+Disable an optional feature to stop future requests from it; a request already in progress may finish. Disconnect connections in the app and revoke provider permissions at [Google account permissions](https://myaccount.google.com/permissions) or [Spotify apps](https://www.spotify.com/account/apps/). Signing out stops account sync on that device; it does not delete cloud records or revoke every external credential. Uninstalling does not delete cloud records, other devices' copies, provider accounts or credentials. Device backups may retain local data according to OS settings. A verified cloud-data deletion procedure and retention period remain required before public release.
 
-## Children
+## Children and contact
 
-Quando is not aimed at children and doesn't knowingly collect anything from them.
-
-## Changes
-
-If this policy changes, the new version will be posted here with a new date.
-
-## Contact
-
-Questions: CONTACT_EMAIL
+The app is not directed at children. Before public release, replace this development contact requirement with the verified operator name and support contact in the store listing and this policy. Publish future changes with a new date.

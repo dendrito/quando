@@ -51,7 +51,9 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
 
   @override
   Widget build(BuildContext context) {
-    if (!widget.active || !_foreground) return Center(child: Text(l10n.weatherLabel));
+    if (!widget.active || !_foreground || !TickerMode.valuesOf(context).enabled) {
+      return Center(child: Text(l10n.weatherLabel));
+    }
     final place = ref.watch(placeProvider), repo = ref.watch(weatherRepositoryProvider);
     final key = (place, repo.pollBucket(widget.now));
     final report = ref.watch(weatherReportProvider(key));

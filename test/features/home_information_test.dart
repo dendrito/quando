@@ -230,19 +230,25 @@ void main() {
       overrides: [prefsProvider.overrideWithValue(prefs), weatherRepositoryProvider.overrideWithValue(repo)],
     );
     addTearDown(c.dispose);
-    Widget app(bool active) => UncontrolledProviderScope(
+    Widget app(bool active, {bool visible = true}) => UncontrolledProviderScope(
       container: c,
       child: MaterialApp(
         theme: buildTheme(),
         home: MediaQuery(
           data: const MediaQueryData(disableAnimations: true),
-          child: Scaffold(
-            body: WeatherPanel(now: now, active: active),
+          child: TickerMode(
+            enabled: visible,
+            child: Scaffold(
+              body: WeatherPanel(now: now, active: active),
+            ),
           ),
         ),
       ),
     );
     await tester.pumpWidget(app(false));
+    await tester.pumpAndSettle();
+    expect(calls, 0);
+    await tester.pumpWidget(app(true, visible: false));
     await tester.pumpAndSettle();
     expect(calls, 0);
     await tester.pumpWidget(app(true));
