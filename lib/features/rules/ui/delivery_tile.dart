@@ -84,6 +84,9 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
         clipBehavior: Clip.antiAlias,
         child: ExpansionTile(
           initiallyExpanded: widget.initiallyExpanded,
+          leading: widget.showSoundPicker
+              ? null
+              : const Icon(Icons.notifications_active_outlined, color: Color(0xFF64B5F6)),
           title: Text(widget.title),
           subtitle: Text(labels[mode]!),
           childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),

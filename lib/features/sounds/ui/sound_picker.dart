@@ -103,7 +103,6 @@ class SoundPickerTile extends ConsumerWidget {
                             (Icons.smart_display, 'YouTube', const Color(0xFFFF5252)),
                             (Icons.audio_file_outlined, l10n.addAFile, QuandoColors.amber),
                             (Icons.radio_outlined, l10n.onlineRadio, QuandoColors.coral),
-                            (Icons.notifications_active_outlined, 'Pushover', const Color(0xFF64B5F6)),
                           ])
                             Row(
                               mainAxisSize: MainAxisSize.min,
