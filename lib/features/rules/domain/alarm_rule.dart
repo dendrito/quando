@@ -1,4 +1,5 @@
 import '../../events/domain/event.dart';
+import 'reminder_delivery.dart';
 import '../../events/domain/event_query.dart';
 import '../../ringing/ring_style.dart';
 
@@ -40,6 +41,7 @@ class AlarmRule {
     this.keyword,
     this.soundId,
     this.style = RingStyle.none,
+    this.deliveries = const {},
   });
 
   final String id;
@@ -78,6 +80,11 @@ class AlarmRule {
 
   /// Volume, fades, tasks and more for this rule's alarms.
   final RingStyle style;
+
+  /// Overrides by signed minute offset; missing entries inherit this rule.
+  final Map<int, ReminderDelivery> deliveries;
+
+  ReminderDelivery deliveryAt(Duration offset) => deliveries[offset.inMinutes] ?? ReminderDelivery.inherit;
 
   /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
   /// [EventQuery]). [sources] only narrows calendar events, so a rule can
@@ -119,6 +126,7 @@ class AlarmRule {
     String? soundId,
     bool defaultSound = false,
     RingStyle? style,
+    Map<int, ReminderDelivery>? deliveries,
   }) => AlarmRule(
     id: id,
     name: name,
@@ -134,6 +142,7 @@ class AlarmRule {
     keyword: keyword,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     style: style ?? this.style,
+    deliveries: deliveries ?? this.deliveries,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =
@@ -153,13 +162,17 @@ class AlarmRule {
     'offsets': [for (final d in offsets()) d.inMinutes],
     'soundId': soundId,
     'style': style.toJson(),
+    if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
   };
 
   AlarmRule withCustom(Map<String, dynamic> j) {
     final mins = (j['offsets'] as List?)?.map((m) => Duration(minutes: (m as num).toInt()));
     final r = mins == null ? this : withOffsets(mins);
     final sound = j['soundId'] as String?;
-    final styled = r.copyWith(style: RingStyle.fromJson(j['style']));
+    final styled = r.copyWith(
+      style: RingStyle.fromJson(j['style']),
+      deliveries: ReminderDelivery.decode(j['deliveries']),
+    );
     return sound == null ? styled.copyWith(defaultSound: true) : styled.copyWith(soundId: sound);
   }
 }
