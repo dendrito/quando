@@ -402,7 +402,8 @@ void main() {
         await tester.runAsync(() async {
           final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
           final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-          await File('/private/tmp/quando-delivery-editor.png').writeAsBytes(bytes!.buffer.asUint8List());
+          await File('${Directory.systemTemp.path}/quando-delivery-editor.png')
+              .writeAsBytes(bytes!.buffer.asUint8List());
         });
       }
     }

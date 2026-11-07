@@ -315,7 +315,8 @@ void main() {
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
         final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-        await File('/private/tmp/quando-sky-$width.png').writeAsBytes(bytes!.buffer.asUint8List());
+        await File('${Directory.systemTemp.path}/quando-sky-$width.png')
+            .writeAsBytes(bytes!.buffer.asUint8List());
       });
       await tester.tap(find.text(l10n.skySun));
       await tester.pumpAndSettle();
@@ -328,7 +329,8 @@ void main() {
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
         final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
-        await File('/private/tmp/quando-sun-restored-$width.png').writeAsBytes(bytes!.buffer.asUint8List());
+        await File('${Directory.systemTemp.path}/quando-sun-restored-$width.png')
+            .writeAsBytes(bytes!.buffer.asUint8List());
       });
     });
   }

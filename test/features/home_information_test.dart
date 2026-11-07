@@ -361,7 +361,8 @@ void main() {
     await tester.runAsync(() async {
       final img = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
       final bytes = await img.toByteData(format: ui.ImageByteFormat.png);
-      await File('/private/tmp/quando-weather-art.png').writeAsBytes(bytes!.buffer.asUint8List());
+      await File('${Directory.systemTemp.path}/quando-weather-art.png')
+          .writeAsBytes(bytes!.buffer.asUint8List());
     });
   });
 }
