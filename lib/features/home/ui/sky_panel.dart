@@ -179,22 +179,50 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             Text(l10n.skyCityExplain, style: text.bodySmall),
           if (illumination != null && phases != null) ...[
             const SizedBox(height: 12),
-            Row(
-              children: [
-                MoonDisc(illumination: illumination),
-                const SizedBox(width: 10),
-                Expanded(
-                  child: Text(
-                    '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
-                    style: text.bodyMedium,
-                  ),
-                ),
-              ],
+            LayoutBuilder(
+              builder: (context, constraints) {
+                final phase = Row(
+                  children: [
+                    MoonDisc(illumination: illumination),
+                    const SizedBox(width: 10),
+                    Expanded(
+                      child: Text(
+                        '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
+                        style: text.bodyMedium,
+                      ),
+                    ),
+                  ],
+                );
+                final dates = Column(
+                  key: const ValueKey('moon-upcoming-dates'),
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text('${l10n.moonNextNew} ≈ ${phaseTime(phases.newMoon)}', style: text.bodySmall),
+                    const SizedBox(height: 4),
+                    Text('${l10n.moonNextFull} ≈ ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
+                  ],
+                );
+                if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
+                  return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    textDirection: TextDirection.ltr,
+                    children: [
+                      Expanded(child: phase),
+                      const SizedBox(width: 24),
+                      Flexible(
+                        child: Align(alignment: Alignment.topRight, heightFactor: 1, child: dates),
+                      ),
+                    ],
+                  );
+                }
+                return Column(
+                  mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [phase, const SizedBox(height: 12), dates],
+                );
+              },
             ),
-            const SizedBox(height: 12),
-            Text('${l10n.moonNextNew} ≈ ${phaseTime(phases.newMoon)}', style: text.bodySmall),
-            const SizedBox(height: 4),
-            Text('${l10n.moonNextFull} ≈ ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
           ],
         ],
       ),
@@ -295,19 +323,24 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 ),
             ],
           ),
-          AnimatedSize(
-            duration: MediaQuery.disableAnimationsOf(context)
-                ? Duration.zero
-                : const Duration(milliseconds: 250),
-            alignment: Alignment.topCenter,
-            child: SizedBox(
-              height: _page == 1 && options.moon
-                  ? 390 * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
-                  : max(228.0, options.night ? 260.0 : 180.0),
-              child: PageView(
-                controller: _pager,
-                onPageChanged: (p) => setState(() => _page = p),
-                children: [for (final page in pages) SingleChildScrollView(child: page.child)],
+          LayoutBuilder(
+            builder: (context, constraints) => AnimatedSize(
+              duration: MediaQuery.disableAnimationsOf(context)
+                  ? Duration.zero
+                  : const Duration(milliseconds: 250),
+              alignment: Alignment.topCenter,
+              child: SizedBox(
+                height: _page == 1 && options.moon
+                    ? (constraints.maxWidth - 36 >= 700 * MediaQuery.textScalerOf(context).scale(1)
+                              ? 300
+                              : 390) *
+                          MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                    : max(228.0, options.night ? 260.0 : 180.0),
+                child: PageView(
+                  controller: _pager,
+                  onPageChanged: (p) => setState(() => _page = p),
+                  children: [for (final page in pages) SingleChildScrollView(child: page.child)],
+                ),
               ),
             ),
           ),

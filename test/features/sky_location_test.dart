@@ -302,6 +302,15 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.textContaining('São Paulo'), findsOneWidget);
       expect(c.read(homeZoneProvider), 'America/Detroit');
+      final phaseRect = tester.getRect(find.byType(MoonDisc));
+      final datesRect = tester.getRect(find.byKey(const ValueKey('moon-upcoming-dates')));
+      if (width >= 700) {
+        expect(datesRect.left, greaterThan(phaseRect.right));
+        expect(datesRect.top, closeTo(phaseRect.top, 1));
+        expect(tester.getSize(find.byKey(const ValueKey('moon-daylight-background'))).height, lessThan(300));
+      } else {
+        expect(datesRect.top, greaterThan(phaseRect.bottom));
+      }
       expect(tester.takeException(), isNull);
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
