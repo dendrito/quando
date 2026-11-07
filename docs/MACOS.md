@@ -32,6 +32,12 @@ override it for an account whose prefix differs from its team ID. Real Google
 sign-in and device sync still require acceptance testing; signing metadata alone
 does not prove authentication or cross-device behavior.
 
+The keychain entitlement requires a macOS provisioning profile. Set
+`QUANDO_MAC_PROVISIONING_PROFILE` to an existing compatible profile, or set
+`QUANDO_MAC_AUTOMATIC_SIGNING=true` to let Xcode obtain a development profile
+using the account already signed in to Xcode. This does not enroll in a paid
+program or publish the app. An iOS profile does not provision the native Mac app.
+
 ## Alarm behavior
 
 - Keep the app running and the Mac awake. Closing the window hides it; Quit
