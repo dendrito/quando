@@ -332,7 +332,7 @@
   "couldNotAddFile": "Не вдалося додати файл: {error}",
   "addSongLink": "Додати посилання на трек",
   "songLink": "Посилання на трек",
-  "songLinkHowTo": "У Spotify, Apple Music, Amazon Music, YouTube, YouTube Music чи SoundCloud натисніть «Поділитися», потім «Копіювати посилання» й вставте його сюди.",
+  "songLinkHowTo": "У Spotify, Apple Music, YouTube, YouTube Music чи SoundCloud натисніть «Поділитися», потім «Копіювати посилання» й вставте його сюди.",
   "songNameHint": "Назва, напр. Ранковий плейлист",
   "whenAlarmGoesOffHeading": "КОЛИ ДЗВОНИТЬ БУДИЛЬНИК",
   "playTheSong": "Увімкнути трек",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Відтворення триває відповідно до тривалості дзвінка будильника й припиняється після зупинки або відкладання.",
+  "musicBackupPlaying": "Не вдалося ввімкнути музику. Лунає локальний сигнал будильника.",
+  "desktopMusicConnect": "Підключіть програму {service} на цьому Mac. Спочатку увійдіть у неї; macOS запитає дозвіл.",
+  "desktopMusicOn": "Підключено до {service} на цьому Mac. Діє тривалість дзвінка будильника. Утримуйте для відключення.",
+  "musicSongs": "Пісні",
+  "noMusicSongs": "У бібліотеці Музики пісень не знайдено.",
+  "serviceConnectUnavailable": "Підключення облікового запису {service} недоступне на цій платформі. Посилання можна відкрити після зупинки будильника.",
+  "soundCloudWidgetNote": "Додайте загальнодоступне посилання на трек або плейлист. Офіційний програвач дотримується тривалості дзвінка; вхід недоступний.",
+  "youtubePlayerHint": "YouTube відтворює відео у видимому програвачі. Якщо його приховано або відтворення неможливе, локальний сигнал триває."
 }

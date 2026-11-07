@@ -1164,7 +1164,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Tippe in Spotify, Apple Music, Amazon Music, YouTube, YouTube Music oder SoundCloud auf Teilen, dann auf Link kopieren, und füge ihn hier ein.';
+      'Tippe in Spotify, Apple Music, YouTube, YouTube Music oder SoundCloud auf Teilen, dann auf Link kopieren, und füge ihn hier ein.';
 
   @override
   String get songNameHint => 'Name, z. B. Morgen-Playlist';
@@ -2622,4 +2622,40 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Die Wiedergabe folgt der Klingeldauer dieses Weckers und endet mit Stopp oder Schlummern.';
+
+  @override
+  String get musicBackupPlaying => 'Die Musik konnte nicht starten. Der lokale Weckton wird abgespielt.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Verbinde die App $service auf diesem Mac. Melde dich dort zuerst an; macOS fragt nach deiner Erlaubnis.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Mit $service auf diesem Mac verbunden. Verwendet die Klingeldauer des Weckers. Zum Trennen lange drücken.';
+  }
+
+  @override
+  String get musicSongs => 'Titel';
+
+  @override
+  String get noMusicSongs => 'Keine Titel in deiner Musikmediathek gefunden.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Die Kontoanmeldung für $service ist auf dieser Plattform nicht verfügbar. Ein Link kann nach dem Stoppen des Weckers geöffnet werden.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Füge einen öffentlichen Titel- oder Playlist-Link hinzu. Der offizielle Player folgt der Klingeldauer; eine Kontoanmeldung ist nicht verfügbar.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube spielt Videos in einem sichtbaren Player ab. Wird er verborgen oder kann er nicht abspielen, läuft der lokale Weckton weiter.';
 }

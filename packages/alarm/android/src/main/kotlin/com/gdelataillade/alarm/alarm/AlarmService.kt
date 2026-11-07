@@ -117,6 +117,8 @@ class AlarmService : Service() {
     }
 
     private var audioService: AudioService? = null
+
+    fun muteBackup(id: Int, muted: Boolean): Boolean = audioService?.muteBackup(id, muted) ?: false
     private var vibrationService: VibrationService? = null
     private var volumeService: VolumeService? = null
     private var alarmStorage: AlarmStorage? = null

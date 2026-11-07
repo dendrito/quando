@@ -1165,7 +1165,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Dans Spotify, Apple Music, Amazon Music, YouTube, YouTube Music ou SoundCloud, touchez Partager, puis Copier le lien, et collez-le ici.';
+      'Dans Spotify, Apple Music, YouTube, YouTube Music ou SoundCloud, touchez Partager, puis Copier le lien, et collez-le ici.';
 
   @override
   String get songNameHint => 'Nom, ex. Playlist du matin';
@@ -2628,4 +2628,40 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'La lecture suit la durée de cette alarme et s’arrête avec Arrêter ou Répéter.';
+
+  @override
+  String get musicBackupPlaying => 'La musique n’a pas pu démarrer. La sonnerie locale retentit.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Connectez l’app $service sur ce Mac. Connectez-vous d’abord dans celle-ci ; macOS demandera une autorisation.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Connecté à $service sur ce Mac. Utilise la durée de l’alarme. Appui long pour déconnecter.';
+  }
+
+  @override
+  String get musicSongs => 'Morceaux';
+
+  @override
+  String get noMusicSongs => 'Aucun morceau trouvé dans votre bibliothèque Musique.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'La connexion au compte $service est indisponible sur cette plateforme. Un lien peut s’ouvrir après l’arrêt de l’alarme.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Ajoutez un lien public de morceau ou playlist. Le lecteur officiel suit la durée de l’alarme ; la connexion au compte est indisponible.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue.';
 }

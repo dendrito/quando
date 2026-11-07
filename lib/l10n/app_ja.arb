@@ -332,7 +332,7 @@
   "couldNotAddFile": "ファイルを追加できませんでした：{error}",
   "addSongLink": "曲のリンクを追加",
   "songLink": "曲のリンク",
-  "songLinkHowTo": "Spotify、Apple Music、Amazon Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。",
+  "songLinkHowTo": "Spotify、Apple Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。",
   "songNameHint": "名前（例：朝のプレイリスト）",
   "whenAlarmGoesOffHeading": "アラームが鳴ったら",
   "playTheSong": "曲を再生",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "再生はこのアラームの鳴動時間に従い、停止またはスヌーズで止まります。",
+  "musicBackupPlaying": "音楽を開始できませんでした。ローカルのアラーム音を再生しています。",
+  "desktopMusicConnect": "このMacの{service}アプリに接続します。先にアプリでログインしてください。macOSが許可を求めます。",
+  "desktopMusicOn": "このMacの{service}に接続済み。アラームの鳴動時間に従います。長押しで接続を解除します。",
+  "musicSongs": "曲",
+  "noMusicSongs": "ミュージックライブラリに曲が見つかりません。",
+  "serviceConnectUnavailable": "このプラットフォームでは{service}のアカウント接続は利用できません。アラーム停止後にリンクを開けます。",
+  "soundCloudWidgetNote": "公開されている曲やプレイリストのリンクを追加します。公式プレーヤーはアラームの鳴動時間に従います。アカウントへのログインは利用できません。",
+  "youtubePlayerHint": "YouTubeは表示中のプレーヤーで動画を再生します。非表示または再生できない場合はローカルのアラームが続きます。"
 }

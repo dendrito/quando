@@ -1198,7 +1198,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'В Spotify, Apple Music, Amazon Music, YouTube, YouTube Music или SoundCloud нажмите «Поделиться», затем «Копировать ссылку» и вставьте её сюда.';
+      'В Spotify, Apple Music, YouTube, YouTube Music или SoundCloud нажмите «Поделиться», затем «Копировать ссылку» и вставьте её сюда.';
 
   @override
   String get songNameHint => 'Название, напр. Утренний плейлист';
@@ -2657,4 +2657,40 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Воспроизведение следует длительности звонка будильника и прекращается при остановке или откладывании.';
+
+  @override
+  String get musicBackupPlaying => 'Не удалось включить музыку. Звучит локальный сигнал будильника.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Подключите приложение $service на этом Mac. Сначала войдите в него; macOS запросит разрешение.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Подключено к $service на этом Mac. Используется длительность звонка будильника. Долгое нажатие отключает.';
+  }
+
+  @override
+  String get musicSongs => 'Песни';
+
+  @override
+  String get noMusicSongs => 'В медиатеке Музыки песни не найдены.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Подключение учётной записи $service недоступно на этой платформе. Ссылку можно открыть после остановки будильника.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Добавьте общедоступную ссылку на трек или плейлист. Официальный плеер следует длительности звонка; вход в аккаунт недоступен.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube воспроизводит видео в видимом плеере. Если он скрыт или не может воспроизводить, локальный сигнал продолжается.';
 }

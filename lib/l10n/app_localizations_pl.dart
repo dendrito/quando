@@ -1198,7 +1198,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'W Spotify, Apple Music, Amazon Music, YouTube, YouTube Music lub SoundCloud dotknij Udostępnij, potem Kopiuj link, i wklej go tutaj.';
+      'W Spotify, Apple Music, YouTube, YouTube Music lub SoundCloud dotknij Udostępnij, potem Kopiuj link, i wklej go tutaj.';
 
   @override
   String get songNameHint => 'Nazwa, np. Poranna playlista';
@@ -2662,4 +2662,40 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Odtwarzanie trwa zgodnie z czasem dzwonienia alarmu i kończy się po zatrzymaniu lub włączeniu drzemki.';
+
+  @override
+  String get musicBackupPlaying => 'Nie udało się uruchomić muzyki. Odtwarzany jest lokalny dźwięk alarmu.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Połącz aplikację $service na tym Macu. Najpierw się w niej zaloguj; macOS poprosi o zgodę.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Połączono z $service na tym Macu. Obowiązuje czas dzwonienia alarmu. Przytrzymaj, aby rozłączyć.';
+  }
+
+  @override
+  String get musicSongs => 'Utwory';
+
+  @override
+  String get noMusicSongs => 'Nie znaleziono utworów w bibliotece Muzyka.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Połączenie z kontem $service jest niedostępne na tej platformie. Link może się otworzyć po zatrzymaniu alarmu.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Dodaj publiczny link do utworu lub playlisty. Oficjalny odtwarzacz stosuje czas dzwonienia alarmu; logowanie jest niedostępne.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube odtwarza wideo w widocznym odtwarzaczu. Gdy jest ukryty lub nie może odtwarzać, lokalny alarm działa dalej.';
 }

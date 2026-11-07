@@ -46,7 +46,7 @@ class SoundPickerTile extends ConsumerWidget {
         : chosen.isRadio
         ? l10n.onlineRadio
         : chosen.isLink
-        ? l10n.songLinkOpens(chosen.linkApp ?? '')
+        ? (chosen.plays ? l10n.playsIn(chosen.linkApp ?? '') : l10n.songLinkOpens(chosen.linkApp ?? ''))
         : chosen.builtIn
         ? l10n.builtIn
         : l10n.yourRecording;

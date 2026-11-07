@@ -332,7 +332,7 @@
   "couldNotAddFile": "Não foi possível adicionar o arquivo: {error}",
   "addSongLink": "Adicionar link de música",
   "songLink": "Link de música",
-  "songLinkHowTo": "No Spotify, Apple Music, Amazon Music, YouTube, YouTube Music ou SoundCloud, toque em Compartilhar, depois em Copiar link, e cole aqui.",
+  "songLinkHowTo": "No Spotify, Apple Music, YouTube, YouTube Music ou SoundCloud, toque em Compartilhar, depois em Copiar link, e cole aqui.",
   "songNameHint": "Nome, ex.: Playlist da manhã",
   "whenAlarmGoesOffHeading": "QUANDO O ALARME TOCAR",
   "playTheSong": "Tocar a música",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Começa ao pôr do sol de",
   "openParashaSefaria": "Ler esta porção da Torá no Sefaria",
   "skyMyLocation": "Minha localização",
-  "skyLocationLocalTimes": "Os horários do céu usam o fuso desta localização. O fuso dos alarmes e a cidade de Shabat permanecem iguais. Salvo só neste aparelho."
+  "skyLocationLocalTimes": "Os horários do céu usam o fuso desta localização. O fuso dos alarmes e a cidade de Shabat permanecem iguais. Salvo só neste aparelho.",
+  "musicRingDurationHint": "A reprodução segue a duração definida neste alarme e para com Parar ou Soneca.",
+  "musicBackupPlaying": "Não foi possível iniciar a música. O som local do alarme está tocando.",
+  "desktopMusicConnect": "Conecte o app {service} neste Mac. Entre nele primeiro; o macOS pedirá permissão.",
+  "desktopMusicOn": "Conectado ao {service} neste Mac. Segue a duração do alarme. Pressione e segure para desconectar.",
+  "musicSongs": "Músicas",
+  "noMusicSongs": "Nenhuma música encontrada na biblioteca do Música.",
+  "serviceConnectUnavailable": "A conexão de conta do {service} não está disponível nesta plataforma. Um link pode abrir após parar o alarme.",
+  "soundCloudWidgetNote": "Adicione um link público de faixa ou playlist. O player oficial segue a duração do alarme; login de conta indisponível.",
+  "youtubePlayerHint": "O YouTube reproduz vídeo em um player visível. Se ele ficar oculto ou não puder tocar, o alarme local continua."
 }

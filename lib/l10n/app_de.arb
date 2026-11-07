@@ -332,7 +332,7 @@
   "couldNotAddFile": "Datei konnte nicht hinzugefügt werden: {error}",
   "addSongLink": "Song-Link hinzufügen",
   "songLink": "Song-Link",
-  "songLinkHowTo": "Tippe in Spotify, Apple Music, Amazon Music, YouTube, YouTube Music oder SoundCloud auf Teilen, dann auf Link kopieren, und füge ihn hier ein.",
+  "songLinkHowTo": "Tippe in Spotify, Apple Music, YouTube, YouTube Music oder SoundCloud auf Teilen, dann auf Link kopieren, und füge ihn hier ein.",
   "songNameHint": "Name, z. B. Morgen-Playlist",
   "whenAlarmGoesOffHeading": "WENN DER WECKER LOSGEHT",
   "playTheSong": "Song abspielen",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Die Wiedergabe folgt der Klingeldauer dieses Weckers und endet mit Stopp oder Schlummern.",
+  "musicBackupPlaying": "Die Musik konnte nicht starten. Der lokale Weckton wird abgespielt.",
+  "desktopMusicConnect": "Verbinde die App {service} auf diesem Mac. Melde dich dort zuerst an; macOS fragt nach deiner Erlaubnis.",
+  "desktopMusicOn": "Mit {service} auf diesem Mac verbunden. Verwendet die Klingeldauer des Weckers. Zum Trennen lange drücken.",
+  "musicSongs": "Titel",
+  "noMusicSongs": "Keine Titel in deiner Musikmediathek gefunden.",
+  "serviceConnectUnavailable": "Die Kontoanmeldung für {service} ist auf dieser Plattform nicht verfügbar. Ein Link kann nach dem Stoppen des Weckers geöffnet werden.",
+  "soundCloudWidgetNote": "Füge einen öffentlichen Titel- oder Playlist-Link hinzu. Der offizielle Player folgt der Klingeldauer; eine Kontoanmeldung ist nicht verfügbar.",
+  "youtubePlayerHint": "YouTube spielt Videos in einem sichtbaren Player ab. Wird er verborgen oder kann er nicht abspielen, läuft der lokale Weckton weiter."
 }

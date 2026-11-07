@@ -1197,7 +1197,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'في Spotify أو Apple Music أو Amazon Music أو YouTube أو YouTube Music أو SoundCloud انقر مشاركة ثم نسخ الرابط، والصقه هنا.';
+      'في Spotify أو Apple Music أو YouTube أو YouTube Music أو SoundCloud انقر مشاركة ثم نسخ الرابط، والصقه هنا.';
 
   @override
   String get songNameHint => 'الاسم، مثل قائمة الصباح';
@@ -2653,4 +2653,39 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => 'يتبع التشغيل مدة رنين هذا المنبّه ويتوقف عند الإيقاف أو الغفوة.';
+
+  @override
+  String get musicBackupPlaying => 'تعذّر بدء الموسيقى. يعمل صوت المنبّه المحلي.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'اربط تطبيق $service على هذا الـMac. سجّل الدخول إليه أولاً؛ سيطلب macOS الإذن.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'متصل بـ$service على هذا الـMac. يستخدم مدة رنين المنبّه. اضغط مطولاً لقطع الاتصال.';
+  }
+
+  @override
+  String get musicSongs => 'الأغاني';
+
+  @override
+  String get noMusicSongs => 'لم يتم العثور على أغانٍ في مكتبة الموسيقى.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'ربط حساب $service غير متاح على هذه المنصة. يمكن فتح رابط بعد إيقاف المنبّه.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'أضف رابطاً عاماً لمقطع أو قائمة تشغيل. يتبع المشغّل الرسمي مدة المنبّه؛ تسجيل الدخول غير متاح.';
+
+  @override
+  String get youtubePlayerHint =>
+      'يشغّل YouTube الفيديو في مشغّل ظاهر. إذا أُخفي أو تعذّر التشغيل، يستمر المنبّه المحلي.';
 }

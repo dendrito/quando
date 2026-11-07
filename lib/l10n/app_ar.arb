@@ -332,7 +332,7 @@
   "couldNotAddFile": "تعذرت إضافة الملف: {error}",
   "addSongLink": "إضافة رابط أغنية",
   "songLink": "رابط الأغنية",
-  "songLinkHowTo": "في Spotify أو Apple Music أو Amazon Music أو YouTube أو YouTube Music أو SoundCloud انقر مشاركة ثم نسخ الرابط، والصقه هنا.",
+  "songLinkHowTo": "في Spotify أو Apple Music أو YouTube أو YouTube Music أو SoundCloud انقر مشاركة ثم نسخ الرابط، والصقه هنا.",
   "songNameHint": "الاسم، مثل قائمة الصباح",
   "whenAlarmGoesOffHeading": "عندما يرنّ المنبه",
   "playTheSong": "شغّل الأغنية",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "يتبع التشغيل مدة رنين هذا المنبّه ويتوقف عند الإيقاف أو الغفوة.",
+  "musicBackupPlaying": "تعذّر بدء الموسيقى. يعمل صوت المنبّه المحلي.",
+  "desktopMusicConnect": "اربط تطبيق {service} على هذا الـMac. سجّل الدخول إليه أولاً؛ سيطلب macOS الإذن.",
+  "desktopMusicOn": "متصل بـ{service} على هذا الـMac. يستخدم مدة رنين المنبّه. اضغط مطولاً لقطع الاتصال.",
+  "musicSongs": "الأغاني",
+  "noMusicSongs": "لم يتم العثور على أغانٍ في مكتبة الموسيقى.",
+  "serviceConnectUnavailable": "ربط حساب {service} غير متاح على هذه المنصة. يمكن فتح رابط بعد إيقاف المنبّه.",
+  "soundCloudWidgetNote": "أضف رابطاً عاماً لمقطع أو قائمة تشغيل. يتبع المشغّل الرسمي مدة المنبّه؛ تسجيل الدخول غير متاح.",
+  "youtubePlayerHint": "يشغّل YouTube الفيديو في مشغّل ظاهر. إذا أُخفي أو تعذّر التشغيل، يستمر المنبّه المحلي."
 }

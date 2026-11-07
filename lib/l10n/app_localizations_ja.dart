@@ -1138,7 +1138,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Spotify、Apple Music、Amazon Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。';
+      'Spotify、Apple Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。';
 
   @override
   String get songNameHint => '名前（例：朝のプレイリスト）';
@@ -2577,4 +2577,37 @@ class AppLocalizationsJa extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => '再生はこのアラームの鳴動時間に従い、停止またはスヌーズで止まります。';
+
+  @override
+  String get musicBackupPlaying => '音楽を開始できませんでした。ローカルのアラーム音を再生しています。';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'このMacの$serviceアプリに接続します。先にアプリでログインしてください。macOSが許可を求めます。';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'このMacの$serviceに接続済み。アラームの鳴動時間に従います。長押しで接続を解除します。';
+  }
+
+  @override
+  String get musicSongs => '曲';
+
+  @override
+  String get noMusicSongs => 'ミュージックライブラリに曲が見つかりません。';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'このプラットフォームでは$serviceのアカウント接続は利用できません。アラーム停止後にリンクを開けます。';
+  }
+
+  @override
+  String get soundCloudWidgetNote => '公開されている曲やプレイリストのリンクを追加します。公式プレーヤーはアラームの鳴動時間に従います。アカウントへのログインは利用できません。';
+
+  @override
+  String get youtubePlayerHint => 'YouTubeは表示中のプレーヤーで動画を再生します。非表示または再生できない場合はローカルのアラームが続きます。';
 }

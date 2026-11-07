@@ -1164,7 +1164,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Tik in Spotify, Apple Music, Amazon Music, YouTube, YouTube Music of SoundCloud op Delen, dan Link kopiëren, en plak hem hier.';
+      'Tik in Spotify, Apple Music, YouTube, YouTube Music of SoundCloud op Delen, dan Link kopiëren, en plak hem hier.';
 
   @override
   String get songNameHint => 'Naam, bijv. Ochtendlijst';
@@ -2622,4 +2622,40 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Afspelen volgt de belduur van deze wekker en stopt met Stoppen of Sluimeren.';
+
+  @override
+  String get musicBackupPlaying => 'De muziek kon niet starten. Het lokale wekkergeluid speelt.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Verbind de app $service op deze Mac. Meld je daar eerst aan; macOS vraagt om toestemming.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Verbonden met $service op deze Mac. Gebruikt de belduur van de wekker. Houd ingedrukt om te ontkoppelen.';
+  }
+
+  @override
+  String get musicSongs => 'Nummers';
+
+  @override
+  String get noMusicSongs => 'Geen nummers gevonden in je Muziek-bibliotheek.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Accountverbinding voor $service is niet beschikbaar op dit platform. Een link kan openen nadat je de wekker stopt.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Voeg een openbare link naar een nummer of playlist toe. De officiële speler volgt de belduur; aanmelden is niet beschikbaar.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door.';
 }

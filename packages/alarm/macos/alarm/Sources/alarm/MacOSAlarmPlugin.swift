@@ -18,6 +18,16 @@ public final class MacOSAlarmPlugin: NSObject, FlutterPlugin, AlarmApi {
         callback = AlarmTriggerApi(binaryMessenger: messenger)
         super.init()
         AlarmApiSetup.setUp(binaryMessenger: messenger, api: self)
+        let audio = FlutterMethodChannel(name: "quando/alarm_audio", binaryMessenger: messenger)
+        audio.setMethodCallHandler { [weak self] call, result in
+            guard call.method == "mute", let args = call.arguments as? [String: Any],
+                  let id = (args["id"] as? NSNumber)?.int64Value, let muted = args["muted"] as? Bool,
+                  let self, self.ringing.contains(id) else { result(false); return }
+            self.fades.removeValue(forKey: id)?.invalidate()
+            self.players[id]?.setVolume(muted ? 0 : Float(self.liveSettings[id]?.volumeSettings.volume ?? 1), fadeDuration: 0)
+            self.streams[id]?.isMuted = muted
+            result(true)
+        }
         NSLog("Quando Mac alarm host initialized")
     }
 

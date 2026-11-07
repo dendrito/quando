@@ -1166,7 +1166,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music o SoundCloud, tocca Condividi, poi Copia link, e incollalo qui.';
+      'In Spotify, Apple Music, YouTube, YouTube Music o SoundCloud, tocca Condividi, poi Copia link, e incollalo qui.';
 
   @override
   String get songNameHint => 'Nome, es. Playlist del mattino';
@@ -2628,4 +2628,41 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'La riproduzione segue la durata di questa sveglia e si ferma con Stop o Posticipa.';
+
+  @override
+  String get musicBackupPlaying =>
+      'Impossibile avviare la musica. Sta suonando il tono locale della sveglia.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Collega l’app $service su questo Mac. Accedi prima lì; macOS chiederà il permesso.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Collegato a $service su questo Mac. Usa la durata della sveglia. Tieni premuto per scollegare.';
+  }
+
+  @override
+  String get musicSongs => 'Brani';
+
+  @override
+  String get noMusicSongs => 'Nessun brano trovato nella libreria di Musica.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Il collegamento dell’account $service non è disponibile su questa piattaforma. Un link può aprirsi dopo aver fermato la sveglia.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Aggiungi un link pubblico a un brano o playlist. Il lettore ufficiale segue la durata della sveglia; l’accesso all’account non è disponibile.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube riproduce video in un lettore visibile. Se viene nascosto o non può riprodurre, continua il tono locale.';
 }

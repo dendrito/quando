@@ -1157,7 +1157,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Spotify, Apple Music, Amazon Music, YouTube, YouTube Music veya SoundCloud’da Paylaş’a, sonra Bağlantıyı kopyala’ya dokun ve buraya yapıştır.';
+      'Spotify, Apple Music, YouTube, YouTube Music veya SoundCloud’da Paylaş’a, sonra Bağlantıyı kopyala’ya dokun ve buraya yapıştır.';
 
   @override
   String get songNameHint => 'Ad, örn. Sabah listesi';
@@ -2611,4 +2611,40 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Oynatma bu alarmın çalma süresini izler; Durdur veya Ertele ile sona erer.';
+
+  @override
+  String get musicBackupPlaying => 'Müzik başlatılamadı. Yerel alarm sesi çalıyor.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Bu Mac’te $service uygulamasını bağlayın. Önce orada oturum açın; macOS izin isteyecek.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Bu Mac’te $service bağlı. Alarmın çalma süresini kullanır. Bağlantıyı kesmek için basılı tutun.';
+  }
+
+  @override
+  String get musicSongs => 'Şarkılar';
+
+  @override
+  String get noMusicSongs => 'Müzik arşivinizde şarkı bulunamadı.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Bu platformda $service hesabı bağlanamıyor. Alarmı durdurduktan sonra bir bağlantı açılabilir.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Herkese açık bir parça veya çalma listesi bağlantısı ekleyin. Resmî oynatıcı alarm süresini izler; hesap girişi kullanılamaz.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube, videoyu görünür bir oynatıcıda oynatır. Gizlenirse veya oynatamazsa yerel alarm devam eder.';
 }

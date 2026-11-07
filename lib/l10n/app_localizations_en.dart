@@ -1156,7 +1156,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.';
+      'In Spotify, Apple Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.';
 
   @override
   String get songNameHint => 'Name, e.g. Morning playlist';
@@ -2607,4 +2607,40 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.';
+
+  @override
+  String get musicBackupPlaying => 'Music could not start. The local alarm sound is playing.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Connect the $service app on this Mac. Sign in there first; macOS will ask for permission.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Connected to $service on this Mac. Uses the alarm’s ring duration. Long-press to disconnect.';
+  }
+
+  @override
+  String get musicSongs => 'Songs';
+
+  @override
+  String get noMusicSongs => 'No songs found in your Music library.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Account connection is unavailable for $service on this platform. A link can open after you stop the alarm.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Add a public track or playlist link. The official player follows the alarm’s ring duration; account sign-in is unavailable.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.';
 }

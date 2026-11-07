@@ -39,6 +39,9 @@ dependencies:
   spotify_sdk: ^4.3.4
   timezone: ^0.11.2
   url_launcher: ^6.3.3
+  webview_flutter: ^4.14.1
+  webview_flutter_android: ^4.14.1
+  webview_flutter_wkwebview: ^3.27.2
 
 # Quando's copy of the alarm plugin: it can also ring an online radio
 # stream, falling back to the phone's alarm sound. See packages/alarm.

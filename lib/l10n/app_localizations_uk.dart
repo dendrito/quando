@@ -1199,7 +1199,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'У Spotify, Apple Music, Amazon Music, YouTube, YouTube Music чи SoundCloud натисніть «Поділитися», потім «Копіювати посилання» й вставте його сюди.';
+      'У Spotify, Apple Music, YouTube, YouTube Music чи SoundCloud натисніть «Поділитися», потім «Копіювати посилання» й вставте його сюди.';
 
   @override
   String get songNameHint => 'Назва, напр. Ранковий плейлист';
@@ -2657,4 +2657,40 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Відтворення триває відповідно до тривалості дзвінка будильника й припиняється після зупинки або відкладання.';
+
+  @override
+  String get musicBackupPlaying => 'Не вдалося ввімкнути музику. Лунає локальний сигнал будильника.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Підключіть програму $service на цьому Mac. Спочатку увійдіть у неї; macOS запитає дозвіл.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Підключено до $service на цьому Mac. Діє тривалість дзвінка будильника. Утримуйте для відключення.';
+  }
+
+  @override
+  String get musicSongs => 'Пісні';
+
+  @override
+  String get noMusicSongs => 'У бібліотеці Музики пісень не знайдено.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Підключення облікового запису $service недоступне на цій платформі. Посилання можна відкрити після зупинки будильника.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Додайте загальнодоступне посилання на трек або плейлист. Офіційний програвач дотримується тривалості дзвінка; вхід недоступний.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube відтворює відео у видимому програвачі. Якщо його приховано або відтворення неможливе, локальний сигнал триває.';
 }

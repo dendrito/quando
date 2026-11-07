@@ -11,7 +11,16 @@ import 'package:quando/l10n/l10n.dart';
 /// Your playlists and liked songs from a music app, or a search of the
 /// whole app: tap one to wake up to it.
 class MusicPickerScreen extends ConsumerStatefulWidget {
-  const MusicPickerScreen({super.key, required this.title, required this.load, this.search});
+  const MusicPickerScreen({
+    super.key,
+    required this.title,
+    required this.load,
+    this.search,
+    this.songs = false,
+    this.prepare,
+  });
+  final bool songs;
+  final Future<void> Function(SpotifyItem)? prepare;
 
   /// "My Spotify".
   final String title;
@@ -27,6 +36,7 @@ class MusicPickerScreen extends ConsumerStatefulWidget {
 }
 
 class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
+  bool _picking = false;
   List<SpotifyItem>? _playlists;
   List<SpotifyItem>? _liked;
   String? _error;
@@ -95,7 +105,17 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
     }
   }
 
-  void _pick(SpotifyItem item) {
+  Future<void> _pick(SpotifyItem item) async {
+    if (_picking) return;
+    _picking = true;
+    try {
+      await widget.prepare?.call(item);
+    } catch (e) {
+      _picking = false;
+      if (mounted) ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('$e')));
+      return;
+    }
+    if (!mounted) return;
     final sound = AlarmSound(
       id: 'link.${DateTime.now().millisecondsSinceEpoch}',
       name: item.name,
@@ -186,7 +206,7 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
                   TabBar(
                     tabs: [
                       Tab(text: l10n.playlists),
-                      Tab(text: l10n.likedSongs),
+                      Tab(text: widget.songs ? l10n.musicSongs : l10n.likedSongs),
                     ],
                   ),
               ],
@@ -198,7 +218,7 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
             : TabBarView(
                 children: [
                   _list(_playlists, l10n.noPlaylists, error: _error),
-                  _list(_liked, l10n.noLikedSongs, error: _error),
+                  _list(_liked, widget.songs ? l10n.noMusicSongs : l10n.noLikedSongs, error: _error),
                 ],
               ),
       ),

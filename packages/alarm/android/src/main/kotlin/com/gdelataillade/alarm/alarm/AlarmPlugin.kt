@@ -14,9 +14,11 @@ import io.flutter.Log
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.embedding.engine.plugins.activity.ActivityAware
 import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
+import io.flutter.plugin.common.MethodChannel
 
 class AlarmPlugin : FlutterPlugin, ActivityAware {
     private var activity: Activity? = null
+    private var backupAudioChannel: MethodChannel? = null
 
     companion object {
         private const val TAG = "AlarmPlugin"
@@ -28,11 +30,22 @@ class AlarmPlugin : FlutterPlugin, ActivityAware {
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         AlarmApi.setUp(binding.binaryMessenger, AlarmApiImpl(binding.applicationContext))
         alarmTriggerApi = AlarmTriggerApi(binding.binaryMessenger)
+        backupAudioChannel = MethodChannel(binding.binaryMessenger, "quando/alarm_audio").apply {
+            setMethodCallHandler { call, result ->
+                val id = call.argument<Int>("id")
+                val muted = call.argument<Boolean>("muted")
+                if (call.method == "mute" && id != null && muted != null) {
+                    result.success(AlarmService.instance?.muteBackup(id, muted) ?: false)
+                } else result.notImplemented()
+            }
+        }
     }
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         AlarmApi.setUp(binding.binaryMessenger, null)
         alarmTriggerApi = null
+        backupAudioChannel?.setMethodCallHandler(null)
+        backupAudioChannel = null
     }
 
     override fun onAttachedToActivity(binding: ActivityPluginBinding) {

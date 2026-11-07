@@ -15,6 +15,8 @@ import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
 import 'data/apps.dart';
 import 'data/music.dart';
+import 'data/embedded_music.dart';
+import 'ui/embedded_music_player.dart';
 import 'ring_payload.dart';
 import 'ring_style.dart';
 import 'shake_detector.dart';
@@ -179,7 +181,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       _speakTimer?.cancel();
       _tts.stop();
       // Stopped before the song took over: stop the song too.
-      if (p.song != null) unawaited(Music.pause());
+      if (p.song != null) unawaited(Music.pause(alarmId: widget.alarm.id));
       final registrar = ref.read(registrarProvider);
       // The stopped stream event must not close this card before we know
       // whether it needs to show the wake-up confirmation.
@@ -223,7 +225,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     try {
       _speakTimer?.cancel();
       _tts.stop();
-      if (p.song != null) unawaited(Music.pause());
+      if (p.song != null) unawaited(Music.pause(alarmId: widget.alarm.id));
       await ref.read(registrarProvider).snooze(widget.alarm);
       _close();
     } finally {
@@ -265,6 +267,9 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     final snoozesLeft = p.maxSnoozes - p.snoozeCount;
     const ink = QuandoColors.ground;
     final left = p.ringSeconds - now.difference(_openedAt).inSeconds;
+    final embedded = p.localAudio && !p.shabbatSafe && !p.gentle && !p.isLock
+        ? EmbeddedMusic.parse(p.song)
+        : null;
 
     return PopScope(
       canPop: _stage == _Stage.done,
@@ -320,6 +325,15 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                             Text(
                               l10n.shabbatStopsItself(p.ringSeconds),
                               style: text.bodyLarge?.copyWith(color: ink, fontWeight: FontWeight.w600),
+                            ),
+                          ],
+                          if (embedded != null && _stage != _Stage.awaitingUp && _stage != _Stage.done) ...[
+                            const SizedBox(height: 16),
+                            EmbeddedMusicPlayer(
+                              source: embedded,
+                              alarmId: widget.alarm.id,
+                              deadline: _openedAt.add(Duration(seconds: p.ringSeconds)),
+                              active: ModalRoute.isCurrentOf(context) == true && !_resolving,
                             ),
                           ],
                           Expanded(

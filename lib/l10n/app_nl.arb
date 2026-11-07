@@ -332,7 +332,7 @@
   "couldNotAddFile": "Kon dat bestand niet toevoegen: {error}",
   "addSongLink": "Nummerlink toevoegen",
   "songLink": "Nummerlink",
-  "songLinkHowTo": "Tik in Spotify, Apple Music, Amazon Music, YouTube, YouTube Music of SoundCloud op Delen, dan Link kopiëren, en plak hem hier.",
+  "songLinkHowTo": "Tik in Spotify, Apple Music, YouTube, YouTube Music of SoundCloud op Delen, dan Link kopiëren, en plak hem hier.",
   "songNameHint": "Naam, bijv. Ochtendlijst",
   "whenAlarmGoesOffHeading": "ALS DE WEKKER AFGAAT",
   "playTheSong": "Nummer afspelen",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Afspelen volgt de belduur van deze wekker en stopt met Stoppen of Sluimeren.",
+  "musicBackupPlaying": "De muziek kon niet starten. Het lokale wekkergeluid speelt.",
+  "desktopMusicConnect": "Verbind de app {service} op deze Mac. Meld je daar eerst aan; macOS vraagt om toestemming.",
+  "desktopMusicOn": "Verbonden met {service} op deze Mac. Gebruikt de belduur van de wekker. Houd ingedrukt om te ontkoppelen.",
+  "musicSongs": "Nummers",
+  "noMusicSongs": "Geen nummers gevonden in je Muziek-bibliotheek.",
+  "serviceConnectUnavailable": "Accountverbinding voor {service} is niet beschikbaar op dit platform. Een link kan openen nadat je de wekker stopt.",
+  "soundCloudWidgetNote": "Voeg een openbare link naar een nummer of playlist toe. De officiële speler volgt de belduur; aanmelden is niet beschikbaar.",
+  "youtubePlayerHint": "YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door."
 }

@@ -1139,7 +1139,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Spotify, Apple Music, Amazon Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
+      'Spotify, Apple Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
 
   @override
   String get songNameHint => '이름, 예: 아침 재생목록';
@@ -2579,4 +2579,37 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => '재생은 이 알람의 울림 시간을 따르며 중지 또는 다시 알림으로 멈춥니다.';
+
+  @override
+  String get musicBackupPlaying => '음악을 시작할 수 없습니다. 로컬 알람 소리가 재생 중입니다.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return '이 Mac의 $service 앱에 연결하세요. 먼저 앱에서 로그인하면 macOS가 권한을 요청합니다.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return '이 Mac의 $service에 연결되었습니다. 알람 울림 시간을 사용합니다. 길게 누르면 연결이 해제됩니다.';
+  }
+
+  @override
+  String get musicSongs => '노래';
+
+  @override
+  String get noMusicSongs => '음악 보관함에서 노래를 찾지 못했습니다.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return '이 플랫폼에서는 $service 계정 연결을 사용할 수 없습니다. 알람을 중지한 후 링크를 열 수 있습니다.';
+  }
+
+  @override
+  String get soundCloudWidgetNote => '공개 트랙 또는 재생목록 링크를 추가하세요. 공식 플레이어는 알람 시간을 따릅니다. 계정 로그인은 사용할 수 없습니다.';
+
+  @override
+  String get youtubePlayerHint => 'YouTube는 표시되는 플레이어에서 동영상을 재생합니다. 숨겨지거나 재생할 수 없으면 로컬 알람이 계속됩니다.';
 }

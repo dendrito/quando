@@ -7,6 +7,8 @@ import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../integrations/domain/integrations.dart';
 import '../../ringing/data/music.dart';
+import '../../ringing/data/alarm_audio.dart';
+import '../../ringing/data/embedded_music.dart';
 import '../../ringing/ring_payload.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -26,6 +28,7 @@ class AlarmRegistrar {
   }
 
   final _stopTimers = <int, Timer>{};
+  final _musicMonitors = <int, Timer>{};
   StreamSubscription<AlarmSet>? _ringingSub;
   bool _ready = false;
 
@@ -88,6 +91,7 @@ class AlarmRegistrar {
   Future<bool> snooze(AlarmSettings ringing) async {
     final p = RingPayload.decode(ringing.payload, fallbackTitle: ringing.notificationSettings.title);
     if (!p.canSnooze) return false;
+    unawaited(Music.pause(alarmId: ringing.id));
     await Alarm.stop(ringing.id);
     _tell(AlarmHappening.snoozed, ringing);
     final next = p.snoozed();
@@ -102,6 +106,7 @@ class AlarmRegistrar {
   /// Stops a ringing alarm. With the wake-up check on, schedules "Are you
   /// up?" in 3 minutes and returns its id, so the screen can cancel it.
   Future<int?> stop(AlarmSettings ringing) async {
+    unawaited(Music.pause(alarmId: ringing.id));
     await Alarm.stop(ringing.id);
     _tell(AlarmHappening.stopped, ringing);
     return _scheduleCheck(ringing);
@@ -138,7 +143,13 @@ class AlarmRegistrar {
           }
         }
       }
-      if (p.localAudio && p.song != null && !p.gentle) unawaited(_playSong(settings, p));
+      if (p.localAudio &&
+          p.song != null &&
+          !p.gentle &&
+          !p.shabbatSafe &&
+          EmbeddedMusic.parse(p.song) == null) {
+        unawaited(_playSong(settings, p));
+      }
       // Auto-snooze: untouched for its set time with snoozes left, so it
       // snoozes instead of ringing on or stopping.
       final autoSnooze = p.localAudio && p.autoSnoozeMinutes > 0 && p.canSnooze && !p.isCheck;
@@ -148,8 +159,8 @@ class AlarmRegistrar {
           ? p.autoSnoozeMinutes * 60
           : p.ringSeconds;
       _stopTimers[settings.id] = Timer(Duration(seconds: seconds), () async {
-        _stopTimers.remove(settings.id);
         if (await Alarm.isRinging(settings.id)) {
+          unawaited(Music.pause(alarmId: settings.id));
           if (autoSnooze && await snooze(settings)) return;
           await Alarm.stop(settings.id);
           _tell(AlarmHappening.autoStopped, settings);
@@ -163,6 +174,8 @@ class AlarmRegistrar {
     _stopTimers.removeWhere((id, t) {
       if (ids.contains(id)) return false;
       t.cancel();
+      _musicMonitors.remove(id)?.cancel();
+      unawaited(Music.pause(alarmId: id));
       return true;
     });
   }
@@ -170,18 +183,51 @@ class AlarmRegistrar {
   /// The song is the alarm: once its app is playing it, Quando's own
   /// backup sound stops. If it stays silent, the backup rings on as usual.
   Future<void> _playSong(AlarmSettings settings, RingPayload p) async {
-    final ok = await Music.start(p.song!, playFor: Duration(seconds: p.songSeconds));
-    if (!ok || !await Alarm.isRinging(settings.id)) return;
-    _stopTimers.remove(settings.id)?.cancel();
-    await Alarm.stop(settings.id);
-    _tell(AlarmHappening.stopped, settings);
-    await _scheduleCheck(settings);
+    // The ring timer remains the owner. A successful provider only mutes the
+    // local backup; it must not dismiss the card or cancel the alarm's timer.
+    final ok = await Music.start(
+      p.song!,
+      playFor: Duration(seconds: p.ringSeconds),
+      alarmId: settings.id,
+    );
+    if (!ok) return;
+    if (!await Alarm.isRinging(settings.id)) {
+      await Music.pause(alarmId: settings.id);
+      return;
+    }
+    if (!await AlarmAudio.mute(settings.id, true)) {
+      await Music.pause(alarmId: settings.id);
+      return;
+    }
+    var checking = false;
+    _musicMonitors[settings.id]?.cancel();
+    _musicMonitors[settings.id] = Timer.periodic(const Duration(seconds: 1), (timer) async {
+      if (checking) return;
+      checking = true;
+      try {
+        if (!await Alarm.isRinging(settings.id)) {
+          timer.cancel();
+          return;
+        }
+        final audible = await Music.playingFor(settings.id);
+        await AlarmAudio.mute(settings.id, audible);
+        if (!Music.owns(settings.id)) timer.cancel();
+      } finally {
+        checking = false;
+      }
+    });
   }
 
   Future<void> dispose() async {
     await _ringingSub?.cancel();
     for (final t in _stopTimers.values) {
       t.cancel();
+    }
+    for (final t in _musicMonitors.values) {
+      t.cancel();
+    }
+    for (final id in _stopTimers.keys) {
+      unawaited(Music.pause(alarmId: id));
     }
   }
 }

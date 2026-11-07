@@ -1163,7 +1163,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'ב־Spotify, Apple Music, Amazon Music, YouTube, YouTube Music או SoundCloud, הקישו על שיתוף, אחר כך על העתקת קישור, והדביקו כאן.';
+      'ב־Spotify, Apple Music, YouTube, YouTube Music או SoundCloud, הקישו על שיתוף, אחר כך על העתקת קישור, והדביקו כאן.';
 
   @override
   String get songNameHint => 'שם, למשל פלייליסט של בוקר';
@@ -2607,4 +2607,39 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'זמני השמיים מוצגים לפי אזור הזמן של המיקום הזה. אזור הזמן של השעון ועיר השבת אינם משתנים. נשמר במכשיר זה בלבד.';
+
+  @override
+  String get musicRingDurationHint => 'הנגינה נמשכת לפי משך הצלצול שהוגדר בהתראה, ונעצרת בעצירה או בנודניק.';
+
+  @override
+  String get musicBackupPlaying => 'לא ניתן להתחיל את המוזיקה. צליל ההתראה המקומי מתנגן.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'חברו את אפליקציית $service ב־Mac הזה. התחברו אליה תחילה; macOS יבקש הרשאה.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'מחובר ל־$service ב־Mac הזה. משתמש במשך הצלצול של ההתראה. לחיצה ארוכה מנתקת.';
+  }
+
+  @override
+  String get musicSongs => 'שירים';
+
+  @override
+  String get noMusicSongs => 'לא נמצאו שירים בספריית Music.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'חיבור חשבון $service אינו זמין בפלטפורמה זו. ניתן לפתוח קישור לאחר עצירת ההתראה.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'הוסיפו קישור ציבורי לשיר או לפלייליסט. הנגן הרשמי משתמש במשך הצלצול; התחברות לחשבון אינה זמינה.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube מציג וידאו בנגן גלוי. אם הנגן מוסתר או לא יכול לנגן, ההתראה המקומית ממשיכה.';
 }

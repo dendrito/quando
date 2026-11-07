@@ -332,7 +332,7 @@
   "couldNotAddFile": "无法添加该文件：{error}",
   "addSongLink": "添加歌曲链接",
   "songLink": "歌曲链接",
-  "songLinkHowTo": "在 Spotify、Apple Music、Amazon Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。",
+  "songLinkHowTo": "在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。",
   "songNameHint": "名称，例如 早晨歌单",
   "whenAlarmGoesOffHeading": "闹钟响起时",
   "playTheSong": "播放歌曲",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "播放遵循此闹钟的响铃时长，并在停止或稍后提醒时结束。",
+  "musicBackupPlaying": "无法开始播放音乐。正在播放本地闹钟声音。",
+  "desktopMusicConnect": "连接此Mac上的{service}应用。请先在应用中登录；macOS将请求授权。",
+  "desktopMusicOn": "已连接此Mac上的{service}。使用闹钟的响铃时长。长按可断开连接。",
+  "musicSongs": "歌曲",
+  "noMusicSongs": "在音乐资料库中未找到歌曲。",
+  "serviceConnectUnavailable": "此平台不支持连接{service}账户。停止闹钟后可以打开链接。",
+  "soundCloudWidgetNote": "添加公开的歌曲或播放列表链接。官方播放器遵循闹钟时长；不支持账户登录。",
+  "youtubePlayerHint": "YouTube在可见播放器中播放视频。播放器隐藏或无法播放时，本地闹钟会继续响铃。"
 }

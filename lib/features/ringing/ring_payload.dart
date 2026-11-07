@@ -244,13 +244,12 @@ class RingPayload {
     )._songFits();
   }
 
-  /// Playing the song would stop the alarm by itself, so with a task the
-  /// song opens once the task is done instead.
+  /// External music retains the ringing identity, including any stop task.
+  /// Shabbat-safe alarms keep their dependable local sound only.
   RingPayload _songFits() {
     if (song == null) return this;
     if (shabbatSafe || isLock) return _copy(song: null, keepSong: false);
-    if (!hasTask) return this;
-    return _copy(song: null, keepSong: false, link: link ?? song, keepLink: false);
+    return this;
   }
 
   /// The soft lead-up some minutes before this alarm: a calm [sound],

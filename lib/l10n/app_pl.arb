@@ -332,7 +332,7 @@
   "couldNotAddFile": "Nie udało się dodać pliku: {error}",
   "addSongLink": "Dodaj link do utworu",
   "songLink": "Link do utworu",
-  "songLinkHowTo": "W Spotify, Apple Music, Amazon Music, YouTube, YouTube Music lub SoundCloud dotknij Udostępnij, potem Kopiuj link, i wklej go tutaj.",
+  "songLinkHowTo": "W Spotify, Apple Music, YouTube, YouTube Music lub SoundCloud dotknij Udostępnij, potem Kopiuj link, i wklej go tutaj.",
   "songNameHint": "Nazwa, np. Poranna playlista",
   "whenAlarmGoesOffHeading": "GDY ALARM DZWONI",
   "playTheSong": "Odtwórz utwór",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Odtwarzanie trwa zgodnie z czasem dzwonienia alarmu i kończy się po zatrzymaniu lub włączeniu drzemki.",
+  "musicBackupPlaying": "Nie udało się uruchomić muzyki. Odtwarzany jest lokalny dźwięk alarmu.",
+  "desktopMusicConnect": "Połącz aplikację {service} na tym Macu. Najpierw się w niej zaloguj; macOS poprosi o zgodę.",
+  "desktopMusicOn": "Połączono z {service} na tym Macu. Obowiązuje czas dzwonienia alarmu. Przytrzymaj, aby rozłączyć.",
+  "musicSongs": "Utwory",
+  "noMusicSongs": "Nie znaleziono utworów w bibliotece Muzyka.",
+  "serviceConnectUnavailable": "Połączenie z kontem {service} jest niedostępne na tej platformie. Link może się otworzyć po zatrzymaniu alarmu.",
+  "soundCloudWidgetNote": "Dodaj publiczny link do utworu lub playlisty. Oficjalny odtwarzacz stosuje czas dzwonienia alarmu; logowanie jest niedostępne.",
+  "youtubePlayerHint": "YouTube odtwarza wideo w widocznym odtwarzaczu. Gdy jest ukryty lub nie może odtwarzać, lokalny alarm działa dalej."
 }

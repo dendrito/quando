@@ -1134,7 +1134,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      '在 Spotify、Apple Music、Amazon Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。';
+      '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。';
 
   @override
   String get songNameHint => '名称，例如 早晨歌单';
@@ -2572,6 +2572,39 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => '播放遵循此闹钟的响铃时长，并在停止或稍后提醒时结束。';
+
+  @override
+  String get musicBackupPlaying => '无法开始播放音乐。正在播放本地闹钟声音。';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return '连接此Mac上的$service应用。请先在应用中登录；macOS将请求授权。';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return '已连接此Mac上的$service。使用闹钟的响铃时长。长按可断开连接。';
+  }
+
+  @override
+  String get musicSongs => '歌曲';
+
+  @override
+  String get noMusicSongs => '在音乐资料库中未找到歌曲。';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return '此平台不支持连接$service账户。停止闹钟后可以打开链接。';
+  }
+
+  @override
+  String get soundCloudWidgetNote => '添加公开的歌曲或播放列表链接。官方播放器遵循闹钟时长；不支持账户登录。';
+
+  @override
+  String get youtubePlayerHint => 'YouTube在可见播放器中播放视频。播放器隐藏或无法播放时，本地闹钟会继续响铃。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3703,7 +3736,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get songLinkHowTo =>
-      '在 Spotify、Apple Music、Amazon Music、YouTube、YouTube Music 或 SoundCloud 中點按分享，再點複製連結，然後貼上到這裡。';
+      '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中點按分享，再點複製連結，然後貼上到這裡。';
 
   @override
   String get songNameHint => '名稱，例如 早晨播放清單';
@@ -5141,4 +5174,37 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => '播放遵循此鬧鐘的響鈴時長，並在停止或稍後提醒時結束。';
+
+  @override
+  String get musicBackupPlaying => '無法開始播放音樂。正在播放本機鬧鐘聲音。';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return '連接此Mac上的$service應用程式。請先在應用程式中登入；macOS將請求授權。';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return '已連接此Mac上的$service。使用鬧鐘的響鈴時長。長按可中斷連線。';
+  }
+
+  @override
+  String get musicSongs => '歌曲';
+
+  @override
+  String get noMusicSongs => '在音樂資料庫中找不到歌曲。';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return '此平台不支援連接$service帳戶。停止鬧鐘後可以開啟連結。';
+  }
+
+  @override
+  String get soundCloudWidgetNote => '新增公開的歌曲或播放清單連結。官方播放器遵循鬧鐘時長；不支援帳戶登入。';
+
+  @override
+  String get youtubePlayerHint => 'YouTube在可見播放器中播放影片。播放器隱藏或無法播放時，本機鬧鐘會繼續響鈴。';
 }

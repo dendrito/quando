@@ -1160,7 +1160,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'No Spotify, Apple Music, Amazon Music, YouTube, YouTube Music ou SoundCloud, toque em Compartilhar, depois em Copiar link, e cole aqui.';
+      'No Spotify, Apple Music, YouTube, YouTube Music ou SoundCloud, toque em Compartilhar, depois em Copiar link, e cole aqui.';
 
   @override
   String get songNameHint => 'Nome, ex.: Playlist da manhã';
@@ -2627,4 +2627,40 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Os horários do céu usam o fuso desta localização. O fuso dos alarmes e a cidade de Shabat permanecem iguais. Salvo só neste aparelho.';
+
+  @override
+  String get musicRingDurationHint =>
+      'A reprodução segue a duração definida neste alarme e para com Parar ou Soneca.';
+
+  @override
+  String get musicBackupPlaying => 'Não foi possível iniciar a música. O som local do alarme está tocando.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Conecte o app $service neste Mac. Entre nele primeiro; o macOS pedirá permissão.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Conectado ao $service neste Mac. Segue a duração do alarme. Pressione e segure para desconectar.';
+  }
+
+  @override
+  String get musicSongs => 'Músicas';
+
+  @override
+  String get noMusicSongs => 'Nenhuma música encontrada na biblioteca do Música.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'A conexão de conta do $service não está disponível nesta plataforma. Um link pode abrir após parar o alarme.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Adicione um link público de faixa ou playlist. O player oficial segue a duração do alarme; login de conta indisponível.';
+
+  @override
+  String get youtubePlayerHint =>
+      'O YouTube reproduz vídeo em um player visível. Se ele ficar oculto ou não puder tocar, o alarme local continua.';
 }

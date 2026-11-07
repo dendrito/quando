@@ -58,15 +58,13 @@ class AlarmSound {
   String? get linkApp {
     final l = link?.toLowerCase();
     if (l == null) return null;
+    if (l.startsWith('quando-music:')) return 'Apple Music';
     for (final (k, v) in const [
       ('spotify', 'Spotify'),
       ('soundcloud', 'SoundCloud'),
       ('music.youtube', 'YouTube Music'),
       ('youtu', 'YouTube'),
       ('music.apple', 'Apple Music'),
-      ('music.amazon', 'Amazon Music'),
-      ('amazon.', 'Amazon Music'),
-      ('amzn', 'Amazon Music'),
       ('deezer', 'Deezer'),
       ('tidal', 'Tidal'),
       ('pandora', 'Pandora'),

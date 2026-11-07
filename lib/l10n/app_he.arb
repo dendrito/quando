@@ -332,7 +332,7 @@
   "couldNotAddFile": "לא ניתן להוסיף את הקובץ: {error}",
   "addSongLink": "הוספת קישור לשיר",
   "songLink": "קישור לשיר",
-  "songLinkHowTo": "ב־Spotify, Apple Music, Amazon Music, YouTube, YouTube Music או SoundCloud, הקישו על שיתוף, אחר כך על העתקת קישור, והדביקו כאן.",
+  "songLinkHowTo": "ב־Spotify, Apple Music, YouTube, YouTube Music או SoundCloud, הקישו על שיתוף, אחר כך על העתקת קישור, והדביקו כאן.",
   "songNameHint": "שם, למשל פלייליסט של בוקר",
   "whenAlarmGoesOffHeading": "כשההתראה מצלצלת",
   "playTheSong": "לנגן את השיר",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "מתחיל בשקיעה בתאריך",
   "openParashaSefaria": "קריאת פרשת השבוע בספריא",
   "skyMyLocation": "המיקום שלי",
-  "skyLocationLocalTimes": "זמני השמיים מוצגים לפי אזור הזמן של המיקום הזה. אזור הזמן של השעון ועיר השבת אינם משתנים. נשמר במכשיר זה בלבד."
+  "skyLocationLocalTimes": "זמני השמיים מוצגים לפי אזור הזמן של המיקום הזה. אזור הזמן של השעון ועיר השבת אינם משתנים. נשמר במכשיר זה בלבד.",
+  "musicRingDurationHint": "הנגינה נמשכת לפי משך הצלצול שהוגדר בהתראה, ונעצרת בעצירה או בנודניק.",
+  "musicBackupPlaying": "לא ניתן להתחיל את המוזיקה. צליל ההתראה המקומי מתנגן.",
+  "desktopMusicConnect": "חברו את אפליקציית {service} ב־Mac הזה. התחברו אליה תחילה; macOS יבקש הרשאה.",
+  "desktopMusicOn": "מחובר ל־{service} ב־Mac הזה. משתמש במשך הצלצול של ההתראה. לחיצה ארוכה מנתקת.",
+  "musicSongs": "שירים",
+  "noMusicSongs": "לא נמצאו שירים בספריית Music.",
+  "serviceConnectUnavailable": "חיבור חשבון {service} אינו זמין בפלטפורמה זו. ניתן לפתוח קישור לאחר עצירת ההתראה.",
+  "soundCloudWidgetNote": "הוסיפו קישור ציבורי לשיר או לפלייליסט. הנגן הרשמי משתמש במשך הצלצול; התחברות לחשבון אינה זמינה.",
+  "youtubePlayerHint": "YouTube מציג וידאו בנגן גלוי. אם הנגן מוסתר או לא יכול לנגן, ההתראה המקומית ממשיכה."
 }

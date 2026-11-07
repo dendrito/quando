@@ -332,7 +332,7 @@
   "couldNotAddFile": "Dosya eklenemedi: {error}",
   "addSongLink": "Şarkı bağlantısı ekle",
   "songLink": "Şarkı bağlantısı",
-  "songLinkHowTo": "Spotify, Apple Music, Amazon Music, YouTube, YouTube Music veya SoundCloud’da Paylaş’a, sonra Bağlantıyı kopyala’ya dokun ve buraya yapıştır.",
+  "songLinkHowTo": "Spotify, Apple Music, YouTube, YouTube Music veya SoundCloud’da Paylaş’a, sonra Bağlantıyı kopyala’ya dokun ve buraya yapıştır.",
   "songNameHint": "Ad, örn. Sabah listesi",
   "whenAlarmGoesOffHeading": "ALARM ÇALDIĞINDA",
   "playTheSong": "Şarkıyı çal",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Oynatma bu alarmın çalma süresini izler; Durdur veya Ertele ile sona erer.",
+  "musicBackupPlaying": "Müzik başlatılamadı. Yerel alarm sesi çalıyor.",
+  "desktopMusicConnect": "Bu Mac’te {service} uygulamasını bağlayın. Önce orada oturum açın; macOS izin isteyecek.",
+  "desktopMusicOn": "Bu Mac’te {service} bağlı. Alarmın çalma süresini kullanır. Bağlantıyı kesmek için basılı tutun.",
+  "musicSongs": "Şarkılar",
+  "noMusicSongs": "Müzik arşivinizde şarkı bulunamadı.",
+  "serviceConnectUnavailable": "Bu platformda {service} hesabı bağlanamıyor. Alarmı durdurduktan sonra bir bağlantı açılabilir.",
+  "soundCloudWidgetNote": "Herkese açık bir parça veya çalma listesi bağlantısı ekleyin. Resmî oynatıcı alarm süresini izler; hesap girişi kullanılamaz.",
+  "youtubePlayerHint": "YouTube, videoyu görünür bir oynatıcıda oynatır. Gizlenirse veya oynatamazsa yerel alarm devam eder."
 }

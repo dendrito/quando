@@ -332,7 +332,7 @@
   "couldNotAddFile": "Không thể thêm tệp đó: {error}",
   "addSongLink": "Thêm liên kết bài hát",
   "songLink": "Liên kết bài hát",
-  "songLinkHowTo": "Trong Spotify, Apple Music, Amazon Music, YouTube, YouTube Music hoặc SoundCloud, chạm Chia sẻ, rồi Sao chép liên kết, và dán vào đây.",
+  "songLinkHowTo": "Trong Spotify, Apple Music, YouTube, YouTube Music hoặc SoundCloud, chạm Chia sẻ, rồi Sao chép liên kết, và dán vào đây.",
   "songNameHint": "Tên, vd. Danh sách buổi sáng",
   "whenAlarmGoesOffHeading": "KHI BÁO THỨC REO",
   "playTheSong": "Phát bài hát",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Phát nhạc theo thời lượng chuông của báo thức này và dừng khi nhấn Dừng hoặc Báo lại.",
+  "musicBackupPlaying": "Không thể bắt đầu nhạc. Âm báo thức cục bộ đang phát.",
+  "desktopMusicConnect": "Kết nối ứng dụng {service} trên Mac này. Đăng nhập trong ứng dụng trước; macOS sẽ yêu cầu quyền.",
+  "desktopMusicOn": "Đã kết nối {service} trên Mac này. Dùng thời lượng chuông báo thức. Nhấn giữ để ngắt kết nối.",
+  "musicSongs": "Bài hát",
+  "noMusicSongs": "Không tìm thấy bài hát trong thư viện Nhạc.",
+  "serviceConnectUnavailable": "Không thể kết nối tài khoản {service} trên nền tảng này. Có thể mở liên kết sau khi dừng báo thức.",
+  "soundCloudWidgetNote": "Thêm liên kết công khai của bài hát hoặc danh sách phát. Trình phát chính thức theo thời lượng báo thức; không hỗ trợ đăng nhập tài khoản.",
+  "youtubePlayerHint": "YouTube phát video trong trình phát hiển thị. Nếu bị ẩn hoặc không thể phát, báo thức cục bộ tiếp tục."
 }

@@ -1164,7 +1164,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'En Spotify, Apple Music, Amazon Music, YouTube, YouTube Music o SoundCloud, toca Compartir, luego Copiar enlace, y pégalo aquí.';
+      'En Spotify, Apple Music, YouTube, YouTube Music o SoundCloud, toca Compartir, luego Copiar enlace, y pégalo aquí.';
 
   @override
   String get songNameHint => 'Nombre, p. ej., Lista de la mañana';
@@ -2624,4 +2624,40 @@ class AppLocalizationsEs extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'La reproducción sigue la duración de este aviso y se detiene con Parar o Posponer.';
+
+  @override
+  String get musicBackupPlaying => 'No se pudo iniciar la música. Está sonando el aviso local.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Conecta la app $service en este Mac. Inicia sesión allí primero; macOS pedirá permiso.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Conectado a $service en este Mac. Usa la duración del aviso. Mantén pulsado para desconectar.';
+  }
+
+  @override
+  String get musicSongs => 'Canciones';
+
+  @override
+  String get noMusicSongs => 'No se encontraron canciones en tu biblioteca de Música.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'La conexión de cuenta de $service no está disponible en esta plataforma. Puedes abrir un enlace tras detener el aviso.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Añade un enlace público de canción o playlist. El reproductor oficial sigue la duración del aviso; no se puede iniciar sesión.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube reproduce vídeo en un reproductor visible. Si se oculta o no puede reproducir, continúa el aviso local.';
 }

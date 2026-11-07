@@ -332,7 +332,7 @@
   "couldNotAddFile": "वह फ़ाइल नहीं जुड़ सकी: {error}",
   "addSongLink": "गाने का लिंक जोड़ें",
   "songLink": "गाने का लिंक",
-  "songLinkHowTo": "Spotify, Apple Music, Amazon Music, YouTube, YouTube Music या SoundCloud में शेयर पर, फिर लिंक कॉपी करें पर टैप करें और यहाँ पेस्ट करें।",
+  "songLinkHowTo": "Spotify, Apple Music, YouTube, YouTube Music या SoundCloud में शेयर पर, फिर लिंक कॉपी करें पर टैप करें और यहाँ पेस्ट करें।",
   "songNameHint": "नाम, जैसे सुबह की प्लेलिस्ट",
   "whenAlarmGoesOffHeading": "जब अलार्म बजे",
   "playTheSong": "गाना चलाएँ",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "प्लेबैक इस अलार्म की बजने की अवधि का पालन करता है और रोकें या स्नूज़ दबाने पर रुकता है।",
+  "musicBackupPlaying": "संगीत शुरू नहीं हो सका। स्थानीय अलार्म ध्वनि बज रही है।",
+  "desktopMusicConnect": "इस Mac पर {service} ऐप कनेक्ट करें। पहले उसमें साइन इन करें; macOS अनुमति माँगेगा।",
+  "desktopMusicOn": "इस Mac पर {service} कनेक्ट है। अलार्म की अवधि का उपयोग करता है। डिस्कनेक्ट करने के लिए देर तक दबाएँ।",
+  "musicSongs": "गाने",
+  "noMusicSongs": "आपकी Music लाइब्रेरी में कोई गाना नहीं मिला।",
+  "serviceConnectUnavailable": "इस प्लेटफ़ॉर्म पर {service} खाता कनेक्शन उपलब्ध नहीं है। अलार्म रोकने के बाद लिंक खुल सकता है।",
+  "soundCloudWidgetNote": "सार्वजनिक ट्रैक या प्लेलिस्ट लिंक जोड़ें। आधिकारिक प्लेयर अलार्म की अवधि का पालन करता है; खाता साइन-इन उपलब्ध नहीं है।",
+  "youtubePlayerHint": "YouTube दिखाई देने वाले प्लेयर में वीडियो चलाता है। छिपने या न चल पाने पर स्थानीय अलार्म जारी रहता है।"
 }

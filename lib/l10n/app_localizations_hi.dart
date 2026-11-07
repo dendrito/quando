@@ -1157,7 +1157,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Spotify, Apple Music, Amazon Music, YouTube, YouTube Music या SoundCloud में शेयर पर, फिर लिंक कॉपी करें पर टैप करें और यहाँ पेस्ट करें।';
+      'Spotify, Apple Music, YouTube, YouTube Music या SoundCloud में शेयर पर, फिर लिंक कॉपी करें पर टैप करें और यहाँ पेस्ट करें।';
 
   @override
   String get songNameHint => 'नाम, जैसे सुबह की प्लेलिस्ट';
@@ -2610,4 +2610,40 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'प्लेबैक इस अलार्म की बजने की अवधि का पालन करता है और रोकें या स्नूज़ दबाने पर रुकता है।';
+
+  @override
+  String get musicBackupPlaying => 'संगीत शुरू नहीं हो सका। स्थानीय अलार्म ध्वनि बज रही है।';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'इस Mac पर $service ऐप कनेक्ट करें। पहले उसमें साइन इन करें; macOS अनुमति माँगेगा।';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'इस Mac पर $service कनेक्ट है। अलार्म की अवधि का उपयोग करता है। डिस्कनेक्ट करने के लिए देर तक दबाएँ।';
+  }
+
+  @override
+  String get musicSongs => 'गाने';
+
+  @override
+  String get noMusicSongs => 'आपकी Music लाइब्रेरी में कोई गाना नहीं मिला।';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'इस प्लेटफ़ॉर्म पर $service खाता कनेक्शन उपलब्ध नहीं है। अलार्म रोकने के बाद लिंक खुल सकता है।';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'सार्वजनिक ट्रैक या प्लेलिस्ट लिंक जोड़ें। आधिकारिक प्लेयर अलार्म की अवधि का पालन करता है; खाता साइन-इन उपलब्ध नहीं है।';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube दिखाई देने वाले प्लेयर में वीडियो चलाता है। छिपने या न चल पाने पर स्थानीय अलार्म जारी रहता है।';
 }

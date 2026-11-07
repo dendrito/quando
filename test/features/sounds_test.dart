@@ -101,8 +101,6 @@ void main() {
     expect(app('https://music.youtube.com/watch?v=1'), 'YouTube Music');
     expect(app('https://youtu.be/abc'), 'YouTube');
     expect(app('https://music.apple.com/us/album/1'), 'Apple Music');
-    expect(app('https://music.amazon.com/albums/B0'), 'Amazon Music');
-    expect(app('https://amzn.to/xyz'), 'Amazon Music');
     c
         .read(userAlarmsProvider.notifier)
         .save(const UserAlarm(id: 's', hour: 7, minute: 0, days: {1, 2, 3, 4}, soundId: 'link.1'));
@@ -158,10 +156,11 @@ void main() {
     expect(sat.song, isNull);
     expect(sat.link, isNull);
 
-    // With a task, it rings and opens the song after.
+    // A task remains available while the music plays; it no longer needs to
+    // defer the song until Stop because playback retains the alarm identity.
     final sum = _payloadOf(c, 'user.sum');
-    expect(sum.song, isNull);
-    expect(sum.link, song.link);
+    expect(sum.song, song.link);
+    expect(sum.link, isNull);
 
     // Switched to "ring, then open".
     c.read(soundsProvider.notifier).replace(song.copyWith(plays: false));

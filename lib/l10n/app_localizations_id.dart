@@ -1155,7 +1155,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Di Spotify, Apple Music, Amazon Music, YouTube, YouTube Music, atau SoundCloud, ketuk Bagikan, lalu Salin tautan, dan tempel di sini.';
+      'Di Spotify, Apple Music, YouTube, YouTube Music, atau SoundCloud, ketuk Bagikan, lalu Salin tautan, dan tempel di sini.';
 
   @override
   String get songNameHint => 'Nama, mis. Playlist pagi';
@@ -2607,4 +2607,40 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Pemutaran mengikuti durasi dering alarm ini dan berhenti dengan Hentikan atau Tunda.';
+
+  @override
+  String get musicBackupPlaying => 'Musik tidak dapat dimulai. Suara alarm lokal sedang diputar.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Hubungkan app $service di Mac ini. Masuk di sana terlebih dahulu; macOS akan meminta izin.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Terhubung ke $service di Mac ini. Menggunakan durasi dering alarm. Tekan lama untuk memutuskan.';
+  }
+
+  @override
+  String get musicSongs => 'Lagu';
+
+  @override
+  String get noMusicSongs => 'Tidak ada lagu ditemukan di perpustakaan Musik.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Koneksi akun $service tidak tersedia di platform ini. Tautan dapat dibuka setelah alarm dihentikan.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Tambahkan tautan publik lagu atau playlist. Pemutar resmi mengikuti durasi alarm; masuk akun tidak tersedia.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube memutar video di pemutar yang terlihat. Jika disembunyikan atau tidak dapat memutar, alarm lokal berlanjut.';
 }

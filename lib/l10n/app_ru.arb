@@ -332,7 +332,7 @@
   "couldNotAddFile": "Не удалось добавить файл: {error}",
   "addSongLink": "Добавить ссылку на трек",
   "songLink": "Ссылка на трек",
-  "songLinkHowTo": "В Spotify, Apple Music, Amazon Music, YouTube, YouTube Music или SoundCloud нажмите «Поделиться», затем «Копировать ссылку» и вставьте её сюда.",
+  "songLinkHowTo": "В Spotify, Apple Music, YouTube, YouTube Music или SoundCloud нажмите «Поделиться», затем «Копировать ссылку» и вставьте её сюда.",
   "songNameHint": "Название, напр. Утренний плейлист",
   "whenAlarmGoesOffHeading": "КОГДА ЗВОНИТ БУДИЛЬНИК",
   "playTheSong": "Включить трек",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Воспроизведение следует длительности звонка будильника и прекращается при остановке или откладывании.",
+  "musicBackupPlaying": "Не удалось включить музыку. Звучит локальный сигнал будильника.",
+  "desktopMusicConnect": "Подключите приложение {service} на этом Mac. Сначала войдите в него; macOS запросит разрешение.",
+  "desktopMusicOn": "Подключено к {service} на этом Mac. Используется длительность звонка будильника. Долгое нажатие отключает.",
+  "musicSongs": "Песни",
+  "noMusicSongs": "В медиатеке Музыки песни не найдены.",
+  "serviceConnectUnavailable": "Подключение учётной записи {service} недоступно на этой платформе. Ссылку можно открыть после остановки будильника.",
+  "soundCloudWidgetNote": "Добавьте общедоступную ссылку на трек или плейлист. Официальный плеер следует длительности звонка; вход в аккаунт недоступен.",
+  "youtubePlayerHint": "YouTube воспроизводит видео в видимом плеере. Если он скрыт или не может воспроизводить, локальный сигнал продолжается."
 }

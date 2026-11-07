@@ -1151,7 +1151,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Trong Spotify, Apple Music, Amazon Music, YouTube, YouTube Music hoặc SoundCloud, chạm Chia sẻ, rồi Sao chép liên kết, và dán vào đây.';
+      'Trong Spotify, Apple Music, YouTube, YouTube Music hoặc SoundCloud, chạm Chia sẻ, rồi Sao chép liên kết, và dán vào đây.';
 
   @override
   String get songNameHint => 'Tên, vd. Danh sách buổi sáng';
@@ -2603,4 +2603,40 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get skyLocationLocalTimes =>
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint =>
+      'Phát nhạc theo thời lượng chuông của báo thức này và dừng khi nhấn Dừng hoặc Báo lại.';
+
+  @override
+  String get musicBackupPlaying => 'Không thể bắt đầu nhạc. Âm báo thức cục bộ đang phát.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return 'Kết nối ứng dụng $service trên Mac này. Đăng nhập trong ứng dụng trước; macOS sẽ yêu cầu quyền.';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return 'Đã kết nối $service trên Mac này. Dùng thời lượng chuông báo thức. Nhấn giữ để ngắt kết nối.';
+  }
+
+  @override
+  String get musicSongs => 'Bài hát';
+
+  @override
+  String get noMusicSongs => 'Không tìm thấy bài hát trong thư viện Nhạc.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return 'Không thể kết nối tài khoản $service trên nền tảng này. Có thể mở liên kết sau khi dừng báo thức.';
+  }
+
+  @override
+  String get soundCloudWidgetNote =>
+      'Thêm liên kết công khai của bài hát hoặc danh sách phát. Trình phát chính thức theo thời lượng báo thức; không hỗ trợ đăng nhập tài khoản.';
+
+  @override
+  String get youtubePlayerHint =>
+      'YouTube phát video trong trình phát hiển thị. Nếu bị ẩn hoặc không thể phát, báo thức cục bộ tiếp tục.';
 }

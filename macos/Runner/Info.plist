@@ -43,6 +43,8 @@
 	</array>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Play your chosen alarm music in Spotify or Music, read Music playlists, and pause playback when you stop, snooze, or reach the alarm's ring duration.</string>
 	<key>NSCalendarsFullAccessUsageDescription</key>
 	<string>Read selected calendars to schedule reminders. Quando does not change your calendar events.</string>
 	<key>NSCalendarsUsageDescription</key>

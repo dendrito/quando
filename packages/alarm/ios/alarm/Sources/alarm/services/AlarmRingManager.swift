@@ -13,6 +13,7 @@ class AlarmRingManager: NSObject {
     private var volumeEnforcementTimer: Timer?
     private var audioPlayer: AVAudioPlayer?
     private var currentAlarmId: Int?
+    private var backupMuted = false
     /// Pending tasks (audio completion callback and volume fades) that must
     /// not outlive the current ring. Cancelled on stop so a stale completion
     /// can never stop an alarm that was re-scheduled with the same id.
@@ -20,6 +21,17 @@ class AlarmRingManager: NSObject {
 
     override private init() {
         super.init()
+    }
+
+    @MainActor
+    func muteBackup(id: Int, muted: Bool) -> Bool {
+        guard currentAlarmId == id, let player = audioPlayer else { return false }
+        if backupMuted == muted { return true }
+        backupMuted = muted
+        cancelPendingTasks()
+        player.setVolume(muted ? 0 : 1, fadeDuration: 0)
+        if muted { mixOtherAudios() } else { duckOtherAudios() }
+        return true
     }
 
     @MainActor
@@ -37,6 +49,7 @@ class AlarmRingManager: NSObject {
         }
 
         self.currentAlarmId = id
+        self.backupMuted = false
 
         self.duckOtherAudios()
 

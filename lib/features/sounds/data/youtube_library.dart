@@ -21,7 +21,9 @@ class YouTubeAccount {
   static bool connected = false;
   static const prefKey = 'youtube.connected';
 
-  static bool get available => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get available =>
+      !kIsWeb &&
+      {TargetPlatform.android, TargetPlatform.iOS, TargetPlatform.macOS}.contains(defaultTargetPlatform);
 
   static var _ready = false;
 
@@ -109,6 +111,18 @@ class YouTubeLibrary {
     return SpotifyItem(name: name, detail: channel, url: '$_host/watch?v=$id', image: _thumb(sn));
   });
 
+  /// Resolve the signed-in user's playlist through the official Data API.
+  /// Only video IDs reach the IFrame player; the OAuth token stays in Dart.
+  Future<List<String>> playlistVideos(String id) async {
+    if (!RegExp(r'^[A-Za-z0-9_-]{1,150}$').hasMatch(id)) throw ArgumentError.value(id, 'playlist');
+    final items = await _get('playlistItems?part=contentDetails&maxResults=50&playlistId=$id', (j) {
+      final video = (j['contentDetails'] as Map?)?['videoId'];
+      if (video is! String || !RegExp(r'^[A-Za-z0-9_-]{11}$').hasMatch(video)) return null;
+      return SpotifyItem(name: '', detail: '', url: video);
+    });
+    return items.map((item) => item.url).toList();
+  }
+
   /// Videos (songs) and playlists for anything you type.
   Future<List<SpotifyItem>> search(String query) {
     final q = Uri.encodeQueryComponent(query.trim());
@@ -162,22 +176,31 @@ class YouTubeLibrary {
   }
 
   Future<List<SpotifyItem>> _get(String path, SpotifyItem? Function(Map<String, dynamic>) parse) async {
-    final r = await _client
-        .get(
-          Uri.parse('https://www.googleapis.com/youtube/v3/$path'),
-          headers: {'Authorization': 'Bearer $token'},
-        )
-        .timeout(const Duration(seconds: 10));
-    if (r.statusCode == 403) {
-      throw Exception('${l10n.youTubeSaidNo}${_why(r.body)}');
-    }
-    if (r.statusCode != 200) {
-      throw Exception('${l10n.serviceDidntAnswer('YouTube', r.statusCode)}${_why(r.body)}');
-    }
-    final items = (jsonDecode(r.body) as Map<String, dynamic>)['items'] as List? ?? const [];
-    return [
-      for (final j in items)
-        if (j is Map<String, dynamic>) ?parse(j),
-    ];
+    var uri = Uri.parse('https://www.googleapis.com/youtube/v3/$path');
+    final out = <SpotifyItem>[], pages = <String>{};
+    do {
+      final r = await _client
+          .get(uri, headers: {'Authorization': 'Bearer $token'})
+          .timeout(const Duration(seconds: 10));
+      if (r.statusCode == 403) throw Exception('${l10n.youTubeSaidNo}${_why(r.body)}');
+      if (r.statusCode != 200) {
+        throw Exception('${l10n.serviceDidntAnswer('YouTube', r.statusCode)}${_why(r.body)}');
+      }
+      final data = jsonDecode(r.body) as Map<String, dynamic>;
+      for (final j in data['items'] as List? ?? const []) {
+        if (j is Map<String, dynamic>) {
+          final item = parse(j);
+          if (item != null) out.add(item);
+        }
+      }
+      final next = data['nextPageToken'] as String?;
+      if (next == null || next.isEmpty || !pages.add(next)) break;
+      // Search stays deliberately small; playlist/liked collections are complete.
+      if (uri.path.endsWith('/search')) break;
+      uri = uri.replace(queryParameters: {...uri.queryParameters, 'pageToken': next});
+    } while (true);
+    return out;
   }
+
+  void close() => _client.close();
 }

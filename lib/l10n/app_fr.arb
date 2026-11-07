@@ -332,7 +332,7 @@
   "couldNotAddFile": "Impossible d’ajouter ce fichier : {error}",
   "addSongLink": "Ajouter un lien de morceau",
   "songLink": "Lien de morceau",
-  "songLinkHowTo": "Dans Spotify, Apple Music, Amazon Music, YouTube, YouTube Music ou SoundCloud, touchez Partager, puis Copier le lien, et collez-le ici.",
+  "songLinkHowTo": "Dans Spotify, Apple Music, YouTube, YouTube Music ou SoundCloud, touchez Partager, puis Copier le lien, et collez-le ici.",
   "songNameHint": "Nom, ex. Playlist du matin",
   "whenAlarmGoesOffHeading": "QUAND L’ALARME SONNE",
   "playTheSong": "Jouer le morceau",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "La lecture suit la durée de cette alarme et s’arrête avec Arrêter ou Répéter.",
+  "musicBackupPlaying": "La musique n’a pas pu démarrer. La sonnerie locale retentit.",
+  "desktopMusicConnect": "Connectez l’app {service} sur ce Mac. Connectez-vous d’abord dans celle-ci ; macOS demandera une autorisation.",
+  "desktopMusicOn": "Connecté à {service} sur ce Mac. Utilise la durée de l’alarme. Appui long pour déconnecter.",
+  "musicSongs": "Morceaux",
+  "noMusicSongs": "Aucun morceau trouvé dans votre bibliothèque Musique.",
+  "serviceConnectUnavailable": "La connexion au compte {service} est indisponible sur cette plateforme. Un lien peut s’ouvrir après l’arrêt de l’alarme.",
+  "soundCloudWidgetNote": "Ajoutez un lien public de morceau ou playlist. Le lecteur officiel suit la durée de l’alarme ; la connexion au compte est indisponible.",
+  "youtubePlayerHint": "YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue."
 }

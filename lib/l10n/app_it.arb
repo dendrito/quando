@@ -332,7 +332,7 @@
   "couldNotAddFile": "Impossibile aggiungere il file: {error}",
   "addSongLink": "Aggiungi link a un brano",
   "songLink": "Link al brano",
-  "songLinkHowTo": "In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music o SoundCloud, tocca Condividi, poi Copia link, e incollalo qui.",
+  "songLinkHowTo": "In Spotify, Apple Music, YouTube, YouTube Music o SoundCloud, tocca Condividi, poi Copia link, e incollalo qui.",
   "songNameHint": "Nome, es. Playlist del mattino",
   "whenAlarmGoesOffHeading": "QUANDO SUONA LA SVEGLIA",
   "playTheSong": "Riproduci il brano",
@@ -768,5 +768,14 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "La riproduzione segue la durata di questa sveglia e si ferma con Stop o Posticipa.",
+  "musicBackupPlaying": "Impossibile avviare la musica. Sta suonando il tono locale della sveglia.",
+  "desktopMusicConnect": "Collega l’app {service} su questo Mac. Accedi prima lì; macOS chiederà il permesso.",
+  "desktopMusicOn": "Collegato a {service} su questo Mac. Usa la durata della sveglia. Tieni premuto per scollegare.",
+  "musicSongs": "Brani",
+  "noMusicSongs": "Nessun brano trovato nella libreria di Musica.",
+  "serviceConnectUnavailable": "Il collegamento dell’account {service} non è disponibile su questa piattaforma. Un link può aprirsi dopo aver fermato la sveglia.",
+  "soundCloudWidgetNote": "Aggiungi un link pubblico a un brano o playlist. Il lettore ufficiale segue la durata della sveglia; l’accesso all’account non è disponibile.",
+  "youtubePlayerHint": "YouTube riproduce video in un lettore visibile. Se viene nascosto o non può riprodurre, continua il tono locale."
 }

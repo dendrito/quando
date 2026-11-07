@@ -12,6 +12,8 @@ import '../data/sound_files.dart';
 import '../data/spotify_library.dart';
 import '../data/spotify_account.dart';
 import '../data/youtube_library.dart';
+import '../data/desktop_music.dart';
+import '../../ringing/data/embedded_music.dart';
 import '../../../core/util/platform.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
@@ -109,9 +111,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       (b) => b.path == editing?.path,
       orElse: () => AlarmSound.builtIns[1],
     );
-    // Only Android can start and pause other apps' music.
-    var plays = isAndroid && (editing?.plays ?? true);
-    var playFor = editing?.playSeconds ?? 0;
+    var plays = editing?.plays ?? true;
+    bool canPlay() =>
+        isAndroid ||
+        (EmbeddedMusic.available && EmbeddedMusic.parse(url.text.trim()) != null) ||
+        (isMacOS && DesktopMusic.serviceOf(url.text.trim()) != null);
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -129,6 +133,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     const SizedBox(height: 12),
                     TextField(
                       controller: url,
+                      onChanged: (_) => setLocal(() {}),
                       autofocus: true,
                       keyboardType: TextInputType.url,
                       decoration: const InputDecoration(hintText: 'https://open.spotify.com/track/…'),
@@ -141,7 +146,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     decoration: InputDecoration(hintText: l10n.songNameHint),
                   ),
                   const SizedBox(height: 16),
-                  if (isAndroid) ...[
+                  if (canPlay()) ...[
                     Text(l10n.whenAlarmGoesOffHeading, style: text.labelSmall),
                     const SizedBox(height: 8),
                     SegmentedButton<bool>(
@@ -154,20 +159,11 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       onSelectionChanged: (v) => setLocal(() => plays = v.first),
                     ),
                     const SizedBox(height: 6),
-                    Text(plays ? l10n.playTheSongHint : l10n.ringThenOpenHint, style: text.bodySmall),
-                    const SizedBox(height: 16),
-                    Text(l10n.playForHeading, style: text.labelSmall),
-                    DropdownButton<int>(
-                      value: playFor,
-                      isExpanded: true,
-                      items: [
-                        for (final s in AlarmSound.playLengths)
-                          DropdownMenuItem(value: s, child: Text(AlarmSound.playLength(s))),
-                      ],
-                      onChanged: (v) => setLocal(() => playFor = v ?? playFor),
-                    ),
-                    Text(l10n.pausesAfter, style: text.bodySmall),
-                  ],
+                    Text(plays ? l10n.musicRingDurationHint : l10n.ringThenOpenHint, style: text.bodySmall),
+                    if (EmbeddedMusic.parse(url.text.trim())?.provider == 'YouTube')
+                      Text(l10n.youtubePlayerHint, style: text.bodySmall),
+                  ] else
+                    Text(l10n.ringThenOpenHint, style: text.bodySmall),
                   const SizedBox(height: 16),
                   Text(l10n.backupSoundHeading, style: text.labelSmall),
                   DropdownButton<AlarmSound>(
@@ -194,6 +190,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     );
     final link = url.text.trim();
     final label = name.text.trim();
+    final playable = canPlay();
     url.dispose();
     name.dispose();
     if (ok != true || !mounted) return;
@@ -203,8 +200,8 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
         editing.copyWith(
           name: label.isNotEmpty ? label : null,
           path: ringWith.path,
-          plays: plays,
-          playSeconds: playFor,
+          plays: plays && playable,
+          playSeconds: 0,
         ),
       );
       return;
@@ -219,8 +216,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       name: '',
       path: ringWith.path,
       link: link,
-      plays: plays,
-      playSeconds: playFor,
+      plays: plays && playable,
     );
     sounds.add(sound.rename(label.isNotEmpty ? label : l10n.songOn(sound.linkApp ?? l10n.theWeb)));
   }
@@ -266,9 +262,20 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     title: l10n.myYouTube,
                     load: () async {
                       final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
-                      return (await lib.playlists(), await lib.liked());
+                      try {
+                        return (await lib.playlists(), await lib.liked());
+                      } finally {
+                        lib.close();
+                      }
                     },
-                    search: (q) async => YouTubeLibrary(await YouTubeAccount.token() ?? token).search(q),
+                    search: (q) async {
+                      final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
+                      try {
+                        return await lib.search(q);
+                      } finally {
+                        lib.close();
+                      }
+                    },
                   ),
                 ),
               );
@@ -325,6 +332,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           MaterialPageRoute<void>(
             builder: (_) => MusicPickerScreen(
               title: l10n.mySpotify,
+              prepare: isMacOS ? (_) => DesktopMusic.connect('spotify', prefs) : null,
               load: () async {
                 final lib = await library();
                 return (await lib.playlists(), await lib.likedSongs());
@@ -339,6 +347,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
 
   /// Spotify direct play: sign in once and Spotify plays the exact song.
   Widget _spotifyTile(TextTheme text) {
+    if (isMacOS) return _desktopTile(text, 'spotify', 'Spotify');
     final on = SpotifyPlay.connected;
     return ListTile(
       contentPadding: EdgeInsets.zero,
@@ -366,6 +375,41 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               await prefs.setBool(SpotifyPlay.prefKey, SpotifyPlay.connected);
               if (mounted) setState(() {});
             },
+    );
+  }
+
+  Widget _desktopTile(TextTheme text, String service, String name) {
+    final prefs = ref.read(prefsProvider);
+    final on = prefs.getBool(DesktopMusic.key(service)) == true;
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      title: Text(service == 'spotify' ? l10n.spotifyDirect : name),
+      subtitle: Text(on ? l10n.desktopMusicOn(name) : l10n.desktopMusicConnect(name), style: text.bodySmall),
+      trailing: on && service == 'apple' ? const Icon(Icons.chevron_right) : null,
+      onLongPress: !on
+          ? null
+          : () async {
+              await prefs.remove(DesktopMusic.key(service));
+              if (mounted) setState(() {});
+            },
+      onTap: () async {
+        try {
+          await DesktopMusic.connect(service, prefs);
+          if (!mounted) return;
+          setState(() {});
+          if (service == 'apple') {
+            await Navigator.of(context).push(
+              MaterialPageRoute<void>(
+                builder: (_) =>
+                    MusicPickerScreen(title: 'Apple Music', load: DesktopMusic.appleLibrary, songs: true),
+              ),
+            );
+          }
+        } catch (e) {
+          if (mounted) await _explain(name, '$e');
+        }
+      },
     );
   }
 
@@ -449,10 +493,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           _spotifyTile(text),
           _spotifyLibraryTile(text),
           _youTubeTile(text),
+          if (isMacOS) _desktopTile(text, 'apple', 'Apple Music'),
           for (final (app, note) in [
-            ('Apple Music', l10n.appleMusicNote),
-            ('Amazon Music', l10n.noSignInNote('Amazon')),
-            ('SoundCloud', l10n.noSignInNote('SoundCloud')),
+            if (!isMacOS) ('Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
+            ('SoundCloud', l10n.soundCloudWidgetNote),
           ])
             ListTile(
               contentPadding: EdgeInsets.zero,
@@ -494,7 +538,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                 [
                   if (s.builtIn) l10n.builtIn,
                   if (s.isLink) s.plays ? l10n.playsIn(s.linkApp ?? '') : l10n.opensIn(s.linkApp ?? ''),
-                  if (s.isLink && s.playSeconds > 0) l10n.forSpan(AlarmSound.playLength(s.playSeconds)),
+                  if (s.isLink && s.plays) l10n.musicRingDurationHint,
                   if (s.isRadio) l10n.onlineRadio,
                   if (s.id == defaultId) l10n.defaultLabel,
                 ].join(' · '),

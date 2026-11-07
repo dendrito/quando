@@ -2125,7 +2125,7 @@ abstract class AppLocalizations {
   /// No description provided for @songLinkHowTo.
   ///
   /// In en, this message translates to:
-  /// **'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.'**
+  /// **'In Spotify, Apple Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.'**
   String get songLinkHowTo;
 
   /// No description provided for @songNameHint.
@@ -4743,6 +4743,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.'**
   String get skyLocationLocalTimes;
+
+  /// No description provided for @musicRingDurationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.'**
+  String get musicRingDurationHint;
+
+  /// No description provided for @musicBackupPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Music could not start. The local alarm sound is playing.'**
+  String get musicBackupPlaying;
+
+  /// No description provided for @desktopMusicConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect the {service} app on this Mac. Sign in there first; macOS will ask for permission.'**
+  String desktopMusicConnect(String service);
+
+  /// No description provided for @desktopMusicOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to {service} on this Mac. Uses the alarm’s ring duration. Long-press to disconnect.'**
+  String desktopMusicOn(String service);
+
+  /// No description provided for @musicSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs'**
+  String get musicSongs;
+
+  /// No description provided for @noMusicSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'No songs found in your Music library.'**
+  String get noMusicSongs;
+
+  /// No description provided for @serviceConnectUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Account connection is unavailable for {service} on this platform. A link can open after you stop the alarm.'**
+  String serviceConnectUnavailable(String service);
+
+  /// No description provided for @soundCloudWidgetNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a public track or playlist link. The official player follows the alarm’s ring duration; account sign-in is unavailable.'**
+  String get soundCloudWidgetNote;
+
+  /// No description provided for @youtubePlayerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.'**
+  String get youtubePlayerHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

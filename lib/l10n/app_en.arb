@@ -794,7 +794,7 @@
   },
   "addSongLink": "Add a song link",
   "songLink": "Song link",
-  "songLinkHowTo": "In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.",
+  "songLinkHowTo": "In Spotify, Apple Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.",
   "songNameHint": "Name, e.g. Morning playlist",
   "whenAlarmGoesOffHeading": "WHEN THE ALARM GOES OFF",
   "playTheSong": "Play the song",
@@ -1623,5 +1623,35 @@
   "roshHodeshBegins": "Begins at sunset on",
   "openParashaSefaria": "Read this Torah portion on Sefaria",
   "skyMyLocation": "My location",
-  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.",
+  "musicRingDurationHint": "Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.",
+  "musicBackupPlaying": "Music could not start. The local alarm sound is playing.",
+  "desktopMusicConnect": "Connect the {service} app on this Mac. Sign in there first; macOS will ask for permission.",
+  "desktopMusicOn": "Connected to {service} on this Mac. Uses the alarm’s ring duration. Long-press to disconnect.",
+  "musicSongs": "Songs",
+  "noMusicSongs": "No songs found in your Music library.",
+  "serviceConnectUnavailable": "Account connection is unavailable for {service} on this platform. A link can open after you stop the alarm.",
+  "soundCloudWidgetNote": "Add a public track or playlist link. The official player follows the alarm’s ring duration; account sign-in is unavailable.",
+  "youtubePlayerHint": "YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.",
+  "@desktopMusicConnect": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "@desktopMusicOn": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  },
+  "@serviceConnectUnavailable": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  }
 }
