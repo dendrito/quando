@@ -90,9 +90,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           runSpacing: 6,
           children: [
             if (!options.moon)
-              Text('${l10n.moonriseLabel} ≈ ${time(moon.rise, l10n.noRiseToday)}', style: text.bodySmall),
+              Text('${l10n.moonriseLabel} · ${time(moon.rise, l10n.noRiseToday)}', style: text.bodySmall),
             if (!options.moon)
-              Text('${l10n.moonsetLabel} ≈ ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
+              Text('${l10n.moonsetLabel} · ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
             Text(
               '${l10n.nightfallLabel} ${time(nightfall, '—')} · ${ref.watch(havdalahProvider) == HavdalahOpinion.geonim ? '8.5°' : '+72m'}',
               style: text.bodySmall,
@@ -136,15 +136,12 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     );
     final moonContent = Container(
       key: const ValueKey('moon-daylight-background'),
+      // A calm card that matches the night screen; daylight shows only in
+      // the colors of the Moon's dotted path.
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          begin: Alignment.centerLeft,
-          end: Alignment.centerRight,
-          colors: place != null && track != null
-              ? MoonBackdrop.forTrack(place, track)
-              : [SkyColors.night, SkyColors.night],
-        ),
+        color: const Color(0xFF2D1D44),
+        border: Border.all(color: const Color(0xFF3F2C5A)),
       ),
       padding: const EdgeInsets.all(18),
       child: Column(
@@ -154,21 +151,25 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           Text(l10n.skyMoon, style: text.titleMedium),
           if (track != null && illumination != null) ...[
             Text(track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon, style: text.bodySmall),
-            MoonArc(track: track, illumination: illumination),
+            MoonArc(
+              track: track,
+              illumination: illumination,
+              daylight: place == null ? null : MoonBackdrop.daylightForTrack(place, track),
+            ),
             Row(
               textDirection: TextDirection.ltr,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(
                   child: Text(
-                    '${l10n.moonriseLabel} ≈ ${trackTime(track.rise, l10n.noRiseToday)}',
+                    '${l10n.moonriseLabel} · ${trackTime(track.rise, l10n.noRiseToday)}',
                     style: text.bodySmall,
                   ),
                 ),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Text(
-                    '${l10n.moonsetLabel} ≈ ${trackTime(track.set, l10n.noSetToday)}',
+                    '${l10n.moonsetLabel} · ${trackTime(track.set, l10n.noSetToday)}',
                     style: text.bodySmall,
                     textAlign: TextAlign.end,
                   ),
@@ -198,9 +199,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('${l10n.moonNextNew} ≈ ${phaseTime(phases.newMoon)}', style: text.bodySmall),
+                    Text('${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}', style: text.bodySmall),
                     const SizedBox(height: 4),
-                    Text('${l10n.moonNextFull} ≈ ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
+                    Text('${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
                   ],
                 );
                 if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {

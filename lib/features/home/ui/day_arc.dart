@@ -40,12 +40,22 @@ class DayArc extends StatelessWidget {
 }
 
 class _ArcPainter extends CustomPainter {
-  const _ArcPainter({required this.progress, required this.marks, this.moon, this.above = true});
+  const _ArcPainter({
+    required this.progress,
+    required this.marks,
+    this.moon,
+    this.above = true,
+    this.daylight,
+  });
 
   final double? progress;
   final List<double> marks;
   final MoonIllumination? moon;
   final bool above;
+  final List<bool>? daylight;
+
+  /// Dots where the Moon is up at night.
+  static const moonlight = Color(0xFFC9C2E6);
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -85,8 +95,21 @@ class _ArcPainter extends CustomPainter {
 
     // The whole day, dotted.
     final dots = Paint()..color = QuandoColors.blush.withValues(alpha: 0.6);
-    for (var t = 0.0; t <= 1.0001; t += 1 / 36) {
-      canvas.drawCircle(point(t), 1.3, dots);
+    final day = daylight;
+    if (day != null && day.length > 1) {
+      // Moon path: amber where the Moon is up in daylight, silver at night.
+      for (var i = 0; i < day.length; i++) {
+        canvas.drawCircle(
+          point(i / (day.length - 1)),
+          1.8,
+          Paint()
+            ..color = day[i] ? QuandoColors.amber.withValues(alpha: .9) : moonlight.withValues(alpha: .9),
+        );
+      }
+    } else {
+      for (var t = 0.0; t <= 1.0001; t += 1 / 36) {
+        canvas.drawCircle(point(t), 1.3, dots);
+      }
     }
 
     final p = progress;
@@ -134,13 +157,26 @@ class _ArcPainter extends CustomPainter {
       old.progress != progress ||
       old.marks.length != marks.length ||
       old.moon?.phase != moon?.phase ||
-      old.above != above;
+      old.above != above ||
+      !_sameDaylight(old.daylight, daylight);
+
+  static bool _sameDaylight(List<bool>? a, List<bool>? b) {
+    if (identical(a, b)) return true;
+    if (a == null || b == null || a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      if (a[i] != b[i]) return false;
+    }
+    return true;
+  }
 }
 
 class MoonArc extends StatelessWidget {
-  const MoonArc({super.key, required this.track, required this.illumination});
+  const MoonArc({super.key, required this.track, required this.illumination, this.daylight});
   final MoonTrack track;
   final MoonIllumination illumination;
+
+  /// Sun up or down at each dot of the path, moonrise to moonset.
+  final List<bool>? daylight;
 
   @override
   Widget build(BuildContext context) => Semantics(
@@ -154,6 +190,7 @@ class MoonArc extends StatelessWidget {
           marks: const [],
           moon: illumination,
           above: track.above,
+          daylight: daylight,
         ),
       ),
     ),

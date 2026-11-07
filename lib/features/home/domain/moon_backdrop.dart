@@ -24,6 +24,23 @@ class MoonBackdrop {
     ];
   }
 
+  /// Whether the Sun is up at each of [count] evenly spaced instants from
+  /// moonrise to moonset. The Moon card colors its dotted path with this
+  /// (amber in daylight, silver at night) instead of tinting the whole card,
+  /// which turned a dark screen bright orange at night.
+  static List<bool> daylightForTrack(Place place, MoonTrack track, {int count = 37}) {
+    final start = track.rise, end = track.set;
+    if (start == null || end == null || !end.isAfter(start)) {
+      return List.filled(count, colorAt(place, track.now) != SkyColors.night);
+    }
+    final span = end.difference(start).inMicroseconds;
+    return [
+      for (var i = 0; i < count; i++)
+        colorAt(place, start.add(Duration(microseconds: (span * i / (count - 1)).round()))) !=
+            SkyColors.night,
+    ];
+  }
+
   static Color colorAt(Place place, DateTime at) {
     // Match the actual sunrise/sunset shown on the Sun tab. The Moon being
     // above the horizon does not make it night, and setting does not make it day.

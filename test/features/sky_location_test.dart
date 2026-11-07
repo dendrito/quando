@@ -137,6 +137,24 @@ void main() {
     expect(dawn.last, SkyColors.day);
   });
 
+  test('Moon path dots are silver at night and amber in daylight', () {
+    MoonTrack track(DateTime from, DateTime to) => MoonTrack(now: from, above: false, rise: from, set: to);
+    // São Paulo, 8 Nov 2026: moonrise 04:19 (before sunrise 05:04), moonset 17:54.
+    final dots = MoonBackdrop.daylightForTrack(
+      Places.saoPaulo,
+      track(DateTime.utc(2026, 11, 8, 7, 19), DateTime.utc(2026, 11, 8, 20, 54)),
+    );
+    expect(dots, hasLength(37));
+    expect(dots.first, isFalse);
+    expect(dots.last, isTrue);
+    expect(dots.where((d) => d).length, greaterThan(30));
+    final night = MoonBackdrop.daylightForTrack(
+      Places.saoPaulo,
+      track(DateTime.utc(2026, 11, 7, 23), DateTime.utc(2026, 11, 8, 6)),
+    );
+    expect(night.toSet(), {false});
+  });
+
   test('Moon colors use the Sun tab sunrise and sunset boundaries in each city', () {
     for (final place in [Places.saoPaulo, Places.jerusalem, Places.newYork]) {
       final sun = SkyDay.of(place, now);
