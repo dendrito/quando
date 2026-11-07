@@ -2645,4 +2645,27 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => 'לא ניתן לנגן את הצליל. בדקו את החיבור או נסו שיר או תחנה אחרים.';
+
+  @override
+  String get skyMoonPhase => 'מופע הירח';
+
+  @override
+  String get skyMoonDetailsDisplay => 'הוספת עמוד מופע הירח';
+
+  @override
+  String get skyMoonDetailsHint => 'החליקו אליו, או הקישו על כרטיס הירח בכל עת';
+
+  @override
+  String get moonRises => 'זורח';
+
+  @override
+  String get moonSets => 'שוקע';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'יום $day מתוך 29.5 בחודש הירחי';
+  }
+
+  @override
+  String get moonDetailsOpen => 'פתיחת מופע הירח';
 }

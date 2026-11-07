@@ -2667,4 +2667,27 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Não foi possível tocar este som. Verifique sua conexão ou tente outra faixa ou estação.';
+
+  @override
+  String get skyMoonPhase => 'Fase da lua';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Adicionar página da fase da lua';
+
+  @override
+  String get skyMoonDetailsHint => 'Deslize até ela, ou toque no cartão da Lua a qualquer momento';
+
+  @override
+  String get moonRises => 'Nasce';
+
+  @override
+  String get moonSets => 'Se põe';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Dia $day de 29,5 deste mês lunar';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Abrir fase da lua';
 }

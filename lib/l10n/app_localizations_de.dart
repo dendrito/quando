@@ -2662,4 +2662,27 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Dieser Ton konnte nicht abgespielt werden. Prüfe die Verbindung oder versuche einen anderen Titel oder Sender.';
+
+  @override
+  String get skyMoonPhase => 'Mondphase';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Seite zur Mondphase hinzufügen';
+
+  @override
+  String get skyMoonDetailsHint => 'Dorthin wischen oder jederzeit auf die Mondkarte tippen';
+
+  @override
+  String get moonRises => 'Aufgang';
+
+  @override
+  String get moonSets => 'Untergang';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Tag $day von 29,5 in diesem Mondmonat';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Mondphase öffnen';
 }

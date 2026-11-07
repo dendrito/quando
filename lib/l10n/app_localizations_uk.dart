@@ -2697,4 +2697,27 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Не вдалося відтворити звук. Перевірте з’єднання або спробуйте інший трек чи станцію.';
+
+  @override
+  String get skyMoonPhase => 'Фаза Місяця';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Додати сторінку фази Місяця';
+
+  @override
+  String get skyMoonDetailsHint => 'Перегорніть до неї або торкніться картки Місяця будь-коли';
+
+  @override
+  String get moonRises => 'Схід';
+
+  @override
+  String get moonSets => 'Захід';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'День $day з 29,5 у цьому місячному місяці';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Відкрити фазу Місяця';
 }

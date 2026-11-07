@@ -2691,4 +2691,27 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => 'تعذّر تشغيل هذا الصوت. تحقّق من الاتصال أو جرّب مقطعاً أو محطة أخرى.';
+
+  @override
+  String get skyMoonPhase => 'طور القمر';
+
+  @override
+  String get skyMoonDetailsDisplay => 'إضافة صفحة طور القمر';
+
+  @override
+  String get skyMoonDetailsHint => 'اسحب إليها أو اضغط على بطاقة القمر في أي وقت';
+
+  @override
+  String get moonRises => 'الشروق';
+
+  @override
+  String get moonSets => 'الغروب';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'اليوم $day من 29.5 في هذا الشهر القمري';
+  }
+
+  @override
+  String get moonDetailsOpen => 'فتح طور القمر';
 }

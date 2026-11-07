@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "此平台不支持连接{service}账户。停止闹钟后可以打开链接。",
   "soundCloudWidgetNote": "添加公开的歌曲或播放列表链接。官方播放器遵循闹钟时长；不支持账户登录。",
   "youtubePlayerHint": "YouTube在可见播放器中播放视频。播放器隐藏或无法播放时，本地闹钟会继续响铃。",
-  "musicPreviewFailed": "无法播放此声音。请检查连接或尝试其他歌曲或电台。"
+  "musicPreviewFailed": "无法播放此声音。请检查连接或尝试其他歌曲或电台。",
+  "skyMoonPhase": "月相",
+  "skyMoonDetailsDisplay": "添加月相页面",
+  "skyMoonDetailsHint": "滑动到该页面，或随时轻点月亮卡片",
+  "moonRises": "月出",
+  "moonSets": "月落",
+  "moonLunarDay": "本朔望月 29.5 天中的第 {day} 天",
+  "moonDetailsOpen": "打开月相"
 }

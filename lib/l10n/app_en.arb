@@ -1654,5 +1654,19 @@
       }
     }
   },
-  "musicPreviewFailed": "Could not play this sound. Check your connection or try another track or station."
+  "musicPreviewFailed": "Could not play this sound. Check your connection or try another track or station.",
+  "skyMoonPhase": "Moon phase",
+  "skyMoonDetailsDisplay": "Add a Moon phase page",
+  "skyMoonDetailsHint": "Swipe to it, or tap the Moon card any time",
+  "moonRises": "Rises",
+  "moonSets": "Sets",
+  "moonLunarDay": "Day {day} of 29.5 in this lunar month",
+  "moonDetailsOpen": "Open Moon phase",
+  "@moonLunarDay": {
+    "placeholders": {
+      "day": {
+        "type": "int"
+      }
+    }
+  }
 }

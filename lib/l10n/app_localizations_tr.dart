@@ -2651,4 +2651,27 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Bu ses çalınamadı. Bağlantınızı kontrol edin veya başka bir parça ya da istasyon deneyin.';
+
+  @override
+  String get skyMoonPhase => 'Ay evresi';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Ay evresi sayfası ekle';
+
+  @override
+  String get skyMoonDetailsHint => 'Kaydırarak geçin veya istediğiniz zaman Ay kartına dokunun';
+
+  @override
+  String get moonRises => 'Doğuş';
+
+  @override
+  String get moonSets => 'Batış';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Bu ay döngüsünün 29,5 gününden $day. gün';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Ay evresini aç';
 }

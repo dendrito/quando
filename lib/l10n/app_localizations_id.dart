@@ -2647,4 +2647,27 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Suara ini tidak dapat diputar. Periksa koneksi atau coba lagu atau stasiun lain.';
+
+  @override
+  String get skyMoonPhase => 'Fase Bulan';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Tambahkan halaman fase Bulan';
+
+  @override
+  String get skyMoonDetailsHint => 'Geser ke sana, atau ketuk kartu Bulan kapan saja';
+
+  @override
+  String get moonRises => 'Terbit';
+
+  @override
+  String get moonSets => 'Terbenam';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Hari $day dari 29,5 di bulan lunar ini';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Buka fase Bulan';
 }

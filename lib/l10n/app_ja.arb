@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "このプラットフォームでは{service}のアカウント接続は利用できません。アラーム停止後にリンクを開けます。",
   "soundCloudWidgetNote": "公開されている曲やプレイリストのリンクを追加します。公式プレーヤーはアラームの鳴動時間に従います。アカウントへのログインは利用できません。",
   "youtubePlayerHint": "YouTubeは表示中のプレーヤーで動画を再生します。非表示または再生できない場合はローカルのアラームが続きます。",
-  "musicPreviewFailed": "この音を再生できませんでした。接続を確認するか、別の曲や放送局をお試しください。"
+  "musicPreviewFailed": "この音を再生できませんでした。接続を確認するか、別の曲や放送局をお試しください。",
+  "skyMoonPhase": "月の満ち欠け",
+  "skyMoonDetailsDisplay": "月相ページを追加",
+  "skyMoonDetailsHint": "スワイプするか、いつでも月のカードをタップ",
+  "moonRises": "月の出",
+  "moonSets": "月の入り",
+  "moonLunarDay": "この朔望月の29.5日中{day}日目",
+  "moonDetailsOpen": "月相を開く"
 }

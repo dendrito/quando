@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "이 플랫폼에서는 {service} 계정 연결을 사용할 수 없습니다. 알람을 중지한 후 링크를 열 수 있습니다.",
   "soundCloudWidgetNote": "공개 트랙 또는 재생목록 링크를 추가하세요. 공식 플레이어는 알람 시간을 따릅니다. 계정 로그인은 사용할 수 없습니다.",
   "youtubePlayerHint": "YouTube는 표시되는 플레이어에서 동영상을 재생합니다. 숨겨지거나 재생할 수 없으면 로컬 알람이 계속됩니다.",
-  "musicPreviewFailed": "이 소리를 재생할 수 없습니다. 연결을 확인하거나 다른 트랙 또는 방송국을 사용해 보세요."
+  "musicPreviewFailed": "이 소리를 재생할 수 없습니다. 연결을 확인하거나 다른 트랙 또는 방송국을 사용해 보세요.",
+  "skyMoonPhase": "달의 위상",
+  "skyMoonDetailsDisplay": "달 위상 페이지 추가",
+  "skyMoonDetailsHint": "밀어서 이동하거나 언제든 달 카드를 탭하세요",
+  "moonRises": "월출",
+  "moonSets": "월몰",
+  "moonLunarDay": "이번 음력 달 29.5일 중 {day}일째",
+  "moonDetailsOpen": "달 위상 열기"
 }

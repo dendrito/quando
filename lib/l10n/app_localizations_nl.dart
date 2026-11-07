@@ -2662,4 +2662,27 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Dit geluid kon niet worden afgespeeld. Controleer je verbinding of probeer een ander nummer of station.';
+
+  @override
+  String get skyMoonPhase => 'Maanfase';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Pagina met maanfase toevoegen';
+
+  @override
+  String get skyMoonDetailsHint => 'Veeg ernaartoe of tik op elk moment op de maankaart';
+
+  @override
+  String get moonRises => 'Opkomst';
+
+  @override
+  String get moonSets => 'Ondergang';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Dag $day van 29,5 in deze maanmaand';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Maanfase openen';
 }

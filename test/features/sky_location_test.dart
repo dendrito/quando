@@ -17,6 +17,7 @@ import 'package:quando/features/home/domain/moon_backdrop.dart';
 import 'package:quando/features/home/domain/sky.dart';
 import 'package:quando/features/home/domain/zone_places.dart';
 import 'package:quando/features/home/ui/day_arc.dart';
+import 'package:quando/features/home/ui/moon_details.dart';
 import 'package:quando/features/home/ui/sky_panel.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
 import 'package:quando/features/shabbat/ui/city_picker.dart';
@@ -259,6 +260,81 @@ void main() {
     expect(c.read(homeZoneProvider), 'America/Detroit');
     expect(syncedKeys, isNot(contains('sky.place.local')));
   });
+
+  for (final width in [390.0, 1100.0]) {
+    testWidgets('night Moon card is dark and opens the Moon phase view at $width', (tester) async {
+      tester.view.physicalSize = Size(width, 1400);
+      tester.view.devicePixelRatio = 1;
+      addTearDown(tester.view.reset);
+      SharedPreferences.setMockInitialValues({
+        'place.name': 'São Paulo',
+        'home.display': '{"moon":true,"moonDetails":true,"skyUseShabbat":true}',
+      });
+      final prefs = await SharedPreferences.getInstance();
+      final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
+      addTearDown(c.dispose);
+      final night = DateTime.utc(2026, 11, 7, 22, 40); // 19:40 in São Paulo.
+      final key = GlobalKey();
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: c,
+          child: MaterialApp(
+            theme: buildTheme(),
+            home: Scaffold(
+              body: SingleChildScrollView(
+                child: RepaintBoundary(
+                  key: key,
+                  child: Consumer(
+                    builder: (context, ref, _) {
+                      final sky = SkyDay.of(ref.watch(skyPlaceProvider)!, night);
+                      return ColoredBox(
+                        color: sky.color,
+                        child: Padding(
+                          padding: const EdgeInsets.all(20),
+                          child: SkyPanel(sky: sky),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(l10n.skyMoon));
+      await tester.pumpAndSettle();
+      final card = tester.widget<Container>(find.byKey(const ValueKey('moon-daylight-background')));
+      final gradient = (card.decoration! as BoxDecoration).gradient! as LinearGradient;
+      expect(gradient.colors.first, const Color(0xFF141033));
+      expect(gradient.colors, isNot(contains(SkyColors.day)));
+      await tester.runAsync(() async {
+        final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
+        final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+        await File('${Directory.systemTemp.path}/quando-moon-night-$width.png')
+            .writeAsBytes(bytes!.buffer.asUint8List());
+      });
+      await tester.tap(find.byType(MoonArc));
+      await tester.pumpAndSettle();
+      expect(find.byType(MoonDetails), findsOneWidget);
+      expect(find.text(l10n.moonWaningCrescent), findsOneWidget);
+      await tester.tapAt(const Offset(5, 5));
+      await tester.pumpAndSettle();
+      expect(find.byType(MoonDetails), findsNothing);
+      await tester.tap(find.text(l10n.skyMoonPhase));
+      await tester.pumpAndSettle();
+      expect(find.byType(MoonDetails), findsOneWidget);
+      expect(find.textContaining(l10n.moonLunarDay(28).split(' ').first), findsOneWidget);
+      expect(tester.takeException(), isNull);
+      await tester.runAsync(() async {
+        final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
+        final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+        await File('${Directory.systemTemp.path}/quando-moon-phase-$width.png')
+            .writeAsBytes(bytes!.buffer.asUint8List());
+      });
+    });
+  }
 
   for (final width in [390.0, 1100.0]) {
     testWidgets('Sun/Moon tabs and daylight panel fit at $width and keep source toggle working', (

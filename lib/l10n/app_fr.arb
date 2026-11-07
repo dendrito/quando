@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "La connexion au compte {service} est indisponible sur cette plateforme. Un lien peut s’ouvrir après l’arrêt de l’alarme.",
   "soundCloudWidgetNote": "Ajoutez un lien public de morceau ou playlist. Le lecteur officiel suit la durée de l’alarme ; la connexion au compte est indisponible.",
   "youtubePlayerHint": "YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue.",
-  "musicPreviewFailed": "Impossible de lire ce son. Vérifiez la connexion ou essayez un autre morceau ou une autre station."
+  "musicPreviewFailed": "Impossible de lire ce son. Vérifiez la connexion ou essayez un autre morceau ou une autre station.",
+  "skyMoonPhase": "Phase de la Lune",
+  "skyMoonDetailsDisplay": "Ajouter une page de phase lunaire",
+  "skyMoonDetailsHint": "Faites glisser jusqu’à elle ou touchez la carte de la Lune à tout moment",
+  "moonRises": "Lever",
+  "moonSets": "Coucher",
+  "moonLunarDay": "Jour {day} sur 29,5 de ce mois lunaire",
+  "moonDetailsOpen": "Ouvrir la phase lunaire"
 }

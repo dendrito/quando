@@ -2615,4 +2615,27 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => '이 소리를 재생할 수 없습니다. 연결을 확인하거나 다른 트랙 또는 방송국을 사용해 보세요.';
+
+  @override
+  String get skyMoonPhase => '달의 위상';
+
+  @override
+  String get skyMoonDetailsDisplay => '달 위상 페이지 추가';
+
+  @override
+  String get skyMoonDetailsHint => '밀어서 이동하거나 언제든 달 카드를 탭하세요';
+
+  @override
+  String get moonRises => '월출';
+
+  @override
+  String get moonSets => '월몰';
+
+  @override
+  String moonLunarDay(int day) {
+    return '이번 음력 달 29.5일 중 $day일째';
+  }
+
+  @override
+  String get moonDetailsOpen => '달 위상 열기';
 }

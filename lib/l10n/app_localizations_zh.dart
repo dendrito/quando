@@ -2608,6 +2608,29 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => '无法播放此声音。请检查连接或尝试其他歌曲或电台。';
+
+  @override
+  String get skyMoonPhase => '月相';
+
+  @override
+  String get skyMoonDetailsDisplay => '添加月相页面';
+
+  @override
+  String get skyMoonDetailsHint => '滑动到该页面，或随时轻点月亮卡片';
+
+  @override
+  String get moonRises => '月出';
+
+  @override
+  String get moonSets => '月落';
+
+  @override
+  String moonLunarDay(int day) {
+    return '本朔望月 29.5 天中的第 $day 天';
+  }
+
+  @override
+  String get moonDetailsOpen => '打开月相';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5213,4 +5236,27 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get musicPreviewFailed => '無法播放此聲音。請檢查連線或嘗試其他歌曲或電台。';
+
+  @override
+  String get skyMoonPhase => '月相';
+
+  @override
+  String get skyMoonDetailsDisplay => '新增月相頁面';
+
+  @override
+  String get skyMoonDetailsHint => '滑動到該頁面，或隨時輕點月亮卡片';
+
+  @override
+  String get moonRises => '月出';
+
+  @override
+  String get moonSets => '月落';
+
+  @override
+  String moonLunarDay(int day) {
+    return '本朔望月 29.5 天中的第 $day 天';
+  }
+
+  @override
+  String get moonDetailsOpen => '開啟月相';
 }

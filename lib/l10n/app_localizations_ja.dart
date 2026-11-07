@@ -2613,4 +2613,27 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => 'この音を再生できませんでした。接続を確認するか、別の曲や放送局をお試しください。';
+
+  @override
+  String get skyMoonPhase => '月の満ち欠け';
+
+  @override
+  String get skyMoonDetailsDisplay => '月相ページを追加';
+
+  @override
+  String get skyMoonDetailsHint => 'スワイプするか、いつでも月のカードをタップ';
+
+  @override
+  String get moonRises => '月の出';
+
+  @override
+  String get moonSets => '月の入り';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'この朔望月の29.5日中$day日目';
+  }
+
+  @override
+  String get moonDetailsOpen => '月相を開く';
 }

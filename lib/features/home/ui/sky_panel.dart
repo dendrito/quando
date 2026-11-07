@@ -15,6 +15,7 @@ import '../domain/moon_backdrop.dart';
 import '../domain/sky.dart';
 import 'day_arc.dart';
 import 'home_display_controls.dart';
+import 'moon_details.dart';
 import 'weather_panel.dart';
 
 String moonPhaseLabel(int phase) => switch (phase) {
@@ -134,109 +135,149 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
         ...nightDetails,
       ],
     );
+    // The card follows the sky right now: a starry indigo night, or the
+    // Sun's own color by day. The Moon's path dots still show when it is up
+    // in daylight (amber) or at night (silver).
+    final skyNow = place == null ? sky : SkyDay.of(place, sky.now);
+    final nightCard = !skyNow.isDay;
+    final details = illumination != null && phases != null
+        ? MoonDetails(
+            illumination: illumination,
+            phaseName: moonPhaseLabel(illumination.phaseIndex),
+            rises: track == null ? '—' : trackTime(track.rise, l10n.noRiseToday),
+            sets: track == null ? '—' : trackTime(track.set, l10n.noSetToday),
+            newMoon: phaseTime(phases.newMoon),
+            fullMoon: phaseTime(phases.fullMoon),
+          )
+        : null;
     final moonContent = Container(
       key: const ValueKey('moon-daylight-background'),
-      // A calm card that matches the night screen; daylight shows only in
-      // the colors of the Moon's dotted path.
+      clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        color: const Color(0xFF2D1D44),
-        border: Border.all(color: const Color(0xFF3F2C5A)),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: nightCard
+              ? const [Color(0xFF141033), Color(0xFF1E1846), Color(0xFF2B1F4E)]
+              : [skyNow.color, Color.lerp(skyNow.color, QuandoColors.ground, .35)!],
+        ),
       ),
-      padding: const EdgeInsets.all(18),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Text(l10n.skyMoon, style: text.titleMedium),
-          if (track != null && illumination != null) ...[
-            Text(track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon, style: text.bodySmall),
-            MoonArc(
-              track: track,
-              illumination: illumination,
-              daylight: place == null ? null : MoonBackdrop.daylightForTrack(place, track),
-            ),
-            Row(
-              textDirection: TextDirection.ltr,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  child: Text(
-                    '${l10n.moonriseLabel} · ${trackTime(track.rise, l10n.noRiseToday)}',
-                    style: text.bodySmall,
-                  ),
-                ),
-                const SizedBox(width: 12),
-                Expanded(
-                  child: Text(
-                    '${l10n.moonsetLabel} · ${trackTime(track.set, l10n.noSetToday)}',
-                    style: text.bodySmall,
-                    textAlign: TextAlign.end,
-                  ),
-                ),
-              ],
-            ),
-          ] else
-            Text(l10n.skyCityExplain, style: text.bodySmall),
-          if (illumination != null && phases != null) ...[
-            const SizedBox(height: 12),
-            LayoutBuilder(
-              builder: (context, constraints) {
-                final phase = Row(
-                  children: [
-                    MoonDisc(illumination: illumination),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Text(
-                        '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
-                        style: text.bodyMedium,
-                      ),
+      child: Material(
+        type: MaterialType.transparency,
+        child: InkWell(
+          onTap: details == null ? null : () => showMoonDetails(context, details),
+          child: CustomPaint(
+            painter: nightCard ? const _StarsPainter() : null,
+            child: Padding(
+              padding: const EdgeInsets.all(18),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text(l10n.skyMoon, style: text.titleMedium),
+                  if (track != null && illumination != null) ...[
+                    Text(track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon, style: text.bodySmall),
+                    MoonArc(
+                      track: track,
+                      illumination: illumination,
+                      daylight: place == null ? null : MoonBackdrop.daylightForTrack(place, track),
+                    ),
+                    Row(
+                      textDirection: TextDirection.ltr,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Expanded(
+                          child: Text(
+                            '${l10n.moonriseLabel} · ${trackTime(track.rise, l10n.noRiseToday)}',
+                            style: text.bodySmall,
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Expanded(
+                          child: Text(
+                            '${l10n.moonsetLabel} · ${trackTime(track.set, l10n.noSetToday)}',
+                            style: text.bodySmall,
+                            textAlign: TextAlign.end,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ] else
+                    Text(l10n.skyCityExplain, style: text.bodySmall),
+                  if (illumination != null && phases != null) ...[
+                    const SizedBox(height: 12),
+                    LayoutBuilder(
+                      builder: (context, constraints) {
+                        final phase = Row(
+                          children: [
+                            MoonDisc(illumination: illumination),
+                            const SizedBox(width: 10),
+                            Expanded(
+                              child: Text(
+                                '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
+                                style: text.bodyMedium,
+                              ),
+                            ),
+                          ],
+                        );
+                        final dates = Column(
+                          key: const ValueKey('moon-upcoming-dates'),
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text('${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}', style: text.bodySmall),
+                            const SizedBox(height: 4),
+                            Text(
+                              '${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}',
+                              style: text.bodySmall,
+                            ),
+                          ],
+                        );
+                        if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
+                          return Row(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            textDirection: TextDirection.ltr,
+                            children: [
+                              Expanded(child: phase),
+                              const SizedBox(width: 24),
+                              Flexible(
+                                child: Align(alignment: Alignment.topRight, heightFactor: 1, child: dates),
+                              ),
+                            ],
+                          );
+                        }
+                        return Column(
+                          mainAxisSize: MainAxisSize.min,
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [phase, const SizedBox(height: 12), dates],
+                        );
+                      },
                     ),
                   ],
-                );
-                final dates = Column(
-                  key: const ValueKey('moon-upcoming-dates'),
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text('${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}', style: text.bodySmall),
-                    const SizedBox(height: 4),
-                    Text('${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
-                  ],
-                );
-                if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
-                  return Row(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    textDirection: TextDirection.ltr,
-                    children: [
-                      Expanded(child: phase),
-                      const SizedBox(width: 24),
-                      Flexible(
-                        child: Align(alignment: Alignment.topRight, heightFactor: 1, child: dates),
-                      ),
-                    ],
-                  );
-                }
-                return Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [phase, const SizedBox(height: 12), dates],
-                );
-              },
+                ],
+              ),
             ),
-          ],
-        ],
+          ),
+        ),
       ),
     );
+
     final pages = <({String label, Widget child})>[
       (label: l10n.skySun, child: sunContent),
       if (options.moon) (label: l10n.skyMoon, child: moonContent),
+      if (options.moon && options.moonDetails && details != null) (label: l10n.skyMoonPhase, child: details),
       if (options.weather && place != null)
         (
           label: l10n.weatherLabel,
-          child: WeatherPanel(now: sky.now, active: _page == (options.moon ? 2 : 1), place: place),
+          child: WeatherPanel(
+            now: sky.now,
+            active: _page == 1 + (options.moon ? 1 : 0) + (options.moon && options.moonDetails ? 1 : 0),
+            place: place,
+          ),
         ),
     ];
+    final onDetailsPage = options.moon && options.moonDetails && details != null && _page == 2;
     if (_page >= pages.length) {
       _page = 0;
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -331,7 +372,10 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                   : const Duration(milliseconds: 250),
               alignment: Alignment.topCenter,
               child: SizedBox(
-                height: _page == 1 && options.moon
+                height: onDetailsPage
+                    ? (constraints.maxWidth >= 560 ? 260 : 460) *
+                          MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                    : _page == 1 && options.moon
                     ? (constraints.maxWidth - 36 >= 700 * MediaQuery.textScalerOf(context).scale(1)
                               ? 300
                               : 390) *
@@ -349,4 +393,31 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
       ],
     );
   }
+}
+
+/// A few fixed stars for the night Moon card.
+class _StarsPainter extends CustomPainter {
+  const _StarsPainter();
+  static const _stars = [
+    (.14, .10, 1.2, .7),
+    (.31, .20, .9, .5),
+    (.49, .07, 1.4, .8),
+    (.63, .24, 1.0, .5),
+    (.77, .12, 1.2, .6),
+    (.91, .22, .9, .5),
+    (.42, .33, .8, .4),
+  ];
+  @override
+  void paint(Canvas canvas, Size size) {
+    for (final (x, y, r, a) in _stars) {
+      canvas.drawCircle(
+        Offset(x * size.width, y * size.height),
+        r,
+        Paint()..color = QuandoColors.text.withValues(alpha: a),
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(_StarsPainter old) => false;
 }

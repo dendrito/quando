@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "Die Kontoanmeldung für {service} ist auf dieser Plattform nicht verfügbar. Ein Link kann nach dem Stoppen des Weckers geöffnet werden.",
   "soundCloudWidgetNote": "Füge einen öffentlichen Titel- oder Playlist-Link hinzu. Der offizielle Player folgt der Klingeldauer; eine Kontoanmeldung ist nicht verfügbar.",
   "youtubePlayerHint": "YouTube spielt Videos in einem sichtbaren Player ab. Wird er verborgen oder kann er nicht abspielen, läuft der lokale Weckton weiter.",
-  "musicPreviewFailed": "Dieser Ton konnte nicht abgespielt werden. Prüfe die Verbindung oder versuche einen anderen Titel oder Sender."
+  "musicPreviewFailed": "Dieser Ton konnte nicht abgespielt werden. Prüfe die Verbindung oder versuche einen anderen Titel oder Sender.",
+  "skyMoonPhase": "Mondphase",
+  "skyMoonDetailsDisplay": "Seite zur Mondphase hinzufügen",
+  "skyMoonDetailsHint": "Dorthin wischen oder jederzeit auf die Mondkarte tippen",
+  "moonRises": "Aufgang",
+  "moonSets": "Untergang",
+  "moonLunarDay": "Tag {day} von 29,5 in diesem Mondmonat",
+  "moonDetailsOpen": "Mondphase öffnen"
 }

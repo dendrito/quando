@@ -2649,4 +2649,27 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get musicPreviewFailed => 'यह ध्वनि नहीं चल सकी। कनेक्शन जाँचें या दूसरा ट्रैक या स्टेशन आज़माएँ।';
+
+  @override
+  String get skyMoonPhase => 'चंद्र कला';
+
+  @override
+  String get skyMoonDetailsDisplay => 'चंद्र कला पेज जोड़ें';
+
+  @override
+  String get skyMoonDetailsHint => 'उस तक स्वाइप करें या कभी भी चंद्रमा कार्ड पर टैप करें';
+
+  @override
+  String get moonRises => 'उदय';
+
+  @override
+  String get moonSets => 'अस्त';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'इस चंद्र माह के 29.5 में से दिन $day';
+  }
+
+  @override
+  String get moonDetailsOpen => 'चंद्र कला खोलें';
 }

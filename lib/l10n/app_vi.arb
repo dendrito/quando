@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "Không thể kết nối tài khoản {service} trên nền tảng này. Có thể mở liên kết sau khi dừng báo thức.",
   "soundCloudWidgetNote": "Thêm liên kết công khai của bài hát hoặc danh sách phát. Trình phát chính thức theo thời lượng báo thức; không hỗ trợ đăng nhập tài khoản.",
   "youtubePlayerHint": "YouTube phát video trong trình phát hiển thị. Nếu bị ẩn hoặc không thể phát, báo thức cục bộ tiếp tục.",
-  "musicPreviewFailed": "Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác."
+  "musicPreviewFailed": "Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác.",
+  "skyMoonPhase": "Pha Mặt Trăng",
+  "skyMoonDetailsDisplay": "Thêm trang pha Mặt Trăng",
+  "skyMoonDetailsHint": "Vuốt đến đó hoặc chạm vào thẻ Mặt Trăng bất cứ lúc nào",
+  "moonRises": "Mọc",
+  "moonSets": "Lặn",
+  "moonLunarDay": "Ngày {day} trên 29,5 của tháng âm lịch này",
+  "moonDetailsOpen": "Mở pha Mặt Trăng"
 }

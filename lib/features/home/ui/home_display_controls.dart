@@ -45,6 +45,13 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   value: s.moon,
                   onChanged: (v) => n.set(s.copyWith(moon: v)),
                 ),
+                if (s.moon)
+                  SwitchListTile(
+                    title: Text(l10n.skyMoonDetailsDisplay),
+                    subtitle: Text(l10n.skyMoonDetailsHint),
+                    value: s.moonDetails,
+                    onChanged: (v) => n.set(s.copyWith(moonDetails: v)),
+                  ),
                 SwitchListTile(
                   title: Text(l10n.weatherLabel),
                   subtitle: Text(l10n.weatherConsent),

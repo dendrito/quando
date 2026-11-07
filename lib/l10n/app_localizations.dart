@@ -4803,6 +4803,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Could not play this sound. Check your connection or try another track or station.'**
   String get musicPreviewFailed;
+
+  /// No description provided for @skyMoonPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase'**
+  String get skyMoonPhase;
+
+  /// No description provided for @skyMoonDetailsDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a Moon phase page'**
+  String get skyMoonDetailsDisplay;
+
+  /// No description provided for @skyMoonDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe to it, or tap the Moon card any time'**
+  String get skyMoonDetailsHint;
+
+  /// No description provided for @moonRises.
+  ///
+  /// In en, this message translates to:
+  /// **'Rises'**
+  String get moonRises;
+
+  /// No description provided for @moonSets.
+  ///
+  /// In en, this message translates to:
+  /// **'Sets'**
+  String get moonSets;
+
+  /// No description provided for @moonLunarDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} of 29.5 in this lunar month'**
+  String moonLunarDay(int day);
+
+  /// No description provided for @moonDetailsOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Moon phase'**
+  String get moonDetailsOpen;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

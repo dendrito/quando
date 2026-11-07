@@ -2643,4 +2643,27 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác.';
+
+  @override
+  String get skyMoonPhase => 'Pha Mặt Trăng';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Thêm trang pha Mặt Trăng';
+
+  @override
+  String get skyMoonDetailsHint => 'Vuốt đến đó hoặc chạm vào thẻ Mặt Trăng bất cứ lúc nào';
+
+  @override
+  String get moonRises => 'Mọc';
+
+  @override
+  String get moonSets => 'Lặn';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Ngày $day trên 29,5 của tháng âm lịch này';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Mở pha Mặt Trăng';
 }

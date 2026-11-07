@@ -2647,4 +2647,27 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Could not play this sound. Check your connection or try another track or station.';
+
+  @override
+  String get skyMoonPhase => 'Moon phase';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Add a Moon phase page';
+
+  @override
+  String get skyMoonDetailsHint => 'Swipe to it, or tap the Moon card any time';
+
+  @override
+  String get moonRises => 'Rises';
+
+  @override
+  String get moonSets => 'Sets';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Day $day of 29.5 in this lunar month';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Open Moon phase';
 }

@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "Bu platformda {service} hesabı bağlanamıyor. Alarmı durdurduktan sonra bir bağlantı açılabilir.",
   "soundCloudWidgetNote": "Herkese açık bir parça veya çalma listesi bağlantısı ekleyin. Resmî oynatıcı alarm süresini izler; hesap girişi kullanılamaz.",
   "youtubePlayerHint": "YouTube, videoyu görünür bir oynatıcıda oynatır. Gizlenirse veya oynatamazsa yerel alarm devam eder.",
-  "musicPreviewFailed": "Bu ses çalınamadı. Bağlantınızı kontrol edin veya başka bir parça ya da istasyon deneyin."
+  "musicPreviewFailed": "Bu ses çalınamadı. Bağlantınızı kontrol edin veya başka bir parça ya da istasyon deneyin.",
+  "skyMoonPhase": "Ay evresi",
+  "skyMoonDetailsDisplay": "Ay evresi sayfası ekle",
+  "skyMoonDetailsHint": "Kaydırarak geçin veya istediğiniz zaman Ay kartına dokunun",
+  "moonRises": "Doğuş",
+  "moonSets": "Batış",
+  "moonLunarDay": "Bu ay döngüsünün 29,5 gününden {day}. gün",
+  "moonDetailsOpen": "Ay evresini aç"
 }

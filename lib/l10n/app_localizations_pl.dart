@@ -2702,4 +2702,27 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Nie można odtworzyć dźwięku. Sprawdź połączenie lub spróbuj innego utworu albo stacji.';
+
+  @override
+  String get skyMoonPhase => 'Faza Księżyca';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Dodaj stronę fazy Księżyca';
+
+  @override
+  String get skyMoonDetailsHint => 'Przesuń do niej lub dotknij karty Księżyca w dowolnej chwili';
+
+  @override
+  String get moonRises => 'Wschód';
+
+  @override
+  String get moonSets => 'Zachód';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Dzień $day z 29,5 w tym miesiącu księżycowym';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Otwórz fazę Księżyca';
 }

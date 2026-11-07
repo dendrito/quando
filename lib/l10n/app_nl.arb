@@ -778,5 +778,12 @@
   "serviceConnectUnavailable": "Accountverbinding voor {service} is niet beschikbaar op dit platform. Een link kan openen nadat je de wekker stopt.",
   "soundCloudWidgetNote": "Voeg een openbare link naar een nummer of playlist toe. De officiële speler volgt de belduur; aanmelden is niet beschikbaar.",
   "youtubePlayerHint": "YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door.",
-  "musicPreviewFailed": "Dit geluid kon niet worden afgespeeld. Controleer je verbinding of probeer een ander nummer of station."
+  "musicPreviewFailed": "Dit geluid kon niet worden afgespeeld. Controleer je verbinding of probeer een ander nummer of station.",
+  "skyMoonPhase": "Maanfase",
+  "skyMoonDetailsDisplay": "Pagina met maanfase toevoegen",
+  "skyMoonDetailsHint": "Veeg ernaartoe of tik op elk moment op de maankaart",
+  "moonRises": "Opkomst",
+  "moonSets": "Ondergang",
+  "moonLunarDay": "Dag {day} van 29,5 in deze maanmaand",
+  "moonDetailsOpen": "Maanfase openen"
 }

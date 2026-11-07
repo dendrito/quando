@@ -2668,4 +2668,27 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get musicPreviewFailed =>
       'Impossible de lire ce son. Vérifiez la connexion ou essayez un autre morceau ou une autre station.';
+
+  @override
+  String get skyMoonPhase => 'Phase de la Lune';
+
+  @override
+  String get skyMoonDetailsDisplay => 'Ajouter une page de phase lunaire';
+
+  @override
+  String get skyMoonDetailsHint => 'Faites glisser jusqu’à elle ou touchez la carte de la Lune à tout moment';
+
+  @override
+  String get moonRises => 'Lever';
+
+  @override
+  String get moonSets => 'Coucher';
+
+  @override
+  String moonLunarDay(int day) {
+    return 'Jour $day sur 29,5 de ce mois lunaire';
+  }
+
+  @override
+  String get moonDetailsOpen => 'Ouvrir la phase lunaire';
 }
