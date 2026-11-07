@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Geen afspeelbare nummers hier.",
   "hebrewNamesHeading": "Spelling van parasja en maanden",
   "hebrewNamesIsraeli": "Israëlisch",
-  "hebrewNamesAshkenazi": "Asjkenazisch"
+  "hebrewNamesAshkenazi": "Asjkenazisch",
+  "pickFromService": "Kiezen uit mijn {service}"
 }

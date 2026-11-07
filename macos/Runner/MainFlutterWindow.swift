@@ -125,9 +125,16 @@ private final class DesktopMusicBridge {
           response = nil
         case "library":
           guard args["service"] as? String == "apple" else { throw failure("Unsupported library") }
-          let playlists = try readLibrary(kind: "playlist")
-          let songs = try readLibrary(kind: "track")
+          let playlists = try readPlaylists()
+          let songs = try readTracks(in: "library playlist 1", limit: 1000)
           response = ["playlists": playlists, "songs": songs]
+        case "playlistTracks":
+          guard let id = args["id"] as? String, matches(id, "^[A-Fa-f0-9]{16}$") else { throw failure("Unsupported playlist") }
+          response = try readTracks(in: "(first user playlist whose persistent ID is \(quoted(id)))", limit: 500)
+        case "search":
+          let query = (args["query"] as? String ?? "").trimmingCharacters(in: .whitespacesAndNewlines)
+          guard !query.isEmpty, query.count <= 100 else { throw failure("Type something to search") }
+          response = try searchTracks(query)
         case "play":
           let service = args["service"] as? String ?? ""
           let link = args["link"] as? String ?? ""
@@ -177,21 +184,64 @@ private final class DesktopMusicBridge {
     }
   }
 
-  private func readLibrary(kind: String) throws -> [[String: String]] {
-    let collection = kind == "playlist" ? "user playlists" : "tracks of library playlist 1"
-    let source = kind == "playlist" ? "user playlists 1 thru itemCount" : "tracks 1 thru itemCount of library playlist 1"
-    let limit = kind == "playlist" ? 1000 : 200
+  private func readPlaylists() throws -> [[String: String]] {
     let reply = try run("apple", """
-      set itemCount to count of \(collection)
+      set itemCount to count of user playlists
+      if itemCount is 0 then return {}
+      if itemCount > 1000 then set itemCount to 1000
+      set counts to {}
+      repeat with p in (user playlists 1 thru itemCount)
+        set end of counts to (count of tracks of p) as text
+      end repeat
+      return {persistent ID of user playlists 1 thru itemCount, name of user playlists 1 thru itemCount, counts}
+      """, timeout: 20)
+    return columns(reply, keys: ["id", "name", "count"])
+  }
+
+  /// Songs of a library or playlist [container], with their artists, so a
+  /// playlist can be opened to pick one song.
+  private func readTracks(in container: String, limit: Int) throws -> [[String: String]] {
+    let reply = try run("apple", """
+      set c to \(container)
+      set itemCount to count of tracks of c
       if itemCount is 0 then return {}
       if itemCount > \(limit) then set itemCount to \(limit)
-      return {persistent ID of \(source), name of \(source)}
-      """)
-    guard let ids = reply.atIndex(1), let names = reply.atIndex(2), ids.numberOfItems > 0 else { return [] }
+      return {persistent ID of tracks 1 thru itemCount of c, name of tracks 1 thru itemCount of c, artist of tracks 1 thru itemCount of c}
+      """, timeout: 20)
+    return columns(reply, keys: ["id", "name", "artist"])
+  }
+
+  /// Music's own library search: songs whose name, artist or album match.
+  private func searchTracks(_ query: String) throws -> [[String: String]] {
+    let reply = try run("apple", """
+      set found to search library playlist 1 for \(quoted(query))
+      set n to count of found
+      if n > 50 then set n to 50
+      set ids to {}
+      set names to {}
+      set artists to {}
+      repeat with i from 1 to n
+        set t to item i of found
+        set end of ids to persistent ID of t
+        set end of names to name of t
+        set end of artists to artist of t
+      end repeat
+      return {ids, names, artists}
+      """, timeout: 15)
+    return columns(reply, keys: ["id", "name", "artist"])
+  }
+
+  /// Turns {ids, names, …} into rows, keeping only valid persistent IDs.
+  private func columns(_ reply: NSAppleEventDescriptor, keys: [String]) -> [[String: String]] {
+    guard let ids = reply.atIndex(1), ids.numberOfItems > 0 else { return [] }
+    let lists = (1...keys.count).map { reply.atIndex($0) }
     return (1...ids.numberOfItems).compactMap { index in
-      guard let id = ids.atIndex(index)?.stringValue,
-            let name = names.atIndex(index)?.stringValue, matches(id, "^[A-Fa-f0-9]{16}$") else { return nil }
-      return ["id": id, "name": name]
+      guard let id = ids.atIndex(index)?.stringValue, matches(id, "^[A-Fa-f0-9]{16}$") else { return nil }
+      var row = ["id": id]
+      for (k, key) in keys.enumerated().dropFirst() {
+        row[key] = lists[k]?.atIndex(index)?.stringValue ?? ""
+      }
+      return row["name"]?.isEmpty == false ? row : nil
     }
   }
 

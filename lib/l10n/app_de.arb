@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Hier gibt es keine abspielbaren Songs.",
   "hebrewNamesHeading": "Schreibweise von Parascha und Monaten",
   "hebrewNamesIsraeli": "Israelisch",
-  "hebrewNamesAshkenazi": "Aschkenasisch"
+  "hebrewNamesAshkenazi": "Aschkenasisch",
+  "pickFromService": "Aus meinem {service} wählen"
 }

@@ -93,6 +93,8 @@
 	<string>Record your own voice or sound to wake up to.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Scan the code you saved, so you have to get up to stop the alarm.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Quando plays songs and playlists from your Apple Music library as your alarm.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Set alarms before and after the events in your calendars.</string>
 	<key>NSCalendarsFullAccessUsageDescription</key>

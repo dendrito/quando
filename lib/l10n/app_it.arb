@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Nessun brano riproducibile qui.",
   "hebrewNamesHeading": "Grafia di parashà e mesi",
   "hebrewNamesIsraeli": "Israeliana",
-  "hebrewNamesAshkenazi": "Ashkenazita"
+  "hebrewNamesAshkenazi": "Ashkenazita",
+  "pickFromService": "Scegli dal mio {service}"
 }

@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Burada çalınabilecek şarkı yok.",
   "hebrewNamesHeading": "Paraşa ve ay adlarının yazılışı",
   "hebrewNamesIsraeli": "İsrail",
-  "hebrewNamesAshkenazi": "Aşkenaz"
+  "hebrewNamesAshkenazi": "Aşkenaz",
+  "pickFromService": "{service}’ımdan seç"
 }

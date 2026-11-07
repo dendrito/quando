@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "אין כאן שירים שאפשר לנגן.",
   "hebrewNamesHeading": "כתיב שמות הפרשה והחודשים",
   "hebrewNamesIsraeli": "ישראלי",
-  "hebrewNamesAshkenazi": "אשכנזי"
+  "hebrewNamesAshkenazi": "אשכנזי",
+  "pickFromService": "בחירה מ־{service} שלי"
 }

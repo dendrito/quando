@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "No hay canciones que se puedan reproducir.",
   "hebrewNamesHeading": "Cómo escribir la parashá y los meses",
   "hebrewNamesIsraeli": "Israelí",
-  "hebrewNamesAshkenazi": "Asquenazí"
+  "hebrewNamesAshkenazi": "Asquenazí",
+  "pickFromService": "Elegir de mi {service}"
 }

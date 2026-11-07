@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Nenhuma música que dê para tocar aqui.",
   "hebrewNamesHeading": "Grafia da parashá e dos meses",
   "hebrewNamesIsraeli": "Israelense",
-  "hebrewNamesAshkenazi": "Asquenazita"
+  "hebrewNamesAshkenazi": "Asquenazita",
+  "pickFromService": "Escolher do meu {service}"
 }

@@ -7,6 +7,8 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/app/theme.dart';
+import 'package:quando/features/sounds/data/desktop_music.dart';
+import 'package:quando/features/sounds/data/soundcloud.dart';
 import 'package:quando/features/sounds/data/spotify_library.dart';
 import 'package:quando/features/sounds/data/youtube_library.dart';
 import 'package:quando/features/sounds/ui/music_picker_screen.dart';
@@ -203,6 +205,76 @@ void main() {
     expect(songs.single.detail, 'Jorge Ben Jor');
     expect(songs.single.url, 'https://music.youtube.com/watch?v=abc');
     expect((await lib.playlistSongs('PLx', music: false)).single.url, 'https://www.youtube.com/watch?v=abc');
+  });
+
+  test('SoundCloud lists playlists and likes, pages on, and skips blocked tracks', () async {
+    final asked = <Uri>[];
+    final lib = SoundCloudLibrary(
+      'key',
+      client: MockClient((req) async {
+        asked.add(req.url);
+        expect(req.headers['Authorization'], 'OAuth key');
+        if (req.url.path == '/me/likes/tracks' && req.url.queryParameters['cursor'] == null) {
+          return _json({
+            'collection': [
+              {
+                'title': 'Sunrise mix',
+                'permalink_url': 'https://soundcloud.com/dj/sunrise',
+                'user': {'username': 'DJ'},
+                'access': 'playable',
+              },
+              {'title': 'Go+ only', 'permalink_url': 'https://soundcloud.com/x/y', 'access': 'blocked'},
+            ],
+            'next_href': 'https://api.soundcloud.com/me/likes/tracks?cursor=2',
+          });
+        }
+        if (req.url.path == '/me/likes/tracks') {
+          return _json({
+            'collection': [
+              {'title': 'Second page', 'permalink_url': 'https://soundcloud.com/dj/two'},
+            ],
+          });
+        }
+        return _json({
+          'collection': [
+            {
+              'urn': 'soundcloud:playlists:42',
+              'title': 'Mornings',
+              'track_count': 7,
+              'permalink_url': 'https://soundcloud.com/me/sets/mornings',
+            },
+          ],
+        });
+      }),
+    );
+    final likes = await lib.likes();
+    expect(likes.map((l) => l.name), ['Sunrise mix', 'Second page']);
+    expect(likes.first.detail, 'DJ');
+    expect(asked.first.queryParameters['linked_partitioning'], 'true');
+    final lists = await lib.playlists();
+    expect(lists.single.playlistId, 'soundcloud:playlists:42');
+    expect(lists.single.url, 'https://soundcloud.com/me/sets/mornings');
+  });
+
+  test('SoundCloud stays hidden without its app keys', () {
+    expect(SoundCloudAccount.available, isFalse);
+    expect(SoundCloudAccount.redirectUrl, 'quando-soundcloud://auth');
+  });
+
+  test('Apple Music rows become playlists that open and songs that play', () {
+    final lists = DesktopMusic.applePlaylists([
+      {'id': '0123456789ABCDEF', 'name': 'Wake up', 'count': '12'},
+      {'id': 'bad id!', 'name': 'Broken'},
+    ]);
+    expect(lists.single.playlistId, '0123456789ABCDEF');
+    expect(lists.single.url, 'quando-music:playlist:0123456789ABCDEF');
+    final songs = DesktopMusic.appleSongs([
+      {'id': 'i.AbC123', 'name': 'Here Comes the Sun', 'artist': 'The Beatles'},
+    ]);
+    expect(songs.single.detail, 'The Beatles');
+    expect(DesktopMusic.serviceOf(songs.single.url), 'apple');
+    // Off on iPhone until MusicKit is switched on for the app.
+    expect(DesktopMusic.appleMusicKit, isFalse);
   });
 
   testWidgets('a playlist opens to wake up to one of its songs', (tester) async {

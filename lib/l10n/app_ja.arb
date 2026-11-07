@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "再生できる曲がありません。",
   "hebrewNamesHeading": "パラシャと月名の表記",
   "hebrewNamesIsraeli": "イスラエル式",
-  "hebrewNamesAshkenazi": "アシュケナージ式"
+  "hebrewNamesAshkenazi": "アシュケナージ式",
+  "pickFromService": "{service}から選ぶ"
 }

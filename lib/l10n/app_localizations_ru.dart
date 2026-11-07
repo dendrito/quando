@@ -2741,4 +2741,9 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get hebrewNamesAshkenazi => 'Ашкеназское';
+
+  @override
+  String pickFromService(String service) {
+    return 'Выбрать из моего $service';
+  }
 }

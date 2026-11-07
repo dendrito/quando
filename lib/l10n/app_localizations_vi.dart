@@ -2687,4 +2687,9 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get hebrewNamesAshkenazi => 'Ashkenazi';
+
+  @override
+  String pickFromService(String service) {
+    return 'Chọn từ $service của tôi';
+  }
 }

@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
-import '../../../core/util/platform.dart';
 import '../../../l10n/l10n.dart';
 import '../../ringing/data/embedded_music.dart';
 import '../../ringing/data/music.dart';
@@ -42,7 +41,9 @@ class _MusicPreviewDialogState extends ConsumerState<MusicPreviewDialog> {
     try {
       final link = widget.sound.link!;
       final service = DesktopMusic.serviceOf(link);
-      if (isMacOS && service != null) await DesktopMusic.connect(service, ref.read(prefsProvider));
+      if (service != null && DesktopMusic.routes(link)) {
+        await DesktopMusic.connect(service, ref.read(prefsProvider));
+      }
       if (!mounted) return;
       final ok = await Music.start(link, alarmId: _id, playFor: _deadline.difference(DateTime.now()));
       if (!mounted) {

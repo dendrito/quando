@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Brak utworów do odtworzenia.",
   "hebrewNamesHeading": "Pisownia paraszy i miesięcy",
   "hebrewNamesIsraeli": "Izraelska",
-  "hebrewNamesAshkenazi": "Aszkenazyjska"
+  "hebrewNamesAshkenazi": "Aszkenazyjska",
+  "pickFromService": "Wybierz z mojego {service}"
 }

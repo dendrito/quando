@@ -12,6 +12,7 @@ import '../data/sound_files.dart';
 import '../data/spotify_library.dart';
 import '../data/spotify_account.dart';
 import '../data/youtube_library.dart';
+import '../data/soundcloud.dart';
 import '../data/desktop_music.dart';
 import '../../ringing/data/embedded_music.dart';
 import '../../../core/util/platform.dart';
@@ -128,7 +129,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     bool canPlay() =>
         isAndroid ||
         (EmbeddedMusic.available && EmbeddedMusic.parse(url.text.trim()) != null) ||
-        (isMacOS && DesktopMusic.serviceOf(url.text.trim()) != null);
+        DesktopMusic.routes(url.text.trim()) && DesktopMusic.serviceOf(url.text.trim()) != null;
     final ok = await showDialog<bool>(
       context: context,
       builder: (context) => StatefulBuilder(
@@ -382,6 +383,56 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     );
   }
 
+  /// SoundCloud: sign in on SoundCloud's page, then pick from your
+  /// playlists and likes, or search.
+  Widget _soundCloudTile(TextTheme text) {
+    final prefs = ref.read(prefsProvider);
+    final on = SoundCloudAccount.connected;
+    Future<SoundCloudLibrary> library() async => SoundCloudLibrary((await SoundCloudAccount.token(prefs))!);
+    return ListTile(
+      contentPadding: EdgeInsets.zero,
+      leading: ServiceLogo(MusicService.soundCloud, connected: on),
+      title: Text(on ? l10n.pickFromService('SoundCloud') : 'SoundCloud'),
+      subtitle: Text(on ? l10n.youTubeOn : l10n.spotifyLibrarySignIn, style: text.bodySmall),
+      trailing: on ? const Icon(Icons.chevron_right) : null,
+      onLongPress: !on
+          ? null
+          : () async {
+              await SoundCloudAccount.signOut(prefs);
+              if (mounted) setState(() {});
+            },
+      onTap: () async {
+        final String? token;
+        try {
+          token = await SoundCloudAccount.token(prefs);
+        } catch (e) {
+          if (mounted) await _explain('SoundCloud', '$e');
+          return;
+        }
+        if (!mounted) return;
+        setState(() {});
+        if (token == null) return;
+        await Navigator.of(context).push(
+          MaterialPageRoute<void>(
+            builder: (_) => MusicPickerScreen(
+              title: 'SoundCloud',
+              load: () async {
+                final lib = await library();
+                final (lists, likes) = await (lib.playlists(), lib.likes()).wait;
+                return [
+                  MusicShelf(l10n.playlists, lists, empty: l10n.noPlaylists),
+                  MusicShelf(l10n.likedSongs, likes, empty: l10n.noLikedSongs),
+                ];
+              },
+              songsOf: (playlist) async => (await library()).playlistSongs(playlist.playlistId!),
+              search: (q) async => (await library()).search(q),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
   /// Spotify direct play: sign in once and Spotify plays the exact song.
   Widget _spotifyTile(TextTheme text) {
     if (isMacOS) return _desktopTile(text, 'spotify', 'Spotify');
@@ -441,7 +492,12 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           if (service == 'apple') {
             await Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) => MusicPickerScreen(title: 'Apple Music', load: DesktopMusic.appleLibrary),
+                builder: (_) => MusicPickerScreen(
+                  title: 'Apple Music',
+                  load: DesktopMusic.appleLibrary,
+                  songsOf: DesktopMusic.applePlaylistSongs,
+                  search: DesktopMusic.appleSearch,
+                ),
               ),
             );
           }
@@ -550,11 +606,13 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           _spotifyTile(text),
           _spotifyLibraryTile(text),
           _youTubeTile(text),
-          if (isMacOS) _desktopTile(text, 'apple', 'Apple Music'),
+          if (SoundCloudAccount.available) _soundCloudTile(text),
+          if (DesktopMusic.appleAvailable) _desktopTile(text, 'apple', 'Apple Music'),
           for (final (logo, app, note) in [
-            if (!isMacOS)
+            if (!DesktopMusic.appleAvailable)
               (MusicService.appleMusic, 'Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
-            (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
+            if (!SoundCloudAccount.available)
+              (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
           ])
             ListTile(
               contentPadding: EdgeInsets.zero,

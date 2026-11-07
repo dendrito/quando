@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "यहाँ चलाने लायक कोई गाना नहीं है।",
   "hebrewNamesHeading": "पराशा और महीनों के नामों की वर्तनी",
   "hebrewNamesIsraeli": "इज़राइली",
-  "hebrewNamesAshkenazi": "अश्केनाज़ी"
+  "hebrewNamesAshkenazi": "अश्केनाज़ी",
+  "pickFromService": "मेरे {service} से चुनें"
 }

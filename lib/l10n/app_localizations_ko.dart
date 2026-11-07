@@ -2660,4 +2660,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get hebrewNamesAshkenazi => '아슈케나즈식';
+
+  @override
+  String pickFromService(String service) {
+    return '내 $service에서 선택';
+  }
 }

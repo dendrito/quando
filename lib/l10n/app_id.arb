@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Tidak ada lagu yang bisa diputar di sini.",
   "hebrewNamesHeading": "Ejaan nama parasha dan bulan",
   "hebrewNamesIsraeli": "Israel",
-  "hebrewNamesAshkenazi": "Ashkenazi"
+  "hebrewNamesAshkenazi": "Ashkenazi",
+  "pickFromService": "Pilih dari {service}-ku"
 }

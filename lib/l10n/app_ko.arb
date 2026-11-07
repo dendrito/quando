@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "재생할 수 있는 곡이 없어요.",
   "hebrewNamesHeading": "파라샤와 달 이름 표기",
   "hebrewNamesIsraeli": "이스라엘식",
-  "hebrewNamesAshkenazi": "아슈케나즈식"
+  "hebrewNamesAshkenazi": "아슈케나즈식",
+  "pickFromService": "내 {service}에서 선택"
 }

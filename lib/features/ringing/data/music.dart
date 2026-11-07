@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter/services.dart';
 
-import '../../../core/util/platform.dart';
 import '../../sounds/data/desktop_music.dart';
 
 import 'spotify.dart';
@@ -92,10 +91,10 @@ class Music {
     _pauseTimer?.cancel();
     _alarmId = alarmId;
     _hasSession = true;
-    _desktopSession = isMacOS ? 'alarm.${alarmId ?? 'link'}.$generation' : null;
+    _desktopSession = DesktopMusic.routes(url) ? 'alarm.${alarmId ?? 'link'}.$generation' : null;
     if (hadSession) await _pauseNative(previousSession);
     if (generation != _generation) return false;
-    if (isMacOS) {
+    if (DesktopMusic.routes(url)) {
       final session = _desktopSession!;
       try {
         if (!await DesktopMusic.play(url, session)) return false;

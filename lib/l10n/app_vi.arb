@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Không có bài nào phát được ở đây.",
   "hebrewNamesHeading": "Cách viết tên parasha và tháng",
   "hebrewNamesIsraeli": "Israel",
-  "hebrewNamesAshkenazi": "Ashkenazi"
+  "hebrewNamesAshkenazi": "Ashkenazi",
+  "pickFromService": "Chọn từ {service} của tôi"
 }

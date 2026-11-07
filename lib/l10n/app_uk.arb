@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "Тут немає треків, які можна відтворити.",
   "hebrewNamesHeading": "Написання тижневої глави та місяців",
   "hebrewNamesIsraeli": "Ізраїльське",
-  "hebrewNamesAshkenazi": "Ашкеназьке"
+  "hebrewNamesAshkenazi": "Ашкеназьке",
+  "pickFromService": "Вибрати з мого {service}"
 }

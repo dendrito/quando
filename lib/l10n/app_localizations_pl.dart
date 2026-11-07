@@ -2743,4 +2743,9 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get hebrewNamesAshkenazi => 'Aszkenazyjska';
+
+  @override
+  String pickFromService(String service) {
+    return 'Wybierz z mojego $service';
+  }
 }

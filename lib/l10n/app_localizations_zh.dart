@@ -2654,6 +2654,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get hebrewNamesAshkenazi => '阿什肯纳兹式';
+
+  @override
+  String pickFromService(String service) {
+    return '从我的 $service 选择';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5305,4 +5310,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get hebrewNamesAshkenazi => '阿什肯納茲式';
+
+  @override
+  String pickFromService(String service) {
+    return '從我的 $service 選擇';
+  }
 }

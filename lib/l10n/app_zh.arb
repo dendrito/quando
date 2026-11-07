@@ -793,5 +793,6 @@
   "noSongsInPlaylist": "这里没有可播放的歌曲。",
   "hebrewNamesHeading": "诵读段与月份名称的拼写",
   "hebrewNamesIsraeli": "以色列式",
-  "hebrewNamesAshkenazi": "阿什肯纳兹式"
+  "hebrewNamesAshkenazi": "阿什肯纳兹式",
+  "pickFromService": "从我的 {service} 选择"
 }

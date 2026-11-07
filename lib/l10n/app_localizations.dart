@@ -4893,6 +4893,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Ashkenazi'**
   String get hebrewNamesAshkenazi;
+
+  /// No description provided for @pickFromService.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick from my {service}'**
+  String pickFromService(String service);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1676,5 +1676,13 @@
   "noSongsInPlaylist": "No songs here that can play.",
   "hebrewNamesHeading": "Spelling of parasha and month names",
   "hebrewNamesIsraeli": "Israeli",
-  "hebrewNamesAshkenazi": "Ashkenazi"
+  "hebrewNamesAshkenazi": "Ashkenazi",
+  "pickFromService": "Pick from my {service}",
+  "@pickFromService": {
+    "placeholders": {
+      "service": {
+        "type": "String"
+      }
+    }
+  }
 }

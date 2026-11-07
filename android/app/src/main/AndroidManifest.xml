@@ -53,6 +53,7 @@
                 <category android:name="android.intent.category.DEFAULT"/>
                 <category android:name="android.intent.category.BROWSABLE"/>
                 <data android:scheme="spotify-sdk" android:host="auth"/>
+                <data android:scheme="quando-soundcloud" android:host="auth"/>
             </intent-filter>
         </activity>
         <!-- Don't delete the meta-data below.
