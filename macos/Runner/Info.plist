@@ -51,6 +51,8 @@
 	<string>Scan a code to dismiss an alarm when you choose that task.</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>$(PRODUCT_COPYRIGHT)</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Find local sunrise, sunset and Shabbat times when you choose your current location.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Find local sunrise, sunset and Shabbat times when you choose your current location.</string>
 	<key>NSMainNibFile</key>
