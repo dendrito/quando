@@ -51,10 +51,13 @@ class _ArcPainter extends CustomPainter {
   void paint(Canvas canvas, Size size) {
     final w = size.width;
     final h = size.height;
-    final horizon = h - 10;
-    final start = Offset(14, horizon);
-    final end = Offset(w - 14, horizon);
-    final control = Offset(w / 2, -h * 0.85);
+    // Reserve room for the whole Sun and its glow, including at noon and
+    // either horizon. A quadratic's midpoint is halfway to its control point.
+    const inset = 24.0;
+    final horizon = h - inset;
+    final start = Offset(inset, horizon);
+    final end = Offset(w - inset, horizon);
+    final control = Offset(w / 2, 2 * inset - horizon);
 
     Offset point(double t) {
       final u = 1 - t;

@@ -761,5 +761,12 @@
   "locationLooking": "מקבל מיקום…",
   "skyMoonDisplay": "הצגת הירח: זריחה, שקיעה ומופע",
   "tuyaConsumerPending": "כניסה לחשבון עדיין אינה זמינה בגרסה זו. אם כבר יש לך פרויקט מפתח של Tuya, אפשר להשתמש בהגדרה מתקדמת.",
-  "tuyaAdvanced": "הגדרה מתקדמת"
+  "tuyaAdvanced": "הגדרה מתקדמת",
+  "roshHodeshHeading": "ראש חודש",
+  "roshHodeshExplain": "הצגת ראש החודש הבא, יום אחד או יומיים, במסך הבית.",
+  "roshHodeshNext": "ראש החודש הבא",
+  "roshHodeshBegins": "מתחיל בשקיעה בתאריך",
+  "openParashaSefaria": "קריאת פרשת השבוע בספריא",
+  "skyMyLocation": "המיקום שלי",
+  "skyLocationLocalTimes": "זמני השמיים מוצגים לפי אזור הזמן של המיקום הזה. אזור הזמן של השעון ועיר השבת אינם משתנים. נשמר במכשיר זה בלבד."
 }

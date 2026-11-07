@@ -24,10 +24,19 @@ class MoonBackdrop {
     ];
   }
 
-  // SunCalc solar coordinates (BSD-2-Clause, third_party/suncalc/LICENSE).
-  // The color reaches night at the apparent sunset altitude. It also works
-  // at polar latitudes where the civil day has no sunrise or sunset.
   static Color colorAt(Place place, DateTime at) {
+    // Match the actual sunrise/sunset shown on the Sun tab. The Moon being
+    // above the horizon does not make it night, and setting does not make it day.
+    final sun = SkyDay.of(place, at);
+    if (sun.sunrise != null && sun.sunset != null) {
+      return sun.isDay ? sun.color : SkyColors.night;
+    }
+    return _polarColorAt(place, at);
+  }
+
+  // SunCalc solar coordinates (BSD-2-Clause, third_party/suncalc/LICENSE).
+  // Only needed at polar latitudes without a complete rise/set pair.
+  static Color _polarColorAt(Place place, DateTime at) {
     const rad = math.pi / 180, obliquity = 23.4397 * rad;
     final d = at.toUtc().millisecondsSinceEpoch / 86400000 - 10957.5;
     final anomaly = rad * (357.5291 + .98560028 * d);

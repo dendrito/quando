@@ -66,8 +66,9 @@ class LocationFailure implements Exception {
 final locationLookupProvider = Provider<LocationLookup>((ref) => LocationLookup());
 
 class CityPicker extends ConsumerStatefulWidget {
-  const CityPicker({super.key, this.forSky = false});
+  const CityPicker({super.key, this.forSky = false, this.locateOnOpen = false});
   final bool forSky;
+  final bool locateOnOpen;
   @override
   ConsumerState<CityPicker> createState() => _CityPickerState();
 }
@@ -78,20 +79,24 @@ class _CityPickerState extends ConsumerState<CityPicker> {
   String? _error;
   bool _openSettings = false;
 
+  @override
+  void initState() {
+    super.initState();
+    if (widget.locateOnOpen) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted) _locate();
+      });
+    }
+  }
+
   void _save(Place place, {bool local = false}) {
     if (widget.forSky) {
-      ref
-          .read(skyLocationProvider.notifier)
-          .set(
-            Place(
-              name: place.name,
-              latitude: place.latitude,
-              longitude: place.longitude,
-              // Explicit sky coordinates may be shown in a manually selected
-              // clock timezone, without changing that timezone or Shabbat settings.
-              timeZone: ref.read(homeZoneProvider),
-            ),
-          );
+      ref.read(skyLocationProvider.notifier).set(place);
+      unawaited(
+        ref
+            .read(homeDisplayProvider.notifier)
+            .set(ref.read(homeDisplayProvider).copyWith(skyUseShabbat: false)),
+      );
     } else if (local) {
       ref.read(placeProvider.notifier).setLocal(place);
     } else {
@@ -138,14 +143,14 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  Text(widget.forSky ? ref.read(homeZoneProvider) : zone),
+                  Text(zone),
                   if (!widget.forSky)
                     SwitchListTile(
                       title: Text(l10n.inIsraelOneDay),
                       value: inIsrael,
                       onChanged: (v) => update(() => inIsrael = v),
                     ),
-                  Text(l10n.locationDeviceOnly),
+                  Text(widget.forSky ? l10n.skyLocationLocalTimes : l10n.locationDeviceOnly),
                 ],
               ),
             ),
@@ -218,7 +223,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                   onChanged: (v) => setState(() => _query = v),
                 ),
                 TextButton.icon(
-                  onPressed: _busy ? null : _locate,
+                  onPressed: _busy ? null : () => _locate(),
                   icon: const Icon(Icons.my_location),
                   label: Text(_busy ? l10n.locationLooking : l10n.useMyLocation),
                 ),

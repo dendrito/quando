@@ -205,14 +205,47 @@ void main() {
             moon: true,
             weather: true,
             parasha: true,
+            roshHodesh: true,
             courses: {'daf', 'rambam1'},
           ),
         );
     c.invalidate(homeDisplayProvider);
     expect(c.read(homeDisplayProvider).courses, {'daf', 'rambam1'});
     expect(c.read(homeDisplayProvider).night, isTrue);
+    expect(c.read(homeDisplayProvider).roshHodesh, isTrue);
     expect(syncedKeys, contains('home.display'));
     expect(syncedKeys.any((k) => k.startsWith('weather.cache')), isFalse);
+  });
+
+  testWidgets('Home display exposes and persists the Rosh Hodesh switch', (tester) async {
+    final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
+    addTearDown(c.dispose);
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: c,
+        child: MaterialApp(
+          theme: buildTheme(),
+          home: Builder(
+            builder: (context) => Scaffold(
+              body: TextButton(
+                onPressed: () => showHomeDisplayControls(context),
+                child: const Text('Display'),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
+    await tester.tap(find.text('Display'));
+    await tester.pumpAndSettle();
+    final setting = find.widgetWithText(SwitchListTile, l10n.roshHodeshHeading);
+    await tester.ensureVisible(setting);
+    await tester.tap(setting);
+    await tester.pumpAndSettle();
+    expect(c.read(homeDisplayProvider).roshHodesh, isTrue);
+    c.invalidate(homeDisplayProvider);
+    expect(c.read(homeDisplayProvider).roshHodesh, isTrue);
+    expect(tester.takeException(), isNull);
   });
 
   testWidgets('inactive weather makes no network request; foreground shows upcoming thunder', (tester) async {

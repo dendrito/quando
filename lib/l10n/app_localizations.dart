@@ -4701,6 +4701,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Advanced setup'**
   String get tuyaAdvanced;
+
+  /// No description provided for @roshHodeshHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Rosh Hodesh'**
+  String get roshHodeshHeading;
+
+  /// No description provided for @roshHodeshExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the next Hebrew month’s first day or two days on Home.'**
+  String get roshHodeshExplain;
+
+  /// No description provided for @roshHodeshNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Rosh Hodesh'**
+  String get roshHodeshNext;
+
+  /// No description provided for @roshHodeshBegins.
+  ///
+  /// In en, this message translates to:
+  /// **'Begins at sunset on'**
+  String get roshHodeshBegins;
+
+  /// No description provided for @openParashaSefaria.
+  ///
+  /// In en, this message translates to:
+  /// **'Read this Torah portion on Sefaria'**
+  String get openParashaSefaria;
+
+  /// No description provided for @skyMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get skyMyLocation;
+
+  /// No description provided for @skyLocationLocalTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.'**
+  String get skyLocationLocalTimes;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

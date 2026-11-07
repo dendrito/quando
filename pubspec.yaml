@@ -59,6 +59,7 @@ flutter:
     - assets/brands/
     - third_party/suncalc/LICENSE
     - third_party/astronomia/LICENSE
+    - third_party/hebcal/LICENSE
   fonts:
     - family: Bricolage
       fonts:

@@ -221,8 +221,15 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           spacing: 8,
           runSpacing: 4,
           children: [
+            TextButton.icon(
+              onPressed: () => Navigator.of(context).push<void>(
+                MaterialPageRoute(builder: (_) => const CityPicker(forSky: true, locateOnOpen: true)),
+              ),
+              icon: const Icon(Icons.my_location, size: 18),
+              label: Text(l10n.useMyLocation),
+            ),
             ChoiceChip(
-              label: Text(l10n.skyTimezone),
+              label: Text(ref.watch(skyLocationProvider) == null ? l10n.skyTimezone : l10n.skyMyLocation),
               selected: !options.skyUseShabbat,
               onSelected: (_) =>
                   ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: false)),
@@ -250,7 +257,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 child: Text(
                   place == null
                       ? l10n.skyChooseCity
-                      : '${l10n.timesIn(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider)?.timeZone != zone ? ' · ${l10n.skyReferenceCity}' : ''}',
+                      : '${l10n.timesIn(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider) == null ? ' · ${l10n.skyReferenceCity}' : ''}',
                   style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                 ),
               ),

@@ -259,7 +259,7 @@ final skyPlaceProvider = Provider<Place?>((ref) {
   if (ref.watch(homeDisplayProvider).skyUseShabbat) return ref.watch(placeProvider);
   final zone = ref.watch(homeZoneProvider);
   final saved = ref.watch(skyLocationProvider);
-  if (saved != null && saved.timeZone == zone) return saved;
+  if (saved != null) return saved;
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
   return ZonePlaces.forZone(zone);

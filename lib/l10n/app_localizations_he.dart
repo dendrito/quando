@@ -2585,4 +2585,26 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tuyaAdvanced => 'הגדרה מתקדמת';
+
+  @override
+  String get roshHodeshHeading => 'ראש חודש';
+
+  @override
+  String get roshHodeshExplain => 'הצגת ראש החודש הבא, יום אחד או יומיים, במסך הבית.';
+
+  @override
+  String get roshHodeshNext => 'ראש החודש הבא';
+
+  @override
+  String get roshHodeshBegins => 'מתחיל בשקיעה בתאריך';
+
+  @override
+  String get openParashaSefaria => 'קריאת פרשת השבוע בספריא';
+
+  @override
+  String get skyMyLocation => 'המיקום שלי';
+
+  @override
+  String get skyLocationLocalTimes =>
+      'זמני השמיים מוצגים לפי אזור הזמן של המיקום הזה. אזור הזמן של השעון ועיר השבת אינם משתנים. נשמר במכשיר זה בלבד.';
 }

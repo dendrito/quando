@@ -761,5 +761,12 @@
   "locationLooking": "Getting a location fix…",
   "skyMoonDisplay": "Show Moon: rise, set and phase",
   "tuyaConsumerPending": "Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.",
-  "tuyaAdvanced": "Advanced setup"
+  "tuyaAdvanced": "Advanced setup",
+  "roshHodeshHeading": "Rosh Hodesh",
+  "roshHodeshExplain": "Show the next Hebrew month’s first day or two days on Home.",
+  "roshHodeshNext": "Next Rosh Hodesh",
+  "roshHodeshBegins": "Begins at sunset on",
+  "openParashaSefaria": "Read this Torah portion on Sefaria",
+  "skyMyLocation": "My location",
+  "skyLocationLocalTimes": "Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device."
 }

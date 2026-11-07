@@ -761,5 +761,12 @@
   "locationLooking": "Obtendo a localização…",
   "skyMoonDisplay": "Mostrar Lua: nascer, pôr e fase",
   "tuyaConsumerPending": "O login da conta ainda não está disponível nesta versão. Se você já tem um projeto de desenvolvedor Tuya, use a configuração avançada.",
-  "tuyaAdvanced": "Configuração avançada"
+  "tuyaAdvanced": "Configuração avançada",
+  "roshHodeshHeading": "Rosh Hodesh",
+  "roshHodeshExplain": "Mostrar na tela inicial o próximo início do mês hebraico, de um ou dois dias.",
+  "roshHodeshNext": "Próximo Rosh Hodesh",
+  "roshHodeshBegins": "Começa ao pôr do sol de",
+  "openParashaSefaria": "Ler esta porção da Torá no Sefaria",
+  "skyMyLocation": "Minha localização",
+  "skyLocationLocalTimes": "Os horários do céu usam o fuso desta localização. O fuso dos alarmes e a cidade de Shabat permanecem iguais. Salvo só neste aparelho."
 }

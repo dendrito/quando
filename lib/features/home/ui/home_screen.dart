@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
@@ -434,22 +435,68 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 if (jewishHome || display.parasha)
                   Builder(
                     builder: (context) {
+                      final local = inZone(now, place.timeZone);
+                      final jewishSun = SkyDay.of(place, now);
+                      final afterSunset = jewishSun.sunset != null && now.isAfter(jewishSun.sunset!);
                       final (date, parasha) = hebrewDate(
-                        inZone(now, place.timeZone),
+                        local,
                         inIsrael: place.inIsrael,
-                        afterSunset: sky.sunset != null && now.isAfter(sky.sunset!),
+                        afterSunset: afterSunset,
                         hebrew: l10n.localeName == 'he',
                       );
+                      final link = parashaSefaria(local, inIsrael: place.inIsrael, afterSunset: afterSunset);
                       return Padding(
                         padding: const EdgeInsets.only(top: 4, left: 40),
-                        child: Text(
-                          [
-                            if (jewishHome) date,
+                        child: Wrap(
+                          spacing: 6,
+                          crossAxisAlignment: WrapCrossAlignment.center,
+                          children: [
+                            if (jewishHome)
+                              Text(date, style: text.bodyMedium?.copyWith(color: QuandoColors.blush)),
                             if (display.parasha)
-                              parasha.isNotEmpty ? l10n.weeklyParasha(parasha) : l10n.festivalReading,
-                            if (kodesh) l10n.poweredBy(l10n.appName),
-                          ].join(' · '),
-                          style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
+                              Tooltip(
+                                message: l10n.openParashaSefaria,
+                                child: TextButton(
+                                  onPressed: link == null
+                                      ? null
+                                      : () => launchUrl(link, mode: LaunchMode.externalApplication),
+                                  style: TextButton.styleFrom(
+                                    foregroundColor: QuandoColors.blush,
+                                    padding: EdgeInsets.zero,
+                                    minimumSize: const Size(0, 32),
+                                  ),
+                                  child: Text(
+                                    parasha.isNotEmpty ? l10n.weeklyParasha(parasha) : l10n.festivalReading,
+                                  ),
+                                ),
+                              ),
+                            if (kodesh)
+                              Text(
+                                l10n.poweredBy(l10n.appName),
+                                style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
+                              ),
+                          ],
+                        ),
+                      );
+                    },
+                  ),
+                if (display.roshHodesh)
+                  Builder(
+                    builder: (context) {
+                      final local = inZone(now, place.timeZone), jewishSun = SkyDay.of(place, now);
+                      final date = RoshHodeshDate.next(
+                        local,
+                        afterSunset: jewishSun.sunset != null && now.isAfter(jewishSun.sunset!),
+                        hebrew: l10n.localeName == 'he',
+                      );
+                      final days = date.first == date.last
+                          ? dayLabel(date.first)
+                          : '${dayLabel(date.first)} – ${dayLabel(date.last)}';
+                      return Padding(
+                        padding: const EdgeInsets.only(top: 8, left: 40),
+                        child: Text(
+                          '${l10n.roshHodeshNext} · ${date.month}\n$days · ${l10n.roshHodeshBegins} ${dayLabel(date.begins)}',
+                          style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                         ),
                       );
                     },

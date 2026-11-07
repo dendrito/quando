@@ -67,6 +67,9 @@ void main() {
     expect(syncedKeys, isNot(contains('sky.place.local')));
     expect(c.read(placeProvider).name, 'Jerusalem');
     c.read(timeZonesProvider.notifier).setFixed('America/Sao_Paulo');
+    expect(c.read(skyPlaceProvider)?.name, 'My area'); // A clock change does not relocate the user.
+    await prefs.remove('sky.place.local');
+    c.invalidate(skyLocationProvider);
     expect(c.read(skyPlaceProvider)?.name, 'São Paulo');
     c.read(timeZonesProvider.notifier).setFixed('Etc/GMT+3');
     expect(c.read(skyPlaceProvider), isNull); // An offset is not a location.
@@ -132,6 +135,25 @@ void main() {
     );
     expect(dawn.first, SkyColors.night);
     expect(dawn.last, SkyColors.day);
+  });
+
+  test('Moon colors use the Sun tab sunrise and sunset boundaries in each city', () {
+    for (final place in [Places.saoPaulo, Places.jerusalem, Places.newYork]) {
+      final sun = SkyDay.of(place, now);
+      final rise = sun.sunrise!, set = sun.sunset!;
+      expect(MoonBackdrop.colorAt(place, rise.subtract(const Duration(seconds: 1))), SkyColors.night);
+      for (final at in [
+        rise.add(const Duration(seconds: 1)),
+        now,
+        set.subtract(const Duration(seconds: 1)),
+      ]) {
+        expect(
+          MoonBackdrop.colorAt(place, at),
+          SkyDay.of(place, at).isDay ? SkyDay.of(place, at).color : SkyColors.night,
+        );
+      }
+      expect(MoonBackdrop.colorAt(place, set.add(const Duration(seconds: 1))), SkyColors.night);
+    }
   });
 
   test('foreground location uses one fresh fix and cancels native updates', () async {
@@ -210,11 +232,11 @@ void main() {
     await tester.tap(find.text(l10n.useMyLocation));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('America/Detroit'), findsWidgets);
+    expect(find.text('America/Sao_Paulo'), findsOneWidget);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(skyPlaceProvider)?.latitude, -23.55);
-    expect(c.read(skyPlaceProvider)?.timeZone, 'America/Detroit');
+    expect(c.read(skyPlaceProvider)?.timeZone, 'America/Sao_Paulo');
     expect(c.read(placeProvider).name, 'Jerusalem');
     expect(c.read(homeZoneProvider), 'America/Detroit');
     expect(syncedKeys, isNot(contains('sky.place.local')));
@@ -250,13 +272,17 @@ void main() {
                 child: RepaintBoundary(
                   key: key,
                   child: Consumer(
-                    builder: (context, ref, _) => Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: ColoredBox(
-                        color: SkyColors.day,
-                        child: SkyPanel(sky: SkyDay.of(ref.watch(skyPlaceProvider)!, now)),
-                      ),
-                    ),
+                    builder: (context, ref, _) {
+                      final sky = SkyDay.of(ref.watch(skyPlaceProvider)!, now);
+                      return Padding(
+                        padding: const EdgeInsets.all(20),
+                        child: ColoredBox(
+                          key: const ValueKey('test-current-sky'),
+                          color: sky.color,
+                          child: SkyPanel(sky: sky),
+                        ),
+                      );
+                    },
                   ),
                 ),
               ),
@@ -266,6 +292,7 @@ void main() {
       );
       await tester.pumpAndSettle();
       expect(find.byType(DayArc), findsOneWidget);
+      expect(tester.widget<DayArc>(find.byType(DayArc)).sky.isDay, isFalse); // Detroit before sunrise.
       await tester.tap(find.text(l10n.skyMoon));
       await tester.pumpAndSettle();
       expect(find.byType(MoonArc), findsOneWidget);
@@ -280,6 +307,19 @@ void main() {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
         final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
         await File('/private/tmp/quando-sky-$width.png').writeAsBytes(bytes!.buffer.asUint8List());
+      });
+      await tester.tap(find.text(l10n.skySun));
+      await tester.pumpAndSettle();
+      final sunArc = tester.widget<DayArc>(find.byType(DayArc));
+      expect(sunArc.sky.isDay, isTrue); // São Paulo: visible Sun, not an empty night marker.
+      expect(sunArc.sky.progress, inExclusiveRange(0, 1));
+      expect(tester.widget<ColoredBox>(find.byKey(const ValueKey('test-current-sky'))).color, SkyColors.day);
+      expect(find.textContaining(l10n.moonNextNew), findsNothing);
+      expect(tester.takeException(), isNull);
+      await tester.runAsync(() async {
+        final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
+        final bytes = await image.toByteData(format: ui.ImageByteFormat.png);
+        await File('/private/tmp/quando-sun-restored-$width.png').writeAsBytes(bytes!.buffer.asUint8List());
       });
     });
   }

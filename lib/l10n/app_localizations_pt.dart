@@ -2604,4 +2604,27 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get tuyaAdvanced => 'Configuração avançada';
+
+  @override
+  String get roshHodeshHeading => 'Rosh Hodesh';
+
+  @override
+  String get roshHodeshExplain =>
+      'Mostrar na tela inicial o próximo início do mês hebraico, de um ou dois dias.';
+
+  @override
+  String get roshHodeshNext => 'Próximo Rosh Hodesh';
+
+  @override
+  String get roshHodeshBegins => 'Começa ao pôr do sol de';
+
+  @override
+  String get openParashaSefaria => 'Ler esta porção da Torá no Sefaria';
+
+  @override
+  String get skyMyLocation => 'Minha localização';
+
+  @override
+  String get skyLocationLocalTimes =>
+      'Os horários do céu usam o fuso desta localização. O fuso dos alarmes e a cidade de Shabat permanecem iguais. Salvo só neste aparelho.';
 }

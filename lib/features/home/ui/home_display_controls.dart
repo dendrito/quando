@@ -56,6 +56,12 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   value: s.parasha,
                   onChanged: (v) => n.set(s.copyWith(parasha: v)),
                 ),
+                SwitchListTile(
+                  title: Text(l10n.roshHodeshHeading),
+                  subtitle: Text(l10n.roshHodeshExplain),
+                  value: s.roshHodesh,
+                  onChanged: (v) => n.set(s.copyWith(roshHodesh: v)),
+                ),
                 if (jewishHome) ...[
                   const Divider(),
                   Padding(
