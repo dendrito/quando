@@ -588,7 +588,7 @@
   "quoteNearMe": "Perto de mim",
   "quoteNearMeHint": "Poetas e datas do lugar onde você está, pelo seu fuso horário e cidade do Shabat",
   "quoteSiddur": "Sidur (livro de rezas)",
-  "weeklyParasha": "Parashá {name}",
+  "weeklyParasha": "Porção semanal da Torá: {name}",
   "poweredBy": "com tecnologia {name}",
   "syncTitle": "Sincronizar meus aparelhos",
   "syncHint": "Entre com o Google para manter alarmes e ajustes iguais em todos os seus aparelhos.",

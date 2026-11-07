@@ -588,7 +588,7 @@
   "quoteNearMe": "לידי",
   "quoteNearMeHint": "משוררים וימים מקומיים לפי אזור הזמן ועיר השבת שלך",
   "quoteSiddur": "סידור",
-  "weeklyParasha": "פרשת {name}",
+  "weeklyParasha": "פרשת השבוע: {name}",
   "poweredBy": "מבית {name}",
   "syncTitle": "סנכרון המכשירים שלי",
   "syncHint": "התחברו עם Google כדי לשמור על אותן התראות והגדרות בכל המכשירים.",

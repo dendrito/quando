@@ -3661,7 +3661,7 @@ abstract class AppLocalizations {
   /// This week's Torah portion, shown under the Hebrew date in Quando? Shabbat.
   ///
   /// In en, this message translates to:
-  /// **'Parashat {name}'**
+  /// **'Weekly Torah Portion: {name}'**
   String weeklyParasha(String name);
 
   /// Under the Jewish edition's name; {name} is Quando?.

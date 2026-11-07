@@ -2022,7 +2022,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String weeklyParasha(String name) {
-    return 'Parashá $name';
+    return 'Porção semanal da Torá: $name';
   }
 
   @override

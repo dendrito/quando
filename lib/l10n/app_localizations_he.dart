@@ -2013,7 +2013,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String weeklyParasha(String name) {
-    return 'פרשת $name';
+    return 'פרשת השבוע: $name';
   }
 
   @override
