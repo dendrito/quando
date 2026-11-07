@@ -25,6 +25,13 @@ set `QUANDO_MAC_SIGNING_IDENTITY` to an existing signing identity and
 The script neither installs nor publishes the result. These builds are not
 notarized public releases.
 
+Google's Mac SDK requires its keychain-sharing group. The runner retains the
+edition's own default group and adds the Google SDK group. Team-signed local
+builds use the team's App ID prefix; `QUANDO_MAC_APP_IDENTIFIER_PREFIX` can
+override it for an account whose prefix differs from its team ID. Real Google
+sign-in and device sync still require acceptance testing; signing metadata alone
+does not prove authentication or cross-device behavior.
+
 ## Alarm behavior
 
 - Keep the app running and the Mac awake. Closing the window hides it; Quit

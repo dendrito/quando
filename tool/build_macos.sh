@@ -28,7 +28,10 @@ flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITI
 flutter assemble --output="$derived/Build/Products/Release/" \
   -dTargetPlatform=darwin -dBuildMode=release -dDarwinArchs=arm64 release_unpack_macos
 signing=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:--}" "CODE_SIGN_STYLE=Manual" 'PROVISIONING_PROFILE_SPECIFIER=')
-if [[ -n ${QUANDO_MAC_TEAM:-} ]]; then signing+=("DEVELOPMENT_TEAM=$QUANDO_MAC_TEAM"); fi
+if [[ -n ${QUANDO_MAC_TEAM:-} ]]; then
+  mac_app_prefix=${QUANDO_MAC_APP_IDENTIFIER_PREFIX:-"$QUANDO_MAC_TEAM."}
+  signing+=("DEVELOPMENT_TEAM=$QUANDO_MAC_TEAM" "AppIdentifierPrefix=$mac_app_prefix")
+fi
 xcodebuild -workspace macos/Runner.xcworkspace -scheme Runner -configuration Release \
   -disableAutomaticPackageResolution -skipPackageUpdates \
   -derivedDataPath "$derived" -destination 'platform=macOS,arch=arm64' \
