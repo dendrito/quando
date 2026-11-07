@@ -20,8 +20,8 @@ It restores the runner's original edition configuration after each build. Set
 `QUANDO_MAC_OUTPUT` to choose another artifact directory. Set
 `QUANDO_MAC_DERIVED_DATA` to keep Xcode's cache outside any cloud-synced source
 folder; the default is `build/macos`. For local team signing,
-set `QUANDO_MAC_SIGNING_IDENTITY` to an existing signing identity and
-`QUANDO_MAC_TEAM` to its existing team. Without them, Xcode signs to run locally.
+set `QUANDO_MAC_TEAM` to its existing team. Manual signing also needs
+`QUANDO_MAC_SIGNING_IDENTITY` set to an existing signing identity.
 The script neither installs nor publishes the result. These builds are not
 notarized public releases.
 
@@ -37,6 +37,8 @@ The keychain entitlement requires a macOS provisioning profile. Set
 `QUANDO_MAC_AUTOMATIC_SIGNING=true` to let Xcode obtain a development profile
 using the account already signed in to Xcode. This does not enroll in a paid
 program or publish the app. An iOS profile does not provision the native Mac app.
+Automatic signing defaults to the `Apple Development` identity type; do not
+override it with a certificate fingerprint, which Xcode treats as manual signing.
 
 ## Alarm behavior
 

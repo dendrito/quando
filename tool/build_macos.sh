@@ -28,12 +28,12 @@ flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITI
 flutter assemble --output="$derived/Build/Products/Release/" \
   -dTargetPlatform=darwin -dBuildMode=release -dDarwinArchs=arm64 release_unpack_macos
 provisioning=()
-signing=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:--}")
+signing=()
 if [[ ${QUANDO_MAC_AUTOMATIC_SIGNING:-false} == true ]]; then
-  signing+=("CODE_SIGN_STYLE=Automatic" 'PROVISIONING_PROFILE_SPECIFIER=')
+  signing+=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:-Apple Development}" "CODE_SIGN_STYLE=Automatic" 'PROVISIONING_PROFILE_SPECIFIER=')
   provisioning+=(-allowProvisioningUpdates)
 else
-  signing+=("CODE_SIGN_STYLE=Manual" "PROVISIONING_PROFILE_SPECIFIER=${QUANDO_MAC_PROVISIONING_PROFILE:-}")
+  signing+=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:--}" "CODE_SIGN_STYLE=Manual" "PROVISIONING_PROFILE_SPECIFIER=${QUANDO_MAC_PROVISIONING_PROFILE:-}")
 fi
 if [[ -n ${QUANDO_MAC_TEAM:-} ]]; then
   mac_app_prefix=${QUANDO_MAC_APP_IDENTIFIER_PREFIX:-"$QUANDO_MAC_TEAM."}
