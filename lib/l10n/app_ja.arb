@@ -785,5 +785,13 @@
   "moonRises": "月の出",
   "moonSets": "月の入り",
   "moonLunarDay": "この朔望月の29.5日中{day}日目",
-  "moonDetailsOpen": "月相を開く"
+  "moonDetailsOpen": "月相を開く",
+  "musicPlaylists": "音楽プレイリスト",
+  "videoPlaylists": "動画プレイリスト",
+  "likedVideos": "高く評価した動画",
+  "wholePlaylist": "プレイリスト全体で起きる",
+  "noSongsInPlaylist": "再生できる曲がありません。",
+  "hebrewNamesHeading": "パラシャと月名の表記",
+  "hebrewNamesIsraeli": "イスラエル式",
+  "hebrewNamesAshkenazi": "アシュケナージ式"
 }

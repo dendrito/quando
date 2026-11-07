@@ -785,5 +785,13 @@
   "moonRises": "الشروق",
   "moonSets": "الغروب",
   "moonLunarDay": "اليوم {day} من 29.5 في هذا الشهر القمري",
-  "moonDetailsOpen": "فتح طور القمر"
+  "moonDetailsOpen": "فتح طور القمر",
+  "musicPlaylists": "قوائم الموسيقى",
+  "videoPlaylists": "قوائم الفيديو",
+  "likedVideos": "الفيديوهات المفضلة",
+  "wholePlaylist": "استيقظ على القائمة كلها",
+  "noSongsInPlaylist": "لا توجد أغانٍ يمكن تشغيلها هنا.",
+  "hebrewNamesHeading": "طريقة كتابة أسماء البرشاه والأشهر",
+  "hebrewNamesIsraeli": "إسرائيلية",
+  "hebrewNamesAshkenazi": "أشكنازية"
 }

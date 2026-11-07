@@ -785,5 +785,13 @@
   "moonRises": "月出",
   "moonSets": "月落",
   "moonLunarDay": "本朔望月 29.5 天中的第 {day} 天",
-  "moonDetailsOpen": "打开月相"
+  "moonDetailsOpen": "打开月相",
+  "musicPlaylists": "音乐播放列表",
+  "videoPlaylists": "视频播放列表",
+  "likedVideos": "喜欢的视频",
+  "wholePlaylist": "用整个播放列表唤醒",
+  "noSongsInPlaylist": "这里没有可播放的歌曲。",
+  "hebrewNamesHeading": "诵读段与月份名称的拼写",
+  "hebrewNamesIsraeli": "以色列式",
+  "hebrewNamesAshkenazi": "阿什肯纳兹式"
 }

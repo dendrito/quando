@@ -785,5 +785,13 @@
   "moonRises": "Схід",
   "moonSets": "Захід",
   "moonLunarDay": "День {day} з 29,5 у цьому місячному місяці",
-  "moonDetailsOpen": "Відкрити фазу Місяця"
+  "moonDetailsOpen": "Відкрити фазу Місяця",
+  "musicPlaylists": "Музичні плейлисти",
+  "videoPlaylists": "Плейлисти з відео",
+  "likedVideos": "Улюблені відео",
+  "wholePlaylist": "Прокидатися під увесь плейлист",
+  "noSongsInPlaylist": "Тут немає треків, які можна відтворити.",
+  "hebrewNamesHeading": "Написання тижневої глави та місяців",
+  "hebrewNamesIsraeli": "Ізраїльське",
+  "hebrewNamesAshkenazi": "Ашкеназьке"
 }

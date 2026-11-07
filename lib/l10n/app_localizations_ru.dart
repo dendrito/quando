@@ -2720,4 +2720,28 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Открыть фазу Луны';
+
+  @override
+  String get musicPlaylists => 'Музыкальные плейлисты';
+
+  @override
+  String get videoPlaylists => 'Плейлисты с видео';
+
+  @override
+  String get likedVideos => 'Понравившиеся видео';
+
+  @override
+  String get wholePlaylist => 'Просыпаться под весь плейлист';
+
+  @override
+  String get noSongsInPlaylist => 'Здесь нет треков, которые можно воспроизвести.';
+
+  @override
+  String get hebrewNamesHeading => 'Написание недельной главы и месяцев';
+
+  @override
+  String get hebrewNamesIsraeli => 'Израильское';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Ашкеназское';
 }

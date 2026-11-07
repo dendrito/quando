@@ -2687,4 +2687,28 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Abrir fase lunar';
+
+  @override
+  String get musicPlaylists => 'Listas de música';
+
+  @override
+  String get videoPlaylists => 'Listas de vídeos';
+
+  @override
+  String get likedVideos => 'Vídeos que te gustan';
+
+  @override
+  String get wholePlaylist => 'Despertar con toda la lista';
+
+  @override
+  String get noSongsInPlaylist => 'No hay canciones que se puedan reproducir.';
+
+  @override
+  String get hebrewNamesHeading => 'Cómo escribir la parashá y los meses';
+
+  @override
+  String get hebrewNamesIsraeli => 'Israelí';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Asquenazí';
 }

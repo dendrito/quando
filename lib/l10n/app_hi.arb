@@ -785,5 +785,13 @@
   "moonRises": "उदय",
   "moonSets": "अस्त",
   "moonLunarDay": "इस चंद्र माह के 29.5 में से दिन {day}",
-  "moonDetailsOpen": "चंद्र कला खोलें"
+  "moonDetailsOpen": "चंद्र कला खोलें",
+  "musicPlaylists": "संगीत प्लेलिस्ट",
+  "videoPlaylists": "वीडियो प्लेलिस्ट",
+  "likedVideos": "पसंद किए वीडियो",
+  "wholePlaylist": "पूरी प्लेलिस्ट से जागें",
+  "noSongsInPlaylist": "यहाँ चलाने लायक कोई गाना नहीं है।",
+  "hebrewNamesHeading": "पराशा और महीनों के नामों की वर्तनी",
+  "hebrewNamesIsraeli": "इज़राइली",
+  "hebrewNamesAshkenazi": "अश्केनाज़ी"
 }

@@ -2666,4 +2666,28 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Mở pha Mặt Trăng';
+
+  @override
+  String get musicPlaylists => 'Danh sách nhạc';
+
+  @override
+  String get videoPlaylists => 'Danh sách video';
+
+  @override
+  String get likedVideos => 'Video đã thích';
+
+  @override
+  String get wholePlaylist => 'Thức dậy với cả danh sách';
+
+  @override
+  String get noSongsInPlaylist => 'Không có bài nào phát được ở đây.';
+
+  @override
+  String get hebrewNamesHeading => 'Cách viết tên parasha và tháng';
+
+  @override
+  String get hebrewNamesIsraeli => 'Israel';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Ashkenazi';
 }

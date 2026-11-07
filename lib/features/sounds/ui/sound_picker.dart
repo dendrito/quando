@@ -6,6 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import 'sound_player.dart';
 import 'music_preview_dialog.dart';
+import 'service_logo.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -99,16 +100,23 @@ class SoundPickerTile extends ConsumerWidget {
                         spacing: 14,
                         runSpacing: 10,
                         children: [
-                          for (final (icon, name, color) in [
-                            (Icons.graphic_eq, 'Spotify', const Color(0xFF1DB954)),
-                            (Icons.smart_display, 'YouTube', const Color(0xFFFF5252)),
-                            (Icons.audio_file_outlined, l10n.addAFile, QuandoColors.amber),
-                            (Icons.radio_outlined, l10n.onlineRadio, QuandoColors.coral),
+                          for (final (Widget icon, name) in [
+                            (const ServiceLogo(MusicService.spotify, size: 20), 'Spotify'),
+                            (const ServiceLogo(MusicService.youTube, size: 20), 'YouTube'),
+                            (const ServiceLogo(MusicService.youTubeMusic, size: 20), 'YouTube Music'),
+                            (
+                              const Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber),
+                              l10n.addAFile,
+                            ),
+                            (
+                              const Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral),
+                              l10n.onlineRadio,
+                            ),
                           ])
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Icon(icon, size: 20, color: color),
+                                icon,
                                 const SizedBox(width: 5),
                                 Text(name, style: text.labelMedium),
                               ],

@@ -59,6 +59,14 @@ void main() {
     expect(hebrewDate(DateTime(2026, 11, 4, 10)), ('24 Cheshvan 5787', 'Chayei Sara'));
     expect(hebrewDate(DateTime(2026, 11, 4, 20), afterSunset: true).$1, '25 Cheshvan 5787');
     expect(hebrewDate(DateTime(2026, 11, 4, 10), hebrew: true).$2, 'חיי שרה');
+    // Toldot by default, Toldos for those who prefer it, or in Hebrew letters.
+    final toldot = DateTime(2026, 11, 8, 10);
+    expect(hebrewDate(toldot).$2, 'Toldot');
+    expect(hebrewDate(toldot, names: HebrewNames.ashkenazi).$2, 'Toldos');
+    expect(hebrewDate(toldot, names: HebrewNames.hebrew).$2, 'תולדות');
+    expect(hebrewDate(DateTime(2026, 12, 25)).$1, contains('Tevet'));
+    expect(hebrewDate(DateTime(2026, 12, 25), names: HebrewNames.ashkenazi).$1, contains('Teves'));
+    expect(HebrewNames.from('nonsense'), HebrewNames.israeli);
   });
 
   test('Israeli and Jewish radio stations', () {

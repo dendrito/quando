@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../l10n/l10n.dart';
+import '../../shabbat/domain/hebrew_date.dart';
 
 String courseLabel(String id) => switch (id) {
   'daf' => l10n.courseDaf,
@@ -63,6 +64,31 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   value: s.parasha,
                   onChanged: (v) => n.set(s.copyWith(parasha: v)),
                 ),
+                if ((s.parasha || s.roshHodesh || jewishHome) && l10n.localeName != 'he')
+                  Padding(
+                    padding: const EdgeInsets.fromLTRB(16, 4, 16, 8),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(l10n.hebrewNamesHeading, style: Theme.of(context).textTheme.bodyMedium),
+                        const SizedBox(height: 8),
+                        SegmentedButton<HebrewNames>(
+                          key: const ValueKey('hebrew-names'),
+                          showSelectedIcon: false,
+                          segments: [
+                            ButtonSegment(value: HebrewNames.israeli, label: Text(l10n.hebrewNamesIsraeli)),
+                            ButtonSegment(
+                              value: HebrewNames.ashkenazi,
+                              label: Text(l10n.hebrewNamesAshkenazi),
+                            ),
+                            const ButtonSegment(value: HebrewNames.hebrew, label: Text('תולדות')),
+                          ],
+                          selected: {s.hebrewNames},
+                          onSelectionChanged: (v) => n.set(s.copyWith(hebrewNames: v.first)),
+                        ),
+                      ],
+                    ),
+                  ),
                 SwitchListTile(
                   title: Text(l10n.roshHodeshHeading),
                   subtitle: Text(l10n.roshHodeshExplain),

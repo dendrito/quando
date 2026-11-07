@@ -9,24 +9,27 @@ import '../domain/sound.dart';
 import 'package:quando/l10n/l10n.dart';
 
 /// Your playlists and liked songs from a music app, or a search of the
-/// whole app: tap one to wake up to it.
+/// whole app: tap one to wake up to it, or open a playlist to pick one
+/// song from it.
 class MusicPickerScreen extends ConsumerStatefulWidget {
   const MusicPickerScreen({
     super.key,
     required this.title,
     required this.load,
     this.search,
-    this.songs = false,
     this.prepare,
+    this.songsOf,
   });
-  final bool songs;
   final Future<void> Function(SpotifyItem)? prepare;
 
   /// "My Spotify".
   final String title;
 
-  /// Signs in if needed, then reads playlists and liked songs.
-  final Future<(List<SpotifyItem>, List<SpotifyItem>)> Function() load;
+  /// Signs in if needed, then reads the library, one tab per shelf.
+  final Future<List<MusicShelf>> Function() load;
+
+  /// The songs in a playlist. When set, playlists open to pick one song.
+  final Future<List<SpotifyItem>> Function(SpotifyItem playlist)? songsOf;
 
   /// Searches the whole app for songs and playlists.
   final Future<List<SpotifyItem>> Function(String query)? search;
@@ -37,8 +40,7 @@ class MusicPickerScreen extends ConsumerStatefulWidget {
 
 class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
   bool _picking = false;
-  List<SpotifyItem>? _playlists;
-  List<SpotifyItem>? _liked;
+  List<MusicShelf>? _shelves;
   String? _error;
 
   final _query = TextEditingController();
@@ -93,16 +95,21 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
 
   Future<void> _load() async {
     try {
-      final (playlists, liked) = await widget.load();
-      if (mounted) {
-        setState(() {
-          _playlists = playlists;
-          _liked = liked;
-        });
-      }
+      final shelves = await widget.load();
+      if (mounted) setState(() => _shelves = shelves);
     } catch (e) {
       if (mounted) setState(() => _error = '$e'.replaceFirst('Exception: ', ''));
     }
+  }
+
+  /// Opens a playlist: the whole playlist first, then each song.
+  Future<void> _open(SpotifyItem playlist) async {
+    final picked = await Navigator.of(context).push<SpotifyItem>(
+      MaterialPageRoute(
+        builder: (_) => PlaylistSongsScreen(playlist: playlist, songs: () => widget.songsOf!(playlist)),
+      ),
+    );
+    if (picked != null && mounted) await _pick(picked);
   }
 
   Future<void> _pick(SpotifyItem item) async {
@@ -145,27 +152,13 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
       itemCount: items.length,
       itemBuilder: (context, i) {
         final it = items[i];
-        return ListTile(
-          leading: ClipRRect(
-            borderRadius: BorderRadius.circular(8),
-            child: SizedBox.square(
-              dimension: 48,
-              child: it.image == null
-                  ? const ColoredBox(
-                      color: QuandoColors.raised,
-                      child: Icon(Icons.music_note, color: QuandoColors.amber),
-                    )
-                  : Image.network(
-                      it.image!,
-                      fit: BoxFit.cover,
-                      errorBuilder: (_, _, _) => const ColoredBox(color: QuandoColors.raised),
-                    ),
-            ),
-          ),
-          title: Text(it.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-          subtitle: Text(it.detail, maxLines: 1, overflow: TextOverflow.ellipsis, style: text.bodySmall),
-          trailing: const Icon(Icons.add_circle_outline, color: QuandoColors.amber),
-          onTap: () => _pick(it),
+        final opens = widget.songsOf != null && it.playlistId != null;
+        return MusicItemTile(
+          item: it,
+          trailing: opens
+              ? const Icon(Icons.chevron_right)
+              : const Icon(Icons.add_circle_outline, color: QuandoColors.amber),
+          onTap: () => opens ? _open(it) : _pick(it),
         );
       },
     );
@@ -192,22 +185,24 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
               ),
             ),
           );
+    final shelves = _shelves;
+    final tabs = !searching && shelves != null && shelves.length > 1;
     return DefaultTabController(
-      length: 2,
+      key: ValueKey(shelves?.length),
+      length: shelves?.length ?? 0,
       child: Scaffold(
         appBar: AppBar(
           title: Text(widget.title),
           bottom: PreferredSize(
-            preferredSize: Size.fromHeight((searchBar == null ? 0 : 56) + (searching ? 0 : 48)),
+            preferredSize: Size.fromHeight((searchBar == null ? 0 : 56) + (tabs ? 48 : 0)),
             child: Column(
               children: [
                 ?searchBar,
-                if (!searching)
+                if (tabs)
                   TabBar(
-                    tabs: [
-                      Tab(text: l10n.playlists),
-                      Tab(text: widget.songs ? l10n.musicSongs : l10n.likedSongs),
-                    ],
+                    isScrollable: shelves.length > 2,
+                    tabAlignment: shelves.length > 2 ? TabAlignment.start : null,
+                    tabs: [for (final s in shelves) Tab(text: s.label)],
                   ),
               ],
             ),
@@ -215,12 +210,122 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
         ),
         body: searching
             ? _list(_results, l10n.nothingFound(_searched!), error: _searchError)
-            : TabBarView(
-                children: [
-                  _list(_playlists, l10n.noPlaylists, error: _error),
-                  _list(_liked, widget.songs ? l10n.noMusicSongs : l10n.noLikedSongs, error: _error),
-                ],
+            : shelves == null || shelves.length < 2
+            ? _list(shelves?.firstOrNull?.items, shelves?.firstOrNull?.empty ?? '', error: _error)
+            : TabBarView(children: [for (final s in shelves) _list(s.items, s.empty)]),
+      ),
+    );
+  }
+}
+
+/// A song or playlist: its cover, name and artist.
+class MusicItemTile extends StatelessWidget {
+  const MusicItemTile({super.key, required this.item, required this.trailing, required this.onTap});
+  final SpotifyItem item;
+  final Widget trailing;
+  final VoidCallback onTap;
+
+  @override
+  Widget build(BuildContext context) => ListTile(
+    leading: ClipRRect(
+      borderRadius: BorderRadius.circular(8),
+      child: SizedBox.square(
+        dimension: 48,
+        child: item.image == null
+            ? const ColoredBox(
+                color: QuandoColors.raised,
+                child: Icon(Icons.music_note, color: QuandoColors.amber),
+              )
+            : Image.network(
+                item.image!,
+                fit: BoxFit.cover,
+                errorBuilder: (_, _, _) => const ColoredBox(color: QuandoColors.raised),
               ),
+      ),
+    ),
+    title: Text(item.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+    subtitle: Text(
+      item.detail,
+      maxLines: 1,
+      overflow: TextOverflow.ellipsis,
+      style: Theme.of(context).textTheme.bodySmall,
+    ),
+    trailing: trailing,
+    onTap: onTap,
+  );
+}
+
+/// One playlist, opened: wake up to all of it, or to one song. Pops with
+/// the chosen item.
+class PlaylistSongsScreen extends StatefulWidget {
+  const PlaylistSongsScreen({super.key, required this.playlist, required this.songs});
+  final SpotifyItem playlist;
+  final Future<List<SpotifyItem>> Function() songs;
+
+  @override
+  State<PlaylistSongsScreen> createState() => _PlaylistSongsScreenState();
+}
+
+class _PlaylistSongsScreenState extends State<PlaylistSongsScreen> {
+  List<SpotifyItem>? _songs;
+  String? _error;
+
+  @override
+  void initState() {
+    super.initState();
+    widget.songs().then(
+      (songs) => mounted ? setState(() => _songs = songs) : null,
+      onError: (Object e) => mounted ? setState(() => _error = '$e'.replaceFirst('Exception: ', '')) : null,
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    final songs = _songs;
+    const add = Icon(Icons.add_circle_outline, color: QuandoColors.amber);
+    return Scaffold(
+      appBar: AppBar(title: Text(widget.playlist.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
+      body: ListView(
+        padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
+        children: [
+          ListTile(
+            key: const ValueKey('whole-playlist'),
+            leading: const SizedBox.square(
+              dimension: 48,
+              child: DecoratedBox(
+                decoration: BoxDecoration(
+                  color: QuandoColors.amber,
+                  borderRadius: BorderRadius.all(Radius.circular(8)),
+                ),
+                child: Icon(Icons.queue_music, color: QuandoColors.ground),
+              ),
+            ),
+            title: Text(l10n.wholePlaylist, style: const TextStyle(fontWeight: FontWeight.w700)),
+            subtitle: Text(widget.playlist.detail, style: text.bodySmall),
+            trailing: add,
+            onTap: () => Navigator.of(context).pop(widget.playlist),
+          ),
+          const Divider(),
+          if (_error != null)
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: SelectableText(_error!, textAlign: TextAlign.center, style: text.bodyLarge),
+            )
+          else if (songs == null)
+            const Padding(
+              padding: EdgeInsets.all(32),
+              child: Center(child: CircularProgressIndicator()),
+            )
+          else if (songs.isEmpty)
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: Text(l10n.noSongsInPlaylist, textAlign: TextAlign.center, style: text.bodyLarge),
+            )
+          else
+            for (final song in songs)
+              MusicItemTile(item: song, trailing: add, onTap: () => Navigator.of(context).pop(song)),
+        ],
       ),
     );
   }

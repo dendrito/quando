@@ -1668,5 +1668,13 @@
         "type": "int"
       }
     }
-  }
+  },
+  "musicPlaylists": "Music playlists",
+  "videoPlaylists": "Video playlists",
+  "likedVideos": "Liked videos",
+  "wholePlaylist": "Wake up to the whole playlist",
+  "noSongsInPlaylist": "No songs here that can play.",
+  "hebrewNamesHeading": "Spelling of parasha and month names",
+  "hebrewNamesIsraeli": "Israeli",
+  "hebrewNamesAshkenazi": "Ashkenazi"
 }

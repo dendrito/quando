@@ -99,17 +99,113 @@ class YouTubeLibrary {
           detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
           url: '$_host/playlist?list=$id',
           image: _thumb(sn),
+          playlistId: id,
         );
       });
 
-  Future<List<SpotifyItem>> liked() => _get('videos?part=snippet&myRating=like&maxResults=50', (j) {
+  /// YouTube's "Music" category.
+  static const musicCategory = '10';
+
+  /// Your playlists, split into music and videos: YouTube keeps both in one
+  /// list, so a few videos from each playlist are looked at. A playlist is
+  /// music when most of them are. Video playlists open in YouTube.
+  Future<({List<SpotifyItem> music, List<SpotifyItem> videos})> sortedPlaylists() async {
+    final all = await playlists();
+    final samples = <List<String>>[];
+    for (var i = 0; i < all.length; i += 10) {
+      samples.addAll(
+        await Future.wait([
+          for (final p in all.skip(i).take(10))
+            _sample(p.playlistId!).catchError((Object _) => const <String>[]),
+        ]),
+      );
+    }
+    final categories = await _categories({for (final s in samples) ...s}.toList());
+    final music = <SpotifyItem>[], videos = <SpotifyItem>[];
+    for (var i = 0; i < all.length; i++) {
+      final known = [for (final v in samples[i]) ?categories[v]];
+      final songs = known.where((c) => c == musicCategory).length;
+      if (known.isEmpty || songs * 2 >= known.length) {
+        music.add(all[i]);
+      } else {
+        videos.add(all[i].withUrl('https://www.youtube.com/playlist?list=${all[i].playlistId}'));
+      }
+    }
+    return (music: music, videos: videos);
+  }
+
+  Future<List<String>> _sample(String id) async {
+    final items = await _get('playlistItems?part=contentDetails&maxResults=5&playlistId=$id', (j) {
+      final video = (j['contentDetails'] as Map?)?['videoId'];
+      return video is String ? SpotifyItem(name: '', detail: '', url: video) : null;
+    }, allPages: false);
+    return [for (final i in items) i.url];
+  }
+
+  /// Each video's category, 50 at a time.
+  Future<Map<String, String>> _categories(List<String> ids) async {
+    final out = <String, String>{};
+    for (var i = 0; i < ids.length; i += 50) {
+      final batch = ids.skip(i).take(50).join(',');
+      await _get('videos?part=snippet&maxResults=50&id=$batch', (j) {
+        final id = j['id'], cat = (j['snippet'] as Map?)?['categoryId'];
+        if (id is String && cat is String) out[id] = cat;
+        return null;
+      }, allPages: false);
+    }
+    return out;
+  }
+
+  /// Your liked videos, split into songs (YouTube's Music category, which
+  /// is where YouTube Music likes land) and everything else.
+  Future<({List<SpotifyItem> songs, List<SpotifyItem> videos})> sortedLiked() async {
+    final songs = <SpotifyItem>[], videos = <SpotifyItem>[];
+    await _get('videos?part=snippet&myRating=like&maxResults=50', (j) {
+      final item = _liked(j);
+      if (item == null) return null;
+      if ((j['snippet'] as Map?)?['categoryId'] == musicCategory) {
+        songs.add(item);
+      } else {
+        videos.add(item.withUrl(item.url.replaceFirst(_host, 'https://www.youtube.com')));
+      }
+      return null;
+    });
+    return (songs: songs, videos: videos);
+  }
+
+  /// The songs in one of your playlists, in order (the first 500), so you
+  /// can wake up to just one of them. Deleted and private videos are left
+  /// out.
+  Future<List<SpotifyItem>> playlistSongs(String id, {bool music = true}) async {
+    if (!RegExp(r'^[A-Za-z0-9_-]{1,150}$').hasMatch(id)) throw ArgumentError.value(id, 'playlist');
+    final host = music ? _host : 'https://www.youtube.com';
+    final items = await _get('playlistItems?part=snippet&maxResults=50&playlistId=$id', (j) {
+      final sn = j['snippet'] as Map?;
+      final video = (sn?['resourceId'] as Map?)?['videoId'];
+      final name = sn?['title'] as String?;
+      final owner = sn?['videoOwnerChannelTitle'] as String?;
+      // Deleted and private videos have no owner.
+      if (video is! String || name == null || name.isEmpty || owner == null) return null;
+      return SpotifyItem(
+        name: name,
+        detail: owner.replaceFirst(RegExp(r' - Topic$'), ''),
+        url: '$host/watch?v=$video',
+        image: _thumb(sn),
+      );
+    }, limit: 500);
+    return items;
+  }
+
+  Future<List<SpotifyItem>> liked() => _get('videos?part=snippet&myRating=like&maxResults=50', _liked);
+
+  SpotifyItem? _liked(Map<String, dynamic> j) {
     final id = j['id'] as String?;
     final sn = j['snippet'] as Map?;
     final name = sn?['title'] as String?;
     if (id == null || name == null || name.isEmpty) return null;
     final channel = (sn?['channelTitle'] as String? ?? '').replaceFirst(RegExp(r' - Topic$'), '');
     return SpotifyItem(name: name, detail: channel, url: '$_host/watch?v=$id', image: _thumb(sn));
-  });
+  }
 
   /// Resolve the signed-in user's playlist through the official Data API.
   /// Only video IDs reach the IFrame player; the OAuth token stays in Dart.
@@ -148,6 +244,7 @@ class YouTubeLibrary {
           detail: '${l10n.playlist} · $channel',
           url: '$_host/playlist?list=$list',
           image: _thumb(sn),
+          playlistId: list,
         );
       }
       return null;
@@ -175,7 +272,12 @@ class YouTubeLibrary {
     }
   }
 
-  Future<List<SpotifyItem>> _get(String path, SpotifyItem? Function(Map<String, dynamic>) parse) async {
+  Future<List<SpotifyItem>> _get(
+    String path,
+    SpotifyItem? Function(Map<String, dynamic>) parse, {
+    bool allPages = true,
+    int? limit,
+  }) async {
     var uri = Uri.parse('https://www.googleapis.com/youtube/v3/$path');
     final out = <SpotifyItem>[], pages = <String>{};
     do {
@@ -196,7 +298,8 @@ class YouTubeLibrary {
       final next = data['nextPageToken'] as String?;
       if (next == null || next.isEmpty || !pages.add(next)) break;
       // Search stays deliberately small; playlist/liked collections are complete.
-      if (uri.path.endsWith('/search')) break;
+      if (!allPages || uri.path.endsWith('/search')) break;
+      if (limit != null && out.length >= limit) break;
       uri = uri.replace(queryParameters: {...uri.queryParameters, 'pageToken': next});
     } while (true);
     return out;

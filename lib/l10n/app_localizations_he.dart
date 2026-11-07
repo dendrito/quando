@@ -2668,4 +2668,28 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'פתיחת מופע הירח';
+
+  @override
+  String get musicPlaylists => 'פלייליסטים של מוזיקה';
+
+  @override
+  String get videoPlaylists => 'פלייליסטים של סרטונים';
+
+  @override
+  String get likedVideos => 'סרטונים שאהבתם';
+
+  @override
+  String get wholePlaylist => 'להתעורר לכל הפלייליסט';
+
+  @override
+  String get noSongsInPlaylist => 'אין כאן שירים שאפשר לנגן.';
+
+  @override
+  String get hebrewNamesHeading => 'כתיב שמות הפרשה והחודשים';
+
+  @override
+  String get hebrewNamesIsraeli => 'ישראלי';
+
+  @override
+  String get hebrewNamesAshkenazi => 'אשכנזי';
 }

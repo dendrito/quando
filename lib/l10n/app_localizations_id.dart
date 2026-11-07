@@ -2670,4 +2670,28 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Buka fase Bulan';
+
+  @override
+  String get musicPlaylists => 'Playlist musik';
+
+  @override
+  String get videoPlaylists => 'Playlist video';
+
+  @override
+  String get likedVideos => 'Video yang disukai';
+
+  @override
+  String get wholePlaylist => 'Bangun dengan seluruh playlist';
+
+  @override
+  String get noSongsInPlaylist => 'Tidak ada lagu yang bisa diputar di sini.';
+
+  @override
+  String get hebrewNamesHeading => 'Ejaan nama parasha dan bulan';
+
+  @override
+  String get hebrewNamesIsraeli => 'Israel';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Ashkenazi';
 }

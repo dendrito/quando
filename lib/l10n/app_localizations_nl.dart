@@ -2685,4 +2685,28 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Maanfase openen';
+
+  @override
+  String get musicPlaylists => 'Muziekafspeellijsten';
+
+  @override
+  String get videoPlaylists => 'Video-afspeellijsten';
+
+  @override
+  String get likedVideos => 'Leuke video\'s';
+
+  @override
+  String get wholePlaylist => 'Wakker worden met de hele lijst';
+
+  @override
+  String get noSongsInPlaylist => 'Geen afspeelbare nummers hier.';
+
+  @override
+  String get hebrewNamesHeading => 'Spelling van parasja en maanden';
+
+  @override
+  String get hebrewNamesIsraeli => 'Israëlisch';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Asjkenazisch';
 }

@@ -43,7 +43,7 @@ void main() {
     for (var day = DateTime(2026, 1, 3); day.year == 2026; day = day.add(const Duration(days: 7))) {
       final (_, name) = hebrewDate(day);
       final link = parashaSefaria(day);
-      if (name == 'Matos Masei') {
+      if (name == 'Matot-Masei') {
         combined = true;
         expect(link?.path, '/Numbers.30.2-36.13');
       }

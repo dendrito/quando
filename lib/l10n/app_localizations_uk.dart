@@ -2720,4 +2720,28 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Відкрити фазу Місяця';
+
+  @override
+  String get musicPlaylists => 'Музичні плейлисти';
+
+  @override
+  String get videoPlaylists => 'Плейлисти з відео';
+
+  @override
+  String get likedVideos => 'Улюблені відео';
+
+  @override
+  String get wholePlaylist => 'Прокидатися під увесь плейлист';
+
+  @override
+  String get noSongsInPlaylist => 'Тут немає треків, які можна відтворити.';
+
+  @override
+  String get hebrewNamesHeading => 'Написання тижневої глави та місяців';
+
+  @override
+  String get hebrewNamesIsraeli => 'Ізраїльське';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Ашкеназьке';
 }

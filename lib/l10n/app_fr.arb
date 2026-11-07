@@ -785,5 +785,13 @@
   "moonRises": "Lever",
   "moonSets": "Coucher",
   "moonLunarDay": "Jour {day} sur 29,5 de ce mois lunaire",
-  "moonDetailsOpen": "Ouvrir la phase lunaire"
+  "moonDetailsOpen": "Ouvrir la phase lunaire",
+  "musicPlaylists": "Playlists musique",
+  "videoPlaylists": "Playlists vidéo",
+  "likedVideos": "Vidéos likées",
+  "wholePlaylist": "Se réveiller avec toute la playlist",
+  "noSongsInPlaylist": "Aucun titre lisible ici.",
+  "hebrewNamesHeading": "Orthographe de la paracha et des mois",
+  "hebrewNamesIsraeli": "Israélienne",
+  "hebrewNamesAshkenazi": "Ashkénaze"
 }

@@ -2638,4 +2638,28 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => '달 위상 열기';
+
+  @override
+  String get musicPlaylists => '음악 재생목록';
+
+  @override
+  String get videoPlaylists => '동영상 재생목록';
+
+  @override
+  String get likedVideos => '좋아요 표시한 동영상';
+
+  @override
+  String get wholePlaylist => '재생목록 전체로 일어나기';
+
+  @override
+  String get noSongsInPlaylist => '재생할 수 있는 곡이 없어요.';
+
+  @override
+  String get hebrewNamesHeading => '파라샤와 달 이름 표기';
+
+  @override
+  String get hebrewNamesIsraeli => '이스라엘식';
+
+  @override
+  String get hebrewNamesAshkenazi => '아슈케나즈식';
 }

@@ -2714,4 +2714,28 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'فتح طور القمر';
+
+  @override
+  String get musicPlaylists => 'قوائم الموسيقى';
+
+  @override
+  String get videoPlaylists => 'قوائم الفيديو';
+
+  @override
+  String get likedVideos => 'الفيديوهات المفضلة';
+
+  @override
+  String get wholePlaylist => 'استيقظ على القائمة كلها';
+
+  @override
+  String get noSongsInPlaylist => 'لا توجد أغانٍ يمكن تشغيلها هنا.';
+
+  @override
+  String get hebrewNamesHeading => 'طريقة كتابة أسماء البرشاه والأشهر';
+
+  @override
+  String get hebrewNamesIsraeli => 'إسرائيلية';
+
+  @override
+  String get hebrewNamesAshkenazi => 'أشكنازية';
 }

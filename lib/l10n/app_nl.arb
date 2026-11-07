@@ -785,5 +785,13 @@
   "moonRises": "Opkomst",
   "moonSets": "Ondergang",
   "moonLunarDay": "Dag {day} van 29,5 in deze maanmaand",
-  "moonDetailsOpen": "Maanfase openen"
+  "moonDetailsOpen": "Maanfase openen",
+  "musicPlaylists": "Muziekafspeellijsten",
+  "videoPlaylists": "Video-afspeellijsten",
+  "likedVideos": "Leuke video's",
+  "wholePlaylist": "Wakker worden met de hele lijst",
+  "noSongsInPlaylist": "Geen afspeelbare nummers hier.",
+  "hebrewNamesHeading": "Spelling van parasja en maanden",
+  "hebrewNamesIsraeli": "Israëlisch",
+  "hebrewNamesAshkenazi": "Asjkenazisch"
 }

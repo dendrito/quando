@@ -2636,4 +2636,28 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => '月相を開く';
+
+  @override
+  String get musicPlaylists => '音楽プレイリスト';
+
+  @override
+  String get videoPlaylists => '動画プレイリスト';
+
+  @override
+  String get likedVideos => '高く評価した動画';
+
+  @override
+  String get wholePlaylist => 'プレイリスト全体で起きる';
+
+  @override
+  String get noSongsInPlaylist => '再生できる曲がありません。';
+
+  @override
+  String get hebrewNamesHeading => 'パラシャと月名の表記';
+
+  @override
+  String get hebrewNamesIsraeli => 'イスラエル式';
+
+  @override
+  String get hebrewNamesAshkenazi => 'アシュケナージ式';
 }

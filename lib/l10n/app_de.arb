@@ -785,5 +785,13 @@
   "moonRises": "Aufgang",
   "moonSets": "Untergang",
   "moonLunarDay": "Tag {day} von 29,5 in diesem Mondmonat",
-  "moonDetailsOpen": "Mondphase öffnen"
+  "moonDetailsOpen": "Mondphase öffnen",
+  "musicPlaylists": "Musik-Playlists",
+  "videoPlaylists": "Video-Playlists",
+  "likedVideos": "Lieblingsvideos",
+  "wholePlaylist": "Mit der ganzen Playlist aufwachen",
+  "noSongsInPlaylist": "Hier gibt es keine abspielbaren Songs.",
+  "hebrewNamesHeading": "Schreibweise von Parascha und Monaten",
+  "hebrewNamesIsraeli": "Israelisch",
+  "hebrewNamesAshkenazi": "Aschkenasisch"
 }

@@ -443,6 +443,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         inIsrael: place.inIsrael,
                         afterSunset: afterSunset,
                         hebrew: l10n.localeName == 'he',
+                        names: display.hebrewNames,
                       );
                       final link = parashaSefaria(local, inIsrael: place.inIsrael, afterSunset: afterSunset);
                       return Padding(
@@ -488,6 +489,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         local,
                         afterSunset: jewishSun.sunset != null && now.isAfter(jewishSun.sunset!),
                         hebrew: l10n.localeName == 'he',
+                        names: display.hebrewNames,
                       );
                       final days = date.first == date.last
                           ? dayLabel(date.first)

@@ -785,5 +785,13 @@
   "moonRises": "Doğuş",
   "moonSets": "Batış",
   "moonLunarDay": "Bu ay döngüsünün 29,5 gününden {day}. gün",
-  "moonDetailsOpen": "Ay evresini aç"
+  "moonDetailsOpen": "Ay evresini aç",
+  "musicPlaylists": "Müzik çalma listeleri",
+  "videoPlaylists": "Video çalma listeleri",
+  "likedVideos": "Beğenilen videolar",
+  "wholePlaylist": "Tüm listeyle uyan",
+  "noSongsInPlaylist": "Burada çalınabilecek şarkı yok.",
+  "hebrewNamesHeading": "Paraşa ve ay adlarının yazılışı",
+  "hebrewNamesIsraeli": "İsrail",
+  "hebrewNamesAshkenazi": "Aşkenaz"
 }

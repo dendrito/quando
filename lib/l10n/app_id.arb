@@ -785,5 +785,13 @@
   "moonRises": "Terbit",
   "moonSets": "Terbenam",
   "moonLunarDay": "Hari {day} dari 29,5 di bulan lunar ini",
-  "moonDetailsOpen": "Buka fase Bulan"
+  "moonDetailsOpen": "Buka fase Bulan",
+  "musicPlaylists": "Playlist musik",
+  "videoPlaylists": "Playlist video",
+  "likedVideos": "Video yang disukai",
+  "wholePlaylist": "Bangun dengan seluruh playlist",
+  "noSongsInPlaylist": "Tidak ada lagu yang bisa diputar di sini.",
+  "hebrewNamesHeading": "Ejaan nama parasha dan bulan",
+  "hebrewNamesIsraeli": "Israel",
+  "hebrewNamesAshkenazi": "Ashkenazi"
 }

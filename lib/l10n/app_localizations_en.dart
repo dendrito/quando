@@ -2670,4 +2670,28 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Open Moon phase';
+
+  @override
+  String get musicPlaylists => 'Music playlists';
+
+  @override
+  String get videoPlaylists => 'Video playlists';
+
+  @override
+  String get likedVideos => 'Liked videos';
+
+  @override
+  String get wholePlaylist => 'Wake up to the whole playlist';
+
+  @override
+  String get noSongsInPlaylist => 'No songs here that can play.';
+
+  @override
+  String get hebrewNamesHeading => 'Spelling of parasha and month names';
+
+  @override
+  String get hebrewNamesIsraeli => 'Israeli';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Ashkenazi';
 }

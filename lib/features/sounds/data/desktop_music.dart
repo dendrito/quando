@@ -5,6 +5,8 @@ import '../../../core/util/platform.dart';
 import '../../ringing/data/spotify.dart';
 import 'spotify_library.dart';
 
+import 'package:quando/l10n/l10n.dart';
+
 /// Scoped controls for the user's installed Mac apps. No account password,
 /// web cookie, private streaming URL or developer secret is collected.
 class DesktopMusic {
@@ -43,7 +45,7 @@ class DesktopMusic {
 
   static Future<void> pause(String session) => channel.invokeMethod<void>('pause', {'session': session});
 
-  static Future<(List<SpotifyItem>, List<SpotifyItem>)> appleLibrary() async {
+  static Future<List<MusicShelf>> appleLibrary() async {
     final result = await channel.invokeMapMethod<String, dynamic>('library', {'service': 'apple'}) ?? {};
     List<SpotifyItem> parse(String key, String kind) => [
       for (final row in result[key] as List? ?? [])
@@ -54,6 +56,9 @@ class DesktopMusic {
             url: 'quando-music:$kind:${row['id']}',
           ),
     ];
-    return (parse('playlists', 'playlist'), parse('songs', 'track'));
+    return [
+      MusicShelf(l10n.playlists, parse('playlists', 'playlist'), empty: l10n.noPlaylists),
+      MusicShelf(l10n.musicSongs, parse('songs', 'track'), empty: l10n.noMusicSongs),
+    ];
   }
 }

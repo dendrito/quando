@@ -2674,4 +2674,28 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'Ay evresini aç';
+
+  @override
+  String get musicPlaylists => 'Müzik çalma listeleri';
+
+  @override
+  String get videoPlaylists => 'Video çalma listeleri';
+
+  @override
+  String get likedVideos => 'Beğenilen videolar';
+
+  @override
+  String get wholePlaylist => 'Tüm listeyle uyan';
+
+  @override
+  String get noSongsInPlaylist => 'Burada çalınabilecek şarkı yok.';
+
+  @override
+  String get hebrewNamesHeading => 'Paraşa ve ay adlarının yazılışı';
+
+  @override
+  String get hebrewNamesIsraeli => 'İsrail';
+
+  @override
+  String get hebrewNamesAshkenazi => 'Aşkenaz';
 }

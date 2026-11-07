@@ -18,6 +18,7 @@ import '../../../core/util/platform.dart';
 import '../../ringing/data/spotify.dart';
 import '../domain/sound.dart';
 import 'radio_screen.dart';
+import 'service_logo.dart';
 import 'music_picker_screen.dart';
 import 'sound_player.dart';
 import 'music_preview_dialog.dart';
@@ -239,7 +240,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = YouTubeAccount.connected;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.smart_display_outlined, color: QuandoColors.amber),
+      leading: YouTubePairLogo(connected: on),
       title: Text(on ? l10n.pickFromYouTube : l10n.youTubeAndMusic),
       subtitle: Text(
         YouTubeAccount.available ? (on ? l10n.youTubeOn : l10n.youTubeSignIn) : l10n.addSongLinkInstead,
@@ -275,7 +276,26 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                     load: () async {
                       final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
                       try {
-                        return (await lib.playlists(), await lib.liked());
+                        final (lists, liked) = await (lib.sortedPlaylists(), lib.sortedLiked()).wait;
+                        return [
+                          MusicShelf(l10n.musicPlaylists, lists.music, empty: l10n.noPlaylists),
+                          MusicShelf(l10n.likedSongs, liked.songs, empty: l10n.noLikedSongs),
+                          if (lists.videos.isNotEmpty)
+                            MusicShelf(l10n.videoPlaylists, lists.videos, empty: l10n.noPlaylists),
+                          if (liked.videos.isNotEmpty)
+                            MusicShelf(l10n.likedVideos, liked.videos, empty: l10n.noLikedSongs),
+                        ];
+                      } finally {
+                        lib.close();
+                      }
+                    },
+                    songsOf: (playlist) async {
+                      final lib = YouTubeLibrary(await YouTubeAccount.token() ?? token);
+                      try {
+                        return await lib.playlistSongs(
+                          playlist.playlistId!,
+                          music: !playlist.url.startsWith('https://www.youtube.com/'),
+                        );
                       } finally {
                         lib.close();
                       }
@@ -315,7 +335,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final prefs = ref.read(prefsProvider);
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.library_music_outlined, color: QuandoColors.amber),
+      leading: ServiceLogo(MusicService.spotify, connected: on),
       title: Text(on ? l10n.pickFromSpotify : l10n.spotifyLibrary),
       subtitle: Text(on ? l10n.spotifyLibraryOn : l10n.spotifyLibrarySignIn, style: text.bodySmall),
       trailing: on ? const Icon(Icons.chevron_right) : null,
@@ -347,8 +367,13 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               prepare: isMacOS ? (_) => DesktopMusic.connect('spotify', prefs) : null,
               load: () async {
                 final lib = await library();
-                return (await lib.playlists(), await lib.likedSongs());
+                final (lists, liked) = await (lib.playlists(), lib.likedSongs()).wait;
+                return [
+                  MusicShelf(l10n.playlists, lists, empty: l10n.noPlaylists),
+                  MusicShelf(l10n.likedSongs, liked, empty: l10n.noLikedSongs),
+                ];
               },
+              songsOf: (playlist) async => (await library()).playlistSongs(playlist.playlistId!),
               search: (q) async => (await library()).search(q),
             ),
           ),
@@ -363,7 +388,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = SpotifyPlay.connected;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      leading: ServiceLogo(MusicService.spotify, connected: on),
       title: Text(on ? l10n.spotifyDirectOn : l10n.spotifyDirect),
       subtitle: Text(
         SpotifyPlay.available
@@ -395,7 +420,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = prefs.getBool(DesktopMusic.key(service)) == true;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(on ? Icons.check_circle : Icons.play_circle_outline, color: QuandoColors.amber),
+      leading: ServiceLogo(
+        service == 'apple' ? MusicService.appleMusic : MusicService.spotify,
+        connected: on,
+      ),
       title: Text(service == 'spotify' ? l10n.spotifyDirect : name),
       subtitle: Text(on ? l10n.desktopMusicOn(name) : l10n.desktopMusicConnect(name), style: text.bodySmall),
       trailing: on && service == 'apple' ? const Icon(Icons.chevron_right) : null,
@@ -413,8 +441,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           if (service == 'apple') {
             await Navigator.of(context).push(
               MaterialPageRoute<void>(
-                builder: (_) =>
-                    MusicPickerScreen(title: 'Apple Music', load: DesktopMusic.appleLibrary, songs: true),
+                builder: (_) => MusicPickerScreen(title: 'Apple Music', load: DesktopMusic.appleLibrary),
               ),
             );
           }
@@ -524,13 +551,14 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           _spotifyLibraryTile(text),
           _youTubeTile(text),
           if (isMacOS) _desktopTile(text, 'apple', 'Apple Music'),
-          for (final (app, note) in [
-            if (!isMacOS) ('Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
-            ('SoundCloud', l10n.soundCloudWidgetNote),
+          for (final (logo, app, note) in [
+            if (!isMacOS)
+              (MusicService.appleMusic, 'Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
+            (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
           ])
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.music_note_outlined, color: QuandoColors.faint),
+              leading: ServiceLogo(logo),
               title: Text(app),
               subtitle: Text(note, style: text.bodySmall),
               onTap: recording ? null : _addLink,

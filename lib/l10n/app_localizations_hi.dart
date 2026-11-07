@@ -2672,4 +2672,28 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => 'चंद्र कला खोलें';
+
+  @override
+  String get musicPlaylists => 'संगीत प्लेलिस्ट';
+
+  @override
+  String get videoPlaylists => 'वीडियो प्लेलिस्ट';
+
+  @override
+  String get likedVideos => 'पसंद किए वीडियो';
+
+  @override
+  String get wholePlaylist => 'पूरी प्लेलिस्ट से जागें';
+
+  @override
+  String get noSongsInPlaylist => 'यहाँ चलाने लायक कोई गाना नहीं है।';
+
+  @override
+  String get hebrewNamesHeading => 'पराशा और महीनों के नामों की वर्तनी';
+
+  @override
+  String get hebrewNamesIsraeli => 'इज़राइली';
+
+  @override
+  String get hebrewNamesAshkenazi => 'अश्केनाज़ी';
 }

@@ -785,5 +785,13 @@
   "moonRises": "Mọc",
   "moonSets": "Lặn",
   "moonLunarDay": "Ngày {day} trên 29,5 của tháng âm lịch này",
-  "moonDetailsOpen": "Mở pha Mặt Trăng"
+  "moonDetailsOpen": "Mở pha Mặt Trăng",
+  "musicPlaylists": "Danh sách nhạc",
+  "videoPlaylists": "Danh sách video",
+  "likedVideos": "Video đã thích",
+  "wholePlaylist": "Thức dậy với cả danh sách",
+  "noSongsInPlaylist": "Không có bài nào phát được ở đây.",
+  "hebrewNamesHeading": "Cách viết tên parasha và tháng",
+  "hebrewNamesIsraeli": "Israel",
+  "hebrewNamesAshkenazi": "Ashkenazi"
 }

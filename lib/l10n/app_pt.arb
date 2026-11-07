@@ -785,5 +785,13 @@
   "moonRises": "Nasce",
   "moonSets": "Se põe",
   "moonLunarDay": "Dia {day} de 29,5 deste mês lunar",
-  "moonDetailsOpen": "Abrir fase da lua"
+  "moonDetailsOpen": "Abrir fase da lua",
+  "musicPlaylists": "Playlists de música",
+  "videoPlaylists": "Playlists de vídeo",
+  "likedVideos": "Vídeos curtidos",
+  "wholePlaylist": "Acordar com a playlist inteira",
+  "noSongsInPlaylist": "Nenhuma música que dê para tocar aqui.",
+  "hebrewNamesHeading": "Grafia da parashá e dos meses",
+  "hebrewNamesIsraeli": "Israelense",
+  "hebrewNamesAshkenazi": "Asquenazita"
 }

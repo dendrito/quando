@@ -785,5 +785,13 @@
   "moonRises": "זורח",
   "moonSets": "שוקע",
   "moonLunarDay": "יום {day} מתוך 29.5 בחודש הירחי",
-  "moonDetailsOpen": "פתיחת מופע הירח"
+  "moonDetailsOpen": "פתיחת מופע הירח",
+  "musicPlaylists": "פלייליסטים של מוזיקה",
+  "videoPlaylists": "פלייליסטים של סרטונים",
+  "likedVideos": "סרטונים שאהבתם",
+  "wholePlaylist": "להתעורר לכל הפלייליסט",
+  "noSongsInPlaylist": "אין כאן שירים שאפשר לנגן.",
+  "hebrewNamesHeading": "כתיב שמות הפרשה והחודשים",
+  "hebrewNamesIsraeli": "ישראלי",
+  "hebrewNamesAshkenazi": "אשכנזי"
 }

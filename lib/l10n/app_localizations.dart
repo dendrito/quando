@@ -4845,6 +4845,54 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Open Moon phase'**
   String get moonDetailsOpen;
+
+  /// No description provided for @musicPlaylists.
+  ///
+  /// In en, this message translates to:
+  /// **'Music playlists'**
+  String get musicPlaylists;
+
+  /// No description provided for @videoPlaylists.
+  ///
+  /// In en, this message translates to:
+  /// **'Video playlists'**
+  String get videoPlaylists;
+
+  /// No description provided for @likedVideos.
+  ///
+  /// In en, this message translates to:
+  /// **'Liked videos'**
+  String get likedVideos;
+
+  /// No description provided for @wholePlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake up to the whole playlist'**
+  String get wholePlaylist;
+
+  /// No description provided for @noSongsInPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'No songs here that can play.'**
+  String get noSongsInPlaylist;
+
+  /// No description provided for @hebrewNamesHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Spelling of parasha and month names'**
+  String get hebrewNamesHeading;
+
+  /// No description provided for @hebrewNamesIsraeli.
+  ///
+  /// In en, this message translates to:
+  /// **'Israeli'**
+  String get hebrewNamesIsraeli;
+
+  /// No description provided for @hebrewNamesAshkenazi.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashkenazi'**
+  String get hebrewNamesAshkenazi;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

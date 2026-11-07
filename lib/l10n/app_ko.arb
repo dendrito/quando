@@ -785,5 +785,13 @@
   "moonRises": "월출",
   "moonSets": "월몰",
   "moonLunarDay": "이번 음력 달 29.5일 중 {day}일째",
-  "moonDetailsOpen": "달 위상 열기"
+  "moonDetailsOpen": "달 위상 열기",
+  "musicPlaylists": "음악 재생목록",
+  "videoPlaylists": "동영상 재생목록",
+  "likedVideos": "좋아요 표시한 동영상",
+  "wholePlaylist": "재생목록 전체로 일어나기",
+  "noSongsInPlaylist": "재생할 수 있는 곡이 없어요.",
+  "hebrewNamesHeading": "파라샤와 달 이름 표기",
+  "hebrewNamesIsraeli": "이스라엘식",
+  "hebrewNamesAshkenazi": "아슈케나즈식"
 }

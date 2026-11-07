@@ -785,5 +785,13 @@
   "moonRises": "Sorge",
   "moonSets": "Tramonta",
   "moonLunarDay": "Giorno {day} di 29,5 di questo mese lunare",
-  "moonDetailsOpen": "Apri la fase lunare"
+  "moonDetailsOpen": "Apri la fase lunare",
+  "musicPlaylists": "Playlist musicali",
+  "videoPlaylists": "Playlist video",
+  "likedVideos": "Video che ti piacciono",
+  "wholePlaylist": "Svegliati con tutta la playlist",
+  "noSongsInPlaylist": "Nessun brano riproducibile qui.",
+  "hebrewNamesHeading": "Grafia di parashà e mesi",
+  "hebrewNamesIsraeli": "Israeliana",
+  "hebrewNamesAshkenazi": "Ashkenazita"
 }

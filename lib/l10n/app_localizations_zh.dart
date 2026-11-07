@@ -2631,6 +2631,30 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get moonDetailsOpen => '打开月相';
+
+  @override
+  String get musicPlaylists => '音乐播放列表';
+
+  @override
+  String get videoPlaylists => '视频播放列表';
+
+  @override
+  String get likedVideos => '喜欢的视频';
+
+  @override
+  String get wholePlaylist => '用整个播放列表唤醒';
+
+  @override
+  String get noSongsInPlaylist => '这里没有可播放的歌曲。';
+
+  @override
+  String get hebrewNamesHeading => '诵读段与月份名称的拼写';
+
+  @override
+  String get hebrewNamesIsraeli => '以色列式';
+
+  @override
+  String get hebrewNamesAshkenazi => '阿什肯纳兹式';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5259,4 +5283,28 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get moonDetailsOpen => '開啟月相';
+
+  @override
+  String get musicPlaylists => '音樂播放清單';
+
+  @override
+  String get videoPlaylists => '影片播放清單';
+
+  @override
+  String get likedVideos => '喜歡的影片';
+
+  @override
+  String get wholePlaylist => '用整個播放清單喚醒';
+
+  @override
+  String get noSongsInPlaylist => '這裡沒有可播放的歌曲。';
+
+  @override
+  String get hebrewNamesHeading => '誦讀段與月份名稱的拼寫';
+
+  @override
+  String get hebrewNamesIsraeli => '以色列式';
+
+  @override
+  String get hebrewNamesAshkenazi => '阿什肯納茲式';
 }

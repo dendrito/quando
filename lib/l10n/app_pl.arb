@@ -785,5 +785,13 @@
   "moonRises": "Wschód",
   "moonSets": "Zachód",
   "moonLunarDay": "Dzień {day} z 29,5 w tym miesiącu księżycowym",
-  "moonDetailsOpen": "Otwórz fazę Księżyca"
+  "moonDetailsOpen": "Otwórz fazę Księżyca",
+  "musicPlaylists": "Playlisty muzyczne",
+  "videoPlaylists": "Playlisty wideo",
+  "likedVideos": "Polubione filmy",
+  "wholePlaylist": "Obudź się przy całej playliście",
+  "noSongsInPlaylist": "Brak utworów do odtworzenia.",
+  "hebrewNamesHeading": "Pisownia paraszy i miesięcy",
+  "hebrewNamesIsraeli": "Izraelska",
+  "hebrewNamesAshkenazi": "Aszkenazyjska"
 }
