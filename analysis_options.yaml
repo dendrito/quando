@@ -7,7 +7,6 @@ analyzer:
     - ios/**
     # Quando's copy of the alarm plugin keeps its own style.
     - packages/**
-    - macos/Flutter/ephemeral/**
     - macos/**
 
 formatter:

@@ -17,7 +17,9 @@ tool/build_macos.sh mine
 
 The script builds for Apple Silicon and writes apps under `build/mac-editions`.
 It restores the runner's original edition configuration after each build. Set
-`QUANDO_MAC_OUTPUT` to choose another artifact directory. For local team signing,
+`QUANDO_MAC_OUTPUT` to choose another artifact directory. Set
+`QUANDO_MAC_DERIVED_DATA` to keep Xcode's cache outside any cloud-synced source
+folder; the default is `build/macos`. For local team signing,
 set `QUANDO_MAC_SIGNING_IDENTITY` to an existing signing identity and
 `QUANDO_MAC_TEAM` to its existing team. Without them, Xcode signs to run locally.
 The script neither installs nor publishes the result. These builds are not
