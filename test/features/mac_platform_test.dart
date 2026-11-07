@@ -13,6 +13,7 @@ import 'package:quando/features/calendar/data/mac_calendar_reader.dart';
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_style.dart';
+import 'package:quando/features/sounds/domain/sound.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
@@ -31,6 +32,12 @@ void main() {
     expect(Alarm.iOS, isFalse);
     expect(StopWay.onThisPhone, isEmpty);
     expect(StopTask.onThisDevice, isNot(contains(StopTask.shake)));
+    final calm = AlarmSound.calm.first;
+    expect(calm.path, endsWith('.ogg'));
+    expect(calm.playbackPath, endsWith('.m4a'));
+    expect(calm.toJson()['path'], calm.path);
+    debugDefaultTargetPlatformOverride = TargetPlatform.android;
+    expect(calm.playbackPath, calm.path);
     debugDefaultTargetPlatformOverride = TargetPlatform.linux;
     expect(supportsLocalAlarms, isFalse);
   });

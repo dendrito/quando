@@ -17,7 +17,7 @@ class SoundPreview {
     playingId = s.id;
     try {
       if (s.builtIn) {
-        await player.setAsset(s.path);
+        await player.setAsset(s.playbackPath);
       } else if (s.isRadio) {
         await player.setUrl(s.path);
       } else {

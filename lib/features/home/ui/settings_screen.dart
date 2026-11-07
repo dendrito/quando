@@ -314,6 +314,7 @@ class SettingsScreen extends ConsumerWidget {
 
   Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {
     final messenger = ScaffoldMessenger.of(context);
+    final pt = Localizations.localeOf(context).languageCode == 'pt';
     if (!supportsLocalAlarms) {
       messenger.showSnackBar(SnackBar(content: Text(l10n.testOnlyOnPhone)));
       return;
@@ -326,24 +327,46 @@ class SettingsScreen extends ConsumerWidget {
       options: o,
       shabbatSafe: false,
     );
-    await ref
-        .read(registrarProvider)
-        .set(
-          stableId('test|${at.millisecondsSinceEpoch}'),
-          at,
-          RingPayload(
-            title: p.title,
-            body: p.body,
-            ringSeconds: p.ringSeconds,
-            spoken: p.spoken,
-            maxSnoozes: p.maxSnoozes,
-            snoozeMinutes: 1,
-            wakeCheck: p.wakeCheck,
-            mathTask: p.mathTask,
-            loudness: p.loudness,
-            transient: true,
+    if (isMacOS) {
+      messenger.showSnackBar(
+        SnackBar(content: Text(pt ? 'Preparando o alarme de teste…' : 'Preparing the test alarm…')),
+      );
+    }
+    try {
+      await ref
+          .read(registrarProvider)
+          .set(
+            stableId('test|${at.millisecondsSinceEpoch}'),
+            at,
+            RingPayload(
+              title: p.title,
+              body: p.body,
+              ringSeconds: p.ringSeconds,
+              spoken: p.spoken,
+              maxSnoozes: p.maxSnoozes,
+              snoozeMinutes: 1,
+              wakeCheck: p.wakeCheck,
+              mathTask: p.mathTask,
+              loudness: p.loudness,
+              transient: true,
+            ),
+          );
+    } catch (error) {
+      messenger.hideCurrentSnackBar();
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            const bool.fromEnvironment('QUANDO_MAC_DIAGNOSTICS')
+                ? 'Mac test: $error'
+                : (pt
+                      ? 'Não foi possível preparar o alarme. Tente novamente.'
+                      : 'Could not prepare the alarm. Please try again.'),
           ),
-        );
+        ),
+      );
+      return;
+    }
+    messenger.hideCurrentSnackBar();
     messenger.showSnackBar(SnackBar(content: Text(l10n.testAlarmIn1Set)));
   }
 }

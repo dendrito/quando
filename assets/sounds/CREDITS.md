@@ -3,6 +3,10 @@
 Edited (looped, trimmed, mono) by the Blanket project (github.com/rafaelmardojai/blanket),
 then shortened for Quando.
 
+The matching `.m4a` files are AAC transcodes of these same recordings for
+native Mac playback. All existing credits and licences also apply to these
+files; the `.ogg` originals are retained.
+
 | Quando name | Original | Author | Licence |
 | --- | --- | --- | --- |
 | Quiet city morning | https://freesound.org/people/gezortenplotz/sounds/44796/ | gezortenplotz | CC BY |

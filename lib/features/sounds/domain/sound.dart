@@ -1,5 +1,7 @@
 import 'package:quando/l10n/l10n.dart';
 
+import '../../../core/util/platform.dart';
+
 /// A sound an alarm can ring with.
 class AlarmSound {
   const AlarmSound({
@@ -19,6 +21,12 @@ class AlarmSound {
   /// app's documents folder (what the alarm plugin expects), e.g.
   /// `sounds/abc.m4a`.
   final String path;
+
+  /// Keep the stored cross-device choice stable while using a codec the Mac's
+  /// native audio framework can decode for the same built-in recording.
+  String get playbackPath => isMacOS && path.startsWith('assets/sounds/gentle_') && path.endsWith('.ogg')
+      ? '${path.substring(0, path.length - 4)}.m4a'
+      : path;
   final bool builtIn;
 
   /// A song or playlist in another app, e.g. a Spotify or SoundCloud link.

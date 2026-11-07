@@ -34,7 +34,11 @@ public final class MacOSAlarmPlugin: NSObject, FlutterPlugin, AlarmApi {
         do { _ = try audioPlayer(alarmSettings.assetAudioPath) }
         catch {
             NSLog("Quando Mac alarm scheduling failed: %@", error.localizedDescription)
-            completion(.failure(error)); return
+            completion(.failure(PigeonError(
+                code: String(AlarmErrorCode.pluginInternal.rawValue),
+                message: "Could not load the Mac alarm sound (audio error \((error as NSError).code)).",
+                details: nil)))
+            return
         }
         liveSettings[id] = alarmSettings
         updateActivity()
@@ -51,7 +55,9 @@ public final class MacOSAlarmPlugin: NSObject, FlutterPlugin, AlarmApi {
         let fallback = assetURL("assets/sounds/classic_beep.wav")
         let selected: URL
         if let path, path.hasPrefix("assets/") || path.hasPrefix("packages/") {
-            selected = assetURL(path)
+            let compatible = assetURL(String(path.dropLast(4)) + ".m4a")
+            selected = path.hasSuffix(".ogg") && FileManager.default.fileExists(atPath: compatible.path)
+                ? compatible : assetURL(path)
         } else if let path, path.hasPrefix("/") {
             selected = URL(fileURLWithPath: path)
         } else if let path, !path.hasPrefix("http://"), !path.hasPrefix("https://") {
@@ -66,9 +72,13 @@ public final class MacOSAlarmPlugin: NSObject, FlutterPlugin, AlarmApi {
     }
 
     private func assetURL(_ path: String) -> URL {
-        let bundle = Bundle(identifier: FlutterDartProject.defaultBundleIdentifier()) ?? Bundle.main
-        let key = FlutterDartProject.lookupKey(forAsset: path, from: bundle)
-        return bundle.resourceURL!.appendingPathComponent(key)
+        // AOT App.framework is loaded by the Flutter engine, and need not be
+        // registered with NSBundle by identifier. Resolve its actual resource
+        // location instead of falling back to the runner's Resources folder.
+        let frameworks = Bundle.main.privateFrameworksURL
+            ?? Bundle.main.bundleURL.appendingPathComponent("Contents/Frameworks")
+        return frameworks.appendingPathComponent("App.framework/Resources/flutter_assets")
+            .appendingPathComponent(path)
     }
 
     private func start(_ id: Int64) {

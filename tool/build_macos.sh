@@ -21,7 +21,8 @@ restore() {
 }
 trap restore EXIT
 tool/macos_edition.sh "$edition"
-flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITION=$edition"
+flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITION=$edition" \
+  --dart-define="QUANDO_MAC_DIAGNOSTICS=${QUANDO_MAC_DIAGNOSTICS:-false}"
 # Prepare explicitly: Xcode's scheme pre-action can leave an incomplete cached
 # framework after relocating DerivedData. Use Flutter's own engine unpack step.
 flutter assemble --output="$derived/Build/Products/Release/" \
@@ -29,10 +30,15 @@ flutter assemble --output="$derived/Build/Products/Release/" \
 signing=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:--}" "CODE_SIGN_STYLE=Manual" 'PROVISIONING_PROFILE_SPECIFIER=')
 if [[ -n ${QUANDO_MAC_TEAM:-} ]]; then signing+=("DEVELOPMENT_TEAM=$QUANDO_MAC_TEAM"); fi
 xcodebuild -workspace macos/Runner.xcworkspace -scheme Runner -configuration Release \
+  -disableAutomaticPackageResolution -skipPackageUpdates \
   -derivedDataPath "$derived" -destination 'platform=macOS,arch=arm64' \
   ARCHS=arm64 ONLY_ACTIVE_ARCH=YES MACOSX_DEPLOYMENT_TARGET=13.0 "${signing[@]}" build
 source="$derived/Build/Products/Release/$name.app"
 codesign --verify --deep --strict "$source"
+audio="$source/Contents/Frameworks/App.framework/Resources/flutter_assets/assets/sounds"
+test -s "$audio/classic_beep.wav"
+afinfo "$audio/classic_beep.wav" > /dev/null
+for sound in "$audio"/gentle_*.m4a; do afinfo "$sound" > /dev/null; done
 ditto "$source" "$out/$name.app"
 shasum -a 256 "$out/$name.app/Contents/MacOS/$name" > "$out/$edition.sha256"
 git rev-parse HEAD > "$out/$edition.source-commit"

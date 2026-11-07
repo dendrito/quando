@@ -37,6 +37,10 @@ notarized public releases.
 - Default and missing-file fallback use the bundled classic beep. Selected
   supported local files and built-in sounds use AVAudioPlayer. Radio uses an
   AVPlayer with the local backup audible when the stream is not playing.
+- The gentle recordings have matching AAC `.m4a` copies because the system
+  decoder does not accept their `.ogg` originals. Mac preview and alarm playback
+  use these copies, preserving saved sound IDs/paths and all original credits.
+  Regenerate them with `tool/prepare_mac_sounds.sh` when changing the recordings.
 - Per-alarm app volume and fade are supported. macOS output volume/mute still
   apply; the backend does not change system volume or provide vibration.
 - External music links can open their applications. Automatic playback and
