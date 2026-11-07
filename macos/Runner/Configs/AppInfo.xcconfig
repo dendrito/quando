@@ -1,0 +1,4 @@
+PRODUCT_NAME = Quando?
+PRODUCT_BUNDLE_IDENTIFIER = com.dendrito.quando
+PRODUCT_COPYRIGHT = Copyright © 2026 Dendrito. All rights reserved.
+QUANDO_APP_ICON = AppIcon

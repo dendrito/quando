@@ -6,9 +6,11 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/scheduler/scheduler.dart';
 import '../core/util/format.dart';
+import '../core/util/platform.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
+import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
@@ -457,7 +459,9 @@ final jewishTimesProvider = Provider<JewishTimes>(
 /// Events wide enough to plan every rule's alarms for the next 7 days.
 // ---- Calendars ----
 
-final calendarReaderProvider = Provider<CalendarReader>((ref) => DeviceCalendarReader());
+final calendarReaderProvider = Provider<CalendarReader>(
+  (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
+);
 
 class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);

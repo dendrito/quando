@@ -314,7 +314,7 @@ Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick,
           spacing: 8,
           runSpacing: 8,
           children: [
-            for (final t in StopTask.values)
+            for (final t in StopTask.onThisDevice)
               ChoiceChip(
                 label: Text(t == StopTask.none ? l10n.none : t.label),
                 selected: current == t,

@@ -37,6 +37,10 @@ class Alarm {
   /// Whether it's iOS device.
   static bool get iOS => defaultTargetPlatform == TargetPlatform.iOS;
 
+  // Both Apple hosts implement the same native alarm API. Keep the public
+  // iOS flag literal so platform-specific callers do not mistake a Mac for iOS.
+  static bool get _apple => iOS || defaultTargetPlatform == TargetPlatform.macOS;
+
   /// Whether it's Android device.
   static bool get android => defaultTargetPlatform == TargetPlatform.android;
 
@@ -354,7 +358,7 @@ class Alarm {
 
     final alarms = await getAlarms();
 
-    if (iOS) await stopAll();
+    if (_apple) await stopAll();
 
     for (final alarm in alarms) {
       // Just reconciled from a host event: for a move the native alarm is
@@ -370,7 +374,7 @@ class Alarm {
         // Query the platform directly instead of [isRinging] because the
         // ringing stream is not populated yet at this point, which would
         // trigger the defensive consistency logs for no reason.
-        final state = iOS
+        final state = _apple
             ? await IOSAlarm().getAlarmState(alarm.id)
             : await AndroidAlarm().getAlarmState(alarm.id);
         if (state == AlarmStateWire.ringing) {
@@ -434,7 +438,7 @@ class Alarm {
 
     await AlarmStorage.saveAlarm(alarmSettings);
 
-    final success = iOS
+    final success = _apple
         ? await IOSAlarm().setAlarm(alarmSettings)
         : await AndroidAlarm().setAlarm(alarmSettings);
 
@@ -575,7 +579,7 @@ class Alarm {
     await AlarmStorage.unsaveAlarm(id);
     updateStream.add(id);
 
-    final success = iOS
+    final success = _apple
         ? await IOSAlarm().stopAlarm(id)
         : await AndroidAlarm().stopAlarm(id);
 
@@ -591,7 +595,7 @@ class Alarm {
   static Future<void> stopAll() async {
     final alarms = await getAlarms();
 
-    iOS ? await IOSAlarm().stopAll() : await AndroidAlarm().stopAll();
+    _apple ? await IOSAlarm().stopAll() : await AndroidAlarm().stopAll();
 
     await AlarmStorage.unsaveAll();
 
@@ -609,7 +613,7 @@ class Alarm {
   /// If an `id` is provided, it checks if the specific alarm with that `id`
   /// is ringing.
   static Future<bool> isRinging([int? id]) async {
-    final isRinging = iOS
+    final isRinging = _apple
         ? await IOSAlarm().isRinging(id)
         : await AndroidAlarm().isRinging(id);
 

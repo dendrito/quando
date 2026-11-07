@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
+import '../../../core/util/platform.dart';
 import '../../alarms/ui/ring_length_picker.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
@@ -231,6 +231,16 @@ class SettingsScreen extends ConsumerWidget {
           if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
           const SizedBox(height: 16),
           OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
+          if (isMacOS)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                Localizations.localeOf(context).languageCode == 'pt'
+                    ? 'No Mac, mantenha o app aberto e o computador acordado para os alarmes. Fechar a janela mantém o app em execução; Sair o encerra.'
+                    : 'On Mac, keep the app running and the computer awake for alarms. Closing the window keeps the app running; Quit stops it.',
+                style: text.bodySmall,
+              ),
+            ),
           const SizedBox(height: 24),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
           const _VersionLine(),
@@ -304,10 +314,7 @@ class SettingsScreen extends ConsumerWidget {
 
   Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {
     final messenger = ScaffoldMessenger.of(context);
-    final supported =
-        !kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
-    if (!supported) {
+    if (!supportsLocalAlarms) {
       messenger.showSnackBar(SnackBar(content: Text(l10n.testOnlyOnPhone)));
       return;
     }
