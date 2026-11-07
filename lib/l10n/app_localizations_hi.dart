@@ -2646,4 +2646,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube दिखाई देने वाले प्लेयर में वीडियो चलाता है। छिपने या न चल पाने पर स्थानीय अलार्म जारी रहता है।';
+
+  @override
+  String get musicPreviewFailed => 'यह ध्वनि नहीं चल सकी। कनेक्शन जाँचें या दूसरा ट्रैक या स्टेशन आज़माएँ।';
 }

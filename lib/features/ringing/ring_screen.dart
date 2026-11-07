@@ -13,6 +13,7 @@ import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
+import '../sounds/ui/sound_player.dart';
 import 'data/apps.dart';
 import 'data/music.dart';
 import 'data/embedded_music.dart';
@@ -79,6 +80,10 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   @override
   void initState() {
     super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      unawaited(SoundPreview.instance.stop());
+      unawaited(Music.stopPreview());
+    });
     if (p.localAudio && p.spoken) {
       _speakTimer = Timer(const Duration(seconds: 2), _speak);
     }

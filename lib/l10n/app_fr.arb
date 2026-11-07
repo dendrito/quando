@@ -777,5 +777,6 @@
   "noMusicSongs": "Aucun morceau trouvé dans votre bibliothèque Musique.",
   "serviceConnectUnavailable": "La connexion au compte {service} est indisponible sur cette plateforme. Un lien peut s’ouvrir après l’arrêt de l’alarme.",
   "soundCloudWidgetNote": "Ajoutez un lien public de morceau ou playlist. Le lecteur officiel suit la durée de l’alarme ; la connexion au compte est indisponible.",
-  "youtubePlayerHint": "YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue."
+  "youtubePlayerHint": "YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue.",
+  "musicPreviewFailed": "Impossible de lire ce son. Vérifiez la connexion ou essayez un autre morceau ou une autre station."
 }

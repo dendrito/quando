@@ -19,6 +19,10 @@ class Music {
   static bool _hasSession = false;
   static bool owns(int alarmId) => _hasSession && _alarmId == alarmId;
 
+  static Future<void> stopPreview() async {
+    if (_alarmId != null && _alarmId! < 0) await pause(alarmId: _alarmId);
+  }
+
   static Future<bool> playingFor(int alarmId) async {
     if (!owns(alarmId)) return false;
     try {

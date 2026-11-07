@@ -777,5 +777,6 @@
   "noMusicSongs": "Tidak ada lagu ditemukan di perpustakaan Musik.",
   "serviceConnectUnavailable": "Koneksi akun {service} tidak tersedia di platform ini. Tautan dapat dibuka setelah alarm dihentikan.",
   "soundCloudWidgetNote": "Tambahkan tautan publik lagu atau playlist. Pemutar resmi mengikuti durasi alarm; masuk akun tidak tersedia.",
-  "youtubePlayerHint": "YouTube memutar video di pemutar yang terlihat. Jika disembunyikan atau tidak dapat memutar, alarm lokal berlanjut."
+  "youtubePlayerHint": "YouTube memutar video di pemutar yang terlihat. Jika disembunyikan atau tidak dapat memutar, alarm lokal berlanjut.",
+  "musicPreviewFailed": "Suara ini tidak dapat diputar. Periksa koneksi atau coba lagu atau stasiun lain."
 }

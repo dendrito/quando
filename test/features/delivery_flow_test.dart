@@ -17,6 +17,7 @@ import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/alarms/data/alarm_registrar.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
 import 'package:quando/features/alarms/ui/edit_alarm_screen.dart';
+import 'package:quando/features/home/ui/settings_screen.dart';
 import 'package:quando/features/sounds/ui/sound_picker.dart';
 import 'package:quando/features/sounds/ui/sounds_screen.dart';
 import 'package:quando/features/integrations/data/sender.dart';
@@ -98,6 +99,46 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     await tester.pumpAndSettle();
   });
+
+  testWidgets('Settings test rings the selected music with the alarm duration and backup', (tester) async {
+    final saved = await prefs();
+    await saved.setString(
+      'sounds',
+      jsonEncode([
+        {
+          'id': 'test.soundcloud',
+          'name': 'My SoundCloud',
+          'path': 'assets/sounds/morning_rise.wav',
+          'link': 'https://soundcloud.com/forss/flickermood',
+          'plays': true,
+          'playSeconds': 5,
+        },
+      ]),
+    );
+    await saved.setString(
+      'alarmOptions',
+      jsonEncode({'soundId': 'test.soundcloud', 'ringSeconds': 30, 'spoken': false}),
+    );
+    final registrar = _CaptureRegistrar();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [prefsProvider.overrideWithValue(saved), registrarProvider.overrideWithValue(registrar)],
+        child: MaterialApp(theme: buildTheme(), home: const SettingsScreen()),
+      ),
+    );
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text(l10n.testAlarmIn1), 500);
+    await tester.ensureVisible(find.text(l10n.testAlarmIn1));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.testAlarmIn1));
+    await tester.pumpAndSettle();
+    expect(registrar.payload?.song, 'https://soundcloud.com/forss/flickermood');
+    expect(registrar.payload?.sound, 'assets/sounds/morning_rise.wav');
+    expect(registrar.payload?.ringSeconds, 30);
+    expect(registrar.payload?.spoken, isFalse);
+    expect(registrar.payload?.transient, isTrue);
+    expect(tester.takeException(), isNull);
+  }, variant: TargetPlatformVariant.only(TargetPlatform.macOS));
 
   test('normal alarms persist delivery, keep IDs, and carry choices into cold-start payloads', () {
     final at = DateTime.utc(2026, 11, 7, 12);
@@ -366,4 +407,13 @@ void main() {
       }
     }
   });
+}
+
+class _CaptureRegistrar extends AlarmRegistrar {
+  RingPayload? payload;
+  @override
+  Future<bool> set(int id, DateTime at, RingPayload p) async {
+    payload = p;
+    return true;
+  }
 }

@@ -2658,4 +2658,8 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube spielt Videos in einem sichtbaren Player ab. Wird er verborgen oder kann er nicht abspielen, läuft der lokale Weckton weiter.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Dieser Ton konnte nicht abgespielt werden. Prüfe die Verbindung oder versuche einen anderen Titel oder Sender.';
 }

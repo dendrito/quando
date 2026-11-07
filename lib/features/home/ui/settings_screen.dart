@@ -321,12 +321,15 @@ class SettingsScreen extends ConsumerWidget {
     }
     await ensureAlarmPermissions();
     final at = DateTime.now().add(const Duration(minutes: 1));
-    final p = RingPayload.forAlarm(
+    var p = RingPayload.forAlarm(
       title: l10n.testAlarm,
       body: l10n.testAlarmBody,
       options: o,
       shabbatSafe: false,
     );
+    final sound = ref.read(soundsProvider).where((s) => s.id == o.soundId).firstOrNull;
+    p = p.withSound(sound?.playbackPath);
+    if (sound?.link != null) p = p.withSong(sound!.link!, plays: sound.plays, seconds: sound.playSeconds);
     if (isMacOS) {
       messenger.showSnackBar(
         SnackBar(content: Text(pt ? 'Preparando o alarme de teste…' : 'Preparing the test alarm…')),
@@ -349,6 +352,10 @@ class SettingsScreen extends ConsumerWidget {
               mathTask: p.mathTask,
               loudness: p.loudness,
               transient: true,
+              sound: p.sound,
+              song: p.song,
+              link: p.link,
+              songSeconds: p.songSeconds,
             ),
           );
     } catch (error) {

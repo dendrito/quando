@@ -2643,4 +2643,8 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube memutar video di pemutar yang terlihat. Jika disembunyikan atau tidak dapat memutar, alarm lokal berlanjut.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Suara ini tidak dapat diputar. Periksa koneksi atau coba lagu atau stasiun lain.';
 }

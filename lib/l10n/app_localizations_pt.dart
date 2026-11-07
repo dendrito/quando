@@ -2663,4 +2663,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'O YouTube reproduz vídeo em um player visível. Se ele ficar oculto ou não puder tocar, o alarme local continua.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Não foi possível tocar este som. Verifique sua conexão ou tente outra faixa ou estação.';
 }

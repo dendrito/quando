@@ -4797,6 +4797,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.'**
   String get youtubePlayerHint;
+
+  /// No description provided for @musicPreviewFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not play this sound. Check your connection or try another track or station.'**
+  String get musicPreviewFailed;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -2639,4 +2639,8 @@ class AppLocalizationsVi extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube phát video trong trình phát hiển thị. Nếu bị ẩn hoặc không thể phát, báo thức cục bộ tiếp tục.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác.';
 }

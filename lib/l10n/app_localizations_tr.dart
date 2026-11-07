@@ -2647,4 +2647,8 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube, videoyu görünür bir oynatıcıda oynatır. Gizlenirse veya oynatamazsa yerel alarm devam eder.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Bu ses çalınamadı. Bağlantınızı kontrol edin veya başka bir parça ya da istasyon deneyin.';
 }

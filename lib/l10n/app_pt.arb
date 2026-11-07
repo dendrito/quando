@@ -777,5 +777,6 @@
   "noMusicSongs": "Nenhuma música encontrada na biblioteca do Música.",
   "serviceConnectUnavailable": "A conexão de conta do {service} não está disponível nesta plataforma. Um link pode abrir após parar o alarme.",
   "soundCloudWidgetNote": "Adicione um link público de faixa ou playlist. O player oficial segue a duração do alarme; login de conta indisponível.",
-  "youtubePlayerHint": "O YouTube reproduz vídeo em um player visível. Se ele ficar oculto ou não puder tocar, o alarme local continua."
+  "youtubePlayerHint": "O YouTube reproduz vídeo em um player visível. Se ele ficar oculto ou não puder tocar, o alarme local continua.",
+  "musicPreviewFailed": "Não foi possível tocar este som. Verifique sua conexão ou tente outra faixa ou estação."
 }

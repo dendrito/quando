@@ -2693,4 +2693,8 @@ class AppLocalizationsRu extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube воспроизводит видео в видимом плеере. Если он скрыт или не может воспроизводить, локальный сигнал продолжается.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Не удалось воспроизвести звук. Проверьте подключение или попробуйте другой трек или станцию.';
 }

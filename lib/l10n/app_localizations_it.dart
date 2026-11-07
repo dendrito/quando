@@ -2665,4 +2665,8 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube riproduce video in un lettore visibile. Se viene nascosto o non può riprodurre, continua il tono locale.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Impossibile riprodurre questo suono. Controlla la connessione o prova un altro brano o stazione.';
 }

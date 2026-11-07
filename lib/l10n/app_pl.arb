@@ -777,5 +777,6 @@
   "noMusicSongs": "Nie znaleziono utworów w bibliotece Muzyka.",
   "serviceConnectUnavailable": "Połączenie z kontem {service} jest niedostępne na tej platformie. Link może się otworzyć po zatrzymaniu alarmu.",
   "soundCloudWidgetNote": "Dodaj publiczny link do utworu lub playlisty. Oficjalny odtwarzacz stosuje czas dzwonienia alarmu; logowanie jest niedostępne.",
-  "youtubePlayerHint": "YouTube odtwarza wideo w widocznym odtwarzaczu. Gdy jest ukryty lub nie może odtwarzać, lokalny alarm działa dalej."
+  "youtubePlayerHint": "YouTube odtwarza wideo w widocznym odtwarzaczu. Gdy jest ukryty lub nie może odtwarzać, lokalny alarm działa dalej.",
+  "musicPreviewFailed": "Nie można odtworzyć dźwięku. Sprawdź połączenie lub spróbuj innego utworu albo stacji."
 }

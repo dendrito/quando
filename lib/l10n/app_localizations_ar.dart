@@ -2688,4 +2688,7 @@ class AppLocalizationsAr extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'يشغّل YouTube الفيديو في مشغّل ظاهر. إذا أُخفي أو تعذّر التشغيل، يستمر المنبّه المحلي.';
+
+  @override
+  String get musicPreviewFailed => 'تعذّر تشغيل هذا الصوت. تحقّق من الاتصال أو جرّب مقطعاً أو محطة أخرى.';
 }

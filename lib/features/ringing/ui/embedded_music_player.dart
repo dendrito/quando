@@ -17,12 +17,12 @@ class EmbeddedMusicPlayer extends StatefulWidget {
   const EmbeddedMusicPlayer({
     super.key,
     required this.source,
-    required this.alarmId,
+    this.alarmId,
     required this.deadline,
     required this.active,
   });
   final EmbeddedMusic source;
-  final int alarmId;
+  final int? alarmId;
   final DateTime deadline;
   final bool active;
 
@@ -141,7 +141,8 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
   Future<void> _setAudible(bool value) async {
     if (_audible == value) return;
     _audible = value;
-    final muted = await AlarmAudio.mute(widget.alarmId, value);
+    final id = widget.alarmId;
+    final muted = id == null || await AlarmAudio.mute(id, value);
     if (value && !muted) await _pause();
     if (value && !_allowed) await _pause();
   }
@@ -199,7 +200,7 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
     // about:blank destroys the official player even if its API is still loading.
     final controller = _controller;
     if (controller != null) unawaited(controller.loadRequest(Uri.parse('about:blank')).catchError((_) {}));
-    if (_audible) unawaited(AlarmAudio.mute(widget.alarmId, false));
+    if (_audible && widget.alarmId != null) unawaited(AlarmAudio.mute(widget.alarmId!, false));
     super.dispose();
   }
 
@@ -211,14 +212,16 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          if (_failed) Text(l10n.musicBackupPlaying, style: Theme.of(context).textTheme.bodySmall),
-          LayoutBuilder(
-            builder: (context, box) => SizedBox(
-              height: math.max(200, box.maxWidth * 9 / 16),
-              child: _controller == null
-                  ? Center(child: _failed ? Text(widget.source.provider) : const CircularProgressIndicator())
-                  : WebViewWidget(controller: _controller!),
+          if (_failed)
+            Text(
+              widget.alarmId == null ? l10n.musicPreviewFailed : l10n.musicBackupPlaying,
+              style: Theme.of(context).textTheme.bodySmall,
             ),
+          SizedBox(
+            height: math.max(200, math.min(640, MediaQuery.sizeOf(context).width - 56) * 9 / 16),
+            child: _controller == null
+                ? Center(child: _failed ? Text(widget.source.provider) : const CircularProgressIndicator())
+                : WebViewWidget(controller: _controller!),
           ),
         ],
       ),

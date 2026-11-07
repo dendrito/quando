@@ -2664,4 +2664,8 @@ class AppLocalizationsFr extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube lit une vidéo dans un lecteur visible. S’il est masqué ou ne peut pas lire, la sonnerie locale continue.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Impossible de lire ce son. Vérifiez la connexion ou essayez un autre morceau ou une autre station.';
 }

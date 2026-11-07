@@ -2693,4 +2693,8 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube відтворює відео у видимому програвачі. Якщо його приховано або відтворення неможливе, локальний сигнал триває.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Не вдалося відтворити звук. Перевірте з’єднання або спробуйте інший трек чи станцію.';
 }

@@ -2610,4 +2610,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get youtubePlayerHint => 'YouTubeは表示中のプレーヤーで動画を再生します。非表示または再生できない場合はローカルのアラームが続きます。';
+
+  @override
+  String get musicPreviewFailed => 'この音を再生できませんでした。接続を確認するか、別の曲や放送局をお試しください。';
 }

@@ -777,5 +777,6 @@
   "noMusicSongs": "Nessun brano trovato nella libreria di Musica.",
   "serviceConnectUnavailable": "Il collegamento dell’account {service} non è disponibile su questa piattaforma. Un link può aprirsi dopo aver fermato la sveglia.",
   "soundCloudWidgetNote": "Aggiungi un link pubblico a un brano o playlist. Il lettore ufficiale segue la durata della sveglia; l’accesso all’account non è disponibile.",
-  "youtubePlayerHint": "YouTube riproduce video in un lettore visibile. Se viene nascosto o non può riprodurre, continua il tono locale."
+  "youtubePlayerHint": "YouTube riproduce video in un lettore visibile. Se viene nascosto o non può riprodurre, continua il tono locale.",
+  "musicPreviewFailed": "Impossibile riprodurre questo suono. Controlla la connessione o prova un altro brano o stazione."
 }

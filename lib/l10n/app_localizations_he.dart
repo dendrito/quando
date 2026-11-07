@@ -2642,4 +2642,7 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube מציג וידאו בנגן גלוי. אם הנגן מוסתר או לא יכול לנגן, ההתראה המקומית ממשיכה.';
+
+  @override
+  String get musicPreviewFailed => 'לא ניתן לנגן את הצליל. בדקו את החיבור או נסו שיר או תחנה אחרים.';
 }

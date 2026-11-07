@@ -777,5 +777,6 @@
   "noMusicSongs": "No se encontraron canciones en tu biblioteca de Música.",
   "serviceConnectUnavailable": "La conexión de cuenta de {service} no está disponible en esta plataforma. Puedes abrir un enlace tras detener el aviso.",
   "soundCloudWidgetNote": "Añade un enlace público de canción o playlist. El reproductor oficial sigue la duración del aviso; no se puede iniciar sesión.",
-  "youtubePlayerHint": "YouTube reproduce vídeo en un reproductor visible. Si se oculta o no puede reproducir, continúa el aviso local."
+  "youtubePlayerHint": "YouTube reproduce vídeo en un reproductor visible. Si se oculta o no puede reproducir, continúa el aviso local.",
+  "musicPreviewFailed": "No se pudo reproducir este sonido. Comprueba la conexión o prueba otra canción o emisora."
 }

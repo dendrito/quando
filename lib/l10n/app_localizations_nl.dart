@@ -2658,4 +2658,8 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Dit geluid kon niet worden afgespeeld. Controleer je verbinding of probeer een ander nummer of station.';
 }

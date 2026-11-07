@@ -2605,6 +2605,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get youtubePlayerHint => 'YouTube在可见播放器中播放视频。播放器隐藏或无法播放时，本地闹钟会继续响铃。';
+
+  @override
+  String get musicPreviewFailed => '无法播放此声音。请检查连接或尝试其他歌曲或电台。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5207,4 +5210,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get youtubePlayerHint => 'YouTube在可見播放器中播放影片。播放器隱藏或無法播放時，本機鬧鐘會繼續響鈴。';
+
+  @override
+  String get musicPreviewFailed => '無法播放此聲音。請檢查連線或嘗試其他歌曲或電台。';
 }

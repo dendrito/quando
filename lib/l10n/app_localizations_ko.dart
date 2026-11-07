@@ -2612,4 +2612,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get youtubePlayerHint => 'YouTube는 표시되는 플레이어에서 동영상을 재생합니다. 숨겨지거나 재생할 수 없으면 로컬 알람이 계속됩니다.';
+
+  @override
+  String get musicPreviewFailed => '이 소리를 재생할 수 없습니다. 연결을 확인하거나 다른 트랙 또는 방송국을 사용해 보세요.';
 }

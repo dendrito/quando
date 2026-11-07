@@ -1653,5 +1653,6 @@
         "type": "String"
       }
     }
-  }
+  },
+  "musicPreviewFailed": "Could not play this sound. Check your connection or try another track or station."
 }

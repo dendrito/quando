@@ -104,9 +104,9 @@ class MainFlutterWindow: NSWindow, NSWindowDelegate {
 /// Music library reading. Commands are fixed; only validated media identifiers
 /// or escaped, allowlisted Apple Music URLs may become script arguments.
 private final class DesktopMusicBridge {
-  // NSAppleScript is a main-thread API. Bulk metadata reads keep the number
-  // of Apple events small instead of making one round trip for each song.
-  private let queue = DispatchQueue.main
+  // Apple DTS permits NSAppleScript on a serialized secondary thread since
+  // macOS 10.6. Never wait for a music app on the alarm/UI thread.
+  private let queue = DispatchQueue(label: "com.dendrito.quando.music", qos: .userInitiated)
   private var activeSession: String?
   private var activeService: String?
   private var newestPlay: Int64 = 0
@@ -121,7 +121,7 @@ private final class DesktopMusicBridge {
         switch call.method {
         case "connect":
           let service = args["service"] as? String ?? ""
-          _ = try run(service, "return player state as text")
+          _ = try run(service, "return player state as text", timeout: 10)
           response = nil
         case "library":
           guard args["service"] as? String == "apple" else { throw failure("Unsupported library") }
@@ -133,7 +133,7 @@ private final class DesktopMusicBridge {
           let link = args["link"] as? String ?? ""
           guard let session = args["session"] as? String, !session.isEmpty else { throw failure("Missing playback session") }
           guard let generation = generationOf(session), generation > cancelledThrough, generation >= newestPlay else {
-            result(false)
+            DispatchQueue.main.async { result(false) }
             return
           }
           newestPlay = generation
@@ -195,12 +195,12 @@ private final class DesktopMusicBridge {
     }
   }
 
-  private func run(_ service: String, _ command: String) throws -> NSAppleEventDescriptor {
+  private func run(_ service: String, _ command: String, timeout: Int = 3) throws -> NSAppleEventDescriptor {
     guard let bundle = apps[service], NSWorkspace.shared.urlForApplication(withBundleIdentifier: bundle) != nil else {
       throw failure("Install and sign in to the selected music app first.")
     }
     var error: NSDictionary?
-    guard let script = NSAppleScript(source: "tell application id \(quoted(bundle))\n\(command)\nend tell") else {
+    guard let script = NSAppleScript(source: "with timeout of \(timeout) seconds\ntell application id \(quoted(bundle))\n\(command)\nend tell\nend timeout") else {
       throw failure("Could not prepare the music command.")
     }
     let response = script.executeAndReturnError(&error)

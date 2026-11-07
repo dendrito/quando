@@ -20,6 +20,7 @@ import '../domain/sound.dart';
 import 'radio_screen.dart';
 import 'music_picker_screen.dart';
 import 'sound_player.dart';
+import 'music_preview_dialog.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -32,6 +33,16 @@ class SoundsScreen extends ConsumerStatefulWidget {
 }
 
 class _SoundsScreenState extends ConsumerState<SoundsScreen> {
+  void _previewChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SoundPreview.instance.addListener(_previewChanged);
+  }
+
   final _recorder = AudioRecorder();
   String? _recordingPath;
   Duration _elapsed = Duration.zero;
@@ -39,6 +50,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
 
   @override
   void dispose() {
+    SoundPreview.instance.removeListener(_previewChanged);
     _timer?.cancel();
     _recorder.dispose();
     SoundPreview.instance.stop();
@@ -431,10 +443,28 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
 
   Future<void> _toggle(AlarmSound s) async {
     final p = SoundPreview.instance;
+    if (s.isLink) {
+      await p.stop();
+      if (!mounted) return;
+      await showDialog<void>(
+        context: context,
+        builder: (_) => MusicPreviewDialog(sound: s),
+      );
+      return;
+    }
     if (p.playingId == s.id) {
       await p.stop();
     } else {
-      await p.play(s, onDone: () => mounted ? setState(() {}) : null);
+      await p.play(
+        s,
+        onResolved: (url) => ref.read(soundsProvider.notifier).replace(s.copyWith(path: url)),
+        onDone: () => mounted ? setState(() {}) : null,
+        onError: (_) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicPreviewFailed)));
+          }
+        },
+      );
     }
     if (mounted) setState(() {});
   }

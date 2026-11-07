@@ -777,5 +777,6 @@
   "noMusicSongs": "Geen nummers gevonden in je Muziek-bibliotheek.",
   "serviceConnectUnavailable": "Accountverbinding voor {service} is niet beschikbaar op dit platform. Een link kan openen nadat je de wekker stopt.",
   "soundCloudWidgetNote": "Voeg een openbare link naar een nummer of playlist toe. De officiële speler volgt de belduur; aanmelden is niet beschikbaar.",
-  "youtubePlayerHint": "YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door."
+  "youtubePlayerHint": "YouTube speelt video af in een zichtbare speler. Als deze verborgen is of niet kan afspelen, gaat het lokale wekkergeluid door.",
+  "musicPreviewFailed": "Dit geluid kon niet worden afgespeeld. Controleer je verbinding of probeer een ander nummer of station."
 }

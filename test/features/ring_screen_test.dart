@@ -104,6 +104,26 @@ void main() {
     expect(hostCalls.where((c) => c == 'stopAlarm'), hasLength(1));
   });
 
+  testWidgets('a visible player fits the ring card and failed playback keeps Stop usable', (tester) async {
+    await home(tester);
+    await ring(
+      tester,
+      1,
+      const RingPayload(
+        title: 'YouTube alarm',
+        body: '',
+        ringSeconds: 60,
+        spoken: false,
+        song: 'https://youtu.be/abcdefghijk',
+      ),
+    );
+    expect(tester.takeException(), isNull);
+    await tester.ensureVisible(find.text('Stop'));
+    await press(tester, 'Stop');
+    expect(find.byType(RingScreen), findsNothing);
+    expect(tester.takeException(), isNull);
+  });
+
   testWidgets('a stopped underlying alarm removes its own card, leaving the current alarm usable', (
     tester,
   ) async {

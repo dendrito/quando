@@ -2643,4 +2643,8 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Could not play this sound. Check your connection or try another track or station.';
 }

@@ -2698,4 +2698,8 @@ class AppLocalizationsPl extends AppLocalizations {
   @override
   String get youtubePlayerHint =>
       'YouTube odtwarza wideo w widocznym odtwarzaczu. Gdy jest ukryty lub nie może odtwarzać, lokalny alarm działa dalej.';
+
+  @override
+  String get musicPreviewFailed =>
+      'Nie można odtworzyć dźwięku. Sprawdź połączenie lub spróbuj innego utworu albo stacji.';
 }
