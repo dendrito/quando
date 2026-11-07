@@ -46,6 +46,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   StreamSubscription<AlarmSet>? _ringingSub;
   Timer? _speakTimer;
   var _stage = _Stage.ringing;
+  var _resolving = false;
   final _openedAt = DateTime.now();
   Timer? _second;
   int? _checkId;
@@ -89,7 +90,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     // Close when the alarm stops on its own (ring duration) or elsewhere.
     _ringingSub = Alarm.ringing.listen((set) {
       final stillRinging = set.alarms.any((a) => a.id == widget.alarm.id);
-      if (!stillRinging && _stage == _Stage.ringing) _close();
+      if (!stillRinging && !_resolving && _stage == _Stage.ringing) _close();
     });
   }
 
@@ -147,9 +148,17 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   void _close() {
-    if (_stage == _Stage.done) return;
+    if (!mounted || _stage == _Stage.done) return;
+    final route = ModalRoute.of(context);
+    if (route == null || !route.isActive) return;
     _stage = _Stage.done;
-    if (mounted && Navigator.of(context).canPop()) Navigator.of(context).pop();
+    // An overlapping alarm may be above this one. Remove this card, never
+    // another alarm's card: leaving this one marked done makes Stop inert.
+    if (route.isCurrent) {
+      Navigator.of(context).pop();
+    } else {
+      route.navigator?.removeRoute(route);
+    }
   }
 
   Future<void> _onStop() async {
@@ -164,19 +173,29 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   Future<void> _stopNow() async {
-    _tts.stop();
-    // Stopped before the song took over: stop the song too.
-    if (p.song != null) unawaited(Music.pause());
-    final registrar = ref.read(registrarProvider);
-    final checkId = await registrar.stop(widget.alarm);
-    if (checkId != null) {
-      setState(() {
-        _checkId = checkId;
-        _stage = _Stage.awaitingUp;
-      });
-    } else {
-      _close();
-      _openLink();
+    if (!mounted || _stage == _Stage.done || _resolving) return;
+    _resolving = true;
+    try {
+      _speakTimer?.cancel();
+      _tts.stop();
+      // Stopped before the song took over: stop the song too.
+      if (p.song != null) unawaited(Music.pause());
+      final registrar = ref.read(registrarProvider);
+      // The stopped stream event must not close this card before we know
+      // whether it needs to show the wake-up confirmation.
+      final checkId = await registrar.stop(widget.alarm);
+      if (!mounted) return;
+      if (checkId != null) {
+        setState(() {
+          _checkId = checkId;
+          _stage = _Stage.awaitingUp;
+        });
+      } else {
+        _close();
+        _openLink();
+      }
+    } finally {
+      _resolving = false;
     }
   }
 
@@ -199,10 +218,17 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   Future<void> _snoozeNow() async {
-    _tts.stop();
-    if (p.song != null) unawaited(Music.pause());
-    await ref.read(registrarProvider).snooze(widget.alarm);
-    _close();
+    if (!mounted || _stage == _Stage.done || _resolving) return;
+    _resolving = true;
+    try {
+      _speakTimer?.cancel();
+      _tts.stop();
+      if (p.song != null) unawaited(Music.pause());
+      await ref.read(registrarProvider).snooze(widget.alarm);
+      _close();
+    } finally {
+      _resolving = false;
+    }
   }
 
   Future<void> _onUp() async {
