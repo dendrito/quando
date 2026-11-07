@@ -284,7 +284,7 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text(l10n.skyDayNight), findsOneWidget);
     expect(find.text(l10n.courseDaf), jewishHome ? findsOneWidget : findsNothing);
-    await tester.tap(find.widgetWithText(SwitchListTile, l10n.showMoonPhase));
+    await tester.tap(find.widgetWithText(SwitchListTile, l10n.skyMoonDisplay));
     await tester.pumpAndSettle();
     expect(jsonDecode(prefs.getString('home.display')!)['moon'], isTrue);
   });

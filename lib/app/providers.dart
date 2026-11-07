@@ -32,6 +32,7 @@ import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 import '../features/shabbat/domain/preparation.dart';
 import '../features/home/domain/home_display.dart';
+import '../features/home/domain/zone_places.dart';
 
 import 'edition.dart';
 
@@ -232,6 +233,37 @@ final homeZoneProvider = Provider<String>(
       ref.watch(deviceZoneProvider) ??
       ref.watch(placeProvider).timeZone,
 );
+
+/// Sky-only coordinates are local to this device and never change Shabbat
+/// customs or the timezone used to schedule alarms.
+class SkyLocationNotifier extends Notifier<Place?> {
+  @override
+  Place? build() {
+    try {
+      final raw = ref.read(prefsProvider).getString('sky.place.local');
+      return raw == null ? null : Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void set(Place place) {
+    state = place;
+    ref.read(prefsProvider).setString('sky.place.local', jsonEncode(place.toJson()));
+  }
+}
+
+final skyLocationProvider = NotifierProvider<SkyLocationNotifier, Place?>(SkyLocationNotifier.new);
+
+final skyPlaceProvider = Provider<Place?>((ref) {
+  if (ref.watch(homeDisplayProvider).skyUseShabbat) return ref.watch(placeProvider);
+  final zone = ref.watch(homeZoneProvider);
+  final saved = ref.watch(skyLocationProvider);
+  if (saved != null && saved.timeZone == zone) return saved;
+  // Prefer the catalog's named timezone city, never an unrelated city that
+  // merely shares an offset. Fixed-offset zones have no geographic location.
+  return ZonePlaces.forZone(zone);
+});
 
 class PlaceNotifier extends Notifier<Place> {
   SharedPreferences get _prefs => ref.read(prefsProvider);

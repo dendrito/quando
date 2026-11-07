@@ -2243,7 +2243,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get useMyLocation => 'המיקום שלי';
 
   @override
-  String get locationUnavailable => 'לא ניתן לקבל את מיקומך. בדוק הרשאות מיקום או בחר עיר.';
+  String get locationUnavailable => 'המיקום אינו זמין כרגע. יש לנסות שוב או לבחור עיר.';
 
   @override
   String get locationReview => 'אישור מיקום';
@@ -2521,4 +2521,68 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get homeRefresh => 'Refresh';
+
+  @override
+  String get skyTimezone => 'אזור הזמן שלי';
+
+  @override
+  String get skyShabbat => 'עיר לשבת';
+
+  @override
+  String get skyReferenceCity => 'עיר ייחוס לאזור הזמן';
+
+  @override
+  String get skyChooseCity => 'בחירת עיר לתצוגת השמיים';
+
+  @override
+  String get skyCityExplain =>
+      'השמש והירח מחושבים לפי קואורדינטות העיר הזאת. העיר לשבת ואזור הזמן של ההתראות נשארים כפי שנבחרו.';
+
+  @override
+  String get skySun => 'השמש היום';
+
+  @override
+  String get skyMoon => 'הירח היום';
+
+  @override
+  String get moonAboveHorizon => 'הירח מעל האופק';
+
+  @override
+  String get moonBelowHorizon => 'הירח מתחת לאופק';
+
+  @override
+  String get moonNextNew => 'הירח החדש הבא';
+
+  @override
+  String get moonNextFull => 'הירח המלא הבא';
+
+  @override
+  String get locationServicesOff => 'שירותי המיקום כבויים. יש להפעיל אותם בהגדרות או לבחור עיר.';
+
+  @override
+  String get locationDenied => 'הגישה למיקום נדחתה. יש לאפשר אותה בהגדרות או לבחור עיר.';
+
+  @override
+  String get locationTimedOut =>
+      'המיקום עדיין לא התקבל. ב־Mac יש להשאיר את ה־Wi-Fi פעיל ולנסות שוב, או לבחור עיר.';
+
+  @override
+  String get locationTimeZoneUnavailable =>
+      'יש לבחור עיר באזור הזמן שנבחר, או לעקוב אחר אזור הזמן של המכשיר לפני השימוש במיקום.';
+
+  @override
+  String get locationSettings => 'פתיחת הגדרות המיקום';
+
+  @override
+  String get locationLooking => 'מקבל מיקום…';
+
+  @override
+  String get skyMoonDisplay => 'הצגת הירח: זריחה, שקיעה ומופע';
+
+  @override
+  String get tuyaConsumerPending =>
+      'כניסה לחשבון עדיין אינה זמינה בגרסה זו. אם כבר יש לך פרויקט מפתח של Tuya, אפשר להשתמש בהגדרה מתקדמת.';
+
+  @override
+  String get tuyaAdvanced => 'הגדרה מתקדמת';
 }

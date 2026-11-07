@@ -41,7 +41,7 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   onChanged: (v) => n.set(s.copyWith(night: v)),
                 ),
                 SwitchListTile(
-                  title: Text(l10n.showMoonPhase),
+                  title: Text(l10n.skyMoonDisplay),
                   value: s.moon,
                   onChanged: (v) => n.set(s.copyWith(moon: v)),
                 ),

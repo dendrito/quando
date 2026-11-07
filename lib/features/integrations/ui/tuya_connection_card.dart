@@ -20,6 +20,7 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
   late final _secret = TextEditingController(text: ref.read(integrationsProvider).tuya.secret);
   late final _uid = TextEditingController(text: ref.read(integrationsProvider).tuya.uid);
   bool _loading = false;
+  bool _advanced = false;
   bool _loaded = false;
   String? _error;
   String? _running;
@@ -110,43 +111,52 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
         leading: const Icon(Icons.home_outlined),
         childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         children: [
-          Text(l10n.tuyaSetupHint),
-          DropdownButtonFormField<TuyaRegion>(
-            key: ValueKey(settings.region),
-            initialValue: settings.region,
-            isExpanded: true,
-            decoration: InputDecoration(labelText: l10n.tuyaDataCenter),
-            items: [for (final r in TuyaRegion.values) DropdownMenuItem(value: r, child: Text(r.label))],
-            onChanged: (r) {
-              if (r != null) _save(region: r);
-            },
-          ),
-          TextField(
-            controller: _id,
-            decoration: InputDecoration(labelText: l10n.tuyaAccessId),
-            onChanged: (_) => _save(),
-            autocorrect: false,
-          ),
-          TextField(
-            controller: _secret,
-            obscureText: true,
-            enableSuggestions: false,
-            autocorrect: false,
-            decoration: InputDecoration(labelText: l10n.tuyaAccessSecret),
-            onChanged: (_) => _save(),
-          ),
-          TextField(
-            controller: _uid,
-            decoration: InputDecoration(labelText: l10n.tuyaUserId),
-            onChanged: (_) => _save(),
-            autocorrect: false,
+          Text(l10n.tuyaConsumerPending),
+          ExpansionTile(
+            title: Text(l10n.tuyaAdvanced),
+            onExpansionChanged: (value) => setState(() => _advanced = value),
+            tilePadding: EdgeInsets.zero,
+            children: [
+              Text(l10n.tuyaSetupHint),
+              DropdownButtonFormField<TuyaRegion>(
+                key: ValueKey(settings.region),
+                initialValue: settings.region,
+                isExpanded: true,
+                decoration: InputDecoration(labelText: l10n.tuyaDataCenter),
+                items: [for (final r in TuyaRegion.values) DropdownMenuItem(value: r, child: Text(r.label))],
+                onChanged: (r) {
+                  if (r != null) _save(region: r);
+                },
+              ),
+              TextField(
+                controller: _id,
+                decoration: InputDecoration(labelText: l10n.tuyaAccessId),
+                onChanged: (_) => _save(),
+                autocorrect: false,
+              ),
+              TextField(
+                controller: _secret,
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(labelText: l10n.tuyaAccessSecret),
+                onChanged: (_) => _save(),
+              ),
+              TextField(
+                controller: _uid,
+                decoration: InputDecoration(labelText: l10n.tuyaUserId),
+                onChanged: (_) => _save(),
+                autocorrect: false,
+              ),
+            ],
           ),
           const SizedBox(height: 12),
-          FilledButton.icon(
-            onPressed: settings.ready && !_loading && _running == null ? _load : null,
-            icon: const Icon(Icons.refresh),
-            label: Text(_loading ? l10n.loading : l10n.tuyaLoadScenes),
-          ),
+          if (settings.ready || _advanced)
+            FilledButton.icon(
+              onPressed: settings.ready && !_loading && _running == null ? _load : null,
+              icon: const Icon(Icons.refresh),
+              label: Text(_loading ? l10n.loading : l10n.tuyaLoadScenes),
+            ),
           if (_loaded && scenes.isEmpty) Text(l10n.tuyaNoScenes),
           if (_error != null) Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
           for (final scene in scenes)

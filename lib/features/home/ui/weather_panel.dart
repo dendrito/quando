@@ -6,6 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import '../../../l10n/l10n.dart';
+import '../../shabbat/domain/place.dart';
 import '../data/home_information_providers.dart';
 import '../data/weather_repository.dart';
 import 'weather_motion.dart';
@@ -20,9 +21,10 @@ String weatherLabel(WeatherKind kind) => switch (kind) {
 };
 
 class WeatherPanel extends ConsumerStatefulWidget {
-  const WeatherPanel({super.key, required this.now, required this.active});
+  const WeatherPanel({super.key, required this.now, required this.active, this.place});
   final DateTime now;
   final bool active;
+  final Place? place;
   @override
   ConsumerState<WeatherPanel> createState() => _WeatherPanelState();
 }
@@ -54,7 +56,8 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
     if (!widget.active || !_foreground || !TickerMode.valuesOf(context).enabled) {
       return Center(child: Text(l10n.weatherLabel));
     }
-    final place = ref.watch(placeProvider), repo = ref.watch(weatherRepositoryProvider);
+    final Place place = widget.place ?? ref.watch(placeProvider);
+    final repo = ref.watch(weatherRepositoryProvider);
     final key = (place, repo.pollBucket(widget.now));
     final report = ref.watch(weatherReportProvider(key));
     final text = Theme.of(context).textTheme;

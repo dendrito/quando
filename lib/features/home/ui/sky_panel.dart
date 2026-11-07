@@ -8,7 +8,10 @@ import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import '../../../l10n/l10n.dart';
 import '../../shabbat/domain/jewish_times.dart';
+import '../../shabbat/ui/city_picker.dart';
 import '../domain/moon.dart';
+import '../domain/moon_phases.dart';
+import '../domain/moon_backdrop.dart';
 import '../domain/sky.dart';
 import 'day_arc.dart';
 import 'home_display_controls.dart';
@@ -52,23 +55,62 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
 
   @override
   Widget build(BuildContext context) {
-    final options = ref.watch(homeDisplayProvider), place = ref.watch(placeProvider), sky = widget.sky;
+    final options = ref.watch(homeDisplayProvider), place = ref.watch(skyPlaceProvider), sky = widget.sky;
     final text = Theme.of(context).textTheme;
-    final moon = options.night ? MoonDay.of(place, sky.now) : null;
+    final moon = options.night && place != null ? MoonDay.of(place, sky.now) : null;
     final illumination = options.moon ? MoonIllumination.at(sky.now) : null;
-    final nightfall = options.night
+    final track = options.moon && place != null ? MoonTrack.of(place, sky.now) : null;
+    final phases = options.moon ? MoonPhases.nextAfter(sky.now) : null;
+    final nightfall = options.night && place != null
         ? JewishTimes(
             place: place,
             havdalah: ref.watch(havdalahProvider),
           ).nightfallOn(inZone(sky.now, place.timeZone))
         : null;
-    String time(DateTime? at, String absent) => at == null ? absent : hhmm(inZone(at, place.timeZone));
-    final content = Column(
+    final String zone = place?.timeZone ?? ref.watch(homeZoneProvider);
+    String time(DateTime? at, String absent) => at == null ? absent : hhmm(inZone(at, zone));
+    String phaseTime(DateTime at) {
+      final local = inZone(at, zone);
+      return '${dayLabel(local)} · ${hhmm(local)}';
+    }
+
+    String trackTime(DateTime? at, String absent) {
+      if (at == null) return absent;
+      final local = inZone(at, zone), today = inZone(sky.now, zone);
+      return local.year == today.year && local.month == today.month && local.day == today.day
+          ? hhmm(local)
+          : '${dayLabel(local)} · ${hhmm(local)}';
+    }
+
+    final nightDetails = <Widget>[
+      if (moon != null) ...[
+        const SizedBox(height: 10),
+        Wrap(
+          spacing: 16,
+          runSpacing: 6,
+          children: [
+            if (!options.moon)
+              Text('${l10n.moonriseLabel} ≈ ${time(moon.rise, l10n.noRiseToday)}', style: text.bodySmall),
+            if (!options.moon)
+              Text('${l10n.moonsetLabel} ≈ ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
+            Text(
+              '${l10n.nightfallLabel} ${time(nightfall, '—')} · ${ref.watch(havdalahProvider) == HavdalahOpinion.geonim ? '8.5°' : '+72m'}',
+              style: text.bodySmall,
+            ),
+            if (moon.alwaysUp) Text(l10n.moonAlwaysUp, style: text.bodySmall),
+            if (moon.alwaysDown) Text(l10n.moonAlwaysDown, style: text.bodySmall),
+          ],
+        ),
+      ],
+    ];
+    final sunContent = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        if (place == null) Text(l10n.skyCityExplain),
         DayArc(sky: sky, marks: widget.marks),
         Row(
+          textDirection: TextDirection.ltr,
           children: [
             Expanded(
               child: Text(
@@ -89,42 +131,128 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             ),
           ],
         ),
-        if (moon != null) ...[
-          const SizedBox(height: 10),
-          Wrap(
-            spacing: 16,
-            runSpacing: 6,
-            children: [
-              Text('☾ ${l10n.moonriseLabel} ≈ ${time(moon.rise, l10n.noRiseToday)}', style: text.bodySmall),
-              Text('☾ ${l10n.moonsetLabel} ≈ ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
-              Text(
-                '✦ ${l10n.nightfallLabel} ${time(nightfall, '—')} · ${ref.watch(havdalahProvider) == HavdalahOpinion.geonim ? '8.5°' : '+72m'}',
-                style: text.bodySmall,
-              ),
-              if (moon.alwaysUp) Text(l10n.moonAlwaysUp, style: text.bodySmall),
-              if (moon.alwaysDown) Text(l10n.moonAlwaysDown, style: text.bodySmall),
-            ],
-          ),
-        ],
-        if (illumination != null)
-          Padding(
-            padding: const EdgeInsets.only(top: 10),
-            child: Text(
-              '${const ['🌑', '🌒', '🌓', '🌔', '🌕', '🌖', '🌗', '🌘'][illumination.phaseIndex]} ${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
-              style: text.bodySmall,
-            ),
-          ),
+        ...nightDetails,
       ],
     );
+    final moonContent = Container(
+      key: const ValueKey('moon-daylight-background'),
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment.centerLeft,
+          end: Alignment.centerRight,
+          colors: place != null && track != null
+              ? MoonBackdrop.forTrack(place, track)
+              : [SkyColors.night, SkyColors.night],
+        ),
+      ),
+      padding: const EdgeInsets.all(18),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Text(l10n.skyMoon, style: text.titleMedium),
+          if (track != null && illumination != null) ...[
+            Text(track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon, style: text.bodySmall),
+            MoonArc(track: track, illumination: illumination),
+            Row(
+              textDirection: TextDirection.ltr,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Expanded(
+                  child: Text(
+                    '${l10n.moonriseLabel} ≈ ${trackTime(track.rise, l10n.noRiseToday)}',
+                    style: text.bodySmall,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    '${l10n.moonsetLabel} ≈ ${trackTime(track.set, l10n.noSetToday)}',
+                    style: text.bodySmall,
+                    textAlign: TextAlign.end,
+                  ),
+                ),
+              ],
+            ),
+          ] else
+            Text(l10n.skyCityExplain, style: text.bodySmall),
+          if (illumination != null && phases != null) ...[
+            const SizedBox(height: 12),
+            Row(
+              children: [
+                MoonDisc(illumination: illumination),
+                const SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
+                    style: text.bodyMedium,
+                  ),
+                ),
+              ],
+            ),
+            const SizedBox(height: 12),
+            Text('${l10n.moonNextNew} ≈ ${phaseTime(phases.newMoon)}', style: text.bodySmall),
+            const SizedBox(height: 4),
+            Text('${l10n.moonNextFull} ≈ ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
+          ],
+        ],
+      ),
+    );
+    final pages = <({String label, Widget child})>[
+      (label: l10n.skySun, child: sunContent),
+      if (options.moon) (label: l10n.skyMoon, child: moonContent),
+      if (options.weather && place != null)
+        (
+          label: l10n.weatherLabel,
+          child: WeatherPanel(now: sky.now, active: _page == (options.moon ? 2 : 1), place: place),
+        ),
+    ];
+    if (_page >= pages.length) {
+      _page = 0;
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && _pager.hasClients) _pager.jumpToPage(0);
+      });
+    }
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Wrap(
+          spacing: 8,
+          runSpacing: 4,
+          children: [
+            ChoiceChip(
+              label: Text(l10n.skyTimezone),
+              selected: !options.skyUseShabbat,
+              onSelected: (_) =>
+                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: false)),
+            ),
+            ChoiceChip(
+              label: Text(l10n.skyShabbat),
+              selected: options.skyUseShabbat,
+              onSelected: (_) =>
+                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: true)),
+            ),
+          ],
+        ),
         Row(
           children: [
             Expanded(
-              child: Text(
-                l10n.timesIn(place.name, place.timeZone),
-                style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+              child: TextButton(
+                onPressed: () => Navigator.of(
+                  context,
+                ).push<void>(MaterialPageRoute(builder: (_) => CityPicker(forSky: !options.skyUseShabbat))),
+                style: TextButton.styleFrom(
+                  alignment: Alignment.centerLeft,
+                  padding: EdgeInsets.zero,
+                  foregroundColor: QuandoColors.blush,
+                ),
+                child: Text(
+                  place == null
+                      ? l10n.skyChooseCity
+                      : '${l10n.timesIn(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider)?.timeZone != zone ? ' · ${l10n.skyReferenceCity}' : ''}',
+                  style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                ),
               ),
             ),
             TextButton(
@@ -144,45 +272,36 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             ),
           ],
         ),
-        if (!options.weather)
-          content
+        if (pages.length == 1)
+          sunContent
         else ...[
-          Row(
+          Wrap(
+            spacing: 8,
             children: [
-              TextButton(
-                onPressed: () => _toPage(context, 0),
-                child: Text(
-                  options.night ? l10n.skyDayNight : l10n.skyDay,
-                  style: TextStyle(color: _page == 0 ? QuandoColors.amber : QuandoColors.blush),
+              for (var i = 0; i < pages.length; i++)
+                TextButton(
+                  onPressed: () => _toPage(context, i),
+                  style: TextButton.styleFrom(
+                    foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                  ),
+                  child: Text(pages[i].label),
                 ),
-              ),
-              TextButton(
-                onPressed: () => _toPage(context, 1),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      l10n.weatherLabel,
-                      style: TextStyle(color: _page == 1 ? QuandoColors.amber : QuandoColors.blush),
-                    ),
-                    const SizedBox(width: 4),
-                    const Icon(Icons.chevron_right, size: 16),
-                  ],
-                ),
-              ),
             ],
           ),
-          SizedBox(
-            height: max(228.0, 170.0 + (options.night ? 90 : 0) + (options.moon ? 45 : 0)),
-            child: PageView(
-              controller: _pager,
-              onPageChanged: (p) => setState(() => _page = p),
-              children: [
-                SingleChildScrollView(child: content),
-                SingleChildScrollView(
-                  child: WeatherPanel(now: sky.now, active: _page == 1),
-                ),
-              ],
+          AnimatedSize(
+            duration: MediaQuery.disableAnimationsOf(context)
+                ? Duration.zero
+                : const Duration(milliseconds: 250),
+            alignment: Alignment.topCenter,
+            child: SizedBox(
+              height: _page == 1 && options.moon
+                  ? 390 * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                  : max(228.0, options.night ? 260.0 : 180.0),
+              child: PageView(
+                controller: _pager,
+                onPageChanged: (p) => setState(() => _page = p),
+                children: [for (final page in pages) SingleChildScrollView(child: page.child)],
+              ),
             ),
           ),
         ],

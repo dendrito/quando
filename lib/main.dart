@@ -18,6 +18,9 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   LicenseRegistry.addLicense(() async* {
     yield LicenseEntryWithLineBreaks([
+      'Astronomia moon phases',
+    ], await rootBundle.loadString('third_party/astronomia/LICENSE'));
+    yield LicenseEntryWithLineBreaks([
       'SunCalc lunar astronomy',
     ], await rootBundle.loadString('third_party/suncalc/LICENSE'));
   });

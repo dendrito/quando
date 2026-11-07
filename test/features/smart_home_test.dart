@@ -212,6 +212,7 @@ void main() {
     );
     await tester.tap(find.text('Tuya · Smart Life'));
     await tester.pumpAndSettle();
+    expect(find.byType(TextField), findsNothing); // Developer credentials start under Advanced.
     await tester.ensureVisible(find.text('Load scenes'));
     await tester.tap(find.text('Load scenes'));
     await tester.pumpAndSettle();

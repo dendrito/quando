@@ -4057,7 +4057,7 @@ abstract class AppLocalizations {
   /// No description provided for @locationUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Could not get your location. Check location permission or choose a city.'**
+  /// **'Location is temporarily unavailable. Try again or choose a city.'**
   String get locationUnavailable;
 
   /// No description provided for @locationReview.
@@ -4581,6 +4581,126 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Refresh'**
   String get homeRefresh;
+
+  /// No description provided for @skyTimezone.
+  ///
+  /// In en, this message translates to:
+  /// **'My timezone'**
+  String get skyTimezone;
+
+  /// No description provided for @skyShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat city'**
+  String get skyShabbat;
+
+  /// No description provided for @skyReferenceCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Timezone reference city'**
+  String get skyReferenceCity;
+
+  /// No description provided for @skyChooseCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose sky city'**
+  String get skyChooseCity;
+
+  /// No description provided for @skyCityExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.'**
+  String get skyCityExplain;
+
+  /// No description provided for @skySun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun today'**
+  String get skySun;
+
+  /// No description provided for @skyMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon today'**
+  String get skyMoon;
+
+  /// No description provided for @moonAboveHorizon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon above the horizon'**
+  String get moonAboveHorizon;
+
+  /// No description provided for @moonBelowHorizon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon below the horizon'**
+  String get moonBelowHorizon;
+
+  /// No description provided for @moonNextNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Next new moon'**
+  String get moonNextNew;
+
+  /// No description provided for @moonNextFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Next full moon'**
+  String get moonNextFull;
+
+  /// No description provided for @locationServicesOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Services is off. Turn it on in Settings or choose a city.'**
+  String get locationServicesOff;
+
+  /// No description provided for @locationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access was denied. Allow it in Settings or choose a city.'**
+  String get locationDenied;
+
+  /// No description provided for @locationTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.'**
+  String get locationTimedOut;
+
+  /// No description provided for @locationTimeZoneUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a city in the selected timezone, or follow your device timezone before using location.'**
+  String get locationTimeZoneUnavailable;
+
+  /// No description provided for @locationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open location settings'**
+  String get locationSettings;
+
+  /// No description provided for @locationLooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting a location fix…'**
+  String get locationLooking;
+
+  /// No description provided for @skyMoonDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Moon: rise, set and phase'**
+  String get skyMoonDisplay;
+
+  /// No description provided for @tuyaConsumerPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.'**
+  String get tuyaConsumerPending;
+
+  /// No description provided for @tuyaAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced setup'**
+  String get tuyaAdvanced;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

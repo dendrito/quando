@@ -25,7 +25,20 @@ double _dec(double l, double b) =>
 class MoonIllumination {
   const MoonIllumination(this.fraction, this.phase);
   final double fraction, phase;
-  int get phaseIndex => ((phase * 8).round()) % 8;
+  int get phaseIndex {
+    if (phase < .01 || phase > .99) return 0;
+    if ((phase - .25).abs() < .01) return 2;
+    if ((phase - .5).abs() < .01) return 4;
+    if ((phase - .75).abs() < .01) return 6;
+    return phase < .25
+        ? 1
+        : phase < .5
+        ? 3
+        : phase < .75
+        ? 5
+        : 7;
+  }
+
   static MoonIllumination at(DateTime at) {
     final d = _days(at), moon = _moon(d), anomaly = _rad * (357.5291 + 0.98560028 * d);
     final l =
@@ -43,6 +56,32 @@ class MoonIllumination {
       m.sin(sd) * m.cos(moon.dec) - m.cos(sd) * m.sin(moon.dec) * m.cos(sr - moon.ra),
     );
     return MoonIllumination((1 + m.cos(inc)) / 2, 0.5 + 0.5 * inc * (angle < 0 ? -1 : 1) / m.pi);
+  }
+}
+
+/// The lunar pass containing now, or the next pass when below the horizon.
+/// A pass may cross midnight: do not join today's set to a later rise.
+class MoonTrack {
+  const MoonTrack({required this.now, required this.above, this.rise, this.set});
+  final DateTime now;
+  final bool above;
+  final DateTime? rise, set;
+  double? get progress {
+    final r = rise, s = set;
+    if (r == null || s == null || !s.isAfter(r)) return null;
+    return now.difference(r).inSeconds / s.difference(r).inSeconds;
+  }
+
+  static MoonTrack of(Place place, DateTime now) {
+    final above = MoonDay.altitude(now, place.latitude, place.longitude) > .133 * _rad;
+    final days = [for (var i = -2; i <= 2; i++) MoonDay.of(place, now.add(Duration(days: i)))];
+    final rises = days.map((d) => d.rise).whereType<DateTime>().toSet().toList()..sort();
+    final sets = days.map((d) => d.set).whereType<DateTime>().toSet().toList()..sort();
+    final rise = above
+        ? rises.where((r) => !r.isAfter(now)).lastOrNull
+        : rises.where((r) => r.isAfter(now)).firstOrNull;
+    final set = rise == null ? null : sets.where((s) => s.isAfter(rise)).firstOrNull;
+    return MoonTrack(now: now, above: above, rise: rise, set: set);
   }
 }
 

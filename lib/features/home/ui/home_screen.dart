@@ -344,7 +344,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final now = ref.watch(clockProvider)();
     final text = Theme.of(context).textTheme;
     final home = ref.watch(homeZoneProvider);
-    final sky = SkyDay.of(place, now);
+    final skyPlace = ref.watch(skyPlaceProvider);
+    final sky = skyPlace == null ? SkyDay(now: now) : SkyDay.of(skyPlace, now);
     final display = ref.watch(homeDisplayProvider);
 
     // Shabbat times in the Shabbat city's clock; everything else in yours.

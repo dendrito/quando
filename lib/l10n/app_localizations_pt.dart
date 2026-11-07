@@ -2256,7 +2256,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get locationUnavailable =>
-      'Não foi possível obter sua localização. Verifique a permissão ou escolha uma cidade.';
+      'Não foi possível obter a localização agora. Tente novamente ou escolha uma cidade.';
 
   @override
   String get locationReview => 'Confirmar esta localização';
@@ -2538,4 +2538,70 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get homeRefresh => 'Atualizar';
+
+  @override
+  String get skyTimezone => 'Meu fuso horário';
+
+  @override
+  String get skyShabbat => 'Cidade do Shabat';
+
+  @override
+  String get skyReferenceCity => 'Cidade de referência do fuso';
+
+  @override
+  String get skyChooseCity => 'Escolher cidade para o céu';
+
+  @override
+  String get skyCityExplain =>
+      'Sol e Lua usam as coordenadas desta cidade. Sua cidade do Shabat e o fuso dos alarmes permanecem como escolhidos.';
+
+  @override
+  String get skySun => 'Sol hoje';
+
+  @override
+  String get skyMoon => 'Lua hoje';
+
+  @override
+  String get moonAboveHorizon => 'Lua acima do horizonte';
+
+  @override
+  String get moonBelowHorizon => 'Lua abaixo do horizonte';
+
+  @override
+  String get moonNextNew => 'Próxima lua nova';
+
+  @override
+  String get moonNextFull => 'Próxima lua cheia';
+
+  @override
+  String get locationServicesOff =>
+      'Os Serviços de Localização estão desativados. Ative-os nos Ajustes ou escolha uma cidade.';
+
+  @override
+  String get locationDenied =>
+      'O acesso à localização foi negado. Permita-o nos Ajustes ou escolha uma cidade.';
+
+  @override
+  String get locationTimedOut =>
+      'Ainda não foi possível obter a localização. No Mac, mantenha o Wi-Fi ativado e tente novamente, ou escolha uma cidade.';
+
+  @override
+  String get locationTimeZoneUnavailable =>
+      'Use uma cidade no fuso selecionado ou siga o fuso do dispositivo antes de usar a localização.';
+
+  @override
+  String get locationSettings => 'Abrir ajustes de localização';
+
+  @override
+  String get locationLooking => 'Obtendo a localização…';
+
+  @override
+  String get skyMoonDisplay => 'Mostrar Lua: nascer, pôr e fase';
+
+  @override
+  String get tuyaConsumerPending =>
+      'O login da conta ainda não está disponível nesta versão. Se você já tem um projeto de desenvolvedor Tuya, use a configuração avançada.';
+
+  @override
+  String get tuyaAdvanced => 'Configuração avançada';
 }

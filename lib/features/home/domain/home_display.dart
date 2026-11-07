@@ -4,24 +4,34 @@ class HomeDisplay {
     this.moon = false,
     this.weather = false,
     this.parasha = false,
+    this.skyUseShabbat = false,
     this.courses = const {},
   });
   final bool night, moon, weather, parasha;
+  final bool skyUseShabbat;
   final Set<String> courses;
   static const courseIds = {'daf', 'rambam1', 'rambam3', 'mitzvot', 'mishnah', 'nach'};
-  HomeDisplay copyWith({bool? night, bool? moon, bool? weather, bool? parasha, Set<String>? courses}) =>
-      HomeDisplay(
-        night: night ?? this.night,
-        moon: moon ?? this.moon,
-        weather: weather ?? this.weather,
-        parasha: parasha ?? this.parasha,
-        courses: courses ?? this.courses,
-      );
+  HomeDisplay copyWith({
+    bool? night,
+    bool? moon,
+    bool? weather,
+    bool? parasha,
+    bool? skyUseShabbat,
+    Set<String>? courses,
+  }) => HomeDisplay(
+    night: night ?? this.night,
+    moon: moon ?? this.moon,
+    weather: weather ?? this.weather,
+    parasha: parasha ?? this.parasha,
+    skyUseShabbat: skyUseShabbat ?? this.skyUseShabbat,
+    courses: courses ?? this.courses,
+  );
   Map<String, dynamic> toJson() => {
     'night': night,
     'moon': moon,
     'weather': weather,
     'parasha': parasha,
+    'skyUseShabbat': skyUseShabbat,
     'courses': courses.toList()..sort(),
   };
   factory HomeDisplay.fromJson(Map<String, dynamic> j, {bool parashaDefault = false}) => HomeDisplay(
@@ -29,6 +39,7 @@ class HomeDisplay {
     moon: j['moon'] as bool? ?? false,
     weather: j['weather'] as bool? ?? false,
     parasha: j['parasha'] as bool? ?? parashaDefault,
+    skyUseShabbat: j['skyUseShabbat'] as bool? ?? false,
     courses: {
       for (final x in j['courses'] as List? ?? [])
         if (courseIds.contains(x)) x as String,
