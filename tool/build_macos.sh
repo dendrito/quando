@@ -22,6 +22,10 @@ restore() {
 trap restore EXIT
 tool/macos_edition.sh "$edition"
 flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITION=$edition"
+# Prepare explicitly: Xcode's scheme pre-action can leave an incomplete cached
+# framework after relocating DerivedData. Use Flutter's own engine unpack step.
+flutter assemble --output="$derived/Build/Products/Release/" \
+  -dTargetPlatform=darwin -dBuildMode=release -dDarwinArchs=arm64 release_unpack_macos
 signing=("CODE_SIGN_IDENTITY=${QUANDO_MAC_SIGNING_IDENTITY:--}" "CODE_SIGN_STYLE=Manual" 'PROVISIONING_PROFILE_SPECIFIER=')
 if [[ -n ${QUANDO_MAC_TEAM:-} ]]; then signing+=("DEVELOPMENT_TEAM=$QUANDO_MAC_TEAM"); fi
 xcodebuild -workspace macos/Runner.xcworkspace -scheme Runner -configuration Release \
