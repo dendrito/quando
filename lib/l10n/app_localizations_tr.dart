@@ -1205,11 +1205,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube ve YouTube Music';
 
   @override
-  String get youTubeOn => 'Çalma listelerin ve beğendiğin şarkılar. Çıkmak için basılı tut.';
+  String get youTubeOn => 'Bağlı · çıkmak için basılı tutun';
 
   @override
-  String get youTubeSignIn =>
-      'Çalma listelerinden ve beğendiğin şarkılardan seçmek için Google ile giriş yap.';
+  String get youTubeSignIn => 'Google ile giriş yap';
 
   @override
   String get addSongLinkInstead => 'Bunun yerine şarkı bağlantısı ekle.';
@@ -1227,16 +1226,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get spotifyDirect => 'Spotify doğrudan çalma';
 
   @override
-  String get spotifyDirectOnHint =>
-      'Spotify tam olarak senin şarkını alarm olarak çalar. Kapatmak için dokun.';
+  String get spotifyDirectOnHint => 'Açık · kapatmak için dokunun';
 
   @override
-  String get spotifyDirectHint =>
-      'Spotify şarkını tam olarak alarm olarak, daha güvenilir şekilde çalar. Spotify uygulaması ve Spotify Premium gerekir. Giriş için dokun.';
+  String get spotifyDirectHint => 'Tam o şarkıyı çalar. Premium gerekir.';
 
   @override
-  String get spotifyComingSoon =>
-      'Yakında: Spotify şarkını tam olarak alarm olarak çal (Spotify Premium gerekir).';
+  String get spotifyComingSoon => 'Yakında · Premium gerekir';
 
   @override
   String get spotifyFailed =>
@@ -1293,7 +1289,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Sesini, bir şarkıyı veya başka bir şeyi 5 dakikaya kadar kaydet. Telefonundan MP3, M4A veya WAV ekle. Bir şarkı veya liste bağla: uygulaması onu yedek sesle birlikte alarm olarak çalar. Ya da bir radyo seç: canlı çalar, bağlanamazsa telefonun alarmı çalar.';
+      '5 dakikaya kadar kayıt yapın, dosya, şarkı bağlantısı veya canlı radyo ekleyin. Bir sorun olursa yedek ses çalar.';
 
   @override
   String get yourSoundsHeading => 'SESLERİN';
@@ -2168,11 +2164,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Çalma listelerinden ve beğendiğin şarkılardan seçmek ya da tüm Spotify\'da aramak için giriş yap. Premium gerekmez.';
+  String get spotifyLibrarySignIn => 'Çalma listeleri, beğenilenler ve arama';
 
   @override
-  String get spotifyLibraryOn => 'Çalma listelerin, beğendiğin şarkılar ve arama. Çıkış için basılı tut.';
+  String get spotifyLibraryOn => 'Bağlı · çıkmak için basılı tutun';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2621,12 +2616,12 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Bu Mac’te $service uygulamasını bağlayın. Önce orada oturum açın; macOS izin isteyecek.';
+    return '$service uygulamasını bağla';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Bu Mac’te $service bağlı. Alarmın çalma süresini kullanır. Bağlantıyı kesmek için basılı tutun.';
+    return '$service bağlı · ayırmak için basılı tutun';
   }
 
   @override
@@ -2637,12 +2632,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Bu platformda $service hesabı bağlanamıyor. Alarmı durdurduktan sonra bir bağlantı açılabilir.';
+    return '$service bağlantısı ekleyin · alarmdan sonra açılır';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Herkese açık bir parça veya çalma listesi bağlantısı ekleyin. Resmî oynatıcı alarm süresini izler; hesap girişi kullanılamaz.';
+  String get soundCloudWidgetNote => 'Herkese açık bir bağlantı ekleyin';
 
   @override
   String get youtubePlayerHint =>

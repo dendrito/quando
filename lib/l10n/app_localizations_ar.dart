@@ -1245,10 +1245,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube وYouTube Music';
 
   @override
-  String get youTubeOn => 'قوائم تشغيلك وأغانيك المفضلة. اضغط مطولًا لتسجيل الخروج.';
+  String get youTubeOn => 'متصل · اضغط مطولًا لتسجيل الخروج';
 
   @override
-  String get youTubeSignIn => 'سجّل الدخول عبر Google لتختار من قوائم تشغيلك وأغانيك المفضلة.';
+  String get youTubeSignIn => 'تسجيل الدخول باستخدام Google';
 
   @override
   String get addSongLinkInstead => 'أضف رابط أغنية بدلًا من ذلك.';
@@ -1266,15 +1266,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get spotifyDirect => 'تشغيل Spotify المباشر';
 
   @override
-  String get spotifyDirectOnHint => 'يشغّل Spotify أغنيتك بالضبط كمنبه. انقر للإيقاف.';
+  String get spotifyDirectOnHint => 'مفعّل · انقر للإيقاف';
 
   @override
-  String get spotifyDirectHint =>
-      'يشغّل أغنية Spotify الخاصة بك بالضبط كمنبه، بموثوقية أكبر. يتطلب تطبيق Spotify وSpotify Premium. انقر لتسجيل الدخول.';
+  String get spotifyDirectHint => 'يشغّل الأغنية نفسها. يتطلب Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'قريبًا: شغّل أغنية Spotify الخاصة بك بالضبط كمنبه (يتطلب Spotify Premium).';
+  String get spotifyComingSoon => 'قريبًا · يتطلب Premium';
 
   @override
   String get spotifyFailed => 'لم يتصل Spotify. تأكد من تثبيت تطبيق Spotify وتسجيل الدخول وامتلاك Premium.';
@@ -1330,7 +1328,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'سجّل صوتك أو أغنية أو أي شيء، حتى 5 دقائق. أضف ملف MP3 أو M4A أو WAV من هاتفك. اربط أغنية أو قائمة تشغيل: يشغّلها تطبيقها كمنبه مع صوت احتياطي. أو اختر محطة راديو: تبث مباشرة، وإن لم تتصل يرنّ منبه الهاتف.';
+      'سجّل حتى 5 دقائق، أو أضف ملفًا أو رابط أغنية أو راديو مباشرًا. يرن صوت احتياطي إذا فشل شيء.';
 
   @override
   String get yourSoundsHeading => 'أصواتك';
@@ -2210,11 +2208,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'سجّل الدخول لتختار من قوائم التشغيل والأغاني التي أعجبتك، أو لتبحث في Spotify كله. لا حاجة إلى Premium.';
+  String get spotifyLibrarySignIn => 'قوائم التشغيل والأغاني المفضلة والبحث';
 
   @override
-  String get spotifyLibraryOn => 'قوائم التشغيل والأغاني التي أعجبتك والبحث. اضغط مطولًا لتسجيل الخروج.';
+  String get spotifyLibraryOn => 'متصل · اضغط مطولًا لتسجيل الخروج';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2662,12 +2659,12 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'اربط تطبيق $service على هذا الـMac. سجّل الدخول إليه أولاً؛ سيطلب macOS الإذن.';
+    return 'اربط تطبيق $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'متصل بـ$service على هذا الـMac. يستخدم مدة رنين المنبّه. اضغط مطولاً لقطع الاتصال.';
+    return 'متصل بـ $service · اضغط مطولًا لقطع الاتصال';
   }
 
   @override
@@ -2678,12 +2675,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'ربط حساب $service غير متاح على هذه المنصة. يمكن فتح رابط بعد إيقاف المنبّه.';
+    return 'أضف رابط $service · يُفتح بعد المنبه';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'أضف رابطاً عاماً لمقطع أو قائمة تشغيل. يتبع المشغّل الرسمي مدة المنبّه؛ تسجيل الدخول غير متاح.';
+  String get soundCloudWidgetNote => 'أضف رابطًا عامًا';
 
   @override
   String get youtubePlayerHint =>

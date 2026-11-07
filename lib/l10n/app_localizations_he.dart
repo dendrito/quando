@@ -1211,10 +1211,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube ו־YouTube Music';
 
   @override
-  String get youTubeOn => 'הפלייליסטים והשירים שאהבתם. לחיצה ארוכה ליציאה.';
+  String get youTubeOn => 'מחובר · לחיצה ארוכה להתנתקות';
 
   @override
-  String get youTubeSignIn => 'התחברו עם Google כדי לבחור מהפלייליסטים ומהשירים שאהבתם.';
+  String get youTubeSignIn => 'התחברות עם Google';
 
   @override
   String get addSongLinkInstead => 'הוסיפו קישור לשיר במקום.';
@@ -1232,14 +1232,13 @@ class AppLocalizationsHe extends AppLocalizations {
   String get spotifyDirect => 'ניגון ישיר מ־Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify מנגן בדיוק את השיר שלכם כהתראה. הקישו לכיבוי.';
+  String get spotifyDirectOnHint => 'פעיל · הקישו לכיבוי';
 
   @override
-  String get spotifyDirectHint =>
-      'מנגן בדיוק את השיר שלכם מ־Spotify כהתראה, באמינות גבוהה יותר. נדרשים אפליקציית Spotify ו־Spotify Premium. הקישו להתחברות.';
+  String get spotifyDirectHint => 'מנגן את השיר המדויק. דורש Premium.';
 
   @override
-  String get spotifyComingSoon => 'בקרוב: ניגון בדיוק של השיר שלכם מ־Spotify כהתראה (נדרש Spotify Premium).';
+  String get spotifyComingSoon => 'בקרוב · דורש Premium';
 
   @override
   String get spotifyFailed =>
@@ -1296,7 +1295,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'הקליטו את הקול שלכם, שיר או כל דבר אחר, עד 5 דקות. הוסיפו MP3, M4A או WAV מהטלפון. קשרו שיר או פלייליסט: האפליקציה שלו מנגנת אותו כהתראה, עם צליל גיבוי. או בחרו תחנת רדיו: היא מתנגנת בשידור חי, ואם אין חיבור, מצלצל צליל ההתראה של הטלפון.';
+      'הקליטו עד 5 דקות, הוסיפו קובץ, קישור לשיר או רדיו חי. צליל גיבוי מצלצל אם משהו נכשל.';
 
   @override
   String get yourSoundsHeading => 'הצלילים שלך';
@@ -2167,11 +2166,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'התחברו כדי לבחור מהפלייליסטים והשירים שאהבתם, או לחפש בכל Spotify. לא צריך Premium.';
+  String get spotifyLibrarySignIn => 'פלייליסטים, שירים שאהבתם וחיפוש';
 
   @override
-  String get spotifyLibraryOn => 'הפלייליסטים, השירים שאהבתם וחיפוש. לחיצה ארוכה להתנתקות.';
+  String get spotifyLibraryOn => 'מחובר · לחיצה ארוכה להתנתקות';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2616,12 +2614,12 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'חברו את אפליקציית $service ב־Mac הזה. התחברו אליה תחילה; macOS יבקש הרשאה.';
+    return 'חיבור האפליקציה $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'מחובר ל־$service ב־Mac הזה. משתמש במשך הצלצול של ההתראה. לחיצה ארוכה מנתקת.';
+    return 'מחובר ל-$service · לחיצה ארוכה לניתוק';
   }
 
   @override
@@ -2632,12 +2630,11 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'חיבור חשבון $service אינו זמין בפלטפורמה זו. ניתן לפתוח קישור לאחר עצירת ההתראה.';
+    return 'הוסיפו קישור של $service · נפתח אחרי ההתראה';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'הוסיפו קישור ציבורי לשיר או לפלייליסט. הנגן הרשמי משתמש במשך הצלצול; התחברות לחשבון אינה זמינה.';
+  String get soundCloudWidgetNote => 'הוסיפו קישור ציבורי';
 
   @override
   String get youtubePlayerHint =>

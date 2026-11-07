@@ -1205,10 +1205,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube और YouTube Music';
 
   @override
-  String get youTubeOn => 'आपकी प्लेलिस्ट और पसंद किए गाने। साइन आउट के लिए दबाकर रखें।';
+  String get youTubeOn => 'जुड़ा है · साइन आउट के लिए दबाकर रखें';
 
   @override
-  String get youTubeSignIn => 'अपनी प्लेलिस्ट और पसंद किए गानों से चुनने के लिए Google से साइन इन करें।';
+  String get youTubeSignIn => 'Google से साइन इन करें';
 
   @override
   String get addSongLinkInstead => 'इसके बजाय गाने का लिंक जोड़ें।';
@@ -1226,16 +1226,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get spotifyDirect => 'Spotify सीधा प्लेबैक';
 
   @override
-  String get spotifyDirectOnHint =>
-      'Spotify आपका ठीक वही गाना अलार्म के रूप में चलाता है। बंद करने के लिए टैप करें।';
+  String get spotifyDirectOnHint => 'चालू · बंद करने के लिए टैप करें';
 
   @override
-  String get spotifyDirectHint =>
-      'आपका ठीक वही Spotify गाना अलार्म के रूप में, ज़्यादा भरोसे से चलाता है। Spotify ऐप और Spotify Premium चाहिए। साइन इन के लिए टैप करें।';
+  String get spotifyDirectHint => 'वही गाना बजाता है। Premium ज़रूरी।';
 
   @override
-  String get spotifyComingSoon =>
-      'जल्द आ रहा है: आपका ठीक वही Spotify गाना अलार्म के रूप में (Spotify Premium चाहिए)।';
+  String get spotifyComingSoon => 'जल्द आ रहा है · Premium ज़रूरी';
 
   @override
   String get spotifyFailed =>
@@ -1292,7 +1289,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'अपनी आवाज़, कोई गाना या कुछ भी 5 मिनट तक रिकॉर्ड करें। फ़ोन से MP3, M4A या WAV जोड़ें। किसी गाने या प्लेलिस्ट का लिंक दें: उसका ऐप उसे बैकअप आवाज़ के साथ अलार्म की तरह चलाएगा। या कोई रेडियो स्टेशन चुनें: वह लाइव चलता है, और न जुड़े तो फ़ोन का अलार्म बजता है।';
+      '5 मिनट तक रिकॉर्ड करें, फ़ाइल, गाने का लिंक या लाइव रेडियो जोड़ें। कुछ गड़बड़ हो तो बैकअप ध्वनि बजती है।';
 
   @override
   String get yourSoundsHeading => 'आपकी आवाज़ें';
@@ -2167,11 +2164,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'अपनी प्लेलिस्ट और पसंद किए गाने चुनने या पूरे Spotify में खोजने के लिए साइन इन करें। Premium ज़रूरी नहीं।';
+  String get spotifyLibrarySignIn => 'प्लेलिस्ट, पसंद किए गाने और खोज';
 
   @override
-  String get spotifyLibraryOn => 'आपकी प्लेलिस्ट, पसंद किए गाने और खोज। साइन आउट के लिए देर तक दबाएँ।';
+  String get spotifyLibraryOn => 'जुड़ा है · साइन आउट के लिए दबाकर रखें';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2620,12 +2616,12 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'इस Mac पर $service ऐप कनेक्ट करें। पहले उसमें साइन इन करें; macOS अनुमति माँगेगा।';
+    return '$service ऐप जोड़ें';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'इस Mac पर $service कनेक्ट है। अलार्म की अवधि का उपयोग करता है। डिस्कनेक्ट करने के लिए देर तक दबाएँ।';
+    return '$service से जुड़ा · डिस्कनेक्ट के लिए दबाकर रखें';
   }
 
   @override
@@ -2636,12 +2632,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'इस प्लेटफ़ॉर्म पर $service खाता कनेक्शन उपलब्ध नहीं है। अलार्म रोकने के बाद लिंक खुल सकता है।';
+    return '$service लिंक जोड़ें · अलार्म के बाद खुलता है';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'सार्वजनिक ट्रैक या प्लेलिस्ट लिंक जोड़ें। आधिकारिक प्लेयर अलार्म की अवधि का पालन करता है; खाता साइन-इन उपलब्ध नहीं है।';
+  String get soundCloudWidgetNote => 'सार्वजनिक लिंक जोड़ें';
 
   @override
   String get youtubePlayerHint =>

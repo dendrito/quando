@@ -1212,10 +1212,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube en YouTube Music';
 
   @override
-  String get youTubeOn => 'Je afspeellijsten en leuke nummers. Lang ingedrukt houden om uit te loggen.';
+  String get youTubeOn => 'Verbonden · houd vast om uit te loggen';
 
   @override
-  String get youTubeSignIn => 'Log in met Google om te kiezen uit je afspeellijsten en leuke nummers.';
+  String get youTubeSignIn => 'Inloggen met Google';
 
   @override
   String get addSongLinkInstead => 'Voeg in plaats daarvan een nummerlink toe.';
@@ -1233,15 +1233,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get spotifyDirect => 'Spotify direct afspelen';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify speelt precies jouw nummer als wekker. Tik om uit te zetten.';
+  String get spotifyDirectOnHint => 'Aan · tik om uit te zetten';
 
   @override
-  String get spotifyDirectHint =>
-      'Speelt precies jouw Spotify-nummer als wekker, betrouwbaarder. Vereist de Spotify-app en Spotify Premium. Tik om in te loggen.';
+  String get spotifyDirectHint => 'Speelt precies het nummer. Premium nodig.';
 
   @override
-  String get spotifyComingSoon =>
-      'Binnenkort: speel precies jouw Spotify-nummer als wekker (vereist Spotify Premium).';
+  String get spotifyComingSoon => 'Binnenkort · Premium nodig';
 
   @override
   String get spotifyFailed =>
@@ -1298,7 +1296,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Neem je stem, een nummer of iets anders op, tot 5 minuten. Voeg een MP3, M4A of WAV van je telefoon toe. Koppel een nummer of afspeellijst: de app ervan speelt het als wekker, met een reservegeluid. Of kies een radiozender: die speelt live, en als hij geen verbinding maakt, gaat het wekkergeluid van de telefoon af.';
+      'Neem tot 5 minuten op, voeg een bestand, songlink of live radio toe. Gaat er iets mis, dan klinkt een reservegeluid.';
 
   @override
   String get yourSoundsHeading => 'JOUW GELUIDEN';
@@ -2178,12 +2176,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Log in om te kiezen uit je playlists en favoriete nummers, of heel Spotify te doorzoeken. Geen Premium nodig.';
+  String get spotifyLibrarySignIn => 'Afspeellijsten, leuke nummers en zoeken';
 
   @override
-  String get spotifyLibraryOn =>
-      'Je playlists, favoriete nummers en zoeken. Lang indrukken om uit te loggen.';
+  String get spotifyLibraryOn => 'Verbonden · houd vast om uit te loggen';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2632,12 +2628,12 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Verbind de app $service op deze Mac. Meld je daar eerst aan; macOS vraagt om toestemming.';
+    return 'Koppel de $service-app';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Verbonden met $service op deze Mac. Gebruikt de belduur van de wekker. Houd ingedrukt om te ontkoppelen.';
+    return 'Verbonden met $service · houd vast om te ontkoppelen';
   }
 
   @override
@@ -2648,12 +2644,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Accountverbinding voor $service is niet beschikbaar op dit platform. Een link kan openen nadat je de wekker stopt.';
+    return 'Voeg een $service-link toe · opent na het alarm';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Voeg een openbare link naar een nummer of playlist toe. De officiële speler volgt de belduur; aanmelden is niet beschikbaar.';
+  String get soundCloudWidgetNote => 'Voeg een openbare link toe';
 
   @override
   String get youtubePlayerHint =>

@@ -1185,10 +1185,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get youTubeAndMusic => 'YouTubeとYouTube Music';
 
   @override
-  String get youTubeOn => 'プレイリストとお気に入りの曲。長押しでログアウト。';
+  String get youTubeOn => '接続済み · 長押しでサインアウト';
 
   @override
-  String get youTubeSignIn => 'Googleでログインして、プレイリストやお気に入りから選べます。';
+  String get youTubeSignIn => 'Googleでサインイン';
 
   @override
   String get addSongLinkInstead => '代わりに曲のリンクを追加してください。';
@@ -1206,13 +1206,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get spotifyDirect => 'Spotify直接再生';
 
   @override
-  String get spotifyDirectOnHint => 'Spotifyがあなたの曲そのものをアラームとして再生します。タップでオフ。';
+  String get spotifyDirectOnHint => 'オン · タップでオフ';
 
   @override
-  String get spotifyDirectHint => 'Spotifyの曲そのものをより確実にアラームとして再生します。SpotifyアプリとSpotify Premiumが必要です。タップでログイン。';
+  String get spotifyDirectHint => 'その曲をそのまま再生。Premiumが必要です。';
 
   @override
-  String get spotifyComingSoon => '近日対応：Spotifyの曲そのものをアラームに（Spotify Premiumが必要）。';
+  String get spotifyComingSoon => '近日公開 · Premiumが必要';
 
   @override
   String get spotifyFailed => 'Spotifyに接続できませんでした。Spotifyアプリがインストール済みで、ログインしていてPremiumであるか確認してください。';
@@ -1267,8 +1267,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get wakeToRadio => 'ネットラジオで目覚める';
 
   @override
-  String get soundsExplain =>
-      '自分の声や曲など、最大5分まで録音できます。スマホからMP3、M4A、WAVを追加できます。曲やプレイリストをリンクすると、そのアプリがバックアップ音付きでアラームとして再生します。ラジオ局を選ぶとライブで流れ、接続できなければスマホのアラームが鳴ります。';
+  String get soundsExplain => '最大5分の録音、ファイル、曲のリンク、ラジオを追加。失敗時は予備の音が鳴ります。';
 
   @override
   String get yourSoundsHeading => 'あなたのサウンド';
@@ -2135,10 +2134,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => 'サインインすると、プレイリストやお気に入りの曲から選んだり、Spotify全体を検索したりできます。Premium不要。';
+  String get spotifyLibrarySignIn => 'プレイリスト、お気に入り、検索';
 
   @override
-  String get spotifyLibraryOn => 'プレイリスト、お気に入りの曲、検索。長押しでサインアウト。';
+  String get spotifyLibraryOn => '接続済み · 長押しでサインアウト';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2586,12 +2585,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'このMacの$serviceアプリに接続します。先にアプリでログインしてください。macOSが許可を求めます。';
+    return '$serviceアプリを接続';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'このMacの$serviceに接続済み。アラームの鳴動時間に従います。長押しで接続を解除します。';
+    return '$serviceに接続済み · 長押しで解除';
   }
 
   @override
@@ -2602,11 +2601,11 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'このプラットフォームでは$serviceのアカウント接続は利用できません。アラーム停止後にリンクを開けます。';
+    return '$serviceのリンクを追加 · アラーム後に開きます';
   }
 
   @override
-  String get soundCloudWidgetNote => '公開されている曲やプレイリストのリンクを追加します。公式プレーヤーはアラームの鳴動時間に従います。アカウントへのログインは利用できません。';
+  String get soundCloudWidgetNote => '公開リンクを追加';
 
   @override
   String get youtubePlayerHint => 'YouTubeは表示中のプレーヤーで動画を再生します。非表示または再生できない場合はローカルのアラームが続きます。';

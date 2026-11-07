@@ -1186,10 +1186,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube 및 YouTube Music';
 
   @override
-  String get youTubeOn => '내 재생목록과 좋아요 표시한 곡. 길게 눌러 로그아웃.';
+  String get youTubeOn => '연결됨 · 길게 눌러 로그아웃';
 
   @override
-  String get youTubeSignIn => 'Google로 로그인해 재생목록과 좋아요 표시한 곡에서 선택하세요.';
+  String get youTubeSignIn => 'Google로 로그인';
 
   @override
   String get addSongLinkInstead => '대신 노래 링크를 추가하세요.';
@@ -1207,14 +1207,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get spotifyDirect => 'Spotify 직접 재생';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify가 바로 그 노래를 알람으로 재생해요. 탭하여 끄기.';
+  String get spotifyDirectOnHint => '켜짐 · 탭하여 끄기';
 
   @override
-  String get spotifyDirectHint =>
-      'Spotify 노래를 그대로 알람으로, 더 안정적으로 재생해요. Spotify 앱과 Spotify Premium이 필요해요. 탭하여 로그인.';
+  String get spotifyDirectHint => '정확한 곡을 재생해요. Premium 필요.';
 
   @override
-  String get spotifyComingSoon => '곧 제공: Spotify 노래를 그대로 알람으로 (Spotify Premium 필요).';
+  String get spotifyComingSoon => '곧 제공 · Premium 필요';
 
   @override
   String get spotifyFailed => 'Spotify에 연결되지 않았어요. Spotify 앱이 설치되어 있고 로그인했으며 Premium인지 확인하세요.';
@@ -1269,8 +1268,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wakeToRadio => '인터넷 라디오로 일어나기';
 
   @override
-  String get soundsExplain =>
-      '내 목소리, 노래, 무엇이든 최대 5분까지 녹음하세요. 휴대폰의 MP3, M4A, WAV를 추가하세요. 노래나 재생목록을 연결하면 그 앱이 백업 소리와 함께 알람으로 재생해요. 라디오 방송국을 고르면 실시간으로 나오고, 연결되지 않으면 휴대폰 알람이 울려요.';
+  String get soundsExplain => '최대 5분 녹음, 파일, 노래 링크 또는 라디오를 추가하세요. 문제가 생기면 예비 소리가 울려요.';
 
   @override
   String get yourSoundsHeading => '내 소리';
@@ -2137,10 +2135,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '로그인하면 내 플레이리스트와 좋아요한 곡에서 고르거나 Spotify 전체를 검색할 수 있어요. Premium 필요 없음.';
+  String get spotifyLibrarySignIn => '재생목록, 좋아요한 곡, 검색';
 
   @override
-  String get spotifyLibraryOn => '내 플레이리스트, 좋아요한 곡, 검색. 길게 눌러 로그아웃.';
+  String get spotifyLibraryOn => '연결됨 · 길게 눌러 로그아웃';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2588,12 +2586,12 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return '이 Mac의 $service 앱에 연결하세요. 먼저 앱에서 로그인하면 macOS가 권한을 요청합니다.';
+    return '$service 앱 연결';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return '이 Mac의 $service에 연결되었습니다. 알람 울림 시간을 사용합니다. 길게 누르면 연결이 해제됩니다.';
+    return '$service에 연결됨 · 길게 눌러 해제';
   }
 
   @override
@@ -2604,11 +2602,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return '이 플랫폼에서는 $service 계정 연결을 사용할 수 없습니다. 알람을 중지한 후 링크를 열 수 있습니다.';
+    return '$service 링크 추가 · 알람 후 열림';
   }
 
   @override
-  String get soundCloudWidgetNote => '공개 트랙 또는 재생목록 링크를 추가하세요. 공식 플레이어는 알람 시간을 따릅니다. 계정 로그인은 사용할 수 없습니다.';
+  String get soundCloudWidgetNote => '공개 링크 추가';
 
   @override
   String get youtubePlayerHint => 'YouTube는 표시되는 플레이어에서 동영상을 재생합니다. 숨겨지거나 재생할 수 없으면 로컬 알람이 계속됩니다.';

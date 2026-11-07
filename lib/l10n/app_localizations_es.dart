@@ -1213,10 +1213,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube y YouTube Music';
 
   @override
-  String get youTubeOn => 'Tus listas y canciones que te gustan. Mantén pulsado para cerrar sesión.';
+  String get youTubeOn => 'Conectado · mantén pulsado para salir';
 
   @override
-  String get youTubeSignIn => 'Inicia sesión con Google para elegir de tus listas y canciones que te gustan.';
+  String get youTubeSignIn => 'Iniciar sesión con Google';
 
   @override
   String get addSongLinkInstead => 'Añade un enlace de canción.';
@@ -1234,16 +1234,13 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spotifyDirect => 'Reproducción directa de Spotify';
 
   @override
-  String get spotifyDirectOnHint =>
-      'Spotify reproduce exactamente tu canción como alarma. Toca para desactivar.';
+  String get spotifyDirectOnHint => 'Activado · toca para desactivar';
 
   @override
-  String get spotifyDirectHint =>
-      'Reproduce exactamente tu canción de Spotify como alarma, de forma más fiable. Necesita la app de Spotify y Spotify Premium. Toca para iniciar sesión.';
+  String get spotifyDirectHint => 'Suena la canción exacta. Requiere Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'Próximamente: reproduce exactamente tu canción de Spotify como alarma (necesita Spotify Premium).';
+  String get spotifyComingSoon => 'Próximamente · requiere Premium';
 
   @override
   String get spotifyFailed =>
@@ -1301,7 +1298,7 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Graba tu voz, una canción o lo que quieras, hasta 5 minutos. Añade un MP3, M4A o WAV de tu teléfono. Enlaza una canción o lista: su app la reproduce como alarma, con un sonido de respaldo. O elige una emisora: suena en directo y, si no conecta, suena la alarma del teléfono.';
+      'Graba hasta 5 minutos, añade un archivo, un enlace o radio en vivo. Si algo falla, suena un sonido de respaldo.';
 
   @override
   String get yourSoundsHeading => 'TUS SONIDOS';
@@ -2180,12 +2177,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Inicia sesión para elegir de tus playlists y canciones que te gustan, o buscar en todo Spotify. No hace falta Premium.';
+  String get spotifyLibrarySignIn => 'Listas, canciones que te gustan y búsqueda';
 
   @override
-  String get spotifyLibraryOn =>
-      'Tus playlists, canciones que te gustan y búsqueda. Mantén pulsado para cerrar sesión.';
+  String get spotifyLibraryOn => 'Conectado · mantén pulsado para salir';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2634,12 +2629,12 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Conecta la app $service en este Mac. Inicia sesión allí primero; macOS pedirá permiso.';
+    return 'Conectar la app $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Conectado a $service en este Mac. Usa la duración del aviso. Mantén pulsado para desconectar.';
+    return 'Conectado a $service · mantén pulsado para desconectar';
   }
 
   @override
@@ -2650,12 +2645,11 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'La conexión de cuenta de $service no está disponible en esta plataforma. Puedes abrir un enlace tras detener el aviso.';
+    return 'Añade un enlace de $service · se abre tras la alarma';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Añade un enlace público de canción o playlist. El reproductor oficial sigue la duración del aviso; no se puede iniciar sesión.';
+  String get soundCloudWidgetNote => 'Añade un enlace público';
 
   @override
   String get youtubePlayerHint =>

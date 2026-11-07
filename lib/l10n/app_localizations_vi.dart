@@ -1200,10 +1200,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube và YouTube Music';
 
   @override
-  String get youTubeOn => 'Danh sách phát và bài hát bạn thích. Nhấn giữ để đăng xuất.';
+  String get youTubeOn => 'Đã kết nối · giữ để đăng xuất';
 
   @override
-  String get youTubeSignIn => 'Đăng nhập Google để chọn từ danh sách phát và bài hát bạn thích.';
+  String get youTubeSignIn => 'Đăng nhập bằng Google';
 
   @override
   String get addSongLinkInstead => 'Hãy thêm liên kết bài hát thay vào đó.';
@@ -1221,14 +1221,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get spotifyDirect => 'Phát trực tiếp Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify phát đúng bài hát của bạn làm báo thức. Chạm để tắt.';
+  String get spotifyDirectOnHint => 'Bật · chạm để tắt';
 
   @override
-  String get spotifyDirectHint =>
-      'Phát đúng bài Spotify của bạn làm báo thức, đáng tin cậy hơn. Cần ứng dụng Spotify và Spotify Premium. Chạm để đăng nhập.';
+  String get spotifyDirectHint => 'Phát đúng bài hát. Cần Premium.';
 
   @override
-  String get spotifyComingSoon => 'Sắp có: phát đúng bài Spotify của bạn làm báo thức (cần Spotify Premium).';
+  String get spotifyComingSoon => 'Sắp có · cần Premium';
 
   @override
   String get spotifyFailed =>
@@ -1286,7 +1285,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Ghi giọng bạn, một bài hát hoặc bất cứ thứ gì, tối đa 5 phút. Thêm MP3, M4A hoặc WAV từ điện thoại. Liên kết một bài hát hoặc danh sách phát: ứng dụng của nó phát làm báo thức, kèm âm dự phòng. Hoặc chọn một đài radio: phát trực tiếp, và nếu không kết nối được, báo thức của điện thoại sẽ reo.';
+      'Ghi âm tối đa 5 phút, thêm tệp, liên kết bài hát hoặc radio trực tiếp. Nếu có lỗi, âm dự phòng sẽ reo.';
 
   @override
   String get yourSoundsHeading => 'ÂM THANH CỦA BẠN';
@@ -2160,11 +2159,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Đăng nhập để chọn từ danh sách phát và bài hát đã thích, hoặc tìm trên toàn Spotify. Không cần Premium.';
+  String get spotifyLibrarySignIn => 'Danh sách phát, bài đã thích và tìm kiếm';
 
   @override
-  String get spotifyLibraryOn => 'Danh sách phát, bài hát đã thích và tìm kiếm. Nhấn giữ để đăng xuất.';
+  String get spotifyLibraryOn => 'Đã kết nối · giữ để đăng xuất';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2613,12 +2611,12 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Kết nối ứng dụng $service trên Mac này. Đăng nhập trong ứng dụng trước; macOS sẽ yêu cầu quyền.';
+    return 'Kết nối ứng dụng $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Đã kết nối $service trên Mac này. Dùng thời lượng chuông báo thức. Nhấn giữ để ngắt kết nối.';
+    return 'Đã kết nối $service · giữ để ngắt';
   }
 
   @override
@@ -2629,12 +2627,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Không thể kết nối tài khoản $service trên nền tảng này. Có thể mở liên kết sau khi dừng báo thức.';
+    return 'Thêm liên kết $service · mở sau báo thức';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Thêm liên kết công khai của bài hát hoặc danh sách phát. Trình phát chính thức theo thời lượng báo thức; không hỗ trợ đăng nhập tài khoản.';
+  String get soundCloudWidgetNote => 'Thêm liên kết công khai';
 
   @override
   String get youtubePlayerHint =>

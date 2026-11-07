@@ -1212,10 +1212,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube und YouTube Music';
 
   @override
-  String get youTubeOn => 'Deine Playlists und Lieblingssongs. Lange drücken zum Abmelden.';
+  String get youTubeOn => 'Verbunden · gedrückt halten zum Abmelden';
 
   @override
-  String get youTubeSignIn => 'Mit Google anmelden, um aus deinen Playlists und Lieblingssongs zu wählen.';
+  String get youTubeSignIn => 'Mit Google anmelden';
 
   @override
   String get addSongLinkInstead => 'Füge stattdessen einen Song-Link hinzu.';
@@ -1233,15 +1233,13 @@ class AppLocalizationsDe extends AppLocalizations {
   String get spotifyDirect => 'Spotify-Direktwiedergabe';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify spielt genau deinen Song als Wecker. Zum Ausschalten tippen.';
+  String get spotifyDirectOnHint => 'An · tippen zum Ausschalten';
 
   @override
-  String get spotifyDirectHint =>
-      'Spielt genau deinen Spotify-Song als Wecker, zuverlässiger. Braucht die Spotify-App und Spotify Premium. Zum Anmelden tippen.';
+  String get spotifyDirectHint => 'Spielt genau den Song. Benötigt Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'Bald: spielt genau deinen Spotify-Song als Wecker (braucht Spotify Premium).';
+  String get spotifyComingSoon => 'Bald verfügbar · benötigt Premium';
 
   @override
   String get spotifyFailed =>
@@ -1300,7 +1298,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Nimm deine Stimme, einen Song oder irgendetwas auf, bis zu 5 Minuten. Füge eine MP3-, M4A- oder WAV-Datei vom Handy hinzu. Verlinke einen Song oder eine Playlist: Die App spielt ihn als Wecker, mit Ersatzklang. Oder wähle einen Radiosender: Er läuft live, und klappt die Verbindung nicht, klingelt der Weckton des Handys.';
+      'Bis zu 5 Minuten aufnehmen, eine Datei, einen Song-Link oder Live-Radio hinzufügen. Ein Ersatzton klingelt, falls etwas schiefgeht.';
 
   @override
   String get yourSoundsHeading => 'DEINE KLÄNGE';
@@ -2178,11 +2176,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Melde dich an, um aus deinen Playlists und Lieblingssongs zu wählen oder ganz Spotify zu durchsuchen. Kein Premium nötig.';
+  String get spotifyLibrarySignIn => 'Playlists, Lieblingssongs und Suche';
 
   @override
-  String get spotifyLibraryOn => 'Deine Playlists, Lieblingssongs und Suche. Lange drücken zum Abmelden.';
+  String get spotifyLibraryOn => 'Verbunden · gedrückt halten zum Abmelden';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2632,12 +2629,12 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Verbinde die App $service auf diesem Mac. Melde dich dort zuerst an; macOS fragt nach deiner Erlaubnis.';
+    return '$service-App verbinden';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Mit $service auf diesem Mac verbunden. Verwendet die Klingeldauer des Weckers. Zum Trennen lange drücken.';
+    return 'Mit $service verbunden · gedrückt halten zum Trennen';
   }
 
   @override
@@ -2648,12 +2645,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Die Kontoanmeldung für $service ist auf dieser Plattform nicht verfügbar. Ein Link kann nach dem Stoppen des Weckers geöffnet werden.';
+    return '$service-Link hinzufügen · öffnet nach dem Wecker';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Füge einen öffentlichen Titel- oder Playlist-Link hinzu. Der offizielle Player folgt der Klingeldauer; eine Kontoanmeldung ist nicht verfügbar.';
+  String get soundCloudWidgetNote => 'Öffentlichen Link hinzufügen';
 
   @override
   String get youtubePlayerHint =>

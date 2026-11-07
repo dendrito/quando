@@ -1246,10 +1246,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube i YouTube Music';
 
   @override
-  String get youTubeOn => 'Twoje playlisty i polubione utwory. Przytrzymaj, aby się wylogować.';
+  String get youTubeOn => 'Połączono · przytrzymaj, by się wylogować';
 
   @override
-  String get youTubeSignIn => 'Zaloguj się przez Google, aby wybierać z playlist i polubionych utworów.';
+  String get youTubeSignIn => 'Zaloguj się przez Google';
 
   @override
   String get addSongLinkInstead => 'Zamiast tego dodaj link do utworu.';
@@ -1267,16 +1267,13 @@ class AppLocalizationsPl extends AppLocalizations {
   String get spotifyDirect => 'Bezpośrednie odtwarzanie Spotify';
 
   @override
-  String get spotifyDirectOnHint =>
-      'Spotify odtwarza dokładnie Twój utwór jako alarm. Dotknij, aby wyłączyć.';
+  String get spotifyDirectOnHint => 'Włączone · dotknij, by wyłączyć';
 
   @override
-  String get spotifyDirectHint =>
-      'Odtwarza dokładnie Twój utwór Spotify jako alarm, bardziej niezawodnie. Wymaga aplikacji Spotify i Spotify Premium. Dotknij, aby się zalogować.';
+  String get spotifyDirectHint => 'Odtwarza dokładnie ten utwór. Wymaga Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'Wkrótce: odtwarzanie dokładnie Twojego utworu Spotify jako alarmu (wymaga Spotify Premium).';
+  String get spotifyComingSoon => 'Wkrótce · wymaga Premium';
 
   @override
   String get spotifyFailed =>
@@ -1333,7 +1330,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Nagraj swój głos, utwór lub cokolwiek innego, do 5 minut. Dodaj MP3, M4A lub WAV z telefonu. Podlinkuj utwór lub playlistę: jego aplikacja odtworzy go jako alarm, z dźwiękiem zapasowym. Albo wybierz stację radiową: gra na żywo, a jeśli się nie połączy, dzwoni alarm telefonu.';
+      'Nagraj do 5 minut, dodaj plik, link do utworu lub radio na żywo. Gdy coś zawiedzie, zadzwoni dźwięk zapasowy.';
 
   @override
   String get yourSoundsHeading => 'TWOJE DŹWIĘKI';
@@ -2217,12 +2214,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Zaloguj się, aby wybierać z playlist i polubionych utworów albo szukać w całym Spotify. Premium nie jest potrzebne.';
+  String get spotifyLibrarySignIn => 'Playlisty, polubione utwory i wyszukiwanie';
 
   @override
-  String get spotifyLibraryOn =>
-      'Twoje playlisty, polubione utwory i wyszukiwanie. Przytrzymaj, aby się wylogować.';
+  String get spotifyLibraryOn => 'Połączono · przytrzymaj, by się wylogować';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2672,12 +2667,12 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Połącz aplikację $service na tym Macu. Najpierw się w niej zaloguj; macOS poprosi o zgodę.';
+    return 'Połącz aplikację $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Połączono z $service na tym Macu. Obowiązuje czas dzwonienia alarmu. Przytrzymaj, aby rozłączyć.';
+    return 'Połączono z $service · przytrzymaj, by rozłączyć';
   }
 
   @override
@@ -2688,12 +2683,11 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Połączenie z kontem $service jest niedostępne na tej platformie. Link może się otworzyć po zatrzymaniu alarmu.';
+    return 'Dodaj link $service · otworzy się po alarmie';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Dodaj publiczny link do utworu lub playlisty. Oficjalny odtwarzacz stosuje czas dzwonienia alarmu; logowanie jest niedostępne.';
+  String get soundCloudWidgetNote => 'Dodaj publiczny link';
 
   @override
   String get youtubePlayerHint =>

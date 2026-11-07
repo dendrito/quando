@@ -1215,11 +1215,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube e YouTube Music';
 
   @override
-  String get youTubeOn => 'Le tue playlist e i brani che ti piacciono. Tieni premuto per uscire.';
+  String get youTubeOn => 'Connesso · tieni premuto per uscire';
 
   @override
-  String get youTubeSignIn =>
-      'Accedi con Google per scegliere dalle tue playlist e dai brani che ti piacciono.';
+  String get youTubeSignIn => 'Accedi con Google';
 
   @override
   String get addSongLinkInstead => 'Aggiungi invece un link a un brano.';
@@ -1237,16 +1236,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get spotifyDirect => 'Riproduzione diretta Spotify';
 
   @override
-  String get spotifyDirectOnHint =>
-      'Spotify riproduce esattamente il tuo brano come sveglia. Tocca per disattivare.';
+  String get spotifyDirectOnHint => 'Attivo · tocca per disattivare';
 
   @override
-  String get spotifyDirectHint =>
-      'Riproduce esattamente il tuo brano Spotify come sveglia, in modo più affidabile. Servono l’app Spotify e Spotify Premium. Tocca per accedere.';
+  String get spotifyDirectHint => 'Riproduce il brano esatto. Serve Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'Presto: riproduce esattamente il tuo brano Spotify come sveglia (serve Spotify Premium).';
+  String get spotifyComingSoon => 'In arrivo · serve Premium';
 
   @override
   String get spotifyFailed =>
@@ -1304,7 +1300,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Registra la tua voce, un brano o qualsiasi altra cosa, fino a 5 minuti. Aggiungi un MP3, M4A o WAV dal telefono. Collega un brano o una playlist: la sua app lo riproduce come sveglia, con un suono di riserva. Oppure scegli una radio: suona in diretta e, se non si collega, suona la sveglia del telefono.';
+      'Registra fino a 5 minuti, aggiungi un file, un link o la radio in diretta. Se qualcosa non va, suona un suono di riserva.';
 
   @override
   String get yourSoundsHeading => 'I TUOI SUONI';
@@ -2183,12 +2179,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Accedi per scegliere tra le tue playlist e i brani che ti piacciono, o cercare in tutto Spotify. Premium non necessario.';
+  String get spotifyLibrarySignIn => 'Playlist, brani che ti piacciono e ricerca';
 
   @override
-  String get spotifyLibraryOn =>
-      'Le tue playlist, i brani che ti piacciono e la ricerca. Tieni premuto per uscire.';
+  String get spotifyLibraryOn => 'Connesso · tieni premuto per uscire';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2639,12 +2633,12 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Collega l’app $service su questo Mac. Accedi prima lì; macOS chiederà il permesso.';
+    return 'Collega l’app $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Collegato a $service su questo Mac. Usa la durata della sveglia. Tieni premuto per scollegare.';
+    return 'Connesso a $service · tieni premuto per scollegare';
   }
 
   @override
@@ -2655,12 +2649,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Il collegamento dell’account $service non è disponibile su questa piattaforma. Un link può aprirsi dopo aver fermato la sveglia.';
+    return 'Aggiungi un link $service · si apre dopo la sveglia';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Aggiungi un link pubblico a un brano o playlist. Il lettore ufficiale segue la durata della sveglia; l’accesso all’account non è disponibile.';
+  String get soundCloudWidgetNote => 'Aggiungi un link pubblico';
 
   @override
   String get youtubePlayerHint =>

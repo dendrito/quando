@@ -2215,13 +2215,13 @@ abstract class AppLocalizations {
   /// No description provided for @youTubeOn.
   ///
   /// In en, this message translates to:
-  /// **'Your playlists and liked songs. Long-press to sign out.'**
+  /// **'Connected · hold to sign out'**
   String get youTubeOn;
 
   /// No description provided for @youTubeSignIn.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Google to pick from your playlists and liked songs.'**
+  /// **'Sign in with Google'**
   String get youTubeSignIn;
 
   /// No description provided for @addSongLinkInstead.
@@ -2257,19 +2257,19 @@ abstract class AppLocalizations {
   /// No description provided for @spotifyDirectOnHint.
   ///
   /// In en, this message translates to:
-  /// **'Spotify plays your exact song as the alarm. Tap to turn off.'**
+  /// **'On · tap to turn off'**
   String get spotifyDirectOnHint;
 
   /// No description provided for @spotifyDirectHint.
   ///
   /// In en, this message translates to:
-  /// **'Plays your exact Spotify song as the alarm, more reliably. Needs the Spotify app and Spotify Premium. Tap to sign in.'**
+  /// **'Plays the exact song. Needs Premium.'**
   String get spotifyDirectHint;
 
   /// No description provided for @spotifyComingSoon.
   ///
   /// In en, this message translates to:
-  /// **'Coming soon: plays your exact Spotify song as the alarm (needs Spotify Premium).'**
+  /// **'Coming soon · needs Premium'**
   String get spotifyComingSoon;
 
   /// No description provided for @spotifyFailed.
@@ -2371,7 +2371,7 @@ abstract class AppLocalizations {
   /// No description provided for @soundsExplain.
   ///
   /// In en, this message translates to:
-  /// **'Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from your phone. Link a song or playlist: its app plays it as the alarm, with a backup sound. Or pick a radio station: it plays live, and if it can\'t connect, the phone\'s alarm sound rings instead.'**
+  /// **'Record up to 5 minutes, add a file, a song link or live radio. A backup sound rings if anything fails.'**
   String get soundsExplain;
 
   /// No description provided for @yourSoundsHeading.
@@ -3919,13 +3919,13 @@ abstract class AppLocalizations {
   /// No description provided for @spotifyLibrarySignIn.
   ///
   /// In en, this message translates to:
-  /// **'Sign in to pick from your playlists and liked songs, or search all of Spotify. No Premium needed.'**
+  /// **'Playlists, liked songs and search'**
   String get spotifyLibrarySignIn;
 
   /// No description provided for @spotifyLibraryOn.
   ///
   /// In en, this message translates to:
-  /// **'Your playlists, liked songs and search. Long-press to sign out.'**
+  /// **'Connected · hold to sign out'**
   String get spotifyLibraryOn;
 
   /// No description provided for @spotifyLoginError.
@@ -4759,13 +4759,13 @@ abstract class AppLocalizations {
   /// No description provided for @desktopMusicConnect.
   ///
   /// In en, this message translates to:
-  /// **'Connect the {service} app on this Mac. Sign in there first; macOS will ask for permission.'**
+  /// **'Connect the {service} app'**
   String desktopMusicConnect(String service);
 
   /// No description provided for @desktopMusicOn.
   ///
   /// In en, this message translates to:
-  /// **'Connected to {service} on this Mac. Uses the alarm’s ring duration. Long-press to disconnect.'**
+  /// **'Connected to {service} · hold to disconnect'**
   String desktopMusicOn(String service);
 
   /// No description provided for @musicSongs.
@@ -4783,13 +4783,13 @@ abstract class AppLocalizations {
   /// No description provided for @serviceConnectUnavailable.
   ///
   /// In en, this message translates to:
-  /// **'Account connection is unavailable for {service} on this platform. A link can open after you stop the alarm.'**
+  /// **'{service} links open after the alarm'**
   String serviceConnectUnavailable(String service);
 
   /// No description provided for @soundCloudWidgetNote.
   ///
   /// In en, this message translates to:
-  /// **'Add a public track or playlist link. The official player follows the alarm’s ring duration; account sign-in is unavailable.'**
+  /// **'Add a public link'**
   String get soundCloudWidgetNote;
 
   /// No description provided for @youtubePlayerHint.

@@ -1247,10 +1247,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube і YouTube Music';
 
   @override
-  String get youTubeOn => 'Ваші плейлисти й улюблені треки. Утримуйте, щоб вийти.';
+  String get youTubeOn => 'Підключено · утримуйте, щоб вийти';
 
   @override
-  String get youTubeSignIn => 'Увійдіть через Google, щоб вибирати з плейлистів і улюблених треків.';
+  String get youTubeSignIn => 'Увійти через Google';
 
   @override
   String get addSongLinkInstead => 'Натомість додайте посилання на трек.';
@@ -1268,14 +1268,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get spotifyDirect => 'Пряме відтворення Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify грає саме ваш трек як будильник. Торкніться, щоб вимкнути.';
+  String get spotifyDirectOnHint => 'Увімк. · торкніться, щоб вимкнути';
 
   @override
-  String get spotifyDirectHint =>
-      'Грає саме ваш трек Spotify як будильник, надійніше. Потрібні застосунок Spotify і Spotify Premium. Торкніться, щоб увійти.';
+  String get spotifyDirectHint => 'Грає саме цю пісню. Потрібен Premium.';
 
   @override
-  String get spotifyComingSoon => 'Незабаром: ваш трек Spotify як будильник (потрібен Spotify Premium).';
+  String get spotifyComingSoon => 'Незабаром · потрібен Premium';
 
   @override
   String get spotifyFailed =>
@@ -1332,7 +1331,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Запишіть свій голос, пісню чи будь-що, до 5 хвилин. Додайте MP3, M4A чи WAV з телефона. Дайте посилання на трек чи плейлист: його застосунок зіграє його як будильник, із запасним звуком. Або виберіть радіостанцію: вона грає наживо, а якщо не підключиться, дзвонить будильник телефона.';
+      'Запишіть до 5 хвилин, додайте файл, посилання на пісню чи радіо. Якщо щось не спрацює, пролунає запасний звук.';
 
   @override
   String get yourSoundsHeading => 'ВАШІ ЗВУКИ';
@@ -2214,11 +2213,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Увійдіть, щоб вибирати зі своїх плейлистів і вподобаних треків або шукати по всьому Spotify. Premium не потрібен.';
+  String get spotifyLibrarySignIn => 'Плейлисти, улюблені треки й пошук';
 
   @override
-  String get spotifyLibraryOn => 'Ваші плейлисти, вподобані треки й пошук. Утримуйте, щоб вийти.';
+  String get spotifyLibraryOn => 'Підключено · утримуйте, щоб вийти';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2667,12 +2665,12 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Підключіть програму $service на цьому Mac. Спочатку увійдіть у неї; macOS запитає дозвіл.';
+    return 'Підключити застосунок $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Підключено до $service на цьому Mac. Діє тривалість дзвінка будильника. Утримуйте для відключення.';
+    return 'Підключено до $service · утримуйте, щоб від’єднати';
   }
 
   @override
@@ -2683,12 +2681,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Підключення облікового запису $service недоступне на цій платформі. Посилання можна відкрити після зупинки будильника.';
+    return 'Додайте посилання $service · відкриється після будильника';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Додайте загальнодоступне посилання на трек або плейлист. Офіційний програвач дотримується тривалості дзвінка; вхід недоступний.';
+  String get soundCloudWidgetNote => 'Додайте публічне посилання';
 
   @override
   String get youtubePlayerHint =>

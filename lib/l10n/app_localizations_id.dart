@@ -1203,10 +1203,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube dan YouTube Music';
 
   @override
-  String get youTubeOn => 'Playlist dan lagu yang kamu sukai. Tekan lama untuk keluar.';
+  String get youTubeOn => 'Terhubung · tahan untuk keluar';
 
   @override
-  String get youTubeSignIn => 'Masuk dengan Google untuk memilih dari playlist dan lagu yang kamu sukai.';
+  String get youTubeSignIn => 'Masuk dengan Google';
 
   @override
   String get addSongLinkInstead => 'Tambahkan tautan lagu saja.';
@@ -1224,15 +1224,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get spotifyDirect => 'Pemutaran langsung Spotify';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify memutar lagumu persis sebagai alarm. Ketuk untuk mematikan.';
+  String get spotifyDirectOnHint => 'Aktif · ketuk untuk mematikan';
 
   @override
-  String get spotifyDirectHint =>
-      'Memutar lagu Spotify-mu persis sebagai alarm, lebih andal. Perlu aplikasi Spotify dan Spotify Premium. Ketuk untuk masuk.';
+  String get spotifyDirectHint => 'Memutar lagu yang persis. Perlu Premium.';
 
   @override
-  String get spotifyComingSoon =>
-      'Segera hadir: putar lagu Spotify-mu persis sebagai alarm (perlu Spotify Premium).';
+  String get spotifyComingSoon => 'Segera hadir · perlu Premium';
 
   @override
   String get spotifyFailed =>
@@ -1289,7 +1287,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get soundsExplain =>
-      'Rekam suaramu, lagu, atau apa pun, hingga 5 menit. Tambahkan MP3, M4A, atau WAV dari ponselmu. Tautkan lagu atau playlist: aplikasinya memutarnya sebagai alarm, dengan suara cadangan. Atau pilih stasiun radio: diputar langsung, dan jika tidak terhubung, alarm ponsel berbunyi.';
+      'Rekam hingga 5 menit, tambahkan file, tautan lagu, atau radio langsung. Suara cadangan berbunyi jika ada yang gagal.';
 
   @override
   String get yourSoundsHeading => 'SUARAMU';
@@ -2164,11 +2162,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn =>
-      'Masuk untuk memilih dari playlist dan lagu yang kamu sukai, atau cari di seluruh Spotify. Tidak perlu Premium.';
+  String get spotifyLibrarySignIn => 'Playlist, lagu yang disukai, dan pencarian';
 
   @override
-  String get spotifyLibraryOn => 'Playlist, lagu yang disukai, dan pencarian. Tekan lama untuk keluar.';
+  String get spotifyLibraryOn => 'Terhubung · tahan untuk keluar';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2617,12 +2614,12 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return 'Hubungkan app $service di Mac ini. Masuk di sana terlebih dahulu; macOS akan meminta izin.';
+    return 'Hubungkan aplikasi $service';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return 'Terhubung ke $service di Mac ini. Menggunakan durasi dering alarm. Tekan lama untuk memutuskan.';
+    return 'Terhubung ke $service · tahan untuk memutus';
   }
 
   @override
@@ -2633,12 +2630,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return 'Koneksi akun $service tidak tersedia di platform ini. Tautan dapat dibuka setelah alarm dihentikan.';
+    return 'Tambahkan tautan $service · terbuka setelah alarm';
   }
 
   @override
-  String get soundCloudWidgetNote =>
-      'Tambahkan tautan publik lagu atau playlist. Pemutar resmi mengikuti durasi alarm; masuk akun tidak tersedia.';
+  String get soundCloudWidgetNote => 'Tambahkan tautan publik';
 
   @override
   String get youtubePlayerHint =>

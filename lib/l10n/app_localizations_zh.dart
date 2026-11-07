@@ -1181,10 +1181,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube 和 YouTube Music';
 
   @override
-  String get youTubeOn => '你的歌单和喜欢的歌曲。长按退出登录。';
+  String get youTubeOn => '已连接 · 长按退出';
 
   @override
-  String get youTubeSignIn => '使用 Google 登录，从你的歌单和喜欢的歌曲中选择。';
+  String get youTubeSignIn => '使用 Google 登录';
 
   @override
   String get addSongLinkInstead => '请改为添加歌曲链接。';
@@ -1202,13 +1202,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spotifyDirect => 'Spotify 直接播放';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify 会把你的那首歌作为闹钟播放。点按关闭。';
+  String get spotifyDirectOnHint => '已开启 · 点按关闭';
 
   @override
-  String get spotifyDirectHint => '把你的 Spotify 歌曲作为闹钟播放，更加可靠。需要 Spotify 应用和 Spotify Premium。点按登录。';
+  String get spotifyDirectHint => '播放指定歌曲。需要 Premium。';
 
   @override
-  String get spotifyComingSoon => '即将推出：把你的 Spotify 歌曲作为闹钟播放（需要 Spotify Premium）。';
+  String get spotifyComingSoon => '即将推出 · 需要 Premium';
 
   @override
   String get spotifyFailed => 'Spotify 未能连接。请确认已安装 Spotify 应用、已登录并拥有 Premium。';
@@ -1263,8 +1263,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get wakeToRadio => '用网络电台醒来';
 
   @override
-  String get soundsExplain =>
-      '录下你的声音、一首歌或任何内容，最长 5 分钟。从手机添加 MP3、M4A 或 WAV。链接一首歌或歌单：它的应用会把它作为闹钟播放，并带备用铃声。或选择一个电台：直播播放，如果连接失败，则响起手机闹钟。';
+  String get soundsExplain => '录音最长 5 分钟,或添加文件、歌曲链接、在线电台。出错时会响起备用铃声。';
 
   @override
   String get yourSoundsHeading => '你的声音';
@@ -2130,10 +2129,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '登录后可从你的歌单和喜欢的歌曲中选择，或搜索整个 Spotify。无需 Premium。';
+  String get spotifyLibrarySignIn => '播放列表、喜欢的歌曲和搜索';
 
   @override
-  String get spotifyLibraryOn => '你的歌单、喜欢的歌曲和搜索。长按退出登录。';
+  String get spotifyLibraryOn => '已连接 · 长按退出';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2581,12 +2580,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String desktopMusicConnect(String service) {
-    return '连接此Mac上的$service应用。请先在应用中登录；macOS将请求授权。';
+    return '连接 $service 应用';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return '已连接此Mac上的$service。使用闹钟的响铃时长。长按可断开连接。';
+    return '已连接 $service · 长按断开';
   }
 
   @override
@@ -2597,11 +2596,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return '此平台不支持连接$service账户。停止闹钟后可以打开链接。';
+    return '添加 $service 链接 · 闹钟停止后打开';
   }
 
   @override
-  String get soundCloudWidgetNote => '添加公开的歌曲或播放列表链接。官方播放器遵循闹钟时长；不支持账户登录。';
+  String get soundCloudWidgetNote => '添加公开链接';
 
   @override
   String get youtubePlayerHint => 'YouTube在可见播放器中播放视频。播放器隐藏或无法播放时，本地闹钟会继续响铃。';
@@ -3833,10 +3832,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get youTubeAndMusic => 'YouTube 和 YouTube Music';
 
   @override
-  String get youTubeOn => '你的播放清單和喜歡的歌曲。長按登出。';
+  String get youTubeOn => '已連接 · 長按登出';
 
   @override
-  String get youTubeSignIn => '使用 Google 登入，從你的播放清單和喜歡的歌曲中選擇。';
+  String get youTubeSignIn => '使用 Google 登入';
 
   @override
   String get addSongLinkInstead => '請改為新增歌曲連結。';
@@ -3854,13 +3853,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get spotifyDirect => 'Spotify 直接播放';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify 會把你的那首歌作為鬧鐘播放。點按關閉。';
+  String get spotifyDirectOnHint => '已開啟 · 點按關閉';
 
   @override
-  String get spotifyDirectHint => '把你的 Spotify 歌曲作為鬧鐘播放，更加可靠。需要 Spotify App 和 Spotify Premium。點按登入。';
+  String get spotifyDirectHint => '播放指定歌曲。需要 Premium。';
 
   @override
-  String get spotifyComingSoon => '即將推出：把你的 Spotify 歌曲作為鬧鐘播放（需要 Spotify Premium）。';
+  String get spotifyComingSoon => '即將推出 · 需要 Premium';
 
   @override
   String get spotifyFailed => 'Spotify 未能連線。請確認已安裝 Spotify App、已登入並擁有 Premium。';
@@ -3915,8 +3914,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get wakeToRadio => '用網路電台醒來';
 
   @override
-  String get soundsExplain =>
-      '錄下你的聲音、一首歌或任何內容，最長 5 分鐘。從手機新增 MP3、M4A 或 WAV。連結一首歌或播放清單：它的 App 會把它作為鬧鐘播放，並帶備用鈴聲。或選擇一個電台：直播播放，如果連線失敗，則響起手機鬧鐘。';
+  String get soundsExplain => '錄音最長 5 分鐘,或新增檔案、歌曲連結、線上電台。出錯時會響起備用鈴聲。';
 
   @override
   String get yourSoundsHeading => '你的聲音';
@@ -4782,10 +4780,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '登入後可從你的播放清單和喜歡的歌曲中選擇，或搜尋整個 Spotify。不需要 Premium。';
+  String get spotifyLibrarySignIn => '播放清單、喜歡的歌曲和搜尋';
 
   @override
-  String get spotifyLibraryOn => '你的播放清單、喜歡的歌曲和搜尋。長按以登出。';
+  String get spotifyLibraryOn => '已連接 · 長按登出';
 
   @override
   String spotifyLoginError(String reason) {
@@ -5233,12 +5231,12 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String desktopMusicConnect(String service) {
-    return '連接此Mac上的$service應用程式。請先在應用程式中登入；macOS將請求授權。';
+    return '連接 $service 應用程式';
   }
 
   @override
   String desktopMusicOn(String service) {
-    return '已連接此Mac上的$service。使用鬧鐘的響鈴時長。長按可中斷連線。';
+    return '已連接 $service · 長按中斷';
   }
 
   @override
@@ -5249,11 +5247,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String serviceConnectUnavailable(String service) {
-    return '此平台不支援連接$service帳戶。停止鬧鐘後可以開啟連結。';
+    return '新增 $service 連結 · 鬧鐘停止後開啟';
   }
 
   @override
-  String get soundCloudWidgetNote => '新增公開的歌曲或播放清單連結。官方播放器遵循鬧鐘時長；不支援帳戶登入。';
+  String get soundCloudWidgetNote => '新增公開連結';
 
   @override
   String get youtubePlayerHint => 'YouTube在可見播放器中播放影片。播放器隱藏或無法播放時，本機鬧鐘會繼續響鈴。';
