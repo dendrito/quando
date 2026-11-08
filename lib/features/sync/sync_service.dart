@@ -14,6 +14,9 @@ import 'package:quando/l10n/l10n.dart';
 
 import '../sounds/data/youtube_library.dart';
 import 'sync_config.dart';
+import '../integrations/data/pushover_credentials_sync.dart';
+import '../integrations/data/service_connections_sync.dart';
+import '../sounds/data/spotify_account.dart';
 import 'sync_engine.dart';
 
 /// Firestore keeps one document per account: users/{uid}, holding each
@@ -250,6 +253,10 @@ class SyncNotifier extends Notifier<SyncStatus> {
       await prefs.setString('sync.device', device);
     }
     await _engine?.stop();
+    await PushoverCredentialsSync.activate(prefs, user.uid);
+    await ServiceConnectionsSync.activate(prefs, user.uid);
+    SpotifyAccount.load(prefs);
+    ref.invalidate(integrationsProvider);
     _engine = SyncEngine(prefs, FirestoreRemote(user.uid), device: device, onApplied: _reload)..start();
     await prefs.setBool('sync.on', true);
     if (user.email != null) await prefs.setString('sync.email', user.email!);
@@ -278,15 +285,20 @@ class SyncNotifier extends Notifier<SyncStatus> {
   }
 
   /// Settings arrived from another device: read them again.
-  void _reload() {
+  Future<void> _reload() async {
+    await PushoverCredentialsSync.applyReceived(ref.read(prefsProvider));
+    await ServiceConnectionsSync.applyReceived(ref.read(prefsProvider));
+    SpotifyAccount.load(ref.read(prefsProvider));
     for (final p in <ProviderOrFamily>[
       languageProvider,
+      homeDisplayProvider,
       quoteSourcesProvider,
       quoteOccasionsProvider,
       timeZonesProvider,
       placeProvider,
       havdalahProvider,
       rulesProvider,
+      preparationProvider,
       skippedProvider,
       alarmOptionsProvider,
       calendarRulesProvider,

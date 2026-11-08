@@ -6,13 +6,19 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../core/scheduler/scheduler.dart';
 import '../core/util/format.dart';
+import '../core/util/platform.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
+import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
+import '../features/integrations/data/tuya_client.dart';
+import '../features/integrations/data/tuya_scene_cache.dart';
+import '../features/integrations/domain/tuya.dart';
+import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
 import '../features/quotes/data/quote_bank.dart';
@@ -24,6 +30,9 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+import '../features/shabbat/domain/preparation.dart';
+import '../features/home/domain/home_display.dart';
+import '../features/home/domain/zone_places.dart';
 
 import 'edition.dart';
 
@@ -40,6 +49,27 @@ final clockProvider = Provider<DateTime Function()>(
 final prefsProvider = Provider<SharedPreferences>(
   (ref) => throw StateError('prefsProvider must be overridden in main()'),
 );
+
+class HomeDisplayNotifier extends Notifier<HomeDisplay> {
+  @override
+  HomeDisplay build() {
+    try {
+      return HomeDisplay.fromJson(
+        jsonDecode(ref.read(prefsProvider).getString('home.display') ?? '{}') as Map<String, dynamic>,
+        parashaDefault: jewishHome,
+      );
+    } catch (_) {
+      return HomeDisplay(parasha: jewishHome);
+    }
+  }
+
+  Future<void> set(HomeDisplay value) async {
+    state = value;
+    await ref.read(prefsProvider).setString('home.display', jsonEncode(value.toJson()));
+  }
+}
+
+final homeDisplayProvider = NotifierProvider<HomeDisplayNotifier, HomeDisplay>(HomeDisplayNotifier.new);
 
 // ---- Language ----
 
@@ -204,6 +234,37 @@ final homeZoneProvider = Provider<String>(
       ref.watch(placeProvider).timeZone,
 );
 
+/// Sky-only coordinates are local to this device and never change Shabbat
+/// customs or the timezone used to schedule alarms.
+class SkyLocationNotifier extends Notifier<Place?> {
+  @override
+  Place? build() {
+    try {
+      final raw = ref.read(prefsProvider).getString('sky.place.local');
+      return raw == null ? null : Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void set(Place place) {
+    state = place;
+    ref.read(prefsProvider).setString('sky.place.local', jsonEncode(place.toJson()));
+  }
+}
+
+final skyLocationProvider = NotifierProvider<SkyLocationNotifier, Place?>(SkyLocationNotifier.new);
+
+final skyPlaceProvider = Provider<Place?>((ref) {
+  if (ref.watch(homeDisplayProvider).skyUseShabbat) return ref.watch(placeProvider);
+  final zone = ref.watch(homeZoneProvider);
+  final saved = ref.watch(skyLocationProvider);
+  if (saved != null) return saved;
+  // Prefer the catalog's named timezone city, never an unrelated city that
+  // merely shares an offset. Fixed-offset zones have no geographic location.
+  return ZonePlaces.forZone(zone);
+});
+
 class PlaceNotifier extends Notifier<Place> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
@@ -211,6 +272,12 @@ class PlaceNotifier extends Notifier<Place> {
   Place build() {
     final name = _prefs.getString('place.name');
     final base = Places.all.firstWhere((p) => p.name == name, orElse: () => Places.jerusalem);
+    try {
+      final raw = _prefs.getString('place.local');
+      if (raw != null) return Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      // Preserve the saved catalog city if a local location is invalid.
+    }
     return base.copyWith(
       inIsrael: _prefs.getBool('place.inIsrael'),
       candleLightingMinutes: _prefs.getInt('place.candleMinutes'),
@@ -219,24 +286,61 @@ class PlaceNotifier extends Notifier<Place> {
 
   void set(Place place) {
     state = place;
+    _prefs.remove('place.local');
     _prefs
       ..setString('place.name', place.name)
       ..remove('place.inIsrael')
       ..remove('place.candleMinutes');
   }
 
+  /// Coordinates from location services stay on this device.
+  void setLocal(Place place) {
+    state = place;
+    _prefs.setString('place.local', jsonEncode(place.toJson()));
+  }
+
   void setInIsrael(bool value) {
     state = state.copyWith(inIsrael: value);
-    _prefs.setBool('place.inIsrael', value);
+    if (_prefs.containsKey('place.local')) {
+      _prefs.setString('place.local', jsonEncode(state.toJson()));
+    } else {
+      _prefs.setBool('place.inIsrael', value);
+    }
   }
 
   void setCandleMinutes(int minutes) {
     state = state.copyWith(candleLightingMinutes: minutes);
-    _prefs.setInt('place.candleMinutes', minutes);
+    if (_prefs.containsKey('place.local')) {
+      _prefs.setString('place.local', jsonEncode(state.toJson()));
+    } else {
+      _prefs.setInt('place.candleMinutes', minutes);
+    }
   }
 }
 
 final placeProvider = NotifierProvider<PlaceNotifier, Place>(PlaceNotifier.new);
+
+class PreparationNotifier extends Notifier<Preparation> {
+  @override
+  Preparation build() {
+    try {
+      return Preparation.fromJson(
+        jsonDecode(ref.read(prefsProvider).getString('shabbat.preparation') ?? '{}') as Map<String, dynamic>,
+      );
+    } catch (_) {
+      return const Preparation();
+    }
+  }
+
+  void setEnabled(bool enabled) => _save(Preparation(enabled: enabled, skipUntil: state.skipUntil));
+  void skipUntil(DateTime? until) => _save(Preparation(enabled: state.enabled, skipUntil: until));
+  void _save(Preparation value) {
+    state = value;
+    ref.read(prefsProvider).setString('shabbat.preparation', jsonEncode(value.toJson()));
+  }
+}
+
+final preparationProvider = NotifierProvider<PreparationNotifier, Preparation>(PreparationNotifier.new);
 
 class HavdalahNotifier extends Notifier<HavdalahOpinion> {
   @override
@@ -266,7 +370,7 @@ class RulesNotifier extends Notifier<List<AlarmRule>> {
         saved.containsKey(r.id)
             ? r.copyWith(enabled: saved[r.id])
             // Quando? asks first: Shabbat alarms start off until you turn them on.
-            : (kodesh ? r : r.copyWith(enabled: false)),
+            : (jewishHome ? r : r.copyWith(enabled: false)),
     ];
   }
 
@@ -387,7 +491,9 @@ final jewishTimesProvider = Provider<JewishTimes>(
 /// Events wide enough to plan every rule's alarms for the next 7 days.
 // ---- Calendars ----
 
-final calendarReaderProvider = Provider<CalendarReader>((ref) => DeviceCalendarReader());
+final calendarReaderProvider = Provider<CalendarReader>(
+  (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
+);
 
 class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
@@ -708,7 +814,7 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
     try {
       final raw = _prefs.getString('lock');
       return raw == null
-          ? const LockSettings(shabbat: kodesh)
+          ? const LockSettings(shabbat: jewishHome)
           : LockSettings.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const LockSettings();
@@ -729,7 +835,7 @@ final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings
 /// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm.
 final shabbatInUseProvider = Provider<bool>(
   (ref) =>
-      kodesh ||
+      jewishHome ||
       ref.watch(lockSettingsProvider).shabbat ||
       ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset'),
 );
@@ -804,7 +910,7 @@ final planProvider = Provider<List<ScheduledAlarm>>((ref) {
 /// moment is still ahead.
 ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
   final m = a.style.gentleMinutes;
-  if (m <= 0 || a.ruleId == 'lock') return null;
+  if (m <= 0 || a.ruleId == 'lock' || !a.delivery.localAudio) return null;
   final at = a.at.subtract(Duration(minutes: m));
   if (!at.isAfter(now)) return null;
   return ScheduledAlarm(
@@ -813,6 +919,7 @@ ScheduledAlarm? gentleBefore(ScheduledAlarm a, DateTime now) {
     title: a.title,
     body: a.body,
     ringDuration: a.ringDuration,
+    ringDurationOverride: a.ringDurationOverride,
     ruleId: 'gentle.${a.ruleId}',
     eventId: a.eventId,
     offset: a.offset,
@@ -828,7 +935,12 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
   final zone = ref.watch(homeZoneProvider);
   final ring = Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds);
   return [
-    ...scheduler.plan(now: now, events: ref.watch(eventsProvider), rules: ref.watch(allRulesProvider)),
+    ...scheduler.plan(
+      now: now,
+      events: ref.watch(eventsProvider),
+      rules: ref.watch(allRulesProvider),
+      allowReminder: ref.watch(preparationProvider).allows,
+    ),
     for (final a in ref.watch(userAlarmsProvider))
       ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
     ...ref.watch(lockStartAlarmsProvider),
@@ -853,12 +965,22 @@ final nextPeriodProvider = Provider<HolyPeriod?>((ref) {
 final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) {
   ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
+  final integrations = ref.watch(integrationsProvider);
   final periods = ref.watch(periodsProvider);
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
   final links = {for (final s in ref.watch(soundsProvider)) s.id: s};
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
+    final delivery = a.ruleId.startsWith('gentle.')
+        ? const ReminderDelivery(pushoverEnabled: false)
+        : a.delivery;
+    // A disconnected/paused account must not silently disable the local fallback.
+    final remoteReady =
+        integrations.pushoverReady &&
+        !(integrations.pauseOnShabbat && p.shabbatSafe) &&
+        delivery.pushoverEnabled != false;
+    p = p.withDelivery(!delivery.localAudio && !remoteReady ? delivery.copyWith(localAudio: true) : delivery);
     // No live radio on Shabbat or a festival: a built-in sound instead.
     final path = sounds[id];
     final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
@@ -890,7 +1012,7 @@ RingPayload _payload(ScheduledAlarm a, AlarmOptions options, List<HolyPeriod> pe
     return RingPayload(title: a.title, body: a.body, ringSeconds: 1, spoken: false, isLock: true);
   }
   // A user alarm can have its own ring length.
-  return a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
+  return a.ringDurationOverride || a.ruleId.startsWith('user.') || a.ruleId.startsWith('gentle.user.')
       ? p.withRingSeconds(a.ringDuration.inSeconds)
       : p;
 }
@@ -936,6 +1058,11 @@ final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationS
 
 final integrationSenderProvider = Provider<IntegrationSender>(
   (ref) => IntegrationSender(() => ref.read(integrationsProvider)),
+);
+
+final tuyaClientProvider = Provider<TuyaClient>((ref) => TuyaClient());
+final tuyaScenesProvider = Provider<List<TuyaScene>>(
+  (ref) => TuyaSceneCache.read(ref.read(prefsProvider), ref.watch(integrationsProvider).tuya),
 );
 
 final registrarProvider = Provider<AlarmRegistrar>((ref) {

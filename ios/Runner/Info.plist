@@ -93,6 +93,8 @@
 	<string>Record your own voice or sound to wake up to.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Scan the code you saved, so you have to get up to stop the alarm.</string>
+	<key>NSAppleMusicUsageDescription</key>
+	<string>Quando plays songs and playlists from your Apple Music library as your alarm.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Set alarms before and after the events in your calendars.</string>
 	<key>NSCalendarsFullAccessUsageDescription</key>
@@ -114,6 +116,15 @@
 		<string>music</string>
 		<string>https</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Use your location once to calculate local Shabbat, sunrise and sunset times. No background tracking.</string>
+	<key>NSLocalNetworkUsageDescription</key>
+	<string>Connect to your Home Assistant or Node-RED hub when you add a local smart-home automation.</string>
+	<key>NSAppTransportSecurity</key>
+	<dict>
+		<key>NSAllowsLocalNetworking</key>
+		<true/>
+	</dict>
 	<key>ITSAppUsesNonExemptEncryption</key>
 	<false/>
 	<key>CFBundleURLTypes</key>
@@ -125,6 +136,7 @@
 			<array>
 				<string>com.googleusercontent.apps.216517788382-nv4cmk4sa7boc2ebp7ddd6htdj4f9jku</string>
 				<string>com.googleusercontent.apps.216517788382-u2m9fn9n6nul6co31svplmktcjlgpgvk</string>
+				<string>com.googleusercontent.apps.216517788382-1stg3hhfun5fqik91bnkjactuevb7v34</string>
 			</array>
 		</dict>
 	</array>

@@ -42,11 +42,40 @@ cannot prove which rules are currently deployed in the Firebase project.
 
 The app writes one document per account. The `items` map contains settings
 that are intended to follow the account between devices. Device-local audio
-files, native calendar selections, Spotify/YouTube sign-ins, and the entire
-`integrations` preference are not synced. The integrations preference contains
-the Pushover user key/token and webhook URLs, which may themselves contain
-secrets. Do not add API keys, OAuth refresh tokens, Pushover credentials,
-webhook URLs, or other secrets to the synchronized settings list.
+files, native calendar selections, Google/YouTube SDK sessions, and the entire
+`integrations` preference are not synced.
+
+At Leandro's explicit request (6 November 2026), the separate
+`pushover.credentials` item shares only the Pushover user key and application
+token across Quando? and Matai? devices signed in to the same authorized
+account. Existing complete keys join on sign-in; Connections also offers a
+sharing button, and a successful Pushover test queues the pair. Receiving keys
+does not enable Pushover or change local sound, destination devices, priority,
+Shabbat pause settings or webhooks. Account ownership is checked before applying
+received keys; switching accounts clears the active pair and restores only that
+account's local cache. Clearing local fields does not revoke a previously shared
+pair; revoke compromised tokens at Pushover and share the replacement.
+
+The key pair is stored inside the private Firestore account document. This is
+not end-to-end encryption. The deployed owner-only access policy still needs
+verification; this feature does not deploy or broaden those rules. All other
+provider secrets remain excluded unless covered by the explicit connection
+sharing described below.
+
+The subsequent request to share all service connections adds
+`services.connections`: Tuya project credentials (including its region and
+linked account UID), the Spotify library PKCE refresh token bound to the same
+Spotify client ID, and webhook connection IDs/types/URLs. Account ownership is
+checked and local caches are separated by account. Spotify token rotation and
+disconnects update this shared item. Received automation connections start
+disabled, and the separate smart-home execution switch stays device-local.
+The token never goes into an alarm or reminder payload.
+
+Google/YouTube SDK sessions and Spotify App Remote authorizations still need
+provider approval on each device. Seamless cross-device YouTube access needs
+a server-side OAuth connection broker; it is not implemented by copying the
+SDK's short-lived access token. Apple Music, Amazon Music and SoundCloud in the
+current app are song links rather than implemented account connections.
 
 The current app stores Pushover credentials and webhook URLs in ordinary
 SharedPreferences on each device. Before production release, migrate these

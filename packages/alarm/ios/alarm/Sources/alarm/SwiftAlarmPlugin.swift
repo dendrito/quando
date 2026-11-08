@@ -14,6 +14,14 @@ public class SwiftAlarmPlugin: NSObject, FlutterPlugin {
         AlarmApiSetup.setUp(binaryMessenger: registrar.messenger(), api: api)
         os_log(.info, log: SwiftAlarmPlugin.logger, "AlarmApi initialized.")
         self.alarmTriggerApi = AlarmTriggerApi(binaryMessenger: registrar.messenger())
+        let audio = FlutterMethodChannel(name: "quando/alarm_audio", binaryMessenger: registrar.messenger())
+        audio.setMethodCallHandler { call, result in
+            guard call.method == "mute", let args = call.arguments as? [String: Any],
+                  let id = (args["id"] as? NSNumber)?.intValue, let muted = args["muted"] as? Bool else {
+                result(false); return
+            }
+            Task { @MainActor in result(AlarmRingManager.shared.muteBackup(id: id, muted: muted)) }
+        }
         os_log(.info, log: SwiftAlarmPlugin.logger, "AlarmTriggerApi connected.")
     }
 

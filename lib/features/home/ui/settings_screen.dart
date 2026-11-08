@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -6,6 +5,7 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
+import '../../../core/util/platform.dart';
 import '../../alarms/ui/ring_length_picker.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
@@ -15,7 +15,7 @@ import '../../ringing/ring_payload.dart';
 import '../../ringing/ui/alarm_extras.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
-import '../../shabbat/domain/place.dart';
+import '../../shabbat/ui/city_picker.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
 import '../../sync/sync_service.dart';
@@ -117,12 +117,12 @@ class SettingsScreen extends ConsumerWidget {
           if (shabbatOn) ...[
             const SizedBox(height: 16),
             Text(l10n.shabbatCityHeading, style: text.labelSmall),
-            DropdownButton<String>(
-              isExpanded: true,
-              value: place.name,
-              items: [for (final p in Places.all) DropdownMenuItem(value: p.name, child: Text(p.name))],
-              onChanged: (name) =>
-                  ref.read(placeProvider.notifier).set(Places.all.firstWhere((p) => p.name == name)),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(place.name),
+              subtitle: Text(place.timeZone),
+              trailing: const Icon(Icons.search),
+              onTap: () => pickShabbatPlace(context),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
@@ -231,6 +231,16 @@ class SettingsScreen extends ConsumerWidget {
           if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
           const SizedBox(height: 16),
           OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
+          if (isMacOS)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                Localizations.localeOf(context).languageCode == 'pt'
+                    ? 'No Mac, mantenha o app aberto e o computador acordado para os alarmes. Fechar a janela mantém o app em execução; Sair o encerra.'
+                    : 'On Mac, keep the app running and the computer awake for alarms. Closing the window keeps the app running; Quit stops it.',
+                style: text.bodySmall,
+              ),
+            ),
           const SizedBox(height: 24),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
           const _VersionLine(),
@@ -304,39 +314,66 @@ class SettingsScreen extends ConsumerWidget {
 
   Future<void> _testAlarm(BuildContext context, WidgetRef ref, AlarmOptions o) async {
     final messenger = ScaffoldMessenger.of(context);
-    final supported =
-        !kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
-    if (!supported) {
+    final pt = Localizations.localeOf(context).languageCode == 'pt';
+    if (!supportsLocalAlarms) {
       messenger.showSnackBar(SnackBar(content: Text(l10n.testOnlyOnPhone)));
       return;
     }
     await ensureAlarmPermissions();
     final at = DateTime.now().add(const Duration(minutes: 1));
-    final p = RingPayload.forAlarm(
+    var p = RingPayload.forAlarm(
       title: l10n.testAlarm,
       body: l10n.testAlarmBody,
       options: o,
       shabbatSafe: false,
     );
-    await ref
-        .read(registrarProvider)
-        .set(
-          stableId('test|${at.millisecondsSinceEpoch}'),
-          at,
-          RingPayload(
-            title: p.title,
-            body: p.body,
-            ringSeconds: p.ringSeconds,
-            spoken: p.spoken,
-            maxSnoozes: p.maxSnoozes,
-            snoozeMinutes: 1,
-            wakeCheck: p.wakeCheck,
-            mathTask: p.mathTask,
-            loudness: p.loudness,
-            transient: true,
+    final sound = ref.read(soundsProvider).where((s) => s.id == o.soundId).firstOrNull;
+    p = p.withSound(sound?.playbackPath);
+    if (sound?.link != null) p = p.withSong(sound!.link!, plays: sound.plays, seconds: sound.playSeconds);
+    if (isMacOS) {
+      messenger.showSnackBar(
+        SnackBar(content: Text(pt ? 'Preparando o alarme de teste…' : 'Preparing the test alarm…')),
+      );
+    }
+    try {
+      await ref
+          .read(registrarProvider)
+          .set(
+            stableId('test|${at.millisecondsSinceEpoch}'),
+            at,
+            RingPayload(
+              title: p.title,
+              body: p.body,
+              ringSeconds: p.ringSeconds,
+              spoken: p.spoken,
+              maxSnoozes: p.maxSnoozes,
+              snoozeMinutes: 1,
+              wakeCheck: p.wakeCheck,
+              mathTask: p.mathTask,
+              loudness: p.loudness,
+              transient: true,
+              sound: p.sound,
+              song: p.song,
+              link: p.link,
+              songSeconds: p.songSeconds,
+            ),
+          );
+    } catch (error) {
+      messenger.hideCurrentSnackBar();
+      messenger.showSnackBar(
+        SnackBar(
+          content: Text(
+            const bool.fromEnvironment('QUANDO_MAC_DIAGNOSTICS')
+                ? 'Mac test: $error'
+                : (pt
+                      ? 'Não foi possível preparar o alarme. Tente novamente.'
+                      : 'Could not prepare the alarm. Please try again.'),
           ),
-        );
+        ),
+      );
+      return;
+    }
+    messenger.hideCurrentSnackBar();
     messenger.showSnackBar(SnackBar(content: Text(l10n.testAlarmIn1Set)));
   }
 }

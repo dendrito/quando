@@ -3,17 +3,22 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 import '../../ringing/ring_payload.dart';
+import '../../rules/domain/reminder_delivery.dart';
 import '../domain/integrations.dart';
+import 'tuya_client.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
 /// Sends alarm happenings to Pushover and webhooks. Failures are quiet:
 /// an integration must never get in the way of the alarm.
 class IntegrationSender {
-  IntegrationSender(this._settings, {http.Client? client}) : _client = client ?? http.Client();
+  IntegrationSender(this._settings, {http.Client? client}) : _client = client ?? http.Client() {
+    _tuya = TuyaClient(client: _client);
+  }
 
   final IntegrationSettings Function() _settings;
   final http.Client _client;
+  late final TuyaClient _tuya;
 
   static final pushoverUrl = Uri.parse('https://api.pushover.net/1/messages.json');
 
@@ -23,14 +28,25 @@ class IntegrationSender {
     if (s.pauseOnShabbat && p.shabbatSafe) return;
     final when = (at ?? DateTime.now()).toUtc();
     await Future.wait([
-      if (s.pushoverReady && what == AlarmHappening.ring) _pushover(s, p),
+      if (s.pushoverReady && p.delivery.pushoverEnabled != false && what == AlarmHappening.ring)
+        _pushover(s, p),
+      if (s.smartHomeOn && s.tuya.ready && p.delivery.tuyaScene != null && what == AlarmHappening.ring)
+        _tuya.runScene(s.tuya, p.delivery.tuyaScene!).catchError((Object _) {}),
       for (final w in s.webhooks)
-        if (w.enabled && w.events.contains(what.key)) _webhook(w, what, p, when),
+        if (w.enabled &&
+            w.events.contains(what.key) &&
+            (s.smartHomeOn || w.kind != WebhookKind.homeAssistant && w.kind != WebhookKind.nodeRed))
+          _webhook(w, what, p, when),
     ]);
   }
 
-  Future<String?> testPushover(IntegrationSettings s) =>
-      _pushover(s, RingPayload(title: l10n.appTest, body: l10n.pushoverConnected, ringSeconds: 1));
+  Future<String?> testPushover(
+    IntegrationSettings s, {
+    ReminderDelivery delivery = ReminderDelivery.inherit,
+  }) => _pushover(
+    s.copyWith(pushoverPriority: 0),
+    RingPayload(title: l10n.appTest, body: l10n.testPushoverSound, ringSeconds: 1).withDelivery(delivery),
+  );
 
   Future<String?> testWebhook(Webhook w) => _webhook(
     w,
@@ -58,8 +74,9 @@ class IntegrationSender {
     'message': p.body.isEmpty ? l10n.alarm : p.body,
     'priority': '${s.pushoverPriority}',
     if (s.pushoverPriority == 2) ...{'retry': '30', 'expire': '600'},
-    if (s.pushoverSound != null) 'sound': s.pushoverSound!,
-    if (s.pushoverDevices.isNotEmpty) 'device': (s.pushoverDevices.toList()..sort()).join(','),
+    if ((p.delivery.pushoverSound ?? s.pushoverSound) case final String sound) 'sound': sound,
+    if ((p.delivery.pushoverDevices ?? s.pushoverDevices).isNotEmpty)
+      'device': ((p.delivery.pushoverDevices ?? s.pushoverDevices).toList()..sort()).join(','),
   };
 
   /// Sound names → labels, built-in plus any you uploaded. Throws with a

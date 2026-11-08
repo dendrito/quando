@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../settings/domain/alarm_options.dart';
 import '../sounds/domain/loudness.dart';
 import 'ring_style.dart';
+import '../rules/domain/reminder_delivery.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -37,6 +38,7 @@ class RingPayload {
     this.puzzle = StopTask.none,
     this.scanCode,
     this.gentle = false,
+    this.delivery = ReminderDelivery.inherit,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -117,6 +119,11 @@ class RingPayload {
   /// The soft lead-up before the real alarm: no full screen, no vibration.
   final bool gentle;
 
+  final ReminderDelivery delivery;
+  bool get localAudio => delivery.localAudio;
+
+  RingPayload withDelivery(ReminderDelivery value) => _copy(delivery: value);
+
   /// Stopping needs more than one tap.
   bool get hasTask => mathTask || shakeTask || puzzle != StopTask.none;
 
@@ -157,6 +164,7 @@ class RingPayload {
     StopTask? puzzle,
     String? scanCode,
     bool? gentle,
+    ReminderDelivery? delivery,
   }) => RingPayload(
     title: title ?? this.title,
     body: body ?? this.body,
@@ -185,6 +193,7 @@ class RingPayload {
     puzzle: puzzle ?? this.puzzle,
     scanCode: scanCode ?? this.scanCode,
     gentle: gentle ?? this.gentle,
+    delivery: delivery ?? this.delivery,
   );
 
   RingPayload withLink(String? url) => _copy(link: url, keepLink: false);
@@ -235,13 +244,12 @@ class RingPayload {
     )._songFits();
   }
 
-  /// Playing the song would stop the alarm by itself, so with a task the
-  /// song opens once the task is done instead.
+  /// External music retains the ringing identity, including any stop task.
+  /// Shabbat-safe alarms keep their dependable local sound only.
   RingPayload _songFits() {
     if (song == null) return this;
     if (shabbatSafe || isLock) return _copy(song: null, keepSong: false);
-    if (!hasTask) return this;
-    return _copy(song: null, keepSong: false, link: link ?? song, keepLink: false);
+    return this;
   }
 
   /// The soft lead-up some minutes before this alarm: a calm [sound],
@@ -332,6 +340,7 @@ class RingPayload {
     'puzzle': puzzle.name,
     'scanCode': scanCode,
     'gentle': gentle,
+    'delivery': delivery.toJson(),
   });
 
   static RingPayload decode(String? raw, {String? fallbackTitle, String fallbackBody = ''}) {
@@ -365,6 +374,7 @@ class RingPayload {
         puzzle: StopTask.values.where((t) => t.name == j['puzzle']).firstOrNull ?? StopTask.none,
         scanCode: j['scanCode'] as String?,
         gentle: j['gentle'] as bool? ?? false,
+        delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle ?? l10n.alarm, body: fallbackBody, ringSeconds: 60);

@@ -1139,7 +1139,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get songLinkHowTo =>
-      'Spotify, Apple Music, Amazon Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
+      'Spotify, Apple Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
 
   @override
   String get songNameHint => '이름, 예: 아침 재생목록';
@@ -1186,10 +1186,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get youTubeAndMusic => 'YouTube 및 YouTube Music';
 
   @override
-  String get youTubeOn => '내 재생목록과 좋아요 표시한 곡. 길게 눌러 로그아웃.';
+  String get youTubeOn => '연결됨 · 길게 눌러 로그아웃';
 
   @override
-  String get youTubeSignIn => 'Google로 로그인해 재생목록과 좋아요 표시한 곡에서 선택하세요.';
+  String get youTubeSignIn => 'Google로 로그인';
 
   @override
   String get addSongLinkInstead => '대신 노래 링크를 추가하세요.';
@@ -1207,14 +1207,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get spotifyDirect => 'Spotify 직접 재생';
 
   @override
-  String get spotifyDirectOnHint => 'Spotify가 바로 그 노래를 알람으로 재생해요. 탭하여 끄기.';
+  String get spotifyDirectOnHint => '켜짐 · 탭하여 끄기';
 
   @override
-  String get spotifyDirectHint =>
-      'Spotify 노래를 그대로 알람으로, 더 안정적으로 재생해요. Spotify 앱과 Spotify Premium이 필요해요. 탭하여 로그인.';
+  String get spotifyDirectHint => '정확한 곡을 재생해요. Premium 필요.';
 
   @override
-  String get spotifyComingSoon => '곧 제공: Spotify 노래를 그대로 알람으로 (Spotify Premium 필요).';
+  String get spotifyComingSoon => '곧 제공 · Premium 필요';
 
   @override
   String get spotifyFailed => 'Spotify에 연결되지 않았어요. Spotify 앱이 설치되어 있고 로그인했으며 Premium인지 확인하세요.';
@@ -1269,8 +1268,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get wakeToRadio => '인터넷 라디오로 일어나기';
 
   @override
-  String get soundsExplain =>
-      '내 목소리, 노래, 무엇이든 최대 5분까지 녹음하세요. 휴대폰의 MP3, M4A, WAV를 추가하세요. 노래나 재생목록을 연결하면 그 앱이 백업 소리와 함께 알람으로 재생해요. 라디오 방송국을 고르면 실시간으로 나오고, 연결되지 않으면 휴대폰 알람이 울려요.';
+  String get soundsExplain => '최대 5분 녹음, 파일, 노래 링크 또는 라디오를 추가하세요. 문제가 생기면 예비 소리가 울려요.';
 
   @override
   String get yourSoundsHeading => '내 소리';
@@ -2137,10 +2135,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get spotifyLibrary => 'Spotify';
 
   @override
-  String get spotifyLibrarySignIn => '로그인하면 내 플레이리스트와 좋아요한 곡에서 고르거나 Spotify 전체를 검색할 수 있어요. Premium 필요 없음.';
+  String get spotifyLibrarySignIn => '재생목록, 좋아요한 곡, 검색';
 
   @override
-  String get spotifyLibraryOn => '내 플레이리스트, 좋아요한 곡, 검색. 길게 눌러 로그아웃.';
+  String get spotifyLibraryOn => '연결됨 · 길게 눌러 로그아웃';
 
   @override
   String spotifyLoginError(String reason) {
@@ -2158,5 +2156,513 @@ class AppLocalizationsKo extends AppLocalizations {
   @override
   String nothingFound(String query) {
     return '“$query”에 대한 결과가 없어요.';
+  }
+
+  @override
+  String get deliveryTitle => '알림 방식';
+
+  @override
+  String get deliveryLocal => '기기 소리';
+
+  @override
+  String get deliveryBoth => '둘 다';
+
+  @override
+  String get deliveryConnect => 'Pushover 연결';
+
+  @override
+  String get deliveryLoadFailed => '소리와 기기를 불러오지 못했습니다. 다시 시도하세요.';
+
+  @override
+  String get deliveryBothHint => 'Pushover가 실패해도 기기 소리는 울립니다.';
+
+  @override
+  String get deliveryPushHint => 'Pushover만 사용합니다. 알림 시 이 기기가 온라인이어야 합니다.';
+
+  @override
+  String get deliveryFallback => 'Pushover가 연결 해제되거나 일시 중지되면 기기 소리를 유지합니다.';
+
+  @override
+  String get deliveryReset => '기존 설정 사용';
+
+  @override
+  String get beforeShabbat => 'Before Shabbat';
+
+  @override
+  String get preparationReminders => 'Preparation reminders';
+
+  @override
+  String get skipThisWeek => 'Skip this week';
+
+  @override
+  String get restoreThisWeek => 'Restore this week';
+
+  @override
+  String get allAlarms => 'All alarms';
+
+  @override
+  String get timesAndSound => 'Times & sound';
+
+  @override
+  String get changeCity => 'Change city';
+
+  @override
+  String get useMyLocation => 'Use my location';
+
+  @override
+  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+
+  @override
+  String get locationReview => 'Confirm this location';
+
+  @override
+  String get locationDeviceOnly =>
+      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+
+  @override
+  String timesIn(String city, String zone) {
+    return '$city · $zone · city time';
+  }
+
+  @override
+  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+
+  @override
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+
+  @override
+  String get shabbatControls => 'Shabbat controls';
+
+  @override
+  String get duringAfterShabbat => 'During / after Shabbat';
+
+  @override
+  String locationCoordinates(String latitude, String longitude) {
+    return 'Latitude $latitude · longitude $longitude';
+  }
+
+  @override
+  String get currentLocation => 'Current location';
+
+  @override
+  String get testPushoverSound => 'Test sound on Pushover';
+
+  @override
+  String get pushoverSoundTestHint =>
+      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+
+  @override
+  String get pushoverShareDevices => 'Share credentials with my devices';
+
+  @override
+  String get pushoverShareHint =>
+      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+
+  @override
+  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+
+  @override
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
+
+  @override
+  String get smartHomeHeading => 'Smart home';
+
+  @override
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+
+  @override
+  String get shareServices => 'Share service connections';
+
+  @override
+  String get shareServicesHint =>
+      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+
+  @override
+  String get tuyaSetupHint =>
+      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+
+  @override
+  String get tuyaDataCenter => 'Data center';
+
+  @override
+  String get tuyaUserId => 'Linked account UID';
+
+  @override
+  String get tuyaAccessId => 'Access ID / Client ID';
+
+  @override
+  String get tuyaAccessSecret => 'Access Secret / Client Secret';
+
+  @override
+  String get tuyaLoadScenes => 'Load scenes';
+
+  @override
+  String get tuyaNoScenes =>
+      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+
+  @override
+  String get tuyaRunNow => 'Run scene now';
+
+  @override
+  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+
+  @override
+  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+
+  @override
+  String get tuyaFailed =>
+      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+
+  @override
+  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+
+  @override
+  String get homeAssistantHowTo =>
+      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+
+  @override
+  String get nodeRedHowTo =>
+      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+
+  @override
+  String get smartHomeConnect => 'Connect a smart-home service';
+
+  @override
+  String get automationTestHint => 'Testing runs the connected automation immediately.';
+
+  @override
+  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+
+  @override
+  String get smartHomeDeviceHint =>
+      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+
+  @override
+  String get smartHomeDeviceOff =>
+      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+
+  @override
+  String get homeDisplay => 'Home display';
+
+  @override
+  String get skyDay => 'Day';
+
+  @override
+  String get skyDayNight => 'Day + night';
+
+  @override
+  String get showMoonPhase => 'Moon phase';
+
+  @override
+  String get weatherLabel => 'Weather';
+
+  @override
+  String get skyLabel => 'Sky';
+
+  @override
+  String get weatherSwipeHint => 'Swipe between sky and weather';
+
+  @override
+  String get parashaHeading => 'Weekly parashah';
+
+  @override
+  String get dailyStudyHeading => 'Daily learning';
+
+  @override
+  String get courseDaf => 'Daf Yomi';
+
+  @override
+  String get courseRambam1 => 'Rambam · 1 chapter/day';
+
+  @override
+  String get courseRambam3 => 'Rambam · 3 chapters/day';
+
+  @override
+  String get courseMitzvot => 'Sefer HaMitzvot';
+
+  @override
+  String get courseMishnah => 'Mishnah Yomit';
+
+  @override
+  String get courseNach => 'Nach Yomi';
+
+  @override
+  String get moonriseLabel => 'Moonrise';
+
+  @override
+  String get moonsetLabel => 'Moonset';
+
+  @override
+  String get nightfallLabel => 'Nightfall';
+
+  @override
+  String get moonAlwaysUp => 'Moon above horizon all day';
+
+  @override
+  String get moonAlwaysDown => 'Moon below horizon all day';
+
+  @override
+  String get noRiseToday => 'No rise today';
+
+  @override
+  String get noSetToday => 'No set today';
+
+  @override
+  String get moonNew => 'New moon';
+
+  @override
+  String get moonWaxingCrescent => 'Waxing crescent';
+
+  @override
+  String get moonFirstQuarter => 'First quarter';
+
+  @override
+  String get moonWaxingGibbous => 'Waxing gibbous';
+
+  @override
+  String get moonFull => 'Full moon';
+
+  @override
+  String get moonWaningGibbous => 'Waning gibbous';
+
+  @override
+  String get moonLastQuarter => 'Last quarter';
+
+  @override
+  String get moonWaningCrescent => 'Waning crescent';
+
+  @override
+  String get moonIlluminated => 'illuminated';
+
+  @override
+  String get weatherClear => 'Clear';
+
+  @override
+  String get weatherClouds => 'Cloudy';
+
+  @override
+  String get weatherRain => 'Rain';
+
+  @override
+  String get weatherSnow => 'Snow / sleet';
+
+  @override
+  String get weatherFog => 'Fog';
+
+  @override
+  String get weatherThunder => 'Thunderstorms';
+
+  @override
+  String get weatherUnavailable => 'Weather is temporarily unavailable';
+
+  @override
+  String get weatherCached => 'Saved forecast';
+
+  @override
+  String get weatherUpdated => 'Updated';
+
+  @override
+  String get weatherForecast => 'Forecast';
+
+  @override
+  String get weatherThunderExpected => 'Thunderstorms forecast';
+
+  @override
+  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+
+  @override
+  String get festivalReading => 'Festival Torah reading';
+
+  @override
+  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+
+  @override
+  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+
+  @override
+  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+
+  @override
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+
+  @override
+  String get homeRefresh => 'Refresh';
+
+  @override
+  String get skyTimezone => 'My timezone';
+
+  @override
+  String get skyShabbat => 'Shabbat city';
+
+  @override
+  String get skyReferenceCity => 'Timezone reference city';
+
+  @override
+  String get skyChooseCity => 'Choose sky city';
+
+  @override
+  String get skyCityExplain =>
+      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+
+  @override
+  String get skySun => 'Sun today';
+
+  @override
+  String get skyMoon => 'Moon today';
+
+  @override
+  String get moonAboveHorizon => 'Moon above the horizon';
+
+  @override
+  String get moonBelowHorizon => 'Moon below the horizon';
+
+  @override
+  String get moonNextNew => 'Next new moon';
+
+  @override
+  String get moonNextFull => 'Next full moon';
+
+  @override
+  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+
+  @override
+  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+
+  @override
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+
+  @override
+  String get locationTimeZoneUnavailable =>
+      'Use a city in the selected timezone, or follow your device timezone before using location.';
+
+  @override
+  String get locationSettings => 'Open location settings';
+
+  @override
+  String get locationLooking => 'Getting a location fix…';
+
+  @override
+  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+
+  @override
+  String get tuyaConsumerPending =>
+      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+
+  @override
+  String get tuyaAdvanced => 'Advanced setup';
+
+  @override
+  String get roshHodeshHeading => 'Rosh Hodesh';
+
+  @override
+  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+
+  @override
+  String get roshHodeshNext => 'Next Rosh Hodesh';
+
+  @override
+  String get roshHodeshBegins => 'Begins at sunset on';
+
+  @override
+  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+
+  @override
+  String get skyMyLocation => 'My location';
+
+  @override
+  String get skyLocationLocalTimes =>
+      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+
+  @override
+  String get musicRingDurationHint => '재생은 이 알람의 울림 시간을 따르며 중지 또는 다시 알림으로 멈춥니다.';
+
+  @override
+  String get musicBackupPlaying => '음악을 시작할 수 없습니다. 로컬 알람 소리가 재생 중입니다.';
+
+  @override
+  String desktopMusicConnect(String service) {
+    return '$service 앱 연결';
+  }
+
+  @override
+  String desktopMusicOn(String service) {
+    return '$service에 연결됨 · 길게 눌러 해제';
+  }
+
+  @override
+  String get musicSongs => '노래';
+
+  @override
+  String get noMusicSongs => '음악 보관함에서 노래를 찾지 못했습니다.';
+
+  @override
+  String serviceConnectUnavailable(String service) {
+    return '$service 링크 추가 · 알람 후 열림';
+  }
+
+  @override
+  String get soundCloudWidgetNote => '공개 링크 추가';
+
+  @override
+  String get youtubePlayerHint => 'YouTube는 표시되는 플레이어에서 동영상을 재생합니다. 숨겨지거나 재생할 수 없으면 로컬 알람이 계속됩니다.';
+
+  @override
+  String get musicPreviewFailed => '이 소리를 재생할 수 없습니다. 연결을 확인하거나 다른 트랙 또는 방송국을 사용해 보세요.';
+
+  @override
+  String get skyMoonPhase => '달의 위상';
+
+  @override
+  String get skyMoonDetailsDisplay => '달 위상 페이지 추가';
+
+  @override
+  String get skyMoonDetailsHint => '밀어서 이동하거나 언제든 달 카드를 탭하세요';
+
+  @override
+  String get moonRises => '월출';
+
+  @override
+  String get moonSets => '월몰';
+
+  @override
+  String moonLunarDay(int day) {
+    return '이번 음력 달 29.5일 중 $day일째';
+  }
+
+  @override
+  String get moonDetailsOpen => '달 위상 열기';
+
+  @override
+  String get musicPlaylists => '음악 재생목록';
+
+  @override
+  String get videoPlaylists => '동영상 재생목록';
+
+  @override
+  String get likedVideos => '좋아요 표시한 동영상';
+
+  @override
+  String get wholePlaylist => '재생목록 전체로 일어나기';
+
+  @override
+  String get noSongsInPlaylist => '재생할 수 있는 곡이 없어요.';
+
+  @override
+  String get hebrewNamesHeading => '파라샤와 달 이름 표기';
+
+  @override
+  String get hebrewNamesIsraeli => '이스라엘식';
+
+  @override
+  String get hebrewNamesAshkenazi => '아슈케나즈식';
+
+  @override
+  String pickFromService(String service) {
+    return '내 $service에서 선택';
   }
 }

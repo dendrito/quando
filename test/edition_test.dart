@@ -35,7 +35,7 @@ void main() {
 
   test('Quando? Shabbat locks the phone on Shabbat out of the box', () async {
     final c = await container();
-    expect(c.read(lockSettingsProvider).shabbat, kodesh);
+    expect(c.read(lockSettingsProvider).shabbat, jewishHome);
   });
 
   test('Quando? Shabbat never shows a secular quote, any day of the year', () async {
@@ -59,6 +59,14 @@ void main() {
     expect(hebrewDate(DateTime(2026, 11, 4, 10)), ('24 Cheshvan 5787', 'Chayei Sara'));
     expect(hebrewDate(DateTime(2026, 11, 4, 20), afterSunset: true).$1, '25 Cheshvan 5787');
     expect(hebrewDate(DateTime(2026, 11, 4, 10), hebrew: true).$2, 'חיי שרה');
+    // Toldot by default, Toldos for those who prefer it, or in Hebrew letters.
+    final toldot = DateTime(2026, 11, 8, 10);
+    expect(hebrewDate(toldot).$2, 'Toldot');
+    expect(hebrewDate(toldot, names: HebrewNames.ashkenazi).$2, 'Toldos');
+    expect(hebrewDate(toldot, names: HebrewNames.hebrew).$2, 'תולדות');
+    expect(hebrewDate(DateTime(2026, 12, 25)).$1, contains('Tevet'));
+    expect(hebrewDate(DateTime(2026, 12, 25), names: HebrewNames.ashkenazi).$1, contains('Teves'));
+    expect(HebrewNames.from('nonsense'), HebrewNames.israeli);
   });
 
   test('Israeli and Jewish radio stations', () {
@@ -72,6 +80,10 @@ void main() {
       isFalse,
     );
     if (kodesh) expect(radioGenres.map((g) => g.$2), isNot(contains('rock')));
+    if (mine) {
+      expect(radioGenres.map((g) => g.$2), contains('rock'));
+      expect(appTitle, 'Quando Mine');
+    }
   });
 
   testWidgets('the logo draws in both editions', (tester) async {

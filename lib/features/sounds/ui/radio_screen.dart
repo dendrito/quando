@@ -7,6 +7,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/edition.dart';
 import '../data/radio_directory.dart';
+import '../data/radio_stream.dart';
 import '../domain/sound.dart';
 import 'sound_player.dart';
 
@@ -28,6 +29,10 @@ class RadioScreen extends ConsumerStatefulWidget {
 }
 
 class _RadioScreenState extends ConsumerState<RadioScreen> {
+  void _previewChanged() {
+    if (mounted) setState(() {});
+  }
+
   late final _directory = widget.directory ?? RadioDirectory();
   final _query = TextEditingController();
   String? _genre;
@@ -46,11 +51,13 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
   @override
   void initState() {
     super.initState();
+    SoundPreview.instance.addListener(_previewChanged);
     _load();
   }
 
   @override
   void dispose() {
+    SoundPreview.instance.removeListener(_previewChanged);
     SoundPreview.instance.stop();
     _query.dispose();
     super.dispose();
@@ -86,12 +93,23 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
       await p.stop();
     } else {
       setState(() => _picked = r);
-      await p.play(s, onDone: () => mounted ? setState(() {}) : null);
+      await p.play(
+        s,
+        onDone: () => mounted ? setState(() {}) : null,
+        onError: (_) {
+          if (mounted) {
+            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicPreviewFailed)));
+          }
+        },
+      );
     }
     if (mounted) setState(() {});
   }
 
-  void _add(AlarmSound s) {
+  Future<void> _add(AlarmSound s) async {
+    final resolved = await radioPlaybackUrl(s.path);
+    if (!mounted) return;
+    s = s.copyWith(path: resolved);
     final notifier = ref.read(soundsProvider.notifier);
     if (!ref.read(soundsProvider).any((x) => x.id == s.id)) notifier.add(s);
     SoundPreview.instance.stop();

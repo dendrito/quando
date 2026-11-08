@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/foundation.dart' show LicenseEntryWithLineBreaks, LicenseRegistry;
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_timezone/flutter_timezone.dart';
@@ -10,10 +12,22 @@ import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
 import 'features/ringing/data/spotify.dart';
 import 'features/sounds/data/spotify_account.dart';
+import 'features/sounds/data/soundcloud.dart';
 import 'features/sounds/data/youtube_library.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  LicenseRegistry.addLicense(() async* {
+    yield LicenseEntryWithLineBreaks([
+      'Hebcal Torah reading references',
+    ], await rootBundle.loadString('third_party/hebcal/LICENSE'));
+    yield LicenseEntryWithLineBreaks([
+      'Astronomia moon phases',
+    ], await rootBundle.loadString('third_party/astronomia/LICENSE'));
+    yield LicenseEntryWithLineBreaks([
+      'SunCalc lunar astronomy',
+    ], await rootBundle.loadString('third_party/suncalc/LICENSE'));
+  });
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
   // Speak the chosen language (or the phone's) from the very first word,
@@ -25,6 +39,7 @@ Future<void> main() async {
   await initializeDateFormatting();
   SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
   SpotifyAccount.load(prefs);
+  SoundCloudAccount.load(prefs);
   YouTubeAccount.connected = prefs.getBool(YouTubeAccount.prefKey) ?? false;
   String? deviceZone;
   try {

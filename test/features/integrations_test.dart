@@ -6,6 +6,7 @@ import 'package:http/testing.dart';
 import 'package:quando/features/integrations/data/sender.dart';
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
+import 'package:quando/features/rules/domain/reminder_delivery.dart';
 
 const _alarm = RingPayload(title: 'Candle lighting · Shabbat', body: '15 minutes before', ringSeconds: 60);
 
@@ -19,6 +20,26 @@ const _alarm = RingPayload(title: 'Candle lighting · Shabbat', body: '15 minute
 }
 
 void main() {
+  test('sound test uses reminder sound and devices without emergency retries', () async {
+    const s = IntegrationSettings(
+      pushoverUser: 'u',
+      pushoverToken: 't',
+      pushoverPriority: 2,
+      pushoverSound: 'global',
+    );
+    final (sender, sent) = _sender(s);
+    await sender.testPushover(
+      s,
+      delivery: const ReminderDelivery(pushoverSound: 'my_shofar', pushoverDevices: {'ipad'}),
+    );
+    expect(sent.single.bodyFields['sound'], 'my_shofar');
+    expect(sent.single.bodyFields['device'], 'ipad');
+    expect(sent.single.bodyFields['priority'], '0');
+    expect(sent.single.bodyFields.containsKey('retry'), isFalse);
+    expect(sent.single.bodyFields.containsKey('expire'), isFalse);
+    expect(s.pushoverPriority, 2);
+  });
+
   test('Pushover gets the alarm when it rings, not when it stops', () async {
     final (sender, sent) = _sender(
       const IntegrationSettings(

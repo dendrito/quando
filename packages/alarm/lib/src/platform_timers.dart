@@ -19,6 +19,9 @@ class PlatformTimers {
 
   /// Listens for alarm trigger.
   static void setAlarm(AlarmSettings settings) {
+    // The Mac host keeps native timers alive when the window is hidden. Do not
+    // report a ring from the mobile fallback before the host has started audio.
+    if (Platform.isMacOS) return;
     final id = settings.id;
 
     final timer = _timers[id];

@@ -5,6 +5,8 @@ import 'package:go_router/go_router.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import 'sound_player.dart';
+import 'music_preview_dialog.dart';
+import 'service_logo.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -46,7 +48,7 @@ class SoundPickerTile extends ConsumerWidget {
         : chosen.isRadio
         ? l10n.onlineRadio
         : chosen.isLink
-        ? l10n.songLinkOpens(chosen.linkApp ?? '')
+        ? (chosen.plays ? l10n.playsIn(chosen.linkApp ?? '') : l10n.songLinkOpens(chosen.linkApp ?? ''))
         : chosen.builtIn
         ? l10n.builtIn
         : l10n.yourRecording;
@@ -93,6 +95,34 @@ class SoundPickerTile extends ConsumerWidget {
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
+                      const SizedBox(height: 14),
+                      Wrap(
+                        spacing: 14,
+                        runSpacing: 10,
+                        children: [
+                          for (final (Widget icon, name) in [
+                            (const ServiceLogo(MusicService.spotify, size: 20), 'Spotify'),
+                            (const ServiceLogo(MusicService.youTube, size: 20), 'YouTube'),
+                            (const ServiceLogo(MusicService.youTubeMusic, size: 20), 'YouTube Music'),
+                            (
+                              const Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber),
+                              l10n.addAFile,
+                            ),
+                            (
+                              const Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral),
+                              l10n.onlineRadio,
+                            ),
+                          ])
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                icon,
+                                const SizedBox(width: 5),
+                                Text(name, style: text.labelMedium),
+                              ],
+                            ),
+                        ],
+                      ),
                     ],
                   ),
                 ),
@@ -134,6 +164,22 @@ class _Sheet extends ConsumerStatefulWidget {
 }
 
 class _SheetState extends ConsumerState<_Sheet> {
+  void _previewChanged() {
+    if (mounted) setState(() {});
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    SoundPreview.instance.addListener(_previewChanged);
+  }
+
+  @override
+  void dispose() {
+    SoundPreview.instance.removeListener(_previewChanged);
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     final sounds = ref.watch(soundsProvider);
@@ -236,10 +282,29 @@ class _SheetState extends ConsumerState<_Sheet> {
               playing: SoundPreview.instance.playingId == s.id,
               onListen: () async {
                 final p = SoundPreview.instance;
+                if (s.isLink) {
+                  await p.stop();
+                  if (!context.mounted) return;
+                  await showDialog<void>(
+                    context: context,
+                    builder: (_) => MusicPreviewDialog(sound: s),
+                  );
+                  return;
+                }
                 if (p.playingId == s.id) {
                   await p.stop();
                 } else {
-                  await p.play(s, onDone: () => mounted ? setState(() {}) : null);
+                  await p.play(
+                    s,
+                    onResolved: (url) => ref.read(soundsProvider.notifier).replace(s.copyWith(path: url)),
+                    onDone: () => mounted ? setState(() {}) : null,
+                    onError: (_) {
+                      if (mounted) {
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(l10n.musicPreviewFailed)));
+                      }
+                    },
+                  );
                 }
                 if (mounted) setState(() {});
               },

@@ -11,6 +11,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/brand.dart';
 import '../../../core/util/local_time.dart';
+import '../../../core/util/platform.dart';
 import '../../home/domain/sky.dart';
 import '../../ringing/ring_payload.dart';
 import '../domain/lock.dart';
@@ -47,8 +48,7 @@ class _LockGateState extends ConsumerState<LockGate> {
   void initState() {
     super.initState();
     _tick = Timer.periodic(const Duration(seconds: 15), (_) => _check());
-    if (!kIsWeb &&
-        (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS)) {
+    if (supportsLocalAlarms) {
       _ringingSub = Alarm.ringing.listen((set) {
         final ringing = set.alarms.any((a) => !RingPayload.decode(a.payload).isLock);
         if (ringing != _ringing && mounted) setState(() => _ringing = ringing);

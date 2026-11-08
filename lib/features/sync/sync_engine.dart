@@ -10,6 +10,10 @@ const syncedKeys = [
   'userAlarms',
   'alarmOptions',
   'rules.enabled',
+  'shabbat.preparation',
+  'pushover.credentials',
+  'services.connections',
+  'home.display',
   'rules.custom',
   'rules.hidden',
   'plan.skipped',
@@ -93,7 +97,7 @@ class SyncEngine {
   final String device;
 
   /// Called after settings from another device were written here.
-  final void Function()? onApplied;
+  final FutureOr<void> Function()? onApplied;
   final DateTime Function() _now;
   final Duration every;
 
@@ -220,6 +224,6 @@ class SyncEngine {
     // Any local values absent from the initial remote snapshot are now dirty.
     // Upload them through the same retry-safe path.
     await _pushLocal();
-    if (applied) onApplied?.call();
+    if (applied) await onApplied?.call();
   }
 }
