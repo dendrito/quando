@@ -2,17 +2,22 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:timezone/timezone.dart' as tz;
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import '../../../l10n/l10n.dart';
 import '../../shabbat/domain/jewish_times.dart';
+import '../../shabbat/domain/place.dart';
 import '../../shabbat/ui/city_picker.dart';
 import '../domain/moon.dart';
 import '../domain/moon_phases.dart';
 import '../domain/moon_backdrop.dart';
+import '../data/home_information_providers.dart';
+import '../data/weather_repository.dart';
 import '../domain/sky.dart';
+import '../domain/sky_weather.dart';
 import 'day_arc.dart';
 import 'home_display_controls.dart';
 import 'moon_details.dart';
@@ -104,7 +109,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
         ),
       ],
     ];
-    final sunContent = Column(
+    final plainSun = Column(
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
@@ -135,6 +140,16 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
         ...nightDetails,
       ],
     );
+    final Widget sunContent = options.weather && place != null && _page == 0
+        ? _SunWeatherCard(
+            sky: sky,
+            place: place,
+            zone: zone,
+            marks: widget.marks,
+            fallback: plainSun,
+            footer: nightDetails,
+          )
+        : plainSun;
     // The card follows the sky right now: a starry indigo night, or the
     // Sun's own color by day. The Moon's path dots still show when it is up
     // in daylight (amber) or at night (silver).
@@ -380,6 +395,8 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                               ? 300
                               : 390) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                    : _page == 0 && options.weather && place != null
+                    ? 400 * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : max(228.0, options.night ? 260.0 : 180.0),
                 child: PageView(
                   controller: _pager,
@@ -391,6 +408,135 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           ),
         ],
       ],
+    );
+  }
+}
+
+/// Option C: the Sun card with the weather on the Sun's path. The card's
+/// colour follows the real sky (see [skyWeatherGradient]).
+class _SunWeatherCard extends ConsumerWidget {
+  const _SunWeatherCard({
+    required this.sky,
+    required this.place,
+    required this.zone,
+    required this.marks,
+    required this.fallback,
+    required this.footer,
+  });
+  final SkyDay sky;
+  final Place place;
+  final String zone;
+  final List<double> marks;
+  final Widget fallback;
+  final List<Widget> footer;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final repo = ref.watch(weatherRepositoryProvider);
+    final report = ref.watch(weatherReportProvider((place, repo.pollBucket(sky.now)))).value;
+    final current = report?.current(sky.now);
+    if (report == null || current == null) return fallback;
+    final text = Theme.of(context).textTheme;
+    final skyNow = SkyDay.of(place, sky.now);
+    final (top, bottom) = skyWeatherGradient(skyNow, current.kind);
+    final local = inZone(sky.now, zone);
+    String time(DateTime? at) => at == null ? '' : hhmm(inZone(at, zone));
+    final wet = {WeatherKind.rain, WeatherKind.thunder, WeatherKind.snow}.contains(current.kind);
+    final ends = wet ? spellEnds(report, sky.now, current.kind) : null;
+    final behind = skyNow.isDay && current.kind != WeatherKind.clear;
+    final subtitle = [
+      if (behind) l10n.weatherSunBehindClouds,
+      if (ends != null) l10n.weatherUntilAbout(time(ends)),
+    ].join(' · ');
+    // Tonight at 22:00, tomorrow morning at 08:00, both in the city's time.
+    DateTime at(int dayOffset, int hour) =>
+        tz.TZDateTime(tz.getLocation(zone), local.year, local.month, local.day + dayOffset, hour);
+    final tonight = local.hour < 22 ? hourNear(report, at(0, 22)) : null;
+    final morning = hourNear(report, at(1, 8));
+    String describe(WeatherHour h) => '${h.celsius.round()}° · ${weatherLabel(h.kind).toLowerCase()}';
+    Widget later(String title, WeatherHour h) => Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          title.toUpperCase(),
+          style: text.labelSmall?.copyWith(color: QuandoColors.blush, letterSpacing: .8),
+        ),
+        const SizedBox(height: 2),
+        Text(describe(h), style: text.bodyMedium?.copyWith(color: QuandoColors.text)),
+      ],
+    );
+    return Container(
+      key: const ValueKey('sun-weather-card'),
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(20),
+        gradient: LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: [top, bottom],
+        ),
+      ),
+      padding: const EdgeInsets.all(18),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.baseline,
+            textBaseline: TextBaseline.alphabetic,
+            children: [
+              Text(
+                '${current.celsius.round()}°',
+                style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                child: Text(
+                  weatherLabel(current.kind).toLowerCase(),
+                  style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                ),
+              ),
+            ],
+          ),
+          if (subtitle.isNotEmpty) Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
+          DayArc(
+            sky: sky,
+            marks: marks,
+            weather: arcWeather(sky, report, zone),
+            nowWeather: skyNow.isDay ? current.kind : null,
+            nowLabel: skyNow.isDay ? '${l10n.nowCap} ${hhmm(local)}' : null,
+          ),
+          Row(
+            textDirection: TextDirection.ltr,
+            children: [
+              Expanded(
+                child: Text(
+                  sky.sunrise == null ? '' : l10n.sunriseAt(time(sky.sunrise)),
+                  style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                ),
+              ),
+              Expanded(
+                child: Text(
+                  sky.sunset == null ? '' : l10n.sunsetAt(time(sky.sunset)),
+                  textAlign: TextAlign.end,
+                  style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                ),
+              ),
+            ],
+          ),
+          if (tonight != null || morning != null) ...[
+            const SizedBox(height: 14),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                if (tonight != null) Expanded(child: later(l10n.weatherTonight, tonight)),
+                if (morning != null) Expanded(child: later(l10n.weatherTomorrowMorning, morning)),
+              ],
+            ),
+          ],
+          ...footer,
+        ],
+      ),
     );
   }
 }

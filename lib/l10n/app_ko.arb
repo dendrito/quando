@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "파라샤와 달 이름 표기",
   "hebrewNamesIsraeli": "이스라엘식",
   "hebrewNamesAshkenazi": "아슈케나즈식",
-  "pickFromService": "내 {service}에서 선택"
+  "pickFromService": "내 {service}에서 선택",
+  "weatherTonight": "오늘 밤",
+  "weatherTomorrowMorning": "내일 아침",
+  "weatherUntilAbout": "{time}쯤까지",
+  "weatherSunBehindClouds": "구름 뒤의 해"
 }

@@ -2665,4 +2665,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String pickFromService(String service) {
     return '내 $service에서 선택';
   }
+
+  @override
+  String get weatherTonight => '오늘 밤';
+
+  @override
+  String get weatherTomorrowMorning => '내일 아침';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '$time쯤까지';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '구름 뒤의 해';
 }

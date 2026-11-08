@@ -92,6 +92,10 @@ void main() {
       expect(after.newMoon.isAfter(phases.newMoon.add(const Duration(days: 29))), isTrue);
     }
     expect(MoonIllumination.at(now).phaseIndex, 7); // 3% waning is not new moon.
+    // A Moon the card prints as 0% lit is called "New moon", never "waning crescent 0%".
+    expect(const MoonIllumination(.004, .96).phaseIndex, 0);
+    expect(const MoonIllumination(.003, .04).phaseIndex, 0);
+    expect(const MoonIllumination(.996, .48).phaseIndex, 4);
   });
 
   test('lunar arc stays chronological across midnight and polar/DST dates', () {

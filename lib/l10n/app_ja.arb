@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "パラシャと月名の表記",
   "hebrewNamesIsraeli": "イスラエル式",
   "hebrewNamesAshkenazi": "アシュケナージ式",
-  "pickFromService": "{service}から選ぶ"
+  "pickFromService": "{service}から選ぶ",
+  "weatherTonight": "今夜",
+  "weatherTomorrowMorning": "明日の朝",
+  "weatherUntilAbout": "{time}ごろまで",
+  "weatherSunBehindClouds": "太陽は雲の向こう"
 }

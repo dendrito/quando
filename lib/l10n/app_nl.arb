@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Spelling van parasja en maanden",
   "hebrewNamesIsraeli": "Israëlisch",
   "hebrewNamesAshkenazi": "Asjkenazisch",
-  "pickFromService": "Kiezen uit mijn {service}"
+  "pickFromService": "Kiezen uit mijn {service}",
+  "weatherTonight": "Vanavond",
+  "weatherTomorrowMorning": "Morgenochtend",
+  "weatherUntilAbout": "tot ongeveer {time}",
+  "weatherSunBehindClouds": "Zon achter de wolken"
 }

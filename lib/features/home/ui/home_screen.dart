@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' show min;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -9,6 +10,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/brand.dart';
 import '../../../core/scheduler/scheduler.dart';
+import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
 import '../../calendar/domain/calendar_rule.dart';
@@ -389,7 +391,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: SizedBox(
-        width: MediaQuery.sizeOf(context).width - 40,
+        // Full width on phones; on a Mac or iPad window a full-width bar
+        // hid the alarm list, so it stops at a comfortable size.
+        width: min(MediaQuery.sizeOf(context).width - 40, 420),
         height: 60,
         child: FloatingActionButton.extended(
           tooltip: l10n.newAlarm,
@@ -522,7 +526,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       const SizedBox(height: 6),
                       if (next != null) ...[
                         Text(
-                          '${next.title} · ${day(next.at)} · ${local(next.at)} · $home',
+                          // A reminder ahead of an event says so: "Candle lighting ·
+                          // 6 hours before · Fri 13 Nov · 12:09", never just the
+                          // event's name at the reminder's time.
+                          '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · $home',
                           style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
                         ),
                         const SizedBox(height: 8),

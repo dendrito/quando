@@ -2695,4 +2695,18 @@ class AppLocalizationsId extends AppLocalizations {
   String pickFromService(String service) {
     return 'Pilih dari $service-ku';
   }
+
+  @override
+  String get weatherTonight => 'Malam ini';
+
+  @override
+  String get weatherTomorrowMorning => 'Besok pagi';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'sampai sekitar $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Matahari di balik awan';
 }

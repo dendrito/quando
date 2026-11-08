@@ -62,6 +62,9 @@ void main() {
     // Friday's candle-lighting reminders fold into one row that opens.
     final series = find.textContaining('alarms · ');
     await tester.scrollUntilVisible(series.first, 400);
+    // Lift the row clear of the floating When? button.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pumpAndSettle();
     expect(find.text('2 hours before'), findsNothing);
     await tester.tap(series.first);
     await tester.pumpAndSettle();
@@ -94,6 +97,9 @@ void main() {
     await tester.pumpAndSettle();
     final series = find.textContaining('alarms · ');
     await tester.scrollUntilVisible(series.first, 400);
+    // Lift the row clear of the floating When? button.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pumpAndSettle();
     final before = c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length;
 
     // One alarm: take its time out of the rule, then put it back.

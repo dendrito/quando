@@ -2696,4 +2696,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String pickFromService(String service) {
     return 'मेरे $service से चुनें';
   }
+
+  @override
+  String get weatherTonight => 'आज रात';
+
+  @override
+  String get weatherTomorrowMorning => 'कल सुबह';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'लगभग $time तक';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'बादलों के पीछे सूरज';
 }

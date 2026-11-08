@@ -2659,6 +2659,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String pickFromService(String service) {
     return '从我的 $service 选择';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持续到约 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太阳在云后';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5315,4 +5329,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String pickFromService(String service) {
     return '從我的 $service 選擇';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持續到約 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太陽在雲後';
 }

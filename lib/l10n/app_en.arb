@@ -1684,5 +1684,16 @@
         "type": "String"
       }
     }
-  }
+  },
+  "weatherTonight": "Tonight",
+  "weatherTomorrowMorning": "Tomorrow morning",
+  "weatherUntilAbout": "until about {time}",
+  "@weatherUntilAbout": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherSunBehindClouds": "Sun behind the clouds"
 }
