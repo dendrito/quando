@@ -86,20 +86,28 @@ void main() {
   });
 
   test('a change goes up, comes down on the other device, and removals too', () async {
-    final (a, pa) = await device('a', {'lock': '{"shabbat":false}', 'zone.fixed': 'Asia/Jerusalem'});
+    final (a, pa) = await device('a', {'lock': '{"shabbat":false}', 'havdalah': 'geonim'});
     await a.apply(server.items);
 
     await pa.setString('lock', '{"shabbat":true}');
-    await pa.remove('zone.fixed');
+    await pa.remove('havdalah');
     await a.pushLocal();
     expect(server.items['lock']!.s, contains('true'));
-    expect(server.items['zone.fixed']!.s, isNull);
+    expect(server.items['havdalah']!.s, isNull);
 
-    final (b, pb) = await device('b', {'lock': '{"shabbat":false}', 'zone.fixed': 'Asia/Jerusalem'});
+    final (b, pb) = await device('b', {'lock': '{"shabbat":false}', 'havdalah': 'geonim'});
     // b has never synced, so the shared copy wins.
     await b.apply(server.items);
     expect(pb.getString('lock'), '{"shabbat":true}');
-    expect(pb.containsKey('zone.fixed'), isFalse);
+    expect(pb.containsKey('havdalah'), isFalse);
+  });
+
+  test('the clock zone stays on each device: it follows where that device is', () async {
+    final (a, pa) = await device('a', {'zone.fixed': 'America/Detroit', 'zone.pickedHere': true});
+    await a.apply(server.items);
+    await a.pushLocal();
+    expect(server.items.containsKey('zone.fixed'), isFalse);
+    expect(pa.getString('zone.fixed'), 'America/Detroit');
   });
 
   test('a newer change here isn\'t overwritten by an older one from the server', () async {

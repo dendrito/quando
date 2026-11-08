@@ -222,7 +222,11 @@ void main() {
   testWidgets('explicit sky GPS coordinates keep a fixed clock zone and Shabbat city unchanged', (
     tester,
   ) async {
-    SharedPreferences.setMockInitialValues({'place.name': 'Jerusalem', 'zone.fixed': 'America/Detroit'});
+    SharedPreferences.setMockInitialValues({
+      'place.name': 'Jerusalem',
+      'zone.fixed': 'America/Detroit',
+      'zone.pickedHere': true,
+    });
     final prefs = await SharedPreferences.getInstance();
     final c = ProviderContainer(
       overrides: [
