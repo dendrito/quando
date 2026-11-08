@@ -2730,15 +2730,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get weatherSunBehindClouds => 'Sole dietro le nuvole';
 
   @override
-  String get keysLockTitle => 'Chiavi sui tuoi dispositivi';
-
-  @override
-  String get keysLockOff =>
-      'Le tue chiavi dei servizi restano su questo dispositivo. Scegli una frase di sincronizzazione per inviarle, cifrate, agli altri dispositivi.';
-
-  @override
-  String get keysLockOn =>
-      'Le tue chiavi dei servizi vengono cifrate con la frase di sincronizzazione prima di lasciare questo dispositivo. Nessun altro, nemmeno Google, può leggerle.';
+  String get keysLockTitle => 'Protezione delle chiavi';
 
   @override
   String get keysLockWaiting =>
@@ -2783,5 +2775,42 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get keysShareNeedsPassphrase =>
-      'Scegli prima una frase di sincronizzazione, in Chiavi sui tuoi dispositivi.';
+      'Le tue chiavi ora non vengono condivise. Controlla Protezione delle chiavi.';
+
+  @override
+  String get keysLockStandard => 'Standard';
+
+  @override
+  String get keysLockStandardHint =>
+      'Le chiavi si sincronizzano con le altre impostazioni, protette dal tuo accesso. Solo il tuo account può leggerle.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Le chiavi vengono cifrate con una frase che conosci solo tu prima di lasciare questo dispositivo. Nessun altro, nemmeno Google, può leggerle.';
+
+  @override
+  String get keysLockDeviceOnly => 'Solo questo dispositivo';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Le chiavi non lasciano mai questo dispositivo. Ricolleghi ogni servizio sugli altri dispositivi.';
+
+  @override
+  String get keysTwoStep =>
+      'Per maggiore sicurezza, attiva la verifica in due passaggi del tuo account Google.';
+
+  @override
+  String get keysBiometric => 'Chiedi Face ID o impronta';
+
+  @override
+  String get keysBiometricHint => 'Prima di aprire Collegamenti su questo dispositivo.';
+
+  @override
+  String get keysBiometricReason => 'Conferma che sei tu per vedere le chiavi dei servizi';
+
+  @override
+  String get keysBiometricLocked => 'Collegamenti bloccati';
+
+  @override
+  String get keysBiometricUnlock => 'Sblocca';
 }

@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Jutro rano",
   "weatherUntilAbout": "do około {time}",
   "weatherSunBehindClouds": "Słońce za chmurami",
-  "keysLockTitle": "Klucze na Twoich urządzeniach",
-  "keysLockOff": "Twoje klucze usług zostają na tym urządzeniu. Wybierz hasło synchronizacji, aby wysłać je zaszyfrowane na inne urządzenia.",
-  "keysLockOn": "Twoje klucze usług są szyfrowane hasłem synchronizacji, zanim opuszczą to urządzenie. Nikt inny, nawet Google, nie może ich odczytać.",
+  "keysLockTitle": "Ochrona kluczy",
   "keysLockWaiting": "Dotarły tu zablokowane klucze z innego urządzenia. Wpisz hasło synchronizacji, aby je otworzyć.",
   "keysSetPassphrase": "Wybierz hasło",
   "keysChangePassphrase": "Zmień hasło",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "Hasła się nie zgadzają.",
   "keysPassphraseWrong": "To hasło nie otwiera tych kluczy.",
   "keysPassphraseNote": "Zapisz je: jeśli je zapomnisz, nikt go nie odzyska i wpiszesz klucze ponownie.",
-  "keysShareNeedsPassphrase": "Najpierw wybierz hasło synchronizacji w sekcji Klucze na Twoich urządzeniach."
+  "keysShareNeedsPassphrase": "Twoje klucze nie są teraz udostępniane. Sprawdź Ochronę kluczy.",
+  "keysLockStandard": "Standardowa",
+  "keysLockStandardHint": "Klucze synchronizują się z innymi ustawieniami, chronione Twoim logowaniem. Tylko Twoje konto może je odczytać.",
+  "keysLockPassphraseHint": "Klucze są szyfrowane hasłem znanym tylko Tobie, zanim opuszczą to urządzenie. Nikt inny, nawet Google, nie może ich odczytać.",
+  "keysLockDeviceOnly": "Tylko to urządzenie",
+  "keysLockDeviceOnlyHint": "Klucze nigdy nie opuszczają tego urządzenia. Na innych urządzeniach łączysz każdą usługę od nowa.",
+  "keysTwoStep": "Dla większego bezpieczeństwa włącz weryfikację dwuetapową na koncie Google.",
+  "keysBiometric": "Pytaj o Face ID lub odcisk palca",
+  "keysBiometricHint": "Przed otwarciem Połączeń na tym urządzeniu.",
+  "keysBiometricReason": "Potwierdź, że to Ty, aby zobaczyć klucze usług",
+  "keysBiometricLocked": "Połączenia są zablokowane",
+  "keysBiometricUnlock": "Odblokuj"
 }

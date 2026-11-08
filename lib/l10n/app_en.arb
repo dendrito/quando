@@ -1696,9 +1696,7 @@
     }
   },
   "weatherSunBehindClouds": "Sun behind the clouds",
-  "keysLockTitle": "Keys on your devices",
-  "keysLockOff": "Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.",
-  "keysLockOn": "Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.",
+  "keysLockTitle": "Key protection",
   "keysLockWaiting": "Keys from your other device arrived here, locked. Type your sync passphrase to open them.",
   "keysSetPassphrase": "Choose passphrase",
   "keysChangePassphrase": "Change passphrase",
@@ -1718,5 +1716,16 @@
   "keysPassphraseMismatch": "The two don't match.",
   "keysPassphraseWrong": "That passphrase doesn't open these keys.",
   "keysPassphraseNote": "Write it down: if you forget it, nobody can recover it, and you'll type your keys again.",
-  "keysShareNeedsPassphrase": "Choose a sync passphrase first, under Keys on your devices."
+  "keysShareNeedsPassphrase": "Your keys aren't being shared right now. Check Key protection.",
+  "keysLockStandard": "Standard",
+  "keysLockStandardHint": "Keys sync with your other settings, protected by your sign-in. Only your account can read them.",
+  "keysLockPassphraseHint": "Keys are encrypted with a passphrase only you know before they leave this device. Nobody else, not even Google, can read them.",
+  "keysLockDeviceOnly": "This device only",
+  "keysLockDeviceOnlyHint": "Keys never leave this device. You connect each service again on your other devices.",
+  "keysTwoStep": "For extra safety, turn on 2-step verification for your Google account.",
+  "keysBiometric": "Ask for Face ID or fingerprint",
+  "keysBiometricHint": "Before opening Connections on this device.",
+  "keysBiometricReason": "Confirm it's you to see your service keys",
+  "keysBiometricLocked": "Connections is locked",
+  "keysBiometricUnlock": "Unlock"
 }

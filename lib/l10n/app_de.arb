@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Morgen früh",
   "weatherUntilAbout": "bis etwa {time}",
   "weatherSunBehindClouds": "Sonne hinter Wolken",
-  "keysLockTitle": "Schlüssel auf deinen Geräten",
-  "keysLockOff": "Deine Dienst-Schlüssel bleiben auf diesem Gerät. Wähle eine Sync-Passphrase, um sie verschlüsselt an deine anderen Geräte zu senden.",
-  "keysLockOn": "Deine Dienst-Schlüssel werden mit deiner Sync-Passphrase verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.",
+  "keysLockTitle": "Schlüsselschutz",
   "keysLockWaiting": "Schlüssel von deinem anderen Gerät sind hier angekommen, gesperrt. Gib deine Sync-Passphrase ein, um sie zu öffnen.",
   "keysSetPassphrase": "Passphrase wählen",
   "keysChangePassphrase": "Passphrase ändern",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "Die beiden stimmen nicht überein.",
   "keysPassphraseWrong": "Diese Passphrase öffnet diese Schlüssel nicht.",
   "keysPassphraseNote": "Schreib sie auf: Wenn du sie vergisst, kann sie niemand wiederherstellen, und du gibst deine Schlüssel neu ein.",
-  "keysShareNeedsPassphrase": "Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten."
+  "keysShareNeedsPassphrase": "Deine Schlüssel werden gerade nicht geteilt. Sieh unter Schlüsselschutz nach.",
+  "keysLockStandard": "Standard",
+  "keysLockStandardHint": "Schlüssel werden mit deinen anderen Einstellungen synchronisiert, geschützt durch deine Anmeldung. Nur dein Konto kann sie lesen.",
+  "keysLockPassphraseHint": "Schlüssel werden mit einer Passphrase, die nur du kennst, verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.",
+  "keysLockDeviceOnly": "Nur dieses Gerät",
+  "keysLockDeviceOnlyHint": "Schlüssel verlassen dieses Gerät nie. Auf deinen anderen Geräten verbindest du jeden Dienst neu.",
+  "keysTwoStep": "Für mehr Sicherheit aktiviere die Bestätigung in zwei Schritten für dein Google-Konto.",
+  "keysBiometric": "Face ID oder Fingerabdruck verlangen",
+  "keysBiometricHint": "Bevor Verbindungen auf diesem Gerät geöffnet wird.",
+  "keysBiometricReason": "Bestätige, dass du es bist, um deine Dienst-Schlüssel zu sehen",
+  "keysBiometricLocked": "Verbindungen ist gesperrt",
+  "keysBiometricUnlock": "Entsperren"
 }

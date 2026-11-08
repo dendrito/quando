@@ -2725,15 +2725,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherSunBehindClouds => 'Zon achter de wolken';
 
   @override
-  String get keysLockTitle => 'Sleutels op je apparaten';
-
-  @override
-  String get keysLockOff =>
-      'Je dienstsleutels blijven op dit apparaat. Kies een sync-wachtzin om ze versleuteld naar je andere apparaten te sturen.';
-
-  @override
-  String get keysLockOn =>
-      'Je dienstsleutels worden met je sync-wachtzin versleuteld voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.';
+  String get keysLockTitle => 'Sleutelbeveiliging';
 
   @override
   String get keysLockWaiting =>
@@ -2777,5 +2769,42 @@ class AppLocalizationsNl extends AppLocalizations {
       'Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.';
 
   @override
-  String get keysShareNeedsPassphrase => 'Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.';
+  String get keysShareNeedsPassphrase => 'Je sleutels worden nu niet gedeeld. Kijk bij Sleutelbeveiliging.';
+
+  @override
+  String get keysLockStandard => 'Standaard';
+
+  @override
+  String get keysLockStandardHint =>
+      'Sleutels synchroniseren met je andere instellingen, beschermd door je aanmelding. Alleen je account kan ze lezen.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Sleutels worden versleuteld met een wachtzin die alleen jij kent voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.';
+
+  @override
+  String get keysLockDeviceOnly => 'Alleen dit apparaat';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Sleutels verlaten dit apparaat nooit. Op je andere apparaten koppel je elke dienst opnieuw.';
+
+  @override
+  String get keysTwoStep =>
+      'Zet voor extra veiligheid verificatie in twee stappen aan voor je Google-account.';
+
+  @override
+  String get keysBiometric => 'Vraag om Face ID of vingerafdruk';
+
+  @override
+  String get keysBiometricHint => 'Voordat Koppelingen op dit apparaat opent.';
+
+  @override
+  String get keysBiometricReason => 'Bevestig dat jij het bent om je dienstsleutels te zien';
+
+  @override
+  String get keysBiometricLocked => 'Koppelingen zijn vergrendeld';
+
+  @override
+  String get keysBiometricUnlock => 'Ontgrendelen';
 }

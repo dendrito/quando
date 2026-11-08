@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/sync/ui/biometric_gate.dart';
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
@@ -38,7 +39,10 @@ final _router = GoRouter(
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
-    GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
+    GoRoute(
+      path: '/connections',
+      builder: (context, state) => const BiometricGate(child: IntegrationsScreen()),
+    ),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
     GoRoute(
       path: '/calendar/rule/:id',

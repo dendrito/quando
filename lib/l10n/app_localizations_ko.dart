@@ -2681,13 +2681,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherSunBehindClouds => '구름 뒤의 해';
 
   @override
-  String get keysLockTitle => '기기 간 키';
-
-  @override
-  String get keysLockOff => '서비스 키는 이 기기에만 남아 있어요. 동기화 암호 문구를 정하면 암호화해서 다른 기기로 보낼 수 있어요.';
-
-  @override
-  String get keysLockOn => '서비스 키는 이 기기를 떠나기 전에 동기화 암호 문구로 암호화돼요. Google을 포함해 누구도 읽을 수 없어요.';
+  String get keysLockTitle => '키 보호';
 
   @override
   String get keysLockWaiting => '다른 기기에서 키가 잠긴 채로 도착했어요. 동기화 암호 문구를 입력해 열어 주세요.';
@@ -2728,5 +2722,38 @@ class AppLocalizationsKo extends AppLocalizations {
   String get keysPassphraseNote => '적어 두세요. 잊어버리면 아무도 복구할 수 없고 키를 다시 입력해야 해요.';
 
   @override
-  String get keysShareNeedsPassphrase => '먼저 \'기기 간 키\'에서 동기화 암호 문구를 정하세요.';
+  String get keysShareNeedsPassphrase => '지금은 키가 공유되지 않아요. 키 보호를 확인하세요.';
+
+  @override
+  String get keysLockStandard => '기본';
+
+  @override
+  String get keysLockStandardHint => '키는 다른 설정과 함께 동기화되고 로그인으로 보호돼요. 내 계정만 읽을 수 있어요.';
+
+  @override
+  String get keysLockPassphraseHint => '키는 이 기기를 떠나기 전에 나만 아는 암호 문구로 암호화돼요. Google을 포함해 누구도 읽을 수 없어요.';
+
+  @override
+  String get keysLockDeviceOnly => '이 기기만';
+
+  @override
+  String get keysLockDeviceOnlyHint => '키가 이 기기 밖으로 나가지 않아요. 다른 기기에서는 서비스를 다시 연결해요.';
+
+  @override
+  String get keysTwoStep => '더 안전하게 하려면 Google 계정에서 2단계 인증을 켜세요.';
+
+  @override
+  String get keysBiometric => 'Face ID 또는 지문 요청';
+
+  @override
+  String get keysBiometricHint => '이 기기에서 연결을 열기 전에요.';
+
+  @override
+  String get keysBiometricReason => '서비스 키를 보려면 본인인지 확인하세요';
+
+  @override
+  String get keysBiometricLocked => '연결이 잠겨 있어요';
+
+  @override
+  String get keysBiometricUnlock => '잠금 해제';
 }

@@ -4927,20 +4927,8 @@ abstract class AppLocalizations {
   /// No description provided for @keysLockTitle.
   ///
   /// In en, this message translates to:
-  /// **'Keys on your devices'**
+  /// **'Key protection'**
   String get keysLockTitle;
-
-  /// No description provided for @keysLockOff.
-  ///
-  /// In en, this message translates to:
-  /// **'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.'**
-  String get keysLockOff;
-
-  /// No description provided for @keysLockOn.
-  ///
-  /// In en, this message translates to:
-  /// **'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.'**
-  String get keysLockOn;
 
   /// No description provided for @keysLockWaiting.
   ///
@@ -5017,8 +5005,74 @@ abstract class AppLocalizations {
   /// No description provided for @keysShareNeedsPassphrase.
   ///
   /// In en, this message translates to:
-  /// **'Choose a sync passphrase first, under Keys on your devices.'**
+  /// **'Your keys aren\'t being shared right now. Check Key protection.'**
   String get keysShareNeedsPassphrase;
+
+  /// No description provided for @keysLockStandard.
+  ///
+  /// In en, this message translates to:
+  /// **'Standard'**
+  String get keysLockStandard;
+
+  /// No description provided for @keysLockStandardHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys sync with your other settings, protected by your sign-in. Only your account can read them.'**
+  String get keysLockStandardHint;
+
+  /// No description provided for @keysLockPassphraseHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys are encrypted with a passphrase only you know before they leave this device. Nobody else, not even Google, can read them.'**
+  String get keysLockPassphraseHint;
+
+  /// No description provided for @keysLockDeviceOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This device only'**
+  String get keysLockDeviceOnly;
+
+  /// No description provided for @keysLockDeviceOnlyHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys never leave this device. You connect each service again on your other devices.'**
+  String get keysLockDeviceOnlyHint;
+
+  /// No description provided for @keysTwoStep.
+  ///
+  /// In en, this message translates to:
+  /// **'For extra safety, turn on 2-step verification for your Google account.'**
+  String get keysTwoStep;
+
+  /// No description provided for @keysBiometric.
+  ///
+  /// In en, this message translates to:
+  /// **'Ask for Face ID or fingerprint'**
+  String get keysBiometric;
+
+  /// No description provided for @keysBiometricHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Before opening Connections on this device.'**
+  String get keysBiometricHint;
+
+  /// No description provided for @keysBiometricReason.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm it\'s you to see your service keys'**
+  String get keysBiometricReason;
+
+  /// No description provided for @keysBiometricLocked.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections is locked'**
+  String get keysBiometricLocked;
+
+  /// No description provided for @keysBiometricUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock'**
+  String get keysBiometricUnlock;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

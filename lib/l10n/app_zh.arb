@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "明天早上",
   "weatherUntilAbout": "持续到约 {time}",
   "weatherSunBehindClouds": "太阳在云后",
-  "keysLockTitle": "设备间的密钥",
-  "keysLockOff": "你的服务密钥只保存在这台设备上。设置同步口令后，可以加密发送到你的其他设备。",
-  "keysLockOn": "你的服务密钥在离开这台设备前会用同步口令加密。其他任何人，包括 Google，都无法读取。",
+  "keysLockTitle": "密钥保护",
   "keysLockWaiting": "来自你另一台设备的密钥已到达，但处于锁定状态。输入同步口令即可打开。",
   "keysSetPassphrase": "设置口令",
   "keysChangePassphrase": "更改口令",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "两次输入不一致。",
   "keysPassphraseWrong": "这个口令打不开这些密钥。",
   "keysPassphraseNote": "请记下来：如果忘记，没有人能找回，你需要重新输入密钥。",
-  "keysShareNeedsPassphrase": "请先在“设备间的密钥”中设置同步口令。"
+  "keysShareNeedsPassphrase": "你的密钥目前没有共享。请查看“密钥保护”。",
+  "keysLockStandard": "标准",
+  "keysLockStandardHint": "密钥与其他设置一起同步，并受你的登录保护。只有你的账号能读取。",
+  "keysLockPassphraseHint": "密钥在离开这台设备前，会用只有你知道的口令加密。其他任何人，包括 Google，都无法读取。",
+  "keysLockDeviceOnly": "仅限这台设备",
+  "keysLockDeviceOnlyHint": "密钥永远不会离开这台设备。你需要在其他设备上重新连接各项服务。",
+  "keysTwoStep": "为了更安全，请为你的 Google 账号开启两步验证。",
+  "keysBiometric": "要求面容 ID 或指纹",
+  "keysBiometricHint": "在这台设备上打开“连接”之前。",
+  "keysBiometricReason": "确认是你本人以查看服务密钥",
+  "keysBiometricLocked": "“连接”已锁定",
+  "keysBiometricUnlock": "解锁"
 }

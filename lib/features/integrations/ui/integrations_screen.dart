@@ -12,7 +12,7 @@ import '../data/service_connections_sync.dart';
 import 'tuya_connection_card.dart';
 import '../../sync/key_vault.dart';
 import '../../sync/sync_service.dart';
-import '../../sync/ui/key_vault_card.dart';
+import '../../sync/ui/key_protection_card.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -102,7 +102,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
   /// Shared, or why not: signed out, or no sync passphrase on this device yet.
   String _shareResult(bool shared) => shared
       ? l10n.pushoverShareQueued
-      : ref.read(syncProvider).phase == SyncPhase.on && !KeyVault.unlocked(ref.read(prefsProvider))
+      : ref.read(syncProvider).phase == SyncPhase.on && !KeyVault.sharing(ref.read(prefsProvider))
       ? l10n.keysShareNeedsPassphrase
       : l10n.pushoverShareSignIn;
 
@@ -230,7 +230,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                     if (mounted) _say(_shareResult(shared));
                   },
           ),
-          const KeyVaultCard(),
+          const KeyProtectionCard(),
           Row(
             children: [
               const PushoverIcon(),

@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "صباح الغد",
   "weatherUntilAbout": "حتى نحو {time}",
   "weatherSunBehindClouds": "الشمس خلف الغيوم",
-  "keysLockTitle": "المفاتيح على أجهزتك",
-  "keysLockOff": "تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.",
-  "keysLockOn": "تُشفَّر مفاتيح خدماتك بعبارة المزامنة قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.",
+  "keysLockTitle": "حماية المفاتيح",
   "keysLockWaiting": "وصلت إلى هنا مفاتيح من جهازك الآخر وهي مقفلة. اكتب عبارة المزامنة لفتحها.",
   "keysSetPassphrase": "اختيار العبارة",
   "keysChangePassphrase": "تغيير العبارة",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "العبارتان غير متطابقتين.",
   "keysPassphraseWrong": "هذه العبارة لا تفتح هذه المفاتيح.",
   "keysPassphraseNote": "دوّنها: إن نسيتها فلا أحد يستطيع استعادتها، وستكتب مفاتيحك من جديد.",
-  "keysShareNeedsPassphrase": "اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك."
+  "keysShareNeedsPassphrase": "مفاتيحك لا تُشارَك الآن. راجع حماية المفاتيح.",
+  "keysLockStandard": "عادية",
+  "keysLockStandardHint": "تتزامن المفاتيح مع إعداداتك الأخرى وتحميها عملية تسجيل دخولك. لا يقرؤها إلا حسابك.",
+  "keysLockPassphraseHint": "تُشفَّر المفاتيح بعبارة لا يعرفها سواك قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.",
+  "keysLockDeviceOnly": "هذا الجهاز فقط",
+  "keysLockDeviceOnlyHint": "لا تغادر المفاتيح هذا الجهاز أبدًا. تربط كل خدمة من جديد على أجهزتك الأخرى.",
+  "keysTwoStep": "لمزيد من الأمان، فعّل التحقق بخطوتين في حساب Google.",
+  "keysBiometric": "طلب Face ID أو البصمة",
+  "keysBiometricHint": "قبل فتح الاتصالات على هذا الجهاز.",
+  "keysBiometricReason": "أكّد هويتك لرؤية مفاتيح خدماتك",
+  "keysBiometricLocked": "الاتصالات مقفلة",
+  "keysBiometricUnlock": "فتح"
 }

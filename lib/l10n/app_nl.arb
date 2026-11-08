@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Morgenochtend",
   "weatherUntilAbout": "tot ongeveer {time}",
   "weatherSunBehindClouds": "Zon achter de wolken",
-  "keysLockTitle": "Sleutels op je apparaten",
-  "keysLockOff": "Je dienstsleutels blijven op dit apparaat. Kies een sync-wachtzin om ze versleuteld naar je andere apparaten te sturen.",
-  "keysLockOn": "Je dienstsleutels worden met je sync-wachtzin versleuteld voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.",
+  "keysLockTitle": "Sleutelbeveiliging",
   "keysLockWaiting": "Sleutels van je andere apparaat zijn hier vergrendeld aangekomen. Typ je sync-wachtzin om ze te openen.",
   "keysSetPassphrase": "Wachtzin kiezen",
   "keysChangePassphrase": "Wachtzin wijzigen",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "Ze komen niet overeen.",
   "keysPassphraseWrong": "Die wachtzin opent deze sleutels niet.",
   "keysPassphraseNote": "Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.",
-  "keysShareNeedsPassphrase": "Kies eerst een sync-wachtzin, onder Sleutels op je apparaten."
+  "keysShareNeedsPassphrase": "Je sleutels worden nu niet gedeeld. Kijk bij Sleutelbeveiliging.",
+  "keysLockStandard": "Standaard",
+  "keysLockStandardHint": "Sleutels synchroniseren met je andere instellingen, beschermd door je aanmelding. Alleen je account kan ze lezen.",
+  "keysLockPassphraseHint": "Sleutels worden versleuteld met een wachtzin die alleen jij kent voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.",
+  "keysLockDeviceOnly": "Alleen dit apparaat",
+  "keysLockDeviceOnlyHint": "Sleutels verlaten dit apparaat nooit. Op je andere apparaten koppel je elke dienst opnieuw.",
+  "keysTwoStep": "Zet voor extra veiligheid verificatie in twee stappen aan voor je Google-account.",
+  "keysBiometric": "Vraag om Face ID of vingerafdruk",
+  "keysBiometricHint": "Voordat Koppelingen op dit apparaat opent.",
+  "keysBiometricReason": "Bevestig dat jij het bent om je dienstsleutels te zien",
+  "keysBiometricLocked": "Koppelingen zijn vergrendeld",
+  "keysBiometricUnlock": "Ontgrendelen"
 }

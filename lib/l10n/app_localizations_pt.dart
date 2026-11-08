@@ -2730,15 +2730,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get weatherSunBehindClouds => 'Sol atrás das nuvens';
 
   @override
-  String get keysLockTitle => 'Chaves nos seus aparelhos';
-
-  @override
-  String get keysLockOff =>
-      'Suas chaves de serviço ficam neste aparelho. Escolha uma senha de sincronização para enviá-las, criptografadas, aos seus outros aparelhos.';
-
-  @override
-  String get keysLockOn =>
-      'Suas chaves de serviço são criptografadas com sua senha de sincronização antes de sair deste aparelho. Ninguém mais, nem o Google, consegue lê-las.';
+  String get keysLockTitle => 'Proteção das chaves';
 
   @override
   String get keysLockWaiting =>
@@ -2783,5 +2775,41 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get keysShareNeedsPassphrase =>
-      'Escolha primeiro uma senha de sincronização, em Chaves nos seus aparelhos.';
+      'Suas chaves não estão sendo compartilhadas agora. Veja Proteção das chaves.';
+
+  @override
+  String get keysLockStandard => 'Padrão';
+
+  @override
+  String get keysLockStandardHint =>
+      'As chaves sincronizam com seus outros ajustes, protegidas pelo seu login. Só a sua conta consegue lê-las.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'As chaves são criptografadas com uma senha que só você sabe antes de sair deste aparelho. Ninguém mais, nem o Google, consegue lê-las.';
+
+  @override
+  String get keysLockDeviceOnly => 'Só neste aparelho';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'As chaves nunca saem deste aparelho. Você conecta cada serviço de novo nos outros aparelhos.';
+
+  @override
+  String get keysTwoStep => 'Para mais segurança, ative a verificação em duas etapas na sua conta Google.';
+
+  @override
+  String get keysBiometric => 'Pedir Face ID ou digital';
+
+  @override
+  String get keysBiometricHint => 'Antes de abrir Conexões neste aparelho.';
+
+  @override
+  String get keysBiometricReason => 'Confirme que é você para ver suas chaves de serviço';
+
+  @override
+  String get keysBiometricLocked => 'Conexões está bloqueado';
+
+  @override
+  String get keysBiometricUnlock => 'Desbloquear';
 }

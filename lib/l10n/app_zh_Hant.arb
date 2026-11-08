@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "明天早上",
   "weatherUntilAbout": "持續到約 {time}",
   "weatherSunBehindClouds": "太陽在雲後",
-  "keysLockTitle": "裝置間的金鑰",
-  "keysLockOff": "你的服務金鑰只保存在這台裝置上。設定同步密語後，可以加密傳送到你的其他裝置。",
-  "keysLockOn": "你的服務金鑰在離開這台裝置前會以同步密語加密。其他任何人，包括 Google，都無法讀取。",
+  "keysLockTitle": "金鑰保護",
   "keysLockWaiting": "來自你另一台裝置的金鑰已送達，但處於鎖定狀態。輸入同步密語即可開啟。",
   "keysSetPassphrase": "設定密語",
   "keysChangePassphrase": "變更密語",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "兩次輸入不一致。",
   "keysPassphraseWrong": "這個密語打不開這些金鑰。",
   "keysPassphraseNote": "請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。",
-  "keysShareNeedsPassphrase": "請先在「裝置間的金鑰」中設定同步密語。"
+  "keysShareNeedsPassphrase": "你的金鑰目前沒有共用。請查看「金鑰保護」。",
+  "keysLockStandard": "標準",
+  "keysLockStandardHint": "金鑰會與其他設定一起同步，並受你的登入保護。只有你的帳號能讀取。",
+  "keysLockPassphraseHint": "金鑰在離開這台裝置前，會以只有你知道的密語加密。其他任何人，包括 Google，都無法讀取。",
+  "keysLockDeviceOnly": "僅限這台裝置",
+  "keysLockDeviceOnlyHint": "金鑰永遠不會離開這台裝置。你需要在其他裝置上重新連結各項服務。",
+  "keysTwoStep": "為了更安全，請為你的 Google 帳號開啟兩步驟驗證。",
+  "keysBiometric": "要求 Face ID 或指紋",
+  "keysBiometricHint": "在這台裝置上開啟「連線」之前。",
+  "keysBiometricReason": "確認是你本人以查看服務金鑰",
+  "keysBiometricLocked": "「連線」已鎖定",
+  "keysBiometricUnlock": "解鎖"
 }

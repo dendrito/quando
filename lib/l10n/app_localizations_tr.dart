@@ -2713,15 +2713,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get weatherSunBehindClouds => 'Güneş bulutların ardında';
 
   @override
-  String get keysLockTitle => 'Cihazlarındaki anahtarlar';
-
-  @override
-  String get keysLockOff =>
-      'Hizmet anahtarların bu cihazda kalır. Diğer cihazlarına şifreli göndermek için bir eşitleme parolası seç.';
-
-  @override
-  String get keysLockOn =>
-      'Hizmet anahtarların bu cihazdan çıkmadan önce eşitleme parolanla şifrelenir. Başka kimse, Google bile, okuyamaz.';
+  String get keysLockTitle => 'Anahtar koruması';
 
   @override
   String get keysLockWaiting =>
@@ -2765,6 +2757,41 @@ class AppLocalizationsTr extends AppLocalizations {
       'Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.';
+  String get keysShareNeedsPassphrase => 'Anahtarların şu anda paylaşılmıyor. Anahtar korumasına bak.';
+
+  @override
+  String get keysLockStandard => 'Standart';
+
+  @override
+  String get keysLockStandardHint =>
+      'Anahtarlar diğer ayarlarınla birlikte eşitlenir ve oturum açmanla korunur. Onları yalnızca hesabın okuyabilir.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Anahtarlar bu cihazdan çıkmadan önce yalnızca senin bildiğin bir parolayla şifrelenir. Başka kimse, Google bile, okuyamaz.';
+
+  @override
+  String get keysLockDeviceOnly => 'Yalnızca bu cihaz';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Anahtarlar bu cihazdan hiç çıkmaz. Diğer cihazlarında her hizmeti yeniden bağlarsın.';
+
+  @override
+  String get keysTwoStep => 'Daha fazla güvenlik için Google hesabında 2 adımlı doğrulamayı aç.';
+
+  @override
+  String get keysBiometric => 'Face ID veya parmak izi iste';
+
+  @override
+  String get keysBiometricHint => 'Bu cihazda Bağlantılar açılmadan önce.';
+
+  @override
+  String get keysBiometricReason => 'Hizmet anahtarlarını görmek için sen olduğunu doğrula';
+
+  @override
+  String get keysBiometricLocked => 'Bağlantılar kilitli';
+
+  @override
+  String get keysBiometricUnlock => 'Kilidi aç';
 }

@@ -11,6 +11,7 @@ const syncedKeys = [
   'alarmOptions',
   'rules.enabled',
   'shabbat.preparation',
+  'keys.protection',
   'pushover.credentials',
   'services.connections',
   'home.display',

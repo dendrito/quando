@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Amanhã de manhã",
   "weatherUntilAbout": "até por volta das {time}",
   "weatherSunBehindClouds": "Sol atrás das nuvens",
-  "keysLockTitle": "Chaves nos seus aparelhos",
-  "keysLockOff": "Suas chaves de serviço ficam neste aparelho. Escolha uma senha de sincronização para enviá-las, criptografadas, aos seus outros aparelhos.",
-  "keysLockOn": "Suas chaves de serviço são criptografadas com sua senha de sincronização antes de sair deste aparelho. Ninguém mais, nem o Google, consegue lê-las.",
+  "keysLockTitle": "Proteção das chaves",
   "keysLockWaiting": "Chaves do seu outro aparelho chegaram aqui, trancadas. Digite sua senha de sincronização para abri-las.",
   "keysSetPassphrase": "Escolher senha",
   "keysChangePassphrase": "Trocar senha",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "As duas não são iguais.",
   "keysPassphraseWrong": "Essa senha não abre estas chaves.",
   "keysPassphraseNote": "Anote: se esquecer, ninguém consegue recuperá-la, e você vai digitar suas chaves de novo.",
-  "keysShareNeedsPassphrase": "Escolha primeiro uma senha de sincronização, em Chaves nos seus aparelhos."
+  "keysShareNeedsPassphrase": "Suas chaves não estão sendo compartilhadas agora. Veja Proteção das chaves.",
+  "keysLockStandard": "Padrão",
+  "keysLockStandardHint": "As chaves sincronizam com seus outros ajustes, protegidas pelo seu login. Só a sua conta consegue lê-las.",
+  "keysLockPassphraseHint": "As chaves são criptografadas com uma senha que só você sabe antes de sair deste aparelho. Ninguém mais, nem o Google, consegue lê-las.",
+  "keysLockDeviceOnly": "Só neste aparelho",
+  "keysLockDeviceOnlyHint": "As chaves nunca saem deste aparelho. Você conecta cada serviço de novo nos outros aparelhos.",
+  "keysTwoStep": "Para mais segurança, ative a verificação em duas etapas na sua conta Google.",
+  "keysBiometric": "Pedir Face ID ou digital",
+  "keysBiometricHint": "Antes de abrir Conexões neste aparelho.",
+  "keysBiometricReason": "Confirme que é você para ver suas chaves de serviço",
+  "keysBiometricLocked": "Conexões está bloqueado",
+  "keysBiometricUnlock": "Desbloquear"
 }

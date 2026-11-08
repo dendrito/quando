@@ -2755,15 +2755,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherSunBehindClouds => 'الشمس خلف الغيوم';
 
   @override
-  String get keysLockTitle => 'المفاتيح على أجهزتك';
-
-  @override
-  String get keysLockOff =>
-      'تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.';
-
-  @override
-  String get keysLockOn =>
-      'تُشفَّر مفاتيح خدماتك بعبارة المزامنة قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.';
+  String get keysLockTitle => 'حماية المفاتيح';
 
   @override
   String get keysLockWaiting => 'وصلت إلى هنا مفاتيح من جهازك الآخر وهي مقفلة. اكتب عبارة المزامنة لفتحها.';
@@ -2805,5 +2797,41 @@ class AppLocalizationsAr extends AppLocalizations {
   String get keysPassphraseNote => 'دوّنها: إن نسيتها فلا أحد يستطيع استعادتها، وستكتب مفاتيحك من جديد.';
 
   @override
-  String get keysShareNeedsPassphrase => 'اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك.';
+  String get keysShareNeedsPassphrase => 'مفاتيحك لا تُشارَك الآن. راجع حماية المفاتيح.';
+
+  @override
+  String get keysLockStandard => 'عادية';
+
+  @override
+  String get keysLockStandardHint =>
+      'تتزامن المفاتيح مع إعداداتك الأخرى وتحميها عملية تسجيل دخولك. لا يقرؤها إلا حسابك.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'تُشفَّر المفاتيح بعبارة لا يعرفها سواك قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.';
+
+  @override
+  String get keysLockDeviceOnly => 'هذا الجهاز فقط';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'لا تغادر المفاتيح هذا الجهاز أبدًا. تربط كل خدمة من جديد على أجهزتك الأخرى.';
+
+  @override
+  String get keysTwoStep => 'لمزيد من الأمان، فعّل التحقق بخطوتين في حساب Google.';
+
+  @override
+  String get keysBiometric => 'طلب Face ID أو البصمة';
+
+  @override
+  String get keysBiometricHint => 'قبل فتح الاتصالات على هذا الجهاز.';
+
+  @override
+  String get keysBiometricReason => 'أكّد هويتك لرؤية مفاتيح خدماتك';
+
+  @override
+  String get keysBiometricLocked => 'الاتصالات مقفلة';
+
+  @override
+  String get keysBiometricUnlock => 'فتح';
 }

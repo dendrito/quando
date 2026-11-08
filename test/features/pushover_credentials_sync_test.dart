@@ -41,6 +41,7 @@ void main() {
     'vault.key': base64Encode(List.filled(32, 7)),
     'vault.salt': base64Encode(List.filled(16, 3)),
     'vault.owner': uid,
+    'keys.protection': 'passphrase',
   };
 
   Future<SharedPreferences> store(Map<String, Object> values) async {
@@ -75,7 +76,7 @@ void main() {
     await PushoverCredentialsSync.activate(a, 'owner');
     final sender = SyncEngine(a, remote, device: 'ipad');
     await sender.apply(remote.items);
-    expect(remote.items.keys, [PushoverCredentialsSync.key]);
+    expect(remote.items.keys, unorderedEquals([PushoverCredentialsSync.key, KeyVault.levelPref]));
 
     const receiverSettings = IntegrationSettings(
       pushoverSound: 'siren',

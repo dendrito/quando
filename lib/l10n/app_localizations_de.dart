@@ -2726,15 +2726,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get weatherSunBehindClouds => 'Sonne hinter Wolken';
 
   @override
-  String get keysLockTitle => 'Schlüssel auf deinen Geräten';
-
-  @override
-  String get keysLockOff =>
-      'Deine Dienst-Schlüssel bleiben auf diesem Gerät. Wähle eine Sync-Passphrase, um sie verschlüsselt an deine anderen Geräte zu senden.';
-
-  @override
-  String get keysLockOn =>
-      'Deine Dienst-Schlüssel werden mit deiner Sync-Passphrase verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.';
+  String get keysLockTitle => 'Schlüsselschutz';
 
   @override
   String get keysLockWaiting =>
@@ -2779,5 +2771,42 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get keysShareNeedsPassphrase =>
-      'Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten.';
+      'Deine Schlüssel werden gerade nicht geteilt. Sieh unter Schlüsselschutz nach.';
+
+  @override
+  String get keysLockStandard => 'Standard';
+
+  @override
+  String get keysLockStandardHint =>
+      'Schlüssel werden mit deinen anderen Einstellungen synchronisiert, geschützt durch deine Anmeldung. Nur dein Konto kann sie lesen.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Schlüssel werden mit einer Passphrase, die nur du kennst, verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.';
+
+  @override
+  String get keysLockDeviceOnly => 'Nur dieses Gerät';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Schlüssel verlassen dieses Gerät nie. Auf deinen anderen Geräten verbindest du jeden Dienst neu.';
+
+  @override
+  String get keysTwoStep =>
+      'Für mehr Sicherheit aktiviere die Bestätigung in zwei Schritten für dein Google-Konto.';
+
+  @override
+  String get keysBiometric => 'Face ID oder Fingerabdruck verlangen';
+
+  @override
+  String get keysBiometricHint => 'Bevor Verbindungen auf diesem Gerät geöffnet wird.';
+
+  @override
+  String get keysBiometricReason => 'Bestätige, dass du es bist, um deine Dienst-Schlüssel zu sehen';
+
+  @override
+  String get keysBiometricLocked => 'Verbindungen ist gesperrt';
+
+  @override
+  String get keysBiometricUnlock => 'Entsperren';
 }

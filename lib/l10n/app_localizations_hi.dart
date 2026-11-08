@@ -2712,15 +2712,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get weatherSunBehindClouds => 'बादलों के पीछे सूरज';
 
   @override
-  String get keysLockTitle => 'आपके डिवाइसों पर कुंजियाँ';
-
-  @override
-  String get keysLockOff =>
-      'आपकी सेवा कुंजियाँ इसी डिवाइस पर रहती हैं। उन्हें एन्क्रिप्ट करके दूसरे डिवाइसों पर भेजने के लिए एक सिंक पासफ़्रेज़ चुनें।';
-
-  @override
-  String get keysLockOn =>
-      'आपकी सेवा कुंजियाँ इस डिवाइस से निकलने से पहले सिंक पासफ़्रेज़ से एन्क्रिप्ट होती हैं। कोई और, Google भी, उन्हें नहीं पढ़ सकता।';
+  String get keysLockTitle => 'कुंजी सुरक्षा';
 
   @override
   String get keysLockWaiting =>
@@ -2764,5 +2756,41 @@ class AppLocalizationsHi extends AppLocalizations {
       'इसे लिख लें: भूलने पर कोई इसे वापस नहीं ला सकता, और आपको कुंजियाँ फिर से डालनी होंगी।';
 
   @override
-  String get keysShareNeedsPassphrase => 'पहले \'आपके डिवाइसों पर कुंजियाँ\' में सिंक पासफ़्रेज़ चुनें।';
+  String get keysShareNeedsPassphrase => 'आपकी कुंजियाँ अभी साझा नहीं हो रहीं। कुंजी सुरक्षा देखें।';
+
+  @override
+  String get keysLockStandard => 'सामान्य';
+
+  @override
+  String get keysLockStandardHint =>
+      'कुंजियाँ आपकी बाकी सेटिंग्स के साथ सिंक होती हैं और आपके साइन-इन से सुरक्षित रहती हैं। केवल आपका खाता उन्हें पढ़ सकता है।';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'कुंजियाँ इस डिवाइस से निकलने से पहले ऐसे पासफ़्रेज़ से एन्क्रिप्ट होती हैं जिसे केवल आप जानते हैं। कोई और, Google भी, उन्हें नहीं पढ़ सकता।';
+
+  @override
+  String get keysLockDeviceOnly => 'केवल यह डिवाइस';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'कुंजियाँ इस डिवाइस से कभी बाहर नहीं जातीं। दूसरे डिवाइसों पर हर सेवा फिर से जोड़नी होगी।';
+
+  @override
+  String get keysTwoStep => 'ज़्यादा सुरक्षा के लिए अपने Google खाते में 2-चरणीय सत्यापन चालू करें।';
+
+  @override
+  String get keysBiometric => 'Face ID या फ़िंगरप्रिंट माँगें';
+
+  @override
+  String get keysBiometricHint => 'इस डिवाइस पर कनेक्शन खोलने से पहले।';
+
+  @override
+  String get keysBiometricReason => 'अपनी सेवा कुंजियाँ देखने के लिए पुष्टि करें कि यह आप हैं';
+
+  @override
+  String get keysBiometricLocked => 'कनेक्शन लॉक है';
+
+  @override
+  String get keysBiometricUnlock => 'खोलें';
 }

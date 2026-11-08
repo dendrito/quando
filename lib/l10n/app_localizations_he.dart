@@ -2710,15 +2710,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherSunBehindClouds => 'השמש מאחורי העננים';
 
   @override
-  String get keysLockTitle => 'מפתחות במכשירים שלך';
-
-  @override
-  String get keysLockOff =>
-      'מפתחות השירותים שלך נשארים במכשיר הזה. בחר סיסמת סנכרון כדי לשלוח אותם, מוצפנים, למכשירים האחרים שלך.';
-
-  @override
-  String get keysLockOn =>
-      'מפתחות השירותים שלך מוצפנים בסיסמת הסנכרון לפני שהם יוצאים מהמכשיר. אף אחד אחר, אפילו לא Google, לא יכול לקרוא אותם.';
+  String get keysLockTitle => 'הגנה על מפתחות';
 
   @override
   String get keysLockWaiting =>
@@ -2761,5 +2753,40 @@ class AppLocalizationsHe extends AppLocalizations {
   String get keysPassphraseNote => 'רשום אותה: אם תשכח, אף אחד לא יוכל לשחזר אותה, ותקליד את המפתחות שוב.';
 
   @override
-  String get keysShareNeedsPassphrase => 'קודם בחר סיסמת סנכרון, תחת מפתחות במכשירים שלך.';
+  String get keysShareNeedsPassphrase => 'המפתחות שלך לא משותפים כרגע. בדוק את ההגנה על מפתחות.';
+
+  @override
+  String get keysLockStandard => 'רגיל';
+
+  @override
+  String get keysLockStandardHint =>
+      'המפתחות מסתנכרנים עם שאר ההגדרות ומוגנים בכניסה שלך. רק החשבון שלך יכול לקרוא אותם.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'המפתחות מוצפנים בסיסמה שרק אתה יודע לפני שהם יוצאים מהמכשיר. אף אחד אחר, אפילו לא Google, לא יכול לקרוא אותם.';
+
+  @override
+  String get keysLockDeviceOnly => 'רק במכשיר הזה';
+
+  @override
+  String get keysLockDeviceOnlyHint => 'המפתחות לא יוצאים מהמכשיר הזה. במכשירים האחרים מחברים כל שירות מחדש.';
+
+  @override
+  String get keysTwoStep => 'לבטיחות נוספת, הפעל אימות דו-שלבי בחשבון Google שלך.';
+
+  @override
+  String get keysBiometric => 'לבקש Face ID או טביעת אצבע';
+
+  @override
+  String get keysBiometricHint => 'לפני פתיחת החיבורים במכשיר הזה.';
+
+  @override
+  String get keysBiometricReason => 'אשר שזה אתה כדי לראות את מפתחות השירותים';
+
+  @override
+  String get keysBiometricLocked => 'החיבורים נעולים';
+
+  @override
+  String get keysBiometricUnlock => 'פתיחה';
 }
