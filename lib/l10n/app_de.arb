@@ -798,5 +798,21 @@
   "weatherTonight": "Heute Abend",
   "weatherTomorrowMorning": "Morgen früh",
   "weatherUntilAbout": "bis etwa {time}",
-  "weatherSunBehindClouds": "Sonne hinter Wolken"
+  "weatherSunBehindClouds": "Sonne hinter Wolken",
+  "keysLockTitle": "Schlüssel auf deinen Geräten",
+  "keysLockOff": "Deine Dienst-Schlüssel bleiben auf diesem Gerät. Wähle eine Sync-Passphrase, um sie verschlüsselt an deine anderen Geräte zu senden.",
+  "keysLockOn": "Deine Dienst-Schlüssel werden mit deiner Sync-Passphrase verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.",
+  "keysLockWaiting": "Schlüssel von deinem anderen Gerät sind hier angekommen, gesperrt. Gib deine Sync-Passphrase ein, um sie zu öffnen.",
+  "keysSetPassphrase": "Passphrase wählen",
+  "keysChangePassphrase": "Passphrase ändern",
+  "keysUnlock": "Schlüssel entsperren",
+  "keysStartOver": "Vergessen? Neu anfangen",
+  "keysStartOverHint": "Neu anfangen sendet die Schlüssel dieses Geräts mit einer neuen Passphrase. Deine anderen Geräte fragen nach der neuen.",
+  "keysPassphrase": "Sync-Passphrase",
+  "keysPassphraseAgain": "Noch einmal eingeben",
+  "keysPassphraseShort": "Mindestens {count} Zeichen.",
+  "keysPassphraseMismatch": "Die beiden stimmen nicht überein.",
+  "keysPassphraseWrong": "Diese Passphrase öffnet diese Schlüssel nicht.",
+  "keysPassphraseNote": "Schreib sie auf: Wenn du sie vergisst, kann sie niemand wiederherstellen, und du gibst deine Schlüssel neu ein.",
+  "keysShareNeedsPassphrase": "Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten."
 }

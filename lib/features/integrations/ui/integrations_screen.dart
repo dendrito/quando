@@ -10,7 +10,9 @@ import 'pushover_icon.dart';
 import '../data/pushover_credentials_sync.dart';
 import '../data/service_connections_sync.dart';
 import 'tuya_connection_card.dart';
+import '../../sync/key_vault.dart';
 import '../../sync/sync_service.dart';
+import '../../sync/ui/key_vault_card.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -96,6 +98,13 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
   }
 
   void _say(String msg) => ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
+
+  /// Shared, or why not: signed out, or no sync passphrase on this device yet.
+  String _shareResult(bool shared) => shared
+      ? l10n.pushoverShareQueued
+      : ref.read(syncProvider).phase == SyncPhase.on && !KeyVault.unlocked(ref.read(prefsProvider))
+      ? l10n.keysShareNeedsPassphrase
+      : l10n.pushoverShareSignIn;
 
   Future<void> _open(String url) => launchUrl(Uri.parse(url), mode: LaunchMode.externalApplication);
 
@@ -218,9 +227,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                     final p = ref.read(prefsProvider);
                     await PushoverCredentialsSync.publish(p, ref.read(integrationsProvider));
                     final shared = await ServiceConnectionsSync.publish(p);
-                    if (mounted) _say(shared ? l10n.pushoverShareQueued : l10n.pushoverShareSignIn);
+                    if (mounted) _say(_shareResult(shared));
                   },
           ),
+          const KeyVaultCard(),
           Row(
             children: [
               const PushoverIcon(),
@@ -241,7 +251,7 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
               onPressed: account.phase == SyncPhase.on && s.pushoverReady
                   ? () async {
                       final shared = await PushoverCredentialsSync.publish(ref.read(prefsProvider), s);
-                      if (mounted) _say(shared ? l10n.pushoverShareQueued : l10n.pushoverShareSignIn);
+                      if (mounted) _say(_shareResult(shared));
                     }
                   : null,
               icon: const Icon(Icons.devices),

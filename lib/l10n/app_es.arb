@@ -798,5 +798,21 @@
   "weatherTonight": "Esta noche",
   "weatherTomorrowMorning": "Mañana por la mañana",
   "weatherUntilAbout": "hasta cerca de las {time}",
-  "weatherSunBehindClouds": "Sol tras las nubes"
+  "weatherSunBehindClouds": "Sol tras las nubes",
+  "keysLockTitle": "Claves en tus dispositivos",
+  "keysLockOff": "Tus claves de servicio se quedan en este dispositivo. Elige una frase de sincronización para enviarlas, cifradas, a tus otros dispositivos.",
+  "keysLockOn": "Tus claves de servicio se cifran con tu frase de sincronización antes de salir de este dispositivo. Nadie más, ni siquiera Google, puede leerlas.",
+  "keysLockWaiting": "Llegaron aquí claves de tu otro dispositivo, bloqueadas. Escribe tu frase de sincronización para abrirlas.",
+  "keysSetPassphrase": "Elegir frase",
+  "keysChangePassphrase": "Cambiar frase",
+  "keysUnlock": "Desbloquear claves",
+  "keysStartOver": "¿La olvidaste? Empezar de nuevo",
+  "keysStartOverHint": "Empezar de nuevo envía las claves de este dispositivo con una frase nueva. Tus otros dispositivos pedirán la nueva.",
+  "keysPassphrase": "Frase de sincronización",
+  "keysPassphraseAgain": "Escríbela otra vez",
+  "keysPassphraseShort": "Usa al menos {count} caracteres.",
+  "keysPassphraseMismatch": "No coinciden.",
+  "keysPassphraseWrong": "Esa frase no abre estas claves.",
+  "keysPassphraseNote": "Anótala: si la olvidas, nadie puede recuperarla y tendrás que escribir tus claves otra vez.",
+  "keysShareNeedsPassphrase": "Primero elige una frase de sincronización, en Claves en tus dispositivos."
 }

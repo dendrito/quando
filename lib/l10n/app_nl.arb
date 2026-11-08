@@ -798,5 +798,21 @@
   "weatherTonight": "Vanavond",
   "weatherTomorrowMorning": "Morgenochtend",
   "weatherUntilAbout": "tot ongeveer {time}",
-  "weatherSunBehindClouds": "Zon achter de wolken"
+  "weatherSunBehindClouds": "Zon achter de wolken",
+  "keysLockTitle": "Sleutels op je apparaten",
+  "keysLockOff": "Je dienstsleutels blijven op dit apparaat. Kies een sync-wachtzin om ze versleuteld naar je andere apparaten te sturen.",
+  "keysLockOn": "Je dienstsleutels worden met je sync-wachtzin versleuteld voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.",
+  "keysLockWaiting": "Sleutels van je andere apparaat zijn hier vergrendeld aangekomen. Typ je sync-wachtzin om ze te openen.",
+  "keysSetPassphrase": "Wachtzin kiezen",
+  "keysChangePassphrase": "Wachtzin wijzigen",
+  "keysUnlock": "Sleutels ontgrendelen",
+  "keysStartOver": "Vergeten? Opnieuw beginnen",
+  "keysStartOverHint": "Opnieuw beginnen stuurt de sleutels van dit apparaat met een nieuwe wachtzin. Je andere apparaten vragen om de nieuwe.",
+  "keysPassphrase": "Sync-wachtzin",
+  "keysPassphraseAgain": "Typ hem nog eens",
+  "keysPassphraseShort": "Gebruik minstens {count} tekens.",
+  "keysPassphraseMismatch": "Ze komen niet overeen.",
+  "keysPassphraseWrong": "Die wachtzin opent deze sleutels niet.",
+  "keysPassphraseNote": "Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.",
+  "keysShareNeedsPassphrase": "Kies eerst een sync-wachtzin, onder Sleutels op je apparaten."
 }

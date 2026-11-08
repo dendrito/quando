@@ -798,5 +798,21 @@
   "weatherTonight": "Dziś wieczorem",
   "weatherTomorrowMorning": "Jutro rano",
   "weatherUntilAbout": "do około {time}",
-  "weatherSunBehindClouds": "Słońce za chmurami"
+  "weatherSunBehindClouds": "Słońce za chmurami",
+  "keysLockTitle": "Klucze na Twoich urządzeniach",
+  "keysLockOff": "Twoje klucze usług zostają na tym urządzeniu. Wybierz hasło synchronizacji, aby wysłać je zaszyfrowane na inne urządzenia.",
+  "keysLockOn": "Twoje klucze usług są szyfrowane hasłem synchronizacji, zanim opuszczą to urządzenie. Nikt inny, nawet Google, nie może ich odczytać.",
+  "keysLockWaiting": "Dotarły tu zablokowane klucze z innego urządzenia. Wpisz hasło synchronizacji, aby je otworzyć.",
+  "keysSetPassphrase": "Wybierz hasło",
+  "keysChangePassphrase": "Zmień hasło",
+  "keysUnlock": "Odblokuj klucze",
+  "keysStartOver": "Nie pamiętasz? Zacznij od nowa",
+  "keysStartOverHint": "Zaczęcie od nowa wysyła klucze z tego urządzenia z nowym hasłem. Inne urządzenia poproszą o nowe.",
+  "keysPassphrase": "Hasło synchronizacji",
+  "keysPassphraseAgain": "Wpisz ponownie",
+  "keysPassphraseShort": "Użyj co najmniej {count} znaków.",
+  "keysPassphraseMismatch": "Hasła się nie zgadzają.",
+  "keysPassphraseWrong": "To hasło nie otwiera tych kluczy.",
+  "keysPassphraseNote": "Zapisz je: jeśli je zapomnisz, nikt go nie odzyska i wpiszesz klucze ponownie.",
+  "keysShareNeedsPassphrase": "Najpierw wybierz hasło synchronizacji w sekcji Klucze na Twoich urządzeniach."
 }

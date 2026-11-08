@@ -798,5 +798,21 @@
   "weatherTonight": "今夜",
   "weatherTomorrowMorning": "明日の朝",
   "weatherUntilAbout": "{time}ごろまで",
-  "weatherSunBehindClouds": "太陽は雲の向こう"
+  "weatherSunBehindClouds": "太陽は雲の向こう",
+  "keysLockTitle": "デバイス間のキー",
+  "keysLockOff": "サービスのキーはこのデバイスに残ります。同期パスフレーズを選ぶと、暗号化してほかのデバイスに送れます。",
+  "keysLockOn": "サービスのキーは、このデバイスを離れる前に同期パスフレーズで暗号化されます。Google を含め、ほかの誰も読めません。",
+  "keysLockWaiting": "ほかのデバイスからキーが届きましたが、ロックされています。同期パスフレーズを入力して開いてください。",
+  "keysSetPassphrase": "パスフレーズを選ぶ",
+  "keysChangePassphrase": "パスフレーズを変更",
+  "keysUnlock": "キーを開く",
+  "keysStartOver": "忘れた場合はやり直す",
+  "keysStartOverHint": "やり直すと、このデバイスのキーを新しいパスフレーズで送ります。ほかのデバイスでは新しいパスフレーズを求められます。",
+  "keysPassphrase": "同期パスフレーズ",
+  "keysPassphraseAgain": "もう一度入力",
+  "keysPassphraseShort": "{count} 文字以上にしてください。",
+  "keysPassphraseMismatch": "2つが一致しません。",
+  "keysPassphraseWrong": "このパスフレーズではキーを開けません。",
+  "keysPassphraseNote": "書き留めてください。忘れると誰にも復元できず、キーを入力し直すことになります。",
+  "keysShareNeedsPassphrase": "先に「デバイス間のキー」で同期パスフレーズを選んでください。"
 }

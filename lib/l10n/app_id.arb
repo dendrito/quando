@@ -798,5 +798,21 @@
   "weatherTonight": "Malam ini",
   "weatherTomorrowMorning": "Besok pagi",
   "weatherUntilAbout": "sampai sekitar {time}",
-  "weatherSunBehindClouds": "Matahari di balik awan"
+  "weatherSunBehindClouds": "Matahari di balik awan",
+  "keysLockTitle": "Kunci di perangkat Anda",
+  "keysLockOff": "Kunci layanan Anda tetap di perangkat ini. Pilih frasa sinkronisasi untuk mengirimnya, terenkripsi, ke perangkat Anda yang lain.",
+  "keysLockOn": "Kunci layanan Anda dienkripsi dengan frasa sinkronisasi sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.",
+  "keysLockWaiting": "Kunci dari perangkat Anda yang lain sudah tiba di sini, terkunci. Ketik frasa sinkronisasi untuk membukanya.",
+  "keysSetPassphrase": "Pilih frasa",
+  "keysChangePassphrase": "Ubah frasa",
+  "keysUnlock": "Buka kunci",
+  "keysStartOver": "Lupa? Mulai ulang",
+  "keysStartOverHint": "Mulai ulang mengirim kunci perangkat ini dengan frasa baru. Perangkat lain akan meminta frasa baru.",
+  "keysPassphrase": "Frasa sinkronisasi",
+  "keysPassphraseAgain": "Ketik sekali lagi",
+  "keysPassphraseShort": "Gunakan minimal {count} karakter.",
+  "keysPassphraseMismatch": "Keduanya tidak sama.",
+  "keysPassphraseWrong": "Frasa itu tidak membuka kunci ini.",
+  "keysPassphraseNote": "Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.",
+  "keysShareNeedsPassphrase": "Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda."
 }
