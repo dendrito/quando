@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Sáng mai",
   "weatherUntilAbout": "đến khoảng {time}",
   "weatherSunBehindClouds": "Mặt trời sau mây",
-  "keysLockTitle": "Khóa trên các thiết bị của bạn",
-  "keysLockOff": "Khóa dịch vụ của bạn ở lại trên thiết bị này. Chọn cụm mật khẩu đồng bộ để gửi chúng, đã mã hóa, sang các thiết bị khác.",
-  "keysLockOn": "Khóa dịch vụ của bạn được mã hóa bằng cụm mật khẩu đồng bộ trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.",
+  "keysLockTitle": "Bảo vệ khóa",
   "keysLockWaiting": "Khóa từ thiết bị khác của bạn đã đến đây và đang bị khóa. Nhập cụm mật khẩu đồng bộ để mở.",
   "keysSetPassphrase": "Chọn cụm mật khẩu",
   "keysChangePassphrase": "Đổi cụm mật khẩu",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "Hai lần nhập không khớp.",
   "keysPassphraseWrong": "Cụm mật khẩu này không mở được các khóa này.",
   "keysPassphraseNote": "Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.",
-  "keysShareNeedsPassphrase": "Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn."
+  "keysShareNeedsPassphrase": "Khóa của bạn hiện không được chia sẻ. Hãy xem Bảo vệ khóa.",
+  "keysLockStandard": "Tiêu chuẩn",
+  "keysLockStandardHint": "Khóa được đồng bộ cùng các cài đặt khác và được bảo vệ bằng đăng nhập của bạn. Chỉ tài khoản của bạn đọc được.",
+  "keysLockPassphraseHint": "Khóa được mã hóa bằng cụm mật khẩu chỉ bạn biết trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.",
+  "keysLockDeviceOnly": "Chỉ thiết bị này",
+  "keysLockDeviceOnlyHint": "Khóa không bao giờ rời thiết bị này. Bạn kết nối lại từng dịch vụ trên các thiết bị khác.",
+  "keysTwoStep": "Để an toàn hơn, hãy bật xác minh 2 bước cho tài khoản Google.",
+  "keysBiometric": "Yêu cầu Face ID hoặc vân tay",
+  "keysBiometricHint": "Trước khi mở Kết nối trên thiết bị này.",
+  "keysBiometricReason": "Xác nhận là bạn để xem các khóa dịch vụ",
+  "keysBiometricLocked": "Kết nối đang bị khóa",
+  "keysBiometricUnlock": "Mở khóa"
 }

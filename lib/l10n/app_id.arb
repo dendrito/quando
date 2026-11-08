@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Besok pagi",
   "weatherUntilAbout": "sampai sekitar {time}",
   "weatherSunBehindClouds": "Matahari di balik awan",
-  "keysLockTitle": "Kunci di perangkat Anda",
-  "keysLockOff": "Kunci layanan Anda tetap di perangkat ini. Pilih frasa sinkronisasi untuk mengirimnya, terenkripsi, ke perangkat Anda yang lain.",
-  "keysLockOn": "Kunci layanan Anda dienkripsi dengan frasa sinkronisasi sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.",
+  "keysLockTitle": "Perlindungan kunci",
   "keysLockWaiting": "Kunci dari perangkat Anda yang lain sudah tiba di sini, terkunci. Ketik frasa sinkronisasi untuk membukanya.",
   "keysSetPassphrase": "Pilih frasa",
   "keysChangePassphrase": "Ubah frasa",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "Keduanya tidak sama.",
   "keysPassphraseWrong": "Frasa itu tidak membuka kunci ini.",
   "keysPassphraseNote": "Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.",
-  "keysShareNeedsPassphrase": "Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda."
+  "keysShareNeedsPassphrase": "Kunci Anda sedang tidak dibagikan. Periksa Perlindungan kunci.",
+  "keysLockStandard": "Standar",
+  "keysLockStandardHint": "Kunci disinkronkan bersama pengaturan lain dan dilindungi oleh login Anda. Hanya akun Anda yang bisa membacanya.",
+  "keysLockPassphraseHint": "Kunci dienkripsi dengan frasa yang hanya Anda ketahui sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.",
+  "keysLockDeviceOnly": "Hanya perangkat ini",
+  "keysLockDeviceOnlyHint": "Kunci tidak pernah meninggalkan perangkat ini. Anda menghubungkan setiap layanan lagi di perangkat lain.",
+  "keysTwoStep": "Untuk keamanan ekstra, aktifkan verifikasi 2 langkah di akun Google Anda.",
+  "keysBiometric": "Minta Face ID atau sidik jari",
+  "keysBiometricHint": "Sebelum membuka Koneksi di perangkat ini.",
+  "keysBiometricReason": "Pastikan ini Anda untuk melihat kunci layanan",
+  "keysBiometricLocked": "Koneksi terkunci",
+  "keysBiometricUnlock": "Buka"
 }

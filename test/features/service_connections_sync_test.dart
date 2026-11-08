@@ -31,6 +31,7 @@ void main() {
     'vault.key': base64Encode(List.filled(32, 7)),
     'vault.salt': base64Encode(List.filled(16, 3)),
     'vault.owner': uid,
+    'keys.protection': 'passphrase',
   };
 
   Future<SharedPreferences> device(Map<String, Object> values) async {

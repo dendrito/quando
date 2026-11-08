@@ -2680,13 +2680,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get weatherSunBehindClouds => '太陽は雲の向こう';
 
   @override
-  String get keysLockTitle => 'デバイス間のキー';
-
-  @override
-  String get keysLockOff => 'サービスのキーはこのデバイスに残ります。同期パスフレーズを選ぶと、暗号化してほかのデバイスに送れます。';
-
-  @override
-  String get keysLockOn => 'サービスのキーは、このデバイスを離れる前に同期パスフレーズで暗号化されます。Google を含め、ほかの誰も読めません。';
+  String get keysLockTitle => 'キーの保護';
 
   @override
   String get keysLockWaiting => 'ほかのデバイスからキーが届きましたが、ロックされています。同期パスフレーズを入力して開いてください。';
@@ -2727,5 +2721,38 @@ class AppLocalizationsJa extends AppLocalizations {
   String get keysPassphraseNote => '書き留めてください。忘れると誰にも復元できず、キーを入力し直すことになります。';
 
   @override
-  String get keysShareNeedsPassphrase => '先に「デバイス間のキー」で同期パスフレーズを選んでください。';
+  String get keysShareNeedsPassphrase => '現在キーは共有されていません。「キーの保護」を確認してください。';
+
+  @override
+  String get keysLockStandard => '標準';
+
+  @override
+  String get keysLockStandardHint => 'キーはほかの設定と一緒に同期され、サインインで保護されます。読めるのはあなたのアカウントだけです。';
+
+  @override
+  String get keysLockPassphraseHint => 'キーは、このデバイスを離れる前に、あなただけが知るパスフレーズで暗号化されます。Google を含め、ほかの誰も読めません。';
+
+  @override
+  String get keysLockDeviceOnly => 'このデバイスのみ';
+
+  @override
+  String get keysLockDeviceOnlyHint => 'キーはこのデバイスから出ません。ほかのデバイスでは各サービスを接続し直します。';
+
+  @override
+  String get keysTwoStep => 'さらに安全にするには、Google アカウントで 2 段階認証プロセスをオンにしてください。';
+
+  @override
+  String get keysBiometric => 'Face ID または指紋を要求';
+
+  @override
+  String get keysBiometricHint => 'このデバイスで「連携」を開く前に。';
+
+  @override
+  String get keysBiometricReason => 'サービスのキーを表示するには本人確認をしてください';
+
+  @override
+  String get keysBiometricLocked => '「連携」はロックされています';
+
+  @override
+  String get keysBiometricUnlock => 'ロック解除';
 }

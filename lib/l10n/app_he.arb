@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "מחר בבוקר",
   "weatherUntilAbout": "עד בערך {time}",
   "weatherSunBehindClouds": "השמש מאחורי העננים",
-  "keysLockTitle": "מפתחות במכשירים שלך",
-  "keysLockOff": "מפתחות השירותים שלך נשארים במכשיר הזה. בחר סיסמת סנכרון כדי לשלוח אותם, מוצפנים, למכשירים האחרים שלך.",
-  "keysLockOn": "מפתחות השירותים שלך מוצפנים בסיסמת הסנכרון לפני שהם יוצאים מהמכשיר. אף אחד אחר, אפילו לא Google, לא יכול לקרוא אותם.",
+  "keysLockTitle": "הגנה על מפתחות",
   "keysLockWaiting": "הגיעו לכאן מפתחות מהמכשיר האחר שלך, נעולים. הקלד את סיסמת הסנכרון כדי לפתוח אותם.",
   "keysSetPassphrase": "בחירת סיסמה",
   "keysChangePassphrase": "החלפת סיסמה",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "השתיים לא תואמות.",
   "keysPassphraseWrong": "הסיסמה הזו לא פותחת את המפתחות האלה.",
   "keysPassphraseNote": "רשום אותה: אם תשכח, אף אחד לא יוכל לשחזר אותה, ותקליד את המפתחות שוב.",
-  "keysShareNeedsPassphrase": "קודם בחר סיסמת סנכרון, תחת מפתחות במכשירים שלך."
+  "keysShareNeedsPassphrase": "המפתחות שלך לא משותפים כרגע. בדוק את ההגנה על מפתחות.",
+  "keysLockStandard": "רגיל",
+  "keysLockStandardHint": "המפתחות מסתנכרנים עם שאר ההגדרות ומוגנים בכניסה שלך. רק החשבון שלך יכול לקרוא אותם.",
+  "keysLockPassphraseHint": "המפתחות מוצפנים בסיסמה שרק אתה יודע לפני שהם יוצאים מהמכשיר. אף אחד אחר, אפילו לא Google, לא יכול לקרוא אותם.",
+  "keysLockDeviceOnly": "רק במכשיר הזה",
+  "keysLockDeviceOnlyHint": "המפתחות לא יוצאים מהמכשיר הזה. במכשירים האחרים מחברים כל שירות מחדש.",
+  "keysTwoStep": "לבטיחות נוספת, הפעל אימות דו-שלבי בחשבון Google שלך.",
+  "keysBiometric": "לבקש Face ID או טביעת אצבע",
+  "keysBiometricHint": "לפני פתיחת החיבורים במכשיר הזה.",
+  "keysBiometricReason": "אשר שזה אתה כדי לראות את מפתחות השירותים",
+  "keysBiometricLocked": "החיבורים נעולים",
+  "keysBiometricUnlock": "פתיחה"
 }

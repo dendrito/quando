@@ -5,16 +5,31 @@ import 'dart:math';
 import 'package:cryptography/cryptography.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-/// Locks the service keys (Pushover, Spotify, Tuya, webhooks) before they
-/// travel to your other devices.
+/// How the service keys (Pushover, Spotify, Tuya, webhooks) reach your
+/// other devices. The choice follows the account to every device.
+enum KeyProtection {
+  /// Keys sync like your other settings, protected by your sign-in and by
+  /// database rules that let only you read your account.
+  standard,
+
+  /// Keys are locked with a sync passphrase before they leave a device.
+  passphrase,
+
+  /// Keys never leave the device they were typed into.
+  deviceOnly,
+}
+
+/// Locks the service keys before they travel, when you choose a passphrase.
 ///
 /// You choose a sync passphrase once. Each device turns it into a key and
 /// keeps only that key; the passphrase itself is never stored or sent. The
 /// shared copy in your account holds just a locked box that only the key
 /// opens, so whoever reads the account (Firebase, a leaked backup) sees
-/// noise. Without a passphrase, keys simply stay on the device they were
-/// typed into.
+/// noise.
 class KeyVault {
+  /// Synced: which [KeyProtection] the account uses.
+  static const levelPref = 'keys.protection';
+
   static const _keyPref = 'vault.key';
   static const _saltPref = 'vault.salt';
   static const _ownerPref = 'vault.owner';
@@ -30,6 +45,18 @@ class KeyVault {
   static final _aes = AesGcm.with256bits();
 
   static String? _uid(SharedPreferences p) => p.getString(_accountPref);
+
+  static KeyProtection level(SharedPreferences p) => KeyProtection.values.firstWhere(
+    (l) => l.name == p.getString(levelPref),
+    orElse: () => KeyProtection.standard,
+  );
+
+  /// Whether this device's keys are on their way to your other devices.
+  static bool sharing(SharedPreferences p) => switch (level(p)) {
+    KeyProtection.standard => true,
+    KeyProtection.passphrase => unlocked(p) && !waiting(p),
+    KeyProtection.deviceOnly => false,
+  };
 
   static List<int> _random(int n) {
     final r = Random.secure();
@@ -175,25 +202,31 @@ class KeyVault {
     }
   }
 
-  /// Writes [plain] to the synced setting [pref], locked. A locked device
-  /// leaves a box from another device alone and never uploads plain text:
-  /// an old plain-text copy is taken out of the account instead.
-  static Future<void> store(SharedPreferences p, String pref, String name, String? plain) async {
+  /// Writes [plain] to the synced setting [pref] as the account's
+  /// [KeyProtection] says: as-is, locked, or not at all (removing any cloud
+  /// copy). A box locked by another device is never overwritten here: it
+  /// waits for the passphrase. A device without the key never uploads plain
+  /// text under the passphrase level.
+  static Future<void> store(SharedPreferences p, String pref, String name, String plain) async {
     final current = p.getString(pref);
-    if (plain == null) {
-      if (current != null && (!isEnvelope(current) || unlocked(p))) await p.remove(pref);
-      return;
-    }
-    if (envelope(current) case final box?) {
-      if (await open(p, current!) == plain) return;
-      // Locked with another passphrase (a device started over): unlock first.
-      if (box['salt'] != p.getString(_saltPref)) return;
-    }
-    final sealed = await seal(p, name, plain);
-    if (sealed != null) {
-      await p.setString(pref, sealed);
-    } else if (current != null && !isEnvelope(current)) {
-      await p.remove(pref);
+    final box = envelope(current);
+    switch (level(p)) {
+      case KeyProtection.deviceOnly:
+        if (current != null) await p.remove(pref);
+      case KeyProtection.standard:
+        if (box == null && current != plain) await p.setString(pref, plain);
+      case KeyProtection.passphrase:
+        if (box != null) {
+          if (await open(p, current!) == plain) return;
+          // Locked with another passphrase (a device started over): unlock first.
+          if (box['salt'] != p.getString(_saltPref)) return;
+        }
+        final sealed = await seal(p, name, plain);
+        if (sealed != null) {
+          await p.setString(pref, sealed);
+        } else if (current != null && box == null) {
+          await p.remove(pref);
+        }
     }
   }
 

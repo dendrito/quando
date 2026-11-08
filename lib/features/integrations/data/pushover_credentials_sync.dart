@@ -6,7 +6,7 @@ import '../../sync/key_vault.dart';
 import '../domain/integrations.dart';
 
 /// Only the explicitly requested Pushover key pair travels in account sync,
-/// locked with the sync passphrase (see [KeyVault]). Webhooks, device
+/// as the account's key protection says (see [KeyVault]). Webhooks, device
 /// destinations, priorities and playback settings remain local.
 class PushoverCredentialsSync {
   static const key = 'pushover.credentials';
@@ -61,8 +61,8 @@ class PushoverCredentialsSync {
     if (raw != null && (box?['uid'] ?? legacy?['uid']) != uid) await prefs.remove(key);
     await prefs.setString(accountKey, uid);
     await prefs.setString(ownerKey, uid);
-    // A plain-text pair from an older build is taken in once, then locked
-    // (or taken out of the account when this device has no passphrase).
+    // A plain-text pair from an older build is taken in once, then stored
+    // the way the account's key protection says.
     if (legacy?['uid'] == uid && _complete(legacy) && !_complete(_encodedPair(settings))) {
       await applyReceived(prefs);
       return;
@@ -70,7 +70,7 @@ class PushoverCredentialsSync {
     // Existing setups join the owner's requested credential sharing on sign-in.
     if (settings.pushoverUser.isNotEmpty && settings.pushoverToken.isNotEmpty) {
       await KeyVault.store(prefs, key, 'pushover', _encode(uid, settings));
-    } else if (legacy != null) {
+    } else if (legacy != null && KeyVault.level(prefs) != KeyProtection.standard) {
       await prefs.remove(key);
     }
   }
@@ -80,15 +80,15 @@ class PushoverCredentialsSync {
     'token': s.pushoverToken.trim(),
   };
 
-  /// True when the pair is on its way to your other devices, locked. False
-  /// when signed out, or when this device has no sync passphrase yet.
+  /// True when the pair is on its way to your other devices. False when
+  /// signed out, kept on this device, or waiting for the sync passphrase.
   static Future<bool> publish(SharedPreferences prefs, IntegrationSettings settings) async {
     final uid = prefs.getString(accountKey);
     if (prefs.getBool('sync.on') != true || uid == null || prefs.getString(ownerKey) != uid) return false;
     if (settings.pushoverUser.trim().isEmpty || settings.pushoverToken.trim().isEmpty) return false;
     await prefs.setString('pushover.local.$uid', _encode(uid, settings));
     await KeyVault.store(prefs, key, 'pushover', _encode(uid, settings));
-    return KeyVault.unlocked(prefs);
+    return KeyVault.sharing(prefs);
   }
 
   static Future<void> applyReceived(SharedPreferences prefs) async {
@@ -102,6 +102,6 @@ class PushoverCredentialsSync {
     await prefs.setString('integrations', jsonEncode(settings.toJson()));
     await prefs.setString(ownerKey, uid);
     await prefs.setString('pushover.local.$uid', jsonEncode(pair));
-    if (!KeyVault.isEnvelope(raw)) await KeyVault.store(prefs, key, 'pushover', plain);
+    if (!KeyVault.isEnvelope(raw)) await KeyVault.store(prefs, key, 'pushover', plain!);
   }
 }

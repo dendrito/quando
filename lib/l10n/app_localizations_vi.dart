@@ -2708,15 +2708,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherSunBehindClouds => 'Mặt trời sau mây';
 
   @override
-  String get keysLockTitle => 'Khóa trên các thiết bị của bạn';
-
-  @override
-  String get keysLockOff =>
-      'Khóa dịch vụ của bạn ở lại trên thiết bị này. Chọn cụm mật khẩu đồng bộ để gửi chúng, đã mã hóa, sang các thiết bị khác.';
-
-  @override
-  String get keysLockOn =>
-      'Khóa dịch vụ của bạn được mã hóa bằng cụm mật khẩu đồng bộ trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.';
+  String get keysLockTitle => 'Bảo vệ khóa';
 
   @override
   String get keysLockWaiting =>
@@ -2760,6 +2752,41 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
+  String get keysShareNeedsPassphrase => 'Khóa của bạn hiện không được chia sẻ. Hãy xem Bảo vệ khóa.';
+
+  @override
+  String get keysLockStandard => 'Tiêu chuẩn';
+
+  @override
+  String get keysLockStandardHint =>
+      'Khóa được đồng bộ cùng các cài đặt khác và được bảo vệ bằng đăng nhập của bạn. Chỉ tài khoản của bạn đọc được.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Khóa được mã hóa bằng cụm mật khẩu chỉ bạn biết trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.';
+
+  @override
+  String get keysLockDeviceOnly => 'Chỉ thiết bị này';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Khóa không bao giờ rời thiết bị này. Bạn kết nối lại từng dịch vụ trên các thiết bị khác.';
+
+  @override
+  String get keysTwoStep => 'Để an toàn hơn, hãy bật xác minh 2 bước cho tài khoản Google.';
+
+  @override
+  String get keysBiometric => 'Yêu cầu Face ID hoặc vân tay';
+
+  @override
+  String get keysBiometricHint => 'Trước khi mở Kết nối trên thiết bị này.';
+
+  @override
+  String get keysBiometricReason => 'Xác nhận là bạn để xem các khóa dịch vụ';
+
+  @override
+  String get keysBiometricLocked => 'Kết nối đang bị khóa';
+
+  @override
+  String get keysBiometricUnlock => 'Mở khóa';
 }

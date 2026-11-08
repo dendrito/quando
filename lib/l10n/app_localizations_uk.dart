@@ -2762,15 +2762,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get weatherSunBehindClouds => 'Сонце за хмарами';
 
   @override
-  String get keysLockTitle => 'Ключі на ваших пристроях';
-
-  @override
-  String get keysLockOff =>
-      'Ключі сервісів залишаються на цьому пристрої. Виберіть фразу синхронізації, щоб надсилати їх зашифрованими на інші пристрої.';
-
-  @override
-  String get keysLockOn =>
-      'Ключі сервісів шифруються вашою фразою синхронізації, перш ніж залишити цей пристрій. Ніхто інший, навіть Google, не може їх прочитати.';
+  String get keysLockTitle => 'Захист ключів';
 
   @override
   String get keysLockWaiting =>
@@ -2814,6 +2806,41 @@ class AppLocalizationsUk extends AppLocalizations {
       'Запишіть її: якщо забудете, відновити її неможливо, і ключі доведеться ввести знову.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Спершу виберіть фразу синхронізації в розділі «Ключі на ваших пристроях».';
+  String get keysShareNeedsPassphrase => 'Зараз ваші ключі не передаються. Перевірте «Захист ключів».';
+
+  @override
+  String get keysLockStandard => 'Звичайний';
+
+  @override
+  String get keysLockStandardHint =>
+      'Ключі синхронізуються разом з іншими налаштуваннями й захищені вашим входом. Читати їх може лише ваш акаунт.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Ключі шифруються фразою, яку знаєте лише ви, перш ніж залишити цей пристрій. Ніхто інший, навіть Google, не може їх прочитати.';
+
+  @override
+  String get keysLockDeviceOnly => 'Лише цей пристрій';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Ключі ніколи не залишають цей пристрій. На інших пристроях сервіси підключаються знову.';
+
+  @override
+  String get keysTwoStep => 'Для надійності ввімкніть двоетапну перевірку в акаунті Google.';
+
+  @override
+  String get keysBiometric => 'Запитувати Face ID або відбиток';
+
+  @override
+  String get keysBiometricHint => 'Перед відкриттям «Підключень» на цьому пристрої.';
+
+  @override
+  String get keysBiometricReason => 'Підтвердьте, що це ви, щоб побачити ключі сервісів';
+
+  @override
+  String get keysBiometricLocked => '«Підключення» заблоковано';
+
+  @override
+  String get keysBiometricUnlock => 'Розблокувати';
 }

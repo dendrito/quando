@@ -2711,15 +2711,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherSunBehindClouds => 'Sun behind the clouds';
 
   @override
-  String get keysLockTitle => 'Keys on your devices';
-
-  @override
-  String get keysLockOff =>
-      'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.';
-
-  @override
-  String get keysLockOn =>
-      'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.';
+  String get keysLockTitle => 'Key protection';
 
   @override
   String get keysLockWaiting =>
@@ -2763,5 +2755,41 @@ class AppLocalizationsEn extends AppLocalizations {
       'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.';
 
   @override
-  String get keysShareNeedsPassphrase => 'Choose a sync passphrase first, under Keys on your devices.';
+  String get keysShareNeedsPassphrase => 'Your keys aren\'t being shared right now. Check Key protection.';
+
+  @override
+  String get keysLockStandard => 'Standard';
+
+  @override
+  String get keysLockStandardHint =>
+      'Keys sync with your other settings, protected by your sign-in. Only your account can read them.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Keys are encrypted with a passphrase only you know before they leave this device. Nobody else, not even Google, can read them.';
+
+  @override
+  String get keysLockDeviceOnly => 'This device only';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Keys never leave this device. You connect each service again on your other devices.';
+
+  @override
+  String get keysTwoStep => 'For extra safety, turn on 2-step verification for your Google account.';
+
+  @override
+  String get keysBiometric => 'Ask for Face ID or fingerprint';
+
+  @override
+  String get keysBiometricHint => 'Before opening Connections on this device.';
+
+  @override
+  String get keysBiometricReason => 'Confirm it\'s you to see your service keys';
+
+  @override
+  String get keysBiometricLocked => 'Connections is locked';
+
+  @override
+  String get keysBiometricUnlock => 'Unlock';
 }

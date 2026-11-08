@@ -49,6 +49,8 @@
 	<string>Read selected calendars to schedule reminders. Quando does not change your calendar events.</string>
 	<key>NSCalendarsUsageDescription</key>
 	<string>Use events from the calendars you select to schedule reminders.</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>Face ID confirms it's you before Quando? shows your service keys.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>Scan a code to dismiss an alarm when you choose that task.</string>
 	<key>NSHumanReadableCopyright</key>

@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "明日の朝",
   "weatherUntilAbout": "{time}ごろまで",
   "weatherSunBehindClouds": "太陽は雲の向こう",
-  "keysLockTitle": "デバイス間のキー",
-  "keysLockOff": "サービスのキーはこのデバイスに残ります。同期パスフレーズを選ぶと、暗号化してほかのデバイスに送れます。",
-  "keysLockOn": "サービスのキーは、このデバイスを離れる前に同期パスフレーズで暗号化されます。Google を含め、ほかの誰も読めません。",
+  "keysLockTitle": "キーの保護",
   "keysLockWaiting": "ほかのデバイスからキーが届きましたが、ロックされています。同期パスフレーズを入力して開いてください。",
   "keysSetPassphrase": "パスフレーズを選ぶ",
   "keysChangePassphrase": "パスフレーズを変更",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "2つが一致しません。",
   "keysPassphraseWrong": "このパスフレーズではキーを開けません。",
   "keysPassphraseNote": "書き留めてください。忘れると誰にも復元できず、キーを入力し直すことになります。",
-  "keysShareNeedsPassphrase": "先に「デバイス間のキー」で同期パスフレーズを選んでください。"
+  "keysShareNeedsPassphrase": "現在キーは共有されていません。「キーの保護」を確認してください。",
+  "keysLockStandard": "標準",
+  "keysLockStandardHint": "キーはほかの設定と一緒に同期され、サインインで保護されます。読めるのはあなたのアカウントだけです。",
+  "keysLockPassphraseHint": "キーは、このデバイスを離れる前に、あなただけが知るパスフレーズで暗号化されます。Google を含め、ほかの誰も読めません。",
+  "keysLockDeviceOnly": "このデバイスのみ",
+  "keysLockDeviceOnlyHint": "キーはこのデバイスから出ません。ほかのデバイスでは各サービスを接続し直します。",
+  "keysTwoStep": "さらに安全にするには、Google アカウントで 2 段階認証プロセスをオンにしてください。",
+  "keysBiometric": "Face ID または指紋を要求",
+  "keysBiometricHint": "このデバイスで「連携」を開く前に。",
+  "keysBiometricReason": "サービスのキーを表示するには本人確認をしてください",
+  "keysBiometricLocked": "「連携」はロックされています",
+  "keysBiometricUnlock": "ロック解除"
 }

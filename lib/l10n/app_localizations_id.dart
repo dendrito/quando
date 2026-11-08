@@ -2711,15 +2711,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get weatherSunBehindClouds => 'Matahari di balik awan';
 
   @override
-  String get keysLockTitle => 'Kunci di perangkat Anda';
-
-  @override
-  String get keysLockOff =>
-      'Kunci layanan Anda tetap di perangkat ini. Pilih frasa sinkronisasi untuk mengirimnya, terenkripsi, ke perangkat Anda yang lain.';
-
-  @override
-  String get keysLockOn =>
-      'Kunci layanan Anda dienkripsi dengan frasa sinkronisasi sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.';
+  String get keysLockTitle => 'Perlindungan kunci';
 
   @override
   String get keysLockWaiting =>
@@ -2763,5 +2755,41 @@ class AppLocalizationsId extends AppLocalizations {
       'Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.';
 
   @override
-  String get keysShareNeedsPassphrase => 'Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda.';
+  String get keysShareNeedsPassphrase => 'Kunci Anda sedang tidak dibagikan. Periksa Perlindungan kunci.';
+
+  @override
+  String get keysLockStandard => 'Standar';
+
+  @override
+  String get keysLockStandardHint =>
+      'Kunci disinkronkan bersama pengaturan lain dan dilindungi oleh login Anda. Hanya akun Anda yang bisa membacanya.';
+
+  @override
+  String get keysLockPassphraseHint =>
+      'Kunci dienkripsi dengan frasa yang hanya Anda ketahui sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.';
+
+  @override
+  String get keysLockDeviceOnly => 'Hanya perangkat ini';
+
+  @override
+  String get keysLockDeviceOnlyHint =>
+      'Kunci tidak pernah meninggalkan perangkat ini. Anda menghubungkan setiap layanan lagi di perangkat lain.';
+
+  @override
+  String get keysTwoStep => 'Untuk keamanan ekstra, aktifkan verifikasi 2 langkah di akun Google Anda.';
+
+  @override
+  String get keysBiometric => 'Minta Face ID atau sidik jari';
+
+  @override
+  String get keysBiometricHint => 'Sebelum membuka Koneksi di perangkat ini.';
+
+  @override
+  String get keysBiometricReason => 'Pastikan ini Anda untuk melihat kunci layanan';
+
+  @override
+  String get keysBiometricLocked => 'Koneksi terkunci';
+
+  @override
+  String get keysBiometricUnlock => 'Buka';
 }

@@ -286,11 +286,16 @@ class SyncNotifier extends Notifier<SyncStatus> {
     state = SyncStatus(revealed: state.revealed);
   }
 
-  /// Chooses (or starts over with) the sync passphrase on this device and
-  /// sends this device's keys, locked with it, to your other devices.
-  Future<void> setKeyPassphrase(String passphrase) async {
+  /// Changes how service keys reach your other devices, for every device on
+  /// the account. [passphrase] is needed for [KeyProtection.passphrase] and
+  /// starts it over. The cloud copy is re-sent, re-locked or deleted to match.
+  Future<void> setKeyProtection(KeyProtection level, {String? passphrase}) async {
     final prefs = ref.read(prefsProvider);
-    await KeyVault.setPassphrase(prefs, passphrase);
+    if (level == KeyProtection.passphrase) {
+      if (passphrase == null) throw ArgumentError('A passphrase is needed.');
+      await KeyVault.setPassphrase(prefs, passphrase);
+    }
+    await prefs.setString(KeyVault.levelPref, level.name);
     await KeyVault.clearBoxes(prefs);
     await PushoverCredentialsSync.publish(prefs, ref.read(integrationsProvider));
     await ServiceConnectionsSync.publish(prefs);

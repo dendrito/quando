@@ -2675,13 +2675,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherSunBehindClouds => '太阳在云后';
 
   @override
-  String get keysLockTitle => '设备间的密钥';
-
-  @override
-  String get keysLockOff => '你的服务密钥只保存在这台设备上。设置同步口令后，可以加密发送到你的其他设备。';
-
-  @override
-  String get keysLockOn => '你的服务密钥在离开这台设备前会用同步口令加密。其他任何人，包括 Google，都无法读取。';
+  String get keysLockTitle => '密钥保护';
 
   @override
   String get keysLockWaiting => '来自你另一台设备的密钥已到达，但处于锁定状态。输入同步口令即可打开。';
@@ -2722,7 +2716,40 @@ class AppLocalizationsZh extends AppLocalizations {
   String get keysPassphraseNote => '请记下来：如果忘记，没有人能找回，你需要重新输入密钥。';
 
   @override
-  String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
+  String get keysShareNeedsPassphrase => '你的密钥目前没有共享。请查看“密钥保护”。';
+
+  @override
+  String get keysLockStandard => '标准';
+
+  @override
+  String get keysLockStandardHint => '密钥与其他设置一起同步，并受你的登录保护。只有你的账号能读取。';
+
+  @override
+  String get keysLockPassphraseHint => '密钥在离开这台设备前，会用只有你知道的口令加密。其他任何人，包括 Google，都无法读取。';
+
+  @override
+  String get keysLockDeviceOnly => '仅限这台设备';
+
+  @override
+  String get keysLockDeviceOnlyHint => '密钥永远不会离开这台设备。你需要在其他设备上重新连接各项服务。';
+
+  @override
+  String get keysTwoStep => '为了更安全，请为你的 Google 账号开启两步验证。';
+
+  @override
+  String get keysBiometric => '要求面容 ID 或指纹';
+
+  @override
+  String get keysBiometricHint => '在这台设备上打开“连接”之前。';
+
+  @override
+  String get keysBiometricReason => '确认是你本人以查看服务密钥';
+
+  @override
+  String get keysBiometricLocked => '“连接”已锁定';
+
+  @override
+  String get keysBiometricUnlock => '解锁';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5395,13 +5422,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherSunBehindClouds => '太陽在雲後';
 
   @override
-  String get keysLockTitle => '裝置間的金鑰';
-
-  @override
-  String get keysLockOff => '你的服務金鑰只保存在這台裝置上。設定同步密語後，可以加密傳送到你的其他裝置。';
-
-  @override
-  String get keysLockOn => '你的服務金鑰在離開這台裝置前會以同步密語加密。其他任何人，包括 Google，都無法讀取。';
+  String get keysLockTitle => '金鑰保護';
 
   @override
   String get keysLockWaiting => '來自你另一台裝置的金鑰已送達，但處於鎖定狀態。輸入同步密語即可開啟。';
@@ -5442,5 +5463,38 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get keysPassphraseNote => '請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。';
 
   @override
-  String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
+  String get keysShareNeedsPassphrase => '你的金鑰目前沒有共用。請查看「金鑰保護」。';
+
+  @override
+  String get keysLockStandard => '標準';
+
+  @override
+  String get keysLockStandardHint => '金鑰會與其他設定一起同步，並受你的登入保護。只有你的帳號能讀取。';
+
+  @override
+  String get keysLockPassphraseHint => '金鑰在離開這台裝置前，會以只有你知道的密語加密。其他任何人，包括 Google，都無法讀取。';
+
+  @override
+  String get keysLockDeviceOnly => '僅限這台裝置';
+
+  @override
+  String get keysLockDeviceOnlyHint => '金鑰永遠不會離開這台裝置。你需要在其他裝置上重新連結各項服務。';
+
+  @override
+  String get keysTwoStep => '為了更安全，請為你的 Google 帳號開啟兩步驟驗證。';
+
+  @override
+  String get keysBiometric => '要求 Face ID 或指紋';
+
+  @override
+  String get keysBiometricHint => '在這台裝置上開啟「連線」之前。';
+
+  @override
+  String get keysBiometricReason => '確認是你本人以查看服務金鑰';
+
+  @override
+  String get keysBiometricLocked => '「連線」已鎖定';
+
+  @override
+  String get keysBiometricUnlock => '解鎖';
 }

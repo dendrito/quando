@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Mañana por la mañana",
   "weatherUntilAbout": "hasta cerca de las {time}",
   "weatherSunBehindClouds": "Sol tras las nubes",
-  "keysLockTitle": "Claves en tus dispositivos",
-  "keysLockOff": "Tus claves de servicio se quedan en este dispositivo. Elige una frase de sincronización para enviarlas, cifradas, a tus otros dispositivos.",
-  "keysLockOn": "Tus claves de servicio se cifran con tu frase de sincronización antes de salir de este dispositivo. Nadie más, ni siquiera Google, puede leerlas.",
+  "keysLockTitle": "Protección de claves",
   "keysLockWaiting": "Llegaron aquí claves de tu otro dispositivo, bloqueadas. Escribe tu frase de sincronización para abrirlas.",
   "keysSetPassphrase": "Elegir frase",
   "keysChangePassphrase": "Cambiar frase",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "No coinciden.",
   "keysPassphraseWrong": "Esa frase no abre estas claves.",
   "keysPassphraseNote": "Anótala: si la olvidas, nadie puede recuperarla y tendrás que escribir tus claves otra vez.",
-  "keysShareNeedsPassphrase": "Primero elige una frase de sincronización, en Claves en tus dispositivos."
+  "keysShareNeedsPassphrase": "Tus claves no se están compartiendo ahora. Revisa Protección de claves.",
+  "keysLockStandard": "Estándar",
+  "keysLockStandardHint": "Las claves se sincronizan con tus otros ajustes, protegidas por tu inicio de sesión. Solo tu cuenta puede leerlas.",
+  "keysLockPassphraseHint": "Las claves se cifran con una frase que solo tú conoces antes de salir de este dispositivo. Nadie más, ni siquiera Google, puede leerlas.",
+  "keysLockDeviceOnly": "Solo este dispositivo",
+  "keysLockDeviceOnlyHint": "Las claves nunca salen de este dispositivo. Vuelves a conectar cada servicio en tus otros dispositivos.",
+  "keysTwoStep": "Para más seguridad, activa la verificación en dos pasos de tu cuenta de Google.",
+  "keysBiometric": "Pedir Face ID o huella",
+  "keysBiometricHint": "Antes de abrir Conexiones en este dispositivo.",
+  "keysBiometricReason": "Confirma que eres tú para ver tus claves de servicio",
+  "keysBiometricLocked": "Conexiones está bloqueado",
+  "keysBiometricUnlock": "Desbloquear"
 }

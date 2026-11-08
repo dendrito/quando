@@ -799,9 +799,7 @@
   "weatherTomorrowMorning": "Yarın sabah",
   "weatherUntilAbout": "{time} civarına kadar",
   "weatherSunBehindClouds": "Güneş bulutların ardında",
-  "keysLockTitle": "Cihazlarındaki anahtarlar",
-  "keysLockOff": "Hizmet anahtarların bu cihazda kalır. Diğer cihazlarına şifreli göndermek için bir eşitleme parolası seç.",
-  "keysLockOn": "Hizmet anahtarların bu cihazdan çıkmadan önce eşitleme parolanla şifrelenir. Başka kimse, Google bile, okuyamaz.",
+  "keysLockTitle": "Anahtar koruması",
   "keysLockWaiting": "Diğer cihazından anahtarlar kilitli olarak geldi. Açmak için eşitleme parolanı yaz.",
   "keysSetPassphrase": "Parola seç",
   "keysChangePassphrase": "Parolayı değiştir",
@@ -814,5 +812,16 @@
   "keysPassphraseMismatch": "İkisi eşleşmiyor.",
   "keysPassphraseWrong": "Bu parola bu anahtarları açmıyor.",
   "keysPassphraseNote": "Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.",
-  "keysShareNeedsPassphrase": "Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç."
+  "keysShareNeedsPassphrase": "Anahtarların şu anda paylaşılmıyor. Anahtar korumasına bak.",
+  "keysLockStandard": "Standart",
+  "keysLockStandardHint": "Anahtarlar diğer ayarlarınla birlikte eşitlenir ve oturum açmanla korunur. Onları yalnızca hesabın okuyabilir.",
+  "keysLockPassphraseHint": "Anahtarlar bu cihazdan çıkmadan önce yalnızca senin bildiğin bir parolayla şifrelenir. Başka kimse, Google bile, okuyamaz.",
+  "keysLockDeviceOnly": "Yalnızca bu cihaz",
+  "keysLockDeviceOnlyHint": "Anahtarlar bu cihazdan hiç çıkmaz. Diğer cihazlarında her hizmeti yeniden bağlarsın.",
+  "keysTwoStep": "Daha fazla güvenlik için Google hesabında 2 adımlı doğrulamayı aç.",
+  "keysBiometric": "Face ID veya parmak izi iste",
+  "keysBiometricHint": "Bu cihazda Bağlantılar açılmadan önce.",
+  "keysBiometricReason": "Hizmet anahtarlarını görmek için sen olduğunu doğrula",
+  "keysBiometricLocked": "Bağlantılar kilitli",
+  "keysBiometricUnlock": "Kilidi aç"
 }

@@ -12,13 +12,13 @@ import android.provider.Settings
 import android.os.Handler
 import android.os.Looper
 import android.view.KeyEvent
-import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.android.FlutterFragmentActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 import java.io.ByteArrayOutputStream
 import java.util.concurrent.Executors
 
-class MainActivity : FlutterActivity() {
+class MainActivity : FlutterFragmentActivity() {
     private val worker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private val pauseLater = Runnable { mediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE) }

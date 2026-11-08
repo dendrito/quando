@@ -58,24 +58,53 @@ void main() {
     await ServiceConnectionsSync.applyReceived(p);
   }
 
-  test('without a passphrase, keys never leave the device', () async {
+  Future<void> lockWith(SharedPreferences p, String passphrase) async {
+    await p.setString(KeyVault.levelPref, KeyProtection.passphrase.name);
+    await KeyVault.setPassphrase(p, passphrase);
+  }
+
+  test('standard is the default: keys sync with the sign-in alone', () async {
+    final remote = _Remote();
+    final a = await device({'integrations': jsonEncode(setup.toJson()), 'sync.on': true});
+    expect(KeyVault.level(a), KeyProtection.standard);
+    await signIn(a, 'owner');
+    await SyncEngine(a, remote, device: 'a').apply(remote.items);
+    expect(await PushoverCredentialsSync.publish(a, setup), isTrue);
+    final b = await device({
+      'integrations': jsonEncode(const IntegrationSettings().toJson()),
+      'sync.on': true,
+    });
+    await signIn(b, 'owner');
+    await SyncEngine(b, remote, device: 'b', onApplied: () => received(b)).apply(remote.items);
+    expect(local(b).pushoverToken, 'secret-token');
+    expect(local(b).webhooks.single.url, 'https://example.test/secret-hook');
+  });
+
+  test('this device only keeps keys off the account and deletes the cloud copy', () async {
     final remote = _Remote();
     final p = await device({'integrations': jsonEncode(setup.toJson()), 'sync.on': true});
     await signIn(p, 'owner');
+    final engine = SyncEngine(p, remote, device: 'a');
+    await engine.apply(remote.items);
+    expect(remote.items[PushoverCredentialsSync.key]!.s, isNotNull);
+    await p.setString(KeyVault.levelPref, KeyProtection.deviceOnly.name);
     await share(p);
-    await SyncEngine(p, remote, device: 'a').apply(remote.items);
-    expect(remote.items.containsKey(PushoverCredentialsSync.key), isFalse);
-    expect(remote.items.containsKey(ServiceConnectionsSync.key), isFalse);
+    await engine.pushLocal();
+    expect(remote.items[PushoverCredentialsSync.key]!.s, isNull);
+    expect(remote.items[ServiceConnectionsSync.key]!.s, isNull);
+    expect(remote.items[KeyVault.levelPref]!.s, contains('deviceOnly'));
     expect(await PushoverCredentialsSync.publish(p, setup), isFalse);
+    expect(local(p).pushoverToken, 'secret-token');
   });
 
-  test('plain text left by an older build is taken out of the account', () async {
+  test('with the passphrase level, a locked device takes plain text out of the account', () async {
     final remote = _Remote();
     final old = jsonEncode({'uid': 'owner', 'user': 'secret-user', 'token': 'secret-token'});
     remote.items[PushoverCredentialsSync.key] = SyncItem(3, 'old', jsonEncode({'v': old}));
     final p = await device({
       'integrations': jsonEncode(const IntegrationSettings().toJson()),
       'sync.on': true,
+      'keys.protection': 'passphrase',
     });
     await signIn(p, 'owner');
     final engine = SyncEngine(p, remote, device: 'new', onApplied: () => received(p));
@@ -93,7 +122,7 @@ void main() {
       'sync.on': true,
     });
     await signIn(a, 'owner');
-    await KeyVault.setPassphrase(a, 'correct horse');
+    await lockWith(a, 'correct horse');
     await share(a);
     final sender = SyncEngine(a, remote, device: 'a');
     await sender.apply(remote.items);
@@ -131,7 +160,7 @@ void main() {
     final remote = _Remote();
     final a = await device({'integrations': jsonEncode(setup.toJson()), 'sync.on': true});
     await signIn(a, 'owner');
-    await KeyVault.setPassphrase(a, 'first passphrase');
+    await lockWith(a, 'first passphrase');
     await share(a);
     final engineA = SyncEngine(a, remote, device: 'a', onApplied: () => received(a));
     await engineA.apply(remote.items);
@@ -142,7 +171,7 @@ void main() {
     await engineB.apply(remote.items);
     expect(KeyVault.waiting(b), isTrue);
     // B forgot the passphrase: it starts over with its own keys.
-    await KeyVault.setPassphrase(b, 'second passphrase');
+    await lockWith(b, 'second passphrase');
     await KeyVault.clearBoxes(b);
     await share(b);
     await engineB.pushLocal();
@@ -161,7 +190,7 @@ void main() {
   test("a box for one account can't be opened as another's", () async {
     final p = await device({'integrations': jsonEncode(setup.toJson()), 'sync.on': true});
     await signIn(p, 'owner');
-    await KeyVault.setPassphrase(p, 'correct horse');
+    await lockWith(p, 'correct horse');
     await share(p);
     final box = jsonDecode(p.getString(PushoverCredentialsSync.key)!) as Map<String, dynamic>;
     box['uid'] = 'someone-else';
