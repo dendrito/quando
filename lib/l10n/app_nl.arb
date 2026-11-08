@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Ze komen niet overeen.",
   "keysPassphraseWrong": "Die wachtzin opent deze sleutels niet.",
   "keysPassphraseNote": "Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.",
-  "keysShareNeedsPassphrase": "Kies eerst een sync-wachtzin, onder Sleutels op je apparaten."
+  "keysShareNeedsPassphrase": "Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

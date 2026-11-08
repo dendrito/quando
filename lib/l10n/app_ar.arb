@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "العبارتان غير متطابقتين.",
   "keysPassphraseWrong": "هذه العبارة لا تفتح هذه المفاتيح.",
   "keysPassphraseNote": "دوّنها: إن نسيتها فلا أحد يستطيع استعادتها، وستكتب مفاتيحك من جديد.",
-  "keysShareNeedsPassphrase": "اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك."
+  "keysShareNeedsPassphrase": "اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

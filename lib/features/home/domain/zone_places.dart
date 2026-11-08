@@ -1,6 +1,7 @@
 // IANA tzdb zone.tab reference coordinates, public domain (Arthur David Olson).
 // Imported from macOS /usr/share/zoneinfo/zone.tab, 7 November 2026.
 // These locate the timezone's reference city, not the user's actual position.
+import '../../../core/util/local_time.dart';
 import '../../shabbat/domain/place.dart';
 
 class ZonePlaces {
@@ -15,12 +16,7 @@ class ZonePlaces {
     final point = _points[zone];
     return point == null
         ? null
-        : Place(
-            name: zone.split('/').last.replaceAll('_', ' '),
-            latitude: point.$1,
-            longitude: point.$2,
-            timeZone: zone,
-          );
+        : Place(name: cityOf(zone), latitude: point.$1, longitude: point.$2, timeZone: zone);
   }
 
   static List<Place> get all => [for (final zone in _points.keys) forZone(zone)!];

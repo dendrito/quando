@@ -679,31 +679,31 @@ abstract class AppLocalizations {
   /// No description provided for @inDays.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d'**
+  /// **'in {d} d'**
   String inDays(int d);
 
   /// No description provided for @inDaysHours.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d {h}h'**
+  /// **'in {d} d {h} h'**
   String inDaysHours(int d, int h);
 
   /// No description provided for @inHours.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h'**
+  /// **'in {h} h'**
   String inHours(int h);
 
   /// No description provided for @inHoursMinutes.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h {m}m'**
+  /// **'in {h} h {m} min'**
   String inHoursMinutes(int h, int m);
 
   /// No description provided for @inMins.
   ///
   /// In en, this message translates to:
-  /// **'in {m}m'**
+  /// **'in {m} min'**
   String inMins(int m);
 
   /// No description provided for @placeChange.
@@ -811,7 +811,7 @@ abstract class AppLocalizations {
   /// No description provided for @lockCalendarWord.
   ///
   /// In en, this message translates to:
-  /// **'During calendar events with this word'**
+  /// **'During events named…'**
   String get lockCalendarWord;
 
   /// No description provided for @lockCalendarWordHint.
@@ -5019,6 +5019,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Choose a sync passphrase first, under Keys on your devices.'**
   String get keysShareNeedsPassphrase;
+
+  /// No description provided for @settingsAlarmDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm defaults'**
+  String get settingsAlarmDefaults;
+
+  /// No description provided for @settingsPlacesTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Places & time'**
+  String get settingsPlacesTime;
+
+  /// No description provided for @settingsLook.
+  ///
+  /// In en, this message translates to:
+  /// **'Look, language & quotes'**
+  String get settingsLook;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @defaultForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Default for new alarms'**
+  String get defaultForNewAlarms;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @atClock.
+  ///
+  /// In en, this message translates to:
+  /// **'at {time}'**
+  String atClock(String time);
+
+  /// No description provided for @connectACalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar'**
+  String get connectACalendar;
+
+  /// No description provided for @newFromReadyMade.
+  ///
+  /// In en, this message translates to:
+  /// **'From a ready-made'**
+  String get newFromReadyMade;
+
+  /// No description provided for @newFromReadyMadeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise, sunset and other alarms that are already set up for you'**
+  String get newFromReadyMadeHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

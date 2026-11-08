@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "两次输入不一致。",
   "keysPassphraseWrong": "这个口令打不开这些密钥。",
   "keysPassphraseNote": "请记下来：如果忘记，没有人能找回，你需要重新输入密钥。",
-  "keysShareNeedsPassphrase": "请先在“设备间的密钥”中设置同步口令。"
+  "keysShareNeedsPassphrase": "请先在“设备间的密钥”中设置同步口令。",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

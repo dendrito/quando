@@ -113,7 +113,7 @@
   "lockAutoHeading": "BLOQUEAR AUTOMATICAMENTE",
   "shabbatAndFestivalsLong": "Shabat e festas",
   "fromCandleToHavdalah": "Do acendimento das velas até a Havdalá",
-  "lockCalendarWord": "Durante eventos da agenda com esta palavra",
+  "lockCalendarWord": "Durante eventos chamados…",
   "lockCalendarWordHint": "ex.: bloquear, prova, foco",
   "leaveEmptyForNone": "Deixe vazio para nenhum",
   "connectCalendarsFirst": "Conecte as agendas primeiro (ícone de agenda)",
@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "As duas não são iguais.",
   "keysPassphraseWrong": "Essa senha não abre estas chaves.",
   "keysPassphraseNote": "Anote: se esquecer, ninguém consegue recuperá-la, e você vai digitar suas chaves de novo.",
-  "keysShareNeedsPassphrase": "Escolha primeiro uma senha de sincronização, em Chaves nos seus aparelhos."
+  "keysShareNeedsPassphrase": "Escolha primeiro uma senha de sincronização, em Chaves nos seus aparelhos.",
+  "settingsAlarmDefaults": "Padrões dos alarmes",
+  "settingsPlacesTime": "Lugares e horário",
+  "settingsLook": "Aparência, idioma e frases",
+  "settingsAbout": "Sobre",
+  "defaultForNewAlarms": "Padrão para novos alarmes",
+  "preview": "Pré-visualizar",
+  "atClock": "às {time}",
+  "connectACalendar": "Conectar uma agenda",
+  "newFromReadyMade": "De um modelo pronto",
+  "newFromReadyMadeHint": "Nascer do sol, pôr do sol e outros alarmes já prontos para você"
 }

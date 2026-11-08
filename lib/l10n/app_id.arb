@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Keduanya tidak sama.",
   "keysPassphraseWrong": "Frasa itu tidak membuka kunci ini.",
   "keysPassphraseNote": "Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.",
-  "keysShareNeedsPassphrase": "Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda."
+  "keysShareNeedsPassphrase": "Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Фразы не совпадают.",
   "keysPassphraseWrong": "Эта фраза не открывает эти ключи.",
   "keysPassphraseNote": "Запишите её: если забудете, восстановить её нельзя, и ключи придётся ввести заново.",
-  "keysShareNeedsPassphrase": "Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах»."
+  "keysShareNeedsPassphrase": "Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

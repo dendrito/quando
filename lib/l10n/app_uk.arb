@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Фрази не збігаються.",
   "keysPassphraseWrong": "Ця фраза не відкриває ці ключі.",
   "keysPassphraseNote": "Запишіть її: якщо забудете, відновити її неможливо, і ключі доведеться ввести знову.",
-  "keysShareNeedsPassphrase": "Спершу виберіть фразу синхронізації в розділі «Ключі на ваших пристроях»."
+  "keysShareNeedsPassphrase": "Спершу виберіть фразу синхронізації в розділі «Ключі на ваших пристроях».",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

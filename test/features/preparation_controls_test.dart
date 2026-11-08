@@ -217,7 +217,7 @@ void main() {
     await tester.tap(find.text(l10n.useMyLocation));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('America/Sao_Paulo'), findsWidgets);
+    expect(find.text('São Paulo'), findsWidgets);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(placeProvider).latitude, -23.55);

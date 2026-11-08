@@ -423,7 +423,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get fromCandleToHavdalah => 'Do acendimento das velas até a Havdalá';
 
   @override
-  String get lockCalendarWord => 'Durante eventos da agenda com esta palavra';
+  String get lockCalendarWord => 'Durante eventos chamados…';
 
   @override
   String get lockCalendarWordHint => 'ex.: bloquear, prova, foco';
@@ -2784,4 +2784,36 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get keysShareNeedsPassphrase =>
       'Escolha primeiro uma senha de sincronização, em Chaves nos seus aparelhos.';
+
+  @override
+  String get settingsAlarmDefaults => 'Padrões dos alarmes';
+
+  @override
+  String get settingsPlacesTime => 'Lugares e horário';
+
+  @override
+  String get settingsLook => 'Aparência, idioma e frases';
+
+  @override
+  String get settingsAbout => 'Sobre';
+
+  @override
+  String get defaultForNewAlarms => 'Padrão para novos alarmes';
+
+  @override
+  String get preview => 'Pré-visualizar';
+
+  @override
+  String atClock(String time) {
+    return 'às $time';
+  }
+
+  @override
+  String get connectACalendar => 'Conectar uma agenda';
+
+  @override
+  String get newFromReadyMade => 'De um modelo pronto';
+
+  @override
+  String get newFromReadyMadeHint => 'Nascer do sol, pôr do sol e outros alarmes já prontos para você';
 }

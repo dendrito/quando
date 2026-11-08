@@ -341,27 +341,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String inDays(int d) {
-    return 'in ${d}d';
+    return 'in $d d';
   }
 
   @override
   String inDaysHours(int d, int h) {
-    return 'in ${d}d ${h}h';
+    return 'in $d d $h h';
   }
 
   @override
   String inHours(int h) {
-    return 'in ${h}h';
+    return 'in $h h';
   }
 
   @override
   String inHoursMinutes(int h, int m) {
-    return 'in ${h}h ${m}m';
+    return 'in $h h $m min';
   }
 
   @override
   String inMins(int m) {
-    return 'in ${m}m';
+    return 'in $m min';
   }
 
   @override
@@ -422,7 +422,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fromCandleToHavdalah => 'From candle lighting to Havdalah';
 
   @override
-  String get lockCalendarWord => 'During calendar events with this word';
+  String get lockCalendarWord => 'During events named…';
 
   @override
   String get lockCalendarWordHint => 'e.g. lock, exam, focus';
@@ -2764,4 +2764,36 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get keysShareNeedsPassphrase => 'Choose a sync passphrase first, under Keys on your devices.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

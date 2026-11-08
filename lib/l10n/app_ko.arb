@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "두 입력이 일치하지 않아요.",
   "keysPassphraseWrong": "이 암호 문구로는 키를 열 수 없어요.",
   "keysPassphraseNote": "적어 두세요. 잊어버리면 아무도 복구할 수 없고 키를 다시 입력해야 해요.",
-  "keysShareNeedsPassphrase": "먼저 '기기 간 키'에서 동기화 암호 문구를 정하세요."
+  "keysShareNeedsPassphrase": "먼저 '기기 간 키'에서 동기화 암호 문구를 정하세요.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

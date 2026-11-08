@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Die beiden stimmen nicht überein.",
   "keysPassphraseWrong": "Diese Passphrase öffnet diese Schlüssel nicht.",
   "keysPassphraseNote": "Schreib sie auf: Wenn du sie vergisst, kann sie niemand wiederherstellen, und du gibst deine Schlüssel neu ein.",
-  "keysShareNeedsPassphrase": "Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten."
+  "keysShareNeedsPassphrase": "Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "No coinciden.",
   "keysPassphraseWrong": "Esa frase no abre estas claves.",
   "keysPassphraseNote": "Anótala: si la olvidas, nadie puede recuperarla y tendrás que escribir tus claves otra vez.",
-  "keysShareNeedsPassphrase": "Primero elige una frase de sincronización, en Claves en tus dispositivos."
+  "keysShareNeedsPassphrase": "Primero elige una frase de sincronización, en Claves en tus dispositivos.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

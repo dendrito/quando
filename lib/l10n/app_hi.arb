@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "दोनों मेल नहीं खाते।",
   "keysPassphraseWrong": "यह पासफ़्रेज़ इन कुंजियों को नहीं खोलता।",
   "keysPassphraseNote": "इसे लिख लें: भूलने पर कोई इसे वापस नहीं ला सकता, और आपको कुंजियाँ फिर से डालनी होंगी।",
-  "keysShareNeedsPassphrase": "पहले 'आपके डिवाइसों पर कुंजियाँ' में सिंक पासफ़्रेज़ चुनें।"
+  "keysShareNeedsPassphrase": "पहले 'आपके डिवाइसों पर कुंजियाँ' में सिंक पासफ़्रेज़ चुनें।",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

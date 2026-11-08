@@ -96,6 +96,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               ),
               option('time', Icons.schedule, l10n.newAtTime, l10n.newAtTimeHint),
               option('event', Icons.manage_search, l10n.newAroundEvent, l10n.newAroundEventHint),
+              option('ready', Icons.auto_awesome_outlined, l10n.newFromReadyMade, l10n.newFromReadyMadeHint),
               const SizedBox(height: 12),
             ],
           ),
@@ -105,7 +106,54 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (!mounted) return;
     if (choice == 'time') context.push('/alarm/new');
     if (choice == 'event') context.push('/calendar/rule/new');
+    if (choice == 'ready') await _readyMade();
   }
+
+  /// Ready-made alarms (sunrise, sunset and, once Shabbat is on, the Shabbat ones):
+  /// turn one on, or tap it to change its times.
+  Future<void> _readyMade() => showModalBottomSheet<void>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    builder: (context) => Consumer(
+      builder: (context, ref, _) {
+        final text = Theme.of(context).textTheme;
+        final hidden = ref.read(rulesProvider.notifier).hidden;
+        final shabbat = ref.watch(shabbatInUseProvider);
+        final rules = [
+          for (final r in ref.watch(rulesProvider))
+            if (!hidden.contains(r.id) && (shabbat || r.id == 'preset.sunrise' || r.id == 'preset.sunset')) r,
+        ];
+        return SafeArea(
+          child: ConstrainedBox(
+            constraints: BoxConstraints(maxHeight: MediaQuery.sizeOf(context).height * 0.8),
+            child: ListView(
+              shrinkWrap: true,
+              padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
+              children: [
+                Text(l10n.newFromReadyMade, style: text.headlineMedium),
+                const SizedBox(height: 4),
+                const SizedBox(height: 12),
+                for (final r in rules) ...[
+                  RuleTile(
+                    title: r.name,
+                    subtitle: timesLabel(r.offsets()),
+                    on: r.enabled,
+                    onTap: () {
+                      Navigator.pop(context);
+                      this.context.push('/preset/${r.id}');
+                    },
+                    onToggle: (v) => ref.read(rulesProvider.notifier).toggle(r.id, v),
+                  ),
+                  const SizedBox(height: 8),
+                ],
+              ],
+            ),
+          ),
+        );
+      },
+    ),
+  );
 
   /// Tapping one alarm in the week: skip it once, or change what set it.
   Future<void> _alarmActions(ScheduledAlarm a) => _actions([a]);
@@ -390,11 +438,18 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: SizedBox(
+      floatingActionButton: Container(
         // Full width on phones; on a Mac or iPad window a full-width bar
         // hid the alarm list, so it stops at a comfortable size.
         width: min(MediaQuery.sizeOf(context).width - 40, 420),
         height: 60,
+        // A soft glow instead of a dark ring.
+        decoration: ShapeDecoration(
+          shape: const StadiumBorder(),
+          shadows: [
+            BoxShadow(color: QuandoColors.coral.withAlpha(70), blurRadius: 22, offset: const Offset(0, 8)),
+          ],
+        ),
         child: FloatingActionButton.extended(
           tooltip: l10n.newAlarm,
           onPressed: _newAlarm,
@@ -519,7 +574,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         fit: BoxFit.scaleDown,
                         alignment: Alignment.centerLeft,
                         child: Text(
-                          next == null ? l10n.nothingSet : countdown(next.at.difference(now)),
+                          next == null
+                              ? l10n.nothingSet
+                              // Far away reads better as a clock time than as a long countdown.
+                              : next.at.difference(now) > const Duration(hours: 12)
+                              ? l10n.atClock(local(next.at))
+                              : countdown(next.at.difference(now)),
                           style: text.displayMedium?.copyWith(fontSize: 60),
                         ),
                       ),
@@ -529,7 +589,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           // A reminder ahead of an event says so: "Candle lighting ·
                           // 6 hours before · Fri 13 Nov · 12:09", never just the
                           // event's name at the reminder's time.
-                          '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · $home',
+                          '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
                           style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
                         ),
                         const SizedBox(height: 8),

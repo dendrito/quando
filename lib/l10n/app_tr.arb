@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "İkisi eşleşmiyor.",
   "keysPassphraseWrong": "Bu parola bu anahtarları açmıyor.",
   "keysPassphraseNote": "Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.",
-  "keysShareNeedsPassphrase": "Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç."
+  "keysShareNeedsPassphrase": "Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

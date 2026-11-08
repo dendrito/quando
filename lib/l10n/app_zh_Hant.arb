@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "兩次輸入不一致。",
   "keysPassphraseWrong": "這個密語打不開這些金鑰。",
   "keysPassphraseNote": "請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。",
-  "keysShareNeedsPassphrase": "請先在「裝置間的金鑰」中設定同步密語。"
+  "keysShareNeedsPassphrase": "請先在「裝置間的金鑰」中設定同步密語。",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

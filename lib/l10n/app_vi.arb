@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "Hai lần nhập không khớp.",
   "keysPassphraseWrong": "Cụm mật khẩu này không mở được các khóa này.",
   "keysPassphraseNote": "Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.",
-  "keysShareNeedsPassphrase": "Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn."
+  "keysShareNeedsPassphrase": "Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

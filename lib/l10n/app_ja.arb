@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "2つが一致しません。",
   "keysPassphraseWrong": "このパスフレーズではキーを開けません。",
   "keysPassphraseNote": "書き留めてください。忘れると誰にも復元できず、キーを入力し直すことになります。",
-  "keysShareNeedsPassphrase": "先に「デバイス間のキー」で同期パスフレーズを選んでください。"
+  "keysShareNeedsPassphrase": "先に「デバイス間のキー」で同期パスフレーズを選んでください。",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

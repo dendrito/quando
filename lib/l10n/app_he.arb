@@ -814,5 +814,15 @@
   "keysPassphraseMismatch": "השתיים לא תואמות.",
   "keysPassphraseWrong": "הסיסמה הזו לא פותחת את המפתחות האלה.",
   "keysPassphraseNote": "רשום אותה: אם תשכח, אף אחד לא יוכל לשחזר אותה, ותקליד את המפתחות שוב.",
-  "keysShareNeedsPassphrase": "קודם בחר סיסמת סנכרון, תחת מפתחות במכשירים שלך."
+  "keysShareNeedsPassphrase": "קודם בחר סיסמת סנכרון, תחת מפתחות במכשירים שלך.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }
