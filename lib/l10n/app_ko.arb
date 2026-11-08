@@ -798,5 +798,21 @@
   "weatherTonight": "오늘 밤",
   "weatherTomorrowMorning": "내일 아침",
   "weatherUntilAbout": "{time}쯤까지",
-  "weatherSunBehindClouds": "구름 뒤의 해"
+  "weatherSunBehindClouds": "구름 뒤의 해",
+  "keysLockTitle": "기기 간 키",
+  "keysLockOff": "서비스 키는 이 기기에만 남아 있어요. 동기화 암호 문구를 정하면 암호화해서 다른 기기로 보낼 수 있어요.",
+  "keysLockOn": "서비스 키는 이 기기를 떠나기 전에 동기화 암호 문구로 암호화돼요. Google을 포함해 누구도 읽을 수 없어요.",
+  "keysLockWaiting": "다른 기기에서 키가 잠긴 채로 도착했어요. 동기화 암호 문구를 입력해 열어 주세요.",
+  "keysSetPassphrase": "암호 문구 정하기",
+  "keysChangePassphrase": "암호 문구 바꾸기",
+  "keysUnlock": "키 열기",
+  "keysStartOver": "잊으셨나요? 다시 시작",
+  "keysStartOverHint": "다시 시작하면 이 기기의 키를 새 암호 문구로 보내요. 다른 기기에서는 새 암호 문구를 물어봐요.",
+  "keysPassphrase": "동기화 암호 문구",
+  "keysPassphraseAgain": "한 번 더 입력",
+  "keysPassphraseShort": "{count}자 이상 입력하세요.",
+  "keysPassphraseMismatch": "두 입력이 일치하지 않아요.",
+  "keysPassphraseWrong": "이 암호 문구로는 키를 열 수 없어요.",
+  "keysPassphraseNote": "적어 두세요. 잊어버리면 아무도 복구할 수 없고 키를 다시 입력해야 해요.",
+  "keysShareNeedsPassphrase": "먼저 '기기 간 키'에서 동기화 암호 문구를 정하세요."
 }

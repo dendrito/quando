@@ -2706,4 +2706,60 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Mặt trời sau mây';
+
+  @override
+  String get keysLockTitle => 'Khóa trên các thiết bị của bạn';
+
+  @override
+  String get keysLockOff =>
+      'Khóa dịch vụ của bạn ở lại trên thiết bị này. Chọn cụm mật khẩu đồng bộ để gửi chúng, đã mã hóa, sang các thiết bị khác.';
+
+  @override
+  String get keysLockOn =>
+      'Khóa dịch vụ của bạn được mã hóa bằng cụm mật khẩu đồng bộ trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.';
+
+  @override
+  String get keysLockWaiting =>
+      'Khóa từ thiết bị khác của bạn đã đến đây và đang bị khóa. Nhập cụm mật khẩu đồng bộ để mở.';
+
+  @override
+  String get keysSetPassphrase => 'Chọn cụm mật khẩu';
+
+  @override
+  String get keysChangePassphrase => 'Đổi cụm mật khẩu';
+
+  @override
+  String get keysUnlock => 'Mở khóa';
+
+  @override
+  String get keysStartOver => 'Quên rồi? Bắt đầu lại';
+
+  @override
+  String get keysStartOverHint =>
+      'Bắt đầu lại sẽ gửi khóa của thiết bị này với cụm mật khẩu mới. Các thiết bị khác sẽ hỏi cụm mới.';
+
+  @override
+  String get keysPassphrase => 'Cụm mật khẩu đồng bộ';
+
+  @override
+  String get keysPassphraseAgain => 'Nhập lại';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Dùng ít nhất $count ký tự.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Hai lần nhập không khớp.';
+
+  @override
+  String get keysPassphraseWrong => 'Cụm mật khẩu này không mở được các khóa này.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
 }

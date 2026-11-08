@@ -798,5 +798,21 @@
   "weatherTonight": "Ce soir",
   "weatherTomorrowMorning": "Demain matin",
   "weatherUntilAbout": "jusque vers {time}",
-  "weatherSunBehindClouds": "Soleil derrière les nuages"
+  "weatherSunBehindClouds": "Soleil derrière les nuages",
+  "keysLockTitle": "Clés sur vos appareils",
+  "keysLockOff": "Vos clés de service restent sur cet appareil. Choisissez une phrase de synchronisation pour les envoyer, chiffrées, à vos autres appareils.",
+  "keysLockOn": "Vos clés de service sont chiffrées avec votre phrase de synchronisation avant de quitter cet appareil. Personne d'autre, pas même Google, ne peut les lire.",
+  "keysLockWaiting": "Des clés de votre autre appareil sont arrivées ici, verrouillées. Saisissez votre phrase de synchronisation pour les ouvrir.",
+  "keysSetPassphrase": "Choisir la phrase",
+  "keysChangePassphrase": "Changer la phrase",
+  "keysUnlock": "Déverrouiller les clés",
+  "keysStartOver": "Oubliée ? Recommencer",
+  "keysStartOverHint": "Recommencer envoie les clés de cet appareil avec une nouvelle phrase. Vos autres appareils demanderont la nouvelle.",
+  "keysPassphrase": "Phrase de synchronisation",
+  "keysPassphraseAgain": "Saisissez-la à nouveau",
+  "keysPassphraseShort": "Utilisez au moins {count} caractères.",
+  "keysPassphraseMismatch": "Les deux ne correspondent pas.",
+  "keysPassphraseWrong": "Cette phrase n'ouvre pas ces clés.",
+  "keysPassphraseNote": "Notez-la : si vous l'oubliez, personne ne peut la récupérer et vous devrez ressaisir vos clés.",
+  "keysShareNeedsPassphrase": "Choisissez d'abord une phrase de synchronisation, dans Clés sur vos appareils."
 }

@@ -798,5 +798,21 @@
   "weatherTonight": "Bu gece",
   "weatherTomorrowMorning": "Yarın sabah",
   "weatherUntilAbout": "{time} civarına kadar",
-  "weatherSunBehindClouds": "Güneş bulutların ardında"
+  "weatherSunBehindClouds": "Güneş bulutların ardında",
+  "keysLockTitle": "Cihazlarındaki anahtarlar",
+  "keysLockOff": "Hizmet anahtarların bu cihazda kalır. Diğer cihazlarına şifreli göndermek için bir eşitleme parolası seç.",
+  "keysLockOn": "Hizmet anahtarların bu cihazdan çıkmadan önce eşitleme parolanla şifrelenir. Başka kimse, Google bile, okuyamaz.",
+  "keysLockWaiting": "Diğer cihazından anahtarlar kilitli olarak geldi. Açmak için eşitleme parolanı yaz.",
+  "keysSetPassphrase": "Parola seç",
+  "keysChangePassphrase": "Parolayı değiştir",
+  "keysUnlock": "Anahtarları aç",
+  "keysStartOver": "Unuttun mu? Baştan başla",
+  "keysStartOverHint": "Baştan başlamak bu cihazın anahtarlarını yeni bir parolayla gönderir. Diğer cihazların yenisini soracak.",
+  "keysPassphrase": "Eşitleme parolası",
+  "keysPassphraseAgain": "Tekrar yaz",
+  "keysPassphraseShort": "En az {count} karakter kullan.",
+  "keysPassphraseMismatch": "İkisi eşleşmiyor.",
+  "keysPassphraseWrong": "Bu parola bu anahtarları açmıyor.",
+  "keysPassphraseNote": "Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.",
+  "keysShareNeedsPassphrase": "Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç."
 }

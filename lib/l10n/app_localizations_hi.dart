@@ -2710,4 +2710,59 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'बादलों के पीछे सूरज';
+
+  @override
+  String get keysLockTitle => 'आपके डिवाइसों पर कुंजियाँ';
+
+  @override
+  String get keysLockOff =>
+      'आपकी सेवा कुंजियाँ इसी डिवाइस पर रहती हैं। उन्हें एन्क्रिप्ट करके दूसरे डिवाइसों पर भेजने के लिए एक सिंक पासफ़्रेज़ चुनें।';
+
+  @override
+  String get keysLockOn =>
+      'आपकी सेवा कुंजियाँ इस डिवाइस से निकलने से पहले सिंक पासफ़्रेज़ से एन्क्रिप्ट होती हैं। कोई और, Google भी, उन्हें नहीं पढ़ सकता।';
+
+  @override
+  String get keysLockWaiting =>
+      'आपके दूसरे डिवाइस से कुंजियाँ यहाँ लॉक होकर आई हैं। उन्हें खोलने के लिए सिंक पासफ़्रेज़ लिखें।';
+
+  @override
+  String get keysSetPassphrase => 'पासफ़्रेज़ चुनें';
+
+  @override
+  String get keysChangePassphrase => 'पासफ़्रेज़ बदलें';
+
+  @override
+  String get keysUnlock => 'कुंजियाँ खोलें';
+
+  @override
+  String get keysStartOver => 'भूल गए? फिर से शुरू करें';
+
+  @override
+  String get keysStartOverHint =>
+      'फिर से शुरू करने पर इस डिवाइस की कुंजियाँ नए पासफ़्रेज़ के साथ भेजी जाती हैं। आपके दूसरे डिवाइस नया पासफ़्रेज़ माँगेंगे।';
+
+  @override
+  String get keysPassphrase => 'सिंक पासफ़्रेज़';
+
+  @override
+  String get keysPassphraseAgain => 'फिर से लिखें';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'कम से कम $count अक्षर रखें।';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'दोनों मेल नहीं खाते।';
+
+  @override
+  String get keysPassphraseWrong => 'यह पासफ़्रेज़ इन कुंजियों को नहीं खोलता।';
+
+  @override
+  String get keysPassphraseNote =>
+      'इसे लिख लें: भूलने पर कोई इसे वापस नहीं ला सकता, और आपको कुंजियाँ फिर से डालनी होंगी।';
+
+  @override
+  String get keysShareNeedsPassphrase => 'पहले \'आपके डिवाइसों पर कुंजियाँ\' में सिंक पासफ़्रेज़ चुनें।';
 }

@@ -4923,6 +4923,102 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Sun behind the clouds'**
   String get weatherSunBehindClouds;
+
+  /// No description provided for @keysLockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys on your devices'**
+  String get keysLockTitle;
+
+  /// No description provided for @keysLockOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.'**
+  String get keysLockOff;
+
+  /// No description provided for @keysLockOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.'**
+  String get keysLockOn;
+
+  /// No description provided for @keysLockWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys from your other device arrived here, locked. Type your sync passphrase to open them.'**
+  String get keysLockWaiting;
+
+  /// No description provided for @keysSetPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose passphrase'**
+  String get keysSetPassphrase;
+
+  /// No description provided for @keysChangePassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Change passphrase'**
+  String get keysChangePassphrase;
+
+  /// No description provided for @keysUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock keys'**
+  String get keysUnlock;
+
+  /// No description provided for @keysStartOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot it? Start over'**
+  String get keysStartOver;
+
+  /// No description provided for @keysStartOverHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.'**
+  String get keysStartOverHint;
+
+  /// No description provided for @keysPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync passphrase'**
+  String get keysPassphrase;
+
+  /// No description provided for @keysPassphraseAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it again'**
+  String get keysPassphraseAgain;
+
+  /// No description provided for @keysPassphraseShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least {count} characters.'**
+  String keysPassphraseShort(int count);
+
+  /// No description provided for @keysPassphraseMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The two don\'t match.'**
+  String get keysPassphraseMismatch;
+
+  /// No description provided for @keysPassphraseWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That passphrase doesn\'t open these keys.'**
+  String get keysPassphraseWrong;
+
+  /// No description provided for @keysPassphraseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.'**
+  String get keysPassphraseNote;
+
+  /// No description provided for @keysShareNeedsPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a sync passphrase first, under Keys on your devices.'**
+  String get keysShareNeedsPassphrase;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

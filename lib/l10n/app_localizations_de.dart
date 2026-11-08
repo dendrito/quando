@@ -2724,4 +2724,60 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Sonne hinter Wolken';
+
+  @override
+  String get keysLockTitle => 'Schlüssel auf deinen Geräten';
+
+  @override
+  String get keysLockOff =>
+      'Deine Dienst-Schlüssel bleiben auf diesem Gerät. Wähle eine Sync-Passphrase, um sie verschlüsselt an deine anderen Geräte zu senden.';
+
+  @override
+  String get keysLockOn =>
+      'Deine Dienst-Schlüssel werden mit deiner Sync-Passphrase verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.';
+
+  @override
+  String get keysLockWaiting =>
+      'Schlüssel von deinem anderen Gerät sind hier angekommen, gesperrt. Gib deine Sync-Passphrase ein, um sie zu öffnen.';
+
+  @override
+  String get keysSetPassphrase => 'Passphrase wählen';
+
+  @override
+  String get keysChangePassphrase => 'Passphrase ändern';
+
+  @override
+  String get keysUnlock => 'Schlüssel entsperren';
+
+  @override
+  String get keysStartOver => 'Vergessen? Neu anfangen';
+
+  @override
+  String get keysStartOverHint =>
+      'Neu anfangen sendet die Schlüssel dieses Geräts mit einer neuen Passphrase. Deine anderen Geräte fragen nach der neuen.';
+
+  @override
+  String get keysPassphrase => 'Sync-Passphrase';
+
+  @override
+  String get keysPassphraseAgain => 'Noch einmal eingeben';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Mindestens $count Zeichen.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Die beiden stimmen nicht überein.';
+
+  @override
+  String get keysPassphraseWrong => 'Diese Passphrase öffnet diese Schlüssel nicht.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Schreib sie auf: Wenn du sie vergisst, kann sie niemand wiederherstellen, und du gibst deine Schlüssel neu ein.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten.';
 }

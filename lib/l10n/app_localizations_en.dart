@@ -2709,4 +2709,59 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Sun behind the clouds';
+
+  @override
+  String get keysLockTitle => 'Keys on your devices';
+
+  @override
+  String get keysLockOff =>
+      'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.';
+
+  @override
+  String get keysLockOn =>
+      'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.';
+
+  @override
+  String get keysLockWaiting =>
+      'Keys from your other device arrived here, locked. Type your sync passphrase to open them.';
+
+  @override
+  String get keysSetPassphrase => 'Choose passphrase';
+
+  @override
+  String get keysChangePassphrase => 'Change passphrase';
+
+  @override
+  String get keysUnlock => 'Unlock keys';
+
+  @override
+  String get keysStartOver => 'Forgot it? Start over';
+
+  @override
+  String get keysStartOverHint =>
+      'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.';
+
+  @override
+  String get keysPassphrase => 'Sync passphrase';
+
+  @override
+  String get keysPassphraseAgain => 'Type it again';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Use at least $count characters.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'The two don\'t match.';
+
+  @override
+  String get keysPassphraseWrong => 'That passphrase doesn\'t open these keys.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Choose a sync passphrase first, under Keys on your devices.';
 }
