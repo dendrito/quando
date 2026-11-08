@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Orthographe de la paracha et des mois",
   "hebrewNamesIsraeli": "Israélienne",
   "hebrewNamesAshkenazi": "Ashkénaze",
-  "pickFromService": "Choisir dans mon {service}"
+  "pickFromService": "Choisir dans mon {service}",
+  "weatherTonight": "Ce soir",
+  "weatherTomorrowMorning": "Demain matin",
+  "weatherUntilAbout": "jusque vers {time}",
+  "weatherSunBehindClouds": "Soleil derrière les nuages"
 }

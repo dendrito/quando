@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "誦讀段與月份名稱的拼寫",
   "hebrewNamesIsraeli": "以色列式",
   "hebrewNamesAshkenazi": "阿什肯納茲式",
-  "pickFromService": "從我的 {service} 選擇"
+  "pickFromService": "從我的 {service} 選擇",
+  "weatherTonight": "今晚",
+  "weatherTomorrowMorning": "明天早上",
+  "weatherUntilAbout": "持續到約 {time}",
+  "weatherSunBehindClouds": "太陽在雲後"
 }

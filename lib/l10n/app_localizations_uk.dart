@@ -2746,4 +2746,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String pickFromService(String service) {
     return 'Вибрати з мого $service';
   }
+
+  @override
+  String get weatherTonight => 'Увечері';
+
+  @override
+  String get weatherTomorrowMorning => 'Завтра вранці';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'приблизно до $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Сонце за хмарами';
 }

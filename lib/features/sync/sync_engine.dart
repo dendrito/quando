@@ -24,7 +24,6 @@ const syncedKeys = [
   'place.inIsrael',
   'place.candleMinutes',
   'havdalah',
-  'zone.fixed',
   'zone.clocks',
   'quoteSources',
   'quoteOccasions',

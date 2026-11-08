@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Pisownia paraszy i miesięcy",
   "hebrewNamesIsraeli": "Izraelska",
   "hebrewNamesAshkenazi": "Aszkenazyjska",
-  "pickFromService": "Wybierz z mojego {service}"
+  "pickFromService": "Wybierz z mojego {service}",
+  "weatherTonight": "Dziś wieczorem",
+  "weatherTomorrowMorning": "Jutro rano",
+  "weatherUntilAbout": "do około {time}",
+  "weatherSunBehindClouds": "Słońce za chmurami"
 }

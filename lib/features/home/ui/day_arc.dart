@@ -3,17 +3,36 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../../app/theme.dart';
+import '../data/weather_repository.dart';
 import '../domain/sky.dart';
 import '../domain/moon.dart';
+import '../domain/sky_weather.dart';
+import 'weather_motion.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
 /// Today as an arc from sunrise to sunset, with the sun where it is now and
 /// a dot for each alarm that rings in daylight.
 class DayArc extends StatelessWidget {
-  const DayArc({super.key, required this.sky, this.marks = const []});
+  const DayArc({
+    super.key,
+    required this.sky,
+    this.marks = const [],
+    this.weather = const [],
+    this.nowWeather,
+    this.nowLabel,
+  });
 
   final SkyDay sky;
+
+  /// Forecast stops drawn along the arc (option C).
+  final List<ArcWeather> weather;
+
+  /// The weather right now, drawn over the Sun.
+  final WeatherKind? nowWeather;
+
+  /// "Now 15:30", shown above the Sun when weather is on the arc.
+  final String? nowLabel;
 
   /// Alarm positions on the arc, 0 = sunrise, 1 = sunset.
   final List<double> marks;
@@ -29,10 +48,17 @@ class DayArc extends StatelessWidget {
     return Semantics(
       label: label,
       child: SizedBox(
-        height: 120,
+        height: weather.isEmpty && nowWeather == null ? 120 : 150,
         width: double.infinity,
         child: CustomPaint(
-          painter: _ArcPainter(progress: p, marks: marks),
+          painter: _ArcPainter(
+            progress: p,
+            marks: marks,
+            weather: weather,
+            nowWeather: nowWeather,
+            nowLabel: nowLabel,
+            textStyle: Theme.of(context).textTheme.bodySmall,
+          ),
         ),
       ),
     );
@@ -46,8 +72,16 @@ class _ArcPainter extends CustomPainter {
     this.moon,
     this.above = true,
     this.daylight,
+    this.weather = const [],
+    this.nowWeather,
+    this.nowLabel,
+    this.textStyle,
   });
 
+  final List<ArcWeather> weather;
+  final WeatherKind? nowWeather;
+  final String? nowLabel;
+  final TextStyle? textStyle;
   final double? progress;
   final List<double> marks;
   final MoonIllumination? moon;
@@ -133,13 +167,45 @@ class _ArcPainter extends CustomPainter {
       canvas.drawCircle(point(m), 5, Paint()..color = QuandoColors.text);
     }
 
+    // Forecast stops: a small picture on the path and its time and
+    // temperature underneath, flipped inward near the horizons.
+    for (final stop in weather) {
+      final at = point(stop.t.clamp(0.0, 1.0));
+      final lived = stop.t <= done;
+      if (stop.hour.kind == WeatherKind.clear) {
+        canvas.drawCircle(
+          at,
+          9,
+          Paint()..color = lived ? QuandoColors.amber : QuandoColors.amber.withValues(alpha: .55),
+        );
+        canvas.drawCircle(
+          at,
+          9,
+          Paint()
+            ..color = QuandoColors.text
+            ..style = PaintingStyle.stroke
+            ..strokeWidth = 2,
+        );
+      } else {
+        _glyph(canvas, at, 40, stop.hour.kind, stop.hour.night);
+      }
+      _label(canvas, size, stop.label, at + const Offset(0, 16));
+    }
+
     // The sun, or where it will rise or has set.
     final sun = point(done);
+    final kind = nowWeather;
     if (moon != null && above) {
       paintMoon(canvas, sun, 13, moon!);
     } else if (moon == null && p >= 0 && p <= 1) {
       canvas.drawCircle(sun, 20, Paint()..color = QuandoColors.coral.withValues(alpha: 0.3));
       canvas.drawCircle(sun, 11, Paint()..color = QuandoColors.amber);
+      // The Sun behind today's clouds, rain or snow.
+      if (kind != null && kind != WeatherKind.clear) {
+        _glyph(canvas, sun + const Offset(2, 2), 54, kind, false, sunless: true);
+      }
+      final now = nowLabel;
+      if (now != null) _label(canvas, size, now, sun - const Offset(0, 42), bold: true);
     } else {
       canvas.drawCircle(
         sun,
@@ -152,8 +218,37 @@ class _ArcPainter extends CustomPainter {
     }
   }
 
+  void _glyph(Canvas canvas, Offset at, double size, WeatherKind kind, bool night, {bool sunless = false}) {
+    canvas.save();
+    canvas.translate(at.dx - size / 2, at.dy - size / 2);
+    // The arc already draws the Sun, so the picture adds only the cloud.
+    WeatherPainter(kind, night, .19, sunless: sunless).paint(canvas, Size.square(size));
+    canvas.restore();
+  }
+
+  void _label(Canvas canvas, Size size, String text, Offset at, {bool bold = false}) {
+    final base = textStyle ?? const TextStyle(fontSize: 12);
+    final painter = TextPainter(
+      text: TextSpan(
+        text: text,
+        style: base.copyWith(
+          color: QuandoColors.text,
+          fontWeight: bold ? FontWeight.w700 : null,
+          shadows: const [Shadow(color: Color(0x66000000), blurRadius: 4)],
+        ),
+      ),
+      textDirection: TextDirection.ltr,
+    )..layout(maxWidth: size.width);
+    final x = (at.dx - painter.width / 2).clamp(0.0, math.max(0.0, size.width - painter.width)).toDouble();
+    final y = at.dy.clamp(0.0, math.max(0.0, size.height - painter.height)).toDouble();
+    painter.paint(canvas, Offset(x, y));
+  }
+
   @override
   bool shouldRepaint(_ArcPainter old) =>
+      old.weather.map((w) => w.label).join() != weather.map((w) => w.label).join() ||
+      old.nowWeather != nowWeather ||
+      old.nowLabel != nowLabel ||
       old.progress != progress ||
       old.marks.length != marks.length ||
       old.moon?.phase != moon?.phase ||

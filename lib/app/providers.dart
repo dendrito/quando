@@ -191,19 +191,33 @@ class TimeZones {
 class TimeZonesNotifier extends Notifier<TimeZones> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
+  /// Set when the fixed zone was picked on this device. Older builds synced
+  /// the pick to every device, so a laptop could end up on another
+  /// device's zone (Detroit on a Mac in São Paulo).
+  static const pickedHereKey = 'zone.pickedHere';
+
   @override
-  TimeZones build() => TimeZones(
-    fixed: _prefs.getString('zone.fixed'),
-    clocks: _prefs.getStringList('zone.clocks') ?? const [],
-  );
+  TimeZones build() {
+    // By default Quando? follows where the device is. A zone that arrived
+    // from another device is dropped; only one picked here stays.
+    if (_prefs.containsKey('zone.fixed') && _prefs.getBool(pickedHereKey) != true) {
+      _prefs.remove('zone.fixed');
+    }
+    return TimeZones(
+      fixed: _prefs.getString('zone.fixed'),
+      clocks: _prefs.getStringList('zone.clocks') ?? const [],
+    );
+  }
 
   void followPhone() {
     _prefs.remove('zone.fixed');
+    _prefs.remove(pickedHereKey);
     state = TimeZones(clocks: state.clocks);
   }
 
   void setFixed(String zone) {
     _prefs.setString('zone.fixed', zone);
+    _prefs.setBool(pickedHereKey, true);
     state = TimeZones(fixed: zone, clocks: state.clocks);
   }
 
@@ -226,7 +240,8 @@ class TimeZonesNotifier extends Notifier<TimeZones> {
 final timeZonesProvider = NotifierProvider<TimeZonesNotifier, TimeZones>(TimeZonesNotifier.new);
 
 /// The zone Quando shows times in and sets everyday alarms in: the one you
-/// picked, else the phone's, else your Shabbat city's.
+/// picked on this device, else the device's own (which follows where you
+/// are), else your Shabbat city's.
 final homeZoneProvider = Provider<String>(
   (ref) =>
       ref.watch(timeZonesProvider).fixed ??

@@ -2709,4 +2709,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String pickFromService(String service) {
     return 'Kiezen uit mijn $service';
   }
+
+  @override
+  String get weatherTonight => 'Vanavond';
+
+  @override
+  String get weatherTomorrowMorning => 'Morgenochtend';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'tot ongeveer $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Zon achter de wolken';
 }

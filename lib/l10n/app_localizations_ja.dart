@@ -2664,4 +2664,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String pickFromService(String service) {
     return '$serviceから選ぶ';
   }
+
+  @override
+  String get weatherTonight => '今夜';
+
+  @override
+  String get weatherTomorrowMorning => '明日の朝';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '$timeごろまで';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太陽は雲の向こう';
 }

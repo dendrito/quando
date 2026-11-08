@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Ejaan nama parasha dan bulan",
   "hebrewNamesIsraeli": "Israel",
   "hebrewNamesAshkenazi": "Ashkenazi",
-  "pickFromService": "Pilih dari {service}-ku"
+  "pickFromService": "Pilih dari {service}-ku",
+  "weatherTonight": "Malam ini",
+  "weatherTomorrowMorning": "Besok pagi",
+  "weatherUntilAbout": "sampai sekitar {time}",
+  "weatherSunBehindClouds": "Matahari di balik awan"
 }

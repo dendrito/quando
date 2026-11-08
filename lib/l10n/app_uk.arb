@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Написання тижневої глави та місяців",
   "hebrewNamesIsraeli": "Ізраїльське",
   "hebrewNamesAshkenazi": "Ашкеназьке",
-  "pickFromService": "Вибрати з мого {service}"
+  "pickFromService": "Вибрати з мого {service}",
+  "weatherTonight": "Увечері",
+  "weatherTomorrowMorning": "Завтра вранці",
+  "weatherUntilAbout": "приблизно до {time}",
+  "weatherSunBehindClouds": "Сонце за хмарами"
 }

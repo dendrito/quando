@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "पराशा और महीनों के नामों की वर्तनी",
   "hebrewNamesIsraeli": "इज़राइली",
   "hebrewNamesAshkenazi": "अश्केनाज़ी",
-  "pickFromService": "मेरे {service} से चुनें"
+  "pickFromService": "मेरे {service} से चुनें",
+  "weatherTonight": "आज रात",
+  "weatherTomorrowMorning": "कल सुबह",
+  "weatherUntilAbout": "लगभग {time} तक",
+  "weatherSunBehindClouds": "बादलों के पीछे सूरज"
 }

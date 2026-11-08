@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Grafia di parashà e mesi",
   "hebrewNamesIsraeli": "Israeliana",
   "hebrewNamesAshkenazi": "Ashkenazita",
-  "pickFromService": "Scegli dal mio {service}"
+  "pickFromService": "Scegli dal mio {service}",
+  "weatherTonight": "Stasera",
+  "weatherTomorrowMorning": "Domani mattina",
+  "weatherUntilAbout": "fino alle {time} circa",
+  "weatherSunBehindClouds": "Sole dietro le nuvole"
 }

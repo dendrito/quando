@@ -4899,6 +4899,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick from my {service}'**
   String pickFromService(String service);
+
+  /// No description provided for @weatherTonight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight'**
+  String get weatherTonight;
+
+  /// No description provided for @weatherTomorrowMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow morning'**
+  String get weatherTomorrowMorning;
+
+  /// No description provided for @weatherUntilAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'until about {time}'**
+  String weatherUntilAbout(String time);
+
+  /// No description provided for @weatherSunBehindClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun behind the clouds'**
+  String get weatherSunBehindClouds;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

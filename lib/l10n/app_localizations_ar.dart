@@ -2739,4 +2739,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String pickFromService(String service) {
     return 'اختر من $service الخاص بي';
   }
+
+  @override
+  String get weatherTonight => 'الليلة';
+
+  @override
+  String get weatherTomorrowMorning => 'صباح الغد';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'حتى نحو $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'الشمس خلف الغيوم';
 }

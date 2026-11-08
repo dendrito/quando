@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "Cách viết tên parasha và tháng",
   "hebrewNamesIsraeli": "Israel",
   "hebrewNamesAshkenazi": "Ashkenazi",
-  "pickFromService": "Chọn từ {service} của tôi"
+  "pickFromService": "Chọn từ {service} của tôi",
+  "weatherTonight": "Tối nay",
+  "weatherTomorrowMorning": "Sáng mai",
+  "weatherUntilAbout": "đến khoảng {time}",
+  "weatherSunBehindClouds": "Mặt trời sau mây"
 }

@@ -794,5 +794,9 @@
   "hebrewNamesHeading": "כתיב שמות הפרשה והחודשים",
   "hebrewNamesIsraeli": "ישראלי",
   "hebrewNamesAshkenazi": "אשכנזי",
-  "pickFromService": "בחירה מ־{service} שלי"
+  "pickFromService": "בחירה מ־{service} שלי",
+  "weatherTonight": "הלילה",
+  "weatherTomorrowMorning": "מחר בבוקר",
+  "weatherUntilAbout": "עד בערך {time}",
+  "weatherSunBehindClouds": "השמש מאחורי העננים"
 }

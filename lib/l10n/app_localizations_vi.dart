@@ -2692,4 +2692,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String pickFromService(String service) {
     return 'Chọn từ $service của tôi';
   }
+
+  @override
+  String get weatherTonight => 'Tối nay';
+
+  @override
+  String get weatherTomorrowMorning => 'Sáng mai';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'đến khoảng $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Mặt trời sau mây';
 }
