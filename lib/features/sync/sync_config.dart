@@ -28,6 +28,7 @@ class SyncConfig {
   static const iosClientIdMine = '216517788382-1stg3hhfun5fqik91bnkjactuevb7v34.apps.googleusercontent.com';
 
   static bool get _android => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+  static bool get _mac => !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
   static bool get _apple =>
       !kIsWeb &&
       (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS);
@@ -73,7 +74,9 @@ class SyncConfig {
               ? 'com.dendrito.quando.mine'
               : kodesh
               ? 'com.dendrito.quando.kodesh'
-              : 'com.dendrito.quando')
+              : _mac
+              ? 'com.dendrito.quando.macos'
+              : 'com.dendrito.quando.ios')
         : null,
   );
 }
