@@ -9,7 +9,7 @@ compatibility_date = "2025-01-01"
 TUYA_HOST = "openapi.tuyaus.com"
 FIREBASE_PROJECT_ID = "quando-27c24"
 
-# Create with: npx wrangler kv namespace create LINKS, then paste the id here.
+# The namespace "quando-tuya-links" on the Quando Cloudflare account.
 [[kv_namespaces]]
 binding = "LINKS"
-id = "REPLACE_WITH_KV_ID"
+id = "20a50414e26b42f9a1c4ce0df7fb8801"
