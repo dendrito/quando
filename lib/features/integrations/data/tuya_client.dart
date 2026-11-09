@@ -47,7 +47,13 @@ class TuyaClient {
     };
   }
 
-  Future<dynamic> _request(TuyaSettings s, String method, String path, {String token = ''}) async {
+  Future<dynamic> _request(
+    TuyaSettings s,
+    String method,
+    String path, {
+    String token = '',
+    String body = '',
+  }) async {
     final request = http.Request(
       method,
       Uri.https(
@@ -59,8 +65,16 @@ class TuyaClient {
     request.followRedirects = false;
     final canonicalPath = request.url.toString().substring(request.url.origin.length);
     request.headers.addAll(
-      signedHeaders(s, method, canonicalPath, timestamp: '${_now().millisecondsSinceEpoch}', token: token),
+      signedHeaders(
+        s,
+        method,
+        canonicalPath,
+        timestamp: '${_now().millisecondsSinceEpoch}',
+        token: token,
+        body: body,
+      ),
     );
+    if (body.isNotEmpty) request.body = body;
     final response = await http.Response.fromStream(
       await _client.send(request).timeout(const Duration(seconds: 15)),
     ).timeout(const Duration(seconds: 15));
@@ -97,6 +111,46 @@ class TuyaClient {
     _accessToken = result['access_token'] as String;
     _expires = _now().add(Duration(seconds: ((result['expire_time'] as num?)?.toInt() ?? 7200) - 60));
     return _accessToken!;
+  }
+
+  /// Signs in with the account used in the Smart Life / Tuya Smart app and returns its
+  /// Tuya user id. Uses `associated-users/actions/authorized-login`; Tuya documents the
+  /// password as an MD5 hex digest (as its own Python SDK sends it). The password is
+  /// only sent to Tuya in this call and is never stored or returned.
+  ///
+  /// The account normally has to be linked to the cloud project first. Tuya doesn't
+  /// document the `schema` value for Smart Life accounts, so the usual ones are tried.
+  Future<String> login(
+    TuyaSettings s, {
+    required String username,
+    required String password,
+    required String countryCode,
+    List<String> schemas = const ['smartlife', 'tuyaSmart'],
+  }) async {
+    if (s.clientId.isEmpty || s.secret.isEmpty) throw const TuyaException('setup');
+    TuyaException? last;
+    for (final schema in schemas) {
+      try {
+        final result = await _request(
+          s,
+          'POST',
+          '/v1.0/iot-01/associated-users/actions/authorized-login',
+          body: jsonEncode({
+            'username': username.trim(),
+            'password': md5.convert(utf8.encode(password)).toString(),
+            'country_code': countryCode.trim(),
+            'schema': schema,
+          }),
+        );
+        if (result is! Map || '${result['uid'] ?? ''}'.isEmpty) throw const TuyaException('response');
+        return '${result['uid']}';
+      } on TuyaException catch (e) {
+        last = e;
+        // Any other Tuya error may come from the schema, so try the next one.
+        if (e.code == 'response' || e.code == 'setup') rethrow;
+      }
+    }
+    throw last ?? const TuyaException('response');
   }
 
   Future<List<TuyaScene>> scenes(TuyaSettings s) async {

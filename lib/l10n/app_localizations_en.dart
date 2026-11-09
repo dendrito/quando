@@ -2584,6 +2584,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+
+  @override
+  String get tuyaSignInHint =>
+      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+
+  @override
+  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+
+  @override
+  String get tuyaAccount => 'Smart Life email or phone';
+
+  @override
+  String get tuyaPassword => 'Smart Life password';
+
+  @override
+  String get tuyaSignIn => 'Sign in and load scenes';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

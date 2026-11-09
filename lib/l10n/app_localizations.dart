@@ -4702,6 +4702,42 @@ abstract class AppLocalizations {
   /// **'Advanced setup'**
   String get tuyaAdvanced;
 
+  /// No description provided for @tuyaSignInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your Smart Life account'**
+  String get tuyaSignInTitle;
+
+  /// No description provided for @tuyaSignInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.'**
+  String get tuyaSignInHint;
+
+  /// No description provided for @tuyaCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Country calling code (Brazil 55, US 1)'**
+  String get tuyaCountryCode;
+
+  /// No description provided for @tuyaAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life email or phone'**
+  String get tuyaAccount;
+
+  /// No description provided for @tuyaPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life password'**
+  String get tuyaPassword;
+
+  /// No description provided for @tuyaSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in and load scenes'**
+  String get tuyaSignIn;
+
   /// No description provided for @roshHodeshHeading.
   ///
   /// In en, this message translates to:

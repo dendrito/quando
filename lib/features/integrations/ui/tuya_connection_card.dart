@@ -19,6 +19,10 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
   late final _id = TextEditingController(text: ref.read(integrationsProvider).tuya.clientId);
   late final _secret = TextEditingController(text: ref.read(integrationsProvider).tuya.secret);
   late final _uid = TextEditingController(text: ref.read(integrationsProvider).tuya.uid);
+  final _country = TextEditingController();
+  final _account = TextEditingController();
+  final _password = TextEditingController();
+  bool _signingIn = false;
   bool _loading = false;
   bool _advanced = false;
   bool _loaded = false;
@@ -30,7 +34,34 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
     _id.dispose();
     _secret.dispose();
     _uid.dispose();
+    _country.dispose();
+    _account.dispose();
+    _password.dispose();
     super.dispose();
+  }
+
+  /// Signs in with the Smart Life account to find its Tuya user id, then loads the scenes.
+  /// Only the user id is kept; the password is cleared as soon as the call returns.
+  Future<void> _signIn() async {
+    final settings = ref.read(integrationsProvider).tuya;
+    setState(() {
+      _signingIn = true;
+      _error = null;
+    });
+    try {
+      final uid = await ref
+          .read(tuyaClientProvider)
+          .login(settings, username: _account.text, password: _password.text, countryCode: _country.text);
+      _uid.text = uid;
+      _save();
+      _password.clear();
+      if (mounted) setState(() => _signingIn = false);
+      await _load();
+    } catch (e) {
+      if (mounted) setState(() => _error = '${l10n.tuyaFailed} ${e is TuyaException ? e.code : 'network'}');
+    } finally {
+      if (mounted) setState(() => _signingIn = false);
+    }
   }
 
   void _save({TuyaRegion? region}) => ref
@@ -147,6 +178,44 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
                 decoration: InputDecoration(labelText: l10n.tuyaUserId),
                 onChanged: (_) => _save(),
                 autocorrect: false,
+              ),
+              const SizedBox(height: 16),
+              Text(l10n.tuyaSignInTitle, style: Theme.of(context).textTheme.titleSmall),
+              Text(l10n.tuyaSignInHint),
+              TextField(
+                controller: _country,
+                onChanged: (_) => setState(() {}),
+                keyboardType: TextInputType.number,
+                decoration: InputDecoration(labelText: l10n.tuyaCountryCode),
+              ),
+              TextField(
+                controller: _account,
+                onChanged: (_) => setState(() {}),
+                keyboardType: TextInputType.emailAddress,
+                autocorrect: false,
+                decoration: InputDecoration(labelText: l10n.tuyaAccount),
+              ),
+              TextField(
+                controller: _password,
+                onChanged: (_) => setState(() {}),
+                obscureText: true,
+                enableSuggestions: false,
+                autocorrect: false,
+                decoration: InputDecoration(labelText: l10n.tuyaPassword),
+              ),
+              const SizedBox(height: 8),
+              FilledButton(
+                onPressed:
+                    _signingIn ||
+                        _loading ||
+                        _id.text.trim().isEmpty ||
+                        _secret.text.trim().isEmpty ||
+                        _country.text.trim().isEmpty ||
+                        _account.text.trim().isEmpty ||
+                        _password.text.isEmpty
+                    ? null
+                    : _signIn,
+                child: Text(_signingIn ? l10n.loading : l10n.tuyaSignIn),
               ),
             ],
           ),
