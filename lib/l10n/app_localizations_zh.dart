@@ -2551,43 +2551,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
-  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+  String get tuyaSignInTitle => '使用 Smart Life 账号登录';
 
   @override
   String get tuyaSignInHint =>
-      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+      '请使用与 Smart Life 或 Tuya Smart 应用相同的国家、邮箱或手机号和密码。该账号必须已关联到你的 Tuya 项目。密码只会发送给 Tuya，不会被保存。';
 
   @override
-  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+  String get tuyaCountryCode => '国家区号（巴西 55，美国 1）';
 
   @override
-  String get tuyaAccount => 'Smart Life email or phone';
+  String get tuyaAccount => 'Smart Life 邮箱或手机号';
 
   @override
-  String get tuyaPassword => 'Smart Life password';
+  String get tuyaPassword => 'Smart Life 密码';
 
   @override
-  String get tuyaSignIn => 'Sign in and load scenes';
+  String get tuyaSignIn => '登录并加载场景';
 
   @override
-  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+  String get tuyaRelayUrl => 'Quando Tuya 中继地址（https）';
 
   @override
   String get tuyaRelayHint =>
-      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+      '请使用你的 Smart Life 或 Tuya Smart 账号的国家、邮箱或手机号和密码。它们只会发送一次到 Quando 的 Tuya 中继，不会被保存。你需要先登录 Quando 账号。';
 
   @override
-  String get tuyaGoogleHint =>
-      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+  String get tuyaGoogleHint => '用 Google 或 Apple 登录 Smart Life？在 Smart Life 中点按“忘记密码”设置一个密码，然后在这里使用。';
 
   @override
-  String get tuyaLinked => 'Smart Life account linked';
+  String get tuyaLinked => 'Smart Life 账号已关联';
 
   @override
-  String get tuyaUnlink => 'Unlink';
+  String get tuyaUnlink => '取消关联';
 
   @override
-  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+  String get tuyaNeedsAccount => '请先在设置中登录你的 Quando 账号。';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';
@@ -5244,6 +5243,44 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get tuyaAdvanced => 'Advanced setup';
+
+  @override
+  String get tuyaSignInTitle => '使用 Smart Life 帳號登入';
+
+  @override
+  String get tuyaSignInHint =>
+      '請使用與 Smart Life 或 Tuya Smart 應用程式相同的國家、電子郵件或電話號碼和密碼。該帳號必須已連結到你的 Tuya 專案。密碼只會傳送給 Tuya，不會被儲存。';
+
+  @override
+  String get tuyaCountryCode => '國碼（巴西 55，美國 1）';
+
+  @override
+  String get tuyaAccount => 'Smart Life 電子郵件或電話號碼';
+
+  @override
+  String get tuyaPassword => 'Smart Life 密碼';
+
+  @override
+  String get tuyaSignIn => '登入並載入情境';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya 中繼位址（https）';
+
+  @override
+  String get tuyaRelayHint =>
+      '請使用你的 Smart Life 或 Tuya Smart 帳號的國家、電子郵件或電話號碼和密碼。它們只會傳送一次到 Quando 的 Tuya 中繼，不會被儲存。你需要先登入 Quando 帳號。';
+
+  @override
+  String get tuyaGoogleHint => '用 Google 或 Apple 登入 Smart Life？在 Smart Life 中點選「忘記密碼」設定密碼，然後在這裡使用。';
+
+  @override
+  String get tuyaLinked => 'Smart Life 帳號已連結';
+
+  @override
+  String get tuyaUnlink => '取消連結';
+
+  @override
+  String get tuyaNeedsAccount => '請先在設定中登入你的 Quando 帳號。';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';

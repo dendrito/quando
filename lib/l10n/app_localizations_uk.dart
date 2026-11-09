@@ -2635,43 +2635,43 @@ class AppLocalizationsUk extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
-  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+  String get tuyaSignInTitle => 'Увійти з обліковим записом Smart Life';
 
   @override
   String get tuyaSignInHint =>
-      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+      'Використайте ту саму країну, пошту чи телефон і пароль, що й у застосунку Smart Life або Tuya Smart. Обліковий запис уже має бути прив’язаний до вашого проєкту Tuya. Пароль іде лише до Tuya і ніде не зберігається.';
 
   @override
-  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+  String get tuyaCountryCode => 'Телефонний код країни (Бразилія 55, США 1)';
 
   @override
-  String get tuyaAccount => 'Smart Life email or phone';
+  String get tuyaAccount => 'Пошта або телефон Smart Life';
 
   @override
-  String get tuyaPassword => 'Smart Life password';
+  String get tuyaPassword => 'Пароль Smart Life';
 
   @override
-  String get tuyaSignIn => 'Sign in and load scenes';
+  String get tuyaSignIn => 'Увійти й завантажити сценарії';
 
   @override
-  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+  String get tuyaRelayUrl => 'Адреса реле Tuya для Quando (https)';
 
   @override
   String get tuyaRelayHint =>
-      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+      'Використайте країну, пошту чи телефон і пароль облікового запису Smart Life або Tuya Smart. Вони один раз передаються реле Tuya для Quando і не зберігаються. Потрібно ввійти в обліковий запис Quando.';
 
   @override
   String get tuyaGoogleHint =>
-      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+      'Входите в Smart Life через Google або Apple? У Smart Life натисніть «Забули пароль», задайте пароль і використайте його тут.';
 
   @override
-  String get tuyaLinked => 'Smart Life account linked';
+  String get tuyaLinked => 'Обліковий запис Smart Life прив’язано';
 
   @override
-  String get tuyaUnlink => 'Unlink';
+  String get tuyaUnlink => 'Відв’язати';
 
   @override
-  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+  String get tuyaNeedsAccount => 'Спершу увійдіть в обліковий запис Quando в налаштуваннях.';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';

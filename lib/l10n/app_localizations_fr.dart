@@ -2603,43 +2603,43 @@ class AppLocalizationsFr extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
-  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+  String get tuyaSignInTitle => 'Se connecter avec son compte Smart Life';
 
   @override
   String get tuyaSignInHint =>
-      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+      'Utilise le même pays, e-mail ou téléphone et mot de passe que dans l’app Smart Life ou Tuya Smart. Le compte doit déjà être lié à ton projet Tuya. Le mot de passe va seulement à Tuya et n’est jamais enregistré.';
 
   @override
-  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+  String get tuyaCountryCode => 'Indicatif du pays (Brésil 55, États-Unis 1)';
 
   @override
-  String get tuyaAccount => 'Smart Life email or phone';
+  String get tuyaAccount => 'E-mail ou téléphone Smart Life';
 
   @override
-  String get tuyaPassword => 'Smart Life password';
+  String get tuyaPassword => 'Mot de passe Smart Life';
 
   @override
-  String get tuyaSignIn => 'Sign in and load scenes';
+  String get tuyaSignIn => 'Se connecter et charger les scènes';
 
   @override
-  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+  String get tuyaRelayUrl => 'Adresse du relais Tuya de Quando (https)';
 
   @override
   String get tuyaRelayHint =>
-      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+      'Utilise le pays, l’e-mail ou le téléphone et le mot de passe de ton compte Smart Life ou Tuya Smart. Ils sont envoyés une fois au relais Tuya de Quando et ne sont pas enregistrés. Tu dois être connecté à ton compte Quando.';
 
   @override
   String get tuyaGoogleHint =>
-      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+      'Connecté à Smart Life avec Google ou Apple ? Dans Smart Life, touche « Mot de passe oublié » pour en définir un, puis utilise-le ici.';
 
   @override
-  String get tuyaLinked => 'Smart Life account linked';
+  String get tuyaLinked => 'Compte Smart Life lié';
 
   @override
-  String get tuyaUnlink => 'Unlink';
+  String get tuyaUnlink => 'Dissocier';
 
   @override
-  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+  String get tuyaNeedsAccount => 'Connecte-toi d’abord à ton compte Quando dans les Réglages.';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';

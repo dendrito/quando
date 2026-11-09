@@ -2584,43 +2584,43 @@ class AppLocalizationsId extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
-  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+  String get tuyaSignInTitle => 'Masuk dengan akun Smart Life';
 
   @override
   String get tuyaSignInHint =>
-      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+      'Gunakan negara, email atau telepon, dan kata sandi yang sama seperti di aplikasi Smart Life atau Tuya Smart. Akun harus sudah tertaut ke proyek Tuya Anda. Kata sandi hanya dikirim ke Tuya dan tidak pernah disimpan.';
 
   @override
-  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+  String get tuyaCountryCode => 'Kode negara (Brasil 55, AS 1)';
 
   @override
-  String get tuyaAccount => 'Smart Life email or phone';
+  String get tuyaAccount => 'Email atau telepon Smart Life';
 
   @override
-  String get tuyaPassword => 'Smart Life password';
+  String get tuyaPassword => 'Kata sandi Smart Life';
 
   @override
-  String get tuyaSignIn => 'Sign in and load scenes';
+  String get tuyaSignIn => 'Masuk dan muat skenario';
 
   @override
-  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+  String get tuyaRelayUrl => 'Alamat relay Tuya Quando (https)';
 
   @override
   String get tuyaRelayHint =>
-      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+      'Gunakan negara, email atau telepon, dan kata sandi akun Smart Life atau Tuya Smart Anda. Semuanya dikirim sekali ke relay Tuya Quando dan tidak disimpan. Anda harus masuk ke akun Quando.';
 
   @override
   String get tuyaGoogleHint =>
-      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+      'Masuk Smart Life dengan Google atau Apple? Di Smart Life, ketuk “Lupa Kata Sandi” untuk membuat kata sandi, lalu gunakan di sini.';
 
   @override
-  String get tuyaLinked => 'Smart Life account linked';
+  String get tuyaLinked => 'Akun Smart Life tertaut';
 
   @override
-  String get tuyaUnlink => 'Unlink';
+  String get tuyaUnlink => 'Putuskan tautan';
 
   @override
-  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+  String get tuyaNeedsAccount => 'Masuk dulu ke akun Quando di Pengaturan.';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';

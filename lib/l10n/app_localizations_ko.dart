@@ -2557,43 +2557,43 @@ class AppLocalizationsKo extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
-  String get tuyaSignInTitle => 'Sign in with your Smart Life account';
+  String get tuyaSignInTitle => 'Smart Life 계정으로 로그인';
 
   @override
   String get tuyaSignInHint =>
-      'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.';
+      'Smart Life 또는 Tuya Smart 앱과 같은 국가, 이메일 또는 전화번호, 비밀번호를 사용하세요. 계정은 이미 Tuya 프로젝트에 연결되어 있어야 합니다. 비밀번호는 Tuya로만 전송되며 저장되지 않습니다.';
 
   @override
-  String get tuyaCountryCode => 'Country calling code (Brazil 55, US 1)';
+  String get tuyaCountryCode => '국가 번호 (브라질 55, 미국 1)';
 
   @override
-  String get tuyaAccount => 'Smart Life email or phone';
+  String get tuyaAccount => 'Smart Life 이메일 또는 전화번호';
 
   @override
-  String get tuyaPassword => 'Smart Life password';
+  String get tuyaPassword => 'Smart Life 비밀번호';
 
   @override
-  String get tuyaSignIn => 'Sign in and load scenes';
+  String get tuyaSignIn => '로그인하고 장면 불러오기';
 
   @override
-  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+  String get tuyaRelayUrl => 'Quando Tuya 릴레이 주소 (https)';
 
   @override
   String get tuyaRelayHint =>
-      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+      'Smart Life 또는 Tuya Smart 계정의 국가, 이메일 또는 전화번호, 비밀번호를 사용하세요. Quando의 Tuya 릴레이로 한 번 전송되며 저장되지 않습니다. Quando 계정에 로그인해 있어야 합니다.';
 
   @override
   String get tuyaGoogleHint =>
-      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+      'Google이나 Apple로 Smart Life에 로그인하나요? Smart Life에서 ‘비밀번호 찾기’를 눌러 비밀번호를 설정한 뒤 여기에서 사용하세요.';
 
   @override
-  String get tuyaLinked => 'Smart Life account linked';
+  String get tuyaLinked => 'Smart Life 계정 연결됨';
 
   @override
-  String get tuyaUnlink => 'Unlink';
+  String get tuyaUnlink => '연결 해제';
 
   @override
-  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+  String get tuyaNeedsAccount => '먼저 설정에서 Quando 계정에 로그인하세요.';
 
   @override
   String get roshHodeshHeading => 'Rosh Hodesh';
