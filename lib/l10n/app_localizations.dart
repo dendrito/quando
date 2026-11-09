@@ -679,31 +679,31 @@ abstract class AppLocalizations {
   /// No description provided for @inDays.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d'**
+  /// **'in {d} d'**
   String inDays(int d);
 
   /// No description provided for @inDaysHours.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d {h}h'**
+  /// **'in {d} d {h} h'**
   String inDaysHours(int d, int h);
 
   /// No description provided for @inHours.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h'**
+  /// **'in {h} h'**
   String inHours(int h);
 
   /// No description provided for @inHoursMinutes.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h {m}m'**
+  /// **'in {h} h {m} min'**
   String inHoursMinutes(int h, int m);
 
   /// No description provided for @inMins.
   ///
   /// In en, this message translates to:
-  /// **'in {m}m'**
+  /// **'in {m} min'**
   String inMins(int m);
 
   /// No description provided for @placeChange.
@@ -811,7 +811,7 @@ abstract class AppLocalizations {
   /// No description provided for @lockCalendarWord.
   ///
   /// In en, this message translates to:
-  /// **'During calendar events with this word'**
+  /// **'During events named…'**
   String get lockCalendarWord;
 
   /// No description provided for @lockCalendarWordHint.
@@ -2119,7 +2119,7 @@ abstract class AppLocalizations {
   /// No description provided for @songLinkHowTo.
   ///
   /// In en, this message translates to:
-  /// **'In Spotify, Apple Music, Amazon Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.'**
+  /// **'In Spotify, Apple Music, YouTube, YouTube Music or SoundCloud, tap Share, then Copy link, and paste it here.'**
   String get songLinkHowTo;
 
   /// No description provided for @songNameHint.
@@ -2209,13 +2209,13 @@ abstract class AppLocalizations {
   /// No description provided for @youTubeOn.
   ///
   /// In en, this message translates to:
-  /// **'Your playlists and liked songs. Long-press to sign out.'**
+  /// **'Connected · hold to sign out'**
   String get youTubeOn;
 
   /// No description provided for @youTubeSignIn.
   ///
   /// In en, this message translates to:
-  /// **'Sign in with Google to pick from your playlists and liked songs.'**
+  /// **'Sign in with Google'**
   String get youTubeSignIn;
 
   /// No description provided for @addSongLinkInstead.
@@ -2251,19 +2251,19 @@ abstract class AppLocalizations {
   /// No description provided for @spotifyDirectOnHint.
   ///
   /// In en, this message translates to:
-  /// **'Spotify plays your exact song as the alarm. Tap to turn off.'**
+  /// **'On · tap to turn off'**
   String get spotifyDirectOnHint;
 
   /// No description provided for @spotifyDirectHint.
   ///
   /// In en, this message translates to:
-  /// **'Plays your exact Spotify song as the alarm, more reliably. Needs the Spotify app and Spotify Premium. Tap to sign in.'**
+  /// **'Plays the exact song. Needs Premium.'**
   String get spotifyDirectHint;
 
   /// No description provided for @spotifyComingSoon.
   ///
   /// In en, this message translates to:
-  /// **'Coming soon: plays your exact Spotify song as the alarm (needs Spotify Premium).'**
+  /// **'Coming soon · needs Premium'**
   String get spotifyComingSoon;
 
   /// No description provided for @spotifyFailed.
@@ -2365,7 +2365,7 @@ abstract class AppLocalizations {
   /// No description provided for @soundsExplain.
   ///
   /// In en, this message translates to:
-  /// **'Record your voice, a song or anything else, up to 5 minutes. Add an MP3, M4A or WAV from your phone. Link a song or playlist: its app plays it as the alarm, with a backup sound. Or pick a radio station: it plays live, and if it can\'t connect, the phone\'s alarm sound rings instead.'**
+  /// **'Record up to 5 minutes, add a file, a song link or live radio. A backup sound rings if anything fails.'**
   String get soundsExplain;
 
   /// No description provided for @yourSoundsHeading.
@@ -3655,7 +3655,7 @@ abstract class AppLocalizations {
   /// This week's Torah portion, shown under the Hebrew date in Quando? Shabbat.
   ///
   /// In en, this message translates to:
-  /// **'Parashat {name}'**
+  /// **'Weekly Torah Portion: {name}'**
   String weeklyParasha(String name);
 
   /// Under the Jewish edition's name; {name} is Quando?.
@@ -3663,6 +3663,1416 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'powered by {name}'**
   String poweredBy(String name);
+
+  /// No description provided for @syncTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync my devices'**
+  String get syncTitle;
+
+  /// No description provided for @syncHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to keep alarms and settings the same on all your devices.'**
+  String get syncHint;
+
+  /// No description provided for @syncOn.
+  ///
+  /// In en, this message translates to:
+  /// **'On · {email}'**
+  String syncOn(String email);
+
+  /// No description provided for @syncWorking.
+  ///
+  /// In en, this message translates to:
+  /// **'Connecting…'**
+  String get syncWorking;
+
+  /// No description provided for @syncNotAllowed.
+  ///
+  /// In en, this message translates to:
+  /// **'This account can\'t sync yet. If you signed in with email, confirm it first.'**
+  String get syncNotAllowed;
+
+  /// No description provided for @syncFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t connect. Tap to try again.'**
+  String get syncFailed;
+
+  /// No description provided for @syncStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop syncing'**
+  String get syncStop;
+
+  /// No description provided for @syncNotSetUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync isn\'t set up in this build yet.'**
+  String get syncNotSetUp;
+
+  /// No description provided for @ringTheseAfterAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring these after all'**
+  String get ringTheseAfterAll;
+
+  /// No description provided for @skipTheseDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip these {n} today'**
+  String skipTheseDay(int n);
+
+  /// No description provided for @turnOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn off “{name}”'**
+  String turnOffNamed(String name);
+
+  /// No description provided for @turnOnNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on “{name}”'**
+  String turnOnNamed(String name);
+
+  /// No description provided for @turnedOffNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off “{name}”'**
+  String turnedOffNamed(String name);
+
+  /// No description provided for @removeTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove “{time}” from “{name}”'**
+  String removeTimeFrom(String time, String name);
+
+  /// No description provided for @removedTimeFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Removed “{time}” from “{name}”'**
+  String removedTimeFrom(String time, String name);
+
+  /// No description provided for @moveToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Move to a group'**
+  String get moveToGroup;
+
+  /// No description provided for @inGroupMove.
+  ///
+  /// In en, this message translates to:
+  /// **'In “{group}”, move'**
+  String inGroupMove(String group);
+
+  /// No description provided for @movedToGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'Moved to “{group}”'**
+  String movedToGroup(String group);
+
+  /// No description provided for @deleteNamed.
+  ///
+  /// In en, this message translates to:
+  /// **'Delete “{name}”'**
+  String deleteNamed(String name);
+
+  /// No description provided for @signInWithGoogle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google'**
+  String get signInWithGoogle;
+
+  /// No description provided for @signOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get signOut;
+
+  /// No description provided for @signInWithEmail.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with email'**
+  String get signInWithEmail;
+
+  /// No description provided for @signIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in'**
+  String get signIn;
+
+  /// No description provided for @createAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Create account'**
+  String get createAccount;
+
+  /// No description provided for @haveAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'I have an account'**
+  String get haveAccount;
+
+  /// No description provided for @forgotPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot password?'**
+  String get forgotPassword;
+
+  /// No description provided for @email.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get email;
+
+  /// No description provided for @password.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get password;
+
+  /// No description provided for @passwordResetSent.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent you a link to choose a new password.'**
+  String get passwordResetSent;
+
+  /// No description provided for @emailCheckInbox.
+  ///
+  /// In en, this message translates to:
+  /// **'We sent a link to {email}. Open it, then come back and tap “I’ve confirmed”.'**
+  String emailCheckInbox(String email);
+
+  /// No description provided for @emailConfirmed.
+  ///
+  /// In en, this message translates to:
+  /// **'I’ve confirmed'**
+  String get emailConfirmed;
+
+  /// No description provided for @emailNotYet.
+  ///
+  /// In en, this message translates to:
+  /// **'Not confirmed yet. Open the link in the email first.'**
+  String get emailNotYet;
+
+  /// No description provided for @emailSendAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Send the email again'**
+  String get emailSendAgain;
+
+  /// No description provided for @emailSentAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sent. Check your inbox and spam.'**
+  String get emailSentAgain;
+
+  /// No description provided for @emailInvalid.
+  ///
+  /// In en, this message translates to:
+  /// **'That doesn’t look like an email address.'**
+  String get emailInvalid;
+
+  /// No description provided for @emailWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'Wrong email or password.'**
+  String get emailWrong;
+
+  /// No description provided for @emailInUse.
+  ///
+  /// In en, this message translates to:
+  /// **'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.'**
+  String get emailInUse;
+
+  /// No description provided for @passwordWeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a password of at least 6 characters.'**
+  String get passwordWeak;
+
+  /// No description provided for @emailNotSwitchedOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Email sign-in isn’t switched on yet.'**
+  String get emailNotSwitchedOn;
+
+  /// No description provided for @tooManyTries.
+  ///
+  /// In en, this message translates to:
+  /// **'Too many tries. Wait a few minutes.'**
+  String get tooManyTries;
+
+  /// No description provided for @spotifyLibrary.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify'**
+  String get spotifyLibrary;
+
+  /// No description provided for @spotifyLibrarySignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Playlists, liked songs and search'**
+  String get spotifyLibrarySignIn;
+
+  /// No description provided for @spotifyLibraryOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected · hold to sign out'**
+  String get spotifyLibraryOn;
+
+  /// No description provided for @spotifyLoginError.
+  ///
+  /// In en, this message translates to:
+  /// **'Spotify sign-in didn\'t work: {reason}'**
+  String spotifyLoginError(String reason);
+
+  /// No description provided for @googleSignInError.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in didn\'t work: {reason}'**
+  String googleSignInError(String reason);
+
+  /// No description provided for @searchSongsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Search songs, artists, playlists'**
+  String get searchSongsHint;
+
+  /// No description provided for @nothingFound.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing found for “{query}”.'**
+  String nothingFound(String query);
+
+  /// No description provided for @deliveryTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery'**
+  String get deliveryTitle;
+
+  /// No description provided for @deliveryLocal.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio'**
+  String get deliveryLocal;
+
+  /// No description provided for @deliveryBoth.
+  ///
+  /// In en, this message translates to:
+  /// **'Both'**
+  String get deliveryBoth;
+
+  /// No description provided for @deliveryConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect Pushover'**
+  String get deliveryConnect;
+
+  /// No description provided for @deliveryLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not load sounds and devices. Try again.'**
+  String get deliveryLoadFailed;
+
+  /// No description provided for @deliveryBothHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio still rings if Pushover fails.'**
+  String get deliveryBothHint;
+
+  /// No description provided for @deliveryPushHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Pushover only. This device must be online when it fires.'**
+  String get deliveryPushHint;
+
+  /// No description provided for @deliveryFallback.
+  ///
+  /// In en, this message translates to:
+  /// **'Local audio is kept if Pushover is disconnected or paused.'**
+  String get deliveryFallback;
+
+  /// No description provided for @deliveryReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Use existing settings'**
+  String get deliveryReset;
+
+  /// No description provided for @beforeShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Before Shabbat'**
+  String get beforeShabbat;
+
+  /// No description provided for @preparationReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders'**
+  String get preparationReminders;
+
+  /// No description provided for @skipThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip this week'**
+  String get skipThisWeek;
+
+  /// No description provided for @restoreThisWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'Restore this week'**
+  String get restoreThisWeek;
+
+  /// No description provided for @allAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'All alarms'**
+  String get allAlarms;
+
+  /// No description provided for @timesAndSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Times & sound'**
+  String get timesAndSound;
+
+  /// No description provided for @changeCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Change city'**
+  String get changeCity;
+
+  /// No description provided for @useMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Use my location'**
+  String get useMyLocation;
+
+  /// No description provided for @locationUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Location is temporarily unavailable. Try again or choose a city.'**
+  String get locationUnavailable;
+
+  /// No description provided for @locationReview.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm this location'**
+  String get locationReview;
+
+  /// No description provided for @locationDeviceOnly.
+  ///
+  /// In en, this message translates to:
+  /// **'This location is saved only on this device. Check the timezone and Israel setting before using these times.'**
+  String get locationDeviceOnly;
+
+  /// No description provided for @timesIn.
+  ///
+  /// In en, this message translates to:
+  /// **'{city} · {zone} · city time'**
+  String timesIn(String city, String zone);
+
+  /// No description provided for @preparationOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.'**
+  String get preparationOff;
+
+  /// No description provided for @preparationSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Preparation reminders are skipped this week. Your weekly settings are kept.'**
+  String get preparationSkipped;
+
+  /// No description provided for @shabbatControls.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat controls'**
+  String get shabbatControls;
+
+  /// No description provided for @duringAfterShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'During / after Shabbat'**
+  String get duringAfterShabbat;
+
+  /// No description provided for @locationCoordinates.
+  ///
+  /// In en, this message translates to:
+  /// **'Latitude {latitude} · longitude {longitude}'**
+  String locationCoordinates(String latitude, String longitude);
+
+  /// No description provided for @currentLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'Current location'**
+  String get currentLocation;
+
+  /// No description provided for @testPushoverSound.
+  ///
+  /// In en, this message translates to:
+  /// **'Test sound on Pushover'**
+  String get testPushoverSound;
+
+  /// No description provided for @pushoverSoundTestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.'**
+  String get pushoverSoundTestHint;
+
+  /// No description provided for @pushoverShareDevices.
+  ///
+  /// In en, this message translates to:
+  /// **'Share credentials with my devices'**
+  String get pushoverShareDevices;
+
+  /// No description provided for @pushoverShareHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.'**
+  String get pushoverShareHint;
+
+  /// No description provided for @pushoverShareQueued.
+  ///
+  /// In en, this message translates to:
+  /// **'Credentials queued for your signed-in devices.'**
+  String get pushoverShareQueued;
+
+  /// No description provided for @pushoverShareSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to the same app account on each device to share Pushover credentials.'**
+  String get pushoverShareSignIn;
+
+  /// No description provided for @smartHomeHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart home'**
+  String get smartHomeHeading;
+
+  /// No description provided for @smartHomeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.'**
+  String get smartHomeHint;
+
+  /// No description provided for @shareServices.
+  ///
+  /// In en, this message translates to:
+  /// **'Share service connections'**
+  String get shareServices;
+
+  /// No description provided for @shareServicesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.'**
+  String get shareServicesHint;
+
+  /// No description provided for @tuyaSetupHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.'**
+  String get tuyaSetupHint;
+
+  /// No description provided for @tuyaDataCenter.
+  ///
+  /// In en, this message translates to:
+  /// **'Data center'**
+  String get tuyaDataCenter;
+
+  /// No description provided for @tuyaUserId.
+  ///
+  /// In en, this message translates to:
+  /// **'Linked account UID'**
+  String get tuyaUserId;
+
+  /// No description provided for @tuyaAccessId.
+  ///
+  /// In en, this message translates to:
+  /// **'Access ID / Client ID'**
+  String get tuyaAccessId;
+
+  /// No description provided for @tuyaAccessSecret.
+  ///
+  /// In en, this message translates to:
+  /// **'Access Secret / Client Secret'**
+  String get tuyaAccessSecret;
+
+  /// No description provided for @tuyaLoadScenes.
+  ///
+  /// In en, this message translates to:
+  /// **'Load scenes'**
+  String get tuyaLoadScenes;
+
+  /// No description provided for @tuyaNoScenes.
+  ///
+  /// In en, this message translates to:
+  /// **'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.'**
+  String get tuyaNoScenes;
+
+  /// No description provided for @tuyaRunNow.
+  ///
+  /// In en, this message translates to:
+  /// **'Run scene now'**
+  String get tuyaRunNow;
+
+  /// No description provided for @tuyaRunConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Run this scene on your Tuya devices now?'**
+  String get tuyaRunConfirm;
+
+  /// No description provided for @tuyaSent.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya accepted the scene command. Check your devices.'**
+  String get tuyaSent;
+
+  /// No description provided for @tuyaFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya could not complete the request. Check project permissions, data center and subscription. Error:'**
+  String get tuyaFailed;
+
+  /// No description provided for @tuyaAlarmScene.
+  ///
+  /// In en, this message translates to:
+  /// **'Tuya scene when this alarm rings'**
+  String get tuyaAlarmScene;
+
+  /// No description provided for @homeAssistantHowTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.'**
+  String get homeAssistantHowTo;
+
+  /// No description provided for @nodeRedHowTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.'**
+  String get nodeRedHowTo;
+
+  /// No description provided for @smartHomeConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a smart-home service'**
+  String get smartHomeConnect;
+
+  /// No description provided for @automationTestHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Testing runs the connected automation immediately.'**
+  String get automationTestHint;
+
+  /// No description provided for @smartHomeDeviceOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Run smart-home alarm actions on this device'**
+  String get smartHomeDeviceOn;
+
+  /// No description provided for @smartHomeDeviceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose one device to run your automations. Connections are shared; this switch stays on this device.'**
+  String get smartHomeDeviceHint;
+
+  /// No description provided for @smartHomeDeviceOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.'**
+  String get smartHomeDeviceOff;
+
+  /// No description provided for @homeDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Home display'**
+  String get homeDisplay;
+
+  /// No description provided for @skyDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day'**
+  String get skyDay;
+
+  /// No description provided for @skyDayNight.
+  ///
+  /// In en, this message translates to:
+  /// **'Day + night'**
+  String get skyDayNight;
+
+  /// No description provided for @showMoonPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase'**
+  String get showMoonPhase;
+
+  /// No description provided for @weatherLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get weatherLabel;
+
+  /// No description provided for @skyLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky'**
+  String get skyLabel;
+
+  /// No description provided for @weatherSwipeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe between sky and weather'**
+  String get weatherSwipeHint;
+
+  /// No description provided for @parashaHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Weekly parashah'**
+  String get parashaHeading;
+
+  /// No description provided for @dailyStudyHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Daily learning'**
+  String get dailyStudyHeading;
+
+  /// No description provided for @courseDaf.
+  ///
+  /// In en, this message translates to:
+  /// **'Daf Yomi'**
+  String get courseDaf;
+
+  /// No description provided for @courseRambam1.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam · 1 chapter/day'**
+  String get courseRambam1;
+
+  /// No description provided for @courseRambam3.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam · 3 chapters/day'**
+  String get courseRambam3;
+
+  /// No description provided for @courseMitzvot.
+  ///
+  /// In en, this message translates to:
+  /// **'Sefer HaMitzvot'**
+  String get courseMitzvot;
+
+  /// No description provided for @courseMishnah.
+  ///
+  /// In en, this message translates to:
+  /// **'Mishnah Yomit'**
+  String get courseMishnah;
+
+  /// No description provided for @courseNach.
+  ///
+  /// In en, this message translates to:
+  /// **'Nach Yomi'**
+  String get courseNach;
+
+  /// No description provided for @moonriseLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonrise'**
+  String get moonriseLabel;
+
+  /// No description provided for @moonsetLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Moonset'**
+  String get moonsetLabel;
+
+  /// No description provided for @nightfallLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Nightfall'**
+  String get nightfallLabel;
+
+  /// No description provided for @moonAlwaysUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon above horizon all day'**
+  String get moonAlwaysUp;
+
+  /// No description provided for @moonAlwaysDown.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon below horizon all day'**
+  String get moonAlwaysDown;
+
+  /// No description provided for @noRiseToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No rise today'**
+  String get noRiseToday;
+
+  /// No description provided for @noSetToday.
+  ///
+  /// In en, this message translates to:
+  /// **'No set today'**
+  String get noSetToday;
+
+  /// No description provided for @moonNew.
+  ///
+  /// In en, this message translates to:
+  /// **'New moon'**
+  String get moonNew;
+
+  /// No description provided for @moonWaxingCrescent.
+  ///
+  /// In en, this message translates to:
+  /// **'Waxing crescent'**
+  String get moonWaxingCrescent;
+
+  /// No description provided for @moonFirstQuarter.
+  ///
+  /// In en, this message translates to:
+  /// **'First quarter'**
+  String get moonFirstQuarter;
+
+  /// No description provided for @moonWaxingGibbous.
+  ///
+  /// In en, this message translates to:
+  /// **'Waxing gibbous'**
+  String get moonWaxingGibbous;
+
+  /// No description provided for @moonFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Full moon'**
+  String get moonFull;
+
+  /// No description provided for @moonWaningGibbous.
+  ///
+  /// In en, this message translates to:
+  /// **'Waning gibbous'**
+  String get moonWaningGibbous;
+
+  /// No description provided for @moonLastQuarter.
+  ///
+  /// In en, this message translates to:
+  /// **'Last quarter'**
+  String get moonLastQuarter;
+
+  /// No description provided for @moonWaningCrescent.
+  ///
+  /// In en, this message translates to:
+  /// **'Waning crescent'**
+  String get moonWaningCrescent;
+
+  /// No description provided for @moonIlluminated.
+  ///
+  /// In en, this message translates to:
+  /// **'illuminated'**
+  String get moonIlluminated;
+
+  /// No description provided for @weatherClear.
+  ///
+  /// In en, this message translates to:
+  /// **'Clear'**
+  String get weatherClear;
+
+  /// No description provided for @weatherClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Cloudy'**
+  String get weatherClouds;
+
+  /// No description provided for @weatherRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain'**
+  String get weatherRain;
+
+  /// No description provided for @weatherSnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Snow / sleet'**
+  String get weatherSnow;
+
+  /// No description provided for @weatherFog.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog'**
+  String get weatherFog;
+
+  /// No description provided for @weatherThunder.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorms'**
+  String get weatherThunder;
+
+  /// No description provided for @weatherUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather is temporarily unavailable'**
+  String get weatherUnavailable;
+
+  /// No description provided for @weatherCached.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved forecast'**
+  String get weatherCached;
+
+  /// No description provided for @weatherUpdated.
+  ///
+  /// In en, this message translates to:
+  /// **'Updated'**
+  String get weatherUpdated;
+
+  /// No description provided for @weatherForecast.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast'**
+  String get weatherForecast;
+
+  /// No description provided for @weatherThunderExpected.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorms forecast'**
+  String get weatherThunderExpected;
+
+  /// No description provided for @learningUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect to load this month’s learning schedule'**
+  String get learningUnavailable;
+
+  /// No description provided for @festivalReading.
+  ///
+  /// In en, this message translates to:
+  /// **'Festival Torah reading'**
+  String get festivalReading;
+
+  /// No description provided for @learningCalendarSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Learning calendar · Hebcal · CC BY 4.0'**
+  String get learningCalendarSource;
+
+  /// No description provided for @weatherSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Forecast · MET Norway · CC BY 4.0'**
+  String get weatherSource;
+
+  /// No description provided for @weatherConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather for your selected city. Uses rounded coordinates with MET Norway.'**
+  String get weatherConsent;
+
+  /// No description provided for @learningConsent.
+  ///
+  /// In en, this message translates to:
+  /// **'Rambam and other study schedules are loaded from Hebcal and saved for offline use.'**
+  String get learningConsent;
+
+  /// No description provided for @homeRefresh.
+  ///
+  /// In en, this message translates to:
+  /// **'Refresh'**
+  String get homeRefresh;
+
+  /// No description provided for @skyTimezone.
+  ///
+  /// In en, this message translates to:
+  /// **'My timezone'**
+  String get skyTimezone;
+
+  /// No description provided for @skyShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat city'**
+  String get skyShabbat;
+
+  /// No description provided for @skyReferenceCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Timezone reference city'**
+  String get skyReferenceCity;
+
+  /// No description provided for @skyChooseCity.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose sky city'**
+  String get skyChooseCity;
+
+  /// No description provided for @skyCityExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.'**
+  String get skyCityExplain;
+
+  /// No description provided for @skySun.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun today'**
+  String get skySun;
+
+  /// No description provided for @skyMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon today'**
+  String get skyMoon;
+
+  /// No description provided for @moonAboveHorizon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon above the horizon'**
+  String get moonAboveHorizon;
+
+  /// No description provided for @moonBelowHorizon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon below the horizon'**
+  String get moonBelowHorizon;
+
+  /// No description provided for @moonNextNew.
+  ///
+  /// In en, this message translates to:
+  /// **'Next new moon'**
+  String get moonNextNew;
+
+  /// No description provided for @moonNextFull.
+  ///
+  /// In en, this message translates to:
+  /// **'Next full moon'**
+  String get moonNextFull;
+
+  /// No description provided for @locationServicesOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Location Services is off. Turn it on in Settings or choose a city.'**
+  String get locationServicesOff;
+
+  /// No description provided for @locationDenied.
+  ///
+  /// In en, this message translates to:
+  /// **'Location access was denied. Allow it in Settings or choose a city.'**
+  String get locationDenied;
+
+  /// No description provided for @locationTimedOut.
+  ///
+  /// In en, this message translates to:
+  /// **'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.'**
+  String get locationTimedOut;
+
+  /// No description provided for @locationTimeZoneUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'Use a city in the selected timezone, or follow your device timezone before using location.'**
+  String get locationTimeZoneUnavailable;
+
+  /// No description provided for @locationSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Open location settings'**
+  String get locationSettings;
+
+  /// No description provided for @locationLooking.
+  ///
+  /// In en, this message translates to:
+  /// **'Getting a location fix…'**
+  String get locationLooking;
+
+  /// No description provided for @skyMoonDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Show Moon: rise, set and phase'**
+  String get skyMoonDisplay;
+
+  /// No description provided for @tuyaConsumerPending.
+  ///
+  /// In en, this message translates to:
+  /// **'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.'**
+  String get tuyaConsumerPending;
+
+  /// No description provided for @tuyaAdvanced.
+  ///
+  /// In en, this message translates to:
+  /// **'Advanced setup'**
+  String get tuyaAdvanced;
+
+  /// No description provided for @roshHodeshHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Rosh Hodesh'**
+  String get roshHodeshHeading;
+
+  /// No description provided for @roshHodeshExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Show the next Hebrew month’s first day or two days on Home.'**
+  String get roshHodeshExplain;
+
+  /// No description provided for @roshHodeshNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next Rosh Hodesh'**
+  String get roshHodeshNext;
+
+  /// No description provided for @roshHodeshBegins.
+  ///
+  /// In en, this message translates to:
+  /// **'Begins at sunset on'**
+  String get roshHodeshBegins;
+
+  /// No description provided for @openParashaSefaria.
+  ///
+  /// In en, this message translates to:
+  /// **'Read this Torah portion on Sefaria'**
+  String get openParashaSefaria;
+
+  /// No description provided for @skyMyLocation.
+  ///
+  /// In en, this message translates to:
+  /// **'My location'**
+  String get skyMyLocation;
+
+  /// No description provided for @skyLocationLocalTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.'**
+  String get skyLocationLocalTimes;
+
+  /// No description provided for @musicRingDurationHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.'**
+  String get musicRingDurationHint;
+
+  /// No description provided for @musicBackupPlaying.
+  ///
+  /// In en, this message translates to:
+  /// **'Music could not start. The local alarm sound is playing.'**
+  String get musicBackupPlaying;
+
+  /// No description provided for @desktopMusicConnect.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect the {service} app'**
+  String desktopMusicConnect(String service);
+
+  /// No description provided for @desktopMusicOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Connected to {service} · hold to disconnect'**
+  String desktopMusicOn(String service);
+
+  /// No description provided for @musicSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'Songs'**
+  String get musicSongs;
+
+  /// No description provided for @noMusicSongs.
+  ///
+  /// In en, this message translates to:
+  /// **'No songs found in your Music library.'**
+  String get noMusicSongs;
+
+  /// No description provided for @serviceConnectUnavailable.
+  ///
+  /// In en, this message translates to:
+  /// **'{service} links open after the alarm'**
+  String serviceConnectUnavailable(String service);
+
+  /// No description provided for @soundCloudWidgetNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a public link'**
+  String get soundCloudWidgetNote;
+
+  /// No description provided for @youtubePlayerHint.
+  ///
+  /// In en, this message translates to:
+  /// **'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.'**
+  String get youtubePlayerHint;
+
+  /// No description provided for @musicPreviewFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'Could not play this sound. Check your connection or try another track or station.'**
+  String get musicPreviewFailed;
+
+  /// No description provided for @skyMoonPhase.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon phase'**
+  String get skyMoonPhase;
+
+  /// No description provided for @skyMoonDetailsDisplay.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a Moon phase page'**
+  String get skyMoonDetailsDisplay;
+
+  /// No description provided for @skyMoonDetailsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Swipe to it, or tap the Moon card any time'**
+  String get skyMoonDetailsHint;
+
+  /// No description provided for @moonRises.
+  ///
+  /// In en, this message translates to:
+  /// **'Rises'**
+  String get moonRises;
+
+  /// No description provided for @moonSets.
+  ///
+  /// In en, this message translates to:
+  /// **'Sets'**
+  String get moonSets;
+
+  /// No description provided for @moonLunarDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Day {day} of 29.5 in this lunar month'**
+  String moonLunarDay(int day);
+
+  /// No description provided for @moonDetailsOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'Open Moon phase'**
+  String get moonDetailsOpen;
+
+  /// No description provided for @musicPlaylists.
+  ///
+  /// In en, this message translates to:
+  /// **'Music playlists'**
+  String get musicPlaylists;
+
+  /// No description provided for @videoPlaylists.
+  ///
+  /// In en, this message translates to:
+  /// **'Video playlists'**
+  String get videoPlaylists;
+
+  /// No description provided for @likedVideos.
+  ///
+  /// In en, this message translates to:
+  /// **'Liked videos'**
+  String get likedVideos;
+
+  /// No description provided for @wholePlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake up to the whole playlist'**
+  String get wholePlaylist;
+
+  /// No description provided for @noSongsInPlaylist.
+  ///
+  /// In en, this message translates to:
+  /// **'No songs here that can play.'**
+  String get noSongsInPlaylist;
+
+  /// No description provided for @hebrewNamesHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Spelling of parasha and month names'**
+  String get hebrewNamesHeading;
+
+  /// No description provided for @hebrewNamesIsraeli.
+  ///
+  /// In en, this message translates to:
+  /// **'Israeli'**
+  String get hebrewNamesIsraeli;
+
+  /// No description provided for @hebrewNamesAshkenazi.
+  ///
+  /// In en, this message translates to:
+  /// **'Ashkenazi'**
+  String get hebrewNamesAshkenazi;
+
+  /// No description provided for @pickFromService.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick from my {service}'**
+  String pickFromService(String service);
+
+  /// No description provided for @weatherTonight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight'**
+  String get weatherTonight;
+
+  /// No description provided for @weatherTomorrowMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow morning'**
+  String get weatherTomorrowMorning;
+
+  /// No description provided for @weatherUntilAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'until about {time}'**
+  String weatherUntilAbout(String time);
+
+  /// No description provided for @weatherSunBehindClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun behind the clouds'**
+  String get weatherSunBehindClouds;
+
+  /// No description provided for @keysLockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys on your devices'**
+  String get keysLockTitle;
+
+  /// No description provided for @keysLockOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.'**
+  String get keysLockOff;
+
+  /// No description provided for @keysLockOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.'**
+  String get keysLockOn;
+
+  /// No description provided for @keysLockWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys from your other device arrived here, locked. Type your sync passphrase to open them.'**
+  String get keysLockWaiting;
+
+  /// No description provided for @keysSetPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose passphrase'**
+  String get keysSetPassphrase;
+
+  /// No description provided for @keysChangePassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Change passphrase'**
+  String get keysChangePassphrase;
+
+  /// No description provided for @keysUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock keys'**
+  String get keysUnlock;
+
+  /// No description provided for @keysStartOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot it? Start over'**
+  String get keysStartOver;
+
+  /// No description provided for @keysStartOverHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.'**
+  String get keysStartOverHint;
+
+  /// No description provided for @keysPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync passphrase'**
+  String get keysPassphrase;
+
+  /// No description provided for @keysPassphraseAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it again'**
+  String get keysPassphraseAgain;
+
+  /// No description provided for @keysPassphraseShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least {count} characters.'**
+  String keysPassphraseShort(int count);
+
+  /// No description provided for @keysPassphraseMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The two don\'t match.'**
+  String get keysPassphraseMismatch;
+
+  /// No description provided for @keysPassphraseWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That passphrase doesn\'t open these keys.'**
+  String get keysPassphraseWrong;
+
+  /// No description provided for @keysPassphraseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.'**
+  String get keysPassphraseNote;
+
+  /// No description provided for @keysShareNeedsPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a sync passphrase first, under Keys on your devices.'**
+  String get keysShareNeedsPassphrase;
+
+  /// No description provided for @settingsAlarmDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm defaults'**
+  String get settingsAlarmDefaults;
+
+  /// No description provided for @settingsPlacesTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Places & time'**
+  String get settingsPlacesTime;
+
+  /// No description provided for @settingsLook.
+  ///
+  /// In en, this message translates to:
+  /// **'Look, language & quotes'**
+  String get settingsLook;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @defaultForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Default for new alarms'**
+  String get defaultForNewAlarms;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @atClock.
+  ///
+  /// In en, this message translates to:
+  /// **'at {time}'**
+  String atClock(String time);
+
+  /// No description provided for @connectACalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar'**
+  String get connectACalendar;
+
+  /// No description provided for @newFromReadyMade.
+  ///
+  /// In en, this message translates to:
+  /// **'From a ready-made'**
+  String get newFromReadyMade;
+
+  /// No description provided for @newFromReadyMadeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise, sunset and other alarms that are already set up for you'**
+  String get newFromReadyMadeHint;
 
   /// No description provided for @calendarSourcesIntro.
   ///

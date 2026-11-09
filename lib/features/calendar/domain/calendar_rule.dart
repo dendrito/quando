@@ -1,6 +1,7 @@
 import '../../events/domain/event.dart';
 import '../../ringing/ring_style.dart';
 import '../../rules/domain/alarm_rule.dart';
+import '../../rules/domain/reminder_delivery.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -22,6 +23,7 @@ class CalendarRule {
     this.soundId,
     this.includeTimes = false,
     this.style = RingStyle.none,
+    this.deliveries = const {},
   });
 
   final String id;
@@ -57,6 +59,10 @@ class CalendarRule {
   /// Volume, fades, tasks and more for these alarms.
   final RingStyle style;
 
+  /// Negative offsets are before start; positive offsets are after end.
+  /// Zero applies to the selected anchor moment.
+  final Map<int, ReminderDelivery> deliveries;
+
   String get title {
     if (name.isNotEmpty) return name;
     if (keyword.isNotEmpty) return l10n.eventsMatching(keyword);
@@ -86,6 +92,7 @@ class CalendarRule {
         keyword: kw,
         soundId: soundId,
         style: style,
+        deliveries: deliveries,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -97,6 +104,7 @@ class CalendarRule {
         keyword: kw,
         soundId: soundId,
         style: style,
+        deliveries: deliveries,
       ),
       // Shabbat, festival and sun times are single moments: before, at and
       // after all hang off the moment itself.
@@ -118,6 +126,7 @@ class CalendarRule {
         keyword: kw,
         soundId: soundId,
         style: style,
+        deliveries: deliveries,
       ),
     ];
   }
@@ -135,6 +144,7 @@ class CalendarRule {
     bool? enabled,
     String? soundId,
     RingStyle? style,
+    Map<int, ReminderDelivery>? deliveries,
     bool defaultSound = false,
     bool? includeTimes,
   }) => CalendarRule(
@@ -150,6 +160,7 @@ class CalendarRule {
     enabled: enabled ?? this.enabled,
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     style: style ?? this.style,
+    deliveries: deliveries ?? this.deliveries,
     includeTimes: includeTimes ?? this.includeTimes,
   );
 
@@ -171,6 +182,7 @@ class CalendarRule {
     'enabled': enabled,
     'soundId': soundId,
     'style': style.toJson(),
+    if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
     'includeTimes': includeTimes,
   };
 
@@ -187,6 +199,7 @@ class CalendarRule {
     enabled: j['enabled'] as bool? ?? true,
     soundId: j['soundId'] as String?,
     style: RingStyle.fromJson(j['style']),
+    deliveries: ReminderDelivery.decode(j['deliveries']),
     includeTimes: j['includeTimes'] as bool? ?? false,
   );
 }

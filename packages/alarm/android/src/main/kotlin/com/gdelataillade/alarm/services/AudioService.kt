@@ -24,6 +24,7 @@ class AudioService(private val context: Context) {
     }
 
     private val mediaPlayers = ConcurrentHashMap<Int, MediaPlayer>()
+    private val mutedPlayers = ConcurrentHashMap.newKeySet<MediaPlayer>()
     private val timers = ConcurrentHashMap<Int, Timer>()
     private val onAudioCompleteListeners = ConcurrentHashMap<Int, () -> Unit>()
 
@@ -34,6 +35,19 @@ class AudioService(private val context: Context) {
 
     fun setOnAudioCompleteListener(id: Int, listener: () -> Unit) {
         onAudioCompleteListeners[id] = listener
+    }
+
+    fun muteBackup(id: Int, muted: Boolean): Boolean {
+        val player = mediaPlayers[id] ?: return false
+        return runCatching {
+            synchronized(player) {
+                if (muted) mutedPlayers.add(player) else mutedPlayers.remove(player)
+                timers.remove(id)?.cancel()
+                val volume = if (muted) 0f else 1f
+                player.setVolume(volume, volume)
+            }
+            true
+        }.getOrDefault(false)
     }
 
     fun getPlayingMediaPlayersIds(): List<Int> {
@@ -235,6 +249,7 @@ class AudioService(private val context: Context) {
         timers.remove(id)
 
         mediaPlayers[id]?.apply {
+            mutedPlayers.remove(this)
             if (isPlaying) {
                 stop()
             }
@@ -261,11 +276,15 @@ class AudioService(private val context: Context) {
                     return
                 }
 
-                mediaPlayer.setVolume(volume, volume)
+                synchronized(mediaPlayer) {
+                    if (!mutedPlayers.contains(mediaPlayer)) mediaPlayer.setVolume(volume, volume)
+                }
                 volume += deltaVolume
 
                 if (volume >= maxVolume) {
-                    mediaPlayer.setVolume(maxVolume, maxVolume)
+                    synchronized(mediaPlayer) {
+                        if (!mutedPlayers.contains(mediaPlayer)) mediaPlayer.setVolume(maxVolume, maxVolume)
+                    }
                     cancel()
                 }
             }
@@ -307,7 +326,11 @@ class AudioService(private val context: Context) {
                     currentVolume = nextVolume * nextRatio + prevVolume * (1 - nextRatio)
                 }
 
-                mediaPlayer.setVolume(currentVolume.toFloat(), currentVolume.toFloat())
+                synchronized(mediaPlayer) {
+                    if (!mutedPlayers.contains(mediaPlayer)) {
+                        mediaPlayer.setVolume(currentVolume.toFloat(), currentVolume.toFloat())
+                    }
+                }
                 currentStep++
             }
         }, 0, fadeIntervalMillis)
@@ -318,6 +341,7 @@ class AudioService(private val context: Context) {
 
         timers.values.forEach(Timer::cancel)
         timers.clear()
+        mutedPlayers.clear()
 
         mediaPlayers.values.forEach { mediaPlayer ->
             if (mediaPlayer.isPlaying) {

@@ -1,3 +1,5 @@
+part 'city_catalog.dart';
+
 /// A place to calculate Shabbat and festival times for.
 class Place {
   const Place({
@@ -21,6 +23,24 @@ class Place {
 
   /// Minutes before sunset. 18 is the common custom; some cities differ.
   final int candleLightingMinutes;
+
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'latitude': latitude,
+    'longitude': longitude,
+    'timeZone': timeZone,
+    'inIsrael': inIsrael,
+    'candleMinutes': candleLightingMinutes,
+  };
+
+  factory Place.fromJson(Map<String, dynamic> j) => Place(
+    name: j['name'] as String,
+    latitude: (j['latitude'] as num).toDouble(),
+    longitude: (j['longitude'] as num).toDouble(),
+    timeZone: j['timeZone'] as String,
+    inIsrael: j['inIsrael'] as bool? ?? false,
+    candleLightingMinutes: j['candleMinutes'] as int? ?? 18,
+  );
 
   Place copyWith({bool? inIsrael, int? candleLightingMinutes}) => Place(
     name: name,
@@ -83,5 +103,5 @@ class Places {
     timeZone: 'America/Los_Angeles',
   );
 
-  static const all = [jerusalem, telAviv, haifa, saoPaulo, newYork, london, losAngeles];
+  static const all = [jerusalem, telAviv, haifa, saoPaulo, newYork, london, losAngeles, ...extraPlaces];
 }

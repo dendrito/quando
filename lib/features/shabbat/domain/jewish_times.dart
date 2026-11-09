@@ -30,6 +30,10 @@ class JewishTimes {
   final Place place;
   final HavdalahOpinion havdalah;
 
+  /// The configured daily nightfall calculation, using the city's civil date.
+  DateTime? nightfallOn(DateTime civilDay) =>
+      _nightfall(_zmanim(DateTime.utc(civilDay.year, civilDay.month, civilDay.day)));
+
   List<AnchorEvent> events(DateTime from, DateTime to) {
     final out = <AnchorEvent>[];
     // Pad by a day each side so events near the edges are not missed in

@@ -4,6 +4,7 @@ import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../ringing/ring_style.dart';
+import '../../rules/domain/reminder_delivery.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -22,6 +23,7 @@ class UserAlarm {
     this.zone,
     this.group = '',
     this.style = RingStyle.none,
+    this.delivery = ReminderDelivery.inherit,
   });
 
   final String id;
@@ -52,6 +54,7 @@ class UserAlarm {
 
   /// Volume, fades, gentle wake-up, tasks and more for this alarm.
   final RingStyle style;
+  final ReminderDelivery delivery;
 
   bool get repeats => days.isNotEmpty;
 
@@ -118,7 +121,8 @@ class UserAlarm {
           ruleId: 'user.$id',
           eventId: 'user.$id',
           offset: Duration.zero,
-          soundId: soundId,
+          soundId: delivery.resolveSound(soundId),
+          delivery: delivery,
           style: style,
         ),
     ];
@@ -139,6 +143,7 @@ class UserAlarm {
     bool homeZone = false,
     String? group,
     RingStyle? style,
+    ReminderDelivery? delivery,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -152,6 +157,7 @@ class UserAlarm {
     zone: homeZone ? null : (zone ?? this.zone),
     group: group ?? this.group,
     style: style ?? this.style,
+    delivery: delivery ?? this.delivery,
   );
 
   Map<String, dynamic> toJson() => {
@@ -167,6 +173,7 @@ class UserAlarm {
     'zone': zone,
     'group': group,
     'style': style.toJson(),
+    'delivery': delivery.toJson(),
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -182,5 +189,6 @@ class UserAlarm {
     zone: j['zone'] as String?,
     group: (j['group'] as String? ?? '').trim(),
     style: RingStyle.fromJson(j['style']),
+    delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
   );
 }

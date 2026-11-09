@@ -13,8 +13,8 @@ enum StopWay {
     shake => l10n.wayShake,
   };
 
-  /// iOS doesn't let apps read the volume buttons.
-  static List<StopWay> get onThisPhone => isAndroid ? values : const [shake];
+  /// iOS cannot read volume buttons; Macs do not have a motion sensor.
+  static List<StopWay> get onThisPhone => isMacOS ? const [] : (isAndroid ? values : const [shake]);
 }
 
 /// What you must do before an alarm stops.
@@ -25,6 +25,8 @@ enum StopTask {
   memory,
   phrase,
   scan;
+
+  static Iterable<StopTask> get onThisDevice => isMacOS ? values.where((t) => t != shake) : values;
 
   /// Done in its own little screen, not on the ringing screen's buttons.
   bool get isPuzzle => this == memory || this == phrase || this == scan;

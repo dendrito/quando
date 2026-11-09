@@ -8,6 +8,8 @@ import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
 import '../../sounds/ui/sound_picker.dart';
+import '../../rules/ui/delivery_tile.dart';
+import '../../rules/domain/reminder_delivery.dart';
 import '../domain/calendar_rule.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
@@ -347,14 +349,17 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                     ),
                 ],
               )
-            else if (!cal.access)
-              ListTile(
-                contentPadding: EdgeInsets.zero,
-                leading: const Icon(Icons.event_outlined),
-                title: Text(l10n.connectToSearch),
-                trailing: const Icon(Icons.chevron_right),
-                onTap: () => ref.read(calendarProvider.notifier).connect(),
+            else if (!cal.access) ...[
+              const SizedBox(height: 4),
+              Text(l10n.connectToSearch, style: text.bodySmall),
+              const SizedBox(height: 8),
+              FilledButton.icon(
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                onPressed: () => ref.read(calendarProvider.notifier).connect(),
+                icon: const Icon(Icons.event_outlined),
+                label: Text(l10n.connectACalendar),
               ),
+            ],
             const SizedBox(height: 12),
             Material(
               color: QuandoColors.surface,
@@ -476,6 +481,18 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               ),
             ],
           ] else ...[
+            for (final offset in {..._rule.toAlarmRules().first.offsets(), ..._rule.after}.toList()..sort())
+              DeliveryTile(
+                key: ValueKey(offset.inMinutes),
+                title: offset == Duration.zero ? l10n.atTheMomentItself : describeOffset(offset),
+                value: _rule.deliveries[offset.inMinutes] ?? ReminderDelivery.inherit,
+                ruleSound: _rule.soundId,
+                onChanged: (choice) => setState(
+                  () => _rule = _rule.copyWith(deliveries: {..._rule.deliveries, offset.inMinutes: choice}),
+                ),
+              ),
+            const SizedBox(height: 16),
+            Text(l10n.defaultLabel, style: text.labelSmall),
             SoundPickerTile(
               large: true,
               value: _rule.soundId,
@@ -513,11 +530,18 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               if (_step > 0) const SizedBox(width: 12),
               Expanded(
                 flex: 2,
-                child: FilledButton(
-                  style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-                  onPressed: _step < 2 ? () => setState(() => _step++) : _save,
-                  child: Text(_step < 2 ? l10n.next : l10n.save),
-                ),
+                // With no calendar connected, "Connect a calendar" is the main button.
+                child: (_step == 0 && cal.calendars.isEmpty && !cal.access)
+                    ? OutlinedButton(
+                        style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                        onPressed: () => setState(() => _step++),
+                        child: Text(l10n.next),
+                      )
+                    : FilledButton(
+                        style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                        onPressed: _step < 2 ? () => setState(() => _step++) : _save,
+                        child: Text(_step < 2 ? l10n.next : l10n.save),
+                      ),
               ),
             ],
           ),

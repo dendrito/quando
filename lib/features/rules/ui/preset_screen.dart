@@ -6,6 +6,8 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../sounds/ui/sound_picker.dart';
+import 'delivery_tile.dart';
+import '../../alarms/ui/ring_length_picker.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -42,19 +44,49 @@ class PresetScreen extends ConsumerWidget {
           Text(l10n.ringsHeading, style: text.labelSmall),
           const SizedBox(height: 10),
           if (offsets.isEmpty) Text(l10n.noTimesYet, style: text.bodySmall),
-          Wrap(
-            spacing: 8,
-            runSpacing: 8,
-            children: [
-              for (final d in offsets)
-                InputChip(
-                  label: Text(d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d)),
-                  deleteIcon: const Icon(Icons.close, size: 18),
-                  deleteButtonTooltipMessage: l10n.remove,
-                  onDeleted: () => notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
+          for (final d in offsets)
+            Column(
+              children: [
+                Row(
+                  children: [
+                    Expanded(
+                      child: DeliveryTile(
+                        key: ValueKey(d.inMinutes),
+                        title: d == Duration.zero ? l10n.atTheMomentItself : describeOffset(d),
+                        value: rule.deliveryAt(d),
+                        ruleSound: rule.soundId,
+                        defaultRingSeconds: rule.useRingDuration ? rule.ringDuration.inSeconds : null,
+                        onChanged: (choice) => notifier.edit(
+                          id,
+                          (r) => r.copyWith(deliveries: {...r.deliveries, d.inMinutes: choice}),
+                        ),
+                      ),
+                    ),
+                    Switch(
+                      value: rule.deliveryAt(d).enabled,
+                      onChanged: (v) => notifier.edit(
+                        id,
+                        (r) => r.copyWith(
+                          deliveries: {
+                            ...r.deliveries,
+                            d.inMinutes: r.deliveryAt(d).copyWith(enabled: v),
+                          },
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-            ],
-          ),
+                Align(
+                  alignment: AlignmentDirectional.centerEnd,
+                  child: TextButton.icon(
+                    icon: const Icon(Icons.close, size: 16),
+                    label: Text(l10n.remove),
+                    onPressed: () =>
+                        notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
+                  ),
+                ),
+              ],
+            ),
           const SizedBox(height: 12),
           Align(
             alignment: Alignment.centerLeft,
@@ -68,11 +100,28 @@ class PresetScreen extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
+          Text(l10n.defaultLabel, style: text.labelSmall),
           SoundPickerTile(
             large: true,
             value: rule.soundId,
             onChanged: (s) =>
                 notifier.edit(id, (r) => s == null ? r.copyWith(defaultSound: true) : r.copyWith(soundId: s)),
+          ),
+          Text(
+            l10n.ringsForHeading(
+              formatSpan(
+                rule.useRingDuration
+                    ? rule.ringDuration
+                    : Duration(seconds: ref.watch(alarmOptionsProvider).ringSeconds),
+              ),
+            ),
+          ),
+          RingLengthPicker(
+            seconds: rule.useRingDuration
+                ? rule.ringDuration.inSeconds
+                : ref.watch(alarmOptionsProvider).ringSeconds,
+            onChanged: (seconds) =>
+                notifier.edit(id, (r) => r.copyWith(ringDuration: Duration(seconds: seconds))),
           ),
           AlarmExtras(
             value: rule.style,

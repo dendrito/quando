@@ -30,9 +30,9 @@ void main() {
     await tester.pump();
     expect(value, 1);
     expect(find.text('1 second'), findsOneWidget);
-    await tester.tap(find.text('5 s'));
+    await tester.tap(find.text('30 s'));
     await tester.pump();
-    expect(value, 5);
+    expect(value, 30);
   });
 
   testWidgets('holding + speeds up', (tester) async {

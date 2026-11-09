@@ -62,6 +62,9 @@ void main() {
     // Friday's candle-lighting reminders fold into one row that opens.
     final series = find.textContaining('alarms · ');
     await tester.scrollUntilVisible(series.first, 400);
+    // Lift the row clear of the floating When? button.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pumpAndSettle();
     expect(find.text('2 hours before'), findsNothing);
     await tester.tap(series.first);
     await tester.pumpAndSettle();
@@ -70,6 +73,63 @@ void main() {
     expect(find.textContaining('set themselves on this phone'), findsOneWidget);
   });
 
+  testWidgets('a week row has quick actions: remove a time, turn off, undo', (tester) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+    SharedPreferences.setMockInitialValues({...shabbatOn});
+    final prefs = await SharedPreferences.getInstance();
+    late ProviderContainer c;
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+          prefsProvider.overrideWithValue(prefs),
+        ],
+        child: Consumer(
+          builder: (context, ref, _) {
+            c = ProviderScope.containerOf(context);
+            return const QuandoApp();
+          },
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+    final series = find.textContaining('alarms · ');
+    await tester.scrollUntilVisible(series.first, 400);
+    // Lift the row clear of the floating When? button.
+    await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
+    await tester.pumpAndSettle();
+    final before = c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length;
+
+    // One alarm: take its time out of the rule, then put it back.
+    await tester.tap(series.first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('2 hours before').first);
+    await tester.pumpAndSettle();
+    await tester.tap(find.textContaining('Remove “2 hours before”'));
+    await tester.pumpAndSettle();
+    expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length, before - 1);
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length, before);
+
+    // The whole row: turn its rule off from the ⋯ menu, then undo.
+    final more = find.descendant(
+      of: find.ancestor(of: series.first, matching: find.byType(ListTile)),
+      matching: find.byTooltip('More'),
+    );
+    await tester.tap(more);
+    await tester.pumpAndSettle();
+    // This row mixes two presets, so each gets its own switch.
+    final countdown = c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown');
+    await tester.tap(find.text('Turn off “${countdown.name}”'));
+    await tester.pumpAndSettle();
+    expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').enabled, isFalse);
+    await tester.tap(find.text('Undo'));
+    await tester.pumpAndSettle();
+    expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').enabled, isTrue);
+  });
   testWidgets('the Shabbat card opens the Shabbat screen', (tester) async {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;

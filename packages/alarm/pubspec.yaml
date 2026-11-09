@@ -41,3 +41,5 @@ flutter:
         pluginClass: AlarmPlugin
       ios:
         pluginClass: SwiftAlarmPlugin
+      macos:
+        pluginClass: MacOSAlarmPlugin

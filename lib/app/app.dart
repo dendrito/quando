@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:alarm/alarm.dart';
 import 'package:alarm/utils/alarm_set.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -20,8 +19,10 @@ import '../features/ringing/ring_payload.dart';
 import '../features/ringing/ring_screen.dart';
 import '../features/rules/ui/preset_screen.dart';
 import '../features/shabbat/ui/shabbat_screen.dart';
+import '../features/sync/sync_service.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import '../features/ready/ready_screen.dart';
+import '../core/util/platform.dart';
 import '../l10n/l10n.dart';
 import 'edition.dart';
 import 'providers.dart';
@@ -56,10 +57,6 @@ final _router = GoRouter(
   ],
 );
 
-bool get _onPhone =>
-    !kIsWeb &&
-    (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
-
 class QuandoApp extends ConsumerStatefulWidget {
   const QuandoApp({super.key});
 
@@ -75,7 +72,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   @override
   void initState() {
     super.initState();
-    if (_onPhone) {
+    if (supportsLocalAlarms) {
       WidgetsBinding.instance.addObserver(this);
       _listen();
       // Keep the phone's alarms in step with the plan, whatever changes it.
@@ -83,6 +80,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
+      // Signed in to sync: pick up where it left off.
+      ref.read(syncProvider);
       _start();
     }
   }
@@ -127,7 +126,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
         if (RingPayload.decode(alarm.payload).isLock) {
           // Its only job was to open Quando; the lock screen takes over.
           Alarm.stop(alarm.id);
-        } else {
+        } else if (RingPayload.decode(alarm.payload).localAudio) {
           _showRinging(alarm);
         }
       }

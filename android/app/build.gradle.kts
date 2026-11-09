@@ -6,7 +6,11 @@ plugins {
 
 android {
     namespace = "com.dendrito.quando"
-    compileSdk = maxOf(flutter.compileSdkVersion, 37)
+    compileSdk {
+        version = release(maxOf(flutter.compileSdkVersion, 37)) {
+            minorApiLevel = 0
+        }
+    }
     ndkVersion = flutter.ndkVersion
 
     compileOptions {
@@ -66,6 +70,11 @@ android {
             dimension = "edition"
             applicationId = "com.dendrito.quando.kodesh"
             manifestPlaceholders["appLabel"] = "Matai?"
+        }
+        create("mine") {
+            dimension = "edition"
+            applicationId = "com.dendrito.quando.mine"
+            manifestPlaceholders["appLabel"] = "Quando Mine"
         }
     }
 

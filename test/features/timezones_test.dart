@@ -37,6 +37,21 @@ void main() {
     expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
   });
 
+  test('a zone synced from another device is dropped; Quando? follows this device', () async {
+    ensureTimeZones();
+    SharedPreferences.setMockInitialValues({'zone.fixed': 'America/Detroit'});
+    final prefs = await SharedPreferences.getInstance();
+    final c = ProviderContainer(
+      overrides: [
+        prefsProvider.overrideWithValue(prefs),
+        deviceZoneProvider.overrideWithValue('America/Sao_Paulo'),
+      ],
+    );
+    addTearDown(c.dispose);
+    expect(c.read(homeZoneProvider), 'America/Sao_Paulo');
+    expect(prefs.containsKey('zone.fixed'), isFalse);
+  });
+
   test('everyday alarms follow the phone\'s zone', () async {
     final c = await _container(deviceZone: 'America/Sao_Paulo');
     c.read(userAlarmsProvider.notifier).save(const UserAlarm(id: 'a', hour: 7, minute: 0, days: {3}));
@@ -68,7 +83,7 @@ void main() {
 
   test('zone helpers', () {
     ensureTimeZones();
-    expect(cityOf('America/Sao_Paulo'), 'Sao Paulo');
+    expect(cityOf('America/Sao_Paulo'), 'São Paulo');
     expect(offsetFrom('Asia/Tokyo', 'Asia/Jerusalem', _now), '+7 h');
     expect(offsetFrom('Asia/Kolkata', 'Asia/Jerusalem', _now), '+3:30 h');
     expect(offsetFrom('America/New_York', 'Asia/Jerusalem', _now), '−7 h');

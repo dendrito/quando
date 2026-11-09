@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIconFile</key>
+	<string></string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(FLUTTER_BUILD_NAME)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>com.googleusercontent.apps.216517788382-nv4cmk4sa7boc2ebp7ddd6htdj4f9jku</string>
+				<string>com.googleusercontent.apps.216517788382-u2m9fn9n6nul6co31svplmktcjlgpgvk</string>
+				<string>com.googleusercontent.apps.216517788382-1stg3hhfun5fqik91bnkjactuevb7v34</string>
+			</array>
+		</dict>
+	</array>
+	<key>CFBundleVersion</key>
+	<string>$(FLUTTER_BUILD_NUMBER)</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>spotify</string>
+		<string>youtube</string>
+		<string>youtubemusic</string>
+		<string>music</string>
+		<string>https</string>
+	</array>
+	<key>LSMinimumSystemVersion</key>
+	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>NSAppleEventsUsageDescription</key>
+	<string>Play your chosen alarm music in Spotify or Music, read Music playlists, and pause playback when you stop, snooze, or reach the alarm's ring duration.</string>
+	<key>NSCalendarsFullAccessUsageDescription</key>
+	<string>Read selected calendars to schedule reminders. Quando does not change your calendar events.</string>
+	<key>NSCalendarsUsageDescription</key>
+	<string>Use events from the calendars you select to schedule reminders.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Scan a code to dismiss an alarm when you choose that task.</string>
+	<key>NSHumanReadableCopyright</key>
+	<string>$(PRODUCT_COPYRIGHT)</string>
+	<key>NSLocationUsageDescription</key>
+	<string>Find local sunrise, sunset and Shabbat times when you choose your current location.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Find local sunrise, sunset and Shabbat times when you choose your current location.</string>
+	<key>NSMainNibFile</key>
+	<string>MainMenu</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record your own alarm sounds.</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
+</dict>
+</plist>

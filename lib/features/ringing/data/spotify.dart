@@ -28,7 +28,7 @@ class SpotifyPlay {
   static String? uriOf(String link) {
     if (link.startsWith('spotify:')) return link;
     final u = Uri.tryParse(link);
-    if (u == null || !u.host.endsWith('spotify.com')) return null;
+    if (u == null || !{'open.spotify.com', 'spotify.com', 'www.spotify.com'}.contains(u.host)) return null;
     final parts = u.pathSegments.where((s) => !s.startsWith('intl-')).toList();
     const kinds = {'track', 'album', 'playlist', 'artist', 'episode', 'show'};
     if (parts.length < 2 || !kinds.contains(parts[0]) || parts[1].isEmpty) return null;
@@ -71,6 +71,13 @@ class SpotifyPlay {
     } catch (_) {}
   }
 
+  static Future<void> pause() async {
+    if (!available || !connected) return;
+    try {
+      await SpotifySdk.pause();
+    } catch (_) {}
+  }
+
   /// Plays [link] in Spotify, and pauses it after [playFor] (zero = never).
   /// false when it isn't a Spotify link, or Spotify said no (no Premium,
   /// signed out, not installed…).
@@ -85,9 +92,7 @@ class SpotifyPlay {
       ).timeout(const Duration(seconds: 6));
       if (!ok) return false;
       await SpotifySdk.play(spotifyUri: uri).timeout(const Duration(seconds: 4));
-      if (playFor > Duration.zero) {
-        Timer(playFor, () => SpotifySdk.pause().catchError((_) {}));
-      }
+      // The owning alarm session controls duration and cancellation.
       return true;
     } catch (_) {
       return false;

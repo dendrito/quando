@@ -1,6 +1,7 @@
 import '../../features/events/domain/event.dart';
 import '../../features/ringing/ring_style.dart';
 import '../../features/rules/domain/alarm_rule.dart';
+import '../../features/rules/domain/reminder_delivery.dart';
 import '../util/format.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -17,7 +18,9 @@ class ScheduledAlarm {
     required this.eventId,
     required this.offset,
     this.soundId,
+    this.ringDurationOverride = false,
     this.style = RingStyle.none,
+    this.delivery = ReminderDelivery.inherit,
   });
 
   /// Stable across re-planning, so the same alarm is never registered twice.
@@ -26,6 +29,7 @@ class ScheduledAlarm {
   final String title;
   final String body;
   final Duration ringDuration;
+  final bool ringDurationOverride;
   final String ruleId;
   final String eventId;
   final Duration offset;
@@ -35,6 +39,9 @@ class ScheduledAlarm {
 
   /// How this alarm rings and stops, beyond the shared settings.
   final RingStyle style;
+
+  /// Delivery choices retained for the reminder delivery layer.
+  final ReminderDelivery delivery;
 
   @override
   String toString() => 'ScheduledAlarm(${at.toIso8601String()}, $title, $body)';
@@ -66,6 +73,7 @@ class Scheduler {
     required DateTime now,
     required Iterable<AnchorEvent> events,
     required Iterable<AlarmRule> rules,
+    bool Function(AnchorEvent event, Duration offset)? allowReminder,
   }) {
     final end = now.add(horizon);
     final byMinute = <String, ScheduledAlarm>{};
@@ -76,6 +84,8 @@ class Scheduler {
     for (final rule in ordered) {
       for (final event in events.where(rule.matches)) {
         for (final offset in rule.offsets()) {
+          final delivery = rule.deliveryAt(offset);
+          if (!delivery.enabled || !(allowReminder?.call(event, offset) ?? true)) continue;
           final at = event.at.add(offset);
           if (!at.isAfter(now) || at.isAfter(end)) continue;
 
@@ -88,11 +98,15 @@ class Scheduler {
               at: at,
               title: event.title,
               body: rule.label ?? (offset == Duration.zero ? l10n.nowCap : describeOffset(offset)),
-              ringDuration: rule.ringDuration,
+              ringDuration: delivery.ringSeconds == null
+                  ? rule.ringDuration
+                  : Duration(seconds: delivery.ringSeconds!.clamp(1, 3600)),
+              ringDurationOverride: delivery.ringSeconds != null || rule.useRingDuration,
               ruleId: rule.id,
               eventId: event.id,
               offset: offset,
-              soundId: rule.soundId,
+              soundId: rule.deliveryAt(offset).resolveSound(rule.soundId),
+              delivery: rule.deliveryAt(offset),
               style: rule.style,
             ),
           );
