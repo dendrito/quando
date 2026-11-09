@@ -566,7 +566,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   : next.at.difference(now) > const Duration(hours: 12)
                   ? l10n.atClock(local(next.at))
                   : countdown(next.at.difference(now)),
-              style: text.displayMedium?.copyWith(fontSize: 60),
+              style: text.displayMedium?.copyWith(fontSize: 72),
             ),
           ),
           // A reminder ahead of an event says so ("6 hours before"); the day is

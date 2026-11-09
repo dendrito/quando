@@ -73,30 +73,26 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.text('CLOCK'), findsOneWidget);
     expect(find.byTooltip('Arrange home'), findsNothing);
-    final clock = find.byKey(const ValueKey(HomeBlock.clock));
-    final small = tester.getSize(find.descendant(of: clock, matching: find.byType(HomeBlockFrame))).height;
+    final clockFrame = find.byWidgetPredicate((w) => w is HomeBlockFrame && w.block == HomeBlock.clock);
+    final small = tester.getSize(clockFrame).height;
 
     // The header menu picks a size.
-    await tester.tap(
-      find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')),
-    );
+    await tester.tap(find.descendant(of: clockFrame, matching: find.byTooltip('Size')));
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(CheckedPopupMenuItem<Object>, 'Large'));
     await tester.pumpAndSettle();
     expect(container.read(homeLayoutProvider).heightOf(HomeBlock.clock), BlockSize.large);
-    expect(tester.getSize(find.byType(HomeBlockFrame).first).height, greaterThan(small));
+    expect(tester.getSize(clockFrame).height, greaterThan(small));
     expect(prefs.getString('home.layout'), contains('large'));
 
     // Dragging the bottom edge snaps back down.
-    final box = tester.getRect(find.byType(HomeBlockFrame).first);
+    final box = tester.getRect(clockFrame);
     await tester.dragFrom(Offset(box.center.dx, box.bottom - 24), const Offset(0, -300));
     await tester.pumpAndSettle();
     expect(container.read(homeLayoutProvider).heightOf(HomeBlock.clock), BlockSize.small);
 
     // Hide it, then bring it back.
-    await tester.tap(
-      find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')),
-    );
+    await tester.tap(find.descendant(of: clockFrame, matching: find.byTooltip('Size')));
     await tester.pumpAndSettle();
     await tester.tap(find.text('Hide'));
     await tester.pumpAndSettle();

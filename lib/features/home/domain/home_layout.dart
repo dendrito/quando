@@ -1,9 +1,9 @@
 import 'dart:convert';
 
 /// The parts of the home screen you can move, resize and collapse.
-/// The enum order is the default order: a slim clock and next alarm,
+/// The enum order is the default order: the next alarm (big) with a slim clock under it,
 /// then the sky (sunrise, moon, weather), then the week and the alarms.
-enum HomeBlock { clock, next, sky, ribbon, shabbatMode, shabbat, alarms, events, timers, world }
+enum HomeBlock { next, clock, sky, ribbon, shabbatMode, shabbat, alarms, events, timers, world }
 
 /// The three sizes a card can snap to, for height and for width.
 enum BlockSize {

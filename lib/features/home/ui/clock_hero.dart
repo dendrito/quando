@@ -62,7 +62,7 @@ class _ClockHeroState extends State<ClockHero> {
                   hhmm(local),
                   maxLines: 1,
                   style: text.displayLarge?.copyWith(
-                    fontSize: 84,
+                    fontSize: 52,
                     color: QuandoColors.text,
                     letterSpacing: -2,
                     fontFeatures: const [FontFeature.tabularFigures()],
@@ -86,7 +86,7 @@ class _ClockHeroState extends State<ClockHero> {
                 ),
                 Text(
                   '${local.day}',
-                  style: text.displayMedium?.copyWith(fontSize: 56, color: QuandoColors.text, height: 1),
+                  style: text.displayMedium?.copyWith(fontSize: 32, color: QuandoColors.text, height: 1),
                 ),
                 Text(
                   monthName(local),
