@@ -602,39 +602,6 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             label: Text(l10n.addSongLinkLong),
           ),
           const SizedBox(height: 20),
-          Text(l10n.musicAppsHeading, style: text.labelSmall),
-          _spotifyTile(text),
-          _spotifyLibraryTile(text),
-          _youTubeTile(text),
-          if (SoundCloudAccount.available) _soundCloudTile(text),
-          if (DesktopMusic.appleAvailable) _desktopTile(text, 'apple', 'Apple Music'),
-          for (final (logo, app, note) in [
-            if (!DesktopMusic.appleAvailable)
-              (MusicService.appleMusic, 'Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
-            if (!SoundCloudAccount.available)
-              (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
-          ])
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: ServiceLogo(logo),
-              title: Text(app),
-              subtitle: Text(note, style: text.bodySmall),
-              onTap: recording ? null : _addLink,
-            ),
-          const SizedBox(height: 12),
-          OutlinedButton.icon(
-            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-            onPressed: recording
-                ? null
-                : () =>
-                      Navigator.of(context)
-                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
-            icon: const Icon(Icons.radio),
-            label: Text(l10n.wakeToRadio),
-          ),
-          const SizedBox(height: 8),
-          Text(l10n.soundsExplain, style: text.bodySmall),
-          const SizedBox(height: 24),
           Text(l10n.yourSoundsHeading, style: text.labelSmall),
           for (final s in sounds)
             ListTile(
@@ -672,6 +639,39 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                       },
                     ),
             ),
+          const SizedBox(height: 20),
+          Text(l10n.musicAppsHeading, style: text.labelSmall),
+          _spotifyTile(text),
+          _spotifyLibraryTile(text),
+          _youTubeTile(text),
+          if (SoundCloudAccount.available) _soundCloudTile(text),
+          if (DesktopMusic.appleAvailable) _desktopTile(text, 'apple', 'Apple Music'),
+          for (final (logo, app, note) in [
+            if (!DesktopMusic.appleAvailable)
+              (MusicService.appleMusic, 'Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
+            if (!SoundCloudAccount.available)
+              (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
+          ])
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: ServiceLogo(logo),
+              title: Text(app),
+              subtitle: Text(note, style: text.bodySmall),
+              onTap: recording ? null : _addLink,
+            ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
+            style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+            onPressed: recording
+                ? null
+                : () =>
+                      Navigator.of(context)
+                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
+            icon: const Icon(Icons.radio),
+            label: Text(l10n.wakeToRadio),
+          ),
+          const SizedBox(height: 8),
+          Text(l10n.soundsExplain, style: text.bodySmall),
         ],
       ),
     );

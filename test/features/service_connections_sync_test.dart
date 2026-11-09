@@ -8,6 +8,7 @@ import 'package:quando/features/integrations/data/service_connections_sync.dart'
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/integrations/domain/tuya.dart';
 import 'package:quando/features/ringing/data/spotify.dart';
+import 'package:quando/features/sync/key_vault.dart';
 import 'package:quando/features/sounds/data/spotify_account.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,8 +27,14 @@ void main() {
       ),
     ],
   );
+  Map<String, Object> vault([String uid = 'owner']) => {
+    'vault.key': base64Encode(List.filled(32, 7)),
+    'vault.salt': base64Encode(List.filled(16, 3)),
+    'vault.owner': uid,
+  };
+
   Future<SharedPreferences> device(Map<String, Object> values) async {
-    SharedPreferences.setMockInitialValues(values);
+    SharedPreferences.setMockInitialValues({...vault(), ...values});
     final p = await SharedPreferences.getInstance();
     await p.reload();
     return p;
@@ -35,8 +42,8 @@ void main() {
 
   IntegrationSettings local(SharedPreferences p) =>
       IntegrationSettings.fromJson(jsonDecode(p.getString('integrations')!) as Map<String, dynamic>);
-  Map<String, dynamic> shared(SharedPreferences p) =>
-      jsonDecode(p.getString(ServiceConnectionsSync.key)!) as Map<String, dynamic>;
+  Future<Map<String, dynamic>> shared(SharedPreferences p) async =>
+      jsonDecode((await KeyVault.read(p, ServiceConnectionsSync.key))!) as Map<String, dynamic>;
 
   test('portable keys follow the account while new devices keep automations disabled', () async {
     final a = await device({
@@ -47,8 +54,8 @@ void main() {
     await PushoverCredentialsSync.activate(a, 'owner');
     await ServiceConnectionsSync.activate(a, 'owner');
     final encoded = a.getString(ServiceConnectionsSync.key)!;
-    expect(shared(a)['uid'], 'owner');
-    expect(shared(a).keys, unorderedEquals(['uid', 'tuya', 'spotify', 'webhooks']));
+    expect((await shared(a))['uid'], 'owner');
+    expect((await shared(a)).keys, unorderedEquals(['uid', 'tuya', 'spotify', 'webhooks']));
     final b = await device({
       'sync.on': true,
       'integrations': jsonEncode(const IntegrationSettings(pushoverSound: 'siren').toJson()),
@@ -122,7 +129,7 @@ void main() {
       }),
     );
     await ServiceConnectionsSync.activate(p, 'owner');
-    expect(shared(p)['uid'], 'owner');
+    expect((await shared(p))['uid'], 'owner');
   });
 
   test('Spotify can refresh a received credential and publishes token rotation', () async {
@@ -146,9 +153,9 @@ void main() {
       }),
     );
     expect(result, 'access-new');
-    expect((shared(p)['spotify'] as Map)['refresh'], 'rotated-refresh');
+    expect(((await shared(p))['spotify'] as Map)['refresh'], 'rotated-refresh');
     await SpotifyAccount.signOut(p);
-    expect(shared(p).containsKey('spotify'), isFalse);
+    expect((await shared(p)).containsKey('spotify'), isFalse);
   });
 
   test(
@@ -175,7 +182,7 @@ void main() {
         isNull,
       );
       expect(p.getString('spotify.refresh'), isNull);
-      expect(shared(p).containsKey('spotify'), isFalse);
+      expect((await shared(p)).containsKey('spotify'), isFalse);
     },
   );
 }

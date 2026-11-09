@@ -475,9 +475,6 @@ class AppLocalizationsKo extends AppLocalizations {
   String get calendarAlarm => '캘린더 알람';
 
   @override
-  String get calendarIntro => 'Quando?는 휴대폰 캘린더 일정의 전후에 울릴 수 있어요. 휴대폰에 Google 계정이 있으면 Google 캘린더도 포함돼요.';
-
-  @override
   String get connectCalendars => '캘린더 연결';
 
   @override
@@ -2679,4 +2676,122 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => '구름 뒤의 해';
+
+  @override
+  String get keysLockTitle => '기기 간 키';
+
+  @override
+  String get keysLockOff => '서비스 키는 이 기기에만 남아 있어요. 동기화 암호 문구를 정하면 암호화해서 다른 기기로 보낼 수 있어요.';
+
+  @override
+  String get keysLockOn => '서비스 키는 이 기기를 떠나기 전에 동기화 암호 문구로 암호화돼요. Google을 포함해 누구도 읽을 수 없어요.';
+
+  @override
+  String get keysLockWaiting => '다른 기기에서 키가 잠긴 채로 도착했어요. 동기화 암호 문구를 입력해 열어 주세요.';
+
+  @override
+  String get keysSetPassphrase => '암호 문구 정하기';
+
+  @override
+  String get keysChangePassphrase => '암호 문구 바꾸기';
+
+  @override
+  String get keysUnlock => '키 열기';
+
+  @override
+  String get keysStartOver => '잊으셨나요? 다시 시작';
+
+  @override
+  String get keysStartOverHint => '다시 시작하면 이 기기의 키를 새 암호 문구로 보내요. 다른 기기에서는 새 암호 문구를 물어봐요.';
+
+  @override
+  String get keysPassphrase => '동기화 암호 문구';
+
+  @override
+  String get keysPassphraseAgain => '한 번 더 입력';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '$count자 이상 입력하세요.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '두 입력이 일치하지 않아요.';
+
+  @override
+  String get keysPassphraseWrong => '이 암호 문구로는 키를 열 수 없어요.';
+
+  @override
+  String get keysPassphraseNote => '적어 두세요. 잊어버리면 아무도 복구할 수 없고 키를 다시 입력해야 해요.';
+
+  @override
+  String get keysShareNeedsPassphrase => '먼저 \'기기 간 키\'에서 동기화 암호 문구를 정하세요.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando?는 캘린더 일정 전후에 울릴 수 있어요. 어디서 가져올지 고르세요.';
+
+  @override
+  String get deviceCalendarsHeading => '이 기기';
+
+  @override
+  String get deviceCalendarsTitle => '이 기기의 캘린더 앱';
+
+  @override
+  String get deviceCalendarsHint => '기기의 모든 계정: Google, Samsung, Outlook, iCloud, 여기에만 있는 캘린더.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 캘린더';
+
+  @override
+  String get googleCalendarSignIn => 'Google 계정이 이 기기에 없어도 Google에서 바로 캘린더를 읽으려면 Google로 로그인하세요.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '$email(으)로 로그인됨';
+  }
+
+  @override
+  String get googleCalendarSignOut => '로그아웃';
+
+  @override
+  String get googleCalendarNotHere =>
+      '이 기기에서는 아직 Google 로그인을 쓸 수 없어요. 기기 설정(캘린더 › 계정)에서 Google 계정을 추가하면 캘린더가 이 기기 항목에 나타나요.';
+
+  @override
+  String get googleCalendarUnreachable => '지금 Google 캘린더에 연결할 수 없어요. 이미 맞춰 둔 알람은 그대로 울려요.';
+
+  @override
+  String get googleCalendarTwiceHint => '같은 Google 계정에서 이 기기가 이미 보여주는 캘린더는 꺼진 채로 시작해서 두 번 울리지 않아요.';
 }

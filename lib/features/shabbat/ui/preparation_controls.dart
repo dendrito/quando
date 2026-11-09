@@ -6,6 +6,7 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/tiles.dart';
 import '../../../l10n/l10n.dart';
+import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
 import 'city_picker.dart';
 
@@ -32,7 +33,7 @@ class PreparationControls extends ConsumerWidget {
         ListTile(
           contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.place_outlined, color: QuandoColors.amber),
-          title: Text(l10n.timesIn(place.name, place.timeZone)),
+          title: Text(timesInLabel(place.name, place.timeZone)),
           subtitle: Text(l10n.changeCity),
           onTap: () => pickShabbatPlace(context),
         ),

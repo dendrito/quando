@@ -83,7 +83,7 @@ void main() {
 
   test('zone helpers', () {
     ensureTimeZones();
-    expect(cityOf('America/Sao_Paulo'), 'Sao Paulo');
+    expect(cityOf('America/Sao_Paulo'), 'São Paulo');
     expect(offsetFrom('Asia/Tokyo', 'Asia/Jerusalem', _now), '+7 h');
     expect(offsetFrom('Asia/Kolkata', 'Asia/Jerusalem', _now), '+3:30 h');
     expect(offsetFrom('America/New_York', 'Asia/Jerusalem', _now), '−7 h');

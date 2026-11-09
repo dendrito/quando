@@ -477,10 +477,6 @@ class AppLocalizationsHi extends AppLocalizations {
   String get calendarAlarm => 'कैलेंडर अलार्म';
 
   @override
-  String get calendarIntro =>
-      'Quando? आपके फ़ोन के कैलेंडर के इवेंट से पहले और बाद में बज सकता है। फ़ोन पर Google खाता होते ही Google Calendar शामिल हो जाता है।';
-
-  @override
   String get connectCalendars => 'कैलेंडर जोड़ें';
 
   @override
@@ -2710,4 +2706,132 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'बादलों के पीछे सूरज';
+
+  @override
+  String get keysLockTitle => 'आपके डिवाइसों पर कुंजियाँ';
+
+  @override
+  String get keysLockOff =>
+      'आपकी सेवा कुंजियाँ इसी डिवाइस पर रहती हैं। उन्हें एन्क्रिप्ट करके दूसरे डिवाइसों पर भेजने के लिए एक सिंक पासफ़्रेज़ चुनें।';
+
+  @override
+  String get keysLockOn =>
+      'आपकी सेवा कुंजियाँ इस डिवाइस से निकलने से पहले सिंक पासफ़्रेज़ से एन्क्रिप्ट होती हैं। कोई और, Google भी, उन्हें नहीं पढ़ सकता।';
+
+  @override
+  String get keysLockWaiting =>
+      'आपके दूसरे डिवाइस से कुंजियाँ यहाँ लॉक होकर आई हैं। उन्हें खोलने के लिए सिंक पासफ़्रेज़ लिखें।';
+
+  @override
+  String get keysSetPassphrase => 'पासफ़्रेज़ चुनें';
+
+  @override
+  String get keysChangePassphrase => 'पासफ़्रेज़ बदलें';
+
+  @override
+  String get keysUnlock => 'कुंजियाँ खोलें';
+
+  @override
+  String get keysStartOver => 'भूल गए? फिर से शुरू करें';
+
+  @override
+  String get keysStartOverHint =>
+      'फिर से शुरू करने पर इस डिवाइस की कुंजियाँ नए पासफ़्रेज़ के साथ भेजी जाती हैं। आपके दूसरे डिवाइस नया पासफ़्रेज़ माँगेंगे।';
+
+  @override
+  String get keysPassphrase => 'सिंक पासफ़्रेज़';
+
+  @override
+  String get keysPassphraseAgain => 'फिर से लिखें';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'कम से कम $count अक्षर रखें।';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'दोनों मेल नहीं खाते।';
+
+  @override
+  String get keysPassphraseWrong => 'यह पासफ़्रेज़ इन कुंजियों को नहीं खोलता।';
+
+  @override
+  String get keysPassphraseNote =>
+      'इसे लिख लें: भूलने पर कोई इसे वापस नहीं ला सकता, और आपको कुंजियाँ फिर से डालनी होंगी।';
+
+  @override
+  String get keysShareNeedsPassphrase => 'पहले \'आपके डिवाइसों पर कुंजियाँ\' में सिंक पासफ़्रेज़ चुनें।';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? आपके कैलेंडर के इवेंट से पहले और बाद में बज सकता है। चुनें कि वे कहाँ से आएँ।';
+
+  @override
+  String get deviceCalendarsHeading => 'इस डिवाइस पर';
+
+  @override
+  String get deviceCalendarsTitle => 'इस डिवाइस का कैलेंडर ऐप';
+
+  @override
+  String get deviceCalendarsHint =>
+      'इस पर हर खाता: Google, Samsung, Outlook, iCloud और सिर्फ़ यहीं रखे कैलेंडर।';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE कैलेंडर';
+
+  @override
+  String get googleCalendarSignIn =>
+      'अपने कैलेंडर सीधे Google से पढ़ने के लिए Google से साइन इन करें, भले ही आपका Google खाता इस डिवाइस पर न हो।';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '$email के रूप में साइन इन';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'साइन आउट';
+
+  @override
+  String get googleCalendarNotHere =>
+      'इस डिवाइस पर Google साइन-इन अभी उपलब्ध नहीं है। डिवाइस की सेटिंग में (कैलेंडर › खाते) अपना Google खाता जोड़ें, उसके कैलेंडर इस डिवाइस में दिखेंगे।';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'अभी Google कैलेंडर तक नहीं पहुँच सके। उससे पहले से लगे अलार्म फिर भी बजेंगे।';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'इसी Google खाते के जो कैलेंडर यह डिवाइस पहले से दिखाता है, वे बंद से शुरू होते हैं, ताकि कुछ भी दो बार न बजे।';
 }

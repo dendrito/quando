@@ -285,7 +285,7 @@
   "seconds": "Seconds",
   "oneSecondLess": "1 second less",
   "oneSecondMore": "1 second more",
-  "inDays": "in {d}d",
+  "inDays": "in {d} d",
   "@inDays": {
     "placeholders": {
       "d": {
@@ -293,7 +293,7 @@
       }
     }
   },
-  "inDaysHours": "in {d}d {h}h",
+  "inDaysHours": "in {d} d {h} h",
   "@inDaysHours": {
     "placeholders": {
       "d": {
@@ -304,7 +304,7 @@
       }
     }
   },
-  "inHours": "in {h}h",
+  "inHours": "in {h} h",
   "@inHours": {
     "placeholders": {
       "h": {
@@ -312,7 +312,7 @@
       }
     }
   },
-  "inHoursMinutes": "in {h}h {m}m",
+  "inHoursMinutes": "in {h} h {m} min",
   "@inHoursMinutes": {
     "placeholders": {
       "h": {
@@ -323,7 +323,7 @@
       }
     }
   },
-  "inMins": "in {m}m",
+  "inMins": "in {m} min",
   "@inMins": {
     "placeholders": {
       "m": {
@@ -365,7 +365,7 @@
   "lockAutoHeading": "LOCK AUTOMATICALLY",
   "shabbatAndFestivalsLong": "Shabbat and festivals",
   "fromCandleToHavdalah": "From candle lighting to Havdalah",
-  "lockCalendarWord": "During calendar events with this word",
+  "lockCalendarWord": "During events named…",
   "lockCalendarWordHint": "e.g. lock, exam, focus",
   "leaveEmptyForNone": "Leave empty for none",
   "connectCalendarsFirst": "Connect calendars first (calendar icon)",
@@ -383,7 +383,6 @@
   "nextAlarm": "Next alarm",
   "holdToUnlock": "Hold to unlock",
   "calendarAlarm": "Calendar alarm",
-  "calendarIntro": "Quando? can ring before and after events in your phone's calendars. Google Calendar is included once your Google account is on the phone.",
   "connectCalendars": "Connect calendars",
   "calendarAlarmsHeading": "CALENDAR ALARMS",
   "calendarNoneYet": "None yet. Start with one, then change it as you like:",
@@ -1695,5 +1694,63 @@
       }
     }
   },
-  "weatherSunBehindClouds": "Sun behind the clouds"
+  "weatherSunBehindClouds": "Sun behind the clouds",
+  "keysLockTitle": "Keys on your devices",
+  "keysLockOff": "Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.",
+  "keysLockOn": "Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.",
+  "keysLockWaiting": "Keys from your other device arrived here, locked. Type your sync passphrase to open them.",
+  "keysSetPassphrase": "Choose passphrase",
+  "keysChangePassphrase": "Change passphrase",
+  "keysUnlock": "Unlock keys",
+  "keysStartOver": "Forgot it? Start over",
+  "keysStartOverHint": "Starting over sends this device's keys with a new passphrase. Your other devices will ask for the new one.",
+  "keysPassphrase": "Sync passphrase",
+  "keysPassphraseAgain": "Type it again",
+  "keysPassphraseShort": "Use at least {count} characters.",
+  "@keysPassphraseShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "keysPassphraseMismatch": "The two don't match.",
+  "keysPassphraseWrong": "That passphrase doesn't open these keys.",
+  "keysPassphraseNote": "Write it down: if you forget it, nobody can recover it, and you'll type your keys again.",
+  "keysShareNeedsPassphrase": "Choose a sync passphrase first, under Keys on your devices.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "@atClock": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? can ring before and after events in your calendars. Pick where they come from.",
+  "deviceCalendarsHeading": "ON THIS DEVICE",
+  "deviceCalendarsTitle": "This device's calendar app",
+  "deviceCalendarsHint": "Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.",
+  "googleCalendarHeading": "GOOGLE CALENDAR",
+  "googleCalendarSignIn": "Sign in with Google to read your calendars straight from Google, even when your Google account isn't on this device.",
+  "googleCalendarSignedIn": "Signed in as {email}",
+  "googleCalendarSignOut": "Sign out",
+  "googleCalendarNotHere": "Google sign-in isn't available on this device yet. Add your Google account in the device's settings (Calendar › Accounts) and its calendars appear under this device.",
+  "googleCalendarUnreachable": "Couldn't reach Google Calendar just now. Alarms already set from it still ring.",
+  "googleCalendarTwiceHint": "Calendars this device already shows from the same Google account start off, so nothing rings twice.",
+  "@googleCalendarSignedIn": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  }
 }

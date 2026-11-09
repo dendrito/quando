@@ -514,10 +514,6 @@ class AppLocalizationsRu extends AppLocalizations {
   String get calendarAlarm => 'Будильник календаря';
 
   @override
-  String get calendarIntro =>
-      'Quando? может звонить до и после событий в календарях телефона. Google Календарь подключится, как только ваш аккаунт Google есть на телефоне.';
-
-  @override
   String get connectCalendars => 'Подключить календари';
 
   @override
@@ -2760,4 +2756,133 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Солнце за облаками';
+
+  @override
+  String get keysLockTitle => 'Ключи на ваших устройствах';
+
+  @override
+  String get keysLockOff =>
+      'Ключи сервисов остаются на этом устройстве. Выберите фразу синхронизации, чтобы отправлять их в зашифрованном виде на другие устройства.';
+
+  @override
+  String get keysLockOn =>
+      'Ключи сервисов шифруются вашей фразой синхронизации, прежде чем покинуть это устройство. Никто другой, даже Google, не может их прочитать.';
+
+  @override
+  String get keysLockWaiting =>
+      'Сюда пришли ключи с другого устройства, они заперты. Введите фразу синхронизации, чтобы открыть их.';
+
+  @override
+  String get keysSetPassphrase => 'Выбрать фразу';
+
+  @override
+  String get keysChangePassphrase => 'Сменить фразу';
+
+  @override
+  String get keysUnlock => 'Открыть ключи';
+
+  @override
+  String get keysStartOver => 'Забыли? Начать заново';
+
+  @override
+  String get keysStartOverHint =>
+      'Если начать заново, ключи этого устройства отправятся с новой фразой. Другие устройства попросят новую.';
+
+  @override
+  String get keysPassphrase => 'Фраза синхронизации';
+
+  @override
+  String get keysPassphraseAgain => 'Введите ещё раз';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Не меньше $count символов.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Фразы не совпадают.';
+
+  @override
+  String get keysPassphraseWrong => 'Эта фраза не открывает эти ключи.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Запишите её: если забудете, восстановить её нельзя, и ключи придётся ввести заново.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? может звонить до и после событий в ваших календарях. Выберите, откуда они берутся.';
+
+  @override
+  String get deviceCalendarsHeading => 'НА ЭТОМ УСТРОЙСТВЕ';
+
+  @override
+  String get deviceCalendarsTitle => 'Календарь этого устройства';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Все аккаунты на нём: Google, Samsung, Outlook, iCloud и календари, которые хранятся только здесь.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE КАЛЕНДАРЬ';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Войдите через Google, чтобы читать календари прямо из Google, даже если вашего аккаунта Google нет на этом устройстве.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Вход выполнен: $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Выйти';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Вход через Google на этом устройстве пока недоступен. Добавьте аккаунт Google в настройках устройства (Календарь › Учётные записи), и его календари появятся здесь.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Сейчас не удалось связаться с Google Календарём. Будильники, уже поставленные по нему, всё равно зазвонят.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Календари того же аккаунта Google, которые это устройство уже показывает, сначала выключены, чтобы ничего не звонило дважды.';
 }

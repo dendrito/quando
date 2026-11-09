@@ -474,9 +474,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calendarAlarm => '日历闹钟';
 
   @override
-  String get calendarIntro => 'Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。';
-
-  @override
   String get connectCalendars => '连接日历';
 
   @override
@@ -2673,6 +2670,123 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => '太阳在云后';
+
+  @override
+  String get keysLockTitle => '设备间的密钥';
+
+  @override
+  String get keysLockOff => '你的服务密钥只保存在这台设备上。设置同步口令后，可以加密发送到你的其他设备。';
+
+  @override
+  String get keysLockOn => '你的服务密钥在离开这台设备前会用同步口令加密。其他任何人，包括 Google，都无法读取。';
+
+  @override
+  String get keysLockWaiting => '来自你另一台设备的密钥已到达，但处于锁定状态。输入同步口令即可打开。';
+
+  @override
+  String get keysSetPassphrase => '设置口令';
+
+  @override
+  String get keysChangePassphrase => '更改口令';
+
+  @override
+  String get keysUnlock => '解锁密钥';
+
+  @override
+  String get keysStartOver => '忘记了？重新开始';
+
+  @override
+  String get keysStartOverHint => '重新开始会用新口令发送这台设备的密钥。你的其他设备会要求输入新口令。';
+
+  @override
+  String get keysPassphrase => '同步口令';
+
+  @override
+  String get keysPassphraseAgain => '再输入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 个字符。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '两次输入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '这个口令打不开这些密钥。';
+
+  @override
+  String get keysPassphraseNote => '请记下来：如果忘记，没有人能找回，你需要重新输入密钥。';
+
+  @override
+  String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在日历活动前后响铃。选择活动来自哪里。';
+
+  @override
+  String get deviceCalendarsHeading => '此设备';
+
+  @override
+  String get deviceCalendarsTitle => '此设备的日历应用';
+
+  @override
+  String get deviceCalendarsHint => '设备上的所有账户：Google、Samsung、Outlook、iCloud，以及只存在这里的日历。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日历';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登录，直接从 Google 读取日历，即使此设备上没有你的 Google 账户。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登录：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '退出登录';
+
+  @override
+  String get googleCalendarNotHere => '此设备暂不支持 Google 登录。请在设备设置（日历 › 账户）中添加 Google 账户，其日历会显示在此设备下。';
+
+  @override
+  String get googleCalendarUnreachable => '现在无法连接 Google 日历。已根据它设置的闹钟仍会响。';
+
+  @override
+  String get googleCalendarTwiceHint => '此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3142,9 +3256,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get calendarAlarm => '日曆鬧鐘';
-
-  @override
-  String get calendarIntro => 'Quando? 可以在手機日曆中的事件前後響鈴。手機上登入 Google 帳號後，Google 日曆也會包含在內。';
 
   @override
   String get connectCalendars => '連線日曆';
@@ -5343,4 +5454,121 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get weatherSunBehindClouds => '太陽在雲後';
+
+  @override
+  String get keysLockTitle => '裝置間的金鑰';
+
+  @override
+  String get keysLockOff => '你的服務金鑰只保存在這台裝置上。設定同步密語後，可以加密傳送到你的其他裝置。';
+
+  @override
+  String get keysLockOn => '你的服務金鑰在離開這台裝置前會以同步密語加密。其他任何人，包括 Google，都無法讀取。';
+
+  @override
+  String get keysLockWaiting => '來自你另一台裝置的金鑰已送達，但處於鎖定狀態。輸入同步密語即可開啟。';
+
+  @override
+  String get keysSetPassphrase => '設定密語';
+
+  @override
+  String get keysChangePassphrase => '變更密語';
+
+  @override
+  String get keysUnlock => '解鎖金鑰';
+
+  @override
+  String get keysStartOver => '忘記了？重新開始';
+
+  @override
+  String get keysStartOverHint => '重新開始會以新密語傳送這台裝置的金鑰。你的其他裝置會要求輸入新密語。';
+
+  @override
+  String get keysPassphrase => '同步密語';
+
+  @override
+  String get keysPassphraseAgain => '再輸入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 個字元。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '兩次輸入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '這個密語打不開這些金鑰。';
+
+  @override
+  String get keysPassphraseNote => '請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。';
+
+  @override
+  String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在行事曆活動前後響鈴。選擇活動來自哪裡。';
+
+  @override
+  String get deviceCalendarsHeading => '此裝置';
+
+  @override
+  String get deviceCalendarsTitle => '此裝置的行事曆 App';
+
+  @override
+  String get deviceCalendarsHint => '裝置上的所有帳號：Google、Samsung、Outlook、iCloud，以及只存在這裡的行事曆。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日曆';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登入，直接從 Google 讀取行事曆，即使此裝置上沒有你的 Google 帳號。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登入：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '登出';
+
+  @override
+  String get googleCalendarNotHere => '此裝置暫不支援 Google 登入。請在裝置設定（行事曆 › 帳號）中加入 Google 帳號，其行事曆會顯示在此裝置下。';
+
+  @override
+  String get googleCalendarUnreachable => '現在無法連線到 Google 日曆。已依它設定的鬧鐘仍會響。';
+
+  @override
+  String get googleCalendarTwiceHint => '此裝置已顯示的同一 Google 帳號行事曆預設關閉，避免重複響鈴。';
 }

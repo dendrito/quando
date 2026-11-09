@@ -481,10 +481,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calendarAlarm => 'Alarma de calendario';
 
   @override
-  String get calendarIntro =>
-      'Quando? puede sonar antes y después de los eventos de los calendarios de tu teléfono. Google Calendar se incluye en cuanto tu cuenta de Google esté en el teléfono.';
-
-  @override
   String get connectCalendars => 'Conectar calendarios';
 
   @override
@@ -2724,4 +2720,133 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Sol tras las nubes';
+
+  @override
+  String get keysLockTitle => 'Claves en tus dispositivos';
+
+  @override
+  String get keysLockOff =>
+      'Tus claves de servicio se quedan en este dispositivo. Elige una frase de sincronización para enviarlas, cifradas, a tus otros dispositivos.';
+
+  @override
+  String get keysLockOn =>
+      'Tus claves de servicio se cifran con tu frase de sincronización antes de salir de este dispositivo. Nadie más, ni siquiera Google, puede leerlas.';
+
+  @override
+  String get keysLockWaiting =>
+      'Llegaron aquí claves de tu otro dispositivo, bloqueadas. Escribe tu frase de sincronización para abrirlas.';
+
+  @override
+  String get keysSetPassphrase => 'Elegir frase';
+
+  @override
+  String get keysChangePassphrase => 'Cambiar frase';
+
+  @override
+  String get keysUnlock => 'Desbloquear claves';
+
+  @override
+  String get keysStartOver => '¿La olvidaste? Empezar de nuevo';
+
+  @override
+  String get keysStartOverHint =>
+      'Empezar de nuevo envía las claves de este dispositivo con una frase nueva. Tus otros dispositivos pedirán la nueva.';
+
+  @override
+  String get keysPassphrase => 'Frase de sincronización';
+
+  @override
+  String get keysPassphraseAgain => 'Escríbela otra vez';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Usa al menos $count caracteres.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'No coinciden.';
+
+  @override
+  String get keysPassphraseWrong => 'Esa frase no abre estas claves.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Anótala: si la olvidas, nadie puede recuperarla y tendrás que escribir tus claves otra vez.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Primero elige una frase de sincronización, en Claves en tus dispositivos.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? puede sonar antes y después de los eventos de tus calendarios. Elige de dónde vienen.';
+
+  @override
+  String get deviceCalendarsHeading => 'EN ESTE DISPOSITIVO';
+
+  @override
+  String get deviceCalendarsTitle => 'App de calendario de este dispositivo';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Todas sus cuentas: Google, Samsung, Outlook, iCloud y calendarios guardados solo aquí.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE CALENDAR';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Inicia sesión con Google para leer tus calendarios directamente de Google, aunque tu cuenta de Google no esté en este dispositivo.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Sesión iniciada como $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Cerrar sesión';
+
+  @override
+  String get googleCalendarNotHere =>
+      'El inicio de sesión con Google aún no está disponible en este dispositivo. Añade tu cuenta de Google en los ajustes del dispositivo (Calendario › Cuentas) y sus calendarios aparecerán en este dispositivo.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'No se pudo acceder a Google Calendar ahora. Las alarmas ya creadas con él siguen sonando.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Los calendarios que este dispositivo ya muestra de la misma cuenta de Google empiezan apagados, para que nada suene dos veces.';
 }

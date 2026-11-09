@@ -2,10 +2,12 @@ import 'dart:convert';
 
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../sync/key_vault.dart';
 import '../domain/integrations.dart';
 
-/// Only the explicitly requested Pushover key pair travels in account sync.
-/// Webhooks, device destinations, priorities and playback settings remain local.
+/// Only the explicitly requested Pushover key pair travels in account sync,
+/// locked with the sync passphrase (see [KeyVault]). Webhooks, device
+/// destinations, priorities and playback settings remain local.
 class PushoverCredentialsSync {
   static const key = 'pushover.credentials';
   static const ownerKey = 'pushover.credentials.owner';
@@ -53,33 +55,53 @@ class PushoverCredentialsSync {
         await prefs.remove(marker);
       }
     }
-    final shared = _read(prefs.getString(key));
-    if (shared != null && shared['uid'] != uid) await prefs.remove(key);
+    final raw = prefs.getString(key);
+    final box = KeyVault.envelope(raw);
+    final legacy = box == null ? _read(raw) : null;
+    if (raw != null && (box?['uid'] ?? legacy?['uid']) != uid) await prefs.remove(key);
     await prefs.setString(accountKey, uid);
     await prefs.setString(ownerKey, uid);
+    // A plain-text pair from an older build is taken in once, then locked
+    // (or taken out of the account when this device has no passphrase).
+    if (legacy?['uid'] == uid && _complete(legacy) && !_complete(_encodedPair(settings))) {
+      await applyReceived(prefs);
+      return;
+    }
     // Existing setups join the owner's requested credential sharing on sign-in.
     if (settings.pushoverUser.isNotEmpty && settings.pushoverToken.isNotEmpty) {
-      await prefs.setString(key, _encode(uid, settings));
+      await KeyVault.store(prefs, key, 'pushover', _encode(uid, settings));
+    } else if (legacy != null) {
+      await prefs.remove(key);
     }
   }
 
+  static Map<String, dynamic> _encodedPair(IntegrationSettings s) => {
+    'user': s.pushoverUser.trim(),
+    'token': s.pushoverToken.trim(),
+  };
+
+  /// True when the pair is on its way to your other devices, locked. False
+  /// when signed out, or when this device has no sync passphrase yet.
   static Future<bool> publish(SharedPreferences prefs, IntegrationSettings settings) async {
     final uid = prefs.getString(accountKey);
     if (prefs.getBool('sync.on') != true || uid == null || prefs.getString(ownerKey) != uid) return false;
     if (settings.pushoverUser.trim().isEmpty || settings.pushoverToken.trim().isEmpty) return false;
-    await prefs.setString(key, _encode(uid, settings));
     await prefs.setString('pushover.local.$uid', _encode(uid, settings));
-    return true;
+    await KeyVault.store(prefs, key, 'pushover', _encode(uid, settings));
+    return KeyVault.unlocked(prefs);
   }
 
   static Future<void> applyReceived(SharedPreferences prefs) async {
     final uid = prefs.getString(accountKey);
-    final pair = _read(prefs.getString(key));
+    final raw = prefs.getString(key);
+    final plain = await KeyVault.read(prefs, key);
+    final pair = _read(plain);
     if (uid == null || pair?['uid'] != uid || !_complete(pair)) return;
     final settings = _local(prefs)
         .copyWith(pushoverUser: pair!['user'] as String, pushoverToken: pair['token'] as String);
     await prefs.setString('integrations', jsonEncode(settings.toJson()));
     await prefs.setString(ownerKey, uid);
     await prefs.setString('pushover.local.$uid', jsonEncode(pair));
+    if (!KeyVault.isEnvelope(raw)) await KeyVault.store(prefs, key, 'pushover', plain);
   }
 }

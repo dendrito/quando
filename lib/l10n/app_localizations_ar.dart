@@ -516,10 +516,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calendarAlarm => 'منبه التقويم';
 
   @override
-  String get calendarIntro =>
-      'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويمات هاتفك. تقويم Google مشمول بمجرد وجود حساب Google على الهاتف.';
-
-  @override
   String get connectCalendars => 'اربط التقويمات';
 
   @override
@@ -2753,4 +2749,130 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'الشمس خلف الغيوم';
+
+  @override
+  String get keysLockTitle => 'المفاتيح على أجهزتك';
+
+  @override
+  String get keysLockOff =>
+      'تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.';
+
+  @override
+  String get keysLockOn =>
+      'تُشفَّر مفاتيح خدماتك بعبارة المزامنة قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.';
+
+  @override
+  String get keysLockWaiting => 'وصلت إلى هنا مفاتيح من جهازك الآخر وهي مقفلة. اكتب عبارة المزامنة لفتحها.';
+
+  @override
+  String get keysSetPassphrase => 'اختيار العبارة';
+
+  @override
+  String get keysChangePassphrase => 'تغيير العبارة';
+
+  @override
+  String get keysUnlock => 'فتح المفاتيح';
+
+  @override
+  String get keysStartOver => 'نسيتها؟ ابدأ من جديد';
+
+  @override
+  String get keysStartOverHint =>
+      'البدء من جديد يرسل مفاتيح هذا الجهاز بعبارة جديدة. ستطلب أجهزتك الأخرى العبارة الجديدة.';
+
+  @override
+  String get keysPassphrase => 'عبارة المزامنة';
+
+  @override
+  String get keysPassphraseAgain => 'اكتبها مرة أخرى';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'استخدم $count أحرف على الأقل.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'العبارتان غير متطابقتين.';
+
+  @override
+  String get keysPassphraseWrong => 'هذه العبارة لا تفتح هذه المفاتيح.';
+
+  @override
+  String get keysPassphraseNote => 'دوّنها: إن نسيتها فلا أحد يستطيع استعادتها، وستكتب مفاتيحك من جديد.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويماتك. اختر من أين تأتي.';
+
+  @override
+  String get deviceCalendarsHeading => 'على هذا الجهاز';
+
+  @override
+  String get deviceCalendarsTitle => 'تطبيق التقويم في هذا الجهاز';
+
+  @override
+  String get deviceCalendarsHint =>
+      'كل الحسابات عليه: Google وSamsung وOutlook وiCloud والتقويمات المحفوظة هنا فقط.';
+
+  @override
+  String get googleCalendarHeading => 'تقويم Google';
+
+  @override
+  String get googleCalendarSignIn =>
+      'سجّل الدخول بحساب Google لقراءة تقويماتك من Google مباشرة، حتى لو لم يكن حسابك على هذا الجهاز.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'تم تسجيل الدخول باسم $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'تسجيل الخروج';
+
+  @override
+  String get googleCalendarNotHere =>
+      'تسجيل الدخول بحساب Google غير متاح بعد على هذا الجهاز. أضف حساب Google من إعدادات الجهاز (التقويم › الحسابات) وستظهر تقويماته ضمن هذا الجهاز.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'تعذّر الوصول إلى تقويم Google الآن. المنبّهات المضبوطة منه ما زالت ترنّ.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'التقويمات التي يعرضها هذا الجهاز من حساب Google نفسه تبدأ مطفأة، كي لا يرنّ شيء مرتين.';
 }

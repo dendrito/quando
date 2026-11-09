@@ -3,11 +3,13 @@ import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../ringing/data/spotify.dart';
+import '../../sync/key_vault.dart';
 import '../domain/integrations.dart';
 import '../domain/tuya.dart';
 import 'pushover_credentials_sync.dart';
 
 /// Portable service credentials, separate from per-device execution choices.
+/// They travel locked with the sync passphrase (see [KeyVault]).
 /// Google/YouTube SDK sessions and OS calendar permissions are not exportable.
 class ServiceConnectionsSync {
   static const key = 'services.connections';
@@ -54,32 +56,44 @@ class ServiceConnectionsSync {
       final cached = _read(p.getString('services.local.$uid'));
       if (cached['uid'] == uid) await _apply(p, cached);
     }
-    final previous = _read(p.getString(key));
-    if (previous.isNotEmpty && previous['uid'] != uid) await p.remove(key);
+    final raw = p.getString(key);
+    final box = KeyVault.envelope(raw);
+    final legacy = box == null && raw != null ? _read(raw) : null;
+    if (raw != null && (box?['uid'] ?? legacy?['uid']) != uid) await p.remove(key);
     await p.setString(_ownerKey, uid);
     final portable = _portable(p, uid);
     if (portable.containsKey('spotify') ||
         portable.containsKey('tuya') ||
         (portable['webhooks'] as List).isNotEmpty) {
-      await p.setString(key, jsonEncode(portable));
+      await KeyVault.store(p, key, 'services', jsonEncode(portable));
+    } else if (legacy != null && legacy['uid'] == uid) {
+      // Plain text from an older build: take it in once, then lock or remove it.
+      await applyReceived(p);
+    } else if (legacy != null) {
+      await p.remove(key);
     }
   }
 
+  /// True when the keys are on their way to your other devices, locked.
+  /// False when signed out, or when this device has no sync passphrase yet.
   static Future<bool> publish(SharedPreferences p) async {
     final uid = p.getString(PushoverCredentialsSync.accountKey);
     if (p.getBool('sync.on') != true || uid == null || p.getString(_ownerKey) != uid) return false;
     final raw = jsonEncode(_portable(p, uid));
-    await p.setString(key, raw);
     await p.setString('services.local.$uid', raw);
-    return true;
+    await KeyVault.store(p, key, 'services', raw);
+    return KeyVault.unlocked(p);
   }
 
   static Future<void> applyReceived(SharedPreferences p) async {
     final uid = p.getString(PushoverCredentialsSync.accountKey);
-    final received = _read(p.getString(key));
+    final raw = p.getString(key);
+    final plain = await KeyVault.read(p, key);
+    final received = _read(plain);
     if (uid == null || received['uid'] != uid || p.getString(_ownerKey) != uid) return;
     await _apply(p, received);
     await p.setString('services.local.$uid', jsonEncode(received));
+    if (!KeyVault.isEnvelope(raw)) await KeyVault.store(p, key, 'services', plain);
   }
 
   static Future<void> _apply(SharedPreferences p, Map<String, dynamic> received) async {

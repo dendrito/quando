@@ -259,7 +259,7 @@ void main() {
     await tester.tap(find.text(l10n.useMyLocation));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('America/Sao_Paulo'), findsOneWidget);
+    expect(find.text('São Paulo'), findsOneWidget);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(skyPlaceProvider)?.latitude, -23.55);

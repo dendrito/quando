@@ -341,27 +341,27 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String inDays(int d) {
-    return 'in ${d}d';
+    return 'in $d d';
   }
 
   @override
   String inDaysHours(int d, int h) {
-    return 'in ${d}d ${h}h';
+    return 'in $d d $h h';
   }
 
   @override
   String inHours(int h) {
-    return 'in ${h}h';
+    return 'in $h h';
   }
 
   @override
   String inHoursMinutes(int h, int m) {
-    return 'in ${h}h ${m}m';
+    return 'in $h h $m min';
   }
 
   @override
   String inMins(int m) {
-    return 'in ${m}m';
+    return 'in $m min';
   }
 
   @override
@@ -422,7 +422,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get fromCandleToHavdalah => 'From candle lighting to Havdalah';
 
   @override
-  String get lockCalendarWord => 'During calendar events with this word';
+  String get lockCalendarWord => 'During events named…';
 
   @override
   String get lockCalendarWordHint => 'e.g. lock, exam, focus';
@@ -475,10 +475,6 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get calendarAlarm => 'Calendar alarm';
-
-  @override
-  String get calendarIntro =>
-      'Quando? can ring before and after events in your phone\'s calendars. Google Calendar is included once your Google account is on the phone.';
 
   @override
   String get connectCalendars => 'Connect calendars';
@@ -2709,4 +2705,132 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Sun behind the clouds';
+
+  @override
+  String get keysLockTitle => 'Keys on your devices';
+
+  @override
+  String get keysLockOff =>
+      'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.';
+
+  @override
+  String get keysLockOn =>
+      'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.';
+
+  @override
+  String get keysLockWaiting =>
+      'Keys from your other device arrived here, locked. Type your sync passphrase to open them.';
+
+  @override
+  String get keysSetPassphrase => 'Choose passphrase';
+
+  @override
+  String get keysChangePassphrase => 'Change passphrase';
+
+  @override
+  String get keysUnlock => 'Unlock keys';
+
+  @override
+  String get keysStartOver => 'Forgot it? Start over';
+
+  @override
+  String get keysStartOverHint =>
+      'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.';
+
+  @override
+  String get keysPassphrase => 'Sync passphrase';
+
+  @override
+  String get keysPassphraseAgain => 'Type it again';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Use at least $count characters.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'The two don\'t match.';
+
+  @override
+  String get keysPassphraseWrong => 'That passphrase doesn\'t open these keys.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Choose a sync passphrase first, under Keys on your devices.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? can ring before and after events in your calendars. Pick where they come from.';
+
+  @override
+  String get deviceCalendarsHeading => 'ON THIS DEVICE';
+
+  @override
+  String get deviceCalendarsTitle => 'This device\'s calendar app';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE CALENDAR';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Sign in with Google to read your calendars straight from Google, even when your Google account isn\'t on this device.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Signed in as $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Sign out';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Google sign-in isn\'t available on this device yet. Add your Google account in the device\'s settings (Calendar › Accounts) and its calendars appear under this device.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Couldn\'t reach Google Calendar just now. Alarms already set from it still ring.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Calendars this device already shows from the same Google account start off, so nothing rings twice.';
 }

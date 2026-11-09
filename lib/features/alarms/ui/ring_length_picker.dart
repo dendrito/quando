@@ -17,7 +17,7 @@ class RingLengthPicker extends StatelessWidget {
   final ValueChanged<int> onChanged;
 
   static const maxSeconds = 60 * 60;
-  static const _quick = [1, 2, 3, 5, 10, 30, 60, 120, 300];
+  static const _quick = [30, 60, 120, 300, 600];
 
   static String short(int s) => s < 60
       ? l10n.secondsShort(s)

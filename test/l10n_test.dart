@@ -110,6 +110,11 @@ void main() {
 
       router.go('/settings');
       await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
+        find.text(l10n.language),
+        400,
+        scrollable: find.byType(Scrollable).first,
+      );
       expect(find.text(l10n.language), findsWidgets);
     });
   }

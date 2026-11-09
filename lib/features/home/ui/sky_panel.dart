@@ -414,7 +414,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 child: Text(
                   place == null
                       ? l10n.skyChooseCity
-                      : '${l10n.timesIn(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider) == null ? ' · ${l10n.skyReferenceCity}' : ''}',
+                      : '${timesInLabel(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider) == null ? ' · ${l10n.skyReferenceCity}' : ''}',
                   style: text.bodySmall?.copyWith(color: QuandoColors.blush),
                 ),
               ),

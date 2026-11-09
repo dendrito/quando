@@ -481,10 +481,6 @@ class AppLocalizationsFr extends AppLocalizations {
   String get calendarAlarm => 'Alarme d’agenda';
 
   @override
-  String get calendarIntro =>
-      'Quando? peut sonner avant et après les événements des agendas de votre téléphone. Google Agenda est inclus dès que votre compte Google est sur le téléphone.';
-
-  @override
   String get connectCalendars => 'Connecter les agendas';
 
   @override
@@ -2728,4 +2724,133 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get weatherSunBehindClouds => 'Soleil derrière les nuages';
+
+  @override
+  String get keysLockTitle => 'Clés sur vos appareils';
+
+  @override
+  String get keysLockOff =>
+      'Vos clés de service restent sur cet appareil. Choisissez une phrase de synchronisation pour les envoyer, chiffrées, à vos autres appareils.';
+
+  @override
+  String get keysLockOn =>
+      'Vos clés de service sont chiffrées avec votre phrase de synchronisation avant de quitter cet appareil. Personne d\'autre, pas même Google, ne peut les lire.';
+
+  @override
+  String get keysLockWaiting =>
+      'Des clés de votre autre appareil sont arrivées ici, verrouillées. Saisissez votre phrase de synchronisation pour les ouvrir.';
+
+  @override
+  String get keysSetPassphrase => 'Choisir la phrase';
+
+  @override
+  String get keysChangePassphrase => 'Changer la phrase';
+
+  @override
+  String get keysUnlock => 'Déverrouiller les clés';
+
+  @override
+  String get keysStartOver => 'Oubliée ? Recommencer';
+
+  @override
+  String get keysStartOverHint =>
+      'Recommencer envoie les clés de cet appareil avec une nouvelle phrase. Vos autres appareils demanderont la nouvelle.';
+
+  @override
+  String get keysPassphrase => 'Phrase de synchronisation';
+
+  @override
+  String get keysPassphraseAgain => 'Saisissez-la à nouveau';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Utilisez au moins $count caractères.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Les deux ne correspondent pas.';
+
+  @override
+  String get keysPassphraseWrong => 'Cette phrase n\'ouvre pas ces clés.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Notez-la : si vous l\'oubliez, personne ne peut la récupérer et vous devrez ressaisir vos clés.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Choisissez d\'abord une phrase de synchronisation, dans Clés sur vos appareils.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? peut sonner avant et après les événements de vos agendas. Choisissez d\'où ils viennent.';
+
+  @override
+  String get deviceCalendarsHeading => 'SUR CET APPAREIL';
+
+  @override
+  String get deviceCalendarsTitle => 'L\'agenda de cet appareil';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Tous ses comptes : Google, Samsung, Outlook, iCloud et les agendas gardés uniquement ici.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE AGENDA';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Connectez-vous avec Google pour lire vos agendas directement chez Google, même si votre compte Google n\'est pas sur cet appareil.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Connecté en tant que $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Se déconnecter';
+
+  @override
+  String get googleCalendarNotHere =>
+      'La connexion Google n\'est pas encore disponible sur cet appareil. Ajoutez votre compte Google dans les réglages de l\'appareil (Calendrier › Comptes) et ses agendas apparaîtront sur cet appareil.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Impossible de joindre Google Agenda pour l\'instant. Les alarmes déjà réglées à partir de lui sonnent toujours.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Les agendas que cet appareil affiche déjà pour le même compte Google démarrent désactivés, pour que rien ne sonne deux fois.';
 }
