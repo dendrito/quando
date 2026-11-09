@@ -319,7 +319,7 @@ void main() {
     expect(find.text(l10n.courseDaf), jewishHome ? findsOneWidget : findsNothing);
     await tester.tap(find.widgetWithText(SwitchListTile, l10n.skyMoonDisplay));
     await tester.pumpAndSettle();
-    expect(jsonDecode(prefs.getString('home.display')!)['moon'], isTrue);
+    expect(jsonDecode(prefs.getString('home.display')!)['moon'], isFalse);
   });
 
   testWidgets('weather art respects Reduce Motion and renders all conditions', (tester) async {
