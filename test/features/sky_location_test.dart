@@ -18,6 +18,7 @@ import 'package:quando/features/home/domain/sky.dart';
 import 'package:quando/features/home/domain/zone_places.dart';
 import 'package:quando/features/home/ui/day_arc.dart';
 import 'package:quando/features/home/ui/moon_details.dart';
+import 'package:quando/features/home/ui/place_sheet.dart';
 import 'package:quando/features/home/ui/sky_panel.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
 import 'package:quando/features/shabbat/ui/city_picker.dart';
@@ -363,6 +364,7 @@ void main() {
         overrides: [
           prefsProvider.overrideWithValue(prefs),
           deviceZoneProvider.overrideWithValue('America/Detroit'),
+          shabbatInUseProvider.overrideWithValue(true),
         ],
       );
       addTearDown(c.dispose);
@@ -384,7 +386,12 @@ void main() {
                         child: ColoredBox(
                           key: const ValueKey('test-current-sky'),
                           color: sky.color,
-                          child: SkyPanel(sky: sky),
+                          child: Column(
+                            children: [
+                              const PlacePill(),
+                              SkyPanel(sky: sky),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -402,10 +409,21 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MoonArc), findsOneWidget);
       expect(find.textContaining(l10n.moonNextNew), findsOneWidget);
-      expect(find.textContaining('Detroit'), findsOneWidget);
+      // The city pill names the sky's city; its sheet switches the source.
+      expect(
+        find.descendant(of: find.byType(PlacePill), matching: find.textContaining('Detroit')),
+        findsOneWidget,
+      );
+      await tester.tap(find.byType(PlacePill));
+      await tester.pumpAndSettle();
       await tester.tap(find.text(l10n.skyShabbat));
       await tester.pumpAndSettle();
-      expect(find.textContaining('São Paulo'), findsOneWidget);
+      await tester.tapAt(const Offset(10, 10)); // Close the sheet.
+      await tester.pumpAndSettle();
+      expect(
+        find.descendant(of: find.byType(PlacePill), matching: find.textContaining('São Paulo')),
+        findsOneWidget,
+      );
       expect(c.read(homeZoneProvider), 'America/Detroit');
       final phaseRect = tester.getRect(find.byType(MoonDisc));
       final datesRect = tester.getRect(find.byKey(const ValueKey('moon-upcoming-dates')));

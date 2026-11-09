@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:math' show min;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -32,7 +31,9 @@ import 'clock_hero.dart';
 import 'home_block_frame.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
+import 'place_sheet.dart';
 import 'week_list.dart';
+import 'week_ribbon.dart';
 
 import '../../quotes/ui/quote_line.dart';
 
@@ -49,6 +50,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
   bool _showShabbat = true;
   bool _editing = false;
+
+  /// The day picked on the week ribbon: the alarms list shows only that day.
+  DateTime? _day;
   final _openGroups = <String>{};
 
   void _undo(String message, VoidCallback undo) {
@@ -102,7 +106,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               option('time', Icons.schedule, l10n.newAtTime, l10n.newAtTimeHint),
               option('event', Icons.manage_search, l10n.newAroundEvent, l10n.newAroundEventHint),
               option('ready', Icons.auto_awesome_outlined, l10n.newFromReadyMade, l10n.newFromReadyMadeHint),
-              const SizedBox(height: 12),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(16, 4, 16, 12),
+                child: Wrap(
+                  spacing: 8,
+                  children: [
+                    TextButton.icon(
+                      onPressed: () => Navigator.pop(context, 'lock'),
+                      icon: const Icon(Icons.lock_outline, size: 18),
+                      label: Text(l10n.lockMode),
+                    ),
+                    TextButton.icon(
+                      onPressed: () => Navigator.pop(context, 'calendars'),
+                      icon: const Icon(Icons.event_outlined, size: 18),
+                      label: Text(l10n.calendars),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         );
@@ -111,6 +132,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     if (!mounted) return;
     if (choice == 'time') context.push('/alarm/new');
     if (choice == 'event') context.push('/calendar/rule/new');
+    if (choice == 'lock') context.push('/lock');
+    if (choice == 'calendars') context.push('/calendar');
     if (choice == 'ready') await _readyMade();
   }
 
@@ -390,6 +413,58 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ..showSnackBar(SnackBar(content: Text(l10n.quickSet(label, hhmm(local)))));
   }
 
+  /// Colour key of an alarm's dot on the week ribbon: its group, or 'e' for events and Shabbat.
+  String _dotOf(ScheduledAlarm a) {
+    if (!a.ruleId.startsWith('user.')) return 'e';
+    final id = a.ruleId.substring(5);
+    for (final u in ref.read(userAlarmsProvider)) {
+      if (u.id == id) return 'g:${u.group}';
+    }
+    return 'g:';
+  }
+
+  /// The alarms of the day picked on the ribbon: yours, events and Shabbat alike.
+  Widget _dayList(DateTime now, String home) {
+    final text = Theme.of(context).textTheme;
+    final day = _day!;
+    bool onDay(ScheduledAlarm a) {
+      final l = inZone(a.at, home);
+      return l.year == day.year && l.month == day.month && l.day == day.day;
+    }
+
+    final plan = [
+      for (final a in ref.watch(fullPlanProvider))
+        if (a.ruleId != 'lock' && onDay(a)) a,
+    ];
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(
+          alignment: AlignmentDirectional.centerEnd,
+          child: TextButton.icon(
+            onPressed: () => setState(() => _day = null),
+            icon: const Icon(Icons.close, size: 18),
+            label: Text(l10n.showAllAlarms),
+          ),
+        ),
+        if (plan.isEmpty)
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            child: Text(l10n.noAlarmsThatDay, style: text.bodySmall),
+          )
+        else
+          WeekList(
+            days: weekPlan(plan, home),
+            today: inZone(now, home),
+            zone: home,
+            skipped: ref.watch(skippedProvider),
+            onTap: _alarmActions,
+            onSeries: (s) => _actions(s.alarms),
+          ),
+      ],
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     final place = ref.watch(placeProvider);
@@ -403,6 +478,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final skyPlace = ref.watch(skyPlaceProvider);
     final sky = skyPlace == null ? SkyDay(now: now) : SkyDay.of(skyPlace, now);
     final display = ref.watch(homeDisplayProvider);
+    // A day picked on the ribbon stops applying once it is over.
+    if (_day != null) {
+      final t = inZone(now, home);
+      if (_day!.isBefore(DateTime(t.year, t.month, t.day))) _day = null;
+    }
 
     // Shabbat times in the Shabbat city's clock; everything else in yours.
     String cityTime(DateTime utc) => hhmm(inZone(utc, place.timeZone));
@@ -456,14 +536,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ];
     String titleOf(HomeBlock b) => switch (b) {
       HomeBlock.clock => l10n.homeBlockClock,
-      HomeBlock.next => l10n.nextAlarmHeading,
+      HomeBlock.next =>
+        next == null ? l10n.nextAlarmHeading : l10n.nextAlarmLine(next.title, local(next.at)).toUpperCase(),
+      HomeBlock.ribbon => l10n.thisWeekHeading,
       HomeBlock.sky => l10n.homeBlockSky,
       HomeBlock.shabbatMode || HomeBlock.shabbat => l10n.homeBlockShabbat,
       HomeBlock.timers => l10n.timersTitle.toUpperCase(),
-      HomeBlock.quick => l10n.homeBlockQuick,
       HomeBlock.alarms => l10n.yourAlarmsHeading,
       HomeBlock.events => l10n.aroundEventsHeading,
-      HomeBlock.week => l10n.thisWeekHeading,
       HomeBlock.world => l10n.worldClocksHeading,
     };
     Widget contentOf(HomeBlock b) => switch (b) {
@@ -473,7 +553,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         children: [
           FittedBox(
             fit: BoxFit.scaleDown,
-            alignment: Alignment.centerLeft,
+            alignment: AlignmentDirectional.centerStart,
             child: Text(
               next == null
                   ? l10n.nothingSet
@@ -484,18 +564,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               style: text.displayMedium?.copyWith(fontSize: 60),
             ),
           ),
-          const SizedBox(height: 6),
-          if (next != null) ...[
-            Text(
-              // A reminder ahead of an event says so: "Candle lighting ·
-              // 6 hours before · Fri 13 Nov · 12:09", never just the
-              // event's name at the reminder's time.
-              '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
-              style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
+          // A reminder ahead of an event says so ("6 hours before"); the day is
+          // only named when it is not today. The name and time are in the title.
+          if (next != null && (next.offset != Duration.zero || day(next.at) != day(now)))
+            Padding(
+              padding: const EdgeInsets.only(top: 2),
+              child: Text(
+                [
+                  if (next.offset != Duration.zero) describeOffset(next.offset),
+                  if (day(next.at) != day(now)) day(next.at),
+                ].join(' · '),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: text.bodyMedium?.copyWith(color: const Color(0xFFF7DCD0)),
+              ),
             ),
-            const SizedBox(height: 8),
-          ],
-          QuoteLine(now: now, idle: next == null),
+          const SizedBox(height: 6),
+          QuoteLine(now: now, idle: next == null, oneLine: true),
         ],
       ),
       HomeBlock.sky => SkyPanel(
@@ -529,22 +614,23 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       HomeBlock.shabbat => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: shabbat),
       HomeBlock.timers => const _TimerTiles(),
-      HomeBlock.quick => Wrap(
-        spacing: 8,
-        runSpacing: 8,
-        children: [
-          for (final m in const [10, 20, 60])
-            _WhenChip(
-              label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-              onTap: () => _quick(
-                DateTime.now().toUtc().add(Duration(minutes: m)),
-                m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-              ),
-            ),
-          if (nextSunset != null)
-            _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
-        ],
+      HomeBlock.ribbon => WeekRibbon(
+        days: weekRibbon(
+          plan: [
+            for (final a in ref.watch(fullPlanProvider))
+              if (a.ruleId != 'lock' && !ref.watch(skippedProvider).contains(a.id)) a,
+          ],
+          now: now,
+          zone: home,
+          dotOf: _dotOf,
+          holyDays: ref.watch(shabbatInUseProvider)
+              ? [for (final p in ref.watch(periodsProvider)) (p.start, p.end)]
+              : const [],
+        ),
+        selected: _day,
+        onSelect: (d) => setState(() => _day = d),
       ),
+      HomeBlock.alarms when _day != null => _dayList(now, home),
       HomeBlock.alarms => Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
@@ -620,24 +706,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ],
         ],
       ),
-      HomeBlock.week => Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          if (ref.watch(fullPlanProvider).isEmpty)
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 12),
-              child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
-            ),
-          WeekList(
-            days: weekPlan(ref.watch(fullPlanProvider), home),
-            today: inZone(now, home),
-            zone: home,
-            skipped: ref.watch(skippedProvider),
-            onTap: _alarmActions,
-            onSeries: (s) => _actions(s.alarms),
-          ),
-        ],
-      ),
       HomeBlock.world => const WorldClocks(),
     };
     Widget frameOf(HomeBlock b, int? index) => HomeBlockFrame(
@@ -676,25 +744,19 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     ];
 
     return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Container(
-        // Full width on phones; on a Mac or iPad window a full-width bar
-        // hid the alarm list, so it stops at a comfortable size.
-        width: min(MediaQuery.sizeOf(context).width - 40, 420),
-        height: 60,
-        // A soft glow instead of a dark ring.
-        decoration: ShapeDecoration(
-          shape: const StadiumBorder(),
-          shadows: [
-            BoxShadow(color: QuandoColors.coral.withAlpha(70), blurRadius: 22, offset: const Offset(0, 8)),
-          ],
-        ),
-        child: FloatingActionButton.extended(
-          tooltip: l10n.newAlarm,
-          onPressed: _newAlarm,
-          icon: const Icon(Icons.add, size: 26),
-          label: Text(l10n.when),
-        ),
+      bottomNavigationBar: _WhenDock(
+        onWhen: _newAlarm,
+        chips: [
+          for (final m in const [10, 60])
+            (
+              label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+              onTap: () => _quick(
+                DateTime.now().toUtc().add(Duration(minutes: m)),
+                m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+              ),
+            ),
+          if (nextSunset != null) (label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
+        ],
       ),
       body: ListView(
         padding: EdgeInsets.zero,
@@ -711,7 +773,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   children: [
                     const QMark(size: 30),
                     const SizedBox(width: 10),
-                    Expanded(child: Text(appTitle, style: text.titleLarge?.copyWith(fontSize: 23))),
+                    Expanded(
+                      child: Text(
+                        appTitle,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: text.titleLarge?.copyWith(fontSize: 23),
+                      ),
+                    ),
                     IconButton(
                       tooltip: l10n.homeEdit,
                       icon: Icon(_editing ? Icons.check : Icons.dashboard_customize_outlined),
@@ -723,21 +792,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       onPressed: () => context.push('/timers'),
                     ),
                     IconButton(
-                      tooltip: l10n.lockMode,
-                      icon: const Icon(Icons.lock_outline),
-                      onPressed: () => context.push('/lock'),
-                    ),
-                    IconButton(
-                      tooltip: l10n.calendars,
-                      icon: const Icon(Icons.event_outlined),
-                      onPressed: () => context.push('/calendar'),
-                    ),
-                    IconButton(
                       tooltip: l10n.settings,
                       icon: const Icon(Icons.tune),
                       onPressed: () => context.push('/settings'),
                     ),
                   ],
+                ),
+                // Where the sky and the times are for; tap to change.
+                const Padding(
+                  padding: EdgeInsets.only(left: 40, top: 2),
+                  child: Align(alignment: AlignmentDirectional.centerStart, child: PlacePill()),
                 ),
                 // Quando? Shabbat: the Hebrew date and this week's parasha.
                 if (jewishHome || display.parasha)
@@ -844,7 +908,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           ),
           ...blocks,
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 4, 24, 120),
+            padding: const EdgeInsets.fromLTRB(24, 4, 24, 24),
             child: Text(l10n.alarmsSetThemselves, style: text.bodySmall),
           ),
         ],
@@ -853,17 +917,68 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   }
 }
 
-class _WhenChip extends StatelessWidget {
-  const _WhenChip({required this.label, required this.onTap});
+/// The bar docked to the bottom: quick times as chips and the big "When?" button.
+class _WhenDock extends StatelessWidget {
+  const _WhenDock({required this.chips, required this.onWhen});
 
-  final String label;
-  final VoidCallback onTap;
+  final List<({String label, VoidCallback onTap})> chips;
+  final VoidCallback onWhen;
 
   @override
-  Widget build(BuildContext context) => ActionChip(
-    label: Text(label),
-    onPressed: onTap,
-    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+  Widget build(BuildContext context) => Material(
+    color: QuandoColors.surface,
+    elevation: 8,
+    shadowColor: Colors.black,
+    borderRadius: const BorderRadius.vertical(top: Radius.circular(28)),
+    child: SafeArea(
+      top: false,
+      child: Center(
+        heightFactor: 1,
+        child: ConstrainedBox(
+          // On a Mac or iPad window the bar stops at a comfortable width.
+          constraints: const BoxConstraints(maxWidth: 560),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(16, 10, 16, 10),
+            child: Row(
+              children: [
+                Expanded(
+                  child: SingleChildScrollView(
+                    scrollDirection: Axis.horizontal,
+                    child: Row(
+                      children: [
+                        for (final c in chips)
+                          Padding(
+                            padding: const EdgeInsetsDirectional.only(end: 6),
+                            child: ActionChip(
+                              label: Text(c.label, style: const TextStyle(fontSize: 13)),
+                              onPressed: c.onTap,
+                              labelPadding: const EdgeInsets.symmetric(horizontal: 2),
+                              visualDensity: VisualDensity.compact,
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                FilledButton.icon(
+                  onPressed: onWhen,
+                  icon: const Icon(Icons.add, size: 24),
+                  label: Text(l10n.when),
+                  style: FilledButton.styleFrom(
+                    minimumSize: const Size(0, 52),
+                    padding: const EdgeInsets.symmetric(horizontal: 14),
+                    shape: const StadiumBorder(),
+                    shadowColor: QuandoColors.coral,
+                    elevation: 6,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    ),
   );
 }
 

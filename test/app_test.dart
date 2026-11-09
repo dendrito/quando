@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/app.dart';
+import 'package:quando/features/home/ui/week_ribbon.dart';
 import 'package:quando/app/providers.dart';
 
 import 'shabbat_on.dart';
@@ -60,16 +61,25 @@ void main() {
     // Jerusalem, Fri 6 Nov 2026: candle lighting 16:05 local.
     expect(find.text('16:05'), findsOneWidget);
     // Friday's candle-lighting reminders fold into one row that opens.
+    // The week ribbon: tap Friday to see its alarms.
+    final friday = find.descendant(of: find.byType(WeekRibbon), matching: find.byType(InkWell)).at(3);
+    await tester.ensureVisible(friday);
+    await tester.tap(friday);
+    await tester.pumpAndSettle();
     final series = find.textContaining('alarms · ');
-    await tester.scrollUntilVisible(series.first, 400);
-    // Lift the row clear of the floating When? button.
+    await tester.scrollUntilVisible(series.first, 400, scrollable: find.byType(Scrollable).first);
+    // Lift the row clear of the docked When? bar.
     await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
     await tester.pumpAndSettle();
     expect(find.text('2 hours before'), findsNothing);
     await tester.tap(series.first);
     await tester.pumpAndSettle();
     expect(find.text('2 hours before'), findsOneWidget);
-    await tester.scrollUntilVisible(find.textContaining('set themselves on this phone'), 400);
+    await tester.scrollUntilVisible(
+      find.textContaining('set themselves on this phone'),
+      400,
+      scrollable: find.byType(Scrollable).first,
+    );
     expect(find.textContaining('set themselves on this phone'), findsOneWidget);
   });
 
@@ -95,9 +105,14 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
+    // The week ribbon: tap Friday to see its alarms.
+    final friday = find.descendant(of: find.byType(WeekRibbon), matching: find.byType(InkWell)).at(3);
+    await tester.ensureVisible(friday);
+    await tester.tap(friday);
+    await tester.pumpAndSettle();
     final series = find.textContaining('alarms · ');
-    await tester.scrollUntilVisible(series.first, 400);
-    // Lift the row clear of the floating When? button.
+    await tester.scrollUntilVisible(series.first, 400, scrollable: find.byType(Scrollable).first);
+    // Lift the row clear of the docked When? bar.
     await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
     await tester.pumpAndSettle();
     final before = c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length;

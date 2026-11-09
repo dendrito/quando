@@ -894,5 +894,9 @@
   "homeBlockClock": "RELÓGIO",
   "homeBlockSky": "SOL, LUA E TEMPO",
   "homeBlockQuick": "ALARMES RÁPIDOS",
-  "homeBlockShabbat": "SHABAT E FESTAS"
+  "homeBlockShabbat": "SHABAT E FESTAS",
+  "homePlaceTitle": "Cidade do céu",
+  "nextAlarmLine": "Próximo alarme · {title} {time}",
+  "showAllAlarms": "Mostrar todos os dias",
+  "noAlarmsThatDay": "Nada toca neste dia"
 }

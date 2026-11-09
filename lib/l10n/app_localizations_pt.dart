@@ -3049,4 +3049,18 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get homeBlockShabbat => 'SHABAT E FESTAS';
+
+  @override
+  String get homePlaceTitle => 'Cidade do céu';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Próximo alarme · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Mostrar todos os dias';
+
+  @override
+  String get noAlarmsThatDay => 'Nada toca neste dia';
 }
