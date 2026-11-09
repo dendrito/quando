@@ -173,11 +173,8 @@ class _ArcPainter extends CustomPainter {
       final at = point(stop.t.clamp(0.0, 1.0));
       final lived = stop.t <= done;
       if (stop.hour.kind == WeatherKind.clear) {
-        canvas.drawCircle(
-          at,
-          9,
-          Paint()..color = lived ? QuandoColors.amber : QuandoColors.amber.withValues(alpha: .55),
-        );
+        final body = stop.hour.night ? moonlight : QuandoColors.amber;
+        canvas.drawCircle(at, 9, Paint()..color = lived ? body : body.withValues(alpha: .55));
         canvas.drawCircle(
           at,
           9,
@@ -197,13 +194,15 @@ class _ArcPainter extends CustomPainter {
     final kind = nowWeather;
     if (moon != null && above) {
       paintMoon(canvas, sun, 13, moon!);
+      // The Moon behind clouds, rain or snow.
+      if (kind != null && kind != WeatherKind.clear) _cover(canvas, sun, kind);
+      final now = nowLabel;
+      if (now != null) _label(canvas, size, now, sun - const Offset(0, 42), bold: true);
     } else if (moon == null && p >= 0 && p <= 1) {
       canvas.drawCircle(sun, 20, Paint()..color = QuandoColors.coral.withValues(alpha: 0.3));
       canvas.drawCircle(sun, 11, Paint()..color = QuandoColors.amber);
       // The Sun behind today's clouds, rain or snow.
-      if (kind != null && kind != WeatherKind.clear) {
-        _glyph(canvas, sun + const Offset(2, 2), 54, kind, false, sunless: true);
-      }
+      if (kind != null && kind != WeatherKind.clear) _cover(canvas, sun, kind);
       final now = nowLabel;
       if (now != null) _label(canvas, size, now, sun - const Offset(0, 42), bold: true);
     } else {
@@ -217,6 +216,12 @@ class _ArcPainter extends CustomPainter {
       );
     }
   }
+
+  /// A cloud big enough to hide the Sun or Moon at [at], with its rain or
+  /// snow falling below. The picture's cloud sits a little above its centre,
+  /// so it is drawn lower to land on the body.
+  void _cover(Canvas canvas, Offset at, WeatherKind kind) =>
+      _glyph(canvas, at + const Offset(0, 8), 68, kind, false, sunless: true);
 
   void _glyph(Canvas canvas, Offset at, double size, WeatherKind kind, bool night, {bool sunless = false}) {
     canvas.save();
@@ -266,9 +271,22 @@ class _ArcPainter extends CustomPainter {
 }
 
 class MoonArc extends StatelessWidget {
-  const MoonArc({super.key, required this.track, required this.illumination, this.daylight});
+  const MoonArc({
+    super.key,
+    required this.track,
+    required this.illumination,
+    this.daylight,
+    this.weather = const [],
+    this.nowWeather,
+    this.nowLabel,
+  });
   final MoonTrack track;
   final MoonIllumination illumination;
+
+  /// Forecast stops along the Moon's path, and the weather over the Moon now.
+  final List<ArcWeather> weather;
+  final WeatherKind? nowWeather;
+  final String? nowLabel;
 
   /// Sun up or down at each dot of the path, moonrise to moonset.
   final List<bool>? daylight;
@@ -277,7 +295,7 @@ class MoonArc extends StatelessWidget {
   Widget build(BuildContext context) => Semantics(
     label: track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon,
     child: SizedBox(
-      height: 120,
+      height: weather.isEmpty && nowWeather == null ? 120 : 150,
       width: double.infinity,
       child: CustomPaint(
         painter: _ArcPainter(
@@ -286,6 +304,10 @@ class MoonArc extends StatelessWidget {
           moon: illumination,
           above: track.above,
           daylight: daylight,
+          weather: weather,
+          nowWeather: track.above ? nowWeather : null,
+          nowLabel: track.above ? nowLabel : null,
+          textStyle: Theme.of(context).textTheme.bodySmall,
         ),
       ),
     ),

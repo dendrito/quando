@@ -100,8 +100,8 @@ class WeatherPainter extends CustomPainter {
       final sun = Offset(kind == WeatherKind.clear ? 54 : 39, kind == WeatherKind.clear ? 49 : 33);
       c.drawCircle(
         sun,
-        25 + 2 * m.sin(t * 2 * m.pi),
-        Paint()..color = QuandoColors.coral.withValues(alpha: 0.18),
+        25 + 3 * m.sin(t * 2 * m.pi),
+        Paint()..color = QuandoColors.coral.withValues(alpha: 0.18 + 0.06 * m.sin(t * 2 * m.pi)),
       );
       if (night) {
         c.drawPath(
@@ -114,7 +114,8 @@ class WeatherPainter extends CustomPainter {
         );
       } else {
         for (var i = 0; i < 8; i++) {
-          final a = i * m.pi / 4 + t * 0.15;
+          // One slow turn of an eighth, so the loop never jumps.
+          final a = i * m.pi / 4 + t * m.pi / 4;
           c.drawLine(
             sun + Offset(m.cos(a), m.sin(a)) * 24,
             sun + Offset(m.cos(a), m.sin(a)) * 29,
@@ -128,7 +129,17 @@ class WeatherPainter extends CustomPainter {
       }
     }
     if (kind != WeatherKind.clear) {
-      final drift = m.sin(t * 2 * m.pi) * 3;
+      // A small cloud floats across behind, then the main cloud drifts and
+      // bobs in front of the Sun.
+      final away = (t * 1.0) % 1.0, far = -30 + away * 170;
+      final back = Path()
+        ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(far, 22, 30, 11), const Radius.circular(6)))
+        ..addOval(Rect.fromCircle(center: Offset(far + 11, 22), radius: 8))
+        ..addOval(Rect.fromCircle(center: Offset(far + 21, 24), radius: 6));
+      c.drawPath(back, Paint()..color = QuandoColors.blush.withValues(alpha: 0.35));
+      final drift = m.sin(t * 2 * m.pi) * 7, bob = m.sin(t * 4 * m.pi) * 1.8;
+      c.save();
+      c.translate(0, bob);
       final cloud = Path()
         ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(20 + drift, 38, 69, 25), const Radius.circular(14)))
         ..addOval(Rect.fromCircle(center: Offset(42 + drift, 39), radius: 18))
@@ -137,6 +148,7 @@ class WeatherPainter extends CustomPainter {
         cloud,
         Paint()..color = QuandoColors.blush.withValues(alpha: kind == WeatherKind.thunder ? 0.65 : 0.9),
       );
+      c.restore();
     }
     if (kind == WeatherKind.rain || kind == WeatherKind.thunder) {
       for (var i = 0; i < 7; i++) {
