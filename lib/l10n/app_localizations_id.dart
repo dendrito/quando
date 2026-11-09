@@ -2580,6 +2580,45 @@ class AppLocalizationsId extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Masuk dengan akun Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Gunakan negara, email atau telepon, dan kata sandi yang sama seperti di aplikasi Smart Life atau Tuya Smart. Akun harus sudah tertaut ke proyek Tuya Anda. Kata sandi hanya dikirim ke Tuya dan tidak pernah disimpan.';
+
+  @override
+  String get tuyaCountryCode => 'Kode negara (Brasil 55, AS 1)';
+
+  @override
+  String get tuyaAccount => 'Email atau telepon Smart Life';
+
+  @override
+  String get tuyaPassword => 'Kata sandi Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Masuk dan muat skenario';
+
+  @override
+  String get tuyaRelayUrl => 'Alamat relay Tuya Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Gunakan negara, email atau telepon, dan kata sandi akun Smart Life atau Tuya Smart Anda. Semuanya dikirim sekali ke relay Tuya Quando dan tidak disimpan. Anda harus masuk ke akun Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Masuk Smart Life dengan Google atau Apple? Di Smart Life, ketuk “Lupa Kata Sandi” untuk membuat kata sandi, lalu gunakan di sini.';
+
+  @override
+  String get tuyaLinked => 'Akun Smart Life tertaut';
+
+  @override
+  String get tuyaUnlink => 'Putuskan tautan';
+
+  @override
+  String get tuyaNeedsAccount => 'Masuk dulu ke akun Quando di Pengaturan.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

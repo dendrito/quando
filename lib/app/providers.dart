@@ -1220,7 +1220,7 @@ final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationS
 );
 
 final integrationSenderProvider = Provider<IntegrationSender>(
-  (ref) => IntegrationSender(() => ref.read(integrationsProvider)),
+  (ref) => IntegrationSender(() => ref.read(integrationsProvider), tuya: ref.read(tuyaClientProvider)),
 );
 
 final tuyaClientProvider = Provider<TuyaClient>((ref) => TuyaClient());

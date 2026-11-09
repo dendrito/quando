@@ -2553,6 +2553,45 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Smart Life アカウントでログイン';
+
+  @override
+  String get tuyaSignInHint =>
+      'Smart Life または Tuya Smart アプリと同じ国、メールまたは電話番号、パスワードを使ってください。アカウントはすでに Tuya プロジェクトにリンクされている必要があります。パスワードは Tuya にのみ送られ、保存されません。';
+
+  @override
+  String get tuyaCountryCode => '国番号（ブラジル 55、米国 1）';
+
+  @override
+  String get tuyaAccount => 'Smart Life のメールまたは電話番号';
+
+  @override
+  String get tuyaPassword => 'Smart Life のパスワード';
+
+  @override
+  String get tuyaSignIn => 'ログインしてシーンを読み込む';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya リレーのアドレス（https）';
+
+  @override
+  String get tuyaRelayHint =>
+      'Smart Life または Tuya Smart アカウントの国、メールまたは電話番号、パスワードを使ってください。Quando の Tuya リレーに一度だけ送られ、保存されません。Quando アカウントにログインしている必要があります。';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Smart Life に Google や Apple でログインしていますか？ Smart Life で「パスワードを忘れた場合」をタップしてパスワードを設定し、ここで使ってください。';
+
+  @override
+  String get tuyaLinked => 'Smart Life アカウントをリンク済み';
+
+  @override
+  String get tuyaUnlink => 'リンク解除';
+
+  @override
+  String get tuyaNeedsAccount => '先に設定で Quando アカウントにログインしてください。';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

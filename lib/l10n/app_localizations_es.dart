@@ -2595,6 +2595,45 @@ class AppLocalizationsEs extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Inicia sesión con tu cuenta de Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Usa el mismo país, correo o teléfono y contraseña que en la app Smart Life o Tuya Smart. La cuenta ya debe estar vinculada a tu proyecto de Tuya. La contraseña solo va a Tuya y nunca se guarda.';
+
+  @override
+  String get tuyaCountryCode => 'Prefijo del país (Brasil 55, EE. UU. 1)';
+
+  @override
+  String get tuyaAccount => 'Correo o teléfono de Smart Life';
+
+  @override
+  String get tuyaPassword => 'Contraseña de Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Iniciar sesión y cargar escenas';
+
+  @override
+  String get tuyaRelayUrl => 'Dirección del relé de Tuya de Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Usa el país, el correo o teléfono y la contraseña de tu cuenta de Smart Life o Tuya Smart. Se envían una vez al relé de Tuya de Quando y no se guardan. Debes haber iniciado sesión en tu cuenta de Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      '¿Entras en Smart Life con Google o Apple? En Smart Life toca «Olvidé mi contraseña» para crear una contraseña y úsala aquí.';
+
+  @override
+  String get tuyaLinked => 'Cuenta de Smart Life vinculada';
+
+  @override
+  String get tuyaUnlink => 'Desvincular';
+
+  @override
+  String get tuyaNeedsAccount => 'Primero inicia sesión en tu cuenta de Quando en Ajustes.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

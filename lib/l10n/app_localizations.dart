@@ -4696,6 +4696,78 @@ abstract class AppLocalizations {
   /// **'Advanced setup'**
   String get tuyaAdvanced;
 
+  /// No description provided for @tuyaSignInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your Smart Life account'**
+  String get tuyaSignInTitle;
+
+  /// No description provided for @tuyaSignInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.'**
+  String get tuyaSignInHint;
+
+  /// No description provided for @tuyaCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Country calling code (Brazil 55, US 1)'**
+  String get tuyaCountryCode;
+
+  /// No description provided for @tuyaAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life email or phone'**
+  String get tuyaAccount;
+
+  /// No description provided for @tuyaPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life password'**
+  String get tuyaPassword;
+
+  /// No description provided for @tuyaSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in and load scenes'**
+  String get tuyaSignIn;
+
+  /// No description provided for @tuyaRelayUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando Tuya relay address (https)'**
+  String get tuyaRelayUrl;
+
+  /// No description provided for @tuyaRelayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.'**
+  String get tuyaRelayHint;
+
+  /// No description provided for @tuyaGoogleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.'**
+  String get tuyaGoogleHint;
+
+  /// No description provided for @tuyaLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life account linked'**
+  String get tuyaLinked;
+
+  /// No description provided for @tuyaUnlink.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink'**
+  String get tuyaUnlink;
+
+  /// No description provided for @tuyaNeedsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your Quando account in Settings first.'**
+  String get tuyaNeedsAccount;
+
   /// No description provided for @roshHodeshHeading.
   ///
   /// In en, this message translates to:

@@ -1,0 +1,15 @@
+name = "quando-tuya-relay"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# Public settings. Secrets (TUYA_ACCESS_ID, TUYA_ACCESS_SECRET) are set with
+# `npx wrangler secret put`, never written in this file.
+[vars]
+# Data center of the Tuya Cloud Project, e.g. openapi.tuyaus.com (Western America).
+TUYA_HOST = "openapi.tuyaus.com"
+FIREBASE_PROJECT_ID = "quando-27c24"
+
+# The namespace "quando-tuya-links" on the Quando Cloudflare account.
+[[kv_namespaces]]
+binding = "LINKS"
+id = "20a50414e26b42f9a1c4ce0df7fb8801"

@@ -2582,6 +2582,45 @@ class AppLocalizationsHi extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'अपने Smart Life खाते से साइन इन करें';
+
+  @override
+  String get tuyaSignInHint =>
+      'Smart Life या Tuya Smart ऐप जैसा ही देश, ईमेल या फ़ोन नंबर और पासवर्ड उपयोग करें। खाता पहले से आपके Tuya प्रोजेक्ट से जुड़ा होना चाहिए। पासवर्ड सिर्फ़ Tuya को जाता है और कभी सहेजा नहीं जाता।';
+
+  @override
+  String get tuyaCountryCode => 'देश कोड (ब्राज़ील 55, अमेरिका 1)';
+
+  @override
+  String get tuyaAccount => 'Smart Life ईमेल या फ़ोन';
+
+  @override
+  String get tuyaPassword => 'Smart Life पासवर्ड';
+
+  @override
+  String get tuyaSignIn => 'साइन इन करें और सीन लोड करें';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya रिले का पता (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'अपने Smart Life या Tuya Smart खाते का देश, ईमेल या फ़ोन और पासवर्ड उपयोग करें। ये एक बार Quando के Tuya रिले को जाते हैं और सहेजे नहीं जाते। आपको अपने Quando खाते में साइन इन होना चाहिए।';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Smart Life में Google या Apple से साइन इन करते हैं? Smart Life में “पासवर्ड भूल गए” पर टैप करके पासवर्ड सेट करें, फिर उसे यहाँ उपयोग करें।';
+
+  @override
+  String get tuyaLinked => 'Smart Life खाता जुड़ा है';
+
+  @override
+  String get tuyaUnlink => 'अलग करें';
+
+  @override
+  String get tuyaNeedsAccount => 'पहले सेटिंग्स में अपने Quando खाते में साइन इन करें।';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

@@ -2581,6 +2581,45 @@ class AppLocalizationsHe extends AppLocalizations {
   String get tuyaAdvanced => 'הגדרה מתקדמת';
 
   @override
+  String get tuyaSignInTitle => 'התחברות עם חשבון Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'השתמשו באותה מדינה, אימייל או טלפון וסיסמה כמו באפליקציית Smart Life או Tuya Smart. החשבון חייב להיות מקושר כבר לפרויקט Tuya שלכם. הסיסמה נשלחת רק ל‑Tuya ולעולם לא נשמרת.';
+
+  @override
+  String get tuyaCountryCode => 'קידומת מדינה (ברזיל 55, ארה״ב 1)';
+
+  @override
+  String get tuyaAccount => 'אימייל או טלפון של Smart Life';
+
+  @override
+  String get tuyaPassword => 'סיסמת Smart Life';
+
+  @override
+  String get tuyaSignIn => 'התחברות וטעינת סצנות';
+
+  @override
+  String get tuyaRelayUrl => 'כתובת ממסר ה‑Tuya של Quando‏ (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'השתמשו במדינה, באימייל או בטלפון ובסיסמה של חשבון Smart Life או Tuya Smart. הם נשלחים פעם אחת לממסר ה‑Tuya של Quando ואינם נשמרים. צריך להיות מחוברים לחשבון Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'מתחברים ל‑Smart Life עם Google או Apple? ב‑Smart Life הקישו על ״שכחתי סיסמה״ כדי להגדיר סיסמה, והשתמשו בה כאן.';
+
+  @override
+  String get tuyaLinked => 'חשבון Smart Life מקושר';
+
+  @override
+  String get tuyaUnlink => 'ניתוק';
+
+  @override
+  String get tuyaNeedsAccount => 'קודם התחברו לחשבון Quando שלכם בהגדרות.';
+
+  @override
   String get roshHodeshHeading => 'ראש חודש';
 
   @override

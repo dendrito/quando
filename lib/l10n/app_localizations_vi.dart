@@ -2577,6 +2577,45 @@ class AppLocalizationsVi extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Đăng nhập bằng tài khoản Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Dùng cùng quốc gia, email hoặc số điện thoại và mật khẩu như trong ứng dụng Smart Life hoặc Tuya Smart. Tài khoản phải được liên kết với dự án Tuya của bạn. Mật khẩu chỉ gửi đến Tuya và không bao giờ được lưu.';
+
+  @override
+  String get tuyaCountryCode => 'Mã quốc gia (Brazil 55, Mỹ 1)';
+
+  @override
+  String get tuyaAccount => 'Email hoặc số điện thoại Smart Life';
+
+  @override
+  String get tuyaPassword => 'Mật khẩu Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Đăng nhập và tải kịch bản';
+
+  @override
+  String get tuyaRelayUrl => 'Địa chỉ relay Tuya của Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Dùng quốc gia, email hoặc số điện thoại và mật khẩu của tài khoản Smart Life hoặc Tuya Smart. Chúng chỉ được gửi một lần đến relay Tuya của Quando và không được lưu. Bạn cần đăng nhập tài khoản Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Đăng nhập Smart Life bằng Google hoặc Apple? Trong Smart Life, chạm “Quên mật khẩu” để đặt mật khẩu, rồi dùng ở đây.';
+
+  @override
+  String get tuyaLinked => 'Đã liên kết tài khoản Smart Life';
+
+  @override
+  String get tuyaUnlink => 'Hủy liên kết';
+
+  @override
+  String get tuyaNeedsAccount => 'Hãy đăng nhập tài khoản Quando trong Cài đặt trước.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

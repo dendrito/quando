@@ -2582,6 +2582,45 @@ class AppLocalizationsTr extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Smart Life hesabınla giriş yap';
+
+  @override
+  String get tuyaSignInHint =>
+      'Smart Life veya Tuya Smart uygulamasındaki ülke, e-posta ya da telefon ve şifrenin aynısını kullan. Hesap Tuya projene önceden bağlı olmalı. Şifre yalnızca Tuya’ya gider ve hiç kaydedilmez.';
+
+  @override
+  String get tuyaCountryCode => 'Ülke kodu (Brezilya 55, ABD 1)';
+
+  @override
+  String get tuyaAccount => 'Smart Life e-postası veya telefonu';
+
+  @override
+  String get tuyaPassword => 'Smart Life şifresi';
+
+  @override
+  String get tuyaSignIn => 'Giriş yap ve sahneleri yükle';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya aktarıcı adresi (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Smart Life veya Tuya Smart hesabının ülkesini, e-postasını ya da telefonunu ve şifresini kullan. Bunlar Quando’nun Tuya aktarıcısına bir kez gider ve kaydedilmez. Quando hesabında oturum açmış olmalısın.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Smart Life’a Google veya Apple ile mi giriyorsun? Smart Life’ta “Şifremi unuttum”a dokunup bir şifre belirle ve burada kullan.';
+
+  @override
+  String get tuyaLinked => 'Smart Life hesabı bağlandı';
+
+  @override
+  String get tuyaUnlink => 'Bağlantıyı kes';
+
+  @override
+  String get tuyaNeedsAccount => 'Önce Ayarlar’dan Quando hesabında oturum aç.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

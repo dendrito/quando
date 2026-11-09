@@ -2631,6 +2631,45 @@ class AppLocalizationsUk extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Увійти з обліковим записом Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Використайте ту саму країну, пошту чи телефон і пароль, що й у застосунку Smart Life або Tuya Smart. Обліковий запис уже має бути прив’язаний до вашого проєкту Tuya. Пароль іде лише до Tuya і ніде не зберігається.';
+
+  @override
+  String get tuyaCountryCode => 'Телефонний код країни (Бразилія 55, США 1)';
+
+  @override
+  String get tuyaAccount => 'Пошта або телефон Smart Life';
+
+  @override
+  String get tuyaPassword => 'Пароль Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Увійти й завантажити сценарії';
+
+  @override
+  String get tuyaRelayUrl => 'Адреса реле Tuya для Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Використайте країну, пошту чи телефон і пароль облікового запису Smart Life або Tuya Smart. Вони один раз передаються реле Tuya для Quando і не зберігаються. Потрібно ввійти в обліковий запис Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Входите в Smart Life через Google або Apple? У Smart Life натисніть «Забули пароль», задайте пароль і використайте його тут.';
+
+  @override
+  String get tuyaLinked => 'Обліковий запис Smart Life прив’язано';
+
+  @override
+  String get tuyaUnlink => 'Відв’язати';
+
+  @override
+  String get tuyaNeedsAccount => 'Спершу увійдіть в обліковий запис Quando в налаштуваннях.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

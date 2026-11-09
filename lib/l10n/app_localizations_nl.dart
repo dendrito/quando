@@ -2594,6 +2594,45 @@ class AppLocalizationsNl extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Inloggen met je Smart Life-account';
+
+  @override
+  String get tuyaSignInHint =>
+      'Gebruik hetzelfde land, e-mailadres of telefoonnummer en wachtwoord als in de Smart Life- of Tuya Smart-app. Het account moet al aan je Tuya-project gekoppeld zijn. Het wachtwoord gaat alleen naar Tuya en wordt nooit opgeslagen.';
+
+  @override
+  String get tuyaCountryCode => 'Landnummer (Brazilië 55, VS 1)';
+
+  @override
+  String get tuyaAccount => 'Smart Life-e-mail of -telefoonnummer';
+
+  @override
+  String get tuyaPassword => 'Smart Life-wachtwoord';
+
+  @override
+  String get tuyaSignIn => 'Inloggen en scènes laden';
+
+  @override
+  String get tuyaRelayUrl => 'Adres van het Quando Tuya-relay (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Gebruik land, e-mailadres of telefoonnummer en wachtwoord van je Smart Life- of Tuya Smart-account. Ze gaan eenmaal naar het Tuya-relay van Quando en worden niet opgeslagen. Je moet ingelogd zijn op je Quando-account.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Log je in bij Smart Life met Google of Apple? Tik in Smart Life op ‘Wachtwoord vergeten’ om een wachtwoord in te stellen en gebruik dat hier.';
+
+  @override
+  String get tuyaLinked => 'Smart Life-account gekoppeld';
+
+  @override
+  String get tuyaUnlink => 'Ontkoppelen';
+
+  @override
+  String get tuyaNeedsAccount => 'Log eerst in op je Quando-account bij Instellingen.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
