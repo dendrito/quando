@@ -478,10 +478,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get calendarAlarm => 'Báo thức lịch';
 
   @override
-  String get calendarIntro =>
-      'Quando? có thể reo trước và sau các sự kiện trong lịch của điện thoại. Google Lịch được bao gồm khi tài khoản Google có trên điện thoại.';
-
-  @override
   String get connectCalendars => 'Kết nối lịch';
 
   @override
@@ -2794,4 +2790,45 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? có thể reo trước và sau các sự kiện trong lịch của bạn. Chọn lịch lấy từ đâu.';
+
+  @override
+  String get deviceCalendarsHeading => 'TRÊN THIẾT BỊ NÀY';
+
+  @override
+  String get deviceCalendarsTitle => 'Ứng dụng lịch của thiết bị này';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Mọi tài khoản trên máy: Google, Samsung, Outlook, iCloud và các lịch chỉ lưu tại đây.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE LỊCH';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Đăng nhập bằng Google để đọc lịch trực tiếp từ Google, kể cả khi tài khoản Google không có trên thiết bị này.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Đã đăng nhập: $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Đăng xuất';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Thiết bị này chưa hỗ trợ đăng nhập Google. Hãy thêm tài khoản Google trong cài đặt thiết bị (Lịch › Tài khoản), các lịch sẽ hiện trong mục thiết bị này.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Hiện không kết nối được Google Lịch. Báo thức đã đặt từ đó vẫn reo.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Các lịch của cùng tài khoản Google mà thiết bị đã hiển thị sẽ tắt lúc đầu, để không gì reo hai lần.';
 }

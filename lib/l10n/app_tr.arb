@@ -131,7 +131,6 @@
   "nextAlarm": "Sonraki alarm",
   "holdToUnlock": "Kilidi açmak için basılı tut",
   "calendarAlarm": "Takvim alarmı",
-  "calendarIntro": "Quando? telefonundaki takvimlerin etkinliklerinden önce ve sonra çalabilir. Google hesabın telefondaysa Google Takvim de dahildir.",
   "connectCalendars": "Takvimleri bağla",
   "calendarAlarmsHeading": "TAKVİM ALARMLARI",
   "calendarNoneYet": "Henüz yok. Bununla başla, sonra istediğin gibi değiştir:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? takvimlerindeki etkinliklerden önce ve sonra çalabilir. Nereden geleceklerini seç.",
+  "deviceCalendarsHeading": "BU CİHAZDA",
+  "deviceCalendarsTitle": "Bu cihazın takvim uygulaması",
+  "deviceCalendarsHint": "Üzerindeki tüm hesaplar: Google, Samsung, Outlook, iCloud ve yalnızca burada tutulan takvimler.",
+  "googleCalendarHeading": "GOOGLE TAKVİM",
+  "googleCalendarSignIn": "Google hesabın bu cihazda olmasa bile takvimlerini doğrudan Google'dan okumak için Google ile giriş yap.",
+  "googleCalendarSignedIn": "{email} olarak giriş yapıldı",
+  "googleCalendarSignOut": "Çıkış yap",
+  "googleCalendarNotHere": "Google ile giriş bu cihazda henüz yok. Google hesabını cihaz ayarlarından ekle (Takvim › Hesaplar), takvimleri bu cihazın altında görünür.",
+  "googleCalendarUnreachable": "Google Takvim'e şu an ulaşılamadı. Ondan kurulmuş alarmlar yine de çalar.",
+  "googleCalendarTwiceHint": "Bu cihazın aynı Google hesabından zaten gösterdiği takvimler kapalı başlar, böylece hiçbir şey iki kez çalmaz."
 }

@@ -131,7 +131,6 @@
   "nextAlarm": "ההתראה הבאה",
   "holdToUnlock": "החזיקו לשחרור",
   "calendarAlarm": "התראת יומן",
-  "calendarIntro": "Quando? יכול לצלצל לפני ואחרי אירועים ביומנים שבטלפון. יומן Google נכלל ברגע שחשבון Google שלכם מחובר לטלפון.",
   "connectCalendars": "חיבור יומנים",
   "calendarAlarmsHeading": "התראות יומן",
   "calendarNoneYet": "עדיין אין. התחילו מזו ושנו כרצונכם:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? יכול לצלצל לפני אירועים ביומנים שלך ואחריהם. בחר מאיפה הם מגיעים.",
+  "deviceCalendarsHeading": "במכשיר הזה",
+  "deviceCalendarsTitle": "אפליקציית היומן של המכשיר",
+  "deviceCalendarsHint": "כל החשבונות בו: Google, Samsung, Outlook, iCloud ויומנים שנשמרים רק כאן.",
+  "googleCalendarHeading": "יומן Google",
+  "googleCalendarSignIn": "התחבר עם Google כדי לקרוא את היומנים ישירות מ-Google, גם כשחשבון Google שלך לא נמצא במכשיר.",
+  "googleCalendarSignedIn": "מחובר בתור {email}",
+  "googleCalendarSignOut": "התנתק",
+  "googleCalendarNotHere": "התחברות עם Google עדיין לא זמינה במכשיר הזה. הוסף את חשבון Google בהגדרות המכשיר (לוח שנה › חשבונות) והיומנים שלו יופיעו תחת המכשיר.",
+  "googleCalendarUnreachable": "לא ניתן להגיע ליומן Google כרגע. התראות שכבר נקבעו ממנו עדיין יצלצלו.",
+  "googleCalendarTwiceHint": "יומנים שהמכשיר כבר מציג מאותו חשבון Google מתחילים כבויים, כדי ששום דבר לא יצלצל פעמיים."
 }

@@ -516,10 +516,6 @@ class AppLocalizationsAr extends AppLocalizations {
   String get calendarAlarm => 'منبه التقويم';
 
   @override
-  String get calendarIntro =>
-      'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويمات هاتفك. تقويم Google مشمول بمجرد وجود حساب Google على الهاتف.';
-
-  @override
   String get connectCalendars => 'اربط التقويمات';
 
   @override
@@ -2838,4 +2834,45 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويماتك. اختر من أين تأتي.';
+
+  @override
+  String get deviceCalendarsHeading => 'على هذا الجهاز';
+
+  @override
+  String get deviceCalendarsTitle => 'تطبيق التقويم في هذا الجهاز';
+
+  @override
+  String get deviceCalendarsHint =>
+      'كل الحسابات عليه: Google وSamsung وOutlook وiCloud والتقويمات المحفوظة هنا فقط.';
+
+  @override
+  String get googleCalendarHeading => 'تقويم Google';
+
+  @override
+  String get googleCalendarSignIn =>
+      'سجّل الدخول بحساب Google لقراءة تقويماتك من Google مباشرة، حتى لو لم يكن حسابك على هذا الجهاز.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'تم تسجيل الدخول باسم $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'تسجيل الخروج';
+
+  @override
+  String get googleCalendarNotHere =>
+      'تسجيل الدخول بحساب Google غير متاح بعد على هذا الجهاز. أضف حساب Google من إعدادات الجهاز (التقويم › الحسابات) وستظهر تقويماته ضمن هذا الجهاز.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'تعذّر الوصول إلى تقويم Google الآن. المنبّهات المضبوطة منه ما زالت ترنّ.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'التقويمات التي يعرضها هذا الجهاز من حساب Google نفسه تبدأ مطفأة، كي لا يرنّ شيء مرتين.';
 }

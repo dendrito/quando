@@ -513,10 +513,6 @@ class AppLocalizationsUk extends AppLocalizations {
   String get calendarAlarm => 'Будильник календаря';
 
   @override
-  String get calendarIntro =>
-      'Quando? може дзвонити до й після подій у календарях телефона. Google Календар підключиться, щойно ваш обліковий запис Google є на телефоні.';
-
-  @override
   String get connectCalendars => 'Підключити календарі';
 
   @override
@@ -2848,4 +2844,45 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? може дзвонити до і після подій у ваших календарях. Виберіть, звідки вони беруться.';
+
+  @override
+  String get deviceCalendarsHeading => 'НА ЦЬОМУ ПРИСТРОЇ';
+
+  @override
+  String get deviceCalendarsTitle => 'Календар цього пристрою';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Усі акаунти на ньому: Google, Samsung, Outlook, iCloud і календарі, що зберігаються лише тут.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE КАЛЕНДАР';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Увійдіть через Google, щоб читати календарі прямо з Google, навіть якщо вашого акаунта Google немає на цьому пристрої.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Ви ввійшли як $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Вийти';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Вхід через Google на цьому пристрої поки недоступний. Додайте акаунт Google у налаштуваннях пристрою (Календар › Облікові записи), і його календарі з\'являться тут.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Зараз не вдалося зв\'язатися з Google Календарем. Будильники, вже поставлені за ним, все одно задзвонять.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Календарі того самого акаунта Google, які цей пристрій уже показує, спершу вимкнені, щоб ніщо не дзвонило двічі.';
 }

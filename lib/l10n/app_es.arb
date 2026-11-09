@@ -131,7 +131,6 @@
   "nextAlarm": "Próxima alarma",
   "holdToUnlock": "Mantén para desbloquear",
   "calendarAlarm": "Alarma de calendario",
-  "calendarIntro": "Quando? puede sonar antes y después de los eventos de los calendarios de tu teléfono. Google Calendar se incluye en cuanto tu cuenta de Google esté en el teléfono.",
   "connectCalendars": "Conectar calendarios",
   "calendarAlarmsHeading": "ALARMAS DE CALENDARIO",
   "calendarNoneYet": "Ninguna aún. Empieza con esta y cámbiala a tu gusto:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? puede sonar antes y después de los eventos de tus calendarios. Elige de dónde vienen.",
+  "deviceCalendarsHeading": "EN ESTE DISPOSITIVO",
+  "deviceCalendarsTitle": "App de calendario de este dispositivo",
+  "deviceCalendarsHint": "Todas sus cuentas: Google, Samsung, Outlook, iCloud y calendarios guardados solo aquí.",
+  "googleCalendarHeading": "GOOGLE CALENDAR",
+  "googleCalendarSignIn": "Inicia sesión con Google para leer tus calendarios directamente de Google, aunque tu cuenta de Google no esté en este dispositivo.",
+  "googleCalendarSignedIn": "Sesión iniciada como {email}",
+  "googleCalendarSignOut": "Cerrar sesión",
+  "googleCalendarNotHere": "El inicio de sesión con Google aún no está disponible en este dispositivo. Añade tu cuenta de Google en los ajustes del dispositivo (Calendario › Cuentas) y sus calendarios aparecerán en este dispositivo.",
+  "googleCalendarUnreachable": "No se pudo acceder a Google Calendar ahora. Las alarmas ya creadas con él siguen sonando.",
+  "googleCalendarTwiceHint": "Los calendarios que este dispositivo ya muestra de la misma cuenta de Google empiezan apagados, para que nada suene dos veces."
 }

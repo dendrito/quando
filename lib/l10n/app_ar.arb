@@ -131,7 +131,6 @@
   "nextAlarm": "المنبه التالي",
   "holdToUnlock": "اضغط مطولًا لفتح القفل",
   "calendarAlarm": "منبه التقويم",
-  "calendarIntro": "يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويمات هاتفك. تقويم Google مشمول بمجرد وجود حساب Google على الهاتف.",
   "connectCalendars": "اربط التقويمات",
   "calendarAlarmsHeading": "منبهات التقويم",
   "calendarNoneYet": "لا شيء بعد. ابدأ بهذا ثم غيّره كما تشاء:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويماتك. اختر من أين تأتي.",
+  "deviceCalendarsHeading": "على هذا الجهاز",
+  "deviceCalendarsTitle": "تطبيق التقويم في هذا الجهاز",
+  "deviceCalendarsHint": "كل الحسابات عليه: Google وSamsung وOutlook وiCloud والتقويمات المحفوظة هنا فقط.",
+  "googleCalendarHeading": "تقويم Google",
+  "googleCalendarSignIn": "سجّل الدخول بحساب Google لقراءة تقويماتك من Google مباشرة، حتى لو لم يكن حسابك على هذا الجهاز.",
+  "googleCalendarSignedIn": "تم تسجيل الدخول باسم {email}",
+  "googleCalendarSignOut": "تسجيل الخروج",
+  "googleCalendarNotHere": "تسجيل الدخول بحساب Google غير متاح بعد على هذا الجهاز. أضف حساب Google من إعدادات الجهاز (التقويم › الحسابات) وستظهر تقويماته ضمن هذا الجهاز.",
+  "googleCalendarUnreachable": "تعذّر الوصول إلى تقويم Google الآن. المنبّهات المضبوطة منه ما زالت ترنّ.",
+  "googleCalendarTwiceHint": "التقويمات التي يعرضها هذا الجهاز من حساب Google نفسه تبدأ مطفأة، كي لا يرنّ شيء مرتين."
 }

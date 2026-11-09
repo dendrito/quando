@@ -481,10 +481,6 @@ class AppLocalizationsEs extends AppLocalizations {
   String get calendarAlarm => 'Alarma de calendario';
 
   @override
-  String get calendarIntro =>
-      'Quando? puede sonar antes y después de los eventos de los calendarios de tu teléfono. Google Calendar se incluye en cuanto tu cuenta de Google esté en el teléfono.';
-
-  @override
   String get connectCalendars => 'Conectar calendarios';
 
   @override
@@ -2812,4 +2808,45 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? puede sonar antes y después de los eventos de tus calendarios. Elige de dónde vienen.';
+
+  @override
+  String get deviceCalendarsHeading => 'EN ESTE DISPOSITIVO';
+
+  @override
+  String get deviceCalendarsTitle => 'App de calendario de este dispositivo';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Todas sus cuentas: Google, Samsung, Outlook, iCloud y calendarios guardados solo aquí.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE CALENDAR';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Inicia sesión con Google para leer tus calendarios directamente de Google, aunque tu cuenta de Google no esté en este dispositivo.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Sesión iniciada como $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Cerrar sesión';
+
+  @override
+  String get googleCalendarNotHere =>
+      'El inicio de sesión con Google aún no está disponible en este dispositivo. Añade tu cuenta de Google en los ajustes del dispositivo (Calendario › Cuentas) y sus calendarios aparecerán en este dispositivo.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'No se pudo acceder a Google Calendar ahora. Las alarmas ya creadas con él siguen sonando.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Los calendarios que este dispositivo ya muestra de la misma cuenta de Google empiezan apagados, para que nada suene dos veces.';
 }

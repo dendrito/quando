@@ -474,9 +474,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get calendarAlarm => 'カレンダーアラーム';
 
   @override
-  String get calendarIntro => 'Quando?はスマホのカレンダーの予定の前後に鳴らせます。スマホにGoogleアカウントがあればGoogleカレンダーも含まれます。';
-
-  @override
   String get connectCalendars => 'カレンダーを接続';
 
   @override
@@ -2760,4 +2757,40 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando? はカレンダーの予定の前後に鳴らせます。どこから読むか選んでください。';
+
+  @override
+  String get deviceCalendarsHeading => 'このデバイス';
+
+  @override
+  String get deviceCalendarsTitle => 'このデバイスのカレンダーアプリ';
+
+  @override
+  String get deviceCalendarsHint => 'このデバイスのすべてのアカウント：Google、Samsung、Outlook、iCloud、ここだけのカレンダー。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE カレンダー';
+
+  @override
+  String get googleCalendarSignIn => 'Google でログインすると、Google アカウントがこのデバイスになくても Google から直接カレンダーを読み込めます。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '$email でログイン中';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'ログアウト';
+
+  @override
+  String get googleCalendarNotHere =>
+      'このデバイスではまだ Google ログインを使えません。デバイスの設定（カレンダー › アカウント）で Google アカウントを追加すると、そのカレンダーがこのデバイスの欄に表示されます。';
+
+  @override
+  String get googleCalendarUnreachable => '今は Google カレンダーにつながりません。すでに設定したアラームは鳴ります。';
+
+  @override
+  String get googleCalendarTwiceHint => '同じ Google アカウントのカレンダーがすでにこのデバイスにある場合、二重に鳴らないよう最初はオフです。';
 }

@@ -487,10 +487,6 @@ class AppLocalizationsHe extends AppLocalizations {
   String get calendarAlarm => 'התראת יומן';
 
   @override
-  String get calendarIntro =>
-      'Quando? יכול לצלצל לפני ואחרי אירועים ביומנים שבטלפון. יומן Google נכלל ברגע שחשבון Google שלכם מחובר לטלפון.';
-
-  @override
   String get connectCalendars => 'חיבור יומנים';
 
   @override
@@ -2794,4 +2790,45 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? יכול לצלצל לפני אירועים ביומנים שלך ואחריהם. בחר מאיפה הם מגיעים.';
+
+  @override
+  String get deviceCalendarsHeading => 'במכשיר הזה';
+
+  @override
+  String get deviceCalendarsTitle => 'אפליקציית היומן של המכשיר';
+
+  @override
+  String get deviceCalendarsHint =>
+      'כל החשבונות בו: Google, Samsung, Outlook, iCloud ויומנים שנשמרים רק כאן.';
+
+  @override
+  String get googleCalendarHeading => 'יומן Google';
+
+  @override
+  String get googleCalendarSignIn =>
+      'התחבר עם Google כדי לקרוא את היומנים ישירות מ-Google, גם כשחשבון Google שלך לא נמצא במכשיר.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'מחובר בתור $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'התנתק';
+
+  @override
+  String get googleCalendarNotHere =>
+      'התחברות עם Google עדיין לא זמינה במכשיר הזה. הוסף את חשבון Google בהגדרות המכשיר (לוח שנה › חשבונות) והיומנים שלו יופיעו תחת המכשיר.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'לא ניתן להגיע ליומן Google כרגע. התראות שכבר נקבעו ממנו עדיין יצלצלו.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'יומנים שהמכשיר כבר מציג מאותו חשבון Google מתחילים כבויים, כדי ששום דבר לא יצלצל פעמיים.';
 }

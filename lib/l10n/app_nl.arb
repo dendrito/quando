@@ -131,7 +131,6 @@
   "nextAlarm": "Volgende wekker",
   "holdToUnlock": "Vasthouden om te ontgrendelen",
   "calendarAlarm": "Agendawekker",
-  "calendarIntro": "Quando? kan voor en na afspraken in de agenda’s van je telefoon afgaan. Google Agenda zit erbij zodra je Google-account op de telefoon staat.",
   "connectCalendars": "Agenda’s koppelen",
   "calendarAlarmsHeading": "AGENDAWEKKERS",
   "calendarNoneYet": "Nog geen. Begin hiermee en pas het daarna aan:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? kan voor en na afspraken in je agenda's afgaan. Kies waar ze vandaan komen.",
+  "deviceCalendarsHeading": "OP DIT APPARAAT",
+  "deviceCalendarsTitle": "Agenda-app van dit apparaat",
+  "deviceCalendarsHint": "Alle accounts erop: Google, Samsung, Outlook, iCloud en agenda's die alleen hier staan.",
+  "googleCalendarHeading": "GOOGLE AGENDA",
+  "googleCalendarSignIn": "Log in met Google om je agenda's rechtstreeks bij Google te lezen, ook als je Google-account niet op dit apparaat staat.",
+  "googleCalendarSignedIn": "Ingelogd als {email}",
+  "googleCalendarSignOut": "Uitloggen",
+  "googleCalendarNotHere": "Inloggen met Google kan nog niet op dit apparaat. Voeg je Google-account toe in de instellingen van het apparaat (Agenda › Accounts) en de agenda's verschijnen onder dit apparaat.",
+  "googleCalendarUnreachable": "Google Agenda is nu niet bereikbaar. Wekkers die er al uit zijn gezet, gaan gewoon af.",
+  "googleCalendarTwiceHint": "Agenda's van hetzelfde Google-account die dit apparaat al toont, staan eerst uit, zodat niets twee keer afgaat."
 }

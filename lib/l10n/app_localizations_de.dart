@@ -481,10 +481,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get calendarAlarm => 'Kalenderwecker';
 
   @override
-  String get calendarIntro =>
-      'Quando? kann vor und nach Terminen in den Kalendern deines Handys klingeln. Google Kalender ist dabei, sobald dein Google-Konto auf dem Handy ist.';
-
-  @override
   String get connectCalendars => 'Kalender verbinden';
 
   @override
@@ -2812,4 +2808,45 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? kann vor und nach Terminen in deinen Kalendern klingeln. Wähle, woher sie kommen.';
+
+  @override
+  String get deviceCalendarsHeading => 'AUF DIESEM GERÄT';
+
+  @override
+  String get deviceCalendarsTitle => 'Kalender-App dieses Geräts';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Alle Konten darauf: Google, Samsung, Outlook, iCloud und Kalender, die nur hier liegen.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE KALENDER';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Melde dich mit Google an, um deine Kalender direkt von Google zu lesen, auch wenn dein Google-Konto nicht auf diesem Gerät ist.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Angemeldet als $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Abmelden';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Die Google-Anmeldung gibt es auf diesem Gerät noch nicht. Füge dein Google-Konto in den Geräteeinstellungen hinzu (Kalender › Accounts), dann erscheinen seine Kalender unter diesem Gerät.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Kalender ist gerade nicht erreichbar. Wecker, die schon daraus gestellt sind, klingeln trotzdem.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Kalender desselben Google-Kontos, die dieses Gerät schon zeigt, sind zuerst aus, damit nichts doppelt klingelt.';
 }

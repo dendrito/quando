@@ -131,7 +131,6 @@
   "nextAlarm": "下一个闹钟",
   "holdToUnlock": "按住解锁",
   "calendarAlarm": "日历闹钟",
-  "calendarIntro": "Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。",
   "connectCalendars": "连接日历",
   "calendarAlarmsHeading": "日历闹钟",
   "calendarNoneYet": "还没有。先从这个开始，再随意修改：",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? 可以在日历活动前后响铃。选择活动来自哪里。",
+  "deviceCalendarsHeading": "此设备",
+  "deviceCalendarsTitle": "此设备的日历应用",
+  "deviceCalendarsHint": "设备上的所有账户：Google、Samsung、Outlook、iCloud，以及只存在这里的日历。",
+  "googleCalendarHeading": "GOOGLE 日历",
+  "googleCalendarSignIn": "使用 Google 登录，直接从 Google 读取日历，即使此设备上没有你的 Google 账户。",
+  "googleCalendarSignedIn": "已登录：{email}",
+  "googleCalendarSignOut": "退出登录",
+  "googleCalendarNotHere": "此设备暂不支持 Google 登录。请在设备设置（日历 › 账户）中添加 Google 账户，其日历会显示在此设备下。",
+  "googleCalendarUnreachable": "现在无法连接 Google 日历。已根据它设置的闹钟仍会响。",
+  "googleCalendarTwiceHint": "此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。"
 }

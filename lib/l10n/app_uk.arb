@@ -131,7 +131,6 @@
   "nextAlarm": "Наступний будильник",
   "holdToUnlock": "Утримуйте для розблокування",
   "calendarAlarm": "Будильник календаря",
-  "calendarIntro": "Quando? може дзвонити до й після подій у календарях телефона. Google Календар підключиться, щойно ваш обліковий запис Google є на телефоні.",
   "connectCalendars": "Підключити календарі",
   "calendarAlarmsHeading": "БУДИЛЬНИКИ КАЛЕНДАРЯ",
   "calendarNoneYet": "Поки немає. Почніть із цього й змініть як завгодно:",
@@ -824,5 +823,16 @@
   "atClock": "at {time}",
   "connectACalendar": "Connect a calendar",
   "newFromReadyMade": "From a ready-made",
-  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? може дзвонити до і після подій у ваших календарях. Виберіть, звідки вони беруться.",
+  "deviceCalendarsHeading": "НА ЦЬОМУ ПРИСТРОЇ",
+  "deviceCalendarsTitle": "Календар цього пристрою",
+  "deviceCalendarsHint": "Усі акаунти на ньому: Google, Samsung, Outlook, iCloud і календарі, що зберігаються лише тут.",
+  "googleCalendarHeading": "GOOGLE КАЛЕНДАР",
+  "googleCalendarSignIn": "Увійдіть через Google, щоб читати календарі прямо з Google, навіть якщо вашого акаунта Google немає на цьому пристрої.",
+  "googleCalendarSignedIn": "Ви ввійшли як {email}",
+  "googleCalendarSignOut": "Вийти",
+  "googleCalendarNotHere": "Вхід через Google на цьому пристрої поки недоступний. Додайте акаунт Google у налаштуваннях пристрою (Календар › Облікові записи), і його календарі з'являться тут.",
+  "googleCalendarUnreachable": "Зараз не вдалося зв'язатися з Google Календарем. Будильники, вже поставлені за ним, все одно задзвонять.",
+  "googleCalendarTwiceHint": "Календарі того самого акаунта Google, які цей пристрій уже показує, спершу вимкнені, щоб ніщо не дзвонило двічі."
 }
