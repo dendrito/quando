@@ -2877,167 +2877,186 @@ class AppLocalizationsAr extends AppLocalizations {
       'التقويمات التي يعرضها هذا الجهاز من حساب Google نفسه تبدأ مطفأة، كي لا يرنّ شيء مرتين.';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'المؤقتات';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => 'ساعة إيقاف';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => 'مؤقت';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => 'استعد';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => 'عدّ تصاعدي مع اللفات';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => 'عدّ تنازلي، يرنّ عند الصفر';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => 'انطلاق وعلامات منطوقة';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => 'ابدأ';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => 'إيقاف مؤقت';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => 'استئناف';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => 'إعادة ضبط';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => 'لفة';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => 'انتهى الوقت';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => 'اضبط الوقت';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => 'دقائق';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => 'ثوانٍ';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => 'استعدوا';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => 'جاهزون';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => 'انطلق!';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => 'انتهى الوقت!';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => 'جاهز';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => 'الإعدادات';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => 'النداءات قبل الانطلاق';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => 'تُقال بصوت عالٍ قبل «انطلق»، وتُعدّ تنازليًا من لحظة الانطلاق.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      one: 'قبل ثانية',
+      two: 'قبل ثانيتين',
+      few: 'قبل $n ثوانٍ',
+      many: 'قبل $n ثانية',
+      other: 'قبل $n ثانية',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => 'أضف نداءً';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => 'ماذا يُقال';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => 'عند البداية، قل';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => 'عند النهاية، قل';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => 'المدة';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => 'بلا حد';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => 'انطق الوقت كل';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => 'إيقاف';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: 'ثانية',
+      two: 'ثانيتان',
+      few: '$n ثوانٍ',
+      many: '$n ثانية',
+      other: '$n ثانية',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: 'دقيقة',
+      two: 'دقيقتان',
+      few: '$n دقائق',
+      many: '$n دقيقة',
+      other: '$n دقيقة',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => 'عدّ تنازلي للأخيرة';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => 'علاماتك';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => 'أضف علامة';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return 'عند $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => 'تحدّث بصوت عالٍ';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => 'صفير واهتزاز';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => 'انطق الوقت المتبقي لا المنقضي';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => 'إعدادات جاهزة';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => 'انطلاق سباق';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => 'جهد 30 ثانية';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => 'جولة دقيقة';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => 'بعد «انطلق» يعدّ تصاعديًا حتى توقفه.';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => 'بعد «انطلق» يعدّ تنازليًا حتى الصفر.';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => 'كلمات';
 
   @override
   String get homeEdit => 'Arrange home';

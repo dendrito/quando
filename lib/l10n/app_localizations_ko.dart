@@ -2796,167 +2796,174 @@ class AppLocalizationsKo extends AppLocalizations {
   String get googleCalendarTwiceHint => '같은 Google 계정에서 이 기기가 이미 보여주는 캘린더는 꺼진 채로 시작해서 두 번 울리지 않아요.';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => '타이머';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => '스톱워치';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => '타이머';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => '준비';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => '랩과 함께 위로 셉니다';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => '아래로 세고, 0에서 울립니다';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => '음성 출발과 표시';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => '시작';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => '일시정지';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => '다시 시작';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => '초기화';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => '랩';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => '시간 종료';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => '시간 설정';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => '분';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => '초';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => '제자리에';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => '준비';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => '출발!';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => '종료!';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => '준비됨';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => '설정';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => '출발 전 안내';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => '출발 전에 소리 내어 말하며, 출발 시점부터 거꾸로 셉니다.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      other: '$n초 전',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => '안내 추가';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => '말할 내용';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => '시작할 때 말하기';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => '끝날 때 말하기';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => '길이';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => '제한 없음';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => '시간 안내 간격';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => '끔';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n초',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n분',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => '마지막 카운트다운';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => '내 표시';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => '표시 추가';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return '$time에';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => '소리 내어 말하기';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => '비프음과 진동';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => '경과 시간이 아닌 남은 시간 말하기';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => '프리셋';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => '경주 출발';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => '30초 전력';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => '1분 라운드';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => '출발 후 멈출 때까지 위로 셉니다.';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => '출발 후 0까지 아래로 셉니다.';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => '문구';
 
   @override
   String get homeEdit => 'Arrange home';

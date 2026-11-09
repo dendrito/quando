@@ -2855,167 +2855,177 @@ class AppLocalizationsFr extends AppLocalizations {
       'Les agendas que cet appareil affiche déjà pour le même compte Google démarrent désactivés, pour que rien ne sonne deux fois.';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'Minuteurs';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => 'Chronomètre';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => 'Minuteur';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => 'Prêts';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => 'Compte en avant, avec tours';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => 'Compte à rebours, sonne à zéro';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => 'Départ et repères parlés';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => 'Démarrer';
 
   @override
   String get timerPause => 'Pause';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => 'Reprendre';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => 'Réinitialiser';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => 'Tour';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => 'Temps écoulé';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => 'Régler le temps';
 
   @override
   String get timerMinutes => 'Minutes';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => 'Secondes';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => 'À vos marques';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => 'Prêts';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => 'Partez !';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => 'Temps !';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => 'Prêt';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => 'Réglages';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => 'Annonces avant le départ';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => 'Dites à voix haute avant « Partez », en comptant à rebours depuis le départ.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      one: '1 seconde avant',
+      other: '$n secondes avant',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => 'Ajouter une annonce';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => 'Quoi dire';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => 'Au départ, dire';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => 'À la fin, dire';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => 'Durée';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => 'Sans limite';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => 'Annoncer l\'heure toutes les';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => 'Désactivé';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 seconde',
+      other: '$n secondes',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 minute',
+      other: '$n minutes',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => 'Compte à rebours des dernières';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => 'Vos repères';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => 'Ajouter un repère';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return 'À $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => 'Parler à voix haute';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => 'Bips et vibration';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => 'Dire le temps restant, pas le temps écoulé';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => 'Préréglages';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => 'Départ de course';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => 'Effort de 30 s';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => 'Tour de 1 min';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => 'Après « Partez », il compte en avant jusqu\'à ce que vous l\'arrêtiez.';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => 'Après « Partez », il compte à rebours jusqu\'à zéro.';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => 'Mots';
 
   @override
   String get homeEdit => 'Arrange home';

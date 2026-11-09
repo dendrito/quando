@@ -2789,167 +2789,174 @@ class AppLocalizationsZh extends AppLocalizations {
   String get googleCalendarTwiceHint => '此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => '计时器';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => '秒表';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => '倒计时';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => '预备';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => '正计时，带分圈';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => '倒计时，到零时响铃';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => '语音起跑与标记';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => '开始';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => '暂停';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => '继续';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => '重置';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => '分圈';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => '时间到';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => '设置时间';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => '分钟';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => '秒';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => '各就各位';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => '预备';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => '跑！';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => '时间到！';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => '就绪';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => '设置';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => '起跑前的口令';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => '在“跑”之前大声说出，从起点倒数。';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      other: '提前 $n 秒',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => '添加口令';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => '说什么';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => '开始时说';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => '结束时说';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => '时长';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => '无限制';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => '每隔多久报时';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => '关闭';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 秒',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分钟',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => '最后倒数';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => '你的标记';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => '添加标记';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return '在 $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => '朗读';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => '提示音和振动';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => '报告剩余时间，而非已用时间';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => '预设';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => '比赛起跑';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => '30 秒冲刺';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => '1 分钟一轮';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => '“跑”之后一直正计时，直到你停止。';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => '“跑”之后倒数到零。';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => '词语';
 
   @override
   String get homeEdit => 'Arrange home';
@@ -5769,167 +5776,174 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get googleCalendarTwiceHint => '此裝置已顯示的同一 Google 帳號行事曆預設關閉，避免重複響鈴。';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => '計時器';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => '碼錶';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => '倒數計時';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => '預備';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => '正計時，附分圈';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => '倒數計時，到零時響鈴';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => '語音起跑與標記';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => '開始';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => '暫停';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => '繼續';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => '重設';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => '分圈';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => '時間到';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => '設定時間';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => '分鐘';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => '秒';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => '各就各位';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => '預備';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => '跑！';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => '時間到！';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => '就緒';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => '設定';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => '起跑前的口令';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => '在「跑」之前大聲說出，從起點倒數。';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      other: '提前 $n 秒',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => '新增口令';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => '要說什麼';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => '開始時說';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => '結束時說';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => '時長';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => '無限制';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => '每隔多久報時';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => '關閉';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 秒',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分鐘',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => '最後倒數';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => '你的標記';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => '新增標記';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return '在 $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => '朗讀';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => '提示音與震動';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => '報告剩餘時間，而非已用時間';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => '預設';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => '比賽起跑';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => '30 秒衝刺';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => '1 分鐘一輪';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => '「跑」之後一直正計時，直到你停止。';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => '「跑」之後倒數到零。';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => '詞語';
 
   @override
   String get homeEdit => 'Arrange home';
