@@ -315,7 +315,10 @@ void main() {
       await tester.pumpAndSettle();
       final card = tester.widget<Container>(find.byKey(const ValueKey('moon-daylight-background')));
       final gradient = (card.decoration! as BoxDecoration).gradient! as LinearGradient;
-      expect(gradient.colors.first, const Color(0xFF141033));
+      // The sky follows the Moon's pass: dark at moonrise, then fading to the
+      // day sky once the Sun is up.
+      expect(gradient.colors.first.computeLuminance(), lessThan(.08));
+      expect(gradient.colors.last.computeLuminance(), greaterThan(gradient.colors.first.computeLuminance()));
       expect(gradient.colors, isNot(contains(SkyColors.day)));
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();

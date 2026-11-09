@@ -1,7 +1,9 @@
 import 'dart:ui';
 
 import '../../../core/util/local_time.dart';
+import '../../shabbat/domain/place.dart';
 import '../data/weather_repository.dart';
+import 'moon.dart';
 import 'sky.dart';
 
 /// Option C of the sky redesign: the Sun card carries the weather on its
@@ -67,27 +69,44 @@ class ArcWeather {
 
 /// Up to three forecast hours spread over today's daylight, skipping the
 /// stretch right around now (the Sun itself shows the weather there).
-List<ArcWeather> arcWeather(SkyDay sky, WeatherReport report, String zone) {
+List<ArcWeather> arcWeather(SkyDay sky, WeatherReport report, String zone) =>
+    arcWeatherAlong(report, zone, sky.at, now: sky.progress);
+
+/// The same along the Moon's pass from moonrise (0) to moonset (1).
+List<ArcWeather> moonArcWeather(MoonTrack track, WeatherReport report, String zone) {
+  final rise = track.rise, set = track.set;
+  if (rise == null || set == null || !set.isAfter(rise)) return const [];
+  final span = set.difference(rise).inSeconds;
+  return arcWeatherAlong(report, zone, (t) => t.difference(rise).inSeconds / span, now: track.progress);
+}
+
+/// Forecast stops along any arc. [pos] gives where a time falls on it, 0 at
+/// the start and 1 at the end; [now] is where the Sun or Moon is.
+List<ArcWeather> arcWeatherAlong(
+  WeatherReport report,
+  String zone,
+  double? Function(DateTime) pos, {
+  double? now,
+}) {
   final hours = report.hours.where((h) {
-    final t = sky.at(h.at);
+    final t = pos(h.at);
     return t != null && t >= .04 && t <= .96;
   }).toList();
   if (hours.isEmpty) return const [];
-  final now = sky.progress;
   final picked = <ArcWeather>[];
   for (final target in const [.2, .47, .72, .92]) {
     if (picked.length == 3) break;
     WeatherHour? best;
     var bestGap = double.infinity;
     for (final h in hours) {
-      final gap = (sky.at(h.at)! - target).abs();
+      final gap = (pos(h.at)! - target).abs();
       if (gap < bestGap) {
         best = h;
         bestGap = gap;
       }
     }
     if (best == null || bestGap > .12) continue;
-    final t = sky.at(best.at)!;
+    final t = pos(best.at)!;
     if (now != null && now >= 0 && now <= 1 && (t - now).abs() < .08) continue;
     if (picked.any((p) => (p.t - t).abs() < .15)) continue;
     picked.add(
@@ -95,6 +114,60 @@ List<ArcWeather> arcWeather(SkyDay sky, WeatherReport report, String zone) {
     );
   }
   return picked;
+}
+
+/// 0 in full daylight, 1 in full night, with the same dawn and dusk
+/// transitions as [skyWeatherGradient].
+double skyNightness(SkyDay sky) {
+  final rise = sky.sunrise, set = sky.sunset;
+  if (rise == null || set == null) return sky.isDay ? 0 : 1;
+  double mins(DateTime t) => sky.now.difference(t).inSeconds / 60;
+  final fromRise = mins(rise), fromSet = mins(set);
+  if (fromRise < -45) return 1;
+  if (fromRise < 0) return -fromRise / 45;
+  if (fromRise < 60) return 0;
+  if (fromSet < 0) return 0;
+  if (fromSet < 45) return fromSet / 45;
+  return 1;
+}
+
+/// The Moon card's sky from moonrise (left) to moonset (right): the night
+/// sky where the pass is dark and the daytime sky, with the real weather,
+/// where the Sun is up. A pass that is mostly daytime reads as a day card.
+class MoonSky {
+  const MoonSky({required this.colors, required this.night});
+
+  /// Top colour at each sample, left to right.
+  final List<Color> colors;
+
+  /// How dark each sample is, 0 day to 1 night (draws the stars).
+  final List<double> night;
+
+  /// Darker at the bottom, as the Sun card's gradient is.
+  static const shade = Color(0x4D000000);
+
+  double get maxNight => night.fold(0.0, (a, b) => a > b ? a : b);
+
+  static MoonSky of(Place place, MoonTrack track, WeatherReport? report, {int count = 25}) {
+    final start = track.rise, end = track.set;
+    final DateTime a, b;
+    if (start == null || end == null || !end.isAfter(start)) {
+      a = b = track.now;
+    } else {
+      a = start;
+      b = end;
+    }
+    final span = b.difference(a).inMicroseconds;
+    final colors = <Color>[], night = <double>[];
+    for (var i = 0; i < count; i++) {
+      final at = a.add(Duration(microseconds: (span * i / (count - 1)).round()));
+      final sky = SkyDay.of(place, at);
+      final kind = report == null ? null : hourNear(report, at)?.kind;
+      colors.add(skyWeatherGradient(sky, kind).$1);
+      night.add(skyNightness(sky));
+    }
+    return MoonSky(colors: colors, night: night);
+  }
 }
 
 /// The forecast hour closest to [at], if one is within two hours of it.
