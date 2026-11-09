@@ -2959,7 +2959,8 @@ class AppLocalizationsEs extends AppLocalizations {
   String get seqStartCalls => 'Avisos antes de la salida';
 
   @override
-  String get seqStartCallsHelp => 'Se dicen en voz alta antes del ¡Ya!, contando hacia atrás desde la salida.';
+  String get seqStartCallsHelp =>
+      'Se dicen en voz alta antes del ¡Ya!, contando hacia atrás desde la salida.';
 
   @override
   String seqCallBefore(int n) {
@@ -2998,23 +2999,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      one: '1 segundo',
-      other: '$n segundos',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 segundo', other: '$n segundos');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      one: '1 minuto',
-      other: '$n minutos',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minutos');
     return '$_temp0';
   }
 

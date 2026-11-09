@@ -2996,23 +2996,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      one: '1 seconde',
-      other: '$n seconden',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      one: '1 minuut',
-      other: '$n minuten',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
     return '$_temp0';
   }
 
