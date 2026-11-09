@@ -55,10 +55,19 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
   @override
   HomeDisplay build() {
     try {
-      return HomeDisplay.fromJson(
-        jsonDecode(ref.read(prefsProvider).getString('home.display') ?? '{}') as Map<String, dynamic>,
+      final prefs = ref.read(prefsProvider);
+      var d = HomeDisplay.fromJson(
+        jsonDecode(prefs.getString('home.display') ?? '{}') as Map<String, dynamic>,
         parashaDefault: jewishHome,
       );
+      // Once: sun, moon, moon phase and weather became the default, so switch them on for people who had
+      // them off only because that used to be the default.
+      if (prefs.getBool('home.display.allOn') != true) {
+        prefs.setBool('home.display.allOn', true);
+        d = d.copyWith(night: true, moon: true, moonDetails: true, weather: true);
+        prefs.setString('home.display', jsonEncode(d.toJson()));
+      }
+      return d;
     } catch (_) {
       return HomeDisplay(parasha: jewishHome);
     }
@@ -278,7 +287,8 @@ final skyPlaceProvider = Provider<Place?>((ref) {
   if (saved != null) return saved;
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
-  return ZonePlaces.forZone(zone);
+  // Never leave the sky without a place: fall back to the Shabbat city so the Moon and weather still show.
+  return ZonePlaces.forZone(zone) ?? ref.watch(placeProvider);
 });
 
 class PlaceNotifier extends Notifier<Place> {
