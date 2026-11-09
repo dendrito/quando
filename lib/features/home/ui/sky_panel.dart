@@ -35,10 +35,17 @@ String moonPhaseLabel(int phase) => switch (phase) {
   _ => l10n.moonWaningCrescent,
 };
 
+/// One of the sky cards, for showing it on its own.
+enum SkyCard { sun, moon, phase, weather }
+
 class SkyPanel extends ConsumerStatefulWidget {
-  const SkyPanel({super.key, required this.sky, this.marks = const []});
+  const SkyPanel({super.key, required this.sky, this.marks = const [], this.only});
   final SkyDay sky;
   final List<double> marks;
+
+  /// Shows just one of the cards, with no tabs: [SkyCard.sun], [SkyCard.moon]
+  /// or [SkyCard.weather]. null shows them all as swipeable pages.
+  final SkyCard? only;
   @override
   ConsumerState<SkyPanel> createState() => _SkyPanelState();
 }
@@ -377,6 +384,17 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           ),
         ),
     ];
+    if (widget.only case final only?) {
+      return switch (only) {
+        SkyCard.sun => sunContent,
+        SkyCard.moon => options.moon ? moonCard(compact: true) : const SizedBox.shrink(),
+        SkyCard.phase => details ?? const SizedBox.shrink(),
+        SkyCard.weather =>
+          options.weather && place != null
+              ? WeatherPanel(now: sky.now, active: true, place: place)
+              : const SizedBox.shrink(),
+      };
+    }
     final onDetailsPage = options.moon && options.moonDetails && details != null && _page == 2;
     if (_page >= pages.length) {
       _page = 0;
@@ -392,18 +410,20 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             Expanded(
               child: pages.length == 1
                   ? const SizedBox.shrink()
-                  : Wrap(
-                      spacing: 8,
-                      children: [
-                        for (var i = 0; i < pages.length; i++)
-                          TextButton(
-                            onPressed: () => _toPage(context, i),
-                            style: TextButton.styleFrom(
-                              foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          for (var i = 0; i < pages.length; i++)
+                            TextButton(
+                              onPressed: () => _toPage(context, i),
+                              style: TextButton.styleFrom(
+                                foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                              ),
+                              child: Text(pages[i].label),
                             ),
-                            child: Text(pages[i].label),
-                          ),
-                      ],
+                        ],
+                      ),
                     ),
             ),
             IconButton(
