@@ -21,6 +21,7 @@ import 'day_arc.dart';
 import 'moon_details.dart';
 import 'weather_overlay.dart';
 import 'weather_panel.dart';
+import 'place_sheet.dart';
 
 String moonPhaseLabel(int phase) => switch (phase) {
   0 => l10n.moonNew,
@@ -112,7 +113,12 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (place == null) Text(l10n.skyCityExplain),
+        if (place == null)
+          TextButton.icon(
+            onPressed: () => showPlaceSheet(context),
+            icon: const Icon(Icons.place_outlined),
+            label: Text(l10n.skyChooseCity),
+          ),
         DayArc(sky: sky, marks: widget.marks),
         Row(
           textDirection: TextDirection.ltr,

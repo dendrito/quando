@@ -196,7 +196,7 @@ void main() {
     final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
     addTearDown(c.dispose);
     expect(c.read(homeDisplayProvider).parasha, jewishHome);
-    expect(c.read(homeDisplayProvider).weather, isFalse);
+    expect(c.read(homeDisplayProvider).weather, isTrue);
     await c
         .read(homeDisplayProvider.notifier)
         .set(

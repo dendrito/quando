@@ -28,6 +28,7 @@ import 'alarm_group_card.dart';
 import '../data/home_layout_provider.dart';
 import '../domain/home_layout.dart';
 import 'clock_hero.dart';
+import 'home_display_controls.dart';
 import 'home_block_frame.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
@@ -561,7 +562,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   : next.at.difference(now) > const Duration(hours: 12)
                   ? l10n.atClock(local(next.at))
                   : countdown(next.at.difference(now)),
-              style: text.displayMedium?.copyWith(fontSize: 60),
+              style: text.displayMedium?.copyWith(fontSize: 34),
             ),
           ),
           // A reminder ahead of an event says so ("6 hours before"); the day is
@@ -780,6 +781,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         overflow: TextOverflow.ellipsis,
                         style: text.titleLarge?.copyWith(fontSize: 23),
                       ),
+                    ),
+                    IconButton(
+                      tooltip: l10n.homeDisplay,
+                      icon: const Icon(Icons.wb_twilight),
+                      onPressed: () => showHomeDisplayControls(context),
                     ),
                     IconButton(
                       tooltip: l10n.homeEdit,

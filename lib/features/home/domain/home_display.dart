@@ -2,10 +2,10 @@ import '../../shabbat/domain/hebrew_date.dart';
 
 class HomeDisplay {
   const HomeDisplay({
-    this.night = false,
-    this.moon = false,
-    this.moonDetails = false,
-    this.weather = false,
+    this.night = true,
+    this.moon = true,
+    this.moonDetails = true,
+    this.weather = true,
     this.parasha = false,
     this.roshHodesh = false,
     this.skyUseShabbat = false,
@@ -55,10 +55,10 @@ class HomeDisplay {
     'hebrewNames': hebrewNames.name,
   };
   factory HomeDisplay.fromJson(Map<String, dynamic> j, {bool parashaDefault = false}) => HomeDisplay(
-    night: j['night'] as bool? ?? false,
-    moon: j['moon'] as bool? ?? false,
-    moonDetails: j['moonDetails'] as bool? ?? false,
-    weather: j['weather'] as bool? ?? false,
+    night: j['night'] as bool? ?? true,
+    moon: j['moon'] as bool? ?? true,
+    moonDetails: j['moonDetails'] as bool? ?? true,
+    weather: j['weather'] as bool? ?? true,
     parasha: j['parasha'] as bool? ?? parashaDefault,
     roshHodesh: j['roshHodesh'] as bool? ?? false,
     skyUseShabbat: j['skyUseShabbat'] as bool? ?? false,
