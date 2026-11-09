@@ -569,51 +569,85 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                   ),
-                if (display.clock != ClockSize.off) ...[
-                  const SizedBox(height: 14),
-                  Padding(
-                    padding: const EdgeInsets.only(right: 12),
-                    child: ClockHero(now: ref.watch(clockProvider), zone: home, size: display.clock),
-                  ),
-                ],
                 const SizedBox(height: 14),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      // The countdown rides on the heading when the big line shows a clock time.
-                      Text(
-                        next != null && next.at.difference(now) > const Duration(hours: 12)
-                            ? '${l10n.nextAlarmHeading} · ${countdown(next.at.difference(now)).toUpperCase()}'
-                            : l10n.nextAlarmHeading,
-                        style: text.labelSmall,
+                      LayoutBuilder(
+                        builder: (context, box) {
+                          final clock = display.clock == ClockSize.off
+                              ? null
+                              : ClockHero(now: ref.watch(clockProvider), zone: home, size: display.clock);
+                          final nextAlarm = Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              // The countdown rides on the heading when the big line shows a clock time.
+                              Text(
+                                next != null && next.at.difference(now) > const Duration(hours: 12)
+                                    ? '${l10n.nextAlarmHeading} · ${countdown(next.at.difference(now)).toUpperCase()}'
+                                    : l10n.nextAlarmHeading,
+                                style: text.labelSmall,
+                              ),
+                              const SizedBox(height: 6),
+                              FittedBox(
+                                fit: BoxFit.scaleDown,
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  next == null
+                                      ? l10n.nothingSet
+                                      // Far away reads better as a clock time than as a long countdown.
+                                      : next.at.difference(now) > const Duration(hours: 12)
+                                      ? l10n.atClock(local(next.at))
+                                      : countdown(next.at.difference(now)),
+                                  style: text.displayMedium?.copyWith(fontSize: 60),
+                                ),
+                              ),
+                              const SizedBox(height: 6),
+                              if (next != null) ...[
+                                Text(
+                                  // A reminder ahead of an event says so: "Candle lighting ·
+                                  // 6 hours before · Fri 13 Nov · 12:09", never just the
+                                  // event's name at the reminder's time.
+                                  '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
+                                  style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
+                                ),
+                                const SizedBox(height: 8),
+                              ],
+                            ],
+                          );
+                          // iPad and Mac: the next alarm leads at the top left and the
+                          // clock with today's date sits at the right. Phones keep the
+                          // clock above the next alarm.
+                          if (box.maxWidth >= 700) {
+                            return Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Expanded(child: nextAlarm),
+                                if (clock != null) ...[
+                                  const SizedBox(width: 24),
+                                  SizedBox(
+                                    width: switch (display.clock) {
+                                      ClockSize.large => 240,
+                                      ClockSize.medium => 330,
+                                      _ => null,
+                                    },
+                                    child: clock,
+                                  ),
+                                ],
+                              ],
+                            );
+                          }
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              if (clock != null) ...[clock, const SizedBox(height: 14)],
+                              nextAlarm,
+                            ],
+                          );
+                        },
                       ),
-                      const SizedBox(height: 6),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          next == null
-                              ? l10n.nothingSet
-                              // Far away reads better as a clock time than as a long countdown.
-                              : next.at.difference(now) > const Duration(hours: 12)
-                              ? l10n.atClock(local(next.at))
-                              : countdown(next.at.difference(now)),
-                          style: text.displayMedium?.copyWith(fontSize: 60),
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      if (next != null) ...[
-                        Text(
-                          // A reminder ahead of an event says so: "Candle lighting ·
-                          // 6 hours before · Fri 13 Nov · 12:09", never just the
-                          // event's name at the reminder's time.
-                          '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
-                          style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
-                        ),
-                        const SizedBox(height: 8),
-                      ],
                       QuoteLine(now: now, idle: next == null),
                       const SizedBox(height: 10),
                       SkyPanel(
