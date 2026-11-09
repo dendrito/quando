@@ -15,6 +15,7 @@ import 'package:quando/features/home/domain/sky.dart';
 import 'package:quando/features/home/domain/sky_weather.dart';
 import 'package:quando/features/home/ui/day_arc.dart';
 import 'package:quando/features/home/ui/sky_panel.dart';
+import 'package:quando/features/home/ui/weather_overlay.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
 import 'package:quando/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -110,6 +111,9 @@ void main() {
           container: c,
           child: MaterialApp(
             theme: buildTheme(),
+            // Reduced motion: the falling weather is drawn still so the test can settle.
+            builder: (context, child) =>
+                MediaQuery(data: MediaQuery.of(context).copyWith(disableAnimations: true), child: child!),
             home: Scaffold(
               backgroundColor: SkyColors.night,
               body: SingleChildScrollView(
@@ -137,7 +141,11 @@ void main() {
       expect(arc.nowLabel, 'Now 15:30');
       final card = tester.widget<Container>(find.byKey(const ValueKey('sun-weather-card')));
       final colors = ((card.decoration! as BoxDecoration).gradient! as LinearGradient).colors;
-      expect(colors.first, name == 'rain' ? SkyWeatherColors.rain.$1 : SkyWeatherColors.clear.$1);
+      // The sky runs sunrise to sunset: warm at the edges, and the forecast
+      // weather's own colour through the afternoon.
+      expect(colors.length, greaterThan(2));
+      expect(colors, contains(name == 'rain' ? SkyWeatherColors.rain.$1 : SkyWeatherColors.clear.$1));
+      expect(find.byType(WeatherOverlay), name == 'rain' ? findsOneWidget : findsNothing);
       expect(find.textContaining(l10n.weatherTonight.toUpperCase()), findsOneWidget);
       if (name == 'rain') expect(find.textContaining(l10n.weatherUntilAbout('19:00')), findsOneWidget);
       expect(tester.takeException(), isNull);
@@ -151,4 +159,29 @@ void main() {
       });
     });
   }
+
+  testWidgets('weather overlay draws rain, snow, fog and lightning without errors', (tester) async {
+    final kinds = <WeatherKind?>[
+      null,
+      WeatherKind.rain,
+      WeatherKind.rain,
+      WeatherKind.thunder,
+      WeatherKind.thunder,
+      WeatherKind.snow,
+      WeatherKind.fog,
+      WeatherKind.clear,
+    ];
+    expect(WeatherOverlay.needed(kinds), isTrue);
+    expect(WeatherOverlay.needed(const [null, WeatherKind.clear, WeatherKind.clouds]), isFalse);
+    await tester.pumpWidget(
+      MaterialApp(
+        home: Stack(children: [WeatherOverlay(kinds: kinds)]),
+      ),
+    );
+    // Run through a whole cycle so every flash and drop is painted.
+    for (var i = 0; i < 40; i++) {
+      await tester.pump(const Duration(milliseconds: 250));
+    }
+    expect(tester.takeException(), isNull);
+  });
 }

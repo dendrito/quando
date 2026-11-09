@@ -2888,4 +2888,224 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get googleCalendarTwiceHint =>
       'Kalender desselben Google-Kontos, die dieses Gerät schon zeigt, sind zuerst aus, damit nichts doppelt klingelt.';
+
+  @override
+  String get timersTitle => 'Timer';
+
+  @override
+  String get timerStopwatch => 'Stoppuhr';
+
+  @override
+  String get timerCountdown => 'Timer';
+
+  @override
+  String get timerSequence => 'Fertig';
+
+  @override
+  String get timerStopwatchSub => 'Hochzählen, mit Runden';
+
+  @override
+  String get timerCountdownSub => 'Runterzählen, klingelt bei null';
+
+  @override
+  String get timerSequenceSub => 'Gesprochener Start und Marken';
+
+  @override
+  String get timerStart => 'Start';
+
+  @override
+  String get timerPause => 'Pause';
+
+  @override
+  String get timerResume => 'Fortsetzen';
+
+  @override
+  String get timerReset => 'Zurücksetzen';
+
+  @override
+  String get timerLap => 'Runde';
+
+  @override
+  String get timerTimesUp => 'Zeit ist um';
+
+  @override
+  String get timerSetTime => 'Zeit einstellen';
+
+  @override
+  String get timerMinutes => 'Minuten';
+
+  @override
+  String get timerSeconds => 'Sekunden';
+
+  @override
+  String get seqOnYourMarks => 'Auf die Plätze';
+
+  @override
+  String get seqGetSet => 'Fertig';
+
+  @override
+  String get seqGo => 'Los!';
+
+  @override
+  String get seqFinish => 'Zeit!';
+
+  @override
+  String get seqReady => 'Bereit';
+
+  @override
+  String get seqSettings => 'Einstellungen';
+
+  @override
+  String get seqStartCalls => 'Ansagen vor dem Start';
+
+  @override
+  String get seqStartCallsHelp => 'Werden vor „Los“ laut gesprochen, vom Start aus rückwärts gezählt.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 Sekunde vorher',
+      other: '$n Sekunden vorher',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Ansage hinzufügen';
+
+  @override
+  String get seqCallText => 'Was gesagt wird';
+
+  @override
+  String get seqGoText => 'Beim Start sagen';
+
+  @override
+  String get seqFinishText => 'Am Ende sagen';
+
+  @override
+  String get seqLength => 'Dauer';
+
+  @override
+  String get seqNoLimit => 'Kein Limit';
+
+  @override
+  String get seqSayEvery => 'Zeit ansagen alle';
+
+  @override
+  String get seqOff => 'Aus';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 Sekunde',
+      other: '$n Sekunden',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 Minute',
+      other: '$n Minuten',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Die letzten herunterzählen';
+
+  @override
+  String get seqMarks => 'Deine Marken';
+
+  @override
+  String get seqAddMark => 'Marke hinzufügen';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'Bei $time';
+  }
+
+  @override
+  String get seqSpeak => 'Laut sprechen';
+
+  @override
+  String get seqBeeps => 'Signaltöne und Vibration';
+
+  @override
+  String get seqSayRemaining => 'Restzeit ansagen, nicht vergangene Zeit';
+
+  @override
+  String get seqPresets => 'Voreinstellungen';
+
+  @override
+  String get seqPresetRace => 'Rennstart';
+
+  @override
+  String get seqPresetSprint => '30-s-Belastung';
+
+  @override
+  String get seqPresetRound => '1-Minuten-Runde';
+
+  @override
+  String get seqHintNoLimit => 'Nach „Los“ zählt es hoch, bis du es stoppst.';
+
+  @override
+  String get seqHintLength => 'Nach „Los“ zählt es bis null herunter.';
+
+  @override
+  String get seqWords => 'Wörter';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

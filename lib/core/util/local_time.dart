@@ -35,6 +35,12 @@ String hhmm(DateTime t) => '${t.hour.toString().padLeft(2, '0')}:${t.minute.toSt
 /// "Fri 6 Nov", in the language in use.
 String dayLabel(DateTime t) => DateFormat('EEE d MMM', _lang).format(t);
 
+/// "Monday", in the language in use.
+String weekdayName(DateTime t) => DateFormat('EEEE', _lang).format(t);
+
+/// "November", in the language in use.
+String monthName(DateTime t) => DateFormat('MMMM', _lang).format(t);
+
 /// "M" for Monday ([weekday] 1) to "S" for Sunday (7), in the language in use.
 String weekdayNarrow(int weekday) => DateFormat('EEEEE', _lang).format(DateTime(2024, 1, weekday));
 

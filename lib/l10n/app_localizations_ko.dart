@@ -2833,4 +2833,221 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get googleCalendarTwiceHint => '같은 Google 계정에서 이 기기가 이미 보여주는 캘린더는 꺼진 채로 시작해서 두 번 울리지 않아요.';
+
+  @override
+  String get timersTitle => '타이머';
+
+  @override
+  String get timerStopwatch => '스톱워치';
+
+  @override
+  String get timerCountdown => '타이머';
+
+  @override
+  String get timerSequence => '준비';
+
+  @override
+  String get timerStopwatchSub => '랩과 함께 위로 셉니다';
+
+  @override
+  String get timerCountdownSub => '아래로 세고, 0에서 울립니다';
+
+  @override
+  String get timerSequenceSub => '음성 출발과 표시';
+
+  @override
+  String get timerStart => '시작';
+
+  @override
+  String get timerPause => '일시정지';
+
+  @override
+  String get timerResume => '다시 시작';
+
+  @override
+  String get timerReset => '초기화';
+
+  @override
+  String get timerLap => '랩';
+
+  @override
+  String get timerTimesUp => '시간 종료';
+
+  @override
+  String get timerSetTime => '시간 설정';
+
+  @override
+  String get timerMinutes => '분';
+
+  @override
+  String get timerSeconds => '초';
+
+  @override
+  String get seqOnYourMarks => '제자리에';
+
+  @override
+  String get seqGetSet => '준비';
+
+  @override
+  String get seqGo => '출발!';
+
+  @override
+  String get seqFinish => '종료!';
+
+  @override
+  String get seqReady => '준비됨';
+
+  @override
+  String get seqSettings => '설정';
+
+  @override
+  String get seqStartCalls => '출발 전 안내';
+
+  @override
+  String get seqStartCallsHelp => '출발 전에 소리 내어 말하며, 출발 시점부터 거꾸로 셉니다.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n초 전',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => '안내 추가';
+
+  @override
+  String get seqCallText => '말할 내용';
+
+  @override
+  String get seqGoText => '시작할 때 말하기';
+
+  @override
+  String get seqFinishText => '끝날 때 말하기';
+
+  @override
+  String get seqLength => '길이';
+
+  @override
+  String get seqNoLimit => '제한 없음';
+
+  @override
+  String get seqSayEvery => '시간 안내 간격';
+
+  @override
+  String get seqOff => '끔';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n초',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n분',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => '마지막 카운트다운';
+
+  @override
+  String get seqMarks => '내 표시';
+
+  @override
+  String get seqAddMark => '표시 추가';
+
+  @override
+  String seqMarkAt(String time) {
+    return '$time에';
+  }
+
+  @override
+  String get seqSpeak => '소리 내어 말하기';
+
+  @override
+  String get seqBeeps => '비프음과 진동';
+
+  @override
+  String get seqSayRemaining => '경과 시간이 아닌 남은 시간 말하기';
+
+  @override
+  String get seqPresets => '프리셋';
+
+  @override
+  String get seqPresetRace => '경주 출발';
+
+  @override
+  String get seqPresetSprint => '30초 전력';
+
+  @override
+  String get seqPresetRound => '1분 라운드';
+
+  @override
+  String get seqHintNoLimit => '출발 후 멈출 때까지 위로 셉니다.';
+
+  @override
+  String get seqHintLength => '출발 후 0까지 아래로 셉니다.';
+
+  @override
+  String get seqWords => '문구';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

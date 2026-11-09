@@ -2825,6 +2825,223 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get googleCalendarTwiceHint => '此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。';
+
+  @override
+  String get timersTitle => '计时器';
+
+  @override
+  String get timerStopwatch => '秒表';
+
+  @override
+  String get timerCountdown => '倒计时';
+
+  @override
+  String get timerSequence => '预备';
+
+  @override
+  String get timerStopwatchSub => '正计时，带分圈';
+
+  @override
+  String get timerCountdownSub => '倒计时，到零时响铃';
+
+  @override
+  String get timerSequenceSub => '语音起跑与标记';
+
+  @override
+  String get timerStart => '开始';
+
+  @override
+  String get timerPause => '暂停';
+
+  @override
+  String get timerResume => '继续';
+
+  @override
+  String get timerReset => '重置';
+
+  @override
+  String get timerLap => '分圈';
+
+  @override
+  String get timerTimesUp => '时间到';
+
+  @override
+  String get timerSetTime => '设置时间';
+
+  @override
+  String get timerMinutes => '分钟';
+
+  @override
+  String get timerSeconds => '秒';
+
+  @override
+  String get seqOnYourMarks => '各就各位';
+
+  @override
+  String get seqGetSet => '预备';
+
+  @override
+  String get seqGo => '跑！';
+
+  @override
+  String get seqFinish => '时间到！';
+
+  @override
+  String get seqReady => '就绪';
+
+  @override
+  String get seqSettings => '设置';
+
+  @override
+  String get seqStartCalls => '起跑前的口令';
+
+  @override
+  String get seqStartCallsHelp => '在“跑”之前大声说出，从起点倒数。';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '提前 $n 秒',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => '添加口令';
+
+  @override
+  String get seqCallText => '说什么';
+
+  @override
+  String get seqGoText => '开始时说';
+
+  @override
+  String get seqFinishText => '结束时说';
+
+  @override
+  String get seqLength => '时长';
+
+  @override
+  String get seqNoLimit => '无限制';
+
+  @override
+  String get seqSayEvery => '每隔多久报时';
+
+  @override
+  String get seqOff => '关闭';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 秒',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分钟',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => '最后倒数';
+
+  @override
+  String get seqMarks => '你的标记';
+
+  @override
+  String get seqAddMark => '添加标记';
+
+  @override
+  String seqMarkAt(String time) {
+    return '在 $time';
+  }
+
+  @override
+  String get seqSpeak => '朗读';
+
+  @override
+  String get seqBeeps => '提示音和振动';
+
+  @override
+  String get seqSayRemaining => '报告剩余时间，而非已用时间';
+
+  @override
+  String get seqPresets => '预设';
+
+  @override
+  String get seqPresetRace => '比赛起跑';
+
+  @override
+  String get seqPresetSprint => '30 秒冲刺';
+
+  @override
+  String get seqPresetRound => '1 分钟一轮';
+
+  @override
+  String get seqHintNoLimit => '“跑”之后一直正计时，直到你停止。';
+
+  @override
+  String get seqHintLength => '“跑”之后倒数到零。';
+
+  @override
+  String get seqWords => '词语';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5647,4 +5864,221 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get googleCalendarTwiceHint => '此裝置已顯示的同一 Google 帳號行事曆預設關閉，避免重複響鈴。';
+
+  @override
+  String get timersTitle => '計時器';
+
+  @override
+  String get timerStopwatch => '碼錶';
+
+  @override
+  String get timerCountdown => '倒數計時';
+
+  @override
+  String get timerSequence => '預備';
+
+  @override
+  String get timerStopwatchSub => '正計時，附分圈';
+
+  @override
+  String get timerCountdownSub => '倒數計時，到零時響鈴';
+
+  @override
+  String get timerSequenceSub => '語音起跑與標記';
+
+  @override
+  String get timerStart => '開始';
+
+  @override
+  String get timerPause => '暫停';
+
+  @override
+  String get timerResume => '繼續';
+
+  @override
+  String get timerReset => '重設';
+
+  @override
+  String get timerLap => '分圈';
+
+  @override
+  String get timerTimesUp => '時間到';
+
+  @override
+  String get timerSetTime => '設定時間';
+
+  @override
+  String get timerMinutes => '分鐘';
+
+  @override
+  String get timerSeconds => '秒';
+
+  @override
+  String get seqOnYourMarks => '各就各位';
+
+  @override
+  String get seqGetSet => '預備';
+
+  @override
+  String get seqGo => '跑！';
+
+  @override
+  String get seqFinish => '時間到！';
+
+  @override
+  String get seqReady => '就緒';
+
+  @override
+  String get seqSettings => '設定';
+
+  @override
+  String get seqStartCalls => '起跑前的口令';
+
+  @override
+  String get seqStartCallsHelp => '在「跑」之前大聲說出，從起點倒數。';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '提前 $n 秒',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => '新增口令';
+
+  @override
+  String get seqCallText => '要說什麼';
+
+  @override
+  String get seqGoText => '開始時說';
+
+  @override
+  String get seqFinishText => '結束時說';
+
+  @override
+  String get seqLength => '時長';
+
+  @override
+  String get seqNoLimit => '無限制';
+
+  @override
+  String get seqSayEvery => '每隔多久報時';
+
+  @override
+  String get seqOff => '關閉';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 秒',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n 分鐘',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => '最後倒數';
+
+  @override
+  String get seqMarks => '你的標記';
+
+  @override
+  String get seqAddMark => '新增標記';
+
+  @override
+  String seqMarkAt(String time) {
+    return '在 $time';
+  }
+
+  @override
+  String get seqSpeak => '朗讀';
+
+  @override
+  String get seqBeeps => '提示音與震動';
+
+  @override
+  String get seqSayRemaining => '報告剩餘時間，而非已用時間';
+
+  @override
+  String get seqPresets => '預設';
+
+  @override
+  String get seqPresetRace => '比賽起跑';
+
+  @override
+  String get seqPresetSprint => '30 秒衝刺';
+
+  @override
+  String get seqPresetRound => '1 分鐘一輪';
+
+  @override
+  String get seqHintNoLimit => '「跑」之後一直正計時，直到你停止。';
+
+  @override
+  String get seqHintLength => '「跑」之後倒數到零。';
+
+  @override
+  String get seqWords => '詞語';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

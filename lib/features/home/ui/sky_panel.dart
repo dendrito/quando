@@ -10,7 +10,6 @@ import '../../../core/util/local_time.dart';
 import '../../../l10n/l10n.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../shabbat/domain/place.dart';
-import '../../shabbat/ui/city_picker.dart';
 import '../domain/moon.dart';
 import '../domain/moon_phases.dart';
 import '../domain/moon_backdrop.dart';
@@ -19,8 +18,8 @@ import '../data/weather_repository.dart';
 import '../domain/sky.dart';
 import '../domain/sky_weather.dart';
 import 'day_arc.dart';
-import 'home_display_controls.dart';
 import 'moon_details.dart';
+import 'weather_overlay.dart';
 import 'weather_panel.dart';
 
 String moonPhaseLabel(int phase) => switch (phase) {
@@ -149,7 +148,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
               .value
         : null;
     final current = report?.current(sky.now);
-    final moonSky = place != null && track != null ? MoonSky.of(place, track, report) : null;
+    final moonSky = place != null && track != null ? SkyStrip.ofMoon(place, track, report) : null;
     final nightfallText = nightfall == null
         ? null
         : '${l10n.nightfallLabel} ${time(nightfall, '—')} · ${ref.watch(havdalahProvider) == HavdalahOpinion.geonim ? '8.5°' : '+72m'}';
@@ -192,7 +191,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 gradient: const LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Color(0x00000000), MoonSky.shade],
+                  colors: [Color(0x00000000), SkyStrip.shade],
                 ),
               ),
         child: Material(
@@ -201,124 +200,131 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             onTap: details == null ? null : () => showMoonDetails(context, details),
             child: CustomPaint(
               painter: stars ? _StarsPainter(moonSky?.night) : null,
-              child: Padding(
-                padding: const EdgeInsets.all(18),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    if (current != null)
-                      Row(
-                        crossAxisAlignment: CrossAxisAlignment.baseline,
-                        textBaseline: TextBaseline.alphabetic,
-                        children: [
-                          Text(
-                            '${current.celsius.round()}°',
-                            style: text.displaySmall?.copyWith(
-                              color: QuandoColors.text,
-                              fontWeight: FontWeight.w800,
-                            ),
-                          ),
-                          const SizedBox(width: 10),
-                          Flexible(
-                            child: Text(
-                              weatherLabel(current.kind).toLowerCase(),
-                              style: text.titleLarge?.copyWith(color: QuandoColors.text),
-                            ),
-                          ),
-                        ],
-                      )
-                    else
-                      Text(l10n.skyMoon, style: text.titleMedium),
-                    if (track != null && illumination != null) ...[
-                      Text(
-                        track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon,
-                        style: text.bodySmall,
-                      ),
-                      MoonArc(
-                        track: track,
-                        illumination: illumination,
-                        daylight: place == null ? null : MoonBackdrop.daylightForTrack(place, track),
-                        weather: report == null ? const [] : moonArcWeather(track, report, zone),
-                        nowWeather: current?.kind,
-                        nowLabel: current == null ? null : '${l10n.nowCap} ${hhmm(local)}',
-                      ),
-                      Row(
-                        textDirection: TextDirection.ltr,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Expanded(
-                            child: Text(
-                              '${l10n.moonriseLabel} · ${trackTime(track.rise, l10n.noRiseToday)}',
-                              style: text.bodySmall,
-                            ),
-                          ),
-                          const SizedBox(width: 12),
-                          Expanded(
-                            child: Text(
-                              '${l10n.moonsetLabel} · ${trackTime(track.set, l10n.noSetToday)}',
-                              style: text.bodySmall,
-                              textAlign: TextAlign.end,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ] else
-                      Text(l10n.skyCityExplain, style: text.bodySmall),
-                    if (!compact && illumination != null && phases != null) ...[
-                      const SizedBox(height: 12),
-                      LayoutBuilder(
-                        builder: (context, constraints) {
-                          final phase = Row(
-                            children: [
-                              MoonDisc(illumination: illumination),
-                              const SizedBox(width: 10),
-                              Expanded(
-                                child: Text(
-                                  '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
-                                  style: text.bodyMedium,
-                                ),
+              child: _Overlaid(
+                kinds: moonSky?.kinds,
+                child: Padding(
+                  padding: const EdgeInsets.all(18),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      if (current != null)
+                        Row(
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              '${current.celsius.round()}°',
+                              style: text.displaySmall?.copyWith(
+                                color: QuandoColors.text,
+                                fontWeight: FontWeight.w800,
                               ),
-                            ],
-                          );
-                          final dates = Column(
-                            key: const ValueKey('moon-upcoming-dates'),
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                '${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}',
+                            ),
+                            const SizedBox(width: 10),
+                            Flexible(
+                              child: Text(
+                                weatherLabel(current.kind).toLowerCase(),
+                                style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                              ),
+                            ),
+                          ],
+                        )
+                      else
+                        Text(l10n.skyMoon, style: text.titleMedium),
+                      if (track != null && illumination != null) ...[
+                        Text(
+                          track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon,
+                          style: text.bodySmall,
+                        ),
+                        MoonArc(
+                          track: track,
+                          illumination: illumination,
+                          daylight: place == null ? null : MoonBackdrop.daylightForTrack(place, track),
+                          weather: report == null ? const [] : moonArcWeather(track, report, zone),
+                          nowWeather: current?.kind,
+                          nowLabel: current == null ? null : '${l10n.nowCap} ${hhmm(local)}',
+                        ),
+                        Row(
+                          textDirection: TextDirection.ltr,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: Text(
+                                '${l10n.moonriseLabel} · ${trackTime(track.rise, l10n.noRiseToday)}',
                                 style: text.bodySmall,
                               ),
-                              const SizedBox(height: 4),
-                              Text(
-                                '${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}',
+                            ),
+                            const SizedBox(width: 12),
+                            Expanded(
+                              child: Text(
+                                '${l10n.moonsetLabel} · ${trackTime(track.set, l10n.noSetToday)}',
                                 style: text.bodySmall,
+                                textAlign: TextAlign.end,
                               ),
-                            ],
-                          );
-                          if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
-                            return Row(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              textDirection: TextDirection.ltr,
+                            ),
+                          ],
+                        ),
+                      ] else
+                        Text(l10n.skyCityExplain, style: text.bodySmall),
+                      if (!compact && illumination != null && phases != null) ...[
+                        const SizedBox(height: 12),
+                        LayoutBuilder(
+                          builder: (context, constraints) {
+                            final phase = Row(
                               children: [
-                                Expanded(child: phase),
-                                const SizedBox(width: 24),
-                                Flexible(
-                                  child: Align(alignment: Alignment.topRight, heightFactor: 1, child: dates),
+                                MoonDisc(illumination: illumination),
+                                const SizedBox(width: 10),
+                                Expanded(
+                                  child: Text(
+                                    '${moonPhaseLabel(illumination.phaseIndex)} · ${(illumination.fraction * 100).round()}% ${l10n.moonIlluminated}',
+                                    style: text.bodyMedium,
+                                  ),
                                 ),
                               ],
                             );
-                          }
-                          return Column(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [phase, const SizedBox(height: 12), dates],
-                          );
-                        },
-                      ),
+                            final dates = Column(
+                              key: const ValueKey('moon-upcoming-dates'),
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  '${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}',
+                                  style: text.bodySmall,
+                                ),
+                                const SizedBox(height: 4),
+                                Text(
+                                  '${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}',
+                                  style: text.bodySmall,
+                                ),
+                              ],
+                            );
+                            if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
+                              return Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                textDirection: TextDirection.ltr,
+                                children: [
+                                  Expanded(child: phase),
+                                  const SizedBox(width: 24),
+                                  Flexible(
+                                    child: Align(
+                                      alignment: Alignment.topRight,
+                                      heightFactor: 1,
+                                      child: dates,
+                                    ),
+                                  ),
+                                ],
+                              );
+                            }
+                            return Column(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.stretch,
+                              children: [phase, const SizedBox(height: 12), dates],
+                            );
+                          },
+                        ),
+                      ],
                     ],
-                  ],
+                  ),
                 ),
               ),
             ),
@@ -374,68 +380,6 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 4,
-          children: [
-            TextButton.icon(
-              onPressed: () => Navigator.of(context).push<void>(
-                MaterialPageRoute(builder: (_) => const CityPicker(forSky: true, locateOnOpen: true)),
-              ),
-              icon: const Icon(Icons.my_location, size: 18),
-              label: Text(l10n.useMyLocation),
-            ),
-            ChoiceChip(
-              label: Text(ref.watch(skyLocationProvider) == null ? l10n.skyTimezone : l10n.skyMyLocation),
-              selected: !options.skyUseShabbat,
-              onSelected: (_) =>
-                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: false)),
-            ),
-            ChoiceChip(
-              label: Text(l10n.skyShabbat),
-              selected: options.skyUseShabbat,
-              onSelected: (_) =>
-                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: true)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () => Navigator.of(
-                  context,
-                ).push<void>(MaterialPageRoute(builder: (_) => CityPicker(forSky: !options.skyUseShabbat))),
-                style: TextButton.styleFrom(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.zero,
-                  foregroundColor: QuandoColors.blush,
-                ),
-                child: Text(
-                  place == null
-                      ? l10n.skyChooseCity
-                      : '${timesInLabel(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider) == null ? ' · ${l10n.skyReferenceCity}' : ''}',
-                  style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => showHomeDisplayControls(context),
-              style: TextButton.styleFrom(
-                foregroundColor: QuandoColors.blush,
-                minimumSize: const Size(0, 36),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.tune, size: 16),
-                  const SizedBox(width: 5),
-                  Text(l10n.homeDisplay, style: text.bodySmall),
-                ],
-              ),
-            ),
-          ],
-        ),
         if (pages.length == 1)
           sunContent
         else ...[
@@ -542,86 +486,126 @@ class _SunWeatherCard extends ConsumerWidget {
         Text(describe(h), style: text.bodyMedium?.copyWith(color: QuandoColors.text)),
       ],
     );
+    // By day the card's sky runs from sunrise (left) to sunset (right), with
+    // the forecast weather blended along it, as on the Moon card.
+    final rise = sky.sunrise, set = sky.sunset;
+    final strip = skyNow.isDay && rise != null && set != null
+        ? SkyStrip.between(place, rise, set, report, now: sky.now)
+        : null;
     return Container(
       key: const ValueKey('sun-weather-card'),
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20),
-        gradient: LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [top, bottom],
-        ),
+        gradient: strip == null
+            ? LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [top, bottom])
+            : LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: strip.colors),
       ),
-      padding: const EdgeInsets.all(18),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.baseline,
-            textBaseline: TextBaseline.alphabetic,
+      foregroundDecoration: strip == null
+          ? null
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              gradient: const LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [Color(0x00000000), SkyStrip.shade],
+              ),
+            ),
+      child: _Overlaid(
+        kinds: strip?.kinds,
+        child: Padding(
+          padding: const EdgeInsets.all(18),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Text(
-                '${current.celsius.round()}°',
-                style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    '${current.celsius.round()}°',
+                    style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+                  ),
+                  const SizedBox(width: 10),
+                  Flexible(
+                    child: Text(
+                      weatherLabel(current.kind).toLowerCase(),
+                      style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(width: 10),
-              Flexible(
-                child: Text(
-                  weatherLabel(current.kind).toLowerCase(),
-                  style: text.titleLarge?.copyWith(color: QuandoColors.text),
-                ),
+              if (subtitle.isNotEmpty)
+                Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
+              DayArc(
+                sky: sky,
+                marks: marks,
+                weather: arcWeather(sky, report, zone),
+                nowWeather: skyNow.isDay ? current.kind : null,
+                nowLabel: skyNow.isDay ? '${l10n.nowCap} ${hhmm(local)}' : null,
               ),
-            ],
-          ),
-          if (subtitle.isNotEmpty) Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
-          DayArc(
-            sky: sky,
-            marks: marks,
-            weather: arcWeather(sky, report, zone),
-            nowWeather: skyNow.isDay ? current.kind : null,
-            nowLabel: skyNow.isDay ? '${l10n.nowCap} ${hhmm(local)}' : null,
-          ),
-          Row(
-            textDirection: TextDirection.ltr,
-            children: [
-              Expanded(
-                child: Text(
-                  sky.sunrise == null ? '' : l10n.sunriseAt(time(sky.sunrise)),
-                  style: text.bodySmall?.copyWith(color: QuandoColors.text),
-                ),
-              ),
-              Expanded(
-                child: Text(
-                  sky.sunset == null ? '' : l10n.sunsetAt(time(sky.sunset)),
-                  textAlign: TextAlign.end,
-                  style: text.bodySmall?.copyWith(color: QuandoColors.text),
-                ),
-              ),
-            ],
-          ),
-          if (tonight != null || morning != null || nightfall != null) ...[
-            const SizedBox(height: 14),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (tonight != null) Expanded(child: later(l10n.weatherTonight, tonight)),
-                if (morning != null) Expanded(child: later(l10n.weatherTomorrowMorning, morning)),
-                if (nightfall != null)
+              Row(
+                textDirection: TextDirection.ltr,
+                children: [
                   Expanded(
                     child: Text(
-                      nightfall!,
+                      sky.sunrise == null ? '' : l10n.sunriseAt(time(sky.sunrise)),
+                      style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                    ),
+                  ),
+                  Expanded(
+                    child: Text(
+                      sky.sunset == null ? '' : l10n.sunsetAt(time(sky.sunset)),
                       textAlign: TextAlign.end,
                       style: text.bodySmall?.copyWith(color: QuandoColors.text),
                     ),
                   ),
+                ],
+              ),
+              if (tonight != null || morning != null || nightfall != null) ...[
+                const SizedBox(height: 14),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (tonight != null) Expanded(child: later(l10n.weatherTonight, tonight)),
+                    if (morning != null) Expanded(child: later(l10n.weatherTomorrowMorning, morning)),
+                    if (nightfall != null)
+                      Expanded(
+                        child: Text(
+                          nightfall!,
+                          textAlign: TextAlign.end,
+                          style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                        ),
+                      ),
+                  ],
+                ),
               ],
-            ),
-          ],
-          ...footer,
-        ],
+              ...footer,
+            ],
+          ),
+        ),
       ),
+    );
+  }
+}
+
+/// [child] with the falling weather of [kinds] drawn behind it, when any is
+/// forecast.
+class _Overlaid extends StatelessWidget {
+  const _Overlaid({required this.kinds, required this.child});
+  final List<WeatherKind?>? kinds;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    final k = kinds;
+    if (k == null || !WeatherOverlay.needed(k)) return child;
+    return Stack(
+      children: [
+        WeatherOverlay(kinds: k),
+        child,
+      ],
     );
   }
 }

@@ -2875,4 +2875,224 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get googleCalendarTwiceHint =>
       'Bu cihazın aynı Google hesabından zaten gösterdiği takvimler kapalı başlar, böylece hiçbir şey iki kez çalmaz.';
+
+  @override
+  String get timersTitle => 'Zamanlayıcılar';
+
+  @override
+  String get timerStopwatch => 'Kronometre';
+
+  @override
+  String get timerCountdown => 'Zamanlayıcı';
+
+  @override
+  String get timerSequence => 'Hazır';
+
+  @override
+  String get timerStopwatchSub => 'Yukarı sayar, tur kaydıyla';
+
+  @override
+  String get timerCountdownSub => 'Geri sayar, sıfırda çalar';
+
+  @override
+  String get timerSequenceSub => 'Sesli başlangıç ve işaretler';
+
+  @override
+  String get timerStart => 'Başlat';
+
+  @override
+  String get timerPause => 'Duraklat';
+
+  @override
+  String get timerResume => 'Devam et';
+
+  @override
+  String get timerReset => 'Sıfırla';
+
+  @override
+  String get timerLap => 'Tur';
+
+  @override
+  String get timerTimesUp => 'Süre doldu';
+
+  @override
+  String get timerSetTime => 'Süreyi ayarla';
+
+  @override
+  String get timerMinutes => 'Dakika';
+
+  @override
+  String get timerSeconds => 'Saniye';
+
+  @override
+  String get seqOnYourMarks => 'Yerlerinize';
+
+  @override
+  String get seqGetSet => 'Hazır';
+
+  @override
+  String get seqGo => 'Başla!';
+
+  @override
+  String get seqFinish => 'Süre!';
+
+  @override
+  String get seqReady => 'Hazır';
+
+  @override
+  String get seqSettings => 'Ayarlar';
+
+  @override
+  String get seqStartCalls => 'Başlangıçtan önceki seslenişler';
+
+  @override
+  String get seqStartCallsHelp => 'Başla\'dan önce yüksek sesle söylenir, başlangıçtan geriye sayılır.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 saniye önce',
+      other: '$n saniye önce',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Seslenme ekle';
+
+  @override
+  String get seqCallText => 'Ne söylenecek';
+
+  @override
+  String get seqGoText => 'Başlangıçta şunu söyle';
+
+  @override
+  String get seqFinishText => 'Bitişte şunu söyle';
+
+  @override
+  String get seqLength => 'Süre';
+
+  @override
+  String get seqNoLimit => 'Sınırsız';
+
+  @override
+  String get seqSayEvery => 'Zamanı şu aralıkla söyle';
+
+  @override
+  String get seqOff => 'Kapalı';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 saniye',
+      other: '$n saniye',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 dakika',
+      other: '$n dakika',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Son kısmı geri say';
+
+  @override
+  String get seqMarks => 'İşaretlerin';
+
+  @override
+  String get seqAddMark => 'İşaret ekle';
+
+  @override
+  String seqMarkAt(String time) {
+    return '$time anında';
+  }
+
+  @override
+  String get seqSpeak => 'Yüksek sesle söyle';
+
+  @override
+  String get seqBeeps => 'Bip sesi ve titreşim';
+
+  @override
+  String get seqSayRemaining => 'Geçen süreyi değil, kalan süreyi söyle';
+
+  @override
+  String get seqPresets => 'Hazır ayarlar';
+
+  @override
+  String get seqPresetRace => 'Yarış başlangıcı';
+
+  @override
+  String get seqPresetSprint => '30 sn efor';
+
+  @override
+  String get seqPresetRound => '1 dk tur';
+
+  @override
+  String get seqHintNoLimit => 'Başla\'dan sonra siz durdurana kadar yukarı sayar.';
+
+  @override
+  String get seqHintLength => 'Başla\'dan sonra sıfıra kadar geri sayar.';
+
+  @override
+  String get seqWords => 'Sözler';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

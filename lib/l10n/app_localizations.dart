@@ -5211,6 +5211,390 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Calendars this device already shows from the same Google account start off, so nothing rings twice.'**
   String get googleCalendarTwiceHint;
+
+  /// No description provided for @timersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timers'**
+  String get timersTitle;
+
+  /// No description provided for @timerStopwatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopwatch'**
+  String get timerStopwatch;
+
+  /// No description provided for @timerCountdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer'**
+  String get timerCountdown;
+
+  /// No description provided for @timerSequence.
+  ///
+  /// In en, this message translates to:
+  /// **'Get set'**
+  String get timerSequence;
+
+  /// No description provided for @timerStopwatchSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Count up, with laps'**
+  String get timerStopwatchSub;
+
+  /// No description provided for @timerCountdownSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Count down, rings at zero'**
+  String get timerCountdownSub;
+
+  /// No description provided for @timerSequenceSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoken start and marks'**
+  String get timerSequenceSub;
+
+  /// No description provided for @timerStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get timerStart;
+
+  /// No description provided for @timerPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get timerPause;
+
+  /// No description provided for @timerResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get timerResume;
+
+  /// No description provided for @timerReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get timerReset;
+
+  /// No description provided for @timerLap.
+  ///
+  /// In en, this message translates to:
+  /// **'Lap'**
+  String get timerLap;
+
+  /// No description provided for @timerTimesUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s up'**
+  String get timerTimesUp;
+
+  /// No description provided for @timerSetTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the time'**
+  String get timerSetTime;
+
+  /// No description provided for @timerMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get timerMinutes;
+
+  /// No description provided for @timerSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get timerSeconds;
+
+  /// No description provided for @seqOnYourMarks.
+  ///
+  /// In en, this message translates to:
+  /// **'On your marks'**
+  String get seqOnYourMarks;
+
+  /// No description provided for @seqGetSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Get set'**
+  String get seqGetSet;
+
+  /// No description provided for @seqGo.
+  ///
+  /// In en, this message translates to:
+  /// **'Go!'**
+  String get seqGo;
+
+  /// No description provided for @seqFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Time!'**
+  String get seqFinish;
+
+  /// No description provided for @seqReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get seqReady;
+
+  /// No description provided for @seqSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get seqSettings;
+
+  /// No description provided for @seqStartCalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Calls before the start'**
+  String get seqStartCalls;
+
+  /// No description provided for @seqStartCallsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Said aloud before Go, counted back from the start.'**
+  String get seqStartCallsHelp;
+
+  /// No description provided for @seqCallBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 second before} other{{n} seconds before}}'**
+  String seqCallBefore(int n);
+
+  /// No description provided for @seqAddCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a call'**
+  String get seqAddCall;
+
+  /// No description provided for @seqCallText.
+  ///
+  /// In en, this message translates to:
+  /// **'What to say'**
+  String get seqCallText;
+
+  /// No description provided for @seqGoText.
+  ///
+  /// In en, this message translates to:
+  /// **'At the start, say'**
+  String get seqGoText;
+
+  /// No description provided for @seqFinishText.
+  ///
+  /// In en, this message translates to:
+  /// **'At the end, say'**
+  String get seqFinishText;
+
+  /// No description provided for @seqLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get seqLength;
+
+  /// No description provided for @seqNoLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'No limit'**
+  String get seqNoLimit;
+
+  /// No description provided for @seqSayEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'Say the time every'**
+  String get seqSayEvery;
+
+  /// No description provided for @seqOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get seqOff;
+
+  /// No description provided for @seqEverySeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 second} other{{n} seconds}}'**
+  String seqEverySeconds(int n);
+
+  /// No description provided for @seqEveryMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 minute} other{{n} minutes}}'**
+  String seqEveryMinutes(int n);
+
+  /// No description provided for @seqFinalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Count down the last'**
+  String get seqFinalCount;
+
+  /// No description provided for @seqMarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Your marks'**
+  String get seqMarks;
+
+  /// No description provided for @seqAddMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a mark'**
+  String get seqAddMark;
+
+  /// No description provided for @seqMarkAt.
+  ///
+  /// In en, this message translates to:
+  /// **'At {time}'**
+  String seqMarkAt(String time);
+
+  /// No description provided for @seqSpeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak aloud'**
+  String get seqSpeak;
+
+  /// No description provided for @seqBeeps.
+  ///
+  /// In en, this message translates to:
+  /// **'Beeps and vibration'**
+  String get seqBeeps;
+
+  /// No description provided for @seqSayRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Say time left, not time passed'**
+  String get seqSayRemaining;
+
+  /// No description provided for @seqPresets.
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get seqPresets;
+
+  /// No description provided for @seqPresetRace.
+  ///
+  /// In en, this message translates to:
+  /// **'Race start'**
+  String get seqPresetRace;
+
+  /// No description provided for @seqPresetSprint.
+  ///
+  /// In en, this message translates to:
+  /// **'30 s effort'**
+  String get seqPresetSprint;
+
+  /// No description provided for @seqPresetRound.
+  ///
+  /// In en, this message translates to:
+  /// **'1 min round'**
+  String get seqPresetRound;
+
+  /// No description provided for @seqHintNoLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'After Go it counts up until you stop it.'**
+  String get seqHintNoLimit;
+
+  /// No description provided for @seqHintLength.
+  ///
+  /// In en, this message translates to:
+  /// **'After Go it counts down to zero.'**
+  String get seqHintLength;
+
+  /// No description provided for @seqWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Words'**
+  String get seqWords;
+
+  /// No description provided for @homeEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange home'**
+  String get homeEdit;
+
+  /// No description provided for @homeEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the handle to move a card, fold it, or change its size.'**
+  String get homeEditHint;
+
+  /// No description provided for @homeReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset layout'**
+  String get homeReset;
+
+  /// No description provided for @homeMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Move'**
+  String get homeMove;
+
+  /// No description provided for @homeExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get homeExpand;
+
+  /// No description provided for @homeCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Fold'**
+  String get homeCollapse;
+
+  /// No description provided for @homeSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get homeSize;
+
+  /// No description provided for @homeBlockClock.
+  ///
+  /// In en, this message translates to:
+  /// **'CLOCK'**
+  String get homeBlockClock;
+
+  /// No description provided for @homeBlockSky.
+  ///
+  /// In en, this message translates to:
+  /// **'SUN, MOON AND WEATHER'**
+  String get homeBlockSky;
+
+  /// No description provided for @homeBlockQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'QUICK ALARMS'**
+  String get homeBlockQuick;
+
+  /// No description provided for @homeBlockShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'SHABBAT AND HOLIDAYS'**
+  String get homeBlockShabbat;
+
+  /// No description provided for @homePlaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'City for the sky'**
+  String get homePlaceTitle;
+
+  /// No description provided for @nextAlarmLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Next alarm · {title} {time}'**
+  String nextAlarmLine(String title, String time);
+
+  /// No description provided for @showAllAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all days'**
+  String get showAllAlarms;
+
+  /// No description provided for @noAlarmsThatDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing rings this day'**
+  String get noAlarmsThatDay;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
