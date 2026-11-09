@@ -5433,6 +5433,72 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Words'**
   String get seqWords;
+
+  /// No description provided for @homeEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange home'**
+  String get homeEdit;
+
+  /// No description provided for @homeEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the handle to move a card, fold it, or change its size.'**
+  String get homeEditHint;
+
+  /// No description provided for @homeReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset layout'**
+  String get homeReset;
+
+  /// No description provided for @homeMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Move'**
+  String get homeMove;
+
+  /// No description provided for @homeExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get homeExpand;
+
+  /// No description provided for @homeCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Fold'**
+  String get homeCollapse;
+
+  /// No description provided for @homeSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get homeSize;
+
+  /// No description provided for @homeBlockClock.
+  ///
+  /// In en, this message translates to:
+  /// **'CLOCK'**
+  String get homeBlockClock;
+
+  /// No description provided for @homeBlockSky.
+  ///
+  /// In en, this message translates to:
+  /// **'SUN, MOON AND WEATHER'**
+  String get homeBlockSky;
+
+  /// No description provided for @homeBlockQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'QUICK ALARMS'**
+  String get homeBlockQuick;
+
+  /// No description provided for @homeBlockShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'SHABBAT AND HOLIDAYS'**
+  String get homeBlockShabbat;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

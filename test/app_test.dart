@@ -11,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   // First: the app's router remembers the last screen between tests.
   testWidgets('a fresh Quando? keeps Shabbat out of the way until you ask', (tester) async {
-    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.physicalSize = const Size(1080, 9000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({});
@@ -37,7 +37,7 @@ void main() {
     await tester.pumpAndSettle();
   });
   testWidgets('home shows next Shabbat and this week\'s alarms', (tester) async {
-    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.physicalSize = const Size(1080, 9000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
 
@@ -74,7 +74,7 @@ void main() {
   });
 
   testWidgets('a week row has quick actions: remove a time, turn off, undo', (tester) async {
-    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.physicalSize = const Size(1080, 9000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({...shabbatOn});
@@ -131,7 +131,7 @@ void main() {
     expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').enabled, isTrue);
   });
   testWidgets('the Shabbat card opens the Shabbat screen', (tester) async {
-    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.physicalSize = const Size(1080, 9000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({...shabbatOn});

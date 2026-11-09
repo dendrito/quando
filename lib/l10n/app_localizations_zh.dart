@@ -2950,6 +2950,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get seqWords => 'Words';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5897,4 +5930,37 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get seqWords => 'Words';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
 }

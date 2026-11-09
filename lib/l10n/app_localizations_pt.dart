@@ -3016,4 +3016,37 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get seqWords => 'Palavras';
+
+  @override
+  String get homeEdit => 'Organizar o início';
+
+  @override
+  String get homeEditHint => 'Arraste a alça para mover um cartão, recolha-o ou mude o tamanho.';
+
+  @override
+  String get homeReset => 'Restaurar layout';
+
+  @override
+  String get homeMove => 'Mover';
+
+  @override
+  String get homeExpand => 'Mostrar';
+
+  @override
+  String get homeCollapse => 'Recolher';
+
+  @override
+  String get homeSize => 'Tamanho';
+
+  @override
+  String get homeBlockClock => 'RELÓGIO';
+
+  @override
+  String get homeBlockSky => 'SOL, LUA E TEMPO';
+
+  @override
+  String get homeBlockQuick => 'ALARMES RÁPIDOS';
+
+  @override
+  String get homeBlockShabbat => 'SHABAT E FESTAS';
 }

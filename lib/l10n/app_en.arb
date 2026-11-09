@@ -1829,5 +1829,16 @@
   "seqPresetRound": "1 min round",
   "seqHintNoLimit": "After Go it counts up until you stop it.",
   "seqHintLength": "After Go it counts down to zero.",
-  "seqWords": "Words"
+  "seqWords": "Words",
+  "homeEdit": "Arrange home",
+  "homeEditHint": "Drag the handle to move a card, fold it, or change its size.",
+  "homeReset": "Reset layout",
+  "homeMove": "Move",
+  "homeExpand": "Show",
+  "homeCollapse": "Fold",
+  "homeSize": "Size",
+  "homeBlockClock": "CLOCK",
+  "homeBlockSky": "SUN, MOON AND WEATHER",
+  "homeBlockQuick": "QUICK ALARMS",
+  "homeBlockShabbat": "SHABBAT AND HOLIDAYS"
 }

@@ -26,7 +26,10 @@ import '../../alarms/ui/group_picker.dart';
 import '../domain/week.dart';
 import '../../../app/widgets/tiles.dart';
 import 'alarm_group_card.dart';
+import '../data/home_layout_provider.dart';
+import '../domain/home_layout.dart';
 import 'clock_hero.dart';
+import 'home_block_frame.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
 import 'week_list.dart';
@@ -45,6 +48,7 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
   bool _showShabbat = true;
+  bool _editing = false;
   final _openGroups = <String>{};
 
   void _undo(String message, VoidCallback undo) {
@@ -437,6 +441,240 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ],
     ];
 
+    final layout = ref.watch(homeLayoutProvider);
+    final inLists = !jewishHome || !_showShabbat;
+    bool showing(HomeBlock b) => switch (b) {
+      HomeBlock.clock || HomeBlock.next || HomeBlock.sky => true,
+      HomeBlock.shabbatMode => jewishHome,
+      HomeBlock.shabbat => !jewishHome && ref.watch(shabbatInUseProvider) && inLists,
+      HomeBlock.events => inLists && eventRules.isNotEmpty,
+      _ => inLists,
+    };
+    final visible = [
+      for (final b in layout.order)
+        if (showing(b)) b,
+    ];
+    String titleOf(HomeBlock b) => switch (b) {
+      HomeBlock.clock => l10n.homeBlockClock,
+      HomeBlock.next => l10n.nextAlarmHeading,
+      HomeBlock.sky => l10n.homeBlockSky,
+      HomeBlock.shabbatMode || HomeBlock.shabbat => l10n.homeBlockShabbat,
+      HomeBlock.timers => l10n.timersTitle.toUpperCase(),
+      HomeBlock.quick => l10n.homeBlockQuick,
+      HomeBlock.alarms => l10n.yourAlarmsHeading,
+      HomeBlock.events => l10n.aroundEventsHeading,
+      HomeBlock.week => l10n.thisWeekHeading,
+      HomeBlock.world => l10n.worldClocksHeading,
+    };
+    Widget contentOf(HomeBlock b) => switch (b) {
+      HomeBlock.clock => ClockHero(now: ref.watch(clockProvider), zone: home),
+      HomeBlock.next => Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          FittedBox(
+            fit: BoxFit.scaleDown,
+            alignment: Alignment.centerLeft,
+            child: Text(
+              next == null
+                  ? l10n.nothingSet
+                  // Far away reads better as a clock time than as a long countdown.
+                  : next.at.difference(now) > const Duration(hours: 12)
+                  ? l10n.atClock(local(next.at))
+                  : countdown(next.at.difference(now)),
+              style: text.displayMedium?.copyWith(fontSize: 60),
+            ),
+          ),
+          const SizedBox(height: 6),
+          if (next != null) ...[
+            Text(
+              // A reminder ahead of an event says so: "Candle lighting ·
+              // 6 hours before · Fri 13 Nov · 12:09", never just the
+              // event's name at the reminder's time.
+              '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
+              style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
+            ),
+            const SizedBox(height: 8),
+          ],
+          QuoteLine(now: now, idle: next == null),
+        ],
+      ),
+      HomeBlock.sky => SkyPanel(
+        sky: sky,
+        marks: [
+          for (final a in upcoming)
+            if (sky.at(a.at) case final t? when t >= 0 && t <= 1) t,
+        ],
+      ),
+      HomeBlock.shabbatMode => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (jewishHome) LearningCard(now: now),
+          if (jewishHome) ...[
+            SegmentedButton<bool>(
+              segments: [
+                ButtonSegment(value: true, label: Text(l10n.shabbat)),
+                ButtonSegment(value: false, label: Text(l10n.allAlarms)),
+              ],
+              selected: {_showShabbat},
+              onSelectionChanged: (v) => setState(() => _showShabbat = v.first),
+            ),
+            const SizedBox(height: 16),
+            if (_showShabbat) ...[
+              const PreparationActions(),
+              ...shabbat,
+              const PreparationControls(showActions: false),
+            ],
+          ],
+        ],
+      ),
+      HomeBlock.shabbat => Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: shabbat),
+      HomeBlock.timers => const _TimerTiles(),
+      HomeBlock.quick => Wrap(
+        spacing: 8,
+        runSpacing: 8,
+        children: [
+          for (final m in const [10, 20, 60])
+            _WhenChip(
+              label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+              onTap: () => _quick(
+                DateTime.now().toUtc().add(Duration(minutes: m)),
+                m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+              ),
+            ),
+          if (nextSunset != null)
+            _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
+        ],
+      ),
+      HomeBlock.alarms => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (mine.isEmpty)
+            Padding(
+              padding: const EdgeInsets.only(bottom: 8),
+              child: Text(l10n.tapWhenToAdd, style: text.bodySmall),
+            ),
+          for (final a in mine.where((a) => a.group.isEmpty)) ...[
+            SwipeToDelete(
+              id: 'user.${a.id}',
+              onDelete: () {
+                ref.read(userAlarmsProvider.notifier).delete(a.id);
+                _undo(l10n.deletedNamed(a.title), () => ref.read(userAlarmsProvider.notifier).save(a));
+              },
+              child: _AlarmCard(
+                alarm: a,
+                onTap: () => context.push('/alarm/${a.id}'),
+                onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                onDuplicate: () => _duplicate(a),
+                onDelete: () => _delete(a),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+          for (final g in ref.read(userAlarmsProvider.notifier).groups) ...[
+            AlarmGroupCard(
+              name: g,
+              alarms: [
+                for (final a in mine)
+                  if (a.group == g) a,
+              ],
+              open: _openGroups.contains(g),
+              onOpen: () =>
+                  setState(() => _openGroups.contains(g) ? _openGroups.remove(g) : _openGroups.add(g)),
+              onToggleAll: (v) => ref.read(userAlarmsProvider.notifier).toggleGroup(g, v),
+              onRename: () => _renameGroup(g),
+              alarmCard: (a) => _AlarmCard(
+                alarm: a,
+                flat: true,
+                onTap: () => context.push('/alarm/${a.id}'),
+                onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
+                onDuplicate: () => _duplicate(a),
+                onDelete: () => _delete(a),
+              ),
+            ),
+            const SizedBox(height: 10),
+          ],
+        ],
+      ),
+      HomeBlock.events => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final r in eventRules) ...[
+            SwipeToDelete(
+              id: 'cal.${r.id}',
+              onDelete: () {
+                ref.read(calendarRulesProvider.notifier).delete(r.id);
+                _undo(l10n.deletedNamed(r.title), () => ref.read(calendarRulesProvider.notifier).save(r));
+              },
+              child: RuleTile(
+                title: r.title,
+                subtitle: [
+                  timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
+                  if (r.keyword.isNotEmpty && r.name.isNotEmpty) l10n.searchFor(r.keyword),
+                ].join(' · '),
+                on: r.enabled,
+                onTap: () => context.push('/calendar/rule/${r.id}'),
+                onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
+              ),
+            ),
+            const SizedBox(height: 8),
+          ],
+        ],
+      ),
+      HomeBlock.week => Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          if (ref.watch(fullPlanProvider).isEmpty)
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 12),
+              child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
+            ),
+          WeekList(
+            days: weekPlan(ref.watch(fullPlanProvider), home),
+            today: inZone(now, home),
+            zone: home,
+            skipped: ref.watch(skippedProvider),
+            onTap: _alarmActions,
+            onSeries: (s) => _actions(s.alarms),
+          ),
+        ],
+      ),
+      HomeBlock.world => const WorldClocks(),
+    };
+    Widget frameOf(HomeBlock b, int? index) => HomeBlockFrame(
+      key: ValueKey(b),
+      block: b,
+      index: index,
+      title: titleOf(b),
+      state: layout.of(b),
+      editing: _editing,
+      color: const {HomeBlock.clock, HomeBlock.next, HomeBlock.sky}.contains(b) ? sky.color : null,
+      onChanged: (s) => ref.read(homeLayoutProvider.notifier).setBlock(b, s),
+      child: contentOf(b),
+    );
+    final blocks = <Widget>[
+      if (_editing)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(24, 0, 16, 8),
+          child: Row(
+            children: [
+              Expanded(child: Text(l10n.homeEditHint, style: text.bodySmall)),
+              TextButton(onPressed: ref.read(homeLayoutProvider.notifier).reset, child: Text(l10n.homeReset)),
+              FilledButton(onPressed: () => setState(() => _editing = false), child: Text(l10n.done)),
+            ],
+          ),
+        ),
+      if (_editing)
+        ReorderableListView(
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          buildDefaultDragHandles: false,
+          onReorderItem: (from, to) => ref.read(homeLayoutProvider.notifier).move(visible, from, to),
+          children: [for (var i = 0; i < visible.length; i++) frameOf(visible[i], i)],
+        )
+      else
+        for (final b in visible) frameOf(b, null),
+    ];
+
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Container(
@@ -474,6 +712,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const QMark(size: 30),
                     const SizedBox(width: 10),
                     Expanded(child: Text(appTitle, style: text.titleLarge?.copyWith(fontSize: 23))),
+                    IconButton(
+                      tooltip: l10n.homeEdit,
+                      icon: Icon(_editing ? Icons.check : Icons.dashboard_customize_outlined),
+                      onPressed: () => setState(() => _editing = !_editing),
+                    ),
                     IconButton(
                       tooltip: l10n.timersTitle,
                       icon: const Icon(Icons.timer_outlined),
@@ -568,61 +811,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                   ),
-                const SizedBox(height: 14),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: ClockHero(now: ref.watch(clockProvider), zone: home),
-                ),
-                const SizedBox(height: 14),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(l10n.nextAlarmHeading, style: text.labelSmall),
-                      const SizedBox(height: 6),
-                      FittedBox(
-                        fit: BoxFit.scaleDown,
-                        alignment: Alignment.centerLeft,
-                        child: Text(
-                          next == null
-                              ? l10n.nothingSet
-                              // Far away reads better as a clock time than as a long countdown.
-                              : next.at.difference(now) > const Duration(hours: 12)
-                              ? l10n.atClock(local(next.at))
-                              : countdown(next.at.difference(now)),
-                          style: text.displayMedium?.copyWith(fontSize: 60),
-                        ),
-                      ),
-                      const SizedBox(height: 6),
-                      if (next != null) ...[
-                        Text(
-                          // A reminder ahead of an event says so: "Candle lighting ·
-                          // 6 hours before · Fri 13 Nov · 12:09", never just the
-                          // event's name at the reminder's time.
-                          '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
-                          style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
-                        ),
-                        const SizedBox(height: 8),
-                      ],
-                      QuoteLine(now: now, idle: next == null),
-                      const SizedBox(height: 10),
-                      SkyPanel(
-                        sky: sky,
-                        marks: [
-                          for (final a in upcoming)
-                            if (sky.at(a.at) case final t? when t >= 0 && t <= 1) t,
-                        ],
-                      ),
-                    ],
-                  ),
-                ),
               ],
             ),
           ),
-
+          const SizedBox(height: 12),
           Padding(
-            padding: const EdgeInsets.fromLTRB(20, 20, 20, 120),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -645,158 +839,13 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ),
                   const SizedBox(height: 16),
                 ],
-                if (jewishHome) const SizedBox(height: 4),
-                if (jewishHome) LearningCard(now: now),
-                if (jewishHome) ...[
-                  SegmentedButton<bool>(
-                    segments: [
-                      ButtonSegment(value: true, label: Text(l10n.shabbat)),
-                      ButtonSegment(value: false, label: Text(l10n.allAlarms)),
-                    ],
-                    selected: {_showShabbat},
-                    onSelectionChanged: (v) => setState(() => _showShabbat = v.first),
-                  ),
-                  const SizedBox(height: 16),
-                  if (_showShabbat) ...[
-                    const PreparationActions(),
-                    ...shabbat,
-                    const PreparationControls(showActions: false),
-                  ],
-                ],
-                if (!jewishHome || !_showShabbat) ...[
-                  // ---- Stopwatch, timer and "get set": one tap away ----
-                  const _TimerTiles(),
-                  const SizedBox(height: 16),
-                  // ---- One-tap "when" ----
-                  Wrap(
-                    spacing: 8,
-                    runSpacing: 8,
-                    children: [
-                      for (final m in const [10, 20, 60])
-                        _WhenChip(
-                          label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-                          onTap: () => _quick(
-                            DateTime.now().toUtc().add(Duration(minutes: m)),
-                            m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-                          ),
-                        ),
-                      if (nextSunset != null)
-                        _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
-                    ],
-                  ),
-                  const SizedBox(height: 16),
-
-                  if (!jewishHome && ref.watch(shabbatInUseProvider)) ...shabbat,
-                  // ---- Your alarms ----
-                  const SizedBox(height: 8),
-                  Text(l10n.yourAlarmsHeading, style: text.labelSmall),
-                  const SizedBox(height: 10),
-                  if (mine.isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 8),
-                      child: Text(l10n.tapWhenToAdd, style: text.bodySmall),
-                    ),
-                  for (final a in mine.where((a) => a.group.isEmpty)) ...[
-                    SwipeToDelete(
-                      id: 'user.${a.id}',
-                      onDelete: () {
-                        ref.read(userAlarmsProvider.notifier).delete(a.id);
-                        _undo(
-                          l10n.deletedNamed(a.title),
-                          () => ref.read(userAlarmsProvider.notifier).save(a),
-                        );
-                      },
-                      child: _AlarmCard(
-                        alarm: a,
-                        onTap: () => context.push('/alarm/${a.id}'),
-                        onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
-                        onDuplicate: () => _duplicate(a),
-                        onDelete: () => _delete(a),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                  for (final g in ref.read(userAlarmsProvider.notifier).groups) ...[
-                    AlarmGroupCard(
-                      name: g,
-                      alarms: [
-                        for (final a in mine)
-                          if (a.group == g) a,
-                      ],
-                      open: _openGroups.contains(g),
-                      onOpen: () => setState(
-                        () => _openGroups.contains(g) ? _openGroups.remove(g) : _openGroups.add(g),
-                      ),
-                      onToggleAll: (v) => ref.read(userAlarmsProvider.notifier).toggleGroup(g, v),
-                      onRename: () => _renameGroup(g),
-                      alarmCard: (a) => _AlarmCard(
-                        alarm: a,
-                        flat: true,
-                        onTap: () => context.push('/alarm/${a.id}'),
-                        onToggle: (v) => ref.read(userAlarmsProvider.notifier).toggle(a.id, v),
-                        onDuplicate: () => _duplicate(a),
-                        onDelete: () => _delete(a),
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-
-                  // ---- Event alarms ----
-                  if (eventRules.isNotEmpty) ...[
-                    const SizedBox(height: 18),
-                    Text(l10n.aroundEventsHeading, style: text.labelSmall),
-                    const SizedBox(height: 10),
-                    for (final r in eventRules) ...[
-                      SwipeToDelete(
-                        id: 'cal.${r.id}',
-                        onDelete: () {
-                          ref.read(calendarRulesProvider.notifier).delete(r.id);
-                          _undo(
-                            l10n.deletedNamed(r.title),
-                            () => ref.read(calendarRulesProvider.notifier).save(r),
-                          );
-                        },
-                        child: RuleTile(
-                          title: r.title,
-                          subtitle: [
-                            timesLabel(r.toAlarmRules().expand((a) => a.offsets()).toSet().toList()..sort()),
-                            if (r.keyword.isNotEmpty && r.name.isNotEmpty) l10n.searchFor(r.keyword),
-                          ].join(' · '),
-                          on: r.enabled,
-                          onTap: () => context.push('/calendar/rule/${r.id}'),
-                          onToggle: (v) => ref.read(calendarRulesProvider.notifier).toggle(r.id, v),
-                        ),
-                      ),
-                      const SizedBox(height: 8),
-                    ],
-                  ],
-
-                  // ---- This week ----
-                  const SizedBox(height: 18),
-                  Text(l10n.thisWeekHeading, style: text.labelSmall),
-                  if (ref.watch(fullPlanProvider).isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
-                    ),
-                  WeekList(
-                    days: weekPlan(ref.watch(fullPlanProvider), home),
-                    today: inZone(now, home),
-                    zone: home,
-                    skipped: ref.watch(skippedProvider),
-                    onTap: _alarmActions,
-                    onSeries: (s) => _actions(s.alarms),
-                  ),
-
-                  // ---- World clocks ----
-                  const SizedBox(height: 22),
-                  const WorldClocks(),
-
-                  const SizedBox(height: 16),
-                  Text(l10n.alarmsSetThemselves, style: text.bodySmall),
-                ],
               ],
             ),
+          ),
+          ...blocks,
+          Padding(
+            padding: const EdgeInsets.fromLTRB(24, 4, 24, 120),
+            child: Text(l10n.alarmsSetThemselves, style: text.bodySmall),
           ),
         ],
       ),
