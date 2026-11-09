@@ -22,6 +22,7 @@ import 'moon_details.dart';
 import 'weather_overlay.dart';
 import 'weather_panel.dart';
 import 'place_sheet.dart';
+import 'home_display_controls.dart';
 
 String moonPhaseLabel(int phase) => switch (phase) {
   0 => l10n.moonNew,
@@ -386,22 +387,40 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Row(
+          children: [
+            Expanded(
+              child: pages.length == 1
+                  ? const SizedBox.shrink()
+                  : Wrap(
+                      spacing: 8,
+                      children: [
+                        for (var i = 0; i < pages.length; i++)
+                          TextButton(
+                            onPressed: () => _toPage(context, i),
+                            style: TextButton.styleFrom(
+                              foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                            ),
+                            child: Text(pages[i].label),
+                          ),
+                      ],
+                    ),
+            ),
+            IconButton(
+              tooltip: l10n.homePlaceTitle,
+              icon: const Icon(Icons.place_outlined),
+              onPressed: () => showPlaceSheet(context),
+            ),
+            IconButton(
+              tooltip: l10n.homeDisplay,
+              icon: const Icon(Icons.tune),
+              onPressed: () => showHomeDisplayControls(context),
+            ),
+          ],
+        ),
         if (pages.length == 1)
           sunContent
         else ...[
-          Wrap(
-            spacing: 8,
-            children: [
-              for (var i = 0; i < pages.length; i++)
-                TextButton(
-                  onPressed: () => _toPage(context, i),
-                  style: TextButton.styleFrom(
-                    foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
-                  ),
-                  child: Text(pages[i].label),
-                ),
-            ],
-          ),
           LayoutBuilder(
             builder: (context, constraints) => AnimatedSize(
               duration: MediaQuery.disableAnimationsOf(context)
