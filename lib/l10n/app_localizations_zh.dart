@@ -2900,11 +2900,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '提前 $n 秒',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '提前 $n 秒');
     return '$_temp0';
   }
 
@@ -2934,21 +2930,13 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n 秒',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 秒');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n 分钟',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分钟');
     return '$_temp0';
   }
 
@@ -5939,11 +5927,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '提前 $n 秒',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '提前 $n 秒');
     return '$_temp0';
   }
 
@@ -5973,21 +5957,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n 秒',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 秒');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n 分鐘',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分鐘');
     return '$_temp0';
   }
 

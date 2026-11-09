@@ -2907,11 +2907,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n秒前',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n秒前');
     return '$_temp0';
   }
 
@@ -2941,21 +2937,13 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n秒',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n秒');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n分',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n分');
     return '$_temp0';
   }
 
