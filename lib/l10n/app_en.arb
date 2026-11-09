@@ -1842,12 +1842,7 @@
   "seqHintNoLimit": "After Go it counts up until you stop it.",
   "seqHintLength": "After Go it counts down to zero.",
   "seqWords": "Words",
-  "homeEdit": "Arrange home",
-  "homeEditHint": "Drag the handle to move a card, fold it, or change its size.",
   "homeReset": "Reset layout",
-  "homeMove": "Move",
-  "homeExpand": "Show",
-  "homeCollapse": "Fold",
   "homeSize": "Size",
   "homeBlockClock": "CLOCK",
   "homeBlockSky": "SUN, MOON AND WEATHER",
@@ -1866,5 +1861,22 @@
         "type": "String"
       }
     }
-  }
+  },
+  "homeSizeSmall": "Small",
+  "homeSizeMedium": "Medium",
+  "homeSizeLarge": "Large",
+  "homeHide": "Hide",
+  "homeHiddenCards": "{count, plural, =1{1 hidden card} other{{count} hidden cards}}",
+  "@homeHiddenCards": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "homeLayoutHint": "Press and hold a card to move it. Drag its bottom edge, or a side edge on iPad and Mac, to resize it.",
+  "homeLayoutHintDismiss": "Got it",
+  "homeLayoutTitle": "Home screen",
+  "homeResetSubtitle": "Put the home cards back in their default order and sizes",
+  "homeLayoutResetDone": "Home layout reset"
 }

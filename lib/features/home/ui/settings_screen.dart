@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
+import '../data/home_layout_provider.dart';
 import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
 import '../../../core/util/platform.dart';
@@ -58,6 +59,21 @@ class SettingsScreen extends ConsumerWidget {
 
           // ---- Your account & devices ----
           const _AccountCard(),
+
+          // ---- Home screen ----
+          group(l10n.homeLayoutTitle),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.restart_alt),
+            title: Text(l10n.homeReset),
+            subtitle: Text(l10n.homeResetSubtitle),
+            onTap: () {
+              ref.read(homeLayoutProvider.notifier).reset();
+              ScaffoldMessenger.of(context)
+                ..hideCurrentSnackBar()
+                ..showSnackBar(SnackBar(content: Text(l10n.homeLayoutResetDone)));
+            },
+          ),
 
           // ---- Alarm defaults ----
           group(l10n.settingsAlarmDefaults),

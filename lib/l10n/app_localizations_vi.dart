@@ -3030,25 +3030,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get seqWords => 'Từ';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Đặt lại bố cục';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Kích thước';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3075,4 +3060,38 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Nhỏ';
+
+  @override
+  String get homeSizeMedium => 'Vừa';
+
+  @override
+  String get homeSizeLarge => 'Lớn';
+
+  @override
+  String get homeHide => 'Ẩn';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count thẻ đã ẩn');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Nhấn giữ một thẻ để di chuyển. Kéo cạnh dưới (hoặc cạnh bên trên iPad và Mac) để đổi kích thước.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Đã hiểu';
+
+  @override
+  String get homeLayoutTitle => 'Màn hình chính';
+
+  @override
+  String get homeResetSubtitle => 'Đưa các thẻ về thứ tự và kích thước mặc định';
+
+  @override
+  String get homeLayoutResetDone => 'Đã đặt lại bố cục';
 }

@@ -2950,8 +2950,8 @@ class AppLocalizationsId extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 detik sebelumnya',
       other: '$n detik sebelumnya',
+      one: '1 detik sebelumnya',
     );
     return '$_temp0';
   }
@@ -2982,13 +2982,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 detik', other: '$n detik');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n detik', one: '1 detik');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 menit', other: '$n menit');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n menit', one: '1 menit');
     return '$_temp0';
   }
 
@@ -3037,25 +3037,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get seqWords => 'Kata';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Atur ulang tata letak';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Ukuran';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3082,4 +3067,38 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Kecil';
+
+  @override
+  String get homeSizeMedium => 'Sedang';
+
+  @override
+  String get homeSizeLarge => 'Besar';
+
+  @override
+  String get homeHide => 'Sembunyikan';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count kartu tersembunyi');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Tekan dan tahan kartu untuk memindahkannya. Seret tepi bawah (atau tepi samping di iPad dan Mac) untuk mengubah ukuran.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Mengerti';
+
+  @override
+  String get homeLayoutTitle => 'Layar utama';
+
+  @override
+  String get homeResetSubtitle => 'Mengembalikan urutan dan ukuran kartu ke bawaan';
+
+  @override
+  String get homeLayoutResetDone => 'Tata letak diatur ulang';
 }

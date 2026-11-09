@@ -2992,25 +2992,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get seqWords => '言葉';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'レイアウトをリセット';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'サイズ';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3037,4 +3022,37 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => '小';
+
+  @override
+  String get homeSizeMedium => '中';
+
+  @override
+  String get homeSizeLarge => '大';
+
+  @override
+  String get homeHide => '非表示';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '非表示のカード $count 枚');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint => 'カードを長押しして移動します。下端（iPad と Mac では側面も）をドラッグしてサイズを変更できます。';
+
+  @override
+  String get homeLayoutHintDismiss => '了解';
+
+  @override
+  String get homeLayoutTitle => 'ホーム画面';
+
+  @override
+  String get homeResetSubtitle => 'カードの順序とサイズを初期状態に戻します';
+
+  @override
+  String get homeLayoutResetDone => 'レイアウトをリセットしました';
 }

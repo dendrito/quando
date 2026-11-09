@@ -2967,8 +2967,8 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 segundo antes',
       other: '$n segundos antes',
+      one: '1 segundo antes',
     );
     return '$_temp0';
   }
@@ -2999,13 +2999,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 segundo', other: '$n segundos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n segundos', one: '1 segundo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minutos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutos', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3054,25 +3054,10 @@ class AppLocalizationsEs extends AppLocalizations {
   String get seqWords => 'Palabras';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Restablecer diseño';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Tamaño';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3099,4 +3084,43 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Pequeño';
+
+  @override
+  String get homeSizeMedium => 'Mediano';
+
+  @override
+  String get homeSizeLarge => 'Grande';
+
+  @override
+  String get homeHide => 'Ocultar';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count tarjetas ocultas',
+      one: '1 tarjeta oculta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Mantén pulsada una tarjeta para moverla. Arrastra su borde inferior (o lateral en iPad y Mac) para cambiar el tamaño.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Entendido';
+
+  @override
+  String get homeLayoutTitle => 'Pantalla de inicio';
+
+  @override
+  String get homeResetSubtitle => 'Devuelve las tarjetas al orden y tamaños predeterminados';
+
+  @override
+  String get homeLayoutResetDone => 'Diseño restablecido';
 }

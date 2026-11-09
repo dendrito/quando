@@ -3002,10 +3002,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунды',
-      many: 'За $n секунд',
       other: 'За $n секунды',
+      many: 'За $n секунд',
+      few: 'За $n секунды',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунды',
-      many: '$n секунд',
       other: '$n секунды',
+      many: '$n секунд',
+      few: '$n секунды',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 минута',
-      few: '$n минуты',
-      many: '$n минут',
       other: '$n минуты',
+      many: '$n минут',
+      few: '$n минуты',
+      one: '1 минута',
     );
     return '$_temp0';
   }
@@ -3105,25 +3105,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get seqWords => 'Слова';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Сбросить расположение';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Размер';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3150,4 +3135,45 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Малый';
+
+  @override
+  String get homeSizeMedium => 'Средний';
+
+  @override
+  String get homeSizeLarge => 'Большой';
+
+  @override
+  String get homeHide => 'Скрыть';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count скрытой карточки',
+      many: '$count скрытых карточек',
+      few: '$count скрытые карточки',
+      one: '1 скрытая карточка',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Нажмите и удерживайте карточку, чтобы переместить. Потяните нижний край (на iPad и Mac — и боковой), чтобы изменить размер.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Понятно';
+
+  @override
+  String get homeLayoutTitle => 'Главный экран';
+
+  @override
+  String get homeResetSubtitle => 'Возвращает порядок и размеры карточек по умолчанию';
+
+  @override
+  String get homeLayoutResetDone => 'Расположение сброшено';
 }

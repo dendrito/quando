@@ -2985,25 +2985,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get seqWords => '词语';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => '重置布局';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => '大小';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3030,6 +3015,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => '小';
+
+  @override
+  String get homeSizeMedium => '中';
+
+  @override
+  String get homeSizeLarge => '大';
+
+  @override
+  String get homeHide => '隐藏';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count 张已隐藏的卡片');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint => '长按卡片即可移动。拖动底部边缘（iPad 和 Mac 上还可拖动侧边）来调整大小。';
+
+  @override
+  String get homeLayoutHintDismiss => '知道了';
+
+  @override
+  String get homeLayoutTitle => '主屏幕';
+
+  @override
+  String get homeResetSubtitle => '将卡片恢复为默认顺序和大小';
+
+  @override
+  String get homeLayoutResetDone => '布局已重置';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6012,25 +6030,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get seqWords => '詞語';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => '重設版面';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => '大小';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -6057,4 +6060,37 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => '小';
+
+  @override
+  String get homeSizeMedium => '中';
+
+  @override
+  String get homeSizeLarge => '大';
+
+  @override
+  String get homeHide => '隱藏';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '$count 張已隱藏的卡片');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint => '長按卡片即可移動。拖曳底部邊緣（iPad 與 Mac 上還可拖曳側邊）來調整大小。';
+
+  @override
+  String get homeLayoutHintDismiss => '知道了';
+
+  @override
+  String get homeLayoutTitle => '主畫面';
+
+  @override
+  String get homeResetSubtitle => '將卡片還原為預設順序與大小';
+
+  @override
+  String get homeLayoutResetDone => '版面已重設';
 }

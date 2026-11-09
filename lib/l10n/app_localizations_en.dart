@@ -3037,22 +3037,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get seqWords => 'Words';
 
   @override
-  String get homeEdit => 'Arrange home';
-
-  @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
   String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
 
   @override
   String get homeSize => 'Size';
@@ -3082,4 +3067,43 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Small';
+
+  @override
+  String get homeSizeMedium => 'Medium';
+
+  @override
+  String get homeSizeLarge => 'Large';
+
+  @override
+  String get homeHide => 'Hide';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hidden cards',
+      one: '1 hidden card',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Press and hold a card to move it. Drag its bottom edge, or a side edge on iPad and Mac, to resize it.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Got it';
+
+  @override
+  String get homeLayoutTitle => 'Home screen';
+
+  @override
+  String get homeResetSubtitle => 'Put the home cards back in their default order and sizes';
+
+  @override
+  String get homeLayoutResetDone => 'Home layout reset';
 }

@@ -3004,10 +3004,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda przed',
-      few: '$n sekundy przed',
-      many: '$n sekund przed',
       other: '$n sekundy przed',
+      many: '$n sekund przed',
+      few: '$n sekundy przed',
+      one: '1 sekunda przed',
     );
     return '$_temp0';
   }
@@ -3041,10 +3041,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda',
-      few: '$n sekundy',
-      many: '$n sekund',
       other: '$n sekundy',
+      many: '$n sekund',
+      few: '$n sekundy',
+      one: '1 sekunda',
     );
     return '$_temp0';
   }
@@ -3054,10 +3054,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 minuta',
-      few: '$n minuty',
-      many: '$n minut',
       other: '$n minuty',
+      many: '$n minut',
+      few: '$n minuty',
+      one: '1 minuta',
     );
     return '$_temp0';
   }
@@ -3107,25 +3107,10 @@ class AppLocalizationsPl extends AppLocalizations {
   String get seqWords => 'Słowa';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Przywróć układ';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Rozmiar';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3152,4 +3137,45 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Mały';
+
+  @override
+  String get homeSizeMedium => 'Średni';
+
+  @override
+  String get homeSizeLarge => 'Duży';
+
+  @override
+  String get homeHide => 'Ukryj';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count ukrytej karty',
+      many: '$count ukrytych kart',
+      few: '$count ukryte karty',
+      one: '1 ukryta karta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Przytrzymaj kartę, aby ją przesunąć. Przeciągnij dolną krawędź (na iPadzie i Macu także boczną), aby zmienić rozmiar.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Rozumiem';
+
+  @override
+  String get homeLayoutTitle => 'Ekran główny';
+
+  @override
+  String get homeResetSubtitle => 'Przywraca domyślną kolejność i rozmiary kart';
+
+  @override
+  String get homeLayoutResetDone => 'Układ przywrócony';
 }

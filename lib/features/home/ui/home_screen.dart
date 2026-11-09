@@ -30,6 +30,7 @@ import '../domain/home_layout.dart';
 import 'clock_hero.dart';
 import 'home_display_controls.dart';
 import 'home_block_frame.dart';
+import 'home_cards.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
 import 'place_sheet.dart';
@@ -50,7 +51,6 @@ class HomeScreen extends ConsumerStatefulWidget {
 class _HomeScreenState extends ConsumerState<HomeScreen> {
   Timer? _tick;
   bool _showShabbat = true;
-  bool _editing = false;
 
   /// The day picked on the week ribbon: the alarms list shows only that day.
   DateTime? _day;
@@ -533,7 +533,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     };
     final visible = [
       for (final b in layout.order)
-        if (showing(b)) b,
+        if (showing(b) && !layout.of(b).hidden) b,
+    ];
+    final hiddenCards = [
+      for (final b in layout.order)
+        if (showing(b) && layout.of(b).hidden) b,
     ];
     String titleOf(HomeBlock b) => switch (b) {
       HomeBlock.clock => l10n.homeBlockClock,
@@ -562,7 +566,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   : next.at.difference(now) > const Duration(hours: 12)
                   ? l10n.atClock(local(next.at))
                   : countdown(next.at.difference(now)),
-              style: text.displayMedium?.copyWith(fontSize: 34),
+              style: text.displayMedium?.copyWith(fontSize: 60),
             ),
           ),
           // A reminder ahead of an event says so ("6 hours before"); the day is
@@ -709,39 +713,68 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       ),
       HomeBlock.world => const WorldClocks(),
     };
-    Widget frameOf(HomeBlock b, int? index) => HomeBlockFrame(
-      key: ValueKey(b),
+    final layoutNotifier = ref.read(homeLayoutProvider.notifier);
+    Widget frameOf(HomeBlock b, {required bool canWiden}) => HomeBlockFrame(
       block: b,
-      index: index,
       title: titleOf(b),
       state: layout.of(b),
-      editing: _editing,
+      height: layout.heightOf(b),
+      width: layout.widthOf(b),
+      canWiden: canWiden,
       color: const {HomeBlock.clock, HomeBlock.next, HomeBlock.sky}.contains(b) ? sky.color : null,
-      onChanged: (s) => ref.read(homeLayoutProvider.notifier).setBlock(b, s),
+      onChanged: (s) => layoutNotifier.setBlock(b, s),
+      onHeight: (v) => layoutNotifier.setBlock(b, ref.read(homeLayoutProvider).of(b).copyWith(height: v)),
+      onWidth: (v) => layoutNotifier.setBlock(b, ref.read(homeLayoutProvider).of(b).copyWith(width: v)),
+      // The alarms list is what the app is for, so it always stays.
+      onHide: b == HomeBlock.alarms ? null : () => layoutNotifier.hide(b),
       child: contentOf(b),
     );
     final blocks = <Widget>[
-      if (_editing)
+      if (!ref.watch(homeLayoutHintSeenProvider))
         Padding(
-          padding: const EdgeInsets.fromLTRB(24, 0, 16, 8),
-          child: Row(
-            children: [
-              Expanded(child: Text(l10n.homeEditHint, style: text.bodySmall)),
-              TextButton(onPressed: ref.read(homeLayoutProvider.notifier).reset, child: Text(l10n.homeReset)),
-              FilledButton(onPressed: () => setState(() => _editing = false), child: Text(l10n.done)),
-            ],
+          padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+          child: Material(
+            color: QuandoColors.amber.withValues(alpha: .16),
+            borderRadius: BorderRadius.circular(18),
+            child: Padding(
+              padding: const EdgeInsetsDirectional.fromSTEB(16, 10, 8, 10),
+              child: Row(
+                children: [
+                  const Icon(Icons.open_with, size: 20),
+                  const SizedBox(width: 12),
+                  Expanded(child: Text(l10n.homeLayoutHint, style: text.bodySmall)),
+                  TextButton(
+                    onPressed: ref.read(homeLayoutHintSeenProvider.notifier).dismiss,
+                    child: Text(l10n.homeLayoutHintDismiss),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      if (_editing)
-        ReorderableListView(
-          shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
-          buildDefaultDragHandles: false,
-          onReorderItem: (from, to) => ref.read(homeLayoutProvider.notifier).move(visible, from, to),
-          children: [for (var i = 0; i < visible.length; i++) frameOf(visible[i], i)],
-        )
-      else
-        for (final b in visible) frameOf(b, null),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: HomeCards(
+          blocks: visible,
+          widthOf: layout.widthOf,
+          titleOf: titleOf,
+          builder: frameOf,
+          onMove: (from, to) => layoutNotifier.move(visible, from, to),
+        ),
+      ),
+      if (hiddenCards.isNotEmpty)
+        Align(
+          child: PopupMenuButton<HomeBlock>(
+            onSelected: layoutNotifier.unhide,
+            itemBuilder: (_) => [
+              for (final b in hiddenCards) PopupMenuItem(value: b, child: Text(titleOf(b))),
+            ],
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Text(l10n.homeHiddenCards(hiddenCards.length), style: text.labelLarge),
+            ),
+          ),
+        ),
     ];
 
     return Scaffold(
@@ -786,11 +819,6 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       tooltip: l10n.homeDisplay,
                       icon: const Icon(Icons.wb_twilight),
                       onPressed: () => showHomeDisplayControls(context),
-                    ),
-                    IconButton(
-                      tooltip: l10n.homeEdit,
-                      icon: Icon(_editing ? Icons.check : Icons.dashboard_customize_outlined),
-                      onPressed: () => setState(() => _editing = !_editing),
                     ),
                     IconButton(
                       tooltip: l10n.timersTitle,

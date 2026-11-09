@@ -2944,11 +2944,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
+  String get seqStartCallsHelp => '\"चलो\" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड पहले', other: '$n सेकंड पहले');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड पहले', one: '1 सेकंड पहले');
     return '$_temp0';
   }
 
@@ -2978,13 +2978,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड', other: '$n सेकंड');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड', one: '1 सेकंड');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 मिनट', other: '$n मिनट');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n मिनट', one: '1 मिनट');
     return '$_temp0';
   }
 
@@ -3024,34 +3024,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
+  String get seqHintNoLimit => '\"चलो\" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
+  String get seqHintLength => '\"चलो\" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
   String get seqWords => 'शब्द';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'लेआउट रीसेट करें';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'आकार';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3078,4 +3063,43 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'छोटा';
+
+  @override
+  String get homeSizeMedium => 'मध्यम';
+
+  @override
+  String get homeSizeLarge => 'बड़ा';
+
+  @override
+  String get homeHide => 'छिपाएँ';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count छिपे कार्ड',
+      one: '1 छिपा कार्ड',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'कार्ड को हिलाने के लिए दबाकर रखें। आकार बदलने के लिए उसका निचला किनारा (iPad और Mac पर बगल का किनारा भी) खींचें।';
+
+  @override
+  String get homeLayoutHintDismiss => 'समझ गया';
+
+  @override
+  String get homeLayoutTitle => 'होम स्क्रीन';
+
+  @override
+  String get homeResetSubtitle => 'कार्ड को डिफ़ॉल्ट क्रम और आकार में लौटाता है';
+
+  @override
+  String get homeLayoutResetDone => 'लेआउट रीसेट हुआ';
 }

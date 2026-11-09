@@ -2993,25 +2993,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get seqWords => '문구';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => '레이아웃 초기화';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => '크기';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3038,4 +3023,37 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => '작게';
+
+  @override
+  String get homeSizeMedium => '보통';
+
+  @override
+  String get homeSizeLarge => '크게';
+
+  @override
+  String get homeHide => '숨기기';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(count, locale: localeName, other: '숨긴 카드 $count개');
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint => '카드를 길게 눌러 이동하세요. 아래쪽 가장자리(iPad와 Mac에서는 옆 가장자리도)를 끌어 크기를 바꿀 수 있습니다.';
+
+  @override
+  String get homeLayoutHintDismiss => '확인';
+
+  @override
+  String get homeLayoutTitle => '홈 화면';
+
+  @override
+  String get homeResetSubtitle => '카드 순서와 크기를 기본값으로 되돌립니다';
+
+  @override
+  String get homeLayoutResetDone => '레이아웃을 초기화했습니다';
 }

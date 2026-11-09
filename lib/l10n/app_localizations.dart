@@ -5506,41 +5506,11 @@ abstract class AppLocalizations {
   /// **'Words'**
   String get seqWords;
 
-  /// No description provided for @homeEdit.
-  ///
-  /// In en, this message translates to:
-  /// **'Arrange home'**
-  String get homeEdit;
-
-  /// No description provided for @homeEditHint.
-  ///
-  /// In en, this message translates to:
-  /// **'Drag the handle to move a card, fold it, or change its size.'**
-  String get homeEditHint;
-
   /// No description provided for @homeReset.
   ///
   /// In en, this message translates to:
   /// **'Reset layout'**
   String get homeReset;
-
-  /// No description provided for @homeMove.
-  ///
-  /// In en, this message translates to:
-  /// **'Move'**
-  String get homeMove;
-
-  /// No description provided for @homeExpand.
-  ///
-  /// In en, this message translates to:
-  /// **'Show'**
-  String get homeExpand;
-
-  /// No description provided for @homeCollapse.
-  ///
-  /// In en, this message translates to:
-  /// **'Fold'**
-  String get homeCollapse;
 
   /// No description provided for @homeSize.
   ///
@@ -5595,6 +5565,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing rings this day'**
   String get noAlarmsThatDay;
+
+  /// No description provided for @homeSizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get homeSizeSmall;
+
+  /// No description provided for @homeSizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get homeSizeMedium;
+
+  /// No description provided for @homeSizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get homeSizeLarge;
+
+  /// No description provided for @homeHide.
+  ///
+  /// In en, this message translates to:
+  /// **'Hide'**
+  String get homeHide;
+
+  /// No description provided for @homeHiddenCards.
+  ///
+  /// In en, this message translates to:
+  /// **'{count, plural, =1{1 hidden card} other{{count} hidden cards}}'**
+  String homeHiddenCards(int count);
+
+  /// No description provided for @homeLayoutHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Press and hold a card to move it. Drag its bottom edge, or a side edge on iPad and Mac, to resize it.'**
+  String get homeLayoutHint;
+
+  /// No description provided for @homeLayoutHintDismiss.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it'**
+  String get homeLayoutHintDismiss;
+
+  /// No description provided for @homeLayoutTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Home screen'**
+  String get homeLayoutTitle;
+
+  /// No description provided for @homeResetSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Put the home cards back in their default order and sizes'**
+  String get homeResetSubtitle;
+
+  /// No description provided for @homeLayoutResetDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Home layout reset'**
+  String get homeLayoutResetDone;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

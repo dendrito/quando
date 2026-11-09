@@ -2970,8 +2970,8 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 secondo prima',
       other: '$n secondi prima',
+      one: '1 secondo prima',
     );
     return '$_temp0';
   }
@@ -3002,13 +3002,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 secondo', other: '$n secondi');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondi', one: '1 secondo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minuti');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuti', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3057,25 +3057,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get seqWords => 'Parole';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Ripristina layout';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Dimensione';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3102,4 +3087,43 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Piccolo';
+
+  @override
+  String get homeSizeMedium => 'Medio';
+
+  @override
+  String get homeSizeLarge => 'Grande';
+
+  @override
+  String get homeHide => 'Nascondi';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count schede nascoste',
+      one: '1 scheda nascosta',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Tieni premuta una scheda per spostarla. Trascina il bordo inferiore (o laterale su iPad e Mac) per ridimensionarla.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Ho capito';
+
+  @override
+  String get homeLayoutTitle => 'Schermata iniziale';
+
+  @override
+  String get homeResetSubtitle => 'Riporta le schede all’ordine e alle dimensioni predefiniti';
+
+  @override
+  String get homeLayoutResetDone => 'Layout ripristinato';
 }

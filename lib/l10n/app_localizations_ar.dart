@@ -2992,11 +2992,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'قبل ثانية',
-      two: 'قبل ثانيتين',
-      few: 'قبل $n ثوانٍ',
-      many: 'قبل $n ثانية',
       other: 'قبل $n ثانية',
+      many: 'قبل $n ثانية',
+      few: 'قبل $n ثوانٍ',
+      two: 'قبل ثانيتين',
+      one: 'قبل ثانية',
     );
     return '$_temp0';
   }
@@ -3030,11 +3030,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'ثانية',
-      two: 'ثانيتان',
-      few: '$n ثوانٍ',
-      many: '$n ثانية',
       other: '$n ثانية',
+      many: '$n ثانية',
+      few: '$n ثوانٍ',
+      two: 'ثانيتان',
+      one: 'ثانية',
     );
     return '$_temp0';
   }
@@ -3044,11 +3044,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'دقيقة',
-      two: 'دقيقتان',
-      few: '$n دقائق',
-      many: '$n دقيقة',
       other: '$n دقيقة',
+      many: '$n دقيقة',
+      few: '$n دقائق',
+      two: 'دقيقتان',
+      one: 'دقيقة',
     );
     return '$_temp0';
   }
@@ -3098,25 +3098,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get seqWords => 'كلمات';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'إعادة ضبط التخطيط';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'الحجم';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3143,4 +3128,45 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'صغير';
+
+  @override
+  String get homeSizeMedium => 'متوسط';
+
+  @override
+  String get homeSizeLarge => 'كبير';
+
+  @override
+  String get homeHide => 'إخفاء';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count بطاقة مخفية',
+      few: '$count بطاقات مخفية',
+      two: 'بطاقتان مخفيتان',
+      one: 'بطاقة مخفية واحدة',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'اضغط مطولًا على البطاقة لنقلها. اسحب حافتها السفلية (أو الجانبية على iPad وMac) لتغيير حجمها.';
+
+  @override
+  String get homeLayoutHintDismiss => 'فهمت';
+
+  @override
+  String get homeLayoutTitle => 'الشاشة الرئيسية';
+
+  @override
+  String get homeResetSubtitle => 'يعيد البطاقات إلى الترتيب والأحجام الافتراضية';
+
+  @override
+  String get homeLayoutResetDone => 'تمت إعادة ضبط التخطيط';
 }

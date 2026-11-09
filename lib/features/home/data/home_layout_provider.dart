@@ -20,7 +20,26 @@ class HomeLayoutNotifier extends Notifier<HomeLayout> {
 
   void move(List<HomeBlock> visible, int from, int to) => _set(state.move(visible, from, to));
 
+  void hide(HomeBlock b) => setBlock(b, state.of(b).copyWith(hidden: true));
+
+  void unhide(HomeBlock b) => setBlock(b, state.of(b).copyWith(hidden: false));
+
   void reset() => _set(const HomeLayout());
 }
 
 final homeLayoutProvider = NotifierProvider<HomeLayoutNotifier, HomeLayout>(HomeLayoutNotifier.new);
+
+/// The one-time hint about dragging and resizing cards; true once it has been dismissed.
+class HomeLayoutHintNotifier extends Notifier<bool> {
+  static const _key = 'home.layoutHint.seen';
+
+  @override
+  bool build() => ref.read(prefsProvider).getBool(_key) ?? false;
+
+  void dismiss() {
+    state = true;
+    ref.read(prefsProvider).setBool(_key, true);
+  }
+}
+
+final homeLayoutHintSeenProvider = NotifierProvider<HomeLayoutHintNotifier, bool>(HomeLayoutHintNotifier.new);

@@ -2953,8 +2953,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 saniye önce',
       other: '$n saniye önce',
+      one: '1 saniye önce',
     );
     return '$_temp0';
   }
@@ -2985,13 +2985,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 saniye', other: '$n saniye');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 dakika', other: '$n dakika');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
     return '$_temp0';
   }
 
@@ -3040,25 +3040,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get seqWords => 'Sözler';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'Düzeni sıfırla';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'Boyut';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3085,4 +3070,43 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'Küçük';
+
+  @override
+  String get homeSizeMedium => 'Orta';
+
+  @override
+  String get homeSizeLarge => 'Büyük';
+
+  @override
+  String get homeHide => 'Gizle';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count gizli kart',
+      one: '1 gizli kart',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Taşımak için bir karta basılı tutun. Yeniden boyutlandırmak için alt kenarını (iPad ve Mac’te yan kenarını da) sürükleyin.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Anladım';
+
+  @override
+  String get homeLayoutTitle => 'Ana ekran';
+
+  @override
+  String get homeResetSubtitle => 'Kartları varsayılan sıra ve boyutlara döndürür';
+
+  @override
+  String get homeLayoutResetDone => 'Düzen sıfırlandı';
 }

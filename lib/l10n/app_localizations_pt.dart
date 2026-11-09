@@ -3057,22 +3057,7 @@ class AppLocalizationsPt extends AppLocalizations {
   String get seqWords => 'Palavras';
 
   @override
-  String get homeEdit => 'Organizar o início';
-
-  @override
-  String get homeEditHint => 'Arraste a alça para mover um cartão, recolha-o ou mude o tamanho.';
-
-  @override
   String get homeReset => 'Restaurar layout';
-
-  @override
-  String get homeMove => 'Mover';
-
-  @override
-  String get homeExpand => 'Mostrar';
-
-  @override
-  String get homeCollapse => 'Recolher';
 
   @override
   String get homeSize => 'Tamanho';
@@ -3102,4 +3087,43 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nada toca neste dia';
+
+  @override
+  String get homeSizeSmall => 'Pequeno';
+
+  @override
+  String get homeSizeMedium => 'Médio';
+
+  @override
+  String get homeSizeLarge => 'Grande';
+
+  @override
+  String get homeHide => 'Ocultar';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count cartões ocultos',
+      one: '1 cartão oculto',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'Mantenha um cartão pressionado para movê-lo. Arraste a borda inferior (ou a lateral, no iPad e no Mac) para redimensionar.';
+
+  @override
+  String get homeLayoutHintDismiss => 'Entendi';
+
+  @override
+  String get homeLayoutTitle => 'Tela inicial';
+
+  @override
+  String get homeResetSubtitle => 'Volta os cartões da tela inicial à ordem e aos tamanhos padrão';
+
+  @override
+  String get homeLayoutResetDone => 'Layout restaurado';
 }

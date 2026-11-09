@@ -2941,15 +2941,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqStartCalls => 'הכרזות לפני הזינוק';
 
   @override
-  String get seqStartCallsHelp => 'נאמרות בקול לפני "צא", בספירה לאחור מרגע הזינוק.';
+  String get seqStartCallsHelp => 'נאמרות בקול לפני \"צא\", בספירה לאחור מרגע הזינוק.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'שנייה אחת לפני',
       other: '$n שניות לפני',
+      one: 'שנייה אחת לפני',
     );
     return '$_temp0';
   }
@@ -2980,13 +2980,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'שנייה אחת', other: '$n שניות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'דקה אחת', other: '$n דקות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
     return '$_temp0';
   }
 
@@ -3026,34 +3026,19 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqPresetRound => 'סבב של דקה';
 
   @override
-  String get seqHintNoLimit => 'אחרי "צא" הוא סופר למעלה עד שתעצור אותו.';
+  String get seqHintNoLimit => 'אחרי \"צא\" הוא סופר למעלה עד שתעצור אותו.';
 
   @override
-  String get seqHintLength => 'אחרי "צא" הוא סופר לאחור עד אפס.';
+  String get seqHintLength => 'אחרי \"צא\" הוא סופר לאחור עד אפס.';
 
   @override
   String get seqWords => 'מילים';
 
   @override
-  String get homeEdit => 'Arrange home';
+  String get homeReset => 'איפוס פריסה';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
-
-  @override
-  String get homeReset => 'Reset layout';
-
-  @override
-  String get homeMove => 'Move';
-
-  @override
-  String get homeExpand => 'Show';
-
-  @override
-  String get homeCollapse => 'Fold';
-
-  @override
-  String get homeSize => 'Size';
+  String get homeSize => 'גודל';
 
   @override
   String get homeBlockClock => 'CLOCK';
@@ -3080,4 +3065,43 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeSizeSmall => 'קטן';
+
+  @override
+  String get homeSizeMedium => 'בינוני';
+
+  @override
+  String get homeSizeLarge => 'גדול';
+
+  @override
+  String get homeHide => 'הסתר';
+
+  @override
+  String homeHiddenCards(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count כרטיסים מוסתרים',
+      one: 'כרטיס מוסתר אחד',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get homeLayoutHint =>
+      'לחצו לחיצה ארוכה על כרטיס כדי להזיז אותו. גררו את הקצה התחתון (או הצדדי ב-iPad וב-Mac) כדי לשנות גודל.';
+
+  @override
+  String get homeLayoutHintDismiss => 'הבנתי';
+
+  @override
+  String get homeLayoutTitle => 'מסך הבית';
+
+  @override
+  String get homeResetSubtitle => 'מחזיר את הכרטיסים לסדר ולגדלים המוגדרים כברירת מחדל';
+
+  @override
+  String get homeLayoutResetDone => 'הפריסה אופסה';
 }

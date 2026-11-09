@@ -5,17 +5,19 @@ import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/features/home/data/home_layout_provider.dart';
 import 'package:quando/features/home/domain/home_layout.dart';
+import 'package:quando/features/home/ui/home_block_frame.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   test('layout survives a save, drops unknown blocks and adds new ones', () {
     final l = const HomeLayout()
-        .withState(HomeBlock.sky, const BlockState(collapsed: true, scale: 1.4))
+        .withState(HomeBlock.sky, const BlockState(collapsed: true, height: BlockSize.large, width: BlockSize.small))
         .move(HomeBlock.values, 0, 2);
     final back = HomeLayout.decode(l.encode())!;
     expect(back.order, l.order);
     expect(back.of(HomeBlock.sky).collapsed, isTrue);
-    expect(back.of(HomeBlock.sky).scale, 1.4);
+    expect(back.of(HomeBlock.sky).height, BlockSize.large);
+    expect(back.of(HomeBlock.sky).width, BlockSize.small);
     final old = HomeLayout.decode('{"order":["alarms","sky","quick","gone"],"states":{"gone":{"s":3}}}')!;
     expect(old.order.first, HomeBlock.alarms);
     // A layout saved before the ribbon existed gets it right under the sky.
@@ -33,12 +35,23 @@ void main() {
     expect(moved.order.indexOf(HomeBlock.next), l.order.indexOf(HomeBlock.next));
   });
 
-  test('size is kept between half and double', () {
-    expect(const BlockState().copyWith(scale: 9).scale, 2);
-    expect(const BlockState().copyWith(scale: 0).scale, .5);
+  test('layouts saved with the old size slider map to the nearest size', () {
+    final l = HomeLayout.decode('{"order":["clock"],"states":{"clock":{"s":1.6},"sky":{"s":0.6},"next":{"c":true,"s":1}}}')!;
+    expect(l.heightOf(HomeBlock.clock), BlockSize.large);
+    expect(l.heightOf(HomeBlock.sky), BlockSize.small);
+    expect(l.of(HomeBlock.next).collapsed, isTrue);
   });
 
-  testWidgets('arranging home: fold and resize a card, and it is remembered', (tester) async {
+  test('default sizes', () {
+    const l = HomeLayout();
+    expect(l.heightOf(HomeBlock.clock), BlockSize.small);
+    expect(l.heightOf(HomeBlock.next), BlockSize.small);
+    expect(l.heightOf(HomeBlock.sky), BlockSize.large);
+    expect(l.heightOf(HomeBlock.ribbon), BlockSize.small);
+    expect(l.heightOf(HomeBlock.alarms), BlockSize.medium);
+  });
+
+  testWidgets('cards: menu resizes, bottom edge drags, hide and restore, remembered', (tester) async {
     tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
@@ -54,21 +67,36 @@ void main() {
     await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const QuandoApp()));
     await tester.pumpAndSettle();
     expect(find.text('CLOCK'), findsOneWidget);
-    final before = tester.getSize(find.byKey(const ValueKey(HomeBlock.clock))).height;
+    expect(find.byTooltip('Arrange home'), findsNothing);
+    final clock = find.byKey(const ValueKey(HomeBlock.clock));
+    final small = tester.getSize(find.descendant(of: clock, matching: find.byType(HomeBlockFrame))).height;
 
-    await tester.tap(find.byTooltip('Arrange home'));
+    // The header menu picks a size.
+    await tester.tap(find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')));
     await tester.pumpAndSettle();
-    expect(find.byType(Slider), findsWidgets);
-    container.read(homeLayoutProvider.notifier).setBlock(HomeBlock.clock, const BlockState(scale: 1.5));
+    await tester.tap(find.widgetWithText(CheckedPopupMenuItem<Object>, 'Large'));
     await tester.pumpAndSettle();
-    expect(tester.getSize(find.byKey(const ValueKey(HomeBlock.clock))).height, greaterThan(before));
+    expect(container.read(homeLayoutProvider).heightOf(HomeBlock.clock), BlockSize.large);
+    expect(tester.getSize(find.byType(HomeBlockFrame).first).height, greaterThan(small));
+    expect(prefs.getString('home.layout'), contains('large'));
 
-    await tester.tap(find.byTooltip('Fold').first);
+    // Dragging the bottom edge snaps back down.
+    final box = tester.getRect(find.byType(HomeBlockFrame).first);
+    await tester.dragFrom(Offset(box.center.dx, box.bottom - 24), const Offset(0, -300));
     await tester.pumpAndSettle();
-    expect(container.read(homeLayoutProvider).of(HomeBlock.clock).collapsed, isTrue);
-    expect(prefs.getString('home.layout'), contains('clock'));
-    await tester.tap(find.text('Done').first);
+    expect(container.read(homeLayoutProvider).heightOf(HomeBlock.clock), BlockSize.small);
+
+    // Hide it, then bring it back.
+    await tester.tap(find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')));
     await tester.pumpAndSettle();
-    expect(find.byType(Slider), findsNothing);
+    await tester.tap(find.text('Hide'));
+    await tester.pumpAndSettle();
+    expect(find.text('CLOCK'), findsNothing);
+    await tester.scrollUntilVisible(find.text('1 hidden card'), 300, scrollable: find.byType(Scrollable).first);
+    await tester.tap(find.text('1 hidden card'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('CLOCK'));
+    await tester.pumpAndSettle();
+    expect(find.text('CLOCK'), findsOneWidget);
   });
 }
