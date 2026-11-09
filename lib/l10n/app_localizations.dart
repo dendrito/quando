@@ -4738,6 +4738,42 @@ abstract class AppLocalizations {
   /// **'Sign in and load scenes'**
   String get tuyaSignIn;
 
+  /// No description provided for @tuyaRelayUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando Tuya relay address (https)'**
+  String get tuyaRelayUrl;
+
+  /// No description provided for @tuyaRelayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.'**
+  String get tuyaRelayHint;
+
+  /// No description provided for @tuyaGoogleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.'**
+  String get tuyaGoogleHint;
+
+  /// No description provided for @tuyaLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life account linked'**
+  String get tuyaLinked;
+
+  /// No description provided for @tuyaUnlink.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink'**
+  String get tuyaUnlink;
+
+  /// No description provided for @tuyaNeedsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your Quando account in Settings first.'**
+  String get tuyaNeedsAccount;
+
   /// No description provided for @roshHodeshHeading.
   ///
   /// In en, this message translates to:

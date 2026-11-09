@@ -2605,6 +2605,26 @@ class AppLocalizationsHi extends AppLocalizations {
   String get tuyaSignIn => 'Sign in and load scenes';
 
   @override
+  String get tuyaRelayUrl => 'Quando Tuya relay address (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.';
+
+  @override
+  String get tuyaLinked => 'Smart Life account linked';
+
+  @override
+  String get tuyaUnlink => 'Unlink';
+
+  @override
+  String get tuyaNeedsAccount => 'Sign in to your Quando account in Settings first.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override

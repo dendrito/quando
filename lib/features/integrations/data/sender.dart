@@ -12,8 +12,9 @@ import 'package:quando/l10n/l10n.dart';
 /// Sends alarm happenings to Pushover and webhooks. Failures are quiet:
 /// an integration must never get in the way of the alarm.
 class IntegrationSender {
-  IntegrationSender(this._settings, {http.Client? client}) : _client = client ?? http.Client() {
-    _tuya = TuyaClient(client: _client);
+  IntegrationSender(this._settings, {http.Client? client, TuyaClient? tuya})
+    : _client = client ?? http.Client() {
+    _tuya = tuya ?? TuyaClient(client: _client);
   }
 
   final IntegrationSettings Function() _settings;

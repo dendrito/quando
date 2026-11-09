@@ -10,6 +10,7 @@ import 'package:quando/app/providers.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/features/integrations/data/sender.dart';
 import 'package:quando/features/integrations/data/tuya_client.dart';
+import 'package:quando/features/integrations/data/tuya_relay.dart';
 import 'package:quando/features/integrations/domain/integrations.dart';
 import 'package:quando/features/integrations/domain/tuya.dart';
 import 'package:quando/features/integrations/ui/tuya_connection_card.dart';
@@ -115,6 +116,62 @@ void main() {
     expect(body['country_code'], '55');
     expect(body['schema'], 'tuyaSmart');
     expect(body['password'], 'a17a41337551d6542fd005e18b43afd4');
+  });
+
+  test('relay mode sends only the Quando sign-in token and never needs Tuya keys', () async {
+    final requests = <http.Request>[];
+    final client = TuyaClient(
+      relay: TuyaRelay(
+        client: MockClient((r) async {
+          requests.add(r);
+          return switch (r.url.path) {
+            '/v1/scenes' => http.Response(
+              jsonEncode({
+                'scenes': [scene.toJson()],
+              }),
+              200,
+            ),
+            '/v1/run' => http.Response('{"ok":true}', 200),
+            '/v1/login' => http.Response('{"error":"tuya","code":"2406"}', 502),
+            _ => http.Response('{}', 404),
+          };
+        }),
+        idToken: () async => 'quando-token',
+      ),
+    );
+    const relayed = TuyaSettings(relayUrl: 'https://relay.example.dev');
+    expect(relayed.ready, isTrue);
+    expect((await client.scenes(relayed)).single.key, scene.key);
+    await client.runScene(relayed, scene);
+    expect(requests.map((r) => r.url.path), ['/v1/scenes', '/v1/run']);
+    expect(requests.every((r) => r.headers['authorization'] == 'Bearer quando-token'), isTrue);
+    expect(jsonDecode(requests.last.body), {'homeId': '42', 'sceneId': 'light'});
+    // No Tuya host is contacted and the relay request carries no Tuya key.
+    expect(requests.every((r) => r.url.host == 'relay.example.dev'), isTrue);
+
+    await expectLater(
+      client.relay.login('https://relay.example.dev', countryCode: '55', username: 'a@b.c', password: 'x'),
+      throwsA(isA<TuyaException>().having((e) => e.code, 'code', '2406')),
+    );
+  });
+
+  test('relay needs a Quando sign-in and https', () async {
+    final signedOut = TuyaRelay(
+      client: MockClient((r) async => http.Response('{}', 200)),
+      idToken: () async => null,
+    );
+    await expectLater(
+      signedOut.scenes('https://relay.example.dev'),
+      throwsA(isA<TuyaException>().having((e) => e.code, 'code', 'signin')),
+    );
+    final plain = TuyaRelay(
+      client: MockClient((r) async => http.Response('{}', 200)),
+      idToken: () async => 't',
+    );
+    await expectLater(
+      plain.scenes('http://relay.example.dev'),
+      throwsA(isA<TuyaException>().having((e) => e.code, 'code', 'setup')),
+    );
   });
 
   test('Tuya errors expose codes without response secrets and no command retry', () async {

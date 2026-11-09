@@ -4,13 +4,19 @@ import 'package:crypto/crypto.dart';
 import 'package:http/http.dart' as http;
 
 import '../domain/tuya.dart';
+import 'tuya_relay.dart';
 
-/// The user's own linked Tuya project. No shared developer secret or paid relay.
+/// Talks to Tuya with the user's own project keys, or through Quando's relay when
+/// [TuyaSettings.relayUrl] is set. No Tuya secret is ever bundled in the app.
 class TuyaClient {
-  TuyaClient({http.Client? client, DateTime Function()? now})
+  TuyaClient({http.Client? client, DateTime Function()? now, TuyaRelay? relay})
     : _client = client ?? http.Client(),
-      _now = now ?? DateTime.now;
+      _now = now ?? DateTime.now,
+      relay = relay ?? TuyaRelay(client: client);
   final http.Client _client;
+
+  /// Used when the settings point at Quando's relay instead of the user's own project.
+  final TuyaRelay relay;
   final DateTime Function() _now;
   String? _accessToken;
   String? _owner;
@@ -154,6 +160,7 @@ class TuyaClient {
   }
 
   Future<List<TuyaScene>> scenes(TuyaSettings s) async {
+    if (s.viaRelay) return relay.scenes(s.relayUrl.trim());
     final token = await _token(s);
     final homes = await _request(s, 'GET', '/v1.0/users/${Uri.encodeComponent(s.uid)}/homes', token: token);
     if (homes is! List) throw const TuyaException('response');
@@ -188,6 +195,7 @@ class TuyaClient {
   }
 
   Future<void> runScene(TuyaSettings s, TuyaScene scene) async {
+    if (s.viaRelay) return relay.runScene(s.relayUrl.trim(), scene);
     final token = await _token(s);
     final result = await _request(
       s,
