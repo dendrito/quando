@@ -910,5 +910,9 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "homeClockSize": "שעון במסך הבית",
+  "sizeSmall": "קטן",
+  "sizeMedium": "בינוני",
+  "sizeLarge": "גדול"
 }

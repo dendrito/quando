@@ -910,5 +910,9 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "homeClockSize": "홈 화면 시계",
+  "sizeSmall": "작게",
+  "sizeMedium": "보통",
+  "sizeLarge": "크게"
 }

@@ -5595,6 +5595,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing rings this day'**
   String get noAlarmsThatDay;
+
+  /// No description provided for @homeClockSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock on home'**
+  String get homeClockSize;
+
+  /// No description provided for @sizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get sizeSmall;
+
+  /// No description provided for @sizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get sizeMedium;
+
+  /// No description provided for @sizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get sizeLarge;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

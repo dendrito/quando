@@ -3038,4 +3038,16 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => '홈 화면 시계';
+
+  @override
+  String get sizeSmall => '작게';
+
+  @override
+  String get sizeMedium => '보통';
+
+  @override
+  String get sizeLarge => '크게';
 }

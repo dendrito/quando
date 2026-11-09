@@ -3030,6 +3030,18 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => '主屏幕时钟';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6057,4 +6069,16 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => '主畫面時鐘';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
 }

@@ -910,5 +910,9 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "homeClockSize": "Часы на главном экране",
+  "sizeSmall": "Маленькие",
+  "sizeMedium": "Средние",
+  "sizeLarge": "Большие"
 }

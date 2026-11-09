@@ -2964,8 +2964,8 @@ class AppLocalizationsNl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde ervoor',
       other: '$n seconden ervoor',
+      one: '1 seconde ervoor',
     );
     return '$_temp0';
   }
@@ -2996,13 +2996,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconden', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuten', one: '1 minuut');
     return '$_temp0';
   }
 
@@ -3096,4 +3096,16 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Klok op het beginscherm';
+
+  @override
+  String get sizeSmall => 'Klein';
+
+  @override
+  String get sizeMedium => 'Middel';
+
+  @override
+  String get sizeLarge => 'Groot';
 }

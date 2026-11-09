@@ -3004,10 +3004,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda przed',
-      few: '$n sekundy przed',
-      many: '$n sekund przed',
       other: '$n sekundy przed',
+      many: '$n sekund przed',
+      few: '$n sekundy przed',
+      one: '1 sekunda przed',
     );
     return '$_temp0';
   }
@@ -3041,10 +3041,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda',
-      few: '$n sekundy',
-      many: '$n sekund',
       other: '$n sekundy',
+      many: '$n sekund',
+      few: '$n sekundy',
+      one: '1 sekunda',
     );
     return '$_temp0';
   }
@@ -3054,10 +3054,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 minuta',
-      few: '$n minuty',
-      many: '$n minut',
       other: '$n minuty',
+      many: '$n minut',
+      few: '$n minuty',
+      one: '1 minuta',
     );
     return '$_temp0';
   }
@@ -3152,4 +3152,16 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Zegar na ekranie głównym';
+
+  @override
+  String get sizeSmall => 'Mały';
+
+  @override
+  String get sizeMedium => 'Średni';
+
+  @override
+  String get sizeLarge => 'Duży';
 }

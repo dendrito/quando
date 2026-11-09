@@ -3075,4 +3075,16 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Đồng hồ trên màn hình chính';
+
+  @override
+  String get sizeSmall => 'Nhỏ';
+
+  @override
+  String get sizeMedium => 'Vừa';
+
+  @override
+  String get sizeLarge => 'Lớn';
 }

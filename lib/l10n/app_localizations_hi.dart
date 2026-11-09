@@ -2944,11 +2944,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
+  String get seqStartCallsHelp => '\"चलो\" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड पहले', other: '$n सेकंड पहले');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड पहले', one: '1 सेकंड पहले');
     return '$_temp0';
   }
 
@@ -2978,13 +2978,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड', other: '$n सेकंड');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड', one: '1 सेकंड');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 मिनट', other: '$n मिनट');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n मिनट', one: '1 मिनट');
     return '$_temp0';
   }
 
@@ -3024,10 +3024,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
+  String get seqHintNoLimit => '\"चलो\" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
+  String get seqHintLength => '\"चलो\" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
   String get seqWords => 'शब्द';
@@ -3078,4 +3078,16 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'होम पर घड़ी';
+
+  @override
+  String get sizeSmall => 'छोटी';
+
+  @override
+  String get sizeMedium => 'मध्यम';
+
+  @override
+  String get sizeLarge => 'बड़ी';
 }

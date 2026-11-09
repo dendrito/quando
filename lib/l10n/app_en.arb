@@ -1866,5 +1866,9 @@
         "type": "String"
       }
     }
-  }
+  },
+  "homeClockSize": "Clock on home",
+  "sizeSmall": "Small",
+  "sizeMedium": "Medium",
+  "sizeLarge": "Large"
 }

@@ -910,5 +910,9 @@
   "homePlaceTitle": "Cidade do céu",
   "nextAlarmLine": "Próximo alarme · {title} {time}",
   "showAllAlarms": "Mostrar todos os dias",
-  "noAlarmsThatDay": "Nada toca neste dia"
+  "noAlarmsThatDay": "Nada toca neste dia",
+  "homeClockSize": "Relógio na tela inicial",
+  "sizeSmall": "Pequeno",
+  "sizeMedium": "Médio",
+  "sizeLarge": "Grande"
 }

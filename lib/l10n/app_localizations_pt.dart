@@ -3102,4 +3102,16 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nada toca neste dia';
+
+  @override
+  String get homeClockSize => 'Relógio na tela inicial';
+
+  @override
+  String get sizeSmall => 'Pequeno';
+
+  @override
+  String get sizeMedium => 'Médio';
+
+  @override
+  String get sizeLarge => 'Grande';
 }

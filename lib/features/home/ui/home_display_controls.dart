@@ -5,6 +5,7 @@ import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../l10n/l10n.dart';
 import '../../shabbat/domain/hebrew_date.dart';
+import '../domain/home_display.dart';
 
 String courseLabel(String id) => switch (id) {
   'daf' => l10n.courseDaf,
@@ -34,6 +35,28 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                 Padding(
                   padding: const EdgeInsets.all(12),
                   child: Text(l10n.homeDisplay, style: Theme.of(context).textTheme.titleLarge),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 12),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Text(l10n.homeClockSize, style: Theme.of(context).textTheme.bodyLarge),
+                      const SizedBox(height: 8),
+                      SegmentedButton<ClockSize>(
+                        key: const ValueKey('clock-size'),
+                        showSelectedIcon: false,
+                        segments: [
+                          ButtonSegment(value: ClockSize.large, label: Text(l10n.sizeLarge)),
+                          ButtonSegment(value: ClockSize.medium, label: Text(l10n.sizeMedium)),
+                          ButtonSegment(value: ClockSize.small, label: Text(l10n.sizeSmall)),
+                          ButtonSegment(value: ClockSize.off, label: Text(l10n.off)),
+                        ],
+                        selected: {s.clock},
+                        onSelectionChanged: (v) => n.set(s.copyWith(clock: v.first)),
+                      ),
+                    ],
+                  ),
                 ),
                 SwitchListTile(
                   title: Text(l10n.skyDayNight),

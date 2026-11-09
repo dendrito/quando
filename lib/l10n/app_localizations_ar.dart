@@ -2992,11 +2992,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'قبل ثانية',
-      two: 'قبل ثانيتين',
-      few: 'قبل $n ثوانٍ',
-      many: 'قبل $n ثانية',
       other: 'قبل $n ثانية',
+      many: 'قبل $n ثانية',
+      few: 'قبل $n ثوانٍ',
+      two: 'قبل ثانيتين',
+      one: 'قبل ثانية',
     );
     return '$_temp0';
   }
@@ -3030,11 +3030,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'ثانية',
-      two: 'ثانيتان',
-      few: '$n ثوانٍ',
-      many: '$n ثانية',
       other: '$n ثانية',
+      many: '$n ثانية',
+      few: '$n ثوانٍ',
+      two: 'ثانيتان',
+      one: 'ثانية',
     );
     return '$_temp0';
   }
@@ -3044,11 +3044,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'دقيقة',
-      two: 'دقيقتان',
-      few: '$n دقائق',
-      many: '$n دقيقة',
       other: '$n دقيقة',
+      many: '$n دقيقة',
+      few: '$n دقائق',
+      two: 'دقيقتان',
+      one: 'دقيقة',
     );
     return '$_temp0';
   }
@@ -3143,4 +3143,16 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'الساعة في الشاشة الرئيسية';
+
+  @override
+  String get sizeSmall => 'صغير';
+
+  @override
+  String get sizeMedium => 'متوسط';
+
+  @override
+  String get sizeLarge => 'كبير';
 }

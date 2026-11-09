@@ -27,6 +27,7 @@ import '../domain/week.dart';
 import '../../../app/widgets/tiles.dart';
 import 'alarm_group_card.dart';
 import 'clock_hero.dart';
+import '../domain/home_display.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
 import 'week_list.dart';
@@ -568,18 +569,26 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                   ),
-                const SizedBox(height: 14),
-                Padding(
-                  padding: const EdgeInsets.only(right: 12),
-                  child: ClockHero(now: ref.watch(clockProvider), zone: home),
-                ),
+                if (display.clock != ClockSize.off) ...[
+                  const SizedBox(height: 14),
+                  Padding(
+                    padding: const EdgeInsets.only(right: 12),
+                    child: ClockHero(now: ref.watch(clockProvider), zone: home, size: display.clock),
+                  ),
+                ],
                 const SizedBox(height: 14),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(l10n.nextAlarmHeading, style: text.labelSmall),
+                      // The countdown rides on the heading when the big line shows a clock time.
+                      Text(
+                        next != null && next.at.difference(now) > const Duration(hours: 12)
+                            ? '${l10n.nextAlarmHeading} · ${countdown(next.at.difference(now)).toUpperCase()}'
+                            : l10n.nextAlarmHeading,
+                        style: text.labelSmall,
+                      ),
                       const SizedBox(height: 6),
                       FittedBox(
                         fit: BoxFit.scaleDown,

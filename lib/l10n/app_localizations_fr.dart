@@ -2971,8 +2971,8 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde avant',
       other: '$n secondes avant',
+      one: '1 seconde avant',
     );
     return '$_temp0';
   }
@@ -3003,13 +3003,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n secondes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondes', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minute', other: '$n minutes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
     return '$_temp0';
   }
 
@@ -3103,4 +3103,16 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Horloge sur l’accueil';
+
+  @override
+  String get sizeSmall => 'Petite';
+
+  @override
+  String get sizeMedium => 'Moyenne';
+
+  @override
+  String get sizeLarge => 'Grande';
 }

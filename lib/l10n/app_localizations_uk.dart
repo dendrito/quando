@@ -3002,10 +3002,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунди',
-      many: 'За $n секунд',
       other: 'За $n секунди',
+      many: 'За $n секунд',
+      few: 'За $n секунди',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунди',
-      many: '$n секунд',
       other: '$n секунди',
+      many: '$n секунд',
+      few: '$n секунди',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 хвилина',
-      few: '$n хвилини',
-      many: '$n хвилин',
       other: '$n хвилини',
+      many: '$n хвилин',
+      few: '$n хвилини',
+      one: '1 хвилина',
     );
     return '$_temp0';
   }
@@ -3150,4 +3150,16 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Годинник на головному екрані';
+
+  @override
+  String get sizeSmall => 'Малий';
+
+  @override
+  String get sizeMedium => 'Середній';
+
+  @override
+  String get sizeLarge => 'Великий';
 }

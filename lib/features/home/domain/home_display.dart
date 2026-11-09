@@ -1,5 +1,8 @@
 import '../../shabbat/domain/hebrew_date.dart';
 
+/// How big the clock is on the home screen, or not shown at all.
+enum ClockSize { large, medium, small, off }
+
 class HomeDisplay {
   const HomeDisplay({
     this.night = true,
@@ -11,6 +14,7 @@ class HomeDisplay {
     this.skyUseShabbat = false,
     this.courses = const {},
     this.hebrewNames = HebrewNames.israeli,
+    this.clock = ClockSize.large,
   });
   final bool night, moon, weather, parasha, roshHodesh;
 
@@ -21,6 +25,9 @@ class HomeDisplay {
 
   /// How the parasha and Hebrew months are spelled.
   final HebrewNames hebrewNames;
+
+  /// The clock and today's date at the top of home.
+  final ClockSize clock;
   static const courseIds = {'daf', 'rambam1', 'rambam3', 'mitzvot', 'mishnah', 'nach'};
   HomeDisplay copyWith({
     bool? night,
@@ -32,6 +39,7 @@ class HomeDisplay {
     bool? skyUseShabbat,
     Set<String>? courses,
     HebrewNames? hebrewNames,
+    ClockSize? clock,
   }) => HomeDisplay(
     night: night ?? this.night,
     moon: moon ?? this.moon,
@@ -42,6 +50,7 @@ class HomeDisplay {
     skyUseShabbat: skyUseShabbat ?? this.skyUseShabbat,
     courses: courses ?? this.courses,
     hebrewNames: hebrewNames ?? this.hebrewNames,
+    clock: clock ?? this.clock,
   );
   Map<String, dynamic> toJson() => {
     'night': night,
@@ -53,6 +62,7 @@ class HomeDisplay {
     'skyUseShabbat': skyUseShabbat,
     'courses': courses.toList()..sort(),
     'hebrewNames': hebrewNames.name,
+    'clock': clock.name,
   };
   factory HomeDisplay.fromJson(Map<String, dynamic> j, {bool parashaDefault = false}) => HomeDisplay(
     night: j['night'] as bool? ?? true,
@@ -67,5 +77,6 @@ class HomeDisplay {
         if (courseIds.contains(x)) x as String,
     },
     hebrewNames: HebrewNames.from(j['hebrewNames']),
+    clock: ClockSize.values.where((c) => c.name == j['clock']).firstOrNull ?? ClockSize.large,
   );
 }
