@@ -180,11 +180,7 @@ class _HomeBlockFrameState extends State<HomeBlockFrame> {
                     ),
                   ),
                 ),
-                if (!folded)
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 22),
-                    child: _body(),
-                  ),
+                if (!folded) Padding(padding: const EdgeInsets.fromLTRB(16, 0, 16, 22), child: _body()),
               ],
             ),
             if (!folded) ...[
@@ -217,7 +213,10 @@ class _HomeBlockFrameState extends State<HomeBlockFrame> {
                 child: IgnorePointer(
                   child: Center(
                     child: DecoratedBox(
-                      decoration: BoxDecoration(color: QuandoColors.amber, borderRadius: BorderRadius.circular(20)),
+                      decoration: BoxDecoration(
+                        color: QuandoColors.amber,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 6),
                         child: Text(

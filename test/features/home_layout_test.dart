@@ -11,7 +11,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   test('layout survives a save, drops unknown blocks and adds new ones', () {
     final l = const HomeLayout()
-        .withState(HomeBlock.sky, const BlockState(collapsed: true, height: BlockSize.large, width: BlockSize.small))
+        .withState(
+          HomeBlock.sky,
+          const BlockState(collapsed: true, height: BlockSize.large, width: BlockSize.small),
+        )
         .move(HomeBlock.values, 0, 2);
     final back = HomeLayout.decode(l.encode())!;
     expect(back.order, l.order);
@@ -36,7 +39,9 @@ void main() {
   });
 
   test('layouts saved with the old size slider map to the nearest size', () {
-    final l = HomeLayout.decode('{"order":["clock"],"states":{"clock":{"s":1.6},"sky":{"s":0.6},"next":{"c":true,"s":1}}}')!;
+    final l = HomeLayout.decode(
+      '{"order":["clock"],"states":{"clock":{"s":1.6},"sky":{"s":0.6},"next":{"c":true,"s":1}}}',
+    )!;
     expect(l.heightOf(HomeBlock.clock), BlockSize.large);
     expect(l.heightOf(HomeBlock.sky), BlockSize.small);
     expect(l.of(HomeBlock.next).collapsed, isTrue);
@@ -72,7 +77,9 @@ void main() {
     final small = tester.getSize(find.descendant(of: clock, matching: find.byType(HomeBlockFrame))).height;
 
     // The header menu picks a size.
-    await tester.tap(find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')));
+    await tester.tap(
+      find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')),
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.widgetWithText(CheckedPopupMenuItem<Object>, 'Large'));
     await tester.pumpAndSettle();
@@ -87,12 +94,18 @@ void main() {
     expect(container.read(homeLayoutProvider).heightOf(HomeBlock.clock), BlockSize.small);
 
     // Hide it, then bring it back.
-    await tester.tap(find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')));
+    await tester.tap(
+      find.descendant(of: find.byType(HomeBlockFrame).first, matching: find.byTooltip('Size')),
+    );
     await tester.pumpAndSettle();
     await tester.tap(find.text('Hide'));
     await tester.pumpAndSettle();
     expect(find.text('CLOCK'), findsNothing);
-    await tester.scrollUntilVisible(find.text('1 hidden card'), 300, scrollable: find.byType(Scrollable).first);
+    await tester.scrollUntilVisible(
+      find.text('1 hidden card'),
+      300,
+      scrollable: find.byType(Scrollable).first,
+    );
     await tester.tap(find.text('1 hidden card'));
     await tester.pumpAndSettle();
     await tester.tap(find.text('CLOCK'));

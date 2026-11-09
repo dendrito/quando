@@ -134,7 +134,9 @@ class HomeLayout {
         final state = BlockState(
           collapsed: v['c'] == true,
           hidden: v['x'] == true,
-          height: BlockSize.byName(v['h']) ?? (legacy == null || legacy == 1 ? null : BlockSize.fromScale(legacy)),
+          height:
+              BlockSize.byName(v['h']) ??
+              (legacy == null || legacy == 1 ? null : BlockSize.fromScale(legacy)),
           width: BlockSize.byName(v['w']),
         );
         if (!state.isDefault) states[b] = state;
