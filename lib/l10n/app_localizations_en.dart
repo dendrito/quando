@@ -402,8 +402,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get presetsHint => 'Tap one to change its times. Swipe one away to delete it.';
 
   @override
-  String get lockSentence =>
-      'Lock the phone down to the clock and your alarms, for Shabbat or a focused night.';
+  String get lockSentence => 'Lock the phone down to the clock and your alarms, for Shabbat or a focused night.';
 
   @override
   String get lockExplain =>
@@ -443,8 +442,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pinToScreen => 'Pin Quando? to the screen';
 
   @override
-  String get pinToScreenHint =>
-      'Other apps can\'t be opened while locked. Android asks you to confirm the first time.';
+  String get pinToScreenHint => 'Other apps can\'t be opened while locked. Android asks you to confirm the first time.';
 
   @override
   String get noLocksComingUp => 'No locks coming up.';
@@ -525,8 +523,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get gentleSentence => 'A calm sound starts softly before your alarm, so it never jolts you awake.';
 
   @override
-  String get gentleExplain =>
-      'It grows slowly, easing you out of light sleep, and stops just before the alarm rings.';
+  String get gentleExplain => 'It grows slowly, easing you out of light sleep, and stops just before the alarm rings.';
 
   @override
   String get startsBeforeHeading => 'STARTS BEFORE THE ALARM';
@@ -1800,8 +1797,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo =>
-      'YouTube said no. Check your Google account is a test user of the Quando project.';
+  String get youTubeSaidNo => 'YouTube said no. Check your Google account is a test user of the Quando project.';
 
   @override
   String get event => 'Event';
@@ -2251,8 +2247,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2286,15 +2281,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2509,8 +2502,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2556,8 +2548,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2641,8 +2632,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
 
   @override
-  String get musicRingDurationHint =>
-      'Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.';
+  String get musicRingDurationHint => 'Playback follows this alarm’s Ring for setting and stops with Stop or Snooze.';
 
   @override
   String get musicBackupPlaying => 'Music could not start. The local alarm sound is playing.';
@@ -2676,8 +2666,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'YouTube plays video in a visible player. If it is hidden or cannot play, the local alarm continues.';
 
   @override
-  String get musicPreviewFailed =>
-      'Could not play this sound. Check your connection or try another track or station.';
+  String get musicPreviewFailed => 'Could not play this sound. Check your connection or try another track or station.';
 
   @override
   String get skyMoonPhase => 'Moon phase';
@@ -2947,12 +2936,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds before', one: '1 second before');
     return '$_temp0';
   }
 
@@ -3094,4 +3078,58 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Large';
+
+  @override
+  String get homeLayout => 'Home layout';
+
+  @override
+  String get homeLayoutClassic => 'Classic';
+
+  @override
+  String get homeLayoutCards => 'Cards';
+
+  @override
+  String get homeCardsHint => 'Drag a card to move it. Drag its edge or corner to resize it, or pick a size.';
+
+  @override
+  String get homeAddCard => 'Add card';
+
+  @override
+  String get homeOnHome => 'On home';
+
+  @override
+  String get homeRemoveCard => 'Remove';
+
+  @override
+  String get cardNext => 'Next alarm';
+
+  @override
+  String get cardClock => 'Clock and date';
+
+  @override
+  String get cardSky => 'Sun, moon and weather';
+
+  @override
+  String get cardMoon => 'Moon';
+
+  @override
+  String get cardWeather => 'Weather';
+
+  @override
+  String get cardAlarms => 'Your alarms';
+
+  @override
+  String get cardQuick => 'Quick alarms';
+
+  @override
+  String get cardTools => 'Stopwatch, countdown and get set';
+
+  @override
+  String get cardWorld => 'World clocks';
+
+  @override
+  String get cardWeek => 'This week';
+
+  @override
+  String get cardShabbat => 'Shabbat and holidays';
 }

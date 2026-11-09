@@ -5619,6 +5619,114 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Large'**
   String get sizeLarge;
+
+  /// No description provided for @homeLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Home layout'**
+  String get homeLayout;
+
+  /// No description provided for @homeLayoutClassic.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic'**
+  String get homeLayoutClassic;
+
+  /// No description provided for @homeLayoutCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get homeLayoutCards;
+
+  /// No description provided for @homeCardsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag a card to move it. Drag its edge or corner to resize it, or pick a size.'**
+  String get homeCardsHint;
+
+  /// No description provided for @homeAddCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add card'**
+  String get homeAddCard;
+
+  /// No description provided for @homeOnHome.
+  ///
+  /// In en, this message translates to:
+  /// **'On home'**
+  String get homeOnHome;
+
+  /// No description provided for @homeRemoveCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get homeRemoveCard;
+
+  /// No description provided for @cardNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next alarm'**
+  String get cardNext;
+
+  /// No description provided for @cardClock.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock and date'**
+  String get cardClock;
+
+  /// No description provided for @cardSky.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun, moon and weather'**
+  String get cardSky;
+
+  /// No description provided for @cardMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon'**
+  String get cardMoon;
+
+  /// No description provided for @cardWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get cardWeather;
+
+  /// No description provided for @cardAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Your alarms'**
+  String get cardAlarms;
+
+  /// No description provided for @cardQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick alarms'**
+  String get cardQuick;
+
+  /// No description provided for @cardTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopwatch, countdown and get set'**
+  String get cardTools;
+
+  /// No description provided for @cardWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'World clocks'**
+  String get cardWorld;
+
+  /// No description provided for @cardWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get cardWeek;
+
+  /// No description provided for @cardShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat and holidays'**
+  String get cardShabbat;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

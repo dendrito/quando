@@ -23,14 +23,7 @@ class MemoryTask extends StatefulWidget {
 }
 
 class _MemoryTaskState extends State<MemoryTask> {
-  static const _icons = [
-    Icons.wb_sunny,
-    Icons.local_cafe,
-    Icons.favorite,
-    Icons.music_note,
-    Icons.star,
-    Icons.spa,
-  ];
+  static const _icons = [Icons.wb_sunny, Icons.local_cafe, Icons.favorite, Icons.music_note, Icons.star, Icons.spa];
   late final List<IconData> _cards = [..._icons, ..._icons]..shuffle(Random(widget.seed));
   @visibleForTesting
   List<IconData> get cardsForTest => _cards;
@@ -85,11 +78,7 @@ class _MemoryTaskState extends State<MemoryTask> {
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: _matched.contains(i) || _up.contains(i)
-                    ? Icon(
-                        _cards[i],
-                        color: _matched.contains(i) ? QuandoColors.text : QuandoColors.coral,
-                        size: 30,
-                      )
+                    ? Icon(_cards[i], color: _matched.contains(i) ? QuandoColors.text : QuandoColors.coral, size: 30)
                     : const Icon(Icons.question_mark, color: QuandoColors.faint, size: 22),
               ),
             ),
@@ -117,11 +106,8 @@ class _PhraseTaskState extends State<PhraseTask> {
   final _c = TextEditingController();
   String? _error;
 
-  static String norm(String s) => s
-      .toLowerCase()
-      .replaceAll(RegExp(r'[^\p{L}\p{N} ]', unicode: true), '')
-      .replaceAll(RegExp(r'\s+'), ' ')
-      .trim();
+  static String norm(String s) =>
+      s.toLowerCase().replaceAll(RegExp(r'[^\p{L}\p{N} ]', unicode: true), '').replaceAll(RegExp(r'\s+'), ' ').trim();
 
   void _check() {
     if (norm(_c.text) == norm(_phrase)) {

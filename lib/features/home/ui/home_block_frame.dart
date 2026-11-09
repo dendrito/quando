@@ -107,14 +107,10 @@ class HomeBlockFrame extends StatelessWidget {
                     ),
                     // Pull this up or down to size by hand.
                     GestureDetector(
-                      onVerticalDragUpdate: (d) =>
-                          onChanged(state.copyWith(scale: state.scale + d.delta.dy / 160)),
+                      onVerticalDragUpdate: (d) => onChanged(state.copyWith(scale: state.scale + d.delta.dy / 160)),
                       child: Tooltip(
                         message: l10n.homeSize,
-                        child: const Padding(
-                          padding: EdgeInsets.all(8),
-                          child: Icon(Icons.open_in_full, size: 22),
-                        ),
+                        child: const Padding(padding: EdgeInsets.all(8), child: Icon(Icons.open_in_full, size: 22)),
                       ),
                     ),
                     TextButton(

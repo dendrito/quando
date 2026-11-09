@@ -8,15 +8,12 @@ class ZonePlaces {
   static Place? forZone(String zone) {
     if (zone == Places.saoPaulo.timeZone) return Places.saoPaulo;
     for (final p in Places.all) {
-      if (p.timeZone == zone &&
-          p.name.toLowerCase().replaceAll(' ', '_') == zone.split('/').last.toLowerCase()) {
+      if (p.timeZone == zone && p.name.toLowerCase().replaceAll(' ', '_') == zone.split('/').last.toLowerCase()) {
         return p;
       }
     }
     final point = _points[zone];
-    return point == null
-        ? null
-        : Place(name: cityOf(zone), latitude: point.$1, longitude: point.$2, timeZone: zone);
+    return point == null ? null : Place(name: cityOf(zone), latitude: point.$1, longitude: point.$2, timeZone: zone);
   }
 
   static List<Place> get all => [for (final zone in _points.keys) forZone(zone)!];

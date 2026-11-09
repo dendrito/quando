@@ -44,9 +44,7 @@ class RingLengthPicker extends StatelessWidget {
         );
         return AlertDialog(
           title: Text(l10n.ringFor),
-          content: Row(
-            children: [field(min, l10n.minutes), const SizedBox(width: 16), field(sec, l10n.seconds)],
-          ),
+          content: Row(children: [field(min, l10n.minutes), const SizedBox(width: 16), field(sec, l10n.seconds)]),
           actions: [
             TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.cancel)),
             FilledButton(

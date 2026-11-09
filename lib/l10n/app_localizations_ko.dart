@@ -405,8 +405,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get lockSentence => '안식일이나 집중하고 싶은 밤을 위해 휴대폰을 시계와 알람만 남겨요.';
 
   @override
-  String get lockExplain =>
-      '잠금 중에는 Quando?가 시간, 다음 알람, 잠금 종료 시각만 보여 줘요. 알람은 계속 작동하고, 잠금이 풀릴 때까지 아무것도 바꿀 수 없어요.';
+  String get lockExplain => '잠금 중에는 Quando?가 시간, 다음 알람, 잠금 종료 시각만 보여 줘요. 알람은 계속 작동하고, 잠금이 풀릴 때까지 아무것도 바꿀 수 없어요.';
 
   @override
   String get lockNowHeading => '지금 잠그기';
@@ -751,11 +750,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String thingsNeedFixing(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n개 항목을 해결해야 해요. 그렇지 않으면 알람이 울리지 않을 수 있어요.',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n개 항목을 해결해야 해요. 그렇지 않으면 알람이 울리지 않을 수 있어요.');
     return '$_temp0';
   }
 
@@ -1135,8 +1130,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get songLink => '노래 링크';
 
   @override
-  String get songLinkHowTo =>
-      'Spotify, Apple Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
+  String get songLinkHowTo => 'Spotify, Apple Music, YouTube, YouTube Music, SoundCloud에서 공유 → 링크 복사를 탭하고 여기에 붙여 넣으세요.';
 
   @override
   String get songNameHint => '이름, 예: 아침 재생목록';
@@ -1770,8 +1764,7 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get spotifySaidNo =>
-      'Spotify가 거부했어요. Spotify 대시보드에서 Quando?의 Web API를 체크하고 User Management에 계정을 추가하세요.';
+  String get spotifySaidNo => 'Spotify가 거부했어요. Spotify 대시보드에서 Quando?의 Web API를 체크하고 User Management에 계정을 추가하세요.';
 
   @override
   String serviceDidntAnswer(String service, int code) {
@@ -2225,8 +2218,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2260,15 +2252,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2483,8 +2473,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2530,8 +2519,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2580,8 +2568,7 @@ class AppLocalizationsKo extends AppLocalizations {
       'Smart Life 또는 Tuya Smart 계정의 국가, 이메일 또는 전화번호, 비밀번호를 사용하세요. Quando의 Tuya 릴레이로 한 번 전송되며 저장되지 않습니다. Quando 계정에 로그인해 있어야 합니다.';
 
   @override
-  String get tuyaGoogleHint =>
-      'Google이나 Apple로 Smart Life에 로그인하나요? Smart Life에서 ‘비밀번호 찾기’를 눌러 비밀번호를 설정한 뒤 여기에서 사용하세요.';
+  String get tuyaGoogleHint => 'Google이나 Apple로 Smart Life에 로그인하나요? Smart Life에서 ‘비밀번호 찾기’를 눌러 비밀번호를 설정한 뒤 여기에서 사용하세요.';
 
   @override
   String get tuyaLinked => 'Smart Life 계정 연결됨';
@@ -3050,4 +3037,58 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get sizeLarge => '크게';
+
+  @override
+  String get homeLayout => '홈 레이아웃';
+
+  @override
+  String get homeLayoutClassic => '클래식';
+
+  @override
+  String get homeLayoutCards => '카드';
+
+  @override
+  String get homeCardsHint => '카드를 끌어 옮기세요. 가장자리나 모서리를 끌거나 크기를 골라 크기를 바꾸세요.';
+
+  @override
+  String get homeAddCard => '카드 추가';
+
+  @override
+  String get homeOnHome => '홈에 있음';
+
+  @override
+  String get homeRemoveCard => '제거';
+
+  @override
+  String get cardNext => '다음 알람';
+
+  @override
+  String get cardClock => '시계와 날짜';
+
+  @override
+  String get cardSky => '해, 달, 날씨';
+
+  @override
+  String get cardMoon => '달';
+
+  @override
+  String get cardWeather => '날씨';
+
+  @override
+  String get cardAlarms => '내 알람';
+
+  @override
+  String get cardQuick => '빠른 알람';
+
+  @override
+  String get cardTools => '스톱워치, 카운트다운, 준비';
+
+  @override
+  String get cardWorld => '세계 시계';
+
+  @override
+  String get cardWeek => '이번 주';
+
+  @override
+  String get cardShabbat => '안식일과 명절';
 }

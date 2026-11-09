@@ -33,8 +33,7 @@ class GentleTile extends StatelessWidget {
   }
 }
 
-String calmName(String id) =>
-    (AlarmSound.calm.where((c) => c.id == id).firstOrNull ?? AlarmSound.calm.first).name;
+String calmName(String id) => (AlarmSound.calm.where((c) => c.id == id).firstOrNull ?? AlarmSound.calm.first).name;
 
 /// Calm sounds that start before the alarm and rise slowly, so you wake from
 /// light sleep. The alarm's own sound is chosen elsewhere. Back saves.
@@ -122,9 +121,7 @@ class _GentleScreenState extends State<GentleScreen> {
                   trailing: IconButton(
                     tooltip: l10n.listen,
                     icon: Icon(
-                      SoundPreview.instance.playingId == c.id
-                          ? Icons.stop_circle_outlined
-                          : Icons.play_circle_outline,
+                      SoundPreview.instance.playingId == c.id ? Icons.stop_circle_outlined : Icons.play_circle_outline,
                     ),
                     onPressed: () => _listen(c),
                   ),
@@ -152,9 +149,7 @@ class _GentleScreenState extends State<GentleScreen> {
     builder: (context) => AlertDialog(
       title: Text(l10n.soundCredits),
       content: SingleChildScrollView(
-        child: Text(
-          [for (final (name, who, licence) in AlarmSound.calmCredits) '$name: $who ($licence)'].join('\n\n'),
-        ),
+        child: Text([for (final (name, who, licence) in AlarmSound.calmCredits) '$name: $who ($licence)'].join('\n\n')),
       ),
       actions: [TextButton(onPressed: () => Navigator.pop(context), child: Text(l10n.ok))],
     ),

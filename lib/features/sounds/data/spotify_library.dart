@@ -5,13 +5,7 @@ import 'package:quando/l10n/l10n.dart';
 
 /// A playlist or song from your Spotify library.
 class SpotifyItem {
-  const SpotifyItem({
-    required this.name,
-    required this.detail,
-    required this.url,
-    this.image,
-    this.playlistId,
-  });
+  const SpotifyItem({required this.name, required this.detail, required this.url, this.image, this.playlistId});
 
   final String name;
 

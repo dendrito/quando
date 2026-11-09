@@ -76,10 +76,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     final track = options.moon && place != null ? MoonTrack.of(place, sky.now) : null;
     final phases = options.moon ? MoonPhases.nextAfter(sky.now) : null;
     final nightfall = options.night && place != null
-        ? JewishTimes(
-            place: place,
-            havdalah: ref.watch(havdalahProvider),
-          ).nightfallOn(inZone(sky.now, place.timeZone))
+        ? JewishTimes(place: place, havdalah: ref.watch(havdalahProvider)).nightfallOn(inZone(sky.now, place.timeZone))
         : null;
     final String zone = place?.timeZone ?? ref.watch(homeZoneProvider);
     String time(DateTime? at, String absent) => at == null ? absent : hhmm(inZone(at, zone));
@@ -105,8 +102,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           children: [
             if (!options.moon)
               Text('${l10n.moonriseLabel} · ${time(moon.rise, l10n.noRiseToday)}', style: text.bodySmall),
-            if (!options.moon)
-              Text('${l10n.moonsetLabel} · ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
+            if (!options.moon) Text('${l10n.moonsetLabel} · ${time(moon.set, l10n.noSetToday)}', style: text.bodySmall),
             Text(
               '${l10n.nightfallLabel} ${time(nightfall, '—')} · ${ref.watch(havdalahProvider) == HavdalahOpinion.geonim ? '8.5°' : '+72m'}',
               style: text.bodySmall,
@@ -157,9 +153,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     final skyNow = place == null ? sky : SkyDay.of(place, sky.now);
     final nightCard = !skyNow.isDay;
     final report = options.weather && place != null
-        ? ref
-              .watch(weatherReportProvider((place, ref.watch(weatherRepositoryProvider).pollBucket(sky.now))))
-              .value
+        ? ref.watch(weatherReportProvider((place, ref.watch(weatherRepositoryProvider).pollBucket(sky.now)))).value
         : null;
     final current = report?.current(sky.now);
     final moonSky = place != null && track != null ? SkyStrip.ofMoon(place, track, report) : null;
@@ -229,10 +223,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                           children: [
                             Text(
                               '${current.celsius.round()}°',
-                              style: text.displaySmall?.copyWith(
-                                color: QuandoColors.text,
-                                fontWeight: FontWeight.w800,
-                              ),
+                              style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
                             ),
                             const SizedBox(width: 10),
                             Flexible(
@@ -246,10 +237,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                       else
                         Text(l10n.skyMoon, style: text.titleMedium),
                       if (track != null && illumination != null) ...[
-                        Text(
-                          track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon,
-                          style: text.bodySmall,
-                        ),
+                        Text(track.above ? l10n.moonAboveHorizon : l10n.moonBelowHorizon, style: text.bodySmall),
                         MoonArc(
                           track: track,
                           illumination: illumination,
@@ -301,15 +289,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                               mainAxisSize: MainAxisSize.min,
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(
-                                  '${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}',
-                                  style: text.bodySmall,
-                                ),
+                                Text('${l10n.moonNextNew} · ${phaseTime(phases.newMoon)}', style: text.bodySmall),
                                 const SizedBox(height: 4),
-                                Text(
-                                  '${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}',
-                                  style: text.bodySmall,
-                                ),
+                                Text('${l10n.moonNextFull} · ${phaseTime(phases.fullMoon)}', style: text.bodySmall),
                               ],
                             );
                             if (constraints.maxWidth >= 700 * MediaQuery.textScalerOf(context).scale(1)) {
@@ -320,11 +302,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                                   Expanded(child: phase),
                                   const SizedBox(width: 24),
                                   Flexible(
-                                    child: Align(
-                                      alignment: Alignment.topRight,
-                                      heightFactor: 1,
-                                      child: dates,
-                                    ),
+                                    child: Align(alignment: Alignment.topRight, heightFactor: 1, child: dates),
                                   ),
                                 ],
                               );
@@ -351,8 +329,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
 
     // After sunset and before sunrise the Sun page shows the night sky with
     // the Moon's path and the weather; by day it is the Sun's own arc.
-    final nightMoonCard =
-        options.weather && options.moon && nightCard && illumination != null && track != null;
+    final nightMoonCard = options.weather && options.moon && nightCard && illumination != null && track != null;
     final Widget sunContent = options.weather && place != null && _page == 0
         ? nightMoonCard
               ? moonCard(compact: true)
@@ -443,18 +420,13 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
         else ...[
           LayoutBuilder(
             builder: (context, constraints) => AnimatedSize(
-              duration: MediaQuery.disableAnimationsOf(context)
-                  ? Duration.zero
-                  : const Duration(milliseconds: 250),
+              duration: MediaQuery.disableAnimationsOf(context) ? Duration.zero : const Duration(milliseconds: 250),
               alignment: Alignment.topCenter,
               child: SizedBox(
                 height: onDetailsPage
-                    ? (constraints.maxWidth >= 560 ? 260 : 460) *
-                          MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                    ? (constraints.maxWidth >= 560 ? 260 : 460) * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : _page == 1 && options.moon
-                    ? (constraints.maxWidth - 36 >= 700 * MediaQuery.textScalerOf(context).scale(1)
-                              ? 300
-                              : 390) *
+                    ? (constraints.maxWidth - 36 >= 700 * MediaQuery.textScalerOf(context).scale(1) ? 300 : 390) *
                           (report == null ? 1 : 1.2) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : _page == 0 && options.weather && place != null
@@ -523,10 +495,7 @@ class _SunWeatherCard extends ConsumerWidget {
     Widget later(String title, WeatherHour h) => Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          title.toUpperCase(),
-          style: text.labelSmall?.copyWith(color: QuandoColors.blush, letterSpacing: .8),
-        ),
+        Text(title.toUpperCase(), style: text.labelSmall?.copyWith(color: QuandoColors.blush, letterSpacing: .8)),
         const SizedBox(height: 2),
         Text(describe(h), style: text.bodyMedium?.copyWith(color: QuandoColors.text)),
       ],
@@ -581,8 +550,7 @@ class _SunWeatherCard extends ConsumerWidget {
                   ),
                 ],
               ),
-              if (subtitle.isNotEmpty)
-                Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
+              if (subtitle.isNotEmpty) Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
               DayArc(
                 sky: sky,
                 marks: marks,

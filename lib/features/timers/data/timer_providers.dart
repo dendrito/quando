@@ -97,9 +97,7 @@ class SequenceConfigNotifier extends Notifier<SequenceConfig> {
   }
 }
 
-final sequenceConfigProvider = NotifierProvider<SequenceConfigNotifier, SequenceConfig>(
-  SequenceConfigNotifier.new,
-);
+final sequenceConfigProvider = NotifierProvider<SequenceConfigNotifier, SequenceConfig>(SequenceConfigNotifier.new);
 
 /// "On your marks, get set, go": the classic start, no length.
 SequenceConfig racePreset() => SequenceConfig(

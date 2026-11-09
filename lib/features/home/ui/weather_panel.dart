@@ -68,10 +68,7 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(l10n.weatherUnavailable),
-            TextButton(
-              onPressed: () => ref.invalidate(weatherReportProvider(key)),
-              child: Text(l10n.homeRefresh),
-            ),
+            TextButton(onPressed: () => ref.invalidate(weatherReportProvider(key)), child: Text(l10n.homeRefresh)),
           ],
         ),
       ),
@@ -88,11 +85,7 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
           children: [
             Row(
               children: [
-                WeatherMotion(
-                  kind: thunder?.kind ?? current.kind,
-                  night: current.night,
-                  active: widget.active,
-                ),
+                WeatherMotion(kind: thunder?.kind ?? current.kind, night: current.night, active: widget.active),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,

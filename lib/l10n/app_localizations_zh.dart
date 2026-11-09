@@ -1130,8 +1130,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get songLink => '歌曲链接';
 
   @override
-  String get songLinkHowTo =>
-      '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。';
+  String get songLinkHowTo => '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中点按分享，再点复制链接，然后粘贴到这里。';
 
   @override
   String get songNameHint => '名称，例如 早晨歌单';
@@ -2219,8 +2218,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2254,15 +2252,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2477,8 +2473,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2524,8 +2519,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2551,8 +2545,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tuyaSignInTitle => '使用 Smart Life 账号登录';
 
   @override
-  String get tuyaSignInHint =>
-      '请使用与 Smart Life 或 Tuya Smart 应用相同的国家、邮箱或手机号和密码。该账号必须已关联到你的 Tuya 项目。密码只会发送给 Tuya，不会被保存。';
+  String get tuyaSignInHint => '请使用与 Smart Life 或 Tuya Smart 应用相同的国家、邮箱或手机号和密码。该账号必须已关联到你的 Tuya 项目。密码只会发送给 Tuya，不会被保存。';
 
   @override
   String get tuyaCountryCode => '国家区号（巴西 55，美国 1）';
@@ -3042,6 +3035,60 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主屏布局';
+
+  @override
+  String get homeLayoutClassic => '经典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖动卡片即可移动。拖动边缘或角落调整大小，或选择尺寸。';
+
+  @override
+  String get homeAddCard => '添加卡片';
+
+  @override
+  String get homeOnHome => '已在主屏';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一个闹钟';
+
+  @override
+  String get cardClock => '时钟和日期';
+
+  @override
+  String get cardSky => '太阳、月亮和天气';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天气';
+
+  @override
+  String get cardAlarms => '你的闹钟';
+
+  @override
+  String get cardQuick => '快速闹钟';
+
+  @override
+  String get cardTools => '秒表、倒计时和预备';
+
+  @override
+  String get cardWorld => '世界时钟';
+
+  @override
+  String get cardWeek => '本周';
+
+  @override
+  String get cardShabbat => '安息日和节日';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -4169,8 +4216,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get songLink => '歌曲連結';
 
   @override
-  String get songLinkHowTo =>
-      '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中點按分享，再點複製連結，然後貼上到這裡。';
+  String get songLinkHowTo => '在 Spotify、Apple Music、YouTube、YouTube Music 或 SoundCloud 中點按分享，再點複製連結，然後貼上到這裡。';
 
   @override
   String get songNameHint => '名稱，例如 早晨播放清單';
@@ -5258,8 +5304,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -5293,15 +5338,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -5516,8 +5559,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -5563,8 +5605,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -6081,4 +6122,58 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主畫面版面';
+
+  @override
+  String get homeLayoutClassic => '經典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖動卡片即可移動。拖動邊緣或角落調整大小，或選擇尺寸。';
+
+  @override
+  String get homeAddCard => '新增卡片';
+
+  @override
+  String get homeOnHome => '已在主畫面';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一個鬧鐘';
+
+  @override
+  String get cardClock => '時鐘和日期';
+
+  @override
+  String get cardSky => '太陽、月亮和天氣';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天氣';
+
+  @override
+  String get cardAlarms => '你的鬧鐘';
+
+  @override
+  String get cardQuick => '快速鬧鐘';
+
+  @override
+  String get cardTools => '碼錶、倒數和預備';
+
+  @override
+  String get cardWorld => '世界時鐘';
+
+  @override
+  String get cardWeek => '本週';
+
+  @override
+  String get cardShabbat => '安息日和節日';
 }

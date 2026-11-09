@@ -136,8 +136,7 @@ class GoogleCalendarApi {
     String? me;
     do {
       final j = await _get(
-        Uri.parse('$_base/users/me/calendarList')
-            .replace(queryParameters: {'maxResults': '250', 'pageToken': ?page}),
+        Uri.parse('$_base/users/me/calendarList').replace(queryParameters: {'maxResults': '250', 'pageToken': ?page}),
       );
       for (final c in (j['items'] as List? ?? const []).cast<Map<String, dynamic>>()) {
         final id = c['id'] as String?;
@@ -202,13 +201,7 @@ class GoogleCalendarApi {
           final key = '$id/${e['id']}';
           out
             ..add(
-              AnchorEvent(
-                id: 'cal.g.$key',
-                kind: EventKind.calendar,
-                title: title,
-                at: start.toUtc(),
-                source: full,
-              ),
+              AnchorEvent(id: 'cal.g.$key', kind: EventKind.calendar, title: title, at: start.toUtc(), source: full),
             )
             ..add(
               AnchorEvent(

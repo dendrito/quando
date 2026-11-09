@@ -750,11 +750,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String thingsNeedFixing(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n件の修正が必要です。修正しないとアラームが鳴らないかもしれません。',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n件の修正が必要です。修正しないとアラームが鳴らないかもしれません。');
     return '$_temp0';
   }
 
@@ -1134,8 +1130,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get songLink => '曲のリンク';
 
   @override
-  String get songLinkHowTo =>
-      'Spotify、Apple Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。';
+  String get songLinkHowTo => 'Spotify、Apple Music、YouTube、YouTube Music、SoundCloudで「共有」→「リンクをコピー」をタップし、ここに貼り付けます。';
 
   @override
   String get songNameHint => '名前（例：朝のプレイリスト）';
@@ -1769,8 +1764,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get spotifySaidNo =>
-      'Spotifyに拒否されました。SpotifyダッシュボードでQuando?のWeb APIにチェックを入れ、User Managementにアカウントを追加してください。';
+  String get spotifySaidNo => 'Spotifyに拒否されました。SpotifyダッシュボードでQuando?のWeb APIにチェックを入れ、User Managementにアカウントを追加してください。';
 
   @override
   String serviceDidntAnswer(String service, int code) {
@@ -2224,8 +2218,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2259,15 +2252,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2482,8 +2473,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2529,8 +2519,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -3049,4 +3038,58 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => 'ホームのレイアウト';
+
+  @override
+  String get homeLayoutClassic => 'クラシック';
+
+  @override
+  String get homeLayoutCards => 'カード';
+
+  @override
+  String get homeCardsHint => 'カードをドラッグして移動。端や角をドラッグするか、サイズを選んで大きさを変更。';
+
+  @override
+  String get homeAddCard => 'カードを追加';
+
+  @override
+  String get homeOnHome => 'ホームにあり';
+
+  @override
+  String get homeRemoveCard => '削除';
+
+  @override
+  String get cardNext => '次のアラーム';
+
+  @override
+  String get cardClock => '時計と日付';
+
+  @override
+  String get cardSky => '太陽・月・天気';
+
+  @override
+  String get cardMoon => '月';
+
+  @override
+  String get cardWeather => '天気';
+
+  @override
+  String get cardAlarms => 'あなたのアラーム';
+
+  @override
+  String get cardQuick => 'クイックアラーム';
+
+  @override
+  String get cardTools => 'ストップウォッチ・カウントダウン・よーい';
+
+  @override
+  String get cardWorld => '世界時計';
+
+  @override
+  String get cardWeek => '今週';
+
+  @override
+  String get cardShabbat => '安息日と祝日';
 }

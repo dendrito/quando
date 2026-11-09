@@ -75,9 +75,7 @@ class AlarmExtras extends ConsumerWidget {
         _Row(
           icon: Icons.wb_twilight,
           title: l10n.gentleWakeUp,
-          subtitle: s.gentleMinutes > 0
-              ? l10n.gentleSummary(s.gentleMinutes, calmName(s.gentleSound))
-              : l10n.off,
+          subtitle: s.gentleMinutes > 0 ? l10n.gentleSummary(s.gentleMinutes, calmName(s.gentleSound)) : l10n.off,
           on: s.gentleMinutes > 0,
           onSwitch: (v) => onChanged(s.copyWith(gentleMinutes: v ? 20 : 0)),
           onTap: () => _open(context, GentleScreen(initial: s)),
@@ -113,14 +111,7 @@ SnoozePlan defaultSnooze(AlarmOptions o) => SnoozePlan(minutes: o.snoozeMinutes,
 
 /// A tappable row, optionally with a switch.
 class _Row extends StatelessWidget {
-  const _Row({
-    required this.icon,
-    required this.title,
-    required this.subtitle,
-    this.on,
-    this.onSwitch,
-    this.onTap,
-  });
+  const _Row({required this.icon, required this.title, required this.subtitle, this.on, this.onSwitch, this.onTap});
 
   final IconData icon;
   final String title;
@@ -165,11 +156,8 @@ class _ActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    Widget dot(IconData i, bool lit) => Icon(
-      i,
-      size: 22,
-      color: lit && !off ? QuandoColors.amber : QuandoColors.faint.withValues(alpha: 0.6),
-    );
+    Widget dot(IconData i, bool lit) =>
+        Icon(i, size: 22, color: lit && !off ? QuandoColors.amber : QuandoColors.faint.withValues(alpha: 0.6));
     return Material(
       color: QuandoColors.surface,
       borderRadius: const BorderRadius.all(Radius.circular(22)),
@@ -225,8 +213,7 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
   /// Scanning needs a saved code: ask for one the first time.
   Future<void> _withCode(StopTask t, void Function(String? code) apply) async {
     if (t != StopTask.scan || s.scanCode != null) return apply(null);
-    final code = await Navigator.of(context)
-        .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+    final code = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
     if (code != null) apply(code);
   }
 
@@ -236,8 +223,7 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
     title: Text(l10n.codeSaved),
     subtitle: Text(l10n.tapToSaveDifferent),
     onTap: () async {
-      final code = await Navigator.of(context)
-          .push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
+      final code = await Navigator.of(context).push<String>(MaterialPageRoute(builder: (_) => const ScanSetupScreen()));
       if (code != null) set(s.copyWith(scanCode: code));
     },
   );
@@ -268,12 +254,7 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
 /// "CONTROLS": on screen always works; volume buttons and shaking can be
 /// switched on. A control does one job: turning it on here takes it off the
 /// other card.
-Widget _controls(
-  TextTheme text,
-  Set<StopWay> mine,
-  void Function(StopWay, bool) toggle, {
-  bool enabled = true,
-}) {
+Widget _controls(TextTheme text, Set<StopWay> mine, void Function(StopWay, bool) toggle, {bool enabled = true}) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -304,26 +285,25 @@ Widget _controls(
   );
 }
 
-Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick, {bool enabled = true}) =>
-    Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+Widget _taskChips(TextTheme text, StopTask current, ValueChanged<StopTask> pick, {bool enabled = true}) => Column(
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
+    Text(l10n.taskHeading, style: text.labelSmall),
+    const SizedBox(height: 10),
+    Wrap(
+      spacing: 8,
+      runSpacing: 8,
       children: [
-        Text(l10n.taskHeading, style: text.labelSmall),
-        const SizedBox(height: 10),
-        Wrap(
-          spacing: 8,
-          runSpacing: 8,
-          children: [
-            for (final t in StopTask.onThisDevice)
-              ChoiceChip(
-                label: Text(t == StopTask.none ? l10n.none : t.label),
-                selected: current == t,
-                onSelected: enabled ? (_) => pick(t) : null,
-              ),
-          ],
-        ),
+        for (final t in StopTask.onThisDevice)
+          ChoiceChip(
+            label: Text(t == StopTask.none ? l10n.none : t.label),
+            selected: current == t,
+            onSelected: enabled ? (_) => pick(t) : null,
+          ),
       ],
-    );
+    ),
+  ],
+);
 
 /// A setting row with its value in amber; tap to choose another.
 class _Setting extends StatelessWidget {
@@ -427,9 +407,8 @@ class _SnoozeScreenState extends _StyleScreenState<SnoozeScreen> {
           s.snoozeTask ?? StopTask.none,
           (t) => _withCode(
             t,
-            (code) => set(
-              t == StopTask.none ? s.copyWith(noSnoozeTask: true) : s.copyWith(snoozeTask: t, scanCode: code),
-            ),
+            (code) =>
+                set(t == StopTask.none ? s.copyWith(noSnoozeTask: true) : s.copyWith(snoozeTask: t, scanCode: code)),
           ),
         ),
         if (s.snoozeTask == StopTask.scan) _codeRow(),

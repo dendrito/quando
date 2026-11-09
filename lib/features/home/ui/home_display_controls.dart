@@ -41,6 +41,21 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      if (!jewishHome) ...[
+                        Text(l10n.homeLayout, style: Theme.of(context).textTheme.bodyLarge),
+                        const SizedBox(height: 8),
+                        SegmentedButton<HomeStyle>(
+                          key: const ValueKey('home-style'),
+                          showSelectedIcon: false,
+                          segments: [
+                            ButtonSegment(value: HomeStyle.classic, label: Text(l10n.homeLayoutClassic)),
+                            ButtonSegment(value: HomeStyle.cards, label: Text(l10n.homeLayoutCards)),
+                          ],
+                          selected: {s.cardsOn(MediaQuery.sizeOf(context).width) ? HomeStyle.cards : HomeStyle.classic},
+                          onSelectionChanged: (v) => n.set(s.copyWith(style: v.first)),
+                        ),
+                        const SizedBox(height: 16),
+                      ],
                       Text(l10n.homeClockSize, style: Theme.of(context).textTheme.bodyLarge),
                       const SizedBox(height: 8),
                       SegmentedButton<ClockSize>(
@@ -100,10 +115,7 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                           showSelectedIcon: false,
                           segments: [
                             ButtonSegment(value: HebrewNames.israeli, label: Text(l10n.hebrewNamesIsraeli)),
-                            ButtonSegment(
-                              value: HebrewNames.ashkenazi,
-                              label: Text(l10n.hebrewNamesAshkenazi),
-                            ),
+                            ButtonSegment(value: HebrewNames.ashkenazi, label: Text(l10n.hebrewNamesAshkenazi)),
                             const ButtonSegment(value: HebrewNames.hebrew, label: Text('תולדות')),
                           ],
                           selected: {s.hebrewNames},

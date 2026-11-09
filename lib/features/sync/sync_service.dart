@@ -57,11 +57,7 @@ class FirestoreRemote implements SyncRemote {
           committed[entry.key] = item;
           merged[entry.key.replaceAll('.', '~')] = item.toJson();
         }
-        transaction.set(_doc, {
-          'items': merged,
-          'revision': revision,
-          'updated': FieldValue.serverTimestamp(),
-        });
+        transaction.set(_doc, {'items': merged, 'revision': revision, 'updated': FieldValue.serverTimestamp()});
         return committed;
       });
 }
@@ -89,14 +85,13 @@ class SyncStatus {
   final String? name;
   final String? photo;
 
-  SyncStatus copyWith({bool? revealed, SyncPhase? phase, String? email, String? name, String? photo}) =>
-      SyncStatus(
-        revealed: revealed ?? this.revealed,
-        phase: phase ?? this.phase,
-        email: email ?? this.email,
-        name: name ?? this.name,
-        photo: photo ?? this.photo,
-      );
+  SyncStatus copyWith({bool? revealed, SyncPhase? phase, String? email, String? name, String? photo}) => SyncStatus(
+    revealed: revealed ?? this.revealed,
+    phase: phase ?? this.phase,
+    email: email ?? this.email,
+    name: name ?? this.name,
+    photo: photo ?? this.photo,
+  );
 }
 
 /// Signs in with Google and keeps settings in step while signed in.
@@ -158,14 +153,10 @@ class SyncNotifier extends Notifier<SyncStatus> {
       await YouTubeAccount.init();
       final account = await GoogleSignIn.instance.authenticate();
       final idToken = account.authentication.idToken;
-      final cred = await FirebaseAuth.instance.signInWithCredential(
-        GoogleAuthProvider.credential(idToken: idToken),
-      );
+      final cred = await FirebaseAuth.instance.signInWithCredential(GoogleAuthProvider.credential(idToken: idToken));
       await _start(cred.user!);
     } on GoogleSignInException catch (e) {
-      state = state.copyWith(
-        phase: e.code == GoogleSignInExceptionCode.canceled ? SyncPhase.off : SyncPhase.failed,
-      );
+      state = state.copyWith(phase: e.code == GoogleSignInExceptionCode.canceled ? SyncPhase.off : SyncPhase.failed);
     } catch (e) {
       debugPrint('Quando? sync: $e');
       state = state.copyWith(phase: SyncPhase.failed);
@@ -263,12 +254,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
     if (user.email != null) await prefs.setString('sync.email', user.email!);
     if (user.displayName != null) await prefs.setString('sync.name', user.displayName!);
     if (user.photoURL != null) await prefs.setString('sync.photo', user.photoURL!);
-    state = state.copyWith(
-      phase: SyncPhase.on,
-      email: user.email,
-      name: user.displayName,
-      photo: user.photoURL,
-    );
+    state = state.copyWith(phase: SyncPhase.on, email: user.email, name: user.displayName, photo: user.photoURL);
   }
 
   Future<void> signOut() async {

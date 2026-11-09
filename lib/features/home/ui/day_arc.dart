@@ -83,8 +83,7 @@ class _ArcClockState extends State<_ArcClock> with SingleTickerProviderStateMixi
   late final _controller = AnimationController(vsync: this, duration: const Duration(seconds: 8));
 
   void _update() {
-    final animate =
-        widget.active && !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
+    final animate = widget.active && !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
     if (animate) {
       if (!_controller.isAnimating) _controller.repeat();
     } else {
@@ -211,8 +210,7 @@ class _ArcPainter extends CustomPainter {
         canvas.drawCircle(
           point(i / (day.length - 1)),
           1.8,
-          Paint()
-            ..color = day[i] ? QuandoColors.amber.withValues(alpha: .9) : moonlight.withValues(alpha: .9),
+          Paint()..color = day[i] ? QuandoColors.amber.withValues(alpha: .9) : moonlight.withValues(alpha: .9),
         );
       }
     } else {
@@ -423,10 +421,7 @@ void paintMoon(Canvas canvas, Offset center, double radius, MoonIllumination lig
   }
   for (var i = 40; i >= 0; i--) {
     final y = -1 + i / 20;
-    path.lineTo(
-      center.dx + side * terminator * radius * math.sqrt((1 - y * y).clamp(0, 1)),
-      center.dy + y * radius,
-    );
+    path.lineTo(center.dx + side * terminator * radius * math.sqrt((1 - y * y).clamp(0, 1)), center.dy + y * radius);
   }
   path.close();
   canvas.drawPath(path, Paint()..color = QuandoColors.text);

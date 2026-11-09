@@ -207,16 +207,8 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
 
   List<Widget> _chips(List<Duration> choices, List<Duration> chosen, void Function(List<Duration>) set) => [
     for (final d in {...choices, ...chosen}.toList()..sort((a, b) => b.compareTo(a)))
-      FilterChip(
-        label: Text(_short(d)),
-        selected: chosen.contains(d),
-        onSelected: (_) => _toggle(chosen, d, set),
-      ),
-    ActionChip(
-      avatar: const Icon(Icons.add, size: 16),
-      label: Text(l10n.other),
-      onPressed: () => _custom(chosen, set),
-    ),
+      FilterChip(label: Text(_short(d)), selected: chosen.contains(d), onSelected: (_) => _toggle(chosen, d, set)),
+    ActionChip(avatar: const Icon(Icons.add, size: 16), label: Text(l10n.other), onPressed: () => _custom(chosen, set)),
   ];
 
   void _save() {
@@ -444,19 +436,14 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   onChanged: (d) => setState(
                     () => _rule = d == null
                         ? _rule.copyWith(clearRepeat: true)
-                        : _rule.copyWith(
-                            repeatEvery: d,
-                            repeatFor: _rule.repeatFor ?? const Duration(hours: 6),
-                          ),
+                        : _rule.copyWith(repeatEvery: d, repeatFor: _rule.repeatFor ?? const Duration(hours: 6)),
                   ),
                 ),
                 if (_rule.repeatEvery != null) ...[
                   Text(l10n.forInfix),
                   DropdownButton<Duration>(
                     value: _rule.repeatFor,
-                    items: [
-                      for (final d in _forChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d))),
-                    ],
+                    items: [for (final d in _forChoices) DropdownMenuItem(value: d, child: Text(formatSpan(d)))],
                     onChanged: (d) => setState(() => _rule = _rule.copyWith(repeatFor: d)),
                   ),
                 ],
@@ -473,10 +460,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             if (nextTimes.isNotEmpty) ...[
               const SizedBox(height: 16),
               Text(
-                l10n.nextRingsAt(
-                  '${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''}',
-                  next!.title,
-                ),
+                l10n.nextRingsAt('${nextTimes.take(6).join(', ')}${nextTimes.length > 6 ? '…' : ''}', next!.title),
                 style: text.bodyMedium?.copyWith(color: QuandoColors.blush),
               ),
             ],
@@ -487,18 +471,16 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 title: offset == Duration.zero ? l10n.atTheMomentItself : describeOffset(offset),
                 value: _rule.deliveries[offset.inMinutes] ?? ReminderDelivery.inherit,
                 ruleSound: _rule.soundId,
-                onChanged: (choice) => setState(
-                  () => _rule = _rule.copyWith(deliveries: {..._rule.deliveries, offset.inMinutes: choice}),
-                ),
+                onChanged: (choice) =>
+                    setState(() => _rule = _rule.copyWith(deliveries: {..._rule.deliveries, offset.inMinutes: choice})),
               ),
             const SizedBox(height: 16),
             Text(l10n.defaultLabel, style: text.labelSmall),
             SoundPickerTile(
               large: true,
               value: _rule.soundId,
-              onChanged: (id) => setState(
-                () => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id),
-              ),
+              onChanged: (id) =>
+                  setState(() => _rule = id == null ? _rule.copyWith(defaultSound: true) : _rule.copyWith(soundId: id)),
             ),
             AlarmExtras(
               value: _rule.style,

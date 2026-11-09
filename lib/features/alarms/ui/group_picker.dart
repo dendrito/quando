@@ -25,11 +25,7 @@ Future<String?> askGroupName(BuildContext context, {required String title, Strin
 
 /// Lets you put an alarm in a group: one you have, a new one, or none.
 /// Returns null when cancelled.
-Future<String?> pickGroup(
-  BuildContext context, {
-  required List<String> groups,
-  required String current,
-}) async {
+Future<String?> pickGroup(BuildContext context, {required List<String> groups, required String current}) async {
   final choice = await showModalBottomSheet<String>(
     context: context,
     showDragHandle: true,

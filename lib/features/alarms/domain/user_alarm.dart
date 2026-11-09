@@ -114,8 +114,7 @@ class UserAlarm {
           title: title,
           body: [
             days.isEmpty ? l10n.alarm : repeatLabel,
-            if (this.zone != null)
-              l10n.timeInCity(hhmm(DateTime(2000, 1, 1, hour, minute)), cityOf(this.zone!)),
+            if (this.zone != null) l10n.timeInCity(hhmm(DateTime(2000, 1, 1, hour, minute)), cityOf(this.zone!)),
           ].join(' · '),
           ringDuration: ring,
           ruleId: 'user.$id',

@@ -49,10 +49,7 @@ class WeatherReport {
     return past != null && now.difference(past.at) < const Duration(hours: 6)
         ? past
         : hours
-              .where(
-                (h) =>
-                    h.at.difference(now) >= Duration.zero && h.at.difference(now) < const Duration(hours: 3),
-              )
+              .where((h) => h.at.difference(now) >= Duration.zero && h.at.difference(now) < const Duration(hours: 3))
               .firstOrNull;
   }
 
@@ -107,9 +104,7 @@ class WeatherRepository {
 
   WeatherReport? _cached(String key) {
     try {
-      return WeatherReport.fromJson(
-        jsonDecode(prefs.getString('weather.cache.$key') ?? '{}') as Map<String, dynamic>,
-      );
+      return WeatherReport.fromJson(jsonDecode(prefs.getString('weather.cache.$key') ?? '{}') as Map<String, dynamic>);
     } catch (_) {
       return null;
     }
@@ -159,19 +154,11 @@ class WeatherRepository {
           .timeout(const Duration(seconds: 12));
       if (r.statusCode == 429) {
         final seconds = int.tryParse(r.headers['retry-after'] ?? '') ?? 900;
-        await prefs.setString(
-          'weather.retry.$key',
-          now.add(Duration(seconds: max(900, seconds))).toIso8601String(),
-        );
+        await prefs.setString('weather.retry.$key', now.add(Duration(seconds: max(900, seconds))).toIso8601String());
       }
       final WeatherReport report;
       if (r.statusCode == 304 && cached != null) {
-        report = WeatherReport(
-          hours: cached.hours,
-          fetched: now,
-          expires: _expiry(r, now),
-          modified: cached.modified,
-        );
+        report = WeatherReport(hours: cached.hours, fetched: now, expires: _expiry(r, now), modified: cached.modified);
       } else {
         if (r.statusCode != 200) throw StateError('Weather unavailable');
         final j = jsonDecode(r.body) as Map<String, dynamic>;
@@ -189,11 +176,7 @@ class WeatherRepository {
           }
           if (symbol == null) continue;
           hours.add(
-            WeatherHour(
-              at: DateTime.parse(point['time'] as String),
-              celsius: temperature.toDouble(),
-              symbol: symbol,
-            ),
+            WeatherHour(at: DateTime.parse(point['time'] as String), celsius: temperature.toDouble(), symbol: symbol),
           );
         }
         if (hours.isEmpty) throw StateError('Forecast missing');

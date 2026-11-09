@@ -203,21 +203,13 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                 controller: _query,
                 autofocus: true,
                 textInputAction: TextInputAction.search,
-                decoration: InputDecoration(
-                  hintText: l10n.stationName,
-                  border: InputBorder.none,
-                  filled: false,
-                ),
+                decoration: InputDecoration(hintText: l10n.stationName, border: InputBorder.none, filled: false),
                 onSubmitted: (_) => _load(),
               )
             : Text(l10n.onlineRadio),
         actions: [
           if (!_searching)
-            IconButton(
-              tooltip: l10n.addStreamAddress,
-              icon: const Icon(Icons.add_circle_outline),
-              onPressed: _paste,
-            ),
+            IconButton(tooltip: l10n.addStreamAddress, icon: const Icon(Icons.add_circle_outline), onPressed: _paste),
           IconButton(
             tooltip: _searching ? l10n.closeSearch : l10n.searchByName,
             icon: Icon(_searching ? Icons.close : Icons.search),
@@ -281,12 +273,7 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                           isPicked ? Icons.radio_button_checked : Icons.radio_button_off,
                           color: isPicked ? QuandoColors.amber : QuandoColors.faint,
                         ),
-                        title: Text(
-                          r.name,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: text.titleMedium,
-                        ),
+                        title: Text(r.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: text.titleMedium),
                         subtitle: Text(
                           _country == null
                               ? r.details

@@ -100,8 +100,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
               ),
             )
           else
-            for (final c in cal.calendars.where((c) => c.source == CalendarSource.phone))
-              _calendarTile(c, cal, text),
+            for (final c in cal.calendars.where((c) => c.source == CalendarSource.phone)) _calendarTile(c, cal, text),
           if (cal.error != null) Text(cal.error!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
           const SizedBox(height: 28),
           Text(l10n.googleCalendarHeading, style: text.labelSmall),
@@ -128,8 +127,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 child: Text(l10n.googleCalendarSignOut),
               ),
             ),
-            for (final c in cal.calendars.where((c) => c.source == CalendarSource.google))
-              _calendarTile(c, cal, text),
+            for (final c in cal.calendars.where((c) => c.source == CalendarSource.google)) _calendarTile(c, cal, text),
             if (cal.googleError != null)
               Text(cal.googleError!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
           ],

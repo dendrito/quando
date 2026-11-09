@@ -53,13 +53,7 @@ class TuyaClient {
     };
   }
 
-  Future<dynamic> _request(
-    TuyaSettings s,
-    String method,
-    String path, {
-    String token = '',
-    String body = '',
-  }) async {
+  Future<dynamic> _request(TuyaSettings s, String method, String path, {String token = '', String body = ''}) async {
     final request = http.Request(
       method,
       Uri.https(
@@ -71,19 +65,11 @@ class TuyaClient {
     request.followRedirects = false;
     final canonicalPath = request.url.toString().substring(request.url.origin.length);
     request.headers.addAll(
-      signedHeaders(
-        s,
-        method,
-        canonicalPath,
-        timestamp: '${_now().millisecondsSinceEpoch}',
-        token: token,
-        body: body,
-      ),
+      signedHeaders(s, method, canonicalPath, timestamp: '${_now().millisecondsSinceEpoch}', token: token, body: body),
     );
     if (body.isNotEmpty) request.body = body;
-    final response = await http.Response.fromStream(
-      await _client.send(request).timeout(const Duration(seconds: 15)),
-    ).timeout(const Duration(seconds: 15));
+    final response = await http.Response.fromStream(await _client.send(request).timeout(const Duration(seconds: 15)))
+        .timeout(const Duration(seconds: 15));
     Map<String, dynamic> result;
     try {
       result = jsonDecode(response.body) as Map<String, dynamic>;
@@ -168,26 +154,14 @@ class TuyaClient {
     for (final home in homes) {
       if (home is! Map || home['home_id'] == null) continue;
       final homeId = '${home['home_id']}';
-      final result = await _request(
-        s,
-        'GET',
-        '/v1.1/homes/${Uri.encodeComponent(homeId)}/scenes',
-        token: token,
-      );
+      final result = await _request(s, 'GET', '/v1.1/homes/${Uri.encodeComponent(homeId)}/scenes', token: token);
       if (result is! List) throw const TuyaException('response');
       for (final scene in result) {
-        if (scene is! Map ||
-            scene['scene_id'] == null ||
-            scene['enabled'] == false ||
-            scene['status'] == '2') {
+        if (scene is! Map || scene['scene_id'] == null || scene['enabled'] == false || scene['status'] == '2') {
           continue;
         }
         scenes.add(
-          TuyaScene(
-            homeId: homeId,
-            id: '${scene['scene_id']}',
-            name: '${scene['name'] ?? scene['scene_id']}',
-          ),
+          TuyaScene(homeId: homeId, id: '${scene['scene_id']}', name: '${scene['name'] ?? scene['scene_id']}'),
         );
       }
     }

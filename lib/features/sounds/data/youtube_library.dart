@@ -22,8 +22,7 @@ class YouTubeAccount {
   static const prefKey = 'youtube.connected';
 
   static bool get available =>
-      !kIsWeb &&
-      {TargetPlatform.android, TargetPlatform.iOS, TargetPlatform.macOS}.contains(defaultTargetPlatform);
+      !kIsWeb && {TargetPlatform.android, TargetPlatform.iOS, TargetPlatform.macOS}.contains(defaultTargetPlatform);
 
   static var _ready = false;
 
@@ -87,21 +86,20 @@ class YouTubeLibrary {
 
   String get _host => music ? 'https://music.youtube.com' : 'https://www.youtube.com';
 
-  Future<List<SpotifyItem>> playlists() =>
-      _get('playlists?part=snippet,contentDetails&mine=true&maxResults=50', (j) {
-        final id = j['id'] as String?;
-        final sn = j['snippet'] as Map?;
-        final name = sn?['title'] as String?;
-        if (id == null || name == null || name.isEmpty) return null;
-        final count = (j['contentDetails'] as Map?)?['itemCount'] as num?;
-        return SpotifyItem(
-          name: name,
-          detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
-          url: '$_host/playlist?list=$id',
-          image: _thumb(sn),
-          playlistId: id,
-        );
-      });
+  Future<List<SpotifyItem>> playlists() => _get('playlists?part=snippet,contentDetails&mine=true&maxResults=50', (j) {
+    final id = j['id'] as String?;
+    final sn = j['snippet'] as Map?;
+    final name = sn?['title'] as String?;
+    if (id == null || name == null || name.isEmpty) return null;
+    final count = (j['contentDetails'] as Map?)?['itemCount'] as num?;
+    return SpotifyItem(
+      name: name,
+      detail: count == null ? l10n.playlist : l10n.songCount(count.toInt()),
+      url: '$_host/playlist?list=$id',
+      image: _thumb(sn),
+      playlistId: id,
+    );
+  });
 
   /// YouTube's "Music" category.
   static const musicCategory = '10';
@@ -115,8 +113,7 @@ class YouTubeLibrary {
     for (var i = 0; i < all.length; i += 10) {
       samples.addAll(
         await Future.wait([
-          for (final p in all.skip(i).take(10))
-            _sample(p.playlistId!).catchError((Object _) => const <String>[]),
+          for (final p in all.skip(i).take(10)) _sample(p.playlistId!).catchError((Object _) => const <String>[]),
         ]),
       );
     }
@@ -231,12 +228,7 @@ class YouTubeLibrary {
       final video = id['videoId'] as String?;
       final list = id['playlistId'] as String?;
       if (video != null) {
-        return SpotifyItem(
-          name: _unescape(name),
-          detail: channel,
-          url: '$_host/watch?v=$video',
-          image: _thumb(sn),
-        );
+        return SpotifyItem(name: _unescape(name), detail: channel, url: '$_host/watch?v=$video', image: _thumb(sn));
       }
       if (list != null) {
         return SpotifyItem(

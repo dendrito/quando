@@ -32,8 +32,7 @@ class SyncConfig {
   static bool get _android => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
   static bool get _mac => !kIsWeb && defaultTargetPlatform == TargetPlatform.macOS;
   static bool get _apple =>
-      !kIsWeb &&
-      (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS);
+      !kIsWeb && (defaultTargetPlatform == TargetPlatform.iOS || defaultTargetPlatform == TargetPlatform.macOS);
 
   static String get _appId => _android
       ? (mine

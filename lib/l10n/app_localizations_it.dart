@@ -155,8 +155,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get noAlarmsThisWeek => 'Nessuna sveglia nei prossimi 7 giorni.';
 
   @override
-  String get alarmsSetThemselves =>
-      'Le sveglie si impostano da sole su questo telefono ogni volta che cambi qualcosa.';
+  String get alarmsSetThemselves => 'Le sveglie si impostano da sole su questo telefono ogni volta che cambi qualcosa.';
 
   @override
   String cityTime(String city) {
@@ -296,8 +295,7 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint =>
-      'Aggiungi città per vedere qui la loro ora. Scorri a sinistra per rimuoverne una.';
+  String get worldClocksHint => 'Aggiungi città per vedere qui la loro ora. Scorri a sinistra per rimuoverne una.';
 
   @override
   String get groupNameHint => 'Lavoro, Figli, Palestra…';
@@ -405,8 +403,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get presetsHint => 'Toccane una per cambiarne gli orari. Scorri per eliminarla.';
 
   @override
-  String get lockSentence =>
-      'Riduci il telefono all’orologio e alle sveglie, per lo Shabbat o una notte concentrata.';
+  String get lockSentence => 'Riduci il telefono all’orologio e alle sveglie, per lo Shabbat o una notte concentrata.';
 
   @override
   String get lockExplain =>
@@ -440,15 +437,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get openWhenLockStarts => 'Apri Quando? quando inizia un blocco';
 
   @override
-  String get openWhenLockStartsHint =>
-      'Un leggero suono di 1 secondo porta Quando? in primo piano per bloccare';
+  String get openWhenLockStartsHint => 'Un leggero suono di 1 secondo porta Quando? in primo piano per bloccare';
 
   @override
   String get pinToScreen => 'Fissa Quando? sullo schermo';
 
   @override
-  String get pinToScreenHint =>
-      'Le altre app non si aprono durante il blocco. Android chiede conferma la prima volta.';
+  String get pinToScreenHint => 'Le altre app non si aprono durante il blocco. Android chiede conferma la prima volta.';
 
   @override
   String get noLocksComingUp => 'Nessun blocco in arrivo.';
@@ -780,8 +775,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get testIn20 => 'Prova: suona tra 20 secondi';
 
   @override
-  String get testIn20Hint =>
-      'Blocca il telefono e appoggialo. Se la sveglia suona a schermo intero, è tutto pronto.';
+  String get testIn20Hint => 'Blocca il telefono e appoggialo. Se la sveglia suona a schermo intero, è tutto pronto.';
 
   @override
   String get readyToRingHint => 'Verifica che il telefono faccia suonare ogni sveglia in orario';
@@ -845,8 +839,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get sayItOutLoud => 'Dillo ad alta voce';
 
   @override
-  String get sayItOutLoudHint =>
-      'Legge a cosa serve la sveglia, es. “Accensione delle candele, 15 minuti prima”';
+  String get sayItOutLoudHint => 'Legge a cosa serve la sveglia, es. “Accensione delle candele, 15 minuti prima”';
 
   @override
   String get noSnooze => 'Niente posticipo';
@@ -860,8 +853,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get wakeUpCheck => 'Controllo risveglio';
 
   @override
-  String get wakeUpCheckHint =>
-      'Dopo averla fermata, suona di nuovo tra 3 minuti se non tocchi “Sono sveglio”';
+  String get wakeUpCheckHint => 'Dopo averla fermata, suona di nuovo tra 3 minuti se non tocchi “Sono sveglio”';
 
   @override
   String get solveSum => 'Risolvi un calcolo per fermarla';
@@ -1075,8 +1067,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get nameOptional => 'Nome (facoltativo)';
 
   @override
-  String get toppedUp =>
-      'Le sveglie sono impostate per i prossimi 7 giorni e rinnovate ogni volta che apri Quando?.';
+  String get toppedUp => 'Le sveglie sono impostate per i prossimi 7 giorni e rinnovate ogni volta che apri Quando?.';
 
   @override
   String get back => 'Indietro';
@@ -1187,8 +1178,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get playForHeading => 'RIPRODUCI PER';
 
   @override
-  String get pausesAfter =>
-      'Quando? mette in pausa il brano dopo questo tempo, con il tasto pausa del telefono.';
+  String get pausesAfter => 'Quando? mette in pausa il brano dopo questo tempo, con il tasto pausa del telefono.';
 
   @override
   String get backupSoundHeading => 'SUONO DI RISERVA';
@@ -1283,8 +1273,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get spotifySignInFailed => 'Impossibile accedere a Spotify.';
 
   @override
-  String get appleMusicNote =>
-      'L’accesso arriverà con la versione per iPhone. Per ora, aggiungi un link a un brano.';
+  String get appleMusicNote => 'L’accesso arriverà con la versione per iPhone. Per ora, aggiungi un link a un brano.';
 
   @override
   String noSignInNote(String service) {
@@ -1638,8 +1627,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get stopSentence => 'Come spegni la sveglia e cosa devi fare prima.';
 
   @override
-  String get shabbatNoTask =>
-      'Di Shabbat e nelle feste le sveglie si fermano da sole e non chiedono mai un compito.';
+  String get shabbatNoTask => 'Di Shabbat e nelle feste le sveglie si fermano da sole e non chiedono mai un compito.';
 
   @override
   String get volumeSentence => 'Quanto forte suona e con quanta dolcezza ci arriva.';
@@ -1937,8 +1925,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get pauseOnShabbat => 'Pausa di Shabbat e nelle feste';
 
   @override
-  String get pauseOnShabbatHint =>
-      'Non viene inviato nulla per le sveglie tra l’accensione delle candele e la Havdalà';
+  String get pauseOnShabbatHint => 'Non viene inviato nulla per le sveglie tra l’accensione delle candele e la Havdalà';
 
   @override
   String get webhookPayloadNote =>
@@ -2012,8 +1999,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get quoteNearMe => 'Vicino a me';
 
   @override
-  String get quoteNearMeHint =>
-      'Poeti e date del luogo in cui sei, dal fuso orario e dalla città dello Shabbat';
+  String get quoteNearMeHint => 'Poeti e date del luogo in cui sei, dal fuso orario e dalla città dello Shabbat';
 
   @override
   String get quoteSiddur => 'Siddur (libro di preghiere)';
@@ -2217,8 +2203,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get deliveryBothHint => 'L’audio locale suona anche se Pushover non funziona.';
 
   @override
-  String get deliveryPushHint =>
-      'Solo Pushover. Questo dispositivo deve essere online al momento dell’avviso.';
+  String get deliveryPushHint => 'Solo Pushover. Questo dispositivo deve essere online al momento dell’avviso.';
 
   @override
   String get deliveryFallback => 'L’audio locale resta attivo se Pushover è scollegato o in pausa.';
@@ -2269,8 +2254,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2304,15 +2288,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2527,8 +2509,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2574,8 +2555,7 @@ class AppLocalizationsIt extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2663,8 +2643,7 @@ class AppLocalizationsIt extends AppLocalizations {
       'La riproduzione segue la durata di questa sveglia e si ferma con Stop o Posticipa.';
 
   @override
-  String get musicBackupPlaying =>
-      'Impossibile avviare la musica. Sta suonando il tono locale della sveglia.';
+  String get musicBackupPlaying => 'Impossibile avviare la musica. Sta suonando il tono locale della sveglia.';
 
   @override
   String desktopMusicConnect(String service) {
@@ -2813,12 +2792,10 @@ class AppLocalizationsIt extends AppLocalizations {
   String get keysPassphraseWrong => 'Questa frase non apre queste chiavi.';
 
   @override
-  String get keysPassphraseNote =>
-      'Annotala: se la dimentichi nessuno può recuperarla e dovrai reinserire le chiavi.';
+  String get keysPassphraseNote => 'Annotala: se la dimentichi nessuno può recuperarla e dovrai reinserire le chiavi.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Scegli prima una frase di sincronizzazione, in Chiavi sui tuoi dispositivi.';
+  String get keysShareNeedsPassphrase => 'Scegli prima una frase di sincronizzazione, in Chiavi sui tuoi dispositivi.';
 
   @override
   String get settingsAlarmDefaults => 'Alarm defaults';
@@ -2967,12 +2944,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n secondi prima',
-      one: '1 secondo prima',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondi prima', one: '1 secondo prima');
     return '$_temp0';
   }
 
@@ -3114,4 +3086,59 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Grande';
+
+  @override
+  String get homeLayout => 'Layout della home';
+
+  @override
+  String get homeLayoutClassic => 'Classico';
+
+  @override
+  String get homeLayoutCards => 'Schede';
+
+  @override
+  String get homeCardsHint =>
+      'Trascina una scheda per spostarla. Trascina il bordo o l\'angolo per ridimensionarla, o scegli una misura.';
+
+  @override
+  String get homeAddCard => 'Aggiungi scheda';
+
+  @override
+  String get homeOnHome => 'Nella home';
+
+  @override
+  String get homeRemoveCard => 'Rimuovi';
+
+  @override
+  String get cardNext => 'Prossima sveglia';
+
+  @override
+  String get cardClock => 'Orologio e data';
+
+  @override
+  String get cardSky => 'Sole, luna e meteo';
+
+  @override
+  String get cardMoon => 'Luna';
+
+  @override
+  String get cardWeather => 'Meteo';
+
+  @override
+  String get cardAlarms => 'Le tue sveglie';
+
+  @override
+  String get cardQuick => 'Sveglie rapide';
+
+  @override
+  String get cardTools => 'Cronometro, timer e pronti';
+
+  @override
+  String get cardWorld => 'Orologi del mondo';
+
+  @override
+  String get cardWeek => 'Questa settimana';
+
+  @override
+  String get cardShabbat => 'Shabbat e festività';
 }

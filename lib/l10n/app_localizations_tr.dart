@@ -155,8 +155,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get noAlarmsThisWeek => 'Önümüzdeki 7 günde alarm yok.';
 
   @override
-  String get alarmsSetThemselves =>
-      'Bir şeyi her değiştirdiğinde alarmlar bu telefonda kendiliğinden kurulur.';
+  String get alarmsSetThemselves => 'Bir şeyi her değiştirdiğinde alarmlar bu telefonda kendiliğinden kurulur.';
 
   @override
   String cityTime(String city) {
@@ -522,12 +521,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get off => 'Kapalı';
 
   @override
-  String get gentleSentence =>
-      'Alarmından önce sakin bir ses usulca başlar, böylece asla irkilerek uyanmazsın.';
+  String get gentleSentence => 'Alarmından önce sakin bir ses usulca başlar, böylece asla irkilerek uyanmazsın.';
 
   @override
-  String get gentleExplain =>
-      'Yavaşça yükselir, seni hafif uykudan çıkarır ve alarm çalmadan hemen önce durur.';
+  String get gentleExplain => 'Yavaşça yükselir, seni hafif uykudan çıkarır ve alarm çalmadan hemen önce durur.';
 
   @override
   String get startsBeforeHeading => 'ALARMDAN ÖNCE BAŞLAR';
@@ -918,8 +915,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get resetPreset => 'Orijinaline döndür';
 
   @override
-  String get skipOneHint =>
-      'Tek bir alarmı atlamak için ana ekranda “Bu haftanın alarmları” altında ona dokun.';
+  String get skipOneHint => 'Tek bir alarmı atlamak için ana ekranda “Bu haftanın alarmları” altında ona dokun.';
 
   @override
   String get unitMinutes => 'dakika';
@@ -1883,8 +1879,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get allMyDevices => 'Tüm cihazlarım';
 
   @override
-  String get pushoverOnThisPhone =>
-      'Pushover uygulamasını bu telefona da kur, burada da Pushover sesinle çalsın.';
+  String get pushoverOnThisPhone => 'Pushover uygulamasını bu telefona da kur, burada da Pushover sesinle çalsın.';
 
   @override
   String get priority => 'Öncelik';
@@ -1955,8 +1950,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get quotesTitle => 'Zaman üzerine sözler';
 
   @override
-  String get quotesHint =>
-      'Nereden geleceklerini seç. Günün her bölümü için bir tane; başka bir söz için dokun.';
+  String get quotesHint => 'Nereden geleceklerini seç. Günün her bölümü için bir tane; başka bir söz için dokun.';
 
   @override
   String get quotesOff => 'Kapalı';
@@ -2253,8 +2247,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2288,15 +2281,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2511,8 +2502,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2558,8 +2548,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2643,8 +2632,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
 
   @override
-  String get musicRingDurationHint =>
-      'Oynatma bu alarmın çalma süresini izler; Durdur veya Ertele ile sona erer.';
+  String get musicRingDurationHint => 'Oynatma bu alarmın çalma süresini izler; Durdur veya Ertele ile sona erer.';
 
   @override
   String get musicBackupPlaying => 'Müzik başlatılamadı. Yerel alarm sesi çalıyor.';
@@ -2759,8 +2747,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Hizmet anahtarların bu cihazdan çıkmadan önce eşitleme parolanla şifrelenir. Başka kimse, Google bile, okuyamaz.';
 
   @override
-  String get keysLockWaiting =>
-      'Diğer cihazından anahtarlar kilitli olarak geldi. Açmak için eşitleme parolanı yaz.';
+  String get keysLockWaiting => 'Diğer cihazından anahtarlar kilitli olarak geldi. Açmak için eşitleme parolanı yaz.';
 
   @override
   String get keysSetPassphrase => 'Parola seç';
@@ -2796,12 +2783,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get keysPassphraseWrong => 'Bu parola bu anahtarları açmıyor.';
 
   @override
-  String get keysPassphraseNote =>
-      'Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.';
+  String get keysPassphraseNote => 'Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.';
+  String get keysShareNeedsPassphrase => 'Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.';
 
   @override
   String get settingsAlarmDefaults => 'Alarm defaults';
@@ -2869,8 +2854,7 @@ class AppLocalizationsTr extends AppLocalizations {
       'Google ile giriş bu cihazda henüz yok. Google hesabını cihaz ayarlarından ekle (Takvim › Hesaplar), takvimleri bu cihazın altında görünür.';
 
   @override
-  String get googleCalendarUnreachable =>
-      'Google Takvim\'e şu an ulaşılamadı. Ondan kurulmuş alarmlar yine de çalar.';
+  String get googleCalendarUnreachable => 'Google Takvim\'e şu an ulaşılamadı. Ondan kurulmuş alarmlar yine de çalar.';
 
   @override
   String get googleCalendarTwiceHint =>
@@ -2950,12 +2934,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n saniye önce',
-      one: '1 saniye önce',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye önce', one: '1 saniye önce');
     return '$_temp0';
   }
 
@@ -3097,4 +3076,59 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Büyük';
+
+  @override
+  String get homeLayout => 'Ana ekran düzeni';
+
+  @override
+  String get homeLayoutClassic => 'Klasik';
+
+  @override
+  String get homeLayoutCards => 'Kartlar';
+
+  @override
+  String get homeCardsHint =>
+      'Taşımak için bir kartı sürükleyin. Boyutunu değiştirmek için kenarını ya da köşesini sürükleyin veya bir boyut seçin.';
+
+  @override
+  String get homeAddCard => 'Kart ekle';
+
+  @override
+  String get homeOnHome => 'Ana ekranda';
+
+  @override
+  String get homeRemoveCard => 'Kaldır';
+
+  @override
+  String get cardNext => 'Sonraki alarm';
+
+  @override
+  String get cardClock => 'Saat ve tarih';
+
+  @override
+  String get cardSky => 'Güneş, ay ve hava';
+
+  @override
+  String get cardMoon => 'Ay';
+
+  @override
+  String get cardWeather => 'Hava durumu';
+
+  @override
+  String get cardAlarms => 'Alarmlarınız';
+
+  @override
+  String get cardQuick => 'Hızlı alarmlar';
+
+  @override
+  String get cardTools => 'Kronometre, geri sayım ve hazır ol';
+
+  @override
+  String get cardWorld => 'Dünya saatleri';
+
+  @override
+  String get cardWeek => 'Bu hafta';
+
+  @override
+  String get cardShabbat => 'Şabat ve bayramlar';
 }

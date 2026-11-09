@@ -63,8 +63,7 @@ class LearningRepository {
     if (saved != null) {
       try {
         return [
-          for (final x in jsonDecode(saved) as List)
-            LearningReading.fromJson((x as Map).cast<String, dynamic>()),
+          for (final x in jsonDecode(saved) as List) LearningReading.fromJson((x as Map).cast<String, dynamic>()),
         ];
       } catch (_) {
         /* A corrupt cache can be fetched again. */
@@ -122,9 +121,7 @@ class LearningRepository {
       final parts = old.split('.');
       if (parts.length != 4) continue;
       final year = int.tryParse(parts[1]), month = int.tryParse(parts[2]);
-      if (year != null &&
-          month != null &&
-          DateTime(year, month).isBefore(DateTime(day.year, day.month - 1))) {
+      if (year != null && month != null && DateTime(year, month).isBefore(DateTime(day.year, day.month - 1))) {
         await prefs.remove(old);
       }
     }

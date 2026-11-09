@@ -30,10 +30,7 @@ class SwipeToDelete extends StatelessWidget {
     background: Container(
       alignment: Alignment.centerRight,
       padding: const EdgeInsets.only(right: 24),
-      decoration: const BoxDecoration(
-        color: QuandoColors.coral,
-        borderRadius: BorderRadius.all(Radius.circular(24)),
-      ),
+      decoration: const BoxDecoration(color: QuandoColors.coral, borderRadius: BorderRadius.all(Radius.circular(24))),
       child: const Icon(Icons.delete_outline, color: QuandoColors.ground),
     ),
     child: child,

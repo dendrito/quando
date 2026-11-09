@@ -195,25 +195,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String spanDays(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n ימים',
-      two: 'יומיים',
-      one: 'יום אחד',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n ימים', two: 'יומיים', one: 'יום אחד');
     return '$_temp0';
   }
 
   @override
   String spanHours(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n שעות',
-      two: 'שעתיים',
-      one: 'שעה אחת',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שעות', two: 'שעתיים', one: 'שעה אחת');
     return '$_temp0';
   }
 
@@ -736,16 +724,14 @@ class AppLocalizationsHe extends AppLocalizations {
       'טלפוני Xiaomi: בהגדרות › אפליקציות › Quando?, הפעילו הפעלה אוטומטית וקבעו את חיסכון הסוללה ל„ללא הגבלות”.';
 
   @override
-  String get tipSamsung =>
-      'טלפוני Samsung: בהגדרות › סוללה › מגבלות שימוש ברקע, ודאו ש־Quando? לא במצב שינה.';
+  String get tipSamsung => 'טלפוני Samsung: בהגדרות › סוללה › מגבלות שימוש ברקע, ודאו ש־Quando? לא במצב שינה.';
 
   @override
   String get tipHuawei =>
       'טלפוני Huawei ו־Honor: בהגדרות › סוללה › הפעלת אפליקציות, קבעו את Quando? לניהול ידני ואפשרו הכול.';
 
   @override
-  String get tipOther =>
-      'בטלפון הזה: בהגדרות › סוללה, אפשרו ל־Quando? לפעול ברקע וכבו עבורו את האופטימיזציה.';
+  String get tipOther => 'בטלפון הזה: בהגדרות › סוללה, אפשרו ל־Quando? לפעול ברקע וכבו עבורו את האופטימיזציה.';
 
   @override
   String get testRing => 'צלצול ניסיון';
@@ -870,8 +856,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get provesAwake => 'מוכיח שאתם ערים';
 
   @override
-  String get shabbatNoTasks =>
-      'בשבת ובחג אף אחד מאלה לא חל: ההתראות נעצרות מעצמן ולעולם לא מבקשות לגעת בטלפון.';
+  String get shabbatNoTasks => 'בשבת ובחג אף אחד מאלה לא חל: ההתראות נעצרות מעצמן ולעולם לא מבקשות לגעת בטלפון.';
 
   @override
   String get testAlarmIn1 => 'צלצול ניסיון בעוד דקה';
@@ -1237,8 +1222,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get spotifyComingSoon => 'בקרוב · דורש Premium';
 
   @override
-  String get spotifyFailed =>
-      'Spotify לא התחבר. ודאו שאפליקציית Spotify מותקנת, שאתם מחוברים ושיש לכם Premium.';
+  String get spotifyFailed => 'Spotify לא התחבר. ודאו שאפליקציית Spotify מותקנת, שאתם מחוברים ושיש לכם Premium.';
 
   @override
   String get nameThisSound => 'תנו שם לצליל';
@@ -1290,8 +1274,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get wakeToRadio => 'להתעורר לרדיו מקוון';
 
   @override
-  String get soundsExplain =>
-      'הקליטו עד 5 דקות, הוסיפו קובץ, קישור לשיר או רדיו חי. צליל גיבוי מצלצל אם משהו נכשל.';
+  String get soundsExplain => 'הקליטו עד 5 דקות, הוסיפו קובץ, קישור לשיר או רדיו חי. צליל גיבוי מצלצל אם משהו נכשל.';
 
   @override
   String get yourSoundsHeading => 'הצלילים שלך';
@@ -1681,8 +1664,7 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get fadesExplain =>
-      'ההחלשה קורית כשההתראה נעצרת מעצמה. אם המעברים ארוכים מהצלצול, שניהם מתקצרים כדי להתאים.';
+  String get fadesExplain => 'ההחלשה קורית כשההתראה נעצרת מעצמה. אם המעברים ארוכים מהצלצול, שניהם מתקצרים כדי להתאים.';
 
   @override
   String get soundSoftChime => 'פעמון עדין';
@@ -2243,8 +2225,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get locationReview => 'אישור מיקום';
 
   @override
-  String get locationDeviceOnly =>
-      'המיקום נשמר רק במכשיר זה. בדוק את אזור הזמן ואת הגדרת ישראל לפני השימוש בזמנים.';
+  String get locationDeviceOnly => 'המיקום נשמר רק במכשיר זה. בדוק את אזור הזמן ואת הגדרת ישראל לפני השימוש בזמנים.';
 
   @override
   String timesIn(String city, String zone) {
@@ -2294,8 +2275,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2510,8 +2490,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2557,8 +2536,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get locationDenied => 'הגישה למיקום נדחתה. יש לאפשר אותה בהגדרות או לבחור עיר.';
 
   @override
-  String get locationTimedOut =>
-      'המיקום עדיין לא התקבל. ב־Mac יש להשאיר את ה־Wi-Fi פעיל ולנסות שוב, או לבחור עיר.';
+  String get locationTimedOut => 'המיקום עדיין לא התקבל. ב־Mac יש להשאיר את ה־Wi-Fi פעיל ולנסות שוב, או לבחור עיר.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2672,8 +2650,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get soundCloudWidgetNote => 'הוסיפו קישור ציבורי';
 
   @override
-  String get youtubePlayerHint =>
-      'YouTube מציג וידאו בנגן גלוי. אם הנגן מוסתר או לא יכול לנגן, ההתראה המקומית ממשיכה.';
+  String get youtubePlayerHint => 'YouTube מציג וידאו בנגן גלוי. אם הנגן מוסתר או לא יכול לנגן, ההתראה המקומית ממשיכה.';
 
   @override
   String get musicPreviewFailed => 'לא ניתן לנגן את הצליל. בדקו את החיבור או נסו שיר או תחנה אחרים.';
@@ -2756,8 +2733,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'מפתחות השירותים שלך מוצפנים בסיסמת הסנכרון לפני שהם יוצאים מהמכשיר. אף אחד אחר, אפילו לא Google, לא יכול לקרוא אותם.';
 
   @override
-  String get keysLockWaiting =>
-      'הגיעו לכאן מפתחות מהמכשיר האחר שלך, נעולים. הקלד את סיסמת הסנכרון כדי לפתוח אותם.';
+  String get keysLockWaiting => 'הגיעו לכאן מפתחות מהמכשיר האחר שלך, נעולים. הקלד את סיסמת הסנכרון כדי לפתוח אותם.';
 
   @override
   String get keysSetPassphrase => 'בחירת סיסמה';
@@ -2831,8 +2807,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 
   @override
-  String get calendarSourcesIntro =>
-      'Quando? יכול לצלצל לפני אירועים ביומנים שלך ואחריהם. בחר מאיפה הם מגיעים.';
+  String get calendarSourcesIntro => 'Quando? יכול לצלצל לפני אירועים ביומנים שלך ואחריהם. בחר מאיפה הם מגיעים.';
 
   @override
   String get deviceCalendarsHeading => 'במכשיר הזה';
@@ -2841,8 +2816,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get deviceCalendarsTitle => 'אפליקציית היומן של המכשיר';
 
   @override
-  String get deviceCalendarsHint =>
-      'כל החשבונות בו: Google, Samsung, Outlook, iCloud ויומנים שנשמרים רק כאן.';
+  String get deviceCalendarsHint => 'כל החשבונות בו: Google, Samsung, Outlook, iCloud ויומנים שנשמרים רק כאן.';
 
   @override
   String get googleCalendarHeading => 'יומן Google';
@@ -2864,8 +2838,7 @@ class AppLocalizationsHe extends AppLocalizations {
       'התחברות עם Google עדיין לא זמינה במכשיר הזה. הוסף את חשבון Google בהגדרות המכשיר (לוח שנה › חשבונות) והיומנים שלו יופיעו תחת המכשיר.';
 
   @override
-  String get googleCalendarUnreachable =>
-      'לא ניתן להגיע ליומן Google כרגע. התראות שכבר נקבעו ממנו עדיין יצלצלו.';
+  String get googleCalendarUnreachable => 'לא ניתן להגיע ליומן Google כרגע. התראות שכבר נקבעו ממנו עדיין יצלצלו.';
 
   @override
   String get googleCalendarTwiceHint =>
@@ -2945,12 +2918,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(
-      n,
-      locale: localeName,
-      other: '$n שניות לפני',
-      one: 'שנייה אחת לפני',
-    );
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות לפני', one: 'שנייה אחת לפני');
     return '$_temp0';
   }
 
@@ -3092,4 +3060,58 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get sizeLarge => 'גדול';
+
+  @override
+  String get homeLayout => 'פריסת מסך הבית';
+
+  @override
+  String get homeLayoutClassic => 'קלאסי';
+
+  @override
+  String get homeLayoutCards => 'כרטיסים';
+
+  @override
+  String get homeCardsHint => 'גררו כרטיס כדי להזיז אותו. גררו את הקצה או הפינה כדי לשנות גודל, או בחרו גודל.';
+
+  @override
+  String get homeAddCard => 'הוספת כרטיס';
+
+  @override
+  String get homeOnHome => 'במסך הבית';
+
+  @override
+  String get homeRemoveCard => 'הסרה';
+
+  @override
+  String get cardNext => 'ההשכמה הבאה';
+
+  @override
+  String get cardClock => 'שעון ותאריך';
+
+  @override
+  String get cardSky => 'שמש, ירח ומזג אוויר';
+
+  @override
+  String get cardMoon => 'ירח';
+
+  @override
+  String get cardWeather => 'מזג אוויר';
+
+  @override
+  String get cardAlarms => 'ההשכמות שלך';
+
+  @override
+  String get cardQuick => 'השכמות מהירות';
+
+  @override
+  String get cardTools => 'סטופר, טיימר ו״היכון״';
+
+  @override
+  String get cardWorld => 'שעוני עולם';
+
+  @override
+  String get cardWeek => 'השבוע';
+
+  @override
+  String get cardShabbat => 'שבת וחגים';
 }

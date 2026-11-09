@@ -23,9 +23,7 @@ class EmbeddedMusic {
       final video = uri.host == 'youtu.be' ? uri.pathSegments.firstOrNull : uri.queryParameters['v'];
       final playlist = uri.queryParameters['list'];
       final validVideo = video != null && video.length == 11 && _id.hasMatch(video) ? video : null;
-      final validList = playlist != null && playlist.length <= 150 && _id.hasMatch(playlist)
-          ? playlist
-          : null;
+      final validList = playlist != null && playlist.length <= 150 && _id.hasMatch(playlist) ? playlist : null;
       if (validVideo == null && validList == null) return null;
       return EmbeddedMusic._('YouTube', link!, video: validVideo, playlist: validList);
     }

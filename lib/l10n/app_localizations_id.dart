@@ -155,8 +155,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get noAlarmsThisWeek => 'Tidak ada alarm dalam 7 hari ke depan.';
 
   @override
-  String get alarmsSetThemselves =>
-      'Alarm mengatur dirinya sendiri di ponsel ini setiap kali kamu mengubah sesuatu.';
+  String get alarmsSetThemselves => 'Alarm mengatur dirinya sendiri di ponsel ini setiap kali kamu mengubah sesuatu.';
 
   @override
   String cityTime(String city) {
@@ -296,8 +295,7 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint =>
-      'Tambahkan kota untuk melihat waktunya di sini. Geser ke kiri untuk menghapus.';
+  String get worldClocksHint => 'Tambahkan kota untuk melihat waktunya di sini. Geser ke kiri untuk menghapus.';
 
   @override
   String get groupNameHint => 'Kerja, Anak, Gym…';
@@ -445,8 +443,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get pinToScreen => 'Sematkan Quando? ke layar';
 
   @override
-  String get pinToScreenHint =>
-      'Aplikasi lain tidak terbuka selama kunci. Android meminta konfirmasi pertama kali.';
+  String get pinToScreenHint => 'Aplikasi lain tidak terbuka selama kunci. Android meminta konfirmasi pertama kali.';
 
   @override
   String get noLocksComingUp => 'Tidak ada kunci yang akan datang.';
@@ -524,8 +521,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get off => 'Mati';
 
   @override
-  String get gentleSentence =>
-      'Suara tenang mulai pelan sebelum alarmmu, jadi kamu tak pernah terbangun kaget.';
+  String get gentleSentence => 'Suara tenang mulai pelan sebelum alarmmu, jadi kamu tak pernah terbangun kaget.';
 
   @override
   String get gentleExplain =>
@@ -840,8 +836,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get sayItOutLoud => 'Ucapkan dengan suara';
 
   @override
-  String get sayItOutLoudHint =>
-      'Membacakan untuk apa alarmnya, mis. “Menyalakan lilin, 15 menit sebelumnya”';
+  String get sayItOutLoudHint => 'Membacakan untuk apa alarmnya, mis. “Menyalakan lilin, 15 menit sebelumnya”';
 
   @override
   String get noSnooze => 'Tanpa tunda';
@@ -1064,8 +1059,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get nameOptional => 'Nama (opsional)';
 
   @override
-  String get toppedUp =>
-      'Alarm diatur untuk 7 hari ke depan dan diisi ulang setiap kali kamu membuka Quando?.';
+  String get toppedUp => 'Alarm diatur untuk 7 hari ke depan dan diisi ulang setiap kali kamu membuka Quando?.';
 
   @override
   String get back => 'Kembali';
@@ -1874,8 +1868,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get myPushoverDefault => 'Bawaan Pushover-ku';
 
   @override
-  String get pushoverOwnSounds =>
-      'Suaramu sendiri muncul di sini setelah kamu mengunggahnya di pushover.net/sounds.';
+  String get pushoverOwnSounds => 'Suaramu sendiri muncul di sini setelah kamu mengunggahnya di pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'Semua perangkatku';
@@ -1953,8 +1946,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get quotesTitle => 'Kutipan tentang waktu';
 
   @override
-  String get quotesHint =>
-      'Pilih sumbernya. Satu untuk tiap bagian hari; ketuk kutipan untuk melihat yang lain.';
+  String get quotesHint => 'Pilih sumbernya. Satu untuk tiap bagian hari; ketuk kutipan untuk melihat yang lain.';
 
   @override
   String get quotesOff => 'Mati';
@@ -2251,8 +2243,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2286,15 +2277,13 @@ class AppLocalizationsId extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2509,8 +2498,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2556,8 +2544,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2676,8 +2663,7 @@ class AppLocalizationsId extends AppLocalizations {
       'YouTube memutar video di pemutar yang terlihat. Jika disembunyikan atau tidak dapat memutar, alarm lokal berlanjut.';
 
   @override
-  String get musicPreviewFailed =>
-      'Suara ini tidak dapat diputar. Periksa koneksi atau coba lagu atau stasiun lain.';
+  String get musicPreviewFailed => 'Suara ini tidak dapat diputar. Periksa koneksi atau coba lagu atau stasiun lain.';
 
   @override
   String get skyMoonPhase => 'Fase Bulan';
@@ -3094,4 +3080,59 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Besar';
+
+  @override
+  String get homeLayout => 'Tata letak beranda';
+
+  @override
+  String get homeLayoutClassic => 'Klasik';
+
+  @override
+  String get homeLayoutCards => 'Kartu';
+
+  @override
+  String get homeCardsHint =>
+      'Seret kartu untuk memindahkannya. Seret tepi atau sudutnya untuk mengubah ukuran, atau pilih ukuran.';
+
+  @override
+  String get homeAddCard => 'Tambah kartu';
+
+  @override
+  String get homeOnHome => 'Di beranda';
+
+  @override
+  String get homeRemoveCard => 'Hapus';
+
+  @override
+  String get cardNext => 'Alarm berikutnya';
+
+  @override
+  String get cardClock => 'Jam dan tanggal';
+
+  @override
+  String get cardSky => 'Matahari, bulan, dan cuaca';
+
+  @override
+  String get cardMoon => 'Bulan';
+
+  @override
+  String get cardWeather => 'Cuaca';
+
+  @override
+  String get cardAlarms => 'Alarm Anda';
+
+  @override
+  String get cardQuick => 'Alarm cepat';
+
+  @override
+  String get cardTools => 'Stopwatch, hitung mundur, dan bersiap';
+
+  @override
+  String get cardWorld => 'Jam dunia';
+
+  @override
+  String get cardWeek => 'Minggu ini';
+
+  @override
+  String get cardShabbat => 'Shabbat dan hari raya';
 }

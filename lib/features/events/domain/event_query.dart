@@ -19,8 +19,7 @@ class EventQuery {
   static final _cache = <String, EventQuery>{};
 
   /// Parsed queries are kept, so matching thousands of events is cheap.
-  factory EventQuery.parse(String query) =>
-      _cache[query] ??= EventQuery._(query, _Parser(_tokenize(query)).parse());
+  factory EventQuery.parse(String query) => _cache[query] ??= EventQuery._(query, _Parser(_tokenize(query)).parse());
 
   bool get isEmpty => _root == null;
 

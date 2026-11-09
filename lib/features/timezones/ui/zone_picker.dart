@@ -45,14 +45,8 @@ class _ZonePickerState extends State<_ZonePicker> {
           final z = shown[i];
           return ListTile(
             title: Text(cityOf(z)),
-            subtitle: Text(
-              '${z.split('/').first} · ${offsetFrom(z, widget.home, now)}',
-              style: text.bodySmall,
-            ),
-            trailing: Text(
-              hhmm(inZone(now, z)),
-              style: text.titleMedium?.copyWith(color: QuandoColors.amber),
-            ),
+            subtitle: Text('${z.split('/').first} · ${offsetFrom(z, widget.home, now)}', style: text.bodySmall),
+            trailing: Text(hhmm(inZone(now, z)), style: text.titleMedium?.copyWith(color: QuandoColors.amber)),
             onTap: () => Navigator.pop(context, z),
           );
         },

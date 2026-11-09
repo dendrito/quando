@@ -148,10 +148,8 @@ class _StopwatchPage extends ConsumerWidget {
                   const SizedBox(width: 16),
                   Text(
                     stopwatchText(m.laps[i]),
-                    style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                      color: QuandoColors.muted,
-                      fontFeatures: const [FontFeature.tabularFigures()],
-                    ),
+                    style: Theme.of(context).textTheme.bodyLarge
+                        ?.copyWith(color: QuandoColors.muted, fontFeatures: const [FontFeature.tabularFigures()]),
                   ),
                 ],
               ),

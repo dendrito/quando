@@ -20,11 +20,7 @@ class MacCalendarReader implements CalendarReader {
     final rows = await channel.invokeListMethod<Map<Object?, Object?>>('calendars') ?? [];
     return [
       for (final row in rows)
-        PhoneCalendar(
-          id: row['id']! as String,
-          name: row['name']! as String,
-          account: row['account'] as String?,
-        ),
+        PhoneCalendar(id: row['id']! as String, name: row['name']! as String, account: row['account'] as String?),
     ];
   }
 

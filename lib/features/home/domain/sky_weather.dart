@@ -82,12 +82,7 @@ List<ArcWeather> moonArcWeather(MoonTrack track, WeatherReport report, String zo
 
 /// Forecast stops along any arc. [pos] gives where a time falls on it, 0 at
 /// the start and 1 at the end; [now] is where the Sun or Moon is.
-List<ArcWeather> arcWeatherAlong(
-  WeatherReport report,
-  String zone,
-  double? Function(DateTime) pos, {
-  double? now,
-}) {
+List<ArcWeather> arcWeatherAlong(WeatherReport report, String zone, double? Function(DateTime) pos, {double? now}) {
   final hours = report.hours.where((h) {
     final t = pos(h.at);
     return t != null && t >= .04 && t <= .96;
@@ -109,9 +104,7 @@ List<ArcWeather> arcWeatherAlong(
     final t = pos(best.at)!;
     if (now != null && now >= 0 && now <= 1 && (t - now).abs() < .08) continue;
     if (picked.any((p) => (p.t - t).abs() < .15)) continue;
-    picked.add(
-      ArcWeather(t: t, hour: best, label: '${hhmm(inZone(best.at, zone))} · ${best.celsius.round()}°'),
-    );
+    picked.add(ArcWeather(t: t, hour: best, label: '${hhmm(inZone(best.at, zone))} · ${best.celsius.round()}°'));
   }
   return picked;
 }
@@ -165,14 +158,7 @@ class SkyStrip {
   static SkyStrip ofMoon(Place place, MoonTrack track, WeatherReport? report, {int count = 25}) {
     final start = track.rise, end = track.set;
     final valid = start != null && end != null && end.isAfter(start);
-    return between(
-      place,
-      valid ? start : track.now,
-      valid ? end : track.now,
-      report,
-      now: track.now,
-      count: count,
-    );
+    return between(place, valid ? start : track.now, valid ? end : track.now, report, now: track.now, count: count);
   }
 
   static SkyStrip between(
@@ -193,9 +179,7 @@ class SkyStrip {
       night.add(skyNightness(sky));
       // Weather effects only for the hours still to come.
       kinds.add(
-        report == null || at.isBefore(now.subtract(const Duration(minutes: 30)))
-            ? null
-            : hourNear(report, at)?.kind,
+        report == null || at.isBefore(now.subtract(const Duration(minutes: 30))) ? null : hourNear(report, at)?.kind,
       );
     }
     return SkyStrip(colors: colors, night: night, kinds: kinds, start: a, end: b);

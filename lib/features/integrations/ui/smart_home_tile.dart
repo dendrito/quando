@@ -44,8 +44,7 @@ class SmartHomeTile extends ConsumerWidget {
                     child: Text(scene.name, overflow: TextOverflow.ellipsis),
                   ),
               ],
-              onChanged: (key) =>
-                  onChanged(value.copyWith(tuyaScene: scenes[key], clearTuyaScene: key == '__none__')),
+              onChanged: (key) => onChanged(value.copyWith(tuyaScene: scenes[key], clearTuyaScene: key == '__none__')),
             ),
             TextButton.icon(
               onPressed: () => context.push('/connections'),

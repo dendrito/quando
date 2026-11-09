@@ -482,8 +482,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pinToScreen => 'ثبّت Quando? على الشاشة';
 
   @override
-  String get pinToScreenHint =>
-      'لا تُفتح التطبيقات الأخرى أثناء القفل. يطلب Android التأكيد في المرة الأولى.';
+  String get pinToScreenHint => 'لا تُفتح التطبيقات الأخرى أثناء القفل. يطلب Android التأكيد في المرة الأولى.';
 
   @override
   String get noLocksComingUp => 'لا أقفال قادمة.';
@@ -773,8 +772,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'هواتف Huawei وHonor: في الإعدادات › البطارية › تشغيل التطبيقات اضبط Quando? على الإدارة اليدوية واسمح بكل شيء.';
 
   @override
-  String get tipOther =>
-      'على هذا الهاتف: في الإعدادات › البطارية اسمح لـQuando? بالعمل في الخلفية وأوقف التحسين.';
+  String get tipOther => 'على هذا الهاتف: في الإعدادات › البطارية اسمح لـQuando? بالعمل في الخلفية وأوقف التحسين.';
 
   @override
   String get testRing => 'رنين تجريبي';
@@ -901,15 +899,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get provesAwake => 'يثبت أنك مستيقظ';
 
   @override
-  String get shabbatNoTasks =>
-      'في السبت والأعياد لا ينطبق أي من هذا: تتوقف المنبهات وحدها ولا تطلب لمس الهاتف أبدًا.';
+  String get shabbatNoTasks => 'في السبت والأعياد لا ينطبق أي من هذا: تتوقف المنبهات وحدها ولا تطلب لمس الهاتف أبدًا.';
 
   @override
   String get testAlarmIn1 => 'شغّل منبهًا تجريبيًا بعد دقيقة';
 
   @override
-  String get timesDisclaimer =>
-      'تُحسب الأوقات على الهاتف. في الحالات الحدّية اسأل حاخامك أو راجع تقويم الجماعة.';
+  String get timesDisclaimer => 'تُحسب الأوقات على الهاتف. في الحالات الحدّية اسأل حاخامك أو راجع تقويم الجماعة.';
 
   @override
   String get recommended => 'موصى به';
@@ -1714,8 +1710,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get fadesExplain =>
-      'يحدث التلاشي عندما يتوقف المنبه وحده. إذا كانت المدد أطول من الرنين يُقصَّر كلاهما.';
+  String get fadesExplain => 'يحدث التلاشي عندما يتوقف المنبه وحده. إذا كانت المدد أطول من الرنين يُقصَّر كلاهما.';
 
   @override
   String get soundSoftChime => 'جرس ناعم';
@@ -1839,8 +1834,7 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get spotifySaidNo =>
-      'رفض Spotify. في لوحة Spotify حدد Web API لـQuando? وأضف حسابك في User Management.';
+  String get spotifySaidNo => 'رفض Spotify. في لوحة Spotify حدد Web API لـQuando? وأضف حسابك في User Management.';
 
   @override
   String serviceDidntAnswer(String service, int code) {
@@ -1928,8 +1922,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get allMyDevices => 'كل أجهزتي';
 
   @override
-  String get pushoverOnThisPhone =>
-      'ثبّت تطبيق Pushover على هذا الهاتف أيضًا وسيرنّ هنا بصوت Pushover الخاص بك.';
+  String get pushoverOnThisPhone => 'ثبّت تطبيق Pushover على هذا الهاتف أيضًا وسيرنّ هنا بصوت Pushover الخاص بك.';
 
   @override
   String get priority => 'الأولوية';
@@ -1959,8 +1952,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get webhooksHeading => 'ZAPIER وIFTTT والويب هوك';
 
   @override
-  String get webhooksExplain =>
-      'شغّل أي شيء عندما يرنّ المنبه أو توقفه: أضئ الأنوار، سجّل وقت استيقاظك، راسل أحدًا.';
+  String get webhooksExplain => 'شغّل أي شيء عندما يرنّ المنبه أو توقفه: أضئ الأنوار، سجّل وقت استيقاظك، راسل أحدًا.';
 
   @override
   String get sendWhenAlarm => 'أرسل عندما المنبه:';
@@ -2297,8 +2289,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2332,15 +2323,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2555,8 +2544,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2602,8 +2590,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2793,8 +2780,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get keysLockTitle => 'المفاتيح على أجهزتك';
 
   @override
-  String get keysLockOff =>
-      'تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.';
+  String get keysLockOff => 'تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.';
 
   @override
   String get keysLockOn =>
@@ -2875,8 +2861,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 
   @override
-  String get calendarSourcesIntro =>
-      'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويماتك. اختر من أين تأتي.';
+  String get calendarSourcesIntro => 'يستطيع Quando? أن يرنّ قبل الأحداث وبعدها في تقويماتك. اختر من أين تأتي.';
 
   @override
   String get deviceCalendarsHeading => 'على هذا الجهاز';
@@ -2885,8 +2870,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get deviceCalendarsTitle => 'تطبيق التقويم في هذا الجهاز';
 
   @override
-  String get deviceCalendarsHint =>
-      'كل الحسابات عليه: Google وSamsung وOutlook وiCloud والتقويمات المحفوظة هنا فقط.';
+  String get deviceCalendarsHint => 'كل الحسابات عليه: Google وSamsung وOutlook وiCloud والتقويمات المحفوظة هنا فقط.';
 
   @override
   String get googleCalendarHeading => 'تقويم Google';
@@ -2908,8 +2892,7 @@ class AppLocalizationsAr extends AppLocalizations {
       'تسجيل الدخول بحساب Google غير متاح بعد على هذا الجهاز. أضف حساب Google من إعدادات الجهاز (التقويم › الحسابات) وستظهر تقويماته ضمن هذا الجهاز.';
 
   @override
-  String get googleCalendarUnreachable =>
-      'تعذّر الوصول إلى تقويم Google الآن. المنبّهات المضبوطة منه ما زالت ترنّ.';
+  String get googleCalendarUnreachable => 'تعذّر الوصول إلى تقويم Google الآن. المنبّهات المضبوطة منه ما زالت ترنّ.';
 
   @override
   String get googleCalendarTwiceHint =>
@@ -3155,4 +3138,58 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get sizeLarge => 'كبير';
+
+  @override
+  String get homeLayout => 'تخطيط الشاشة الرئيسية';
+
+  @override
+  String get homeLayoutClassic => 'كلاسيكي';
+
+  @override
+  String get homeLayoutCards => 'بطاقات';
+
+  @override
+  String get homeCardsHint => 'اسحب بطاقة لنقلها. اسحب حافتها أو زاويتها لتغيير حجمها، أو اختر حجمًا.';
+
+  @override
+  String get homeAddCard => 'إضافة بطاقة';
+
+  @override
+  String get homeOnHome => 'على الشاشة';
+
+  @override
+  String get homeRemoveCard => 'إزالة';
+
+  @override
+  String get cardNext => 'المنبه التالي';
+
+  @override
+  String get cardClock => 'الساعة والتاريخ';
+
+  @override
+  String get cardSky => 'الشمس والقمر والطقس';
+
+  @override
+  String get cardMoon => 'القمر';
+
+  @override
+  String get cardWeather => 'الطقس';
+
+  @override
+  String get cardAlarms => 'منبهاتك';
+
+  @override
+  String get cardQuick => 'منبهات سريعة';
+
+  @override
+  String get cardTools => 'ساعة إيقاف وعد تنازلي واستعد';
+
+  @override
+  String get cardWorld => 'ساعات العالم';
+
+  @override
+  String get cardWeek => 'هذا الأسبوع';
+
+  @override
+  String get cardShabbat => 'السبت والأعياد';
 }

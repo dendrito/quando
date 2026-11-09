@@ -35,8 +35,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get newAroundEvent => 'Вокруг события';
 
   @override
-  String get newAroundEventHint =>
-      'Ищите в календарях, времени шаббата и солнца и звоните до, во время или после';
+  String get newAroundEventHint => 'Ищите в календарях, времени шаббата и солнца и звоните до, во время или после';
 
   @override
   String get editThisAlarm => 'Изменить этот будильник';
@@ -330,8 +329,7 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint =>
-      'Добавьте города, чтобы видеть здесь их время. Смахните влево, чтобы удалить.';
+  String get worldClocksHint => 'Добавьте города, чтобы видеть здесь их время. Смахните влево, чтобы удалить.';
 
   @override
   String get groupNameHint => 'Работа, Дети, Спортзал…';
@@ -439,8 +437,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get presetsHint => 'Нажмите, чтобы изменить время. Смахните, чтобы удалить.';
 
   @override
-  String get lockSentence =>
-      'Оставьте на телефоне только часы и будильники — на шаббат или ночь без отвлечений.';
+  String get lockSentence => 'Оставьте на телефоне только часы и будильники — на шаббат или ночь без отвлечений.';
 
   @override
   String get lockExplain =>
@@ -562,8 +559,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get gentleSentence => 'Спокойный звук тихо начинается до будильника, чтобы вы не просыпались резко.';
 
   @override
-  String get gentleExplain =>
-      'Он медленно нарастает, выводит из лёгкого сна и затихает прямо перед будильником.';
+  String get gentleExplain => 'Он медленно нарастает, выводит из лёгкого сна и затихает прямо перед будильником.';
 
   @override
   String get startsBeforeHeading => 'НАЧИНАЕТСЯ ДО БУДИЛЬНИКА';
@@ -813,8 +809,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get testIn20 => 'Тест: звонок через 20 секунд';
 
   @override
-  String get testIn20Hint =>
-      'Заблокируйте телефон и отложите. Если будильник зазвонит на весь экран, всё готово.';
+  String get testIn20Hint => 'Заблокируйте телефон и отложите. Если будильник зазвонит на весь экран, всё готово.';
 
   @override
   String get readyToRingHint => 'Проверьте, что телефон звонит каждым будильником вовремя';
@@ -1667,8 +1662,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get stopSentence => 'Как выключить будильник и что нужно сделать сначала.';
 
   @override
-  String get shabbatNoTask =>
-      'В шаббат и праздники будильники останавливаются сами и никогда не требуют задания.';
+  String get shabbatNoTask => 'В шаббат и праздники будильники останавливаются сами и никогда не требуют задания.';
 
   @override
   String get volumeSentence => 'Насколько громко звонит и как плавно к этому приходит.';
@@ -2302,8 +2296,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2337,15 +2330,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2560,8 +2551,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2607,8 +2597,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2849,8 +2838,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Запишите её: если забудете, восстановить её нельзя, и ключи придётся ввести заново.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».';
+  String get keysShareNeedsPassphrase => 'Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».';
 
   @override
   String get settingsAlarmDefaults => 'Alarm defaults';
@@ -3162,4 +3150,59 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Большие';
+
+  @override
+  String get homeLayout => 'Вид главного экрана';
+
+  @override
+  String get homeLayoutClassic => 'Классический';
+
+  @override
+  String get homeLayoutCards => 'Карточки';
+
+  @override
+  String get homeCardsHint =>
+      'Перетащите карточку, чтобы переместить. Потяните за край или угол, чтобы изменить размер, или выберите размер.';
+
+  @override
+  String get homeAddCard => 'Добавить карточку';
+
+  @override
+  String get homeOnHome => 'На экране';
+
+  @override
+  String get homeRemoveCard => 'Убрать';
+
+  @override
+  String get cardNext => 'Следующий будильник';
+
+  @override
+  String get cardClock => 'Часы и дата';
+
+  @override
+  String get cardSky => 'Солнце, луна и погода';
+
+  @override
+  String get cardMoon => 'Луна';
+
+  @override
+  String get cardWeather => 'Погода';
+
+  @override
+  String get cardAlarms => 'Ваши будильники';
+
+  @override
+  String get cardQuick => 'Быстрые будильники';
+
+  @override
+  String get cardTools => 'Секундомер, таймер и «внимание»';
+
+  @override
+  String get cardWorld => 'Мировое время';
+
+  @override
+  String get cardWeek => 'Эта неделя';
+
+  @override
+  String get cardShabbat => 'Шаббат и праздники';
 }

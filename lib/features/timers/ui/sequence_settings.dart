@@ -93,20 +93,7 @@ class _Settings extends ConsumerWidget {
                 DropdownButton<int>(
                   value: c.calls[i].secondsBefore,
                   items: [
-                    for (final s in {
-                      1,
-                      2,
-                      3,
-                      4,
-                      5,
-                      6,
-                      8,
-                      10,
-                      15,
-                      20,
-                      30,
-                      c.calls[i].secondsBefore,
-                    }.toList()..sort())
+                    for (final s in {1, 2, 3, 4, 5, 6, 8, 10, 15, 20, 30, c.calls[i].secondsBefore}.toList()..sort())
                       DropdownMenuItem(value: s, child: Text(l10n.seqCallBefore(s))),
                   ],
                   onChanged: (v) => v == null
@@ -254,9 +241,7 @@ class _Settings extends ConsumerWidget {
           ),
         TextButton.icon(
           onPressed: () => set(
-            c.copyWith(
-              marks: [...c.marks, (atSeconds: c.lengthSeconds > 0 ? c.lengthSeconds ~/ 2 : 30, text: '')],
-            ),
+            c.copyWith(marks: [...c.marks, (atSeconds: c.lengthSeconds > 0 ? c.lengthSeconds ~/ 2 : 30, text: '')]),
           ),
           icon: const Icon(Icons.add),
           label: Text(l10n.seqAddMark),

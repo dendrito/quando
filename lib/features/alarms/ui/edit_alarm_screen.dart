@@ -141,9 +141,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           );
     final messenger = ScaffoldMessenger.of(context);
     Navigator.of(context).pop();
-    messenger.showSnackBar(
-      SnackBar(content: Text(next == null ? l10n.alarmSaved : l10n.alarmSetFor(_until(next)))),
-    );
+    messenger.showSnackBar(SnackBar(content: Text(next == null ? l10n.alarmSaved : l10n.alarmSetFor(_until(next)))));
   }
 
   String _until(DateTime at) {
@@ -274,11 +272,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             value: _alarm.delivery.resolveSound(_alarm.soundId),
             onChanged: (id) => setState(
               () => _alarm = _alarm.copyWith(
-                delivery: _alarm.delivery.copyWith(
-                  soundId: id,
-                  clearSound: id == null,
-                  useDefaultSound: id == null,
-                ),
+                delivery: _alarm.delivery.copyWith(soundId: id, clearSound: id == null, useDefaultSound: id == null),
               ),
             ),
           ),
@@ -298,10 +292,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
           ),
           const SizedBox(height: 16),
-          Text(
-            l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()),
-            style: text.labelSmall,
-          ),
+          Text(l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()), style: text.labelSmall),
           const SizedBox(height: 8),
           RingLengthPicker(
             seconds: ring,
@@ -338,16 +329,10 @@ class _DayChip extends StatelessWidget {
         width: 44,
         height: 44,
         alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: selected ? QuandoColors.amber : QuandoColors.surface,
-        ),
+        decoration: BoxDecoration(shape: BoxShape.circle, color: selected ? QuandoColors.amber : QuandoColors.surface),
         child: Text(
           letter,
-          style: TextStyle(
-            color: selected ? QuandoColors.ground : QuandoColors.text,
-            fontWeight: FontWeight.w600,
-          ),
+          style: TextStyle(color: selected ? QuandoColors.ground : QuandoColors.text, fontWeight: FontWeight.w600),
         ),
       ),
     );

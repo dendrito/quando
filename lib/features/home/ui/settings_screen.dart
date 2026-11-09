@@ -64,8 +64,7 @@ class SettingsScreen extends ConsumerWidget {
           SoundPickerTile(
             value: o.soundId,
             allowDefault: false,
-            onChanged: (id) =>
-                setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
+            onChanged: (id) => setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
           ),
           Align(
             alignment: Alignment.centerLeft,
@@ -294,12 +293,7 @@ class SettingsScreen extends ConsumerWidget {
     }
     await ensureAlarmPermissions();
     final at = DateTime.now().add(const Duration(minutes: 1));
-    var p = RingPayload.forAlarm(
-      title: l10n.testAlarm,
-      body: l10n.testAlarmBody,
-      options: o,
-      shabbatSafe: false,
-    );
+    var p = RingPayload.forAlarm(title: l10n.testAlarm, body: l10n.testAlarmBody, options: o, shabbatSafe: false);
     final sound = ref.read(soundsProvider).where((s) => s.id == o.soundId).firstOrNull;
     p = p.withSound(sound?.playbackPath);
     if (sound?.link != null) p = p.withSong(sound!.link!, plays: sound.plays, seconds: sound.playSeconds);
@@ -426,8 +420,7 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                       ],
                     ),
                   ),
-                  if (working)
-                    const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                  if (working) const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
                 ],
               ),
               if (!working) ...[
@@ -454,8 +447,7 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                         onPressed: () async {
                           await notifier.resendConfirmation();
                           if (context.mounted) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
                           }
                         },
                         child: Text(l10n.emailSendAgain),
@@ -515,9 +507,7 @@ class _EmailDialogState extends ConsumerState<_EmailDialog> {
       _error = null;
       _note = null;
     });
-    final error = await ref
-        .read(syncProvider.notifier)
-        .signInWithEmail(_email.text, _password.text, create: _create);
+    final error = await ref.read(syncProvider.notifier).signInWithEmail(_email.text, _password.text, create: _create);
     if (!mounted) return;
     if (error == null) {
       Navigator.pop(context);

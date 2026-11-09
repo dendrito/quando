@@ -56,10 +56,8 @@ class PresetScreen extends ConsumerWidget {
                         value: rule.deliveryAt(d),
                         ruleSound: rule.soundId,
                         defaultRingSeconds: rule.useRingDuration ? rule.ringDuration.inSeconds : null,
-                        onChanged: (choice) => notifier.edit(
-                          id,
-                          (r) => r.copyWith(deliveries: {...r.deliveries, d.inMinutes: choice}),
-                        ),
+                        onChanged: (choice) =>
+                            notifier.edit(id, (r) => r.copyWith(deliveries: {...r.deliveries, d.inMinutes: choice})),
                       ),
                     ),
                     Switch(
@@ -81,8 +79,7 @@ class PresetScreen extends ConsumerWidget {
                   child: TextButton.icon(
                     icon: const Icon(Icons.close, size: 16),
                     label: Text(l10n.remove),
-                    onPressed: () =>
-                        notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
+                    onPressed: () => notifier.edit(id, (r) => r.withOffsets(r.offsets().where((o) => o != d))),
                   ),
                 ),
               ],
@@ -117,11 +114,8 @@ class PresetScreen extends ConsumerWidget {
             ),
           ),
           RingLengthPicker(
-            seconds: rule.useRingDuration
-                ? rule.ringDuration.inSeconds
-                : ref.watch(alarmOptionsProvider).ringSeconds,
-            onChanged: (seconds) =>
-                notifier.edit(id, (r) => r.copyWith(ringDuration: Duration(seconds: seconds))),
+            seconds: rule.useRingDuration ? rule.ringDuration.inSeconds : ref.watch(alarmOptionsProvider).ringSeconds,
+            onChanged: (seconds) => notifier.edit(id, (r) => r.copyWith(ringDuration: Duration(seconds: seconds))),
           ),
           AlarmExtras(
             value: rule.style,
@@ -196,10 +190,7 @@ Future<Duration?> _askOffset(BuildContext context) {
               onSelectionChanged: (s) => setState(() => before = s.first),
             ),
             const SizedBox(height: 8),
-            TextButton(
-              onPressed: () => Navigator.pop(context, Duration.zero),
-              child: Text(l10n.atTheMomentItself),
-            ),
+            TextButton(onPressed: () => Navigator.pop(context, Duration.zero), child: Text(l10n.atTheMomentItself)),
           ],
         ),
         actions: [

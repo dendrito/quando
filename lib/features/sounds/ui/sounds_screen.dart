@@ -68,10 +68,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     await SoundPreview.instance.stop();
     await SoundFiles.ensureFolder();
     final rel = SoundFiles.newRelative('rec', 'm4a');
-    await _recorder.start(
-      const RecordConfig(encoder: AudioEncoder.aacLc),
-      path: await SoundFiles.absolute(rel),
-    );
+    await _recorder.start(const RecordConfig(encoder: AudioEncoder.aacLc), path: await SoundFiles.absolute(rel));
     setState(() {
       _recordingPath = rel;
       _elapsed = Duration.zero;
@@ -89,11 +86,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     setState(() => _recordingPath = null);
     if (rel == null || !mounted) return;
     final n = ref.read(soundsProvider).where((s) => !s.builtIn).length + 1;
-    final sound = AlarmSound(
-      id: 'mine.${DateTime.now().millisecondsSinceEpoch}',
-      name: l10n.recordingN(n),
-      path: rel,
-    );
+    final sound = AlarmSound(id: 'mine.${DateTime.now().millisecondsSinceEpoch}', name: l10n.recordingN(n), path: rel);
     ref.read(soundsProvider.notifier).add(sound);
     _rename(sound);
   }
@@ -121,10 +114,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
   Future<void> _addLink({AlarmSound? editing}) async {
     final url = TextEditingController(text: editing?.link);
     final name = TextEditingController(text: editing?.name);
-    var ringWith = AlarmSound.builtIns.firstWhere(
-      (b) => b.path == editing?.path,
-      orElse: () => AlarmSound.builtIns[1],
-    );
+    var ringWith = AlarmSound.builtIns.firstWhere((b) => b.path == editing?.path, orElse: () => AlarmSound.builtIns[1]);
     var plays = editing?.plays ?? true;
     bool canPlay() =>
         isAndroid ||
@@ -183,9 +173,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   DropdownButton<AlarmSound>(
                     value: ringWith,
                     isExpanded: true,
-                    items: [
-                      for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name)),
-                    ],
+                    items: [for (final b in AlarmSound.builtIns) DropdownMenuItem(value: b, child: Text(b.name))],
                     onChanged: (b) => setLocal(() => ringWith = b ?? ringWith),
                   ),
                 ],
@@ -442,9 +430,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       leading: ServiceLogo(MusicService.spotify, connected: on),
       title: Text(on ? l10n.spotifyDirectOn : l10n.spotifyDirect),
       subtitle: Text(
-        SpotifyPlay.available
-            ? (on ? l10n.spotifyDirectOnHint : l10n.spotifyDirectHint)
-            : l10n.spotifyComingSoon,
+        SpotifyPlay.available ? (on ? l10n.spotifyDirectOnHint : l10n.spotifyDirectHint) : l10n.spotifyComingSoon,
         style: text.bodySmall,
       ),
       onTap: !SpotifyPlay.available
@@ -471,10 +457,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     final on = prefs.getBool(DesktopMusic.key(service)) == true;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: ServiceLogo(
-        service == 'apple' ? MusicService.appleMusic : MusicService.spotify,
-        connected: on,
-      ),
+      leading: ServiceLogo(service == 'apple' ? MusicService.appleMusic : MusicService.spotify, connected: on),
       title: Text(service == 'spotify' ? l10n.spotifyDirect : name),
       subtitle: Text(on ? l10n.desktopMusicOn(name) : l10n.desktopMusicConnect(name), style: text.bodySmall),
       trailing: on && service == 'apple' ? const Icon(Icons.chevron_right) : null,
@@ -577,9 +560,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   onPressed: recording ? _stopRecording : _startRecording,
                   icon: Icon(recording ? Icons.stop : Icons.mic),
                   label: Text(
-                    recording
-                        ? l10n.stopTimer('${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}')
-                        : l10n.record,
+                    recording ? l10n.stopTimer('${secs ~/ 60}:${(secs % 60).toString().padLeft(2, '0')}') : l10n.record,
                   ),
                 ),
               ),
@@ -609,9 +590,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               leading: IconButton(
                 tooltip: l10n.listen,
                 icon: Icon(
-                  SoundPreview.instance.playingId == s.id
-                      ? Icons.stop_circle_outlined
-                      : Icons.play_circle_outline,
+                  SoundPreview.instance.playingId == s.id ? Icons.stop_circle_outlined : Icons.play_circle_outline,
                   color: QuandoColors.amber,
                 ),
                 onPressed: () => _toggle(s),
@@ -649,8 +628,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           for (final (logo, app, note) in [
             if (!DesktopMusic.appleAvailable)
               (MusicService.appleMusic, 'Apple Music', l10n.serviceConnectUnavailable('Apple Music')),
-            if (!SoundCloudAccount.available)
-              (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
+            if (!SoundCloudAccount.available) (MusicService.soundCloud, 'SoundCloud', l10n.soundCloudWidgetNote),
           ])
             ListTile(
               contentPadding: EdgeInsets.zero,
@@ -664,9 +642,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             style: OutlinedButton.styleFrom(minimumSize: const Size.fromHeight(56)),
             onPressed: recording
                 ? null
-                : () =>
-                      Navigator.of(context)
-                          .push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
+                : () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (_) => const RadioScreen())),
             icon: const Icon(Icons.radio),
             label: Text(l10n.wakeToRadio),
           ),

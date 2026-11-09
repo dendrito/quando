@@ -82,15 +82,9 @@ class ShabbatScreen extends ConsumerWidget {
                     if (i > 0) const Divider(height: 1, indent: 18, endIndent: 18),
                     ListTile(
                       contentPadding: const EdgeInsets.symmetric(horizontal: 18, vertical: 2),
-                      title: Text(
-                        p.names.join(' · '),
-                        style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600),
-                      ),
+                      title: Text(p.names.join(' · '), style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
                       subtitle: Text(
-                        l10n.timeToTime(
-                          '${day(p.start)} · ${time(p.start)}',
-                          '${day(p.end)} · ${time(p.end)}',
-                        ),
+                        l10n.timeToTime('${day(p.start)} · ${time(p.start)}', '${day(p.end)} · ${time(p.end)}'),
                         style: text.bodySmall,
                       ),
                     ),

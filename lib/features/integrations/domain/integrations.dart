@@ -61,9 +61,7 @@ class Webhook {
     final privateV4 =
         parts.length == 4 &&
         parts.every((p) => p != null && p >= 0 && p <= 255) &&
-        (parts[0] == 10 ||
-            parts[0] == 192 && parts[1] == 168 ||
-            parts[0] == 172 && parts[1]! >= 16 && parts[1]! <= 31);
+        (parts[0] == 10 || parts[0] == 192 && parts[1] == 168 || parts[0] == 172 && parts[1]! >= 16 && parts[1]! <= 31);
     return host.endsWith('.local') || privateV4;
   }
 
@@ -177,13 +175,10 @@ class IntegrationSettings {
     pushoverUser: j['pushoverUser'] as String? ?? '',
     pushoverToken: j['pushoverToken'] as String? ?? '',
     pushoverOn: j['pushoverOn'] as bool? ?? false,
-    pushoverPriority:
-        (j['pushoverPriority'] as num?)?.toInt() ?? ((j['pushoverHigh'] as bool? ?? false) ? 1 : 0),
+    pushoverPriority: (j['pushoverPriority'] as num?)?.toInt() ?? ((j['pushoverHigh'] as bool? ?? false) ? 1 : 0),
     pushoverSound: j['pushoverSound'] as String?,
     pushoverDevices: {for (final d in (j['pushoverDevices'] as List? ?? const [])) d as String},
-    webhooks: [
-      for (final w in (j['webhooks'] as List? ?? const [])) Webhook.fromJson(w as Map<String, dynamic>),
-    ],
+    webhooks: [for (final w in (j['webhooks'] as List? ?? const [])) Webhook.fromJson(w as Map<String, dynamic>)],
     pauseOnShabbat: j['pauseOnShabbat'] as bool? ?? true,
     tuya: TuyaSettings.fromJson((j['tuya'] as Map?)?.cast<String, dynamic>() ?? {}),
     smartHomeOn: j['smartHomeOn'] as bool? ?? false,

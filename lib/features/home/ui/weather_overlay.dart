@@ -25,8 +25,7 @@ class WeatherOverlay extends StatefulWidget {
   State<WeatherOverlay> createState() => _WeatherOverlayState();
 }
 
-class _WeatherOverlayState extends State<WeatherOverlay>
-    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+class _WeatherOverlayState extends State<WeatherOverlay> with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final _clock = AnimationController(vsync: this, duration: const Duration(seconds: 10));
   bool _foreground = true;
 
@@ -40,8 +39,7 @@ class _WeatherOverlayState extends State<WeatherOverlay>
   }
 
   void _update() {
-    final animate =
-        _foreground && !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
+    final animate = _foreground && !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
     if (animate) {
       if (!_clock.isAnimating) _clock.repeat();
     } else {
@@ -122,9 +120,8 @@ class WeatherOverlayPainter extends CustomPainter {
       canvas.drawRect(
         rect,
         Paint()
-          ..shader = LinearGradient(
-            colors: [for (final v in stops) QuandoColors.text.withValues(alpha: .16 * v)],
-          ).createShader(rect),
+          ..shader = LinearGradient(colors: [for (final v in stops) QuandoColors.text.withValues(alpha: .16 * v)])
+              .createShader(rect),
       );
     }
 

@@ -112,6 +112,5 @@ class WeekRibbon extends StatelessWidget {
   }
 
   /// A dot's colour key is `g:<group>` for a user alarm or `e` for an event or Shabbat alarm.
-  Color _dot(String key) =>
-      key == 'e' ? QuandoColors.amber : groupColor(key.startsWith('g:') ? key.substring(2) : '');
+  Color _dot(String key) => key == 'e' ? QuandoColors.amber : groupColor(key.startsWith('g:') ? key.substring(2) : '');
 }

@@ -61,13 +61,8 @@ class LockSettings {
 
 /// One stretch of time Quando is locked.
 class LockPeriod {
-  const LockPeriod({
-    required this.id,
-    required this.start,
-    required this.end,
-    required this.reason,
-    Set<String>? ids,
-  }) : ids = ids ?? const {};
+  const LockPeriod({required this.id, required this.start, required this.end, required this.reason, Set<String>? ids})
+    : ids = ids ?? const {};
 
   final String id;
 

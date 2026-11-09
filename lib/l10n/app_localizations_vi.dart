@@ -35,8 +35,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get newAroundEvent => 'Quanh một sự kiện';
 
   @override
-  String get newAroundEventHint =>
-      'Tìm trong lịch, giờ Shabbat và giờ mặt trời, rồi reo trước, đúng lúc hoặc sau đó';
+  String get newAroundEventHint => 'Tìm trong lịch, giờ Shabbat và giờ mặt trời, rồi reo trước, đúng lúc hoặc sau đó';
 
   @override
   String get editThisAlarm => 'Sửa báo thức này';
@@ -403,8 +402,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get presetsHint => 'Chạm vào một mục để đổi giờ. Vuốt để xóa.';
 
   @override
-  String get lockSentence =>
-      'Thu gọn điện thoại chỉ còn đồng hồ và báo thức, cho Shabbat hoặc một đêm tập trung.';
+  String get lockSentence => 'Thu gọn điện thoại chỉ còn đồng hồ và báo thức, cho Shabbat hoặc một đêm tập trung.';
 
   @override
   String get lockExplain =>
@@ -444,8 +442,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pinToScreen => 'Ghim Quando? vào màn hình';
 
   @override
-  String get pinToScreenHint =>
-      'Các ứng dụng khác không mở được khi đang khóa. Android sẽ hỏi xác nhận lần đầu.';
+  String get pinToScreenHint => 'Các ứng dụng khác không mở được khi đang khóa. Android sẽ hỏi xác nhận lần đầu.';
 
   @override
   String get noLocksComingUp => 'Không có lần khóa nào sắp tới.';
@@ -736,8 +733,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Điện thoại Huawei và Honor: trong Cài đặt › Pin › Khởi chạy ứng dụng, đặt Quando? thành Quản lý thủ công và cho phép tất cả.';
 
   @override
-  String get tipOther =>
-      'Trên điện thoại này: trong Cài đặt › Pin, cho phép Quando? chạy nền và tắt tối ưu hóa.';
+  String get tipOther => 'Trên điện thoại này: trong Cài đặt › Pin, cho phép Quando? chạy nền và tắt tối ưu hóa.';
 
   @override
   String get testRing => 'Reo thử';
@@ -774,8 +770,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get testIn20 => 'Thử: reo sau 20 giây';
 
   @override
-  String get testIn20Hint =>
-      'Khóa điện thoại và đặt xuống. Nếu báo thức reo toàn màn hình, mọi thứ đã sẵn sàng.';
+  String get testIn20Hint => 'Khóa điện thoại và đặt xuống. Nếu báo thức reo toàn màn hình, mọi thứ đã sẵn sàng.';
 
   @override
   String get readyToRingHint => 'Kiểm tra điện thoại reo mọi báo thức đúng giờ';
@@ -1172,8 +1167,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get playForHeading => 'PHÁT TRONG';
 
   @override
-  String get pausesAfter =>
-      'Quando? tạm dừng bài hát sau khoảng thời gian này bằng phím tạm dừng của điện thoại.';
+  String get pausesAfter => 'Quando? tạm dừng bài hát sau khoảng thời gian này bằng phím tạm dừng của điện thoại.';
 
   @override
   String get backupSoundHeading => 'ÂM DỰ PHÒNG';
@@ -1236,8 +1230,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get sounds => 'Âm thanh';
 
   @override
-  String get soundsSentence =>
-      'Thức dậy với giọng nói của bạn, một bài hát, danh sách phát hoặc radio trực tiếp.';
+  String get soundsSentence => 'Thức dậy với giọng nói của bạn, một bài hát, danh sách phát hoặc radio trực tiếp.';
 
   @override
   String stopTimer(String time) {
@@ -1797,8 +1790,7 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo =>
-      'YouTube từ chối. Kiểm tra tài khoản Google của bạn là người dùng thử của dự án Quando.';
+  String get youTubeSaidNo => 'YouTube từ chối. Kiểm tra tài khoản Google của bạn là người dùng thử của dự án Quando.';
 
   @override
   String get event => 'Sự kiện';
@@ -1842,8 +1834,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get webhookHowTo => 'Quando? gửi JSON POST đến địa chỉ này.';
 
   @override
-  String get connectionsSentence =>
-      'Báo cho ứng dụng và thiết bị khác khi báo thức reo, bị tắt hoặc báo lại.';
+  String get connectionsSentence => 'Báo cho ứng dụng và thiết bị khác khi báo thức reo, bị tắt hoặc báo lại.';
 
   @override
   String get pushWhenRings => 'Gửi thông báo khi báo thức reo';
@@ -2248,8 +2239,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2283,15 +2273,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2506,8 +2494,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2553,8 +2540,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2673,8 +2659,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'YouTube phát video trong trình phát hiển thị. Nếu bị ẩn hoặc không thể phát, báo thức cục bộ tiếp tục.';
 
   @override
-  String get musicPreviewFailed =>
-      'Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác.';
+  String get musicPreviewFailed => 'Không thể phát âm thanh này. Kiểm tra kết nối hoặc thử bài hát hay đài khác.';
 
   @override
   String get skyMoonPhase => 'Pha Mặt Trăng';
@@ -2791,12 +2776,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get keysPassphraseWrong => 'Cụm mật khẩu này không mở được các khóa này.';
 
   @override
-  String get keysPassphraseNote =>
-      'Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.';
+  String get keysPassphraseNote => 'Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.';
 
   @override
-  String get keysShareNeedsPassphrase =>
-      'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
+  String get keysShareNeedsPassphrase => 'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
 
   @override
   String get settingsAlarmDefaults => 'Alarm defaults';
@@ -2864,8 +2847,7 @@ class AppLocalizationsVi extends AppLocalizations {
       'Thiết bị này chưa hỗ trợ đăng nhập Google. Hãy thêm tài khoản Google trong cài đặt thiết bị (Lịch › Tài khoản), các lịch sẽ hiện trong mục thiết bị này.';
 
   @override
-  String get googleCalendarUnreachable =>
-      'Hiện không kết nối được Google Lịch. Báo thức đã đặt từ đó vẫn reo.';
+  String get googleCalendarUnreachable => 'Hiện không kết nối được Google Lịch. Báo thức đã đặt từ đó vẫn reo.';
 
   @override
   String get googleCalendarTwiceHint =>
@@ -3087,4 +3069,58 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get sizeLarge => 'Lớn';
+
+  @override
+  String get homeLayout => 'Bố cục màn hình chính';
+
+  @override
+  String get homeLayoutClassic => 'Cổ điển';
+
+  @override
+  String get homeLayoutCards => 'Thẻ';
+
+  @override
+  String get homeCardsHint => 'Kéo thẻ để di chuyển. Kéo cạnh hoặc góc để đổi kích thước, hoặc chọn kích thước.';
+
+  @override
+  String get homeAddCard => 'Thêm thẻ';
+
+  @override
+  String get homeOnHome => 'Trên màn hình';
+
+  @override
+  String get homeRemoveCard => 'Gỡ';
+
+  @override
+  String get cardNext => 'Báo thức tiếp theo';
+
+  @override
+  String get cardClock => 'Đồng hồ và ngày';
+
+  @override
+  String get cardSky => 'Mặt trời, mặt trăng và thời tiết';
+
+  @override
+  String get cardMoon => 'Mặt trăng';
+
+  @override
+  String get cardWeather => 'Thời tiết';
+
+  @override
+  String get cardAlarms => 'Báo thức của bạn';
+
+  @override
+  String get cardQuick => 'Báo thức nhanh';
+
+  @override
+  String get cardTools => 'Bấm giờ, đếm ngược và chuẩn bị';
+
+  @override
+  String get cardWorld => 'Đồng hồ thế giới';
+
+  @override
+  String get cardWeek => 'Tuần này';
+
+  @override
+  String get cardShabbat => 'Shabbat và ngày lễ';
 }
