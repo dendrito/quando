@@ -195,14 +195,16 @@ async function login(env, fetchFn, user, req) {
   } catch {
     throw new HttpError(400, 'bad_request');
   }
-  const { countryCode, username, password } = b ?? {};
+  const { countryCode, username, password, app } = b ?? {};
   if ([countryCode, username, password].some((v) => typeof v !== 'string' || !v) || password.length > 128) {
     throw new HttpError(400, 'bad_request');
   }
   if (!(await loginAttemptAllowed(env, user))) throw new HttpError(429, 'too_many_attempts');
   const token = await projectAccessToken(env, fetchFn);
+  // Smart Life and Tuya Smart accounts are separate, so the app can say which one.
+  const schemas = SCHEMAS.includes(app) ? [app] : SCHEMAS;
   let last;
-  for (const schema of SCHEMAS) {
+  for (const schema of schemas) {
     try {
       const r = await tuyaCall(env, fetchFn, 'POST', '/v1.0/iot-01/associated-users/actions/authorized-login', {
         token,

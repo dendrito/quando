@@ -122,6 +122,19 @@ test('login stores only the Tuya uid, sends an MD5 password and signs with the p
   assert.equal(sent.init.headers.access_token, 'proj-token');
 });
 
+test('login tries only the app the user picked', async () => {
+  const LINKS = kv();
+  const w = world();
+  const res = await handle(
+    req('/v1/login', { countryCode: '55', username: 'me@example.com', password: 'pa55word', app: 'smartlife' }),
+    { ...env0, LINKS },
+    w.fetchFn,
+  );
+  // The fake Tuya only knows the tuyaSmart schema, so a picked smartlife account is refused after one try.
+  assert.equal(res.status, 502);
+  assert.equal(w.calls.filter((c) => c.path.endsWith('authorized-login')).length, 1);
+});
+
 test('a Tuya login error passes on only the code, and sign-in attempts are limited', async () => {
   const LINKS = kv();
   const w = world();

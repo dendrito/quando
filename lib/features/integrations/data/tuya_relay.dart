@@ -56,10 +56,12 @@ class TuyaRelay {
     required String countryCode,
     required String username,
     required String password,
+    String? app,
   }) => _post(base, '/login', {
     'countryCode': countryCode.trim(),
     'username': username.trim(),
     'password': password,
+    'app': ?app,
   });
 
   Future<void> logout(String base) => _post(base, '/logout');

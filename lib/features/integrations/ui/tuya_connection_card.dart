@@ -25,6 +25,7 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
   final _password = TextEditingController();
   bool _signingIn = false;
   bool? _linked;
+  String _app = 'smartlife';
   bool _loading = false;
   bool _advanced = false;
   bool _loaded = false;
@@ -77,7 +78,13 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
       await ref
           .read(tuyaClientProvider)
           .relay
-          .login(url, countryCode: _country.text, username: _account.text, password: _password.text);
+          .login(
+            url,
+            countryCode: _country.text,
+            username: _account.text,
+            password: _password.text,
+            app: _app,
+          );
       _password.clear();
       if (mounted) setState(() => _linked = true);
       await _load();
@@ -199,6 +206,18 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
     return [
       Text(l10n.tuyaSignInTitle, style: Theme.of(context).textTheme.titleSmall),
       Text(directSignIn ? l10n.tuyaSignInHint : l10n.tuyaRelayHint),
+      if (!directSignIn)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: SegmentedButton<String>(
+            segments: const [
+              ButtonSegment(value: 'smartlife', label: Text('Smart Life')),
+              ButtonSegment(value: 'tuyaSmart', label: Text('Tuya Smart')),
+            ],
+            selected: {_app},
+            onSelectionChanged: (v) => setState(() => _app = v.first),
+          ),
+        ),
       TextField(
         controller: _country,
         keyboardType: TextInputType.number,
