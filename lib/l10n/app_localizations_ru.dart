@@ -2887,167 +2887,183 @@ class AppLocalizationsRu extends AppLocalizations {
       'Календари того же аккаунта Google, которые это устройство уже показывает, сначала выключены, чтобы ничего не звонило дважды.';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'Таймеры';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => 'Секундомер';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => 'Таймер';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => 'Внимание';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => 'Счёт вперёд, с кругами';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => 'Обратный отсчёт, звонит на нуле';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => 'Голосовой старт и отметки';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => 'Старт';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => 'Пауза';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => 'Продолжить';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => 'Сбросить';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => 'Круг';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => 'Время вышло';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => 'Установите время';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => 'Минуты';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => 'Секунды';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => 'На старт';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => 'Внимание';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => 'Марш!';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => 'Время!';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => 'Готово';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => 'Настройки';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => 'Подсказки перед стартом';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => 'Произносятся вслух перед «Марш», отсчёт назад от старта.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      one: 'За 1 секунду',
+      few: 'За $n секунды',
+      many: 'За $n секунд',
+      other: 'За $n секунды',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => 'Добавить подсказку';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => 'Что сказать';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => 'На старте сказать';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => 'В конце сказать';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => 'Длительность';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => 'Без ограничения';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => 'Называть время каждые';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => 'Выкл.';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 секунда',
+      few: '$n секунды',
+      many: '$n секунд',
+      other: '$n секунды',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 минута',
+      few: '$n минуты',
+      many: '$n минут',
+      other: '$n минуты',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => 'Отсчитывать последние';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => 'Ваши отметки';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => 'Добавить отметку';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return 'В $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => 'Говорить вслух';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => 'Сигналы и вибрация';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => 'Называть оставшееся время, а не прошедшее';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => 'Шаблоны';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => 'Старт гонки';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => 'Усилие 30 с';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => 'Раунд 1 мин';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => 'После «Марш» считает вперёд, пока вы не остановите.';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => 'После «Марш» считает назад до нуля.';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => 'Слова';
 
   @override
   String get homeEdit => 'Arrange home';

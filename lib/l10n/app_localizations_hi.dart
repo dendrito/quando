@@ -2836,167 +2836,177 @@ class AppLocalizationsHi extends AppLocalizations {
       'इसी Google खाते के जो कैलेंडर यह डिवाइस पहले से दिखाता है, वे बंद से शुरू होते हैं, ताकि कुछ भी दो बार न बजे।';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'टाइमर';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => 'स्टॉपवॉच';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => 'टाइमर';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => 'तैयार';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => 'ऊपर गिनता है, लैप के साथ';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => 'उलटी गिनती, शून्य पर बजता है';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => 'बोला गया स्टार्ट और निशान';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => 'शुरू करें';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => 'रोकें';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => 'फिर शुरू करें';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => 'रीसेट करें';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => 'लैप';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => 'समय पूरा';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => 'समय सेट करें';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => 'मिनट';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => 'सेकंड';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => 'अपनी जगह पर';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => 'तैयार';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => 'चलो!';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => 'समय!';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => 'तैयार';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => 'सेटिंग';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      one: '1 सेकंड पहले',
+      other: '$n सेकंड पहले',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => 'पुकार जोड़ें';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => 'क्या बोलना है';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => 'शुरू में बोलें';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => 'अंत में बोलें';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => 'अवधि';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => 'कोई सीमा नहीं';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => 'समय बोलें हर';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => 'बंद';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 सेकंड',
+      other: '$n सेकंड',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 मिनट',
+      other: '$n मिनट',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => 'आख़िरी की उलटी गिनती';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => 'आपके निशान';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => 'निशान जोड़ें';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return '$time पर';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => 'ज़ोर से बोलें';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => 'बीप और कंपन';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => 'बीता नहीं, बचा हुआ समय बोलें';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => 'प्रीसेट';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => 'रेस की शुरुआत';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => '30 सेकंड का ज़ोर';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => 'शब्द';
 
   @override
   String get homeEdit => 'Arrange home';

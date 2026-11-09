@@ -2833,167 +2833,174 @@ class AppLocalizationsVi extends AppLocalizations {
       'Các lịch của cùng tài khoản Google mà thiết bị đã hiển thị sẽ tắt lúc đầu, để không gì reo hai lần.';
 
   @override
-  String get timersTitle => 'Timers';
+  String get timersTitle => 'Hẹn giờ';
 
   @override
-  String get timerStopwatch => 'Stopwatch';
+  String get timerStopwatch => 'Bấm giờ';
 
   @override
-  String get timerCountdown => 'Timer';
+  String get timerCountdown => 'Đếm ngược';
 
   @override
-  String get timerSequence => 'Get set';
+  String get timerSequence => 'Sẵn sàng';
 
   @override
-  String get timerStopwatchSub => 'Count up, with laps';
+  String get timerStopwatchSub => 'Đếm lên, có vòng';
 
   @override
-  String get timerCountdownSub => 'Count down, rings at zero';
+  String get timerCountdownSub => 'Đếm ngược, reo khi về không';
 
   @override
-  String get timerSequenceSub => 'Spoken start and marks';
+  String get timerSequenceSub => 'Xuất phát và mốc bằng giọng nói';
 
   @override
-  String get timerStart => 'Start';
+  String get timerStart => 'Bắt đầu';
 
   @override
-  String get timerPause => 'Pause';
+  String get timerPause => 'Tạm dừng';
 
   @override
-  String get timerResume => 'Resume';
+  String get timerResume => 'Tiếp tục';
 
   @override
-  String get timerReset => 'Reset';
+  String get timerReset => 'Đặt lại';
 
   @override
-  String get timerLap => 'Lap';
+  String get timerLap => 'Vòng';
 
   @override
-  String get timerTimesUp => 'Time\'s up';
+  String get timerTimesUp => 'Hết giờ';
 
   @override
-  String get timerSetTime => 'Set the time';
+  String get timerSetTime => 'Đặt thời gian';
 
   @override
-  String get timerMinutes => 'Minutes';
+  String get timerMinutes => 'Phút';
 
   @override
-  String get timerSeconds => 'Seconds';
+  String get timerSeconds => 'Giây';
 
   @override
-  String get seqOnYourMarks => 'On your marks';
+  String get seqOnYourMarks => 'Vào vị trí';
 
   @override
-  String get seqGetSet => 'Get set';
+  String get seqGetSet => 'Sẵn sàng';
 
   @override
-  String get seqGo => 'Go!';
+  String get seqGo => 'Chạy!';
 
   @override
-  String get seqFinish => 'Time!';
+  String get seqFinish => 'Hết giờ!';
 
   @override
-  String get seqReady => 'Ready';
+  String get seqReady => 'Sẵn sàng';
 
   @override
-  String get seqSettings => 'Settings';
+  String get seqSettings => 'Cài đặt';
 
   @override
-  String get seqStartCalls => 'Calls before the start';
+  String get seqStartCalls => 'Lời hô trước khi xuất phát';
 
   @override
-  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+  String get seqStartCallsHelp => 'Được nói to trước khi Chạy, đếm ngược từ lúc xuất phát.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      other: '$n seconds before',
-      one: '1 second before',
+      other: 'Trước $n giây',
     );
     return '$_temp0';
   }
 
   @override
-  String get seqAddCall => 'Add a call';
+  String get seqAddCall => 'Thêm lời hô';
 
   @override
-  String get seqCallText => 'What to say';
+  String get seqCallText => 'Nói gì';
 
   @override
-  String get seqGoText => 'At the start, say';
+  String get seqGoText => 'Lúc bắt đầu, nói';
 
   @override
-  String get seqFinishText => 'At the end, say';
+  String get seqFinishText => 'Lúc kết thúc, nói';
 
   @override
-  String get seqLength => 'Length';
+  String get seqLength => 'Độ dài';
 
   @override
-  String get seqNoLimit => 'No limit';
+  String get seqNoLimit => 'Không giới hạn';
 
   @override
-  String get seqSayEvery => 'Say the time every';
+  String get seqSayEvery => 'Đọc giờ mỗi';
 
   @override
-  String get seqOff => 'Off';
+  String get seqOff => 'Tắt';
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n giây',
+    );
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n phút',
+    );
     return '$_temp0';
   }
 
   @override
-  String get seqFinalCount => 'Count down the last';
+  String get seqFinalCount => 'Đếm ngược những giây cuối';
 
   @override
-  String get seqMarks => 'Your marks';
+  String get seqMarks => 'Các mốc của bạn';
 
   @override
-  String get seqAddMark => 'Add a mark';
+  String get seqAddMark => 'Thêm mốc';
 
   @override
   String seqMarkAt(String time) {
-    return 'At $time';
+    return 'Lúc $time';
   }
 
   @override
-  String get seqSpeak => 'Speak aloud';
+  String get seqSpeak => 'Nói thành tiếng';
 
   @override
-  String get seqBeeps => 'Beeps and vibration';
+  String get seqBeeps => 'Tiếng bíp và rung';
 
   @override
-  String get seqSayRemaining => 'Say time left, not time passed';
+  String get seqSayRemaining => 'Đọc thời gian còn lại, không phải đã trôi qua';
 
   @override
-  String get seqPresets => 'Presets';
+  String get seqPresets => 'Mẫu có sẵn';
 
   @override
-  String get seqPresetRace => 'Race start';
+  String get seqPresetRace => 'Xuất phát cuộc đua';
 
   @override
-  String get seqPresetSprint => '30 s effort';
+  String get seqPresetSprint => 'Nỗ lực 30 giây';
 
   @override
-  String get seqPresetRound => '1 min round';
+  String get seqPresetRound => 'Hiệp 1 phút';
 
   @override
-  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+  String get seqHintNoLimit => 'Sau Chạy, nó đếm lên cho đến khi bạn dừng.';
 
   @override
-  String get seqHintLength => 'After Go it counts down to zero.';
+  String get seqHintLength => 'Sau Chạy, nó đếm ngược về không.';
 
   @override
-  String get seqWords => 'Words';
+  String get seqWords => 'Từ';
 
   @override
   String get homeEdit => 'Arrange home';
