@@ -50,14 +50,18 @@ class DayArc extends StatelessWidget {
       child: SizedBox(
         height: weather.isEmpty && nowWeather == null ? 120 : 150,
         width: double.infinity,
-        child: CustomPaint(
-          painter: _ArcPainter(
-            progress: p,
-            marks: marks,
-            weather: weather,
-            nowWeather: nowWeather,
-            nowLabel: nowLabel,
-            textStyle: Theme.of(context).textTheme.bodySmall,
+        child: _ArcClock(
+          active: nowWeather != null && nowWeather != WeatherKind.clear,
+          builder: (clock) => CustomPaint(
+            painter: _ArcPainter(
+              progress: p,
+              marks: marks,
+              weather: weather,
+              nowWeather: nowWeather,
+              nowLabel: nowLabel,
+              textStyle: Theme.of(context).textTheme.bodySmall,
+              clock: clock,
+            ),
           ),
         ),
       ),
@@ -65,8 +69,54 @@ class DayArc extends StatelessWidget {
   }
 }
 
+/// Moves the cloud, rain or snow drawn over the Sun or Moon. Still when the
+/// weather is clear, the card is off screen or reduced motion is on.
+class _ArcClock extends StatefulWidget {
+  const _ArcClock({required this.active, required this.builder});
+  final bool active;
+  final Widget Function(Animation<double>? clock) builder;
+  @override
+  State<_ArcClock> createState() => _ArcClockState();
+}
+
+class _ArcClockState extends State<_ArcClock> with SingleTickerProviderStateMixin {
+  late final _controller = AnimationController(vsync: this, duration: const Duration(seconds: 8));
+
+  void _update() {
+    final animate =
+        widget.active && !MediaQuery.disableAnimationsOf(context) && TickerMode.valuesOf(context).enabled;
+    if (animate) {
+      if (!_controller.isAnimating) _controller.repeat();
+    } else {
+      _controller.stop();
+      _controller.value = .19;
+    }
+  }
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    _update();
+  }
+
+  @override
+  void didUpdateWidget(covariant _ArcClock old) {
+    super.didUpdateWidget(old);
+    _update();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => widget.builder(widget.active ? _controller : null);
+}
+
 class _ArcPainter extends CustomPainter {
-  const _ArcPainter({
+  _ArcPainter({
     required this.progress,
     required this.marks,
     this.moon,
@@ -76,8 +126,11 @@ class _ArcPainter extends CustomPainter {
     this.nowWeather,
     this.nowLabel,
     this.textStyle,
-  });
+    this.clock,
+  }) : super(repaint: clock);
 
+  /// Moves the clouds; null draws them still.
+  final Animation<double>? clock;
   final List<ArcWeather> weather;
   final WeatherKind? nowWeather;
   final String? nowLabel;
@@ -227,7 +280,7 @@ class _ArcPainter extends CustomPainter {
     canvas.save();
     canvas.translate(at.dx - size / 2, at.dy - size / 2);
     // The arc already draws the Sun, so the picture adds only the cloud.
-    WeatherPainter(kind, night, .19, sunless: sunless).paint(canvas, Size.square(size));
+    WeatherPainter(kind, night, clock?.value ?? .19, sunless: sunless).paint(canvas, Size.square(size));
     canvas.restore();
   }
 
@@ -297,17 +350,21 @@ class MoonArc extends StatelessWidget {
     child: SizedBox(
       height: weather.isEmpty && nowWeather == null ? 120 : 150,
       width: double.infinity,
-      child: CustomPaint(
-        painter: _ArcPainter(
-          progress: track.progress ?? (track.above ? .5 : 0),
-          marks: const [],
-          moon: illumination,
-          above: track.above,
-          daylight: daylight,
-          weather: weather,
-          nowWeather: track.above ? nowWeather : null,
-          nowLabel: track.above ? nowLabel : null,
-          textStyle: Theme.of(context).textTheme.bodySmall,
+      child: _ArcClock(
+        active: track.above && nowWeather != null && nowWeather != WeatherKind.clear,
+        builder: (clock) => CustomPaint(
+          painter: _ArcPainter(
+            progress: track.progress ?? (track.above ? .5 : 0),
+            marks: const [],
+            moon: illumination,
+            above: track.above,
+            daylight: daylight,
+            weather: weather,
+            nowWeather: track.above ? nowWeather : null,
+            nowLabel: track.above ? nowLabel : null,
+            textStyle: Theme.of(context).textTheme.bodySmall,
+            clock: clock,
+          ),
         ),
       ),
     ),

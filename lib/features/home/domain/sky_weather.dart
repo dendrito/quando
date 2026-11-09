@@ -131,11 +131,18 @@ double skyNightness(SkyDay sky) {
   return 1;
 }
 
-/// The Moon card's sky from moonrise (left) to moonset (right): the night
-/// sky where the pass is dark and the daytime sky, with the real weather,
-/// where the Sun is up. A pass that is mostly daytime reads as a day card.
-class MoonSky {
-  const MoonSky({required this.colors, required this.night});
+/// A card's sky along a stretch of time, left to right: sunrise to sunset on
+/// the Sun card, moonrise to moonset on the Moon card. It is the night sky
+/// where it is dark and the daytime sky, with the real weather, where the Sun
+/// is up. The weather blends smoothly between forecast hours.
+class SkyStrip {
+  const SkyStrip({
+    required this.colors,
+    required this.night,
+    required this.kinds,
+    required this.start,
+    required this.end,
+  });
 
   /// Top colour at each sample, left to right.
   final List<Color> colors;
@@ -143,31 +150,82 @@ class MoonSky {
   /// How dark each sample is, 0 day to 1 night (draws the stars).
   final List<double> night;
 
+  /// The forecast weather at each sample from now on, null for the past or
+  /// when it is unknown (drives the rain, snow, fog and lightning).
+  final List<WeatherKind?> kinds;
+
+  /// The time at the left and right edges.
+  final DateTime start, end;
+
   /// Darker at the bottom, as the Sun card's gradient is.
   static const shade = Color(0x4D000000);
 
   double get maxNight => night.fold(0.0, (a, b) => a > b ? a : b);
 
-  static MoonSky of(Place place, MoonTrack track, WeatherReport? report, {int count = 25}) {
+  static SkyStrip ofMoon(Place place, MoonTrack track, WeatherReport? report, {int count = 25}) {
     final start = track.rise, end = track.set;
-    final DateTime a, b;
-    if (start == null || end == null || !end.isAfter(start)) {
-      a = b = track.now;
-    } else {
-      a = start;
-      b = end;
-    }
+    final valid = start != null && end != null && end.isAfter(start);
+    return between(
+      place,
+      valid ? start : track.now,
+      valid ? end : track.now,
+      report,
+      now: track.now,
+      count: count,
+    );
+  }
+
+  static SkyStrip between(
+    Place place,
+    DateTime a,
+    DateTime b,
+    WeatherReport? report, {
+    required DateTime now,
+    int count = 25,
+  }) {
     final span = b.difference(a).inMicroseconds;
     final colors = <Color>[], night = <double>[];
+    final kinds = <WeatherKind?>[];
     for (var i = 0; i < count; i++) {
       final at = a.add(Duration(microseconds: (span * i / (count - 1)).round()));
       final sky = SkyDay.of(place, at);
-      final kind = report == null ? null : hourNear(report, at)?.kind;
-      colors.add(skyWeatherGradient(sky, kind).$1);
+      colors.add(skyWeatherGradientAt(sky, report).$1);
       night.add(skyNightness(sky));
+      // Weather effects only for the hours still to come.
+      kinds.add(
+        report == null || at.isBefore(now.subtract(const Duration(minutes: 30)))
+            ? null
+            : hourNear(report, at)?.kind,
+      );
     }
-    return MoonSky(colors: colors, night: night);
+    return SkyStrip(colors: colors, night: night, kinds: kinds, start: a, end: b);
   }
+}
+
+/// [skyWeatherGradient] with the weather blended between the forecast hours
+/// either side of the sky's time, so colours change smoothly.
+(Color, Color) skyWeatherGradientAt(SkyDay sky, WeatherReport? report) {
+  if (report == null || report.hours.isEmpty) return skyWeatherGradient(sky, null);
+  final at = sky.now;
+  WeatherHour? before, after;
+  for (final h in report.hours) {
+    if (!h.at.isAfter(at)) {
+      before = h;
+    } else {
+      after = h;
+      break;
+    }
+  }
+  // Beyond a few hours from any forecast point the weather is unknown.
+  bool near(WeatherHour? h) => h != null && h.at.difference(at).abs() <= const Duration(hours: 3);
+  if (!near(before) && !near(after)) return skyWeatherGradient(sky, null);
+  if (!near(before)) return skyWeatherGradient(sky, after!.kind);
+  if (!near(after)) return skyWeatherGradient(sky, before!.kind);
+  final gap = after!.at.difference(before!.at).inSeconds;
+  final t = gap <= 0 ? 0.0 : at.difference(before.at).inSeconds / gap;
+  // Ease so a spell of rain holds its colour, then changes between hours.
+  final eased = t * t * (3 - 2 * t);
+  return _mix(skyWeatherGradient(sky, before.kind), skyWeatherGradient(sky, after.kind), eased);
 }
 
 /// The forecast hour closest to [at], if one is within two hours of it.
