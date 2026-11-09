@@ -721,7 +721,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       height: layout.heightOf(b),
       width: layout.widthOf(b),
       canWiden: canWiden,
-      color: const {HomeBlock.clock, HomeBlock.next, HomeBlock.sky}.contains(b) ? sky.color : null,
+      color: b == HomeBlock.clock
+          ? Colors.transparent
+          : const {HomeBlock.next, HomeBlock.sky}.contains(b)
+          ? sky.color
+          : null,
       onChanged: (s) => layoutNotifier.setBlock(b, s),
       onHeight: (v) => layoutNotifier.setBlock(b, ref.read(homeLayoutProvider).of(b).copyWith(height: v)),
       onWidth: (v) => layoutNotifier.setBlock(b, ref.read(homeLayoutProvider).of(b).copyWith(width: v)),

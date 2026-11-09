@@ -62,8 +62,8 @@ class _ClockHeroState extends State<ClockHero> {
                   hhmm(local),
                   maxLines: 1,
                   style: text.displayLarge?.copyWith(
-                    fontSize: 52,
-                    color: QuandoColors.text,
+                    fontSize: 34,
+                    color: QuandoColors.blush,
                     letterSpacing: -2,
                     fontFeatures: const [FontFeature.tabularFigures()],
                   ),
