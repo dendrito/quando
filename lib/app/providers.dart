@@ -287,8 +287,7 @@ final skyPlaceProvider = Provider<Place?>((ref) {
   if (saved != null) return saved;
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
-  // Never leave the sky without a place: fall back to the Shabbat city so the Moon and weather still show.
-  return ZonePlaces.forZone(zone) ?? ref.watch(placeProvider);
+  return ZonePlaces.forZone(zone);
 });
 
 class PlaceNotifier extends Notifier<Place> {
