@@ -93,7 +93,8 @@ class JewishTimes {
       }
     }
 
-    return out.where((e) => !e.at.isBefore(from) && !e.at.isAfter(to)).toList()..sort((a, b) => a.at.compareTo(b.at));
+    return out.where((e) => !e.at.isBefore(from) && !e.at.isAfter(to)).toList()
+      ..sort((a, b) => a.at.compareTo(b.at));
   }
 
   /// Shabbat and festival mode windows: first candle lighting to havdalah.

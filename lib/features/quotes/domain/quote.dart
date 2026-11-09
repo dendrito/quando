@@ -121,7 +121,11 @@ Set<String> placeTags(String zone, {String? city}) {
       .replaceAll(RegExp('[ãâáà]'), 'a')
       .replaceAll(RegExp('[éê]'), 'e')
       .replaceAll(RegExp('[^a-z]+'), '_');
-  return {if (country != null) 'place:$country', 'place:${slug(name)}', if (city != null) 'place:${slug(city)}'};
+  return {
+    if (country != null) 'place:$country',
+    'place:${slug(name)}',
+    if (city != null) 'place:${slug(city)}',
+  };
 }
 
 bool _inRange(String tag, String mmdd) {

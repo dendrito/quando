@@ -35,7 +35,8 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
   Timer? _visibility;
   bool _foreground = true, _visible = true, _audible = false, _failed = false;
   DateTime? _lastProgress;
-  bool get _allowed => mounted && widget.active && _foreground && _visible && DateTime.now().isBefore(widget.deadline);
+  bool get _allowed =>
+      mounted && widget.active && _foreground && _visible && DateTime.now().isBefore(widget.deadline);
 
   @override
   void initState() {
@@ -97,7 +98,9 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
           },
           // Authentication belongs in the system Google flow, never this player.
           onNavigationRequest: (request) =>
-              request.isMainFrame && !request.url.startsWith(widget.source.origin) && request.url != 'about:blank'
+              request.isMainFrame &&
+                  !request.url.startsWith(widget.source.origin) &&
+                  request.url != 'about:blank'
               ? NavigationDecision.prevent
               : NavigationDecision.navigate,
         ),
@@ -114,7 +117,11 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
       if (!mounted) return;
       _checkVisibility();
       await controller.loadHtmlString(
-        widget.source.html(remaining: widget.deadline.difference(DateTime.now()), videos: videos, autoplay: _allowed),
+        widget.source.html(
+          remaining: widget.deadline.difference(DateTime.now()),
+          videos: videos,
+          autoplay: _allowed,
+        ),
         baseUrl: widget.source.origin,
       );
       if (!mounted) {

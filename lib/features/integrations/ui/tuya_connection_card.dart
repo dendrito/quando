@@ -52,7 +52,10 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
 
   Future<void> _checkLinked() async {
     try {
-      final linked = await ref.read(tuyaClientProvider).relay.linked(ref.read(integrationsProvider).tuya.relayUrl);
+      final linked = await ref
+          .read(tuyaClientProvider)
+          .relay
+          .linked(ref.read(integrationsProvider).tuya.relayUrl);
       if (mounted) setState(() => _linked = linked);
     } catch (_) {
       // Not signed in to Quando or offline: the sign-in form still shows.
@@ -75,7 +78,13 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
       await ref
           .read(tuyaClientProvider)
           .relay
-          .login(url, countryCode: _country.text, username: _account.text, password: _password.text, app: _app);
+          .login(
+            url,
+            countryCode: _country.text,
+            username: _account.text,
+            password: _password.text,
+            app: _app,
+          );
       _password.clear();
       if (mounted) setState(() => _linked = true);
       await _load();

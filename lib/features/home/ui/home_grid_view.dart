@@ -170,18 +170,19 @@ class _HomeGridViewState extends State<HomeGridView> {
       child: editing ? IgnorePointer(child: _content(spec)) : _content(spec),
     );
     if (!editing) return Semantics(container: true, label: spec.title, child: body);
-    Widget handle({Key? key, required _Drag mode, required Widget child, required MouseCursor cursor}) => MouseRegion(
-      key: key,
-      cursor: cursor,
-      child: GestureDetector(
-        behavior: HitTestBehavior.opaque,
-        onPanStart: (_) => _start(p.card, mode),
-        onPanUpdate: _update,
-        onPanEnd: (_) => _end(colW),
-        onPanCancel: () => _end(colW),
-        child: child,
-      ),
-    );
+    Widget handle({Key? key, required _Drag mode, required Widget child, required MouseCursor cursor}) =>
+        MouseRegion(
+          key: key,
+          cursor: cursor,
+          child: GestureDetector(
+            behavior: HitTestBehavior.opaque,
+            onPanStart: (_) => _start(p.card, mode),
+            onPanUpdate: _update,
+            onPanEnd: (_) => _end(colW),
+            onPanCancel: () => _end(colW),
+            child: child,
+          ),
+        );
     final size = HomeGrid.nearestSize(p, widget.grid.cols);
     return Stack(
       clipBehavior: Clip.none,

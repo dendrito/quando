@@ -62,7 +62,9 @@ class ServiceConnectionsSync {
     if (raw != null && (box?['uid'] ?? legacy?['uid']) != uid) await p.remove(key);
     await p.setString(_ownerKey, uid);
     final portable = _portable(p, uid);
-    if (portable.containsKey('spotify') || portable.containsKey('tuya') || (portable['webhooks'] as List).isNotEmpty) {
+    if (portable.containsKey('spotify') ||
+        portable.containsKey('tuya') ||
+        (portable['webhooks'] as List).isNotEmpty) {
       await KeyVault.store(p, key, 'services', jsonEncode(portable));
     } else if (legacy != null && legacy['uid'] == uid) {
       // Plain text from an older build: take it in once, then lock or remove it.
@@ -119,7 +121,10 @@ class ServiceConnectionsSync {
       final valid = <Webhook>[];
       for (final raw in hooks) {
         if (raw is! Map || raw['id'] is! String || raw['url'] is! String) continue;
-        final kind = WebhookKind.values.firstWhere((k) => k.name == raw['kind'], orElse: () => WebhookKind.other);
+        final kind = WebhookKind.values.firstWhere(
+          (k) => k.name == raw['kind'],
+          orElse: () => WebhookKind.other,
+        );
         final url = raw['url'] as String;
         if (!Webhook.acceptsUrl(url, kind)) continue;
         final id = raw['id'] as String;

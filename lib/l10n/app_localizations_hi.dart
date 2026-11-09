@@ -35,7 +35,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get newAroundEvent => 'किसी इवेंट के आसपास';
 
   @override
-  String get newAroundEventHint => 'कैलेंडर, शब्बात और सूरज के समय में खोजें, फिर पहले, उसी समय या बाद में बजाएँ';
+  String get newAroundEventHint =>
+      'कैलेंडर, शब्बात और सूरज के समय में खोजें, फिर पहले, उसी समय या बाद में बजाएँ';
 
   @override
   String get editThisAlarm => 'यह अलार्म बदलें';
@@ -294,7 +295,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'शहरों का समय यहाँ देखने के लिए उन्हें जोड़ें। हटाने के लिए बाएँ स्वाइप करें।';
+  String get worldClocksHint =>
+      'शहरों का समय यहाँ देखने के लिए उन्हें जोड़ें। हटाने के लिए बाएँ स्वाइप करें।';
 
   @override
   String get groupNameHint => 'काम, बच्चे, जिम…';
@@ -520,7 +522,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get off => 'बंद';
 
   @override
-  String get gentleSentence => 'अलार्म से पहले एक शांत आवाज़ धीरे से शुरू होती है, ताकि आप कभी झटके से न जागें।';
+  String get gentleSentence =>
+      'अलार्म से पहले एक शांत आवाज़ धीरे से शुरू होती है, ताकि आप कभी झटके से न जागें।';
 
   @override
   String get gentleExplain =>
@@ -915,7 +918,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get resetPreset => 'मूल पर वापस लाएँ';
 
   @override
-  String get skipOneHint => 'एक अलार्म छोड़ने के लिए होम स्क्रीन पर “इस हफ़्ते के अलार्म” में उस पर टैप करें।';
+  String get skipOneHint =>
+      'एक अलार्म छोड़ने के लिए होम स्क्रीन पर “इस हफ़्ते के अलार्म” में उस पर टैप करें।';
 
   @override
   String get unitMinutes => 'मिनट';
@@ -1227,7 +1231,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get spotifyComingSoon => 'जल्द आ रहा है · Premium ज़रूरी';
 
   @override
-  String get spotifyFailed => 'Spotify नहीं जुड़ा। देखें कि Spotify ऐप इंस्टॉल है, आप साइन इन हैं और Premium है।';
+  String get spotifyFailed =>
+      'Spotify नहीं जुड़ा। देखें कि Spotify ऐप इंस्टॉल है, आप साइन इन हैं और Premium है।';
 
   @override
   String get nameThisSound => 'इस आवाज़ को नाम दें';
@@ -1796,7 +1801,8 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get youTubeSaidNo => 'YouTube ने मना किया। देखें कि आपका Google खाता Quando प्रोजेक्ट का टेस्ट यूज़र है।';
+  String get youTubeSaidNo =>
+      'YouTube ने मना किया। देखें कि आपका Google खाता Quando प्रोजेक्ट का टेस्ट यूज़र है।';
 
   @override
   String get event => 'इवेंट';
@@ -1870,13 +1876,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get myPushoverDefault => 'मेरा Pushover डिफ़ॉल्ट';
 
   @override
-  String get pushoverOwnSounds => 'आपकी अपनी आवाज़ें pushover.net/sounds पर अपलोड करने के बाद यहाँ दिखती हैं।';
+  String get pushoverOwnSounds =>
+      'आपकी अपनी आवाज़ें pushover.net/sounds पर अपलोड करने के बाद यहाँ दिखती हैं।';
 
   @override
   String get allMyDevices => 'मेरे सभी डिवाइस';
 
   @override
-  String get pushoverOnThisPhone => 'इस फ़ोन पर भी Pushover ऐप इंस्टॉल करें, यह यहाँ आपकी Pushover आवाज़ से बजेगा।';
+  String get pushoverOnThisPhone =>
+      'इस फ़ोन पर भी Pushover ऐप इंस्टॉल करें, यह यहाँ आपकी Pushover आवाज़ से बजेगा।';
 
   @override
   String get priority => 'प्राथमिकता';
@@ -2245,7 +2253,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2279,13 +2288,15 @@ class AppLocalizationsHi extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2500,7 +2511,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2546,7 +2558,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2831,7 +2844,8 @@ class AppLocalizationsHi extends AppLocalizations {
   String get deviceCalendarsTitle => 'इस डिवाइस का कैलेंडर ऐप';
 
   @override
-  String get deviceCalendarsHint => 'इस पर हर खाता: Google, Samsung, Outlook, iCloud और सिर्फ़ यहीं रखे कैलेंडर।';
+  String get deviceCalendarsHint =>
+      'इस पर हर खाता: Google, Samsung, Outlook, iCloud और सिर्फ़ यहीं रखे कैलेंडर।';
 
   @override
   String get googleCalendarHeading => 'GOOGLE कैलेंडर';

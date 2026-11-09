@@ -10,7 +10,8 @@ enum HebrewNames {
   ashkenazi,
   hebrew;
 
-  static HebrewNames from(Object? name) => values.firstWhere((v) => v.name == name, orElse: () => HebrewNames.israeli);
+  static HebrewNames from(Object? name) =>
+      values.firstWhere((v) => v.name == name, orElse: () => HebrewNames.israeli);
 }
 
 /// The Israeli (Sephardi) spelling, as Hebcal and Sefaria use it.
@@ -168,7 +169,11 @@ class RoshHodeshDate {
           ? DateTime(day.year, day.month, day.day - 1)
           : day;
       final last = calendar.getJewishDayOfMonth() == 30 ? DateTime(day.year, day.month, day.day + 1) : day;
-      return RoshHodeshDate(first: first, last: last, month: format.formatMonth(JewishCalendar.fromDateTime(last)));
+      return RoshHodeshDate(
+        first: first,
+        last: last,
+        month: format.formatMonth(JewishCalendar.fromDateTime(last)),
+      );
     }
     throw StateError('No Rosh Hodesh within 65 days');
   }

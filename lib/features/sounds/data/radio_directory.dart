@@ -32,8 +32,10 @@ class RadioStation {
   final int bitrate;
 
   /// "France · MP3 128 kbps".
-  String get details =>
-      [if (country.isNotEmpty) country, if (codec.isNotEmpty) bitrate > 0 ? '$codec $bitrate kbps' : codec].join(' · ');
+  String get details => [
+    if (country.isNotEmpty) country,
+    if (codec.isNotEmpty) bitrate > 0 ? '$codec $bitrate kbps' : codec,
+  ].join(' · ');
 
   static RadioStation? fromJson(Map<String, dynamic> j) {
     final url = ((j['url_resolved'] as String?)?.trim().isNotEmpty ?? false)
@@ -64,7 +66,11 @@ class RadioDirectory {
 
   final http.Client _client;
 
-  static const _mirrors = ['de1.api.radio-browser.info', 'fi1.api.radio-browser.info', 'at1.api.radio-browser.info'];
+  static const _mirrors = [
+    'de1.api.radio-browser.info',
+    'fi1.api.radio-browser.info',
+    'at1.api.radio-browser.info',
+  ];
 
   /// Stations by [name], [tag] (a genre such as "jazz") and [countryCode]
   /// ("US"), most listened first. Any of them may be left out.
@@ -83,7 +89,9 @@ class RadioDirectory {
           'order': 'clickcount',
           'reverse': 'true',
         });
-        final r = await _client.get(uri, headers: {'User-Agent': 'Quando/0.1'}).timeout(const Duration(seconds: 8));
+        final r = await _client
+            .get(uri, headers: {'User-Agent': 'Quando/0.1'})
+            .timeout(const Duration(seconds: 8));
         if (r.statusCode != 200) continue;
         final list = jsonDecode(r.body) as List;
         final seen = <String>{};

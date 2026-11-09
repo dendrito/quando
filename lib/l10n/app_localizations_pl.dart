@@ -472,7 +472,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get openWhenLockStarts => 'Otwórz Quando?, gdy zaczyna się blokada';
 
   @override
-  String get openWhenLockStartsHint => 'Cichy dźwięk trwający 1 sekundę wyciąga Quando? na wierzch, aby zablokować';
+  String get openWhenLockStartsHint =>
+      'Cichy dźwięk trwający 1 sekundę wyciąga Quando? na wierzch, aby zablokować';
 
   @override
   String get pinToScreen => 'Przypnij Quando? do ekranu';
@@ -485,7 +486,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get noLocksComingUp => 'Brak nadchodzących blokad.';
 
   @override
-  String get leaveLockEarly => 'Aby wyjść wcześniej, przytrzymaj „Przytrzymaj, aby odblokować” przez 3 sekundy.';
+  String get leaveLockEarly =>
+      'Aby wyjść wcześniej, przytrzymaj „Przytrzymaj, aby odblokować” przez 3 sekundy.';
 
   @override
   String get locked => 'Zablokowane';
@@ -811,7 +813,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get testIn20 => 'Test: dzwoni za 20 sekund';
 
   @override
-  String get testIn20Hint => 'Zablokuj telefon i odłóż go. Jeśli alarm zadzwoni na pełnym ekranie, wszystko gotowe.';
+  String get testIn20Hint =>
+      'Zablokuj telefon i odłóż go. Jeśli alarm zadzwoni na pełnym ekranie, wszystko gotowe.';
 
   @override
   String get readyToRingHint => 'Sprawdź, czy telefon dzwoni każdym alarmem na czas';
@@ -954,7 +957,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get resetPreset => 'Przywróć oryginał';
 
   @override
-  String get skipOneHint => 'Aby pominąć jeden alarm, dotknij go w „Alarmy w tym tygodniu” na ekranie głównym.';
+  String get skipOneHint =>
+      'Aby pominąć jeden alarm, dotknij go w „Alarmy w tym tygodniu” na ekranie głównym.';
 
   @override
   String get unitMinutes => 'minuty';
@@ -1561,7 +1565,8 @@ class AppLocalizationsPl extends AppLocalizations {
       'Wyceluj w kod kreskowy lub QR w miejscu, do którego trzeba dojść, np. pudełko w kuchni lub pastę w łazience. Aby zatrzymać alarm, zeskanujesz go ponownie.';
 
   @override
-  String get cameraUnavailableSettings => 'Aparat jest niedostępny. Zezwól na dostęp do aparatu w Ustawieniach.';
+  String get cameraUnavailableSettings =>
+      'Aparat jest niedostępny. Zezwól na dostęp do aparatu w Ustawieniach.';
 
   @override
   String gentleToGo(int n) {
@@ -1999,7 +2004,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get quotesTitle => 'Cytaty o czasie';
 
   @override
-  String get quotesHint => 'Wybierz, skąd mają pochodzić. Jeden na każdą porę dnia; dotknij cytatu, by zobaczyć inny.';
+  String get quotesHint =>
+      'Wybierz, skąd mają pochodzić. Jeden na każdą porę dnia; dotknij cytatu, by zobaczyć inny.';
 
   @override
   String get quotesOff => 'Wyłączone';
@@ -2041,7 +2047,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get quoteNearMe => 'W pobliżu';
 
   @override
-  String get quoteNearMeHint => 'Poeci i dni miejsca, w którym jesteś, według strefy czasowej i miasta szabatu';
+  String get quoteNearMeHint =>
+      'Poeci i dni miejsca, w którym jesteś, według strefy czasowej i miasta szabatu';
 
   @override
   String get quoteSiddur => 'Sidur (modlitewnik)';
@@ -2248,7 +2255,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get deliveryPushHint => 'Tylko Pushover. Urządzenie musi być wtedy online.';
 
   @override
-  String get deliveryFallback => 'Dźwięk lokalny pozostaje aktywny, gdy Pushover jest rozłączony lub wstrzymany.';
+  String get deliveryFallback =>
+      'Dźwięk lokalny pozostaje aktywny, gdy Pushover jest rozłączony lub wstrzymany.';
 
   @override
   String get deliveryReset => 'Użyj istniejących ustawień';
@@ -2296,7 +2304,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2330,13 +2339,15 @@ class AppLocalizationsPl extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2551,7 +2562,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2597,7 +2609,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2834,7 +2847,8 @@ class AppLocalizationsPl extends AppLocalizations {
   String get keysPassphraseWrong => 'To hasło nie otwiera tych kluczy.';
 
   @override
-  String get keysPassphraseNote => 'Zapisz je: jeśli je zapomnisz, nikt go nie odzyska i wpiszesz klucze ponownie.';
+  String get keysPassphraseNote =>
+      'Zapisz je: jeśli je zapomnisz, nikt go nie odzyska i wpiszesz klucze ponownie.';
 
   @override
   String get keysShareNeedsPassphrase =>

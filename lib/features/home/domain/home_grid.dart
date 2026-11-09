@@ -39,7 +39,12 @@ class Placement {
 
   @override
   bool operator ==(Object other) =>
-      other is Placement && other.card == card && other.c == c && other.r == r && other.w == w && other.h == h;
+      other is Placement &&
+      other.card == card &&
+      other.c == c &&
+      other.r == r &&
+      other.w == w &&
+      other.h == h;
 
   @override
   int get hashCode => Object.hash(card, c, r, w, h);
@@ -181,11 +186,18 @@ class HomeGrid {
     final list = <Placement>[
       for (final p in input)
         if (seen.add(p.card))
-          Placement(p.card, p.c.clamp(0, max(0, cols - min(p.w, cols))), max(0, p.r), min(p.w, cols), max(1, p.h)),
+          Placement(
+            p.card,
+            p.c.clamp(0, max(0, cols - min(p.w, cols))),
+            max(0, p.r),
+            min(p.w, cols),
+            max(1, p.h),
+          ),
     ];
     final ordered = [
       ?list.where((p) => p.card == first?.card).firstOrNull,
-      ...(list.where((p) => p.card != first?.card).toList()..sort((a, b) => a.r != b.r ? a.r - b.r : a.c - b.c)),
+      ...(list.where((p) => p.card != first?.card).toList()
+        ..sort((a, b) => a.r != b.r ? a.r - b.r : a.c - b.c)),
     ];
     final placed = <Placement>[];
     for (var p in ordered) {

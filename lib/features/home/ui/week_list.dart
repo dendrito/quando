@@ -54,7 +54,10 @@ class _WeekListState extends State<WeekList> {
             child: Row(
               children: [
                 Expanded(
-                  child: Text(dayHeading(day.day, widget.today), style: text.titleLarge?.copyWith(fontSize: 20)),
+                  child: Text(
+                    dayHeading(day.day, widget.today),
+                    style: text.titleLarge?.copyWith(fontSize: 20),
+                  ),
                 ),
                 Text(l10n.alarmCount(day.count), style: text.bodySmall),
               ],
@@ -157,7 +160,10 @@ class _WeekListState extends State<WeekList> {
                                 ),
                                 const SizedBox(width: 12),
                                 Expanded(
-                                  child: Text(a.body, style: skip(a) ? text.bodyMedium?.merge(off) : text.bodyMedium),
+                                  child: Text(
+                                    a.body,
+                                    style: skip(a) ? text.bodyMedium?.merge(off) : text.bodyMedium,
+                                  ),
                                 ),
                                 Text(
                                   local(a.at),

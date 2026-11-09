@@ -88,7 +88,10 @@ class SoundPickerTile extends ConsumerWidget {
                       Text(kind, style: text.bodyMedium?.copyWith(color: QuandoColors.amber)),
                       Text(
                         label,
-                        style: text.bodyLarge?.copyWith(color: QuandoColors.amber, fontWeight: FontWeight.w600),
+                        style: text.bodyLarge?.copyWith(
+                          color: QuandoColors.amber,
+                          fontWeight: FontWeight.w600,
+                        ),
                         maxLines: 1,
                         overflow: TextOverflow.ellipsis,
                       ),
@@ -101,8 +104,14 @@ class SoundPickerTile extends ConsumerWidget {
                             (const ServiceLogo(MusicService.spotify, size: 20), 'Spotify'),
                             (const ServiceLogo(MusicService.youTube, size: 20), 'YouTube'),
                             (const ServiceLogo(MusicService.youTubeMusic, size: 20), 'YouTube Music'),
-                            (const Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber), l10n.addAFile),
-                            (const Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral), l10n.onlineRadio),
+                            (
+                              const Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber),
+                              l10n.addAFile,
+                            ),
+                            (
+                              const Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral),
+                              l10n.onlineRadio,
+                            ),
                           ])
                             Row(
                               mainAxisSize: MainAxisSize.min,
@@ -176,7 +185,10 @@ class _SheetState extends ConsumerState<_Sheet> {
     final sounds = ref.watch(soundsProvider);
     final current = widget.value ?? (widget.allowDefault ? '__default__' : SoundPickerTile.phone);
     Widget option(String id, String name, {VoidCallback? onListen, bool playing = false}) => ListTile(
-      leading: Icon(current == id ? Icons.radio_button_checked : Icons.radio_button_off, color: QuandoColors.amber),
+      leading: Icon(
+        current == id ? Icons.radio_button_checked : Icons.radio_button_off,
+        color: QuandoColors.amber,
+      ),
       title: Text(name),
       trailing: onListen == null
           ? null
@@ -218,17 +230,24 @@ class _SheetState extends ConsumerState<_Sheet> {
                             children: [
                               Text(
                                 l10n.wakeToOwnSound,
-                                style: Theme.of(context).textTheme.titleLarge?.copyWith(color: QuandoColors.ground),
+                                style: Theme.of(context).textTheme.titleLarge
+                                    ?.copyWith(color: QuandoColors.ground),
                               ),
                               const SizedBox(height: 4),
                               Text(
                                 l10n.wakeToOwnSoundHint,
-                                style: Theme.of(context).textTheme.bodyMedium?.copyWith(color: QuandoColors.ground),
+                                style: Theme.of(context).textTheme.bodyMedium
+                                    ?.copyWith(color: QuandoColors.ground),
                               ),
                               const SizedBox(height: 12),
                               Row(
                                 children: [
-                                  for (final i in const [Icons.mic, Icons.music_note, Icons.library_music, Icons.radio])
+                                  for (final i in const [
+                                    Icons.mic,
+                                    Icons.music_note,
+                                    Icons.library_music,
+                                    Icons.radio,
+                                  ])
                                     Padding(
                                       padding: const EdgeInsets.only(right: 8),
                                       child: CircleAvatar(
@@ -251,7 +270,10 @@ class _SheetState extends ConsumerState<_Sheet> {
             ),
           ),
           if (widget.allowDefault)
-            option('__default__', l10n.defaultNamed(soundName(sounds, ref.watch(alarmOptionsProvider).soundId))),
+            option(
+              '__default__',
+              l10n.defaultNamed(soundName(sounds, ref.watch(alarmOptionsProvider).soundId)),
+            ),
           option(SoundPickerTile.phone, l10n.phoneAlarmSound),
           for (final s in sounds)
             option(
@@ -278,7 +300,8 @@ class _SheetState extends ConsumerState<_Sheet> {
                     onDone: () => mounted ? setState(() {}) : null,
                     onError: (_) {
                       if (mounted) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.musicPreviewFailed)));
+                        ScaffoldMessenger.of(context)
+                            .showSnackBar(SnackBar(content: Text(l10n.musicPreviewFailed)));
                       }
                     },
                   );

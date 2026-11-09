@@ -34,7 +34,10 @@ class MoonDetails extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(label.toUpperCase(), style: text.labelSmall?.copyWith(color: QuandoColors.faint, letterSpacing: 1)),
+        Text(
+          label.toUpperCase(),
+          style: text.labelSmall?.copyWith(color: QuandoColors.faint, letterSpacing: 1),
+        ),
         const SizedBox(height: 2),
         Text(value, style: text.bodyMedium),
       ],

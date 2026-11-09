@@ -106,9 +106,24 @@ class AlarmSound {
   );
 
   static List<AlarmSound> get builtIns => [
-    AlarmSound(id: 'builtin.chime', name: l10n.soundSoftChime, path: 'assets/sounds/soft_chime.wav', builtIn: true),
-    AlarmSound(id: 'builtin.rise', name: l10n.soundMorningRise, path: 'assets/sounds/morning_rise.wav', builtIn: true),
-    AlarmSound(id: 'builtin.beep', name: l10n.soundClassicBeep, path: 'assets/sounds/classic_beep.wav', builtIn: true),
+    AlarmSound(
+      id: 'builtin.chime',
+      name: l10n.soundSoftChime,
+      path: 'assets/sounds/soft_chime.wav',
+      builtIn: true,
+    ),
+    AlarmSound(
+      id: 'builtin.rise',
+      name: l10n.soundMorningRise,
+      path: 'assets/sounds/morning_rise.wav',
+      builtIn: true,
+    ),
+    AlarmSound(
+      id: 'builtin.beep',
+      name: l10n.soundClassicBeep,
+      path: 'assets/sounds/classic_beep.wav',
+      builtIn: true,
+    ),
   ];
 
   /// Soft, looping lead-up sounds for the gentle wake-up only; they are not
@@ -118,7 +133,12 @@ class AlarmSound {
     AlarmSound(id: 'calm.birds', name: l10n.calmBirds, path: 'assets/sounds/gentle_birds.ogg', builtIn: true),
     AlarmSound(id: 'calm.waves', name: l10n.calmWaves, path: 'assets/sounds/gentle_waves.ogg', builtIn: true),
     AlarmSound(id: 'calm.rain', name: l10n.calmRain, path: 'assets/sounds/gentle_rain.ogg', builtIn: true),
-    AlarmSound(id: 'calm.stream', name: l10n.calmStream, path: 'assets/sounds/gentle_stream.ogg', builtIn: true),
+    AlarmSound(
+      id: 'calm.stream',
+      name: l10n.calmStream,
+      path: 'assets/sounds/gentle_stream.ogg',
+      builtIn: true,
+    ),
     AlarmSound(id: 'calm.wind', name: l10n.calmWind, path: 'assets/sounds/gentle_wind.ogg', builtIn: true),
     AlarmSound(id: 'calm.fire', name: l10n.calmFire, path: 'assets/sounds/gentle_fire.ogg', builtIn: true),
     AlarmSound(id: 'calm.night', name: l10n.calmNight, path: 'assets/sounds/gentle_night.ogg', builtIn: true),

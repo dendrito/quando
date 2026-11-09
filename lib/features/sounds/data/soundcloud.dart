@@ -41,7 +41,10 @@ class SoundCloudAccount {
     final refresh = prefs.getString(_refreshKey);
     if (refresh != null) {
       try {
-        return await _exchange(prefs, {'grant_type': 'refresh_token', 'refresh_token': refresh}, client: client);
+        return await _exchange(prefs, {
+          'grant_type': 'refresh_token',
+          'refresh_token': refresh,
+        }, client: client);
       } on SoundCloudException catch (e) {
         if (e.code != 'invalid_grant') rethrow;
         await signOut(prefs);
@@ -80,10 +83,17 @@ class SoundCloudAccount {
     }, client: client);
   }
 
-  static Future<String> _exchange(SharedPreferences prefs, Map<String, String> body, {http.Client? client}) async {
+  static Future<String> _exchange(
+    SharedPreferences prefs,
+    Map<String, String> body, {
+    http.Client? client,
+  }) async {
     final r = await (client?.post ?? http.post)(
       Uri.https('secure.soundcloud.com', '/oauth/token'),
-      headers: {'Content-Type': 'application/x-www-form-urlencoded', 'Accept': 'application/json; charset=utf-8'},
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json; charset=utf-8',
+      },
       body: {...body, 'client_id': clientId, if (_clientSecret.isNotEmpty) 'client_secret': _clientSecret},
     ).timeout(const Duration(seconds: 15));
     final j = _json(r.body);
@@ -191,7 +201,9 @@ class SoundCloudLibrary {
     SpotifyItem? Function(Map<String, dynamic>) parse, {
     int limit = 500,
   }) async {
-    var uri = Uri.parse('https://api.soundcloud.com$path${path.contains('?') ? '&' : '?'}linked_partitioning=true');
+    var uri = Uri.parse(
+      'https://api.soundcloud.com$path${path.contains('?') ? '&' : '?'}linked_partitioning=true',
+    );
     final out = <SpotifyItem>[];
     while (true) {
       final r = await _client

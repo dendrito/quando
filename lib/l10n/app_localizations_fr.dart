@@ -440,7 +440,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get openWhenLockStarts => 'Ouvrir Quando? au début d’un verrouillage';
 
   @override
-  String get openWhenLockStartsHint => 'Un léger carillon d’1 seconde ramène Quando? au premier plan pour verrouiller';
+  String get openWhenLockStartsHint =>
+      'Un léger carillon d’1 seconde ramène Quando? au premier plan pour verrouiller';
 
   @override
   String get pinToScreen => 'Épingler Quando? à l’écran';
@@ -718,7 +719,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get readyExact => 'Sonner à la minute près';
 
   @override
-  String get readyExactWhy => 'Sans cela, le téléphone peut faire sonner les alarmes avec quelques minutes de retard.';
+  String get readyExactWhy =>
+      'Sans cela, le téléphone peut faire sonner les alarmes avec quelques minutes de retard.';
 
   @override
   String get readyBattery => 'Continuer en économie de batterie';
@@ -778,7 +780,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get testIn20 => 'Tester : sonner dans 20 secondes';
 
   @override
-  String get testIn20Hint => 'Verrouillez le téléphone et posez-le. Si l’alarme sonne en plein écran, tout est prêt.';
+  String get testIn20Hint =>
+      'Verrouillez le téléphone et posez-le. Si l’alarme sonne en plein écran, tout est prêt.';
 
   @override
   String get readyToRingHint => 'Vérifiez que votre téléphone laisse chaque alarme sonner à l’heure';
@@ -856,7 +859,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get wakeUpCheck => 'Vérification du réveil';
 
   @override
-  String get wakeUpCheckHint => 'Après l’arrêt, resonne dans 3 minutes si vous ne touchez pas « Je suis levé »';
+  String get wakeUpCheckHint =>
+      'Après l’arrêt, resonne dans 3 minutes si vous ne touchez pas « Je suis levé »';
 
   @override
   String get solveSum => 'Résoudre un calcul pour arrêter';
@@ -1182,7 +1186,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get playForHeading => 'JOUER PENDANT';
 
   @override
-  String get pausesAfter => 'Quando? met le morceau en pause après cette durée, avec le bouton pause du téléphone.';
+  String get pausesAfter =>
+      'Quando? met le morceau en pause après cette durée, avec le bouton pause du téléphone.';
 
   @override
   String get backupSoundHeading => 'SON DE SECOURS';
@@ -1245,7 +1250,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get sounds => 'Sons';
 
   @override
-  String get soundsSentence => 'Réveillez-vous avec votre voix, un morceau, une playlist ou la radio en direct.';
+  String get soundsSentence =>
+      'Réveillez-vous avec votre voix, un morceau, une playlist ou la radio en direct.';
 
   @override
   String stopTimer(String time) {
@@ -1529,7 +1535,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Visez un code-barres ou un QR code à un endroit où vous devez marcher, comme une boîte dans la cuisine ou le dentifrice dans la salle de bain. Pour arrêter l’alarme, vous le scannerez à nouveau.';
 
   @override
-  String get cameraUnavailableSettings => 'L’appareil photo n’est pas disponible. Autorisez l’accès dans les Réglages.';
+  String get cameraUnavailableSettings =>
+      'L’appareil photo n’est pas disponible. Autorisez l’accès dans les Réglages.';
 
   @override
   String gentleToGo(int n) {
@@ -1589,7 +1596,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get none => 'Aucune';
 
   @override
-  String get snoozeSentence => 'Encore cinq minutes ? Choisissez combien de temps, combien de fois et à quel prix.';
+  String get snoozeSentence =>
+      'Encore cinq minutes ? Choisissez combien de temps, combien de fois et à quel prix.';
 
   @override
   String get settingsHeading => 'RÉGLAGES';
@@ -1883,7 +1891,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get myPushoverDefault => 'Mon son Pushover par défaut';
 
   @override
-  String get pushoverOwnSounds => 'Vos propres sons apparaissent ici après les avoir envoyés sur pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'Vos propres sons apparaissent ici après les avoir envoyés sur pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'Tous mes appareils';
@@ -1930,7 +1939,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get pauseOnShabbat => 'Pause pendant Chabbat et les fêtes';
 
   @override
-  String get pauseOnShabbatHint => 'Rien n’est envoyé pour les alarmes entre l’allumage des bougies et la Havdala';
+  String get pauseOnShabbatHint =>
+      'Rien n’est envoyé pour les alarmes entre l’allumage des bougies et la Havdala';
 
   @override
   String get webhookPayloadNote =>
@@ -2260,7 +2270,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2294,13 +2305,15 @@ class AppLocalizationsFr extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2515,7 +2528,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2561,7 +2575,8 @@ class AppLocalizationsFr extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2645,7 +2660,8 @@ class AppLocalizationsFr extends AppLocalizations {
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
 
   @override
-  String get musicRingDurationHint => 'La lecture suit la durée de cette alarme et s’arrête avec Arrêter ou Répéter.';
+  String get musicRingDurationHint =>
+      'La lecture suit la durée de cette alarme et s’arrête avec Arrêter ou Répéter.';
 
   @override
   String get musicBackupPlaying => 'La musique n’a pas pu démarrer. La sonnerie locale retentit.';
@@ -2947,11 +2963,17 @@ class AppLocalizationsFr extends AppLocalizations {
   String get seqStartCalls => 'Annonces avant le départ';
 
   @override
-  String get seqStartCallsHelp => 'Dites à voix haute avant « Partez », en comptant à rebours depuis le départ.';
+  String get seqStartCallsHelp =>
+      'Dites à voix haute avant « Partez », en comptant à rebours depuis le départ.';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondes avant', one: '1 seconde avant');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n secondes avant',
+      one: '1 seconde avant',
+    );
     return '$_temp0';
   }
 

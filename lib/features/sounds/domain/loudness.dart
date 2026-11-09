@@ -62,18 +62,20 @@ class Loudness {
     return parts.join(' · ');
   }
 
-  static String seconds(int s) =>
-      s < 60 ? l10n.secondsShort(s) : (s % 60 == 0 ? l10n.minutesShort(s ~/ 60) : l10n.minSecShort(s ~/ 60, s % 60));
+  static String seconds(int s) => s < 60
+      ? l10n.secondsShort(s)
+      : (s % 60 == 0 ? l10n.minutesShort(s ~/ 60) : l10n.minSecShort(s ~/ 60, s % 60));
 
   /// Quando's own sound under a song link: it starts softly, so the song
   /// has time to start and take over.
   Loudness get backupForSong => fadeInSeconds >= 30 ? this : copyWith(fadeInSeconds: 30);
 
-  Loudness copyWith({int? volume, bool phoneVolume = false, int? fadeInSeconds, int? fadeOutSeconds}) => Loudness(
-    volume: phoneVolume ? null : (volume ?? this.volume),
-    fadeInSeconds: fadeInSeconds ?? this.fadeInSeconds,
-    fadeOutSeconds: fadeOutSeconds ?? this.fadeOutSeconds,
-  );
+  Loudness copyWith({int? volume, bool phoneVolume = false, int? fadeInSeconds, int? fadeOutSeconds}) =>
+      Loudness(
+        volume: phoneVolume ? null : (volume ?? this.volume),
+        fadeInSeconds: fadeInSeconds ?? this.fadeInSeconds,
+        fadeOutSeconds: fadeOutSeconds ?? this.fadeOutSeconds,
+      );
 
   Map<String, dynamic> toJson() => {'volume': volume, 'fadeIn': fadeInSeconds, 'fadeOut': fadeOutSeconds};
 

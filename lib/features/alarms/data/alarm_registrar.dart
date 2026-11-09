@@ -143,7 +143,11 @@ class AlarmRegistrar {
           }
         }
       }
-      if (p.localAudio && p.song != null && !p.gentle && !p.shabbatSafe && EmbeddedMusic.parse(p.song) == null) {
+      if (p.localAudio &&
+          p.song != null &&
+          !p.gentle &&
+          !p.shabbatSafe &&
+          EmbeddedMusic.parse(p.song) == null) {
         unawaited(_playSong(settings, p));
       }
       // Auto-snooze: untouched for its set time with snoozes left, so it

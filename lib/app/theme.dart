@@ -58,7 +58,12 @@ ThemeData buildTheme() {
       bodyMedium: TextStyle(fontSize: 15),
       bodySmall: TextStyle(fontSize: 14, color: QuandoColors.muted),
       labelLarge: TextStyle(fontWeight: FontWeight.w600),
-      labelSmall: TextStyle(fontSize: 13, fontWeight: FontWeight.w600, letterSpacing: 1.5, color: QuandoColors.blush),
+      labelSmall: TextStyle(
+        fontSize: 13,
+        fontWeight: FontWeight.w600,
+        letterSpacing: 1.5,
+        color: QuandoColors.blush,
+      ),
     ).apply(bodyColor: QuandoColors.text, displayColor: QuandoColors.text),
     cardTheme: const CardThemeData(
       color: QuandoColors.surface,
@@ -130,11 +135,18 @@ ThemeData buildTheme() {
     inputDecorationTheme: const InputDecorationTheme(
       filled: true,
       fillColor: QuandoColors.surface,
-      border: OutlineInputBorder(borderRadius: BorderRadius.all(Radius.circular(18)), borderSide: BorderSide.none),
+      border: OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(18)),
+        borderSide: BorderSide.none,
+      ),
     ),
     snackBarTheme: const SnackBarThemeData(
       backgroundColor: QuandoColors.amber,
-      contentTextStyle: TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w600, color: QuandoColors.ground),
+      contentTextStyle: TextStyle(
+        fontFamily: quandoFont,
+        fontWeight: FontWeight.w600,
+        color: QuandoColors.ground,
+      ),
       behavior: SnackBarBehavior.floating,
       shape: StadiumBorder(),
     ),

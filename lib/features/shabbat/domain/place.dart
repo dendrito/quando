@@ -84,8 +84,18 @@ class Places {
     longitude: -46.6333,
     timeZone: 'America/Sao_Paulo',
   );
-  static const newYork = Place(name: 'New York', latitude: 40.7128, longitude: -74.006, timeZone: 'America/New_York');
-  static const london = Place(name: 'London', latitude: 51.5074, longitude: -0.1278, timeZone: 'Europe/London');
+  static const newYork = Place(
+    name: 'New York',
+    latitude: 40.7128,
+    longitude: -74.006,
+    timeZone: 'America/New_York',
+  );
+  static const london = Place(
+    name: 'London',
+    latitude: 51.5074,
+    longitude: -0.1278,
+    timeZone: 'Europe/London',
+  );
   static const losAngeles = Place(
     name: 'Los Angeles',
     latitude: 34.0522,

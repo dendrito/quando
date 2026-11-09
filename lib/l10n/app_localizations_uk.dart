@@ -35,7 +35,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get newAroundEvent => 'Навколо події';
 
   @override
-  String get newAroundEventHint => 'Шукайте в календарях, часі шабату й сонця та дзвоніть до, під час або після';
+  String get newAroundEventHint =>
+      'Шукайте в календарях, часі шабату й сонця та дзвоніть до, під час або після';
 
   @override
   String get editThisAlarm => 'Змінити цей будильник';
@@ -437,7 +438,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get presetsHint => 'Торкніться, щоб змінити час. Проведіть, щоб видалити.';
 
   @override
-  String get lockSentence => 'Залиште на телефоні лише годинник і будильники — на шабат або ніч без відволікань.';
+  String get lockSentence =>
+      'Залиште на телефоні лише годинник і будильники — на шабат або ніч без відволікань.';
 
   @override
   String get lockExplain =>
@@ -556,10 +558,12 @@ class AppLocalizationsUk extends AppLocalizations {
   String get off => 'Вимк.';
 
   @override
-  String get gentleSentence => 'Спокійний звук тихо починається до будильника, тож ви ніколи не прокидаєтеся різко.';
+  String get gentleSentence =>
+      'Спокійний звук тихо починається до будильника, тож ви ніколи не прокидаєтеся різко.';
 
   @override
-  String get gentleExplain => 'Він повільно наростає, виводить із легкого сну й затихає перед самим будильником.';
+  String get gentleExplain =>
+      'Він повільно наростає, виводить із легкого сну й затихає перед самим будильником.';
 
   @override
   String get startsBeforeHeading => 'ПОЧИНАЄТЬСЯ ДО БУДИЛЬНИКА';
@@ -809,7 +813,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get testIn20 => 'Тест: дзвінок за 20 секунд';
 
   @override
-  String get testIn20Hint => 'Заблокуйте телефон і відкладіть. Якщо будильник задзвонить на весь екран, усе готово.';
+  String get testIn20Hint =>
+      'Заблокуйте телефон і відкладіть. Якщо будильник задзвонить на весь екран, усе готово.';
 
   @override
   String get readyToRingHint => 'Перевірте, що телефон дзвонить кожним будильником вчасно';
@@ -1103,7 +1108,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get nameOptional => 'Назва (необов’язково)';
 
   @override
-  String get toppedUp => 'Будильники задано на 7 днів наперед і поповнюються щоразу, коли ви відкриваєте Quando?.';
+  String get toppedUp =>
+      'Будильники задано на 7 днів наперед і поповнюються щоразу, коли ви відкриваєте Quando?.';
 
   @override
   String get back => 'Назад';
@@ -1926,7 +1932,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get allMyDevices => 'Усі мої пристрої';
 
   @override
-  String get pushoverOnThisPhone => 'Установіть Pushover і на цей телефон, і він дзвонитиме тут вашим звуком Pushover.';
+  String get pushoverOnThisPhone =>
+      'Установіть Pushover і на цей телефон, і він дзвонитиме тут вашим звуком Pushover.';
 
   @override
   String get priority => 'Пріоритет';
@@ -2295,7 +2302,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2329,13 +2337,15 @@ class AppLocalizationsUk extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2550,7 +2560,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2596,7 +2607,8 @@ class AppLocalizationsUk extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2837,7 +2849,8 @@ class AppLocalizationsUk extends AppLocalizations {
       'Запишіть її: якщо забудете, відновити її неможливо, і ключі доведеться ввести знову.';
 
   @override
-  String get keysShareNeedsPassphrase => 'Спершу виберіть фразу синхронізації в розділі «Ключі на ваших пристроях».';
+  String get keysShareNeedsPassphrase =>
+      'Спершу виберіть фразу синхронізації в розділі «Ключі на ваших пристроях».';
 
   @override
   String get settingsAlarmDefaults => 'Alarm defaults';

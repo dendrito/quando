@@ -94,7 +94,9 @@ class _CityPickerState extends ConsumerState<CityPicker> {
     if (widget.forSky) {
       ref.read(skyLocationProvider.notifier).set(place);
       unawaited(
-        ref.read(homeDisplayProvider.notifier).set(ref.read(homeDisplayProvider).copyWith(skyUseShabbat: false)),
+        ref
+            .read(homeDisplayProvider.notifier)
+            .set(ref.read(homeDisplayProvider).copyWith(skyUseShabbat: false)),
       );
     } else if (local) {
       ref.read(placeProvider.notifier).setLocal(place);
@@ -136,7 +138,12 @@ class _CityPickerState extends ConsumerState<CityPicker> {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(l10n.locationCoordinates(point.latitude.toStringAsFixed(3), point.longitude.toStringAsFixed(3))),
+                  Text(
+                    l10n.locationCoordinates(
+                      point.latitude.toStringAsFixed(3),
+                      point.longitude.toStringAsFixed(3),
+                    ),
+                  ),
                   Text(cityOf(zone)),
                   if (!widget.forSky)
                     SwitchListTile(
@@ -180,7 +187,8 @@ class _CityPickerState extends ConsumerState<CityPicker> {
             LocationProblem.timeout => l10n.locationTimedOut,
             LocationProblem.timezone => l10n.locationTimeZoneUnavailable,
           };
-          _openSettings = error.problem == LocationProblem.servicesOff || error.problem == LocationProblem.denied;
+          _openSettings =
+              error.problem == LocationProblem.servicesOff || error.problem == LocationProblem.denied;
         });
       }
     } catch (_) {
@@ -197,8 +205,9 @@ class _CityPickerState extends ConsumerState<CityPicker> {
             for (final p in [...ZonePlaces.all, ...Places.all]) '${p.name}|${p.timeZone}': p,
           }.values
         : Places.all;
-    final cities = choices.where((p) => normalized('${p.name} ${p.timeZone}').contains(normalized(_query))).toList()
-      ..sort((a, b) => a.name.compareTo(b.name));
+    final cities =
+        choices.where((p) => normalized('${p.name} ${p.timeZone}').contains(normalized(_query))).toList()
+          ..sort((a, b) => a.name.compareTo(b.name));
     return Scaffold(
       appBar: AppBar(title: Text(widget.forSky ? l10n.skyChooseCity : l10n.changeCity)),
       body: Column(
@@ -208,7 +217,10 @@ class _CityPickerState extends ConsumerState<CityPicker> {
             child: Column(
               children: [
                 TextField(
-                  decoration: InputDecoration(labelText: l10n.searchCity, prefixIcon: const Icon(Icons.search)),
+                  decoration: InputDecoration(
+                    labelText: l10n.searchCity,
+                    prefixIcon: const Icon(Icons.search),
+                  ),
                   onChanged: (v) => setState(() => _query = v),
                 ),
                 TextButton.icon(
@@ -216,7 +228,8 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                   icon: const Icon(Icons.my_location),
                   label: Text(_busy ? l10n.locationLooking : l10n.useMyLocation),
                 ),
-                if (_error != null) Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+                if (_error != null)
+                  Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
                 if (_openSettings)
                   TextButton(onPressed: Geolocator.openLocationSettings, child: Text(l10n.locationSettings)),
               ],
@@ -229,7 +242,9 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                 final place = cities[i];
                 return ListTile(
                   title: Text(place.name),
-                  subtitle: place.name == cityOf(place.timeZone) ? null : Text(l10n.cityTime(cityOf(place.timeZone))),
+                  subtitle: place.name == cityOf(place.timeZone)
+                      ? null
+                      : Text(l10n.cityTime(cityOf(place.timeZone))),
                   onTap: () {
                     _save(place);
                     Navigator.pop(context);

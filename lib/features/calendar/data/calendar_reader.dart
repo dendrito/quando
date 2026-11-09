@@ -60,7 +60,8 @@ class DeviceCalendarReader implements CalendarReader {
   Future<bool> hasAccess() async => await _plugin.hasPermissions() == CalendarPermissionStatus.granted;
 
   @override
-  Future<bool> requestAccess() async => await _plugin.requestPermissions() == CalendarPermissionStatus.granted;
+  Future<bool> requestAccess() async =>
+      await _plugin.requestPermissions() == CalendarPermissionStatus.granted;
 
   @override
   Future<List<PhoneCalendar>> calendars() async => [

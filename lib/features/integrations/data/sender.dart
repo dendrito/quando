@@ -12,7 +12,8 @@ import 'package:quando/l10n/l10n.dart';
 /// Sends alarm happenings to Pushover and webhooks. Failures are quiet:
 /// an integration must never get in the way of the alarm.
 class IntegrationSender {
-  IntegrationSender(this._settings, {http.Client? client, TuyaClient? tuya}) : _client = client ?? http.Client() {
+  IntegrationSender(this._settings, {http.Client? client, TuyaClient? tuya})
+    : _client = client ?? http.Client() {
     _tuya = tuya ?? TuyaClient(client: _client);
   }
 
@@ -28,7 +29,8 @@ class IntegrationSender {
     if (s.pauseOnShabbat && p.shabbatSafe) return;
     final when = (at ?? DateTime.now()).toUtc();
     await Future.wait([
-      if (s.pushoverReady && p.delivery.pushoverEnabled != false && what == AlarmHappening.ring) _pushover(s, p),
+      if (s.pushoverReady && p.delivery.pushoverEnabled != false && what == AlarmHappening.ring)
+        _pushover(s, p),
       if (s.smartHomeOn && s.tuya.ready && p.delivery.tuyaScene != null && what == AlarmHappening.ring)
         _tuya.runScene(s.tuya, p.delivery.tuyaScene!).catchError((Object _) {}),
       for (final w in s.webhooks)
@@ -39,11 +41,13 @@ class IntegrationSender {
     ]);
   }
 
-  Future<String?> testPushover(IntegrationSettings s, {ReminderDelivery delivery = ReminderDelivery.inherit}) =>
-      _pushover(
-        s.copyWith(pushoverPriority: 0),
-        RingPayload(title: l10n.appTest, body: l10n.testPushoverSound, ringSeconds: 1).withDelivery(delivery),
-      );
+  Future<String?> testPushover(
+    IntegrationSettings s, {
+    ReminderDelivery delivery = ReminderDelivery.inherit,
+  }) => _pushover(
+    s.copyWith(pushoverPriority: 0),
+    RingPayload(title: l10n.appTest, body: l10n.testPushoverSound, ringSeconds: 1).withDelivery(delivery),
+  );
 
   Future<String?> testWebhook(Webhook w) => _webhook(
     w,
@@ -55,7 +59,9 @@ class IntegrationSender {
   /// Returns null on success, else a short reason.
   Future<String?> _pushover(IntegrationSettings s, RingPayload p) async {
     try {
-      final r = await _client.post(pushoverUrl, body: pushoverFields(s, p)).timeout(const Duration(seconds: 15));
+      final r = await _client
+          .post(pushoverUrl, body: pushoverFields(s, p))
+          .timeout(const Duration(seconds: 15));
       return r.statusCode == 200 ? null : l10n.pushoverSaid(r.statusCode, _short(r.body));
     } catch (e) {
       return l10n.couldNotReachPushover('$e');
@@ -78,7 +84,9 @@ class IntegrationSender {
   /// short reason on failure.
   Future<Map<String, String>> pushoverSounds(String token) async {
     final r = await _client
-        .get(Uri.parse('https://api.pushover.net/1/sounds.json?token=${Uri.encodeQueryComponent(token.trim())}'))
+        .get(
+          Uri.parse('https://api.pushover.net/1/sounds.json?token=${Uri.encodeQueryComponent(token.trim())}'),
+        )
         .timeout(const Duration(seconds: 15));
     final j = jsonDecode(r.body) as Map<String, dynamic>;
     if (r.statusCode != 200) throw Exception(_reason(j, r.statusCode));

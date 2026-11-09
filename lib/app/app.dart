@@ -40,7 +40,8 @@ final _router = GoRouter(
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
     GoRoute(
       path: '/timers',
-      builder: (context, state) => TimersScreen(initialTab: int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0),
+      builder: (context, state) =>
+          TimersScreen(initialTab: int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0),
     ),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),

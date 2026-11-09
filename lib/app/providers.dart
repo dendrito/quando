@@ -136,7 +136,9 @@ class QuoteSourcesNotifier extends Notifier<Set<QuoteSource>> {
   }
 }
 
-final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(QuoteSourcesNotifier.new);
+final quoteSourcesProvider = NotifierProvider<QuoteSourcesNotifier, Set<QuoteSource>>(
+  QuoteSourcesNotifier.new,
+);
 
 /// Extra quotes the user opted into: Carnaval, near me. Off by default.
 class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
@@ -158,7 +160,9 @@ class QuoteOccasionsNotifier extends Notifier<Set<QuoteOccasion>> {
   }
 }
 
-final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(QuoteOccasionsNotifier.new);
+final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<QuoteOccasion>>(
+  QuoteOccasionsNotifier.new,
+);
 
 /// Where the user is, for "Near me" quotes.
 final quotePlacesProvider = Provider<Set<String>>(
@@ -209,7 +213,10 @@ class TimeZonesNotifier extends Notifier<TimeZones> {
     if (_prefs.containsKey('zone.fixed') && _prefs.getBool(pickedHereKey) != true) {
       _prefs.remove('zone.fixed');
     }
-    return TimeZones(fixed: _prefs.getString('zone.fixed'), clocks: _prefs.getStringList('zone.clocks') ?? const []);
+    return TimeZones(
+      fixed: _prefs.getString('zone.fixed'),
+      clocks: _prefs.getStringList('zone.clocks') ?? const [],
+    );
   }
 
   void followPhone() {
@@ -246,7 +253,10 @@ final timeZonesProvider = NotifierProvider<TimeZonesNotifier, TimeZones>(TimeZon
 /// picked on this device, else the device's own (which follows where you
 /// are), else your Shabbat city's.
 final homeZoneProvider = Provider<String>(
-  (ref) => ref.watch(timeZonesProvider).fixed ?? ref.watch(deviceZoneProvider) ?? ref.watch(placeProvider).timeZone,
+  (ref) =>
+      ref.watch(timeZonesProvider).fixed ??
+      ref.watch(deviceZoneProvider) ??
+      ref.watch(placeProvider).timeZone,
 );
 
 /// Sky-only coordinates are local to this device and never change Shabbat
@@ -460,7 +470,9 @@ class SkippedNotifier extends Notifier<Set<int>> {
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
   @override
-  Set<int> build() => {for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[]) ?int.tryParse(s)};
+  Set<int> build() => {
+    for (final s in _prefs.getStringList('plan.skipped') ?? const <String>[]) ?int.tryParse(s),
+  };
 
   void skip(int id, bool skipped) {
     final next = {...state};
@@ -479,7 +491,9 @@ class AlarmOptionsNotifier extends Notifier<AlarmOptions> {
   AlarmOptions build() {
     try {
       final raw = ref.read(prefsProvider).getString('alarmOptions');
-      return raw == null ? const AlarmOptions() : AlarmOptions.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+      return raw == null
+          ? const AlarmOptions()
+          : AlarmOptions.fromJson(jsonDecode(raw) as Map<String, dynamic>);
     } catch (_) {
       return const AlarmOptions();
     }
@@ -528,7 +542,8 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
     _set(i < 0 ? [...state, rule] : [for (final r in state) r.id == rule.id ? rule : r]);
   }
 
-  void toggle(String id, bool enabled) => _set([for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r]);
+  void toggle(String id, bool enabled) =>
+      _set([for (final r in state) r.id == id ? r.copyWith(enabled: enabled) : r]);
 
   void delete(String id) => _set([
     for (final r in state)
@@ -541,7 +556,9 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
   }
 }
 
-final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(CalendarRulesNotifier.new);
+final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(
+  CalendarRulesNotifier.new,
+);
 
 /// What we know about your calendars: the phone's own, and Google
 /// Calendar read online.
@@ -655,7 +672,8 @@ class CalendarNotifier extends Notifier<CalendarState> {
     await refresh();
   }
 
-  Future<List<PhoneCalendar>> _phoneCalendars() async => await _phone.hasAccess() ? await _phone.calendars() : const [];
+  Future<List<PhoneCalendar>> _phoneCalendars() async =>
+      await _phone.hasAccess() ? await _phone.calendars() : const [];
 
   /// Events from every selected calendar, wherever it lives.
   Future<List<AnchorEvent>> read(DateTime from, DateTime to) async {
@@ -678,7 +696,9 @@ class CalendarNotifier extends Notifier<CalendarState> {
     final rules = [for (final r in ref.read(calendarRulesProvider)) ...r.toAlarmRules()];
     final window = scheduler.eventWindow(now, rules);
     final from = window.from.subtract(const Duration(days: 1));
-    final to = window.to.isAfter(now.add(const Duration(days: 62))) ? now.add(const Duration(days: 62)) : window.to;
+    final to = window.to.isAfter(now.add(const Duration(days: 62)))
+        ? now.add(const Duration(days: 62))
+        : window.to;
 
     var phone = false;
     var phoneCals = <PhoneCalendar>[];
@@ -771,7 +791,10 @@ final calendarProvider = NotifierProvider<CalendarNotifier, CalendarState>(Calen
 
 /// Presets plus the user's calendar rules.
 final allRulesProvider = Provider<List<AlarmRule>>(
-  (ref) => [...ref.watch(rulesProvider), for (final r in ref.watch(calendarRulesProvider)) ...r.toAlarmRules()],
+  (ref) => [
+    ...ref.watch(rulesProvider),
+    for (final r in ref.watch(calendarRulesProvider)) ...r.toAlarmRules(),
+  ],
 );
 
 final eventsProvider = Provider<List<AnchorEvent>>((ref) {
@@ -820,7 +843,8 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     try {
       final raw = _prefs.getString('userAlarms');
       if (raw == null) return const [];
-      return [for (final j in jsonDecode(raw) as List) UserAlarm.fromJson(j as Map<String, dynamic>)]..sort(_byTime);
+      return [for (final j in jsonDecode(raw) as List) UserAlarm.fromJson(j as Map<String, dynamic>)]
+        ..sort(_byTime);
     } catch (_) {
       return const [];
     }
@@ -948,8 +972,9 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
 final soundsProvider = NotifierProvider<SoundsNotifier, List<AlarmSound>>(SoundsNotifier.new);
 
 /// "Phone alarm sound" for null, otherwise the sound's name.
-String soundName(List<AlarmSound> sounds, String? id) =>
-    id == null ? l10n.phoneAlarmSound : (sounds.where((s) => s.id == id).firstOrNull?.name ?? l10n.phoneAlarmSound);
+String soundName(List<AlarmSound> sounds, String? id) => id == null
+    ? l10n.phoneAlarmSound
+    : (sounds.where((s) => s.id == id).firstOrNull?.name ?? l10n.phoneAlarmSound);
 
 // ---- Lock mode ----
 
@@ -1003,7 +1028,9 @@ class DismissedLocksNotifier extends Notifier<Set<String>> {
   }
 }
 
-final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<String>>(DismissedLocksNotifier.new);
+final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<String>>(
+  DismissedLocksNotifier.new,
+);
 
 /// Upcoming and current locks.
 final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
@@ -1117,7 +1144,9 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
-    final delivery = a.ruleId.startsWith('gentle.') ? const ReminderDelivery(pushoverEnabled: false) : a.delivery;
+    final delivery = a.ruleId.startsWith('gentle.')
+        ? const ReminderDelivery(pushoverEnabled: false)
+        : a.delivery;
     // A disconnected/paused account must not silently disable the local fallback.
     final remoteReady =
         integrations.pushoverReady &&
@@ -1136,7 +1165,8 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     if (p.isLock) return p;
     p = p.withStyle(a.style);
     if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
-    final calm = (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
+    final calm =
+        (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
     return p.gentleLeadUp(a.style.gentleMinutes, calm);
   };
 });
@@ -1194,7 +1224,9 @@ class IntegrationsNotifier extends Notifier<IntegrationSettings> {
   );
 }
 
-final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationSettings>(IntegrationsNotifier.new);
+final integrationsProvider = NotifierProvider<IntegrationsNotifier, IntegrationSettings>(
+  IntegrationsNotifier.new,
+);
 
 final integrationSenderProvider = Provider<IntegrationSender>(
   (ref) => IntegrationSender(() => ref.read(integrationsProvider), tuya: ref.read(tuyaClientProvider)),

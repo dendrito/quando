@@ -37,7 +37,11 @@ class ServiceLogo extends StatelessWidget {
   }
 
   Widget _tile({required Widget child, Color? color, Gradient? gradient}) => DecoratedBox(
-    decoration: BoxDecoration(color: color, gradient: gradient, borderRadius: BorderRadius.circular(size * .24)),
+    decoration: BoxDecoration(
+      color: color,
+      gradient: gradient,
+      borderRadius: BorderRadius.circular(size * .24),
+    ),
     child: Center(child: child),
   );
 

@@ -78,7 +78,8 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
   @override
   Widget build(BuildContext context) {
     final value = widget.value;
-    final ringSeconds = value.ringSeconds ?? widget.defaultRingSeconds ?? ref.watch(alarmOptionsProvider).ringSeconds;
+    final ringSeconds =
+        value.ringSeconds ?? widget.defaultRingSeconds ?? ref.watch(alarmOptionsProvider).ringSeconds;
     final settings = ref.watch(integrationsProvider);
     final push = value.pushoverEnabled ?? settings.pushoverReady;
     final mode = !value.localAudio
@@ -89,7 +90,8 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
     final labels = {'local': l10n.deliveryLocal, 'push': 'Pushover', 'both': l10n.deliveryBoth};
     final soundEntries = {
       ..._sounds,
-      if (value.pushoverSound != null) value.pushoverSound!: _sounds[value.pushoverSound] ?? value.pushoverSound!,
+      if (value.pushoverSound != null)
+        value.pushoverSound!: _sounds[value.pushoverSound] ?? value.pushoverSound!,
     };
     final deviceNames = {..._devices, ...?value.pushoverDevices};
     return Padding(
@@ -130,7 +132,10 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
                     onSelected: entry.key != 'local' && !settings.pushoverReady
                         ? null
                         : (_) => widget.onChanged(
-                            value.copyWith(localAudio: entry.key != 'push', pushoverEnabled: entry.key != 'local'),
+                            value.copyWith(
+                              localAudio: entry.key != 'push',
+                              pushoverEnabled: entry.key != 'local',
+                            ),
                           ),
                   ),
               ],
@@ -144,15 +149,17 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
             if (value.localAudio && widget.showSoundPicker)
               SoundPickerTile(
                 value: value.resolveSound(widget.ruleSound),
-                onChanged: (id) =>
-                    widget.onChanged(value.copyWith(soundId: id, clearSound: id == null, useDefaultSound: id == null)),
+                onChanged: (id) => widget.onChanged(
+                  value.copyWith(soundId: id, clearSound: id == null, useDefaultSound: id == null),
+                ),
               ),
             if (mode != 'local') ...[
               Text(
                 value.localAudio ? l10n.deliveryBothHint : l10n.deliveryPushHint,
                 style: Theme.of(context).textTheme.bodySmall,
               ),
-              if (!value.localAudio) Text(l10n.deliveryFallback, style: Theme.of(context).textTheme.bodySmall),
+              if (!value.localAudio)
+                Text(l10n.deliveryFallback, style: Theme.of(context).textTheme.bodySmall),
               const SizedBox(height: 12),
               DropdownButtonFormField<String>(
                 key: ValueKey('push-sound-${value.pushoverSound}'),

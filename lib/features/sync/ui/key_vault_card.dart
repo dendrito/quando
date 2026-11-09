@@ -47,7 +47,10 @@ class _KeyVaultCardState extends ConsumerState<KeyVaultCard> {
             children: [
               Row(
                 children: [
-                  Icon(on ? Icons.lock : (waiting ? Icons.lock_clock : Icons.lock_open), color: QuandoColors.amber),
+                  Icon(
+                    on ? Icons.lock : (waiting ? Icons.lock_clock : Icons.lock_open),
+                    color: QuandoColors.amber,
+                  ),
                   const SizedBox(width: 10),
                   Expanded(child: Text(l10n.keysLockTitle, style: text.titleSmall)),
                 ],
@@ -68,7 +71,10 @@ class _KeyVaultCardState extends ConsumerState<KeyVaultCard> {
                   icon: const Icon(Icons.key, size: 18),
                   label: Text(l10n.keysUnlock),
                 ),
-                TextButton(onPressed: () => _ask(unlock: false, startOver: true), child: Text(l10n.keysStartOver)),
+                TextButton(
+                  onPressed: () => _ask(unlock: false, startOver: true),
+                  child: Text(l10n.keysStartOver),
+                ),
               ] else
                 OutlinedButton.icon(
                   onPressed: () => _ask(unlock: false),
@@ -151,7 +157,10 @@ class _PassphraseDialogState extends ConsumerState<_PassphraseDialog> {
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            if (widget.startOver) ...[Text(l10n.keysStartOverHint, style: text.bodySmall), const SizedBox(height: 8)],
+            if (widget.startOver) ...[
+              Text(l10n.keysStartOverHint, style: text.bodySmall),
+              const SizedBox(height: 8),
+            ],
             TextField(
               controller: _first,
               autofocus: true,

@@ -77,11 +77,15 @@ class ReminderDelivery {
     ringSeconds: (j['ringSeconds'] as num?)?.toInt(),
     soundId: j['soundId'] as String?,
     localAudio: j['localAudio'] as bool? ?? true,
-    pushoverDevices: j['pushoverDevices'] == null ? null : {for (final d in j['pushoverDevices'] as List) d as String},
+    pushoverDevices: j['pushoverDevices'] == null
+        ? null
+        : {for (final d in j['pushoverDevices'] as List) d as String},
     useDefaultSound: j['useDefaultSound'] as bool? ?? false,
     pushoverEnabled: j['pushoverEnabled'] as bool?,
     pushoverSound: j['pushoverSound'] as String?,
-    tuyaScene: j['tuyaScene'] is Map ? TuyaScene.fromJson((j['tuyaScene'] as Map).cast<String, dynamic>()) : null,
+    tuyaScene: j['tuyaScene'] is Map
+        ? TuyaScene.fromJson((j['tuyaScene'] as Map).cast<String, dynamic>())
+        : null,
   );
 
   /// JSON object keys are signed minute offsets: negative before, zero at,

@@ -131,7 +131,11 @@ class KeyVault {
     if (!unlocked(p)) return null;
     final uid = _uid(p)!;
     final key = base64Decode(p.getString(_keyPref)!);
-    final box = await _aes.encrypt(utf8.encode(plain), secretKey: SecretKey(key), aad: utf8.encode(_aad(uid, name)));
+    final box = await _aes.encrypt(
+      utf8.encode(plain),
+      secretKey: SecretKey(key),
+      aad: utf8.encode(_aad(uid, name)),
+    );
     return jsonEncode({
       'vault': 1,
       'uid': uid,

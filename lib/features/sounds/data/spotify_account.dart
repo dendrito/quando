@@ -50,7 +50,10 @@ class SpotifyAccount {
     final refresh = prefs.getString(_refreshKey);
     if (refresh != null) {
       try {
-        return await _exchange(prefs, {'grant_type': 'refresh_token', 'refresh_token': refresh}, client: client);
+        return await _exchange(prefs, {
+          'grant_type': 'refresh_token',
+          'refresh_token': refresh,
+        }, client: client);
       } on SpotifyAuthException catch (e) {
         if (e.code != 'invalid_grant') rethrow;
         // Revoked or expired: sign in again below.
@@ -100,7 +103,11 @@ class SpotifyAccount {
     });
   }
 
-  static Future<String> _exchange(SharedPreferences prefs, Map<String, String> body, {http.Client? client}) async {
+  static Future<String> _exchange(
+    SharedPreferences prefs,
+    Map<String, String> body, {
+    http.Client? client,
+  }) async {
     final r = await (client?.post ?? http.post)(
       Uri.https('accounts.spotify.com', '/api/token'),
       headers: {'Content-Type': 'application/x-www-form-urlencoded'},

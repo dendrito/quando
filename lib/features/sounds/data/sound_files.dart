@@ -12,7 +12,8 @@ class SoundFiles {
 
   static Future<String> absolute(String relative) async => '${(await _docs()).path}/$relative';
 
-  static Future<void> ensureFolder() async => Directory('${(await _docs()).path}/sounds').create(recursive: true);
+  static Future<void> ensureFolder() async =>
+      Directory('${(await _docs()).path}/sounds').create(recursive: true);
 
   /// Copies a picked file into the app, so it still works if the original moves.
   static Future<String> import(String sourcePath) async {

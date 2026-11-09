@@ -100,8 +100,12 @@ class MoonPhases {
       final a = (angles[i].$1 + angles[i].$2 * k) * rad - (i == 0 ? .009173 * t2 : 0);
       correction += extra[i] * math.sin(a);
     }
-    final jde = 2451550.09766 + 29.530588861 * k + .00015437 * t2 - .00000015 * t3 + .00000000073 * t4 + correction;
-    final approximate = DateTime.fromMillisecondsSinceEpoch(((jde - 2440587.5) * 86400000).round(), isUtc: true);
+    final jde =
+        2451550.09766 + 29.530588861 * k + .00015437 * t2 - .00000015 * t3 + .00000000073 * t4 + correction;
+    final approximate = DateTime.fromMillisecondsSinceEpoch(
+      ((jde - 2440587.5) * 86400000).round(),
+      isUtc: true,
+    );
     return approximate.subtract(Duration(milliseconds: (_deltaT(approximate) * 1000).round()));
   }
 

@@ -23,7 +23,10 @@ void main() {
     tester.view.physicalSize = size;
     tester.view.devicePixelRatio = 1;
     addTearDown(tester.view.reset);
-    SharedPreferences.setMockInitialValues({'home.display.allOn': true, 'home.display': '{"style":"$style"}'});
+    SharedPreferences.setMockInitialValues({
+      'home.display.allOn': true,
+      'home.display': '{"style":"$style"}',
+    });
     final prefs = await SharedPreferences.getInstance();
     final c = ProviderContainer(
       overrides: [

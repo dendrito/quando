@@ -193,12 +193,16 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final allSkipped = alarms.every((x) => skippedNow.contains(x.id));
     final home = ref.read(homeZoneProvider);
     final at = inZone(a.at, home);
-    final sources = <String, _Source>{for (final s in alarms.map(_sourceOf).nonNulls) s.key: s}.values.toList();
+    final sources = <String, _Source>{for (final s in alarms.map(_sourceOf).nonNulls) s.key: s}.values
+        .toList();
     final several = sources.length > 1;
     // One time out of a preset's several, e.g. "2 hours before".
     final p = one ? sources.firstOrNull?.preset : null;
     final canDropTime =
-        p != null && !a.ruleId.startsWith('gentle.') && p.offsets().length > 1 && p.offsets().contains(a.offset);
+        p != null &&
+        !a.ruleId.startsWith('gentle.') &&
+        p.offsets().length > 1 &&
+        p.offsets().contains(a.offset);
 
     final choice = await showModalBottomSheet<String>(
       context: context,
@@ -244,7 +248,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         ? (allSkipped ? l10n.ringThisOneAfterAll : l10n.skipJustThisOne)
                         : (allSkipped ? l10n.ringTheseAfterAll : l10n.skipTheseDay(alarms.length)),
                   ),
-                  if (canDropTime) item('drop', Icons.timer_off_outlined, l10n.removeTimeFrom(a.body, p.name)),
+                  if (canDropTime)
+                    item('drop', Icons.timer_off_outlined, l10n.removeTimeFrom(a.body, p.name)),
                   for (final (i, s) in sources.indexed) ...[
                     if (several) ...[
                       const Divider(indent: 16, endIndent: 16),
@@ -311,14 +316,24 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
           });
           ref.read(calendarRulesProvider.notifier).save(copy);
-          _undo(l10n.duplicatedNamed(c.title), () => ref.read(calendarRulesProvider.notifier).delete(copy.id));
+          _undo(
+            l10n.duplicatedNamed(c.title),
+            () => ref.read(calendarRulesProvider.notifier).delete(copy.id),
+          );
         }
       case 'group':
         final u = s!.user!;
-        final g = await pickGroup(context, groups: ref.read(userAlarmsProvider.notifier).groups, current: u.group);
+        final g = await pickGroup(
+          context,
+          groups: ref.read(userAlarmsProvider.notifier).groups,
+          current: u.group,
+        );
         if (g == null || g == u.group || !mounted) return;
         ref.read(userAlarmsProvider.notifier).save(u.copyWith(group: g));
-        _undo(g.isEmpty ? l10n.noGroup : l10n.movedToGroup(g), () => ref.read(userAlarmsProvider.notifier).save(u));
+        _undo(
+          g.isEmpty ? l10n.noGroup : l10n.movedToGroup(g),
+          () => ref.read(userAlarmsProvider.notifier).save(u),
+        );
       case 'delete':
         if (s!.user case final u?) _delete(u);
         if (s.cal case final c?) {
@@ -451,7 +466,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
           title: period.contains(now) ? l10n.shabbatModeIsOn : l10n.nextInCity(place.name.toUpperCase()),
           names: period.names.join(' · '),
           rows: [
-            ShabbatTimeRow(label: l10n.candleLighting, day: cityDay(period.start), time: cityTime(period.start)),
+            ShabbatTimeRow(
+              label: l10n.candleLighting,
+              day: cityDay(period.start),
+              time: cityTime(period.start),
+            ),
             ShabbatTimeRow(label: l10n.havdalah, day: cityDay(period.end), time: cityTime(period.end)),
           ],
         ),
@@ -514,8 +533,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         for (final m in const [10, 20, 60])
           _WhenChip(
             label: m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
-            onTap: () =>
-                _quick(DateTime.now().toUtc().add(Duration(minutes: m)), m < 60 ? l10n.inMinutes(m) : l10n.inOneHour),
+            onTap: () => _quick(
+              DateTime.now().toUtc().add(Duration(minutes: m)),
+              m < 60 ? l10n.inMinutes(m) : l10n.inOneHour,
+            ),
           ),
         if (nextSunset != null) _WhenChip(label: l10n.atSunset, onTap: () => _quick(nextSunset, l10n.sunset)),
       ],
@@ -667,7 +688,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         // A soft glow instead of a dark ring.
         decoration: ShapeDecoration(
           shape: const StadiumBorder(),
-          shadows: [BoxShadow(color: QuandoColors.coral.withAlpha(70), blurRadius: 22, offset: const Offset(0, 8))],
+          shadows: [
+            BoxShadow(color: QuandoColors.coral.withAlpha(70), blurRadius: 22, offset: const Offset(0, 8)),
+          ],
         ),
         child: FloatingActionButton.extended(
           tooltip: l10n.newAlarm,
@@ -745,7 +768,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                           spacing: 6,
                           crossAxisAlignment: WrapCrossAlignment.center,
                           children: [
-                            if (jewishHome) Text(date, style: text.bodyMedium?.copyWith(color: QuandoColors.blush)),
+                            if (jewishHome)
+                              Text(date, style: text.bodyMedium?.copyWith(color: QuandoColors.blush)),
                             if (display.parasha)
                               Tooltip(
                                 message: l10n.openParashaSefaria,
@@ -758,7 +782,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                                     padding: EdgeInsets.zero,
                                     minimumSize: const Size(0, 32),
                                   ),
-                                  child: Text(parasha.isNotEmpty ? l10n.weeklyParasha(parasha) : l10n.festivalReading),
+                                  child: Text(
+                                    parasha.isNotEmpty ? l10n.weeklyParasha(parasha) : l10n.festivalReading,
+                                  ),
                                 ),
                               ),
                             if (kodesh)
@@ -930,7 +956,10 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         id: 'cal.${r.id}',
                         onDelete: () {
                           ref.read(calendarRulesProvider.notifier).delete(r.id);
-                          _undo(l10n.deletedNamed(r.title), () => ref.read(calendarRulesProvider.notifier).save(r));
+                          _undo(
+                            l10n.deletedNamed(r.title),
+                            () => ref.read(calendarRulesProvider.notifier).save(r),
+                          );
                         },
                         child: RuleTile(
                           title: r.title,
@@ -987,8 +1016,11 @@ class _WhenChip extends StatelessWidget {
   final VoidCallback onTap;
 
   @override
-  Widget build(BuildContext context) =>
-      ActionChip(label: Text(label), onPressed: onTap, padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8));
+  Widget build(BuildContext context) => ActionChip(
+    label: Text(label),
+    onPressed: onTap,
+    padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 8),
+  );
 }
 
 class _AlarmCard extends StatelessWidget {

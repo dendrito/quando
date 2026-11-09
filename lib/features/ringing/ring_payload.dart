@@ -228,7 +228,9 @@ class RingPayload {
       autoSnoozeMinutes: safe ? 0 : plan?.autoSnoozeMinutes,
       snoozeTask: safe
           ? null
-          : (s.snoozeTask == StopTask.scan && s.scanCode == null ? StopTask.sum : (s.snoozeTask ?? StopTask.none)),
+          : (s.snoozeTask == StopTask.scan && s.scanCode == null
+                ? StopTask.sum
+                : (s.snoozeTask ?? StopTask.none)),
       loudness: s.loudness,
       snoozeBy: safe ? const {} : s.snoozeBy,
       stopBy: safe ? const {} : s.stopBy,

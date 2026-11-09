@@ -33,7 +33,9 @@ Future<void> main() async {
   // Speak the chosen language (or the phone's) from the very first word,
   // including alarms set before any screen is built.
   final language = prefs.getString('language');
-  useLocale(language == null ? WidgetsBinding.instance.platformDispatcher.locales : [localeFromTag(language)]);
+  useLocale(
+    language == null ? WidgetsBinding.instance.platformDispatcher.locales : [localeFromTag(language)],
+  );
   await initializeDateFormatting();
   SpotifyPlay.connected = prefs.getBool(SpotifyPlay.prefKey) ?? false;
   SpotifyAccount.load(prefs);

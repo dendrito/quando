@@ -201,7 +201,8 @@ class SyncEngine {
       if (item == null) continue;
       final previousStamp = stamps[k] ?? 0;
       final previousOrigin = origins[k] ?? '';
-      final newer = item.t > previousStamp || (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
+      final newer =
+          item.t > previousStamp || (item.t == previousStamp && item.d.compareTo(previousOrigin) > 0);
       if (!newer) continue;
 
       final cur = encodePref(prefs, k);

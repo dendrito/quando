@@ -17,7 +17,10 @@ class MoonBackdrop {
     }
     return [
       for (var i = 0; i <= 48; i++)
-        colorAt(place, start.add(Duration(microseconds: (end.difference(start).inMicroseconds * i / 48).round()))),
+        colorAt(
+          place,
+          start.add(Duration(microseconds: (end.difference(start).inMicroseconds * i / 48).round())),
+        ),
     ];
   }
 
@@ -33,7 +36,8 @@ class MoonBackdrop {
     final span = end.difference(start).inMicroseconds;
     return [
       for (var i = 0; i < count; i++)
-        colorAt(place, start.add(Duration(microseconds: (span * i / (count - 1)).round()))) != SkyColors.night,
+        colorAt(place, start.add(Duration(microseconds: (span * i / (count - 1)).round()))) !=
+            SkyColors.night,
     ];
   }
 
@@ -64,10 +68,9 @@ class MoonBackdrop {
     final phi = place.latitude * rad;
     final altitude =
         math.asin(
-          (math.sin(phi) * math.sin(declination) + math.cos(phi) * math.cos(declination) * math.cos(hourAngle)).clamp(
-            -1,
-            1,
-          ),
+          (math.sin(phi) * math.sin(declination) +
+                  math.cos(phi) * math.cos(declination) * math.cos(hourAngle))
+              .clamp(-1, 1),
         ) /
         rad;
     var daylight = ((altitude + .833) / 6.833).clamp(0.0, 1.0);

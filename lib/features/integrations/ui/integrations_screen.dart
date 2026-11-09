@@ -195,7 +195,9 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
     }
     ref
         .read(integrationsProvider.notifier)
-        .addWebhook(Webhook(id: DateTime.now().microsecondsSinceEpoch.toRadixString(36), kind: kind, url: result));
+        .addWebhook(
+          Webhook(id: DateTime.now().microsecondsSinceEpoch.toRadixString(36), kind: kind, url: result),
+        );
   }
 
   @override
@@ -292,8 +294,9 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                 }.entries)
                   DropdownMenuItem(value: e.key, child: Text(e.value)),
               ],
-              onChanged: (v) =>
-                  n.update((x) => v == null ? x.copyWith(defaultPushoverSound: true) : x.copyWith(pushoverSound: v)),
+              onChanged: (v) => n.update(
+                (x) => v == null ? x.copyWith(defaultPushoverSound: true) : x.copyWith(pushoverSound: v),
+              ),
             ),
             const SizedBox(height: 4),
             Text(l10n.pushoverOwnSounds, style: text.bodySmall),
@@ -340,7 +343,10 @@ class _IntegrationsScreenState extends ConsumerState<IntegrationsScreen> {
                   child: Text(_testing ? l10n.sending : l10n.testPushoverSound),
                 ),
                 TextButton(onPressed: () => _open('https://pushover.net'), child: Text(l10n.findUserKey)),
-                TextButton(onPressed: () => _open('https://pushover.net/apps/build'), child: Text(l10n.makeAppToken)),
+                TextButton(
+                  onPressed: () => _open('https://pushover.net/apps/build'),
+                  child: Text(l10n.makeAppToken),
+                ),
               ],
             ),
           ],

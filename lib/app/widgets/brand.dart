@@ -74,7 +74,14 @@ class _QMarkPainter extends CustomPainter {
         bottom - halfWidth,
       )
       ..arcToPoint(Offset(86 - halfWidth, bottom - halfWidth), radius: Radius.circular(halfWidth))
-      ..cubicTo(86 - halfWidth, bottom - halfWidth * 1.2, 86 - halfWidth * .8, top + (bottom - top) * .45, 86, top)
+      ..cubicTo(
+        86 - halfWidth,
+        bottom - halfWidth * 1.2,
+        86 - halfWidth * .8,
+        top + (bottom - top) * .45,
+        86,
+        top,
+      )
       ..close();
     canvas.drawPath(flame(50, 11, 82), Paint()..color = QuandoColors.coral);
     if (tile) canvas.drawPath(flame(62, 5, 78), Paint()..color = QuandoColors.text);

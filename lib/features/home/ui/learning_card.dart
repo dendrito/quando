@@ -21,9 +21,13 @@ class LearningCard extends ConsumerWidget {
     final place = ref.watch(placeProvider), local = inZone(now, place.timeZone);
     final needsOnline = selected.any((id) => id != 'daf');
     final key = (local.year, local.month, place.inIsrael);
-    final schedule = needsOnline ? ref.watch(learningMonthProvider(key)) : const AsyncData<List<LearningReading>>([]);
+    final schedule = needsOnline
+        ? ref.watch(learningMonthProvider(key))
+        : const AsyncData<List<LearningReading>>([]);
     final readings =
-        schedule.asData?.value.where((r) => r.date == learningDateKey(local) && selected.contains(r.course)).toList() ??
+        schedule.asData?.value
+            .where((r) => r.date == learningDateKey(local) && selected.contains(r.course))
+            .toList() ??
         <LearningReading>[];
     if (selected.contains('daf') && !readings.any((r) => r.course == 'daf')) {
       try {
@@ -58,7 +62,9 @@ class LearningCard extends ConsumerWidget {
             children: [
               Row(
                 children: [
-                  Expanded(child: Text('${l10n.dailyStudyHeading} · ${dayLabel(local)}', style: text.titleMedium)),
+                  Expanded(
+                    child: Text('${l10n.dailyStudyHeading} · ${dayLabel(local)}', style: text.titleMedium),
+                  ),
                   IconButton(
                     tooltip: l10n.homeDisplay,
                     onPressed: () => showHomeDisplayControls(context),
@@ -73,7 +79,9 @@ class LearningCard extends ConsumerWidget {
                   title: Text(courseLabel(r.course)),
                   subtitle: Text(l10n.localeName == 'he' && r.hebrew.isNotEmpty ? r.hebrew : r.title),
                   trailing: r.link == null ? null : const Icon(Icons.open_in_new, size: 16),
-                  onTap: r.link == null ? null : () => launchUrl(r.link!, mode: LaunchMode.externalApplication),
+                  onTap: r.link == null
+                      ? null
+                      : () => launchUrl(r.link!, mode: LaunchMode.externalApplication),
                 ),
               if (schedule.isLoading) const LinearProgressIndicator(),
               if (schedule.hasError)
@@ -89,7 +97,10 @@ class LearningCard extends ConsumerWidget {
                 ),
               if (needsOnline)
                 TextButton(
-                  style: TextButton.styleFrom(alignment: AlignmentDirectional.centerStart, padding: EdgeInsets.zero),
+                  style: TextButton.styleFrom(
+                    alignment: AlignmentDirectional.centerStart,
+                    padding: EdgeInsets.zero,
+                  ),
                   onPressed: () => launchUrl(
                     Uri.parse('https://www.hebcal.com/home/195/jewish-calendar-rest-api'),
                     mode: LaunchMode.externalApplication,

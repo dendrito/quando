@@ -295,7 +295,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get worldClocksHint => 'Voeg steden toe om hier hun tijd te zien. Veeg naar links om er een te verwijderen.';
+  String get worldClocksHint =>
+      'Voeg steden toe om hier hun tijd te zien. Veeg naar links om er een te verwijderen.';
 
   @override
   String get groupNameHint => 'Werk, Kinderen, Sportschool…';
@@ -437,7 +438,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get openWhenLockStarts => 'Quando? openen als een slot begint';
 
   @override
-  String get openWhenLockStartsHint => 'Een zacht geluid van 1 seconde brengt Quando? naar voren om te vergrendelen';
+  String get openWhenLockStartsHint =>
+      'Een zacht geluid van 1 seconde brengt Quando? naar voren om te vergrendelen';
 
   @override
   String get pinToScreen => 'Quando? op het scherm vastzetten';
@@ -450,7 +452,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get noLocksComingUp => 'Geen sloten gepland.';
 
   @override
-  String get leaveLockEarly => 'Wil je eerder stoppen? Houd “Vasthouden om te ontgrendelen” 3 seconden ingedrukt.';
+  String get leaveLockEarly =>
+      'Wil je eerder stoppen? Houd “Vasthouden om te ontgrendelen” 3 seconden ingedrukt.';
 
   @override
   String get locked => 'Vergrendeld';
@@ -840,7 +843,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get sayItOutLoud => 'Hardop zeggen';
 
   @override
-  String get sayItOutLoudHint => 'Leest voor waarvoor de wekker is, bijv. “Kaarsen aansteken, 15 minuten ervoor”';
+  String get sayItOutLoudHint =>
+      'Leest voor waarvoor de wekker is, bijv. “Kaarsen aansteken, 15 minuten ervoor”';
 
   @override
   String get noSnooze => 'Geen snooze';
@@ -854,7 +858,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get wakeUpCheck => 'Wakker-check';
 
   @override
-  String get wakeUpCheckHint => 'Gaat na het stoppen over 3 minuten opnieuw af als je niet op “Ik ben wakker” tikt';
+  String get wakeUpCheckHint =>
+      'Gaat na het stoppen over 3 minuten opnieuw af als je niet op “Ik ben wakker” tikt';
 
   @override
   String get solveSum => 'Los een som op om te stoppen';
@@ -919,7 +924,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get resetPreset => 'Terugzetten naar origineel';
 
   @override
-  String get skipOneHint => 'Om één wekker over te slaan, tik je erop onder “Wekkers deze week” op het startscherm.';
+  String get skipOneHint =>
+      'Om één wekker over te slaan, tik je erop onder “Wekkers deze week” op het startscherm.';
 
   @override
   String get unitMinutes => 'minuten';
@@ -1067,7 +1073,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nameOptional => 'Naam (optioneel)';
 
   @override
-  String get toppedUp => 'Wekkers staan klaar voor de komende 7 dagen en worden aangevuld als je Quando? opent.';
+  String get toppedUp =>
+      'Wekkers staan klaar voor de komende 7 dagen en worden aangevuld als je Quando? opent.';
 
   @override
   String get back => 'Terug';
@@ -1524,7 +1531,8 @@ class AppLocalizationsNl extends AppLocalizations {
       'Richt op een streepjes- of QR-code ergens waar je heen moet lopen, zoals een doos in de keuken of tandpasta in de badkamer. Om de wekker te stoppen scan je hem opnieuw.';
 
   @override
-  String get cameraUnavailableSettings => 'De camera is niet beschikbaar. Sta cameratoegang toe in Instellingen.';
+  String get cameraUnavailableSettings =>
+      'De camera is niet beschikbaar. Sta cameratoegang toe in Instellingen.';
 
   @override
   String gentleToGo(int n) {
@@ -1626,7 +1634,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get stopSentence => 'Hoe je de wekker uitzet en wat je eerst moet doen.';
 
   @override
-  String get shabbatNoTask => 'Op sjabbat en feestdagen stoppen wekkers vanzelf en vragen ze nooit om een taak.';
+  String get shabbatNoTask =>
+      'Op sjabbat en feestdagen stoppen wekkers vanzelf en vragen ze nooit om een taak.';
 
   @override
   String get volumeSentence => 'Hoe hard hij afgaat en hoe zacht hij daar komt.';
@@ -1656,7 +1665,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get usePhoneVolume => 'Wekkervolume van de telefoon gebruiken';
 
   @override
-  String get setsPhoneVolume => 'Stelt het wekkervolume van de telefoon in tijdens het afgaan en zet het daarna terug.';
+  String get setsPhoneVolume =>
+      'Stelt het wekkervolume van de telefoon in tijdens het afgaan en zet het daarna terug.';
 
   @override
   String get fadeInOff => 'Infaden uit, meteen vol volume';
@@ -1846,7 +1856,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get webhookHowTo => 'Quando? stuurt een JSON POST naar dit adres.';
 
   @override
-  String get connectionsSentence => 'Laat andere apps en apparaten weten wanneer een wekker afgaat, stopt of snoozet.';
+  String get connectionsSentence =>
+      'Laat andere apps en apparaten weten wanneer een wekker afgaat, stopt of snoozet.';
 
   @override
   String get pushWhenRings => 'Melding sturen als een wekker afgaat';
@@ -1876,7 +1887,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get myPushoverDefault => 'Mijn Pushover-standaard';
 
   @override
-  String get pushoverOwnSounds => 'Je eigen geluiden verschijnen hier nadat je ze uploadt op pushover.net/sounds.';
+  String get pushoverOwnSounds =>
+      'Je eigen geluiden verschijnen hier nadat je ze uploadt op pushover.net/sounds.';
 
   @override
   String get allMyDevices => 'Al mijn apparaten';
@@ -1923,7 +1935,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get pauseOnShabbat => 'Pauzeren op sjabbat en feestdagen';
 
   @override
-  String get pauseOnShabbatHint => 'Er wordt niets verstuurd voor wekkers tussen kaarsen aansteken en havdala';
+  String get pauseOnShabbatHint =>
+      'Er wordt niets verstuurd voor wekkers tussen kaarsen aansteken en havdala';
 
   @override
   String get webhookPayloadNote =>
@@ -2252,7 +2265,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
 
   @override
-  String get preparationSkipped => 'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped =>
+      'Preparation reminders are skipped this week. Your weekly settings are kept.';
 
   @override
   String get shabbatControls => 'Shabbat controls';
@@ -2286,13 +2300,15 @@ class AppLocalizationsNl extends AppLocalizations {
   String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
 
   @override
-  String get pushoverShareSignIn => 'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn =>
+      'Sign in to the same app account on each device to share Pushover credentials.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint => 'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint =>
+      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
 
   @override
   String get shareServices => 'Share service connections';
@@ -2507,7 +2523,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
 
   @override
-  String get learningConsent => 'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent =>
+      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2553,7 +2570,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
 
   @override
-  String get locationTimedOut => 'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut =>
+      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
 
   @override
   String get locationTimeZoneUnavailable =>
@@ -2637,7 +2655,8 @@ class AppLocalizationsNl extends AppLocalizations {
       'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
 
   @override
-  String get musicRingDurationHint => 'Afspelen volgt de belduur van deze wekker en stopt met Stoppen of Sluimeren.';
+  String get musicRingDurationHint =>
+      'Afspelen volgt de belduur van deze wekker en stopt met Stoppen of Sluimeren.';
 
   @override
   String get musicBackupPlaying => 'De muziek kon niet starten. Het lokale wekkergeluid speelt.';
@@ -2942,7 +2961,12 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconden ervoor', one: '1 seconde ervoor');
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n seconden ervoor',
+      one: '1 seconde ervoor',
+    );
     return '$_temp0';
   }
 

@@ -69,7 +69,9 @@ class AlarmGroupCard extends StatelessWidget {
                         Text(name, style: text.titleLarge),
                         const SizedBox(height: 2),
                         Text(
-                          open ? summary : '$summary · ${times.take(3).join(', ')}${times.length > 3 ? '…' : ''}',
+                          open
+                              ? summary
+                              : '$summary · ${times.take(3).join(', ')}${times.length > 3 ? '…' : ''}',
                           style: text.bodySmall,
                           maxLines: 1,
                           overflow: TextOverflow.ellipsis,
@@ -94,7 +96,10 @@ class AlarmGroupCard extends StatelessWidget {
                 ? const SizedBox(width: double.infinity)
                 : Column(
                     children: [
-                      for (final a in alarms) ...[const Divider(height: 1, indent: 20, endIndent: 20), alarmCard(a)],
+                      for (final a in alarms) ...[
+                        const Divider(height: 1, indent: 20, endIndent: 20),
+                        alarmCard(a),
+                      ],
                       Align(
                         alignment: Alignment.centerLeft,
                         child: Padding(

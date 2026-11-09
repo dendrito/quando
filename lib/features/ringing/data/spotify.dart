@@ -39,7 +39,11 @@ class SpotifyPlay {
   static Future<bool> signIn() async {
     if (!available) return false;
     try {
-      return await SpotifySdk.connectToSpotifyRemote(clientId: clientId, redirectUrl: redirectUrl, scope: _scope);
+      return await SpotifySdk.connectToSpotifyRemote(
+        clientId: clientId,
+        redirectUrl: redirectUrl,
+        scope: _scope,
+      );
     } catch (_) {
       return false;
     }
@@ -50,7 +54,11 @@ class SpotifyPlay {
   static Future<String?> libraryToken() async {
     if (!available) return null;
     try {
-      final t = await SpotifySdk.getAccessToken(clientId: clientId, redirectUrl: redirectUrl, scope: _libraryScope);
+      final t = await SpotifySdk.getAccessToken(
+        clientId: clientId,
+        redirectUrl: redirectUrl,
+        scope: _libraryScope,
+      );
       return t.isEmpty ? null : t;
     } catch (_) {
       return null;

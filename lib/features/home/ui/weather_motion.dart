@@ -14,7 +14,8 @@ class WeatherMotion extends StatefulWidget {
   State<WeatherMotion> createState() => _WeatherMotionState();
 }
 
-class _WeatherMotionState extends State<WeatherMotion> with SingleTickerProviderStateMixin, WidgetsBindingObserver {
+class _WeatherMotionState extends State<WeatherMotion>
+    with SingleTickerProviderStateMixin, WidgetsBindingObserver {
   late final _clock = AnimationController(vsync: this, duration: const Duration(seconds: 8));
   bool _foreground = true;
   @override
@@ -73,7 +74,8 @@ class _WeatherMotionState extends State<WeatherMotion> with SingleTickerProvider
         height: 108,
         child: AnimatedBuilder(
           animation: _clock,
-          builder: (context, _) => CustomPaint(painter: WeatherPainter(widget.kind, widget.night, _clock.value)),
+          builder: (context, _) =>
+              CustomPaint(painter: WeatherPainter(widget.kind, widget.night, _clock.value)),
         ),
       ),
     ),

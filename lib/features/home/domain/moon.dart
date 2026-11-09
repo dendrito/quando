@@ -10,8 +10,10 @@ import '../../shabbat/domain/place.dart';
 const _rad = m.pi / 180;
 const _obliquity = 23.4397 * _rad;
 double _days(DateTime at) => at.toUtc().millisecondsSinceEpoch / 86400000 - 10957.5;
-double _ra(double l, double b) => m.atan2(m.sin(l) * m.cos(_obliquity) - m.tan(b) * m.sin(_obliquity), m.cos(l));
-double _dec(double l, double b) => m.asin(m.sin(b) * m.cos(_obliquity) + m.cos(b) * m.sin(_obliquity) * m.sin(l));
+double _ra(double l, double b) =>
+    m.atan2(m.sin(l) * m.cos(_obliquity) - m.tan(b) * m.sin(_obliquity), m.cos(l));
+double _dec(double l, double b) =>
+    m.asin(m.sin(b) * m.cos(_obliquity) + m.cos(b) * m.sin(_obliquity) * m.sin(l));
 ({double ra, double dec, double distance}) _moon(double d) {
   final l0 = _rad * (218.316 + 13.176396 * d),
       anomaly = _rad * (134.963 + 13.064993 * d),
@@ -95,7 +97,9 @@ class MoonDay {
   static double altitude(DateTime at, double latitude, double longitude) {
     final d = _days(at), c = _moon(d), phi = latitude * _rad;
     final hAngle = _rad * (280.16 + 360.9856235 * d) + longitude * _rad - c.ra;
-    final h = m.asin((m.sin(phi) * m.sin(c.dec) + m.cos(phi) * m.cos(c.dec) * m.cos(hAngle)).clamp(-1.0, 1.0));
+    final h = m.asin(
+      (m.sin(phi) * m.sin(c.dec) + m.cos(phi) * m.cos(c.dec) * m.cos(hAngle)).clamp(-1.0, 1.0),
+    );
     final refH = m.max(0.0, h);
     return h + 0.0002967 / m.tan(refH + 0.00312536 / (refH + 0.08901179));
   }

@@ -81,7 +81,10 @@ class HomeLayout {
       (m['states'] as Map? ?? const {}).forEach((k, v) {
         final b = byName[k];
         if (b == null || v is! Map) return;
-        states[b] = const BlockState().copyWith(collapsed: v['c'] == true, scale: (v['s'] as num?)?.toDouble());
+        states[b] = const BlockState().copyWith(
+          collapsed: v['c'] == true,
+          scale: (v['s'] as num?)?.toDouble(),
+        );
       });
       return HomeLayout(order: order.toSet().toList(), states: states);
     } on Object {
