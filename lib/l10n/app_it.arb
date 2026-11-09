@@ -894,5 +894,9 @@
   "homeBlockClock": "CLOCK",
   "homeBlockSky": "SUN, MOON AND WEATHER",
   "homeBlockQuick": "QUICK ALARMS",
-  "homeBlockShabbat": "SHABBAT AND HOLIDAYS"
+  "homeBlockShabbat": "SHABBAT AND HOLIDAYS",
+  "homePlaceTitle": "City for the sky",
+  "nextAlarmLine": "Next alarm · {title} {time}",
+  "showAllAlarms": "Show all days",
+  "noAlarmsThatDay": "Nothing rings this day"
 }

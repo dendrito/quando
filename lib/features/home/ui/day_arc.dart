@@ -144,6 +144,28 @@ class _ArcPainter extends CustomPainter {
   /// Dots where the Moon is up at night.
   static const moonlight = Color(0xFFC9C2E6);
 
+  /// A small five-point star with a soft glow: one alarm on the Sun's path.
+  void _star(Canvas canvas, Offset c, double r) {
+    final path = Path();
+    for (var i = 0; i < 10; i++) {
+      final radius = i.isEven ? r : r * .45;
+      final a = -math.pi / 2 + i * math.pi / 5;
+      final p = c + Offset(math.cos(a), math.sin(a)) * radius;
+      i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
+    }
+    path.close();
+    canvas.drawCircle(c, r * 1.5, Paint()..color = QuandoColors.amber.withValues(alpha: .3));
+    canvas.drawPath(path, Paint()..color = QuandoColors.text);
+    canvas.drawPath(
+      path,
+      Paint()
+        ..color = QuandoColors.coral
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 1.5
+        ..strokeJoin = StrokeJoin.round,
+    );
+  }
+
   @override
   void paint(Canvas canvas, Size size) {
     final w = size.width;
@@ -217,7 +239,7 @@ class _ArcPainter extends CustomPainter {
 
     // Alarms in daylight.
     for (final m in marks) {
-      canvas.drawCircle(point(m), 5, Paint()..color = QuandoColors.text);
+      _star(canvas, point(m), 9);
     }
 
     // Forecast stops: a small picture on the path and its time and

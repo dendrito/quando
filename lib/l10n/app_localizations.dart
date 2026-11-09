@@ -5499,6 +5499,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'SHABBAT AND HOLIDAYS'**
   String get homeBlockShabbat;
+
+  /// No description provided for @homePlaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'City for the sky'**
+  String get homePlaceTitle;
+
+  /// No description provided for @nextAlarmLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Next alarm · {title} {time}'**
+  String nextAlarmLine(String title, String time);
+
+  /// No description provided for @showAllAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all days'**
+  String get showAllAlarms;
+
+  /// No description provided for @noAlarmsThatDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing rings this day'**
+  String get noAlarmsThatDay;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -16,8 +16,10 @@ void main() {
     expect(back.order, l.order);
     expect(back.of(HomeBlock.sky).collapsed, isTrue);
     expect(back.of(HomeBlock.sky).scale, 1.4);
-    final old = HomeLayout.decode('{"order":["week","gone"],"states":{"gone":{"s":3}}}')!;
-    expect(old.order.first, HomeBlock.week);
+    final old = HomeLayout.decode('{"order":["alarms","sky","quick","gone"],"states":{"gone":{"s":3}}}')!;
+    expect(old.order.first, HomeBlock.alarms);
+    // A layout saved before the ribbon existed gets it right under the sky.
+    expect(old.order[old.order.indexOf(HomeBlock.sky) + 1], HomeBlock.ribbon);
     expect(old.order.length, HomeBlock.values.length);
     expect(HomeLayout.decode('nonsense'), isNull);
   });

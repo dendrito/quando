@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 /// The parts of the home screen you can move, resize and collapse.
-enum HomeBlock { clock, next, sky, shabbatMode, timers, quick, shabbat, alarms, events, week, world }
+enum HomeBlock { clock, next, sky, ribbon, shabbatMode, shabbat, alarms, events, timers, world }
 
 /// How one block is shown: folded to its title, and how big (1 = normal).
 class BlockState {
@@ -19,15 +19,8 @@ class BlockState {
   );
 }
 
-/// Blocks whose size can be changed. The lists (alarms, week) just fold.
-const scalableBlocks = {
-  HomeBlock.clock,
-  HomeBlock.next,
-  HomeBlock.sky,
-  HomeBlock.timers,
-  HomeBlock.quick,
-  HomeBlock.world,
-};
+/// Blocks whose size can be changed. The lists (alarms, events) just fold.
+const scalableBlocks = {HomeBlock.clock, HomeBlock.next, HomeBlock.sky, HomeBlock.timers, HomeBlock.world};
 
 /// Order, folded state and size of every home block, kept between launches.
 class HomeLayout {
@@ -74,7 +67,13 @@ class HomeLayout {
       final byName = {for (final b in HomeBlock.values) b.name: b};
       final order = <HomeBlock>[for (final n in (m['order'] as List? ?? const [])) ?byName[n]];
       for (final b in HomeBlock.values) {
-        if (!order.contains(b)) order.add(b);
+        if (order.contains(b)) continue;
+        // The week ribbon belongs right under the sky, not at the end of a layout saved before it existed.
+        if (b == HomeBlock.ribbon && order.contains(HomeBlock.sky)) {
+          order.insert(order.indexOf(HomeBlock.sky) + 1, b);
+        } else {
+          order.add(b);
+        }
       }
       final states = <HomeBlock, BlockState>{};
       (m['states'] as Map? ?? const {}).forEach((k, v) {

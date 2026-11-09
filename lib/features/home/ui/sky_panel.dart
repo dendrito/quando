@@ -10,7 +10,6 @@ import '../../../core/util/local_time.dart';
 import '../../../l10n/l10n.dart';
 import '../../shabbat/domain/jewish_times.dart';
 import '../../shabbat/domain/place.dart';
-import '../../shabbat/ui/city_picker.dart';
 import '../domain/moon.dart';
 import '../domain/moon_phases.dart';
 import '../domain/moon_backdrop.dart';
@@ -19,7 +18,6 @@ import '../data/weather_repository.dart';
 import '../domain/sky.dart';
 import '../domain/sky_weather.dart';
 import 'day_arc.dart';
-import 'home_display_controls.dart';
 import 'moon_details.dart';
 import 'weather_overlay.dart';
 import 'weather_panel.dart';
@@ -382,68 +380,6 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        Wrap(
-          spacing: 8,
-          runSpacing: 4,
-          children: [
-            TextButton.icon(
-              onPressed: () => Navigator.of(context).push<void>(
-                MaterialPageRoute(builder: (_) => const CityPicker(forSky: true, locateOnOpen: true)),
-              ),
-              icon: const Icon(Icons.my_location, size: 18),
-              label: Text(l10n.useMyLocation),
-            ),
-            ChoiceChip(
-              label: Text(ref.watch(skyLocationProvider) == null ? l10n.skyTimezone : l10n.skyMyLocation),
-              selected: !options.skyUseShabbat,
-              onSelected: (_) =>
-                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: false)),
-            ),
-            ChoiceChip(
-              label: Text(l10n.skyShabbat),
-              selected: options.skyUseShabbat,
-              onSelected: (_) =>
-                  ref.read(homeDisplayProvider.notifier).set(options.copyWith(skyUseShabbat: true)),
-            ),
-          ],
-        ),
-        Row(
-          children: [
-            Expanded(
-              child: TextButton(
-                onPressed: () => Navigator.of(
-                  context,
-                ).push<void>(MaterialPageRoute(builder: (_) => CityPicker(forSky: !options.skyUseShabbat))),
-                style: TextButton.styleFrom(
-                  alignment: Alignment.centerLeft,
-                  padding: EdgeInsets.zero,
-                  foregroundColor: QuandoColors.blush,
-                ),
-                child: Text(
-                  place == null
-                      ? l10n.skyChooseCity
-                      : '${timesInLabel(place.name, place.timeZone)}${!options.skyUseShabbat && ref.watch(skyLocationProvider) == null ? ' · ${l10n.skyReferenceCity}' : ''}',
-                  style: text.bodySmall?.copyWith(color: QuandoColors.blush),
-                ),
-              ),
-            ),
-            TextButton(
-              onPressed: () => showHomeDisplayControls(context),
-              style: TextButton.styleFrom(
-                foregroundColor: QuandoColors.blush,
-                minimumSize: const Size(0, 36),
-              ),
-              child: Row(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  const Icon(Icons.tune, size: 16),
-                  const SizedBox(width: 5),
-                  Text(l10n.homeDisplay, style: text.bodySmall),
-                ],
-              ),
-            ),
-          ],
-        ),
         if (pages.length == 1)
           sunContent
         else ...[

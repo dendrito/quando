@@ -3030,4 +3030,18 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }
