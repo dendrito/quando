@@ -26,6 +26,7 @@ import '../../alarms/ui/group_picker.dart';
 import '../domain/week.dart';
 import '../../../app/widgets/tiles.dart';
 import 'alarm_group_card.dart';
+import 'clock_hero.dart';
 import 'sky_panel.dart';
 import 'learning_card.dart';
 import 'week_list.dart';
@@ -474,6 +475,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     const SizedBox(width: 10),
                     Expanded(child: Text(appTitle, style: text.titleLarge?.copyWith(fontSize: 23))),
                     IconButton(
+                      tooltip: l10n.timersTitle,
+                      icon: const Icon(Icons.timer_outlined),
+                      onPressed: () => context.push('/timers'),
+                    ),
+                    IconButton(
                       tooltip: l10n.lockMode,
                       icon: const Icon(Icons.lock_outline),
                       onPressed: () => context.push('/lock'),
@@ -562,7 +568,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                       );
                     },
                   ),
-                const SizedBox(height: 18),
+                const SizedBox(height: 14),
+                Padding(
+                  padding: const EdgeInsets.only(right: 12),
+                  child: ClockHero(now: ref.watch(clockProvider), zone: home),
+                ),
+                const SizedBox(height: 14),
                 Padding(
                   padding: const EdgeInsets.only(right: 12),
                   child: Column(
@@ -653,6 +664,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                   ],
                 ],
                 if (!jewishHome || !_showShabbat) ...[
+                  // ---- Stopwatch, timer and "get set": one tap away ----
+                  const _TimerTiles(),
+                  const SizedBox(height: 16),
                   // ---- One-tap "when" ----
                   Wrap(
                     spacing: 8,
@@ -927,5 +941,49 @@ class _Source {
     if (user != null) ref.read(userAlarmsProvider.notifier).toggle(user!.id, v);
     if (preset != null) ref.read(rulesProvider.notifier).toggle(preset!.id, v);
     if (cal != null) ref.read(calendarRulesProvider.notifier).toggle(cal!.id, v);
+  }
+}
+
+/// Three big buttons to the stopwatch, the timer and the start sequence.
+class _TimerTiles extends StatelessWidget {
+  const _TimerTiles();
+
+  @override
+  Widget build(BuildContext context) {
+    final text = Theme.of(context).textTheme;
+    Widget tile(int tab, IconData icon, String title, String subtitle) => Expanded(
+      child: Material(
+        color: QuandoColors.surface,
+        borderRadius: BorderRadius.circular(20),
+        child: InkWell(
+          borderRadius: BorderRadius.circular(20),
+          onTap: () => context.push('/timers?tab=$tab'),
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(12, 14, 12, 12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Icon(icon, color: QuandoColors.amber, size: 28),
+                const SizedBox(height: 8),
+                Text(title, maxLines: 1, overflow: TextOverflow.ellipsis, style: text.titleMedium),
+                Text(subtitle, maxLines: 2, overflow: TextOverflow.ellipsis, style: text.bodySmall),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+    return IntrinsicHeight(
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          tile(0, Icons.timer_outlined, l10n.timerStopwatch, l10n.timerStopwatchSub),
+          const SizedBox(width: 10),
+          tile(1, Icons.hourglass_bottom, l10n.timerCountdown, l10n.timerCountdownSub),
+          const SizedBox(width: 10),
+          tile(2, Icons.flag_outlined, l10n.timerSequence, l10n.timerSequenceSub),
+        ],
+      ),
+    );
   }
 }

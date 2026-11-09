@@ -2834,4 +2834,167 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get googleCalendarTwiceHint =>
       'इसी Google खाते के जो कैलेंडर यह डिवाइस पहले से दिखाता है, वे बंद से शुरू होते हैं, ताकि कुछ भी दो बार न बजे।';
+
+  @override
+  String get timersTitle => 'Timers';
+
+  @override
+  String get timerStopwatch => 'Stopwatch';
+
+  @override
+  String get timerCountdown => 'Timer';
+
+  @override
+  String get timerSequence => 'Get set';
+
+  @override
+  String get timerStopwatchSub => 'Count up, with laps';
+
+  @override
+  String get timerCountdownSub => 'Count down, rings at zero';
+
+  @override
+  String get timerSequenceSub => 'Spoken start and marks';
+
+  @override
+  String get timerStart => 'Start';
+
+  @override
+  String get timerPause => 'Pause';
+
+  @override
+  String get timerResume => 'Resume';
+
+  @override
+  String get timerReset => 'Reset';
+
+  @override
+  String get timerLap => 'Lap';
+
+  @override
+  String get timerTimesUp => 'Time\'s up';
+
+  @override
+  String get timerSetTime => 'Set the time';
+
+  @override
+  String get timerMinutes => 'Minutes';
+
+  @override
+  String get timerSeconds => 'Seconds';
+
+  @override
+  String get seqOnYourMarks => 'On your marks';
+
+  @override
+  String get seqGetSet => 'Get set';
+
+  @override
+  String get seqGo => 'Go!';
+
+  @override
+  String get seqFinish => 'Time!';
+
+  @override
+  String get seqReady => 'Ready';
+
+  @override
+  String get seqSettings => 'Settings';
+
+  @override
+  String get seqStartCalls => 'Calls before the start';
+
+  @override
+  String get seqStartCallsHelp => 'Said aloud before Go, counted back from the start.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      other: '$n seconds before',
+      one: '1 second before',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Add a call';
+
+  @override
+  String get seqCallText => 'What to say';
+
+  @override
+  String get seqGoText => 'At the start, say';
+
+  @override
+  String get seqFinishText => 'At the end, say';
+
+  @override
+  String get seqLength => 'Length';
+
+  @override
+  String get seqNoLimit => 'No limit';
+
+  @override
+  String get seqSayEvery => 'Say the time every';
+
+  @override
+  String get seqOff => 'Off';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconds', one: '1 second');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Count down the last';
+
+  @override
+  String get seqMarks => 'Your marks';
+
+  @override
+  String get seqAddMark => 'Add a mark';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'At $time';
+  }
+
+  @override
+  String get seqSpeak => 'Speak aloud';
+
+  @override
+  String get seqBeeps => 'Beeps and vibration';
+
+  @override
+  String get seqSayRemaining => 'Say time left, not time passed';
+
+  @override
+  String get seqPresets => 'Presets';
+
+  @override
+  String get seqPresetRace => 'Race start';
+
+  @override
+  String get seqPresetSprint => '30 s effort';
+
+  @override
+  String get seqPresetRound => '1 min round';
+
+  @override
+  String get seqHintNoLimit => 'After Go it counts up until you stop it.';
+
+  @override
+  String get seqHintLength => 'After Go it counts down to zero.';
+
+  @override
+  String get seqWords => 'Words';
 }
