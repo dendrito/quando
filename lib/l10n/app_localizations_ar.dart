@@ -2739,4 +2739,103 @@ class AppLocalizationsAr extends AppLocalizations {
   String pickFromService(String service) {
     return 'اختر من $service الخاص بي';
   }
+
+  @override
+  String get weatherTonight => 'الليلة';
+
+  @override
+  String get weatherTomorrowMorning => 'صباح الغد';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'حتى نحو $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'الشمس خلف الغيوم';
+
+  @override
+  String get keysLockTitle => 'المفاتيح على أجهزتك';
+
+  @override
+  String get keysLockOff =>
+      'تبقى مفاتيح خدماتك على هذا الجهاز. اختر عبارة مزامنة لإرسالها مشفّرة إلى أجهزتك الأخرى.';
+
+  @override
+  String get keysLockOn =>
+      'تُشفَّر مفاتيح خدماتك بعبارة المزامنة قبل أن تغادر هذا الجهاز. لا يستطيع أحد غيرك قراءتها، ولا حتى Google.';
+
+  @override
+  String get keysLockWaiting => 'وصلت إلى هنا مفاتيح من جهازك الآخر وهي مقفلة. اكتب عبارة المزامنة لفتحها.';
+
+  @override
+  String get keysSetPassphrase => 'اختيار العبارة';
+
+  @override
+  String get keysChangePassphrase => 'تغيير العبارة';
+
+  @override
+  String get keysUnlock => 'فتح المفاتيح';
+
+  @override
+  String get keysStartOver => 'نسيتها؟ ابدأ من جديد';
+
+  @override
+  String get keysStartOverHint =>
+      'البدء من جديد يرسل مفاتيح هذا الجهاز بعبارة جديدة. ستطلب أجهزتك الأخرى العبارة الجديدة.';
+
+  @override
+  String get keysPassphrase => 'عبارة المزامنة';
+
+  @override
+  String get keysPassphraseAgain => 'اكتبها مرة أخرى';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'استخدم $count أحرف على الأقل.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'العبارتان غير متطابقتين.';
+
+  @override
+  String get keysPassphraseWrong => 'هذه العبارة لا تفتح هذه المفاتيح.';
+
+  @override
+  String get keysPassphraseNote => 'دوّنها: إن نسيتها فلا أحد يستطيع استعادتها، وستكتب مفاتيحك من جديد.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

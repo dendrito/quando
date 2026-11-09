@@ -679,31 +679,31 @@ abstract class AppLocalizations {
   /// No description provided for @inDays.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d'**
+  /// **'in {d} d'**
   String inDays(int d);
 
   /// No description provided for @inDaysHours.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d {h}h'**
+  /// **'in {d} d {h} h'**
   String inDaysHours(int d, int h);
 
   /// No description provided for @inHours.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h'**
+  /// **'in {h} h'**
   String inHours(int h);
 
   /// No description provided for @inHoursMinutes.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h {m}m'**
+  /// **'in {h} h {m} min'**
   String inHoursMinutes(int h, int m);
 
   /// No description provided for @inMins.
   ///
   /// In en, this message translates to:
-  /// **'in {m}m'**
+  /// **'in {m} min'**
   String inMins(int m);
 
   /// No description provided for @placeChange.
@@ -811,7 +811,7 @@ abstract class AppLocalizations {
   /// No description provided for @lockCalendarWord.
   ///
   /// In en, this message translates to:
-  /// **'During calendar events with this word'**
+  /// **'During events named…'**
   String get lockCalendarWord;
 
   /// No description provided for @lockCalendarWordHint.
@@ -4899,6 +4899,186 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick from my {service}'**
   String pickFromService(String service);
+
+  /// No description provided for @weatherTonight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight'**
+  String get weatherTonight;
+
+  /// No description provided for @weatherTomorrowMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow morning'**
+  String get weatherTomorrowMorning;
+
+  /// No description provided for @weatherUntilAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'until about {time}'**
+  String weatherUntilAbout(String time);
+
+  /// No description provided for @weatherSunBehindClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun behind the clouds'**
+  String get weatherSunBehindClouds;
+
+  /// No description provided for @keysLockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys on your devices'**
+  String get keysLockTitle;
+
+  /// No description provided for @keysLockOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.'**
+  String get keysLockOff;
+
+  /// No description provided for @keysLockOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.'**
+  String get keysLockOn;
+
+  /// No description provided for @keysLockWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys from your other device arrived here, locked. Type your sync passphrase to open them.'**
+  String get keysLockWaiting;
+
+  /// No description provided for @keysSetPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose passphrase'**
+  String get keysSetPassphrase;
+
+  /// No description provided for @keysChangePassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Change passphrase'**
+  String get keysChangePassphrase;
+
+  /// No description provided for @keysUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock keys'**
+  String get keysUnlock;
+
+  /// No description provided for @keysStartOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot it? Start over'**
+  String get keysStartOver;
+
+  /// No description provided for @keysStartOverHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.'**
+  String get keysStartOverHint;
+
+  /// No description provided for @keysPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync passphrase'**
+  String get keysPassphrase;
+
+  /// No description provided for @keysPassphraseAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it again'**
+  String get keysPassphraseAgain;
+
+  /// No description provided for @keysPassphraseShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least {count} characters.'**
+  String keysPassphraseShort(int count);
+
+  /// No description provided for @keysPassphraseMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The two don\'t match.'**
+  String get keysPassphraseMismatch;
+
+  /// No description provided for @keysPassphraseWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That passphrase doesn\'t open these keys.'**
+  String get keysPassphraseWrong;
+
+  /// No description provided for @keysPassphraseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.'**
+  String get keysPassphraseNote;
+
+  /// No description provided for @keysShareNeedsPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a sync passphrase first, under Keys on your devices.'**
+  String get keysShareNeedsPassphrase;
+
+  /// No description provided for @settingsAlarmDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm defaults'**
+  String get settingsAlarmDefaults;
+
+  /// No description provided for @settingsPlacesTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Places & time'**
+  String get settingsPlacesTime;
+
+  /// No description provided for @settingsLook.
+  ///
+  /// In en, this message translates to:
+  /// **'Look, language & quotes'**
+  String get settingsLook;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @defaultForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Default for new alarms'**
+  String get defaultForNewAlarms;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @atClock.
+  ///
+  /// In en, this message translates to:
+  /// **'at {time}'**
+  String atClock(String time);
+
+  /// No description provided for @connectACalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar'**
+  String get connectACalendar;
+
+  /// No description provided for @newFromReadyMade.
+  ///
+  /// In en, this message translates to:
+  /// **'From a ready-made'**
+  String get newFromReadyMade;
+
+  /// No description provided for @newFromReadyMadeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise, sunset and other alarms that are already set up for you'**
+  String get newFromReadyMadeHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

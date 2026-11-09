@@ -7,6 +7,7 @@ import 'package:geolocator/geolocator.dart';
 import '../../../app/providers.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
+import '../../../core/util/local_time.dart';
 import '../../home/domain/zone_places.dart';
 import '../domain/place.dart';
 
@@ -143,7 +144,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  Text(zone),
+                  Text(cityOf(zone)),
                   if (!widget.forSky)
                     SwitchListTile(
                       title: Text(l10n.inIsraelOneDay),
@@ -241,7 +242,9 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                 final place = cities[i];
                 return ListTile(
                   title: Text(place.name),
-                  subtitle: Text(place.timeZone),
+                  subtitle: place.name == cityOf(place.timeZone)
+                      ? null
+                      : Text(l10n.cityTime(cityOf(place.timeZone))),
                   onTap: () {
                     _save(place);
                     Navigator.pop(context);

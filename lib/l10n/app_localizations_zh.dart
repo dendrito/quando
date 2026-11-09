@@ -2659,6 +2659,102 @@ class AppLocalizationsZh extends AppLocalizations {
   String pickFromService(String service) {
     return '从我的 $service 选择';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持续到约 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太阳在云后';
+
+  @override
+  String get keysLockTitle => '设备间的密钥';
+
+  @override
+  String get keysLockOff => '你的服务密钥只保存在这台设备上。设置同步口令后，可以加密发送到你的其他设备。';
+
+  @override
+  String get keysLockOn => '你的服务密钥在离开这台设备前会用同步口令加密。其他任何人，包括 Google，都无法读取。';
+
+  @override
+  String get keysLockWaiting => '来自你另一台设备的密钥已到达，但处于锁定状态。输入同步口令即可打开。';
+
+  @override
+  String get keysSetPassphrase => '设置口令';
+
+  @override
+  String get keysChangePassphrase => '更改口令';
+
+  @override
+  String get keysUnlock => '解锁密钥';
+
+  @override
+  String get keysStartOver => '忘记了？重新开始';
+
+  @override
+  String get keysStartOverHint => '重新开始会用新口令发送这台设备的密钥。你的其他设备会要求输入新口令。';
+
+  @override
+  String get keysPassphrase => '同步口令';
+
+  @override
+  String get keysPassphraseAgain => '再输入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 个字符。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '两次输入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '这个口令打不开这些密钥。';
+
+  @override
+  String get keysPassphraseNote => '请记下来：如果忘记，没有人能找回，你需要重新输入密钥。';
+
+  @override
+  String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -5315,4 +5411,100 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String pickFromService(String service) {
     return '從我的 $service 選擇';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持續到約 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太陽在雲後';
+
+  @override
+  String get keysLockTitle => '裝置間的金鑰';
+
+  @override
+  String get keysLockOff => '你的服務金鑰只保存在這台裝置上。設定同步密語後，可以加密傳送到你的其他裝置。';
+
+  @override
+  String get keysLockOn => '你的服務金鑰在離開這台裝置前會以同步密語加密。其他任何人，包括 Google，都無法讀取。';
+
+  @override
+  String get keysLockWaiting => '來自你另一台裝置的金鑰已送達，但處於鎖定狀態。輸入同步密語即可開啟。';
+
+  @override
+  String get keysSetPassphrase => '設定密語';
+
+  @override
+  String get keysChangePassphrase => '變更密語';
+
+  @override
+  String get keysUnlock => '解鎖金鑰';
+
+  @override
+  String get keysStartOver => '忘記了？重新開始';
+
+  @override
+  String get keysStartOverHint => '重新開始會以新密語傳送這台裝置的金鑰。你的其他裝置會要求輸入新密語。';
+
+  @override
+  String get keysPassphrase => '同步密語';
+
+  @override
+  String get keysPassphraseAgain => '再輸入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 個字元。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '兩次輸入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '這個密語打不開這些金鑰。';
+
+  @override
+  String get keysPassphraseNote => '請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。';
+
+  @override
+  String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

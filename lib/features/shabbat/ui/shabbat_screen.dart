@@ -6,6 +6,8 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../app/widgets/tiles.dart';
 import '../../../core/util/local_time.dart';
+import '../../shabbat/domain/jewish_times.dart';
+import 'city_picker.dart';
 import 'shabbat_card.dart';
 import 'preparation_controls.dart';
 
@@ -58,7 +60,7 @@ class ShabbatScreen extends ConsumerWidget {
             child: TextButton.icon(
               icon: const Icon(Icons.place_outlined, size: 18),
               label: Text(l10n.placeChange(place.name, place.inIsrael ? l10n.israel : l10n.outsideIsrael)),
-              onPressed: () => context.push('/settings'),
+              onPressed: () => pickShabbatPlace(context),
             ),
           ),
 
@@ -155,6 +157,48 @@ class ShabbatScreen extends ConsumerWidget {
               ),
             ),
           Text(l10n.presetsHint, style: text.bodySmall),
+
+          // ---- How the times are worked out (moved here from Settings) ----
+          if (ref.watch(shabbatInUseProvider)) ...[
+            const SizedBox(height: 22),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.inIsraelOneDay),
+              value: place.inIsrael,
+              onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
+            ),
+            const SizedBox(height: 8),
+            Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
+            Slider(
+              min: 10,
+              max: 60,
+              divisions: 50,
+              value: place.candleLightingMinutes.toDouble(),
+              label: '${place.candleLightingMinutes}',
+              onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
+            ),
+            const SizedBox(height: 8),
+            Text(l10n.endOfShabbatHeading, style: text.labelSmall),
+            RadioGroup<HavdalahOpinion>(
+              groupValue: ref.watch(havdalahProvider),
+              onChanged: (v) => ref.read(havdalahProvider.notifier).set(v!),
+              child: Column(
+                children: [
+                  RadioListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: HavdalahOpinion.geonim,
+                    title: Text(l10n.nightfallGeonim),
+                  ),
+                  RadioListTile(
+                    contentPadding: EdgeInsets.zero,
+                    value: HavdalahOpinion.rabbeinuTam,
+                    title: Text(l10n.rabbeinuTam),
+                  ),
+                ],
+              ),
+            ),
+          ],
+          const SizedBox(height: 16),
         ],
       ),
     );

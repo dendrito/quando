@@ -285,7 +285,7 @@
   "seconds": "Seconds",
   "oneSecondLess": "1 second less",
   "oneSecondMore": "1 second more",
-  "inDays": "in {d}d",
+  "inDays": "in {d} d",
   "@inDays": {
     "placeholders": {
       "d": {
@@ -293,7 +293,7 @@
       }
     }
   },
-  "inDaysHours": "in {d}d {h}h",
+  "inDaysHours": "in {d} d {h} h",
   "@inDaysHours": {
     "placeholders": {
       "d": {
@@ -304,7 +304,7 @@
       }
     }
   },
-  "inHours": "in {h}h",
+  "inHours": "in {h} h",
   "@inHours": {
     "placeholders": {
       "h": {
@@ -312,7 +312,7 @@
       }
     }
   },
-  "inHoursMinutes": "in {h}h {m}m",
+  "inHoursMinutes": "in {h} h {m} min",
   "@inHoursMinutes": {
     "placeholders": {
       "h": {
@@ -323,7 +323,7 @@
       }
     }
   },
-  "inMins": "in {m}m",
+  "inMins": "in {m} min",
   "@inMins": {
     "placeholders": {
       "m": {
@@ -365,7 +365,7 @@
   "lockAutoHeading": "LOCK AUTOMATICALLY",
   "shabbatAndFestivalsLong": "Shabbat and festivals",
   "fromCandleToHavdalah": "From candle lighting to Havdalah",
-  "lockCalendarWord": "During calendar events with this word",
+  "lockCalendarWord": "During events named…",
   "lockCalendarWordHint": "e.g. lock, exam, focus",
   "leaveEmptyForNone": "Leave empty for none",
   "connectCalendarsFirst": "Connect calendars first (calendar icon)",
@@ -1684,5 +1684,56 @@
         "type": "String"
       }
     }
-  }
+  },
+  "weatherTonight": "Tonight",
+  "weatherTomorrowMorning": "Tomorrow morning",
+  "weatherUntilAbout": "until about {time}",
+  "@weatherUntilAbout": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherSunBehindClouds": "Sun behind the clouds",
+  "keysLockTitle": "Keys on your devices",
+  "keysLockOff": "Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.",
+  "keysLockOn": "Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.",
+  "keysLockWaiting": "Keys from your other device arrived here, locked. Type your sync passphrase to open them.",
+  "keysSetPassphrase": "Choose passphrase",
+  "keysChangePassphrase": "Change passphrase",
+  "keysUnlock": "Unlock keys",
+  "keysStartOver": "Forgot it? Start over",
+  "keysStartOverHint": "Starting over sends this device's keys with a new passphrase. Your other devices will ask for the new one.",
+  "keysPassphrase": "Sync passphrase",
+  "keysPassphraseAgain": "Type it again",
+  "keysPassphraseShort": "Use at least {count} characters.",
+  "@keysPassphraseShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "keysPassphraseMismatch": "The two don't match.",
+  "keysPassphraseWrong": "That passphrase doesn't open these keys.",
+  "keysPassphraseNote": "Write it down: if you forget it, nobody can recover it, and you'll type your keys again.",
+  "keysShareNeedsPassphrase": "Choose a sync passphrase first, under Keys on your devices.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "@atClock": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you"
 }

@@ -2697,4 +2697,106 @@ class AppLocalizationsTr extends AppLocalizations {
   String pickFromService(String service) {
     return '$service’ımdan seç';
   }
+
+  @override
+  String get weatherTonight => 'Bu gece';
+
+  @override
+  String get weatherTomorrowMorning => 'Yarın sabah';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '$time civarına kadar';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Güneş bulutların ardında';
+
+  @override
+  String get keysLockTitle => 'Cihazlarındaki anahtarlar';
+
+  @override
+  String get keysLockOff =>
+      'Hizmet anahtarların bu cihazda kalır. Diğer cihazlarına şifreli göndermek için bir eşitleme parolası seç.';
+
+  @override
+  String get keysLockOn =>
+      'Hizmet anahtarların bu cihazdan çıkmadan önce eşitleme parolanla şifrelenir. Başka kimse, Google bile, okuyamaz.';
+
+  @override
+  String get keysLockWaiting =>
+      'Diğer cihazından anahtarlar kilitli olarak geldi. Açmak için eşitleme parolanı yaz.';
+
+  @override
+  String get keysSetPassphrase => 'Parola seç';
+
+  @override
+  String get keysChangePassphrase => 'Parolayı değiştir';
+
+  @override
+  String get keysUnlock => 'Anahtarları aç';
+
+  @override
+  String get keysStartOver => 'Unuttun mu? Baştan başla';
+
+  @override
+  String get keysStartOverHint =>
+      'Baştan başlamak bu cihazın anahtarlarını yeni bir parolayla gönderir. Diğer cihazların yenisini soracak.';
+
+  @override
+  String get keysPassphrase => 'Eşitleme parolası';
+
+  @override
+  String get keysPassphraseAgain => 'Tekrar yaz';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'En az $count karakter kullan.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'İkisi eşleşmiyor.';
+
+  @override
+  String get keysPassphraseWrong => 'Bu parola bu anahtarları açmıyor.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Bir yere yaz: unutursan kimse kurtaramaz ve anahtarlarını yeniden girersin.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

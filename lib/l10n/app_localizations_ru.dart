@@ -2746,4 +2746,106 @@ class AppLocalizationsRu extends AppLocalizations {
   String pickFromService(String service) {
     return 'Выбрать из моего $service';
   }
+
+  @override
+  String get weatherTonight => 'Вечером';
+
+  @override
+  String get weatherTomorrowMorning => 'Завтра утром';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'примерно до $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Солнце за облаками';
+
+  @override
+  String get keysLockTitle => 'Ключи на ваших устройствах';
+
+  @override
+  String get keysLockOff =>
+      'Ключи сервисов остаются на этом устройстве. Выберите фразу синхронизации, чтобы отправлять их в зашифрованном виде на другие устройства.';
+
+  @override
+  String get keysLockOn =>
+      'Ключи сервисов шифруются вашей фразой синхронизации, прежде чем покинуть это устройство. Никто другой, даже Google, не может их прочитать.';
+
+  @override
+  String get keysLockWaiting =>
+      'Сюда пришли ключи с другого устройства, они заперты. Введите фразу синхронизации, чтобы открыть их.';
+
+  @override
+  String get keysSetPassphrase => 'Выбрать фразу';
+
+  @override
+  String get keysChangePassphrase => 'Сменить фразу';
+
+  @override
+  String get keysUnlock => 'Открыть ключи';
+
+  @override
+  String get keysStartOver => 'Забыли? Начать заново';
+
+  @override
+  String get keysStartOverHint =>
+      'Если начать заново, ключи этого устройства отправятся с новой фразой. Другие устройства попросят новую.';
+
+  @override
+  String get keysPassphrase => 'Фраза синхронизации';
+
+  @override
+  String get keysPassphraseAgain => 'Введите ещё раз';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Не меньше $count символов.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Фразы не совпадают.';
+
+  @override
+  String get keysPassphraseWrong => 'Эта фраза не открывает эти ключи.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Запишите её: если забудете, восстановить её нельзя, и ключи придётся ввести заново.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

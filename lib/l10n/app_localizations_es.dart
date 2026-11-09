@@ -2710,4 +2710,106 @@ class AppLocalizationsEs extends AppLocalizations {
   String pickFromService(String service) {
     return 'Elegir de mi $service';
   }
+
+  @override
+  String get weatherTonight => 'Esta noche';
+
+  @override
+  String get weatherTomorrowMorning => 'Mañana por la mañana';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'hasta cerca de las $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Sol tras las nubes';
+
+  @override
+  String get keysLockTitle => 'Claves en tus dispositivos';
+
+  @override
+  String get keysLockOff =>
+      'Tus claves de servicio se quedan en este dispositivo. Elige una frase de sincronización para enviarlas, cifradas, a tus otros dispositivos.';
+
+  @override
+  String get keysLockOn =>
+      'Tus claves de servicio se cifran con tu frase de sincronización antes de salir de este dispositivo. Nadie más, ni siquiera Google, puede leerlas.';
+
+  @override
+  String get keysLockWaiting =>
+      'Llegaron aquí claves de tu otro dispositivo, bloqueadas. Escribe tu frase de sincronización para abrirlas.';
+
+  @override
+  String get keysSetPassphrase => 'Elegir frase';
+
+  @override
+  String get keysChangePassphrase => 'Cambiar frase';
+
+  @override
+  String get keysUnlock => 'Desbloquear claves';
+
+  @override
+  String get keysStartOver => '¿La olvidaste? Empezar de nuevo';
+
+  @override
+  String get keysStartOverHint =>
+      'Empezar de nuevo envía las claves de este dispositivo con una frase nueva. Tus otros dispositivos pedirán la nueva.';
+
+  @override
+  String get keysPassphrase => 'Frase de sincronización';
+
+  @override
+  String get keysPassphraseAgain => 'Escríbela otra vez';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Usa al menos $count caracteres.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'No coinciden.';
+
+  @override
+  String get keysPassphraseWrong => 'Esa frase no abre estas claves.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Anótala: si la olvidas, nadie puede recuperarla y tendrás que escribir tus claves otra vez.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Primero elige una frase de sincronización, en Claves en tus dispositivos.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

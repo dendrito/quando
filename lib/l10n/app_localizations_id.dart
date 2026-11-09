@@ -2695,4 +2695,105 @@ class AppLocalizationsId extends AppLocalizations {
   String pickFromService(String service) {
     return 'Pilih dari $service-ku';
   }
+
+  @override
+  String get weatherTonight => 'Malam ini';
+
+  @override
+  String get weatherTomorrowMorning => 'Besok pagi';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'sampai sekitar $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Matahari di balik awan';
+
+  @override
+  String get keysLockTitle => 'Kunci di perangkat Anda';
+
+  @override
+  String get keysLockOff =>
+      'Kunci layanan Anda tetap di perangkat ini. Pilih frasa sinkronisasi untuk mengirimnya, terenkripsi, ke perangkat Anda yang lain.';
+
+  @override
+  String get keysLockOn =>
+      'Kunci layanan Anda dienkripsi dengan frasa sinkronisasi sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.';
+
+  @override
+  String get keysLockWaiting =>
+      'Kunci dari perangkat Anda yang lain sudah tiba di sini, terkunci. Ketik frasa sinkronisasi untuk membukanya.';
+
+  @override
+  String get keysSetPassphrase => 'Pilih frasa';
+
+  @override
+  String get keysChangePassphrase => 'Ubah frasa';
+
+  @override
+  String get keysUnlock => 'Buka kunci';
+
+  @override
+  String get keysStartOver => 'Lupa? Mulai ulang';
+
+  @override
+  String get keysStartOverHint =>
+      'Mulai ulang mengirim kunci perangkat ini dengan frasa baru. Perangkat lain akan meminta frasa baru.';
+
+  @override
+  String get keysPassphrase => 'Frasa sinkronisasi';
+
+  @override
+  String get keysPassphraseAgain => 'Ketik sekali lagi';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Gunakan minimal $count karakter.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Keduanya tidak sama.';
+
+  @override
+  String get keysPassphraseWrong => 'Frasa itu tidak membuka kunci ini.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }

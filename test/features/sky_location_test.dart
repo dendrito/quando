@@ -92,6 +92,10 @@ void main() {
       expect(after.newMoon.isAfter(phases.newMoon.add(const Duration(days: 29))), isTrue);
     }
     expect(MoonIllumination.at(now).phaseIndex, 7); // 3% waning is not new moon.
+    // A Moon the card prints as 0% lit is called "New moon", never "waning crescent 0%".
+    expect(const MoonIllumination(.004, .96).phaseIndex, 0);
+    expect(const MoonIllumination(.003, .04).phaseIndex, 0);
+    expect(const MoonIllumination(.996, .48).phaseIndex, 4);
   });
 
   test('lunar arc stays chronological across midnight and polar/DST dates', () {
@@ -218,7 +222,11 @@ void main() {
   testWidgets('explicit sky GPS coordinates keep a fixed clock zone and Shabbat city unchanged', (
     tester,
   ) async {
-    SharedPreferences.setMockInitialValues({'place.name': 'Jerusalem', 'zone.fixed': 'America/Detroit'});
+    SharedPreferences.setMockInitialValues({
+      'place.name': 'Jerusalem',
+      'zone.fixed': 'America/Detroit',
+      'zone.pickedHere': true,
+    });
     final prefs = await SharedPreferences.getInstance();
     final c = ProviderContainer(
       overrides: [
@@ -251,7 +259,7 @@ void main() {
     await tester.tap(find.text(l10n.useMyLocation));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('America/Sao_Paulo'), findsOneWidget);
+    expect(find.text('São Paulo'), findsOneWidget);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(skyPlaceProvider)?.latitude, -23.55);

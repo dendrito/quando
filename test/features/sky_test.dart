@@ -5,10 +5,10 @@ import 'package:quando/features/shabbat/domain/place.dart';
 void main() {
   test('countdown reads like speech', () {
     expect(countdown(const Duration(seconds: 20)), 'now');
-    expect(countdown(const Duration(minutes: 12)), 'in 12m');
-    expect(countdown(const Duration(hours: 1, minutes: 40)), 'in 1h 40m');
-    expect(countdown(const Duration(hours: 3)), 'in 3h');
-    expect(countdown(const Duration(days: 2, hours: 5, minutes: 9)), 'in 2d 5h');
+    expect(countdown(const Duration(minutes: 12)), 'in 12 min');
+    expect(countdown(const Duration(hours: 1, minutes: 40)), 'in 1 h 40 min');
+    expect(countdown(const Duration(hours: 3)), 'in 3 h');
+    expect(countdown(const Duration(days: 2, hours: 5, minutes: 9)), 'in 2 d 5 h');
   });
 
   test('the sky follows the sun in Jerusalem', () {

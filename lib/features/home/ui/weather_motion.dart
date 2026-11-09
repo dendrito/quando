@@ -75,24 +75,28 @@ class _WeatherMotionState extends State<WeatherMotion>
         child: AnimatedBuilder(
           animation: _clock,
           builder: (context, _) =>
-              CustomPaint(painter: _WeatherPainter(widget.kind, widget.night, _clock.value)),
+              CustomPaint(painter: WeatherPainter(widget.kind, widget.night, _clock.value)),
         ),
       ),
     ),
   );
 }
 
-class _WeatherPainter extends CustomPainter {
-  const _WeatherPainter(this.kind, this.night, this.t);
+/// The weather picture, also drawn small on the Sun's arc.
+class WeatherPainter extends CustomPainter {
+  const WeatherPainter(this.kind, this.night, this.t, {this.sunless = false});
   final WeatherKind kind;
   final bool night;
+
+  /// Leave out the Sun or Moon (the Sun's arc draws its own).
+  final bool sunless;
   final double t;
   @override
   void paint(Canvas c, Size s) {
     c.save();
     c.scale(s.width / 108, s.height / 108);
     final amber = Paint()..color = QuandoColors.amber;
-    if (kind == WeatherKind.clear || kind == WeatherKind.clouds) {
+    if (!sunless && (kind == WeatherKind.clear || kind == WeatherKind.clouds)) {
       final sun = Offset(kind == WeatherKind.clear ? 54 : 39, kind == WeatherKind.clear ? 49 : 33);
       c.drawCircle(
         sun,
@@ -187,5 +191,6 @@ class _WeatherPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_WeatherPainter old) => old.t != t || old.kind != kind || old.night != night;
+  bool shouldRepaint(WeatherPainter old) =>
+      old.t != t || old.kind != kind || old.night != night || old.sunless != sunless;
 }

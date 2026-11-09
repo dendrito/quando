@@ -2709,4 +2709,105 @@ class AppLocalizationsNl extends AppLocalizations {
   String pickFromService(String service) {
     return 'Kiezen uit mijn $service';
   }
+
+  @override
+  String get weatherTonight => 'Vanavond';
+
+  @override
+  String get weatherTomorrowMorning => 'Morgenochtend';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'tot ongeveer $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Zon achter de wolken';
+
+  @override
+  String get keysLockTitle => 'Sleutels op je apparaten';
+
+  @override
+  String get keysLockOff =>
+      'Je dienstsleutels blijven op dit apparaat. Kies een sync-wachtzin om ze versleuteld naar je andere apparaten te sturen.';
+
+  @override
+  String get keysLockOn =>
+      'Je dienstsleutels worden met je sync-wachtzin versleuteld voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.';
+
+  @override
+  String get keysLockWaiting =>
+      'Sleutels van je andere apparaat zijn hier vergrendeld aangekomen. Typ je sync-wachtzin om ze te openen.';
+
+  @override
+  String get keysSetPassphrase => 'Wachtzin kiezen';
+
+  @override
+  String get keysChangePassphrase => 'Wachtzin wijzigen';
+
+  @override
+  String get keysUnlock => 'Sleutels ontgrendelen';
+
+  @override
+  String get keysStartOver => 'Vergeten? Opnieuw beginnen';
+
+  @override
+  String get keysStartOverHint =>
+      'Opnieuw beginnen stuurt de sleutels van dit apparaat met een nieuwe wachtzin. Je andere apparaten vragen om de nieuwe.';
+
+  @override
+  String get keysPassphrase => 'Sync-wachtzin';
+
+  @override
+  String get keysPassphraseAgain => 'Typ hem nog eens';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Gebruik minstens $count tekens.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Ze komen niet overeen.';
+
+  @override
+  String get keysPassphraseWrong => 'Die wachtzin opent deze sleutels niet.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
 }
