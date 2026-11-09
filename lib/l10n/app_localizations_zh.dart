@@ -474,9 +474,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get calendarAlarm => '日历闹钟';
 
   @override
-  String get calendarIntro => 'Quando? 可以在手机日历中的事件前后响铃。手机上登录 Google 帐号后，Google 日历也会包含在内。';
-
-  @override
   String get connectCalendars => '连接日历';
 
   @override
@@ -2551,6 +2548,44 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => '使用 Smart Life 账号登录';
+
+  @override
+  String get tuyaSignInHint =>
+      '请使用与 Smart Life 或 Tuya Smart 应用相同的国家、邮箱或手机号和密码。该账号必须已关联到你的 Tuya 项目。密码只会发送给 Tuya，不会被保存。';
+
+  @override
+  String get tuyaCountryCode => '国家区号（巴西 55，美国 1）';
+
+  @override
+  String get tuyaAccount => 'Smart Life 邮箱或手机号';
+
+  @override
+  String get tuyaPassword => 'Smart Life 密码';
+
+  @override
+  String get tuyaSignIn => '登录并加载场景';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya 中继地址（https）';
+
+  @override
+  String get tuyaRelayHint =>
+      '请使用你的 Smart Life 或 Tuya Smart 账号的国家、邮箱或手机号和密码。它们只会发送一次到 Quando 的 Tuya 中继，不会被保存。你需要先登录 Quando 账号。';
+
+  @override
+  String get tuyaGoogleHint => '用 Google 或 Apple 登录 Smart Life？在 Smart Life 中点按“忘记密码”设置一个密码，然后在这里使用。';
+
+  @override
+  String get tuyaLinked => 'Smart Life 账号已关联';
+
+  @override
+  String get tuyaUnlink => '取消关联';
+
+  @override
+  String get tuyaNeedsAccount => '请先在设置中登录你的 Quando 账号。';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -2659,6 +2694,342 @@ class AppLocalizationsZh extends AppLocalizations {
   String pickFromService(String service) {
     return '从我的 $service 选择';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持续到约 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太阳在云后';
+
+  @override
+  String get keysLockTitle => '设备间的密钥';
+
+  @override
+  String get keysLockOff => '你的服务密钥只保存在这台设备上。设置同步口令后，可以加密发送到你的其他设备。';
+
+  @override
+  String get keysLockOn => '你的服务密钥在离开这台设备前会用同步口令加密。其他任何人，包括 Google，都无法读取。';
+
+  @override
+  String get keysLockWaiting => '来自你另一台设备的密钥已到达，但处于锁定状态。输入同步口令即可打开。';
+
+  @override
+  String get keysSetPassphrase => '设置口令';
+
+  @override
+  String get keysChangePassphrase => '更改口令';
+
+  @override
+  String get keysUnlock => '解锁密钥';
+
+  @override
+  String get keysStartOver => '忘记了？重新开始';
+
+  @override
+  String get keysStartOverHint => '重新开始会用新口令发送这台设备的密钥。你的其他设备会要求输入新口令。';
+
+  @override
+  String get keysPassphrase => '同步口令';
+
+  @override
+  String get keysPassphraseAgain => '再输入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 个字符。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '两次输入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '这个口令打不开这些密钥。';
+
+  @override
+  String get keysPassphraseNote => '请记下来：如果忘记，没有人能找回，你需要重新输入密钥。';
+
+  @override
+  String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在日历活动前后响铃。选择活动来自哪里。';
+
+  @override
+  String get deviceCalendarsHeading => '此设备';
+
+  @override
+  String get deviceCalendarsTitle => '此设备的日历应用';
+
+  @override
+  String get deviceCalendarsHint => '设备上的所有账户：Google、Samsung、Outlook、iCloud，以及只存在这里的日历。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日历';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登录，直接从 Google 读取日历，即使此设备上没有你的 Google 账户。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登录：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '退出登录';
+
+  @override
+  String get googleCalendarNotHere => '此设备暂不支持 Google 登录。请在设备设置（日历 › 账户）中添加 Google 账户，其日历会显示在此设备下。';
+
+  @override
+  String get googleCalendarUnreachable => '现在无法连接 Google 日历。已根据它设置的闹钟仍会响。';
+
+  @override
+  String get googleCalendarTwiceHint => '此设备已显示的同一 Google 账户的日历默认关闭，避免重复响铃。';
+
+  @override
+  String get timersTitle => '计时器';
+
+  @override
+  String get timerStopwatch => '秒表';
+
+  @override
+  String get timerCountdown => '倒计时';
+
+  @override
+  String get timerSequence => '预备';
+
+  @override
+  String get timerStopwatchSub => '正计时，带分圈';
+
+  @override
+  String get timerCountdownSub => '倒计时，到零时响铃';
+
+  @override
+  String get timerSequenceSub => '语音起跑与标记';
+
+  @override
+  String get timerStart => '开始';
+
+  @override
+  String get timerPause => '暂停';
+
+  @override
+  String get timerResume => '继续';
+
+  @override
+  String get timerReset => '重置';
+
+  @override
+  String get timerLap => '分圈';
+
+  @override
+  String get timerTimesUp => '时间到';
+
+  @override
+  String get timerSetTime => '设置时间';
+
+  @override
+  String get timerMinutes => '分钟';
+
+  @override
+  String get timerSeconds => '秒';
+
+  @override
+  String get seqOnYourMarks => '各就各位';
+
+  @override
+  String get seqGetSet => '预备';
+
+  @override
+  String get seqGo => '跑！';
+
+  @override
+  String get seqFinish => '时间到！';
+
+  @override
+  String get seqReady => '就绪';
+
+  @override
+  String get seqSettings => '设置';
+
+  @override
+  String get seqStartCalls => '起跑前的口令';
+
+  @override
+  String get seqStartCallsHelp => '在“跑”之前大声说出，从起点倒数。';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '提前 $n 秒');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => '添加口令';
+
+  @override
+  String get seqCallText => '说什么';
+
+  @override
+  String get seqGoText => '开始时说';
+
+  @override
+  String get seqFinishText => '结束时说';
+
+  @override
+  String get seqLength => '时长';
+
+  @override
+  String get seqNoLimit => '无限制';
+
+  @override
+  String get seqSayEvery => '每隔多久报时';
+
+  @override
+  String get seqOff => '关闭';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 秒');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分钟');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => '最后倒数';
+
+  @override
+  String get seqMarks => '你的标记';
+
+  @override
+  String get seqAddMark => '添加标记';
+
+  @override
+  String seqMarkAt(String time) {
+    return '在 $time';
+  }
+
+  @override
+  String get seqSpeak => '朗读';
+
+  @override
+  String get seqBeeps => '提示音和振动';
+
+  @override
+  String get seqSayRemaining => '报告剩余时间，而非已用时间';
+
+  @override
+  String get seqPresets => '预设';
+
+  @override
+  String get seqPresetRace => '比赛起跑';
+
+  @override
+  String get seqPresetSprint => '30 秒冲刺';
+
+  @override
+  String get seqPresetRound => '1 分钟一轮';
+
+  @override
+  String get seqHintNoLimit => '“跑”之后一直正计时，直到你停止。';
+
+  @override
+  String get seqHintLength => '“跑”之后倒数到零。';
+
+  @override
+  String get seqWords => '词语';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3128,9 +3499,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get calendarAlarm => '日曆鬧鐘';
-
-  @override
-  String get calendarIntro => 'Quando? 可以在手機日曆中的事件前後響鈴。手機上登入 Google 帳號後，Google 日曆也會包含在內。';
 
   @override
   String get connectCalendars => '連線日曆';
@@ -5207,6 +5575,44 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => '使用 Smart Life 帳號登入';
+
+  @override
+  String get tuyaSignInHint =>
+      '請使用與 Smart Life 或 Tuya Smart 應用程式相同的國家、電子郵件或電話號碼和密碼。該帳號必須已連結到你的 Tuya 專案。密碼只會傳送給 Tuya，不會被儲存。';
+
+  @override
+  String get tuyaCountryCode => '國碼（巴西 55，美國 1）';
+
+  @override
+  String get tuyaAccount => 'Smart Life 電子郵件或電話號碼';
+
+  @override
+  String get tuyaPassword => 'Smart Life 密碼';
+
+  @override
+  String get tuyaSignIn => '登入並載入情境';
+
+  @override
+  String get tuyaRelayUrl => 'Quando Tuya 中繼位址（https）';
+
+  @override
+  String get tuyaRelayHint =>
+      '請使用你的 Smart Life 或 Tuya Smart 帳號的國家、電子郵件或電話號碼和密碼。它們只會傳送一次到 Quando 的 Tuya 中繼，不會被儲存。你需要先登入 Quando 帳號。';
+
+  @override
+  String get tuyaGoogleHint => '用 Google 或 Apple 登入 Smart Life？在 Smart Life 中點選「忘記密碼」設定密碼，然後在這裡使用。';
+
+  @override
+  String get tuyaLinked => 'Smart Life 帳號已連結';
+
+  @override
+  String get tuyaUnlink => '取消連結';
+
+  @override
+  String get tuyaNeedsAccount => '請先在設定中登入你的 Quando 帳號。';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -5315,4 +5721,340 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String pickFromService(String service) {
     return '從我的 $service 選擇';
   }
+
+  @override
+  String get weatherTonight => '今晚';
+
+  @override
+  String get weatherTomorrowMorning => '明天早上';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return '持續到約 $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => '太陽在雲後';
+
+  @override
+  String get keysLockTitle => '裝置間的金鑰';
+
+  @override
+  String get keysLockOff => '你的服務金鑰只保存在這台裝置上。設定同步密語後，可以加密傳送到你的其他裝置。';
+
+  @override
+  String get keysLockOn => '你的服務金鑰在離開這台裝置前會以同步密語加密。其他任何人，包括 Google，都無法讀取。';
+
+  @override
+  String get keysLockWaiting => '來自你另一台裝置的金鑰已送達，但處於鎖定狀態。輸入同步密語即可開啟。';
+
+  @override
+  String get keysSetPassphrase => '設定密語';
+
+  @override
+  String get keysChangePassphrase => '變更密語';
+
+  @override
+  String get keysUnlock => '解鎖金鑰';
+
+  @override
+  String get keysStartOver => '忘記了？重新開始';
+
+  @override
+  String get keysStartOverHint => '重新開始會以新密語傳送這台裝置的金鑰。你的其他裝置會要求輸入新密語。';
+
+  @override
+  String get keysPassphrase => '同步密語';
+
+  @override
+  String get keysPassphraseAgain => '再輸入一次';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return '至少使用 $count 個字元。';
+  }
+
+  @override
+  String get keysPassphraseMismatch => '兩次輸入不一致。';
+
+  @override
+  String get keysPassphraseWrong => '這個密語打不開這些金鑰。';
+
+  @override
+  String get keysPassphraseNote => '請記下來：如果忘記，沒有人能找回，你需要重新輸入金鑰。';
+
+  @override
+  String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro => 'Quando? 可以在行事曆活動前後響鈴。選擇活動來自哪裡。';
+
+  @override
+  String get deviceCalendarsHeading => '此裝置';
+
+  @override
+  String get deviceCalendarsTitle => '此裝置的行事曆 App';
+
+  @override
+  String get deviceCalendarsHint => '裝置上的所有帳號：Google、Samsung、Outlook、iCloud，以及只存在這裡的行事曆。';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE 日曆';
+
+  @override
+  String get googleCalendarSignIn => '使用 Google 登入，直接從 Google 讀取行事曆，即使此裝置上沒有你的 Google 帳號。';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return '已登入：$email';
+  }
+
+  @override
+  String get googleCalendarSignOut => '登出';
+
+  @override
+  String get googleCalendarNotHere => '此裝置暫不支援 Google 登入。請在裝置設定（行事曆 › 帳號）中加入 Google 帳號，其行事曆會顯示在此裝置下。';
+
+  @override
+  String get googleCalendarUnreachable => '現在無法連線到 Google 日曆。已依它設定的鬧鐘仍會響。';
+
+  @override
+  String get googleCalendarTwiceHint => '此裝置已顯示的同一 Google 帳號行事曆預設關閉，避免重複響鈴。';
+
+  @override
+  String get timersTitle => '計時器';
+
+  @override
+  String get timerStopwatch => '碼錶';
+
+  @override
+  String get timerCountdown => '倒數計時';
+
+  @override
+  String get timerSequence => '預備';
+
+  @override
+  String get timerStopwatchSub => '正計時，附分圈';
+
+  @override
+  String get timerCountdownSub => '倒數計時，到零時響鈴';
+
+  @override
+  String get timerSequenceSub => '語音起跑與標記';
+
+  @override
+  String get timerStart => '開始';
+
+  @override
+  String get timerPause => '暫停';
+
+  @override
+  String get timerResume => '繼續';
+
+  @override
+  String get timerReset => '重設';
+
+  @override
+  String get timerLap => '分圈';
+
+  @override
+  String get timerTimesUp => '時間到';
+
+  @override
+  String get timerSetTime => '設定時間';
+
+  @override
+  String get timerMinutes => '分鐘';
+
+  @override
+  String get timerSeconds => '秒';
+
+  @override
+  String get seqOnYourMarks => '各就各位';
+
+  @override
+  String get seqGetSet => '預備';
+
+  @override
+  String get seqGo => '跑！';
+
+  @override
+  String get seqFinish => '時間到！';
+
+  @override
+  String get seqReady => '就緒';
+
+  @override
+  String get seqSettings => '設定';
+
+  @override
+  String get seqStartCalls => '起跑前的口令';
+
+  @override
+  String get seqStartCallsHelp => '在「跑」之前大聲說出，從起點倒數。';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '提前 $n 秒');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => '新增口令';
+
+  @override
+  String get seqCallText => '要說什麼';
+
+  @override
+  String get seqGoText => '開始時說';
+
+  @override
+  String get seqFinishText => '結束時說';
+
+  @override
+  String get seqLength => '時長';
+
+  @override
+  String get seqNoLimit => '無限制';
+
+  @override
+  String get seqSayEvery => '每隔多久報時';
+
+  @override
+  String get seqOff => '關閉';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 秒');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n 分鐘');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => '最後倒數';
+
+  @override
+  String get seqMarks => '你的標記';
+
+  @override
+  String get seqAddMark => '新增標記';
+
+  @override
+  String seqMarkAt(String time) {
+    return '在 $time';
+  }
+
+  @override
+  String get seqSpeak => '朗讀';
+
+  @override
+  String get seqBeeps => '提示音與震動';
+
+  @override
+  String get seqSayRemaining => '報告剩餘時間，而非已用時間';
+
+  @override
+  String get seqPresets => '預設';
+
+  @override
+  String get seqPresetRace => '比賽起跑';
+
+  @override
+  String get seqPresetSprint => '30 秒衝刺';
+
+  @override
+  String get seqPresetRound => '1 分鐘一輪';
+
+  @override
+  String get seqHintNoLimit => '「跑」之後一直正計時，直到你停止。';
+
+  @override
+  String get seqHintLength => '「跑」之後倒數到零。';
+
+  @override
+  String get seqWords => '詞語';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

@@ -13,11 +13,10 @@ import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../ringing/ui/alarm_extras.dart';
-import '../../shabbat/domain/jewish_times.dart';
 import '../../settings/domain/alarm_options.dart';
-import '../../shabbat/ui/city_picker.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
+import '../../ready/ready_screen.dart';
 import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -29,140 +28,39 @@ class SettingsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final place = ref.watch(placeProvider);
-    final havdalah = ref.watch(havdalahProvider);
     final o = ref.watch(alarmOptionsProvider);
     final zones = ref.watch(timeZonesProvider);
     void setO(AlarmOptions Function(AlarmOptions) f) => ref.read(alarmOptionsProvider.notifier).update(f);
     final text = Theme.of(context).textTheme;
     final shabbatOn = ref.watch(shabbatInUseProvider);
+    final broken = (ref.watch(readinessProvider).value?.values.where((ok) => !ok).length ?? 0) > 0;
+
+    Widget group(String title) => Padding(
+      padding: const EdgeInsets.only(top: 28, bottom: 4),
+      child: Text(title.toUpperCase(), style: text.labelSmall),
+    );
 
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settings), backgroundColor: Colors.transparent),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 8),
         children: [
-          const _AccountCard(),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.verified_outlined, color: QuandoColors.amber),
-            title: Text(l10n.readyToRing),
-            subtitle: Text(l10n.readyToRingHint),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.push('/ready'),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
-            title: Text(l10n.connections),
-            subtitle: const Text('Pushover, Zapier, IFTTT'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.push('/connections'),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.translate, color: QuandoColors.amber),
-            title: Text(l10n.language),
-            subtitle: Text(
-              ref.watch(languageProvider) == null
-                  ? l10n.phoneLanguage
-                  : languageNames[ref.watch(languageProvider)] ?? '',
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickLanguage(context, ref),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
-            title: Text(l10n.quotesTitle),
-            subtitle: Text(
-              ref.watch(quoteSourcesProvider).isEmpty
-                  ? l10n.quotesOff
-                  : [
-                      for (final s in QuoteSource.values)
-                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
-                    ].join(', '),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => showModalBottomSheet<void>(
-              context: context,
-              showDragHandle: true,
-              isScrollControlled: true,
-              builder: (context) => const QuoteSourcesSheet(),
-            ),
-          ),
-          if (!kodesh)
+          // Only on top when something stops alarms from ringing.
+          if (broken)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
-              title: Text(l10n.shabbatAndFestivals),
-              subtitle: Text(shabbatOn ? l10n.on : l10n.off),
+              leading: const Icon(Icons.warning_amber_rounded, color: QuandoColors.coral),
+              title: Text(l10n.alarmsMayNotRing),
+              subtitle: Text(l10n.tapToFixIt),
               trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.push('/shabbat'),
+              onTap: () => context.push('/ready'),
             ),
-          const SizedBox(height: 16),
-          Text(l10n.timeZoneHeading, style: text.labelSmall),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.public, color: QuandoColors.amber),
-            title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
-            subtitle: Text(
-              zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickHomeZone(context, ref),
-          ),
-          if (shabbatOn) ...[
-            const SizedBox(height: 16),
-            Text(l10n.shabbatCityHeading, style: text.labelSmall),
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(place.name),
-              subtitle: Text(place.timeZone),
-              trailing: const Icon(Icons.search),
-              onTap: () => pickShabbatPlace(context),
-            ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              title: Text(l10n.inIsraelOneDay),
-              value: place.inIsrael,
-              onChanged: (v) => ref.read(placeProvider.notifier).setInIsrael(v),
-            ),
-            const SizedBox(height: 16),
-            Text(l10n.candleMinutesHeading(place.candleLightingMinutes), style: text.labelSmall),
-            Slider(
-              min: 10,
-              max: 60,
-              divisions: 50,
-              value: place.candleLightingMinutes.toDouble(),
-              label: '${place.candleLightingMinutes}',
-              onChanged: (v) => ref.read(placeProvider.notifier).setCandleMinutes(v.round()),
-            ),
-            const SizedBox(height: 16),
-            Text(l10n.endOfShabbatHeading, style: text.labelSmall),
-            RadioGroup<HavdalahOpinion>(
-              groupValue: havdalah,
-              onChanged: (v) => ref.read(havdalahProvider.notifier).set(v!),
-              child: Column(
-                children: [
-                  RadioListTile(
-                    contentPadding: EdgeInsets.zero,
-                    value: HavdalahOpinion.geonim,
-                    title: Text(l10n.nightfallGeonim),
-                  ),
-                  RadioListTile(
-                    contentPadding: EdgeInsets.zero,
-                    value: HavdalahOpinion.rabbeinuTam,
-                    title: Text(l10n.rabbeinuTam),
-                  ),
-                ],
-              ),
-            ),
-          ],
-          const SizedBox(height: 24),
-          Text(l10n.whenAlarmRingsHeading, style: text.labelSmall),
+
+          // ---- Your account & devices ----
+          const _AccountCard(),
+
+          // ---- Alarm defaults ----
+          group(l10n.settingsAlarmDefaults),
           SoundPickerTile(
             value: o.soundId,
             allowDefault: false,
@@ -177,7 +75,9 @@ class SettingsScreen extends ConsumerWidget {
               label: Text(l10n.recordOrAddSounds),
             ),
           ),
-          Text(l10n.ringsForThisLong),
+          Text(l10n.defaultForNewAlarms, style: text.labelSmall),
+          const SizedBox(height: 2),
+          Text(l10n.ringsForThisLong, style: text.bodySmall),
           const SizedBox(height: 8),
           RingLengthPicker(
             seconds: o.ringSeconds,
@@ -241,7 +141,80 @@ class SettingsScreen extends ConsumerWidget {
                 style: text.bodySmall,
               ),
             ),
-          const SizedBox(height: 24),
+
+          // ---- Places & time ----
+          group(l10n.settingsPlacesTime),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.public, color: QuandoColors.amber),
+            title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
+            subtitle: Text(
+              zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickHomeZone(context, ref),
+          ),
+          // In Quando? Shabbat stays tucked away until it is turned on.
+          if (!kodesh)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+              title: Text(l10n.shabbatAndFestivals),
+              subtitle: Text(shabbatOn ? l10n.on : l10n.off),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/shabbat'),
+            ),
+
+          // ---- Look, language & quotes ----
+          group(l10n.settingsLook),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.translate, color: QuandoColors.amber),
+            title: Text(l10n.language),
+            subtitle: Text(
+              ref.watch(languageProvider) == null
+                  ? l10n.phoneLanguage
+                  : languageNames[ref.watch(languageProvider)] ?? '',
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => _pickLanguage(context, ref),
+          ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
+            title: Text(l10n.quotesTitle),
+            subtitle: Text(
+              ref.watch(quoteSourcesProvider).isEmpty
+                  ? l10n.quotesOff
+                  : [
+                      for (final s in QuoteSource.values)
+                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
+                    ].join(', '),
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+            ),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => showModalBottomSheet<void>(
+              context: context,
+              showDragHandle: true,
+              isScrollControlled: true,
+              builder: (context) => const QuoteSourcesSheet(),
+            ),
+          ),
+
+          // ---- Connections ----
+          group(l10n.connections),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
+            title: Text(l10n.connections),
+            subtitle: const Text('Pushover, Zapier, IFTTT'),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/connections'),
+          ),
+
+          // ---- About ----
+          group(l10n.settingsAbout),
           Text(l10n.timesDisclaimer, style: text.bodySmall),
           const _VersionLine(),
         ],
@@ -380,11 +353,19 @@ class SettingsScreen extends ConsumerWidget {
 
 /// Your account: sign in with Google to keep alarms and settings the same
 /// on every device, see who you're signed in as, sign out.
-class _AccountCard extends ConsumerWidget {
+class _AccountCard extends ConsumerStatefulWidget {
   const _AccountCard();
 
   @override
-  Widget build(BuildContext context, WidgetRef ref) {
+  ConsumerState<_AccountCard> createState() => _AccountCardState();
+}
+
+class _AccountCardState extends ConsumerState<_AccountCard> {
+  bool _open = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final ref = this.ref;
     final sync = ref.watch(syncProvider);
     final notifier = ref.read(syncProvider.notifier);
     if (!notifier.available) return const SizedBox.shrink();
@@ -392,6 +373,20 @@ class _AccountCard extends ConsumerWidget {
     final on = sync.phase == SyncPhase.on;
     final working = sync.phase == SyncPhase.working;
     final who = sync.name?.isNotEmpty == true ? sync.name! : (sync.email ?? '');
+    // One row until tapped; it opens by itself while something is happening.
+    final open = _open || (sync.phase != SyncPhase.off && sync.phase != SyncPhase.on);
+    if (!open) {
+      return ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: on && sync.photo != null
+            ? CircleAvatar(radius: 16, foregroundImage: NetworkImage(sync.photo!))
+            : const Icon(Icons.sync, color: QuandoColors.amber),
+        title: Text(on && who.isNotEmpty ? who : '${l10n.syncTitle} · ${l10n.off}'),
+        subtitle: on ? Text(l10n.syncOn(sync.email ?? '')) : null,
+        trailing: const Icon(Icons.expand_more),
+        onTap: () => setState(() => _open = true),
+      );
+    }
     final status = switch (sync.phase) {
       SyncPhase.off => l10n.syncHint,
       SyncPhase.working => l10n.syncWorking,

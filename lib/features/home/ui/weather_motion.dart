@@ -75,29 +75,33 @@ class _WeatherMotionState extends State<WeatherMotion>
         child: AnimatedBuilder(
           animation: _clock,
           builder: (context, _) =>
-              CustomPaint(painter: _WeatherPainter(widget.kind, widget.night, _clock.value)),
+              CustomPaint(painter: WeatherPainter(widget.kind, widget.night, _clock.value)),
         ),
       ),
     ),
   );
 }
 
-class _WeatherPainter extends CustomPainter {
-  const _WeatherPainter(this.kind, this.night, this.t);
+/// The weather picture, also drawn small on the Sun's arc.
+class WeatherPainter extends CustomPainter {
+  const WeatherPainter(this.kind, this.night, this.t, {this.sunless = false});
   final WeatherKind kind;
   final bool night;
+
+  /// Leave out the Sun or Moon (the Sun's arc draws its own).
+  final bool sunless;
   final double t;
   @override
   void paint(Canvas c, Size s) {
     c.save();
     c.scale(s.width / 108, s.height / 108);
     final amber = Paint()..color = QuandoColors.amber;
-    if (kind == WeatherKind.clear || kind == WeatherKind.clouds) {
+    if (!sunless && (kind == WeatherKind.clear || kind == WeatherKind.clouds)) {
       final sun = Offset(kind == WeatherKind.clear ? 54 : 39, kind == WeatherKind.clear ? 49 : 33);
       c.drawCircle(
         sun,
-        25 + 2 * m.sin(t * 2 * m.pi),
-        Paint()..color = QuandoColors.coral.withValues(alpha: 0.18),
+        25 + 3 * m.sin(t * 2 * m.pi),
+        Paint()..color = QuandoColors.coral.withValues(alpha: 0.18 + 0.06 * m.sin(t * 2 * m.pi)),
       );
       if (night) {
         c.drawPath(
@@ -110,7 +114,8 @@ class _WeatherPainter extends CustomPainter {
         );
       } else {
         for (var i = 0; i < 8; i++) {
-          final a = i * m.pi / 4 + t * 0.15;
+          // One slow turn of an eighth, so the loop never jumps.
+          final a = i * m.pi / 4 + t * m.pi / 4;
           c.drawLine(
             sun + Offset(m.cos(a), m.sin(a)) * 24,
             sun + Offset(m.cos(a), m.sin(a)) * 29,
@@ -124,7 +129,17 @@ class _WeatherPainter extends CustomPainter {
       }
     }
     if (kind != WeatherKind.clear) {
-      final drift = m.sin(t * 2 * m.pi) * 3;
+      // A small cloud floats across behind, then the main cloud drifts and
+      // bobs in front of the Sun.
+      final away = (t * 1.0) % 1.0, far = -30 + away * 170;
+      final back = Path()
+        ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(far, 22, 30, 11), const Radius.circular(6)))
+        ..addOval(Rect.fromCircle(center: Offset(far + 11, 22), radius: 8))
+        ..addOval(Rect.fromCircle(center: Offset(far + 21, 24), radius: 6));
+      c.drawPath(back, Paint()..color = QuandoColors.blush.withValues(alpha: 0.35));
+      final drift = m.sin(t * 2 * m.pi) * 7, bob = m.sin(t * 4 * m.pi) * 1.8;
+      c.save();
+      c.translate(0, bob);
       final cloud = Path()
         ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(20 + drift, 38, 69, 25), const Radius.circular(14)))
         ..addOval(Rect.fromCircle(center: Offset(42 + drift, 39), radius: 18))
@@ -133,6 +148,7 @@ class _WeatherPainter extends CustomPainter {
         cloud,
         Paint()..color = QuandoColors.blush.withValues(alpha: kind == WeatherKind.thunder ? 0.65 : 0.9),
       );
+      c.restore();
     }
     if (kind == WeatherKind.rain || kind == WeatherKind.thunder) {
       for (var i = 0; i < 7; i++) {
@@ -187,5 +203,6 @@ class _WeatherPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_WeatherPainter old) => old.t != t || old.kind != kind || old.night != night;
+  bool shouldRepaint(WeatherPainter old) =>
+      old.t != t || old.kind != kind || old.night != night || old.sunless != sunless;
 }

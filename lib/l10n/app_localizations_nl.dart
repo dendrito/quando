@@ -480,10 +480,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get calendarAlarm => 'Agendawekker';
 
   @override
-  String get calendarIntro =>
-      'Quando? kan voor en na afspraken in de agenda’s van je telefoon afgaan. Google Agenda zit erbij zodra je Google-account op de telefoon staat.';
-
-  @override
   String get connectCalendars => 'Agenda’s koppelen';
 
   @override
@@ -2598,6 +2594,45 @@ class AppLocalizationsNl extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Inloggen met je Smart Life-account';
+
+  @override
+  String get tuyaSignInHint =>
+      'Gebruik hetzelfde land, e-mailadres of telefoonnummer en wachtwoord als in de Smart Life- of Tuya Smart-app. Het account moet al aan je Tuya-project gekoppeld zijn. Het wachtwoord gaat alleen naar Tuya en wordt nooit opgeslagen.';
+
+  @override
+  String get tuyaCountryCode => 'Landnummer (Brazilië 55, VS 1)';
+
+  @override
+  String get tuyaAccount => 'Smart Life-e-mail of -telefoonnummer';
+
+  @override
+  String get tuyaPassword => 'Smart Life-wachtwoord';
+
+  @override
+  String get tuyaSignIn => 'Inloggen en scènes laden';
+
+  @override
+  String get tuyaRelayUrl => 'Adres van het Quando Tuya-relay (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Gebruik land, e-mailadres of telefoonnummer en wachtwoord van je Smart Life- of Tuya Smart-account. Ze gaan eenmaal naar het Tuya-relay van Quando en worden niet opgeslagen. Je moet ingelogd zijn op je Quando-account.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Log je in bij Smart Life met Google of Apple? Tik in Smart Life op ‘Wachtwoord vergeten’ om een wachtwoord in te stellen en gebruik dat hier.';
+
+  @override
+  String get tuyaLinked => 'Smart Life-account gekoppeld';
+
+  @override
+  String get tuyaUnlink => 'Ontkoppelen';
+
+  @override
+  String get tuyaNeedsAccount => 'Log eerst in op je Quando-account bij Instellingen.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -2709,4 +2744,356 @@ class AppLocalizationsNl extends AppLocalizations {
   String pickFromService(String service) {
     return 'Kiezen uit mijn $service';
   }
+
+  @override
+  String get weatherTonight => 'Vanavond';
+
+  @override
+  String get weatherTomorrowMorning => 'Morgenochtend';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'tot ongeveer $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Zon achter de wolken';
+
+  @override
+  String get keysLockTitle => 'Sleutels op je apparaten';
+
+  @override
+  String get keysLockOff =>
+      'Je dienstsleutels blijven op dit apparaat. Kies een sync-wachtzin om ze versleuteld naar je andere apparaten te sturen.';
+
+  @override
+  String get keysLockOn =>
+      'Je dienstsleutels worden met je sync-wachtzin versleuteld voordat ze dit apparaat verlaten. Niemand anders, zelfs Google niet, kan ze lezen.';
+
+  @override
+  String get keysLockWaiting =>
+      'Sleutels van je andere apparaat zijn hier vergrendeld aangekomen. Typ je sync-wachtzin om ze te openen.';
+
+  @override
+  String get keysSetPassphrase => 'Wachtzin kiezen';
+
+  @override
+  String get keysChangePassphrase => 'Wachtzin wijzigen';
+
+  @override
+  String get keysUnlock => 'Sleutels ontgrendelen';
+
+  @override
+  String get keysStartOver => 'Vergeten? Opnieuw beginnen';
+
+  @override
+  String get keysStartOverHint =>
+      'Opnieuw beginnen stuurt de sleutels van dit apparaat met een nieuwe wachtzin. Je andere apparaten vragen om de nieuwe.';
+
+  @override
+  String get keysPassphrase => 'Sync-wachtzin';
+
+  @override
+  String get keysPassphraseAgain => 'Typ hem nog eens';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Gebruik minstens $count tekens.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Ze komen niet overeen.';
+
+  @override
+  String get keysPassphraseWrong => 'Die wachtzin opent deze sleutels niet.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Schrijf hem op: als je hem vergeet, kan niemand hem herstellen en typ je je sleutels opnieuw.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? kan voor en na afspraken in je agenda\'s afgaan. Kies waar ze vandaan komen.';
+
+  @override
+  String get deviceCalendarsHeading => 'OP DIT APPARAAT';
+
+  @override
+  String get deviceCalendarsTitle => 'Agenda-app van dit apparaat';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Alle accounts erop: Google, Samsung, Outlook, iCloud en agenda\'s die alleen hier staan.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE AGENDA';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Log in met Google om je agenda\'s rechtstreeks bij Google te lezen, ook als je Google-account niet op dit apparaat staat.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Ingelogd als $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Uitloggen';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Inloggen met Google kan nog niet op dit apparaat. Voeg je Google-account toe in de instellingen van het apparaat (Agenda › Accounts) en de agenda\'s verschijnen onder dit apparaat.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Agenda is nu niet bereikbaar. Wekkers die er al uit zijn gezet, gaan gewoon af.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Agenda\'s van hetzelfde Google-account die dit apparaat al toont, staan eerst uit, zodat niets twee keer afgaat.';
+
+  @override
+  String get timersTitle => 'Timers';
+
+  @override
+  String get timerStopwatch => 'Stopwatch';
+
+  @override
+  String get timerCountdown => 'Timer';
+
+  @override
+  String get timerSequence => 'Klaar';
+
+  @override
+  String get timerStopwatchSub => 'Telt op, met rondes';
+
+  @override
+  String get timerCountdownSub => 'Telt af, gaat af bij nul';
+
+  @override
+  String get timerSequenceSub => 'Gesproken start en markeringen';
+
+  @override
+  String get timerStart => 'Start';
+
+  @override
+  String get timerPause => 'Pauze';
+
+  @override
+  String get timerResume => 'Hervatten';
+
+  @override
+  String get timerReset => 'Resetten';
+
+  @override
+  String get timerLap => 'Ronde';
+
+  @override
+  String get timerTimesUp => 'De tijd is om';
+
+  @override
+  String get timerSetTime => 'Stel de tijd in';
+
+  @override
+  String get timerMinutes => 'Minuten';
+
+  @override
+  String get timerSeconds => 'Seconden';
+
+  @override
+  String get seqOnYourMarks => 'Op uw plaatsen';
+
+  @override
+  String get seqGetSet => 'Klaar';
+
+  @override
+  String get seqGo => 'Af!';
+
+  @override
+  String get seqFinish => 'Tijd!';
+
+  @override
+  String get seqReady => 'Gereed';
+
+  @override
+  String get seqSettings => 'Instellingen';
+
+  @override
+  String get seqStartCalls => 'Aanroepen voor de start';
+
+  @override
+  String get seqStartCallsHelp => 'Hardop gezegd vóór Af, teruggeteld vanaf de start.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 seconde ervoor',
+      other: '$n seconden ervoor',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Aanroep toevoegen';
+
+  @override
+  String get seqCallText => 'Wat te zeggen';
+
+  @override
+  String get seqGoText => 'Bij de start zeggen';
+
+  @override
+  String get seqFinishText => 'Aan het einde zeggen';
+
+  @override
+  String get seqLength => 'Duur';
+
+  @override
+  String get seqNoLimit => 'Geen limiet';
+
+  @override
+  String get seqSayEvery => 'Zeg de tijd elke';
+
+  @override
+  String get seqOff => 'Uit';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Tel de laatste af';
+
+  @override
+  String get seqMarks => 'Jouw markeringen';
+
+  @override
+  String get seqAddMark => 'Markering toevoegen';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'Om $time';
+  }
+
+  @override
+  String get seqSpeak => 'Hardop spreken';
+
+  @override
+  String get seqBeeps => 'Pieptonen en trilling';
+
+  @override
+  String get seqSayRemaining => 'Zeg de resterende tijd, niet de verstreken tijd';
+
+  @override
+  String get seqPresets => 'Voorinstellingen';
+
+  @override
+  String get seqPresetRace => 'Racestart';
+
+  @override
+  String get seqPresetSprint => 'Inspanning van 30 s';
+
+  @override
+  String get seqPresetRound => 'Ronde van 1 min';
+
+  @override
+  String get seqHintNoLimit => 'Na Af telt hij op tot je stopt.';
+
+  @override
+  String get seqHintLength => 'Na Af telt hij af tot nul.';
+
+  @override
+  String get seqWords => 'Woorden';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

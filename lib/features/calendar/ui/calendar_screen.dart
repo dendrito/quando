@@ -7,6 +7,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../events/domain/event.dart';
+import '../data/calendar_reader.dart';
 import '../domain/calendar_rule.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -32,6 +33,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
     final rules = ref.watch(calendarRulesProvider);
     final home = ref.watch(homeZoneProvider);
     final text = Theme.of(context).textTheme;
+    final online = ref.watch(onlineCalendarsProvider);
     final upcoming = cal.events.where((e) => e.kind == EventKind.calendar).take(8).toList();
     String when(DateTime utc) => '${dayLabel(inZone(utc, home))} · ${hhmm(inZone(utc, home))}';
 
@@ -48,17 +50,8 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 96),
         children: [
           if (!cal.access) ...[
-            Text(l10n.calendarIntro, style: text.bodyLarge),
-            const SizedBox(height: 16),
-            FilledButton(
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-              onPressed: () => ref.read(calendarProvider.notifier).connect(),
-              child: Text(l10n.connectCalendars),
-            ),
-            if (cal.error != null) ...[
-              const SizedBox(height: 12),
-              Text(cal.error!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
-            ],
+            Text(l10n.calendarSourcesIntro, style: text.bodyLarge),
+            const SizedBox(height: 8),
           ] else ...[
             Text(l10n.calendarAlarmsHeading, style: text.labelSmall),
             if (rules.isEmpty) ...[
@@ -90,18 +83,57 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 ),
               ),
             const SizedBox(height: 28),
-            Text(l10n.useTheseCalendarsHeading, style: text.labelSmall),
-            for (final c in cal.calendars)
-              SwitchListTile(
-                contentPadding: EdgeInsets.zero,
-                secondary: CircleAvatar(radius: 6, backgroundColor: _color(c.colorHex)),
-                title: Text(c.name),
-                subtitle: c.account == null || c.account == c.name
-                    ? null
-                    : Text(c.account!, style: text.bodySmall),
-                value: cal.selected.contains(c.id),
-                onChanged: (v) => ref.read(calendarProvider.notifier).select(c.id, v),
+          ],
+
+          // Where events come from: the device's own calendar app (every
+          // account on it), and Google Calendar read online.
+          Text(l10n.deviceCalendarsHeading, style: text.labelSmall),
+          if (!cal.phone)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.phone_iphone, color: QuandoColors.amber),
+              title: Text(l10n.deviceCalendarsTitle),
+              subtitle: Text(l10n.deviceCalendarsHint, style: text.bodySmall),
+              trailing: FilledButton.tonal(
+                onPressed: () => ref.read(calendarProvider.notifier).connect(),
+                child: Text(l10n.connectCalendars),
               ),
+            )
+          else
+            for (final c in cal.calendars.where((c) => c.source == CalendarSource.phone))
+              _calendarTile(c, cal, text),
+          if (cal.error != null) Text(cal.error!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
+          const SizedBox(height: 28),
+          Text(l10n.googleCalendarHeading, style: text.labelSmall),
+          if (cal.google == null)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.event_available_outlined, color: QuandoColors.amber),
+              title: Text(
+                online.available ? l10n.googleCalendarSignIn : l10n.googleCalendarNotHere,
+                style: text.bodySmall,
+              ),
+              trailing: online.available
+                  ? FilledButton.tonal(onPressed: _signInGoogle, child: Text(l10n.connectCalendars))
+                  : null,
+            )
+          else ...[
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.check_circle, color: QuandoColors.amber),
+              title: Text(l10n.googleCalendarSignedIn(cal.google!)),
+              subtitle: cal.phone ? Text(l10n.googleCalendarTwiceHint, style: text.bodySmall) : null,
+              trailing: TextButton(
+                onPressed: () => ref.read(calendarProvider.notifier).disconnectGoogle(),
+                child: Text(l10n.googleCalendarSignOut),
+              ),
+            ),
+            for (final c in cal.calendars.where((c) => c.source == CalendarSource.google))
+              _calendarTile(c, cal, text),
+            if (cal.googleError != null)
+              Text(cal.googleError!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
+          ],
+          if (cal.access) ...[
             const SizedBox(height: 28),
             Text(l10n.comingUpHeading, style: text.labelSmall),
             if (upcoming.isEmpty)
@@ -116,11 +148,28 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 title: Text(e.title),
                 trailing: Text(when(e.at), style: text.bodySmall?.copyWith(color: QuandoColors.amber)),
               ),
-            if (cal.error != null) Text(cal.error!, style: text.bodySmall?.copyWith(color: Colors.redAccent)),
           ],
         ],
       ),
     );
+  }
+
+  Widget _calendarTile(PhoneCalendar c, CalendarState cal, TextTheme text) => SwitchListTile(
+    contentPadding: EdgeInsets.zero,
+    secondary: CircleAvatar(radius: 6, backgroundColor: _color(c.colorHex)),
+    title: Text(c.name),
+    subtitle: c.account == null || c.account == c.name || c.source == CalendarSource.google
+        ? null
+        : Text(c.account!, style: text.bodySmall),
+    value: cal.selected.contains(c.id),
+    onChanged: (v) => ref.read(calendarProvider.notifier).select(c.id, v),
+  );
+
+  Future<void> _signInGoogle() async {
+    final ok = await ref.read(calendarProvider.notifier).connectGoogle();
+    if (!ok && mounted) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.googleSignInFailed)));
+    }
   }
 
   static Color _color(String? hex) {

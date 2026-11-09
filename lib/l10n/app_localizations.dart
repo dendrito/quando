@@ -679,31 +679,31 @@ abstract class AppLocalizations {
   /// No description provided for @inDays.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d'**
+  /// **'in {d} d'**
   String inDays(int d);
 
   /// No description provided for @inDaysHours.
   ///
   /// In en, this message translates to:
-  /// **'in {d}d {h}h'**
+  /// **'in {d} d {h} h'**
   String inDaysHours(int d, int h);
 
   /// No description provided for @inHours.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h'**
+  /// **'in {h} h'**
   String inHours(int h);
 
   /// No description provided for @inHoursMinutes.
   ///
   /// In en, this message translates to:
-  /// **'in {h}h {m}m'**
+  /// **'in {h} h {m} min'**
   String inHoursMinutes(int h, int m);
 
   /// No description provided for @inMins.
   ///
   /// In en, this message translates to:
-  /// **'in {m}m'**
+  /// **'in {m} min'**
   String inMins(int m);
 
   /// No description provided for @placeChange.
@@ -811,7 +811,7 @@ abstract class AppLocalizations {
   /// No description provided for @lockCalendarWord.
   ///
   /// In en, this message translates to:
-  /// **'During calendar events with this word'**
+  /// **'During events named…'**
   String get lockCalendarWord;
 
   /// No description provided for @lockCalendarWordHint.
@@ -915,12 +915,6 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Calendar alarm'**
   String get calendarAlarm;
-
-  /// No description provided for @calendarIntro.
-  ///
-  /// In en, this message translates to:
-  /// **'Quando? can ring before and after events in your phone\'s calendars. Google Calendar is included once your Google account is on the phone.'**
-  String get calendarIntro;
 
   /// No description provided for @connectCalendars.
   ///
@@ -4702,6 +4696,78 @@ abstract class AppLocalizations {
   /// **'Advanced setup'**
   String get tuyaAdvanced;
 
+  /// No description provided for @tuyaSignInTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with your Smart Life account'**
+  String get tuyaSignInTitle;
+
+  /// No description provided for @tuyaSignInHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.'**
+  String get tuyaSignInHint;
+
+  /// No description provided for @tuyaCountryCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Country calling code (Brazil 55, US 1)'**
+  String get tuyaCountryCode;
+
+  /// No description provided for @tuyaAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life email or phone'**
+  String get tuyaAccount;
+
+  /// No description provided for @tuyaPassword.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life password'**
+  String get tuyaPassword;
+
+  /// No description provided for @tuyaSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in and load scenes'**
+  String get tuyaSignIn;
+
+  /// No description provided for @tuyaRelayUrl.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando Tuya relay address (https)'**
+  String get tuyaRelayUrl;
+
+  /// No description provided for @tuyaRelayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.'**
+  String get tuyaRelayHint;
+
+  /// No description provided for @tuyaGoogleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.'**
+  String get tuyaGoogleHint;
+
+  /// No description provided for @tuyaLinked.
+  ///
+  /// In en, this message translates to:
+  /// **'Smart Life account linked'**
+  String get tuyaLinked;
+
+  /// No description provided for @tuyaUnlink.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlink'**
+  String get tuyaUnlink;
+
+  /// No description provided for @tuyaNeedsAccount.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in to your Quando account in Settings first.'**
+  String get tuyaNeedsAccount;
+
   /// No description provided for @roshHodeshHeading.
   ///
   /// In en, this message translates to:
@@ -4899,6 +4965,636 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Pick from my {service}'**
   String pickFromService(String service);
+
+  /// No description provided for @weatherTonight.
+  ///
+  /// In en, this message translates to:
+  /// **'Tonight'**
+  String get weatherTonight;
+
+  /// No description provided for @weatherTomorrowMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Tomorrow morning'**
+  String get weatherTomorrowMorning;
+
+  /// No description provided for @weatherUntilAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'until about {time}'**
+  String weatherUntilAbout(String time);
+
+  /// No description provided for @weatherSunBehindClouds.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun behind the clouds'**
+  String get weatherSunBehindClouds;
+
+  /// No description provided for @keysLockTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys on your devices'**
+  String get keysLockTitle;
+
+  /// No description provided for @keysLockOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.'**
+  String get keysLockOff;
+
+  /// No description provided for @keysLockOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.'**
+  String get keysLockOn;
+
+  /// No description provided for @keysLockWaiting.
+  ///
+  /// In en, this message translates to:
+  /// **'Keys from your other device arrived here, locked. Type your sync passphrase to open them.'**
+  String get keysLockWaiting;
+
+  /// No description provided for @keysSetPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose passphrase'**
+  String get keysSetPassphrase;
+
+  /// No description provided for @keysChangePassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Change passphrase'**
+  String get keysChangePassphrase;
+
+  /// No description provided for @keysUnlock.
+  ///
+  /// In en, this message translates to:
+  /// **'Unlock keys'**
+  String get keysUnlock;
+
+  /// No description provided for @keysStartOver.
+  ///
+  /// In en, this message translates to:
+  /// **'Forgot it? Start over'**
+  String get keysStartOver;
+
+  /// No description provided for @keysStartOverHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Starting over sends this device\'s keys with a new passphrase. Your other devices will ask for the new one.'**
+  String get keysStartOverHint;
+
+  /// No description provided for @keysPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Sync passphrase'**
+  String get keysPassphrase;
+
+  /// No description provided for @keysPassphraseAgain.
+  ///
+  /// In en, this message translates to:
+  /// **'Type it again'**
+  String get keysPassphraseAgain;
+
+  /// No description provided for @keysPassphraseShort.
+  ///
+  /// In en, this message translates to:
+  /// **'Use at least {count} characters.'**
+  String keysPassphraseShort(int count);
+
+  /// No description provided for @keysPassphraseMismatch.
+  ///
+  /// In en, this message translates to:
+  /// **'The two don\'t match.'**
+  String get keysPassphraseMismatch;
+
+  /// No description provided for @keysPassphraseWrong.
+  ///
+  /// In en, this message translates to:
+  /// **'That passphrase doesn\'t open these keys.'**
+  String get keysPassphraseWrong;
+
+  /// No description provided for @keysPassphraseNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Write it down: if you forget it, nobody can recover it, and you\'ll type your keys again.'**
+  String get keysPassphraseNote;
+
+  /// No description provided for @keysShareNeedsPassphrase.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a sync passphrase first, under Keys on your devices.'**
+  String get keysShareNeedsPassphrase;
+
+  /// No description provided for @settingsAlarmDefaults.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm defaults'**
+  String get settingsAlarmDefaults;
+
+  /// No description provided for @settingsPlacesTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Places & time'**
+  String get settingsPlacesTime;
+
+  /// No description provided for @settingsLook.
+  ///
+  /// In en, this message translates to:
+  /// **'Look, language & quotes'**
+  String get settingsLook;
+
+  /// No description provided for @settingsAbout.
+  ///
+  /// In en, this message translates to:
+  /// **'About'**
+  String get settingsAbout;
+
+  /// No description provided for @defaultForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Default for new alarms'**
+  String get defaultForNewAlarms;
+
+  /// No description provided for @preview.
+  ///
+  /// In en, this message translates to:
+  /// **'Preview'**
+  String get preview;
+
+  /// No description provided for @atClock.
+  ///
+  /// In en, this message translates to:
+  /// **'at {time}'**
+  String atClock(String time);
+
+  /// No description provided for @connectACalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar'**
+  String get connectACalendar;
+
+  /// No description provided for @newFromReadyMade.
+  ///
+  /// In en, this message translates to:
+  /// **'From a ready-made'**
+  String get newFromReadyMade;
+
+  /// No description provided for @newFromReadyMadeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Sunrise, sunset and other alarms that are already set up for you'**
+  String get newFromReadyMadeHint;
+
+  /// No description provided for @calendarSourcesIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? can ring before and after events in your calendars. Pick where they come from.'**
+  String get calendarSourcesIntro;
+
+  /// No description provided for @deviceCalendarsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'ON THIS DEVICE'**
+  String get deviceCalendarsHeading;
+
+  /// No description provided for @deviceCalendarsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'This device\'s calendar app'**
+  String get deviceCalendarsTitle;
+
+  /// No description provided for @deviceCalendarsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.'**
+  String get deviceCalendarsHint;
+
+  /// No description provided for @googleCalendarHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'GOOGLE CALENDAR'**
+  String get googleCalendarHeading;
+
+  /// No description provided for @googleCalendarSignIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign in with Google to read your calendars straight from Google, even when your Google account isn\'t on this device.'**
+  String get googleCalendarSignIn;
+
+  /// No description provided for @googleCalendarSignedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Signed in as {email}'**
+  String googleCalendarSignedIn(String email);
+
+  /// No description provided for @googleCalendarSignOut.
+  ///
+  /// In en, this message translates to:
+  /// **'Sign out'**
+  String get googleCalendarSignOut;
+
+  /// No description provided for @googleCalendarNotHere.
+  ///
+  /// In en, this message translates to:
+  /// **'Google sign-in isn\'t available on this device yet. Add your Google account in the device\'s settings (Calendar › Accounts) and its calendars appear under this device.'**
+  String get googleCalendarNotHere;
+
+  /// No description provided for @googleCalendarUnreachable.
+  ///
+  /// In en, this message translates to:
+  /// **'Couldn\'t reach Google Calendar just now. Alarms already set from it still ring.'**
+  String get googleCalendarUnreachable;
+
+  /// No description provided for @googleCalendarTwiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendars this device already shows from the same Google account start off, so nothing rings twice.'**
+  String get googleCalendarTwiceHint;
+
+  /// No description provided for @timersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Timers'**
+  String get timersTitle;
+
+  /// No description provided for @timerStopwatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopwatch'**
+  String get timerStopwatch;
+
+  /// No description provided for @timerCountdown.
+  ///
+  /// In en, this message translates to:
+  /// **'Timer'**
+  String get timerCountdown;
+
+  /// No description provided for @timerSequence.
+  ///
+  /// In en, this message translates to:
+  /// **'Get set'**
+  String get timerSequence;
+
+  /// No description provided for @timerStopwatchSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Count up, with laps'**
+  String get timerStopwatchSub;
+
+  /// No description provided for @timerCountdownSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Count down, rings at zero'**
+  String get timerCountdownSub;
+
+  /// No description provided for @timerSequenceSub.
+  ///
+  /// In en, this message translates to:
+  /// **'Spoken start and marks'**
+  String get timerSequenceSub;
+
+  /// No description provided for @timerStart.
+  ///
+  /// In en, this message translates to:
+  /// **'Start'**
+  String get timerStart;
+
+  /// No description provided for @timerPause.
+  ///
+  /// In en, this message translates to:
+  /// **'Pause'**
+  String get timerPause;
+
+  /// No description provided for @timerResume.
+  ///
+  /// In en, this message translates to:
+  /// **'Resume'**
+  String get timerResume;
+
+  /// No description provided for @timerReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset'**
+  String get timerReset;
+
+  /// No description provided for @timerLap.
+  ///
+  /// In en, this message translates to:
+  /// **'Lap'**
+  String get timerLap;
+
+  /// No description provided for @timerTimesUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Time\'s up'**
+  String get timerTimesUp;
+
+  /// No description provided for @timerSetTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Set the time'**
+  String get timerSetTime;
+
+  /// No description provided for @timerMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Minutes'**
+  String get timerMinutes;
+
+  /// No description provided for @timerSeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'Seconds'**
+  String get timerSeconds;
+
+  /// No description provided for @seqOnYourMarks.
+  ///
+  /// In en, this message translates to:
+  /// **'On your marks'**
+  String get seqOnYourMarks;
+
+  /// No description provided for @seqGetSet.
+  ///
+  /// In en, this message translates to:
+  /// **'Get set'**
+  String get seqGetSet;
+
+  /// No description provided for @seqGo.
+  ///
+  /// In en, this message translates to:
+  /// **'Go!'**
+  String get seqGo;
+
+  /// No description provided for @seqFinish.
+  ///
+  /// In en, this message translates to:
+  /// **'Time!'**
+  String get seqFinish;
+
+  /// No description provided for @seqReady.
+  ///
+  /// In en, this message translates to:
+  /// **'Ready'**
+  String get seqReady;
+
+  /// No description provided for @seqSettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get seqSettings;
+
+  /// No description provided for @seqStartCalls.
+  ///
+  /// In en, this message translates to:
+  /// **'Calls before the start'**
+  String get seqStartCalls;
+
+  /// No description provided for @seqStartCallsHelp.
+  ///
+  /// In en, this message translates to:
+  /// **'Said aloud before Go, counted back from the start.'**
+  String get seqStartCallsHelp;
+
+  /// No description provided for @seqCallBefore.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 second before} other{{n} seconds before}}'**
+  String seqCallBefore(int n);
+
+  /// No description provided for @seqAddCall.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a call'**
+  String get seqAddCall;
+
+  /// No description provided for @seqCallText.
+  ///
+  /// In en, this message translates to:
+  /// **'What to say'**
+  String get seqCallText;
+
+  /// No description provided for @seqGoText.
+  ///
+  /// In en, this message translates to:
+  /// **'At the start, say'**
+  String get seqGoText;
+
+  /// No description provided for @seqFinishText.
+  ///
+  /// In en, this message translates to:
+  /// **'At the end, say'**
+  String get seqFinishText;
+
+  /// No description provided for @seqLength.
+  ///
+  /// In en, this message translates to:
+  /// **'Length'**
+  String get seqLength;
+
+  /// No description provided for @seqNoLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'No limit'**
+  String get seqNoLimit;
+
+  /// No description provided for @seqSayEvery.
+  ///
+  /// In en, this message translates to:
+  /// **'Say the time every'**
+  String get seqSayEvery;
+
+  /// No description provided for @seqOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Off'**
+  String get seqOff;
+
+  /// No description provided for @seqEverySeconds.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 second} other{{n} seconds}}'**
+  String seqEverySeconds(int n);
+
+  /// No description provided for @seqEveryMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{n, plural, =1{1 minute} other{{n} minutes}}'**
+  String seqEveryMinutes(int n);
+
+  /// No description provided for @seqFinalCount.
+  ///
+  /// In en, this message translates to:
+  /// **'Count down the last'**
+  String get seqFinalCount;
+
+  /// No description provided for @seqMarks.
+  ///
+  /// In en, this message translates to:
+  /// **'Your marks'**
+  String get seqMarks;
+
+  /// No description provided for @seqAddMark.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a mark'**
+  String get seqAddMark;
+
+  /// No description provided for @seqMarkAt.
+  ///
+  /// In en, this message translates to:
+  /// **'At {time}'**
+  String seqMarkAt(String time);
+
+  /// No description provided for @seqSpeak.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak aloud'**
+  String get seqSpeak;
+
+  /// No description provided for @seqBeeps.
+  ///
+  /// In en, this message translates to:
+  /// **'Beeps and vibration'**
+  String get seqBeeps;
+
+  /// No description provided for @seqSayRemaining.
+  ///
+  /// In en, this message translates to:
+  /// **'Say time left, not time passed'**
+  String get seqSayRemaining;
+
+  /// No description provided for @seqPresets.
+  ///
+  /// In en, this message translates to:
+  /// **'Presets'**
+  String get seqPresets;
+
+  /// No description provided for @seqPresetRace.
+  ///
+  /// In en, this message translates to:
+  /// **'Race start'**
+  String get seqPresetRace;
+
+  /// No description provided for @seqPresetSprint.
+  ///
+  /// In en, this message translates to:
+  /// **'30 s effort'**
+  String get seqPresetSprint;
+
+  /// No description provided for @seqPresetRound.
+  ///
+  /// In en, this message translates to:
+  /// **'1 min round'**
+  String get seqPresetRound;
+
+  /// No description provided for @seqHintNoLimit.
+  ///
+  /// In en, this message translates to:
+  /// **'After Go it counts up until you stop it.'**
+  String get seqHintNoLimit;
+
+  /// No description provided for @seqHintLength.
+  ///
+  /// In en, this message translates to:
+  /// **'After Go it counts down to zero.'**
+  String get seqHintLength;
+
+  /// No description provided for @seqWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Words'**
+  String get seqWords;
+
+  /// No description provided for @homeEdit.
+  ///
+  /// In en, this message translates to:
+  /// **'Arrange home'**
+  String get homeEdit;
+
+  /// No description provided for @homeEditHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag the handle to move a card, fold it, or change its size.'**
+  String get homeEditHint;
+
+  /// No description provided for @homeReset.
+  ///
+  /// In en, this message translates to:
+  /// **'Reset layout'**
+  String get homeReset;
+
+  /// No description provided for @homeMove.
+  ///
+  /// In en, this message translates to:
+  /// **'Move'**
+  String get homeMove;
+
+  /// No description provided for @homeExpand.
+  ///
+  /// In en, this message translates to:
+  /// **'Show'**
+  String get homeExpand;
+
+  /// No description provided for @homeCollapse.
+  ///
+  /// In en, this message translates to:
+  /// **'Fold'**
+  String get homeCollapse;
+
+  /// No description provided for @homeSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Size'**
+  String get homeSize;
+
+  /// No description provided for @homeBlockClock.
+  ///
+  /// In en, this message translates to:
+  /// **'CLOCK'**
+  String get homeBlockClock;
+
+  /// No description provided for @homeBlockSky.
+  ///
+  /// In en, this message translates to:
+  /// **'SUN, MOON AND WEATHER'**
+  String get homeBlockSky;
+
+  /// No description provided for @homeBlockQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'QUICK ALARMS'**
+  String get homeBlockQuick;
+
+  /// No description provided for @homeBlockShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'SHABBAT AND HOLIDAYS'**
+  String get homeBlockShabbat;
+
+  /// No description provided for @homePlaceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'City for the sky'**
+  String get homePlaceTitle;
+
+  /// No description provided for @nextAlarmLine.
+  ///
+  /// In en, this message translates to:
+  /// **'Next alarm · {title} {time}'**
+  String nextAlarmLine(String title, String time);
+
+  /// No description provided for @showAllAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Show all days'**
+  String get showAllAlarms;
+
+  /// No description provided for @noAlarmsThatDay.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing rings this day'**
+  String get noAlarmsThatDay;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

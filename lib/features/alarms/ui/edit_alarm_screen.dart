@@ -165,31 +165,43 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
         title: Text(_isNew ? l10n.newAlarm : l10n.editAlarm),
         backgroundColor: Colors.transparent,
         actions: [
-          TextButton(onPressed: _preview, child: Text(l10n.previewCaps)),
           TextButton(onPressed: _save, child: Text(l10n.saveCaps)),
-          if (!_isNew)
-            IconButton(
-              tooltip: l10n.duplicate,
-              icon: const Icon(Icons.copy),
-              onPressed: () {
-                // A copy of the alarm as it is on screen, opened for editing.
-                final copy = UserAlarm.fromJson({
-                  ..._alarm.toJson(),
-                  'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
-                });
-                ref.read(userAlarmsProvider.notifier).save(copy);
-                context.pushReplacement('/alarm/${copy.id}');
-              },
-            ),
-          if (!_isNew)
-            IconButton(
-              tooltip: l10n.delete,
-              icon: const Icon(Icons.delete_outline),
-              onPressed: () {
-                ref.read(userAlarmsProvider.notifier).delete(_alarm.id);
-                Navigator.of(context).pop();
-              },
-            ),
+          PopupMenuButton<String>(
+            tooltip: l10n.more,
+            onSelected: (v) {
+              switch (v) {
+                case 'preview':
+                  _preview();
+                case 'copy':
+                  // A copy of the alarm as it is on screen, opened for editing.
+                  final copy = UserAlarm.fromJson({
+                    ..._alarm.toJson(),
+                    'id': DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+                  });
+                  ref.read(userAlarmsProvider.notifier).save(copy);
+                  context.pushReplacement('/alarm/${copy.id}');
+                case 'delete':
+                  ref.read(userAlarmsProvider.notifier).delete(_alarm.id);
+                  Navigator.of(context).pop();
+              }
+            },
+            itemBuilder: (context) => [
+              PopupMenuItem(
+                value: 'preview',
+                child: ListTile(leading: const Icon(Icons.play_arrow_outlined), title: Text(l10n.preview)),
+              ),
+              if (!_isNew)
+                PopupMenuItem(
+                  value: 'copy',
+                  child: ListTile(leading: const Icon(Icons.copy), title: Text(l10n.duplicate)),
+                ),
+              if (!_isNew)
+                PopupMenuItem(
+                  value: 'delete',
+                  child: ListTile(leading: const Icon(Icons.delete_outline), title: Text(l10n.delete)),
+                ),
+            ],
+          ),
         ],
       ),
       body: ListView(
@@ -304,11 +316,6 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               ),
             ),
           const SizedBox(height: 24),
-          FilledButton(
-            style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-            onPressed: _save,
-            child: Text(l10n.save),
-          ),
         ],
       ),
     );

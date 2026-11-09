@@ -26,7 +26,11 @@ class MoonIllumination {
   const MoonIllumination(this.fraction, this.phase);
   final double fraction, phase;
   int get phaseIndex {
-    if (phase < .01 || phase > .99) return 0;
+    // Match what the card prints: a Moon shown as 0% lit is a new Moon and
+    // one shown as 100% is full, not "waning crescent 0%".
+    final percent = (fraction * 100).round();
+    if (percent == 0 || phase < .01 || phase > .99) return 0;
+    if (percent == 100) return 4;
     if ((phase - .25).abs() < .01) return 2;
     if ((phase - .5).abs() < .01) return 4;
     if ((phase - .75).abs() < .01) return 6;

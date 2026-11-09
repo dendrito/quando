@@ -13,23 +13,41 @@ enum TuyaRegion {
 }
 
 class TuyaSettings {
-  const TuyaSettings({this.clientId = '', this.secret = '', this.uid = '', this.region = TuyaRegion.usWest});
+  const TuyaSettings({
+    this.clientId = '',
+    this.secret = '',
+    this.uid = '',
+    this.region = TuyaRegion.usWest,
+    this.relayUrl = defaultRelayUrl,
+  });
+
+  /// Address of Quando's Tuya relay, set at build time with
+  /// `--dart-define=QUANDO_TUYA_RELAY=https://...`. Empty when no relay is set up.
+  static const defaultRelayUrl = String.fromEnvironment('QUANDO_TUYA_RELAY');
+
   final String clientId;
   final String secret;
   final String uid;
   final TuyaRegion region;
-  bool get ready => clientId.isNotEmpty && secret.isNotEmpty && uid.isNotEmpty;
+
+  /// When set, scenes are listed and run through the relay with the user's Quando
+  /// sign-in; no Tuya keys are needed in the app. Otherwise the user's own project is used.
+  final String relayUrl;
+  bool get viaRelay => relayUrl.trim().isNotEmpty;
+  bool get ready => viaRelay || clientId.isNotEmpty && secret.isNotEmpty && uid.isNotEmpty;
   Map<String, dynamic> toJson() => {
     'clientId': clientId,
     'secret': secret,
     'uid': uid,
     'region': region.name,
+    if (relayUrl != defaultRelayUrl) 'relayUrl': relayUrl,
   };
   factory TuyaSettings.fromJson(Map<String, dynamic> j) => TuyaSettings(
     clientId: j['clientId'] as String? ?? '',
     secret: j['secret'] as String? ?? '',
     uid: j['uid'] as String? ?? '',
     region: TuyaRegion.values.firstWhere((r) => r.name == j['region'], orElse: () => TuyaRegion.usWest),
+    relayUrl: j['relayUrl'] as String? ?? defaultRelayUrl,
   );
 }
 

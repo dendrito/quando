@@ -479,10 +479,6 @@ class AppLocalizationsId extends AppLocalizations {
   String get calendarAlarm => 'Alarm kalender';
 
   @override
-  String get calendarIntro =>
-      'Quando? bisa berbunyi sebelum dan sesudah acara di kalender ponselmu. Google Kalender ikut setelah akun Google-mu ada di ponsel.';
-
-  @override
   String get connectCalendars => 'Hubungkan kalender';
 
   @override
@@ -2584,6 +2580,45 @@ class AppLocalizationsId extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Masuk dengan akun Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Gunakan negara, email atau telepon, dan kata sandi yang sama seperti di aplikasi Smart Life atau Tuya Smart. Akun harus sudah tertaut ke proyek Tuya Anda. Kata sandi hanya dikirim ke Tuya dan tidak pernah disimpan.';
+
+  @override
+  String get tuyaCountryCode => 'Kode negara (Brasil 55, AS 1)';
+
+  @override
+  String get tuyaAccount => 'Email atau telepon Smart Life';
+
+  @override
+  String get tuyaPassword => 'Kata sandi Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Masuk dan muat skenario';
+
+  @override
+  String get tuyaRelayUrl => 'Alamat relay Tuya Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Gunakan negara, email atau telepon, dan kata sandi akun Smart Life atau Tuya Smart Anda. Semuanya dikirim sekali ke relay Tuya Quando dan tidak disimpan. Anda harus masuk ke akun Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Masuk Smart Life dengan Google atau Apple? Di Smart Life, ketuk “Lupa Kata Sandi” untuk membuat kata sandi, lalu gunakan di sini.';
+
+  @override
+  String get tuyaLinked => 'Akun Smart Life tertaut';
+
+  @override
+  String get tuyaUnlink => 'Putuskan tautan';
+
+  @override
+  String get tuyaNeedsAccount => 'Masuk dulu ke akun Quando di Pengaturan.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -2695,4 +2730,356 @@ class AppLocalizationsId extends AppLocalizations {
   String pickFromService(String service) {
     return 'Pilih dari $service-ku';
   }
+
+  @override
+  String get weatherTonight => 'Malam ini';
+
+  @override
+  String get weatherTomorrowMorning => 'Besok pagi';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'sampai sekitar $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Matahari di balik awan';
+
+  @override
+  String get keysLockTitle => 'Kunci di perangkat Anda';
+
+  @override
+  String get keysLockOff =>
+      'Kunci layanan Anda tetap di perangkat ini. Pilih frasa sinkronisasi untuk mengirimnya, terenkripsi, ke perangkat Anda yang lain.';
+
+  @override
+  String get keysLockOn =>
+      'Kunci layanan Anda dienkripsi dengan frasa sinkronisasi sebelum meninggalkan perangkat ini. Tidak ada orang lain, bahkan Google, yang bisa membacanya.';
+
+  @override
+  String get keysLockWaiting =>
+      'Kunci dari perangkat Anda yang lain sudah tiba di sini, terkunci. Ketik frasa sinkronisasi untuk membukanya.';
+
+  @override
+  String get keysSetPassphrase => 'Pilih frasa';
+
+  @override
+  String get keysChangePassphrase => 'Ubah frasa';
+
+  @override
+  String get keysUnlock => 'Buka kunci';
+
+  @override
+  String get keysStartOver => 'Lupa? Mulai ulang';
+
+  @override
+  String get keysStartOverHint =>
+      'Mulai ulang mengirim kunci perangkat ini dengan frasa baru. Perangkat lain akan meminta frasa baru.';
+
+  @override
+  String get keysPassphrase => 'Frasa sinkronisasi';
+
+  @override
+  String get keysPassphraseAgain => 'Ketik sekali lagi';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Gunakan minimal $count karakter.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Keduanya tidak sama.';
+
+  @override
+  String get keysPassphraseWrong => 'Frasa itu tidak membuka kunci ini.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Catat baik-baik: jika lupa, tidak ada yang bisa memulihkannya dan Anda harus mengetik kunci lagi.';
+
+  @override
+  String get keysShareNeedsPassphrase => 'Pilih frasa sinkronisasi dulu, di Kunci di perangkat Anda.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? bisa berbunyi sebelum dan sesudah acara di kalendermu. Pilih dari mana asalnya.';
+
+  @override
+  String get deviceCalendarsHeading => 'DI PERANGKAT INI';
+
+  @override
+  String get deviceCalendarsTitle => 'Aplikasi kalender perangkat ini';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Semua akun di dalamnya: Google, Samsung, Outlook, iCloud, dan kalender yang hanya disimpan di sini.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE KALENDER';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Masuk dengan Google untuk membaca kalendermu langsung dari Google, meski akun Google-mu tidak ada di perangkat ini.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Masuk sebagai $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Keluar';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Masuk dengan Google belum tersedia di perangkat ini. Tambahkan akun Google di pengaturan perangkat (Kalender › Akun) dan kalendernya muncul di perangkat ini.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Kalender tidak bisa dijangkau sekarang. Alarm yang sudah dipasang darinya tetap berbunyi.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Kalender dari akun Google yang sama yang sudah tampil di perangkat ini mulai dalam keadaan mati, agar tidak ada yang berbunyi dua kali.';
+
+  @override
+  String get timersTitle => 'Pengatur waktu';
+
+  @override
+  String get timerStopwatch => 'Stopwatch';
+
+  @override
+  String get timerCountdown => 'Timer';
+
+  @override
+  String get timerSequence => 'Siap';
+
+  @override
+  String get timerStopwatchSub => 'Hitung maju, dengan putaran';
+
+  @override
+  String get timerCountdownSub => 'Hitung mundur, berdering di nol';
+
+  @override
+  String get timerSequenceSub => 'Aba-aba dan penanda lisan';
+
+  @override
+  String get timerStart => 'Mulai';
+
+  @override
+  String get timerPause => 'Jeda';
+
+  @override
+  String get timerResume => 'Lanjutkan';
+
+  @override
+  String get timerReset => 'Atur ulang';
+
+  @override
+  String get timerLap => 'Putaran';
+
+  @override
+  String get timerTimesUp => 'Waktu habis';
+
+  @override
+  String get timerSetTime => 'Atur waktu';
+
+  @override
+  String get timerMinutes => 'Menit';
+
+  @override
+  String get timerSeconds => 'Detik';
+
+  @override
+  String get seqOnYourMarks => 'Pada tempat';
+
+  @override
+  String get seqGetSet => 'Siap';
+
+  @override
+  String get seqGo => 'Mulai!';
+
+  @override
+  String get seqFinish => 'Waktu!';
+
+  @override
+  String get seqReady => 'Siap';
+
+  @override
+  String get seqSettings => 'Pengaturan';
+
+  @override
+  String get seqStartCalls => 'Aba-aba sebelum mulai';
+
+  @override
+  String get seqStartCallsHelp => 'Diucapkan sebelum Mulai, dihitung mundur dari awal.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 detik sebelumnya',
+      other: '$n detik sebelumnya',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Tambah aba-aba';
+
+  @override
+  String get seqCallText => 'Apa yang diucapkan';
+
+  @override
+  String get seqGoText => 'Saat mulai, ucapkan';
+
+  @override
+  String get seqFinishText => 'Saat selesai, ucapkan';
+
+  @override
+  String get seqLength => 'Durasi';
+
+  @override
+  String get seqNoLimit => 'Tanpa batas';
+
+  @override
+  String get seqSayEvery => 'Ucapkan waktu setiap';
+
+  @override
+  String get seqOff => 'Mati';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 detik', other: '$n detik');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 menit', other: '$n menit');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Hitung mundur yang terakhir';
+
+  @override
+  String get seqMarks => 'Penanda Anda';
+
+  @override
+  String get seqAddMark => 'Tambah penanda';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'Pada $time';
+  }
+
+  @override
+  String get seqSpeak => 'Ucapkan dengan suara';
+
+  @override
+  String get seqBeeps => 'Bunyi bip dan getar';
+
+  @override
+  String get seqSayRemaining => 'Ucapkan sisa waktu, bukan waktu yang berlalu';
+
+  @override
+  String get seqPresets => 'Preset';
+
+  @override
+  String get seqPresetRace => 'Start balapan';
+
+  @override
+  String get seqPresetSprint => 'Usaha 30 dtk';
+
+  @override
+  String get seqPresetRound => 'Ronde 1 mnt';
+
+  @override
+  String get seqHintNoLimit => 'Setelah Mulai, hitung maju sampai Anda menghentikannya.';
+
+  @override
+  String get seqHintLength => 'Setelah Mulai, hitung mundur sampai nol.';
+
+  @override
+  String get seqWords => 'Kata';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

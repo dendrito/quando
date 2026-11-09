@@ -15,6 +15,7 @@ import 'package:quando/l10n/l10n.dart';
 import '../sounds/data/youtube_library.dart';
 import 'sync_config.dart';
 import '../integrations/data/pushover_credentials_sync.dart';
+import 'key_vault.dart';
 import '../integrations/data/service_connections_sync.dart';
 import '../sounds/data/spotify_account.dart';
 import 'sync_engine.dart';
@@ -278,10 +279,33 @@ class SyncNotifier extends Notifier<SyncStatus> {
     for (final k in ['sync.last', 'sync.stamps', 'sync.origins', 'sync.email', 'sync.name', 'sync.photo']) {
       await prefs.remove(k);
     }
+    await KeyVault.forget(prefs);
     try {
       await FirebaseAuth.instance.signOut();
     } catch (_) {}
     state = SyncStatus(revealed: state.revealed);
+  }
+
+  /// Chooses (or starts over with) the sync passphrase on this device and
+  /// sends this device's keys, locked with it, to your other devices.
+  Future<void> setKeyPassphrase(String passphrase) async {
+    final prefs = ref.read(prefsProvider);
+    await KeyVault.setPassphrase(prefs, passphrase);
+    await KeyVault.clearBoxes(prefs);
+    await PushoverCredentialsSync.publish(prefs, ref.read(integrationsProvider));
+    await ServiceConnectionsSync.publish(prefs);
+    try {
+      await _engine?.pushLocal();
+    } catch (_) {
+      /* The engine's timer retries. */
+    }
+  }
+
+  /// Opens the keys another device sent here. False for a wrong passphrase.
+  Future<bool> unlockKeys(String passphrase) async {
+    if (!await KeyVault.unlock(ref.read(prefsProvider), passphrase)) return false;
+    await _reload();
+    return true;
   }
 
   /// Settings arrived from another device: read them again.

@@ -20,6 +20,7 @@ import '../features/ringing/ring_screen.dart';
 import '../features/rules/ui/preset_screen.dart';
 import '../features/shabbat/ui/shabbat_screen.dart';
 import '../features/sync/sync_service.dart';
+import '../features/timers/ui/timers_screen.dart';
 import '../features/sounds/ui/sounds_screen.dart';
 import '../features/ready/ready_screen.dart';
 import '../core/util/platform.dart';
@@ -37,6 +38,11 @@ final _router = GoRouter(
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
+    GoRoute(
+      path: '/timers',
+      builder: (context, state) =>
+          TimersScreen(initialTab: int.tryParse(state.uri.queryParameters['tab'] ?? '') ?? 0),
+    ),
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),

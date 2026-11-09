@@ -19,6 +19,13 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
   late final _id = TextEditingController(text: ref.read(integrationsProvider).tuya.clientId);
   late final _secret = TextEditingController(text: ref.read(integrationsProvider).tuya.secret);
   late final _uid = TextEditingController(text: ref.read(integrationsProvider).tuya.uid);
+  late final _relay = TextEditingController(text: ref.read(integrationsProvider).tuya.relayUrl);
+  final _country = TextEditingController();
+  final _account = TextEditingController();
+  final _password = TextEditingController();
+  bool _signingIn = false;
+  bool? _linked;
+  String _app = 'smartlife';
   bool _loading = false;
   bool _advanced = false;
   bool _loaded = false;
@@ -30,7 +37,98 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
     _id.dispose();
     _secret.dispose();
     _uid.dispose();
+    _relay.dispose();
+    _country.dispose();
+    _account.dispose();
+    _password.dispose();
     super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (ref.read(integrationsProvider).tuya.viaRelay) _checkLinked();
+  }
+
+  Future<void> _checkLinked() async {
+    try {
+      final linked = await ref
+          .read(tuyaClientProvider)
+          .relay
+          .linked(ref.read(integrationsProvider).tuya.relayUrl);
+      if (mounted) setState(() => _linked = linked);
+    } catch (_) {
+      // Not signed in to Quando or offline: the sign-in form still shows.
+    }
+  }
+
+  String _failure(Object e) {
+    final code = e is TuyaException ? e.code : 'network';
+    return code == 'signin' ? l10n.tuyaNeedsAccount : '${l10n.tuyaFailed} $code';
+  }
+
+  /// Links the Smart Life account through the relay. The password is cleared as soon as it is sent.
+  Future<void> _relaySignIn() async {
+    final url = ref.read(integrationsProvider).tuya.relayUrl;
+    setState(() {
+      _signingIn = true;
+      _error = null;
+    });
+    try {
+      await ref
+          .read(tuyaClientProvider)
+          .relay
+          .login(
+            url,
+            countryCode: _country.text,
+            username: _account.text,
+            password: _password.text,
+            app: _app,
+          );
+      _password.clear();
+      if (mounted) setState(() => _linked = true);
+      await _load();
+    } catch (e) {
+      if (mounted) setState(() => _error = _failure(e));
+    } finally {
+      if (mounted) setState(() => _signingIn = false);
+    }
+  }
+
+  Future<void> _unlink() async {
+    try {
+      await ref.read(tuyaClientProvider).relay.logout(ref.read(integrationsProvider).tuya.relayUrl);
+      final prefs = ref.read(prefsProvider);
+      await TuyaSceneCache.write(prefs, ref.read(integrationsProvider).tuya, const []);
+      ref.invalidate(tuyaScenesProvider);
+      if (mounted) setState(() => _linked = false);
+    } catch (e) {
+      if (mounted) setState(() => _error = _failure(e));
+    }
+  }
+
+  /// Signs in with the Smart Life account to find its Tuya user id, then loads the scenes.
+  /// Only the user id is kept; the password is cleared as soon as the call returns.
+  Future<void> _signIn() async {
+    final settings = ref.read(integrationsProvider).tuya;
+    setState(() {
+      _signingIn = true;
+      _error = null;
+    });
+    try {
+      final uid = await ref
+          .read(tuyaClientProvider)
+          .login(settings, username: _account.text, password: _password.text, countryCode: _country.text);
+      _uid.text = uid;
+      _save();
+      _password.clear();
+      if (mounted) setState(() => _signingIn = false);
+      await _load();
+    } catch (e) {
+      if (mounted) setState(() => _error = '${l10n.tuyaFailed} ${e is TuyaException ? e.code : 'network'}');
+    } finally {
+      if (mounted) setState(() => _signingIn = false);
+    }
   }
 
   void _save({TuyaRegion? region}) => ref
@@ -42,6 +140,7 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
             secret: _secret.text.trim(),
             uid: _uid.text.trim(),
             region: region ?? s.tuya.region,
+            relayUrl: _relay.text.trim(),
           ),
         ),
       );
@@ -60,7 +159,7 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
       ref.invalidate(tuyaScenesProvider);
       if (mounted) setState(() => _loaded = true);
     } catch (e) {
-      if (mounted) setState(() => _error = '${l10n.tuyaFailed} ${e is TuyaException ? e.code : 'network'}');
+      if (mounted) setState(() => _error = _failure(e));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -93,6 +192,62 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
     }
   }
 
+  /// Country, Smart Life email or phone, and password, plus the button that uses them.
+  /// [directSignIn] uses the user's own project keys; otherwise Quando's relay is used.
+  List<Widget> _signInForm({bool directSignIn = false}) {
+    final settings = ref.read(integrationsProvider).tuya;
+    final ready =
+        !_signingIn &&
+        !_loading &&
+        _country.text.trim().isNotEmpty &&
+        _account.text.trim().isNotEmpty &&
+        _password.text.isNotEmpty &&
+        (!directSignIn || settings.clientId.isNotEmpty && settings.secret.isNotEmpty);
+    return [
+      Text(l10n.tuyaSignInTitle, style: Theme.of(context).textTheme.titleSmall),
+      Text(directSignIn ? l10n.tuyaSignInHint : l10n.tuyaRelayHint),
+      if (!directSignIn)
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: SegmentedButton<String>(
+            segments: const [
+              ButtonSegment(value: 'smartlife', label: Text('Smart Life')),
+              ButtonSegment(value: 'tuyaSmart', label: Text('Tuya Smart')),
+            ],
+            selected: {_app},
+            onSelectionChanged: (v) => setState(() => _app = v.first),
+          ),
+        ),
+      TextField(
+        controller: _country,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(labelText: l10n.tuyaCountryCode),
+        onChanged: (_) => setState(() {}),
+      ),
+      TextField(
+        controller: _account,
+        keyboardType: TextInputType.emailAddress,
+        autocorrect: false,
+        decoration: InputDecoration(labelText: l10n.tuyaAccount),
+        onChanged: (_) => setState(() {}),
+      ),
+      TextField(
+        controller: _password,
+        obscureText: true,
+        enableSuggestions: false,
+        autocorrect: false,
+        decoration: InputDecoration(labelText: l10n.tuyaPassword),
+        onChanged: (_) => setState(() {}),
+      ),
+      if (!directSignIn) Text(l10n.tuyaGoogleHint),
+      const SizedBox(height: 8),
+      FilledButton(
+        onPressed: ready ? (directSignIn ? _signIn : _relaySignIn) : null,
+        child: Text(_signingIn ? l10n.loading : l10n.tuyaSignIn),
+      ),
+    ];
+  }
+
   @override
   Widget build(BuildContext context) {
     ref.listen(integrationsProvider, (before, after) {
@@ -111,12 +266,30 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
         leading: const Icon(Icons.home_outlined),
         childrenPadding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
         children: [
-          Text(l10n.tuyaConsumerPending),
+          if (settings.viaRelay) ...[
+            if (_linked == true)
+              ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.check_circle_outline),
+                title: Text(l10n.tuyaLinked),
+                trailing: TextButton(onPressed: _unlink, child: Text(l10n.tuyaUnlink)),
+              )
+            else
+              ..._signInForm(),
+          ] else
+            Text(l10n.tuyaConsumerPending),
           ExpansionTile(
             title: Text(l10n.tuyaAdvanced),
             onExpansionChanged: (value) => setState(() => _advanced = value),
             tilePadding: EdgeInsets.zero,
             children: [
+              TextField(
+                controller: _relay,
+                keyboardType: TextInputType.url,
+                autocorrect: false,
+                decoration: InputDecoration(labelText: l10n.tuyaRelayUrl),
+                onChanged: (_) => _save(),
+              ),
               Text(l10n.tuyaSetupHint),
               DropdownButtonFormField<TuyaRegion>(
                 key: ValueKey(settings.region),
@@ -148,6 +321,7 @@ class _TuyaConnectionCardState extends ConsumerState<TuyaConnectionCard> {
                 onChanged: (_) => _save(),
                 autocorrect: false,
               ),
+              if (!settings.viaRelay) ...[const SizedBox(height: 16), ..._signInForm(directSignIn: true)],
             ],
           ),
           const SizedBox(height: 12),

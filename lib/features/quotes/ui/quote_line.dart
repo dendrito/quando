@@ -15,11 +15,14 @@ import 'package:quando/l10n/l10n.dart';
 /// With no sources picked it shows the tagline when nothing is set, and
 /// nothing otherwise.
 class QuoteLine extends ConsumerStatefulWidget {
-  const QuoteLine({super.key, required this.now, required this.idle, this.color});
+  const QuoteLine({super.key, required this.now, required this.idle, this.color, this.oneLine = false});
 
   final DateTime now;
   final bool idle;
   final Color? color;
+
+  /// The quote and who said it on a single line, cut with … if it is long.
+  final bool oneLine;
 
   @override
   ConsumerState<QuoteLine> createState() => _QuoteLineState();
@@ -58,7 +61,12 @@ class _QuoteLineState extends ConsumerState<QuoteLine> {
     final color = widget.color ?? const Color(0xFFF7DCD0);
     if (q == null) {
       return widget.idle
-          ? Text(l10n.tagline, style: text.bodyLarge?.copyWith(color: color))
+          ? Text(
+              l10n.tagline,
+              maxLines: widget.oneLine ? 1 : null,
+              overflow: widget.oneLine ? TextOverflow.ellipsis : null,
+              style: text.bodyLarge?.copyWith(color: color),
+            )
           : const SizedBox.shrink();
     }
     return GestureDetector(
@@ -66,18 +74,26 @@ class _QuoteLineState extends ConsumerState<QuoteLine> {
       onTap: () => setState(() => _skip++),
       child: AnimatedSwitcher(
         duration: const Duration(milliseconds: 400),
-        child: Column(
-          key: ValueKey(q.text),
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              q.text,
-              style: text.bodyLarge?.copyWith(color: color, fontStyle: FontStyle.italic),
-            ),
-            const SizedBox(height: 2),
-            Text('— ${q.by}', style: text.bodySmall?.copyWith(color: color.withValues(alpha: 0.75))),
-          ],
-        ),
+        child: widget.oneLine
+            ? Text(
+                '${q.text} — ${q.by}',
+                key: ValueKey(q.text),
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: text.bodyMedium?.copyWith(color: color, fontStyle: FontStyle.italic),
+              )
+            : Column(
+                key: ValueKey(q.text),
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    q.text,
+                    style: text.bodyLarge?.copyWith(color: color, fontStyle: FontStyle.italic),
+                  ),
+                  const SizedBox(height: 2),
+                  Text('— ${q.by}', style: text.bodySmall?.copyWith(color: color.withValues(alpha: 0.75))),
+                ],
+              ),
       ),
     );
   }

@@ -110,6 +110,11 @@ ThemeData buildTheme() {
       backgroundColor: QuandoColors.coral,
       foregroundColor: QuandoColors.ground,
       shape: pill,
+      // No hard dark ring around it: the home screen gives it a soft glow instead.
+      elevation: 0,
+      focusElevation: 0,
+      hoverElevation: 0,
+      highlightElevation: 0,
       extendedTextStyle: TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 19),
     ),
     switchTheme: SwitchThemeData(

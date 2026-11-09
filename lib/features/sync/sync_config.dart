@@ -17,13 +17,15 @@ class SyncConfig {
   /// One app id per edition and platform, as Firebase lists them.
   static const appIdAndroid = '1:216517788382:android:1379ca100435e0099e384f';
   static const appIdAndroidMatai = '1:216517788382:android:c0d17f9cc4c601139e384f';
-  static const appIdIos = '1:216517788382:ios:99aa2bf02a4239099e384f';
+  static const appIdIos = '1:216517788382:ios:84aa278e05d3a5969e384f';
+  static const appIdMacos = '1:216517788382:ios:bcb65cb5c3b91f859e384f';
   static const appIdIosMatai = '1:216517788382:ios:234bb24b72d1084f9e384f';
   static const appIdIosMine = '1:216517788382:ios:ea9e3645d42216019e384f';
   static const appIdAndroidMine = '1:216517788382:android:e0d7034659b730059e384f';
 
   /// The iOS sign-in client from GoogleService-Info.plist (CLIENT_ID).
-  static const iosClientId = '216517788382-nv4cmk4sa7boc2ebp7ddd6htdj4f9jku.apps.googleusercontent.com';
+  static const iosClientId = '216517788382-78k8qff4adbokpmrorem49h755fhk9l4.apps.googleusercontent.com';
+  static const macosClientId = '216517788382-gpme2rphr4dnh9bkpd6vpcv8dga4mvql.apps.googleusercontent.com';
   static const iosClientIdMatai = '216517788382-u2m9fn9n6nul6co31svplmktcjlgpgvk.apps.googleusercontent.com';
   static const iosClientIdMine = '216517788382-1stg3hhfun5fqik91bnkjactuevb7v34.apps.googleusercontent.com';
 
@@ -43,6 +45,8 @@ class SyncConfig {
             ? appIdIosMine
             : kodesh
             ? appIdIosMatai
+            : _mac
+            ? appIdMacos
             : appIdIos);
 
   /// The Firebase project's own web client. Apple devices ask Google for a
@@ -56,6 +60,8 @@ class SyncConfig {
             ? iosClientIdMine
             : kodesh
             ? iosClientIdMatai
+            : _mac
+            ? macosClientId
             : iosClientId)
       : null;
 

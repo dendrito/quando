@@ -35,14 +35,43 @@ String hhmm(DateTime t) => '${t.hour.toString().padLeft(2, '0')}:${t.minute.toSt
 /// "Fri 6 Nov", in the language in use.
 String dayLabel(DateTime t) => DateFormat('EEE d MMM', _lang).format(t);
 
+/// "Monday", in the language in use.
+String weekdayName(DateTime t) => DateFormat('EEEE', _lang).format(t);
+
+/// "November", in the language in use.
+String monthName(DateTime t) => DateFormat('MMMM', _lang).format(t);
+
 /// "M" for Monday ([weekday] 1) to "S" for Sunday (7), in the language in use.
 String weekdayNarrow(int weekday) => DateFormat('EEEEE', _lang).format(DateTime(2024, 1, weekday));
 
 /// "Mon" for Monday ([weekday] 1) to "Sun" for Sunday (7), in the language in use.
 String weekdayShort(int weekday) => DateFormat('EEE', _lang).format(DateTime(2024, 1, weekday));
 
-/// "New York" for `America/New_York`.
-String cityOf(String zone) => zone.split('/').last.replaceAll('_', ' ');
+/// Names with accents or in common use that the zone ID can't spell.
+const _cityNames = {
+  'America/Sao_Paulo': 'São Paulo',
+  'America/Bogota': 'Bogotá',
+  'America/Asuncion': 'Asunción',
+  'America/Cancun': 'Cancún',
+  'America/Montreal': 'Montréal',
+  'America/Curacao': 'Curaçao',
+  'Europe/Zurich': 'Zürich',
+  'Europe/Kiev': 'Kyiv',
+  'Africa/Algiers': 'Algiers',
+  'Asia/Kolkata': 'Kolkata',
+  'Asia/Calcutta': 'Kolkata',
+  'Asia/Ho_Chi_Minh': 'Ho Chi Minh City',
+  'Asia/Saigon': 'Ho Chi Minh City',
+};
+
+/// "New York" for `America/New_York`, "São Paulo" for `America/Sao_Paulo`:
+/// a city name to show people, never the zone ID.
+String cityOf(String zone) => _cityNames[zone] ?? zone.split('/').last.replaceAll('_', ' ');
+
+/// "Tel Aviv · Jerusalem · city time", or just "São Paulo time" when the
+/// place and its zone are the same city.
+String timesInLabel(String placeName, String zone) =>
+    placeName == cityOf(zone) ? l10n.cityTime(placeName) : l10n.timesIn(placeName, cityOf(zone));
 
 /// Every zone in the tz database with a city in it, e.g. `Europe/Lisbon`.
 List<String> allZones() {

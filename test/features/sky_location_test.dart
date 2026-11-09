@@ -18,6 +18,7 @@ import 'package:quando/features/home/domain/sky.dart';
 import 'package:quando/features/home/domain/zone_places.dart';
 import 'package:quando/features/home/ui/day_arc.dart';
 import 'package:quando/features/home/ui/moon_details.dart';
+import 'package:quando/features/home/ui/place_sheet.dart';
 import 'package:quando/features/home/ui/sky_panel.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
 import 'package:quando/features/shabbat/ui/city_picker.dart';
@@ -92,6 +93,10 @@ void main() {
       expect(after.newMoon.isAfter(phases.newMoon.add(const Duration(days: 29))), isTrue);
     }
     expect(MoonIllumination.at(now).phaseIndex, 7); // 3% waning is not new moon.
+    // A Moon the card prints as 0% lit is called "New moon", never "waning crescent 0%".
+    expect(const MoonIllumination(.004, .96).phaseIndex, 0);
+    expect(const MoonIllumination(.003, .04).phaseIndex, 0);
+    expect(const MoonIllumination(.996, .48).phaseIndex, 4);
   });
 
   test('lunar arc stays chronological across midnight and polar/DST dates', () {
@@ -218,7 +223,11 @@ void main() {
   testWidgets('explicit sky GPS coordinates keep a fixed clock zone and Shabbat city unchanged', (
     tester,
   ) async {
-    SharedPreferences.setMockInitialValues({'place.name': 'Jerusalem', 'zone.fixed': 'America/Detroit'});
+    SharedPreferences.setMockInitialValues({
+      'place.name': 'Jerusalem',
+      'zone.fixed': 'America/Detroit',
+      'zone.pickedHere': true,
+    });
     final prefs = await SharedPreferences.getInstance();
     final c = ProviderContainer(
       overrides: [
@@ -251,7 +260,7 @@ void main() {
     await tester.tap(find.text(l10n.useMyLocation));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('America/Sao_Paulo'), findsOneWidget);
+    expect(find.text('São Paulo'), findsOneWidget);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(skyPlaceProvider)?.latitude, -23.55);
@@ -307,7 +316,10 @@ void main() {
       await tester.pumpAndSettle();
       final card = tester.widget<Container>(find.byKey(const ValueKey('moon-daylight-background')));
       final gradient = (card.decoration! as BoxDecoration).gradient! as LinearGradient;
-      expect(gradient.colors.first, const Color(0xFF141033));
+      // The sky follows the Moon's pass: dark at moonrise, then fading to the
+      // day sky once the Sun is up.
+      expect(gradient.colors.first.computeLuminance(), lessThan(.08));
+      expect(gradient.colors.last.computeLuminance(), greaterThan(gradient.colors.first.computeLuminance()));
       expect(gradient.colors, isNot(contains(SkyColors.day)));
       await tester.runAsync(() async {
         final image = await (key.currentContext!.findRenderObject() as RenderRepaintBoundary).toImage();
@@ -352,6 +364,7 @@ void main() {
         overrides: [
           prefsProvider.overrideWithValue(prefs),
           deviceZoneProvider.overrideWithValue('America/Detroit'),
+          shabbatInUseProvider.overrideWithValue(true),
         ],
       );
       addTearDown(c.dispose);
@@ -373,7 +386,12 @@ void main() {
                         child: ColoredBox(
                           key: const ValueKey('test-current-sky'),
                           color: sky.color,
-                          child: SkyPanel(sky: sky),
+                          child: Column(
+                            children: [
+                              const PlacePill(),
+                              SkyPanel(sky: sky),
+                            ],
+                          ),
                         ),
                       );
                     },
@@ -391,10 +409,21 @@ void main() {
       await tester.pumpAndSettle();
       expect(find.byType(MoonArc), findsOneWidget);
       expect(find.textContaining(l10n.moonNextNew), findsOneWidget);
-      expect(find.textContaining('Detroit'), findsOneWidget);
+      // The city pill names the sky's city; its sheet switches the source.
+      expect(
+        find.descendant(of: find.byType(PlacePill), matching: find.textContaining('Detroit')),
+        findsOneWidget,
+      );
+      await tester.tap(find.byType(PlacePill));
+      await tester.pumpAndSettle();
       await tester.tap(find.text(l10n.skyShabbat));
       await tester.pumpAndSettle();
-      expect(find.textContaining('São Paulo'), findsOneWidget);
+      await tester.tapAt(const Offset(10, 10)); // Close the sheet.
+      await tester.pumpAndSettle();
+      expect(
+        find.descendant(of: find.byType(PlacePill), matching: find.textContaining('São Paulo')),
+        findsOneWidget,
+      );
       expect(c.read(homeZoneProvider), 'America/Detroit');
       final phaseRect = tester.getRect(find.byType(MoonDisc));
       final datesRect = tester.getRect(find.byKey(const ValueKey('moon-upcoming-dates')));

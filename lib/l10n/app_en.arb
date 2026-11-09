@@ -285,7 +285,7 @@
   "seconds": "Seconds",
   "oneSecondLess": "1 second less",
   "oneSecondMore": "1 second more",
-  "inDays": "in {d}d",
+  "inDays": "in {d} d",
   "@inDays": {
     "placeholders": {
       "d": {
@@ -293,7 +293,7 @@
       }
     }
   },
-  "inDaysHours": "in {d}d {h}h",
+  "inDaysHours": "in {d} d {h} h",
   "@inDaysHours": {
     "placeholders": {
       "d": {
@@ -304,7 +304,7 @@
       }
     }
   },
-  "inHours": "in {h}h",
+  "inHours": "in {h} h",
   "@inHours": {
     "placeholders": {
       "h": {
@@ -312,7 +312,7 @@
       }
     }
   },
-  "inHoursMinutes": "in {h}h {m}m",
+  "inHoursMinutes": "in {h} h {m} min",
   "@inHoursMinutes": {
     "placeholders": {
       "h": {
@@ -323,7 +323,7 @@
       }
     }
   },
-  "inMins": "in {m}m",
+  "inMins": "in {m} min",
   "@inMins": {
     "placeholders": {
       "m": {
@@ -365,7 +365,7 @@
   "lockAutoHeading": "LOCK AUTOMATICALLY",
   "shabbatAndFestivalsLong": "Shabbat and festivals",
   "fromCandleToHavdalah": "From candle lighting to Havdalah",
-  "lockCalendarWord": "During calendar events with this word",
+  "lockCalendarWord": "During events named…",
   "lockCalendarWordHint": "e.g. lock, exam, focus",
   "leaveEmptyForNone": "Leave empty for none",
   "connectCalendarsFirst": "Connect calendars first (calendar icon)",
@@ -383,7 +383,6 @@
   "nextAlarm": "Next alarm",
   "holdToUnlock": "Hold to unlock",
   "calendarAlarm": "Calendar alarm",
-  "calendarIntro": "Quando? can ring before and after events in your phone's calendars. Google Calendar is included once your Google account is on the phone.",
   "connectCalendars": "Connect calendars",
   "calendarAlarmsHeading": "CALENDAR ALARMS",
   "calendarNoneYet": "None yet. Start with one, then change it as you like:",
@@ -1617,6 +1616,18 @@
   "skyMoonDisplay": "Show Moon: rise, set and phase",
   "tuyaConsumerPending": "Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.",
   "tuyaAdvanced": "Advanced setup",
+  "tuyaSignInTitle": "Sign in with your Smart Life account",
+  "tuyaSignInHint": "Use the same country, email or phone and password as in the Smart Life or Tuya Smart app. The account must already be linked to your Tuya project. The password goes only to Tuya and is never saved.",
+  "tuyaCountryCode": "Country calling code (Brazil 55, US 1)",
+  "tuyaAccount": "Smart Life email or phone",
+  "tuyaPassword": "Smart Life password",
+  "tuyaSignIn": "Sign in and load scenes",
+  "tuyaRelayUrl": "Quando Tuya relay address (https)",
+  "tuyaRelayHint": "Use the country, email or phone and password of your Smart Life or Tuya Smart account. They go to Quando’s Tuya relay once and are not saved. You need to be signed in to your Quando account.",
+  "tuyaGoogleHint": "Signed in to Smart Life with Google or Apple? In Smart Life, tap Forgot Password to set a password, then use it here.",
+  "tuyaLinked": "Smart Life account linked",
+  "tuyaUnlink": "Unlink",
+  "tuyaNeedsAccount": "Sign in to your Quando account in Settings first.",
   "roshHodeshHeading": "Rosh Hodesh",
   "roshHodeshExplain": "Show the next Hebrew month’s first day or two days on Home.",
   "roshHodeshNext": "Next Rosh Hodesh",
@@ -1681,6 +1692,177 @@
   "@pickFromService": {
     "placeholders": {
       "service": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherTonight": "Tonight",
+  "weatherTomorrowMorning": "Tomorrow morning",
+  "weatherUntilAbout": "until about {time}",
+  "@weatherUntilAbout": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherSunBehindClouds": "Sun behind the clouds",
+  "keysLockTitle": "Keys on your devices",
+  "keysLockOff": "Your service keys stay on this device. Choose a sync passphrase to send them, encrypted, to your other devices.",
+  "keysLockOn": "Your service keys are encrypted with your sync passphrase before they leave this device. Nobody else, not even Google, can read them.",
+  "keysLockWaiting": "Keys from your other device arrived here, locked. Type your sync passphrase to open them.",
+  "keysSetPassphrase": "Choose passphrase",
+  "keysChangePassphrase": "Change passphrase",
+  "keysUnlock": "Unlock keys",
+  "keysStartOver": "Forgot it? Start over",
+  "keysStartOverHint": "Starting over sends this device's keys with a new passphrase. Your other devices will ask for the new one.",
+  "keysPassphrase": "Sync passphrase",
+  "keysPassphraseAgain": "Type it again",
+  "keysPassphraseShort": "Use at least {count} characters.",
+  "@keysPassphraseShort": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "keysPassphraseMismatch": "The two don't match.",
+  "keysPassphraseWrong": "That passphrase doesn't open these keys.",
+  "keysPassphraseNote": "Write it down: if you forget it, nobody can recover it, and you'll type your keys again.",
+  "keysShareNeedsPassphrase": "Choose a sync passphrase first, under Keys on your devices.",
+  "settingsAlarmDefaults": "Alarm defaults",
+  "settingsPlacesTime": "Places & time",
+  "settingsLook": "Look, language & quotes",
+  "settingsAbout": "About",
+  "defaultForNewAlarms": "Default for new alarms",
+  "preview": "Preview",
+  "atClock": "at {time}",
+  "@atClock": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "connectACalendar": "Connect a calendar",
+  "newFromReadyMade": "From a ready-made",
+  "newFromReadyMadeHint": "Sunrise, sunset and other alarms that are already set up for you",
+  "calendarSourcesIntro": "Quando? can ring before and after events in your calendars. Pick where they come from.",
+  "deviceCalendarsHeading": "ON THIS DEVICE",
+  "deviceCalendarsTitle": "This device's calendar app",
+  "deviceCalendarsHint": "Every account on it: Google, Samsung, Outlook, iCloud, and calendars kept only here.",
+  "googleCalendarHeading": "GOOGLE CALENDAR",
+  "googleCalendarSignIn": "Sign in with Google to read your calendars straight from Google, even when your Google account isn't on this device.",
+  "googleCalendarSignedIn": "Signed in as {email}",
+  "googleCalendarSignOut": "Sign out",
+  "googleCalendarNotHere": "Google sign-in isn't available on this device yet. Add your Google account in the device's settings (Calendar › Accounts) and its calendars appear under this device.",
+  "googleCalendarUnreachable": "Couldn't reach Google Calendar just now. Alarms already set from it still ring.",
+  "googleCalendarTwiceHint": "Calendars this device already shows from the same Google account start off, so nothing rings twice.",
+  "@googleCalendarSignedIn": {
+    "placeholders": {
+      "email": {
+        "type": "String"
+      }
+    }
+  },
+  "timersTitle": "Timers",
+  "timerStopwatch": "Stopwatch",
+  "timerCountdown": "Timer",
+  "timerSequence": "Get set",
+  "timerStopwatchSub": "Count up, with laps",
+  "timerCountdownSub": "Count down, rings at zero",
+  "timerSequenceSub": "Spoken start and marks",
+  "timerStart": "Start",
+  "timerPause": "Pause",
+  "timerResume": "Resume",
+  "timerReset": "Reset",
+  "timerLap": "Lap",
+  "timerTimesUp": "Time's up",
+  "timerSetTime": "Set the time",
+  "timerMinutes": "Minutes",
+  "timerSeconds": "Seconds",
+  "seqOnYourMarks": "On your marks",
+  "seqGetSet": "Get set",
+  "seqGo": "Go!",
+  "seqFinish": "Time!",
+  "seqReady": "Ready",
+  "seqSettings": "Settings",
+  "seqStartCalls": "Calls before the start",
+  "seqStartCallsHelp": "Said aloud before Go, counted back from the start.",
+  "seqCallBefore": "{n, plural, =1{1 second before} other{{n} seconds before}}",
+  "@seqCallBefore": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "seqAddCall": "Add a call",
+  "seqCallText": "What to say",
+  "seqGoText": "At the start, say",
+  "seqFinishText": "At the end, say",
+  "seqLength": "Length",
+  "seqNoLimit": "No limit",
+  "seqSayEvery": "Say the time every",
+  "seqOff": "Off",
+  "seqEverySeconds": "{n, plural, =1{1 second} other{{n} seconds}}",
+  "@seqEverySeconds": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "seqEveryMinutes": "{n, plural, =1{1 minute} other{{n} minutes}}",
+  "@seqEveryMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "seqFinalCount": "Count down the last",
+  "seqMarks": "Your marks",
+  "seqAddMark": "Add a mark",
+  "seqMarkAt": "At {time}",
+  "@seqMarkAt": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "seqSpeak": "Speak aloud",
+  "seqBeeps": "Beeps and vibration",
+  "seqSayRemaining": "Say time left, not time passed",
+  "seqPresets": "Presets",
+  "seqPresetRace": "Race start",
+  "seqPresetSprint": "30 s effort",
+  "seqPresetRound": "1 min round",
+  "seqHintNoLimit": "After Go it counts up until you stop it.",
+  "seqHintLength": "After Go it counts down to zero.",
+  "seqWords": "Words",
+  "homeEdit": "Arrange home",
+  "homeEditHint": "Drag the handle to move a card, fold it, or change its size.",
+  "homeReset": "Reset layout",
+  "homeMove": "Move",
+  "homeExpand": "Show",
+  "homeCollapse": "Fold",
+  "homeSize": "Size",
+  "homeBlockClock": "CLOCK",
+  "homeBlockSky": "SUN, MOON AND WEATHER",
+  "homeBlockQuick": "QUICK ALARMS",
+  "homeBlockShabbat": "SHABBAT AND HOLIDAYS",
+  "homePlaceTitle": "City for the sky",
+  "nextAlarmLine": "Next alarm · {title} {time}",
+  "showAllAlarms": "Show all days",
+  "noAlarmsThatDay": "Nothing rings this day",
+  "@nextAlarmLine": {
+    "placeholders": {
+      "title": {
+        "type": "String"
+      },
+      "time": {
         "type": "String"
       }
     }

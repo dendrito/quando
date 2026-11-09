@@ -481,10 +481,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get calendarAlarm => 'Kalenderwecker';
 
   @override
-  String get calendarIntro =>
-      'Quando? kann vor und nach Terminen in den Kalendern deines Handys klingeln. Google Kalender ist dabei, sobald dein Google-Konto auf dem Handy ist.';
-
-  @override
   String get connectCalendars => 'Kalender verbinden';
 
   @override
@@ -2599,6 +2595,45 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Mit deinem Smart-Life-Konto anmelden';
+
+  @override
+  String get tuyaSignInHint =>
+      'Nutze dasselbe Land, dieselbe E-Mail oder Telefonnummer und dasselbe Passwort wie in der Smart-Life- oder Tuya-Smart-App. Das Konto muss bereits mit deinem Tuya-Projekt verknüpft sein. Das Passwort geht nur an Tuya und wird nie gespeichert.';
+
+  @override
+  String get tuyaCountryCode => 'Ländervorwahl (Brasilien 55, USA 1)';
+
+  @override
+  String get tuyaAccount => 'Smart-Life-E-Mail oder -Telefonnummer';
+
+  @override
+  String get tuyaPassword => 'Smart-Life-Passwort';
+
+  @override
+  String get tuyaSignIn => 'Anmelden und Szenen laden';
+
+  @override
+  String get tuyaRelayUrl => 'Adresse des Quando-Tuya-Relays (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Nutze Land, E-Mail oder Telefonnummer und Passwort deines Smart-Life- oder Tuya-Smart-Kontos. Sie gehen einmal an Quandos Tuya-Relay und werden nicht gespeichert. Du musst in deinem Quando-Konto angemeldet sein.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Bei Smart Life mit Google oder Apple angemeldet? Tippe in Smart Life auf „Passwort vergessen“, lege ein Passwort fest und nutze es hier.';
+
+  @override
+  String get tuyaLinked => 'Smart-Life-Konto verknüpft';
+
+  @override
+  String get tuyaUnlink => 'Trennen';
+
+  @override
+  String get tuyaNeedsAccount => 'Melde dich zuerst in den Einstellungen bei deinem Quando-Konto an.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -2710,4 +2745,357 @@ class AppLocalizationsDe extends AppLocalizations {
   String pickFromService(String service) {
     return 'Aus meinem $service wählen';
   }
+
+  @override
+  String get weatherTonight => 'Heute Abend';
+
+  @override
+  String get weatherTomorrowMorning => 'Morgen früh';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'bis etwa $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Sonne hinter Wolken';
+
+  @override
+  String get keysLockTitle => 'Schlüssel auf deinen Geräten';
+
+  @override
+  String get keysLockOff =>
+      'Deine Dienst-Schlüssel bleiben auf diesem Gerät. Wähle eine Sync-Passphrase, um sie verschlüsselt an deine anderen Geräte zu senden.';
+
+  @override
+  String get keysLockOn =>
+      'Deine Dienst-Schlüssel werden mit deiner Sync-Passphrase verschlüsselt, bevor sie dieses Gerät verlassen. Niemand sonst, nicht einmal Google, kann sie lesen.';
+
+  @override
+  String get keysLockWaiting =>
+      'Schlüssel von deinem anderen Gerät sind hier angekommen, gesperrt. Gib deine Sync-Passphrase ein, um sie zu öffnen.';
+
+  @override
+  String get keysSetPassphrase => 'Passphrase wählen';
+
+  @override
+  String get keysChangePassphrase => 'Passphrase ändern';
+
+  @override
+  String get keysUnlock => 'Schlüssel entsperren';
+
+  @override
+  String get keysStartOver => 'Vergessen? Neu anfangen';
+
+  @override
+  String get keysStartOverHint =>
+      'Neu anfangen sendet die Schlüssel dieses Geräts mit einer neuen Passphrase. Deine anderen Geräte fragen nach der neuen.';
+
+  @override
+  String get keysPassphrase => 'Sync-Passphrase';
+
+  @override
+  String get keysPassphraseAgain => 'Noch einmal eingeben';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Mindestens $count Zeichen.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Die beiden stimmen nicht überein.';
+
+  @override
+  String get keysPassphraseWrong => 'Diese Passphrase öffnet diese Schlüssel nicht.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Schreib sie auf: Wenn du sie vergisst, kann sie niemand wiederherstellen, und du gibst deine Schlüssel neu ein.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Wähle zuerst eine Sync-Passphrase unter Schlüssel auf deinen Geräten.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? kann vor und nach Terminen in deinen Kalendern klingeln. Wähle, woher sie kommen.';
+
+  @override
+  String get deviceCalendarsHeading => 'AUF DIESEM GERÄT';
+
+  @override
+  String get deviceCalendarsTitle => 'Kalender-App dieses Geräts';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Alle Konten darauf: Google, Samsung, Outlook, iCloud und Kalender, die nur hier liegen.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE KALENDER';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Melde dich mit Google an, um deine Kalender direkt von Google zu lesen, auch wenn dein Google-Konto nicht auf diesem Gerät ist.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Angemeldet als $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Abmelden';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Die Google-Anmeldung gibt es auf diesem Gerät noch nicht. Füge dein Google-Konto in den Geräteeinstellungen hinzu (Kalender › Accounts), dann erscheinen seine Kalender unter diesem Gerät.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Google Kalender ist gerade nicht erreichbar. Wecker, die schon daraus gestellt sind, klingeln trotzdem.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Kalender desselben Google-Kontos, die dieses Gerät schon zeigt, sind zuerst aus, damit nichts doppelt klingelt.';
+
+  @override
+  String get timersTitle => 'Timer';
+
+  @override
+  String get timerStopwatch => 'Stoppuhr';
+
+  @override
+  String get timerCountdown => 'Timer';
+
+  @override
+  String get timerSequence => 'Fertig';
+
+  @override
+  String get timerStopwatchSub => 'Hochzählen, mit Runden';
+
+  @override
+  String get timerCountdownSub => 'Runterzählen, klingelt bei null';
+
+  @override
+  String get timerSequenceSub => 'Gesprochener Start und Marken';
+
+  @override
+  String get timerStart => 'Start';
+
+  @override
+  String get timerPause => 'Pause';
+
+  @override
+  String get timerResume => 'Fortsetzen';
+
+  @override
+  String get timerReset => 'Zurücksetzen';
+
+  @override
+  String get timerLap => 'Runde';
+
+  @override
+  String get timerTimesUp => 'Zeit ist um';
+
+  @override
+  String get timerSetTime => 'Zeit einstellen';
+
+  @override
+  String get timerMinutes => 'Minuten';
+
+  @override
+  String get timerSeconds => 'Sekunden';
+
+  @override
+  String get seqOnYourMarks => 'Auf die Plätze';
+
+  @override
+  String get seqGetSet => 'Fertig';
+
+  @override
+  String get seqGo => 'Los!';
+
+  @override
+  String get seqFinish => 'Zeit!';
+
+  @override
+  String get seqReady => 'Bereit';
+
+  @override
+  String get seqSettings => 'Einstellungen';
+
+  @override
+  String get seqStartCalls => 'Ansagen vor dem Start';
+
+  @override
+  String get seqStartCallsHelp => 'Werden vor „Los“ laut gesprochen, vom Start aus rückwärts gezählt.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(
+      n,
+      locale: localeName,
+      one: '1 Sekunde vorher',
+      other: '$n Sekunden vorher',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Ansage hinzufügen';
+
+  @override
+  String get seqCallText => 'Was gesagt wird';
+
+  @override
+  String get seqGoText => 'Beim Start sagen';
+
+  @override
+  String get seqFinishText => 'Am Ende sagen';
+
+  @override
+  String get seqLength => 'Dauer';
+
+  @override
+  String get seqNoLimit => 'Kein Limit';
+
+  @override
+  String get seqSayEvery => 'Zeit ansagen alle';
+
+  @override
+  String get seqOff => 'Aus';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Sekunde', other: '$n Sekunden');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Minute', other: '$n Minuten');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Die letzten herunterzählen';
+
+  @override
+  String get seqMarks => 'Deine Marken';
+
+  @override
+  String get seqAddMark => 'Marke hinzufügen';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'Bei $time';
+  }
+
+  @override
+  String get seqSpeak => 'Laut sprechen';
+
+  @override
+  String get seqBeeps => 'Signaltöne und Vibration';
+
+  @override
+  String get seqSayRemaining => 'Restzeit ansagen, nicht vergangene Zeit';
+
+  @override
+  String get seqPresets => 'Voreinstellungen';
+
+  @override
+  String get seqPresetRace => 'Rennstart';
+
+  @override
+  String get seqPresetSprint => '30-s-Belastung';
+
+  @override
+  String get seqPresetRound => '1-Minuten-Runde';
+
+  @override
+  String get seqHintNoLimit => 'Nach „Los“ zählt es hoch, bis du es stoppst.';
+
+  @override
+  String get seqHintLength => 'Nach „Los“ zählt es bis null herunter.';
+
+  @override
+  String get seqWords => 'Wörter';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }

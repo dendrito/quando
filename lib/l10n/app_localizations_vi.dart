@@ -478,10 +478,6 @@ class AppLocalizationsVi extends AppLocalizations {
   String get calendarAlarm => 'Báo thức lịch';
 
   @override
-  String get calendarIntro =>
-      'Quando? có thể reo trước và sau các sự kiện trong lịch của điện thoại. Google Lịch được bao gồm khi tài khoản Google có trên điện thoại.';
-
-  @override
   String get connectCalendars => 'Kết nối lịch';
 
   @override
@@ -2581,6 +2577,45 @@ class AppLocalizationsVi extends AppLocalizations {
   String get tuyaAdvanced => 'Advanced setup';
 
   @override
+  String get tuyaSignInTitle => 'Đăng nhập bằng tài khoản Smart Life';
+
+  @override
+  String get tuyaSignInHint =>
+      'Dùng cùng quốc gia, email hoặc số điện thoại và mật khẩu như trong ứng dụng Smart Life hoặc Tuya Smart. Tài khoản phải được liên kết với dự án Tuya của bạn. Mật khẩu chỉ gửi đến Tuya và không bao giờ được lưu.';
+
+  @override
+  String get tuyaCountryCode => 'Mã quốc gia (Brazil 55, Mỹ 1)';
+
+  @override
+  String get tuyaAccount => 'Email hoặc số điện thoại Smart Life';
+
+  @override
+  String get tuyaPassword => 'Mật khẩu Smart Life';
+
+  @override
+  String get tuyaSignIn => 'Đăng nhập và tải kịch bản';
+
+  @override
+  String get tuyaRelayUrl => 'Địa chỉ relay Tuya của Quando (https)';
+
+  @override
+  String get tuyaRelayHint =>
+      'Dùng quốc gia, email hoặc số điện thoại và mật khẩu của tài khoản Smart Life hoặc Tuya Smart. Chúng chỉ được gửi một lần đến relay Tuya của Quando và không được lưu. Bạn cần đăng nhập tài khoản Quando.';
+
+  @override
+  String get tuyaGoogleHint =>
+      'Đăng nhập Smart Life bằng Google hoặc Apple? Trong Smart Life, chạm “Quên mật khẩu” để đặt mật khẩu, rồi dùng ở đây.';
+
+  @override
+  String get tuyaLinked => 'Đã liên kết tài khoản Smart Life';
+
+  @override
+  String get tuyaUnlink => 'Hủy liên kết';
+
+  @override
+  String get tuyaNeedsAccount => 'Hãy đăng nhập tài khoản Quando trong Cài đặt trước.';
+
+  @override
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
@@ -2692,4 +2727,352 @@ class AppLocalizationsVi extends AppLocalizations {
   String pickFromService(String service) {
     return 'Chọn từ $service của tôi';
   }
+
+  @override
+  String get weatherTonight => 'Tối nay';
+
+  @override
+  String get weatherTomorrowMorning => 'Sáng mai';
+
+  @override
+  String weatherUntilAbout(String time) {
+    return 'đến khoảng $time';
+  }
+
+  @override
+  String get weatherSunBehindClouds => 'Mặt trời sau mây';
+
+  @override
+  String get keysLockTitle => 'Khóa trên các thiết bị của bạn';
+
+  @override
+  String get keysLockOff =>
+      'Khóa dịch vụ của bạn ở lại trên thiết bị này. Chọn cụm mật khẩu đồng bộ để gửi chúng, đã mã hóa, sang các thiết bị khác.';
+
+  @override
+  String get keysLockOn =>
+      'Khóa dịch vụ của bạn được mã hóa bằng cụm mật khẩu đồng bộ trước khi rời thiết bị này. Không ai khác, kể cả Google, đọc được.';
+
+  @override
+  String get keysLockWaiting =>
+      'Khóa từ thiết bị khác của bạn đã đến đây và đang bị khóa. Nhập cụm mật khẩu đồng bộ để mở.';
+
+  @override
+  String get keysSetPassphrase => 'Chọn cụm mật khẩu';
+
+  @override
+  String get keysChangePassphrase => 'Đổi cụm mật khẩu';
+
+  @override
+  String get keysUnlock => 'Mở khóa';
+
+  @override
+  String get keysStartOver => 'Quên rồi? Bắt đầu lại';
+
+  @override
+  String get keysStartOverHint =>
+      'Bắt đầu lại sẽ gửi khóa của thiết bị này với cụm mật khẩu mới. Các thiết bị khác sẽ hỏi cụm mới.';
+
+  @override
+  String get keysPassphrase => 'Cụm mật khẩu đồng bộ';
+
+  @override
+  String get keysPassphraseAgain => 'Nhập lại';
+
+  @override
+  String keysPassphraseShort(int count) {
+    return 'Dùng ít nhất $count ký tự.';
+  }
+
+  @override
+  String get keysPassphraseMismatch => 'Hai lần nhập không khớp.';
+
+  @override
+  String get keysPassphraseWrong => 'Cụm mật khẩu này không mở được các khóa này.';
+
+  @override
+  String get keysPassphraseNote =>
+      'Hãy ghi lại: nếu quên, không ai khôi phục được và bạn sẽ phải nhập lại khóa.';
+
+  @override
+  String get keysShareNeedsPassphrase =>
+      'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
+
+  @override
+  String get settingsAlarmDefaults => 'Alarm defaults';
+
+  @override
+  String get settingsPlacesTime => 'Places & time';
+
+  @override
+  String get settingsLook => 'Look, language & quotes';
+
+  @override
+  String get settingsAbout => 'About';
+
+  @override
+  String get defaultForNewAlarms => 'Default for new alarms';
+
+  @override
+  String get preview => 'Preview';
+
+  @override
+  String atClock(String time) {
+    return 'at $time';
+  }
+
+  @override
+  String get connectACalendar => 'Connect a calendar';
+
+  @override
+  String get newFromReadyMade => 'From a ready-made';
+
+  @override
+  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+
+  @override
+  String get calendarSourcesIntro =>
+      'Quando? có thể reo trước và sau các sự kiện trong lịch của bạn. Chọn lịch lấy từ đâu.';
+
+  @override
+  String get deviceCalendarsHeading => 'TRÊN THIẾT BỊ NÀY';
+
+  @override
+  String get deviceCalendarsTitle => 'Ứng dụng lịch của thiết bị này';
+
+  @override
+  String get deviceCalendarsHint =>
+      'Mọi tài khoản trên máy: Google, Samsung, Outlook, iCloud và các lịch chỉ lưu tại đây.';
+
+  @override
+  String get googleCalendarHeading => 'GOOGLE LỊCH';
+
+  @override
+  String get googleCalendarSignIn =>
+      'Đăng nhập bằng Google để đọc lịch trực tiếp từ Google, kể cả khi tài khoản Google không có trên thiết bị này.';
+
+  @override
+  String googleCalendarSignedIn(String email) {
+    return 'Đã đăng nhập: $email';
+  }
+
+  @override
+  String get googleCalendarSignOut => 'Đăng xuất';
+
+  @override
+  String get googleCalendarNotHere =>
+      'Thiết bị này chưa hỗ trợ đăng nhập Google. Hãy thêm tài khoản Google trong cài đặt thiết bị (Lịch › Tài khoản), các lịch sẽ hiện trong mục thiết bị này.';
+
+  @override
+  String get googleCalendarUnreachable =>
+      'Hiện không kết nối được Google Lịch. Báo thức đã đặt từ đó vẫn reo.';
+
+  @override
+  String get googleCalendarTwiceHint =>
+      'Các lịch của cùng tài khoản Google mà thiết bị đã hiển thị sẽ tắt lúc đầu, để không gì reo hai lần.';
+
+  @override
+  String get timersTitle => 'Hẹn giờ';
+
+  @override
+  String get timerStopwatch => 'Bấm giờ';
+
+  @override
+  String get timerCountdown => 'Đếm ngược';
+
+  @override
+  String get timerSequence => 'Sẵn sàng';
+
+  @override
+  String get timerStopwatchSub => 'Đếm lên, có vòng';
+
+  @override
+  String get timerCountdownSub => 'Đếm ngược, reo khi về không';
+
+  @override
+  String get timerSequenceSub => 'Xuất phát và mốc bằng giọng nói';
+
+  @override
+  String get timerStart => 'Bắt đầu';
+
+  @override
+  String get timerPause => 'Tạm dừng';
+
+  @override
+  String get timerResume => 'Tiếp tục';
+
+  @override
+  String get timerReset => 'Đặt lại';
+
+  @override
+  String get timerLap => 'Vòng';
+
+  @override
+  String get timerTimesUp => 'Hết giờ';
+
+  @override
+  String get timerSetTime => 'Đặt thời gian';
+
+  @override
+  String get timerMinutes => 'Phút';
+
+  @override
+  String get timerSeconds => 'Giây';
+
+  @override
+  String get seqOnYourMarks => 'Vào vị trí';
+
+  @override
+  String get seqGetSet => 'Sẵn sàng';
+
+  @override
+  String get seqGo => 'Chạy!';
+
+  @override
+  String get seqFinish => 'Hết giờ!';
+
+  @override
+  String get seqReady => 'Sẵn sàng';
+
+  @override
+  String get seqSettings => 'Cài đặt';
+
+  @override
+  String get seqStartCalls => 'Lời hô trước khi xuất phát';
+
+  @override
+  String get seqStartCallsHelp => 'Được nói to trước khi Chạy, đếm ngược từ lúc xuất phát.';
+
+  @override
+  String seqCallBefore(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: 'Trước $n giây');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqAddCall => 'Thêm lời hô';
+
+  @override
+  String get seqCallText => 'Nói gì';
+
+  @override
+  String get seqGoText => 'Lúc bắt đầu, nói';
+
+  @override
+  String get seqFinishText => 'Lúc kết thúc, nói';
+
+  @override
+  String get seqLength => 'Độ dài';
+
+  @override
+  String get seqNoLimit => 'Không giới hạn';
+
+  @override
+  String get seqSayEvery => 'Đọc giờ mỗi';
+
+  @override
+  String get seqOff => 'Tắt';
+
+  @override
+  String seqEverySeconds(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n giây');
+    return '$_temp0';
+  }
+
+  @override
+  String seqEveryMinutes(int n) {
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n phút');
+    return '$_temp0';
+  }
+
+  @override
+  String get seqFinalCount => 'Đếm ngược những giây cuối';
+
+  @override
+  String get seqMarks => 'Các mốc của bạn';
+
+  @override
+  String get seqAddMark => 'Thêm mốc';
+
+  @override
+  String seqMarkAt(String time) {
+    return 'Lúc $time';
+  }
+
+  @override
+  String get seqSpeak => 'Nói thành tiếng';
+
+  @override
+  String get seqBeeps => 'Tiếng bíp và rung';
+
+  @override
+  String get seqSayRemaining => 'Đọc thời gian còn lại, không phải đã trôi qua';
+
+  @override
+  String get seqPresets => 'Mẫu có sẵn';
+
+  @override
+  String get seqPresetRace => 'Xuất phát cuộc đua';
+
+  @override
+  String get seqPresetSprint => 'Nỗ lực 30 giây';
+
+  @override
+  String get seqPresetRound => 'Hiệp 1 phút';
+
+  @override
+  String get seqHintNoLimit => 'Sau Chạy, nó đếm lên cho đến khi bạn dừng.';
+
+  @override
+  String get seqHintLength => 'Sau Chạy, nó đếm ngược về không.';
+
+  @override
+  String get seqWords => 'Từ';
+
+  @override
+  String get homeEdit => 'Arrange home';
+
+  @override
+  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+
+  @override
+  String get homeReset => 'Reset layout';
+
+  @override
+  String get homeMove => 'Move';
+
+  @override
+  String get homeExpand => 'Show';
+
+  @override
+  String get homeCollapse => 'Fold';
+
+  @override
+  String get homeSize => 'Size';
+
+  @override
+  String get homeBlockClock => 'CLOCK';
+
+  @override
+  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+
+  @override
+  String get homeBlockQuick => 'QUICK ALARMS';
+
+  @override
+  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+
+  @override
+  String get homePlaceTitle => 'City for the sky';
+
+  @override
+  String nextAlarmLine(String title, String time) {
+    return 'Next alarm · $title $time';
+  }
+
+  @override
+  String get showAllAlarms => 'Show all days';
+
+  @override
+  String get noAlarmsThatDay => 'Nothing rings this day';
 }
