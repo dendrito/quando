@@ -23,6 +23,7 @@ To add a card by hand on GitHub: Add file → Create new file → `dashboard/car
 ## Updates that happen by themselves
 
 - **Pull requests:** the "Board sync" workflow gives every new pull request a card and moves it as the PR moves: draft = In progress, ready = Needs your review, merged = Done, closed = On hold. Cards written by hand are never touched, and editing an automatic card on the site makes it yours.
+- **Thread links:** every card shows a 💬 link to its Claude thread. Automatic PR cards take it from the "project thread" link in the PR description; other cards list thread keys in `threads` (see `board.json`) or raw ids in `threadIds`.
 - **Claude threads:** each thread keeps its own card in `dashboard/cards/` current (status, note, links). Because it is one file per card, threads don't collide.
 
 ## Plans and tasks

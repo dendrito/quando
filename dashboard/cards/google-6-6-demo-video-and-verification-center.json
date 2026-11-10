@@ -3,6 +3,7 @@
   "tag": "google",
   "plan": "business",
   "threads": [
+    "demo",
     "google"
   ],
   "title": "Google 6/6: demo video and Verification Center",

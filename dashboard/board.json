@@ -172,6 +172,14 @@
     "google": {
       "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk4LFBJbLbsEsrnqyQW3GfrH",
       "title": "Set up quando.day for Google verification"
+    },
+    "demo": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkHiCzj7WeU1gAcqZLyMyFvM",
+      "title": "Make Google verification demo video"
+    },
+    "gmerge": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkKW8QJamk23jtaQKSBMwFqP",
+      "title": "Merge Google projects into one"
     }
   }
 }

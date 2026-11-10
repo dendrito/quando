@@ -36,6 +36,7 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .tag{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--chip);color:var(--mute);font-size:.75rem;margin-right:4px}
 .pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.75rem;text-decoration:none;border:1px solid var(--line);margin:6px 4px 0 0;color:var(--ink)}
 .pill.open{border-color:var(--ok);color:var(--ok)}.pill.draft{border-color:var(--warn);color:var(--warn)}
+.pill.thr{border-color:var(--accent);color:var(--accent)}
 .pill.merged{border-color:#8957e5;color:#8957e5}.pill.closed{border-color:var(--bad);color:var(--bad)}
 .list{background:var(--card);border:1px solid var(--line);border-radius:12px}
 .row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
@@ -105,6 +106,16 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   function left(ms) { if (ms <= 0) return "passed"; var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left"; }
   function fmt(iso) { return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); }
   function threadUrl(id) { return data.projectUrl + "?thread=" + id; }
+  function threadsOf(i) {
+    var out = [], seen = {};
+    (i.threads || []).forEach(function (k) { var t = data.threads[k]; if (t && !seen[t.id]) { seen[t.id] = 1; out.push(t); } });
+    (i.threadIds || []).forEach(function (id) {
+      if (seen[id]) return; seen[id] = 1;
+      var known = Object.keys(data.threads || {}).map(function (k) { return data.threads[k]; }).filter(function (t) { return t.id === id; })[0];
+      out.push(known || { id: id, title: "Claude thread" });
+    });
+    return out;
+  }
 
   function chrome() {
     var base = "https://github.com/" + data.repo;
@@ -148,7 +159,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
             (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
             (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
             (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
-            (i.prs || []).map(prPill).join("") + "</div>";
+            (i.prs || []).map(prPill).join("") +
+            threadsOf(i).map(function (t) { return '<a class="pill thr" href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener" title="' + esc(t.title) + '" onclick="event.stopPropagation()">💬 ' + esc(t.title.length > 26 ? t.title.slice(0, 25) + "…" : t.title) + "</a>"; }).join("") + "</div>";
         }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
     }).join("");
     Array.prototype.forEach.call(document.querySelectorAll(".addc"), function (b) { b.onclick = function () { editItem(-1, b.getAttribute("data-s")); }; });
@@ -176,7 +188,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     if (plan) docs.unshift({ title: "Plan: " + plan.title + (plan.private ? " (private)" : ""), url: plan.url });
     if (docs.length) h += "<h4>Documentation</h4><ul>" + docs.map(function (d) { return '<li><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.title) + "</a></li>"; }).join("") + "</ul>";
     if ((i.prs || []).length) h += "<h4>Pull requests</h4><div>" + i.prs.map(prPill).join("") + "</div>";
-    var th = (i.threads || []).map(function (k) { return data.threads[k]; }).filter(Boolean);
+    var th = threadsOf(i);
     if (th.length) h += "<h4>Claude threads (needs your login)</h4><ul>" + th.map(function (t) { return '<li><a href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener">' + esc(t.title) + "</a></li>"; }).join("") + "</ul>";
     h += '<div class="actions">' + (token ? '<button class="btn primary" id="ed">Edit</button>' : '<span class="mute">Turn on editing (top right) to change this card.</span>') + '<button class="btn" id="cl">Close</button></div>';
     open(h); $("cl").onclick = close; if (token) $("ed").onclick = function () { editItem(idx); };
@@ -209,6 +221,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
       var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
       var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
+      if (i.threadIds && i.threadIds.length) item.threadIds = i.threadIds;
       var docs = $("f-docs").value.split("\n").map(function (l) { var p = l.split("|"); return p.length > 1 ? { title: p[0].trim(), url: p.slice(1).join("|").trim() } : null; }).filter(Boolean); if (docs.length) item.docs = docs;
       var id = isNew ? uniqueId(slug(title)) : i.id;
       item = Object.assign({ id: id }, item);

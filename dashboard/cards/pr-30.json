@@ -8,5 +8,8 @@
   ],
   "note": "Added automatically from the pull request.",
   "auto": true,
-  "order": 31
+  "order": 31,
+  "threads": [
+    "dash"
+  ]
 }
