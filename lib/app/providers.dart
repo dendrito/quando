@@ -849,12 +849,14 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     final fixed = alarm.repeats
         ? alarm
         : alarm.copyWith(
-            onceAt: at ?? UserAlarm.nextAt(
-              alarm.hour,
-              alarm.minute,
-              ref.read(clockProvider)(),
-              alarm.zone ?? ref.read(homeZoneProvider),
-            ),
+            onceAt:
+                at ??
+                UserAlarm.nextAt(
+                  alarm.hour,
+                  alarm.minute,
+                  ref.read(clockProvider)(),
+                  alarm.zone ?? ref.read(homeZoneProvider),
+                ),
           );
     _set([
       for (final a in state)

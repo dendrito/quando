@@ -84,7 +84,8 @@ class AlarmRequest {
       other.label == label;
 
   @override
-  int get hashCode => Object.hash(hour, minute, Object.hashAllUnordered(days), dayOffset, after, anchor, offset, label);
+  int get hashCode =>
+      Object.hash(hour, minute, Object.hashAllUnordered(days), dayOffset, after, anchor, offset, label);
 
   @override
   String toString() =>

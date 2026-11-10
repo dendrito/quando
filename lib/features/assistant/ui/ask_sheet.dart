@@ -126,7 +126,8 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     try {
       final all = await _speech.locales();
       for (final l in all) {
-        if (l.localeId.toLowerCase().split(RegExp('[-_]')).first == (lang == 'he' ? 'he' : lang)) return l.localeId;
+        if (l.localeId.toLowerCase().split(RegExp('[-_]')).first == (lang == 'he' ? 'he' : lang))
+          return l.localeId;
         if (lang == 'he' && l.localeId.toLowerCase().startsWith('iw')) return l.localeId;
       }
     } catch (_) {}
@@ -233,17 +234,26 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                     minimumSize: const Size(56, 56),
                   ),
                   onPressed: _listen,
-                  icon: Icon(_listening ? Icons.stop_rounded : Icons.mic_none_rounded, color: QuandoColors.amber),
+                  icon: Icon(
+                    _listening ? Icons.stop_rounded : Icons.mic_none_rounded,
+                    color: QuandoColors.amber,
+                  ),
                 ),
               ],
             ),
-            if (_speechOk == false) ...[const SizedBox(height: 8), Text(l10n.askNoSpeech, style: text.bodySmall)],
+            if (_speechOk == false) ...[
+              const SizedBox(height: 8),
+              Text(l10n.askNoSpeech, style: text.bodySmall),
+            ],
             const SizedBox(height: 16),
             if (plan != null)
               Card(
                 margin: EdgeInsets.zero,
                 child: ListTile(
-                  leading: Icon(plan is RulePlan ? Icons.wb_twilight : Icons.alarm, color: QuandoColors.amber),
+                  leading: Icon(
+                    plan is RulePlan ? Icons.wb_twilight : Icons.alarm,
+                    color: QuandoColors.amber,
+                  ),
                   title: Text(describePlan(plan, zone), style: text.titleMedium),
                   subtitle: plan.label.isEmpty ? null : Text(plan.label),
                 ),

@@ -113,7 +113,10 @@ void main() {
     });
 
     test('labels', () {
-      expectParse('me lembra de tomar o remédio às 8 da noite', const AlarmRequest(hour: 20, label: 'Tomar o remédio'));
+      expectParse(
+        'me lembra de tomar o remédio às 8 da noite',
+        const AlarmRequest(hour: 20, label: 'Tomar o remédio'),
+      );
       expectParse('me acorda às 6 para ir à academia', const AlarmRequest(hour: 6, label: 'Ir à academia'));
     });
   });

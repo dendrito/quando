@@ -93,6 +93,7 @@ AlarmPlan? planFor(
 
 DateTime _next(tz.TZDateTime local, int hour, int minute) {
   var t = tz.TZDateTime(local.location, local.year, local.month, local.day, hour, minute);
-  if (!t.isAfter(local)) t = tz.TZDateTime(local.location, local.year, local.month, local.day + 1, hour, minute);
+  if (!t.isAfter(local))
+    t = tz.TZDateTime(local.location, local.year, local.month, local.day + 1, hour, minute);
   return t.toUtc();
 }
