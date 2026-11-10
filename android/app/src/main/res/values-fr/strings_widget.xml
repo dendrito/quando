@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="widget_description">Votre prochaine alarme, le compte à rebours et le soleil du jour</string>
+    <string name="quando_widget_description">Votre prochaine alarme, le compte à rebours et le soleil du jour</string>
 </resources>
