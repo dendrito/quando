@@ -1,0 +1,12 @@
+{
+  "id": "pr-35",
+  "title": "Board: link every card to its Claude thread",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    35
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 33
+}
