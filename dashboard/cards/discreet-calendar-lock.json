@@ -1,0 +1,12 @@
+{
+  "id": "discreet-calendar-lock",
+  "title": "Discreet calendar lock",
+  "status": "doing",
+  "tag": "app",
+  "note": "Locks the phone during and between calendar events. Shabbat visuals only when a Shabbat calendar is picked. Separate branch, not part of the release.",
+  "threads": [
+    "lock"
+  ],
+  "details": "Locks during and between calendar events. Shabbat visuals only if a Shabbat calendar is picked; Shabbat is never the default. Own branch, not part of the release.",
+  "order": 5
+}

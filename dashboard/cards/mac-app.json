@@ -1,0 +1,19 @@
+{
+  "id": "mac-app",
+  "title": "Mac app",
+  "status": "hold",
+  "tag": "platform",
+  "note": "iPad and Android only for now.",
+  "threads": [
+    "ipadmac",
+    "ipad"
+  ],
+  "details": "Native Mac apps exist from the Codex work but are paused. Only iPad and Android are built for now.",
+  "docs": [
+    {
+      "title": "macOS notes",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/MACOS.md"
+    }
+  ],
+  "order": 13
+}

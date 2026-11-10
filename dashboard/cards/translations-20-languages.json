@@ -1,0 +1,11 @@
+{
+  "id": "translations-20-languages",
+  "title": "Translations (20 languages)",
+  "status": "hold",
+  "tag": "app",
+  "threads": [
+    "local"
+  ],
+  "details": "20 languages including right-to-left already exist; new strings need translating each time.",
+  "order": 11
+}

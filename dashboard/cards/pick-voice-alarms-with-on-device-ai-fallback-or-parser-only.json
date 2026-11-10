@@ -1,0 +1,14 @@
+{
+  "id": "pick-voice-alarms-with-on-device-ai-fallback-or-parser-only",
+  "title": "Pick: voice alarms with on-device AI fallback, or parser only",
+  "status": "decide",
+  "tag": "app",
+  "prs": [
+    26
+  ],
+  "threads": [
+    "voice"
+  ],
+  "details": "Choice: parser plus optional on-device AI (recommended), parser only, or AI only.",
+  "order": 16
+}

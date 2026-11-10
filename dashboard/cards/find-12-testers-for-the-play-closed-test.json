@@ -1,0 +1,12 @@
+{
+  "id": "find-12-testers-for-the-play-closed-test",
+  "title": "Find 12 testers for the Play closed test",
+  "status": "next",
+  "tag": "launch",
+  "plan": "business",
+  "threads": [
+    "biz"
+  ],
+  "details": "Needed for the Play closed test.",
+  "order": 20
+}

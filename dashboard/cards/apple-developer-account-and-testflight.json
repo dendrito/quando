@@ -1,0 +1,13 @@
+{
+  "id": "apple-developer-account-and-testflight",
+  "title": "Apple Developer account and TestFlight",
+  "status": "next",
+  "tag": "launch",
+  "note": "Enrollment was blocked by an unknown error. Support message drafted.",
+  "plan": "business",
+  "threads": [
+    "ipad"
+  ],
+  "details": "Enrollment was blocked by an unknown error and a support message is drafted. Until it works, iPad builds are free-account test builds that expire after about 7 days.",
+  "order": 8
+}
