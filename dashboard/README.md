@@ -29,7 +29,7 @@ To add a card by hand on GitHub: Add file → Create new file → `dashboard/car
 
 Each plan in `"plans"` has an `id`, a `status` (`proposed` until you agree, then `agreed`) and a link. A card with `"plan": "business"` is a task that comes from that plan, and the plan tile counts its open tasks. When a plan changes, change its cards here.
 
-**Business, pricing, tax and legal plans stay out of this public repo.** They live as private Claude pages; this site only links to them. Do not paste their content into `data.json`.
+**Business, pricing, tax and legal plans stay out of this public repo.** They live as private Claude pages; this site only links to them. Do not paste their content into the board files.
 
 ## One source of truth for Claude too
 
