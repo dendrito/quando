@@ -139,7 +139,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("board").innerHTML = data.statuses.map(function (st) {
       var items = [];
       data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
-      return '<div class="col"><h3>' + esc(st.label) + "<span>" + items.length + "</span></h3>" +
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
         (items.map(function (x) {
           var i = x[0];
           return '<div class="card" data-i="' + x[1] + '"><b>' + esc(i.title) + "</b>" +
