@@ -391,15 +391,151 @@
     {
       "title": "Set up quando.day for Google verification",
       "status": "doing",
-      "tag": "launch",
+      "tag": "google",
       "plan": "business",
-      "note": "Website and privacy page on quando.day, domain proof, then the Google consent screen so Calendar and YouTube sign-in work for everyone.",
-      "details": "Google needs a real home page and privacy policy on a domain you own before it verifies Calendar and YouTube access. Handled in its own Claude thread (site on Cloudflare Pages).",
       "threads": [
         "google"
       ],
+      "note": "The six steps below, in order. Needed so Calendar and YouTube sign-in work for everyone.",
+      "details": "Google needs a real home page, privacy policy and terms on a domain you own before it verifies Calendar and YouTube access. Handled in its own Claude thread.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md"
+        },
+        {
+          "title": "Privacy policy (quando.day)",
+          "url": "https://quando.day/privacy/"
+        },
+        {
+          "title": "Terms (quando.day)",
+          "url": "https://quando.day/terms/"
+        }
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 1/6: merge PR #31 (quando.day website)",
+      "status": "review",
+      "note": "Adds the home, privacy and terms pages.",
+      "details": "Step 0 of the guide: the site folder must be on main before Cloudflare can publish it.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md"
+        },
+        {
+          "title": "PR #31",
+          "url": "https://github.com/dendrito/quando/pull/31"
+        }
+      ],
       "prs": [
         31
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 2/6: Cloudflare Pages and support@quando.day",
+      "status": "next",
+      "note": "Publish site/ on quando.day and make support@quando.day forward to you.",
+      "details": "Guide section A. Do not set a custom domain in GitHub Pages or the board would redirect to quando.day.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#a-cloudflare-about-10-minutes"
+        },
+        {
+          "title": "Privacy policy (quando.day)",
+          "url": "https://quando.day/privacy/"
+        },
+        {
+          "title": "Terms (quando.day)",
+          "url": "https://quando.day/terms/"
+        }
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 3/6: prove the domain in Search Console",
+      "status": "next",
+      "note": "Add the TXT record Google gives you in Cloudflare DNS.",
+      "details": "Guide section B. Use the same Google account that owns the Google Cloud project “Quando”.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#b-prove-you-own-the-domain-to-google"
+        }
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 4/6: consent screen branding and scopes",
+      "status": "next",
+      "note": "Branding, calendar.readonly and youtube.readonly, then Publish app.",
+      "details": "Guide section C, steps 8 to 11. Add only the scopes the app uses.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#c-google-cloud-consent-screen-google-auth-platform"
+        },
+        {
+          "title": "Privacy policy (quando.day)",
+          "url": "https://quando.day/privacy/"
+        },
+        {
+          "title": "Terms (quando.day)",
+          "url": "https://quando.day/terms/"
+        }
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 5/6: Firebase authorized domain",
+      "status": "next",
+      "note": "Add quando.day under Authentication → Settings → Authorized domains in project quando-27c24.",
+      "details": "Guide step 12. Repeat the consent screen steps there if sign-in runs on that project.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#c-google-cloud-consent-screen-google-auth-platform"
+        }
+      ]
+    },
+    {
+      "tag": "google",
+      "plan": "business",
+      "threads": [
+        "google"
+      ],
+      "title": "Google 6/6: demo video and Verification Center",
+      "status": "next",
+      "note": "Record the unlisted demo video and submit for verification.",
+      "details": "Guide section D. Scope review takes days to weeks; answer reviewer emails fast. The thread can write a shot list.",
+      "docs": [
+        {
+          "title": "Step-by-step guide",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#d-submit-for-verification"
+        }
       ]
     }
   ],
@@ -438,6 +574,14 @@
       "title": "Growth features spec",
       "url": "https://github.com/dendrito/quando/pull/25",
       "status": "agreed"
+    },
+    {
+      "id": "marketing",
+      "title": "Marketing plan",
+      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf",
+      "status": "proposed",
+      "private": true,
+      "note": "Launch and growth ideas. Private page."
     }
   ],
   "downloads": [
