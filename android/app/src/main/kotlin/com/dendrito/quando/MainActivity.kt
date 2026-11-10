@@ -102,6 +102,11 @@ class MainActivity : FlutterActivity() {
                     BusyMode.apply(this)
                     result.success(true)
                 }
+                // The home-screen widget, after a re-plan.
+                "widget" -> {
+                    QuandoWidget.refresh(this)
+                    result.success(true)
+                }
                 "policyAllowed" -> result.success(Build.VERSION.SDK_INT >= 23 && nm.isNotificationPolicyAccessGranted)
                 "openPolicySettings" -> result.success(
                     try {

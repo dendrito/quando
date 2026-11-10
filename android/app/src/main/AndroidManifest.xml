@@ -85,6 +85,15 @@
                 android:name="android.support.FILE_PROVIDER_PATHS"
                 android:resource="@xml/share_paths" />
         </provider>
+        <!-- Home-screen widget: next alarm, countdown and the sun's arc. -->
+        <receiver android:name=".QuandoWidget" android:exported="false" android:label="${appLabel}">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quando_widget_info" />
+        </receiver>
         <!-- Busy mode: Do Not Disturb on and off at the right times, also
              after a restart or an update. -->
         <receiver android:name=".BusyReceiver" android:exported="false">

@@ -10,6 +10,8 @@ import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/busy/ui/busy_screen.dart';
 import '../features/share/share_channel.dart';
+import '../features/home/domain/sky.dart';
+import '../features/widget/home_widget.dart';
 import '../features/share/ui/share_card_screen.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
@@ -180,6 +182,20 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
             );
       } catch (e) {
         debugPrint('Quando?: could not prepare Busy mode: $e');
+      }
+      try {
+        final now = DateTime.now();
+        final place = ref.read(skyPlaceProvider);
+        final sky = place == null ? null : SkyDay.of(place, now);
+        await HomeWidget(ref.read(prefsProvider)).publish(
+          plan: ref.read(planProvider),
+          sunrise: sky?.sunrise,
+          sunset: sky?.sunset,
+          label: l10n.nextAlarmHeading,
+          none: l10n.noAlarmsThisWeek,
+        );
+      } catch (e) {
+        debugPrint('Quando?: could not update the widget: $e');
       }
     }
   }
