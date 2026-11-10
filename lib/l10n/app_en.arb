@@ -1888,5 +1888,90 @@
   "cardTools": "Stopwatch, countdown and get set",
   "cardWorld": "World clocks",
   "cardWeek": "This week",
-  "cardShabbat": "Shabbat and holidays"
+  "cardShabbat": "Shabbat and holidays",
+  "ringAtEventReminders": "Ring at the event's own reminders",
+  "ringAtEventRemindersHint": "The reminders set in your calendar app ring here as loud alarms, with this alarm's sound.",
+  "atEventReminders": "at the event's reminders",
+  "everyEventReminderLoud": "Ring loud at every event's own reminders",
+  "loudNotificationsHeading": "LOUD CALENDAR NOTIFICATIONS",
+  "loudNotificationsTitle": "Make calendar notifications loud",
+  "loudNotificationsHint": "When a calendar app shows a reminder, Quando? rings it as an alarm, even with the phone on silent.",
+  "loudNotificationsDisclosureTitle": "Let Quando? read calendar notifications?",
+  "loudNotificationsDisclosure": "To ring your calendar reminders out loud, Quando? needs notification access. It only looks at notifications from the calendar apps you pick, reads their title and text on this phone to show them on the alarm, and never stores or sends them anywhere. You can turn this off at any time.",
+  "loudNotificationsAgree": "Agree and continue",
+  "loudNotificationsNoAccess": "Notification access is off. Turn Quando? on in the list that opens.",
+  "loudNotificationsAllow": "Allow",
+  "loudNotificationsNoApps": "No supported calendar app found on this phone.",
+  "loudNotificationsTwiceNote": "Events that already have a Quando? calendar alarm ring only once.",
+  "loudNotificationsShabbatNote": "Quiet during Shabbat and festivals.",
+  "busyMode": "Busy mode",
+  "busyModeSubtitle": "Do Not Disturb and auto-replies while you're busy",
+  "busyIntro": "While you're busy, Quando? can quiet the phone and answer messages for you. Alarms still ring.",
+  "busyIosFocus": "On iPhone and iPad, apps can't turn on Focus or answer messages. In the Shortcuts app, add an automation \"When Quando? opens\" or a time of day that turns on a Focus, and set the Focus to auto-reply.",
+  "busyWhileHeading": "WHILE YOU'RE BUSY",
+  "busyDnd": "Do Not Disturb",
+  "busyDndHint": "Priority only: calls and messages stay quiet, alarms still ring. Back to normal when it ends.",
+  "busyDndNoAccess": "Quando? isn't allowed to change Do Not Disturb yet.",
+  "busyReplies": "Answer messages",
+  "busyRepliesHint": "Once per person, with your text, through the app's own Reply button. Android only.",
+  "busyRepliesDisclosureTitle": "Let Quando? answer messages?",
+  "busyRepliesDisclosure": "To answer for you, Quando? needs notification access. Only while you're busy, it looks at message notifications from the apps you pick, reads the sender's name on this phone, and sends your text once through the app's own Reply button. Messages are never stored or sent anywhere else. Group chats are skipped unless you allow them.",
+  "busyReplyText": "Your answer",
+  "busyReplyTextHint": "{until} becomes the time Busy mode ends.",
+  "busyReplyDefault": "I'm busy right now and will answer after {until}.",
+  "busyGroups": "Answer in group chats too",
+  "busyGroupsHint": "Off: groups are never answered.",
+  "busyRepliesOnShabbat": "Answer during Shabbat and festivals",
+  "busyAskRabbi": "Off by default. Ask your rabbi before turning this on for Shabbat.",
+  "busyWhenHeading": "WHEN YOU'RE BUSY",
+  "busyWhenHint": "Turn on \"Busy during these events\" on a calendar alarm, or \"Busy after it rings\" on an alarm.",
+  "busyDuringLock": "Busy while lock mode is on",
+  "busyNoneComing": "Nothing busy in the next 7 days.",
+  "busyDuringEvents": "Busy during these events",
+  "busyDuringEventsHint": "Busy mode from each event's start to its end.",
+  "busySettings": "Busy mode settings",
+  "busyAfterRing": "Busy after it rings",
+  "busyAfterRingHint": "Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.",
+  "@busyReplyTextHint": {
+    "placeholders": {
+      "until": {
+        "type": "String"
+      }
+    }
+  },
+  "@busyReplyDefault": {
+    "placeholders": {
+      "until": {
+        "type": "String"
+      }
+    }
+  },
+  "shareCard": "Share your morning",
+  "shareCardSubtitle": "Today's sky and quote, or your own photo, for Stories and status",
+  "shareAppMissing": "That app isn't on this phone.",
+  "shareAsIs": "Share as it is",
+  "shareTapQuote": "Tap the quote for another one.",
+  "shareStory": "Story",
+  "shareSquare": "Square",
+  "shareYourWords": "Your own words (optional)",
+  "shareYourWordsHint": "Instead of today's quote",
+  "shareYourPhoto": "Your photo",
+  "shareOtherPhoto": "Another photo",
+  "shareSkyBack": "Today's sky instead",
+  "shareYourVideo": "Your video",
+  "shareInstagramStory": "Instagram Stories",
+  "shareWhatsApp": "WhatsApp: status or chat",
+  "shareMore": "More apps",
+  "shareYouPost": "Quando? opens the app with your card loaded. You choose where it goes and tap Post yourself.",
+  "shareAndroidFirst": "Sharing comes to iPhone and iPad soon.",
+  "songSaved": "“{name}” saved as an alarm sound",
+  "shareToQuando": "Share a song to Quando?",
+  "shareToQuandoHint": "In YouTube, YouTube Music, Spotify, SoundCloud or Apple Music, tap Share, then Quando?. It becomes an alarm sound that plays in its app.",
+  "@songSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  }
 }

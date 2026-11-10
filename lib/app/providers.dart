@@ -11,6 +11,9 @@ import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/data/google_calendar.dart';
+import '../features/calendar/data/loud_notifications.dart';
+import '../features/busy/data/busy_mode.dart';
+import '../features/busy/domain/busy.dart';
 import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
@@ -518,6 +521,11 @@ final jewishTimesProvider = Provider<JewishTimes>(
 
 final calendarReaderProvider = Provider<CalendarReader>(
   (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
+);
+
+/// "Make calendar notifications loud" (Android).
+final loudNotificationsProvider = Provider<LoudNotifications>(
+  (ref) => LoudNotifications(ref.watch(prefsProvider)),
 );
 
 /// Google Calendar read online, for when it isn't on the phone.
@@ -1242,4 +1250,48 @@ final registrarProvider = Provider<AlarmRegistrar>((ref) {
   final r = AlarmRegistrar()..onHappening = (what, p) => sender.send(what, p);
   ref.onDispose(r.dispose);
   return r;
+});
+
+// ---- Busy mode ----
+
+class BusySettingsNotifier extends Notifier<BusySettings> {
+  @override
+  BusySettings build() => BusySettings.decode(ref.read(prefsProvider).getString(BusyMode.settingsKey));
+
+  void update(BusySettings Function(BusySettings) change) {
+    state = change(state);
+    ref.read(prefsProvider).setString(BusyMode.settingsKey, jsonEncode(state.toJson()));
+  }
+}
+
+final busySettingsProvider = NotifierProvider<BusySettingsNotifier, BusySettings>(BusySettingsNotifier.new);
+
+final busyModeProvider = Provider<BusyMode>((ref) => BusyMode(ref.watch(prefsProvider)));
+
+/// Busy stretches over the planning week.
+final busyWindowsProvider = Provider<List<BusyWindow>>((ref) {
+  final now = ref.watch(clockProvider)();
+  return busyWindows(
+    now: now,
+    until: now.add(scheduler.horizon),
+    events: ref.watch(eventsProvider),
+    calendarRules: ref.watch(calendarRulesProvider),
+    // From before now, so a stretch that already started still counts.
+    plan: [
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0)
+          ...a.plan(
+            now: now.subtract(Duration(minutes: a.busyMinutes)),
+            horizon: scheduler.horizon,
+            zone: ref.watch(homeZoneProvider),
+            defaultRing: const Duration(minutes: 1),
+          ),
+    ],
+    busyMinutesByAlarm: {
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0) a.id: a.busyMinutes,
+    },
+    locks: ref.watch(lockPeriodsProvider),
+    settings: ref.watch(busySettingsProvider),
+  );
 });
