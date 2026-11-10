@@ -43,13 +43,19 @@ class AlarmStorage {
 
     /// Reloads the shared preferences instance in the case modifications
     /// were made in the native code, after a notification action.
-    _fgbgSubscription =
-        FGBGEvents.instance.stream.listen((event) => _prefs.reload());
+    _fgbgSubscription = FGBGEvents.instance.stream.listen((event) => _prefs.reload());
   }
 
   /// Waits for initialization to complete, starting it if needed so callers
   /// never hang when [init] was not called first.
   static Future<void> _waitUntilInitialized() => init();
+
+  /// Reads storage again, for alarms the native side saved on its own
+  /// (Quando? rings calendar notifications this way).
+  static Future<void> reload() async {
+    await _waitUntilInitialized();
+    await _prefs.reload();
+  }
 
   /// Saves alarm info in local storage so we can restore it later
   /// in the case app is terminated.

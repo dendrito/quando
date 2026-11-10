@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Sonner aux rappels de l'événement",
+  "ringAtEventRemindersHint": "Les rappels de votre agenda sonnent ici comme de vraies alarmes, avec le son de cette alarme.",
+  "atEventReminders": "aux rappels de l'événement",
+  "everyEventReminderLoud": "Sonner fort aux rappels de chaque événement",
+  "loudNotificationsHeading": "NOTIFICATIONS D'AGENDA SONORES",
+  "loudNotificationsTitle": "Rendre les notifications d'agenda sonores",
+  "loudNotificationsHint": "Quand une app d'agenda affiche un rappel, Quando? le fait sonner comme une alarme, même en mode silencieux.",
+  "loudNotificationsDisclosureTitle": "Autoriser Quando? à lire les notifications d'agenda ?",
+  "loudNotificationsDisclosure": "Pour faire sonner vos rappels d'agenda, Quando? a besoin de l'accès aux notifications. Il ne regarde que celles des apps d'agenda que vous choisissez, lit leur titre et leur texte sur ce téléphone pour les afficher sur l'alarme, et ne les enregistre ni ne les envoie jamais. Vous pouvez désactiver cela à tout moment.",
+  "loudNotificationsAgree": "Accepter et continuer",
+  "loudNotificationsNoAccess": "L'accès aux notifications est désactivé. Activez Quando? dans la liste qui s'ouvre.",
+  "loudNotificationsAllow": "Autoriser",
+  "loudNotificationsNoApps": "Aucune app d'agenda compatible sur ce téléphone.",
+  "loudNotificationsTwiceNote": "Les événements qui ont déjà une alarme d'agenda Quando? ne sonnent qu'une fois.",
+  "loudNotificationsShabbatNote": "Silencieux pendant Chabbat et les fêtes."
 }

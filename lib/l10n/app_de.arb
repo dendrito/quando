@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Zu den eigenen Erinnerungen des Termins klingeln",
+  "ringAtEventRemindersHint": "Die Erinnerungen aus deiner Kalender-App klingeln hier als laute Wecker, mit dem Ton dieses Weckers.",
+  "atEventReminders": "zu den Erinnerungen des Termins",
+  "everyEventReminderLoud": "Bei den Erinnerungen jedes Termins laut klingeln",
+  "loudNotificationsHeading": "LAUTE KALENDER-BENACHRICHTIGUNGEN",
+  "loudNotificationsTitle": "Kalender-Benachrichtigungen laut machen",
+  "loudNotificationsHint": "Zeigt eine Kalender-App eine Erinnerung, klingelt Quando? sie als Wecker, auch wenn das Handy lautlos ist.",
+  "loudNotificationsDisclosureTitle": "Quando? Kalender-Benachrichtigungen lesen lassen?",
+  "loudNotificationsDisclosure": "Um deine Kalender-Erinnerungen laut klingeln zu lassen, braucht Quando? Zugriff auf Benachrichtigungen. Es sieht nur Benachrichtigungen der Kalender-Apps an, die du auswählst, liest Titel und Text auf diesem Handy, um sie beim Wecker anzuzeigen, und speichert oder sendet sie nie. Du kannst das jederzeit ausschalten.",
+  "loudNotificationsAgree": "Zustimmen und weiter",
+  "loudNotificationsNoAccess": "Benachrichtigungszugriff ist aus. Schalte Quando? in der Liste ein, die sich öffnet.",
+  "loudNotificationsAllow": "Erlauben",
+  "loudNotificationsNoApps": "Keine unterstützte Kalender-App auf diesem Handy gefunden.",
+  "loudNotificationsTwiceNote": "Termine, die schon einen Quando?-Kalenderwecker haben, klingeln nur einmal.",
+  "loudNotificationsShabbatNote": "Still an Schabbat und Feiertagen."
 }

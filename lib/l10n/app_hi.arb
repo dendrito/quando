@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "इवेंट के अपने रिमाइंडर पर बजाएँ",
+  "ringAtEventRemindersHint": "आपके कैलेंडर ऐप के रिमाइंडर यहाँ इस अलार्म की आवाज़ में तेज़ अलार्म की तरह बजते हैं।",
+  "atEventReminders": "इवेंट के रिमाइंडर पर",
+  "everyEventReminderLoud": "हर इवेंट के रिमाइंडर पर तेज़ बजाएँ",
+  "loudNotificationsHeading": "तेज़ कैलेंडर सूचनाएँ",
+  "loudNotificationsTitle": "कैलेंडर सूचनाओं को तेज़ बनाएँ",
+  "loudNotificationsHint": "जब कोई कैलेंडर ऐप रिमाइंडर दिखाता है, Quando? उसे अलार्म की तरह बजाता है, फ़ोन साइलेंट पर हो तब भी।",
+  "loudNotificationsDisclosureTitle": "Quando? को कैलेंडर सूचनाएँ पढ़ने दें?",
+  "loudNotificationsDisclosure": "आपके कैलेंडर रिमाइंडर तेज़ आवाज़ में बजाने के लिए Quando? को सूचना एक्सेस चाहिए। यह सिर्फ़ आपके चुने कैलेंडर ऐप की सूचनाएँ देखता है, अलार्म पर दिखाने के लिए उनका शीर्षक और टेक्स्ट इसी फ़ोन पर पढ़ता है, और उन्हें कभी सहेजता या कहीं भेजता नहीं। आप इसे कभी भी बंद कर सकते हैं।",
+  "loudNotificationsAgree": "सहमत, आगे बढ़ें",
+  "loudNotificationsNoAccess": "सूचना एक्सेस बंद है। खुलने वाली सूची में Quando? चालू करें।",
+  "loudNotificationsAllow": "अनुमति दें",
+  "loudNotificationsNoApps": "इस फ़ोन पर कोई समर्थित कैलेंडर ऐप नहीं मिला।",
+  "loudNotificationsTwiceNote": "जिन इवेंट का पहले से Quando? कैलेंडर अलार्म है, वे सिर्फ़ एक बार बजते हैं।",
+  "loudNotificationsShabbatNote": "शब्बात और त्योहारों में शांत।"
 }

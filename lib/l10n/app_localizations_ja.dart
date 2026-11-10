@@ -3037,4 +3037,50 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => '予定自体のリマインダーで鳴らす';
+
+  @override
+  String get ringAtEventRemindersHint => 'カレンダーアプリのリマインダーが、このアラームの音で大きなアラームとして鳴ります。';
+
+  @override
+  String get atEventReminders => '予定のリマインダーで';
+
+  @override
+  String get everyEventReminderLoud => 'すべての予定のリマインダーで大きく鳴らす';
+
+  @override
+  String get loudNotificationsHeading => 'カレンダー通知を大きく';
+
+  @override
+  String get loudNotificationsTitle => 'カレンダー通知を大きな音で鳴らす';
+
+  @override
+  String get loudNotificationsHint => 'カレンダーアプリがリマインダーを表示すると、マナーモードでも Quando? がアラームとして鳴らします。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? にカレンダー通知の読み取りを許可しますか？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'カレンダーのリマインダーを大きな音で鳴らすには、Quando? に通知へのアクセスが必要です。選んだカレンダーアプリの通知だけを見て、アラームに表示するためにタイトルと本文をこの端末上で読み取ります。保存したり送信したりすることはありません。いつでもオフにできます。';
+
+  @override
+  String get loudNotificationsAgree => '同意して続ける';
+
+  @override
+  String get loudNotificationsNoAccess => '通知へのアクセスがオフです。開いた一覧で Quando? をオンにしてください。';
+
+  @override
+  String get loudNotificationsAllow => '許可';
+
+  @override
+  String get loudNotificationsNoApps => 'この端末に対応するカレンダーアプリが見つかりません。';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Quando? のカレンダーアラームがある予定は一度だけ鳴ります。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日と祭日は鳴りません。';
 }

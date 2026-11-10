@@ -3082,4 +3082,54 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Ring at the event\'s own reminders';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'The reminders set in your calendar app ring here as loud alarms, with this alarm\'s sound.';
+
+  @override
+  String get atEventReminders => 'at the event\'s reminders';
+
+  @override
+  String get everyEventReminderLoud => 'Ring loud at every event\'s own reminders';
+
+  @override
+  String get loudNotificationsHeading => 'LOUD CALENDAR NOTIFICATIONS';
+
+  @override
+  String get loudNotificationsTitle => 'Make calendar notifications loud';
+
+  @override
+  String get loudNotificationsHint =>
+      'When a calendar app shows a reminder, Quando? rings it as an alarm, even with the phone on silent.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Let Quando? read calendar notifications?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'To ring your calendar reminders out loud, Quando? needs notification access. It only looks at notifications from the calendar apps you pick, reads their title and text on this phone to show them on the alarm, and never stores or sends them anywhere. You can turn this off at any time.';
+
+  @override
+  String get loudNotificationsAgree => 'Agree and continue';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Notification access is off. Turn Quando? on in the list that opens.';
+
+  @override
+  String get loudNotificationsAllow => 'Allow';
+
+  @override
+  String get loudNotificationsNoApps => 'No supported calendar app found on this phone.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Events that already have a Quando? calendar alarm ring only once.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Quiet during Shabbat and festivals.';
 }

@@ -100,6 +100,35 @@ class MainActivity : FlutterActivity() {
                     }
                     result.success(ok)
                 }
+                // Notification access, for loud calendar notifications.
+                "listenerAllowed" -> result.success(
+                    (Settings.Secure.getString(contentResolver, "enabled_notification_listeners") ?: "")
+                        .split(':')
+                        .any { it.startsWith("$packageName/") }
+                )
+                "openListenerSettings" -> result.success(
+                    try {
+                        startActivity(
+                            Intent("android.settings.ACTION_NOTIFICATION_LISTENER_SETTINGS")
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
+                        true
+                    } catch (e: Exception) {
+                        false
+                    }
+                )
+                // Which of these apps are on the phone.
+                "installed" -> {
+                    val pkgs = call.argument<List<String>>("packages") ?: emptyList()
+                    result.success(pkgs.filter { pkg ->
+                        try {
+                            packageManager.getApplicationInfo(pkg, 0)
+                            true
+                        } catch (e: Exception) {
+                            false
+                        }
+                    })
+                }
                 else -> result.notImplemented()
             }
         }

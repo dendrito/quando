@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Berbunyi di pengingat acara itu sendiri",
+  "ringAtEventRemindersHint": "Pengingat di aplikasi kalender Anda berbunyi di sini sebagai alarm keras, dengan suara alarm ini.",
+  "atEventReminders": "di pengingat acara",
+  "everyEventReminderLoud": "Berbunyi keras di pengingat setiap acara",
+  "loudNotificationsHeading": "NOTIFIKASI KALENDER KERAS",
+  "loudNotificationsTitle": "Buat notifikasi kalender berbunyi keras",
+  "loudNotificationsHint": "Saat aplikasi kalender menampilkan pengingat, Quando? membunyikannya sebagai alarm, bahkan saat ponsel senyap.",
+  "loudNotificationsDisclosureTitle": "Izinkan Quando? membaca notifikasi kalender?",
+  "loudNotificationsDisclosure": "Untuk membunyikan pengingat kalender dengan keras, Quando? memerlukan akses notifikasi. Ia hanya melihat notifikasi dari aplikasi kalender yang Anda pilih, membaca judul dan teksnya di ponsel ini untuk ditampilkan di alarm, dan tidak pernah menyimpan atau mengirimnya ke mana pun. Anda bisa mematikannya kapan saja.",
+  "loudNotificationsAgree": "Setuju dan lanjutkan",
+  "loudNotificationsNoAccess": "Akses notifikasi mati. Aktifkan Quando? di daftar yang terbuka.",
+  "loudNotificationsAllow": "Izinkan",
+  "loudNotificationsNoApps": "Tidak ada aplikasi kalender yang didukung di ponsel ini.",
+  "loudNotificationsTwiceNote": "Acara yang sudah punya alarm kalender Quando? hanya berbunyi sekali.",
+  "loudNotificationsShabbatNote": "Senyap selama Shabbat dan hari raya."
 }

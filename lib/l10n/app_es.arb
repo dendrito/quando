@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Sonar en los recordatorios del propio evento",
+  "ringAtEventRemindersHint": "Los recordatorios de tu app de calendario suenan aquí como alarmas fuertes, con el sonido de esta alarma.",
+  "atEventReminders": "en los recordatorios del evento",
+  "everyEventReminderLoud": "Sonar fuerte en los recordatorios de cada evento",
+  "loudNotificationsHeading": "NOTIFICACIONES DE CALENDARIO FUERTES",
+  "loudNotificationsTitle": "Hacer sonar fuerte las notificaciones del calendario",
+  "loudNotificationsHint": "Cuando una app de calendario muestra un recordatorio, Quando? lo hace sonar como alarma, incluso con el teléfono en silencio.",
+  "loudNotificationsDisclosureTitle": "¿Permitir que Quando? lea las notificaciones del calendario?",
+  "loudNotificationsDisclosure": "Para hacer sonar tus recordatorios, Quando? necesita acceso a las notificaciones. Solo mira las de las apps de calendario que elijas, lee su título y texto en este teléfono para mostrarlos en la alarma y nunca los guarda ni los envía a ningún lado. Puedes desactivarlo cuando quieras.",
+  "loudNotificationsAgree": "Aceptar y continuar",
+  "loudNotificationsNoAccess": "El acceso a notificaciones está desactivado. Activa Quando? en la lista que se abre.",
+  "loudNotificationsAllow": "Permitir",
+  "loudNotificationsNoApps": "No se encontró ninguna app de calendario compatible en este teléfono.",
+  "loudNotificationsTwiceNote": "Los eventos que ya tienen una alarma de calendario de Quando? suenan una sola vez.",
+  "loudNotificationsShabbatNote": "En silencio durante Shabat y las festividades."
 }

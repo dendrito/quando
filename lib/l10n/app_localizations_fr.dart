@@ -2971,8 +2971,8 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde avant',
       other: '$n secondes avant',
+      one: '1 seconde avant',
     );
     return '$_temp0';
   }
@@ -3003,13 +3003,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n secondes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondes', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minute', other: '$n minutes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
     return '$_temp0';
   }
 
@@ -3103,4 +3103,54 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Sonner aux rappels de l\'événement';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Les rappels de votre agenda sonnent ici comme de vraies alarmes, avec le son de cette alarme.';
+
+  @override
+  String get atEventReminders => 'aux rappels de l\'événement';
+
+  @override
+  String get everyEventReminderLoud => 'Sonner fort aux rappels de chaque événement';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICATIONS D\'AGENDA SONORES';
+
+  @override
+  String get loudNotificationsTitle => 'Rendre les notifications d\'agenda sonores';
+
+  @override
+  String get loudNotificationsHint =>
+      'Quand une app d\'agenda affiche un rappel, Quando? le fait sonner comme une alarme, même en mode silencieux.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Autoriser Quando? à lire les notifications d\'agenda ?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Pour faire sonner vos rappels d\'agenda, Quando? a besoin de l\'accès aux notifications. Il ne regarde que celles des apps d\'agenda que vous choisissez, lit leur titre et leur texte sur ce téléphone pour les afficher sur l\'alarme, et ne les enregistre ni ne les envoie jamais. Vous pouvez désactiver cela à tout moment.';
+
+  @override
+  String get loudNotificationsAgree => 'Accepter et continuer';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'L\'accès aux notifications est désactivé. Activez Quando? dans la liste qui s\'ouvre.';
+
+  @override
+  String get loudNotificationsAllow => 'Autoriser';
+
+  @override
+  String get loudNotificationsNoApps => 'Aucune app d\'agenda compatible sur ce téléphone.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Les événements qui ont déjà une alarme d\'agenda Quando? ne sonnent qu\'une fois.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Silencieux pendant Chabbat et les fêtes.';
 }

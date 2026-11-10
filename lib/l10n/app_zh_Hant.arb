@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "在行程自帶的提醒時間響鈴",
+  "ringAtEventRemindersHint": "日曆 App 裡設定的提醒會在這裡以本鬧鐘的鈴聲大聲響起。",
+  "atEventReminders": "在行程提醒時",
+  "everyEventReminderLoud": "每個行程提醒時都大聲響鈴",
+  "loudNotificationsHeading": "日曆通知大聲響",
+  "loudNotificationsTitle": "讓日曆通知大聲響鈴",
+  "loudNotificationsHint": "日曆 App 跳出提醒時，Quando? 會把它當作鬧鐘響起，即使手機處於靜音。",
+  "loudNotificationsDisclosureTitle": "允許 Quando? 讀取日曆通知？",
+  "loudNotificationsDisclosure": "要大聲響起日曆提醒，Quando? 需要通知存取權。它只查看你所選日曆 App 的通知，在本機讀取標題和內容以顯示在鬧鐘上，從不儲存或傳送到任何地方。你可以隨時關閉。",
+  "loudNotificationsAgree": "同意並繼續",
+  "loudNotificationsNoAccess": "通知存取權已關閉。請在開啟的清單中開啟 Quando?。",
+  "loudNotificationsAllow": "允許",
+  "loudNotificationsNoApps": "本機找不到支援的日曆 App。",
+  "loudNotificationsTwiceNote": "已有 Quando? 日曆鬧鐘的行程只會響一次。",
+  "loudNotificationsShabbatNote": "安息日和節日期間靜音。"
 }

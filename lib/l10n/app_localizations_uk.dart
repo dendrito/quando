@@ -3002,10 +3002,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунди',
-      many: 'За $n секунд',
       other: 'За $n секунди',
+      many: 'За $n секунд',
+      few: 'За $n секунди',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунди',
-      many: '$n секунд',
       other: '$n секунди',
+      many: '$n секунд',
+      few: '$n секунди',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 хвилина',
-      few: '$n хвилини',
-      many: '$n хвилин',
       other: '$n хвилини',
+      many: '$n хвилин',
+      few: '$n хвилини',
+      one: '1 хвилина',
     );
     return '$_temp0';
   }
@@ -3150,4 +3150,53 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Дзвонити за нагадуваннями самої події';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Нагадування з вашого календаря дзвонять тут як гучні будильники, зі звуком цього будильника.';
+
+  @override
+  String get atEventReminders => 'за нагадуваннями події';
+
+  @override
+  String get everyEventReminderLoud => 'Гучно дзвонити за нагадуваннями кожної події';
+
+  @override
+  String get loudNotificationsHeading => 'ГУЧНІ СПОВІЩЕННЯ КАЛЕНДАРЯ';
+
+  @override
+  String get loudNotificationsTitle => 'Зробити сповіщення календаря гучними';
+
+  @override
+  String get loudNotificationsHint =>
+      'Коли календар показує нагадування, Quando? дзвонить ним як будильником, навіть у беззвучному режимі.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Дозволити Quando? читати сповіщення календаря?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Щоб гучно дзвонити нагадуваннями календаря, Quando? потрібен доступ до сповіщень. Він дивиться лише сповіщення вибраних вами календарів, читає їхній заголовок і текст на цьому телефоні, щоб показати на будильнику, і ніколи їх не зберігає й нікуди не надсилає. Це можна вимкнути будь-коли.';
+
+  @override
+  String get loudNotificationsAgree => 'Погодитися й продовжити';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Доступ до сповіщень вимкнено. Увімкніть Quando? у списку, що відкриється.';
+
+  @override
+  String get loudNotificationsAllow => 'Дозволити';
+
+  @override
+  String get loudNotificationsNoApps => 'На цьому телефоні немає підтримуваного календаря.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Події, які вже мають будильник Quando?, дзвонять лише раз.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Тихо в Шабат і свята.';
 }

@@ -3030,6 +3030,52 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => '在日程自带的提醒时间响铃';
+
+  @override
+  String get ringAtEventRemindersHint => '日历应用里设置的提醒会在这里以本闹钟的铃声大声响起。';
+
+  @override
+  String get atEventReminders => '在日程提醒时';
+
+  @override
+  String get everyEventReminderLoud => '每个日程提醒时都大声响铃';
+
+  @override
+  String get loudNotificationsHeading => '日历通知大声响';
+
+  @override
+  String get loudNotificationsTitle => '让日历通知大声响铃';
+
+  @override
+  String get loudNotificationsHint => '日历应用弹出提醒时，Quando? 会把它当作闹钟响起，即使手机处于静音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允许 Quando? 读取日历通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大声响起日历提醒，Quando? 需要通知使用权。它只查看你所选日历应用的通知，在本机读取标题和内容以显示在闹钟上，从不保存或发送到任何地方。你可以随时关闭。';
+
+  @override
+  String get loudNotificationsAgree => '同意并继续';
+
+  @override
+  String get loudNotificationsNoAccess => '通知使用权已关闭。请在打开的列表中开启 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允许';
+
+  @override
+  String get loudNotificationsNoApps => '本机未找到支持的日历应用。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日历闹钟的日程只会响一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和节日期间静音。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6057,4 +6103,50 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => '在行程自帶的提醒時間響鈴';
+
+  @override
+  String get ringAtEventRemindersHint => '日曆 App 裡設定的提醒會在這裡以本鬧鐘的鈴聲大聲響起。';
+
+  @override
+  String get atEventReminders => '在行程提醒時';
+
+  @override
+  String get everyEventReminderLoud => '每個行程提醒時都大聲響鈴';
+
+  @override
+  String get loudNotificationsHeading => '日曆通知大聲響';
+
+  @override
+  String get loudNotificationsTitle => '讓日曆通知大聲響鈴';
+
+  @override
+  String get loudNotificationsHint => '日曆 App 跳出提醒時，Quando? 會把它當作鬧鐘響起，即使手機處於靜音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允許 Quando? 讀取日曆通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大聲響起日曆提醒，Quando? 需要通知存取權。它只查看你所選日曆 App 的通知，在本機讀取標題和內容以顯示在鬧鐘上，從不儲存或傳送到任何地方。你可以隨時關閉。';
+
+  @override
+  String get loudNotificationsAgree => '同意並繼續';
+
+  @override
+  String get loudNotificationsNoAccess => '通知存取權已關閉。請在開啟的清單中開啟 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允許';
+
+  @override
+  String get loudNotificationsNoApps => '本機找不到支援的日曆 App。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日曆鬧鐘的行程只會響一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和節日期間靜音。';
 }

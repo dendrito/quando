@@ -2941,15 +2941,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqStartCalls => 'הכרזות לפני הזינוק';
 
   @override
-  String get seqStartCallsHelp => 'נאמרות בקול לפני "צא", בספירה לאחור מרגע הזינוק.';
+  String get seqStartCallsHelp => 'נאמרות בקול לפני \"צא\", בספירה לאחור מרגע הזינוק.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'שנייה אחת לפני',
       other: '$n שניות לפני',
+      one: 'שנייה אחת לפני',
     );
     return '$_temp0';
   }
@@ -2980,13 +2980,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'שנייה אחת', other: '$n שניות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'דקה אחת', other: '$n דקות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
     return '$_temp0';
   }
 
@@ -3026,10 +3026,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqPresetRound => 'סבב של דקה';
 
   @override
-  String get seqHintNoLimit => 'אחרי "צא" הוא סופר למעלה עד שתעצור אותו.';
+  String get seqHintNoLimit => 'אחרי \"צא\" הוא סופר למעלה עד שתעצור אותו.';
 
   @override
-  String get seqHintLength => 'אחרי "צא" הוא סופר לאחור עד אפס.';
+  String get seqHintLength => 'אחרי \"צא\" הוא סופר לאחור עד אפס.';
 
   @override
   String get seqWords => 'מילים';
@@ -3080,4 +3080,52 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'לצלצל בתזכורות של האירוע עצמו';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'התזכורות שהוגדרו באפליקציית היומן מצלצלות כאן כהתראות חזקות, עם הצליל של ההתראה הזו.';
+
+  @override
+  String get atEventReminders => 'בתזכורות של האירוע';
+
+  @override
+  String get everyEventReminderLoud => 'לצלצל בקול בתזכורות של כל אירוע';
+
+  @override
+  String get loudNotificationsHeading => 'התראות יומן בקול';
+
+  @override
+  String get loudNotificationsTitle => 'להפוך התראות יומן לחזקות';
+
+  @override
+  String get loudNotificationsHint =>
+      'כשאפליקציית יומן מציגה תזכורת, Quando? מצלצל אותה כהתראה, גם כשהטלפון על שקט.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'לאפשר ל־Quando? לקרוא התראות יומן?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'כדי לצלצל את תזכורות היומן בקול, Quando? צריך גישה להתראות. הוא מסתכל רק על התראות מאפליקציות היומן שבחרת, קורא את הכותרת והטקסט בטלפון הזה כדי להציג אותם בהתראה, ואף פעם לא שומר או שולח אותם לשום מקום. אפשר לכבות את זה בכל עת.';
+
+  @override
+  String get loudNotificationsAgree => 'מסכים, המשך';
+
+  @override
+  String get loudNotificationsNoAccess => 'הגישה להתראות כבויה. הפעילו את Quando? ברשימה שתיפתח.';
+
+  @override
+  String get loudNotificationsAllow => 'לאפשר';
+
+  @override
+  String get loudNotificationsNoApps => 'לא נמצאה בטלפון אפליקציית יומן נתמכת.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'אירועים שכבר יש להם התראת יומן של Quando? מצלצלים פעם אחת בלבד.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'שקט בשבת ובחגים.';
 }

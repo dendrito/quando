@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "在日程自带的提醒时间响铃",
+  "ringAtEventRemindersHint": "日历应用里设置的提醒会在这里以本闹钟的铃声大声响起。",
+  "atEventReminders": "在日程提醒时",
+  "everyEventReminderLoud": "每个日程提醒时都大声响铃",
+  "loudNotificationsHeading": "日历通知大声响",
+  "loudNotificationsTitle": "让日历通知大声响铃",
+  "loudNotificationsHint": "日历应用弹出提醒时，Quando? 会把它当作闹钟响起，即使手机处于静音。",
+  "loudNotificationsDisclosureTitle": "允许 Quando? 读取日历通知？",
+  "loudNotificationsDisclosure": "要大声响起日历提醒，Quando? 需要通知使用权。它只查看你所选日历应用的通知，在本机读取标题和内容以显示在闹钟上，从不保存或发送到任何地方。你可以随时关闭。",
+  "loudNotificationsAgree": "同意并继续",
+  "loudNotificationsNoAccess": "通知使用权已关闭。请在打开的列表中开启 Quando?。",
+  "loudNotificationsAllow": "允许",
+  "loudNotificationsNoApps": "本机未找到支持的日历应用。",
+  "loudNotificationsTwiceNote": "已有 Quando? 日历闹钟的日程只会响一次。",
+  "loudNotificationsShabbatNote": "安息日和节日期间静音。"
 }

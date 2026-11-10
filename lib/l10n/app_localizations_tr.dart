@@ -2953,8 +2953,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 saniye önce',
       other: '$n saniye önce',
+      one: '1 saniye önce',
     );
     return '$_temp0';
   }
@@ -2985,13 +2985,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 saniye', other: '$n saniye');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 dakika', other: '$n dakika');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
     return '$_temp0';
   }
 
@@ -3085,4 +3085,53 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Etkinliğin kendi hatırlatıcılarında çal';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Takvim uygulamanızdaki hatırlatıcılar burada bu alarmın sesiyle yüksek alarm olarak çalar.';
+
+  @override
+  String get atEventReminders => 'etkinliğin hatırlatıcılarında';
+
+  @override
+  String get everyEventReminderLoud => 'Her etkinliğin hatırlatıcılarında yüksek sesle çal';
+
+  @override
+  String get loudNotificationsHeading => 'YÜKSEK SESLİ TAKVİM BİLDİRİMLERİ';
+
+  @override
+  String get loudNotificationsTitle => 'Takvim bildirimlerini yüksek sesli yap';
+
+  @override
+  String get loudNotificationsHint =>
+      'Bir takvim uygulaması hatırlatıcı gösterdiğinde Quando? onu telefon sessizdeyken bile alarm olarak çalar.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? takvim bildirimlerini okuyabilsin mi?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Takvim hatırlatıcılarınızı yüksek sesle çalmak için Quando? bildirim erişimine ihtiyaç duyar. Yalnızca seçtiğiniz takvim uygulamalarının bildirimlerine bakar, alarmda göstermek için başlık ve metni bu telefonda okur ve bunları asla saklamaz ya da bir yere göndermez. İstediğiniz zaman kapatabilirsiniz.';
+
+  @override
+  String get loudNotificationsAgree => 'Kabul et ve devam et';
+
+  @override
+  String get loudNotificationsNoAccess => 'Bildirim erişimi kapalı. Açılan listede Quando?\'yu açın.';
+
+  @override
+  String get loudNotificationsAllow => 'İzin ver';
+
+  @override
+  String get loudNotificationsNoApps => 'Bu telefonda desteklenen takvim uygulaması bulunamadı.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Zaten bir Quando? takvim alarmı olan etkinlikler yalnızca bir kez çalar.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Şabat ve bayramlarda sessiz.';
 }

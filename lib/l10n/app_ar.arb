@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "رنّ عند تذكيرات الحدث نفسه",
+  "ringAtEventRemindersHint": "تذكيرات تطبيق التقويم ترنّ هنا كمنبّهات عالية بصوت هذا المنبّه.",
+  "atEventReminders": "عند تذكيرات الحدث",
+  "everyEventReminderLoud": "رنّ بصوت عالٍ عند تذكيرات كل حدث",
+  "loudNotificationsHeading": "إشعارات تقويم عالية",
+  "loudNotificationsTitle": "اجعل إشعارات التقويم عالية",
+  "loudNotificationsHint": "عندما يعرض تطبيق تقويم تذكيرًا، يرنّه Quando? كمنبّه حتى والهاتف صامت.",
+  "loudNotificationsDisclosureTitle": "السماح لـ Quando? بقراءة إشعارات التقويم؟",
+  "loudNotificationsDisclosure": "لكي يرنّ تذكيرات التقويم بصوت عالٍ، يحتاج Quando? إلى الوصول إلى الإشعارات. ينظر فقط في إشعارات تطبيقات التقويم التي تختارها، ويقرأ عنوانها ونصها على هذا الهاتف لعرضهما على المنبّه، ولا يحفظها أو يرسلها إلى أي مكان. يمكنك إيقاف ذلك في أي وقت.",
+  "loudNotificationsAgree": "موافقة ومتابعة",
+  "loudNotificationsNoAccess": "الوصول إلى الإشعارات متوقف. فعّل Quando? في القائمة التي تُفتح.",
+  "loudNotificationsAllow": "سماح",
+  "loudNotificationsNoApps": "لم يُعثر على تطبيق تقويم مدعوم على هذا الهاتف.",
+  "loudNotificationsTwiceNote": "الأحداث التي لها منبّه تقويم في Quando? ترنّ مرة واحدة فقط.",
+  "loudNotificationsShabbatNote": "صامت أثناء السبت والأعياد."
 }

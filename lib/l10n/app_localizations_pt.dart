@@ -3102,4 +3102,54 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nada toca neste dia';
+
+  @override
+  String get ringAtEventReminders => 'Tocar nos lembretes do próprio evento';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Os lembretes do seu app de agenda tocam aqui como alarmes altos, com o som deste alarme.';
+
+  @override
+  String get atEventReminders => 'nos lembretes do evento';
+
+  @override
+  String get everyEventReminderLoud => 'Tocar alto nos lembretes de todo evento';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICAÇÕES DE AGENDA ALTAS';
+
+  @override
+  String get loudNotificationsTitle => 'Deixar as notificações da agenda altas';
+
+  @override
+  String get loudNotificationsHint =>
+      'Quando um app de agenda mostra um lembrete, o Quando? toca como alarme, mesmo com o celular no silencioso.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Permitir que o Quando? leia notificações da agenda?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Para tocar seus lembretes de agenda em voz alta, o Quando? precisa de acesso às notificações. Ele só olha as notificações dos apps de agenda que você escolher, lê o título e o texto neste celular para mostrar no alarme e nunca os guarda nem envia para lugar nenhum. Você pode desligar quando quiser.';
+
+  @override
+  String get loudNotificationsAgree => 'Concordar e continuar';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'O acesso às notificações está desligado. Ative o Quando? na lista que abrir.';
+
+  @override
+  String get loudNotificationsAllow => 'Permitir';
+
+  @override
+  String get loudNotificationsNoApps => 'Nenhum app de agenda compatível encontrado neste celular.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Eventos que já têm um alarme de agenda do Quando? tocam só uma vez.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Silencioso durante o Shabat e as festas.';
 }

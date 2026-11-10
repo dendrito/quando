@@ -1,4 +1,5 @@
 import 'package:alarm/alarm.dart';
+import 'package:alarm/service/alarm_storage.dart';
 import 'package:alarm/src/generated/platform_bindings.g.dart';
 import 'package:flutter/foundation.dart';
 import 'package:logging/logging.dart';
@@ -65,7 +66,12 @@ class AlarmTriggerApiImpl extends AlarmTriggerApi {
 
   @override
   Future<void> alarmRang(int alarmId) async {
-    final settings = await Alarm.getAlarm(alarmId);
+    var settings = await Alarm.getAlarm(alarmId);
+    if (settings == null) {
+      // Saved by the native side while this isolate held an older copy.
+      await AlarmStorage.reload();
+      settings = await Alarm.getAlarm(alarmId);
+    }
     if (settings == null) {
       _log.severe('Alarm with id $alarmId started ringing but the settings '
           'object could not be found. Please report this issue at: '

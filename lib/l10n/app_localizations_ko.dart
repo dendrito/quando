@@ -3038,4 +3038,50 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => '일정 자체의 알림 시간에 울리기';
+
+  @override
+  String get ringAtEventRemindersHint => '캘린더 앱에 설정한 알림이 이 알람 소리로 크게 울립니다.';
+
+  @override
+  String get atEventReminders => '일정 알림 시간에';
+
+  @override
+  String get everyEventReminderLoud => '모든 일정 알림 시간에 크게 울리기';
+
+  @override
+  String get loudNotificationsHeading => '캘린더 알림 크게';
+
+  @override
+  String get loudNotificationsTitle => '캘린더 알림을 크게 울리기';
+
+  @override
+  String get loudNotificationsHint => '캘린더 앱이 알림을 보여 주면 무음 모드에서도 Quando?가 알람으로 울립니다.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando?가 캘린더 알림을 읽도록 허용할까요?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '캘린더 알림을 크게 울리려면 Quando?에 알림 접근 권한이 필요합니다. 선택한 캘린더 앱의 알림만 보고, 알람에 표시하기 위해 이 휴대폰에서 제목과 내용을 읽으며, 저장하거나 어디로도 보내지 않습니다. 언제든지 끌 수 있습니다.';
+
+  @override
+  String get loudNotificationsAgree => '동의하고 계속';
+
+  @override
+  String get loudNotificationsNoAccess => '알림 접근이 꺼져 있습니다. 열리는 목록에서 Quando?를 켜세요.';
+
+  @override
+  String get loudNotificationsAllow => '허용';
+
+  @override
+  String get loudNotificationsNoApps => '이 휴대폰에서 지원되는 캘린더 앱을 찾지 못했습니다.';
+
+  @override
+  String get loudNotificationsTwiceNote => '이미 Quando? 캘린더 알람이 있는 일정은 한 번만 울립니다.';
+
+  @override
+  String get loudNotificationsShabbatNote => '안식일과 명절에는 울리지 않습니다.';
 }

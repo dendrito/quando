@@ -3004,10 +3004,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda przed',
-      few: '$n sekundy przed',
-      many: '$n sekund przed',
       other: '$n sekundy przed',
+      many: '$n sekund przed',
+      few: '$n sekundy przed',
+      one: '1 sekunda przed',
     );
     return '$_temp0';
   }
@@ -3041,10 +3041,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 sekunda',
-      few: '$n sekundy',
-      many: '$n sekund',
       other: '$n sekundy',
+      many: '$n sekund',
+      few: '$n sekundy',
+      one: '1 sekunda',
     );
     return '$_temp0';
   }
@@ -3054,10 +3054,10 @@ class AppLocalizationsPl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 minuta',
-      few: '$n minuty',
-      many: '$n minut',
       other: '$n minuty',
+      many: '$n minut',
+      few: '$n minuty',
+      one: '1 minuta',
     );
     return '$_temp0';
   }
@@ -3152,4 +3152,54 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Dzwoń przy przypomnieniach wydarzenia';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Przypomnienia z aplikacji kalendarza dzwonią tu jak głośne alarmy, z dźwiękiem tego alarmu.';
+
+  @override
+  String get atEventReminders => 'przy przypomnieniach wydarzenia';
+
+  @override
+  String get everyEventReminderLoud => 'Dzwoń głośno przy przypomnieniach każdego wydarzenia';
+
+  @override
+  String get loudNotificationsHeading => 'GŁOŚNE POWIADOMIENIA KALENDARZA';
+
+  @override
+  String get loudNotificationsTitle => 'Głośne powiadomienia kalendarza';
+
+  @override
+  String get loudNotificationsHint =>
+      'Gdy aplikacja kalendarza pokaże przypomnienie, Quando? zadzwoni nim jak alarmem, nawet przy wyciszonym telefonie.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Pozwolić Quando? czytać powiadomienia kalendarza?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Aby głośno dzwonić przypomnieniami z kalendarza, Quando? potrzebuje dostępu do powiadomień. Patrzy tylko na powiadomienia z wybranych aplikacji kalendarza, odczytuje ich tytuł i tekst na tym telefonie, by pokazać je przy alarmie, i nigdy ich nie zapisuje ani nie wysyła. Możesz to wyłączyć w każdej chwili.';
+
+  @override
+  String get loudNotificationsAgree => 'Zgadzam się, dalej';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Dostęp do powiadomień jest wyłączony. Włącz Quando? na liście, która się otworzy.';
+
+  @override
+  String get loudNotificationsAllow => 'Zezwól';
+
+  @override
+  String get loudNotificationsNoApps => 'Nie znaleziono obsługiwanej aplikacji kalendarza.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Wydarzenia, które mają już alarm kalendarza Quando?, dzwonią tylko raz.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Cisza w szabat i święta.';
 }

@@ -24,6 +24,7 @@ class CalendarRule {
     this.includeTimes = false,
     this.style = RingStyle.none,
     this.deliveries = const {},
+    this.eventReminders = false,
   });
 
   final String id;
@@ -63,13 +64,16 @@ class CalendarRule {
   /// Zero applies to the selected anchor moment.
   final Map<int, ReminderDelivery> deliveries;
 
+  /// Also ring, loud, at each event's own reminders from the calendar app.
+  final bool eventReminders;
+
   String get title {
     if (name.isNotEmpty) return name;
     if (keyword.isNotEmpty) return l10n.eventsMatching(keyword);
     return l10n.everyEvent;
   }
 
-  bool get hasAlarms => before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
+  bool get hasAlarms => eventReminders || before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
 
   OffsetSeries? get _series => repeatEvery != null && repeatFor != null && repeatEvery! > Duration.zero
       ? OffsetSeries(direction: Direction.before, every: repeatEvery!, span: repeatFor!)
@@ -93,6 +97,7 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        eventReminders: eventReminders,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -147,6 +152,7 @@ class CalendarRule {
     Map<int, ReminderDelivery>? deliveries,
     bool defaultSound = false,
     bool? includeTimes,
+    bool? eventReminders,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -162,6 +168,7 @@ class CalendarRule {
     style: style ?? this.style,
     deliveries: deliveries ?? this.deliveries,
     includeTimes: includeTimes ?? this.includeTimes,
+    eventReminders: eventReminders ?? this.eventReminders,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -184,6 +191,7 @@ class CalendarRule {
     'style': style.toJson(),
     if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
     'includeTimes': includeTimes,
+    if (eventReminders) 'eventReminders': true,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -201,5 +209,6 @@ class CalendarRule {
     style: RingStyle.fromJson(j['style']),
     deliveries: ReminderDelivery.decode(j['deliveries']),
     includeTimes: j['includeTimes'] as bool? ?? false,
+    eventReminders: j['eventReminders'] as bool? ?? false,
   );
 }

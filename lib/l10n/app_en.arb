@@ -1866,5 +1866,20 @@
         "type": "String"
       }
     }
-  }
+  },
+  "ringAtEventReminders": "Ring at the event's own reminders",
+  "ringAtEventRemindersHint": "The reminders set in your calendar app ring here as loud alarms, with this alarm's sound.",
+  "atEventReminders": "at the event's reminders",
+  "everyEventReminderLoud": "Ring loud at every event's own reminders",
+  "loudNotificationsHeading": "LOUD CALENDAR NOTIFICATIONS",
+  "loudNotificationsTitle": "Make calendar notifications loud",
+  "loudNotificationsHint": "When a calendar app shows a reminder, Quando? rings it as an alarm, even with the phone on silent.",
+  "loudNotificationsDisclosureTitle": "Let Quando? read calendar notifications?",
+  "loudNotificationsDisclosure": "To ring your calendar reminders out loud, Quando? needs notification access. It only looks at notifications from the calendar apps you pick, reads their title and text on this phone to show them on the alarm, and never stores or sends them anywhere. You can turn this off at any time.",
+  "loudNotificationsAgree": "Agree and continue",
+  "loudNotificationsNoAccess": "Notification access is off. Turn Quando? on in the list that opens.",
+  "loudNotificationsAllow": "Allow",
+  "loudNotificationsNoApps": "No supported calendar app found on this phone.",
+  "loudNotificationsTwiceNote": "Events that already have a Quando? calendar alarm ring only once.",
+  "loudNotificationsShabbatNote": "Quiet during Shabbat and festivals."
 }

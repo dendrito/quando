@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "予定自体のリマインダーで鳴らす",
+  "ringAtEventRemindersHint": "カレンダーアプリのリマインダーが、このアラームの音で大きなアラームとして鳴ります。",
+  "atEventReminders": "予定のリマインダーで",
+  "everyEventReminderLoud": "すべての予定のリマインダーで大きく鳴らす",
+  "loudNotificationsHeading": "カレンダー通知を大きく",
+  "loudNotificationsTitle": "カレンダー通知を大きな音で鳴らす",
+  "loudNotificationsHint": "カレンダーアプリがリマインダーを表示すると、マナーモードでも Quando? がアラームとして鳴らします。",
+  "loudNotificationsDisclosureTitle": "Quando? にカレンダー通知の読み取りを許可しますか？",
+  "loudNotificationsDisclosure": "カレンダーのリマインダーを大きな音で鳴らすには、Quando? に通知へのアクセスが必要です。選んだカレンダーアプリの通知だけを見て、アラームに表示するためにタイトルと本文をこの端末上で読み取ります。保存したり送信したりすることはありません。いつでもオフにできます。",
+  "loudNotificationsAgree": "同意して続ける",
+  "loudNotificationsNoAccess": "通知へのアクセスがオフです。開いた一覧で Quando? をオンにしてください。",
+  "loudNotificationsAllow": "許可",
+  "loudNotificationsNoApps": "この端末に対応するカレンダーアプリが見つかりません。",
+  "loudNotificationsTwiceNote": "Quando? のカレンダーアラームがある予定は一度だけ鳴ります。",
+  "loudNotificationsShabbatNote": "安息日と祭日は鳴りません。"
 }

@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "לצלצל בתזכורות של האירוע עצמו",
+  "ringAtEventRemindersHint": "התזכורות שהוגדרו באפליקציית היומן מצלצלות כאן כהתראות חזקות, עם הצליל של ההתראה הזו.",
+  "atEventReminders": "בתזכורות של האירוע",
+  "everyEventReminderLoud": "לצלצל בקול בתזכורות של כל אירוע",
+  "loudNotificationsHeading": "התראות יומן בקול",
+  "loudNotificationsTitle": "להפוך התראות יומן לחזקות",
+  "loudNotificationsHint": "כשאפליקציית יומן מציגה תזכורת, Quando? מצלצל אותה כהתראה, גם כשהטלפון על שקט.",
+  "loudNotificationsDisclosureTitle": "לאפשר ל־Quando? לקרוא התראות יומן?",
+  "loudNotificationsDisclosure": "כדי לצלצל את תזכורות היומן בקול, Quando? צריך גישה להתראות. הוא מסתכל רק על התראות מאפליקציות היומן שבחרת, קורא את הכותרת והטקסט בטלפון הזה כדי להציג אותם בהתראה, ואף פעם לא שומר או שולח אותם לשום מקום. אפשר לכבות את זה בכל עת.",
+  "loudNotificationsAgree": "מסכים, המשך",
+  "loudNotificationsNoAccess": "הגישה להתראות כבויה. הפעילו את Quando? ברשימה שתיפתח.",
+  "loudNotificationsAllow": "לאפשר",
+  "loudNotificationsNoApps": "לא נמצאה בטלפון אפליקציית יומן נתמכת.",
+  "loudNotificationsTwiceNote": "אירועים שכבר יש להם התראת יומן של Quando? מצלצלים פעם אחת בלבד.",
+  "loudNotificationsShabbatNote": "שקט בשבת ובחגים."
 }

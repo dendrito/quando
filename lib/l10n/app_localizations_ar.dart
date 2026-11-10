@@ -2992,11 +2992,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'قبل ثانية',
-      two: 'قبل ثانيتين',
-      few: 'قبل $n ثوانٍ',
-      many: 'قبل $n ثانية',
       other: 'قبل $n ثانية',
+      many: 'قبل $n ثانية',
+      few: 'قبل $n ثوانٍ',
+      two: 'قبل ثانيتين',
+      one: 'قبل ثانية',
     );
     return '$_temp0';
   }
@@ -3030,11 +3030,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'ثانية',
-      two: 'ثانيتان',
-      few: '$n ثوانٍ',
-      many: '$n ثانية',
       other: '$n ثانية',
+      many: '$n ثانية',
+      few: '$n ثوانٍ',
+      two: 'ثانيتان',
+      one: 'ثانية',
     );
     return '$_temp0';
   }
@@ -3044,11 +3044,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'دقيقة',
-      two: 'دقيقتان',
-      few: '$n دقائق',
-      many: '$n دقيقة',
       other: '$n دقيقة',
+      many: '$n دقيقة',
+      few: '$n دقائق',
+      two: 'دقيقتان',
+      one: 'دقيقة',
     );
     return '$_temp0';
   }
@@ -3143,4 +3143,51 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'رنّ عند تذكيرات الحدث نفسه';
+
+  @override
+  String get ringAtEventRemindersHint => 'تذكيرات تطبيق التقويم ترنّ هنا كمنبّهات عالية بصوت هذا المنبّه.';
+
+  @override
+  String get atEventReminders => 'عند تذكيرات الحدث';
+
+  @override
+  String get everyEventReminderLoud => 'رنّ بصوت عالٍ عند تذكيرات كل حدث';
+
+  @override
+  String get loudNotificationsHeading => 'إشعارات تقويم عالية';
+
+  @override
+  String get loudNotificationsTitle => 'اجعل إشعارات التقويم عالية';
+
+  @override
+  String get loudNotificationsHint =>
+      'عندما يعرض تطبيق تقويم تذكيرًا، يرنّه Quando? كمنبّه حتى والهاتف صامت.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'السماح لـ Quando? بقراءة إشعارات التقويم؟';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'لكي يرنّ تذكيرات التقويم بصوت عالٍ، يحتاج Quando? إلى الوصول إلى الإشعارات. ينظر فقط في إشعارات تطبيقات التقويم التي تختارها، ويقرأ عنوانها ونصها على هذا الهاتف لعرضهما على المنبّه، ولا يحفظها أو يرسلها إلى أي مكان. يمكنك إيقاف ذلك في أي وقت.';
+
+  @override
+  String get loudNotificationsAgree => 'موافقة ومتابعة';
+
+  @override
+  String get loudNotificationsNoAccess => 'الوصول إلى الإشعارات متوقف. فعّل Quando? في القائمة التي تُفتح.';
+
+  @override
+  String get loudNotificationsAllow => 'سماح';
+
+  @override
+  String get loudNotificationsNoApps => 'لم يُعثر على تطبيق تقويم مدعوم على هذا الهاتف.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'الأحداث التي لها منبّه تقويم في Quando? ترنّ مرة واحدة فقط.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'صامت أثناء السبت والأعياد.';
 }

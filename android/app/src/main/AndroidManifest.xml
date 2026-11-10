@@ -56,6 +56,18 @@
                 <data android:scheme="quando-soundcloud" android:host="auth"/>
             </intent-filter>
         </activity>
+        <!-- Off until you turn on "Make calendar notifications loud" and allow
+             notification access. Reads only the apps you pick; nothing leaves
+             the phone. -->
+        <service
+            android:name=".QuandoListener"
+            android:label="${appLabel}"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </service>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -68,6 +80,17 @@
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
     <queries>
+        <!-- Loud calendar notifications: see which calendar apps you have. -->
+        <package android:name="com.google.android.calendar"/>
+        <package android:name="com.samsung.android.calendar"/>
+        <package android:name="com.microsoft.office.outlook"/>
+        <package android:name="com.android.calendar"/>
+        <package android:name="com.xiaomi.calendar"/>
+        <package android:name="com.oneplus.calendar"/>
+        <package android:name="com.coloros.calendar"/>
+        <package android:name="com.huawei.calendar"/>
+        <package android:name="com.appgenix.bizcal"/>
+        <package android:name="com.tasks.android"/>
         <!-- Spotify direct play: find the Spotify app. -->
         <package android:name="com.spotify.music"/>
         <intent>

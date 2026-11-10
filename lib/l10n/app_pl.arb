@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Dzwoń przy przypomnieniach wydarzenia",
+  "ringAtEventRemindersHint": "Przypomnienia z aplikacji kalendarza dzwonią tu jak głośne alarmy, z dźwiękiem tego alarmu.",
+  "atEventReminders": "przy przypomnieniach wydarzenia",
+  "everyEventReminderLoud": "Dzwoń głośno przy przypomnieniach każdego wydarzenia",
+  "loudNotificationsHeading": "GŁOŚNE POWIADOMIENIA KALENDARZA",
+  "loudNotificationsTitle": "Głośne powiadomienia kalendarza",
+  "loudNotificationsHint": "Gdy aplikacja kalendarza pokaże przypomnienie, Quando? zadzwoni nim jak alarmem, nawet przy wyciszonym telefonie.",
+  "loudNotificationsDisclosureTitle": "Pozwolić Quando? czytać powiadomienia kalendarza?",
+  "loudNotificationsDisclosure": "Aby głośno dzwonić przypomnieniami z kalendarza, Quando? potrzebuje dostępu do powiadomień. Patrzy tylko na powiadomienia z wybranych aplikacji kalendarza, odczytuje ich tytuł i tekst na tym telefonie, by pokazać je przy alarmie, i nigdy ich nie zapisuje ani nie wysyła. Możesz to wyłączyć w każdej chwili.",
+  "loudNotificationsAgree": "Zgadzam się, dalej",
+  "loudNotificationsNoAccess": "Dostęp do powiadomień jest wyłączony. Włącz Quando? na liście, która się otworzy.",
+  "loudNotificationsAllow": "Zezwól",
+  "loudNotificationsNoApps": "Nie znaleziono obsługiwanej aplikacji kalendarza.",
+  "loudNotificationsTwiceNote": "Wydarzenia, które mają już alarm kalendarza Quando?, dzwonią tylko raz.",
+  "loudNotificationsShabbatNote": "Cisza w szabat i święta."
 }

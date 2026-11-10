@@ -11,6 +11,7 @@ import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/data/google_calendar.dart';
+import '../features/calendar/data/loud_notifications.dart';
 import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
@@ -509,6 +510,11 @@ final jewishTimesProvider = Provider<JewishTimes>(
 
 final calendarReaderProvider = Provider<CalendarReader>(
   (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
+);
+
+/// "Make calendar notifications loud" (Android).
+final loudNotificationsProvider = Provider<LoudNotifications>(
+  (ref) => LoudNotifications(ref.watch(prefsProvider)),
 );
 
 /// Google Calendar read online, for when it isn't on the phone.

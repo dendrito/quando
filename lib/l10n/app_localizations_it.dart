@@ -2970,8 +2970,8 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 secondo prima',
       other: '$n secondi prima',
+      one: '1 secondo prima',
     );
     return '$_temp0';
   }
@@ -3002,13 +3002,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 secondo', other: '$n secondi');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondi', one: '1 secondo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minuti');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuti', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3102,4 +3102,55 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Suona ai promemoria dell\'evento';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'I promemoria della tua app calendario suonano qui come sveglie forti, con il suono di questa sveglia.';
+
+  @override
+  String get atEventReminders => 'ai promemoria dell\'evento';
+
+  @override
+  String get everyEventReminderLoud => 'Suona forte ai promemoria di ogni evento';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICHE DEL CALENDARIO A VOLUME ALTO';
+
+  @override
+  String get loudNotificationsTitle => 'Rendi forti le notifiche del calendario';
+
+  @override
+  String get loudNotificationsHint =>
+      'Quando un\'app calendario mostra un promemoria, Quando? lo fa suonare come sveglia, anche col telefono in silenzioso.';
+
+  @override
+  String get loudNotificationsDisclosureTitle =>
+      'Consentire a Quando? di leggere le notifiche del calendario?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Per far suonare i promemoria del calendario, Quando? ha bisogno dell\'accesso alle notifiche. Guarda solo quelle delle app calendario che scegli, ne legge titolo e testo su questo telefono per mostrarli sulla sveglia, e non li salva né li invia mai. Puoi disattivarlo quando vuoi.';
+
+  @override
+  String get loudNotificationsAgree => 'Accetta e continua';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'L\'accesso alle notifiche è disattivato. Attiva Quando? nell\'elenco che si apre.';
+
+  @override
+  String get loudNotificationsAllow => 'Consenti';
+
+  @override
+  String get loudNotificationsNoApps => 'Nessuna app calendario supportata su questo telefono.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Gli eventi che hanno già una sveglia di calendario Quando? suonano una volta sola.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'In silenzio durante lo Shabbat e le feste.';
 }

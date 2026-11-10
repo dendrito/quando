@@ -2944,11 +2944,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
+  String get seqStartCallsHelp => '\"चलो\" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड पहले', other: '$n सेकंड पहले');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड पहले', one: '1 सेकंड पहले');
     return '$_temp0';
   }
 
@@ -2978,13 +2978,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड', other: '$n सेकंड');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड', one: '1 सेकंड');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 मिनट', other: '$n मिनट');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n मिनट', one: '1 मिनट');
     return '$_temp0';
   }
 
@@ -3024,10 +3024,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
+  String get seqHintNoLimit => '\"चलो\" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
+  String get seqHintLength => '\"चलो\" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
   String get seqWords => 'शब्द';
@@ -3078,4 +3078,53 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'इवेंट के अपने रिमाइंडर पर बजाएँ';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'आपके कैलेंडर ऐप के रिमाइंडर यहाँ इस अलार्म की आवाज़ में तेज़ अलार्म की तरह बजते हैं।';
+
+  @override
+  String get atEventReminders => 'इवेंट के रिमाइंडर पर';
+
+  @override
+  String get everyEventReminderLoud => 'हर इवेंट के रिमाइंडर पर तेज़ बजाएँ';
+
+  @override
+  String get loudNotificationsHeading => 'तेज़ कैलेंडर सूचनाएँ';
+
+  @override
+  String get loudNotificationsTitle => 'कैलेंडर सूचनाओं को तेज़ बनाएँ';
+
+  @override
+  String get loudNotificationsHint =>
+      'जब कोई कैलेंडर ऐप रिमाइंडर दिखाता है, Quando? उसे अलार्म की तरह बजाता है, फ़ोन साइलेंट पर हो तब भी।';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? को कैलेंडर सूचनाएँ पढ़ने दें?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'आपके कैलेंडर रिमाइंडर तेज़ आवाज़ में बजाने के लिए Quando? को सूचना एक्सेस चाहिए। यह सिर्फ़ आपके चुने कैलेंडर ऐप की सूचनाएँ देखता है, अलार्म पर दिखाने के लिए उनका शीर्षक और टेक्स्ट इसी फ़ोन पर पढ़ता है, और उन्हें कभी सहेजता या कहीं भेजता नहीं। आप इसे कभी भी बंद कर सकते हैं।';
+
+  @override
+  String get loudNotificationsAgree => 'सहमत, आगे बढ़ें';
+
+  @override
+  String get loudNotificationsNoAccess => 'सूचना एक्सेस बंद है। खुलने वाली सूची में Quando? चालू करें।';
+
+  @override
+  String get loudNotificationsAllow => 'अनुमति दें';
+
+  @override
+  String get loudNotificationsNoApps => 'इस फ़ोन पर कोई समर्थित कैलेंडर ऐप नहीं मिला।';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'जिन इवेंट का पहले से Quando? कैलेंडर अलार्म है, वे सिर्फ़ एक बार बजते हैं।';
+
+  @override
+  String get loudNotificationsShabbatNote => 'शब्बात और त्योहारों में शांत।';
 }

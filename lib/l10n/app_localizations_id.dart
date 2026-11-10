@@ -2950,8 +2950,8 @@ class AppLocalizationsId extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 detik sebelumnya',
       other: '$n detik sebelumnya',
+      one: '1 detik sebelumnya',
     );
     return '$_temp0';
   }
@@ -2982,13 +2982,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 detik', other: '$n detik');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n detik', one: '1 detik');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 menit', other: '$n menit');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n menit', one: '1 menit');
     return '$_temp0';
   }
 
@@ -3082,4 +3082,53 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Berbunyi di pengingat acara itu sendiri';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Pengingat di aplikasi kalender Anda berbunyi di sini sebagai alarm keras, dengan suara alarm ini.';
+
+  @override
+  String get atEventReminders => 'di pengingat acara';
+
+  @override
+  String get everyEventReminderLoud => 'Berbunyi keras di pengingat setiap acara';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFIKASI KALENDER KERAS';
+
+  @override
+  String get loudNotificationsTitle => 'Buat notifikasi kalender berbunyi keras';
+
+  @override
+  String get loudNotificationsHint =>
+      'Saat aplikasi kalender menampilkan pengingat, Quando? membunyikannya sebagai alarm, bahkan saat ponsel senyap.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Izinkan Quando? membaca notifikasi kalender?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Untuk membunyikan pengingat kalender dengan keras, Quando? memerlukan akses notifikasi. Ia hanya melihat notifikasi dari aplikasi kalender yang Anda pilih, membaca judul dan teksnya di ponsel ini untuk ditampilkan di alarm, dan tidak pernah menyimpan atau mengirimnya ke mana pun. Anda bisa mematikannya kapan saja.';
+
+  @override
+  String get loudNotificationsAgree => 'Setuju dan lanjutkan';
+
+  @override
+  String get loudNotificationsNoAccess => 'Akses notifikasi mati. Aktifkan Quando? di daftar yang terbuka.';
+
+  @override
+  String get loudNotificationsAllow => 'Izinkan';
+
+  @override
+  String get loudNotificationsNoApps => 'Tidak ada aplikasi kalender yang didukung di ponsel ini.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Acara yang sudah punya alarm kalender Quando? hanya berbunyi sekali.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Senyap selama Shabbat dan hari raya.';
 }

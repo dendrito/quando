@@ -110,6 +110,20 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }
+    if (isAndroid) {
+      try {
+        await ref
+            .read(loudNotificationsProvider)
+            .publish(
+              now: DateTime.now(),
+              plan: ref.read(planProvider),
+              payloadFor: ref.read(payloadForProvider),
+              quiet: ref.read(shabbatInUseProvider) ? ref.read(periodsProvider) : const [],
+            );
+      } catch (e) {
+        debugPrint('Quando?: could not prepare loud calendar notifications: $e');
+      }
+    }
   }
 
   @override

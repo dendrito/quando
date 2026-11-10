@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Etkinliğin kendi hatırlatıcılarında çal",
+  "ringAtEventRemindersHint": "Takvim uygulamanızdaki hatırlatıcılar burada bu alarmın sesiyle yüksek alarm olarak çalar.",
+  "atEventReminders": "etkinliğin hatırlatıcılarında",
+  "everyEventReminderLoud": "Her etkinliğin hatırlatıcılarında yüksek sesle çal",
+  "loudNotificationsHeading": "YÜKSEK SESLİ TAKVİM BİLDİRİMLERİ",
+  "loudNotificationsTitle": "Takvim bildirimlerini yüksek sesli yap",
+  "loudNotificationsHint": "Bir takvim uygulaması hatırlatıcı gösterdiğinde Quando? onu telefon sessizdeyken bile alarm olarak çalar.",
+  "loudNotificationsDisclosureTitle": "Quando? takvim bildirimlerini okuyabilsin mi?",
+  "loudNotificationsDisclosure": "Takvim hatırlatıcılarınızı yüksek sesle çalmak için Quando? bildirim erişimine ihtiyaç duyar. Yalnızca seçtiğiniz takvim uygulamalarının bildirimlerine bakar, alarmda göstermek için başlık ve metni bu telefonda okur ve bunları asla saklamaz ya da bir yere göndermez. İstediğiniz zaman kapatabilirsiniz.",
+  "loudNotificationsAgree": "Kabul et ve devam et",
+  "loudNotificationsNoAccess": "Bildirim erişimi kapalı. Açılan listede Quando?'yu açın.",
+  "loudNotificationsAllow": "İzin ver",
+  "loudNotificationsNoApps": "Bu telefonda desteklenen takvim uygulaması bulunamadı.",
+  "loudNotificationsTwiceNote": "Zaten bir Quando? takvim alarmı olan etkinlikler yalnızca bir kez çalar.",
+  "loudNotificationsShabbatNote": "Şabat ve bayramlarda sessiz."
 }

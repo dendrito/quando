@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Suona ai promemoria dell'evento",
+  "ringAtEventRemindersHint": "I promemoria della tua app calendario suonano qui come sveglie forti, con il suono di questa sveglia.",
+  "atEventReminders": "ai promemoria dell'evento",
+  "everyEventReminderLoud": "Suona forte ai promemoria di ogni evento",
+  "loudNotificationsHeading": "NOTIFICHE DEL CALENDARIO A VOLUME ALTO",
+  "loudNotificationsTitle": "Rendi forti le notifiche del calendario",
+  "loudNotificationsHint": "Quando un'app calendario mostra un promemoria, Quando? lo fa suonare come sveglia, anche col telefono in silenzioso.",
+  "loudNotificationsDisclosureTitle": "Consentire a Quando? di leggere le notifiche del calendario?",
+  "loudNotificationsDisclosure": "Per far suonare i promemoria del calendario, Quando? ha bisogno dell'accesso alle notifiche. Guarda solo quelle delle app calendario che scegli, ne legge titolo e testo su questo telefono per mostrarli sulla sveglia, e non li salva né li invia mai. Puoi disattivarlo quando vuoi.",
+  "loudNotificationsAgree": "Accetta e continua",
+  "loudNotificationsNoAccess": "L'accesso alle notifiche è disattivato. Attiva Quando? nell'elenco che si apre.",
+  "loudNotificationsAllow": "Consenti",
+  "loudNotificationsNoApps": "Nessuna app calendario supportata su questo telefono.",
+  "loudNotificationsTwiceNote": "Gli eventi che hanno già una sveglia di calendario Quando? suonano una volta sola.",
+  "loudNotificationsShabbatNote": "In silenzio durante lo Shabbat e le feste."
 }

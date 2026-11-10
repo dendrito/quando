@@ -2966,8 +2966,8 @@ class AppLocalizationsDe extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 Sekunde vorher',
       other: '$n Sekunden vorher',
+      one: '1 Sekunde vorher',
     );
     return '$_temp0';
   }
@@ -2998,13 +2998,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Sekunde', other: '$n Sekunden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n Sekunden', one: '1 Sekunde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Minute', other: '$n Minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n Minuten', one: '1 Minute');
     return '$_temp0';
   }
 
@@ -3098,4 +3098,54 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Zu den eigenen Erinnerungen des Termins klingeln';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Die Erinnerungen aus deiner Kalender-App klingeln hier als laute Wecker, mit dem Ton dieses Weckers.';
+
+  @override
+  String get atEventReminders => 'zu den Erinnerungen des Termins';
+
+  @override
+  String get everyEventReminderLoud => 'Bei den Erinnerungen jedes Termins laut klingeln';
+
+  @override
+  String get loudNotificationsHeading => 'LAUTE KALENDER-BENACHRICHTIGUNGEN';
+
+  @override
+  String get loudNotificationsTitle => 'Kalender-Benachrichtigungen laut machen';
+
+  @override
+  String get loudNotificationsHint =>
+      'Zeigt eine Kalender-App eine Erinnerung, klingelt Quando? sie als Wecker, auch wenn das Handy lautlos ist.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? Kalender-Benachrichtigungen lesen lassen?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Um deine Kalender-Erinnerungen laut klingeln zu lassen, braucht Quando? Zugriff auf Benachrichtigungen. Es sieht nur Benachrichtigungen der Kalender-Apps an, die du auswählst, liest Titel und Text auf diesem Handy, um sie beim Wecker anzuzeigen, und speichert oder sendet sie nie. Du kannst das jederzeit ausschalten.';
+
+  @override
+  String get loudNotificationsAgree => 'Zustimmen und weiter';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Benachrichtigungszugriff ist aus. Schalte Quando? in der Liste ein, die sich öffnet.';
+
+  @override
+  String get loudNotificationsAllow => 'Erlauben';
+
+  @override
+  String get loudNotificationsNoApps => 'Keine unterstützte Kalender-App auf diesem Handy gefunden.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Termine, die schon einen Quando?-Kalenderwecker haben, klingeln nur einmal.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Still an Schabbat und Feiertagen.';
 }

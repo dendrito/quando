@@ -2964,8 +2964,8 @@ class AppLocalizationsNl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde ervoor',
       other: '$n seconden ervoor',
+      one: '1 seconde ervoor',
     );
     return '$_temp0';
   }
@@ -2996,13 +2996,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconden', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuten', one: '1 minuut');
     return '$_temp0';
   }
 
@@ -3096,4 +3096,53 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Afgaan bij de eigen herinneringen van het afspraak';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'De herinneringen uit je agenda-app gaan hier af als luide wekkers, met het geluid van deze wekker.';
+
+  @override
+  String get atEventReminders => 'bij de herinneringen van de afspraak';
+
+  @override
+  String get everyEventReminderLoud => 'Luid afgaan bij de herinneringen van elke afspraak';
+
+  @override
+  String get loudNotificationsHeading => 'LUIDE AGENDAMELDINGEN';
+
+  @override
+  String get loudNotificationsTitle => 'Agendameldingen luid maken';
+
+  @override
+  String get loudNotificationsHint =>
+      'Toont een agenda-app een herinnering, dan laat Quando? die afgaan als wekker, ook als je telefoon op stil staat.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? agendameldingen laten lezen?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Om je agendaherinneringen luid te laten afgaan, heeft Quando? toegang tot meldingen nodig. Het kijkt alleen naar meldingen van de agenda-apps die je kiest, leest titel en tekst op deze telefoon om ze bij de wekker te tonen, en bewaart of verstuurt ze nooit. Je kunt dit altijd uitzetten.';
+
+  @override
+  String get loudNotificationsAgree => 'Akkoord en doorgaan';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Toegang tot meldingen staat uit. Zet Quando? aan in de lijst die opent.';
+
+  @override
+  String get loudNotificationsAllow => 'Toestaan';
+
+  @override
+  String get loudNotificationsNoApps => 'Geen ondersteunde agenda-app gevonden op deze telefoon.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Afspraken met al een Quando?-agendawekker gaan maar één keer af.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Stil tijdens sjabbat en feestdagen.';
 }

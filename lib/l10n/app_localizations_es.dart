@@ -2967,8 +2967,8 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 segundo antes',
       other: '$n segundos antes',
+      one: '1 segundo antes',
     );
     return '$_temp0';
   }
@@ -2999,13 +2999,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 segundo', other: '$n segundos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n segundos', one: '1 segundo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minutos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutos', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3099,4 +3099,56 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Sonar en los recordatorios del propio evento';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Los recordatorios de tu app de calendario suenan aquí como alarmas fuertes, con el sonido de esta alarma.';
+
+  @override
+  String get atEventReminders => 'en los recordatorios del evento';
+
+  @override
+  String get everyEventReminderLoud => 'Sonar fuerte en los recordatorios de cada evento';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICACIONES DE CALENDARIO FUERTES';
+
+  @override
+  String get loudNotificationsTitle => 'Hacer sonar fuerte las notificaciones del calendario';
+
+  @override
+  String get loudNotificationsHint =>
+      'Cuando una app de calendario muestra un recordatorio, Quando? lo hace sonar como alarma, incluso con el teléfono en silencio.';
+
+  @override
+  String get loudNotificationsDisclosureTitle =>
+      '¿Permitir que Quando? lea las notificaciones del calendario?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Para hacer sonar tus recordatorios, Quando? necesita acceso a las notificaciones. Solo mira las de las apps de calendario que elijas, lee su título y texto en este teléfono para mostrarlos en la alarma y nunca los guarda ni los envía a ningún lado. Puedes desactivarlo cuando quieras.';
+
+  @override
+  String get loudNotificationsAgree => 'Aceptar y continuar';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'El acceso a notificaciones está desactivado. Activa Quando? en la lista que se abre.';
+
+  @override
+  String get loudNotificationsAllow => 'Permitir';
+
+  @override
+  String get loudNotificationsNoApps =>
+      'No se encontró ninguna app de calendario compatible en este teléfono.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Los eventos que ya tienen una alarma de calendario de Quando? suenan una sola vez.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'En silencio durante Shabat y las festividades.';
 }

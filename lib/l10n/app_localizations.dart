@@ -5595,6 +5595,96 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing rings this day'**
   String get noAlarmsThatDay;
+
+  /// No description provided for @ringAtEventReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring at the event\'s own reminders'**
+  String get ringAtEventReminders;
+
+  /// No description provided for @ringAtEventRemindersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The reminders set in your calendar app ring here as loud alarms, with this alarm\'s sound.'**
+  String get ringAtEventRemindersHint;
+
+  /// No description provided for @atEventReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'at the event\'s reminders'**
+  String get atEventReminders;
+
+  /// No description provided for @everyEventReminderLoud.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring loud at every event\'s own reminders'**
+  String get everyEventReminderLoud;
+
+  /// No description provided for @loudNotificationsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'LOUD CALENDAR NOTIFICATIONS'**
+  String get loudNotificationsHeading;
+
+  /// No description provided for @loudNotificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make calendar notifications loud'**
+  String get loudNotificationsTitle;
+
+  /// No description provided for @loudNotificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When a calendar app shows a reminder, Quando? rings it as an alarm, even with the phone on silent.'**
+  String get loudNotificationsHint;
+
+  /// No description provided for @loudNotificationsDisclosureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let Quando? read calendar notifications?'**
+  String get loudNotificationsDisclosureTitle;
+
+  /// No description provided for @loudNotificationsDisclosure.
+  ///
+  /// In en, this message translates to:
+  /// **'To ring your calendar reminders out loud, Quando? needs notification access. It only looks at notifications from the calendar apps you pick, reads their title and text on this phone to show them on the alarm, and never stores or sends them anywhere. You can turn this off at any time.'**
+  String get loudNotificationsDisclosure;
+
+  /// No description provided for @loudNotificationsAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree and continue'**
+  String get loudNotificationsAgree;
+
+  /// No description provided for @loudNotificationsNoAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification access is off. Turn Quando? on in the list that opens.'**
+  String get loudNotificationsNoAccess;
+
+  /// No description provided for @loudNotificationsAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get loudNotificationsAllow;
+
+  /// No description provided for @loudNotificationsNoApps.
+  ///
+  /// In en, this message translates to:
+  /// **'No supported calendar app found on this phone.'**
+  String get loudNotificationsNoApps;
+
+  /// No description provided for @loudNotificationsTwiceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Events that already have a Quando? calendar alarm ring only once.'**
+  String get loudNotificationsTwiceNote;
+
+  /// No description provided for @loudNotificationsShabbatNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet during Shabbat and festivals.'**
+  String get loudNotificationsShabbatNote;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

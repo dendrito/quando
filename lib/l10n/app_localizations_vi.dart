@@ -3075,4 +3075,53 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get ringAtEventReminders => 'Reo vào lời nhắc của chính sự kiện';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Lời nhắc trong ứng dụng lịch sẽ reo to tại đây như báo thức, bằng âm thanh của báo thức này.';
+
+  @override
+  String get atEventReminders => 'vào lời nhắc của sự kiện';
+
+  @override
+  String get everyEventReminderLoud => 'Reo to vào lời nhắc của mọi sự kiện';
+
+  @override
+  String get loudNotificationsHeading => 'THÔNG BÁO LỊCH THẬT TO';
+
+  @override
+  String get loudNotificationsTitle => 'Cho thông báo lịch reo thật to';
+
+  @override
+  String get loudNotificationsHint =>
+      'Khi ứng dụng lịch hiện lời nhắc, Quando? sẽ reo như báo thức, kể cả khi điện thoại để im lặng.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Cho phép Quando? đọc thông báo lịch?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Để reo to lời nhắc lịch, Quando? cần quyền truy cập thông báo. Ứng dụng chỉ xem thông báo từ các ứng dụng lịch bạn chọn, đọc tiêu đề và nội dung ngay trên điện thoại này để hiện trên báo thức, và không bao giờ lưu hay gửi đi đâu. Bạn có thể tắt bất cứ lúc nào.';
+
+  @override
+  String get loudNotificationsAgree => 'Đồng ý và tiếp tục';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Quyền truy cập thông báo đang tắt. Hãy bật Quando? trong danh sách mở ra.';
+
+  @override
+  String get loudNotificationsAllow => 'Cho phép';
+
+  @override
+  String get loudNotificationsNoApps => 'Không tìm thấy ứng dụng lịch được hỗ trợ trên điện thoại này.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Sự kiện đã có báo thức lịch Quando? chỉ reo một lần.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Im lặng trong ngày Sabát và lễ.';
 }

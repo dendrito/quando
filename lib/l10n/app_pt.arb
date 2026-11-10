@@ -910,5 +910,20 @@
   "homePlaceTitle": "Cidade do céu",
   "nextAlarmLine": "Próximo alarme · {title} {time}",
   "showAllAlarms": "Mostrar todos os dias",
-  "noAlarmsThatDay": "Nada toca neste dia"
+  "noAlarmsThatDay": "Nada toca neste dia",
+  "ringAtEventReminders": "Tocar nos lembretes do próprio evento",
+  "ringAtEventRemindersHint": "Os lembretes do seu app de agenda tocam aqui como alarmes altos, com o som deste alarme.",
+  "atEventReminders": "nos lembretes do evento",
+  "everyEventReminderLoud": "Tocar alto nos lembretes de todo evento",
+  "loudNotificationsHeading": "NOTIFICAÇÕES DE AGENDA ALTAS",
+  "loudNotificationsTitle": "Deixar as notificações da agenda altas",
+  "loudNotificationsHint": "Quando um app de agenda mostra um lembrete, o Quando? toca como alarme, mesmo com o celular no silencioso.",
+  "loudNotificationsDisclosureTitle": "Permitir que o Quando? leia notificações da agenda?",
+  "loudNotificationsDisclosure": "Para tocar seus lembretes de agenda em voz alta, o Quando? precisa de acesso às notificações. Ele só olha as notificações dos apps de agenda que você escolher, lê o título e o texto neste celular para mostrar no alarme e nunca os guarda nem envia para lugar nenhum. Você pode desligar quando quiser.",
+  "loudNotificationsAgree": "Concordar e continuar",
+  "loudNotificationsNoAccess": "O acesso às notificações está desligado. Ative o Quando? na lista que abrir.",
+  "loudNotificationsAllow": "Permitir",
+  "loudNotificationsNoApps": "Nenhum app de agenda compatível encontrado neste celular.",
+  "loudNotificationsTwiceNote": "Eventos que já têm um alarme de agenda do Quando? tocam só uma vez.",
+  "loudNotificationsShabbatNote": "Silencioso durante o Shabat e as festas."
 }

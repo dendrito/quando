@@ -83,7 +83,7 @@ class Scheduler {
       ..sort((a, b) => (a.label == null ? 1 : 0).compareTo(b.label == null ? 1 : 0));
     for (final rule in ordered) {
       for (final event in events.where(rule.matches)) {
-        for (final offset in rule.offsets()) {
+        for (final offset in rule.offsetsFor(event)) {
           final delivery = rule.deliveryAt(offset);
           if (!delivery.enabled || !(allowReminder?.call(event, offset) ?? true)) continue;
           final at = event.at.add(offset);

@@ -910,5 +910,20 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "ringAtEventReminders": "Звонить по напоминаниям самого события",
+  "ringAtEventRemindersHint": "Напоминания из вашего календаря звонят здесь как громкие будильники, со звуком этого будильника.",
+  "atEventReminders": "по напоминаниям события",
+  "everyEventReminderLoud": "Громко звонить по напоминаниям каждого события",
+  "loudNotificationsHeading": "ГРОМКИЕ УВЕДОМЛЕНИЯ КАЛЕНДАРЯ",
+  "loudNotificationsTitle": "Сделать уведомления календаря громкими",
+  "loudNotificationsHint": "Когда календарь показывает напоминание, Quando? звонит им как будильником, даже в беззвучном режиме.",
+  "loudNotificationsDisclosureTitle": "Разрешить Quando? читать уведомления календаря?",
+  "loudNotificationsDisclosure": "Чтобы громко звонить напоминаниями календаря, Quando? нужен доступ к уведомлениям. Он смотрит только уведомления выбранных вами календарей, читает их заголовок и текст на этом телефоне, чтобы показать на будильнике, и никогда их не хранит и никуда не отправляет. Это можно выключить в любой момент.",
+  "loudNotificationsAgree": "Согласиться и продолжить",
+  "loudNotificationsNoAccess": "Доступ к уведомлениям выключен. Включите Quando? в открывшемся списке.",
+  "loudNotificationsAllow": "Разрешить",
+  "loudNotificationsNoApps": "На этом телефоне нет поддерживаемого календаря.",
+  "loudNotificationsTwiceNote": "События, у которых уже есть будильник Quando?, звонят только один раз.",
+  "loudNotificationsShabbatNote": "Тихо в Шаббат и праздники."
 }
