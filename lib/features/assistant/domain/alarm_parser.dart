@@ -111,8 +111,9 @@ final String _dur = [
 
 Duration? _durOf(String text) {
   final t = text.trim();
-  if (RegExp(r'hour\s+and\s+a\s+half|hora\s+e\s+meia|שעה\s+וחצי').hasMatch(t))
+  if (RegExp(r'hour\s+and\s+a\s+half|hora\s+e\s+meia|שעה\s+וחצי').hasMatch(t)) {
     return const Duration(minutes: 90);
+  }
   if (RegExp(r'half|meia\s+hora|חצי').hasMatch(t)) return const Duration(minutes: 30);
   if (RegExp(r'quarter|quarto|רבע').hasMatch(t)) return const Duration(minutes: 15);
   if (t == 'שעתיים') return const Duration(hours: 2);

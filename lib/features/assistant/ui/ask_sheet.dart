@@ -126,8 +126,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     try {
       final all = await _speech.locales();
       for (final l in all) {
-        if (l.localeId.toLowerCase().split(RegExp('[-_]')).first == (lang == 'he' ? 'he' : lang))
+        if (l.localeId.toLowerCase().split(RegExp('[-_]')).first == lang) {
           return l.localeId;
+        }
         if (lang == 'he' && l.localeId.toLowerCase().startsWith('iw')) return l.localeId;
       }
     } catch (_) {}
