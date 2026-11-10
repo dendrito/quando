@@ -43,6 +43,20 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .mute{color:var(--mute);font-size:.88rem}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .empty{padding:14px;color:var(--mute)}
+.card{cursor:pointer}.card:hover{border-color:var(--accent)}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:620px;width:calc(100% - 24px);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h3{margin:0 0 8px;font-size:1.2rem}
+dialog h4{margin:16px 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+dialog ul{margin:0;padding-left:20px}
+dialog label{display:block;margin:10px 0 3px;font-size:.85rem;color:var(--mute)}
+dialog input,dialog select,dialog textarea{width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+dialog textarea{min-height:70px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.danger{color:var(--bad)}
+.msg{margin-top:10px;font-size:.88rem}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
 footer{margin-top:40px;color:var(--mute);font-size:.85rem}
 code{background:var(--chip);padding:1px 5px;border-radius:5px}
 </style>
@@ -62,8 +76,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <h2>Dates</h2>
 <div class="deadlines" id="deadlines"></div>
 
-<h2>Work <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
+<h2>Work <button class="btn" id="add" style="margin-left:10px;text-transform:none;letter-spacing:0">+ Add task</button> <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
 <div class="board" id="board"></div>
+<dialog id="dlg"></dialog>
 
 <h2>Open pull requests <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="prs"><div class="empty">Loading…</div></div>
@@ -75,7 +90,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <div class="grid" id="plans"></div>
 
 <footer>
-  This page reads <code>dashboard/data.json</code> and GitHub. To change anything here, edit that file on GitHub (see the Edit button). Nothing else to install.
+  This page reads <code>dashboard/data.json</code> and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
 </footer>
 </main>
 
@@ -83,30 +98,23 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
-  var data, prState = {}, query = "";
+  var data, prState = {}, query = "", TK = "quando.board.token";
+  var token = ""; try { token = localStorage.getItem(TK) || ""; } catch (e) {}
 
-  function ago(iso) {
-    var d = (Date.now() - new Date(iso).getTime()) / 1000;
-    if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago";
-    if (d < 86400) return Math.round(d / 3600) + " h ago";
-    return Math.round(d / 86400) + " d ago";
-  }
-  function left(ms) {
-    if (ms <= 0) return "passed";
-    var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
-    return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left";
-  }
-  function fmt(iso) {
-    return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
-  }
+  function ago(iso) { var d = (Date.now() - new Date(iso).getTime()) / 1000; if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago"; if (d < 86400) return Math.round(d / 3600) + " h ago"; return Math.round(d / 86400) + " d ago"; }
+  function left(ms) { if (ms <= 0) return "passed"; var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left"; }
+  function fmt(iso) { return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); }
+  function threadUrl(id) { return data.projectUrl + "?thread=" + id; }
 
   function chrome() {
     var base = "https://github.com/" + data.repo;
     $("btns").innerHTML =
-      '<a class="btn" href="' + base + '/edit/main/dashboard/data.json">Edit this board</a>' +
-      '<a class="btn" href="' + base + '/issues/new/choose">New task</a>' +
+      '<button class="btn" id="unlock">' + (token ? "Editing: on" : "Turn on editing") + "</button>" +
+      '<a class="btn" href="' + base + '/issues/new/choose">New issue</a>' +
       '<a class="btn" href="' + base + '/pulls">All PRs</a>' +
       '<a class="btn" href="' + base + '/actions">Builds</a>';
+    $("unlock").onclick = tokenDialog;
+    $("add").style.display = token ? "" : "none";
     $("headline").textContent = data.headline;
     $("updated").textContent = "Board last edited " + data.updated;
   }
@@ -117,31 +125,31 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("count").innerHTML = next ? esc(left(new Date(next.date) - now)) + "<small>" + esc(next.title) + "</small>" : "";
     $("deadlines").innerHTML = list.map(function (x) {
       var ms = new Date(x.date) - now;
-      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + '</span>' + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
+      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
     }).join("");
   }
 
   function prPill(n) {
     var s = prState[n], base = "https://github.com/" + data.repo + "/pull/" + n;
-    var cls = s ? s.cls : "", txt = s ? s.label : "";
-    return '<a class="pill ' + cls + '" href="' + base + '" target="_blank" rel="noopener">#' + n + (txt ? " · " + txt : "") + "</a>";
+    return '<a class="pill ' + (s ? s.cls : "") + '" href="' + base + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">#' + n + (s ? " · " + s.label : "") + "</a>";
   }
 
   function board() {
     var q = query.toLowerCase();
     $("board").innerHTML = data.statuses.map(function (st) {
-      var items = data.items.filter(function (i) {
-        return i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0);
-      });
+      var items = [];
+      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
       return '<div class="col"><h3>' + esc(st.label) + "<span>" + items.length + "</span></h3>" +
-        (items.map(function (i) {
-          return '<div class="card"><b>' + esc(i.title) + "</b>" +
+        (items.map(function (x) {
+          var i = x[0];
+          return '<div class="card" data-i="' + x[1] + '"><b>' + esc(i.title) + "</b>" +
             (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
             (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
             (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
             (i.prs || []).map(prPill).join("") + "</div>";
         }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
 
   function plans() {
@@ -151,41 +159,133 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     }).join("");
   }
 
-  function gh(path) {
-    return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  /* ---------- card detail ---------- */
+  function stLabel(id) { var s = data.statuses.filter(function (x) { return x.id === id; })[0]; return s ? s.label : id; }
+  function open(html) { var d = $("dlg"); d.innerHTML = html; if (!d.open) d.showModal(); return d; }
+  function close() { $("dlg").close(); }
+
+  function viewItem(idx) {
+    var i = data.items[idx], plan = data.plans.filter(function (p) { return p.id === i.plan; })[0];
+    var h = "<h3>" + esc(i.title) + '</h3><span class="tag">' + esc(stLabel(i.status)) + "</span>" + (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "");
+    if (i.details || i.note) h += "<h4>About</h4><p style='margin:0'>" + esc(i.details || i.note) + "</p>";
+    var docs = (i.docs || []).slice();
+    if (plan) docs.unshift({ title: "Plan: " + plan.title + (plan.private ? " (private)" : ""), url: plan.url });
+    if (docs.length) h += "<h4>Documentation</h4><ul>" + docs.map(function (d) { return '<li><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.title) + "</a></li>"; }).join("") + "</ul>";
+    if ((i.prs || []).length) h += "<h4>Pull requests</h4><div>" + i.prs.map(prPill).join("") + "</div>";
+    var th = (i.threads || []).map(function (k) { return data.threads[k]; }).filter(Boolean);
+    if (th.length) h += "<h4>Claude threads (needs your login)</h4><ul>" + th.map(function (t) { return '<li><a href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener">' + esc(t.title) + "</a></li>"; }).join("") + "</ul>";
+    h += '<div class="actions">' + (token ? '<button class="btn primary" id="ed">Edit</button>' : '<span class="mute">Turn on editing (top right) to change this card.</span>') + '<button class="btn" id="cl">Close</button></div>';
+    open(h); $("cl").onclick = close; if (token) $("ed").onclick = function () { editItem(idx); };
   }
+
+  /* ---------- editing ---------- */
+  function opts(list, sel, blank) { return (blank ? '<option value="">' + blank + "</option>" : "") + list.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === sel ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join(""); }
+
+  function editItem(idx) {
+    var isNew = idx < 0, i = isNew ? { title: "", status: "next" } : data.items[idx];
+    var thr = Object.keys(data.threads || {});
+    var h = "<h3>" + (isNew ? "New task" : "Edit task") + "</h3>" +
+      '<label>Title</label><input id="f-title" value="' + esc(i.title) + '">' +
+      '<label>Status</label><select id="f-status">' + opts(data.statuses.map(function (s) { return [s.id, s.label]; }), i.status) + "</select>" +
+      '<label>Tag (one short word)</label><input id="f-tag" value="' + esc(i.tag || "") + '">' +
+      '<label>Plan it comes from</label><select id="f-plan">' + opts(data.plans.filter(function (p) { return p.id; }).map(function (p) { return [p.id, p.title]; }), i.plan || "", "None") + "</select>" +
+      '<label>Short note (shown on the card)</label><input id="f-note" value="' + esc(i.note || "") + '">' +
+      '<label>Details (shown when you click the card)</label><textarea id="f-details">' + esc(i.details || "") + "</textarea>" +
+      '<label>Pull request numbers, comma separated</label><input id="f-prs" value="' + esc((i.prs || []).join(", ")) + '">' +
+      '<label>Claude threads (hold Ctrl/Cmd to pick several)</label><select id="f-threads" multiple size="5">' + thr.map(function (k) { return '<option value="' + k + '"' + ((i.threads || []).indexOf(k) >= 0 ? " selected" : "") + ">" + esc(data.threads[k].title) + "</option>"; }).join("") + "</select>" +
+      '<label>Documentation links, one per line as: Title | https://…</label><textarea id="f-docs">' + esc((i.docs || []).map(function (d) { return d.title + " | " + d.url; }).join("\n")) + "</textarea>" +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (isNew ? "" : '<button class="btn danger" id="rm">Delete</button>') + '</div><div class="msg" id="msg"></div>';
+    open(h);
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var title = $("f-title").value.trim();
+      if (!title) { say("Give it a title.", 1); return; }
+      var item = { title: title, status: $("f-status").value };
+      var tag = $("f-tag").value.trim(), plan = $("f-plan").value, note = $("f-note").value.trim(), det = $("f-details").value.trim();
+      if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
+      var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
+      var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
+      var docs = $("f-docs").value.split("\n").map(function (l) { var p = l.split("|"); return p.length > 1 ? { title: p[0].trim(), url: p.slice(1).join("|").trim() } : null; }).filter(Boolean); if (docs.length) item.docs = docs;
+      var orig = isNew ? null : i.title;
+      save("Board: " + (isNew ? "add " : "update ") + title, function (cur) {
+        if (isNew) { cur.items.push(item); return; }
+        var k = -1; cur.items.forEach(function (x, n) { if (x.title === orig) k = n; });
+        if (k < 0) throw new Error("This card was renamed or removed elsewhere. Reload the page.");
+        cur.items[k] = item;
+      });
+    };
+    if (!isNew) $("rm").onclick = function () {
+      if (!confirm("Delete this card?")) return;
+      var orig = i.title;
+      save("Board: remove " + orig, function (cur) { cur.items = cur.items.filter(function (x) { return x.title !== orig; }); });
+    };
+  }
+  function say(t, err) { var m = $("msg"); if (m) { m.className = "msg " + (err ? "err" : "ok"); m.textContent = t; } }
+
+  function b64(str) { var b = new TextEncoder().encode(str), s = ""; b.forEach(function (c) { s += String.fromCharCode(c); }); return btoa(s); }
+  function unb64(x) { var s = atob(x.replace(/\n/g, "")), a = new Uint8Array(s.length); for (var k = 0; k < s.length; k++) a[k] = s.charCodeAt(k); return new TextDecoder().decode(a); }
+  function api(path, opt) {
+    opt = opt || {}; opt.headers = { Accept: "application/vnd.github+json", Authorization: "Bearer " + token };
+    return fetch("https://api.github.com/repos/" + data.repo + path, opt).then(function (r) {
+      return r.json().then(function (j) { if (!r.ok) throw new Error(r.status === 401 || r.status === 403 || r.status === 404 ? "GitHub refused the token (" + r.status + "). Check it has Contents: Read and write on this repository." : (j.message || r.status)); return j; });
+    });
+  }
+  function save(message, mutate) {
+    say("Saving…");
+    api("/contents/dashboard/data.json?ref=main").then(function (f) {
+      var cur = JSON.parse(unb64(f.content)); mutate(cur); cur.updated = new Date().toISOString().slice(0, 10);
+      return api("/contents/dashboard/data.json", { method: "PUT", body: JSON.stringify({ message: message, content: b64(JSON.stringify(cur, null, 2) + "\n"), sha: f.sha, branch: "main" }) }).then(function () { return cur; });
+    }).then(function (cur) {
+      data = cur; chrome(); deadlines(); board(); plans(); close();
+    }).catch(function (e) { say(e.message, 1); });
+  }
+
+  function tokenDialog() {
+    var h = "<h3>Editing</h3>";
+    if (token) {
+      h += "<p>Editing is on in this browser. You can click any card, then Edit, or use “+ Add task”. Changes are saved to GitHub straight away; the public page refreshes about a minute later.</p>" +
+        '<div class="actions"><button class="btn danger" id="off">Turn off and forget token</button><button class="btn" id="cl">Close</button></div>';
+    } else {
+      h += "<p>To save changes from this page, paste a GitHub token once. It stays in this browser only.</p><ol style='padding-left:20px;margin:0'>" +
+        '<li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a fine-grained token</a>.</li>' +
+        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>.</li><li>Copy the token and paste it here.</li></ol>" +
+        '<label>Token</label><input id="tk" type="password" autocomplete="off" placeholder="github_pat_…">' +
+        '<div class="actions"><button class="btn primary" id="on">Turn on</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>';
+    }
+    open(h); $("cl").onclick = close;
+    if (token) $("off").onclick = function () { token = ""; try { localStorage.removeItem(TK); } catch (e) {} chrome(); close(); };
+    else $("on").onclick = function () {
+      var t = $("tk").value.trim(); if (!t) return; token = t;
+      api("/contents/dashboard/data.json?ref=main").then(function () { try { localStorage.setItem(TK, t); } catch (e) {} chrome(); close(); }).catch(function (e) { token = ""; say(e.message, 1); });
+    };
+  }
+
+  function gh(path) { return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function live() {
     gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
-      prs.forEach(function (p) {
-        prState[p.number] = p.merged_at ? { cls: "merged", label: "merged" } : p.state === "closed" ? { cls: "closed", label: "closed" } : p.draft ? { cls: "draft", label: "draft" } : { cls: "open", label: "ready" };
-      });
+      prs.forEach(function (p) { prState[p.number] = p.merged_at ? { cls: "merged", label: "merged" } : p.state === "closed" ? { cls: "closed", label: "closed" } : p.draft ? { cls: "draft", label: "draft" } : { cls: "open", label: "ready" }; });
       board();
       var open = prs.filter(function (p) { return p.state === "open"; });
       $("prs").innerHTML = open.length ? open.map(function (p) {
         return '<div class="row"><div class="grow"><a href="' + esc(p.html_url) + '" target="_blank" rel="noopener">#' + p.number + " " + esc(p.title) + '</a><div class="mute">' + esc(p.head.ref) + " → " + esc(p.base.ref) + " · updated " + ago(p.updated_at) + "</div></div>" + prPill(p.number) + "</div>";
       }).join("") : '<div class="empty">No open pull requests.</div>';
-    }).catch(function () {
-      $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes, or <a href="https://github.com/' + data.repo + '/pulls">open the PR list</a>.</div>';
-    });
+    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes.</div>'; });
     gh("/issues?state=open&per_page=50").then(function (list) {
       var issues = list.filter(function (i) { return !i.pull_request; });
       $("issues").innerHTML = issues.length ? issues.map(function (i) {
-        return '<div class="row"><div class="grow"><a href="' + esc(i.html_url) + '" target="_blank" rel="noopener">#' + i.number + " " + esc(i.title) + "</a></div>" +
-          i.labels.map(function (l) { return '<span class="tag">' + esc(l.name) + "</span>"; }).join("") + '<span class="mute">' + ago(i.updated_at) + "</span></div>";
-      }).join("") : '<div class="empty">No open issues. Use “New task” above to add one.</div>';
-    }).catch(function () {
-      $("issues").innerHTML = '<div class="empty">Could not load issues.</div>';
-    });
+        return '<div class="row"><div class="grow"><a href="' + esc(i.html_url) + '" target="_blank" rel="noopener">#' + i.number + " " + esc(i.title) + "</a></div>" + i.labels.map(function (l) { return '<span class="tag">' + esc(l.name) + "</span>"; }).join("") + '<span class="mute">' + ago(i.updated_at) + "</span></div>";
+      }).join("") : '<div class="empty">No open issues.</div>';
+    }).catch(function () { $("issues").innerHTML = '<div class="empty">Could not load issues.</div>'; });
   }
 
-  fetch("data.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+  fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
     data = d; chrome(); deadlines(); board(); plans(); live();
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
+    $("add").onclick = function () { editItem(-1); };
   }).catch(function (e) {
-    document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ". If you just edited it, check for a missing comma or quote.</p>");
+    document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
 })();
 </script>

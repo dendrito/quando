@@ -4,7 +4,13 @@ A small website that shows where Quando? / Matai? stands: deadlines, work by sta
 
 Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time setup").
 
-## Change what the board shows
+## Click a card, edit from the page
+
+- Click any card to read its details, documentation links, pull requests and links to the Claude threads about it (thread links need your Claude login).
+- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task**. Saving commits to `main`, and the public page refreshes about a minute later.
+- Never share the token. To remove it, press **Editing: on** → turn off.
+
+## Change what the board shows (by hand)
 
 Everything you see in the columns, dates and links comes from **`dashboard/data.json`**.
 

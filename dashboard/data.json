@@ -56,6 +56,16 @@
         24,
         25,
         26
+      ],
+      "threads": [
+        "release"
+      ],
+      "details": "Integrates PRs #22, #24, #25 and #26 into one Android Quando? release candidate and rebuilds the iPad app. Rule until Thursday midnight: no new features, only fixes needed to ship.",
+      "docs": [
+        {
+          "title": "Roadmap",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/ROADMAP.md"
+        }
       ]
     },
     {
@@ -64,6 +74,16 @@
       "tag": "app",
       "prs": [
         22
+      ],
+      "threads": [
+        "sky"
+      ],
+      "details": "Slim header; sky, moon and weather card back on top; night, moon and weather on by default. Shabbat stays opt-in. Rule from you: always use the newest sky card.",
+      "docs": [
+        {
+          "title": "Home information",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/HOME_INFORMATION.md"
+        }
       ]
     },
     {
@@ -72,6 +92,16 @@
       "tag": "app",
       "prs": [
         24
+      ],
+      "threads": [
+        "home"
+      ],
+      "details": "Classic home with the newest sky card, clock sizes (Large to Off), and on iPad/Mac a movable-card home with a snap grid.",
+      "docs": [
+        {
+          "title": "Home information",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/HOME_INFORMATION.md"
+        }
       ]
     },
     {
@@ -81,7 +111,17 @@
       "prs": [
         25
       ],
-      "plan": "growth"
+      "plan": "growth",
+      "threads": [
+        "growth"
+      ],
+      "details": "Calendar reminders become loud alarms; Busy mode sets Do Not Disturb and can auto-reply; share card for Stories/WhatsApp; Android home-screen widget. Not yet done: video of the sky, Slack status, iOS widget.",
+      "docs": [
+        {
+          "title": "What's in the PR",
+          "url": "https://github.com/dendrito/quando/pull/25"
+        }
+      ]
     },
     {
       "title": "Say or type an alarm (voice alarms)",
@@ -90,39 +130,80 @@
       "note": "Choice still open: add an on-device AI fallback or keep the parser only.",
       "prs": [
         26
-      ]
+      ],
+      "threads": [
+        "voice"
+      ],
+      "details": "A sentence, spoken or typed, becomes an alarm, parsed on the device in English, Portuguese and Hebrew. Open choice: add an on-device AI fallback for sentences the parser can't read."
     },
     {
       "title": "Discreet calendar lock",
       "status": "doing",
       "tag": "app",
-      "note": "Locks the phone during and between calendar events. Shabbat visuals only when a Shabbat calendar is picked. Separate branch, not part of the release."
+      "note": "Locks the phone during and between calendar events. Shabbat visuals only when a Shabbat calendar is picked. Separate branch, not part of the release.",
+      "threads": [
+        "lock"
+      ],
+      "details": "Locks during and between calendar events. Shabbat visuals only if a Shabbat calendar is picked; Shabbat is never the default. Own branch, not part of the release."
     },
     {
       "title": "Project dashboard (this site)",
       "status": "doing",
-      "tag": "project"
+      "tag": "project",
+      "threads": [
+        "dash"
+      ],
+      "details": "This site. Edit dashboard/data.json on GitHub to change it.",
+      "docs": [
+        {
+          "title": "How to edit",
+          "url": "https://github.com/dendrito/quando/blob/main/dashboard/README.md"
+        }
+      ]
     },
     {
       "title": "Play Store launch",
       "status": "next",
       "tag": "launch",
       "note": "Needs a Play developer account and a 14-day closed test with 12 testers before going public.",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "biz",
+        "redesign"
+      ],
+      "details": "A new personal Play account needs a closed test with 12 testers for 14 days before going public. Listing and privacy-policy drafts exist.",
+      "docs": [
+        {
+          "title": "Play Store listing",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/play-store.md"
+        },
+        {
+          "title": "Privacy policy",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/privacy-policy.md"
+        }
+      ]
     },
     {
       "title": "Apple Developer account and TestFlight",
       "status": "next",
       "tag": "launch",
       "note": "Enrollment was blocked by an unknown error. Support message drafted.",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "ipad"
+      ],
+      "details": "Enrollment was blocked by an unknown error and a support message is drafted. Until it works, iPad builds are free-account test builds that expire after about 7 days."
     },
     {
       "title": "Spotify and YouTube in the app",
       "status": "hold",
       "tag": "music",
       "note": "Public Spotify sign-in needs a registered company, so version 1.0 opens songs in the Spotify app instead.",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "spotify"
+      ],
+      "details": "Public Spotify sign-in needs a registered company and a large user base, so 1.0 opens songs in the Spotify app. YouTube sign-in needs Google verification before public launch."
     },
     {
       "title": "Tuya / Smart Life sign-in",
@@ -131,36 +212,83 @@
       "note": "Waiting on Tuya to link accounts to the cloud project.",
       "prs": [
         16
+      ],
+      "threads": [
+        "tuya"
+      ],
+      "details": "Sign in with just the Smart Life login through a small free relay. Blocked until Tuya links accounts to the cloud project.",
+      "docs": [
+        {
+          "title": "Tuya relay",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/TUYA_RELAY.md"
+        },
+        {
+          "title": "Smart home",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/SMART_HOME.md"
+        },
+        {
+          "title": "PR #16",
+          "url": "https://github.com/dendrito/quando/pull/16"
+        }
       ]
     },
     {
       "title": "Translations (20 languages)",
       "status": "hold",
-      "tag": "app"
+      "tag": "app",
+      "threads": [
+        "local"
+      ],
+      "details": "20 languages including right-to-left already exist; new strings need translating each time."
     },
     {
       "title": "New logo",
       "status": "hold",
-      "tag": "brand"
+      "tag": "brand",
+      "threads": [
+        "redesign"
+      ],
+      "details": "The Q-hand logo exists; a new one is on hold."
     },
     {
       "title": "Mac app",
       "status": "hold",
       "tag": "platform",
-      "note": "iPad and Android only for now."
+      "note": "iPad and Android only for now.",
+      "threads": [
+        "ipadmac",
+        "ipad"
+      ],
+      "details": "Native Mac apps exist from the Codex work but are paused. Only iPad and Android are built for now.",
+      "docs": [
+        {
+          "title": "macOS notes",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/MACOS.md"
+        }
+      ]
     },
     {
       "title": "Redesign, localization, Matai?, sync, calendar picker",
       "status": "done",
       "tag": "app",
-      "note": "Merged into main earlier (PRs #1 to #5, #10, #15)."
+      "note": "Merged into main earlier (PRs #1 to #5, #10, #15).",
+      "threads": [
+        "plan",
+        "redesign",
+        "local"
+      ],
+      "details": "Earlier work already merged into main."
     },
     {
       "title": "Review the business plan and mark what you agree with",
       "status": "decide",
       "tag": "business",
       "plan": "business",
-      "note": "Pricing, editions and the three-app idea are proposals until you confirm."
+      "note": "Pricing, editions and the three-app idea are proposals until you confirm.",
+      "threads": [
+        "biz"
+      ],
+      "details": "Pricing, editions and the three-app idea are proposals until you confirm."
     },
     {
       "title": "Pick: voice alarms with on-device AI fallback, or parser only",
@@ -168,46 +296,85 @@
       "tag": "app",
       "prs": [
         26
-      ]
+      ],
+      "threads": [
+        "voice"
+      ],
+      "details": "Choice: parser plus optional on-device AI (recommended), parser only, or AI only."
     },
     {
       "title": "Choose the domain name",
       "status": "decide",
       "tag": "brand",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "biz"
+      ],
+      "details": "Candidates discussed in the business thread."
     },
     {
       "title": "Update privacy policy and add in-app delete account",
       "status": "next",
       "tag": "launch",
       "plan": "business",
-      "note": "Needed before sync opens to everyone in the stores."
+      "note": "Needed before sync opens to everyone in the stores.",
+      "threads": [
+        "local"
+      ],
+      "details": "Needed before sync opens to everyone in the stores.",
+      "docs": [
+        {
+          "title": "Privacy policy",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/privacy-policy.md"
+        },
+        {
+          "title": "Sync setup",
+          "url": "https://github.com/dendrito/quando/blob/main/docs/FIREBASE_SYNC_SETUP.md"
+        }
+      ]
     },
     {
       "title": "Sign in with Apple",
       "status": "next",
       "tag": "launch",
       "plan": "business",
-      "note": "Needs the paid Apple membership."
+      "note": "Needs the paid Apple membership.",
+      "threads": [
+        "local"
+      ],
+      "details": "Needs the paid Apple membership."
     },
     {
       "title": "Find 12 testers for the Play closed test",
       "status": "next",
       "tag": "launch",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "biz"
+      ],
+      "details": "Needed for the Play closed test."
     },
     {
       "title": "Rabbinic review of Shabbat and Matai? features",
       "status": "next",
       "tag": "matai",
       "plan": "haredi",
-      "note": "No Haredi rav chosen yet."
+      "note": "No Haredi rav chosen yet.",
+      "threads": [
+        "haredi"
+      ],
+      "details": "No Haredi rav chosen yet."
     },
     {
       "title": "Plan Quando Day (20 March)",
       "status": "hold",
       "tag": "brand",
-      "plan": "business"
+      "plan": "business",
+      "threads": [
+        "days",
+        "biz"
+      ],
+      "details": "20 March, the equinox."
     }
   ],
   "plans": [
@@ -256,5 +423,76 @@
       "title": "Matai? Android APK",
       "url": "https://github.com/dendrito/quando/releases/download/latest/matai.apk"
     }
-  ]
+  ],
+  "projectUrl": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk",
+  "threads": {
+    "release": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUW86iMfPztCwKPW19gUHUA",
+      "title": "Ship Quando? release by Thursday"
+    },
+    "sky": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkEgTEmUEYjQJoBtG6dnJHDA",
+      "title": "Bring back sky and weather on home"
+    },
+    "home": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUWdhhHKMXZiHrmSErgwf62",
+      "title": "Redesign the home screen from scratch"
+    },
+    "growth": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkNX9CnFnwA8ZoDxYNX5xXx7",
+      "title": "Build calendar alarms, Busy mode and sharing"
+    },
+    "voice": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkDqQoo1gXyccs6uhqSuBpJ2",
+      "title": "Create alarms by voice with on-device AI"
+    },
+    "lock": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk5gn1gHPmjWwM6PmEyozUBR",
+      "title": "Build discreet lock between calendar events"
+    },
+    "dash": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkTqzDhdyvpsKwWwGn5yZZb3",
+      "title": "Build a project dashboard website"
+    },
+    "biz": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkM5jPHGnerYqvJRWq3LeKN7",
+      "title": "Build Quando? business plan"
+    },
+    "redesign": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkXBT8Swei9Fa2bfoERDrePr",
+      "title": "Redesign Quando logo and UI"
+    },
+    "local": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkEeLFpsAzb1xDe91VNnGT73",
+      "title": "Localize Quando? and add time quotes"
+    },
+    "ipad": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkPP8muDjenFvrB57cj4mn1W",
+      "title": "Build iPad and Android, run iPad app on Mac"
+    },
+    "ipadmac": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUSHNbUKscxumyMGS626wrF",
+      "title": "Build Quando? on iPad and Mac"
+    },
+    "spotify": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkTFVPfHoFoGb6k9jFSHjDJF",
+      "title": "Connect Spotify and YouTube playlists"
+    },
+    "tuya": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkDeADqDFXXqxGqUSgBai3KP",
+      "title": "Trigger Tuya Smart Life scenes from alarms"
+    },
+    "haredi": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkJC1msryTJ8rxpRcXfQrYRB",
+      "title": "Plan Quando? for Haredi users and kosher phones"
+    },
+    "days": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVFZmrebCcdqCyCR6rWoNUn",
+      "title": "Plan the yearly share-days calendar"
+    },
+    "plan": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkHFAnxPpyuGZz1ZPFJN6YJk",
+      "title": "Plan the alarm clock app"
+    }
+  }
 }
