@@ -19,7 +19,7 @@ The website lives in `site/` (home, privacy, terms). These are the clicks only t
 
 Project "Quando": https://console.cloud.google.com/auth
 
-8. **Branding.** App name `Quando?`, user support email `support@quando.day`, upload the app logo (120x120 px), App home page `https://quando.day`, Privacy policy `https://quando.day/privacy`, Terms `https://quando.day/terms`, Authorized domain `quando.day`, developer contact email. Save.
+8. **Branding.** App name `Quando?`, user support email `support@quando.day`, upload the app logo (120x120 px), App home page `https://quando.day`, Privacy policy `https://quando.day/privacy/`, Terms `https://quando.day/terms/`, Authorized domain `quando.day`, developer contact email. Save.
 9. **Audience.** User type External. While status is *Testing*, only listed test users (max 100) can sign in and tokens expire after 7 days. That is fine until launch. Press **Publish app** when you submit for verification.
 10. **Data Access → Add or remove scopes.** Add:
     - `openid`, `.../auth/userinfo.email`, `.../auth/userinfo.profile` (basic, no review)
@@ -40,5 +40,9 @@ Project "Quando": https://console.cloud.google.com/auth
 
 ## E. Elsewhere
 
-- Play Console → App content → Privacy policy: `https://quando.day/privacy`.
+- Play Console → App content → Privacy policy: `https://quando.day/privacy/`.
 - Matai? gets its own domain, site and publisher later; nothing Jewish-specific is on quando.day.
+
+## Hosting note
+
+quando.day is served by Cloudflare Pages from `site/`. The project board stays on GitHub Pages at `https://dendrito.github.io/quando/`. Do **not** set a custom domain in GitHub's Pages settings, or the board would redirect to quando.day.
