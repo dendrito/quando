@@ -3392,6 +3392,17 @@ class AppLocalizationsZh extends AppLocalizations {
   String get askNotUnderstood => '没有找到时间。试试“工作日早上7点”或“20分钟后”。';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return '来自你的日历“$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando? 为你所在城市计算的时间';
+
+  @override
+  String get askNoAnswer => '还没有找到时间。';
+
+  @override
   String get askNoSpeech => '此设备不支持语音。你可以输入。';
 
   @override
@@ -6791,6 +6802,17 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askNotUnderstood => '沒有找到時間。試試「平日早上7點」或「20分鐘後」。';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return '來自你的行事曆「$name」';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando? 為你所在城市計算的時間';
+
+  @override
+  String get askNoAnswer => '還沒有找到時間。';
 
   @override
   String get askNoSpeech => '此裝置不支援語音。你可以輸入。';

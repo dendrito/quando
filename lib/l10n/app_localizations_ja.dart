@@ -3399,6 +3399,17 @@ class AppLocalizationsJa extends AppLocalizations {
   String get askNotUnderstood => '時刻が見つかりませんでした。「平日7時」や「20分後」と試してください。';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'カレンダー「$name」より';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando? による地域の時刻';
+
+  @override
+  String get askNoAnswer => 'まだ時刻が見つかりません。';
+
+  @override
   String get askNoSpeech => 'この端末では音声を使えません。入力してください。';
 
   @override

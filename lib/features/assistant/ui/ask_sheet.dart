@@ -14,6 +14,7 @@ import '../../events/domain/sun_times.dart';
 import '../domain/alarm_parser.dart';
 import '../domain/alarm_plan.dart';
 import '../domain/alarm_request.dart';
+import '../domain/time_question.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -149,6 +150,22 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     );
   }
 
+  /// Answered from the user's calendars first, then Quando?'s own times.
+  TimeAnswer? _answer(TimeQuestion q) {
+    final now = ref.read(clockProvider)();
+    final to = now.add(const Duration(days: 9));
+    return answerTimeQuestion(
+      q,
+      now: now,
+      zone: ref.read(homeZoneProvider),
+      calendarEvents: ref.read(calendarProvider).events,
+      builtIn: [
+        ...SunTimes(place: ref.read(placeProvider)).events(now, to),
+        ...ref.read(jewishTimesProvider).events(now, to),
+      ],
+    );
+  }
+
   void _save(AlarmPlan plan) {
     final id = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
     final zone = ref.read(homeZoneProvider);
@@ -192,9 +209,11 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final input = _text.text.trim();
-    final request = input.isEmpty ? null : const AlarmParser().parse(input);
-    final plan = _plan(request);
     final zone = ref.watch(homeZoneProvider);
+    final question = input.isEmpty ? null : readTimeQuestion(input);
+    final request = input.isEmpty || question != null ? null : const AlarmParser().parse(input);
+    final plan = _plan(request);
+    final answer = question == null ? null : _answer(question);
     final shabbatOff =
         plan is RulePlan &&
         (plan.anchor == TimeAnchor.candleLighting || plan.anchor == TimeAnchor.havdalah) &&
@@ -247,7 +266,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
               Text(l10n.askNoSpeech, style: text.bodySmall),
             ],
             const SizedBox(height: 16),
-            if (plan != null)
+            if (question != null)
+              _AnswerCard(question: question, answer: answer, zone: zone)
+            else if (plan != null)
               Card(
                 margin: EdgeInsets.zero,
                 child: ListTile(
@@ -263,12 +284,60 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
               Text(l10n.askNotUnderstood, style: text.bodySmall),
             if (shabbatOff) ...[const SizedBox(height: 8), Text(l10n.askShabbatOff, style: text.bodySmall)],
             const SizedBox(height: 16),
-            FilledButton(
-              style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-              onPressed: plan == null ? null : () => _save(plan),
-              child: Text(l10n.save),
-            ),
+            if (question != null)
+              FilledButton(
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                onPressed: () => Navigator.pop(context),
+                child: Text(l10n.done),
+              )
+            else
+              FilledButton(
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                onPressed: plan == null ? null : () => _save(plan),
+                child: Text(l10n.save),
+              ),
           ],
+        ),
+      ),
+    );
+  }
+}
+
+/// "Candle lighting · Fri 13 Nov 17:52", and where the time came from.
+class _AnswerCard extends ConsumerWidget {
+  const _AnswerCard({required this.question, required this.answer, required this.zone});
+
+  final TimeQuestion question;
+  final TimeAnswer? answer;
+  final String zone;
+
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final text = Theme.of(context).textTheme;
+    final a = answer;
+    final calendarName = a?.calendarId == null
+        ? null
+        : ref
+              .watch(calendarProvider.select((c) => c.calendars))
+              .where((c) => c.id == a!.calendarId)
+              .firstOrNull
+              ?.name;
+    return Card(
+      margin: EdgeInsets.zero,
+      child: ListTile(
+        leading: const Icon(Icons.schedule, color: QuandoColors.amber),
+        title: Text(
+          a == null
+              ? anchorName(question.anchor)
+              : '${anchorName(question.anchor)} · ${dayLabel(inZone(a.at, zone))} ${hhmm(inZone(a.at, zone))}',
+          style: text.titleMedium,
+        ),
+        subtitle: Text(
+          a == null
+              ? l10n.askNoAnswer
+              : a.fromCalendar
+              ? l10n.askAnswerFromCalendar(calendarName ?? a.title)
+              : l10n.askAnswerBuiltIn,
         ),
       ),
     );

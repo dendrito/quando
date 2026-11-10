@@ -3447,6 +3447,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askNotUnderstood => 'Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Từ lịch “$name” của bạn';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Giờ của Quando? cho thành phố của bạn';
+
+  @override
+  String get askNoAnswer => 'Chưa tìm thấy giờ.';
+
+  @override
   String get askNoSpeech => 'Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.';
 
   @override

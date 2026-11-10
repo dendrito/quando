@@ -3471,6 +3471,17 @@ class AppLocalizationsNl extends AppLocalizations {
   String get askNotUnderstood => 'Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Uit je agenda ‘$name’';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'s eigen tijden voor je stad';
+
+  @override
+  String get askNoAnswer => 'Nog geen tijd gevonden.';
+
+  @override
   String get askNoSpeech => 'Spraak is niet beschikbaar op dit apparaat. Je kunt typen.';
 
   @override

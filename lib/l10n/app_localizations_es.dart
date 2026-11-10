@@ -3476,6 +3476,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get askNotUnderstood => 'No encontré una hora. Prueba “7 am entre semana” o “en 20 minutos”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'De tu calendario “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Horarios propios de Quando? para tu ciudad';
+
+  @override
+  String get askNoAnswer => 'Aún no encontré una hora para eso.';
+
+  @override
   String get askNoSpeech => 'La voz no está disponible en este dispositivo. Puedes escribir.';
 
   @override

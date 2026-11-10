@@ -3525,6 +3525,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get askNotUnderstood => 'Не нашёл время. Попробуйте «в 7 по будням» или «через 20 минут».';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Из вашего календаря «$name»';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Время Quando? для вашего города';
+
+  @override
+  String get askNoAnswer => 'Пока время не найдено.';
+
+  @override
   String get askNoSpeech => 'Голос недоступен на этом устройстве. Можно ввести текст.';
 
   @override

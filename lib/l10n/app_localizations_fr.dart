@@ -3481,6 +3481,17 @@ class AppLocalizationsFr extends AppLocalizations {
       'Je n\'ai pas trouvé d\'heure. Essayez « 7 h en semaine » ou « dans 20 minutes ».';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'De votre agenda « $name »';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Horaires de Quando? pour votre ville';
+
+  @override
+  String get askNoAnswer => 'Aucune heure trouvée pour l\'instant.';
+
+  @override
   String get askNoSpeech => 'La voix n\'est pas disponible sur cet appareil. Vous pouvez taper.';
 
   @override

@@ -3456,6 +3456,17 @@ class AppLocalizationsId extends AppLocalizations {
       'Saya tidak menemukan waktu. Coba “jam 7 di hari kerja” atau “dalam 20 menit”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Dari kalendermu “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Waktu Quando? untuk kotamu';
+
+  @override
+  String get askNoAnswer => 'Belum ada waktu untuk itu.';
+
+  @override
   String get askNoSpeech => 'Suara tidak tersedia di perangkat ini. Anda bisa mengetik.';
 
   @override

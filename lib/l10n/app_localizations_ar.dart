@@ -3509,6 +3509,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get askNotUnderstood => 'لم أجد وقتًا. جرّب «7 صباحًا في أيام العمل» أو «بعد 20 دقيقة».';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'من تقويمك «$name»';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'أوقات Quando? لمدينتك';
+
+  @override
+  String get askNoAnswer => 'لم يُعثر على وقت بعد.';
+
+  @override
   String get askNoSpeech => 'الصوت غير متاح على هذا الجهاز. يمكنك الكتابة.';
 
   @override

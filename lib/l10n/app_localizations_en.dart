@@ -3456,6 +3456,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get askNotUnderstood => 'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'From your calendar “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'s own times for your city';
+
+  @override
+  String get askNoAnswer => 'No time found for that yet.';
+
+  @override
   String get askNoSpeech => 'Voice isn\'t available on this device. You can type instead.';
 
   @override

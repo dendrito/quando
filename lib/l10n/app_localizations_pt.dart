@@ -3478,6 +3478,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Não encontrei um horário. Tente “7h nos dias úteis” ou “daqui a 20 minutos”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Da sua agenda “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Horários do próprio Quando? para sua cidade';
+
+  @override
+  String get askNoAnswer => 'Ainda não achei um horário para isso.';
+
+  @override
   String get askNoSpeech => 'A voz não está disponível neste aparelho. Você pode digitar.';
 
   @override

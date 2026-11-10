@@ -6280,6 +6280,24 @@ abstract class AppLocalizations {
   /// **'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.'**
   String get askNotUnderstood;
 
+  /// No description provided for @askAnswerFromCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'From your calendar “{name}”'**
+  String askAnswerFromCalendar(String name);
+
+  /// No description provided for @askAnswerBuiltIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando?\'s own times for your city'**
+  String get askAnswerBuiltIn;
+
+  /// No description provided for @askNoAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No time found for that yet.'**
+  String get askNoAnswer;
+
   /// No description provided for @askNoSpeech.
   ///
   /// In en, this message translates to:

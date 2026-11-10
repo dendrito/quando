@@ -3526,6 +3526,17 @@ class AppLocalizationsPl extends AppLocalizations {
   String get askNotUnderstood => 'Nie znalazłem godziny. Spróbuj „7 rano w dni robocze” lub „za 20 minut”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Z twojego kalendarza „$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Godziny Quando? dla twojego miasta';
+
+  @override
+  String get askNoAnswer => 'Na razie nie znaleziono godziny.';
+
+  @override
   String get askNoSpeech => 'Głos jest niedostępny na tym urządzeniu. Możesz pisać.';
 
   @override

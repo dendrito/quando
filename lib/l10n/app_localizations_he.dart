@@ -3448,6 +3448,17 @@ class AppLocalizationsHe extends AppLocalizations {
   String get askNotUnderstood => 'לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'מהיומן שלך „$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'הזמנים של Quando? לעיר שלך';
+
+  @override
+  String get askNoAnswer => 'עדיין לא נמצאה שעה לזה.';
+
+  @override
   String get askNoSpeech => 'קול לא זמין במכשיר הזה. אפשר להקליד.';
 
   @override

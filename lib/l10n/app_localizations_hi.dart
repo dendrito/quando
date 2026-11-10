@@ -3450,6 +3450,17 @@ class AppLocalizationsHi extends AppLocalizations {
       'मुझे कोई समय नहीं मिला। “कार्यदिवसों में सुबह 7 बजे” या “20 मिनट में” आज़माएँ।';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'आपके कैलेंडर “$name” से';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'आपके शहर के लिए Quando? के अपने समय';
+
+  @override
+  String get askNoAnswer => 'अभी इसका समय नहीं मिला।';
+
+  @override
   String get askNoSpeech => 'इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।';
 
   @override

@@ -398,17 +398,47 @@
   "lockNoMatches": "Nothing in your calendars matches yet.",
   "lockNextTimes": "NEXT TIMES",
   "lockDuringTitle": "During “{a}”",
-  "@lockDuringTitle": {"placeholders": {"a": {"type": "String"}}},
+  "@lockDuringTitle": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      }
+    }
+  },
   "lockBetweenTitle": "From “{a}” to the next “{b}”",
-  "@lockBetweenTitle": {"placeholders": {"a": {"type": "String"}, "b": {"type": "String"}}},
+  "@lockBetweenTitle": {
+    "placeholders": {
+      "a": {
+        "type": "String"
+      },
+      "b": {
+        "type": "String"
+      }
+    }
+  },
   "lockShabbatCalendarFound": "“{name}” has Shabbat times.",
-  "@lockShabbatCalendarFound": {"placeholders": {"name": {"type": "String"}}},
+  "@lockShabbatCalendarFound": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "lockShabbatFromCalendar": "Lock from candle lighting to Havdalah",
   "lockShabbatFromCalendarHint": "Uses the times in that calendar, with candles on the lock screen.",
   "lockMoreWays": "More ways to lock",
   "lockQuietTime": "Quiet time",
   "nextCandleLightingFrom": "Next candle lighting: {time}, from {name}",
-  "@nextCandleLightingFrom": {"placeholders": {"time": {"type": "String"}, "name": {"type": "String"}}},
+  "@nextCandleLightingFrom": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      },
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "calendarAlarm": "Calendar alarm",
   "connectCalendars": "Connect calendars",
   "calendarAlarmsHeading": "CALENDAR ALARMS",
@@ -2006,6 +2036,16 @@
   "askHint": "e.g. wake me 30 min before sunrise on weekdays",
   "askListening": "Listening…",
   "askNotUnderstood": "I couldn't find a time in that. Try “7am on weekdays” or “in 20 minutes”.",
+  "askAnswerFromCalendar": "From your calendar “{name}”",
+  "askAnswerBuiltIn": "Quando?'s own times for your city",
+  "askNoAnswer": "No time found for that yet.",
+  "@askAnswerFromCalendar": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
   "askNoSpeech": "Voice isn't available on this device. You can type instead.",
   "askShabbatOff": "Turn on Shabbat in Settings so Shabbat times can ring.",
   "askSaved": "Saved: {what}",

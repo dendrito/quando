@@ -3400,6 +3400,17 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askNotUnderstood => '시간을 찾지 못했어요. “평일 오전 7시”나 “20분 후”로 해 보세요.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return '캘린더 “$name”에서';
+  }
+
+  @override
+  String get askAnswerBuiltIn => '도시 기준 Quando? 시간';
+
+  @override
+  String get askNoAnswer => '아직 시간을 찾지 못했습니다.';
+
+  @override
   String get askNoSpeech => '이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.';
 
   @override

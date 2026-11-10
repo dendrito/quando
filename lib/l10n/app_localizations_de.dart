@@ -3476,6 +3476,17 @@ class AppLocalizationsDe extends AppLocalizations {
       'Ich habe keine Uhrzeit gefunden. Versuche „7 Uhr werktags“ oder „in 20 Minuten“.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Aus deinem Kalender „$name“';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?s eigene Zeiten für deine Stadt';
+
+  @override
+  String get askNoAnswer => 'Dafür ist noch keine Zeit gefunden.';
+
+  @override
   String get askNoSpeech => 'Sprache ist auf diesem Gerät nicht verfügbar. Du kannst tippen.';
 
   @override

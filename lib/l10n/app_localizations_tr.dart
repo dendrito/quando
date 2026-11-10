@@ -3459,6 +3459,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get askNotUnderstood => 'Bir saat bulamadım. “Hafta içi 7\'de” veya “20 dakika sonra” deneyin.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return '“$name” takviminden';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'nun şehrin için kendi saatleri';
+
+  @override
+  String get askNoAnswer => 'Henüz bir saat bulunamadı.';
+
+  @override
   String get askNoSpeech => 'Bu cihazda ses kullanılamıyor. Yazabilirsiniz.';
 
   @override

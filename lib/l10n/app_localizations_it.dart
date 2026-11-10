@@ -3478,6 +3478,17 @@ class AppLocalizationsIt extends AppLocalizations {
       'Non ho trovato un orario. Prova “alle 7 nei giorni feriali” o “tra 20 minuti”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Dal tuo calendario “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Orari di Quando? per la tua città';
+
+  @override
+  String get askNoAnswer => 'Nessun orario trovato per ora.';
+
+  @override
   String get askNoSpeech => 'La voce non è disponibile su questo dispositivo. Puoi scrivere.';
 
   @override
