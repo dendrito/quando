@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quando? Project Board</title>
+<style>
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1b16;--mute:#6b675c;--line:#e3e0d6;--accent:#c2590a;--ok:#1f7a45;--warn:#a86a00;--bad:#b3261e;--chip:#efece3}
+@media (prefers-color-scheme:dark){:root{--bg:#14130f;--card:#1e1d18;--ink:#f1eee4;--mute:#a09b8c;--line:#33312a;--accent:#ff9a4d;--ok:#5fcf8a;--warn:#f0b34a;--bad:#ff8a80;--chip:#2a2822}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 64px}
+a{color:var(--accent)}
+h1{font-size:1.5rem;margin:0}
+h2{font-size:1.05rem;margin:32px 0 10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+.btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink);text-decoration:none;font-size:.9rem}
+.btn:hover{border-color:var(--accent)}
+.hero{margin-top:16px;padding:20px;border-radius:14px;background:var(--card);border:1px solid var(--line);display:flex;flex-wrap:wrap;gap:20px;align-items:center;justify-content:space-between}
+.hero p{margin:4px 0 0;color:var(--mute)}
+.count{font-size:2.4rem;font-weight:700;color:var(--accent);line-height:1}
+.count small{display:block;font-size:.8rem;font-weight:400;color:var(--mute);margin-top:4px}
+.deadlines{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px}
+.dl{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.dl b{display:block}.dl .when{color:var(--mute);font-size:.85rem}.dl .left{font-weight:700;color:var(--accent)}
+.dl.past{opacity:.5}
+.search{width:100%;max-width:340px;padding:8px 10px;border-radius:8px;border:1px solid var(--line);background:var(--card);color:var(--ink);font:inherit}
+.board{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px;align-items:start}
+.col{background:color-mix(in srgb,var(--card) 55%,transparent);border:1px solid var(--line);border-radius:14px;padding:10px}
+.col h3{margin:2px 4px 10px;font-size:.95rem;display:flex;justify-content:space-between}
+.col h3 span{color:var(--mute);font-weight:400}
+.card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:11px 12px;margin-bottom:9px}
+.card b{display:block}
+.card p{margin:5px 0 0;color:var(--mute);font-size:.9rem}
+.tag{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--chip);color:var(--mute);font-size:.75rem;margin-right:4px}
+.pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.75rem;text-decoration:none;border:1px solid var(--line);margin:6px 4px 0 0;color:var(--ink)}
+.pill.open{border-color:var(--ok);color:var(--ok)}.pill.draft{border-color:var(--warn);color:var(--warn)}
+.pill.merged{border-color:#8957e5;color:#8957e5}.pill.closed{border-color:var(--bad);color:var(--bad)}
+.list{background:var(--card);border:1px solid var(--line);border-radius:12px}
+.row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
+.row:last-child{border-bottom:0}.row .grow{flex:1;min-width:200px}
+.mute{color:var(--mute);font-size:.88rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.empty{padding:14px;color:var(--mute)}
+footer{margin-top:40px;color:var(--mute);font-size:.85rem}
+code{background:var(--chip);padding:1px 5px;border-radius:5px}
+</style>
+</head>
+<body>
+<main>
+<header>
+  <h1>Quando? Project Board</h1>
+  <div class="btns" id="btns"></div>
+</header>
+
+<section class="hero">
+  <div><b id="headline"></b><p id="updated"></p></div>
+  <div class="count" id="count"></div>
+</section>
+
+<h2>Dates</h2>
+<div class="deadlines" id="deadlines"></div>
+
+<h2>Work <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
+<div class="board" id="board"></div>
+
+<h2>Open pull requests <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
+<div class="list" id="prs"><div class="empty">Loading…</div></div>
+
+<h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
+<div class="list" id="issues"><div class="empty">Loading…</div></div>
+
+<h2>Plans &amp; links</h2>
+<div class="grid" id="plans"></div>
+
+<footer>
+  This page reads <code>dashboard/data.json</code> and GitHub. To change anything here, edit that file on GitHub (see the Edit button). Nothing else to install.
+</footer>
+</main>
+
+<script>
+(function () {
+  var $ = function (id) { return document.getElementById(id); };
+  var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
+  var data, prState = {}, query = "";
+
+  function ago(iso) {
+    var d = (Date.now() - new Date(iso).getTime()) / 1000;
+    if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago";
+    if (d < 86400) return Math.round(d / 3600) + " h ago";
+    return Math.round(d / 86400) + " d ago";
+  }
+  function left(ms) {
+    if (ms <= 0) return "passed";
+    var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
+    return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left";
+  }
+  function fmt(iso) {
+    return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  }
+
+  function chrome() {
+    var base = "https://github.com/" + data.repo;
+    $("btns").innerHTML =
+      '<a class="btn" href="' + base + '/edit/main/dashboard/data.json">Edit this board</a>' +
+      '<a class="btn" href="' + base + '/issues/new/choose">New task</a>' +
+      '<a class="btn" href="' + base + '/pulls">All PRs</a>' +
+      '<a class="btn" href="' + base + '/actions">Builds</a>';
+    $("headline").textContent = data.headline;
+    $("updated").textContent = "Board last edited " + data.updated;
+  }
+
+  function deadlines() {
+    var now = Date.now(), list = data.deadlines.slice().sort(function (a, b) { return new Date(a.date) - new Date(b.date); });
+    var next = list.filter(function (x) { return new Date(x.date) > now; })[0];
+    $("count").innerHTML = next ? esc(left(new Date(next.date) - now)) + "<small>" + esc(next.title) + "</small>" : "";
+    $("deadlines").innerHTML = list.map(function (x) {
+      var ms = new Date(x.date) - now;
+      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + '</span>' + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
+    }).join("");
+  }
+
+  function prPill(n) {
+    var s = prState[n], base = "https://github.com/" + data.repo + "/pull/" + n;
+    var cls = s ? s.cls : "", txt = s ? s.label : "";
+    return '<a class="pill ' + cls + '" href="' + base + '" target="_blank" rel="noopener">#' + n + (txt ? " · " + txt : "") + "</a>";
+  }
+
+  function board() {
+    var q = query.toLowerCase();
+    $("board").innerHTML = data.statuses.map(function (st) {
+      var items = data.items.filter(function (i) {
+        return i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0);
+      });
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + items.length + "</span></h3>" +
+        (items.map(function (i) {
+          return '<div class="card"><b>' + esc(i.title) + "</b>" +
+            (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
+            (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
+            (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
+            (i.prs || []).map(prPill).join("") + "</div>";
+        }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
+    }).join("");
+  }
+
+  function plans() {
+    $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
+      var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
+      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+    }).join("");
+  }
+
+  function gh(path) {
+    return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } })
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  }
+
+  function live() {
+    gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
+      prs.forEach(function (p) {
+        prState[p.number] = p.merged_at ? { cls: "merged", label: "merged" } : p.state === "closed" ? { cls: "closed", label: "closed" } : p.draft ? { cls: "draft", label: "draft" } : { cls: "open", label: "ready" };
+      });
+      board();
+      var open = prs.filter(function (p) { return p.state === "open"; });
+      $("prs").innerHTML = open.length ? open.map(function (p) {
+        return '<div class="row"><div class="grow"><a href="' + esc(p.html_url) + '" target="_blank" rel="noopener">#' + p.number + " " + esc(p.title) + '</a><div class="mute">' + esc(p.head.ref) + " → " + esc(p.base.ref) + " · updated " + ago(p.updated_at) + "</div></div>" + prPill(p.number) + "</div>";
+      }).join("") : '<div class="empty">No open pull requests.</div>';
+    }).catch(function () {
+      $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes, or <a href="https://github.com/' + data.repo + '/pulls">open the PR list</a>.</div>';
+    });
+    gh("/issues?state=open&per_page=50").then(function (list) {
+      var issues = list.filter(function (i) { return !i.pull_request; });
+      $("issues").innerHTML = issues.length ? issues.map(function (i) {
+        return '<div class="row"><div class="grow"><a href="' + esc(i.html_url) + '" target="_blank" rel="noopener">#' + i.number + " " + esc(i.title) + "</a></div>" +
+          i.labels.map(function (l) { return '<span class="tag">' + esc(l.name) + "</span>"; }).join("") + '<span class="mute">' + ago(i.updated_at) + "</span></div>";
+      }).join("") : '<div class="empty">No open issues. Use “New task” above to add one.</div>';
+    }).catch(function () {
+      $("issues").innerHTML = '<div class="empty">Could not load issues.</div>';
+    });
+  }
+
+  fetch("data.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+    data = d; chrome(); deadlines(); board(); plans(); live();
+    setInterval(deadlines, 30000);
+    $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
+  }).catch(function (e) {
+    document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ". If you just edited it, check for a missing comma or quote.</p>");
+  });
+})();
+</script>
+</body>
+</html>

@@ -4,7 +4,6 @@ import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:http/http.dart' as http;
 
-import '../../../app/edition.dart';
 import '../../sync/sync_config.dart';
 import 'spotify_library.dart';
 
@@ -13,8 +12,6 @@ import 'package:quando/l10n/l10n.dart';
 /// YouTube and YouTube Music: sign in with Google and read your playlists
 /// and liked videos (liked songs in YouTube Music are among them).
 class YouTubeAccount {
-  /// Quando's web client in Google Cloud (not a secret).
-  static const serverClientId = '299909596314-e9loi4jur2h3aqki3csa0h7h2s0rjrn5.apps.googleusercontent.com';
   static const scope = 'https://www.googleapis.com/auth/youtube.readonly';
 
   /// Kept under [prefKey] once signed in.
@@ -32,7 +29,7 @@ class YouTubeAccount {
     if (_ready) return;
     await GoogleSignIn.instance.initialize(
       clientId: SyncConfig.iosClient,
-      serverClientId: SyncConfig.iosClient != null || mine ? SyncConfig.webClientId : serverClientId,
+      serverClientId: SyncConfig.webClientId,
     );
     _ready = true;
   }
