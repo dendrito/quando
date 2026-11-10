@@ -90,7 +90,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <div class="grid" id="plans"></div>
 
 <footer>
-  This page reads <code>dashboard/data.json</code> and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
+  This page is built from <code>dashboard/board.json</code>, <code>dashboard/cards/</code> (one file per card) and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
 </footer>
 </main>
 
@@ -210,18 +210,14 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
       var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
       var docs = $("f-docs").value.split("\n").map(function (l) { var p = l.split("|"); return p.length > 1 ? { title: p[0].trim(), url: p.slice(1).join("|").trim() } : null; }).filter(Boolean); if (docs.length) item.docs = docs;
-      var orig = isNew ? null : i.title;
-      save("Board: " + (isNew ? "add " : "update ") + title, function (cur) {
-        if (isNew) { cur.items.push(item); return; }
-        var k = -1; cur.items.forEach(function (x, n) { if (x.title === orig) k = n; });
-        if (k < 0) throw new Error("This card was renamed or removed elsewhere. Reload the page.");
-        cur.items[k] = item;
-      });
+      var id = isNew ? uniqueId(slug(title)) : i.id;
+      item = Object.assign({ id: id }, item);
+      if (typeof i.order === "number") item.order = i.order; else item.order = nextOrder();
+      saveCard(id, "Board: " + (isNew ? "add " : "update ") + title, item);
     };
     if (!isNew) $("rm").onclick = function () {
       if (!confirm("Delete this card?")) return;
-      var orig = i.title;
-      save("Board: remove " + orig, function (cur) { cur.items = cur.items.filter(function (x) { return x.title !== orig; }); });
+      removeCard(i.id, "Board: remove " + i.title);
     };
   }
 
@@ -240,13 +236,13 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       var t = $("f-t").value.trim(), d = $("f-d").value;
       if (!t || !d) { say("Give it a title and a date.", 1); return; }
       var nd = { title: t, date: d + ":00" + off }; if ($("f-n").value.trim()) nd.note = $("f-n").value.trim();
-      save("Board: " + (title ? "update" : "add") + " date " + t, function (cur) {
+      saveBoard("Board: " + (title ? "update" : "add") + " date " + t, function (cur) {
         if (!title) { cur.deadlines.push(nd); return; }
         var k = -1; cur.deadlines.forEach(function (y, n) { if (y.title === title) k = n; });
         if (k < 0) throw new Error("This date changed elsewhere. Reload the page."); cur.deadlines[k] = nd;
       });
     };
-    if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; save("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
+    if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; saveBoard("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
   }
 
   function editPlan(id) {
@@ -264,13 +260,13 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       if (!t || !u) { say("Give it a title and a link.", 1); return; }
       var pid = id || slug(t), np = { id: pid, title: t, url: u, status: $("f-s").value };
       if ($("f-pv").checked) np.private = true; if ($("f-n").value.trim()) np.note = $("f-n").value.trim();
-      save("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
+      saveBoard("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
         if (!id) { cur.plans.push(np); return; }
         var k = -1; cur.plans.forEach(function (y, n) { if (y.id === id) k = n; });
         if (k < 0) throw new Error("This plan changed elsewhere. Reload the page."); cur.plans[k] = np;
       });
     };
-    if (id) $("rm").onclick = function () { if (!confirm("Delete this plan? Cards keep their plan tag.")) return; save("Board: remove plan " + id, function (cur) { cur.plans = cur.plans.filter(function (y) { return y.id !== id; }); }); };
+    if (id) $("rm").onclick = function () { if (!confirm("Delete this plan? Cards keep their plan tag.")) return; saveBoard("Board: remove plan " + id, function (cur) { cur.plans = cur.plans.filter(function (y) { return y.id !== id; }); }); };
   }
 
   function editColumns() {
@@ -296,9 +292,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
         var id = r.getAttribute("data-id") || slug(l); while (used[id]) id += "-2"; used[id] = 1; out.push({ id: id, label: l });
       });
       if (!out.length) { say("Keep at least one column.", 1); return; }
-      save("Board: update columns", function (cur) {
+      saveBoard("Board: update columns", function (cur) {
         var keep = {}; out.forEach(function (o) { keep[o.id] = 1; });
-        cur.items.forEach(function (i) { if (!keep[i.status]) throw new Error("A card still uses a column you removed. Reload the page."); });
+        data.items.forEach(function (i) { if (!keep[i.status]) throw new Error("A card still uses a column you removed. Reload the page."); });
         cur.statuses = out;
       });
     };
@@ -310,16 +306,43 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   function api(path, opt) {
     opt = opt || {}; opt.headers = { Accept: "application/vnd.github+json", Authorization: "Bearer " + token };
     return fetch("https://api.github.com/repos/" + data.repo + path, opt).then(function (r) {
-      return r.json().then(function (j) { if (!r.ok) throw new Error(r.status === 401 || r.status === 403 || r.status === 404 ? "GitHub refused the token (" + r.status + "). Check it has Contents: Read and write on this repository." : (j.message || r.status)); return j; });
+      return r.json().then(function (j) { if (!r.ok) { var e = new Error(r.status === 401 || r.status === 403 ? "GitHub refused the token (" + r.status + "). Check it has Contents: Read and write on this repository." : (j.message || r.status)); e.status = r.status; throw e; } return j; });
     });
   }
-  function save(message, mutate) {
+  var DIR = "/contents/dashboard/";
+  function getFile(path) { return api(DIR + path + "?ref=main").then(function (f) { return { sha: f.sha, json: JSON.parse(unb64(f.content)) }; }, function (e) { if (e.status === 404) return null; throw e; }); }
+  function putFile(path, message, obj, sha) {
+    var body = { message: message, content: b64(JSON.stringify(obj, null, 2) + "\n"), branch: "main" }; if (sha) body.sha = sha;
+    return api(DIR + path, { method: "PUT", body: JSON.stringify(body) });
+  }
+  function done() { chrome(); deadlines(); board(); plans(); close(); }
+  function uniqueId(base) { var id = base, n = 2; while (data.items.some(function (x) { return x.id === id; })) id = base + "-" + n++; return id; }
+  function nextOrder() { return data.items.reduce(function (m, x) { return Math.max(m, typeof x.order === "number" ? x.order : 0); }, 0) + 1; }
+
+  /* One file per card (dashboard/cards/<id>.json), so several people or Claude threads never overwrite each other. */
+  function saveCard(id, message, item) {
     say("Saving…");
-    api("/contents/dashboard/data.json?ref=main").then(function (f) {
-      var cur = JSON.parse(unb64(f.content)); mutate(cur); cur.updated = new Date().toISOString().slice(0, 10);
-      return api("/contents/dashboard/data.json", { method: "PUT", body: JSON.stringify({ message: message, content: b64(JSON.stringify(cur, null, 2) + "\n"), sha: f.sha, branch: "main" }) }).then(function () { return cur; });
+    getFile("cards/" + id + ".json").then(function (f) { return putFile("cards/" + id + ".json", message, item, f && f.sha); }).then(function () {
+      var k = -1; data.items.forEach(function (x, n) { if (x.id === id) k = n; });
+      if (k < 0) data.items.push(item); else data.items[k] = item;
+      done();
+    }).catch(function (e) { say(e.message, 1); });
+  }
+  function removeCard(id, message) {
+    say("Saving…");
+    getFile("cards/" + id + ".json").then(function (f) {
+      if (!f) return;
+      return api(DIR + "cards/" + id + ".json", { method: "DELETE", body: JSON.stringify({ message: message, sha: f.sha, branch: "main" }) });
+    }).then(function () { data.items = data.items.filter(function (x) { return x.id !== id; }); done(); }).catch(function (e) { say(e.message, 1); });
+  }
+  /* Dates, plans, columns and headline live in board.json. */
+  function saveBoard(message, mutate) {
+    say("Saving…");
+    getFile("board.json").then(function (f) {
+      var cur = f.json; mutate(cur);
+      return putFile("board.json", message, cur, f.sha).then(function () { return cur; });
     }).then(function (cur) {
-      data = cur; chrome(); deadlines(); board(); plans(); close();
+      var items = data.items; data = cur; data.items = items; data.updated = new Date().toISOString().slice(0, 10); done();
     }).catch(function (e) { say(e.message, 1); });
   }
 
@@ -339,7 +362,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     if (token) $("off").onclick = function () { token = ""; try { localStorage.removeItem(TK); } catch (e) {} chrome(); close(); };
     else $("on").onclick = function () {
       var t = $("tk").value.trim(); if (!t) return; token = t;
-      api("/contents/dashboard/data.json?ref=main").then(function () { try { localStorage.setItem(TK, t); } catch (e) {} chrome(); close(); }).catch(function (e) { token = ""; say(e.message, 1); });
+      api(DIR + "board.json?ref=main").then(function () { try { localStorage.setItem(TK, t); } catch (e) {} chrome(); close(); }).catch(function (e) { token = ""; say(e.message, 1); });
     };
   }
 

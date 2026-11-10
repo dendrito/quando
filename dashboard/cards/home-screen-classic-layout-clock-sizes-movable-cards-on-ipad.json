@@ -1,0 +1,20 @@
+{
+  "id": "home-screen-classic-layout-clock-sizes-movable-cards-on-ipad",
+  "title": "Home screen: classic layout, clock sizes, movable cards on iPad/Mac",
+  "status": "review",
+  "tag": "app",
+  "prs": [
+    24
+  ],
+  "threads": [
+    "home"
+  ],
+  "details": "Classic home with the newest sky card, clock sizes (Large to Off), and on iPad/Mac a movable-card home with a snap grid.",
+  "docs": [
+    {
+      "title": "Home information",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/HOME_INFORMATION.md"
+    }
+  ],
+  "order": 2
+}

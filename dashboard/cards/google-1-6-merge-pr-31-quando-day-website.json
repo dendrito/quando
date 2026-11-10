@@ -1,0 +1,26 @@
+{
+  "id": "google-1-6-merge-pr-31-quando-day-website",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "google"
+  ],
+  "title": "Google 1/6: merge PR #31 (quando.day website)",
+  "status": "review",
+  "note": "Adds the home, privacy and terms pages.",
+  "details": "Step 0 of the guide: the site folder must be on main before Cloudflare can publish it.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md"
+    },
+    {
+      "title": "PR #31",
+      "url": "https://github.com/dendrito/quando/pull/31"
+    }
+  ],
+  "prs": [
+    31
+  ],
+  "order": 25
+}

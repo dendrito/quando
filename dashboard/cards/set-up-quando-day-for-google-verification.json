@@ -1,0 +1,27 @@
+{
+  "id": "set-up-quando-day-for-google-verification",
+  "title": "Set up quando.day for Google verification",
+  "status": "doing",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "google"
+  ],
+  "note": "The six steps below, in order. Needed so Calendar and YouTube sign-in work for everyone.",
+  "details": "Google needs a real home page, privacy policy and terms on a domain you own before it verifies Calendar and YouTube access. Handled in its own Claude thread.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md"
+    },
+    {
+      "title": "Privacy policy (quando.day)",
+      "url": "https://quando.day/privacy/"
+    },
+    {
+      "title": "Terms (quando.day)",
+      "url": "https://quando.day/terms/"
+    }
+  ],
+  "order": 24
+}

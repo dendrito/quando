@@ -23,8 +23,8 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
-      - name: Check data.json is valid
-        run: python3 -c "import json; json.load(open('dashboard/data.json'))"
+      - name: Build data.json from board.json and cards/ (fails on a typo)
+        run: python3 dashboard/build.py
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

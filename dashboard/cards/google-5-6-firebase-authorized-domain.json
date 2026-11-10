@@ -1,0 +1,19 @@
+{
+  "id": "google-5-6-firebase-authorized-domain",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "google"
+  ],
+  "title": "Google 5/6: Firebase authorized domain",
+  "status": "next",
+  "note": "Add quando.day under Authentication → Settings → Authorized domains in project quando-27c24.",
+  "details": "Guide step 12. Repeat the consent screen steps there if sign-in runs on that project.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#c-google-cloud-consent-screen-google-auth-platform"
+    }
+  ],
+  "order": 29
+}

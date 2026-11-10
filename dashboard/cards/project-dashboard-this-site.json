@@ -1,0 +1,17 @@
+{
+  "id": "project-dashboard-this-site",
+  "title": "Project dashboard (this site)",
+  "status": "doing",
+  "tag": "project",
+  "threads": [
+    "dash"
+  ],
+  "details": "This site. Edit dashboard/data.json on GitHub to change it.",
+  "docs": [
+    {
+      "title": "How to edit",
+      "url": "https://github.com/dendrito/quando/blob/main/dashboard/README.md"
+    }
+  ],
+  "order": 6
+}

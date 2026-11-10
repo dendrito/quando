@@ -1,0 +1,15 @@
+{
+  "id": "say-or-type-an-alarm-voice-alarms",
+  "title": "Say or type an alarm (voice alarms)",
+  "status": "review",
+  "tag": "app",
+  "note": "Choice still open: add an on-device AI fallback or keep the parser only.",
+  "prs": [
+    26
+  ],
+  "threads": [
+    "voice"
+  ],
+  "details": "A sentence, spoken or typed, becomes an alarm, parsed on the device in English, Portuguese and Hebrew. Open choice: add an on-device AI fallback for sentences the parser can't read.",
+  "order": 4
+}
