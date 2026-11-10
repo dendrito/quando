@@ -1,0 +1,20 @@
+name: Task
+description: Something to do, fix or decide. It shows up on the project board.
+labels: ["task"]
+body:
+  - type: input
+    id: what
+    attributes:
+      label: What needs to happen?
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options: [App, Launch, Brand, Business, Music, Smart home, Other]
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: Do not paste passwords, keys or personal data. This repository is public.

@@ -1,0 +1,260 @@
+{
+  "repo": "dendrito/quando",
+  "updated": "2026-11-10",
+  "headline": "Get one Quando? version ready to install by Thursday midnight.",
+  "deadlines": [
+    {
+      "date": "2026-11-12T23:59:00-03:00",
+      "title": "One app version ready",
+      "note": "Android Quando? release candidate, plus the iPad rebuild. No new features before then."
+    },
+    {
+      "date": "2026-11-14T12:00:00-03:00",
+      "title": "iPad/Mac test builds expire",
+      "note": "Free Apple account: rebuild before this day."
+    },
+    {
+      "date": "2027-03-20T00:00:00-03:00",
+      "title": "Quando Day",
+      "note": "20 March, the equinox."
+    }
+  ],
+  "statuses": [
+    {
+      "id": "decide",
+      "label": "Needs your decision"
+    },
+    {
+      "id": "doing",
+      "label": "In progress"
+    },
+    {
+      "id": "review",
+      "label": "Needs your review"
+    },
+    {
+      "id": "next",
+      "label": "Up next"
+    },
+    {
+      "id": "hold",
+      "label": "On hold"
+    },
+    {
+      "id": "done",
+      "label": "Done"
+    }
+  ],
+  "items": [
+    {
+      "title": "Ship Quando? release",
+      "status": "doing",
+      "tag": "release",
+      "note": "Brings the home screen, growth features and voice alarms together into an Android release candidate and rebuilds the iPad app.",
+      "prs": [
+        22,
+        24,
+        25,
+        26
+      ]
+    },
+    {
+      "title": "Home screen: slim header, sky/moon/weather on top",
+      "status": "review",
+      "tag": "app",
+      "prs": [
+        22
+      ]
+    },
+    {
+      "title": "Home screen: classic layout, clock sizes, movable cards on iPad/Mac",
+      "status": "review",
+      "tag": "app",
+      "prs": [
+        24
+      ]
+    },
+    {
+      "title": "Loud calendar alarms, Busy mode, share card, Android widget",
+      "status": "review",
+      "tag": "app",
+      "prs": [
+        25
+      ],
+      "plan": "growth"
+    },
+    {
+      "title": "Say or type an alarm (voice alarms)",
+      "status": "review",
+      "tag": "app",
+      "note": "Choice still open: add an on-device AI fallback or keep the parser only.",
+      "prs": [
+        26
+      ]
+    },
+    {
+      "title": "Discreet calendar lock",
+      "status": "doing",
+      "tag": "app",
+      "note": "Locks the phone during and between calendar events. Shabbat visuals only when a Shabbat calendar is picked. Separate branch, not part of the release."
+    },
+    {
+      "title": "Project dashboard (this site)",
+      "status": "doing",
+      "tag": "project"
+    },
+    {
+      "title": "Play Store launch",
+      "status": "next",
+      "tag": "launch",
+      "note": "Needs a Play developer account and a 14-day closed test with 12 testers before going public.",
+      "plan": "business"
+    },
+    {
+      "title": "Apple Developer account and TestFlight",
+      "status": "next",
+      "tag": "launch",
+      "note": "Enrollment was blocked by an unknown error. Support message drafted.",
+      "plan": "business"
+    },
+    {
+      "title": "Spotify and YouTube in the app",
+      "status": "hold",
+      "tag": "music",
+      "note": "Public Spotify sign-in needs a registered company, so version 1.0 opens songs in the Spotify app instead.",
+      "plan": "business"
+    },
+    {
+      "title": "Tuya / Smart Life sign-in",
+      "status": "hold",
+      "tag": "smart-home",
+      "note": "Waiting on Tuya to link accounts to the cloud project.",
+      "prs": [
+        16
+      ]
+    },
+    {
+      "title": "Translations (20 languages)",
+      "status": "hold",
+      "tag": "app"
+    },
+    {
+      "title": "New logo",
+      "status": "hold",
+      "tag": "brand"
+    },
+    {
+      "title": "Mac app",
+      "status": "hold",
+      "tag": "platform",
+      "note": "iPad and Android only for now."
+    },
+    {
+      "title": "Redesign, localization, Matai?, sync, calendar picker",
+      "status": "done",
+      "tag": "app",
+      "note": "Merged into main earlier (PRs #1 to #5, #10, #15)."
+    },
+    {
+      "title": "Review the business plan and mark what you agree with",
+      "status": "decide",
+      "tag": "business",
+      "plan": "business",
+      "note": "Pricing, editions and the three-app idea are proposals until you confirm."
+    },
+    {
+      "title": "Pick: voice alarms with on-device AI fallback, or parser only",
+      "status": "decide",
+      "tag": "app",
+      "prs": [
+        26
+      ]
+    },
+    {
+      "title": "Choose the domain name",
+      "status": "decide",
+      "tag": "brand",
+      "plan": "business"
+    },
+    {
+      "title": "Update privacy policy and add in-app delete account",
+      "status": "next",
+      "tag": "launch",
+      "plan": "business",
+      "note": "Needed before sync opens to everyone in the stores."
+    },
+    {
+      "title": "Sign in with Apple",
+      "status": "next",
+      "tag": "launch",
+      "plan": "business",
+      "note": "Needs the paid Apple membership."
+    },
+    {
+      "title": "Find 12 testers for the Play closed test",
+      "status": "next",
+      "tag": "launch",
+      "plan": "business"
+    },
+    {
+      "title": "Rabbinic review of Shabbat and Matai? features",
+      "status": "next",
+      "tag": "matai",
+      "plan": "haredi",
+      "note": "No Haredi rav chosen yet."
+    },
+    {
+      "title": "Plan Quando Day (20 March)",
+      "status": "hold",
+      "tag": "brand",
+      "plan": "business"
+    }
+  ],
+  "plans": [
+    {
+      "id": "business",
+      "title": "Business plan",
+      "url": "https://claude.ai/artifact/Rvh6qEd5G6ZzFdnSAs9jRH",
+      "status": "proposed",
+      "private": true,
+      "note": "Pricing, editions, launch gates. Private (needs your Claude login); kept out of this public repo."
+    },
+    {
+      "id": "haredi",
+      "title": "Haredi edition plan",
+      "url": "https://claude.ai/artifact/J9Fw4tMWF6283PjdiSkjwd",
+      "status": "proposed",
+      "private": true,
+      "note": "Matai? for Haredi users, offline Android edition."
+    },
+    {
+      "id": "sharedays",
+      "title": "Share days review",
+      "url": "https://claude.ai/artifact/SAgKfxpEW3UuyrsvxgugzE",
+      "status": "proposed",
+      "private": true
+    },
+    {
+      "id": "roadmap",
+      "title": "Roadmap",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/ROADMAP.md",
+      "status": "agreed"
+    },
+    {
+      "id": "growth",
+      "title": "Growth features spec",
+      "url": "https://github.com/dendrito/quando/pull/25",
+      "status": "agreed"
+    }
+  ],
+  "downloads": [
+    {
+      "title": "Quando? Android APK",
+      "url": "https://github.com/dendrito/quando/releases/download/latest/quando.apk"
+    },
+    {
+      "title": "Matai? Android APK",
+      "url": "https://github.com/dendrito/quando/releases/download/latest/matai.apk"
+    }
+  ]
+}
