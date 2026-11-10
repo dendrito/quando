@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/app.dart';
-import 'package:quando/features/home/ui/week_ribbon.dart';
 import 'package:quando/app/providers.dart';
 
 import 'shabbat_on.dart';
@@ -12,7 +11,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 void main() {
   // First: the app's router remembers the last screen between tests.
   testWidgets('a fresh Quando? keeps Shabbat out of the way until you ask', (tester) async {
-    tester.view.physicalSize = const Size(1080, 9000);
+    tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({});
@@ -38,7 +37,7 @@ void main() {
     await tester.pumpAndSettle();
   });
   testWidgets('home shows next Shabbat and this week\'s alarms', (tester) async {
-    tester.view.physicalSize = const Size(1080, 9000);
+    tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
 
@@ -61,14 +60,9 @@ void main() {
     // Jerusalem, Fri 6 Nov 2026: candle lighting 16:05 local.
     expect(find.text('16:05'), findsOneWidget);
     // Friday's candle-lighting reminders fold into one row that opens.
-    // The week ribbon: tap Friday to see its alarms.
-    final friday = find.descendant(of: find.byType(WeekRibbon), matching: find.byType(InkWell)).at(3);
-    await tester.ensureVisible(friday);
-    await tester.tap(friday);
-    await tester.pumpAndSettle();
     final series = find.textContaining('alarms · ');
     await tester.scrollUntilVisible(series.first, 400, scrollable: find.byType(Scrollable).first);
-    // Lift the row clear of the docked When? bar.
+    // Lift the row clear of the floating When? button.
     await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
     await tester.pumpAndSettle();
     expect(find.text('2 hours before'), findsNothing);
@@ -84,7 +78,7 @@ void main() {
   });
 
   testWidgets('a week row has quick actions: remove a time, turn off, undo', (tester) async {
-    tester.view.physicalSize = const Size(1080, 9000);
+    tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({...shabbatOn});
@@ -105,14 +99,9 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    // The week ribbon: tap Friday to see its alarms.
-    final friday = find.descendant(of: find.byType(WeekRibbon), matching: find.byType(InkWell)).at(3);
-    await tester.ensureVisible(friday);
-    await tester.tap(friday);
-    await tester.pumpAndSettle();
     final series = find.textContaining('alarms · ');
     await tester.scrollUntilVisible(series.first, 400, scrollable: find.byType(Scrollable).first);
-    // Lift the row clear of the docked When? bar.
+    // Lift the row clear of the floating When? button.
     await tester.drag(find.byType(Scrollable).first, const Offset(0, -200));
     await tester.pumpAndSettle();
     final before = c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').offsets().length;
@@ -146,7 +135,7 @@ void main() {
     expect(c.read(rulesProvider).firstWhere((r) => r.id == 'preset.countdown').enabled, isTrue);
   });
   testWidgets('the Shabbat card opens the Shabbat screen', (tester) async {
-    tester.view.physicalSize = const Size(1080, 9000);
+    tester.view.physicalSize = const Size(1080, 4000);
     tester.view.devicePixelRatio = 2.5;
     addTearDown(tester.view.reset);
     SharedPreferences.setMockInitialValues({...shabbatOn});

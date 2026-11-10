@@ -32,6 +32,7 @@ class AnchorEvent {
     required this.at,
     required this.source,
     this.alias,
+    this.reminders = const [],
   });
 
   /// Stable id: the same real-world event always gets the same id, so
@@ -49,6 +50,10 @@ class AnchorEvent {
   /// The English title of a built-in time ("Candle lighting · Shabbat"),
   /// so searches like `candle*` work in every language. null = [title] only.
   final String? alias;
+
+  /// The event's own reminders from its calendar app, as lead times before
+  /// it ("15 minutes before"). Empty for everything but calendar events.
+  final List<Duration> reminders;
 
   @override
   String toString() => 'AnchorEvent($kind, $title, ${at.toIso8601String()})';

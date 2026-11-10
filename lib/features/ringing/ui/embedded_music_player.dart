@@ -79,7 +79,12 @@ class _EmbeddedMusicPlayerState extends State<EmbeddedMusicPlayer> with WidgetsB
         'QuandoPlayer',
         onMessageReceived: (message) {
           if (!mounted) return;
-          if (message.message == 'playing') _lastProgress = DateTime.now();
+          if (message.message == 'playing') {
+            _lastProgress = DateTime.now();
+            // YouTube can report an error (one video in a list, a slow
+            // start) and then play anyway: once it plays, it hasn't failed.
+            if (_failed) setState(() => _failed = false);
+          }
           if (message.message == 'error') setState(() => _failed = true);
           if (message.message == 'playing' && !_allowed) {
             unawaited(_pause());

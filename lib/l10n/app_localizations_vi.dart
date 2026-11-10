@@ -3075,4 +3075,309 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Đồng hồ trên màn hình chính';
+
+  @override
+  String get sizeSmall => 'Nhỏ';
+
+  @override
+  String get sizeMedium => 'Vừa';
+
+  @override
+  String get sizeLarge => 'Lớn';
+
+  @override
+  String get homeLayout => 'Bố cục màn hình chính';
+
+  @override
+  String get homeLayoutClassic => 'Cổ điển';
+
+  @override
+  String get homeLayoutCards => 'Thẻ';
+
+  @override
+  String get homeCardsHint =>
+      'Kéo thẻ để di chuyển. Kéo cạnh hoặc góc để đổi kích thước, hoặc chọn kích thước.';
+
+  @override
+  String get homeAddCard => 'Thêm thẻ';
+
+  @override
+  String get homeOnHome => 'Trên màn hình';
+
+  @override
+  String get homeRemoveCard => 'Gỡ';
+
+  @override
+  String get cardNext => 'Báo thức tiếp theo';
+
+  @override
+  String get cardClock => 'Đồng hồ và ngày';
+
+  @override
+  String get cardSky => 'Mặt trời, mặt trăng và thời tiết';
+
+  @override
+  String get cardMoon => 'Mặt trăng';
+
+  @override
+  String get cardWeather => 'Thời tiết';
+
+  @override
+  String get cardAlarms => 'Báo thức của bạn';
+
+  @override
+  String get cardQuick => 'Báo thức nhanh';
+
+  @override
+  String get cardTools => 'Bấm giờ, đếm ngược và chuẩn bị';
+
+  @override
+  String get cardWorld => 'Đồng hồ thế giới';
+
+  @override
+  String get cardWeek => 'Tuần này';
+
+  @override
+  String get cardShabbat => 'Shabbat và ngày lễ';
+
+  @override
+  String get ringAtEventReminders => 'Reo vào lời nhắc của chính sự kiện';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Lời nhắc trong ứng dụng lịch sẽ reo to tại đây như báo thức, bằng âm thanh của báo thức này.';
+
+  @override
+  String get atEventReminders => 'vào lời nhắc của sự kiện';
+
+  @override
+  String get everyEventReminderLoud => 'Reo to vào lời nhắc của mọi sự kiện';
+
+  @override
+  String get loudNotificationsHeading => 'THÔNG BÁO LỊCH THẬT TO';
+
+  @override
+  String get loudNotificationsTitle => 'Cho thông báo lịch reo thật to';
+
+  @override
+  String get loudNotificationsHint =>
+      'Khi ứng dụng lịch hiện lời nhắc, Quando? sẽ reo như báo thức, kể cả khi điện thoại để im lặng.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Cho phép Quando? đọc thông báo lịch?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Để reo to lời nhắc lịch, Quando? cần quyền truy cập thông báo. Ứng dụng chỉ xem thông báo từ các ứng dụng lịch bạn chọn, đọc tiêu đề và nội dung ngay trên điện thoại này để hiện trên báo thức, và không bao giờ lưu hay gửi đi đâu. Bạn có thể tắt bất cứ lúc nào.';
+
+  @override
+  String get loudNotificationsAgree => 'Đồng ý và tiếp tục';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Quyền truy cập thông báo đang tắt. Hãy bật Quando? trong danh sách mở ra.';
+
+  @override
+  String get loudNotificationsAllow => 'Cho phép';
+
+  @override
+  String get loudNotificationsNoApps => 'Không tìm thấy ứng dụng lịch được hỗ trợ trên điện thoại này.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Sự kiện đã có báo thức lịch Quando? chỉ reo một lần.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Im lặng trong ngày Sabát và lễ.';
+
+  @override
+  String get busyMode => 'Chế độ bận';
+
+  @override
+  String get busyModeSubtitle => 'Không làm phiền và tự động trả lời khi bạn bận';
+
+  @override
+  String get busyIntro =>
+      'Khi bạn bận, Quando? có thể làm điện thoại im lặng và trả lời tin nhắn thay bạn. Báo thức vẫn reo.';
+
+  @override
+  String get busyIosFocus =>
+      'Trên iPhone và iPad, ứng dụng không thể bật Tập trung hay trả lời tin nhắn. Trong ứng dụng Phím tắt, hãy tạo tự động hóa \"Khi mở Quando?\" hoặc theo giờ để bật Tập trung, rồi đặt Tập trung tự động trả lời.';
+
+  @override
+  String get busyWhileHeading => 'KHI BẠN BẬN';
+
+  @override
+  String get busyDnd => 'Không làm phiền';
+
+  @override
+  String get busyDndHint =>
+      'Chỉ ưu tiên: cuộc gọi và tin nhắn im lặng, báo thức vẫn reo. Kết thúc thì trở lại bình thường.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? chưa được phép đổi Không làm phiền.';
+
+  @override
+  String get busyReplies => 'Trả lời tin nhắn';
+
+  @override
+  String get busyRepliesHint =>
+      'Mỗi người một lần, bằng nội dung của bạn, qua nút Trả lời của chính ứng dụng. Chỉ Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Cho phép Quando? trả lời tin nhắn?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Để trả lời thay bạn, Quando? cần quyền truy cập thông báo. Chỉ khi bạn bận, ứng dụng xem thông báo tin nhắn từ các ứng dụng bạn chọn, đọc tên người gửi ngay trên điện thoại này và gửi nội dung của bạn một lần qua nút Trả lời của chính ứng dụng. Tin nhắn không bao giờ được lưu hay gửi đi nơi khác. Nhóm sẽ bị bỏ qua trừ khi bạn cho phép.';
+
+  @override
+  String get busyReplyText => 'Câu trả lời của bạn';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until sẽ thành giờ kết thúc chế độ bận.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Mình đang bận, sẽ trả lời sau $until.';
+  }
+
+  @override
+  String get busyGroups => 'Trả lời cả trong nhóm';
+
+  @override
+  String get busyGroupsHint => 'Tắt: không bao giờ trả lời nhóm.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Trả lời cả trong Sabát và lễ';
+
+  @override
+  String get busyAskRabbi => 'Mặc định tắt. Hãy hỏi giáo sĩ của bạn trước khi bật cho ngày Sabát.';
+
+  @override
+  String get busyWhenHeading => 'KHI NÀO BẠN BẬN';
+
+  @override
+  String get busyWhenHint =>
+      'Bật \"Bận trong các sự kiện này\" ở báo thức lịch, hoặc \"Bận sau khi reo\" ở báo thức.';
+
+  @override
+  String get busyDuringLock => 'Bận khi bật chế độ khóa';
+
+  @override
+  String get busyNoneComing => 'Không có lúc bận trong 7 ngày tới.';
+
+  @override
+  String get busyDuringEvents => 'Bận trong các sự kiện này';
+
+  @override
+  String get busyDuringEventsHint => 'Chế độ bận từ lúc bắt đầu đến khi kết thúc mỗi sự kiện.';
+
+  @override
+  String get busySettings => 'Cài đặt chế độ bận';
+
+  @override
+  String get busyAfterRing => 'Bận sau khi reo';
+
+  @override
+  String get busyAfterRingHint => 'Không làm phiền và tự động trả lời một lúc, như tập thể dục hay ngủ trưa.';
+
+  @override
+  String get shareCard => 'Chia sẻ buổi sáng';
+
+  @override
+  String get shareCardSubtitle => 'Bầu trời và câu nói hôm nay, hoặc ảnh của bạn, cho Tin và trạng thái';
+
+  @override
+  String get shareAppMissing => 'Điện thoại không có ứng dụng đó.';
+
+  @override
+  String get shareAsIs => 'Chia sẻ nguyên bản';
+
+  @override
+  String get shareTapQuote => 'Chạm vào câu nói để đổi câu khác.';
+
+  @override
+  String get shareStory => 'Tin';
+
+  @override
+  String get shareSquare => 'Vuông';
+
+  @override
+  String get shareYourWords => 'Lời của bạn (không bắt buộc)';
+
+  @override
+  String get shareYourWordsHint => 'Thay cho câu nói hôm nay';
+
+  @override
+  String get shareYourPhoto => 'Ảnh của bạn';
+
+  @override
+  String get shareOtherPhoto => 'Ảnh khác';
+
+  @override
+  String get shareSkyBack => 'Bầu trời hôm nay';
+
+  @override
+  String get shareYourVideo => 'Video của bạn';
+
+  @override
+  String get shareInstagramStory => 'Tin Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: trạng thái hoặc trò chuyện';
+
+  @override
+  String get shareMore => 'Ứng dụng khác';
+
+  @override
+  String get shareYouPost => 'Quando? mở ứng dụng với thẻ đã sẵn sàng. Bạn chọn nơi đăng và tự nhấn Đăng.';
+
+  @override
+  String get shareAndroidFirst => 'Sắp có chia sẻ trên iPhone và iPad.';
+
+  @override
+  String songSaved(String name) {
+    return 'Đã lưu “$name” làm âm báo thức';
+  }
+
+  @override
+  String get shareToQuando => 'Chia sẻ bài hát tới Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Trong YouTube, YouTube Music, Spotify, SoundCloud hoặc Apple Music, nhấn Chia sẻ rồi Quando?. Bài hát thành âm báo thức phát trong chính ứng dụng đó.';
+
+  @override
+  String get askOption => 'Nói hoặc gõ';
+
+  @override
+  String get askOptionHint => '“Mai 6 giờ”, “30 phút trước bình minh”';
+
+  @override
+  String get askHint => 'vd: đánh thức tôi 30 phút trước bình minh vào ngày thường';
+
+  @override
+  String get askListening => 'Đang nghe…';
+
+  @override
+  String get askNotUnderstood => 'Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.';
+
+  @override
+  String get askNoSpeech => 'Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.';
+
+  @override
+  String get askShabbatOff => 'Bật Shabbat trong Cài đặt để giờ Shabbat đổ chuông.';
+
+  @override
+  String askSaved(String what) {
+    return 'Đã lưu: $what';
+  }
+
+  @override
+  String get askMic => 'Nói';
 }

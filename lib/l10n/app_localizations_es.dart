@@ -2967,8 +2967,8 @@ class AppLocalizationsEs extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 segundo antes',
       other: '$n segundos antes',
+      one: '1 segundo antes',
     );
     return '$_temp0';
   }
@@ -2999,13 +2999,13 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 segundo', other: '$n segundos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n segundos', one: '1 segundo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minutos');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutos', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3099,4 +3099,313 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Reloj en el inicio';
+
+  @override
+  String get sizeSmall => 'Pequeño';
+
+  @override
+  String get sizeMedium => 'Mediano';
+
+  @override
+  String get sizeLarge => 'Grande';
+
+  @override
+  String get homeLayout => 'Diseño de inicio';
+
+  @override
+  String get homeLayoutClassic => 'Clásico';
+
+  @override
+  String get homeLayoutCards => 'Tarjetas';
+
+  @override
+  String get homeCardsHint =>
+      'Arrastra una tarjeta para moverla. Arrastra su borde o esquina para cambiar el tamaño, o elige uno.';
+
+  @override
+  String get homeAddCard => 'Añadir tarjeta';
+
+  @override
+  String get homeOnHome => 'En inicio';
+
+  @override
+  String get homeRemoveCard => 'Quitar';
+
+  @override
+  String get cardNext => 'Próxima alarma';
+
+  @override
+  String get cardClock => 'Reloj y fecha';
+
+  @override
+  String get cardSky => 'Sol, luna y clima';
+
+  @override
+  String get cardMoon => 'Luna';
+
+  @override
+  String get cardWeather => 'Clima';
+
+  @override
+  String get cardAlarms => 'Tus alarmas';
+
+  @override
+  String get cardQuick => 'Alarmas rápidas';
+
+  @override
+  String get cardTools => 'Cronómetro, temporizador y listos';
+
+  @override
+  String get cardWorld => 'Relojes mundiales';
+
+  @override
+  String get cardWeek => 'Esta semana';
+
+  @override
+  String get cardShabbat => 'Shabat y festividades';
+
+  @override
+  String get ringAtEventReminders => 'Sonar en los recordatorios del propio evento';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Los recordatorios de tu app de calendario suenan aquí como alarmas fuertes, con el sonido de esta alarma.';
+
+  @override
+  String get atEventReminders => 'en los recordatorios del evento';
+
+  @override
+  String get everyEventReminderLoud => 'Sonar fuerte en los recordatorios de cada evento';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICACIONES DE CALENDARIO FUERTES';
+
+  @override
+  String get loudNotificationsTitle => 'Hacer sonar fuerte las notificaciones del calendario';
+
+  @override
+  String get loudNotificationsHint =>
+      'Cuando una app de calendario muestra un recordatorio, Quando? lo hace sonar como alarma, incluso con el teléfono en silencio.';
+
+  @override
+  String get loudNotificationsDisclosureTitle =>
+      '¿Permitir que Quando? lea las notificaciones del calendario?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Para hacer sonar tus recordatorios, Quando? necesita acceso a las notificaciones. Solo mira las de las apps de calendario que elijas, lee su título y texto en este teléfono para mostrarlos en la alarma y nunca los guarda ni los envía a ningún lado. Puedes desactivarlo cuando quieras.';
+
+  @override
+  String get loudNotificationsAgree => 'Aceptar y continuar';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'El acceso a notificaciones está desactivado. Activa Quando? en la lista que se abre.';
+
+  @override
+  String get loudNotificationsAllow => 'Permitir';
+
+  @override
+  String get loudNotificationsNoApps =>
+      'No se encontró ninguna app de calendario compatible en este teléfono.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Los eventos que ya tienen una alarma de calendario de Quando? suenan una sola vez.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'En silencio durante Shabat y las festividades.';
+
+  @override
+  String get busyMode => 'Modo ocupado';
+
+  @override
+  String get busyModeSubtitle => 'No molestar y respuestas automáticas mientras estás ocupado';
+
+  @override
+  String get busyIntro =>
+      'Mientras estás ocupado, Quando? puede silenciar el teléfono y responder mensajes por ti. Las alarmas siguen sonando.';
+
+  @override
+  String get busyIosFocus =>
+      'En iPhone y iPad, las apps no pueden activar Concentración ni responder mensajes. En la app Atajos, crea una automatización \"Al abrir Quando?\" o a una hora que active una Concentración, y configúrala para responder automáticamente.';
+
+  @override
+  String get busyWhileHeading => 'MIENTRAS ESTÁS OCUPADO';
+
+  @override
+  String get busyDnd => 'No molestar';
+
+  @override
+  String get busyDndHint =>
+      'Solo prioridad: llamadas y mensajes en silencio, las alarmas suenan. Vuelve a la normalidad al terminar.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? aún no puede cambiar No molestar.';
+
+  @override
+  String get busyReplies => 'Responder mensajes';
+
+  @override
+  String get busyRepliesHint =>
+      'Una vez por persona, con tu texto, mediante el botón Responder de la app. Solo Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => '¿Permitir que Quando? responda mensajes?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Para responder por ti, Quando? necesita acceso a las notificaciones. Solo mientras estás ocupado, mira las notificaciones de mensajes de las apps que elijas, lee el nombre del remitente en este teléfono y envía tu texto una vez mediante el botón Responder de la app. Los mensajes nunca se guardan ni se envían a otro sitio. Los grupos se omiten salvo que lo permitas.';
+
+  @override
+  String get busyReplyText => 'Tu respuesta';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until se convierte en la hora en que termina el modo ocupado.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ahora estoy ocupado y responderé después de las $until.';
+  }
+
+  @override
+  String get busyGroups => 'Responder también en grupos';
+
+  @override
+  String get busyGroupsHint => 'Desactivado: los grupos nunca reciben respuesta.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Responder durante Shabat y festividades';
+
+  @override
+  String get busyAskRabbi => 'Desactivado por defecto. Consulta a tu rabino antes de activarlo en Shabat.';
+
+  @override
+  String get busyWhenHeading => 'CUÁNDO ESTÁS OCUPADO';
+
+  @override
+  String get busyWhenHint =>
+      'Activa \"Ocupado durante estos eventos\" en una alarma de calendario, u \"Ocupado después de sonar\" en una alarma.';
+
+  @override
+  String get busyDuringLock => 'Ocupado mientras el modo bloqueo está activo';
+
+  @override
+  String get busyNoneComing => 'Nada ocupado en los próximos 7 días.';
+
+  @override
+  String get busyDuringEvents => 'Ocupado durante estos eventos';
+
+  @override
+  String get busyDuringEventsHint => 'Modo ocupado desde el inicio hasta el final de cada evento.';
+
+  @override
+  String get busySettings => 'Ajustes del modo ocupado';
+
+  @override
+  String get busyAfterRing => 'Ocupado después de sonar';
+
+  @override
+  String get busyAfterRingHint =>
+      'No molestar y respuestas automáticas un rato, como un entrenamiento o una siesta.';
+
+  @override
+  String get shareCard => 'Comparte tu mañana';
+
+  @override
+  String get shareCardSubtitle => 'El cielo y la frase de hoy, o tu foto, para Stories y estados';
+
+  @override
+  String get shareAppMissing => 'Esa app no está en este teléfono.';
+
+  @override
+  String get shareAsIs => 'Compartir tal cual';
+
+  @override
+  String get shareTapQuote => 'Toca la frase para cambiarla.';
+
+  @override
+  String get shareStory => 'Historia';
+
+  @override
+  String get shareSquare => 'Cuadrado';
+
+  @override
+  String get shareYourWords => 'Tus propias palabras (opcional)';
+
+  @override
+  String get shareYourWordsHint => 'En lugar de la frase de hoy';
+
+  @override
+  String get shareYourPhoto => 'Tu foto';
+
+  @override
+  String get shareOtherPhoto => 'Otra foto';
+
+  @override
+  String get shareSkyBack => 'El cielo de hoy';
+
+  @override
+  String get shareYourVideo => 'Tu video';
+
+  @override
+  String get shareInstagramStory => 'Historias de Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: estado o chat';
+
+  @override
+  String get shareMore => 'Más apps';
+
+  @override
+  String get shareYouPost => 'Quando? abre la app con tu tarjeta lista. Tú eliges dónde y tocas Publicar.';
+
+  @override
+  String get shareAndroidFirst => 'Compartir llegará pronto a iPhone y iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” guardado como sonido de alarma';
+  }
+
+  @override
+  String get shareToQuando => 'Comparte una canción con Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'En YouTube, YouTube Music, Spotify, SoundCloud o Apple Music, toca Compartir y luego Quando?. Se convierte en un sonido de alarma que suena en su app.';
+
+  @override
+  String get askOption => 'Dilo o escríbelo';
+
+  @override
+  String get askOptionHint => '“Mañana a las 6”, “30 min antes del amanecer”';
+
+  @override
+  String get askHint => 'p. ej.: despiértame 30 min antes del amanecer entre semana';
+
+  @override
+  String get askListening => 'Escuchando…';
+
+  @override
+  String get askNotUnderstood => 'No encontré una hora. Prueba “7 am entre semana” o “en 20 minutos”.';
+
+  @override
+  String get askNoSpeech => 'La voz no está disponible en este dispositivo. Puedes escribir.';
+
+  @override
+  String get askShabbatOff => 'Activa el Shabat en Ajustes para que suenen sus horarios.';
+
+  @override
+  String askSaved(String what) {
+    return 'Guardado: $what';
+  }
+
+  @override
+  String get askMic => 'Hablar';
 }

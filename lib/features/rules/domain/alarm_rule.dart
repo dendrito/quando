@@ -43,7 +43,13 @@ class AlarmRule {
     this.soundId,
     this.style = RingStyle.none,
     this.deliveries = const {},
+    this.eventReminders = false,
+    this.days = const {},
   });
+
+  /// Only events on these weekdays (1 = Monday ... 7 = Sunday, local
+  /// time). Empty = any day.
+  final Set<int> days;
 
   final String id;
   final String name;
@@ -86,6 +92,14 @@ class AlarmRule {
   /// Overrides by signed minute offset; missing entries inherit this rule.
   final Map<int, ReminderDelivery> deliveries;
 
+  /// Also ring at each calendar event's own reminders (the "15 minutes
+  /// before" set in the calendar app), loud, with this rule's sound.
+  final bool eventReminders;
+
+  /// How far ahead of an event its own reminders are read. Reminders set
+  /// further ahead than this still ring, once the event comes into reach.
+  static const eventReminderReach = Duration(days: 7);
+
   ReminderDelivery deliveryAt(Duration offset) => deliveries[offset.inMinutes] ?? ReminderDelivery.inherit;
 
   /// [keyword] is a search: words, wildcards, AND / OR / NOT (see
@@ -93,12 +107,24 @@ class AlarmRule {
   /// also catch Shabbat, festival and sun times.
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
+      (days.isEmpty || days.contains(e.at.toLocal().weekday)) &&
       (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
       (keyword == null || keyword!.isEmpty || _search(keyword!, e));
 
   static bool _search(String keyword, AnchorEvent e) {
     final q = EventQuery.parse(keyword);
     return q.matches(e.title) || (e.alias != null && q.matches(e.alias!));
+  }
+
+  /// The offsets for one [event]: this rule's own, plus the event's own
+  /// reminders when [eventReminders] is on.
+  List<Duration> offsetsFor(AnchorEvent event) {
+    if (!eventReminders || event.reminders.isEmpty) return offsets();
+    return <Duration>{
+      ...offsets(),
+      for (final r in event.reminders)
+        if (r <= eventReminderReach) -r,
+    }.toList()..sort();
   }
 
   /// Every offset from the event, negative = before, duplicates removed,
@@ -115,7 +141,11 @@ class AlarmRule {
 
   /// The furthest before and after any alarm can be, so callers know how
   /// wide a window of events they need.
-  Duration get maxBefore => offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
+  Duration get maxBefore {
+    final own = offsets().fold(Duration.zero, (m, d) => d < -m ? -d : m);
+    return eventReminders && own < eventReminderReach ? eventReminderReach : own;
+  }
+
   Duration get maxAfter => offsets().fold(Duration.zero, (m, d) => d > m ? d : m);
 
   AlarmRule copyWith({
@@ -146,6 +176,8 @@ class AlarmRule {
     soundId: defaultSound ? null : (soundId ?? this.soundId),
     style: style ?? this.style,
     deliveries: deliveries ?? this.deliveries,
+    eventReminders: eventReminders,
+    days: days,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =

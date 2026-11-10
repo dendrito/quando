@@ -2953,8 +2953,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 saniye önce',
       other: '$n saniye önce',
+      one: '1 saniye önce',
     );
     return '$_temp0';
   }
@@ -2985,13 +2985,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 saniye', other: '$n saniye');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 dakika', other: '$n dakika');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
     return '$_temp0';
   }
 
@@ -3085,4 +3085,311 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Ana ekranda saat';
+
+  @override
+  String get sizeSmall => 'Küçük';
+
+  @override
+  String get sizeMedium => 'Orta';
+
+  @override
+  String get sizeLarge => 'Büyük';
+
+  @override
+  String get homeLayout => 'Ana ekran düzeni';
+
+  @override
+  String get homeLayoutClassic => 'Klasik';
+
+  @override
+  String get homeLayoutCards => 'Kartlar';
+
+  @override
+  String get homeCardsHint =>
+      'Taşımak için bir kartı sürükleyin. Boyutunu değiştirmek için kenarını ya da köşesini sürükleyin veya bir boyut seçin.';
+
+  @override
+  String get homeAddCard => 'Kart ekle';
+
+  @override
+  String get homeOnHome => 'Ana ekranda';
+
+  @override
+  String get homeRemoveCard => 'Kaldır';
+
+  @override
+  String get cardNext => 'Sonraki alarm';
+
+  @override
+  String get cardClock => 'Saat ve tarih';
+
+  @override
+  String get cardSky => 'Güneş, ay ve hava';
+
+  @override
+  String get cardMoon => 'Ay';
+
+  @override
+  String get cardWeather => 'Hava durumu';
+
+  @override
+  String get cardAlarms => 'Alarmlarınız';
+
+  @override
+  String get cardQuick => 'Hızlı alarmlar';
+
+  @override
+  String get cardTools => 'Kronometre, geri sayım ve hazır ol';
+
+  @override
+  String get cardWorld => 'Dünya saatleri';
+
+  @override
+  String get cardWeek => 'Bu hafta';
+
+  @override
+  String get cardShabbat => 'Şabat ve bayramlar';
+
+  @override
+  String get ringAtEventReminders => 'Etkinliğin kendi hatırlatıcılarında çal';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Takvim uygulamanızdaki hatırlatıcılar burada bu alarmın sesiyle yüksek alarm olarak çalar.';
+
+  @override
+  String get atEventReminders => 'etkinliğin hatırlatıcılarında';
+
+  @override
+  String get everyEventReminderLoud => 'Her etkinliğin hatırlatıcılarında yüksek sesle çal';
+
+  @override
+  String get loudNotificationsHeading => 'YÜKSEK SESLİ TAKVİM BİLDİRİMLERİ';
+
+  @override
+  String get loudNotificationsTitle => 'Takvim bildirimlerini yüksek sesli yap';
+
+  @override
+  String get loudNotificationsHint =>
+      'Bir takvim uygulaması hatırlatıcı gösterdiğinde Quando? onu telefon sessizdeyken bile alarm olarak çalar.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? takvim bildirimlerini okuyabilsin mi?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Takvim hatırlatıcılarınızı yüksek sesle çalmak için Quando? bildirim erişimine ihtiyaç duyar. Yalnızca seçtiğiniz takvim uygulamalarının bildirimlerine bakar, alarmda göstermek için başlık ve metni bu telefonda okur ve bunları asla saklamaz ya da bir yere göndermez. İstediğiniz zaman kapatabilirsiniz.';
+
+  @override
+  String get loudNotificationsAgree => 'Kabul et ve devam et';
+
+  @override
+  String get loudNotificationsNoAccess => 'Bildirim erişimi kapalı. Açılan listede Quando?\'yu açın.';
+
+  @override
+  String get loudNotificationsAllow => 'İzin ver';
+
+  @override
+  String get loudNotificationsNoApps => 'Bu telefonda desteklenen takvim uygulaması bulunamadı.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Zaten bir Quando? takvim alarmı olan etkinlikler yalnızca bir kez çalar.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Şabat ve bayramlarda sessiz.';
+
+  @override
+  String get busyMode => 'Meşgul modu';
+
+  @override
+  String get busyModeSubtitle => 'Meşgulken Rahatsız Etmeyin ve otomatik yanıtlar';
+
+  @override
+  String get busyIntro =>
+      'Siz meşgulken Quando? telefonu sessize alıp mesajlara sizin yerinize yanıt verebilir. Alarmlar yine çalar.';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone ve iPad\'de uygulamalar Odak açamaz veya mesajlara yanıt veremez. Kestirmeler uygulamasında \"Quando? açıldığında\" ya da bir saatte Odak açan bir otomasyon ekleyin ve Odak\'ı otomatik yanıt verecek şekilde ayarlayın.';
+
+  @override
+  String get busyWhileHeading => 'MEŞGULKEN';
+
+  @override
+  String get busyDnd => 'Rahatsız Etmeyin';
+
+  @override
+  String get busyDndHint =>
+      'Yalnızca öncelikli: aramalar ve mesajlar sessiz, alarmlar çalar. Bitince normale döner.';
+
+  @override
+  String get busyDndNoAccess => 'Quando?\'nun henüz Rahatsız Etmeyin\'i değiştirme izni yok.';
+
+  @override
+  String get busyReplies => 'Mesajlara yanıt ver';
+
+  @override
+  String get busyRepliesHint =>
+      'Kişi başına bir kez, sizin metninizle, uygulamanın kendi Yanıtla düğmesiyle. Yalnızca Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? mesajlara yanıt verebilsin mi?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Sizin yerinize yanıt vermek için Quando? bildirim erişimine ihtiyaç duyar. Yalnızca siz meşgulken, seçtiğiniz uygulamaların mesaj bildirimlerine bakar, gönderenin adını bu telefonda okur ve metninizi uygulamanın kendi Yanıtla düğmesiyle bir kez gönderir. Mesajlar asla saklanmaz veya başka yere gönderilmez. İzin vermedikçe gruplar atlanır.';
+
+  @override
+  String get busyReplyText => 'Yanıtınız';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until, meşgul modunun bittiği saate dönüşür.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Şu an meşgulüm, $until sonrasında yanıtlayacağım.';
+  }
+
+  @override
+  String get busyGroups => 'Gruplarda da yanıt ver';
+
+  @override
+  String get busyGroupsHint => 'Kapalı: gruplara asla yanıt verilmez.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Şabat ve bayramlarda da yanıt ver';
+
+  @override
+  String get busyAskRabbi => 'Varsayılan olarak kapalı. Şabat için açmadan önce hahamınıza danışın.';
+
+  @override
+  String get busyWhenHeading => 'NE ZAMAN MEŞGULSÜNÜZ';
+
+  @override
+  String get busyWhenHint =>
+      'Bir takvim alarmında \"Bu etkinlikler sırasında meşgul\" ya da bir alarmda \"Çaldıktan sonra meşgul\" seçeneğini açın.';
+
+  @override
+  String get busyDuringLock => 'Kilit modu açıkken meşgul';
+
+  @override
+  String get busyNoneComing => 'Önümüzdeki 7 günde meşgul bir şey yok.';
+
+  @override
+  String get busyDuringEvents => 'Bu etkinlikler sırasında meşgul';
+
+  @override
+  String get busyDuringEventsHint => 'Her etkinliğin başından sonuna meşgul modu.';
+
+  @override
+  String get busySettings => 'Meşgul modu ayarları';
+
+  @override
+  String get busyAfterRing => 'Çaldıktan sonra meşgul';
+
+  @override
+  String get busyAfterRingHint =>
+      'Bir süre Rahatsız Etmeyin ve otomatik yanıt, ör. antrenman veya şekerleme.';
+
+  @override
+  String get shareCard => 'Sabahını paylaş';
+
+  @override
+  String get shareCardSubtitle => 'Bugünün gökyüzü ve sözü ya da kendi fotoğrafın, Hikâyeler ve durum için';
+
+  @override
+  String get shareAppMissing => 'Bu uygulama telefonda yok.';
+
+  @override
+  String get shareAsIs => 'Olduğu gibi paylaş';
+
+  @override
+  String get shareTapQuote => 'Başka bir söz için söze dokun.';
+
+  @override
+  String get shareStory => 'Hikâye';
+
+  @override
+  String get shareSquare => 'Kare';
+
+  @override
+  String get shareYourWords => 'Kendi sözlerin (isteğe bağlı)';
+
+  @override
+  String get shareYourWordsHint => 'Bugünün sözü yerine';
+
+  @override
+  String get shareYourPhoto => 'Fotoğrafın';
+
+  @override
+  String get shareOtherPhoto => 'Başka fotoğraf';
+
+  @override
+  String get shareSkyBack => 'Bugünün gökyüzü';
+
+  @override
+  String get shareYourVideo => 'Videon';
+
+  @override
+  String get shareInstagramStory => 'Instagram Hikâyeleri';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: durum veya sohbet';
+
+  @override
+  String get shareMore => 'Diğer uygulamalar';
+
+  @override
+  String get shareYouPost =>
+      'Quando? uygulamayı kartınla açar. Nereye gideceğini sen seçer, Paylaş\'a sen dokunursun.';
+
+  @override
+  String get shareAndroidFirst => 'Paylaşım yakında iPhone ve iPad\'de.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” alarm sesi olarak kaydedildi';
+  }
+
+  @override
+  String get shareToQuando => 'Quando?\'ya şarkı paylaş';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube, YouTube Music, Spotify, SoundCloud veya Apple Music\'te Paylaş\'a, sonra Quando?\'ya dokun. Kendi uygulamasında çalan bir alarm sesi olur.';
+
+  @override
+  String get askOption => 'Söyle veya yaz';
+
+  @override
+  String get askOptionHint => '“Yarın 6\'da”, “gün doğumundan 30 dk önce”';
+
+  @override
+  String get askHint => 'ör. hafta içi gün doğumundan 30 dk önce uyandır';
+
+  @override
+  String get askListening => 'Dinliyorum…';
+
+  @override
+  String get askNotUnderstood => 'Bir saat bulamadım. “Hafta içi 7\'de” veya “20 dakika sonra” deneyin.';
+
+  @override
+  String get askNoSpeech => 'Bu cihazda ses kullanılamıyor. Yazabilirsiniz.';
+
+  @override
+  String get askShabbatOff => 'Şabat saatlerinin çalması için Ayarlar\'dan Şabat\'ı açın.';
+
+  @override
+  String askSaved(String what) {
+    return 'Kaydedildi: $what';
+  }
+
+  @override
+  String get askMic => 'Konuş';
 }

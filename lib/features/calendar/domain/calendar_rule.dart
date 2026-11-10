@@ -24,7 +24,13 @@ class CalendarRule {
     this.includeTimes = false,
     this.style = RingStyle.none,
     this.deliveries = const {},
+    this.eventReminders = false,
+    this.busy = false,
+    this.days = const {},
   });
+
+  /// Only on these weekdays, 1 = Monday ... 7 = Sunday. Empty = any day.
+  final Set<int> days;
 
   final String id;
   final String name;
@@ -63,13 +69,19 @@ class CalendarRule {
   /// Zero applies to the selected anchor moment.
   final Map<int, ReminderDelivery> deliveries;
 
+  /// Also ring, loud, at each event's own reminders from the calendar app.
+  final bool eventReminders;
+
+  /// Busy mode from each matching event's start to its end.
+  final bool busy;
+
   String get title {
     if (name.isNotEmpty) return name;
     if (keyword.isNotEmpty) return l10n.eventsMatching(keyword);
     return l10n.everyEvent;
   }
 
-  bool get hasAlarms => before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
+  bool get hasAlarms => eventReminders || before.isNotEmpty || atStart || after.isNotEmpty || _series != null;
 
   OffsetSeries? get _series => repeatEvery != null && repeatFor != null && repeatEvery! > Duration.zero
       ? OffsetSeries(direction: Direction.before, every: repeatEvery!, span: repeatFor!)
@@ -93,6 +105,8 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        eventReminders: eventReminders,
+        days: days,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -105,6 +119,7 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        days: days,
       ),
       // Shabbat, festival and sun times are single moments: before, at and
       // after all hang off the moment itself.
@@ -127,6 +142,7 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        days: days,
       ),
     ];
   }
@@ -147,6 +163,9 @@ class CalendarRule {
     Map<int, ReminderDelivery>? deliveries,
     bool defaultSound = false,
     bool? includeTimes,
+    bool? eventReminders,
+    bool? busy,
+    Set<int>? days,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -162,6 +181,9 @@ class CalendarRule {
     style: style ?? this.style,
     deliveries: deliveries ?? this.deliveries,
     includeTimes: includeTimes ?? this.includeTimes,
+    eventReminders: eventReminders ?? this.eventReminders,
+    busy: busy ?? this.busy,
+    days: days ?? this.days,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -184,6 +206,9 @@ class CalendarRule {
     'style': style.toJson(),
     if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
     'includeTimes': includeTimes,
+    if (eventReminders) 'eventReminders': true,
+    if (busy) 'busy': true,
+    if (days.isNotEmpty) 'days': days.toList()..sort(),
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -201,5 +226,8 @@ class CalendarRule {
     style: RingStyle.fromJson(j['style']),
     deliveries: ReminderDelivery.decode(j['deliveries']),
     includeTimes: j['includeTimes'] as bool? ?? false,
+    eventReminders: j['eventReminders'] as bool? ?? false,
+    busy: j['busy'] as bool? ?? false,
+    days: {for (final d in (j['days'] as List? ?? const [])) (d as num).toInt()},
   );
 }
