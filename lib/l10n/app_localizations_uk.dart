@@ -510,6 +510,85 @@ class AppLocalizationsUk extends AppLocalizations {
   String get holdToUnlock => 'Утримуйте для розблокування';
 
   @override
+  String get lockSentenceCalm =>
+      'Заблокуйте телефон на годиннику й будильниках: на іспит, зустріч чи тихий вечір.';
+
+  @override
+  String get lockCalendarHeading => 'ЗА КАЛЕНДАРЕМ';
+
+  @override
+  String get lockCalendarExplain =>
+      'Блокування під час події або від однієї події до наступної, яку ви вкажете. Працює з будь-яким вибраним календарем, і зі спільними теж.';
+
+  @override
+  String get lockAddCalendar => 'Додати блокування за календарем';
+
+  @override
+  String get lockEditCalendar => 'Блокування за календарем';
+
+  @override
+  String get lockDuring => 'Під час події';
+
+  @override
+  String get lockBetween => 'Між двома подіями';
+
+  @override
+  String get lockStartsAt => 'Події з назвою…';
+
+  @override
+  String get lockStartsAtBetween => 'Починається з події…';
+
+  @override
+  String get lockEndsAt => 'Закінчується на наступній події…';
+
+  @override
+  String get lockStartHint => 'напр. іспит, фокус, спорт';
+
+  @override
+  String get lockEndHint => 'напр. вдома';
+
+  @override
+  String get lockAnyCalendar => 'Будь-який календар';
+
+  @override
+  String get lockNoMatches => 'У календарях поки нічого не підходить.';
+
+  @override
+  String get lockNextTimes => 'НАСТУПНІ РАЗИ';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Під час «$a»';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Від «$a» до наступної «$b»';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return 'У «$name» є час шабату.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Блокувати від запалення свічок до авдали';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Бере час із цього календаря, зі свічками на екрані.';
+
+  @override
+  String get lockMoreWays => 'Інші способи блокування';
+
+  @override
+  String get lockQuietTime => 'Час тиші';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Наступне запалення свічок: $time, з $name';
+  }
+
+  @override
   String get calendarAlarm => 'Будильник календаря';
 
   @override
@@ -3002,10 +3081,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунди',
-      many: 'За $n секунд',
       other: 'За $n секунди',
+      many: 'За $n секунд',
+      few: 'За $n секунди',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3118,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунди',
-      many: '$n секунд',
       other: '$n секунди',
+      many: '$n секунд',
+      few: '$n секунди',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3131,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 хвилина',
-      few: '$n хвилини',
-      many: '$n хвилин',
       other: '$n хвилини',
+      many: '$n хвилин',
+      few: '$n хвилини',
+      one: '1 хвилина',
     );
     return '$_temp0';
   }

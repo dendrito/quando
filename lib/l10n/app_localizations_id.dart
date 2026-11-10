@@ -476,6 +476,84 @@ class AppLocalizationsId extends AppLocalizations {
   String get holdToUnlock => 'Tahan untuk membuka';
 
   @override
+  String get lockSentenceCalm => 'Kunci ponsel ke jam dan alarm: untuk ujian, rapat, atau malam yang tenang.';
+
+  @override
+  String get lockCalendarHeading => 'DENGAN KALENDERMU';
+
+  @override
+  String get lockCalendarExplain =>
+      'Kunci selama acara, atau dari satu acara sampai acara berikutnya yang kamu pilih. Bisa dengan kalender apa pun yang dipilih, termasuk yang dibagikan.';
+
+  @override
+  String get lockAddCalendar => 'Tambah kunci kalender';
+
+  @override
+  String get lockEditCalendar => 'Kunci kalender';
+
+  @override
+  String get lockDuring => 'Selama acara';
+
+  @override
+  String get lockBetween => 'Di antara dua acara';
+
+  @override
+  String get lockStartsAt => 'Acara bernama…';
+
+  @override
+  String get lockStartsAtBetween => 'Mulai di acara bernama…';
+
+  @override
+  String get lockEndsAt => 'Selesai di acara berikutnya bernama…';
+
+  @override
+  String get lockStartHint => 'mis. ujian, fokus, gym';
+
+  @override
+  String get lockEndHint => 'mis. di rumah';
+
+  @override
+  String get lockAnyCalendar => 'Kalender mana pun';
+
+  @override
+  String get lockNoMatches => 'Belum ada yang cocok di kalendermu.';
+
+  @override
+  String get lockNextTimes => 'BERIKUTNYA';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Selama “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Dari “$a” sampai “$b” berikutnya';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” berisi waktu Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Kunci dari menyalakan lilin sampai Havdalah';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Memakai waktu dari kalender itu, dengan lilin di layar.';
+
+  @override
+  String get lockMoreWays => 'Cara lain mengunci';
+
+  @override
+  String get lockQuietTime => 'Waktu tenang';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Menyalakan lilin berikutnya: $time, dari $name';
+  }
+
+  @override
   String get calendarAlarm => 'Alarm kalender';
 
   @override
@@ -2950,8 +3028,8 @@ class AppLocalizationsId extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 detik sebelumnya',
       other: '$n detik sebelumnya',
+      one: '1 detik sebelumnya',
     );
     return '$_temp0';
   }
@@ -2982,13 +3060,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 detik', other: '$n detik');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n detik', one: '1 detik');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 menit', other: '$n menit');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n menit', one: '1 menit');
     return '$_temp0';
   }
 

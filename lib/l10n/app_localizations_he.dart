@@ -484,6 +484,84 @@ class AppLocalizationsHe extends AppLocalizations {
   String get holdToUnlock => 'החזיקו לשחרור';
 
   @override
+  String get lockSentenceCalm => 'נעלו את הטלפון על השעון וההתראות: למבחן, לפגישה או לערב שקט.';
+
+  @override
+  String get lockCalendarHeading => 'עם היומן';
+
+  @override
+  String get lockCalendarExplain =>
+      'נעילה בזמן אירוע, או מאירוע אחד עד האירוע הבא שתבחרו. עובד עם כל יומן שבחרתם, גם משותף.';
+
+  @override
+  String get lockAddCalendar => 'הוספת נעילה לפי יומן';
+
+  @override
+  String get lockEditCalendar => 'נעילה לפי יומן';
+
+  @override
+  String get lockDuring => 'בזמן אירוע';
+
+  @override
+  String get lockBetween => 'בין שני אירועים';
+
+  @override
+  String get lockStartsAt => 'אירועים בשם…';
+
+  @override
+  String get lockStartsAtBetween => 'מתחיל באירוע בשם…';
+
+  @override
+  String get lockEndsAt => 'מסתיים באירוע הבא בשם…';
+
+  @override
+  String get lockStartHint => 'למשל מבחן, ריכוז, חדר כושר';
+
+  @override
+  String get lockEndHint => 'למשל בבית';
+
+  @override
+  String get lockAnyCalendar => 'כל יומן';
+
+  @override
+  String get lockNoMatches => 'עדיין אין התאמות ביומנים שלך.';
+
+  @override
+  String get lockNextTimes => 'הפעמים הבאות';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'בזמן „$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'מ„$a” עד „$b” הבא';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return 'ב„$name” יש זמני שבת.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'נעילה מהדלקת נרות עד הבדלה';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'משתמש בזמנים מהיומן הזה, עם נרות במסך הנעילה.';
+
+  @override
+  String get lockMoreWays => 'דרכים נוספות לנעול';
+
+  @override
+  String get lockQuietTime => 'זמן שקט';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'הדלקת נרות הבאה: $time, מתוך $name';
+  }
+
+  @override
   String get calendarAlarm => 'התראת יומן';
 
   @override
@@ -2941,15 +3019,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqStartCalls => 'הכרזות לפני הזינוק';
 
   @override
-  String get seqStartCallsHelp => 'נאמרות בקול לפני "צא", בספירה לאחור מרגע הזינוק.';
+  String get seqStartCallsHelp => 'נאמרות בקול לפני \"צא\", בספירה לאחור מרגע הזינוק.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'שנייה אחת לפני',
       other: '$n שניות לפני',
+      one: 'שנייה אחת לפני',
     );
     return '$_temp0';
   }
@@ -2980,13 +3058,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'שנייה אחת', other: '$n שניות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'דקה אחת', other: '$n דקות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
     return '$_temp0';
   }
 
@@ -3026,10 +3104,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqPresetRound => 'סבב של דקה';
 
   @override
-  String get seqHintNoLimit => 'אחרי "צא" הוא סופר למעלה עד שתעצור אותו.';
+  String get seqHintNoLimit => 'אחרי \"צא\" הוא סופר למעלה עד שתעצור אותו.';
 
   @override
-  String get seqHintLength => 'אחרי "צא" הוא סופר לאחור עד אפס.';
+  String get seqHintLength => 'אחרי \"צא\" הוא סופר לאחור עד אפס.';
 
   @override
   String get seqWords => 'מילים';

@@ -475,6 +475,85 @@ class AppLocalizationsVi extends AppLocalizations {
   String get holdToUnlock => 'Giữ để mở khóa';
 
   @override
+  String get lockSentenceCalm =>
+      'Khóa điện thoại chỉ còn đồng hồ và báo thức: cho kỳ thi, cuộc họp hay buổi tối yên tĩnh.';
+
+  @override
+  String get lockCalendarHeading => 'THEO LỊCH';
+
+  @override
+  String get lockCalendarExplain =>
+      'Khóa trong một sự kiện, hoặc từ một sự kiện đến sự kiện tiếp theo bạn chọn. Dùng được với mọi lịch đã chọn, cả lịch chia sẻ.';
+
+  @override
+  String get lockAddCalendar => 'Thêm khóa theo lịch';
+
+  @override
+  String get lockEditCalendar => 'Khóa theo lịch';
+
+  @override
+  String get lockDuring => 'Trong sự kiện';
+
+  @override
+  String get lockBetween => 'Giữa hai sự kiện';
+
+  @override
+  String get lockStartsAt => 'Sự kiện có tên…';
+
+  @override
+  String get lockStartsAtBetween => 'Bắt đầu ở sự kiện tên…';
+
+  @override
+  String get lockEndsAt => 'Kết thúc ở sự kiện tiếp theo tên…';
+
+  @override
+  String get lockStartHint => 'vd. thi, tập trung, gym';
+
+  @override
+  String get lockEndHint => 'vd. về nhà';
+
+  @override
+  String get lockAnyCalendar => 'Lịch bất kỳ';
+
+  @override
+  String get lockNoMatches => 'Chưa có gì trong lịch khớp.';
+
+  @override
+  String get lockNextTimes => 'LẦN TỚI';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Trong “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Từ “$a” đến “$b” tiếp theo';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” có giờ Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Khóa từ lúc thắp nến đến Havdalah';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Dùng giờ trong lịch đó, có nến trên màn hình khóa.';
+
+  @override
+  String get lockMoreWays => 'Cách khóa khác';
+
+  @override
+  String get lockQuietTime => 'Giờ yên tĩnh';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Lần thắp nến tới: $time, từ $name';
+  }
+
+  @override
   String get calendarAlarm => 'Báo thức lịch';
 
   @override

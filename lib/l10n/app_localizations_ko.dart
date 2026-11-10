@@ -472,6 +472,83 @@ class AppLocalizationsKo extends AppLocalizations {
   String get holdToUnlock => '길게 눌러 잠금 해제';
 
   @override
+  String get lockSentenceCalm => '시험, 회의, 조용한 저녁을 위해 시계와 알람만 남기고 잠급니다.';
+
+  @override
+  String get lockCalendarHeading => '캘린더로';
+
+  @override
+  String get lockCalendarExplain => '일정 동안, 또는 한 일정부터 지정한 다음 일정까지 잠급니다. 선택한 모든 캘린더, 공유 캘린더에서도 됩니다.';
+
+  @override
+  String get lockAddCalendar => '캘린더 잠금 추가';
+
+  @override
+  String get lockEditCalendar => '캘린더 잠금';
+
+  @override
+  String get lockDuring => '일정 동안';
+
+  @override
+  String get lockBetween => '두 일정 사이';
+
+  @override
+  String get lockStartsAt => '이름이 이런 일정…';
+
+  @override
+  String get lockStartsAtBetween => '이 이름의 일정에서 시작…';
+
+  @override
+  String get lockEndsAt => '이 이름의 다음 일정에서 끝…';
+
+  @override
+  String get lockStartHint => '예: 시험, 집중, 헬스';
+
+  @override
+  String get lockEndHint => '예: 귀가';
+
+  @override
+  String get lockAnyCalendar => '모든 캘린더';
+
+  @override
+  String get lockNoMatches => '아직 캘린더에 맞는 일정이 없습니다.';
+
+  @override
+  String get lockNextTimes => '다음 시간';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” 동안';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a”부터 다음 “$b”까지';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name”에 안식일 시간이 있습니다.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '촛불 점화부터 하브달라까지 잠금';
+
+  @override
+  String get lockShabbatFromCalendarHint => '그 캘린더의 시간을 쓰고 잠금 화면에 촛불을 보여 줍니다.';
+
+  @override
+  String get lockMoreWays => '다른 잠금 방법';
+
+  @override
+  String get lockQuietTime => '조용한 시간';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '다음 촛불 점화: $time, $name에서';
+  }
+
+  @override
   String get calendarAlarm => '캘린더 알람';
 
   @override

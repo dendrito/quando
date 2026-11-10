@@ -478,6 +478,86 @@ class AppLocalizationsFr extends AppLocalizations {
   String get holdToUnlock => 'Maintenir pour déverrouiller';
 
   @override
+  String get lockSentenceCalm =>
+      'Verrouillez le téléphone sur l\'horloge et vos alarmes : pour un examen, une réunion ou une soirée calme.';
+
+  @override
+  String get lockCalendarHeading => 'AVEC VOTRE AGENDA';
+
+  @override
+  String get lockCalendarExplain =>
+      'Verrouillez pendant un événement, ou d\'un événement jusqu\'au suivant que vous nommez. Marche avec tout agenda choisi, même partagé.';
+
+  @override
+  String get lockAddCalendar => 'Ajouter un verrou d\'agenda';
+
+  @override
+  String get lockEditCalendar => 'Verrou d\'agenda';
+
+  @override
+  String get lockDuring => 'Pendant un événement';
+
+  @override
+  String get lockBetween => 'Entre deux événements';
+
+  @override
+  String get lockStartsAt => 'Événements nommés…';
+
+  @override
+  String get lockStartsAtBetween => 'Commence à un événement nommé…';
+
+  @override
+  String get lockEndsAt => 'Finit au prochain événement nommé…';
+
+  @override
+  String get lockStartHint => 'ex. examen, focus, sport';
+
+  @override
+  String get lockEndHint => 'ex. à la maison';
+
+  @override
+  String get lockAnyCalendar => 'Tout agenda';
+
+  @override
+  String get lockNoMatches => 'Rien dans vos agendas ne correspond encore.';
+
+  @override
+  String get lockNextTimes => 'PROCHAINES FOIS';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Pendant « $a »';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'De « $a » au prochain « $b »';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '« $name » contient les horaires de Chabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Verrouiller de l\'allumage des bougies à la Havdala';
+
+  @override
+  String get lockShabbatFromCalendarHint =>
+      'Utilise les horaires de cet agenda, avec des bougies à l\'écran.';
+
+  @override
+  String get lockMoreWays => 'Autres façons de verrouiller';
+
+  @override
+  String get lockQuietTime => 'Moment calme';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Prochain allumage des bougies : $time, depuis $name';
+  }
+
+  @override
   String get calendarAlarm => 'Alarme d’agenda';
 
   @override
@@ -2971,8 +3051,8 @@ class AppLocalizationsFr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde avant',
       other: '$n secondes avant',
+      one: '1 seconde avant',
     );
     return '$_temp0';
   }
@@ -3003,13 +3083,13 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n secondes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondes', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minute', other: '$n minutes');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minutes', one: '1 minute');
     return '$_temp0';
   }
 

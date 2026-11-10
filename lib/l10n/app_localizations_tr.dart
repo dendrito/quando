@@ -474,6 +474,85 @@ class AppLocalizationsTr extends AppLocalizations {
   String get holdToUnlock => 'Kilidi açmak için basılı tut';
 
   @override
+  String get lockSentenceCalm =>
+      'Telefonu saate ve alarmlarına kilitle: bir sınav, toplantı ya da sakin bir akşam için.';
+
+  @override
+  String get lockCalendarHeading => 'TAKVİMİNLE';
+
+  @override
+  String get lockCalendarExplain =>
+      'Bir etkinlik boyunca ya da bir etkinlikten seçtiğin bir sonrakine kadar kilitle. Seçtiğin her takvimle, paylaşılanlarla da çalışır.';
+
+  @override
+  String get lockAddCalendar => 'Takvim kilidi ekle';
+
+  @override
+  String get lockEditCalendar => 'Takvim kilidi';
+
+  @override
+  String get lockDuring => 'Bir etkinlik boyunca';
+
+  @override
+  String get lockBetween => 'İki etkinlik arasında';
+
+  @override
+  String get lockStartsAt => 'Adı şu olan etkinlikler…';
+
+  @override
+  String get lockStartsAtBetween => 'Şu adlı bir etkinlikte başlar…';
+
+  @override
+  String get lockEndsAt => 'Şu adlı bir sonraki etkinlikte biter…';
+
+  @override
+  String get lockStartHint => 'ör. sınav, odak, spor';
+
+  @override
+  String get lockEndHint => 'ör. evde';
+
+  @override
+  String get lockAnyCalendar => 'Herhangi bir takvim';
+
+  @override
+  String get lockNoMatches => 'Takvimlerinde henüz eşleşen yok.';
+
+  @override
+  String get lockNextTimes => 'SONRAKİ ZAMANLAR';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” boyunca';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a” ile bir sonraki “$b” arasında';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” Şabat saatlerini içeriyor.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Mum yakmadan Havdala\'ya kadar kilitle';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'O takvimin saatlerini kullanır, ekranda mumlarla.';
+
+  @override
+  String get lockMoreWays => 'Diğer kilit yolları';
+
+  @override
+  String get lockQuietTime => 'Sessiz zaman';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Sonraki mum yakma: $time, $name takviminden';
+  }
+
+  @override
   String get calendarAlarm => 'Takvim alarmı';
 
   @override
@@ -2953,8 +3032,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 saniye önce',
       other: '$n saniye önce',
+      one: '1 saniye önce',
     );
     return '$_temp0';
   }
@@ -2985,13 +3064,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 saniye', other: '$n saniye');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 dakika', other: '$n dakika');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
     return '$_temp0';
   }
 

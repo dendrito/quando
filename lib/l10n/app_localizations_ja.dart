@@ -471,6 +471,83 @@ class AppLocalizationsJa extends AppLocalizations {
   String get holdToUnlock => '長押しでロック解除';
 
   @override
+  String get lockSentenceCalm => '試験、会議、静かな夜のために、時計とアラームだけにロックします。';
+
+  @override
+  String get lockCalendarHeading => 'カレンダーで';
+
+  @override
+  String get lockCalendarExplain => '予定の間、または予定から次に指定した予定までロックします。選んだどのカレンダーでも、共有カレンダーでも使えます。';
+
+  @override
+  String get lockAddCalendar => 'カレンダーロックを追加';
+
+  @override
+  String get lockEditCalendar => 'カレンダーロック';
+
+  @override
+  String get lockDuring => '予定の間';
+
+  @override
+  String get lockBetween => '2つの予定の間';
+
+  @override
+  String get lockStartsAt => 'この名前の予定…';
+
+  @override
+  String get lockStartsAtBetween => 'この名前の予定で開始…';
+
+  @override
+  String get lockEndsAt => '次のこの名前の予定で終了…';
+
+  @override
+  String get lockStartHint => '例：試験、集中、ジム';
+
+  @override
+  String get lockEndHint => '例：帰宅';
+
+  @override
+  String get lockAnyCalendar => 'すべてのカレンダー';
+
+  @override
+  String get lockNoMatches => 'まだ一致する予定はありません。';
+
+  @override
+  String get lockNextTimes => '次の予定';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '「$a」の間';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '「$a」から次の「$b」まで';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '「$name」には安息日の時刻があります。';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'キャンドル点灯からハヴダラまでロック';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'そのカレンダーの時刻を使い、画面にキャンドルを表示します。';
+
+  @override
+  String get lockMoreWays => 'その他のロック方法';
+
+  @override
+  String get lockQuietTime => '静かな時間';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '次のキャンドル点灯：$time（$name）';
+  }
+
+  @override
   String get calendarAlarm => 'カレンダーアラーム';
 
   @override

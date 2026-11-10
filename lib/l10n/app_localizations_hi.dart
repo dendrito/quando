@@ -474,6 +474,84 @@ class AppLocalizationsHi extends AppLocalizations {
   String get holdToUnlock => 'अनलॉक के लिए दबाकर रखें';
 
   @override
+  String get lockSentenceCalm => 'फ़ोन को घड़ी और अलार्म तक लॉक करें: परीक्षा, मीटिंग या शांत शाम के लिए।';
+
+  @override
+  String get lockCalendarHeading => 'अपने कैलेंडर से';
+
+  @override
+  String get lockCalendarExplain =>
+      'किसी इवेंट के दौरान, या एक इवेंट से आपके चुने अगले इवेंट तक लॉक करें। चुने गए हर कैलेंडर के साथ काम करता है, साझा वाले भी।';
+
+  @override
+  String get lockAddCalendar => 'कैलेंडर लॉक जोड़ें';
+
+  @override
+  String get lockEditCalendar => 'कैलेंडर लॉक';
+
+  @override
+  String get lockDuring => 'इवेंट के दौरान';
+
+  @override
+  String get lockBetween => 'दो इवेंट के बीच';
+
+  @override
+  String get lockStartsAt => 'इस नाम के इवेंट…';
+
+  @override
+  String get lockStartsAtBetween => 'इस नाम के इवेंट पर शुरू…';
+
+  @override
+  String get lockEndsAt => 'इस नाम के अगले इवेंट पर ख़त्म…';
+
+  @override
+  String get lockStartHint => 'जैसे परीक्षा, फ़ोकस, जिम';
+
+  @override
+  String get lockEndHint => 'जैसे घर पर';
+
+  @override
+  String get lockAnyCalendar => 'कोई भी कैलेंडर';
+
+  @override
+  String get lockNoMatches => 'अभी आपके कैलेंडर में कुछ मेल नहीं खाता।';
+
+  @override
+  String get lockNextTimes => 'अगली बार';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” के दौरान';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a” से अगले “$b” तक';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” में शब्बात के समय हैं।';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'मोमबत्ती जलाने से हवदाला तक लॉक करें';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'उस कैलेंडर के समय, लॉक स्क्रीन पर मोमबत्तियों के साथ।';
+
+  @override
+  String get lockMoreWays => 'लॉक करने के और तरीके';
+
+  @override
+  String get lockQuietTime => 'शांत समय';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'अगली मोमबत्ती: $time, $name से';
+  }
+
+  @override
   String get calendarAlarm => 'कैलेंडर अलार्म';
 
   @override
@@ -2944,11 +3022,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
+  String get seqStartCallsHelp => '\"चलो\" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड पहले', other: '$n सेकंड पहले');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड पहले', one: '1 सेकंड पहले');
     return '$_temp0';
   }
 
@@ -2978,13 +3056,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड', other: '$n सेकंड');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड', one: '1 सेकंड');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 मिनट', other: '$n मिनट');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n मिनट', one: '1 मिनट');
     return '$_temp0';
   }
 
@@ -3024,10 +3102,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
+  String get seqHintNoLimit => '\"चलो\" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
+  String get seqHintLength => '\"चलो\" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
   String get seqWords => 'शब्द';

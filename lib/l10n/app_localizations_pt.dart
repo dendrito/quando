@@ -476,6 +476,85 @@ class AppLocalizationsPt extends AppLocalizations {
   String get holdToUnlock => 'Segure para desbloquear';
 
   @override
+  String get lockSentenceCalm =>
+      'Trave o celular no relógio e nos seus alarmes: para uma prova, uma reunião ou uma noite tranquila.';
+
+  @override
+  String get lockCalendarHeading => 'COM SUA AGENDA';
+
+  @override
+  String get lockCalendarExplain =>
+      'Trave durante um evento, ou de um evento até o próximo que você escolher. Funciona com qualquer agenda escolhida, inclusive compartilhadas.';
+
+  @override
+  String get lockAddCalendar => 'Adicionar trava pela agenda';
+
+  @override
+  String get lockEditCalendar => 'Trava pela agenda';
+
+  @override
+  String get lockDuring => 'Durante um evento';
+
+  @override
+  String get lockBetween => 'Entre dois eventos';
+
+  @override
+  String get lockStartsAt => 'Eventos chamados…';
+
+  @override
+  String get lockStartsAtBetween => 'Começa num evento chamado…';
+
+  @override
+  String get lockEndsAt => 'Termina no próximo evento chamado…';
+
+  @override
+  String get lockStartHint => 'ex.: prova, foco, academia';
+
+  @override
+  String get lockEndHint => 'ex.: em casa';
+
+  @override
+  String get lockAnyCalendar => 'Qualquer agenda';
+
+  @override
+  String get lockNoMatches => 'Nada nas suas agendas combina ainda.';
+
+  @override
+  String get lockNextTimes => 'PRÓXIMAS VEZES';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Durante “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'De “$a” até o próximo “$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” tem horários de Shabat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Travar do acendimento das velas à Havdalá';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Usa os horários dessa agenda, com velas na tela de trava.';
+
+  @override
+  String get lockMoreWays => 'Outras formas de travar';
+
+  @override
+  String get lockQuietTime => 'Momento de calma';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Próximo acendimento das velas: $time, de $name';
+  }
+
+  @override
   String get calendarAlarm => 'Alarme de agenda';
 
   @override

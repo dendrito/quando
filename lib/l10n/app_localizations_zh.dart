@@ -471,6 +471,83 @@ class AppLocalizationsZh extends AppLocalizations {
   String get holdToUnlock => '按住解锁';
 
   @override
+  String get lockSentenceCalm => '把手机锁定在时钟和闹钟：用于考试、会议或安静的夜晚。';
+
+  @override
+  String get lockCalendarHeading => '按日历';
+
+  @override
+  String get lockCalendarExplain => '在日程期间锁定，或从一个日程锁到你指定的下一个日程。适用于你选的任何日历，包括共享日历。';
+
+  @override
+  String get lockAddCalendar => '添加日历锁定';
+
+  @override
+  String get lockEditCalendar => '日历锁定';
+
+  @override
+  String get lockDuring => '日程期间';
+
+  @override
+  String get lockBetween => '两个日程之间';
+
+  @override
+  String get lockStartsAt => '名称为…的日程';
+
+  @override
+  String get lockStartsAtBetween => '从名为…的日程开始';
+
+  @override
+  String get lockEndsAt => '到下一个名为…的日程结束';
+
+  @override
+  String get lockStartHint => '例如 考试、专注、健身';
+
+  @override
+  String get lockEndHint => '例如 到家';
+
+  @override
+  String get lockAnyCalendar => '任何日历';
+
+  @override
+  String get lockNoMatches => '你的日历里还没有匹配的日程。';
+
+  @override
+  String get lockNextTimes => '接下来';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a”期间';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '从“$a”到下一个“$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name”包含安息日时间。';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '从点蜡烛锁到哈夫达拉';
+
+  @override
+  String get lockShabbatFromCalendarHint => '使用该日历的时间，锁屏显示蜡烛。';
+
+  @override
+  String get lockMoreWays => '更多锁定方式';
+
+  @override
+  String get lockQuietTime => '安静时间';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '下次点蜡烛：$time，来自 $name';
+  }
+
+  @override
   String get calendarAlarm => '日历闹钟';
 
   @override
@@ -3496,6 +3573,83 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get holdToUnlock => '按住解鎖';
+
+  @override
+  String get lockSentenceCalm => '把手機鎖定在時鐘和鬧鐘：用於考試、會議或安靜的夜晚。';
+
+  @override
+  String get lockCalendarHeading => '依行事曆';
+
+  @override
+  String get lockCalendarExplain => '在活動期間鎖定，或從一個活動鎖到你指定的下一個活動。適用於你選的任何行事曆，包括共用的。';
+
+  @override
+  String get lockAddCalendar => '新增行事曆鎖定';
+
+  @override
+  String get lockEditCalendar => '行事曆鎖定';
+
+  @override
+  String get lockDuring => '活動期間';
+
+  @override
+  String get lockBetween => '兩個活動之間';
+
+  @override
+  String get lockStartsAt => '名稱為…的活動';
+
+  @override
+  String get lockStartsAtBetween => '從名為…的活動開始';
+
+  @override
+  String get lockEndsAt => '到下一個名為…的活動結束';
+
+  @override
+  String get lockStartHint => '例如 考試、專注、健身';
+
+  @override
+  String get lockEndHint => '例如 到家';
+
+  @override
+  String get lockAnyCalendar => '任何行事曆';
+
+  @override
+  String get lockNoMatches => '你的行事曆裡還沒有符合的活動。';
+
+  @override
+  String get lockNextTimes => '接下來';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '「$a」期間';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '從「$a」到下一個「$b」';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '「$name」包含安息日時間。';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '從點蠟燭鎖到哈夫達拉';
+
+  @override
+  String get lockShabbatFromCalendarHint => '使用該行事曆的時間，鎖定畫面顯示蠟燭。';
+
+  @override
+  String get lockMoreWays => '更多鎖定方式';
+
+  @override
+  String get lockQuietTime => '安靜時間';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '下次點蠟燭：$time，來自 $name';
+  }
 
   @override
   String get calendarAlarm => '日曆鬧鐘';
