@@ -1,7 +1,8 @@
 {
+  "id": "google-projects-merge",
   "title": "Merge Google projects into one",
-  "status": "doing",
+  "status": "done",
   "tag": "google",
   "note": "Android sign-in moves to the Firebase project quando-27c24; old project retired after a real-phone test. Log: docs/google-merge-log.md",
-  "prs": []
+  "order": 33
 }
