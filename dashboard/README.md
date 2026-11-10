@@ -16,7 +16,7 @@ Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time set
 - **Everything else** (dates, plans, columns, thread list, headline): `dashboard/board.json`.
 - The site builds `data.json` from those files (`python3 dashboard/build.py`, run automatically on publish). A typo in any file fails the build with the file name, and the old site stays up.
 
-Card fields: `id` (same as the file name), `title`, `status` (`decide`, `doing`, `review`, `next`, `hold`, `done`, or any column id in `board.json`), optional `tag`, `note`, `details`, `plan`, `prs` (pull request numbers), `threads` (ids from `board.json`), `docs` (`[{"title","url"}]`), `order` (sort number).
+Card fields: `id` (optional; it is the file name), `title`, `status` (`decide`, `doing`, `review`, `next`, `hold`, `done`, or any column id in `board.json`), optional `tag`, `note`, `details`, `plan`, `prs` (pull request numbers), `threads` (ids from `board.json`), `docs` (`[{"title","url"}]`), `order` (sort number).
 
 To add a card by hand on GitHub: Add file → Create new file → `dashboard/cards/my-card.json` with `{"id": "my-card", "title": "…", "status": "next"}`.
 
