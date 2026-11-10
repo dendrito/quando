@@ -2966,8 +2966,8 @@ class AppLocalizationsDe extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 Sekunde vorher',
       other: '$n Sekunden vorher',
+      one: '1 Sekunde vorher',
     );
     return '$_temp0';
   }
@@ -2998,13 +2998,13 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Sekunde', other: '$n Sekunden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n Sekunden', one: '1 Sekunde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 Minute', other: '$n Minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n Minuten', one: '1 Minute');
     return '$_temp0';
   }
 
@@ -3098,4 +3098,34 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Sagen oder tippen';
+
+  @override
+  String get askOptionHint => '„Morgen um 6“, „30 Min. vor Sonnenaufgang“';
+
+  @override
+  String get askHint => 'z. B. weck mich werktags 30 Min. vor Sonnenaufgang';
+
+  @override
+  String get askListening => 'Ich höre zu…';
+
+  @override
+  String get askNotUnderstood =>
+      'Ich habe keine Uhrzeit gefunden. Versuche „7 Uhr werktags“ oder „in 20 Minuten“.';
+
+  @override
+  String get askNoSpeech => 'Sprache ist auf diesem Gerät nicht verfügbar. Du kannst tippen.';
+
+  @override
+  String get askShabbatOff => 'Schalte Schabbat in den Einstellungen ein, damit Schabbat-Zeiten klingeln.';
+
+  @override
+  String askSaved(String what) {
+    return 'Gespeichert: $what';
+  }
+
+  @override
+  String get askMic => 'Sprechen';
 }

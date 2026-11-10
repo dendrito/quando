@@ -2964,8 +2964,8 @@ class AppLocalizationsNl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde ervoor',
       other: '$n seconden ervoor',
+      one: '1 seconde ervoor',
     );
     return '$_temp0';
   }
@@ -2996,13 +2996,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconden', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuten', one: '1 minuut');
     return '$_temp0';
   }
 
@@ -3096,4 +3096,33 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Zeg of typ het';
+
+  @override
+  String get askOptionHint => '‘Morgen om 6 uur’, ‘30 min voor zonsopgang’';
+
+  @override
+  String get askHint => 'bijv. maak me op werkdagen 30 min voor zonsopgang wakker';
+
+  @override
+  String get askListening => 'Aan het luisteren…';
+
+  @override
+  String get askNotUnderstood => 'Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.';
+
+  @override
+  String get askNoSpeech => 'Spraak is niet beschikbaar op dit apparaat. Je kunt typen.';
+
+  @override
+  String get askShabbatOff => 'Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.';
+
+  @override
+  String askSaved(String what) {
+    return 'Bewaard: $what';
+  }
+
+  @override
+  String get askMic => 'Spreek';
 }

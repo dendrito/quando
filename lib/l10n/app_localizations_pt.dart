@@ -3102,4 +3102,34 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nada toca neste dia';
+
+  @override
+  String get askOption => 'Fale ou digite';
+
+  @override
+  String get askOptionHint => '“Amanhã às 6”, “30 min antes do nascer do sol”';
+
+  @override
+  String get askHint => 'ex.: me acorda 30 min antes do nascer do sol nos dias úteis';
+
+  @override
+  String get askListening => 'Ouvindo…';
+
+  @override
+  String get askNotUnderstood =>
+      'Não encontrei um horário. Tente “7h nos dias úteis” ou “daqui a 20 minutos”.';
+
+  @override
+  String get askNoSpeech => 'A voz não está disponível neste aparelho. Você pode digitar.';
+
+  @override
+  String get askShabbatOff => 'Ative o Shabat nos Ajustes para os horários do Shabat tocarem.';
+
+  @override
+  String askSaved(String what) {
+    return 'Salvo: $what';
+  }
+
+  @override
+  String get askMic => 'Falar';
 }

@@ -3082,4 +3082,33 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Say or type it';
+
+  @override
+  String get askOptionHint => '“Tomorrow at 6”, “30 min before sunrise”';
+
+  @override
+  String get askHint => 'e.g. wake me 30 min before sunrise on weekdays';
+
+  @override
+  String get askListening => 'Listening…';
+
+  @override
+  String get askNotUnderstood => 'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.';
+
+  @override
+  String get askNoSpeech => 'Voice isn\'t available on this device. You can type instead.';
+
+  @override
+  String get askShabbatOff => 'Turn on Shabbat in Settings so Shabbat times can ring.';
+
+  @override
+  String askSaved(String what) {
+    return 'Saved: $what';
+  }
+
+  @override
+  String get askMic => 'Speak';
 }

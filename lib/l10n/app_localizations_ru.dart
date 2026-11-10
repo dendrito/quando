@@ -3002,10 +3002,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунды',
-      many: 'За $n секунд',
       other: 'За $n секунды',
+      many: 'За $n секунд',
+      few: 'За $n секунды',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунды',
-      many: '$n секунд',
       other: '$n секунды',
+      many: '$n секунд',
+      few: '$n секунды',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 минута',
-      few: '$n минуты',
-      many: '$n минут',
       other: '$n минуты',
+      many: '$n минут',
+      few: '$n минуты',
+      one: '1 минута',
     );
     return '$_temp0';
   }
@@ -3150,4 +3150,33 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Скажите или напишите';
+
+  @override
+  String get askOptionHint => '«Завтра в 6», «за 30 мин до восхода»';
+
+  @override
+  String get askHint => 'напр.: разбуди меня по будням за 30 мин до восхода';
+
+  @override
+  String get askListening => 'Слушаю…';
+
+  @override
+  String get askNotUnderstood => 'Не нашёл время. Попробуйте «в 7 по будням» или «через 20 минут».';
+
+  @override
+  String get askNoSpeech => 'Голос недоступен на этом устройстве. Можно ввести текст.';
+
+  @override
+  String get askShabbatOff => 'Включите Шаббат в настройках, чтобы звонили времена Шаббата.';
+
+  @override
+  String askSaved(String what) {
+    return 'Сохранено: $what';
+  }
+
+  @override
+  String get askMic => 'Говорить';
 }

@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Dillo o scrivilo",
+  "askOptionHint": "“Domani alle 6”, “30 min prima dell'alba”",
+  "askHint": "es.: svegliami 30 min prima dell'alba nei giorni feriali",
+  "askListening": "In ascolto…",
+  "askNotUnderstood": "Non ho trovato un orario. Prova “alle 7 nei giorni feriali” o “tra 20 minuti”.",
+  "askNoSpeech": "La voce non è disponibile su questo dispositivo. Puoi scrivere.",
+  "askShabbatOff": "Attiva lo Shabbat nelle Impostazioni perché i suoi orari suonino.",
+  "askSaved": "Salvato: {what}",
+  "askMic": "Parla"
 }

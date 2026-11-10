@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "אמרו או הקלידו",
+  "askOptionHint": "„מחר בשש”, „חצי שעה לפני הזריחה”",
+  "askHint": "למשל: תעיר אותי חצי שעה לפני הזריחה בימי חול",
+  "askListening": "מקשיב…",
+  "askNotUnderstood": "לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.",
+  "askNoSpeech": "קול לא זמין במכשיר הזה. אפשר להקליד.",
+  "askShabbatOff": "הפעילו שבת בהגדרות כדי שזמני השבת יצלצלו.",
+  "askSaved": "נשמר: {what}",
+  "askMic": "דברו"
 }

@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Sagen oder tippen",
+  "askOptionHint": "„Morgen um 6“, „30 Min. vor Sonnenaufgang“",
+  "askHint": "z. B. weck mich werktags 30 Min. vor Sonnenaufgang",
+  "askListening": "Ich höre zu…",
+  "askNotUnderstood": "Ich habe keine Uhrzeit gefunden. Versuche „7 Uhr werktags“ oder „in 20 Minuten“.",
+  "askNoSpeech": "Sprache ist auf diesem Gerät nicht verfügbar. Du kannst tippen.",
+  "askShabbatOff": "Schalte Schabbat in den Einstellungen ein, damit Schabbat-Zeiten klingeln.",
+  "askSaved": "Gespeichert: {what}",
+  "askMic": "Sprechen"
 }

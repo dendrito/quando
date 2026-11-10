@@ -3002,10 +3002,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунди',
-      many: 'За $n секунд',
       other: 'За $n секунди',
+      many: 'За $n секунд',
+      few: 'За $n секунди',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунди',
-      many: '$n секунд',
       other: '$n секунди',
+      many: '$n секунд',
+      few: '$n секунди',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 хвилина',
-      few: '$n хвилини',
-      many: '$n хвилин',
       other: '$n хвилини',
+      many: '$n хвилин',
+      few: '$n хвилини',
+      one: '1 хвилина',
     );
     return '$_temp0';
   }
@@ -3150,4 +3150,33 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Скажіть або напишіть';
+
+  @override
+  String get askOptionHint => '«Завтра о 6», «за 30 хв до сходу сонця»';
+
+  @override
+  String get askHint => 'напр.: розбуди мене в будні за 30 хв до сходу сонця';
+
+  @override
+  String get askListening => 'Слухаю…';
+
+  @override
+  String get askNotUnderstood => 'Не знайшов час. Спробуйте «о 7 в будні» або «через 20 хвилин».';
+
+  @override
+  String get askNoSpeech => 'Голос недоступний на цьому пристрої. Можна ввести текст.';
+
+  @override
+  String get askShabbatOff => 'Увімкніть Шабат у налаштуваннях, щоб дзвонили часи Шабату.';
+
+  @override
+  String askSaved(String what) {
+    return 'Збережено: $what';
+  }
+
+  @override
+  String get askMic => 'Говорити';
 }

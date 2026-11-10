@@ -1,3 +1,4 @@
+import '../../assistant/ui/ask_sheet.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -103,6 +104,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                 child: Text(l10n.when, style: text.headlineMedium),
               ),
+              option('say', Icons.mic_none_rounded, l10n.askOption, l10n.askOptionHint),
               option('time', Icons.schedule, l10n.newAtTime, l10n.newAtTimeHint),
               option('event', Icons.manage_search, l10n.newAroundEvent, l10n.newAroundEventHint),
               option('ready', Icons.auto_awesome_outlined, l10n.newFromReadyMade, l10n.newFromReadyMadeHint),
@@ -130,6 +132,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       },
     );
     if (!mounted) return;
+    if (choice == 'say') return showAskSheet(context);
     if (choice == 'time') context.push('/alarm/new');
     if (choice == 'event') context.push('/calendar/rule/new');
     if (choice == 'lock') context.push('/lock');
@@ -746,6 +749,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     return Scaffold(
       bottomNavigationBar: _WhenDock(
         onWhen: _newAlarm,
+        onAsk: () => showAskSheet(context, listen: true),
         chips: [
           for (final m in const [10, 60])
             (
@@ -919,10 +923,11 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
 
 /// The bar docked to the bottom: quick times as chips and the big "When?" button.
 class _WhenDock extends StatelessWidget {
-  const _WhenDock({required this.chips, required this.onWhen});
+  const _WhenDock({required this.chips, required this.onWhen, required this.onAsk});
 
   final List<({String label, VoidCallback onTap})> chips;
   final VoidCallback onWhen;
+  final VoidCallback onAsk;
 
   @override
   Widget build(BuildContext context) => Material(
@@ -959,6 +964,13 @@ class _WhenDock extends StatelessWidget {
                       ],
                     ),
                   ),
+                ),
+                const SizedBox(width: 8),
+                IconButton.filledTonal(
+                  tooltip: l10n.askOption,
+                  onPressed: onAsk,
+                  style: IconButton.styleFrom(minimumSize: const Size(52, 52)),
+                  icon: const Icon(Icons.mic_none_rounded, color: QuandoColors.amber),
                 ),
                 const SizedBox(width: 8),
                 FilledButton.icon(

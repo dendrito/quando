@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "說出或輸入",
+  "askOptionHint": "「明天6點」「日出前30分鐘」",
+  "askHint": "例如：平日日出前30分鐘叫醒我",
+  "askListening": "正在聽…",
+  "askNotUnderstood": "沒有找到時間。試試「平日早上7點」或「20分鐘後」。",
+  "askNoSpeech": "此裝置不支援語音。你可以輸入。",
+  "askShabbatOff": "在設定中開啟安息日，安息日時間才會響鈴。",
+  "askSaved": "已儲存：{what}",
+  "askMic": "說話"
 }

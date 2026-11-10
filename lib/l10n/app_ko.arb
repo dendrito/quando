@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "말하거나 입력",
+  "askOptionHint": "“내일 6시”, “일출 30분 전”",
+  "askHint": "예: 평일에는 일출 30분 전에 깨워 줘",
+  "askListening": "듣는 중…",
+  "askNotUnderstood": "시간을 찾지 못했어요. “평일 오전 7시”나 “20분 후”로 해 보세요.",
+  "askNoSpeech": "이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.",
+  "askShabbatOff": "안식일 시간이 울리려면 설정에서 안식일을 켜세요.",
+  "askSaved": "저장됨: {what}",
+  "askMic": "말하기"
 }

@@ -3037,4 +3037,33 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => '話すか入力';
+
+  @override
+  String get askOptionHint => '「明日6時」「日の出の30分前」';
+
+  @override
+  String get askHint => '例：平日は日の出の30分前に起こして';
+
+  @override
+  String get askListening => '聞いています…';
+
+  @override
+  String get askNotUnderstood => '時刻が見つかりませんでした。「平日7時」や「20分後」と試してください。';
+
+  @override
+  String get askNoSpeech => 'この端末では音声を使えません。入力してください。';
+
+  @override
+  String get askShabbatOff => 'シャバットの時刻を鳴らすには設定でシャバットをオンにしてください。';
+
+  @override
+  String askSaved(String what) {
+    return '保存しました：$what';
+  }
+
+  @override
+  String get askMic => '話す';
 }

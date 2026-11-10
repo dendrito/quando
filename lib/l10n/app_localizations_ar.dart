@@ -2992,11 +2992,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'قبل ثانية',
-      two: 'قبل ثانيتين',
-      few: 'قبل $n ثوانٍ',
-      many: 'قبل $n ثانية',
       other: 'قبل $n ثانية',
+      many: 'قبل $n ثانية',
+      few: 'قبل $n ثوانٍ',
+      two: 'قبل ثانيتين',
+      one: 'قبل ثانية',
     );
     return '$_temp0';
   }
@@ -3030,11 +3030,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'ثانية',
-      two: 'ثانيتان',
-      few: '$n ثوانٍ',
-      many: '$n ثانية',
       other: '$n ثانية',
+      many: '$n ثانية',
+      few: '$n ثوانٍ',
+      two: 'ثانيتان',
+      one: 'ثانية',
     );
     return '$_temp0';
   }
@@ -3044,11 +3044,11 @@ class AppLocalizationsAr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'دقيقة',
-      two: 'دقيقتان',
-      few: '$n دقائق',
-      many: '$n دقيقة',
       other: '$n دقيقة',
+      many: '$n دقيقة',
+      few: '$n دقائق',
+      two: 'دقيقتان',
+      one: 'دقيقة',
     );
     return '$_temp0';
   }
@@ -3143,4 +3143,33 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'قلها أو اكتبها';
+
+  @override
+  String get askOptionHint => '«غدًا الساعة 6»، «قبل الشروق بـ30 دقيقة»';
+
+  @override
+  String get askHint => 'مثال: أيقظني قبل الشروق بـ30 دقيقة في أيام العمل';
+
+  @override
+  String get askListening => 'أستمع…';
+
+  @override
+  String get askNotUnderstood => 'لم أجد وقتًا. جرّب «7 صباحًا في أيام العمل» أو «بعد 20 دقيقة».';
+
+  @override
+  String get askNoSpeech => 'الصوت غير متاح على هذا الجهاز. يمكنك الكتابة.';
+
+  @override
+  String get askShabbatOff => 'فعّل السبت في الإعدادات لكي ترنّ أوقات السبت.';
+
+  @override
+  String askSaved(String what) {
+    return 'تم الحفظ: $what';
+  }
+
+  @override
+  String get askMic => 'تحدّث';
 }

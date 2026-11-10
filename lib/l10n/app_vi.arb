@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Nói hoặc gõ",
+  "askOptionHint": "“Mai 6 giờ”, “30 phút trước bình minh”",
+  "askHint": "vd: đánh thức tôi 30 phút trước bình minh vào ngày thường",
+  "askListening": "Đang nghe…",
+  "askNotUnderstood": "Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.",
+  "askNoSpeech": "Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.",
+  "askShabbatOff": "Bật Shabbat trong Cài đặt để giờ Shabbat đổ chuông.",
+  "askSaved": "Đã lưu: {what}",
+  "askMic": "Nói"
 }

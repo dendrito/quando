@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Zeg of typ het",
+  "askOptionHint": "‘Morgen om 6 uur’, ‘30 min voor zonsopgang’",
+  "askHint": "bijv. maak me op werkdagen 30 min voor zonsopgang wakker",
+  "askListening": "Aan het luisteren…",
+  "askNotUnderstood": "Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.",
+  "askNoSpeech": "Spraak is niet beschikbaar op dit apparaat. Je kunt typen.",
+  "askShabbatOff": "Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.",
+  "askSaved": "Bewaard: {what}",
+  "askMic": "Spreek"
 }

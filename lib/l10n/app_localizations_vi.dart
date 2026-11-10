@@ -3075,4 +3075,33 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Nói hoặc gõ';
+
+  @override
+  String get askOptionHint => '“Mai 6 giờ”, “30 phút trước bình minh”';
+
+  @override
+  String get askHint => 'vd: đánh thức tôi 30 phút trước bình minh vào ngày thường';
+
+  @override
+  String get askListening => 'Đang nghe…';
+
+  @override
+  String get askNotUnderstood => 'Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.';
+
+  @override
+  String get askNoSpeech => 'Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.';
+
+  @override
+  String get askShabbatOff => 'Bật Shabbat trong Cài đặt để giờ Shabbat đổ chuông.';
+
+  @override
+  String askSaved(String what) {
+    return 'Đã lưu: $what';
+  }
+
+  @override
+  String get askMic => 'Nói';
 }

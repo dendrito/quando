@@ -3038,4 +3038,33 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => '말하거나 입력';
+
+  @override
+  String get askOptionHint => '“내일 6시”, “일출 30분 전”';
+
+  @override
+  String get askHint => '예: 평일에는 일출 30분 전에 깨워 줘';
+
+  @override
+  String get askListening => '듣는 중…';
+
+  @override
+  String get askNotUnderstood => '시간을 찾지 못했어요. “평일 오전 7시”나 “20분 후”로 해 보세요.';
+
+  @override
+  String get askNoSpeech => '이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.';
+
+  @override
+  String get askShabbatOff => '안식일 시간이 울리려면 설정에서 안식일을 켜세요.';
+
+  @override
+  String askSaved(String what) {
+    return '저장됨: $what';
+  }
+
+  @override
+  String get askMic => '말하기';
 }

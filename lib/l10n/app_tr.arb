@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Söyle veya yaz",
+  "askOptionHint": "“Yarın 6'da”, “gün doğumundan 30 dk önce”",
+  "askHint": "ör. hafta içi gün doğumundan 30 dk önce uyandır",
+  "askListening": "Dinliyorum…",
+  "askNotUnderstood": "Bir saat bulamadım. “Hafta içi 7'de” veya “20 dakika sonra” deneyin.",
+  "askNoSpeech": "Bu cihazda ses kullanılamıyor. Yazabilirsiniz.",
+  "askShabbatOff": "Şabat saatlerinin çalması için Ayarlar'dan Şabat'ı açın.",
+  "askSaved": "Kaydedildi: {what}",
+  "askMic": "Konuş"
 }

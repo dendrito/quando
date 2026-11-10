@@ -2941,15 +2941,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqStartCalls => 'הכרזות לפני הזינוק';
 
   @override
-  String get seqStartCallsHelp => 'נאמרות בקול לפני "צא", בספירה לאחור מרגע הזינוק.';
+  String get seqStartCallsHelp => 'נאמרות בקול לפני \"צא\", בספירה לאחור מרגע הזינוק.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'שנייה אחת לפני',
       other: '$n שניות לפני',
+      one: 'שנייה אחת לפני',
     );
     return '$_temp0';
   }
@@ -2980,13 +2980,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'שנייה אחת', other: '$n שניות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'דקה אחת', other: '$n דקות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
     return '$_temp0';
   }
 
@@ -3026,10 +3026,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqPresetRound => 'סבב של דקה';
 
   @override
-  String get seqHintNoLimit => 'אחרי "צא" הוא סופר למעלה עד שתעצור אותו.';
+  String get seqHintNoLimit => 'אחרי \"צא\" הוא סופר למעלה עד שתעצור אותו.';
 
   @override
-  String get seqHintLength => 'אחרי "צא" הוא סופר לאחור עד אפס.';
+  String get seqHintLength => 'אחרי \"צא\" הוא סופר לאחור עד אפס.';
 
   @override
   String get seqWords => 'מילים';
@@ -3080,4 +3080,33 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'אמרו או הקלידו';
+
+  @override
+  String get askOptionHint => '„מחר בשש”, „חצי שעה לפני הזריחה”';
+
+  @override
+  String get askHint => 'למשל: תעיר אותי חצי שעה לפני הזריחה בימי חול';
+
+  @override
+  String get askListening => 'מקשיב…';
+
+  @override
+  String get askNotUnderstood => 'לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.';
+
+  @override
+  String get askNoSpeech => 'קול לא זמין במכשיר הזה. אפשר להקליד.';
+
+  @override
+  String get askShabbatOff => 'הפעילו שבת בהגדרות כדי שזמני השבת יצלצלו.';
+
+  @override
+  String askSaved(String what) {
+    return 'נשמר: $what';
+  }
+
+  @override
+  String get askMic => 'דברו';
 }

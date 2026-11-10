@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Скажите или напишите",
+  "askOptionHint": "«Завтра в 6», «за 30 мин до восхода»",
+  "askHint": "напр.: разбуди меня по будням за 30 мин до восхода",
+  "askListening": "Слушаю…",
+  "askNotUnderstood": "Не нашёл время. Попробуйте «в 7 по будням» или «через 20 минут».",
+  "askNoSpeech": "Голос недоступен на этом устройстве. Можно ввести текст.",
+  "askShabbatOff": "Включите Шаббат в настройках, чтобы звонили времена Шаббата.",
+  "askSaved": "Сохранено: {what}",
+  "askMic": "Говорить"
 }

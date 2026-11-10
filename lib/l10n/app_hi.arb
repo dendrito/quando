@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "बोलें या लिखें",
+  "askOptionHint": "“कल 6 बजे”, “सूर्योदय से 30 मिनट पहले”",
+  "askHint": "जैसे: कार्यदिवसों में सूर्योदय से 30 मिनट पहले जगाओ",
+  "askListening": "सुन रहा हूँ…",
+  "askNotUnderstood": "मुझे कोई समय नहीं मिला। “कार्यदिवसों में सुबह 7 बजे” या “20 मिनट में” आज़माएँ।",
+  "askNoSpeech": "इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।",
+  "askShabbatOff": "शब्बत समय बजने के लिए सेटिंग्स में शब्बत चालू करें।",
+  "askSaved": "सहेजा गया: {what}",
+  "askMic": "बोलें"
 }

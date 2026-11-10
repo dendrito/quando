@@ -2970,8 +2970,8 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 secondo prima',
       other: '$n secondi prima',
+      one: '1 secondo prima',
     );
     return '$_temp0';
   }
@@ -3002,13 +3002,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 secondo', other: '$n secondi');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondi', one: '1 secondo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minuti');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuti', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3102,4 +3102,34 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Dillo o scrivilo';
+
+  @override
+  String get askOptionHint => '“Domani alle 6”, “30 min prima dell\'alba”';
+
+  @override
+  String get askHint => 'es.: svegliami 30 min prima dell\'alba nei giorni feriali';
+
+  @override
+  String get askListening => 'In ascolto…';
+
+  @override
+  String get askNotUnderstood =>
+      'Non ho trovato un orario. Prova “alle 7 nei giorni feriali” o “tra 20 minuti”.';
+
+  @override
+  String get askNoSpeech => 'La voce non è disponibile su questo dispositivo. Puoi scrivere.';
+
+  @override
+  String get askShabbatOff => 'Attiva lo Shabbat nelle Impostazioni perché i suoi orari suonino.';
+
+  @override
+  String askSaved(String what) {
+    return 'Salvato: $what';
+  }
+
+  @override
+  String get askMic => 'Parla';
 }

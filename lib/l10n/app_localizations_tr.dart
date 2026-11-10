@@ -2953,8 +2953,8 @@ class AppLocalizationsTr extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 saniye önce',
       other: '$n saniye önce',
+      one: '1 saniye önce',
     );
     return '$_temp0';
   }
@@ -2985,13 +2985,13 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 saniye', other: '$n saniye');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n saniye', one: '1 saniye');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 dakika', other: '$n dakika');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n dakika', one: '1 dakika');
     return '$_temp0';
   }
 
@@ -3085,4 +3085,33 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => 'Söyle veya yaz';
+
+  @override
+  String get askOptionHint => '“Yarın 6\'da”, “gün doğumundan 30 dk önce”';
+
+  @override
+  String get askHint => 'ör. hafta içi gün doğumundan 30 dk önce uyandır';
+
+  @override
+  String get askListening => 'Dinliyorum…';
+
+  @override
+  String get askNotUnderstood => 'Bir saat bulamadım. “Hafta içi 7\'de” veya “20 dakika sonra” deneyin.';
+
+  @override
+  String get askNoSpeech => 'Bu cihazda ses kullanılamıyor. Yazabilirsiniz.';
+
+  @override
+  String get askShabbatOff => 'Şabat saatlerinin çalması için Ayarlar\'dan Şabat\'ı açın.';
+
+  @override
+  String askSaved(String what) {
+    return 'Kaydedildi: $what';
+  }
+
+  @override
+  String get askMic => 'Konuş';
 }

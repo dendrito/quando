@@ -3030,6 +3030,35 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => '说出或输入';
+
+  @override
+  String get askOptionHint => '“明天6点”“日出前30分钟”';
+
+  @override
+  String get askHint => '例如：工作日日出前30分钟叫醒我';
+
+  @override
+  String get askListening => '正在听…';
+
+  @override
+  String get askNotUnderstood => '没有找到时间。试试“工作日早上7点”或“20分钟后”。';
+
+  @override
+  String get askNoSpeech => '此设备不支持语音。你可以输入。';
+
+  @override
+  String get askShabbatOff => '在设置中打开安息日，安息日时间才会响铃。';
+
+  @override
+  String askSaved(String what) {
+    return '已保存：$what';
+  }
+
+  @override
+  String get askMic => '说话';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6057,4 +6086,33 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get askOption => '說出或輸入';
+
+  @override
+  String get askOptionHint => '「明天6點」「日出前30分鐘」';
+
+  @override
+  String get askHint => '例如：平日日出前30分鐘叫醒我';
+
+  @override
+  String get askListening => '正在聽…';
+
+  @override
+  String get askNotUnderstood => '沒有找到時間。試試「平日早上7點」或「20分鐘後」。';
+
+  @override
+  String get askNoSpeech => '此裝置不支援語音。你可以輸入。';
+
+  @override
+  String get askShabbatOff => '在設定中開啟安息日，安息日時間才會響鈴。';
+
+  @override
+  String askSaved(String what) {
+    return '已儲存：$what';
+  }
+
+  @override
+  String get askMic => '說話';
 }

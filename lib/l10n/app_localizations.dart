@@ -5595,6 +5595,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing rings this day'**
   String get noAlarmsThatDay;
+
+  /// No description provided for @askOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Say or type it'**
+  String get askOption;
+
+  /// No description provided for @askOptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'“Tomorrow at 6”, “30 min before sunrise”'**
+  String get askOptionHint;
+
+  /// No description provided for @askHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. wake me 30 min before sunrise on weekdays'**
+  String get askHint;
+
+  /// No description provided for @askListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening…'**
+  String get askListening;
+
+  /// No description provided for @askNotUnderstood.
+  ///
+  /// In en, this message translates to:
+  /// **'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.'**
+  String get askNotUnderstood;
+
+  /// No description provided for @askNoSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice isn\'t available on this device. You can type instead.'**
+  String get askNoSpeech;
+
+  /// No description provided for @askShabbatOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on Shabbat in Settings so Shabbat times can ring.'**
+  String get askShabbatOff;
+
+  /// No description provided for @askSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved: {what}'**
+  String askSaved(String what);
+
+  /// No description provided for @askMic.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak'**
+  String get askMic;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

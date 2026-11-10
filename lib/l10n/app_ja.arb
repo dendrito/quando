@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "話すか入力",
+  "askOptionHint": "「明日6時」「日の出の30分前」",
+  "askHint": "例：平日は日の出の30分前に起こして",
+  "askListening": "聞いています…",
+  "askNotUnderstood": "時刻が見つかりませんでした。「平日7時」や「20分後」と試してください。",
+  "askNoSpeech": "この端末では音声を使えません。入力してください。",
+  "askShabbatOff": "シャバットの時刻を鳴らすには設定でシャバットをオンにしてください。",
+  "askSaved": "保存しました：{what}",
+  "askMic": "話す"
 }

@@ -910,5 +910,14 @@
   "homePlaceTitle": "City for the sky",
   "nextAlarmLine": "Next alarm · {title} {time}",
   "showAllAlarms": "Show all days",
-  "noAlarmsThatDay": "Nothing rings this day"
+  "noAlarmsThatDay": "Nothing rings this day",
+  "askOption": "Ucapkan atau ketik",
+  "askOptionHint": "“Besok jam 6”, “30 menit sebelum matahari terbit”",
+  "askHint": "mis.: bangunkan aku 30 menit sebelum matahari terbit di hari kerja",
+  "askListening": "Mendengarkan…",
+  "askNotUnderstood": "Saya tidak menemukan waktu. Coba “jam 7 di hari kerja” atau “dalam 20 menit”.",
+  "askNoSpeech": "Suara tidak tersedia di perangkat ini. Anda bisa mengetik.",
+  "askShabbatOff": "Aktifkan Sabat di Pengaturan agar waktu Sabat berbunyi.",
+  "askSaved": "Tersimpan: {what}",
+  "askMic": "Bicara"
 }
