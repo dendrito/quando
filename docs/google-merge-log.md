@@ -11,10 +11,12 @@ Dates UTC. Newest at the bottom. Also see the shared setup log.
 - 2026-11-10 16:0x Firebase (quando-27c24) > Project settings: added the existing Android SHA-1 (the one the old `quando-513703` clients use, ending ...D4:1A) to the Android apps `com.dendrito.alarmapp` and `com.dendrito.quando.kodesh`. Firebase accepted it.
 - 2026-11-10 16:1x Checked APIs on quando-27c24: YouTube Data API v3 and Google Calendar API are already enabled.
 - 2026-11-10 16:1x Tried to create the Android OAuth client for `com.dendrito.alarmapp` in quando-27c24 by hand. Google refused: the package + fingerprint pair is already in use (it is registered in `quando-513703`, and a pair can live in only one project). No Android clients for alarmapp/kodesh were auto-created either, for the same reason.
-- Blocker: to move, the Android clients "Quando Android" and "Matai" must first be deleted from `quando-513703` (restorable for 30 days), which breaks Google sign-in on any Android build made before PR #33 until it is updated.
+- 2026-11-10 16:0x Curió chose to move now and put PR #33 in the release. Deleted the Android OAuth clients "Quando Android" and "Matai" from `quando-513703` (restorable for 30 days from its Deleted credentials page).
+- 2026-11-10 16:1x Created Android OAuth clients in `quando-27c24`: "Quando Android" (`com.dendrito.alarmapp`) and "Matai" (`com.dendrito.quando.kodesh`), both with the existing debug/sideload SHA-1 (ends ...D4:1A). Google can take 5 min to a few hours to apply them.
+- (Earlier blocker, now resolved) to move, the Android clients "Quando Android" and "Matai" must first be deleted from `quando-513703` (restorable for 30 days), which breaks Google sign-in on any Android build made before PR #33 until it is updated.
 
 ## Still to do
-1. In `quando-27c24`: register Android OAuth clients (package + SHA-1, including Play app-signing key) for Quando (`com.dendrito.alarmapp`) and Matai (`com.dendrito.quando.kodesh`). Firebase already lists the Android apps; check their SHA-1s are present.
-2. Enable YouTube Data API v3 and Google Calendar API in `quando-27c24`.
+1. Add the Play app-signing SHA-1 (and any release keystore SHA-1) to both Android apps and clients once the Play app exists.
+2. Consent screen Branding and Data access (calendar.readonly, youtube.readonly) on `quando-27c24`: quando.day thread.
 3. Test on a real Android phone: Google sign-in, YouTube playlists, calendar picker.
 4. Retire `quando-513703` (shut down project, 30-day undelete window).
