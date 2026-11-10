@@ -17,7 +17,8 @@ for path in sorted(glob.glob(os.path.join(here, "cards", "*.json"))):
         c = json.load(open(path, encoding="utf-8"))
     except ValueError as e:
         sys.exit(f"{name}: not valid JSON ({e})")
-    for key in ("id", "title", "status"):
+    c.setdefault("id", name[:-5])  # the file name is the id, so a card without one still works
+    for key in ("title", "status"):
         if not c.get(key):
             sys.exit(f"{name}: missing \"{key}\"")
     if c["id"] + ".json" != name:
