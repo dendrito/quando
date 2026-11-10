@@ -208,6 +208,15 @@
       "status": "hold",
       "tag": "brand",
       "plan": "business"
+    },
+    {
+      "title": "quando.day website + Google verification",
+      "status": "review",
+      "tag": "launch",
+      "note": "Merge PR 31, then follow docs/google-verification.md: Cloudflare Pages + Email Routing, Search Console TXT, consent screen (Calendar + YouTube read-only), submit for verification with demo video.",
+      "prs": [
+        31
+      ]
     }
   ],
   "plans": [
