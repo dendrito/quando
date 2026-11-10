@@ -3218,4 +3218,70 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'Không làm phiền và tự động trả lời một lúc, như tập thể dục hay ngủ trưa.';
+
+  @override
+  String get shareCard => 'Chia sẻ buổi sáng';
+
+  @override
+  String get shareCardSubtitle => 'Bầu trời và câu nói hôm nay, hoặc ảnh của bạn, cho Tin và trạng thái';
+
+  @override
+  String get shareAppMissing => 'Điện thoại không có ứng dụng đó.';
+
+  @override
+  String get shareAsIs => 'Chia sẻ nguyên bản';
+
+  @override
+  String get shareTapQuote => 'Chạm vào câu nói để đổi câu khác.';
+
+  @override
+  String get shareStory => 'Tin';
+
+  @override
+  String get shareSquare => 'Vuông';
+
+  @override
+  String get shareYourWords => 'Lời của bạn (không bắt buộc)';
+
+  @override
+  String get shareYourWordsHint => 'Thay cho câu nói hôm nay';
+
+  @override
+  String get shareYourPhoto => 'Ảnh của bạn';
+
+  @override
+  String get shareOtherPhoto => 'Ảnh khác';
+
+  @override
+  String get shareSkyBack => 'Bầu trời hôm nay';
+
+  @override
+  String get shareYourVideo => 'Video của bạn';
+
+  @override
+  String get shareInstagramStory => 'Tin Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: trạng thái hoặc trò chuyện';
+
+  @override
+  String get shareMore => 'Ứng dụng khác';
+
+  @override
+  String get shareYouPost => 'Quando? mở ứng dụng với thẻ đã sẵn sàng. Bạn chọn nơi đăng và tự nhấn Đăng.';
+
+  @override
+  String get shareAndroidFirst => 'Sắp có chia sẻ trên iPhone và iPad.';
+
+  @override
+  String songSaved(String name) {
+    return 'Đã lưu “$name” làm âm báo thức';
+  }
+
+  @override
+  String get shareToQuando => 'Chia sẻ bài hát tới Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Trong YouTube, YouTube Music, Spotify, SoundCloud hoặc Apple Music, nhấn Chia sẻ rồi Quando?. Bài hát thành âm báo thức phát trong chính ứng dụng đó.';
 }

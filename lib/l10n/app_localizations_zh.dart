@@ -3166,6 +3166,72 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => '一段时间内勿扰和自动回复，例如锻炼或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用于快拍和状态';
+
+  @override
+  String get shareAppMissing => '这台手机上没有该应用。';
+
+  @override
+  String get shareAsIs => '按原样分享';
+
+  @override
+  String get shareTapQuote => '点按名言可换一句。';
+
+  @override
+  String get shareStory => '快拍';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的话（可选）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '换一张照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的视频';
+
+  @override
+  String get shareInstagramStory => 'Instagram 快拍';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：状态或聊天';
+
+  @override
+  String get shareMore => '更多应用';
+
+  @override
+  String get shareYouPost => 'Quando? 会打开应用并载入你的卡片。发到哪里由你选，发布也由你点。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即将支持分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已将“$name”存为闹钟铃声';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中点“分享”，再选 Quando?，它就成为在原应用中播放的闹钟铃声。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6329,4 +6395,70 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get busyAfterRingHint => '一段時間內勿擾和自動回覆，例如運動或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用於限時動態和狀態';
+
+  @override
+  String get shareAppMissing => '這支手機上沒有該 App。';
+
+  @override
+  String get shareAsIs => '按原樣分享';
+
+  @override
+  String get shareTapQuote => '點按名言可換一句。';
+
+  @override
+  String get shareStory => '限時動態';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的話（選填）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '換一張照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的影片';
+
+  @override
+  String get shareInstagramStory => 'Instagram 限時動態';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：狀態或聊天';
+
+  @override
+  String get shareMore => '更多 App';
+
+  @override
+  String get shareYouPost => 'Quando? 會打開 App 並載入你的卡片。發到哪裡由你選，發佈也由你點。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即將支援分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已將「$name」存為鬧鐘鈴聲';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中點「分享」，再選 Quando?，它就成為在原 App 中播放的鬧鐘鈴聲。';
 }

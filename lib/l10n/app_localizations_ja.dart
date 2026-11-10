@@ -3173,4 +3173,70 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'しばらくおやすみモードと自動返信。運動や昼寝などに。';
+
+  @override
+  String get shareCard => '朝をシェア';
+
+  @override
+  String get shareCardSubtitle => '今日の空と言葉、または自分の写真をストーリーズやステータスに';
+
+  @override
+  String get shareAppMissing => 'そのアプリはこの端末にありません。';
+
+  @override
+  String get shareAsIs => 'そのままシェア';
+
+  @override
+  String get shareTapQuote => '言葉をタップすると変わります。';
+
+  @override
+  String get shareStory => 'ストーリー';
+
+  @override
+  String get shareSquare => '正方形';
+
+  @override
+  String get shareYourWords => '自分の言葉（任意）';
+
+  @override
+  String get shareYourWordsHint => '今日の言葉の代わりに';
+
+  @override
+  String get shareYourPhoto => '自分の写真';
+
+  @override
+  String get shareOtherPhoto => '別の写真';
+
+  @override
+  String get shareSkyBack => '今日の空にする';
+
+  @override
+  String get shareYourVideo => '自分の動画';
+
+  @override
+  String get shareInstagramStory => 'Instagram ストーリーズ';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：ステータスかチャット';
+
+  @override
+  String get shareMore => 'その他のアプリ';
+
+  @override
+  String get shareYouPost => 'Quando? はカードを読み込んだ状態でアプリを開きます。投稿先を選び、投稿はご自身でタップします。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone と iPad でのシェアは近日対応。';
+
+  @override
+  String songSaved(String name) {
+    return '「$name」をアラーム音に保存しました';
+  }
+
+  @override
+  String get shareToQuando => 'Quando? に曲をシェア';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube、YouTube Music、Spotify、SoundCloud、Apple Music で共有から Quando? を選ぶと、そのアプリで再生されるアラーム音になります。';
 }

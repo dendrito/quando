@@ -3226,4 +3226,71 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get busyAfterRingHint =>
       'Jangan Ganggu dan balasan otomatis sebentar, mis. olahraga atau tidur siang.';
+
+  @override
+  String get shareCard => 'Bagikan pagimu';
+
+  @override
+  String get shareCardSubtitle => 'Langit dan kutipan hari ini, atau fotomu, untuk Stories dan status';
+
+  @override
+  String get shareAppMissing => 'Aplikasi itu tidak ada di ponsel ini.';
+
+  @override
+  String get shareAsIs => 'Bagikan apa adanya';
+
+  @override
+  String get shareTapQuote => 'Ketuk kutipan untuk menggantinya.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Persegi';
+
+  @override
+  String get shareYourWords => 'Kata-katamu sendiri (opsional)';
+
+  @override
+  String get shareYourWordsHint => 'Sebagai ganti kutipan hari ini';
+
+  @override
+  String get shareYourPhoto => 'Fotomu';
+
+  @override
+  String get shareOtherPhoto => 'Foto lain';
+
+  @override
+  String get shareSkyBack => 'Langit hari ini saja';
+
+  @override
+  String get shareYourVideo => 'Videomu';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status atau chat';
+
+  @override
+  String get shareMore => 'Aplikasi lain';
+
+  @override
+  String get shareYouPost =>
+      'Quando? membuka aplikasi dengan kartumu siap. Kamu yang memilih tujuan dan mengetuk Posting.';
+
+  @override
+  String get shareAndroidFirst => 'Berbagi segera hadir di iPhone dan iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” disimpan sebagai suara alarm';
+  }
+
+  @override
+  String get shareToQuando => 'Bagikan lagu ke Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Di YouTube, YouTube Music, Spotify, SoundCloud, atau Apple Music, ketuk Bagikan lalu Quando?. Lagu jadi suara alarm yang diputar di aplikasinya.';
 }

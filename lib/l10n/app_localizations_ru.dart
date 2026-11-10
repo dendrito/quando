@@ -3295,4 +3295,71 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => '«Не беспокоить» и автоответы на время, например тренировка или сон днём.';
+
+  @override
+  String get shareCard => 'Поделиться утром';
+
+  @override
+  String get shareCardSubtitle => 'Сегодняшнее небо и цитата или ваше фото для историй и статуса';
+
+  @override
+  String get shareAppMissing => 'Этого приложения нет на телефоне.';
+
+  @override
+  String get shareAsIs => 'Поделиться как есть';
+
+  @override
+  String get shareTapQuote => 'Нажмите на цитату, чтобы сменить.';
+
+  @override
+  String get shareStory => 'История';
+
+  @override
+  String get shareSquare => 'Квадрат';
+
+  @override
+  String get shareYourWords => 'Свои слова (необязательно)';
+
+  @override
+  String get shareYourWordsHint => 'Вместо сегодняшней цитаты';
+
+  @override
+  String get shareYourPhoto => 'Своё фото';
+
+  @override
+  String get shareOtherPhoto => 'Другое фото';
+
+  @override
+  String get shareSkyBack => 'Сегодняшнее небо';
+
+  @override
+  String get shareYourVideo => 'Своё видео';
+
+  @override
+  String get shareInstagramStory => 'Истории Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: статус или чат';
+
+  @override
+  String get shareMore => 'Другие приложения';
+
+  @override
+  String get shareYouPost =>
+      'Quando? открывает приложение с готовой карточкой. Вы сами выбираете, куда, и публикуете.';
+
+  @override
+  String get shareAndroidFirst => 'Скоро и на iPhone и iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '«$name» сохранено как звук будильника';
+  }
+
+  @override
+  String get shareToQuando => 'Поделитесь песней с Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'В YouTube, YouTube Music, Spotify, SoundCloud или Apple Music нажмите «Поделиться», затем Quando?. Это станет звуком будильника, который играет в своём приложении.';
 }

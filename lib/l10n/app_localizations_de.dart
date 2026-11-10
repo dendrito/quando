@@ -3244,4 +3244,71 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get busyAfterRingHint =>
       'Nicht stören und Auto-Antworten für eine Weile, z. B. Training oder Nickerchen.';
+
+  @override
+  String get shareCard => 'Teile deinen Morgen';
+
+  @override
+  String get shareCardSubtitle => 'Himmel und Zitat von heute oder dein Foto, für Stories und Status';
+
+  @override
+  String get shareAppMissing => 'Diese App ist nicht auf dem Handy.';
+
+  @override
+  String get shareAsIs => 'So teilen, wie es ist';
+
+  @override
+  String get shareTapQuote => 'Tippe auf das Zitat für ein anderes.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Quadrat';
+
+  @override
+  String get shareYourWords => 'Deine eigenen Worte (optional)';
+
+  @override
+  String get shareYourWordsHint => 'Statt des heutigen Zitats';
+
+  @override
+  String get shareYourPhoto => 'Dein Foto';
+
+  @override
+  String get shareOtherPhoto => 'Anderes Foto';
+
+  @override
+  String get shareSkyBack => 'Lieber der Himmel von heute';
+
+  @override
+  String get shareYourVideo => 'Dein Video';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: Status oder Chat';
+
+  @override
+  String get shareMore => 'Weitere Apps';
+
+  @override
+  String get shareYouPost =>
+      'Quando? öffnet die App mit deiner Karte. Du wählst, wohin, und tippst selbst auf Posten.';
+
+  @override
+  String get shareAndroidFirst => 'Teilen kommt bald auf iPhone und iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '„$name“ als Weckton gespeichert';
+  }
+
+  @override
+  String get shareToQuando => 'Teile einen Song mit Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Tippe in YouTube, YouTube Music, Spotify, SoundCloud oder Apple Music auf Teilen und dann auf Quando?. Es wird zum Weckton, der in seiner App spielt.';
 }

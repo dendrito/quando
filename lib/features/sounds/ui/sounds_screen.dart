@@ -27,6 +27,10 @@ import 'music_preview_dialog.dart';
 import 'package:quando/l10n/l10n.dart';
 
 /// Your sounds: record one, add a file, listen, rename, delete.
+/// Spotify, YouTube and SoundCloud sign-in. On until those services approve
+/// Quando? for everyone; release builds can turn it off.
+const musicSignIn = bool.fromEnvironment('MUSIC_SIGN_IN', defaultValue: true);
+
 class SoundsScreen extends ConsumerStatefulWidget {
   const SoundsScreen({super.key});
 
@@ -641,10 +645,21 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
             ),
           const SizedBox(height: 20),
           Text(l10n.musicAppsHeading, style: text.labelSmall),
-          _spotifyTile(text),
-          _spotifyLibraryTile(text),
-          _youTubeTile(text),
-          if (SoundCloudAccount.available) _soundCloudTile(text),
+          if (isAndroid)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
+              title: Text(l10n.shareToQuando),
+              subtitle: Text(l10n.shareToQuandoHint, style: text.bodySmall),
+            ),
+          // Signing in to the music services waits on their official
+          // approval; build with --dart-define=MUSIC_SIGN_IN=false to hide it.
+          if (musicSignIn) ...[
+            _spotifyTile(text),
+            _spotifyLibraryTile(text),
+            _youTubeTile(text),
+            if (SoundCloudAccount.available) _soundCloudTile(text),
+          ],
           if (DesktopMusic.appleAvailable) _desktopTile(text, 'apple', 'Apple Music'),
           for (final (logo, app, note) in [
             if (!DesktopMusic.appleAvailable)

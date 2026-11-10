@@ -3248,4 +3248,72 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'Ne pas déranger et réponses auto un moment, par ex. sport ou sieste.';
+
+  @override
+  String get shareCard => 'Partagez votre matin';
+
+  @override
+  String get shareCardSubtitle =>
+      'Le ciel et la citation du jour, ou votre photo, pour les Stories et statuts';
+
+  @override
+  String get shareAppMissing => 'Cette app n\'est pas sur ce téléphone.';
+
+  @override
+  String get shareAsIs => 'Partager tel quel';
+
+  @override
+  String get shareTapQuote => 'Touchez la citation pour en changer.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Carré';
+
+  @override
+  String get shareYourWords => 'Vos propres mots (facultatif)';
+
+  @override
+  String get shareYourWordsHint => 'À la place de la citation du jour';
+
+  @override
+  String get shareYourPhoto => 'Votre photo';
+
+  @override
+  String get shareOtherPhoto => 'Une autre photo';
+
+  @override
+  String get shareSkyBack => 'Le ciel du jour';
+
+  @override
+  String get shareYourVideo => 'Votre vidéo';
+
+  @override
+  String get shareInstagramStory => 'Stories Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp : statut ou discussion';
+
+  @override
+  String get shareMore => 'Autres apps';
+
+  @override
+  String get shareYouPost =>
+      'Quando? ouvre l\'app avec votre carte prête. Vous choisissez où et touchez Publier vous-même.';
+
+  @override
+  String get shareAndroidFirst => 'Le partage arrive bientôt sur iPhone et iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '« $name » enregistré comme son d\'alarme';
+  }
+
+  @override
+  String get shareToQuando => 'Partagez un morceau vers Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Dans YouTube, YouTube Music, Spotify, SoundCloud ou Apple Music, touchez Partager puis Quando?. Il devient un son d\'alarme joué dans son app.';
 }

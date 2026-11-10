@@ -3282,4 +3282,70 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'عدم الإزعاج وردود تلقائية لفترة، مثل تمرين أو قيلولة.';
+
+  @override
+  String get shareCard => 'شارك صباحك';
+
+  @override
+  String get shareCardSubtitle => 'سماء اليوم واقتباسه أو صورتك، للقصص والحالة';
+
+  @override
+  String get shareAppMissing => 'هذا التطبيق غير موجود على الهاتف.';
+
+  @override
+  String get shareAsIs => 'شاركه كما هو';
+
+  @override
+  String get shareTapQuote => 'اضغط على الاقتباس لتغييره.';
+
+  @override
+  String get shareStory => 'قصة';
+
+  @override
+  String get shareSquare => 'مربع';
+
+  @override
+  String get shareYourWords => 'كلماتك الخاصة (اختياري)';
+
+  @override
+  String get shareYourWordsHint => 'بدلًا من اقتباس اليوم';
+
+  @override
+  String get shareYourPhoto => 'صورتك';
+
+  @override
+  String get shareOtherPhoto => 'صورة أخرى';
+
+  @override
+  String get shareSkyBack => 'سماء اليوم بدلًا منها';
+
+  @override
+  String get shareYourVideo => 'الفيديو الخاص بك';
+
+  @override
+  String get shareInstagramStory => 'قصص إنستغرام';
+
+  @override
+  String get shareWhatsApp => 'واتساب: الحالة أو محادثة';
+
+  @override
+  String get shareMore => 'تطبيقات أخرى';
+
+  @override
+  String get shareYouPost => 'يفتح Quando? التطبيق وبطاقتك جاهزة. أنت تختار أين وتضغط نشر بنفسك.';
+
+  @override
+  String get shareAndroidFirst => 'المشاركة قريبًا على iPhone وiPad.';
+
+  @override
+  String songSaved(String name) {
+    return 'حُفظ «$name» كصوت منبّه';
+  }
+
+  @override
+  String get shareToQuando => 'شارك أغنية مع Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'في YouTube أو YouTube Music أو Spotify أو SoundCloud أو Apple Music اضغط مشاركة ثم Quando?. تصبح صوت منبّه يُشغَّل في تطبيقه.';
 }

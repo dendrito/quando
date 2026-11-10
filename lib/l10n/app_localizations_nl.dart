@@ -3240,4 +3240,72 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get busyAfterRingHint =>
       'Niet storen en automatische antwoorden voor even, bijv. sporten of een dutje.';
+
+  @override
+  String get shareCard => 'Deel je ochtend';
+
+  @override
+  String get shareCardSubtitle =>
+      'De lucht en het citaat van vandaag, of je eigen foto, voor Stories en status';
+
+  @override
+  String get shareAppMissing => 'Die app staat niet op deze telefoon.';
+
+  @override
+  String get shareAsIs => 'Delen zoals het is';
+
+  @override
+  String get shareTapQuote => 'Tik op het citaat voor een ander.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Vierkant';
+
+  @override
+  String get shareYourWords => 'Je eigen woorden (optioneel)';
+
+  @override
+  String get shareYourWordsHint => 'In plaats van het citaat van vandaag';
+
+  @override
+  String get shareYourPhoto => 'Je foto';
+
+  @override
+  String get shareOtherPhoto => 'Andere foto';
+
+  @override
+  String get shareSkyBack => 'Toch de lucht van vandaag';
+
+  @override
+  String get shareYourVideo => 'Je video';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status of chat';
+
+  @override
+  String get shareMore => 'Meer apps';
+
+  @override
+  String get shareYouPost =>
+      'Quando? opent de app met je kaart klaar. Jij kiest waar en tikt zelf op Plaatsen.';
+
+  @override
+  String get shareAndroidFirst => 'Delen komt binnenkort naar iPhone en iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” bewaard als wekgeluid';
+  }
+
+  @override
+  String get shareToQuando => 'Deel een nummer met Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Tik in YouTube, YouTube Music, Spotify, SoundCloud of Apple Music op Delen en dan op Quando?. Het wordt een wekgeluid dat in zijn eigen app speelt.';
 }

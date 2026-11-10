@@ -3220,4 +3220,71 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'कुछ देर परेशान न करें और ऑटो-जवाब, जैसे वर्कआउट या झपकी।';
+
+  @override
+  String get shareCard => 'अपनी सुबह शेयर करें';
+
+  @override
+  String get shareCardSubtitle => 'आज का आसमान और कोट, या अपनी फ़ोटो, स्टोरी और स्टेटस के लिए';
+
+  @override
+  String get shareAppMissing => 'यह ऐप इस फ़ोन पर नहीं है।';
+
+  @override
+  String get shareAsIs => 'जैसा है वैसा शेयर करें';
+
+  @override
+  String get shareTapQuote => 'दूसरे कोट के लिए कोट पर टैप करें।';
+
+  @override
+  String get shareStory => 'स्टोरी';
+
+  @override
+  String get shareSquare => 'चौकोर';
+
+  @override
+  String get shareYourWords => 'आपके अपने शब्द (वैकल्पिक)';
+
+  @override
+  String get shareYourWordsHint => 'आज के कोट की जगह';
+
+  @override
+  String get shareYourPhoto => 'आपकी फ़ोटो';
+
+  @override
+  String get shareOtherPhoto => 'दूसरी फ़ोटो';
+
+  @override
+  String get shareSkyBack => 'आज का आसमान';
+
+  @override
+  String get shareYourVideo => 'आपका वीडियो';
+
+  @override
+  String get shareInstagramStory => 'Instagram स्टोरी';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: स्टेटस या चैट';
+
+  @override
+  String get shareMore => 'और ऐप';
+
+  @override
+  String get shareYouPost =>
+      'Quando? आपके कार्ड के साथ ऐप खोलता है। कहाँ जाए, आप चुनते हैं और पोस्ट खुद टैप करते हैं।';
+
+  @override
+  String get shareAndroidFirst => 'शेयरिंग जल्द iPhone और iPad पर।';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” अलार्म ध्वनि के रूप में सहेजा गया';
+  }
+
+  @override
+  String get shareToQuando => 'Quando? पर गाना शेयर करें';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube, YouTube Music, Spotify, SoundCloud या Apple Music में शेयर, फिर Quando? टैप करें। यह अलार्म ध्वनि बन जाता है जो अपने ऐप में बजती है।';
 }

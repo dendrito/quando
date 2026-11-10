@@ -39,6 +39,13 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- Share to Quando?: a song link from YouTube, Spotify and
+                 others becomes an alarm sound. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
         </activity>
         <!-- Spotify sign-in comes back here, to spotify-sdk://auth. Picking
              from your Spotify library signs in on Spotify's web page and lands
@@ -68,6 +75,16 @@
                 <action android:name="android.service.notification.NotificationListenerService"/>
             </intent-filter>
         </service>
+        <!-- Share card: hands the picture to Instagram, WhatsApp and others. -->
+        <provider
+            android:name=".ShareFileProvider"
+            android:authorities="${applicationId}.share"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/share_paths" />
+        </provider>
         <!-- Busy mode: Do Not Disturb on and off at the right times, also
              after a restart or an update. -->
         <receiver android:name=".BusyReceiver" android:exported="false">
@@ -99,6 +116,8 @@
         <package android:name="com.huawei.calendar"/>
         <package android:name="com.appgenix.bizcal"/>
         <package android:name="com.tasks.android"/>
+        <!-- Share card: Instagram Stories. -->
+        <package android:name="com.instagram.android"/>
         <!-- Busy mode answers: see which messaging apps you have. -->
         <package android:name="com.whatsapp"/>
         <package android:name="com.whatsapp.w4b"/>

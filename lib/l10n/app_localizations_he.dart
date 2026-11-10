@@ -3220,4 +3220,70 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get busyAfterRingHint => 'נא לא להפריע ותשובות אוטומטיות לזמן מה, למשל אימון או תנומה.';
+
+  @override
+  String get shareCard => 'שתפו את הבוקר';
+
+  @override
+  String get shareCardSubtitle => 'השמיים והציטוט של היום, או התמונה שלכם, לסטוריז ולסטטוס';
+
+  @override
+  String get shareAppMissing => 'האפליקציה הזו לא מותקנת בטלפון.';
+
+  @override
+  String get shareAsIs => 'לשתף כמו שהוא';
+
+  @override
+  String get shareTapQuote => 'הקישו על הציטוט כדי להחליף.';
+
+  @override
+  String get shareStory => 'סטורי';
+
+  @override
+  String get shareSquare => 'ריבוע';
+
+  @override
+  String get shareYourWords => 'מילים משלכם (לא חובה)';
+
+  @override
+  String get shareYourWordsHint => 'במקום הציטוט של היום';
+
+  @override
+  String get shareYourPhoto => 'תמונה שלכם';
+
+  @override
+  String get shareOtherPhoto => 'תמונה אחרת';
+
+  @override
+  String get shareSkyBack => 'השמיים של היום';
+
+  @override
+  String get shareYourVideo => 'סרטון שלכם';
+
+  @override
+  String get shareInstagramStory => 'סטורי באינסטגרם';
+
+  @override
+  String get shareWhatsApp => 'וואטסאפ: סטטוס או צ\'אט';
+
+  @override
+  String get shareMore => 'אפליקציות נוספות';
+
+  @override
+  String get shareYouPost => 'Quando? פותח את האפליקציה עם הכרטיס מוכן. אתם בוחרים לאן ולוחצים פרסום בעצמכם.';
+
+  @override
+  String get shareAndroidFirst => 'שיתוף יגיע בקרוב לאייפון ולאייפד.';
+
+  @override
+  String songSaved(String name) {
+    return '„$name” נשמר כצליל התראה';
+  }
+
+  @override
+  String get shareToQuando => 'שתפו שיר ל־Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'ב־YouTube, YouTube Music, Spotify, SoundCloud או Apple Music הקישו שיתוף ואז Quando?. זה הופך לצליל התראה שמתנגן באפליקציה שלו.';
 }

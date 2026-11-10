@@ -3229,4 +3229,71 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get busyAfterRingHint =>
       'Bir süre Rahatsız Etmeyin ve otomatik yanıt, ör. antrenman veya şekerleme.';
+
+  @override
+  String get shareCard => 'Sabahını paylaş';
+
+  @override
+  String get shareCardSubtitle => 'Bugünün gökyüzü ve sözü ya da kendi fotoğrafın, Hikâyeler ve durum için';
+
+  @override
+  String get shareAppMissing => 'Bu uygulama telefonda yok.';
+
+  @override
+  String get shareAsIs => 'Olduğu gibi paylaş';
+
+  @override
+  String get shareTapQuote => 'Başka bir söz için söze dokun.';
+
+  @override
+  String get shareStory => 'Hikâye';
+
+  @override
+  String get shareSquare => 'Kare';
+
+  @override
+  String get shareYourWords => 'Kendi sözlerin (isteğe bağlı)';
+
+  @override
+  String get shareYourWordsHint => 'Bugünün sözü yerine';
+
+  @override
+  String get shareYourPhoto => 'Fotoğrafın';
+
+  @override
+  String get shareOtherPhoto => 'Başka fotoğraf';
+
+  @override
+  String get shareSkyBack => 'Bugünün gökyüzü';
+
+  @override
+  String get shareYourVideo => 'Videon';
+
+  @override
+  String get shareInstagramStory => 'Instagram Hikâyeleri';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: durum veya sohbet';
+
+  @override
+  String get shareMore => 'Diğer uygulamalar';
+
+  @override
+  String get shareYouPost =>
+      'Quando? uygulamayı kartınla açar. Nereye gideceğini sen seçer, Paylaş\'a sen dokunursun.';
+
+  @override
+  String get shareAndroidFirst => 'Paylaşım yakında iPhone ve iPad\'de.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” alarm sesi olarak kaydedildi';
+  }
+
+  @override
+  String get shareToQuando => 'Quando?\'ya şarkı paylaş';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube, YouTube Music, Spotify, SoundCloud veya Apple Music\'te Paylaş\'a, sonra Quando?\'ya dokun. Kendi uygulamasında çalan bir alarm sesi olur.';
 }

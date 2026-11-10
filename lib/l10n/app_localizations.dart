@@ -5853,6 +5853,132 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.'**
   String get busyAfterRingHint;
+
+  /// No description provided for @shareCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your morning'**
+  String get shareCard;
+
+  /// No description provided for @shareCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s sky and quote, or your own photo, for Stories and status'**
+  String get shareCardSubtitle;
+
+  /// No description provided for @shareAppMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'That app isn\'t on this phone.'**
+  String get shareAppMissing;
+
+  /// No description provided for @shareAsIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as it is'**
+  String get shareAsIs;
+
+  /// No description provided for @shareTapQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the quote for another one.'**
+  String get shareTapQuote;
+
+  /// No description provided for @shareStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get shareStory;
+
+  /// No description provided for @shareSquare.
+  ///
+  /// In en, this message translates to:
+  /// **'Square'**
+  String get shareSquare;
+
+  /// No description provided for @shareYourWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Your own words (optional)'**
+  String get shareYourWords;
+
+  /// No description provided for @shareYourWordsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Instead of today\'s quote'**
+  String get shareYourWordsHint;
+
+  /// No description provided for @shareYourPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo'**
+  String get shareYourPhoto;
+
+  /// No description provided for @shareOtherPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Another photo'**
+  String get shareOtherPhoto;
+
+  /// No description provided for @shareSkyBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s sky instead'**
+  String get shareSkyBack;
+
+  /// No description provided for @shareYourVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Your video'**
+  String get shareYourVideo;
+
+  /// No description provided for @shareInstagramStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram Stories'**
+  String get shareInstagramStory;
+
+  /// No description provided for @shareWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp: status or chat'**
+  String get shareWhatsApp;
+
+  /// No description provided for @shareMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More apps'**
+  String get shareMore;
+
+  /// No description provided for @shareYouPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? opens the app with your card loaded. You choose where it goes and tap Post yourself.'**
+  String get shareYouPost;
+
+  /// No description provided for @shareAndroidFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing comes to iPhone and iPad soon.'**
+  String get shareAndroidFirst;
+
+  /// No description provided for @songSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” saved as an alarm sound'**
+  String songSaved(String name);
+
+  /// No description provided for @shareToQuando.
+  ///
+  /// In en, this message translates to:
+  /// **'Share a song to Quando?'**
+  String get shareToQuando;
+
+  /// No description provided for @shareToQuandoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'In YouTube, YouTube Music, Spotify, SoundCloud or Apple Music, tap Share, then Quando?. It becomes an alarm sound that plays in its app.'**
+  String get shareToQuandoHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -1923,5 +1923,33 @@
         "type": "String"
       }
     }
+  },
+  "shareCard": "Share your morning",
+  "shareCardSubtitle": "Today's sky and quote, or your own photo, for Stories and status",
+  "shareAppMissing": "That app isn't on this phone.",
+  "shareAsIs": "Share as it is",
+  "shareTapQuote": "Tap the quote for another one.",
+  "shareStory": "Story",
+  "shareSquare": "Square",
+  "shareYourWords": "Your own words (optional)",
+  "shareYourWordsHint": "Instead of today's quote",
+  "shareYourPhoto": "Your photo",
+  "shareOtherPhoto": "Another photo",
+  "shareSkyBack": "Today's sky instead",
+  "shareYourVideo": "Your video",
+  "shareInstagramStory": "Instagram Stories",
+  "shareWhatsApp": "WhatsApp: status or chat",
+  "shareMore": "More apps",
+  "shareYouPost": "Quando? opens the app with your card loaded. You choose where it goes and tap Post yourself.",
+  "shareAndroidFirst": "Sharing comes to iPhone and iPad soon.",
+  "songSaved": "“{name}” saved as an alarm sound",
+  "shareToQuando": "Share a song to Quando?",
+  "shareToQuandoHint": "In YouTube, YouTube Music, Spotify, SoundCloud or Apple Music, tap Share, then Quando?. It becomes an alarm sound that plays in its app.",
+  "@songSaved": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
   }
 }

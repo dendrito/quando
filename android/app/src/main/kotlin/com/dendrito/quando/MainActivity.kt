@@ -22,6 +22,23 @@ class MainActivity : FlutterActivity() {
     private val worker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private val pauseLater = Runnable { mediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE) }
+    private var shareChannel: MethodChannel? = null
+    private var pendingShared: String? = null
+
+    override fun onCreate(savedInstanceState: android.os.Bundle?) {
+        pendingShared = sharedText(intent)
+        super.onCreate(savedInstanceState)
+    }
+
+    // A link shared to Quando? while it was open.
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        val text = sharedText(intent) ?: return
+        shareChannel?.invokeMethod("shared", text) ?: run { pendingShared = text }
+    }
+
+    private fun sharedText(i: Intent?): String? =
+        if (i?.action == Intent.ACTION_SEND && i.type == "text/plain") i.getStringExtra(Intent.EXTRA_TEXT) else null
 
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         super.configureFlutterEngine(flutterEngine)
@@ -51,6 +68,32 @@ class MainActivity : FlutterActivity() {
             }
         }
         phoneChannel(flutterEngine)
+        // Share card out, and song links shared in.
+        shareChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/share").also {
+            it.setMethodCallHandler { call, result ->
+                val path = call.argument<String>("path")
+                when (call.method) {
+                    "story" -> result.success(path != null && Sharing.story(this, path, call.argument("appId")))
+                    "send" -> result.success(
+                        path != null && Sharing.send(this, path, call.argument("text"), call.argument("package"))
+                    )
+                    "installed" -> result.success(
+                        try {
+                            packageManager.getApplicationInfo(call.argument<String>("package") ?: "", 0)
+                            true
+                        } catch (e: Exception) {
+                            false
+                        }
+                    )
+                    // A link shared to Quando? while it was closed.
+                    "sharedText" -> {
+                        result.success(pendingShared)
+                        pendingShared = null
+                    }
+                    else -> result.notImplemented()
+                }
+            }
+        }
         // Busy mode: Do Not Disturb access, and act on new busy times now.
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/busy").setMethodCallHandler { call, result ->
             val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager

@@ -3248,4 +3248,70 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get busyAfterRingHint =>
       'Non disturbare e risposte automatiche per un po\', ad es. allenamento o pisolino.';
+
+  @override
+  String get shareCard => 'Condividi il tuo mattino';
+
+  @override
+  String get shareCardSubtitle => 'Il cielo e la frase di oggi, o la tua foto, per Storie e stati';
+
+  @override
+  String get shareAppMissing => 'Quell\'app non è su questo telefono.';
+
+  @override
+  String get shareAsIs => 'Condividi così com\'è';
+
+  @override
+  String get shareTapQuote => 'Tocca la frase per cambiarla.';
+
+  @override
+  String get shareStory => 'Storia';
+
+  @override
+  String get shareSquare => 'Quadrato';
+
+  @override
+  String get shareYourWords => 'Le tue parole (facoltativo)';
+
+  @override
+  String get shareYourWordsHint => 'Al posto della frase di oggi';
+
+  @override
+  String get shareYourPhoto => 'La tua foto';
+
+  @override
+  String get shareOtherPhoto => 'Un\'altra foto';
+
+  @override
+  String get shareSkyBack => 'Il cielo di oggi';
+
+  @override
+  String get shareYourVideo => 'Il tuo video';
+
+  @override
+  String get shareInstagramStory => 'Storie di Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: stato o chat';
+
+  @override
+  String get shareMore => 'Altre app';
+
+  @override
+  String get shareYouPost => 'Quando? apre l\'app con la tua card pronta. Scegli tu dove e tocchi Pubblica.';
+
+  @override
+  String get shareAndroidFirst => 'La condivisione arriva presto su iPhone e iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” salvato come suono della sveglia';
+  }
+
+  @override
+  String get shareToQuando => 'Condividi un brano con Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'In YouTube, YouTube Music, Spotify, SoundCloud o Apple Music tocca Condividi e poi Quando?. Diventa un suono della sveglia che parte nella sua app.';
 }
