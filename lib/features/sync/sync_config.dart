@@ -49,10 +49,9 @@ class SyncConfig {
             ? appIdMacos
             : appIdIos);
 
-  /// The Firebase project's own web client. Apple devices ask Google for a
-  /// sign-in token meant for it. Android keeps the YouTube project's web
-  /// client, which Firebase is told to trust (Authentication → Google →
-  /// "Safelist client IDs from external projects").
+  /// The Firebase project's own web client. Every platform asks Google
+  /// for a sign-in token meant for it (Android, iPhone, iPad and Mac alike),
+  /// so one Google Cloud project holds all of Quando's sign-in settings.
   static const webClientId = '216517788382-8ko4t17hcqe5na1mnbvk2d3ad6rg032a.apps.googleusercontent.com';
 
   static String? get iosClient => _apple
