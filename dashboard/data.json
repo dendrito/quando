@@ -394,7 +394,13 @@
       "tag": "launch",
       "plan": "business",
       "note": "Website and privacy page on quando.day, domain proof, then the Google consent screen so Calendar and YouTube sign-in work for everyone.",
-      "details": "Google needs a real home page and privacy policy on a domain you own before it verifies Calendar and YouTube access. Being handled in its own Claude thread."
+      "details": "Google needs a real home page and privacy policy on a domain you own before it verifies Calendar and YouTube access. Handled in its own Claude thread (site on Cloudflare Pages).",
+      "threads": [
+        "google"
+      ],
+      "prs": [
+        31
+      ]
     }
   ],
   "plans": [
@@ -513,6 +519,10 @@
     "plan": {
       "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkHFAnxPpyuGZz1ZPFJN6YJk",
       "title": "Plan the alarm clock app"
+    },
+    "google": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk4LFBJbLbsEsrnqyQW3GfrH",
+      "title": "Set up quando.day for Google verification"
     }
   }
 }
