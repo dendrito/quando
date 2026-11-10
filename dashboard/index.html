@@ -149,6 +149,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
             (i.prs || []).map(prPill).join("") + "</div>";
         }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll(".addc"), function (b) { b.onclick = function () { editItem(-1, b.getAttribute("data-s")); }; });
     Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
 
@@ -181,8 +182,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   /* ---------- editing ---------- */
   function opts(list, sel, blank) { return (blank ? '<option value="">' + blank + "</option>" : "") + list.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === sel ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join(""); }
 
-  function editItem(idx) {
-    var isNew = idx < 0, i = isNew ? { title: "", status: "next" } : data.items[idx];
+  function editItem(idx, st) {
+    var isNew = idx < 0, i = isNew ? { title: "", status: st || "next" } : data.items[idx];
     var thr = Object.keys(data.threads || {});
     var h = "<h3>" + (isNew ? "New task" : "Edit task") + "</h3>" +
       '<label>Title</label><input id="f-title" value="' + esc(i.title) + '">' +
