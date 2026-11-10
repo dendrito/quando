@@ -3219,4 +3219,244 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get cardShabbat => 'Szabat i święta';
+
+  @override
+  String get ringAtEventReminders => 'Dzwoń przy przypomnieniach wydarzenia';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Przypomnienia z aplikacji kalendarza dzwonią tu jak głośne alarmy, z dźwiękiem tego alarmu.';
+
+  @override
+  String get atEventReminders => 'przy przypomnieniach wydarzenia';
+
+  @override
+  String get everyEventReminderLoud => 'Dzwoń głośno przy przypomnieniach każdego wydarzenia';
+
+  @override
+  String get loudNotificationsHeading => 'GŁOŚNE POWIADOMIENIA KALENDARZA';
+
+  @override
+  String get loudNotificationsTitle => 'Głośne powiadomienia kalendarza';
+
+  @override
+  String get loudNotificationsHint =>
+      'Gdy aplikacja kalendarza pokaże przypomnienie, Quando? zadzwoni nim jak alarmem, nawet przy wyciszonym telefonie.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Pozwolić Quando? czytać powiadomienia kalendarza?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Aby głośno dzwonić przypomnieniami z kalendarza, Quando? potrzebuje dostępu do powiadomień. Patrzy tylko na powiadomienia z wybranych aplikacji kalendarza, odczytuje ich tytuł i tekst na tym telefonie, by pokazać je przy alarmie, i nigdy ich nie zapisuje ani nie wysyła. Możesz to wyłączyć w każdej chwili.';
+
+  @override
+  String get loudNotificationsAgree => 'Zgadzam się, dalej';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Dostęp do powiadomień jest wyłączony. Włącz Quando? na liście, która się otworzy.';
+
+  @override
+  String get loudNotificationsAllow => 'Zezwól';
+
+  @override
+  String get loudNotificationsNoApps => 'Nie znaleziono obsługiwanej aplikacji kalendarza.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Wydarzenia, które mają już alarm kalendarza Quando?, dzwonią tylko raz.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Cisza w szabat i święta.';
+
+  @override
+  String get busyMode => 'Tryb zajęty';
+
+  @override
+  String get busyModeSubtitle => 'Nie przeszkadzać i autoodpowiedzi, gdy jesteś zajęty';
+
+  @override
+  String get busyIntro =>
+      'Gdy jesteś zajęty, Quando? może wyciszyć telefon i odpowiadać na wiadomości za ciebie. Alarmy nadal dzwonią.';
+
+  @override
+  String get busyIosFocus =>
+      'Na iPhonie i iPadzie aplikacje nie mogą włączyć trybu Skupienie ani odpowiadać na wiadomości. W aplikacji Skróty dodaj automatyzację „Gdy Quando? się otworzy” lub o danej godzinie, która włącza Skupienie, i ustaw w nim autoodpowiedź.';
+
+  @override
+  String get busyWhileHeading => 'GDY JESTEŚ ZAJĘTY';
+
+  @override
+  String get busyDnd => 'Nie przeszkadzać';
+
+  @override
+  String get busyDndHint =>
+      'Tylko priorytetowe: połączenia i wiadomości wyciszone, alarmy dzwonią. Potem wszystko wraca do normy.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? nie może jeszcze zmieniać trybu Nie przeszkadzać.';
+
+  @override
+  String get busyReplies => 'Odpowiadaj na wiadomości';
+
+  @override
+  String get busyRepliesHint =>
+      'Raz na osobę, twoim tekstem, przez przycisk Odpowiedz w aplikacji. Tylko Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Pozwolić Quando? odpowiadać na wiadomości?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Aby odpowiadać za ciebie, Quando? potrzebuje dostępu do powiadomień. Tylko gdy jesteś zajęty, patrzy na powiadomienia wiadomości z wybranych aplikacji, odczytuje na tym telefonie nazwę nadawcy i wysyła twój tekst raz przez przycisk Odpowiedz w aplikacji. Wiadomości nigdy nie są zapisywane ani wysyłane gdzie indziej. Grupy są pomijane, chyba że na nie pozwolisz.';
+
+  @override
+  String get busyReplyText => 'Twoja odpowiedź';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until zamieni się w godzinę końca trybu zajęty.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Jestem teraz zajęty, odpowiem po $until.';
+  }
+
+  @override
+  String get busyGroups => 'Odpowiadaj też w grupach';
+
+  @override
+  String get busyGroupsHint => 'Wyłączone: grupy nigdy nie dostają odpowiedzi.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Odpowiadaj w szabat i święta';
+
+  @override
+  String get busyAskRabbi => 'Domyślnie wyłączone. Zapytaj rabina, zanim włączysz to na szabat.';
+
+  @override
+  String get busyWhenHeading => 'KIEDY JESTEŚ ZAJĘTY';
+
+  @override
+  String get busyWhenHint =>
+      'Włącz „Zajęty podczas tych wydarzeń” w alarmie kalendarza lub „Zajęty po dzwonku” w alarmie.';
+
+  @override
+  String get busyDuringLock => 'Zajęty, gdy włączony jest tryb blokady';
+
+  @override
+  String get busyNoneComing => 'Nic zajętego w ciągu 7 dni.';
+
+  @override
+  String get busyDuringEvents => 'Zajęty podczas tych wydarzeń';
+
+  @override
+  String get busyDuringEventsHint => 'Tryb zajęty od początku do końca każdego wydarzenia.';
+
+  @override
+  String get busySettings => 'Ustawienia trybu zajęty';
+
+  @override
+  String get busyAfterRing => 'Zajęty po dzwonku';
+
+  @override
+  String get busyAfterRingHint => 'Nie przeszkadzać i autoodpowiedzi na chwilę, np. trening lub drzemka.';
+
+  @override
+  String get shareCard => 'Udostępnij swój poranek';
+
+  @override
+  String get shareCardSubtitle => 'Dzisiejsze niebo i cytat albo twoje zdjęcie, do Relacji i statusu';
+
+  @override
+  String get shareAppMissing => 'Tej aplikacji nie ma na telefonie.';
+
+  @override
+  String get shareAsIs => 'Udostępnij bez zmian';
+
+  @override
+  String get shareTapQuote => 'Dotknij cytatu, by zmienić.';
+
+  @override
+  String get shareStory => 'Relacja';
+
+  @override
+  String get shareSquare => 'Kwadrat';
+
+  @override
+  String get shareYourWords => 'Twoje słowa (opcjonalnie)';
+
+  @override
+  String get shareYourWordsHint => 'Zamiast dzisiejszego cytatu';
+
+  @override
+  String get shareYourPhoto => 'Twoje zdjęcie';
+
+  @override
+  String get shareOtherPhoto => 'Inne zdjęcie';
+
+  @override
+  String get shareSkyBack => 'Dzisiejsze niebo';
+
+  @override
+  String get shareYourVideo => 'Twój film';
+
+  @override
+  String get shareInstagramStory => 'Relacje na Instagramie';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status lub czat';
+
+  @override
+  String get shareMore => 'Więcej aplikacji';
+
+  @override
+  String get shareYouPost =>
+      'Quando? otwiera aplikację z gotową kartą. Ty wybierasz, gdzie, i sam publikujesz.';
+
+  @override
+  String get shareAndroidFirst => 'Udostępnianie wkrótce na iPhonie i iPadzie.';
+
+  @override
+  String songSaved(String name) {
+    return '„$name” zapisano jako dźwięk alarmu';
+  }
+
+  @override
+  String get shareToQuando => 'Udostępnij utwór do Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'W YouTube, YouTube Music, Spotify, SoundCloud lub Apple Music dotknij Udostępnij, potem Quando?. Stanie się dźwiękiem alarmu odtwarzanym w swojej aplikacji.';
+
+  @override
+  String get askOption => 'Powiedz lub wpisz';
+
+  @override
+  String get askOptionHint => '„Jutro o 6”, „30 min przed wschodem słońca”';
+
+  @override
+  String get askHint => 'np. obudź mnie w dni robocze 30 min przed wschodem słońca';
+
+  @override
+  String get askListening => 'Słucham…';
+
+  @override
+  String get askNotUnderstood => 'Nie znalazłem godziny. Spróbuj „7 rano w dni robocze” lub „za 20 minut”.';
+
+  @override
+  String get askNoSpeech => 'Głos jest niedostępny na tym urządzeniu. Możesz pisać.';
+
+  @override
+  String get askShabbatOff => 'Włącz szabat w Ustawieniach, aby godziny szabatu dzwoniły.';
+
+  @override
+  String askSaved(String what) {
+    return 'Zapisano: $what';
+  }
+
+  @override
+  String get askMic => 'Mów';
 }

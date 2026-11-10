@@ -120,8 +120,21 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 if (_photo == null) ...[
-                  // The real sky card, as on the home screen.
-                  IgnorePointer(child: SkyPanel(sky: sky)),
+                  // The real sky card, as on the home screen, shrunk to fit
+                  // when sun, moon and weather together are taller than the card.
+                  Flexible(
+                    flex: 6,
+                    child: LayoutBuilder(
+                      builder: (context, box) => FittedBox(
+                        fit: BoxFit.scaleDown,
+                        alignment: Alignment.topCenter,
+                        child: SizedBox(
+                          width: box.maxWidth,
+                          child: IgnorePointer(child: SkyPanel(sky: sky)),
+                        ),
+                      ),
+                    ),
+                  ),
                   const SizedBox(height: 16),
                 ],
                 const Spacer(),

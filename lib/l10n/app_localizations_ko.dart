@@ -3104,4 +3104,235 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get cardShabbat => '안식일과 명절';
+
+  @override
+  String get ringAtEventReminders => '일정 자체의 알림 시간에 울리기';
+
+  @override
+  String get ringAtEventRemindersHint => '캘린더 앱에 설정한 알림이 이 알람 소리로 크게 울립니다.';
+
+  @override
+  String get atEventReminders => '일정 알림 시간에';
+
+  @override
+  String get everyEventReminderLoud => '모든 일정 알림 시간에 크게 울리기';
+
+  @override
+  String get loudNotificationsHeading => '캘린더 알림 크게';
+
+  @override
+  String get loudNotificationsTitle => '캘린더 알림을 크게 울리기';
+
+  @override
+  String get loudNotificationsHint => '캘린더 앱이 알림을 보여 주면 무음 모드에서도 Quando?가 알람으로 울립니다.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando?가 캘린더 알림을 읽도록 허용할까요?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '캘린더 알림을 크게 울리려면 Quando?에 알림 접근 권한이 필요합니다. 선택한 캘린더 앱의 알림만 보고, 알람에 표시하기 위해 이 휴대폰에서 제목과 내용을 읽으며, 저장하거나 어디로도 보내지 않습니다. 언제든지 끌 수 있습니다.';
+
+  @override
+  String get loudNotificationsAgree => '동의하고 계속';
+
+  @override
+  String get loudNotificationsNoAccess => '알림 접근이 꺼져 있습니다. 열리는 목록에서 Quando?를 켜세요.';
+
+  @override
+  String get loudNotificationsAllow => '허용';
+
+  @override
+  String get loudNotificationsNoApps => '이 휴대폰에서 지원되는 캘린더 앱을 찾지 못했습니다.';
+
+  @override
+  String get loudNotificationsTwiceNote => '이미 Quando? 캘린더 알람이 있는 일정은 한 번만 울립니다.';
+
+  @override
+  String get loudNotificationsShabbatNote => '안식일과 명절에는 울리지 않습니다.';
+
+  @override
+  String get busyMode => '바쁨 모드';
+
+  @override
+  String get busyModeSubtitle => '바쁠 때 방해 금지와 자동 답장';
+
+  @override
+  String get busyIntro => '바쁠 때 Quando?가 휴대폰을 조용히 하고 대신 메시지에 답장합니다. 알람은 그대로 울립니다.';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone과 iPad에서는 앱이 집중 모드를 켜거나 메시지에 답장할 수 없습니다. 단축어 앱에서 \'Quando?를 열 때\' 또는 특정 시간에 집중 모드를 켜는 자동화를 만들고 집중 모드에서 자동 답장을 설정하세요.';
+
+  @override
+  String get busyWhileHeading => '바쁠 때';
+
+  @override
+  String get busyDnd => '방해 금지';
+
+  @override
+  String get busyDndHint => '중요 알림만: 전화와 메시지는 조용히, 알람은 울립니다. 끝나면 원래대로.';
+
+  @override
+  String get busyDndNoAccess => 'Quando?에 아직 방해 금지 변경 권한이 없습니다.';
+
+  @override
+  String get busyReplies => '메시지에 답장';
+
+  @override
+  String get busyRepliesHint => '한 사람당 한 번, 내 문구로, 앱 자체의 답장 버튼을 통해. Android 전용.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando?가 메시지에 답장하도록 허용할까요?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '대신 답장하려면 Quando?에 알림 접근 권한이 필요합니다. 바쁠 때만 선택한 앱의 메시지 알림을 보고, 이 휴대폰에서 보낸 사람 이름을 읽고, 앱 자체의 답장 버튼으로 내 문구를 한 번 보냅니다. 메시지는 저장하거나 다른 곳으로 보내지 않습니다. 허용하지 않으면 그룹은 건너뜁니다.';
+
+  @override
+  String get busyReplyText => '내 답장';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until은 바쁨 모드가 끝나는 시간으로 바뀝니다.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '지금 바빠서 $until 이후에 답장할게요.';
+  }
+
+  @override
+  String get busyGroups => '그룹 채팅에도 답장';
+
+  @override
+  String get busyGroupsHint => '끔: 그룹에는 답장하지 않습니다.';
+
+  @override
+  String get busyRepliesOnShabbat => '안식일과 명절에도 답장';
+
+  @override
+  String get busyAskRabbi => '기본값은 꺼짐. 안식일에 켜기 전에 랍비에게 문의하세요.';
+
+  @override
+  String get busyWhenHeading => '바쁜 시간';
+
+  @override
+  String get busyWhenHint => '캘린더 알람에서 \'이 일정 동안 바쁨\' 또는 알람에서 \'울린 후 바쁨\'을 켜세요.';
+
+  @override
+  String get busyDuringLock => '잠금 모드 동안 바쁨';
+
+  @override
+  String get busyNoneComing => '앞으로 7일 동안 바쁜 시간이 없습니다.';
+
+  @override
+  String get busyDuringEvents => '이 일정 동안 바쁨';
+
+  @override
+  String get busyDuringEventsHint => '각 일정의 시작부터 끝까지 바쁨 모드.';
+
+  @override
+  String get busySettings => '바쁨 모드 설정';
+
+  @override
+  String get busyAfterRing => '울린 후 바쁨';
+
+  @override
+  String get busyAfterRingHint => '잠시 방해 금지와 자동 답장. 운동이나 낮잠 등.';
+
+  @override
+  String get shareCard => '내 아침 공유';
+
+  @override
+  String get shareCardSubtitle => '오늘의 하늘과 명언, 또는 내 사진을 스토리와 상태에';
+
+  @override
+  String get shareAppMissing => '이 휴대폰에 그 앱이 없습니다.';
+
+  @override
+  String get shareAsIs => '그대로 공유';
+
+  @override
+  String get shareTapQuote => '명언을 탭하면 바뀝니다.';
+
+  @override
+  String get shareStory => '스토리';
+
+  @override
+  String get shareSquare => '정사각형';
+
+  @override
+  String get shareYourWords => '나만의 문구 (선택)';
+
+  @override
+  String get shareYourWordsHint => '오늘의 명언 대신';
+
+  @override
+  String get shareYourPhoto => '내 사진';
+
+  @override
+  String get shareOtherPhoto => '다른 사진';
+
+  @override
+  String get shareSkyBack => '오늘의 하늘로';
+
+  @override
+  String get shareYourVideo => '내 동영상';
+
+  @override
+  String get shareInstagramStory => '인스타그램 스토리';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: 상태 또는 채팅';
+
+  @override
+  String get shareMore => '다른 앱';
+
+  @override
+  String get shareYouPost => 'Quando?가 카드를 담아 앱을 엽니다. 어디에 올릴지 직접 고르고 게시를 누르세요.';
+
+  @override
+  String get shareAndroidFirst => 'iPhone과 iPad 공유는 곧 지원됩니다.';
+
+  @override
+  String songSaved(String name) {
+    return '\'$name\'을(를) 알람 소리로 저장했습니다';
+  }
+
+  @override
+  String get shareToQuando => 'Quando?로 노래 공유';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube, YouTube Music, Spotify, SoundCloud, Apple Music에서 공유 후 Quando?를 누르면 해당 앱에서 재생되는 알람 소리가 됩니다.';
+
+  @override
+  String get askOption => '말하거나 입력';
+
+  @override
+  String get askOptionHint => '“내일 6시”, “일출 30분 전”';
+
+  @override
+  String get askHint => '예: 평일에는 일출 30분 전에 깨워 줘';
+
+  @override
+  String get askListening => '듣는 중…';
+
+  @override
+  String get askNotUnderstood => '시간을 찾지 못했어요. “평일 오전 7시”나 “20분 후”로 해 보세요.';
+
+  @override
+  String get askNoSpeech => '이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.';
+
+  @override
+  String get askShabbatOff => '안식일 시간이 울리려면 설정에서 안식일을 켜세요.';
+
+  @override
+  String askSaved(String what) {
+    return '저장됨: $what';
+  }
+
+  @override
+  String get askMic => '말하기';
 }
