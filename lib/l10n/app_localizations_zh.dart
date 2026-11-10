@@ -3107,6 +3107,303 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => '主屏幕时钟';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主屏布局';
+
+  @override
+  String get homeLayoutClassic => '经典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖动卡片即可移动。拖动边缘或角落调整大小，或选择尺寸。';
+
+  @override
+  String get homeAddCard => '添加卡片';
+
+  @override
+  String get homeOnHome => '已在主屏';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一个闹钟';
+
+  @override
+  String get cardClock => '时钟和日期';
+
+  @override
+  String get cardSky => '太阳、月亮和天气';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天气';
+
+  @override
+  String get cardAlarms => '你的闹钟';
+
+  @override
+  String get cardQuick => '快速闹钟';
+
+  @override
+  String get cardTools => '秒表、倒计时和预备';
+
+  @override
+  String get cardWorld => '世界时钟';
+
+  @override
+  String get cardWeek => '本周';
+
+  @override
+  String get cardShabbat => '安息日和节日';
+
+  @override
+  String get ringAtEventReminders => '在日程自带的提醒时间响铃';
+
+  @override
+  String get ringAtEventRemindersHint => '日历应用里设置的提醒会在这里以本闹钟的铃声大声响起。';
+
+  @override
+  String get atEventReminders => '在日程提醒时';
+
+  @override
+  String get everyEventReminderLoud => '每个日程提醒时都大声响铃';
+
+  @override
+  String get loudNotificationsHeading => '日历通知大声响';
+
+  @override
+  String get loudNotificationsTitle => '让日历通知大声响铃';
+
+  @override
+  String get loudNotificationsHint => '日历应用弹出提醒时，Quando? 会把它当作闹钟响起，即使手机处于静音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允许 Quando? 读取日历通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大声响起日历提醒，Quando? 需要通知使用权。它只查看你所选日历应用的通知，在本机读取标题和内容以显示在闹钟上，从不保存或发送到任何地方。你可以随时关闭。';
+
+  @override
+  String get loudNotificationsAgree => '同意并继续';
+
+  @override
+  String get loudNotificationsNoAccess => '通知使用权已关闭。请在打开的列表中开启 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允许';
+
+  @override
+  String get loudNotificationsNoApps => '本机未找到支持的日历应用。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日历闹钟的日程只会响一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和节日期间静音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌时开启勿扰和自动回复';
+
+  @override
+  String get busyIntro => '忙碌时，Quando? 可以让手机安静并替你回复消息。闹钟照常响。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，应用无法开启专注模式或回复消息。请在“快捷指令”App 中添加“打开 Quando? 时”或定时开启专注模式的自动化，并在专注模式中设置自动回复。';
+
+  @override
+  String get busyWhileHeading => '忙碌时';
+
+  @override
+  String get busyDnd => '勿扰';
+
+  @override
+  String get busyDndHint => '仅限优先：来电和消息静音，闹钟照响。结束后恢复。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 还没有更改勿扰的权限。';
+
+  @override
+  String get busyReplies => '回复消息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，通过应用自带的回复按钮。仅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允许 Quando? 回复消息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '为了替你回复，Quando? 需要通知使用权。仅在你忙碌时，它查看你所选应用的消息通知，在本机读取发送者名字，并通过应用自带的回复按钮发送一次你的文字。消息从不保存，也不会发往别处。除非你允许，群聊会被跳过。';
+
+  @override
+  String get busyReplyText => '你的回复';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 会变成忙碌模式结束的时间。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我现在在忙，$until 后回复。';
+  }
+
+  @override
+  String get busyGroups => '群聊也回复';
+
+  @override
+  String get busyGroupsHint => '关闭：从不回复群聊。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和节日也回复';
+
+  @override
+  String get busyAskRabbi => '默认关闭。在安息日开启前请先请教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何时忙碌';
+
+  @override
+  String get busyWhenHint => '在日历闹钟上开启“这些日程期间忙碌”，或在闹钟上开启“响铃后忙碌”。';
+
+  @override
+  String get busyDuringLock => '锁定模式开启时忙碌';
+
+  @override
+  String get busyNoneComing => '未来 7 天没有忙碌时段。';
+
+  @override
+  String get busyDuringEvents => '这些日程期间忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每个日程从开始到结束都处于忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式设置';
+
+  @override
+  String get busyAfterRing => '响铃后忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段时间内勿扰和自动回复，例如锻炼或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用于快拍和状态';
+
+  @override
+  String get shareAppMissing => '这台手机上没有该应用。';
+
+  @override
+  String get shareAsIs => '按原样分享';
+
+  @override
+  String get shareTapQuote => '点按名言可换一句。';
+
+  @override
+  String get shareStory => '快拍';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的话（可选）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '换一张照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的视频';
+
+  @override
+  String get shareInstagramStory => 'Instagram 快拍';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：状态或聊天';
+
+  @override
+  String get shareMore => '更多应用';
+
+  @override
+  String get shareYouPost => 'Quando? 会打开应用并载入你的卡片。发到哪里由你选，发布也由你点。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即将支持分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已将“$name”存为闹钟铃声';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中点“分享”，再选 Quando?，它就成为在原应用中播放的闹钟铃声。';
+
+  @override
+  String get askOption => '说出或输入';
+
+  @override
+  String get askOptionHint => '“明天6点”“日出前30分钟”';
+
+  @override
+  String get askHint => '例如：工作日日出前30分钟叫醒我';
+
+  @override
+  String get askListening => '正在听…';
+
+  @override
+  String get askNotUnderstood => '没有找到时间。试试“工作日早上7点”或“20分钟后”。';
+
+  @override
+  String get askNoSpeech => '此设备不支持语音。你可以输入。';
+
+  @override
+  String get askShabbatOff => '在设置中打开安息日，安息日时间才会响铃。';
+
+  @override
+  String askSaved(String what) {
+    return '已保存：$what';
+  }
+
+  @override
+  String get askMic => '说话';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6211,4 +6508,301 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => '主畫面時鐘';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主畫面版面';
+
+  @override
+  String get homeLayoutClassic => '經典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖動卡片即可移動。拖動邊緣或角落調整大小，或選擇尺寸。';
+
+  @override
+  String get homeAddCard => '新增卡片';
+
+  @override
+  String get homeOnHome => '已在主畫面';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一個鬧鐘';
+
+  @override
+  String get cardClock => '時鐘和日期';
+
+  @override
+  String get cardSky => '太陽、月亮和天氣';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天氣';
+
+  @override
+  String get cardAlarms => '你的鬧鐘';
+
+  @override
+  String get cardQuick => '快速鬧鐘';
+
+  @override
+  String get cardTools => '碼錶、倒數和預備';
+
+  @override
+  String get cardWorld => '世界時鐘';
+
+  @override
+  String get cardWeek => '本週';
+
+  @override
+  String get cardShabbat => '安息日和節日';
+
+  @override
+  String get ringAtEventReminders => '在行程自帶的提醒時間響鈴';
+
+  @override
+  String get ringAtEventRemindersHint => '日曆 App 裡設定的提醒會在這裡以本鬧鐘的鈴聲大聲響起。';
+
+  @override
+  String get atEventReminders => '在行程提醒時';
+
+  @override
+  String get everyEventReminderLoud => '每個行程提醒時都大聲響鈴';
+
+  @override
+  String get loudNotificationsHeading => '日曆通知大聲響';
+
+  @override
+  String get loudNotificationsTitle => '讓日曆通知大聲響鈴';
+
+  @override
+  String get loudNotificationsHint => '日曆 App 跳出提醒時，Quando? 會把它當作鬧鐘響起，即使手機處於靜音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允許 Quando? 讀取日曆通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大聲響起日曆提醒，Quando? 需要通知存取權。它只查看你所選日曆 App 的通知，在本機讀取標題和內容以顯示在鬧鐘上，從不儲存或傳送到任何地方。你可以隨時關閉。';
+
+  @override
+  String get loudNotificationsAgree => '同意並繼續';
+
+  @override
+  String get loudNotificationsNoAccess => '通知存取權已關閉。請在開啟的清單中開啟 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允許';
+
+  @override
+  String get loudNotificationsNoApps => '本機找不到支援的日曆 App。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日曆鬧鐘的行程只會響一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和節日期間靜音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌時開啟勿擾和自動回覆';
+
+  @override
+  String get busyIntro => '忙碌時，Quando? 可以讓手機安靜並替你回覆訊息。鬧鐘照常響。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，App 無法開啟專注模式或回覆訊息。請在「捷徑」App 中加入「打開 Quando? 時」或定時開啟專注模式的自動化，並在專注模式中設定自動回覆。';
+
+  @override
+  String get busyWhileHeading => '忙碌時';
+
+  @override
+  String get busyDnd => '勿擾';
+
+  @override
+  String get busyDndHint => '僅限優先：來電和訊息靜音，鬧鐘照響。結束後恢復。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 還沒有變更勿擾的權限。';
+
+  @override
+  String get busyReplies => '回覆訊息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，透過 App 自帶的回覆按鈕。僅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允許 Quando? 回覆訊息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '為了替你回覆，Quando? 需要通知存取權。僅在你忙碌時，它查看你所選 App 的訊息通知，在本機讀取傳送者名字，並透過 App 自帶的回覆按鈕傳送一次你的文字。訊息從不儲存，也不會傳往別處。除非你允許，群組會被略過。';
+
+  @override
+  String get busyReplyText => '你的回覆';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 會變成忙碌模式結束的時間。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我現在在忙，$until 後回覆。';
+  }
+
+  @override
+  String get busyGroups => '群組也回覆';
+
+  @override
+  String get busyGroupsHint => '關閉：從不回覆群組。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和節日也回覆';
+
+  @override
+  String get busyAskRabbi => '預設關閉。在安息日開啟前請先請教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何時忙碌';
+
+  @override
+  String get busyWhenHint => '在日曆鬧鐘上開啟「這些行程期間忙碌」，或在鬧鐘上開啟「響鈴後忙碌」。';
+
+  @override
+  String get busyDuringLock => '鎖定模式開啟時忙碌';
+
+  @override
+  String get busyNoneComing => '未來 7 天沒有忙碌時段。';
+
+  @override
+  String get busyDuringEvents => '這些行程期間忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每個行程從開始到結束都處於忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式設定';
+
+  @override
+  String get busyAfterRing => '響鈴後忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段時間內勿擾和自動回覆，例如運動或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用於限時動態和狀態';
+
+  @override
+  String get shareAppMissing => '這支手機上沒有該 App。';
+
+  @override
+  String get shareAsIs => '按原樣分享';
+
+  @override
+  String get shareTapQuote => '點按名言可換一句。';
+
+  @override
+  String get shareStory => '限時動態';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的話（選填）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '換一張照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的影片';
+
+  @override
+  String get shareInstagramStory => 'Instagram 限時動態';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：狀態或聊天';
+
+  @override
+  String get shareMore => '更多 App';
+
+  @override
+  String get shareYouPost => 'Quando? 會打開 App 並載入你的卡片。發到哪裡由你選，發佈也由你點。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即將支援分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已將「$name」存為鬧鐘鈴聲';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中點「分享」，再選 Quando?，它就成為在原 App 中播放的鬧鐘鈴聲。';
+
+  @override
+  String get askOption => '說出或輸入';
+
+  @override
+  String get askOptionHint => '「明天6點」「日出前30分鐘」';
+
+  @override
+  String get askHint => '例如：平日日出前30分鐘叫醒我';
+
+  @override
+  String get askListening => '正在聽…';
+
+  @override
+  String get askNotUnderstood => '沒有找到時間。試試「平日早上7點」或「20分鐘後」。';
+
+  @override
+  String get askNoSpeech => '此裝置不支援語音。你可以輸入。';
+
+  @override
+  String get askShabbatOff => '在設定中開啟安息日，安息日時間才會響鈴。';
+
+  @override
+  String askSaved(String what) {
+    return '已儲存：$what';
+  }
+
+  @override
+  String get askMic => '說話';
 }

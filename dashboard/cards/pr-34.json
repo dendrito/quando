@@ -1,0 +1,12 @@
+{
+  "id": "pr-34",
+  "title": "Fix board publish: cards without an id use their file name",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    34
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 32
+}

@@ -1,0 +1,12 @@
+{
+  "id": "pr-28",
+  "title": "Release candidate for Thursday: home, sky, calendar alarms, Busy mode, sharing, widget, Say it",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    28
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 34
+}

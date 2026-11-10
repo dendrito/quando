@@ -6,9 +6,11 @@ import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
+import '../../../core/util/platform.dart';
 import '../../events/domain/event.dart';
 import '../data/calendar_reader.dart';
 import '../domain/calendar_rule.dart';
+import 'loud_notifications_section.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -69,6 +71,18 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                       ),
                     ),
                 child: Text(l10n.fifteenBeforeEvery),
+              ),
+              const SizedBox(height: 8),
+              OutlinedButton(
+                onPressed: () => ref
+                    .read(calendarRulesProvider.notifier)
+                    .save(
+                      CalendarRule(
+                        id: DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+                        eventReminders: true,
+                      ),
+                    ),
+                child: Text(l10n.everyEventReminderLoud),
               ),
             ],
             for (final r in rules)
@@ -149,6 +163,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 trailing: Text(when(e.at), style: text.bodySmall?.copyWith(color: QuandoColors.amber)),
               ),
           ],
+          if (isAndroid) ...[const SizedBox(height: 28), const LoudNotificationsSection()],
         ],
       ),
     );
@@ -182,6 +197,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
 /// "15 minutes before · every 1 hour for 6 hours · 5 minutes after it ends".
 String _describe(CalendarRule r) {
   final parts = <String>[
+    if (r.eventReminders) l10n.atEventReminders,
     if (r.before.isNotEmpty) l10n.spanBefore((r.before.toList()..sort()).reversed.map(formatSpan).join(', ')),
     if (r.atStart) l10n.atTheStart,
     if (r.repeatEvery != null && r.repeatFor != null)

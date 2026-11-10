@@ -1,0 +1,11 @@
+{
+  "id": "new-logo",
+  "title": "New logo",
+  "status": "hold",
+  "tag": "brand",
+  "threads": [
+    "redesign"
+  ],
+  "details": "The Q-hand logo exists; a new one is on hold.",
+  "order": 12
+}

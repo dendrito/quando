@@ -3114,4 +3114,301 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'ホームの時計';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => 'ホームのレイアウト';
+
+  @override
+  String get homeLayoutClassic => 'クラシック';
+
+  @override
+  String get homeLayoutCards => 'カード';
+
+  @override
+  String get homeCardsHint => 'カードをドラッグして移動。端や角をドラッグするか、サイズを選んで大きさを変更。';
+
+  @override
+  String get homeAddCard => 'カードを追加';
+
+  @override
+  String get homeOnHome => 'ホームにあり';
+
+  @override
+  String get homeRemoveCard => '削除';
+
+  @override
+  String get cardNext => '次のアラーム';
+
+  @override
+  String get cardClock => '時計と日付';
+
+  @override
+  String get cardSky => '太陽・月・天気';
+
+  @override
+  String get cardMoon => '月';
+
+  @override
+  String get cardWeather => '天気';
+
+  @override
+  String get cardAlarms => 'あなたのアラーム';
+
+  @override
+  String get cardQuick => 'クイックアラーム';
+
+  @override
+  String get cardTools => 'ストップウォッチ・カウントダウン・よーい';
+
+  @override
+  String get cardWorld => '世界時計';
+
+  @override
+  String get cardWeek => '今週';
+
+  @override
+  String get cardShabbat => '安息日と祝日';
+
+  @override
+  String get ringAtEventReminders => '予定自体のリマインダーで鳴らす';
+
+  @override
+  String get ringAtEventRemindersHint => 'カレンダーアプリのリマインダーが、このアラームの音で大きなアラームとして鳴ります。';
+
+  @override
+  String get atEventReminders => '予定のリマインダーで';
+
+  @override
+  String get everyEventReminderLoud => 'すべての予定のリマインダーで大きく鳴らす';
+
+  @override
+  String get loudNotificationsHeading => 'カレンダー通知を大きく';
+
+  @override
+  String get loudNotificationsTitle => 'カレンダー通知を大きな音で鳴らす';
+
+  @override
+  String get loudNotificationsHint => 'カレンダーアプリがリマインダーを表示すると、マナーモードでも Quando? がアラームとして鳴らします。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? にカレンダー通知の読み取りを許可しますか？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'カレンダーのリマインダーを大きな音で鳴らすには、Quando? に通知へのアクセスが必要です。選んだカレンダーアプリの通知だけを見て、アラームに表示するためにタイトルと本文をこの端末上で読み取ります。保存したり送信したりすることはありません。いつでもオフにできます。';
+
+  @override
+  String get loudNotificationsAgree => '同意して続ける';
+
+  @override
+  String get loudNotificationsNoAccess => '通知へのアクセスがオフです。開いた一覧で Quando? をオンにしてください。';
+
+  @override
+  String get loudNotificationsAllow => '許可';
+
+  @override
+  String get loudNotificationsNoApps => 'この端末に対応するカレンダーアプリが見つかりません。';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Quando? のカレンダーアラームがある予定は一度だけ鳴ります。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日と祭日は鳴りません。';
+
+  @override
+  String get busyMode => '取り込み中モード';
+
+  @override
+  String get busyModeSubtitle => '取り込み中はおやすみモードと自動返信';
+
+  @override
+  String get busyIntro => '取り込み中は Quando? が端末を静かにし、代わりにメッセージに返信します。アラームは鳴ります。';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone と iPad では、アプリが集中モードをオンにしたりメッセージに返信したりできません。ショートカットアプリで「Quando? を開いたとき」または時刻をきっかけに集中モードをオンにするオートメーションを作り、集中モードで自動返信を設定してください。';
+
+  @override
+  String get busyWhileHeading => '取り込み中';
+
+  @override
+  String get busyDnd => 'おやすみモード';
+
+  @override
+  String get busyDndHint => '優先のみ：通話とメッセージは鳴らず、アラームは鳴ります。終わると元に戻ります。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? はまだおやすみモードを変更できません。';
+
+  @override
+  String get busyReplies => 'メッセージに返信';
+
+  @override
+  String get busyRepliesHint => '1人につき1回、あなたの文面で、アプリ自身の返信ボタンから。Android のみ。';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? にメッセージへの返信を許可しますか？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '代わりに返信するには、Quando? に通知へのアクセスが必要です。取り込み中だけ、選んだアプリのメッセージ通知を見て、送信者の名前をこの端末上で読み取り、アプリ自身の返信ボタンからあなたの文面を一度送ります。メッセージを保存したり他へ送ったりすることはありません。許可しない限りグループは対象外です。';
+
+  @override
+  String get busyReplyText => '返信の文面';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until は取り込み中の終了時刻になります。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'ただいま取り込み中です。$until 以降に返信します。';
+  }
+
+  @override
+  String get busyGroups => 'グループにも返信';
+
+  @override
+  String get busyGroupsHint => 'オフ：グループには返信しません。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日と祭日も返信';
+
+  @override
+  String get busyAskRabbi => '初期設定はオフ。安息日にオンにする前にラビに相談してください。';
+
+  @override
+  String get busyWhenHeading => '取り込み中になるとき';
+
+  @override
+  String get busyWhenHint => 'カレンダーアラームで「この予定の間は取り込み中」、アラームで「鳴った後は取り込み中」をオンにします。';
+
+  @override
+  String get busyDuringLock => 'ロックモード中は取り込み中';
+
+  @override
+  String get busyNoneComing => '今後7日間に取り込み中の予定はありません。';
+
+  @override
+  String get busyDuringEvents => 'この予定の間は取り込み中';
+
+  @override
+  String get busyDuringEventsHint => '各予定の開始から終了まで取り込み中。';
+
+  @override
+  String get busySettings => '取り込み中モードの設定';
+
+  @override
+  String get busyAfterRing => '鳴った後は取り込み中';
+
+  @override
+  String get busyAfterRingHint => 'しばらくおやすみモードと自動返信。運動や昼寝などに。';
+
+  @override
+  String get shareCard => '朝をシェア';
+
+  @override
+  String get shareCardSubtitle => '今日の空と言葉、または自分の写真をストーリーズやステータスに';
+
+  @override
+  String get shareAppMissing => 'そのアプリはこの端末にありません。';
+
+  @override
+  String get shareAsIs => 'そのままシェア';
+
+  @override
+  String get shareTapQuote => '言葉をタップすると変わります。';
+
+  @override
+  String get shareStory => 'ストーリー';
+
+  @override
+  String get shareSquare => '正方形';
+
+  @override
+  String get shareYourWords => '自分の言葉（任意）';
+
+  @override
+  String get shareYourWordsHint => '今日の言葉の代わりに';
+
+  @override
+  String get shareYourPhoto => '自分の写真';
+
+  @override
+  String get shareOtherPhoto => '別の写真';
+
+  @override
+  String get shareSkyBack => '今日の空にする';
+
+  @override
+  String get shareYourVideo => '自分の動画';
+
+  @override
+  String get shareInstagramStory => 'Instagram ストーリーズ';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：ステータスかチャット';
+
+  @override
+  String get shareMore => 'その他のアプリ';
+
+  @override
+  String get shareYouPost => 'Quando? はカードを読み込んだ状態でアプリを開きます。投稿先を選び、投稿はご自身でタップします。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone と iPad でのシェアは近日対応。';
+
+  @override
+  String songSaved(String name) {
+    return '「$name」をアラーム音に保存しました';
+  }
+
+  @override
+  String get shareToQuando => 'Quando? に曲をシェア';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube、YouTube Music、Spotify、SoundCloud、Apple Music で共有から Quando? を選ぶと、そのアプリで再生されるアラーム音になります。';
+
+  @override
+  String get askOption => '話すか入力';
+
+  @override
+  String get askOptionHint => '「明日6時」「日の出の30分前」';
+
+  @override
+  String get askHint => '例：平日は日の出の30分前に起こして';
+
+  @override
+  String get askListening => '聞いています…';
+
+  @override
+  String get askNotUnderstood => '時刻が見つかりませんでした。「平日7時」や「20分後」と試してください。';
+
+  @override
+  String get askNoSpeech => 'この端末では音声を使えません。入力してください。';
+
+  @override
+  String get askShabbatOff => 'シャバットの時刻を鳴らすには設定でシャバットをオンにしてください。';
+
+  @override
+  String askSaved(String what) {
+    return '保存しました：$what';
+  }
+
+  @override
+  String get askMic => '話す';
 }

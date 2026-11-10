@@ -1,0 +1,27 @@
+{
+  "id": "google-2-6-cloudflare-pages-and-support-quando-day",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "google"
+  ],
+  "title": "Google 2/6: Cloudflare Pages and support@quando.day",
+  "status": "next",
+  "note": "Publish site/ on quando.day and make support@quando.day forward to you.",
+  "details": "Guide section A. Do not set a custom domain in GitHub Pages or the board would redirect to quando.day.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#a-cloudflare-about-10-minutes"
+    },
+    {
+      "title": "Privacy policy (quando.day)",
+      "url": "https://quando.day/privacy/"
+    },
+    {
+      "title": "Terms (quando.day)",
+      "url": "https://quando.day/terms/"
+    }
+  ],
+  "order": 26
+}

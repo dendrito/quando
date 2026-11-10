@@ -1,0 +1,29 @@
+{
+  "id": "tuya-smart-life-sign-in",
+  "title": "Tuya / Smart Life sign-in",
+  "status": "hold",
+  "tag": "smart-home",
+  "note": "Waiting on Tuya to link accounts to the cloud project.",
+  "prs": [
+    16
+  ],
+  "threads": [
+    "tuya"
+  ],
+  "details": "Sign in with just the Smart Life login through a small free relay. Blocked until Tuya links accounts to the cloud project.",
+  "docs": [
+    {
+      "title": "Tuya relay",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/TUYA_RELAY.md"
+    },
+    {
+      "title": "Smart home",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/SMART_HOME.md"
+    },
+    {
+      "title": "PR #16",
+      "url": "https://github.com/dendrito/quando/pull/16"
+    }
+  ],
+  "order": 10
+}

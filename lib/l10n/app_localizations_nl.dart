@@ -3175,4 +3175,312 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Klok op het beginscherm';
+
+  @override
+  String get sizeSmall => 'Klein';
+
+  @override
+  String get sizeMedium => 'Middel';
+
+  @override
+  String get sizeLarge => 'Groot';
+
+  @override
+  String get homeLayout => 'Indeling startscherm';
+
+  @override
+  String get homeLayoutClassic => 'Klassiek';
+
+  @override
+  String get homeLayoutCards => 'Kaarten';
+
+  @override
+  String get homeCardsHint =>
+      'Sleep een kaart om hem te verplaatsen. Sleep de rand of hoek om de grootte te wijzigen, of kies een maat.';
+
+  @override
+  String get homeAddCard => 'Kaart toevoegen';
+
+  @override
+  String get homeOnHome => 'Op startscherm';
+
+  @override
+  String get homeRemoveCard => 'Verwijderen';
+
+  @override
+  String get cardNext => 'Volgende wekker';
+
+  @override
+  String get cardClock => 'Klok en datum';
+
+  @override
+  String get cardSky => 'Zon, maan en weer';
+
+  @override
+  String get cardMoon => 'Maan';
+
+  @override
+  String get cardWeather => 'Weer';
+
+  @override
+  String get cardAlarms => 'Je wekkers';
+
+  @override
+  String get cardQuick => 'Snelle wekkers';
+
+  @override
+  String get cardTools => 'Stopwatch, timer en klaar';
+
+  @override
+  String get cardWorld => 'Wereldklokken';
+
+  @override
+  String get cardWeek => 'Deze week';
+
+  @override
+  String get cardShabbat => 'Sjabbat en feestdagen';
+
+  @override
+  String get ringAtEventReminders => 'Afgaan bij de eigen herinneringen van het afspraak';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'De herinneringen uit je agenda-app gaan hier af als luide wekkers, met het geluid van deze wekker.';
+
+  @override
+  String get atEventReminders => 'bij de herinneringen van de afspraak';
+
+  @override
+  String get everyEventReminderLoud => 'Luid afgaan bij de herinneringen van elke afspraak';
+
+  @override
+  String get loudNotificationsHeading => 'LUIDE AGENDAMELDINGEN';
+
+  @override
+  String get loudNotificationsTitle => 'Agendameldingen luid maken';
+
+  @override
+  String get loudNotificationsHint =>
+      'Toont een agenda-app een herinnering, dan laat Quando? die afgaan als wekker, ook als je telefoon op stil staat.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? agendameldingen laten lezen?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Om je agendaherinneringen luid te laten afgaan, heeft Quando? toegang tot meldingen nodig. Het kijkt alleen naar meldingen van de agenda-apps die je kiest, leest titel en tekst op deze telefoon om ze bij de wekker te tonen, en bewaart of verstuurt ze nooit. Je kunt dit altijd uitzetten.';
+
+  @override
+  String get loudNotificationsAgree => 'Akkoord en doorgaan';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Toegang tot meldingen staat uit. Zet Quando? aan in de lijst die opent.';
+
+  @override
+  String get loudNotificationsAllow => 'Toestaan';
+
+  @override
+  String get loudNotificationsNoApps => 'Geen ondersteunde agenda-app gevonden op deze telefoon.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Afspraken met al een Quando?-agendawekker gaan maar één keer af.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Stil tijdens sjabbat en feestdagen.';
+
+  @override
+  String get busyMode => 'Bezet-modus';
+
+  @override
+  String get busyModeSubtitle => 'Niet storen en automatische antwoorden als je bezet bent';
+
+  @override
+  String get busyIntro =>
+      'Terwijl je bezet bent, kan Quando? je telefoon stil zetten en berichten voor je beantwoorden. Wekkers gaan gewoon af.';
+
+  @override
+  String get busyIosFocus =>
+      'Op iPhone en iPad kunnen apps geen focus aanzetten of berichten beantwoorden. Maak in de Opdrachten-app een automatisering \"Als Quando? opent\" of op een tijdstip die een focus aanzet, en laat die focus automatisch antwoorden.';
+
+  @override
+  String get busyWhileHeading => 'TERWIJL JE BEZET BENT';
+
+  @override
+  String get busyDnd => 'Niet storen';
+
+  @override
+  String get busyDndHint =>
+      'Alleen prioriteit: oproepen en berichten stil, wekkers gaan af. Daarna weer normaal.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? mag Niet storen nog niet wijzigen.';
+
+  @override
+  String get busyReplies => 'Berichten beantwoorden';
+
+  @override
+  String get busyRepliesHint =>
+      'Eén keer per persoon, met jouw tekst, via de Beantwoorden-knop van de app. Alleen Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? berichten laten beantwoorden?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Om voor je te antwoorden, heeft Quando? toegang tot meldingen nodig. Alleen terwijl je bezet bent, kijkt het naar berichtmeldingen van de gekozen apps, leest de naam van de afzender op deze telefoon en stuurt je tekst één keer via de Beantwoorden-knop van de app. Berichten worden nooit bewaard of ergens anders heen gestuurd. Groepen worden overgeslagen, tenzij je ze toestaat.';
+
+  @override
+  String get busyReplyText => 'Je antwoord';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until wordt de tijd waarop bezet-modus eindigt.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ik ben nu bezet en antwoord na $until.';
+  }
+
+  @override
+  String get busyGroups => 'Ook in groepen antwoorden';
+
+  @override
+  String get busyGroupsHint => 'Uit: groepen krijgen nooit antwoord.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Ook op sjabbat en feestdagen antwoorden';
+
+  @override
+  String get busyAskRabbi => 'Standaard uit. Vraag je rabbijn voor je dit voor sjabbat aanzet.';
+
+  @override
+  String get busyWhenHeading => 'WANNEER JE BEZET BENT';
+
+  @override
+  String get busyWhenHint =>
+      'Zet \"Bezet tijdens deze afspraken\" aan bij een agendawekker, of \"Bezet nadat hij afgaat\" bij een wekker.';
+
+  @override
+  String get busyDuringLock => 'Bezet zolang vergrendelmodus aan staat';
+
+  @override
+  String get busyNoneComing => 'Niets bezet in de komende 7 dagen.';
+
+  @override
+  String get busyDuringEvents => 'Bezet tijdens deze afspraken';
+
+  @override
+  String get busyDuringEventsHint => 'Bezet-modus van begin tot eind van elke afspraak.';
+
+  @override
+  String get busySettings => 'Instellingen bezet-modus';
+
+  @override
+  String get busyAfterRing => 'Bezet nadat hij afgaat';
+
+  @override
+  String get busyAfterRingHint =>
+      'Niet storen en automatische antwoorden voor even, bijv. sporten of een dutje.';
+
+  @override
+  String get shareCard => 'Deel je ochtend';
+
+  @override
+  String get shareCardSubtitle =>
+      'De lucht en het citaat van vandaag, of je eigen foto, voor Stories en status';
+
+  @override
+  String get shareAppMissing => 'Die app staat niet op deze telefoon.';
+
+  @override
+  String get shareAsIs => 'Delen zoals het is';
+
+  @override
+  String get shareTapQuote => 'Tik op het citaat voor een ander.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Vierkant';
+
+  @override
+  String get shareYourWords => 'Je eigen woorden (optioneel)';
+
+  @override
+  String get shareYourWordsHint => 'In plaats van het citaat van vandaag';
+
+  @override
+  String get shareYourPhoto => 'Je foto';
+
+  @override
+  String get shareOtherPhoto => 'Andere foto';
+
+  @override
+  String get shareSkyBack => 'Toch de lucht van vandaag';
+
+  @override
+  String get shareYourVideo => 'Je video';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status of chat';
+
+  @override
+  String get shareMore => 'Meer apps';
+
+  @override
+  String get shareYouPost =>
+      'Quando? opent de app met je kaart klaar. Jij kiest waar en tikt zelf op Plaatsen.';
+
+  @override
+  String get shareAndroidFirst => 'Delen komt binnenkort naar iPhone en iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” bewaard als wekgeluid';
+  }
+
+  @override
+  String get shareToQuando => 'Deel een nummer met Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Tik in YouTube, YouTube Music, Spotify, SoundCloud of Apple Music op Delen en dan op Quando?. Het wordt een wekgeluid dat in zijn eigen app speelt.';
+
+  @override
+  String get askOption => 'Zeg of typ het';
+
+  @override
+  String get askOptionHint => '‘Morgen om 6 uur’, ‘30 min voor zonsopgang’';
+
+  @override
+  String get askHint => 'bijv. maak me op werkdagen 30 min voor zonsopgang wakker';
+
+  @override
+  String get askListening => 'Aan het luisteren…';
+
+  @override
+  String get askNotUnderstood => 'Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.';
+
+  @override
+  String get askNoSpeech => 'Spraak is niet beschikbaar op dit apparaat. Je kunt typen.';
+
+  @override
+  String get askShabbatOff => 'Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.';
+
+  @override
+  String askSaved(String what) {
+    return 'Bewaard: $what';
+  }
+
+  @override
+  String get askMic => 'Spreek';
 }

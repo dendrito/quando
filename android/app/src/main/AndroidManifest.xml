@@ -39,6 +39,13 @@
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
+            <!-- Share to Quando?: a song link from YouTube, Spotify and
+                 others becomes an alarm sound. -->
+            <intent-filter>
+                <action android:name="android.intent.action.SEND"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:mimeType="text/plain"/>
+            </intent-filter>
         </activity>
         <!-- Spotify sign-in comes back here, to spotify-sdk://auth. Picking
              from your Spotify library signs in on Spotify's web page and lands
@@ -56,6 +63,45 @@
                 <data android:scheme="quando-soundcloud" android:host="auth"/>
             </intent-filter>
         </activity>
+        <!-- Off until you turn on "Make calendar notifications loud" and allow
+             notification access. Reads only the apps you pick; nothing leaves
+             the phone. -->
+        <service
+            android:name=".QuandoListener"
+            android:label="${appLabel}"
+            android:exported="true"
+            android:permission="android.permission.BIND_NOTIFICATION_LISTENER_SERVICE">
+            <intent-filter>
+                <action android:name="android.service.notification.NotificationListenerService"/>
+            </intent-filter>
+        </service>
+        <!-- Share card: hands the picture to Instagram, WhatsApp and others. -->
+        <provider
+            android:name=".ShareFileProvider"
+            android:authorities="${applicationId}.share"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/share_paths" />
+        </provider>
+        <!-- Home-screen widget: next alarm, countdown and the sun's arc. -->
+        <receiver android:name=".QuandoWidget" android:exported="false" android:label="${appLabel}">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/quando_widget_info" />
+        </receiver>
+        <!-- Busy mode: Do Not Disturb on and off at the right times, also
+             after a restart or an update. -->
+        <receiver android:name=".BusyReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -68,6 +114,26 @@
 
          In particular, this is used by the Flutter engine in io.flutter.plugin.text.ProcessTextPlugin. -->
     <queries>
+        <!-- Loud calendar notifications: see which calendar apps you have. -->
+        <package android:name="com.google.android.calendar"/>
+        <package android:name="com.samsung.android.calendar"/>
+        <package android:name="com.microsoft.office.outlook"/>
+        <package android:name="com.android.calendar"/>
+        <package android:name="com.xiaomi.calendar"/>
+        <package android:name="com.oneplus.calendar"/>
+        <package android:name="com.coloros.calendar"/>
+        <package android:name="com.huawei.calendar"/>
+        <package android:name="com.appgenix.bizcal"/>
+        <package android:name="com.tasks.android"/>
+        <!-- Share card: Instagram Stories. -->
+        <package android:name="com.instagram.android"/>
+        <!-- Busy mode answers: see which messaging apps you have. -->
+        <package android:name="com.whatsapp"/>
+        <package android:name="com.whatsapp.w4b"/>
+        <package android:name="org.telegram.messenger"/>
+        <package android:name="com.google.android.apps.messaging"/>
+        <package android:name="com.samsung.android.messaging"/>
+        <package android:name="org.thoughtcrime.securesms"/>
         <!-- Spotify direct play: find the Spotify app. -->
         <package android:name="com.spotify.music"/>
         <intent>
@@ -77,6 +143,10 @@
         <!-- Spoken alarms: lets the app find the phone's text-to-speech engine. -->
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Say or type an alarm: find the phone's speech recognition. -->
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
         </intent>
         <!-- Open pushover.net links in the browser. -->
         <intent>

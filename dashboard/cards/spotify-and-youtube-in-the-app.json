@@ -1,0 +1,13 @@
+{
+  "id": "spotify-and-youtube-in-the-app",
+  "title": "Spotify and YouTube in the app",
+  "status": "hold",
+  "tag": "music",
+  "note": "Public Spotify sign-in needs a registered company, so version 1.0 opens songs in the Spotify app instead.",
+  "plan": "business",
+  "threads": [
+    "spotify"
+  ],
+  "details": "Public Spotify sign-in needs a registered company and a large user base, so 1.0 opens songs in the Spotify app. YouTube sign-in needs Google verification before public launch.",
+  "order": 9
+}

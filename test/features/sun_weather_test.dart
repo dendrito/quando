@@ -94,6 +94,7 @@ void main() {
       addTearDown(tester.view.reset);
       SharedPreferences.setMockInitialValues({
         'place.name': 'São Paulo',
+        'home.display.allOn': true,
         'home.display': '{"moon":true,"weather":true,"skyUseShabbat":true}',
       });
       final prefs = await SharedPreferences.getInstance();

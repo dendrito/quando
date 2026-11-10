@@ -1,0 +1,12 @@
+{
+  "id": "pr-30",
+  "title": "Board: click cards, edit from the page, one file per card, auto cards from PRs",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    30
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 31
+}

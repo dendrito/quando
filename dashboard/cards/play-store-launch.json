@@ -1,0 +1,24 @@
+{
+  "id": "play-store-launch",
+  "title": "Play Store launch",
+  "status": "next",
+  "tag": "launch",
+  "note": "Needs a Play developer account and a 14-day closed test with 12 testers before going public.",
+  "plan": "business",
+  "threads": [
+    "biz",
+    "redesign"
+  ],
+  "details": "A new personal Play account needs a closed test with 12 testers for 14 days before going public. Listing and privacy-policy drafts exist.",
+  "docs": [
+    {
+      "title": "Play Store listing",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/play-store.md"
+    },
+    {
+      "title": "Privacy policy",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/privacy-policy.md"
+    }
+  ],
+  "order": 7
+}

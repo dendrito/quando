@@ -1,0 +1,23 @@
+{
+  "id": "update-privacy-policy-and-add-in-app-delete-account",
+  "title": "Update privacy policy and add in-app delete account",
+  "status": "next",
+  "tag": "launch",
+  "plan": "business",
+  "note": "Needed before sync opens to everyone in the stores.",
+  "threads": [
+    "local"
+  ],
+  "details": "Needed before sync opens to everyone in the stores.",
+  "docs": [
+    {
+      "title": "Privacy policy",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/privacy-policy.md"
+    },
+    {
+      "title": "Sync setup",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/FIREBASE_SYNC_SETUP.md"
+    }
+  ],
+  "order": 18
+}
