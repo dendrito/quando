@@ -387,6 +387,14 @@
       "threads": [
         "biz"
       ]
+    },
+    {
+      "title": "Set up quando.day for Google verification",
+      "status": "doing",
+      "tag": "launch",
+      "plan": "business",
+      "note": "Website and privacy page on quando.day, domain proof, then the Google consent screen so Calendar and YouTube sign-in work for everyone.",
+      "details": "Google needs a real home page and privacy policy on a domain you own before it verifies Calendar and YouTube access. Being handled in its own Claude thread."
     }
   ],
   "plans": [

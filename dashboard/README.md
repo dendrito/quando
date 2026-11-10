@@ -7,7 +7,7 @@ Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time set
 ## Click a card, edit from the page
 
 - Click any card to read its details, documentation links, pull requests and links to the Claude threads about it (thread links need your Claude login).
-- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task**. Saving commits to `main`, and the public page refreshes about a minute later.
+- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the public page refreshes about a minute later.
 - Never share the token. To remove it, press **Editing: on** → turn off.
 
 ## Change what the board shows (by hand)

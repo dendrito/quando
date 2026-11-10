@@ -73,10 +73,10 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   <div class="count" id="count"></div>
 </section>
 
-<h2>Dates</h2>
+<h2>Dates <button class="btn tool" id="add-dl" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add date</button></h2>
 <div class="deadlines" id="deadlines"></div>
 
-<h2>Work <button class="btn" id="add" style="margin-left:10px;text-transform:none;letter-spacing:0">+ Add task</button> <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
+<h2>Work <button class="btn" id="add" style="margin-left:10px;text-transform:none;letter-spacing:0">+ Add task</button> <button class="btn tool" id="cols" style="text-transform:none;letter-spacing:0;display:none">Edit columns</button> <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
 <div class="board" id="board"></div>
 <dialog id="dlg"></dialog>
 
@@ -86,7 +86,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="issues"><div class="empty">Loading…</div></div>
 
-<h2>Plans &amp; links</h2>
+<h2>Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
 <div class="grid" id="plans"></div>
 
 <footer>
@@ -115,6 +115,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       '<a class="btn" href="' + base + '/actions">Builds</a>';
     $("unlock").onclick = tokenDialog;
     $("add").style.display = token ? "" : "none";
+    Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = token ? "" : "none"; });
     $("headline").textContent = data.headline;
     $("updated").textContent = "Board last edited " + data.updated;
   }
@@ -125,8 +126,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("count").innerHTML = next ? esc(left(new Date(next.date) - now)) + "<small>" + esc(next.title) + "</small>" : "";
     $("deadlines").innerHTML = list.map(function (x) {
       var ms = new Date(x.date) - now;
-      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
+      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"' + (token ? ' data-d="' + esc(x.title) + '" style="cursor:pointer"' : "") + '><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("[data-d]"), function (c) { c.onclick = function () { editDate(c.getAttribute("data-d")); }; });
   }
 
   function prPill(n) {
@@ -156,8 +158,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   function plans() {
     $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
       var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
-      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); editPlan(b.getAttribute("data-p")); }; });
   }
 
   /* ---------- card detail ---------- */
@@ -219,6 +222,85 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       if (!confirm("Delete this card?")) return;
       var orig = i.title;
       save("Board: remove " + orig, function (cur) { cur.items = cur.items.filter(function (x) { return x.title !== orig; }); });
+    };
+  }
+
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x" + Date.now(); }
+
+  function editDate(title) {
+    var x = title ? data.deadlines.filter(function (d) { return d.title === title; })[0] : { title: "", date: "", note: "" };
+    var off = (x.date && /[+-]\d\d:\d\d$/.test(x.date)) ? x.date.slice(-6) : "-03:00";
+    open("<h3>" + (title ? "Edit date" : "New date") + "</h3>" +
+      '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
+      '<label>When (Brasília time)</label><input id="f-d" type="datetime-local" value="' + esc((x.date || "").slice(0, 16)) + '">' +
+      '<label>Note</label><input id="f-n" value="' + esc(x.note || "") + '">' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (title ? '<button class="btn danger" id="rm">Delete</button>' : "") + '</div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var t = $("f-t").value.trim(), d = $("f-d").value;
+      if (!t || !d) { say("Give it a title and a date.", 1); return; }
+      var nd = { title: t, date: d + ":00" + off }; if ($("f-n").value.trim()) nd.note = $("f-n").value.trim();
+      save("Board: " + (title ? "update" : "add") + " date " + t, function (cur) {
+        if (!title) { cur.deadlines.push(nd); return; }
+        var k = -1; cur.deadlines.forEach(function (y, n) { if (y.title === title) k = n; });
+        if (k < 0) throw new Error("This date changed elsewhere. Reload the page."); cur.deadlines[k] = nd;
+      });
+    };
+    if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; save("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
+  }
+
+  function editPlan(id) {
+    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "" };
+    open("<h3>" + (id ? "Edit plan" : "New plan") + "</h3>" +
+      '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
+      '<label>Link</label><input id="f-u" value="' + esc(x.url) + '" placeholder="https://…">' +
+      '<label>Status</label><select id="f-s">' + opts([["proposed", "Proposed"], ["agreed", "Agreed"]], x.status) + "</select>" +
+      '<label><input id="f-pv" type="checkbox" style="width:auto"' + (x.private ? " checked" : "") + '> Private page (needs your login; its content stays out of this public repo)</label>' +
+      '<label>Note</label><input id="f-n" value="' + esc(x.note || "") + '">' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (id ? '<button class="btn danger" id="rm">Delete</button>' : "") + '</div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var t = $("f-t").value.trim(), u = $("f-u").value.trim();
+      if (!t || !u) { say("Give it a title and a link.", 1); return; }
+      var pid = id || slug(t), np = { id: pid, title: t, url: u, status: $("f-s").value };
+      if ($("f-pv").checked) np.private = true; if ($("f-n").value.trim()) np.note = $("f-n").value.trim();
+      save("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
+        if (!id) { cur.plans.push(np); return; }
+        var k = -1; cur.plans.forEach(function (y, n) { if (y.id === id) k = n; });
+        if (k < 0) throw new Error("This plan changed elsewhere. Reload the page."); cur.plans[k] = np;
+      });
+    };
+    if (id) $("rm").onclick = function () { if (!confirm("Delete this plan? Cards keep their plan tag.")) return; save("Board: remove plan " + id, function (cur) { cur.plans = cur.plans.filter(function (y) { return y.id !== id; }); }); };
+  }
+
+  function editColumns() {
+    var rows = data.statuses.map(function (st, n) {
+      var cnt = data.items.filter(function (i) { return i.status === st.id; }).length;
+      return '<div class="row" data-id="' + esc(st.id) + '"><input class="cl-l" value="' + esc(st.label) + '" style="flex:1"><button class="btn up">↑</button><button class="btn dn">↓</button><button class="btn danger rmc"' + (cnt ? ' disabled title="Move its cards first"' : "") + ">Delete</button></div>";
+    }).join("");
+    open('<h3>Columns</h3><div class="list" id="cl-list">' + rows + '</div><div class="actions"><button class="btn" id="ac">+ Add column</button></div>' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    var list = $("cl-list");
+    list.onclick = function (e) {
+      var r = e.target.closest(".row"); if (!r) return;
+      if (e.target.classList.contains("up") && r.previousElementSibling) list.insertBefore(r, r.previousElementSibling);
+      if (e.target.classList.contains("dn") && r.nextElementSibling) list.insertBefore(r.nextElementSibling, r);
+      if (e.target.classList.contains("rmc") && !e.target.disabled) r.remove();
+    };
+    $("ac").onclick = function () { list.insertAdjacentHTML("beforeend", '<div class="row" data-id="" data-new="1"><input class="cl-l" placeholder="Column name" style="flex:1"><button class="btn up">↑</button><button class="btn dn">↓</button><button class="btn danger rmc">Delete</button></div>'); };
+    $("sv").onclick = function () {
+      var out = [], used = {};
+      Array.prototype.forEach.call(list.children, function (r) {
+        var l = r.querySelector(".cl-l").value.trim(); if (!l) return;
+        var id = r.getAttribute("data-id") || slug(l); while (used[id]) id += "-2"; used[id] = 1; out.push({ id: id, label: l });
+      });
+      if (!out.length) { say("Keep at least one column.", 1); return; }
+      save("Board: update columns", function (cur) {
+        var keep = {}; out.forEach(function (o) { keep[o.id] = 1; });
+        cur.items.forEach(function (i) { if (!keep[i.status]) throw new Error("A card still uses a column you removed. Reload the page."); });
+        cur.statuses = out;
+      });
     };
   }
   function say(t, err) { var m = $("msg"); if (m) { m.className = "msg " + (err ? "err" : "ok"); m.textContent = t; } }
@@ -285,6 +367,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
+    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); };
   }).catch(function (e) {
     document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
