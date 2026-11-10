@@ -30,3 +30,13 @@ Dates are written like `2026-11-12T23:59:00-03:00` (the `-03:00` is Brasília ti
 2. After the pull request that added this folder is merged, the **Project board** workflow publishes the site. Later edits to `dashboard/` publish automatically.
 
 Don't put private information here. This repository is public.
+
+## Plans and tasks
+
+Each plan in `"plans"` has an `id`, a `status` (`proposed` until you agree, then `agreed`) and a link. A card with `"plan": "business"` is a task that comes from that plan, and the plan tile counts its open tasks. When a plan changes, change its cards here.
+
+**Business, pricing, tax and legal plans stay out of this public repo.** They live as private Claude pages; this site only links to them. Do not paste their content into `data.json`.
+
+## One source of truth for Claude too
+
+`dashboard/data.json` on `main` is the project's task list. Your edits there are the latest word. Every Claude thread should read it before starting work and treat it as overriding older chat. When a thread finishes something it should update the card, not just say so in chat.

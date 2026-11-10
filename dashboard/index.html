@@ -137,6 +137,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
         (items.map(function (i) {
           return '<div class="card"><b>' + esc(i.title) + "</b>" +
             (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
+            (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
             (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
             (i.prs || []).map(prPill).join("") + "</div>";
         }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
@@ -145,7 +146,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 
   function plans() {
     $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
-      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + "</b>" + (p.note ? '<span class="mute">' + esc(p.note) + "</span>" : "") + "</a>";
+      var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
+      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
     }).join("");
   }
 
