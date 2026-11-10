@@ -3124,4 +3124,98 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Im lặng trong ngày Sabát và lễ.';
+
+  @override
+  String get busyMode => 'Chế độ bận';
+
+  @override
+  String get busyModeSubtitle => 'Không làm phiền và tự động trả lời khi bạn bận';
+
+  @override
+  String get busyIntro =>
+      'Khi bạn bận, Quando? có thể làm điện thoại im lặng và trả lời tin nhắn thay bạn. Báo thức vẫn reo.';
+
+  @override
+  String get busyIosFocus =>
+      'Trên iPhone và iPad, ứng dụng không thể bật Tập trung hay trả lời tin nhắn. Trong ứng dụng Phím tắt, hãy tạo tự động hóa \"Khi mở Quando?\" hoặc theo giờ để bật Tập trung, rồi đặt Tập trung tự động trả lời.';
+
+  @override
+  String get busyWhileHeading => 'KHI BẠN BẬN';
+
+  @override
+  String get busyDnd => 'Không làm phiền';
+
+  @override
+  String get busyDndHint =>
+      'Chỉ ưu tiên: cuộc gọi và tin nhắn im lặng, báo thức vẫn reo. Kết thúc thì trở lại bình thường.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? chưa được phép đổi Không làm phiền.';
+
+  @override
+  String get busyReplies => 'Trả lời tin nhắn';
+
+  @override
+  String get busyRepliesHint =>
+      'Mỗi người một lần, bằng nội dung của bạn, qua nút Trả lời của chính ứng dụng. Chỉ Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Cho phép Quando? trả lời tin nhắn?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Để trả lời thay bạn, Quando? cần quyền truy cập thông báo. Chỉ khi bạn bận, ứng dụng xem thông báo tin nhắn từ các ứng dụng bạn chọn, đọc tên người gửi ngay trên điện thoại này và gửi nội dung của bạn một lần qua nút Trả lời của chính ứng dụng. Tin nhắn không bao giờ được lưu hay gửi đi nơi khác. Nhóm sẽ bị bỏ qua trừ khi bạn cho phép.';
+
+  @override
+  String get busyReplyText => 'Câu trả lời của bạn';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until sẽ thành giờ kết thúc chế độ bận.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Mình đang bận, sẽ trả lời sau $until.';
+  }
+
+  @override
+  String get busyGroups => 'Trả lời cả trong nhóm';
+
+  @override
+  String get busyGroupsHint => 'Tắt: không bao giờ trả lời nhóm.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Trả lời cả trong Sabát và lễ';
+
+  @override
+  String get busyAskRabbi => 'Mặc định tắt. Hãy hỏi giáo sĩ của bạn trước khi bật cho ngày Sabát.';
+
+  @override
+  String get busyWhenHeading => 'KHI NÀO BẠN BẬN';
+
+  @override
+  String get busyWhenHint =>
+      'Bật \"Bận trong các sự kiện này\" ở báo thức lịch, hoặc \"Bận sau khi reo\" ở báo thức.';
+
+  @override
+  String get busyDuringLock => 'Bận khi bật chế độ khóa';
+
+  @override
+  String get busyNoneComing => 'Không có lúc bận trong 7 ngày tới.';
+
+  @override
+  String get busyDuringEvents => 'Bận trong các sự kiện này';
+
+  @override
+  String get busyDuringEventsHint => 'Chế độ bận từ lúc bắt đầu đến khi kết thúc mỗi sự kiện.';
+
+  @override
+  String get busySettings => 'Cài đặt chế độ bận';
+
+  @override
+  String get busyAfterRing => 'Bận sau khi reo';
+
+  @override
+  String get busyAfterRingHint => 'Không làm phiền và tự động trả lời một lúc, như tập thể dục hay ngủ trưa.';
 }

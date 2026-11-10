@@ -3134,4 +3134,99 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Şabat ve bayramlarda sessiz.';
+
+  @override
+  String get busyMode => 'Meşgul modu';
+
+  @override
+  String get busyModeSubtitle => 'Meşgulken Rahatsız Etmeyin ve otomatik yanıtlar';
+
+  @override
+  String get busyIntro =>
+      'Siz meşgulken Quando? telefonu sessize alıp mesajlara sizin yerinize yanıt verebilir. Alarmlar yine çalar.';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone ve iPad\'de uygulamalar Odak açamaz veya mesajlara yanıt veremez. Kestirmeler uygulamasında \"Quando? açıldığında\" ya da bir saatte Odak açan bir otomasyon ekleyin ve Odak\'ı otomatik yanıt verecek şekilde ayarlayın.';
+
+  @override
+  String get busyWhileHeading => 'MEŞGULKEN';
+
+  @override
+  String get busyDnd => 'Rahatsız Etmeyin';
+
+  @override
+  String get busyDndHint =>
+      'Yalnızca öncelikli: aramalar ve mesajlar sessiz, alarmlar çalar. Bitince normale döner.';
+
+  @override
+  String get busyDndNoAccess => 'Quando?\'nun henüz Rahatsız Etmeyin\'i değiştirme izni yok.';
+
+  @override
+  String get busyReplies => 'Mesajlara yanıt ver';
+
+  @override
+  String get busyRepliesHint =>
+      'Kişi başına bir kez, sizin metninizle, uygulamanın kendi Yanıtla düğmesiyle. Yalnızca Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? mesajlara yanıt verebilsin mi?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Sizin yerinize yanıt vermek için Quando? bildirim erişimine ihtiyaç duyar. Yalnızca siz meşgulken, seçtiğiniz uygulamaların mesaj bildirimlerine bakar, gönderenin adını bu telefonda okur ve metninizi uygulamanın kendi Yanıtla düğmesiyle bir kez gönderir. Mesajlar asla saklanmaz veya başka yere gönderilmez. İzin vermedikçe gruplar atlanır.';
+
+  @override
+  String get busyReplyText => 'Yanıtınız';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until, meşgul modunun bittiği saate dönüşür.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Şu an meşgulüm, $until sonrasında yanıtlayacağım.';
+  }
+
+  @override
+  String get busyGroups => 'Gruplarda da yanıt ver';
+
+  @override
+  String get busyGroupsHint => 'Kapalı: gruplara asla yanıt verilmez.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Şabat ve bayramlarda da yanıt ver';
+
+  @override
+  String get busyAskRabbi => 'Varsayılan olarak kapalı. Şabat için açmadan önce hahamınıza danışın.';
+
+  @override
+  String get busyWhenHeading => 'NE ZAMAN MEŞGULSÜNÜZ';
+
+  @override
+  String get busyWhenHint =>
+      'Bir takvim alarmında \"Bu etkinlikler sırasında meşgul\" ya da bir alarmda \"Çaldıktan sonra meşgul\" seçeneğini açın.';
+
+  @override
+  String get busyDuringLock => 'Kilit modu açıkken meşgul';
+
+  @override
+  String get busyNoneComing => 'Önümüzdeki 7 günde meşgul bir şey yok.';
+
+  @override
+  String get busyDuringEvents => 'Bu etkinlikler sırasında meşgul';
+
+  @override
+  String get busyDuringEventsHint => 'Her etkinliğin başından sonuna meşgul modu.';
+
+  @override
+  String get busySettings => 'Meşgul modu ayarları';
+
+  @override
+  String get busyAfterRing => 'Çaldıktan sonra meşgul';
+
+  @override
+  String get busyAfterRingHint =>
+      'Bir süre Rahatsız Etmeyin ve otomatik yanıt, ör. antrenman veya şekerleme.';
 }

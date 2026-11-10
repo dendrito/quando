@@ -8,6 +8,7 @@ import 'package:go_router/go_router.dart';
 
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
+import '../features/busy/ui/busy_screen.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
 import '../features/calendar/ui/calendar_screen.dart';
 import '../features/home/ui/home_screen.dart';
@@ -46,6 +47,7 @@ final _router = GoRouter(
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
+    GoRoute(path: '/busy', builder: (context, state) => const BusyScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) =>
@@ -84,6 +86,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       // Keep the phone's alarms in step with the plan, whatever changes it.
       ref.listenManual(planProvider, (_, _) => _scheduleSync());
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
+      ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
+      ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
       // Signed in to sync: pick up where it left off.
@@ -122,6 +126,21 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
             );
       } catch (e) {
         debugPrint('Quando?: could not prepare loud calendar notifications: $e');
+      }
+      try {
+        final busy = ref.read(busySettingsProvider);
+        await ref
+            .read(busyModeProvider)
+            .publish(
+              settings: busy,
+              windows: ref.read(busyWindowsProvider),
+              replyText: busy.replyText.trim().isEmpty
+                  ? l10n.busyReplyDefault('{until}')
+                  : busy.replyText.trim(),
+              holy: ref.read(shabbatInUseProvider) ? ref.read(periodsProvider) : const [],
+            );
+      } catch (e) {
+        debugPrint('Quando?: could not prepare Busy mode: $e');
       }
     }
   }

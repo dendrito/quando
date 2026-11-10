@@ -3145,4 +3145,99 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Stil tijdens sjabbat en feestdagen.';
+
+  @override
+  String get busyMode => 'Bezet-modus';
+
+  @override
+  String get busyModeSubtitle => 'Niet storen en automatische antwoorden als je bezet bent';
+
+  @override
+  String get busyIntro =>
+      'Terwijl je bezet bent, kan Quando? je telefoon stil zetten en berichten voor je beantwoorden. Wekkers gaan gewoon af.';
+
+  @override
+  String get busyIosFocus =>
+      'Op iPhone en iPad kunnen apps geen focus aanzetten of berichten beantwoorden. Maak in de Opdrachten-app een automatisering \"Als Quando? opent\" of op een tijdstip die een focus aanzet, en laat die focus automatisch antwoorden.';
+
+  @override
+  String get busyWhileHeading => 'TERWIJL JE BEZET BENT';
+
+  @override
+  String get busyDnd => 'Niet storen';
+
+  @override
+  String get busyDndHint =>
+      'Alleen prioriteit: oproepen en berichten stil, wekkers gaan af. Daarna weer normaal.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? mag Niet storen nog niet wijzigen.';
+
+  @override
+  String get busyReplies => 'Berichten beantwoorden';
+
+  @override
+  String get busyRepliesHint =>
+      'Eén keer per persoon, met jouw tekst, via de Beantwoorden-knop van de app. Alleen Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? berichten laten beantwoorden?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Om voor je te antwoorden, heeft Quando? toegang tot meldingen nodig. Alleen terwijl je bezet bent, kijkt het naar berichtmeldingen van de gekozen apps, leest de naam van de afzender op deze telefoon en stuurt je tekst één keer via de Beantwoorden-knop van de app. Berichten worden nooit bewaard of ergens anders heen gestuurd. Groepen worden overgeslagen, tenzij je ze toestaat.';
+
+  @override
+  String get busyReplyText => 'Je antwoord';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until wordt de tijd waarop bezet-modus eindigt.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ik ben nu bezet en antwoord na $until.';
+  }
+
+  @override
+  String get busyGroups => 'Ook in groepen antwoorden';
+
+  @override
+  String get busyGroupsHint => 'Uit: groepen krijgen nooit antwoord.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Ook op sjabbat en feestdagen antwoorden';
+
+  @override
+  String get busyAskRabbi => 'Standaard uit. Vraag je rabbijn voor je dit voor sjabbat aanzet.';
+
+  @override
+  String get busyWhenHeading => 'WANNEER JE BEZET BENT';
+
+  @override
+  String get busyWhenHint =>
+      'Zet \"Bezet tijdens deze afspraken\" aan bij een agendawekker, of \"Bezet nadat hij afgaat\" bij een wekker.';
+
+  @override
+  String get busyDuringLock => 'Bezet zolang vergrendelmodus aan staat';
+
+  @override
+  String get busyNoneComing => 'Niets bezet in de komende 7 dagen.';
+
+  @override
+  String get busyDuringEvents => 'Bezet tijdens deze afspraken';
+
+  @override
+  String get busyDuringEventsHint => 'Bezet-modus van begin tot eind van elke afspraak.';
+
+  @override
+  String get busySettings => 'Instellingen bezet-modus';
+
+  @override
+  String get busyAfterRing => 'Bezet nadat hij afgaat';
+
+  @override
+  String get busyAfterRingHint =>
+      'Niet storen en automatische antwoorden voor even, bijv. sporten of een dutje.';
 }

@@ -51,6 +51,29 @@ class MainActivity : FlutterActivity() {
             }
         }
         phoneChannel(flutterEngine)
+        // Busy mode: Do Not Disturb access, and act on new busy times now.
+        MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/busy").setMethodCallHandler { call, result ->
+            val nm = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+            when (call.method) {
+                "refresh" -> {
+                    BusyMode.apply(this)
+                    result.success(true)
+                }
+                "policyAllowed" -> result.success(Build.VERSION.SDK_INT >= 23 && nm.isNotificationPolicyAccessGranted)
+                "openPolicySettings" -> result.success(
+                    try {
+                        startActivity(
+                            Intent(Settings.ACTION_NOTIFICATION_POLICY_ACCESS_SETTINGS)
+                                .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        )
+                        true
+                    } catch (e: Exception) {
+                        false
+                    }
+                )
+                else -> result.notImplemented()
+            }
+        }
         // Song links: open the song in its app, and play or pause it with the
         // phone's own media signals (like a headphone button).
         MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/media").setMethodCallHandler { call, result ->

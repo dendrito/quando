@@ -1,7 +1,10 @@
 package com.dendrito.quando
 
 import android.app.Notification
+import android.app.RemoteInput
 import android.content.Context
+import android.content.Intent
+import android.os.Bundle
 import android.content.SharedPreferences
 import android.service.notification.NotificationListenerService
 import android.service.notification.StatusBarNotification
@@ -17,7 +20,11 @@ import java.util.Date
  * - "Make calendar notifications loud": a reminder from a calendar app rings
  *   as a Quando? alarm, unless Quando? already rings for that event.
  *
- * Nothing read here leaves the phone. Settings come from the Dart side
+ * - Busy mode answers: while busy, a message in a picked app gets one
+ *   answer per person, through the notification's own Reply action.
+ *   Group chats are skipped unless the user allows them.
+ *
+ * Nothing read here leaves the phone, except the answer the user wrote. Settings come from the Dart side
  * through SharedPreferences (keys under `flutter.`).
  */
 class QuandoListener : NotificationListenerService() {
@@ -55,6 +62,11 @@ class QuandoListener : NotificationListenerService() {
         } catch (e: Exception) {
             Log.e(TAG, "Could not handle a notification", e)
         }
+        try {
+            autoReply(sbn)
+        } catch (e: Exception) {
+            Log.e(TAG, "Could not answer a message", e)
+        }
     }
 
     private fun loudCalendar(sbn: StatusBarNotification) {
@@ -88,6 +100,53 @@ class QuandoListener : NotificationListenerService() {
                 putLong(key, now)
             }.apply()
         }
+    }
+
+    private fun autoReply(sbn: StatusBarNotification) {
+        val prefs = dart()
+        if (!prefs.getBoolean("flutter.busy.replies", false)) return
+        if (sbn.packageName !in strings(prefs.getString("flutter.busy.apps", null))) return
+        val now = System.currentTimeMillis()
+        val busy = BusyMode.active(this, now) ?: return
+        // Shabbat and festivals: no answers unless the user chose them.
+        if (inQuiet(prefs.getString("flutter.busy.holy", null), now)) return
+        val n = sbn.notification ?: return
+        if (n.flags and Notification.FLAG_GROUP_SUMMARY != 0) return
+        if (sbn.isOngoing) return
+        val extras = n.extras ?: return
+        val group = extras.getBoolean("android.isGroupConversation", false) ||
+            extras.getCharSequence("android.conversationTitle") != null
+        if (group && !prefs.getBoolean("flutter.busy.groups", false)) return
+        val sender = extras.getCharSequence(Notification.EXTRA_TITLE)?.toString()?.trim().orEmpty()
+        if (sender.isEmpty()) return
+        val action = replyAction(n) ?: return
+        // One answer per person per busy stretch.
+        val key = "reply|${busy.id}|${sbn.packageName}|$sender"
+        val seen = own()
+        if (seen.contains(key)) return
+        val text = (prefs.getString("flutter.busy.replyText", null) ?: return)
+            .replace("{until}", java.text.DateFormat.getTimeInstance(java.text.DateFormat.SHORT).format(Date(busy.end)))
+        val input = action.remoteInputs!!.first { it.allowFreeFormInput }
+        val fill = Intent().addFlags(Intent.FLAG_RECEIVER_FOREGROUND)
+        RemoteInput.addResultsToIntent(
+            arrayOf(input),
+            fill,
+            Bundle().apply { putCharSequence(input.resultKey, text) },
+        )
+        action.actionIntent.send(this, 0, fill)
+        seen.edit().apply {
+            for ((k, v) in seen.all) if (k.startsWith("reply|") && v is Long && now - v > 7 * 24 * 3600 * 1000L) remove(k)
+            putLong(key, now)
+        }.apply()
+    }
+
+    /** The notification's Reply action: one that takes typed text. */
+    private fun replyAction(n: Notification): Notification.Action? {
+        val actions = n.actions ?: return null
+        return actions.firstOrNull { a ->
+            a.remoteInputs?.any { it.allowFreeFormInput } == true &&
+                (android.os.Build.VERSION.SDK_INT < 28 || a.semanticAction == Notification.Action.SEMANTIC_ACTION_REPLY)
+        } ?: actions.firstOrNull { a -> a.remoteInputs?.any { it.allowFreeFormInput } == true }
     }
 
     private fun strings(raw: String?): Set<String> {

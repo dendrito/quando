@@ -25,6 +25,7 @@ class CalendarRule {
     this.style = RingStyle.none,
     this.deliveries = const {},
     this.eventReminders = false,
+    this.busy = false,
   });
 
   final String id;
@@ -66,6 +67,9 @@ class CalendarRule {
 
   /// Also ring, loud, at each event's own reminders from the calendar app.
   final bool eventReminders;
+
+  /// Busy mode from each matching event's start to its end.
+  final bool busy;
 
   String get title {
     if (name.isNotEmpty) return name;
@@ -153,6 +157,7 @@ class CalendarRule {
     bool defaultSound = false,
     bool? includeTimes,
     bool? eventReminders,
+    bool? busy,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -169,6 +174,7 @@ class CalendarRule {
     deliveries: deliveries ?? this.deliveries,
     includeTimes: includeTimes ?? this.includeTimes,
     eventReminders: eventReminders ?? this.eventReminders,
+    busy: busy ?? this.busy,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -192,6 +198,7 @@ class CalendarRule {
     if (deliveries.isNotEmpty) 'deliveries': ReminderDelivery.encode(deliveries),
     'includeTimes': includeTimes,
     if (eventReminders) 'eventReminders': true,
+    if (busy) 'busy': true,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -210,5 +217,6 @@ class CalendarRule {
     deliveries: ReminderDelivery.decode(j['deliveries']),
     includeTimes: j['includeTimes'] as bool? ?? false,
     eventReminders: j['eventReminders'] as bool? ?? false,
+    busy: j['busy'] as bool? ?? false,
   );
 }

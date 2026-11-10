@@ -3148,4 +3148,100 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Still an Schabbat und Feiertagen.';
+
+  @override
+  String get busyMode => 'Beschäftigt-Modus';
+
+  @override
+  String get busyModeSubtitle => 'Nicht stören und Auto-Antworten, wenn du beschäftigt bist';
+
+  @override
+  String get busyIntro =>
+      'Während du beschäftigt bist, kann Quando? das Handy stummschalten und Nachrichten für dich beantworten. Wecker klingeln weiter.';
+
+  @override
+  String get busyIosFocus =>
+      'Auf iPhone und iPad können Apps keinen Fokus einschalten und keine Nachrichten beantworten. Erstelle in der Kurzbefehle-App eine Automation „Wenn Quando? geöffnet wird“ oder zu einer Uhrzeit, die einen Fokus einschaltet, und stelle dort Auto-Antworten ein.';
+
+  @override
+  String get busyWhileHeading => 'WÄHREND DU BESCHÄFTIGT BIST';
+
+  @override
+  String get busyDnd => 'Nicht stören';
+
+  @override
+  String get busyDndHint =>
+      'Nur Priorität: Anrufe und Nachrichten bleiben still, Wecker klingeln. Danach wieder normal.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? darf „Nicht stören“ noch nicht ändern.';
+
+  @override
+  String get busyReplies => 'Nachrichten beantworten';
+
+  @override
+  String get busyRepliesHint =>
+      'Einmal pro Person, mit deinem Text, über die Antworten-Taste der App. Nur Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? Nachrichten beantworten lassen?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Um für dich zu antworten, braucht Quando? Zugriff auf Benachrichtigungen. Nur während du beschäftigt bist, sieht es Nachrichten-Benachrichtigungen der gewählten Apps an, liest den Namen des Absenders auf diesem Handy und schickt deinen Text einmal über die Antworten-Taste der App. Nachrichten werden nie gespeichert oder anderswohin gesendet. Gruppen werden übersprungen, außer du erlaubst sie.';
+
+  @override
+  String get busyReplyText => 'Deine Antwort';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until wird zur Uhrzeit, zu der der Modus endet.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ich bin gerade beschäftigt und antworte nach $until.';
+  }
+
+  @override
+  String get busyGroups => 'Auch in Gruppen antworten';
+
+  @override
+  String get busyGroupsHint => 'Aus: Gruppen bekommen nie eine Antwort.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Auch an Schabbat und Feiertagen antworten';
+
+  @override
+  String get busyAskRabbi =>
+      'Standardmäßig aus. Frag deinen Rabbiner, bevor du das für Schabbat einschaltest.';
+
+  @override
+  String get busyWhenHeading => 'WANN DU BESCHÄFTIGT BIST';
+
+  @override
+  String get busyWhenHint =>
+      'Schalte „Beschäftigt während dieser Termine“ bei einem Kalenderwecker ein oder „Beschäftigt nach dem Klingeln“ bei einem Wecker.';
+
+  @override
+  String get busyDuringLock => 'Beschäftigt, solange der Sperrmodus an ist';
+
+  @override
+  String get busyNoneComing => 'Nichts Beschäftigtes in den nächsten 7 Tagen.';
+
+  @override
+  String get busyDuringEvents => 'Beschäftigt während dieser Termine';
+
+  @override
+  String get busyDuringEventsHint => 'Beschäftigt-Modus vom Beginn bis zum Ende jedes Termins.';
+
+  @override
+  String get busySettings => 'Einstellungen Beschäftigt-Modus';
+
+  @override
+  String get busyAfterRing => 'Beschäftigt nach dem Klingeln';
+
+  @override
+  String get busyAfterRingHint =>
+      'Nicht stören und Auto-Antworten für eine Weile, z. B. Training oder Nickerchen.';
 }

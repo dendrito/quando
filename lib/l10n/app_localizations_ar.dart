@@ -3190,4 +3190,96 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'صامت أثناء السبت والأعياد.';
+
+  @override
+  String get busyMode => 'وضع مشغول';
+
+  @override
+  String get busyModeSubtitle => 'عدم الإزعاج والردود التلقائية أثناء انشغالك';
+
+  @override
+  String get busyIntro =>
+      'أثناء انشغالك يمكن لـ Quando? أن يُسكت الهاتف ويرد على الرسائل نيابة عنك. المنبّهات تظل ترنّ.';
+
+  @override
+  String get busyIosFocus =>
+      'على iPhone وiPad لا تستطيع التطبيقات تشغيل وضع التركيز أو الرد على الرسائل. في تطبيق الاختصارات أضف أتمتة «عند فتح Quando?» أو في وقت محدد تشغّل وضع تركيز، واضبطه للرد التلقائي.';
+
+  @override
+  String get busyWhileHeading => 'أثناء انشغالك';
+
+  @override
+  String get busyDnd => 'عدم الإزعاج';
+
+  @override
+  String get busyDndHint =>
+      'الأولوية فقط: المكالمات والرسائل صامتة والمنبّهات ترنّ. يعود كل شيء بعد الانتهاء.';
+
+  @override
+  String get busyDndNoAccess => 'لا يُسمح لـ Quando? بعد بتغيير عدم الإزعاج.';
+
+  @override
+  String get busyReplies => 'الرد على الرسائل';
+
+  @override
+  String get busyRepliesHint => 'مرة لكل شخص، بنصك، عبر زر الرد في التطبيق نفسه. أندرويد فقط.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'السماح لـ Quando? بالرد على الرسائل؟';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'للرد نيابة عنك يحتاج Quando? إلى الوصول إلى الإشعارات. فقط أثناء انشغالك، ينظر في إشعارات الرسائل من التطبيقات التي تختارها، ويقرأ اسم المرسل على هذا الهاتف، ويرسل نصك مرة واحدة عبر زر الرد في التطبيق نفسه. لا تُحفظ الرسائل ولا تُرسل إلى أي مكان آخر. تُتخطى المجموعات ما لم تسمح بها.';
+
+  @override
+  String get busyReplyText => 'ردك';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until يصبح وقت انتهاء وضع مشغول.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'أنا مشغول الآن وسأرد بعد $until.';
+  }
+
+  @override
+  String get busyGroups => 'الرد في المجموعات أيضًا';
+
+  @override
+  String get busyGroupsHint => 'متوقف: لا يُرد على المجموعات أبدًا.';
+
+  @override
+  String get busyRepliesOnShabbat => 'الرد أثناء السبت والأعياد';
+
+  @override
+  String get busyAskRabbi => 'متوقف افتراضيًا. اسأل حاخامك قبل تشغيله للسبت.';
+
+  @override
+  String get busyWhenHeading => 'متى تكون مشغولًا';
+
+  @override
+  String get busyWhenHint => 'شغّل «مشغول أثناء هذه الأحداث» في منبّه تقويم، أو «مشغول بعد الرنين» في منبّه.';
+
+  @override
+  String get busyDuringLock => 'مشغول أثناء تشغيل وضع القفل';
+
+  @override
+  String get busyNoneComing => 'لا انشغال في الأيام السبعة القادمة.';
+
+  @override
+  String get busyDuringEvents => 'مشغول أثناء هذه الأحداث';
+
+  @override
+  String get busyDuringEventsHint => 'وضع مشغول من بداية كل حدث إلى نهايته.';
+
+  @override
+  String get busySettings => 'إعدادات وضع مشغول';
+
+  @override
+  String get busyAfterRing => 'مشغول بعد الرنين';
+
+  @override
+  String get busyAfterRingHint => 'عدم الإزعاج وردود تلقائية لفترة، مثل تمرين أو قيلولة.';
 }

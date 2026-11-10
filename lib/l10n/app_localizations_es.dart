@@ -3151,4 +3151,99 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'En silencio durante Shabat y las festividades.';
+
+  @override
+  String get busyMode => 'Modo ocupado';
+
+  @override
+  String get busyModeSubtitle => 'No molestar y respuestas automáticas mientras estás ocupado';
+
+  @override
+  String get busyIntro =>
+      'Mientras estás ocupado, Quando? puede silenciar el teléfono y responder mensajes por ti. Las alarmas siguen sonando.';
+
+  @override
+  String get busyIosFocus =>
+      'En iPhone y iPad, las apps no pueden activar Concentración ni responder mensajes. En la app Atajos, crea una automatización \"Al abrir Quando?\" o a una hora que active una Concentración, y configúrala para responder automáticamente.';
+
+  @override
+  String get busyWhileHeading => 'MIENTRAS ESTÁS OCUPADO';
+
+  @override
+  String get busyDnd => 'No molestar';
+
+  @override
+  String get busyDndHint =>
+      'Solo prioridad: llamadas y mensajes en silencio, las alarmas suenan. Vuelve a la normalidad al terminar.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? aún no puede cambiar No molestar.';
+
+  @override
+  String get busyReplies => 'Responder mensajes';
+
+  @override
+  String get busyRepliesHint =>
+      'Una vez por persona, con tu texto, mediante el botón Responder de la app. Solo Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => '¿Permitir que Quando? responda mensajes?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Para responder por ti, Quando? necesita acceso a las notificaciones. Solo mientras estás ocupado, mira las notificaciones de mensajes de las apps que elijas, lee el nombre del remitente en este teléfono y envía tu texto una vez mediante el botón Responder de la app. Los mensajes nunca se guardan ni se envían a otro sitio. Los grupos se omiten salvo que lo permitas.';
+
+  @override
+  String get busyReplyText => 'Tu respuesta';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until se convierte en la hora en que termina el modo ocupado.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ahora estoy ocupado y responderé después de las $until.';
+  }
+
+  @override
+  String get busyGroups => 'Responder también en grupos';
+
+  @override
+  String get busyGroupsHint => 'Desactivado: los grupos nunca reciben respuesta.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Responder durante Shabat y festividades';
+
+  @override
+  String get busyAskRabbi => 'Desactivado por defecto. Consulta a tu rabino antes de activarlo en Shabat.';
+
+  @override
+  String get busyWhenHeading => 'CUÁNDO ESTÁS OCUPADO';
+
+  @override
+  String get busyWhenHint =>
+      'Activa \"Ocupado durante estos eventos\" en una alarma de calendario, u \"Ocupado después de sonar\" en una alarma.';
+
+  @override
+  String get busyDuringLock => 'Ocupado mientras el modo bloqueo está activo';
+
+  @override
+  String get busyNoneComing => 'Nada ocupado en los próximos 7 días.';
+
+  @override
+  String get busyDuringEvents => 'Ocupado durante estos eventos';
+
+  @override
+  String get busyDuringEventsHint => 'Modo ocupado desde el inicio hasta el final de cada evento.';
+
+  @override
+  String get busySettings => 'Ajustes del modo ocupado';
+
+  @override
+  String get busyAfterRing => 'Ocupado después de sonar';
+
+  @override
+  String get busyAfterRingHint =>
+      'No molestar y respuestas automáticas un rato, como un entrenamiento o una siesta.';
 }

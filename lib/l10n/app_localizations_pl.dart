@@ -3202,4 +3202,98 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Cisza w szabat i święta.';
+
+  @override
+  String get busyMode => 'Tryb zajęty';
+
+  @override
+  String get busyModeSubtitle => 'Nie przeszkadzać i autoodpowiedzi, gdy jesteś zajęty';
+
+  @override
+  String get busyIntro =>
+      'Gdy jesteś zajęty, Quando? może wyciszyć telefon i odpowiadać na wiadomości za ciebie. Alarmy nadal dzwonią.';
+
+  @override
+  String get busyIosFocus =>
+      'Na iPhonie i iPadzie aplikacje nie mogą włączyć trybu Skupienie ani odpowiadać na wiadomości. W aplikacji Skróty dodaj automatyzację „Gdy Quando? się otworzy” lub o danej godzinie, która włącza Skupienie, i ustaw w nim autoodpowiedź.';
+
+  @override
+  String get busyWhileHeading => 'GDY JESTEŚ ZAJĘTY';
+
+  @override
+  String get busyDnd => 'Nie przeszkadzać';
+
+  @override
+  String get busyDndHint =>
+      'Tylko priorytetowe: połączenia i wiadomości wyciszone, alarmy dzwonią. Potem wszystko wraca do normy.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? nie może jeszcze zmieniać trybu Nie przeszkadzać.';
+
+  @override
+  String get busyReplies => 'Odpowiadaj na wiadomości';
+
+  @override
+  String get busyRepliesHint =>
+      'Raz na osobę, twoim tekstem, przez przycisk Odpowiedz w aplikacji. Tylko Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Pozwolić Quando? odpowiadać na wiadomości?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Aby odpowiadać za ciebie, Quando? potrzebuje dostępu do powiadomień. Tylko gdy jesteś zajęty, patrzy na powiadomienia wiadomości z wybranych aplikacji, odczytuje na tym telefonie nazwę nadawcy i wysyła twój tekst raz przez przycisk Odpowiedz w aplikacji. Wiadomości nigdy nie są zapisywane ani wysyłane gdzie indziej. Grupy są pomijane, chyba że na nie pozwolisz.';
+
+  @override
+  String get busyReplyText => 'Twoja odpowiedź';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until zamieni się w godzinę końca trybu zajęty.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Jestem teraz zajęty, odpowiem po $until.';
+  }
+
+  @override
+  String get busyGroups => 'Odpowiadaj też w grupach';
+
+  @override
+  String get busyGroupsHint => 'Wyłączone: grupy nigdy nie dostają odpowiedzi.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Odpowiadaj w szabat i święta';
+
+  @override
+  String get busyAskRabbi => 'Domyślnie wyłączone. Zapytaj rabina, zanim włączysz to na szabat.';
+
+  @override
+  String get busyWhenHeading => 'KIEDY JESTEŚ ZAJĘTY';
+
+  @override
+  String get busyWhenHint =>
+      'Włącz „Zajęty podczas tych wydarzeń” w alarmie kalendarza lub „Zajęty po dzwonku” w alarmie.';
+
+  @override
+  String get busyDuringLock => 'Zajęty, gdy włączony jest tryb blokady';
+
+  @override
+  String get busyNoneComing => 'Nic zajętego w ciągu 7 dni.';
+
+  @override
+  String get busyDuringEvents => 'Zajęty podczas tych wydarzeń';
+
+  @override
+  String get busyDuringEventsHint => 'Tryb zajęty od początku do końca każdego wydarzenia.';
+
+  @override
+  String get busySettings => 'Ustawienia trybu zajęty';
+
+  @override
+  String get busyAfterRing => 'Zajęty po dzwonku';
+
+  @override
+  String get busyAfterRingHint => 'Nie przeszkadzać i autoodpowiedzi na chwilę, np. trening lub drzemka.';
 }

@@ -3127,4 +3127,97 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'शब्बात और त्योहारों में शांत।';
+
+  @override
+  String get busyMode => 'व्यस्त मोड';
+
+  @override
+  String get busyModeSubtitle => 'व्यस्त रहते हुए परेशान न करें और ऑटो-जवाब';
+
+  @override
+  String get busyIntro =>
+      'आपके व्यस्त रहने पर Quando? फ़ोन को शांत कर सकता है और आपकी ओर से संदेशों का जवाब दे सकता है। अलार्म फिर भी बजते हैं।';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone और iPad पर ऐप Focus चालू नहीं कर सकते और न ही संदेशों का जवाब दे सकते हैं। Shortcuts ऐप में \"Quando? खुलने पर\" या किसी समय पर Focus चालू करने वाला ऑटोमेशन जोड़ें और Focus में ऑटो-जवाब सेट करें।';
+
+  @override
+  String get busyWhileHeading => 'व्यस्त रहते हुए';
+
+  @override
+  String get busyDnd => 'परेशान न करें';
+
+  @override
+  String get busyDndHint => 'केवल प्राथमिकता: कॉल और संदेश शांत, अलार्म बजते हैं। खत्म होने पर सामान्य।';
+
+  @override
+  String get busyDndNoAccess => 'Quando? को अभी परेशान न करें बदलने की अनुमति नहीं है।';
+
+  @override
+  String get busyReplies => 'संदेशों का जवाब दें';
+
+  @override
+  String get busyRepliesHint =>
+      'हर व्यक्ति को एक बार, आपके टेक्स्ट से, ऐप के अपने जवाब बटन से। सिर्फ़ Android।';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? को संदेशों का जवाब देने दें?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'आपकी ओर से जवाब देने के लिए Quando? को सूचना एक्सेस चाहिए। सिर्फ़ आपके व्यस्त रहने पर, यह आपके चुने ऐप की संदेश सूचनाएँ देखता है, इसी फ़ोन पर भेजने वाले का नाम पढ़ता है और ऐप के अपने जवाब बटन से आपका टेक्स्ट एक बार भेजता है। संदेश कभी सहेजे या कहीं और भेजे नहीं जाते। जब तक आप अनुमति न दें, ग्रुप छोड़ दिए जाते हैं।';
+
+  @override
+  String get busyReplyText => 'आपका जवाब';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until की जगह व्यस्त मोड खत्म होने का समय आएगा।';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'मैं अभी व्यस्त हूँ, $until के बाद जवाब दूँगा।';
+  }
+
+  @override
+  String get busyGroups => 'ग्रुप चैट में भी जवाब दें';
+
+  @override
+  String get busyGroupsHint => 'बंद: ग्रुप को कभी जवाब नहीं।';
+
+  @override
+  String get busyRepliesOnShabbat => 'शब्बात और त्योहारों में भी जवाब दें';
+
+  @override
+  String get busyAskRabbi => 'डिफ़ॉल्ट रूप से बंद। शब्बात के लिए चालू करने से पहले अपने रब्बी से पूछें।';
+
+  @override
+  String get busyWhenHeading => 'आप कब व्यस्त हैं';
+
+  @override
+  String get busyWhenHint =>
+      'किसी कैलेंडर अलार्म पर \"इन इवेंट के दौरान व्यस्त\" या किसी अलार्म पर \"बजने के बाद व्यस्त\" चालू करें।';
+
+  @override
+  String get busyDuringLock => 'लॉक मोड चालू रहने तक व्यस्त';
+
+  @override
+  String get busyNoneComing => 'अगले 7 दिनों में कुछ व्यस्त नहीं।';
+
+  @override
+  String get busyDuringEvents => 'इन इवेंट के दौरान व्यस्त';
+
+  @override
+  String get busyDuringEventsHint => 'हर इवेंट की शुरुआत से अंत तक व्यस्त मोड।';
+
+  @override
+  String get busySettings => 'व्यस्त मोड सेटिंग';
+
+  @override
+  String get busyAfterRing => 'बजने के बाद व्यस्त';
+
+  @override
+  String get busyAfterRingHint => 'कुछ देर परेशान न करें और ऑटो-जवाब, जैसे वर्कआउट या झपकी।';
 }

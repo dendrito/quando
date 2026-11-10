@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
@@ -426,6 +427,19 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               value: _rule.eventReminders,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(eventReminders: v)),
             ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+              title: Text(l10n.busyDuringEvents),
+              subtitle: Text(l10n.busyDuringEventsHint),
+              value: _rule.busy,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
+            ),
+            if (_rule.busy)
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),
+              ),
             const SizedBox(height: 8),
             Text(l10n.ringBeforeStartsHeading, style: text.labelSmall),
             const SizedBox(height: 8),

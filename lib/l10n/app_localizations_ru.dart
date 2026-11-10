@@ -3200,4 +3200,99 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Тихо в Шаббат и праздники.';
+
+  @override
+  String get busyMode => 'Режим «Занят»';
+
+  @override
+  String get busyModeSubtitle => '«Не беспокоить» и автоответы, пока вы заняты';
+
+  @override
+  String get busyIntro =>
+      'Пока вы заняты, Quando? может приглушить телефон и отвечать на сообщения за вас. Будильники по-прежнему звонят.';
+
+  @override
+  String get busyIosFocus =>
+      'На iPhone и iPad приложения не могут включать фокусирование и отвечать на сообщения. В приложении «Команды» создайте автоматизацию «При открытии Quando?» или по времени, которая включает фокусирование, и настройте в нём автоответ.';
+
+  @override
+  String get busyWhileHeading => 'ПОКА ВЫ ЗАНЯТЫ';
+
+  @override
+  String get busyDnd => 'Не беспокоить';
+
+  @override
+  String get busyDndHint =>
+      'Только важные: звонки и сообщения беззвучны, будильники звонят. Потом всё как было.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? пока не может менять «Не беспокоить».';
+
+  @override
+  String get busyReplies => 'Отвечать на сообщения';
+
+  @override
+  String get busyRepliesHint =>
+      'Один раз каждому, вашим текстом, через кнопку «Ответить» самого приложения. Только Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Разрешить Quando? отвечать на сообщения?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Чтобы отвечать за вас, Quando? нужен доступ к уведомлениям. Только пока вы заняты, он смотрит уведомления о сообщениях выбранных приложений, читает имя отправителя на этом телефоне и один раз отправляет ваш текст через кнопку «Ответить» самого приложения. Сообщения никогда не сохраняются и никуда больше не отправляются. Группы пропускаются, если вы их не разрешите.';
+
+  @override
+  String get busyReplyText => 'Ваш ответ';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until заменится временем окончания режима.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Сейчас занят, отвечу после $until.';
+  }
+
+  @override
+  String get busyGroups => 'Отвечать и в группах';
+
+  @override
+  String get busyGroupsHint => 'Выключено: группам никогда не отвечаем.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Отвечать в Шаббат и праздники';
+
+  @override
+  String get busyAskRabbi =>
+      'По умолчанию выключено. Спросите своего раввина, прежде чем включать на Шаббат.';
+
+  @override
+  String get busyWhenHeading => 'КОГДА ВЫ ЗАНЯТЫ';
+
+  @override
+  String get busyWhenHint =>
+      'Включите «Занят во время этих событий» в будильнике календаря или «Занят после звонка» в будильнике.';
+
+  @override
+  String get busyDuringLock => 'Занят, пока включён режим блокировки';
+
+  @override
+  String get busyNoneComing => 'В ближайшие 7 дней вы не заняты.';
+
+  @override
+  String get busyDuringEvents => 'Занят во время этих событий';
+
+  @override
+  String get busyDuringEventsHint => 'Режим «Занят» от начала до конца каждого события.';
+
+  @override
+  String get busySettings => 'Настройки режима «Занят»';
+
+  @override
+  String get busyAfterRing => 'Занят после звонка';
+
+  @override
+  String get busyAfterRingHint => '«Не беспокоить» и автоответы на время, например тренировка или сон днём.';
 }

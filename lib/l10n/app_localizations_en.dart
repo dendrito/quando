@@ -3132,4 +3132,98 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Quiet during Shabbat and festivals.';
+
+  @override
+  String get busyMode => 'Busy mode';
+
+  @override
+  String get busyModeSubtitle => 'Do Not Disturb and auto-replies while you\'re busy';
+
+  @override
+  String get busyIntro =>
+      'While you\'re busy, Quando? can quiet the phone and answer messages for you. Alarms still ring.';
+
+  @override
+  String get busyIosFocus =>
+      'On iPhone and iPad, apps can\'t turn on Focus or answer messages. In the Shortcuts app, add an automation \"When Quando? opens\" or a time of day that turns on a Focus, and set the Focus to auto-reply.';
+
+  @override
+  String get busyWhileHeading => 'WHILE YOU\'RE BUSY';
+
+  @override
+  String get busyDnd => 'Do Not Disturb';
+
+  @override
+  String get busyDndHint =>
+      'Priority only: calls and messages stay quiet, alarms still ring. Back to normal when it ends.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? isn\'t allowed to change Do Not Disturb yet.';
+
+  @override
+  String get busyReplies => 'Answer messages';
+
+  @override
+  String get busyRepliesHint =>
+      'Once per person, with your text, through the app\'s own Reply button. Android only.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Let Quando? answer messages?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'To answer for you, Quando? needs notification access. Only while you\'re busy, it looks at message notifications from the apps you pick, reads the sender\'s name on this phone, and sends your text once through the app\'s own Reply button. Messages are never stored or sent anywhere else. Group chats are skipped unless you allow them.';
+
+  @override
+  String get busyReplyText => 'Your answer';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until becomes the time Busy mode ends.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'I\'m busy right now and will answer after $until.';
+  }
+
+  @override
+  String get busyGroups => 'Answer in group chats too';
+
+  @override
+  String get busyGroupsHint => 'Off: groups are never answered.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Answer during Shabbat and festivals';
+
+  @override
+  String get busyAskRabbi => 'Off by default. Ask your rabbi before turning this on for Shabbat.';
+
+  @override
+  String get busyWhenHeading => 'WHEN YOU\'RE BUSY';
+
+  @override
+  String get busyWhenHint =>
+      'Turn on \"Busy during these events\" on a calendar alarm, or \"Busy after it rings\" on an alarm.';
+
+  @override
+  String get busyDuringLock => 'Busy while lock mode is on';
+
+  @override
+  String get busyNoneComing => 'Nothing busy in the next 7 days.';
+
+  @override
+  String get busyDuringEvents => 'Busy during these events';
+
+  @override
+  String get busyDuringEventsHint => 'Busy mode from each event\'s start to its end.';
+
+  @override
+  String get busySettings => 'Busy mode settings';
+
+  @override
+  String get busyAfterRing => 'Busy after it rings';
+
+  @override
+  String get busyAfterRingHint => 'Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.';
 }

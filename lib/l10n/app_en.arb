@@ -1881,5 +1881,47 @@
   "loudNotificationsAllow": "Allow",
   "loudNotificationsNoApps": "No supported calendar app found on this phone.",
   "loudNotificationsTwiceNote": "Events that already have a Quando? calendar alarm ring only once.",
-  "loudNotificationsShabbatNote": "Quiet during Shabbat and festivals."
+  "loudNotificationsShabbatNote": "Quiet during Shabbat and festivals.",
+  "busyMode": "Busy mode",
+  "busyModeSubtitle": "Do Not Disturb and auto-replies while you're busy",
+  "busyIntro": "While you're busy, Quando? can quiet the phone and answer messages for you. Alarms still ring.",
+  "busyIosFocus": "On iPhone and iPad, apps can't turn on Focus or answer messages. In the Shortcuts app, add an automation \"When Quando? opens\" or a time of day that turns on a Focus, and set the Focus to auto-reply.",
+  "busyWhileHeading": "WHILE YOU'RE BUSY",
+  "busyDnd": "Do Not Disturb",
+  "busyDndHint": "Priority only: calls and messages stay quiet, alarms still ring. Back to normal when it ends.",
+  "busyDndNoAccess": "Quando? isn't allowed to change Do Not Disturb yet.",
+  "busyReplies": "Answer messages",
+  "busyRepliesHint": "Once per person, with your text, through the app's own Reply button. Android only.",
+  "busyRepliesDisclosureTitle": "Let Quando? answer messages?",
+  "busyRepliesDisclosure": "To answer for you, Quando? needs notification access. Only while you're busy, it looks at message notifications from the apps you pick, reads the sender's name on this phone, and sends your text once through the app's own Reply button. Messages are never stored or sent anywhere else. Group chats are skipped unless you allow them.",
+  "busyReplyText": "Your answer",
+  "busyReplyTextHint": "{until} becomes the time Busy mode ends.",
+  "busyReplyDefault": "I'm busy right now and will answer after {until}.",
+  "busyGroups": "Answer in group chats too",
+  "busyGroupsHint": "Off: groups are never answered.",
+  "busyRepliesOnShabbat": "Answer during Shabbat and festivals",
+  "busyAskRabbi": "Off by default. Ask your rabbi before turning this on for Shabbat.",
+  "busyWhenHeading": "WHEN YOU'RE BUSY",
+  "busyWhenHint": "Turn on \"Busy during these events\" on a calendar alarm, or \"Busy after it rings\" on an alarm.",
+  "busyDuringLock": "Busy while lock mode is on",
+  "busyNoneComing": "Nothing busy in the next 7 days.",
+  "busyDuringEvents": "Busy during these events",
+  "busyDuringEventsHint": "Busy mode from each event's start to its end.",
+  "busySettings": "Busy mode settings",
+  "busyAfterRing": "Busy after it rings",
+  "busyAfterRingHint": "Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.",
+  "@busyReplyTextHint": {
+    "placeholders": {
+      "until": {
+        "type": "String"
+      }
+    }
+  },
+  "@busyReplyDefault": {
+    "placeholders": {
+      "until": {
+        "type": "String"
+      }
+    }
+  }
 }

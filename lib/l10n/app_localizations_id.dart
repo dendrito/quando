@@ -3131,4 +3131,99 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'Senyap selama Shabbat dan hari raya.';
+
+  @override
+  String get busyMode => 'Mode sibuk';
+
+  @override
+  String get busyModeSubtitle => 'Jangan Ganggu dan balasan otomatis saat Anda sibuk';
+
+  @override
+  String get busyIntro =>
+      'Saat Anda sibuk, Quando? bisa menyenyapkan ponsel dan membalas pesan untuk Anda. Alarm tetap berbunyi.';
+
+  @override
+  String get busyIosFocus =>
+      'Di iPhone dan iPad, aplikasi tidak bisa menyalakan Fokus atau membalas pesan. Di app Pintasan, tambahkan otomatisasi \"Saat Quando? dibuka\" atau pada jam tertentu yang menyalakan Fokus, lalu atur Fokus untuk membalas otomatis.';
+
+  @override
+  String get busyWhileHeading => 'SAAT ANDA SIBUK';
+
+  @override
+  String get busyDnd => 'Jangan Ganggu';
+
+  @override
+  String get busyDndHint =>
+      'Hanya prioritas: panggilan dan pesan senyap, alarm tetap berbunyi. Kembali normal setelahnya.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? belum diizinkan mengubah Jangan Ganggu.';
+
+  @override
+  String get busyReplies => 'Balas pesan';
+
+  @override
+  String get busyRepliesHint =>
+      'Sekali per orang, dengan teks Anda, lewat tombol Balas aplikasi itu. Hanya Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Izinkan Quando? membalas pesan?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Untuk membalas atas nama Anda, Quando? memerlukan akses notifikasi. Hanya saat Anda sibuk, ia melihat notifikasi pesan dari aplikasi yang Anda pilih, membaca nama pengirim di ponsel ini, dan mengirim teks Anda sekali lewat tombol Balas aplikasi itu. Pesan tidak pernah disimpan atau dikirim ke tempat lain. Grup dilewati kecuali Anda mengizinkannya.';
+
+  @override
+  String get busyReplyText => 'Jawaban Anda';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until menjadi jam berakhirnya mode sibuk.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Saya sedang sibuk, akan membalas setelah $until.';
+  }
+
+  @override
+  String get busyGroups => 'Balas juga di grup';
+
+  @override
+  String get busyGroupsHint => 'Mati: grup tidak pernah dibalas.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Balas juga saat Shabbat dan hari raya';
+
+  @override
+  String get busyAskRabbi => 'Mati secara bawaan. Tanya rabi Anda sebelum menyalakannya untuk Shabbat.';
+
+  @override
+  String get busyWhenHeading => 'KAPAN ANDA SIBUK';
+
+  @override
+  String get busyWhenHint =>
+      'Nyalakan \"Sibuk selama acara ini\" pada alarm kalender, atau \"Sibuk setelah berbunyi\" pada alarm.';
+
+  @override
+  String get busyDuringLock => 'Sibuk saat mode kunci menyala';
+
+  @override
+  String get busyNoneComing => 'Tidak ada waktu sibuk dalam 7 hari ke depan.';
+
+  @override
+  String get busyDuringEvents => 'Sibuk selama acara ini';
+
+  @override
+  String get busyDuringEventsHint => 'Mode sibuk dari awal hingga akhir setiap acara.';
+
+  @override
+  String get busySettings => 'Pengaturan mode sibuk';
+
+  @override
+  String get busyAfterRing => 'Sibuk setelah berbunyi';
+
+  @override
+  String get busyAfterRingHint =>
+      'Jangan Ganggu dan balasan otomatis sebentar, mis. olahraga atau tidur siang.';
 }

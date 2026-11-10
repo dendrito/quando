@@ -3084,4 +3084,94 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => '안식일과 명절에는 울리지 않습니다.';
+
+  @override
+  String get busyMode => '바쁨 모드';
+
+  @override
+  String get busyModeSubtitle => '바쁠 때 방해 금지와 자동 답장';
+
+  @override
+  String get busyIntro => '바쁠 때 Quando?가 휴대폰을 조용히 하고 대신 메시지에 답장합니다. 알람은 그대로 울립니다.';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone과 iPad에서는 앱이 집중 모드를 켜거나 메시지에 답장할 수 없습니다. 단축어 앱에서 \'Quando?를 열 때\' 또는 특정 시간에 집중 모드를 켜는 자동화를 만들고 집중 모드에서 자동 답장을 설정하세요.';
+
+  @override
+  String get busyWhileHeading => '바쁠 때';
+
+  @override
+  String get busyDnd => '방해 금지';
+
+  @override
+  String get busyDndHint => '중요 알림만: 전화와 메시지는 조용히, 알람은 울립니다. 끝나면 원래대로.';
+
+  @override
+  String get busyDndNoAccess => 'Quando?에 아직 방해 금지 변경 권한이 없습니다.';
+
+  @override
+  String get busyReplies => '메시지에 답장';
+
+  @override
+  String get busyRepliesHint => '한 사람당 한 번, 내 문구로, 앱 자체의 답장 버튼을 통해. Android 전용.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando?가 메시지에 답장하도록 허용할까요?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '대신 답장하려면 Quando?에 알림 접근 권한이 필요합니다. 바쁠 때만 선택한 앱의 메시지 알림을 보고, 이 휴대폰에서 보낸 사람 이름을 읽고, 앱 자체의 답장 버튼으로 내 문구를 한 번 보냅니다. 메시지는 저장하거나 다른 곳으로 보내지 않습니다. 허용하지 않으면 그룹은 건너뜁니다.';
+
+  @override
+  String get busyReplyText => '내 답장';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until은 바쁨 모드가 끝나는 시간으로 바뀝니다.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '지금 바빠서 $until 이후에 답장할게요.';
+  }
+
+  @override
+  String get busyGroups => '그룹 채팅에도 답장';
+
+  @override
+  String get busyGroupsHint => '끔: 그룹에는 답장하지 않습니다.';
+
+  @override
+  String get busyRepliesOnShabbat => '안식일과 명절에도 답장';
+
+  @override
+  String get busyAskRabbi => '기본값은 꺼짐. 안식일에 켜기 전에 랍비에게 문의하세요.';
+
+  @override
+  String get busyWhenHeading => '바쁜 시간';
+
+  @override
+  String get busyWhenHint => '캘린더 알람에서 \'이 일정 동안 바쁨\' 또는 알람에서 \'울린 후 바쁨\'을 켜세요.';
+
+  @override
+  String get busyDuringLock => '잠금 모드 동안 바쁨';
+
+  @override
+  String get busyNoneComing => '앞으로 7일 동안 바쁜 시간이 없습니다.';
+
+  @override
+  String get busyDuringEvents => '이 일정 동안 바쁨';
+
+  @override
+  String get busyDuringEventsHint => '각 일정의 시작부터 끝까지 바쁨 모드.';
+
+  @override
+  String get busySettings => '바쁨 모드 설정';
+
+  @override
+  String get busyAfterRing => '울린 후 바쁨';
+
+  @override
+  String get busyAfterRingHint => '잠시 방해 금지와 자동 답장. 운동이나 낮잠 등.';
 }

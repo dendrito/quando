@@ -3076,6 +3076,96 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => '安息日和节日期间静音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌时开启勿扰和自动回复';
+
+  @override
+  String get busyIntro => '忙碌时，Quando? 可以让手机安静并替你回复消息。闹钟照常响。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，应用无法开启专注模式或回复消息。请在“快捷指令”App 中添加“打开 Quando? 时”或定时开启专注模式的自动化，并在专注模式中设置自动回复。';
+
+  @override
+  String get busyWhileHeading => '忙碌时';
+
+  @override
+  String get busyDnd => '勿扰';
+
+  @override
+  String get busyDndHint => '仅限优先：来电和消息静音，闹钟照响。结束后恢复。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 还没有更改勿扰的权限。';
+
+  @override
+  String get busyReplies => '回复消息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，通过应用自带的回复按钮。仅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允许 Quando? 回复消息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '为了替你回复，Quando? 需要通知使用权。仅在你忙碌时，它查看你所选应用的消息通知，在本机读取发送者名字，并通过应用自带的回复按钮发送一次你的文字。消息从不保存，也不会发往别处。除非你允许，群聊会被跳过。';
+
+  @override
+  String get busyReplyText => '你的回复';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 会变成忙碌模式结束的时间。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我现在在忙，$until 后回复。';
+  }
+
+  @override
+  String get busyGroups => '群聊也回复';
+
+  @override
+  String get busyGroupsHint => '关闭：从不回复群聊。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和节日也回复';
+
+  @override
+  String get busyAskRabbi => '默认关闭。在安息日开启前请先请教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何时忙碌';
+
+  @override
+  String get busyWhenHint => '在日历闹钟上开启“这些日程期间忙碌”，或在闹钟上开启“响铃后忙碌”。';
+
+  @override
+  String get busyDuringLock => '锁定模式开启时忙碌';
+
+  @override
+  String get busyNoneComing => '未来 7 天没有忙碌时段。';
+
+  @override
+  String get busyDuringEvents => '这些日程期间忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每个日程从开始到结束都处于忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式设置';
+
+  @override
+  String get busyAfterRing => '响铃后忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段时间内勿扰和自动回复，例如锻炼或午睡。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6149,4 +6239,94 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get loudNotificationsShabbatNote => '安息日和節日期間靜音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌時開啟勿擾和自動回覆';
+
+  @override
+  String get busyIntro => '忙碌時，Quando? 可以讓手機安靜並替你回覆訊息。鬧鐘照常響。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，App 無法開啟專注模式或回覆訊息。請在「捷徑」App 中加入「打開 Quando? 時」或定時開啟專注模式的自動化，並在專注模式中設定自動回覆。';
+
+  @override
+  String get busyWhileHeading => '忙碌時';
+
+  @override
+  String get busyDnd => '勿擾';
+
+  @override
+  String get busyDndHint => '僅限優先：來電和訊息靜音，鬧鐘照響。結束後恢復。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 還沒有變更勿擾的權限。';
+
+  @override
+  String get busyReplies => '回覆訊息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，透過 App 自帶的回覆按鈕。僅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允許 Quando? 回覆訊息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '為了替你回覆，Quando? 需要通知存取權。僅在你忙碌時，它查看你所選 App 的訊息通知，在本機讀取傳送者名字，並透過 App 自帶的回覆按鈕傳送一次你的文字。訊息從不儲存，也不會傳往別處。除非你允許，群組會被略過。';
+
+  @override
+  String get busyReplyText => '你的回覆';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 會變成忙碌模式結束的時間。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我現在在忙，$until 後回覆。';
+  }
+
+  @override
+  String get busyGroups => '群組也回覆';
+
+  @override
+  String get busyGroupsHint => '關閉：從不回覆群組。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和節日也回覆';
+
+  @override
+  String get busyAskRabbi => '預設關閉。在安息日開啟前請先請教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何時忙碌';
+
+  @override
+  String get busyWhenHint => '在日曆鬧鐘上開啟「這些行程期間忙碌」，或在鬧鐘上開啟「響鈴後忙碌」。';
+
+  @override
+  String get busyDuringLock => '鎖定模式開啟時忙碌';
+
+  @override
+  String get busyNoneComing => '未來 7 天沒有忙碌時段。';
+
+  @override
+  String get busyDuringEvents => '這些行程期間忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每個行程從開始到結束都處於忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式設定';
+
+  @override
+  String get busyAfterRing => '響鈴後忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段時間內勿擾和自動回覆，例如運動或午睡。';
 }

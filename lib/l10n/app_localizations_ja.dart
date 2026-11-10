@@ -3083,4 +3083,94 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => '安息日と祭日は鳴りません。';
+
+  @override
+  String get busyMode => '取り込み中モード';
+
+  @override
+  String get busyModeSubtitle => '取り込み中はおやすみモードと自動返信';
+
+  @override
+  String get busyIntro => '取り込み中は Quando? が端末を静かにし、代わりにメッセージに返信します。アラームは鳴ります。';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone と iPad では、アプリが集中モードをオンにしたりメッセージに返信したりできません。ショートカットアプリで「Quando? を開いたとき」または時刻をきっかけに集中モードをオンにするオートメーションを作り、集中モードで自動返信を設定してください。';
+
+  @override
+  String get busyWhileHeading => '取り込み中';
+
+  @override
+  String get busyDnd => 'おやすみモード';
+
+  @override
+  String get busyDndHint => '優先のみ：通話とメッセージは鳴らず、アラームは鳴ります。終わると元に戻ります。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? はまだおやすみモードを変更できません。';
+
+  @override
+  String get busyReplies => 'メッセージに返信';
+
+  @override
+  String get busyRepliesHint => '1人につき1回、あなたの文面で、アプリ自身の返信ボタンから。Android のみ。';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? にメッセージへの返信を許可しますか？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '代わりに返信するには、Quando? に通知へのアクセスが必要です。取り込み中だけ、選んだアプリのメッセージ通知を見て、送信者の名前をこの端末上で読み取り、アプリ自身の返信ボタンからあなたの文面を一度送ります。メッセージを保存したり他へ送ったりすることはありません。許可しない限りグループは対象外です。';
+
+  @override
+  String get busyReplyText => '返信の文面';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until は取り込み中の終了時刻になります。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'ただいま取り込み中です。$until 以降に返信します。';
+  }
+
+  @override
+  String get busyGroups => 'グループにも返信';
+
+  @override
+  String get busyGroupsHint => 'オフ：グループには返信しません。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日と祭日も返信';
+
+  @override
+  String get busyAskRabbi => '初期設定はオフ。安息日にオンにする前にラビに相談してください。';
+
+  @override
+  String get busyWhenHeading => '取り込み中になるとき';
+
+  @override
+  String get busyWhenHint => 'カレンダーアラームで「この予定の間は取り込み中」、アラームで「鳴った後は取り込み中」をオンにします。';
+
+  @override
+  String get busyDuringLock => 'ロックモード中は取り込み中';
+
+  @override
+  String get busyNoneComing => '今後7日間に取り込み中の予定はありません。';
+
+  @override
+  String get busyDuringEvents => 'この予定の間は取り込み中';
+
+  @override
+  String get busyDuringEventsHint => '各予定の開始から終了まで取り込み中。';
+
+  @override
+  String get busySettings => '取り込み中モードの設定';
+
+  @override
+  String get busyAfterRing => '鳴った後は取り込み中';
+
+  @override
+  String get busyAfterRingHint => 'しばらくおやすみモードと自動返信。運動や昼寝などに。';
 }

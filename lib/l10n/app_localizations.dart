@@ -5685,6 +5685,174 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Quiet during Shabbat and festivals.'**
   String get loudNotificationsShabbatNote;
+
+  /// No description provided for @busyMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode'**
+  String get busyMode;
+
+  /// No description provided for @busyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb and auto-replies while you\'re busy'**
+  String get busyModeSubtitle;
+
+  /// No description provided for @busyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'While you\'re busy, Quando? can quiet the phone and answer messages for you. Alarms still ring.'**
+  String get busyIntro;
+
+  /// No description provided for @busyIosFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'On iPhone and iPad, apps can\'t turn on Focus or answer messages. In the Shortcuts app, add an automation \"When Quando? opens\" or a time of day that turns on a Focus, and set the Focus to auto-reply.'**
+  String get busyIosFocus;
+
+  /// No description provided for @busyWhileHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WHILE YOU\'RE BUSY'**
+  String get busyWhileHeading;
+
+  /// No description provided for @busyDnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb'**
+  String get busyDnd;
+
+  /// No description provided for @busyDndHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority only: calls and messages stay quiet, alarms still ring. Back to normal when it ends.'**
+  String get busyDndHint;
+
+  /// No description provided for @busyDndNoAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? isn\'t allowed to change Do Not Disturb yet.'**
+  String get busyDndNoAccess;
+
+  /// No description provided for @busyReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer messages'**
+  String get busyReplies;
+
+  /// No description provided for @busyRepliesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Once per person, with your text, through the app\'s own Reply button. Android only.'**
+  String get busyRepliesHint;
+
+  /// No description provided for @busyRepliesDisclosureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let Quando? answer messages?'**
+  String get busyRepliesDisclosureTitle;
+
+  /// No description provided for @busyRepliesDisclosure.
+  ///
+  /// In en, this message translates to:
+  /// **'To answer for you, Quando? needs notification access. Only while you\'re busy, it looks at message notifications from the apps you pick, reads the sender\'s name on this phone, and sends your text once through the app\'s own Reply button. Messages are never stored or sent anywhere else. Group chats are skipped unless you allow them.'**
+  String get busyRepliesDisclosure;
+
+  /// No description provided for @busyReplyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer'**
+  String get busyReplyText;
+
+  /// No description provided for @busyReplyTextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{until} becomes the time Busy mode ends.'**
+  String busyReplyTextHint(String until);
+
+  /// No description provided for @busyReplyDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m busy right now and will answer after {until}.'**
+  String busyReplyDefault(String until);
+
+  /// No description provided for @busyGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer in group chats too'**
+  String get busyGroups;
+
+  /// No description provided for @busyGroupsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: groups are never answered.'**
+  String get busyGroupsHint;
+
+  /// No description provided for @busyRepliesOnShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer during Shabbat and festivals'**
+  String get busyRepliesOnShabbat;
+
+  /// No description provided for @busyAskRabbi.
+  ///
+  /// In en, this message translates to:
+  /// **'Off by default. Ask your rabbi before turning this on for Shabbat.'**
+  String get busyAskRabbi;
+
+  /// No description provided for @busyWhenHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN YOU\'RE BUSY'**
+  String get busyWhenHeading;
+
+  /// No description provided for @busyWhenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on \"Busy during these events\" on a calendar alarm, or \"Busy after it rings\" on an alarm.'**
+  String get busyWhenHint;
+
+  /// No description provided for @busyDuringLock.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy while lock mode is on'**
+  String get busyDuringLock;
+
+  /// No description provided for @busyNoneComing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing busy in the next 7 days.'**
+  String get busyNoneComing;
+
+  /// No description provided for @busyDuringEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy during these events'**
+  String get busyDuringEvents;
+
+  /// No description provided for @busyDuringEventsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode from each event\'s start to its end.'**
+  String get busyDuringEventsHint;
+
+  /// No description provided for @busySettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode settings'**
+  String get busySettings;
+
+  /// No description provided for @busyAfterRing.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy after it rings'**
+  String get busyAfterRing;
+
+  /// No description provided for @busyAfterRingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.'**
+  String get busyAfterRingHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

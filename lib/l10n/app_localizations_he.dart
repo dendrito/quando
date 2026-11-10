@@ -3128,4 +3128,96 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get loudNotificationsShabbatNote => 'שקט בשבת ובחגים.';
+
+  @override
+  String get busyMode => 'מצב עסוק';
+
+  @override
+  String get busyModeSubtitle => 'נא לא להפריע ותשובות אוטומטיות כשאתם עסוקים';
+
+  @override
+  String get busyIntro =>
+      'כשאתם עסוקים, Quando? יכול להשתיק את הטלפון ולענות להודעות בשבילכם. ההתראות ממשיכות לצלצל.';
+
+  @override
+  String get busyIosFocus =>
+      'באייפון ובאייפד אפליקציות לא יכולות להפעיל ריכוז או לענות להודעות. באפליקציית קיצורים הוסיפו אוטומציה „כש־Quando? נפתח” או בשעה מסוימת שמפעילה ריכוז, והגדירו בו מענה אוטומטי.';
+
+  @override
+  String get busyWhileHeading => 'כשאתם עסוקים';
+
+  @override
+  String get busyDnd => 'נא לא להפריע';
+
+  @override
+  String get busyDndHint => 'עדיפות בלבד: שיחות והודעות בשקט, התראות מצלצלות. בסוף חוזר לרגיל.';
+
+  @override
+  String get busyDndNoAccess => 'ל־Quando? עדיין אין הרשאה לשנות את נא לא להפריע.';
+
+  @override
+  String get busyReplies => 'לענות להודעות';
+
+  @override
+  String get busyRepliesHint =>
+      'פעם אחת לכל אדם, עם הטקסט שלכם, דרך כפתור התשובה של האפליקציה. אנדרואיד בלבד.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'לאפשר ל־Quando? לענות להודעות?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'כדי לענות בשבילכם, Quando? צריך גישה להתראות. רק כשאתם עסוקים, הוא מסתכל על התראות הודעה מהאפליקציות שבחרתם, קורא את שם השולח בטלפון הזה ושולח את הטקסט שלכם פעם אחת דרך כפתור התשובה של האפליקציה. ההודעות אף פעם לא נשמרות ולא נשלחות לשום מקום אחר. קבוצות מדולגות, אלא אם תאפשרו.';
+
+  @override
+  String get busyReplyText => 'התשובה שלכם';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until יוחלף בשעה שבה מצב עסוק נגמר.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'אני עסוק כרגע ואענה אחרי $until.';
+  }
+
+  @override
+  String get busyGroups => 'לענות גם בקבוצות';
+
+  @override
+  String get busyGroupsHint => 'כבוי: אף פעם לא עונים בקבוצות.';
+
+  @override
+  String get busyRepliesOnShabbat => 'לענות גם בשבת ובחגים';
+
+  @override
+  String get busyAskRabbi => 'כבוי כברירת מחדל. שאלו את הרב לפני שמפעילים לשבת.';
+
+  @override
+  String get busyWhenHeading => 'מתי אתם עסוקים';
+
+  @override
+  String get busyWhenHint => 'הפעילו „עסוק במהלך האירועים האלה” בהתראת יומן, או „עסוק אחרי הצלצול” בהתראה.';
+
+  @override
+  String get busyDuringLock => 'עסוק כשמצב נעילה פעיל';
+
+  @override
+  String get busyNoneComing => 'אין זמן עסוק ב־7 הימים הקרובים.';
+
+  @override
+  String get busyDuringEvents => 'עסוק במהלך האירועים האלה';
+
+  @override
+  String get busyDuringEventsHint => 'מצב עסוק מתחילת כל אירוע ועד סופו.';
+
+  @override
+  String get busySettings => 'הגדרות מצב עסוק';
+
+  @override
+  String get busyAfterRing => 'עסוק אחרי הצלצול';
+
+  @override
+  String get busyAfterRingHint => 'נא לא להפריע ותשובות אוטומטיות לזמן מה, למשל אימון או תנומה.';
 }

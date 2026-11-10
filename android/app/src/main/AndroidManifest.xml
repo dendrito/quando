@@ -68,6 +68,14 @@
                 <action android:name="android.service.notification.NotificationListenerService"/>
             </intent-filter>
         </service>
+        <!-- Busy mode: Do Not Disturb on and off at the right times, also
+             after a restart or an update. -->
+        <receiver android:name=".BusyReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED"/>
+            </intent-filter>
+        </receiver>
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
@@ -91,6 +99,13 @@
         <package android:name="com.huawei.calendar"/>
         <package android:name="com.appgenix.bizcal"/>
         <package android:name="com.tasks.android"/>
+        <!-- Busy mode answers: see which messaging apps you have. -->
+        <package android:name="com.whatsapp"/>
+        <package android:name="com.whatsapp.w4b"/>
+        <package android:name="org.telegram.messenger"/>
+        <package android:name="com.google.android.apps.messaging"/>
+        <package android:name="com.samsung.android.messaging"/>
+        <package android:name="org.thoughtcrime.securesms"/>
         <!-- Spotify direct play: find the Spotify app. -->
         <package android:name="com.spotify.music"/>
         <intent>

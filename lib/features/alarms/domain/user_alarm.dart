@@ -24,6 +24,7 @@ class UserAlarm {
     this.group = '',
     this.style = RingStyle.none,
     this.delivery = ReminderDelivery.inherit,
+    this.busyMinutes = 0,
   });
 
   final String id;
@@ -55,6 +56,9 @@ class UserAlarm {
   /// Volume, fades, gentle wake-up, tasks and more for this alarm.
   final RingStyle style;
   final ReminderDelivery delivery;
+
+  /// Busy mode for this long after it rings. 0 = off.
+  final int busyMinutes;
 
   bool get repeats => days.isNotEmpty;
 
@@ -144,6 +148,7 @@ class UserAlarm {
     String? group,
     RingStyle? style,
     ReminderDelivery? delivery,
+    int? busyMinutes,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -158,6 +163,7 @@ class UserAlarm {
     group: group ?? this.group,
     style: style ?? this.style,
     delivery: delivery ?? this.delivery,
+    busyMinutes: busyMinutes ?? this.busyMinutes,
   );
 
   Map<String, dynamic> toJson() => {
@@ -174,6 +180,7 @@ class UserAlarm {
     'group': group,
     'style': style.toJson(),
     'delivery': delivery.toJson(),
+    if (busyMinutes > 0) 'busyMinutes': busyMinutes,
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -190,5 +197,6 @@ class UserAlarm {
     group: (j['group'] as String? ?? '').trim(),
     style: RingStyle.fromJson(j['style']),
     delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
+    busyMinutes: (j['busyMinutes'] as num?)?.toInt() ?? 0,
   );
 }
