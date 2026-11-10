@@ -1,7 +1,7 @@
 {
   "id": "pr-34",
   "title": "Fix board publish: cards without an id use their file name",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     34
