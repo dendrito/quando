@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Le partage arrive bientôt sur iPhone et iPad.",
   "songSaved": "« {name} » enregistré comme son d'alarme",
   "shareToQuando": "Partagez un morceau vers Quando?",
-  "shareToQuandoHint": "Dans YouTube, YouTube Music, Spotify, SoundCloud ou Apple Music, touchez Partager puis Quando?. Il devient un son d'alarme joué dans son app."
+  "shareToQuandoHint": "Dans YouTube, YouTube Music, Spotify, SoundCloud ou Apple Music, touchez Partager puis Quando?. Il devient un son d'alarme joué dans son app.",
+  "askOption": "Dites-le ou tapez-le",
+  "askOptionHint": "« Demain à 6 h », « 30 min avant le lever du soleil »",
+  "askHint": "ex. : réveille-moi 30 min avant le lever du soleil en semaine",
+  "askListening": "À l'écoute…",
+  "askNotUnderstood": "Je n'ai pas trouvé d'heure. Essayez « 7 h en semaine » ou « dans 20 minutes ».",
+  "askNoSpeech": "La voix n'est pas disponible sur cet appareil. Vous pouvez taper.",
+  "askShabbatOff": "Activez le Chabbat dans les Réglages pour que ses horaires sonnent.",
+  "askSaved": "Enregistré : {what}",
+  "askMic": "Parler"
 }

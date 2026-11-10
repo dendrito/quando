@@ -996,5 +996,14 @@
   "shareAndroidFirst": "O compartilhamento chega em breve ao iPhone e iPad.",
   "songSaved": "“{name}” salvo como som de alarme",
   "shareToQuando": "Compartilhe uma música com o Quando?",
-  "shareToQuandoHint": "No YouTube, YouTube Music, Spotify, SoundCloud ou Apple Music, toque em Compartilhar e depois em Quando?. Vira um som de alarme que toca no próprio app."
+  "shareToQuandoHint": "No YouTube, YouTube Music, Spotify, SoundCloud ou Apple Music, toque em Compartilhar e depois em Quando?. Vira um som de alarme que toca no próprio app.",
+  "askOption": "Fale ou digite",
+  "askOptionHint": "“Amanhã às 6”, “30 min antes do nascer do sol”",
+  "askHint": "ex.: me acorda 30 min antes do nascer do sol nos dias úteis",
+  "askListening": "Ouvindo…",
+  "askNotUnderstood": "Não encontrei um horário. Tente “7h nos dias úteis” ou “daqui a 20 minutos”.",
+  "askNoSpeech": "A voz não está disponível neste aparelho. Você pode digitar.",
+  "askShabbatOff": "Ative o Shabat nos Ajustes para os horários do Shabat tocarem.",
+  "askSaved": "Salvo: {what}",
+  "askMic": "Falar"
 }

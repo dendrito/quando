@@ -996,5 +996,14 @@
   "shareAndroidFirst": "שיתוף יגיע בקרוב לאייפון ולאייפד.",
   "songSaved": "„{name}” נשמר כצליל התראה",
   "shareToQuando": "שתפו שיר ל־Quando?",
-  "shareToQuandoHint": "ב־YouTube, YouTube Music, Spotify, SoundCloud או Apple Music הקישו שיתוף ואז Quando?. זה הופך לצליל התראה שמתנגן באפליקציה שלו."
+  "shareToQuandoHint": "ב־YouTube, YouTube Music, Spotify, SoundCloud או Apple Music הקישו שיתוף ואז Quando?. זה הופך לצליל התראה שמתנגן באפליקציה שלו.",
+  "askOption": "אמרו או הקלידו",
+  "askOptionHint": "„מחר בשש”, „חצי שעה לפני הזריחה”",
+  "askHint": "למשל: תעיר אותי חצי שעה לפני הזריחה בימי חול",
+  "askListening": "מקשיב…",
+  "askNotUnderstood": "לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.",
+  "askNoSpeech": "קול לא זמין במכשיר הזה. אפשר להקליד.",
+  "askShabbatOff": "הפעילו שבת בהגדרות כדי שזמני השבת יצלצלו.",
+  "askSaved": "נשמר: {what}",
+  "askMic": "דברו"
 }

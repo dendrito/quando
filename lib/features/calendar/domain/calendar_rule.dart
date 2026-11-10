@@ -26,7 +26,11 @@ class CalendarRule {
     this.deliveries = const {},
     this.eventReminders = false,
     this.busy = false,
+    this.days = const {},
   });
+
+  /// Only on these weekdays, 1 = Monday ... 7 = Sunday. Empty = any day.
+  final Set<int> days;
 
   final String id;
   final String name;
@@ -102,6 +106,7 @@ class CalendarRule {
         style: style,
         deliveries: deliveries,
         eventReminders: eventReminders,
+        days: days,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -114,6 +119,7 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        days: days,
       ),
       // Shabbat, festival and sun times are single moments: before, at and
       // after all hang off the moment itself.
@@ -136,6 +142,7 @@ class CalendarRule {
         soundId: soundId,
         style: style,
         deliveries: deliveries,
+        days: days,
       ),
     ];
   }
@@ -158,6 +165,7 @@ class CalendarRule {
     bool? includeTimes,
     bool? eventReminders,
     bool? busy,
+    Set<int>? days,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -175,6 +183,7 @@ class CalendarRule {
     includeTimes: includeTimes ?? this.includeTimes,
     eventReminders: eventReminders ?? this.eventReminders,
     busy: busy ?? this.busy,
+    days: days ?? this.days,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -199,6 +208,7 @@ class CalendarRule {
     'includeTimes': includeTimes,
     if (eventReminders) 'eventReminders': true,
     if (busy) 'busy': true,
+    if (days.isNotEmpty) 'days': days.toList()..sort(),
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -218,5 +228,6 @@ class CalendarRule {
     includeTimes: j['includeTimes'] as bool? ?? false,
     eventReminders: j['eventReminders'] as bool? ?? false,
     busy: j['busy'] as bool? ?? false,
+    days: {for (final d in (j['days'] as List? ?? const [])) (d as num).toInt()},
   );
 }

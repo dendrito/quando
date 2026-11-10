@@ -860,17 +860,20 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
 
   static int _byTime(UserAlarm a, UserAlarm b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
 
-  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time.
-  void save(UserAlarm alarm) {
+  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time,
+  /// or to [at] when given (e.g. "tomorrow at 6", said at 5 in the morning).
+  void save(UserAlarm alarm, {DateTime? at}) {
     final fixed = alarm.repeats
         ? alarm
         : alarm.copyWith(
-            onceAt: UserAlarm.nextAt(
-              alarm.hour,
-              alarm.minute,
-              ref.read(clockProvider)(),
-              alarm.zone ?? ref.read(homeZoneProvider),
-            ),
+            onceAt:
+                at ??
+                UserAlarm.nextAt(
+                  alarm.hour,
+                  alarm.minute,
+                  ref.read(clockProvider)(),
+                  alarm.zone ?? ref.read(homeZoneProvider),
+                ),
           );
     _set([
       for (final a in state)

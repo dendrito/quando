@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Незабаром і на iPhone та iPad.",
   "songSaved": "«{name}» збережено як звук будильника",
   "shareToQuando": "Поділіться піснею з Quando?",
-  "shareToQuandoHint": "У YouTube, YouTube Music, Spotify, SoundCloud або Apple Music натисніть «Поділитися», потім Quando?. Це стане звуком будильника, що грає у своєму застосунку."
+  "shareToQuandoHint": "У YouTube, YouTube Music, Spotify, SoundCloud або Apple Music натисніть «Поділитися», потім Quando?. Це стане звуком будильника, що грає у своєму застосунку.",
+  "askOption": "Скажіть або напишіть",
+  "askOptionHint": "«Завтра о 6», «за 30 хв до сходу сонця»",
+  "askHint": "напр.: розбуди мене в будні за 30 хв до сходу сонця",
+  "askListening": "Слухаю…",
+  "askNotUnderstood": "Не знайшов час. Спробуйте «о 7 в будні» або «через 20 хвилин».",
+  "askNoSpeech": "Голос недоступний на цьому пристрої. Можна ввести текст.",
+  "askShabbatOff": "Увімкніть Шабат у налаштуваннях, щоб дзвонили часи Шабату.",
+  "askSaved": "Збережено: {what}",
+  "askMic": "Говорити"
 }

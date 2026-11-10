@@ -39,6 +39,7 @@ import 'week_list.dart';
 import '../../quotes/ui/quote_line.dart';
 
 import 'package:quando/l10n/l10n.dart';
+import '../../assistant/ui/ask_sheet.dart';
 
 class HomeScreen extends ConsumerStatefulWidget {
   const HomeScreen({super.key});
@@ -101,6 +102,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                 padding: const EdgeInsets.fromLTRB(24, 0, 24, 8),
                 child: Text(l10n.when, style: text.headlineMedium),
               ),
+              option('say', Icons.mic_none_rounded, l10n.askOption, l10n.askOptionHint),
               option('time', Icons.schedule, l10n.newAtTime, l10n.newAtTimeHint),
               option('event', Icons.manage_search, l10n.newAroundEvent, l10n.newAroundEventHint),
               option('ready', Icons.auto_awesome_outlined, l10n.newFromReadyMade, l10n.newFromReadyMadeHint),
@@ -111,6 +113,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
       },
     );
     if (!mounted) return;
+    if (choice == 'say') return showAskSheet(context);
     if (choice == 'time') context.push('/alarm/new');
     if (choice == 'event') context.push('/calendar/rule/new');
     if (choice == 'ready') await _readyMade();

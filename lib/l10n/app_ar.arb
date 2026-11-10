@@ -996,5 +996,14 @@
   "shareAndroidFirst": "المشاركة قريبًا على iPhone وiPad.",
   "songSaved": "حُفظ «{name}» كصوت منبّه",
   "shareToQuando": "شارك أغنية مع Quando?",
-  "shareToQuandoHint": "في YouTube أو YouTube Music أو Spotify أو SoundCloud أو Apple Music اضغط مشاركة ثم Quando?. تصبح صوت منبّه يُشغَّل في تطبيقه."
+  "shareToQuandoHint": "في YouTube أو YouTube Music أو Spotify أو SoundCloud أو Apple Music اضغط مشاركة ثم Quando?. تصبح صوت منبّه يُشغَّل في تطبيقه.",
+  "askOption": "قلها أو اكتبها",
+  "askOptionHint": "«غدًا الساعة 6»، «قبل الشروق بـ30 دقيقة»",
+  "askHint": "مثال: أيقظني قبل الشروق بـ30 دقيقة في أيام العمل",
+  "askListening": "أستمع…",
+  "askNotUnderstood": "لم أجد وقتًا. جرّب «7 صباحًا في أيام العمل» أو «بعد 20 دقيقة».",
+  "askNoSpeech": "الصوت غير متاح على هذا الجهاز. يمكنك الكتابة.",
+  "askShabbatOff": "فعّل السبت في الإعدادات لكي ترنّ أوقات السبت.",
+  "askSaved": "تم الحفظ: {what}",
+  "askMic": "تحدّث"
 }

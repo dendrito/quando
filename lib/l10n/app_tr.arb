@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Paylaşım yakında iPhone ve iPad'de.",
   "songSaved": "“{name}” alarm sesi olarak kaydedildi",
   "shareToQuando": "Quando?'ya şarkı paylaş",
-  "shareToQuandoHint": "YouTube, YouTube Music, Spotify, SoundCloud veya Apple Music'te Paylaş'a, sonra Quando?'ya dokun. Kendi uygulamasında çalan bir alarm sesi olur."
+  "shareToQuandoHint": "YouTube, YouTube Music, Spotify, SoundCloud veya Apple Music'te Paylaş'a, sonra Quando?'ya dokun. Kendi uygulamasında çalan bir alarm sesi olur.",
+  "askOption": "Söyle veya yaz",
+  "askOptionHint": "“Yarın 6'da”, “gün doğumundan 30 dk önce”",
+  "askHint": "ör. hafta içi gün doğumundan 30 dk önce uyandır",
+  "askListening": "Dinliyorum…",
+  "askNotUnderstood": "Bir saat bulamadım. “Hafta içi 7'de” veya “20 dakika sonra” deneyin.",
+  "askNoSpeech": "Bu cihazda ses kullanılamıyor. Yazabilirsiniz.",
+  "askShabbatOff": "Şabat saatlerinin çalması için Ayarlar'dan Şabat'ı açın.",
+  "askSaved": "Kaydedildi: {what}",
+  "askMic": "Konuş"
 }

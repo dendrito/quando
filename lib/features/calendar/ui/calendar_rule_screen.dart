@@ -329,6 +329,38 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               value: _rule.includeTimes,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
             ),
+            // Only on some weekdays, e.g. sunrise on weekdays. None = every day.
+            Text(
+              l10n
+                  .repeatHeading(
+                    _rule.days.isEmpty || _rule.days.length == 7
+                        ? l10n.everyDay
+                        : [
+                            for (var d = 1; d <= 7; d++)
+                              if (_rule.days.contains(d)) weekdayShort(d),
+                          ].join(', '),
+                  )
+                  .toUpperCase(),
+              style: text.labelSmall,
+            ),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 6,
+              children: [
+                for (var d = 1; d <= 7; d++)
+                  FilterChip(
+                    label: Text(weekdayNarrow(d)),
+                    showCheckmark: false,
+                    selected: _rule.days.contains(d),
+                    onSelected: (on) => setState(() {
+                      final days = {..._rule.days};
+                      on ? days.add(d) : days.remove(d);
+                      _rule = _rule.copyWith(days: days);
+                    }),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
             if (cal.calendars.isNotEmpty)
               Wrap(
                 spacing: 8,

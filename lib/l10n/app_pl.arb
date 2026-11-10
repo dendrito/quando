@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Udostępnianie wkrótce na iPhonie i iPadzie.",
   "songSaved": "„{name}” zapisano jako dźwięk alarmu",
   "shareToQuando": "Udostępnij utwór do Quando?",
-  "shareToQuandoHint": "W YouTube, YouTube Music, Spotify, SoundCloud lub Apple Music dotknij Udostępnij, potem Quando?. Stanie się dźwiękiem alarmu odtwarzanym w swojej aplikacji."
+  "shareToQuandoHint": "W YouTube, YouTube Music, Spotify, SoundCloud lub Apple Music dotknij Udostępnij, potem Quando?. Stanie się dźwiękiem alarmu odtwarzanym w swojej aplikacji.",
+  "askOption": "Powiedz lub wpisz",
+  "askOptionHint": "„Jutro o 6”, „30 min przed wschodem słońca”",
+  "askHint": "np. obudź mnie w dni robocze 30 min przed wschodem słońca",
+  "askListening": "Słucham…",
+  "askNotUnderstood": "Nie znalazłem godziny. Spróbuj „7 rano w dni robocze” lub „za 20 minut”.",
+  "askNoSpeech": "Głos jest niedostępny na tym urządzeniu. Możesz pisać.",
+  "askShabbatOff": "Włącz szabat w Ustawieniach, aby godziny szabatu dzwoniły.",
+  "askSaved": "Zapisano: {what}",
+  "askMic": "Mów"
 }

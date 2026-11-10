@@ -44,7 +44,12 @@ class AlarmRule {
     this.style = RingStyle.none,
     this.deliveries = const {},
     this.eventReminders = false,
+    this.days = const {},
   });
+
+  /// Only events on these weekdays (1 = Monday ... 7 = Sunday, local
+  /// time). Empty = any day.
+  final Set<int> days;
 
   final String id;
   final String name;
@@ -102,6 +107,7 @@ class AlarmRule {
   /// also catch Shabbat, festival and sun times.
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
+      (days.isEmpty || days.contains(e.at.toLocal().weekday)) &&
       (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
       (keyword == null || keyword!.isEmpty || _search(keyword!, e));
 
@@ -171,6 +177,7 @@ class AlarmRule {
     style: style ?? this.style,
     deliveries: deliveries ?? this.deliveries,
     eventReminders: eventReminders,
+    days: days,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =

@@ -144,6 +144,10 @@
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
         </intent>
+        <!-- Say or type an alarm: find the phone's speech recognition. -->
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
+        </intent>
         <!-- Open pushover.net links in the browser. -->
         <intent>
             <action android:name="android.intent.action.VIEW"/>

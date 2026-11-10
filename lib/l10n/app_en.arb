@@ -1973,5 +1973,21 @@
         "type": "String"
       }
     }
-  }
+  },
+  "askOption": "Say or type it",
+  "askOptionHint": "“Tomorrow at 6”, “30 min before sunrise”",
+  "askHint": "e.g. wake me 30 min before sunrise on weekdays",
+  "askListening": "Listening…",
+  "askNotUnderstood": "I couldn't find a time in that. Try “7am on weekdays” or “in 20 minutes”.",
+  "askNoSpeech": "Voice isn't available on this device. You can type instead.",
+  "askShabbatOff": "Turn on Shabbat in Settings so Shabbat times can ring.",
+  "askSaved": "Saved: {what}",
+  "@askSaved": {
+    "placeholders": {
+      "what": {
+        "type": "String"
+      }
+    }
+  },
+  "askMic": "Speak"
 }

@@ -996,5 +996,14 @@
   "shareAndroidFirst": "शेयरिंग जल्द iPhone और iPad पर।",
   "songSaved": "“{name}” अलार्म ध्वनि के रूप में सहेजा गया",
   "shareToQuando": "Quando? पर गाना शेयर करें",
-  "shareToQuandoHint": "YouTube, YouTube Music, Spotify, SoundCloud या Apple Music में शेयर, फिर Quando? टैप करें। यह अलार्म ध्वनि बन जाता है जो अपने ऐप में बजती है।"
+  "shareToQuandoHint": "YouTube, YouTube Music, Spotify, SoundCloud या Apple Music में शेयर, फिर Quando? टैप करें। यह अलार्म ध्वनि बन जाता है जो अपने ऐप में बजती है।",
+  "askOption": "बोलें या लिखें",
+  "askOptionHint": "“कल 6 बजे”, “सूर्योदय से 30 मिनट पहले”",
+  "askHint": "जैसे: कार्यदिवसों में सूर्योदय से 30 मिनट पहले जगाओ",
+  "askListening": "सुन रहा हूँ…",
+  "askNotUnderstood": "मुझे कोई समय नहीं मिला। “कार्यदिवसों में सुबह 7 बजे” या “20 मिनट में” आज़माएँ।",
+  "askNoSpeech": "इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।",
+  "askShabbatOff": "शब्बत समय बजने के लिए सेटिंग्स में शब्बत चालू करें।",
+  "askSaved": "सहेजा गया: {what}",
+  "askMic": "बोलें"
 }

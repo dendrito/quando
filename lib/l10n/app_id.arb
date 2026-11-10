@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Berbagi segera hadir di iPhone dan iPad.",
   "songSaved": "“{name}” disimpan sebagai suara alarm",
   "shareToQuando": "Bagikan lagu ke Quando?",
-  "shareToQuandoHint": "Di YouTube, YouTube Music, Spotify, SoundCloud, atau Apple Music, ketuk Bagikan lalu Quando?. Lagu jadi suara alarm yang diputar di aplikasinya."
+  "shareToQuandoHint": "Di YouTube, YouTube Music, Spotify, SoundCloud, atau Apple Music, ketuk Bagikan lalu Quando?. Lagu jadi suara alarm yang diputar di aplikasinya.",
+  "askOption": "Ucapkan atau ketik",
+  "askOptionHint": "“Besok jam 6”, “30 menit sebelum matahari terbit”",
+  "askHint": "mis.: bangunkan aku 30 menit sebelum matahari terbit di hari kerja",
+  "askListening": "Mendengarkan…",
+  "askNotUnderstood": "Saya tidak menemukan waktu. Coba “jam 7 di hari kerja” atau “dalam 20 menit”.",
+  "askNoSpeech": "Suara tidak tersedia di perangkat ini. Anda bisa mengetik.",
+  "askShabbatOff": "Aktifkan Sabat di Pengaturan agar waktu Sabat berbunyi.",
+  "askSaved": "Tersimpan: {what}",
+  "askMic": "Bicara"
 }

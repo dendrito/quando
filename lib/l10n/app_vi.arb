@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Sắp có chia sẻ trên iPhone và iPad.",
   "songSaved": "Đã lưu “{name}” làm âm báo thức",
   "shareToQuando": "Chia sẻ bài hát tới Quando?",
-  "shareToQuandoHint": "Trong YouTube, YouTube Music, Spotify, SoundCloud hoặc Apple Music, nhấn Chia sẻ rồi Quando?. Bài hát thành âm báo thức phát trong chính ứng dụng đó."
+  "shareToQuandoHint": "Trong YouTube, YouTube Music, Spotify, SoundCloud hoặc Apple Music, nhấn Chia sẻ rồi Quando?. Bài hát thành âm báo thức phát trong chính ứng dụng đó.",
+  "askOption": "Nói hoặc gõ",
+  "askOptionHint": "“Mai 6 giờ”, “30 phút trước bình minh”",
+  "askHint": "vd: đánh thức tôi 30 phút trước bình minh vào ngày thường",
+  "askListening": "Đang nghe…",
+  "askNotUnderstood": "Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.",
+  "askNoSpeech": "Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.",
+  "askShabbatOff": "Bật Shabbat trong Cài đặt để giờ Shabbat đổ chuông.",
+  "askSaved": "Đã lưu: {what}",
+  "askMic": "Nói"
 }

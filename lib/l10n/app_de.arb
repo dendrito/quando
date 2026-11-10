@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Teilen kommt bald auf iPhone und iPad.",
   "songSaved": "„{name}“ als Weckton gespeichert",
   "shareToQuando": "Teile einen Song mit Quando?",
-  "shareToQuandoHint": "Tippe in YouTube, YouTube Music, Spotify, SoundCloud oder Apple Music auf Teilen und dann auf Quando?. Es wird zum Weckton, der in seiner App spielt."
+  "shareToQuandoHint": "Tippe in YouTube, YouTube Music, Spotify, SoundCloud oder Apple Music auf Teilen und dann auf Quando?. Es wird zum Weckton, der in seiner App spielt.",
+  "askOption": "Sagen oder tippen",
+  "askOptionHint": "„Morgen um 6“, „30 Min. vor Sonnenaufgang“",
+  "askHint": "z. B. weck mich werktags 30 Min. vor Sonnenaufgang",
+  "askListening": "Ich höre zu…",
+  "askNotUnderstood": "Ich habe keine Uhrzeit gefunden. Versuche „7 Uhr werktags“ oder „in 20 Minuten“.",
+  "askNoSpeech": "Sprache ist auf diesem Gerät nicht verfügbar. Du kannst tippen.",
+  "askShabbatOff": "Schalte Schabbat in den Einstellungen ein, damit Schabbat-Zeiten klingeln.",
+  "askSaved": "Gespeichert: {what}",
+  "askMic": "Sprechen"
 }

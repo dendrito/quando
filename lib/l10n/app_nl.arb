@@ -996,5 +996,14 @@
   "shareAndroidFirst": "Delen komt binnenkort naar iPhone en iPad.",
   "songSaved": "“{name}” bewaard als wekgeluid",
   "shareToQuando": "Deel een nummer met Quando?",
-  "shareToQuandoHint": "Tik in YouTube, YouTube Music, Spotify, SoundCloud of Apple Music op Delen en dan op Quando?. Het wordt een wekgeluid dat in zijn eigen app speelt."
+  "shareToQuandoHint": "Tik in YouTube, YouTube Music, Spotify, SoundCloud of Apple Music op Delen en dan op Quando?. Het wordt een wekgeluid dat in zijn eigen app speelt.",
+  "askOption": "Zeg of typ het",
+  "askOptionHint": "‘Morgen om 6 uur’, ‘30 min voor zonsopgang’",
+  "askHint": "bijv. maak me op werkdagen 30 min voor zonsopgang wakker",
+  "askListening": "Aan het luisteren…",
+  "askNotUnderstood": "Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.",
+  "askNoSpeech": "Spraak is niet beschikbaar op dit apparaat. Je kunt typen.",
+  "askShabbatOff": "Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.",
+  "askSaved": "Bewaard: {what}",
+  "askMic": "Spreek"
 }

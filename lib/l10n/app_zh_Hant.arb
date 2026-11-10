@@ -996,5 +996,14 @@
   "shareAndroidFirst": "iPhone 和 iPad 即將支援分享。",
   "songSaved": "已將「{name}」存為鬧鐘鈴聲",
   "shareToQuando": "把歌曲分享到 Quando?",
-  "shareToQuandoHint": "在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中點「分享」，再選 Quando?，它就成為在原 App 中播放的鬧鐘鈴聲。"
+  "shareToQuandoHint": "在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中點「分享」，再選 Quando?，它就成為在原 App 中播放的鬧鐘鈴聲。",
+  "askOption": "說出或輸入",
+  "askOptionHint": "「明天6點」「日出前30分鐘」",
+  "askHint": "例如：平日日出前30分鐘叫醒我",
+  "askListening": "正在聽…",
+  "askNotUnderstood": "沒有找到時間。試試「平日早上7點」或「20分鐘後」。",
+  "askNoSpeech": "此裝置不支援語音。你可以輸入。",
+  "askShabbatOff": "在設定中開啟安息日，安息日時間才會響鈴。",
+  "askSaved": "已儲存：{what}",
+  "askMic": "說話"
 }
