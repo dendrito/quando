@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Collega un calendario perché Quando? trovi “{event}”.",
   "askSnoozeAll": "Posticipa: {minutes} min, per tutte le sveglie",
   "askWakeWith": "Ti sveglia con {sound}",
-  "askReadAs": "Letto come"
+  "askReadAs": "Letto come",
+  "quickSetups": "Impostazioni rapide",
+  "qsMorningTitle": "Una mattina che funziona",
+  "qsStartTitle": "Non perdere nessun inizio",
+  "qsStretchTitle": "Lavora a tappe",
+  "qsWillChange": "Cosa cambierà",
+  "qsAlreadyOn": "Già attivo. Niente da cambiare.",
+  "qsApply": "Applica",
+  "qsDone": "Fatto",
+  "qsUndo": "Annulla",
+  "qsSnoozeTimes": "Rinvii consentiti",
+  "qsSnoozeMinutes": "Minuti di rinvio",
+  "qsFiveLeft": "Mancano 5 minuti"
 }

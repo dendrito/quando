@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "اربط تقويمًا ليجد Quando? “{event}”.",
   "askSnoozeAll": "الغفوة: {minutes} دقيقة، لكل المنبّهات",
   "askWakeWith": "يوقظك بـ {sound}",
-  "askReadAs": "قُرئ هكذا"
+  "askReadAs": "قُرئ هكذا",
+  "quickSetups": "إعدادات سريعة",
+  "qsMorningTitle": "صباح يعمل",
+  "qsStartTitle": "لا تفوّت أي بداية",
+  "qsStretchTitle": "اعمل على فترات",
+  "qsWillChange": "ما الذي سيتغير",
+  "qsAlreadyOn": "مفعّل بالفعل. لا شيء لتغييره.",
+  "qsApply": "تطبيق",
+  "qsDone": "تم",
+  "qsUndo": "تراجع",
+  "qsSnoozeTimes": "عدد الغفوات المسموح",
+  "qsSnoozeMinutes": "دقائق الغفوة",
+  "qsFiveLeft": "بقيت ٥ دقائق"
 }

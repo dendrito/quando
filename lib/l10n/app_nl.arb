@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Koppel een agenda zodat Quando? ‘{event}’ kan vinden.",
   "askSnoozeAll": "Snooze: {minutes} min, voor alle wekkers",
   "askWakeWith": "Wekt je met {sound}",
-  "askReadAs": "Gelezen als"
+  "askReadAs": "Gelezen als",
+  "quickSetups": "Snel instellen",
+  "qsMorningTitle": "Een ochtend die werkt",
+  "qsStartTitle": "Mis nooit een start",
+  "qsStretchTitle": "Werk in blokken",
+  "qsWillChange": "Wat er verandert",
+  "qsAlreadyOn": "Staat al aan. Niets te wijzigen.",
+  "qsApply": "Toepassen",
+  "qsDone": "Klaar",
+  "qsUndo": "Ongedaan maken",
+  "qsSnoozeTimes": "Toegestane snoozes",
+  "qsSnoozeMinutes": "Snoozeminuten",
+  "qsFiveLeft": "Nog 5 minuten"
 }

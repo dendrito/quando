@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Подключите календарь, чтобы Quando? нашёл «{event}».",
   "askSnoozeAll": "Повтор: {minutes} мин, для всех будильников",
   "askWakeWith": "Будит вас: {sound}",
-  "askReadAs": "Прочитано как"
+  "askReadAs": "Прочитано как",
+  "quickSetups": "Быстрые настройки",
+  "qsMorningTitle": "Утро, которое работает",
+  "qsStartTitle": "Не пропускайте начало",
+  "qsStretchTitle": "Работайте отрезками",
+  "qsWillChange": "Что изменится",
+  "qsAlreadyOn": "Уже включено. Менять нечего.",
+  "qsApply": "Применить",
+  "qsDone": "Готово",
+  "qsUndo": "Отменить",
+  "qsSnoozeTimes": "Разрешено отсрочек",
+  "qsSnoozeMinutes": "Минуты отсрочки",
+  "qsFiveLeft": "Осталось 5 минут"
 }

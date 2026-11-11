@@ -3563,4 +3563,40 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askReadAs => 'Letto come';
+
+  @override
+  String get quickSetups => 'Impostazioni rapide';
+
+  @override
+  String get qsMorningTitle => 'Una mattina che funziona';
+
+  @override
+  String get qsStartTitle => 'Non perdere nessun inizio';
+
+  @override
+  String get qsStretchTitle => 'Lavora a tappe';
+
+  @override
+  String get qsWillChange => 'Cosa cambierà';
+
+  @override
+  String get qsAlreadyOn => 'Già attivo. Niente da cambiare.';
+
+  @override
+  String get qsApply => 'Applica';
+
+  @override
+  String get qsDone => 'Fatto';
+
+  @override
+  String get qsUndo => 'Annulla';
+
+  @override
+  String get qsSnoozeTimes => 'Rinvii consentiti';
+
+  @override
+  String get qsSnoozeMinutes => 'Minuti di rinvio';
+
+  @override
+  String get qsFiveLeft => 'Mancano 5 minuti';
 }

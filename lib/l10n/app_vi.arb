@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Kết nối lịch để Quando? tìm được “{event}”.",
   "askSnoozeAll": "Báo lại: {minutes} phút, cho mọi báo thức",
   "askWakeWith": "Đánh thức bạn bằng {sound}",
-  "askReadAs": "Được hiểu là"
+  "askReadAs": "Được hiểu là",
+  "quickSetups": "Thiết lập nhanh",
+  "qsMorningTitle": "Buổi sáng hiệu quả",
+  "qsStartTitle": "Không bỏ lỡ giờ bắt đầu",
+  "qsStretchTitle": "Làm việc theo từng đợt",
+  "qsWillChange": "Điều sẽ thay đổi",
+  "qsAlreadyOn": "Đã bật. Không có gì để đổi.",
+  "qsApply": "Áp dụng",
+  "qsDone": "Xong",
+  "qsUndo": "Hoàn tác",
+  "qsSnoozeTimes": "Số lần báo lại cho phép",
+  "qsSnoozeMinutes": "Số phút báo lại",
+  "qsFiveLeft": "Còn 5 phút"
 }

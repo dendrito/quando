@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Connectez un agenda pour que Quando? trouve « {event} ».",
   "askSnoozeAll": "Rappel : {minutes} min, pour toutes les alarmes",
   "askWakeWith": "Vous réveille avec {sound}",
-  "askReadAs": "Lu comme"
+  "askReadAs": "Lu comme",
+  "quickSetups": "Réglages rapides",
+  "qsMorningTitle": "Un matin qui marche",
+  "qsStartTitle": "Ne ratez aucun début",
+  "qsStretchTitle": "Travaillez par séquences",
+  "qsWillChange": "Ce qui va changer",
+  "qsAlreadyOn": "Déjà activé. Rien à changer.",
+  "qsApply": "Appliquer",
+  "qsDone": "Fait",
+  "qsUndo": "Annuler",
+  "qsSnoozeTimes": "Reports autorisés",
+  "qsSnoozeMinutes": "Minutes de report",
+  "qsFiveLeft": "Plus que 5 minutes"
 }

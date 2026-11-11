@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "חבר יומן כדי ש־Quando? ימצא את ”{event}”.",
   "askSnoozeAll": "נודניק: {minutes} דק׳, לכל השעונים",
   "askWakeWith": "מעיר אותך עם {sound}",
-  "askReadAs": "נקרא כ־"
+  "askReadAs": "נקרא כ־",
+  "quickSetups": "הגדרות מהירות",
+  "qsMorningTitle": "בוקר שעובד",
+  "qsStartTitle": "לא מפספסים התחלה",
+  "qsStretchTitle": "עובדים במקטעים",
+  "qsWillChange": "מה ישתנה",
+  "qsAlreadyOn": "כבר פועל. אין מה לשנות.",
+  "qsApply": "החלה",
+  "qsDone": "בוצע",
+  "qsUndo": "ביטול",
+  "qsSnoozeTimes": "נודניקים מותרים",
+  "qsSnoozeMinutes": "דקות נודניק",
+  "qsFiveLeft": "נותרו 5 דקות"
 }

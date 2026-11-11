@@ -3529,4 +3529,40 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get askReadAs => 'ऐसे पढ़ा गया';
+
+  @override
+  String get quickSetups => 'त्वरित सेटअप';
+
+  @override
+  String get qsMorningTitle => 'सुबह जो काम करे';
+
+  @override
+  String get qsStartTitle => 'कोई शुरुआत न चूकें';
+
+  @override
+  String get qsStretchTitle => 'हिस्सों में काम करें';
+
+  @override
+  String get qsWillChange => 'क्या बदलेगा';
+
+  @override
+  String get qsAlreadyOn => 'पहले से चालू है। बदलने को कुछ नहीं।';
+
+  @override
+  String get qsApply => 'लागू करें';
+
+  @override
+  String get qsDone => 'हो गया';
+
+  @override
+  String get qsUndo => 'पूर्ववत करें';
+
+  @override
+  String get qsSnoozeTimes => 'अनुमत स्नूज़';
+
+  @override
+  String get qsSnoozeMinutes => 'स्नूज़ के मिनट';
+
+  @override
+  String get qsFiveLeft => '5 मिनट बचे';
 }

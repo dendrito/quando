@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Verbinde einen Kalender, damit Quando? „{event}“ findet.",
   "askSnoozeAll": "Schlummern: {minutes} Min., für alle Wecker",
   "askWakeWith": "Weckt dich mit {sound}",
-  "askReadAs": "Gelesen als"
+  "askReadAs": "Gelesen als",
+  "quickSetups": "Schnell einrichten",
+  "qsMorningTitle": "Ein Morgen, der klappt",
+  "qsStartTitle": "Keinen Start verpassen",
+  "qsStretchTitle": "In Etappen arbeiten",
+  "qsWillChange": "Das ändert sich",
+  "qsAlreadyOn": "Schon aktiv. Nichts zu ändern.",
+  "qsApply": "Anwenden",
+  "qsDone": "Fertig",
+  "qsUndo": "Rückgängig",
+  "qsSnoozeTimes": "Erlaubte Schlummern",
+  "qsSnoozeMinutes": "Schlummer-Minuten",
+  "qsFiveLeft": "Noch 5 Minuten"
 }
