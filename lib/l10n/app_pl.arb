@@ -1043,7 +1043,7 @@
   "askSkipped": "Pominięto: {what}",
   "askEventPlan": "{offset} „{event}” w Twoim kalendarzu",
   "askEventNoCalendar": "Połącz kalendarz, aby Quando? znalazł „{event}”.",
-  "askSnoozeAll": "Drzemka: {minutes} min, dla wszystkich alarmów",
+  "askSnoozeAll": "Drzemka: {minutes} min, dla tego alarmu",
   "askWakeWith": "Budzi Cię: {sound}",
   "askReadAs": "Odczytano jako"
 }

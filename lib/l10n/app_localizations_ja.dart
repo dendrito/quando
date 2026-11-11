@@ -3468,7 +3468,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'スヌーズ：$minutes分、すべてのアラームに適用';
+    return 'スヌーズ：$minutes分、このアラームに適用';
   }
 
   @override

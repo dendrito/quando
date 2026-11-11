@@ -1043,7 +1043,7 @@
   "askSkipped": "Atlandı: {what}",
   "askEventPlan": "Takviminizdeki “{event}” etkinliğinden {offset}",
   "askEventNoCalendar": "Quando?'nun “{event}” etkinliğini bulması için bir takvim bağlayın.",
-  "askSnoozeAll": "Erteleme: {minutes} dk, tüm alarmlar için",
+  "askSnoozeAll": "Erteleme: {minutes} dk, bu alarm için",
   "askWakeWith": "Sizi {sound} ile uyandırır",
   "askReadAs": "Şöyle okundu"
 }

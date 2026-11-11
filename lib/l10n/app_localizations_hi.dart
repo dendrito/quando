@@ -3519,7 +3519,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'स्नूज़: $minutes मिनट, सभी अलार्म के लिए';
+    return 'स्नूज़: $minutes मिनट, इस अलार्म के लिए';
   }
 
   @override

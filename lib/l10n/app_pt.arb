@@ -1043,7 +1043,7 @@
   "askSkipped": "Pulado: {what}",
   "askEventPlan": "{offset} “{event}” na sua agenda",
   "askEventNoCalendar": "Conecte uma agenda para o Quando? achar “{event}”.",
-  "askSnoozeAll": "Soneca: {minutes} min, para todos os alarmes",
+  "askSnoozeAll": "Soneca: {minutes} min, para este alarme",
   "askWakeWith": "Te acorda com {sound}",
   "askReadAs": "Lido como"
 }

@@ -3545,7 +3545,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Schlummern: $minutes Min., für alle Wecker';
+    return 'Schlummern: $minutes Min., für diesen Wecker';
   }
 
   @override

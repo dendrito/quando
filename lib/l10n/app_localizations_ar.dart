@@ -3578,7 +3578,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'الغفوة: $minutes دقيقة، لكل المنبّهات';
+    return 'الغفوة: $minutes دقيقة، لهذا المنبّه';
   }
 
   @override

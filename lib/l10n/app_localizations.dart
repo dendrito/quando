@@ -6391,7 +6391,7 @@ abstract class AppLocalizations {
   /// No description provided for @askSnoozeAll.
   ///
   /// In en, this message translates to:
-  /// **'Snooze: {minutes} min, for every alarm'**
+  /// **'Snooze: {minutes} min, for this alarm'**
   String askSnoozeAll(int minutes);
 
   /// No description provided for @askWakeWith.

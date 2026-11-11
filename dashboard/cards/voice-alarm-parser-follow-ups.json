@@ -1,0 +1,12 @@
+{
+  "id": "voice-alarm-parser-follow-ups",
+  "title": "Voice alarm parser follow-ups",
+  "status": "review",
+  "tag": "app",
+  "note": "Fixes '10 minutes before 7' and makes voice snooze per-alarm. Native review sheets ready for 12 languages. Needs your call on the Plus paywall and the on-device model.",
+  "threads": [
+    "voice-followups"
+  ],
+  "details": "Not part of the Thursday release unless you say so. Calendar lock has no Plus paywall yet because the app has no Plus mechanism; on-device model is a proposal only.",
+  "order": 6
+}

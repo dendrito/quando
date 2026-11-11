@@ -9,6 +9,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../ringing/ring_style.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../events/domain/sun_times.dart';
@@ -195,10 +196,15 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     final id = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
     final zone = ref.read(homeZoneProvider);
     final soundId = soundOfKind(request.sound, ref.read(soundsProvider))?.id;
+    // "Snooze 5 minutes" belongs to this alarm only; the others keep the
+    // snooze set in Settings.
     final snooze = request.snoozeMinutes;
-    if (snooze != null && snooze > 0 && snooze <= 60) {
-      ref.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(snoozeMinutes: snooze));
-    }
+    final options = ref.read(alarmOptionsProvider);
+    final style = snooze != null && snooze > 0 && snooze <= 60
+        ? RingStyle(
+            snooze: SnoozePlan(minutes: snooze, times: options.maxSnoozes == 0 ? 2 : options.maxSnoozes),
+          )
+        : RingStyle.none;
     final h = request.hour;
     if (_evening != null && h != null) ref.read(learnedProvider.notifier).halfDay(h % 12, evening: _evening!);
     switch (plan) {
@@ -207,13 +213,30 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
         ref
             .read(userAlarmsProvider.notifier)
             .save(
-              UserAlarm(id: id, hour: local.hour, minute: local.minute, label: label, soundId: soundId),
+              UserAlarm(
+                id: id,
+                hour: local.hour,
+                minute: local.minute,
+                label: label,
+                soundId: soundId,
+                style: style,
+              ),
               at: at,
             );
       case RepeatPlan(:final hour, :final minute, :final days, :final label):
         ref
             .read(userAlarmsProvider.notifier)
-            .save(UserAlarm(id: id, hour: hour, minute: minute, days: days, label: label, soundId: soundId));
+            .save(
+              UserAlarm(
+                id: id,
+                hour: hour,
+                minute: minute,
+                days: days,
+                label: label,
+                soundId: soundId,
+                style: style,
+              ),
+            );
       case EventPlan(:final query, :final offset, :final label):
         ref
             .read(calendarRulesProvider.notifier)
@@ -226,6 +249,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 atStart: offset == Duration.zero,
                 after: [if (offset > Duration.zero) offset],
                 soundId: soundId,
+                style: style,
               ),
             );
       case RulePlan(:final anchor, :final offset, :final days, :final label):
@@ -242,6 +266,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 after: [if (offset > Duration.zero) offset],
                 days: days,
                 soundId: soundId,
+                style: style,
               ),
             );
     }

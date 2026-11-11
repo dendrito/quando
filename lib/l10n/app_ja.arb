@@ -1043,7 +1043,7 @@
   "askSkipped": "スキップしました：{what}",
   "askEventPlan": "カレンダーの「{event}」の{offset}",
   "askEventNoCalendar": "Quando?が「{event}」を見つけられるようカレンダーを接続してください。",
-  "askSnoozeAll": "スヌーズ：{minutes}分、すべてのアラームに適用",
+  "askSnoozeAll": "スヌーズ：{minutes}分、このアラームに適用",
   "askWakeWith": "{sound}で起こします",
   "askReadAs": "読み取り結果"
 }

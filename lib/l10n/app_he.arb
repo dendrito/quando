@@ -1043,7 +1043,7 @@
   "askSkipped": "דולג: {what}",
   "askEventPlan": "{offset} ”{event}” ביומן שלך",
   "askEventNoCalendar": "חבר יומן כדי ש־Quando? ימצא את ”{event}”.",
-  "askSnoozeAll": "נודניק: {minutes} דק׳, לכל השעונים",
+  "askSnoozeAll": "נודניק: {minutes} דק׳, לשעון הזה",
   "askWakeWith": "מעיר אותך עם {sound}",
   "askReadAs": "נקרא כ־"
 }

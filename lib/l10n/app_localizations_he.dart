@@ -3517,7 +3517,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'נודניק: $minutes דק׳, לכל השעונים';
+    return 'נודניק: $minutes דק׳, לשעון הזה';
   }
 
   @override

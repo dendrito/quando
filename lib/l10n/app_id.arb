@@ -1043,7 +1043,7 @@
   "askSkipped": "Dilewati: {what}",
   "askEventPlan": "{offset} “{event}” di kalender Anda",
   "askEventNoCalendar": "Hubungkan kalender agar Quando? bisa menemukan “{event}”.",
-  "askSnoozeAll": "Tunda: {minutes} mnt, untuk semua alarm",
+  "askSnoozeAll": "Tunda: {minutes} mnt, untuk alarm ini",
   "askWakeWith": "Membangunkan Anda dengan {sound}",
   "askReadAs": "Dibaca sebagai"
 }

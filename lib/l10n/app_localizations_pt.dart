@@ -3547,7 +3547,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Soneca: $minutes min, para todos os alarmes';
+    return 'Soneca: $minutes min, para este alarme';
   }
 
   @override

@@ -3550,7 +3550,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Rappel : $minutes min, pour toutes les alarmes';
+    return 'Rappel : $minutes min, pour cette alarme';
   }
 
   @override

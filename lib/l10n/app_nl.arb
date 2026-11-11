@@ -1043,7 +1043,7 @@
   "askSkipped": "Overgeslagen: {what}",
   "askEventPlan": "{offset} ‘{event}’ in je agenda",
   "askEventNoCalendar": "Koppel een agenda zodat Quando? ‘{event}’ kan vinden.",
-  "askSnoozeAll": "Snooze: {minutes} min, voor alle wekkers",
+  "askSnoozeAll": "Snooze: {minutes} min, voor deze wekker",
   "askWakeWith": "Wekt je met {sound}",
   "askReadAs": "Gelezen als"
 }

@@ -1043,7 +1043,7 @@
   "askSkipped": "已跳过：{what}",
   "askEventPlan": "日历中“{event}”{offset}",
   "askEventNoCalendar": "连接日历，Quando? 才能找到“{event}”。",
-  "askSnoozeAll": "贪睡：{minutes} 分钟，适用于所有闹钟",
+  "askSnoozeAll": "贪睡：{minutes} 分钟，仅适用于这个闹钟",
   "askWakeWith": "用{sound}叫醒你",
   "askReadAs": "理解为"
 }

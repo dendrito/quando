@@ -3540,7 +3540,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Snooze: $minutes min, voor alle wekkers';
+    return 'Snooze: $minutes min, voor deze wekker';
   }
 
   @override

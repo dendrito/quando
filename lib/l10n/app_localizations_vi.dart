@@ -3516,7 +3516,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Báo lại: $minutes phút, cho mọi báo thức';
+    return 'Báo lại: $minutes phút, cho báo thức này';
   }
 
   @override

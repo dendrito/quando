@@ -1043,7 +1043,7 @@
   "askSkipped": "건너뛰었어요: {what}",
   "askEventPlan": "캘린더의 “{event}” {offset}",
   "askEventNoCalendar": "Quando?가 “{event}”를 찾을 수 있게 캘린더를 연결하세요.",
-  "askSnoozeAll": "다시 알림: {minutes}분, 모든 알람에 적용",
+  "askSnoozeAll": "다시 알림: {minutes}분, 이 알람에 적용",
   "askWakeWith": "{sound}(으)로 깨워요",
   "askReadAs": "이렇게 읽었어요"
 }

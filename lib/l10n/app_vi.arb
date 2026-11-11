@@ -1043,7 +1043,7 @@
   "askSkipped": "Đã bỏ qua: {what}",
   "askEventPlan": "{offset} “{event}” trong lịch của bạn",
   "askEventNoCalendar": "Kết nối lịch để Quando? tìm được “{event}”.",
-  "askSnoozeAll": "Báo lại: {minutes} phút, cho mọi báo thức",
+  "askSnoozeAll": "Báo lại: {minutes} phút, cho báo thức này",
   "askWakeWith": "Đánh thức bạn bằng {sound}",
   "askReadAs": "Được hiểu là"
 }

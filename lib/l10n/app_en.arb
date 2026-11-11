@@ -2109,7 +2109,7 @@
       }
     }
   },
-  "askSnoozeAll": "Snooze: {minutes} min, for every alarm",
+  "askSnoozeAll": "Snooze: {minutes} min, for this alarm",
   "@askSnoozeAll": {
     "placeholders": {
       "minutes": {

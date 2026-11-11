@@ -3528,7 +3528,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Erteleme: $minutes dk, tüm alarmlar için';
+    return 'Erteleme: $minutes dk, bu alarm için';
   }
 
   @override

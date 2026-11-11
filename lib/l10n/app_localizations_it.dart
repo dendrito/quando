@@ -3547,7 +3547,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Posticipa: $minutes min, per tutte le sveglie';
+    return 'Posticipa: $minutes min, per questa sveglia';
   }
 
   @override

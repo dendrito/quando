@@ -1043,7 +1043,7 @@
   "askSkipped": "Saltata: {what}",
   "askEventPlan": "{offset} “{event}” nel tuo calendario",
   "askEventNoCalendar": "Collega un calendario perché Quando? trovi “{event}”.",
-  "askSnoozeAll": "Posticipa: {minutes} min, per tutte le sveglie",
+  "askSnoozeAll": "Posticipa: {minutes} min, per questa sveglia",
   "askWakeWith": "Ti sveglia con {sound}",
   "askReadAs": "Letto come"
 }

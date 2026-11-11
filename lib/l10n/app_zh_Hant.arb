@@ -1043,7 +1043,7 @@
   "askSkipped": "已略過：{what}",
   "askEventPlan": "行事曆中「{event}」{offset}",
   "askEventNoCalendar": "連結行事曆，Quando? 才能找到「{event}」。",
-  "askSnoozeAll": "貪睡：{minutes} 分鐘，適用於所有鬧鐘",
+  "askSnoozeAll": "貪睡：{minutes} 分鐘，僅適用於這個鬧鐘",
   "askWakeWith": "用{sound}叫醒你",
   "askReadAs": "理解為"
 }

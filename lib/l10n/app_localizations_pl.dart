@@ -3595,7 +3595,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Drzemka: $minutes min, dla wszystkich alarmów';
+    return 'Drzemka: $minutes min, dla tego alarmu';
   }
 
   @override

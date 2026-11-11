@@ -1043,7 +1043,7 @@
   "askSkipped": "Übersprungen: {what}",
   "askEventPlan": "{offset} „{event}“ in deinem Kalender",
   "askEventNoCalendar": "Verbinde einen Kalender, damit Quando? „{event}“ findet.",
-  "askSnoozeAll": "Schlummern: {minutes} Min., für alle Wecker",
+  "askSnoozeAll": "Schlummern: {minutes} Min., für diesen Wecker",
   "askWakeWith": "Weckt dich mit {sound}",
   "askReadAs": "Gelesen als"
 }

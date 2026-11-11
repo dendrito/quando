@@ -3461,7 +3461,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '贪睡：$minutes 分钟，适用于所有闹钟';
+    return '贪睡：$minutes 分钟，仅适用于这个闹钟';
   }
 
   @override
@@ -6929,7 +6929,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '貪睡：$minutes 分鐘，適用於所有鬧鐘';
+    return '貪睡：$minutes 分鐘，僅適用於這個鬧鐘';
   }
 
   @override

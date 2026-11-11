@@ -1043,7 +1043,7 @@
   "askSkipped": "تم التخطي: {what}",
   "askEventPlan": "{offset} “{event}” في تقويمك",
   "askEventNoCalendar": "اربط تقويمًا ليجد Quando? “{event}”.",
-  "askSnoozeAll": "الغفوة: {minutes} دقيقة، لكل المنبّهات",
+  "askSnoozeAll": "الغفوة: {minutes} دقيقة، لهذا المنبّه",
   "askWakeWith": "يوقظك بـ {sound}",
   "askReadAs": "قُرئ هكذا"
 }

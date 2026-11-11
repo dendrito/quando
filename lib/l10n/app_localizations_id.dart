@@ -3525,7 +3525,7 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Tunda: $minutes mnt, untuk semua alarm';
+    return 'Tunda: $minutes mnt, untuk alarm ini';
   }
 
   @override

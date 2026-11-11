@@ -1043,7 +1043,7 @@
   "askSkipped": "Пропущен: {what}",
   "askEventPlan": "{offset} «{event}» в вашем календаре",
   "askEventNoCalendar": "Подключите календарь, чтобы Quando? нашёл «{event}».",
-  "askSnoozeAll": "Повтор: {minutes} мин, для всех будильников",
+  "askSnoozeAll": "Повтор: {minutes} мин, для этого будильника",
   "askWakeWith": "Будит вас: {sound}",
   "askReadAs": "Прочитано как"
 }

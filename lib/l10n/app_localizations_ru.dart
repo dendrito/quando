@@ -3594,7 +3594,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Повтор: $minutes мин, для всех будильников';
+    return 'Повтор: $minutes мин, для этого будильника';
   }
 
   @override

@@ -3469,7 +3469,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '다시 알림: $minutes분, 모든 알람에 적용';
+    return '다시 알림: $minutes분, 이 알람에 적용';
   }
 
   @override
