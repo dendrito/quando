@@ -3605,4 +3605,120 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get askReadAs => 'Odczytano jako';
+
+  @override
+  String get weatherRemindersTitle => 'Przypomnienia o pogodzie';
+
+  @override
+  String get weatherRemindersSubtitle => 'Dzwoni przed deszczem, burzą lub śniegiem';
+
+  @override
+  String get weatherIntro =>
+      'Dostawaj przypomnienia przed deszczem, burzą lub śniegiem, ile chcesz. Quando? czyta prognozę i ustawia je w telefonie.';
+
+  @override
+  String get weatherBackgroundNote => 'Sprawdza też prognozę w tle co kilka godzin.';
+
+  @override
+  String get weatherOpenNote =>
+      'Czyta prognozę, gdy otwierasz aplikację, i nie może sprawdzać, gdy jest zamknięta.';
+
+  @override
+  String get weatherNoPlace => 'Najpierw wybierz miejsce na ekranie głównym, aby było co czytać w prognozie.';
+
+  @override
+  String get weatherWhichHeading => 'Jaka pogoda';
+
+  @override
+  String get weatherWhenHeading => 'Kiedy';
+
+  @override
+  String get weatherAnytime => 'O każdej porze dnia';
+
+  @override
+  String get weatherAnytimeHint => 'Zanim nadejdzie pogoda, cokolwiek robisz.';
+
+  @override
+  String get weatherTied => 'Przed moimi budzikami i wydarzeniami w kalendarzu';
+
+  @override
+  String get weatherTiedHint =>
+      'Gdy prognoza pokazuje taką pogodę w okolicy budzika lub wydarzenia, przypomnij mi wcześniej, na przykład przed wyjściem do pracy.';
+
+  @override
+  String get weatherRemindersHeading => 'Przypomnienia';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min wcześniej';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n godz. wcześniej';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Budzik';
+
+  @override
+  String get weatherSoftOption => 'Cicho';
+
+  @override
+  String get weatherRemove => 'Usuń';
+
+  @override
+  String get weatherAddReminder => 'Dodaj przypomnienie';
+
+  @override
+  String get weatherQuietHeading => 'Godziny ciszy';
+
+  @override
+  String get weatherQuietSwitch => 'Godziny ciszy';
+
+  @override
+  String get weatherQuietHint =>
+      'W tym czasie żadne przypomnienie nie dzwoni. To, które w niego wpadnie, czeka do końca, jeśli pogoda jeszcze nie nadeszła.';
+
+  @override
+  String get weatherQuietFrom => 'Od';
+
+  @override
+  String get weatherQuietTo => 'Do';
+
+  @override
+  String get weatherComingUp => 'Wkrótce';
+
+  @override
+  String get weatherNothingComing => 'Nic w prognozie na najbliższe dwa dni.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Zadzwoni $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Przypomnienia o pogodzie milczą w szabat i święta.';
+
+  @override
+  String get weatherTitleRain => 'Prognoza deszczu';
+
+  @override
+  String get weatherTitleThunder => 'Prognoza burzy';
+
+  @override
+  String get weatherTitleSnow => 'Prognoza śniegu';
+
+  @override
+  String get weatherTitleFog => 'Prognoza mgły';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Około $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · około $time';
+  }
 }

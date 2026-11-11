@@ -10,6 +10,7 @@ import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/busy/ui/busy_screen.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
+import '../features/weather_alarms/data/weather_background.dart';
 import '../features/weather_alarms/ui/weather_alarms_screen.dart';
 import '../features/share/share_channel.dart';
 import '../features/home/domain/sky.dart';
@@ -150,6 +151,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
     await ref.read(weatherAlertsProvider.notifier).refresh();
+    if (isAndroid) await WeatherBackground.schedule(ref.read(weatherAlarmSettingsProvider).active);
     await _sync();
   }
 

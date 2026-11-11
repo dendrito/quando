@@ -223,8 +223,8 @@ class SettingsScreen extends ConsumerWidget {
           ListTile(
             contentPadding: EdgeInsets.zero,
             leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
-            title: const Text('Weather reminders'),
-            subtitle: const Text('Ring before rain, thunderstorm or snow'),
+            title: Text(l10n.weatherRemindersTitle),
+            subtitle: Text(l10n.weatherRemindersSubtitle),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.push('/weather-alarms'),
           ),

@@ -3479,4 +3479,116 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askReadAs => '이렇게 읽었어요';
+
+  @override
+  String get weatherRemindersTitle => '날씨 알림';
+
+  @override
+  String get weatherRemindersSubtitle => '비, 뇌우, 눈이 오기 전에 울립니다';
+
+  @override
+  String get weatherIntro => '비, 뇌우, 눈이 오기 전에 원하는 만큼 알림을 받으세요. Quando?가 예보를 읽어 휴대폰에 설정합니다.';
+
+  @override
+  String get weatherBackgroundNote => '몇 시간마다 백그라운드에서도 예보를 확인합니다.';
+
+  @override
+  String get weatherOpenNote => '앱을 열 때 예보를 읽으며, 앱이 닫혀 있을 때는 확인하지 못합니다.';
+
+  @override
+  String get weatherNoPlace => '먼저 홈 화면에서 위치를 선택하세요. 읽을 예보가 있어야 합니다.';
+
+  @override
+  String get weatherWhichHeading => '어떤 날씨';
+
+  @override
+  String get weatherWhenHeading => '언제';
+
+  @override
+  String get weatherAnytime => '하루 중 아무 때나';
+
+  @override
+  String get weatherAnytimeHint => '무엇을 하고 있든, 날씨가 오기 전에.';
+
+  @override
+  String get weatherTied => '내 알람과 캘린더 일정 전에';
+
+  @override
+  String get weatherTiedHint => '알람이나 일정 즈음에 그 날씨가 예보되면 미리 알려 주세요. 예를 들어 출근하기 전에요.';
+
+  @override
+  String get weatherRemindersHeading => '알림';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n분 전';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n시간 전';
+  }
+
+  @override
+  String get weatherAlarmOption => '알람';
+
+  @override
+  String get weatherSoftOption => '부드럽게';
+
+  @override
+  String get weatherRemove => '삭제';
+
+  @override
+  String get weatherAddReminder => '알림 추가';
+
+  @override
+  String get weatherQuietHeading => '조용한 시간';
+
+  @override
+  String get weatherQuietSwitch => '조용한 시간';
+
+  @override
+  String get weatherQuietHint => '이 시간에는 알림이 울리지 않습니다. 그 안에 걸리는 알림은 날씨가 아직 오지 않았다면 끝날 때까지 기다립니다.';
+
+  @override
+  String get weatherQuietFrom => '시작';
+
+  @override
+  String get weatherQuietTo => '종료';
+
+  @override
+  String get weatherComingUp => '예정';
+
+  @override
+  String get weatherNothingComing => '앞으로 이틀간 예보에는 아무것도 없습니다.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$when에 울림';
+  }
+
+  @override
+  String get weatherShabbatNote => '날씨 알림은 샤밧과 명절에는 울리지 않습니다.';
+
+  @override
+  String get weatherTitleRain => '비 예보';
+
+  @override
+  String get weatherTitleThunder => '뇌우 예보';
+
+  @override
+  String get weatherTitleSnow => '눈 예보';
+
+  @override
+  String get weatherTitleFog => '안개 예보';
+
+  @override
+  String weatherBodyAny(String time) {
+    return '$time쯤';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · $time쯤';
+  }
 }

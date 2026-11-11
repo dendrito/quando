@@ -35,6 +35,7 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+import '../features/weather_alarms/data/weather_alarm_alarms.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/shabbat/domain/preparation.dart';
 import '../features/home/domain/home_display.dart';

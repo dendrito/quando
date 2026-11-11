@@ -6405,6 +6405,210 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Read as'**
   String get askReadAs;
+
+  /// No description provided for @weatherRemindersTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather reminders'**
+  String get weatherRemindersTitle;
+
+  /// No description provided for @weatherRemindersSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring before rain, thunderstorm or snow'**
+  String get weatherRemindersSubtitle;
+
+  /// No description provided for @weatherIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'Get reminders before it rains, storms or snows, as many as you want. Quando? reads the forecast and sets them on your phone.'**
+  String get weatherIntro;
+
+  /// No description provided for @weatherBackgroundNote.
+  ///
+  /// In en, this message translates to:
+  /// **'It also checks the forecast in the background every couple of hours.'**
+  String get weatherBackgroundNote;
+
+  /// No description provided for @weatherOpenNote.
+  ///
+  /// In en, this message translates to:
+  /// **'It reads the forecast when you open it and can\'t check while closed.'**
+  String get weatherOpenNote;
+
+  /// No description provided for @weatherNoPlace.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose your place on the home screen first, so there is a forecast to read.'**
+  String get weatherNoPlace;
+
+  /// No description provided for @weatherWhichHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Which weather'**
+  String get weatherWhichHeading;
+
+  /// No description provided for @weatherWhenHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'When'**
+  String get weatherWhenHeading;
+
+  /// No description provided for @weatherAnytime.
+  ///
+  /// In en, this message translates to:
+  /// **'Any time of day'**
+  String get weatherAnytime;
+
+  /// No description provided for @weatherAnytimeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Before the weather arrives, whatever you are doing.'**
+  String get weatherAnytimeHint;
+
+  /// No description provided for @weatherTied.
+  ///
+  /// In en, this message translates to:
+  /// **'Before my alarms and calendar events'**
+  String get weatherTied;
+
+  /// No description provided for @weatherTiedHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When the forecast has that weather around an alarm or event, remind me ahead of it, for example before leaving for work.'**
+  String get weatherTiedHint;
+
+  /// No description provided for @weatherRemindersHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Reminders'**
+  String get weatherRemindersHeading;
+
+  /// No description provided for @weatherLeadMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} min before'**
+  String weatherLeadMinutes(int n);
+
+  /// No description provided for @weatherLeadHours.
+  ///
+  /// In en, this message translates to:
+  /// **'{n} h before'**
+  String weatherLeadHours(int n);
+
+  /// No description provided for @weatherAlarmOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarm'**
+  String get weatherAlarmOption;
+
+  /// No description provided for @weatherSoftOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Soft'**
+  String get weatherSoftOption;
+
+  /// No description provided for @weatherRemove.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get weatherRemove;
+
+  /// No description provided for @weatherAddReminder.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a reminder'**
+  String get weatherAddReminder;
+
+  /// No description provided for @weatherQuietHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet hours'**
+  String get weatherQuietHeading;
+
+  /// No description provided for @weatherQuietSwitch.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet hours'**
+  String get weatherQuietSwitch;
+
+  /// No description provided for @weatherQuietHint.
+  ///
+  /// In en, this message translates to:
+  /// **'No reminder rings in this time. One that falls inside waits until it ends, if the weather has not arrived by then.'**
+  String get weatherQuietHint;
+
+  /// No description provided for @weatherQuietFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'From'**
+  String get weatherQuietFrom;
+
+  /// No description provided for @weatherQuietTo.
+  ///
+  /// In en, this message translates to:
+  /// **'Until'**
+  String get weatherQuietTo;
+
+  /// No description provided for @weatherComingUp.
+  ///
+  /// In en, this message translates to:
+  /// **'Coming up'**
+  String get weatherComingUp;
+
+  /// No description provided for @weatherNothingComing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in the forecast for the next two days.'**
+  String get weatherNothingComing;
+
+  /// No description provided for @weatherRingsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Rings {when}'**
+  String weatherRingsAt(String when);
+
+  /// No description provided for @weatherShabbatNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather reminders stay quiet during Shabbat and festivals.'**
+  String get weatherShabbatNote;
+
+  /// No description provided for @weatherTitleRain.
+  ///
+  /// In en, this message translates to:
+  /// **'Rain forecast'**
+  String get weatherTitleRain;
+
+  /// No description provided for @weatherTitleThunder.
+  ///
+  /// In en, this message translates to:
+  /// **'Thunderstorm forecast'**
+  String get weatherTitleThunder;
+
+  /// No description provided for @weatherTitleSnow.
+  ///
+  /// In en, this message translates to:
+  /// **'Snow forecast'**
+  String get weatherTitleSnow;
+
+  /// No description provided for @weatherTitleFog.
+  ///
+  /// In en, this message translates to:
+  /// **'Fog forecast'**
+  String get weatherTitleFog;
+
+  /// No description provided for @weatherBodyAny.
+  ///
+  /// In en, this message translates to:
+  /// **'Around {time}'**
+  String weatherBodyAny(String time);
+
+  /// No description provided for @weatherBodyTied.
+  ///
+  /// In en, this message translates to:
+  /// **'{event} · around {time}'**
+  String weatherBodyTied(String event, String time);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

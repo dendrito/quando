@@ -3478,4 +3478,116 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get askReadAs => '読み取り結果';
+
+  @override
+  String get weatherRemindersTitle => '天気リマインダー';
+
+  @override
+  String get weatherRemindersSubtitle => '雨・雷雨・雪の前に鳴らします';
+
+  @override
+  String get weatherIntro => '雨や雷雨、雪の前に、好きな数だけリマインダーを受け取れます。Quando? が予報を読み取り、スマートフォンに設定します。';
+
+  @override
+  String get weatherBackgroundNote => '数時間ごとにバックグラウンドでも予報を確認します。';
+
+  @override
+  String get weatherOpenNote => 'アプリを開いたときに予報を読み取ります。閉じている間は確認できません。';
+
+  @override
+  String get weatherNoPlace => 'まずホーム画面で場所を選んでください。読み取る予報が必要です。';
+
+  @override
+  String get weatherWhichHeading => 'どの天気';
+
+  @override
+  String get weatherWhenHeading => 'いつ';
+
+  @override
+  String get weatherAnytime => '一日のいつでも';
+
+  @override
+  String get weatherAnytimeHint => '何をしていても、天気が来る前に。';
+
+  @override
+  String get weatherTied => 'アラームやカレンダーの予定の前';
+
+  @override
+  String get weatherTiedHint => 'アラームや予定の前後にその天気の予報があるとき、先にお知らせします。たとえば出勤前に。';
+
+  @override
+  String get weatherRemindersHeading => 'リマインダー';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n分前';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n時間前';
+  }
+
+  @override
+  String get weatherAlarmOption => 'アラーム';
+
+  @override
+  String get weatherSoftOption => '小さく';
+
+  @override
+  String get weatherRemove => '削除';
+
+  @override
+  String get weatherAddReminder => 'リマインダーを追加';
+
+  @override
+  String get weatherQuietHeading => 'おやすみ時間';
+
+  @override
+  String get weatherQuietSwitch => 'おやすみ時間';
+
+  @override
+  String get weatherQuietHint => 'この時間帯はリマインダーが鳴りません。中に入るものは、天気がまだ来ていなければ終了まで待ちます。';
+
+  @override
+  String get weatherQuietFrom => '開始';
+
+  @override
+  String get weatherQuietTo => '終了';
+
+  @override
+  String get weatherComingUp => '予定';
+
+  @override
+  String get weatherNothingComing => '今後2日間の予報には何もありません。';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$whenに鳴ります';
+  }
+
+  @override
+  String get weatherShabbatNote => '天気リマインダーは安息日と祭日の間は鳴りません。';
+
+  @override
+  String get weatherTitleRain => '雨の予報';
+
+  @override
+  String get weatherTitleThunder => '雷雨の予報';
+
+  @override
+  String get weatherTitleSnow => '雪の予報';
+
+  @override
+  String get weatherTitleFog => '霧の予報';
+
+  @override
+  String weatherBodyAny(String time) {
+    return '$timeごろ';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event・$timeごろ';
+  }
 }

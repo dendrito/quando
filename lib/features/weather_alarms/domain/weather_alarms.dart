@@ -33,6 +33,9 @@ class WeatherAlarmSettings {
     ],
     this.anytime = true,
     this.tied = true,
+    this.quiet = true,
+    this.quietStart = 22 * 60,
+    this.quietEnd = 7 * 60,
   });
 
   final bool enabled;
@@ -46,6 +49,13 @@ class WeatherAlarmSettings {
   /// forecast says that weather will be there.
   final bool tied;
 
+  /// Quiet hours: no reminder rings between [quietStart] and [quietEnd]
+  /// (minutes after midnight, local time). One that falls inside waits
+  /// for the end, when the weather has not yet arrived.
+  final bool quiet;
+  final int quietStart;
+  final int quietEnd;
+
   bool get active => enabled && kinds.isNotEmpty && reminders.isNotEmpty && (anytime || tied);
 
   WeatherAlarmSettings copyWith({
@@ -54,12 +64,18 @@ class WeatherAlarmSettings {
     List<WeatherReminder>? reminders,
     bool? anytime,
     bool? tied,
+    bool? quiet,
+    int? quietStart,
+    int? quietEnd,
   }) => WeatherAlarmSettings(
     enabled: enabled ?? this.enabled,
     kinds: kinds ?? this.kinds,
     reminders: reminders ?? this.reminders,
     anytime: anytime ?? this.anytime,
     tied: tied ?? this.tied,
+    quiet: quiet ?? this.quiet,
+    quietStart: quietStart ?? this.quietStart,
+    quietEnd: quietEnd ?? this.quietEnd,
   );
 
   Map<String, dynamic> toJson() => {
@@ -68,6 +84,9 @@ class WeatherAlarmSettings {
     'reminders': [for (final r in reminders) r.toJson()],
     'anytime': anytime,
     'tied': tied,
+    'quiet': quiet,
+    'quietStart': quietStart,
+    'quietEnd': quietEnd,
   };
 
   factory WeatherAlarmSettings.fromJson(Map<String, dynamic> j) {
@@ -91,6 +110,9 @@ class WeatherAlarmSettings {
       reminders: reminders,
       anytime: j['anytime'] as bool? ?? true,
       tied: j['tied'] as bool? ?? true,
+      quiet: j['quiet'] as bool? ?? true,
+      quietStart: ((j['quietStart'] as num?)?.toInt() ?? d.quietStart).clamp(0, 1439),
+      quietEnd: ((j['quietEnd'] as num?)?.toInt() ?? d.quietEnd).clamp(0, 1439),
     );
   }
 }
@@ -175,7 +197,10 @@ class WeatherPlanner {
     required List<WeatherHour> hours,
     required DateTime now,
     Iterable<WeatherAnchor> anchors = const [],
+    Iterable<(DateTime, DateTime)> blocked = const [],
+    DateTime Function(DateTime)? toLocal,
   }) {
+    final local = toLocal ?? (d) => d.toLocal();
     if (!settings.active || hours.isEmpty) return const [];
     final end = now.add(horizon);
     final sorted = [...hours]..sort((a, b) => a.at.compareTo(b.at));
@@ -185,11 +210,17 @@ class WeatherPlanner {
     final reminders = [...settings.reminders]..sort((a, b) => b.lead.compareTo(a.lead));
     final out = <String, WeatherAlert>{};
 
+    final seen = <String>{};
     void add(String key, DateTime anchor, WeatherKind kind, {String? title}) {
       for (final r in reminders) {
-        final at = anchor.subtract(r.lead);
-        if (!at.isAfter(now) || at.isAfter(end)) continue;
+        var at = anchor.subtract(r.lead);
+        if (settings.quiet) at = _afterQuiet(at, settings, local);
+        // Gone, past the weather itself, or inside Shabbat or a festival.
+        if (!at.isAfter(now) || at.isAfter(end) || !at.isBefore(anchor)) continue;
+        if (blocked.any((b) => !at.isBefore(b.$1) && at.isBefore(b.$2))) continue;
         final k = '$key|${r.lead.inMinutes}';
+        // Two reminders pushed to the same moment ring once.
+        if (!seen.add('$key|${at.millisecondsSinceEpoch ~/ 60000}')) continue;
         out.putIfAbsent(
           k,
           () => WeatherAlert(
@@ -233,5 +264,17 @@ class WeatherPlanner {
       }
     }
     return out.values.toList()..sort((a, b) => a.at.compareTo(b.at));
+  }
+
+  /// [at], or the end of the quiet hours when it falls inside them.
+  static DateTime _afterQuiet(DateTime at, WeatherAlarmSettings s, DateTime Function(DateTime) local) {
+    final t = local(at);
+    final mins = t.hour * 60 + t.minute;
+    final inside = s.quietStart < s.quietEnd
+        ? mins >= s.quietStart && mins < s.quietEnd
+        : s.quietStart > s.quietEnd && (mins >= s.quietStart || mins < s.quietEnd);
+    if (!inside) return at;
+    final wait = (s.quietEnd - mins + 1440) % 1440;
+    return at.add(Duration(minutes: wait, seconds: -t.second));
   }
 }

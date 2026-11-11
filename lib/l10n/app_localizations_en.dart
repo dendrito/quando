@@ -3535,4 +3535,119 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askReadAs => 'Read as';
+
+  @override
+  String get weatherRemindersTitle => 'Weather reminders';
+
+  @override
+  String get weatherRemindersSubtitle => 'Ring before rain, thunderstorm or snow';
+
+  @override
+  String get weatherIntro =>
+      'Get reminders before it rains, storms or snows, as many as you want. Quando? reads the forecast and sets them on your phone.';
+
+  @override
+  String get weatherBackgroundNote => 'It also checks the forecast in the background every couple of hours.';
+
+  @override
+  String get weatherOpenNote => 'It reads the forecast when you open it and can\'t check while closed.';
+
+  @override
+  String get weatherNoPlace => 'Choose your place on the home screen first, so there is a forecast to read.';
+
+  @override
+  String get weatherWhichHeading => 'Which weather';
+
+  @override
+  String get weatherWhenHeading => 'When';
+
+  @override
+  String get weatherAnytime => 'Any time of day';
+
+  @override
+  String get weatherAnytimeHint => 'Before the weather arrives, whatever you are doing.';
+
+  @override
+  String get weatherTied => 'Before my alarms and calendar events';
+
+  @override
+  String get weatherTiedHint =>
+      'When the forecast has that weather around an alarm or event, remind me ahead of it, for example before leaving for work.';
+
+  @override
+  String get weatherRemindersHeading => 'Reminders';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min before';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n h before';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Alarm';
+
+  @override
+  String get weatherSoftOption => 'Soft';
+
+  @override
+  String get weatherRemove => 'Remove';
+
+  @override
+  String get weatherAddReminder => 'Add a reminder';
+
+  @override
+  String get weatherQuietHeading => 'Quiet hours';
+
+  @override
+  String get weatherQuietSwitch => 'Quiet hours';
+
+  @override
+  String get weatherQuietHint =>
+      'No reminder rings in this time. One that falls inside waits until it ends, if the weather has not arrived by then.';
+
+  @override
+  String get weatherQuietFrom => 'From';
+
+  @override
+  String get weatherQuietTo => 'Until';
+
+  @override
+  String get weatherComingUp => 'Coming up';
+
+  @override
+  String get weatherNothingComing => 'Nothing in the forecast for the next two days.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Rings $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Weather reminders stay quiet during Shabbat and festivals.';
+
+  @override
+  String get weatherTitleRain => 'Rain forecast';
+
+  @override
+  String get weatherTitleThunder => 'Thunderstorm forecast';
+
+  @override
+  String get weatherTitleSnow => 'Snow forecast';
+
+  @override
+  String get weatherTitleFog => 'Fog forecast';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Around $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · around $time';
+  }
 }

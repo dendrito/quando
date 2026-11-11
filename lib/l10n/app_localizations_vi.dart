@@ -3526,4 +3526,119 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askReadAs => 'Được hiểu là';
+
+  @override
+  String get weatherRemindersTitle => 'Nhắc nhở thời tiết';
+
+  @override
+  String get weatherRemindersSubtitle => 'Đổ chuông trước khi mưa, giông hoặc tuyết';
+
+  @override
+  String get weatherIntro =>
+      'Nhận nhắc nhở trước khi mưa, giông hoặc tuyết, bao nhiêu tùy bạn. Quando? đọc dự báo và đặt chúng trên điện thoại của bạn.';
+
+  @override
+  String get weatherBackgroundNote => 'Ứng dụng cũng kiểm tra dự báo ở chế độ nền vài giờ một lần.';
+
+  @override
+  String get weatherOpenNote => 'Ứng dụng đọc dự báo khi bạn mở nó và không thể kiểm tra khi đang đóng.';
+
+  @override
+  String get weatherNoPlace => 'Hãy chọn vị trí của bạn trên màn hình chính trước, để có dự báo mà đọc.';
+
+  @override
+  String get weatherWhichHeading => 'Thời tiết nào';
+
+  @override
+  String get weatherWhenHeading => 'Khi nào';
+
+  @override
+  String get weatherAnytime => 'Bất cứ lúc nào trong ngày';
+
+  @override
+  String get weatherAnytimeHint => 'Trước khi thời tiết đến, dù bạn đang làm gì.';
+
+  @override
+  String get weatherTied => 'Trước báo thức và sự kiện lịch của tôi';
+
+  @override
+  String get weatherTiedHint =>
+      'Khi dự báo có thời tiết đó quanh một báo thức hoặc sự kiện, hãy nhắc tôi trước, ví dụ trước khi đi làm.';
+
+  @override
+  String get weatherRemindersHeading => 'Nhắc nhở';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return 'Trước $n phút';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return 'Trước $n giờ';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Báo thức';
+
+  @override
+  String get weatherSoftOption => 'Nhẹ nhàng';
+
+  @override
+  String get weatherRemove => 'Xóa';
+
+  @override
+  String get weatherAddReminder => 'Thêm nhắc nhở';
+
+  @override
+  String get weatherQuietHeading => 'Giờ yên tĩnh';
+
+  @override
+  String get weatherQuietSwitch => 'Giờ yên tĩnh';
+
+  @override
+  String get weatherQuietHint =>
+      'Không nhắc nhở nào đổ chuông trong khoảng này. Cái rơi vào đó sẽ chờ đến khi hết, nếu lúc đó thời tiết chưa đến.';
+
+  @override
+  String get weatherQuietFrom => 'Từ';
+
+  @override
+  String get weatherQuietTo => 'Đến';
+
+  @override
+  String get weatherComingUp => 'Sắp tới';
+
+  @override
+  String get weatherNothingComing => 'Dự báo hai ngày tới không có gì.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Đổ chuông $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Nhắc nhở thời tiết im lặng trong ngày Shabbat và lễ.';
+
+  @override
+  String get weatherTitleRain => 'Dự báo mưa';
+
+  @override
+  String get weatherTitleThunder => 'Dự báo giông bão';
+
+  @override
+  String get weatherTitleSnow => 'Dự báo tuyết';
+
+  @override
+  String get weatherTitleFog => 'Dự báo sương mù';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Khoảng $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · khoảng $time';
+  }
 }

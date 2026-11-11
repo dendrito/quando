@@ -3529,4 +3529,119 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get askReadAs => 'ऐसे पढ़ा गया';
+
+  @override
+  String get weatherRemindersTitle => 'मौसम अनुस्मारक';
+
+  @override
+  String get weatherRemindersSubtitle => 'बारिश, तूफ़ान या बर्फ़ से पहले बजता है';
+
+  @override
+  String get weatherIntro =>
+      'बारिश, तूफ़ान या बर्फ़बारी से पहले जितने चाहें उतने अनुस्मारक पाएँ। Quando? पूर्वानुमान पढ़कर उन्हें आपके फ़ोन में सेट करता है।';
+
+  @override
+  String get weatherBackgroundNote => 'यह हर कुछ घंटों में बैकग्राउंड में भी पूर्वानुमान जाँचता है।';
+
+  @override
+  String get weatherOpenNote => 'यह ऐप खोलने पर पूर्वानुमान पढ़ता है, बंद होने पर जाँच नहीं सकता।';
+
+  @override
+  String get weatherNoPlace => 'पहले होम स्क्रीन पर अपनी जगह चुनें, ताकि पढ़ने के लिए पूर्वानुमान हो।';
+
+  @override
+  String get weatherWhichHeading => 'कौन-सा मौसम';
+
+  @override
+  String get weatherWhenHeading => 'कब';
+
+  @override
+  String get weatherAnytime => 'दिन के किसी भी समय';
+
+  @override
+  String get weatherAnytimeHint => 'मौसम आने से पहले, आप चाहे जो कर रहे हों।';
+
+  @override
+  String get weatherTied => 'मेरे अलार्म और कैलेंडर इवेंट से पहले';
+
+  @override
+  String get weatherTiedHint =>
+      'जब पूर्वानुमान में किसी अलार्म या इवेंट के आसपास वह मौसम हो, तो मुझे पहले बताएँ, जैसे काम पर निकलने से पहले।';
+
+  @override
+  String get weatherRemindersHeading => 'अनुस्मारक';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n मिनट पहले';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n घंटे पहले';
+  }
+
+  @override
+  String get weatherAlarmOption => 'अलार्म';
+
+  @override
+  String get weatherSoftOption => 'धीमा';
+
+  @override
+  String get weatherRemove => 'हटाएँ';
+
+  @override
+  String get weatherAddReminder => 'अनुस्मारक जोड़ें';
+
+  @override
+  String get weatherQuietHeading => 'शांत घंटे';
+
+  @override
+  String get weatherQuietSwitch => 'शांत घंटे';
+
+  @override
+  String get weatherQuietHint =>
+      'इस समय कोई अनुस्मारक नहीं बजता। जो इसके अंदर पड़े, वह इसके खत्म होने तक रुकता है, अगर तब तक मौसम न आया हो।';
+
+  @override
+  String get weatherQuietFrom => 'से';
+
+  @override
+  String get weatherQuietTo => 'तक';
+
+  @override
+  String get weatherComingUp => 'आगे आने वाले';
+
+  @override
+  String get weatherNothingComing => 'अगले दो दिनों के पूर्वानुमान में कुछ नहीं है।';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$when बजेगा';
+  }
+
+  @override
+  String get weatherShabbatNote => 'शब्बात और त्योहारों में मौसम अनुस्मारक शांत रहते हैं।';
+
+  @override
+  String get weatherTitleRain => 'बारिश का पूर्वानुमान';
+
+  @override
+  String get weatherTitleThunder => 'तूफ़ान का पूर्वानुमान';
+
+  @override
+  String get weatherTitleSnow => 'बर्फ़बारी का पूर्वानुमान';
+
+  @override
+  String get weatherTitleFog => 'कोहरे का पूर्वानुमान';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'लगभग $time बजे';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · लगभग $time बजे';
+  }
 }

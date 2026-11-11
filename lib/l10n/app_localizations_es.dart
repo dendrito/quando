@@ -3555,4 +3555,121 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get askReadAs => 'Leído como';
+
+  @override
+  String get weatherRemindersTitle => 'Avisos del tiempo';
+
+  @override
+  String get weatherRemindersSubtitle => 'Suena antes de lluvia, tormenta o nieve';
+
+  @override
+  String get weatherIntro =>
+      'Recibe avisos antes de que llueva, haya tormenta o nieve, tantos como quieras. Quando? lee el pronóstico y los programa en tu teléfono.';
+
+  @override
+  String get weatherBackgroundNote => 'También revisa el pronóstico en segundo plano cada pocas horas.';
+
+  @override
+  String get weatherOpenNote =>
+      'Lee el pronóstico cuando abres la app y no puede revisarlo con la app cerrada.';
+
+  @override
+  String get weatherNoPlace =>
+      'Elige primero tu lugar en la pantalla de inicio, para que haya un pronóstico que leer.';
+
+  @override
+  String get weatherWhichHeading => 'Qué tiempo';
+
+  @override
+  String get weatherWhenHeading => 'Cuándo';
+
+  @override
+  String get weatherAnytime => 'A cualquier hora del día';
+
+  @override
+  String get weatherAnytimeHint => 'Antes de que llegue el tiempo, estés haciendo lo que estés haciendo.';
+
+  @override
+  String get weatherTied => 'Antes de mis alarmas y eventos del calendario';
+
+  @override
+  String get weatherTiedHint =>
+      'Cuando el pronóstico traiga ese tiempo cerca de una alarma o evento, avísame antes, por ejemplo antes de salir al trabajo.';
+
+  @override
+  String get weatherRemindersHeading => 'Avisos';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min antes';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n h antes';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Alarma';
+
+  @override
+  String get weatherSoftOption => 'Suave';
+
+  @override
+  String get weatherRemove => 'Quitar';
+
+  @override
+  String get weatherAddReminder => 'Añadir un aviso';
+
+  @override
+  String get weatherQuietHeading => 'Horas de silencio';
+
+  @override
+  String get weatherQuietSwitch => 'Horas de silencio';
+
+  @override
+  String get weatherQuietHint =>
+      'Ningún aviso suena en este horario. Si uno cae dentro, espera a que termine, siempre que el tiempo aún no haya llegado.';
+
+  @override
+  String get weatherQuietFrom => 'Desde';
+
+  @override
+  String get weatherQuietTo => 'Hasta';
+
+  @override
+  String get weatherComingUp => 'Próximamente';
+
+  @override
+  String get weatherNothingComing => 'No hay nada en el pronóstico para los próximos dos días.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Suena $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Los avisos del tiempo callan durante Shabat y las fiestas.';
+
+  @override
+  String get weatherTitleRain => 'Pronóstico de lluvia';
+
+  @override
+  String get weatherTitleThunder => 'Pronóstico de tormenta';
+
+  @override
+  String get weatherTitleSnow => 'Pronóstico de nieve';
+
+  @override
+  String get weatherTitleFog => 'Pronóstico de niebla';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Hacia las $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · hacia las $time';
+  }
 }
