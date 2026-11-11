@@ -141,3 +141,4 @@ queen_iwantit = すべてが欲しい、今すぐに。 | Queen
 queen_forever = 永遠に生きたいのは誰？ | Queen
 howsoon = 「今」はどれほどすぐなのか？ | The Smiths
 +movies any = まあだかい？　まあだだよ！ | 黒澤明『まあだだよ』、内田百閒原作
++literature any = 千日の稽古を鍛とし、万日の稽古を錬とす。 | 宮本武蔵『五輪書』
