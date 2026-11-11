@@ -7881,11 +7881,19 @@ const quoteBank = <String, List<Quote>>{
     Quote('Il tempo è galantuomo.', 'Proverbio', QuoteSource.proverbs, 'any'),
     Quote('Nel mezzo del cammin di nostra vita.', 'Dante Alighieri', QuoteSource.literature, 'morning'),
     Quote(
-      'Quant\'è bella giovinezza, che si fugge tuttavia!',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
+      'Il tempo si caccia innanzi ogni cosa, e può condurre seco bene come male, e male come bene.',
+      'Niccolò Machiavelli, Il Principe',
+      QuoteSource.philosophy,
+      'any',
     ),
+    Quote(
+      'L\'acqua che tocchi de\' fiumi è l\'ultima di quella che andò e la prima di quella che viene. Così il tempo presente.',
+      'Leonardo da Vinci',
+      QuoteSource.philosophy,
+      'any',
+    ),
+    Quote('Zefiro torna, e \'l bel tempo rimena.', 'Francesco Petrarca', QuoteSource.literature, 'morning'),
+    Quote('E il naufragar m\'è dolce in questo mare.', 'Giacomo Leopardi', QuoteSource.literature, 'evening'),
   ],
   'ja': [
     Quote(
