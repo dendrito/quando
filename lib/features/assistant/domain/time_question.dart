@@ -34,35 +34,25 @@ class TimeAnswer {
   bool get fromCalendar => calendarId != null;
 }
 
-final _questionStart = RegExp(
-  r'^\s*¿?\s*(when|what\s+time|at\s+what\s+time|quando|que\s+horas|a\s+que\s+horas|qual\s+(o\s+)?hor[aá]rio|'
-  r'cu[aá]ndo|a\s+qu[eé]\s+hora|qu[eé]\s+hora|quand|[aà]\s+quelle\s+heure|quelle\s+heure|'
-  r'wann|um\s+wie\s*viel\s+uhr|a\s+che\s+ora|che\s+ora|'
-  r'מתי|באיזו\s+שעה|מה\s+השעה)',
-  caseSensitive: false,
-);
-
-final _command = RegExp(
-  r'\b(wake|remind|alarm|set|ring|acord|despert|lembr|avis|toc|recu[eé]rd|record|r[eé]veill|rappel|weck|erinner|svegli|ricord)|'
-  r'תעיר|תזכיר|שעון\s+מעורר|השכמה',
-  caseSensitive: false,
-);
+/// Question marks in every script: ?, full-width ？ and Arabic ؟.
+final _questionMark = RegExp(r'[?？؟]$');
 
 /// A question about sunrise, sunset, candle lighting or havdalah; null for
 /// anything else, including "wake me before candle lighting".
 TimeQuestion? readTimeQuestion(String input, {String? lang, AlarmParser parser = const AlarmParser()}) {
-  final text = rewriteForParser(input, lang);
+  final lex = Lexicon.forLanguage(lang);
+  final text = _plain(rewriteForParser(input, lang));
   final asks =
-      _questionStart.hasMatch(text) ||
-      RegExp(r'[?？؟]$').hasMatch(text.trim()) ||
+      RegExp('^\\s*¿?\\s*(?:${lex.question})(?![\\p{L}])', unicode: true).hasMatch(text) ||
+      _questionMark.hasMatch(text.trim()) ||
       (hasPhrasebook(lang) && RegExp(r'(?<![a-z])(?:when|what\s+time)(?![a-z])').hasMatch(text));
-  if (!asks || _command.hasMatch(text)) return null;
+  if (!asks || RegExp('(?<![\\p{L}])(?:${lex.command})', unicode: true).hasMatch(text)) return null;
   final r = parser.parse(input, lang: lang);
   final anchor = r?.anchor;
   if (r == null || anchor == null || r.hour != null || r.after != null) return null;
   return TimeQuestion(
     anchor: anchor,
-    weekday: r.days.length == 1 ? r.days.first : null,
+    weekday: r.onWeekday ?? (r.days.length == 1 ? r.days.first : null),
     dayOffset: r.dayOffset,
   );
 }
@@ -110,4 +100,9 @@ TimeAnswer? answerTimeQuestion(
   };
   final e = first(builtIn.where((e) => kinds.contains(e.kind)));
   return e == null ? null : TimeAnswer(at: e.at, title: e.title);
+}
+
+String _plain(String s) {
+  const accents = {'á': 'a', 'à': 'a', 'â': 'a', 'ã': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'í': 'i', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ú': 'u', 'ü': 'u', 'ç': 'c', 'ñ': 'n'};
+  return s.toLowerCase().split('').map((c) => accents[c] ?? c).join();
 }

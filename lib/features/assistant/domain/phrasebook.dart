@@ -1,3 +1,7 @@
+import 'words/cldr_words.dart';
+import 'words/cldr.g.dart';
+import 'words/numbers.g.dart';
+
 /// Rewrites a sentence in one of Quando?'s other languages into the plain
 /// English the [AlarmParser] reads: "завтра в 7 утра" → "tomorrow at 7
 /// morning", "明日7時に起こして" → "tomorrow 7:00 wake me". Only the
@@ -15,8 +19,10 @@ String rewriteForParser(String input, String? lang, {bool keepCase = false}) {
   final book = _books[lang == null ? '' : lang.split(RegExp('[-_]')).first];
   if (book == null) return _digits(keepCase ? input : input.toLowerCase());
   var s = _digits(input.toLowerCase());
-  if (lang!.startsWith('zh') || lang.startsWith('ja')) s = _hanNumbers(s);
-  if (lang.startsWith('ko')) s = _koreanHours(s);
+  s = _numberWords(s, lang!.split(RegExp('[-_]')).first);
+  s = _cldr(s, lang.split(RegExp('[-_]')).first);
+  if (lang.startsWith('zh') || lang.startsWith('ja')) s = _hanNumbers(s);
+  if (lang.startsWith('ko')) s = _koreanMinutes(_koreanHours(s));
   for (final (pattern, out) in book) {
     s = s.replaceAllMapped(pattern, (m) => ' ${_fill(out, m)} ');
   }
@@ -26,6 +32,71 @@ String rewriteForParser(String input, String? lang, {bool keepCase = false}) {
       .replaceAllMapped(RegExp(r'(\d)(\p{L})', unicode: true), (m) => _apart(m[1]!, m[2]!));
   return s.replaceAll(RegExp(r'\s+'), ' ').trim();
 }
+
+/// "сорок пять" → 45, "kırk beş" → 45, "ثمنية وخمسة وأربعين" → 8:45,
+/// from the generated number lists.
+String _numberWords(String s, String lang) {
+  final words = spokenNumberWords[lang];
+  if (words == null) return s;
+  final pattern = _numberPatterns[lang] ??= () {
+    final keys = words.keys.toList()..sort((a, b) => b.length.compareTo(a.length));
+    final prefix = lang == 'ar' ? '(و|ل|ب|ع)?' : '()';
+    // Turkish puts case endings on numbers: "dokuzda", "altıya", "dörde".
+    final suffix = lang == 'tr' ? "('?(?:da|de|ta|te|ya|ye|yı|yi|a|e|ı|i))?" : '()';
+    return RegExp('$_b$prefix(${keys.map(RegExp.escape).join('|')})$suffix$_e', unicode: true);
+  }();
+  s = s.replaceAllMapped(
+    pattern,
+    (m) => "${switch (m[1]) { 'و' => 'و ', 'ل' || 'ب' || 'ع' => 'at ', _ => '' }}${words[m[2]]}${m[3] == null || m[3]!.isEmpty ? '' : "'${m[3]!.replaceAll("'", '')}"}",
+  );
+  // Tens and units said apart: "сорок пять", "dua puluh lima" → 45.
+  s = s.replaceAllMapped(RegExp(r'(?<!\d)([2-5]0)\s+([1-9])(?!\d)'), (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}');
+  // "восемь ноль ноль", "eight o o": 8:00.
+  s = s.replaceAllMapped(RegExp(r'(?<!\d)(\d{1,2})\s+0\s+0(?!\d)'), (m) => '${m[1]}:00');
+  if (lang == 'ar') {
+    // Arabic says units before tens: "خمسة وأربعين" = 45; "ثمنية و45" = 8:45.
+    s = s
+        .replaceAllMapped(RegExp(r'(?<!\d)([1-9])\s*و\s*([2-5]0)(?!\d)'), (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}')
+        .replaceAllMapped(RegExp(r'(?<!\d)(\d{1,2})\s*و\s*(\d{2})(?!\d)'), (m) => '${m[1]}:${m[2]}');
+  }
+  return s;
+}
+
+final _numberPatterns = <String, RegExp>{};
+
+/// The official CLDR words (weekdays, today/tomorrow, morning/afternoon,
+/// "через {0} минут") rewritten into English.
+String _cldr(String s, String lang) {
+  final rules = _cldrRules[lang] ??= () {
+    const en = ['', 'monday', 'tuesday', 'wednesday', 'thursday', 'friday', 'saturday', 'sunday'];
+    const rel = ['today', 'tomorrow', 'day after tomorrow'];
+    final out = <(RegExp, String)>[];
+    for (final c in [cldrWords[lang], if (lang == 'zh') cldrWords['zh_Hant']].whereType<CldrWords>()) {
+      for (final MapEntry(:key, :value) in c.inTime.entries) {
+        final p = RegExp.escape(key).replaceAll(RegExp(r'\s+'), r'\s*').replaceAll(r'\{0\}', r'(\d+)');
+        out.add((_r(p), ' in \$1 ${value}s '));
+      }
+      final words = <String, String>{
+        for (final MapEntry(:key, :value) in c.days.entries) key: en[value],
+        for (final MapEntry(:key, :value) in c.relativeDays.entries) key: rel[value],
+        for (final w in c.morning) w: 'morning',
+        for (final w in c.afternoon) w: 'evening',
+      };
+      final keys = words.keys.toList()..sort((a, b) => b.length.compareTo(a.length));
+      for (final k in keys) {
+        final cjk = RegExp(r'[\u3040-\u30ff\u3400-\u9fff\uac00-\ud7af]').hasMatch(k);
+        out.add((cjk ? _r(RegExp.escape(k)) : _w(RegExp.escape(k)), ' ${words[k]} '));
+      }
+    }
+    return out;
+  }();
+  for (final (p, out) in rules) {
+    s = s.replaceAllMapped(p, (m) => _fill(out, m));
+  }
+  return s;
+}
+
+final _cldrRules = <String, List<(RegExp, String)>>{};
 
 String _apart(String a, String b) {
   // "7h", "6h30", "19h" are times the parser reads as they are.
@@ -80,13 +151,25 @@ String _hanNumbers(String s) {
   });
 }
 
+/// 삼십 분 → 30분, 사십오 분 → 45분: Korean counts minutes in Sino-Korean
+/// numbers.
+String _koreanMinutes(String s) {
+  const d = {'일': 1, '이': 2, '삼': 3, '사': 4, '오': 5, '육': 6, '칠': 7, '팔': 8, '구': 9};
+  return s.replaceAllMapped(RegExp(r'(?<![가-힣])([이삼사오]?십)?([일이삼사오육칠팔구])?\s*분'), (m) {
+    if (m[1] == null && m[2] == null) return m[0]!;
+    final tens = m[1] == null ? 0 : (m[1]!.length == 1 ? 1 : d[m[1]![0]]!);
+    final ones = m[2] == null ? 0 : d[m[2]]!;
+    return '${tens * 10 + ones}분';
+  });
+}
+
 /// 일곱 시 → 7시 (Korean says hours in native numbers).
 String _koreanHours(String s) {
   const n = {
     '열한': 11, '열두': 12, '한': 1, '두': 2, '세': 3, '네': 4, '다섯': 5, '여섯': 6, //
     '일곱': 7, '여덟': 8, '아홉': 9, '열': 10,
   };
-  return s.replaceAllMapped(RegExp(r'(열한|열두|다섯|여섯|일곱|여덟|아홉|한|두|세|네|열)\s*시(?!간)'), (m) => '${n[m[1]]}시');
+  return s.replaceAllMapped(RegExp(r'(열한|열두|다섯|여섯|일곱|여덟|아홉|한|두|세|네|열)\s*시'), (m) => '${n[m[1]]}시');
 }
 
 // A word on its own: no letter or mark right before or after.
@@ -121,9 +204,13 @@ _Book _numbers(Map<String, int> words) {
 
 final _Book _dutch = [
   ..._numbers({
-    'een': 1, 'twee': 2, 'drie': 3, 'vier': 4, 'vijf': 5, 'zes': 6, 'zeven': 7, 'acht': 8, 'negen': 9, //
+    'één': 1, 'twee': 2, 'drie': 3, 'vier': 4, 'vijf': 5, 'zes': 6, 'zeven': 7, 'acht': 8, 'negen': 9, //
     'tien': 10, 'elf': 11, 'twaalf': 12, 'vijftien': 15, 'twintig': 20, 'dertig': 30, 'veertig': 40,
   }),
+  (_w(r'volgende|komende'), 'next'),
+  (_w(r'vanaf\s+nu|van\s+nu\s+af'), 'from now'),
+  (_w(r'voor\s+(?=\d+\s*(?:uur|minuten|minuut|:|\d))|voor\s+(?=\d+\s*$)'), 'for '),
+  (_w(r'vanmiddag'), 'afternoon'),
   (_w(r'half\s+(\d+)'), 'halb \$1'),
   (_w(r'kwart\s+over\s+(\d+)'), 'quarter past \$1'),
   (_w(r'kwart\s+voor\s+(\d+)'), 'quarter to \$1'),
@@ -177,7 +264,11 @@ final _Book _polish = [
     'jeden': 1, 'dwa': 2, 'trzy': 3, 'cztery': 4, 'pięć': 5, 'sześć': 6, 'siedem': 7, 'osiem': 8,
     'dziewięć': 9, 'dziesięć': 10, 'piętnaście': 15, 'dwadzieścia': 20, 'trzydzieści': 30, 'czterdzieści': 40,
   }),
+  (_w(r'następn\p{L}*|przyszł\p{L}*'), 'next'),
   (_w(r'pół\s+godziny'), 'half an hour'),
+  (_w(r'od\s+teraz'), 'from now'),
+  (_w(r'(?:w\s+)?(?:każdy\s+)?dzień\s+powszedni|(?:w\s+)?dni\s+powszednie'), 'weekdays'),
+  (_w(r'na\s+(?=\d)'), 'at '),
   (_w('kwadrans'), 'a quarter hour'),
   (_w('pojutrze'), 'day after tomorrow'),
   (_w('jutro'), 'tomorrow'),
@@ -224,6 +315,11 @@ final _Book _russian = [
     'восемь': 8, 'девять': 9, 'десять': 10, 'одиннадцать': 11, 'двенадцать': 12, 'пятнадцать': 15,
     'двадцать': 20, 'тридцать': 30, 'сорок': 40, 'пятьдесят': 50,
   }),
+  (_w(r'(?:на\s+)?(\d+)\s+час\p{L}*\s+вперё?е?д'), 'in \$1 hours'),
+  (_w(r'(?:в|на)\s+час\s+(?=дня|ночи)'), 'at 1 '),
+  (_w(r'(?:в|на)\s+(\d+)\s+час(?:а|ов)?(?=\s+(?:дня|утра|вечера|ночи))'), 'at \$1'),
+  (_w(r'завтрашн\p{L}*\s+утр\p{L}*'), 'tomorrow morning'),
+  (_w(r'(?:на\s+|в\s+)?следующ\p{L}*'), 'next'),
   (_r(r'за\s+([^\s]+(?:\s+[^\s]+)?)\s+до'), '\$1 before'),
   (_w('полчаса'), 'half an hour'),
   (_w(r'четверть\s+часа'), 'a quarter hour'),
@@ -272,6 +368,9 @@ final _Book _ukrainian = [
     'сім': 7, 'вісім': 8, "дев'ять": 9, 'девʼять': 9, 'десять': 10, 'одинадцять': 11, 'дванадцять': 12,
     "п'ятнадцять": 15, 'двадцять': 20, 'тридцять': 30, 'сорок': 40,
   }),
+  (_w(r'(?:на\s+)?(\d+)\s+годин\p{L}*\s+вперед'), 'in \$1 hours'),
+  (_w(r'(?:о|на)\s+(\d+)\s+годин\p{L}*(?=\s+(?:дня|ранку|вечора|ночі))'), 'at \$1'),
+  (_w(r'(?:в\s+|у\s+)?наступн\p{L}*'), 'next'),
   (_r(r'за\s+([^\s]+(?:\s+[^\s]+)?)\s+до'), '\$1 before'),
   (_w('півгодини'), 'half an hour'),
   (_w(r'чверть\s+години'), 'a quarter hour'),
@@ -328,7 +427,11 @@ final _Book _turkish = [
     'iki': 2, 'üç': 3, 'dört': 4, 'beş': 5, 'altı': 6, 'yedi': 7, 'sekiz': 8, 'dokuz': 9, //
     'on': 10, 'on bir': 11, 'on iki': 12, 'on beş': 15, 'yirmi': 20, 'otuz': 30, 'kırk': 40,
   }),
+  (_w(r'gelecek|önümüzdeki|haftaya'), 'next'),
   (_r(r"(\d+(?::\d+)?)'?\s*(?:de|da|te|ta)(?![\p{L}])"), '\$1'),
+  (_r(r"(\d+(?::\d+)?)'(?:ya|ye|yı|yi|a|e|ı|i)(?![\p{L}])"), 'at \$1'),
+  (_w(r'(\d+)\s*dakika\s+sonra\p{L}*'), 'in \$1 minutes'),
+  (_w(r'(\d+)\s*saat\s+sonra\p{L}*'), 'in \$1 hours'),
   (_w(r'(\d+)\s+buçuk'), '\$1:30'),
   (_w(r'(\d+)\s*dakika\s+(?:sonra|içinde)'), 'in \$1 minutes'),
   (_w(r'(\d+)\s*saat\s+(?:sonra|içinde)'), 'in \$1 hours'),
@@ -373,6 +476,7 @@ final _Book _indonesian = [
     'sembilan': 9, 'sepuluh': 10, 'sebelas': 11, 'dua belas': 12, 'lima belas': 15, 'dua puluh': 20,
     'tiga puluh': 30, 'empat puluh': 40,
   }),
+  (_w(r'depan'), 'next'),
   (_w(r'setengah\s+jam'), 'half an hour'),
   (_w(r'seperempat\s+jam'), 'a quarter hour'),
   (_w(r'setengah\s+(\d+)'), 'halb \$1'),
@@ -421,6 +525,11 @@ final _Book _vietnamese = [
     'một': 1, 'hai': 2, 'ba': 3, 'bốn': 4, 'năm': 5, 'sáu': 6, 'bảy': 7, 'tám': 8, 'chín': 9, //
     'mười': 10, 'mười một': 11, 'mười hai': 12, 'mười lăm': 15, 'hai mươi': 20, 'ba mươi': 30,
   }),
+  (_w(r'tới|tuần\s+sau'), 'next'),
+  (_w(r'kể\s+từ\s+bây\s+giờ|từ\s+bây\s+giờ'), 'from now'),
+  (_w(r'(?:sau|trong)\s+(\d+)\s*(?:tiếng|giờ)(?:\s+nữa)?'), 'in \$1 hours'),
+  (_w(r'(\d+)\s*tiếng\s+nữa'), 'in \$1 hours'),
+  (_w('tiếng'), 'hours'),
   // Weekdays first: "thứ hai" is Monday, not "two".
   (_w(r'thứ\s+2|thứ\s+hai'), 'monday'),
   (_w(r'thứ\s+3|thứ\s+ba'), 'tuesday'),
@@ -467,12 +576,17 @@ final _Book _vietnamese = [
 ];
 
 final _Book _hindi = [
+  (_w(r'अगले|अगला|अगली|आने\s+वाले'), 'next'),
   (_w(r'साढ़े\s*(\d+)'), '\$1:30'),
   (_w(r'सवा\s*(\d+)'), '\$1:15'),
   (_w(r'पौने\s*(\d+)'), 'quarter to \$1'),
   (_w(r'आधे\s+घंटे\s+(?:में|बाद)'), 'in half an hour'),
   (_w(r'(\d+)\s*मिनट\s+(?:में|बाद)'), 'in \$1 minutes'),
   (_w(r'(\d+)\s*घंटे?\s+(?:में|बाद)'), 'in \$1 hours'),
+  (_w(r'अभी\s+से\s+(\d+)\s*मिनट\p{L}*(?:\s+(?:के\s+लिए|का|की|में|बाद))?'), 'in \$1 minutes'),
+  (_w(r'(?:अभी\s+से\s+)?(\d+)\s*घंटे?\s+(?:के\s+लिए|का|की)'), 'in \$1 hours'),
+  (_w(r'(\d+)\s*मिनट\s+(?:के\s+लिए|का|की)'), 'in \$1 minutes'),
+  (_w(r'(\d+)\s+(\d{2})\s*बजे'), 'at \$1:\$2'),
   (_w(r'(\d+(?::\d+)?)\s*बजे'), 'at \$1'),
   (_w(r'आधा\s+घंटा|आधे\s+घंटे'), 'half an hour'),
   (_w('परसों'), 'day after tomorrow'),
@@ -480,7 +594,7 @@ final _Book _hindi = [
   (_w(r'आज\s+रात'), 'tonight'),
   (_w('आज'), 'today'),
   (_w(r'आधी\s+रात'), 'midnight'),
-  (_w('सुबह'), 'morning'),
+  (_w(r'सुबह|प्रातः|प्रात:|सवेरे'), 'morning'),
   (_w(r'शाम|दोपहर'), 'evening'),
   (_w('रात'), 'night'),
   (_w('मिनट'), 'minutes'),
@@ -517,7 +631,8 @@ final _Book _arabic = [
     'الخامسة': 5, 'السادسة': 6, 'السابعة': 7, 'الثامنة': 8, 'التاسعة': 9, 'العاشرة': 10,
     'خمس عشرة': 15, 'عشرين': 20, 'عشرون': 20, 'ثلاثين': 30, 'ثلاثون': 30,
   }),
-  (_r(r'(\d+)\s*و\s*ال?نصف|(\d+)\s*ونص'), '\$1\$2:30'),
+  (_w(r'القادم|القادمة|الجاي|الجاية'), 'next'),
+  (_r(r'(\d+)\s*و\s*ال?نصف|(\d+)\s*و\s*نص'), '\$1\$2:30'),
   (_r(r'(\d+)\s*و\s*الربع'), '\$1:15'),
   (_r(r'(\d+)\s*إلا\s*ربع[اًا]*'), 'quarter to \$1'),
   (_w(r'بعد\s+(?=\d)'), 'in'),
@@ -525,13 +640,19 @@ final _Book _arabic = [
   (_w(r'ربع\s+ساعة'), 'a quarter hour'),
   (_w('ساعتين'), '2 hours'),
   (_w(r'بعد\s+(?:ال)?غد'), 'day after tomorrow'),
-  (_w(r'غدا|غداً|غدًا|بكرة|بكره'), 'tomorrow'),
+  (_w(r'(?:ل|ب)?(?:غدا|غداً|غدًا|بكرة|بكره)'), 'tomorrow'),
+  (_w(r'نص\s+الليل'), 'midnight'),
+  (_w(r'(\d+(?::\d+)?)\s+(?:الظهر|ظهرا|ظهراً|العصر)'), '\$1 pm'),
   (_w(r'الليلة|هذا\s+المساء'), 'tonight'),
   (_w('اليوم'), 'today'),
   (_w(r'منتصف\s+الليل'), 'midnight'),
-  (_w(r'بعد\s+الظهر|مساء|مساءً|مساءا|المساء|عصرا'), 'evening'),
+  (_w(r'بعد\s+الظهر|مساء|مساءً|مساءا|المساء|عصرا|العصر|المسا|مسا|بالليل'), 'evening'),
   (_w(r'الظهر|الظهيرة|ظهرا|ظهراً'), 'noon'),
-  (_w(r'صباحا|صباحاً|الصباح|في\s+الصباح|فجرا'), 'morning'),
+  (_w(r'صباحا|صباحاً|الصباح|في\s+الصباح|فجرا|الصبح|صبحا|الفجر'), 'morning'),
+  (_w(r'من\s+(?:الحين|الآن|الان|هلق|هلأ|دلوقتي)'), 'from now'),
+  (_w(r'حط(?:لي|ي)?|اضبط(?:\s+لي)?|ركب(?:لي)?|شغل(?:لي)?|ضبط'), 'set'),
+  (_w(r'يصحيني|نبهني|نبّهني|صحيني'), 'wake me'),
+  (_w(r'على'), 'at'),
   (_w(r'ليلا|ليلاً|بالليل'), 'night'),
   (_w(r'دقيقة|دقائق'), 'minutes'),
   (_w(r'ساعات|ساعة'), 'hours'),
@@ -549,7 +670,7 @@ final _Book _arabic = [
   (_w(r'غروب\s+الشمس|الغروب'), 'sunset'),
   (_w(r'إشعال\s+الشموع|اشعال\s+الشموع|إضاءة\s+الشموع|الشموع'), 'candle lighting'),
   (_w(r'الهفدالا|هفدالا|هافدالا|الهافدالا'), 'havdalah'),
-  (_w(r'أيقظني|ايقظني|صحيني|صحّيني'), 'wake me'),
+  (_w(r'أيقظني|ايقظني|صحّيني'), 'wake me'),
   (_w(r'ذكرني|ذكّرني'), 'remind me to'),
   (_w(r'منبه|المنبه'), 'alarm'),
   (_w('متى'), 'when'),
@@ -564,6 +685,7 @@ final _Book _arabic = [
 ];
 
 final _Book _japanese = [
+  (_r(r'来週の?'), ' next '),
   (_r(r'(\d+)\s*時間\s*(?:後|ご|たったら|経ったら)'), 'in \$1 hours'),
   (_r(r'(\d+)\s*分\s*(?:後|ご|たったら|経ったら)'), 'in \$1 minutes'),
   (_r(r'(?:30分|半時間)\s*後'), 'in half an hour'),
@@ -607,6 +729,7 @@ final _Book _japanese = [
 ];
 
 final _Book _chinese = [
+  (_r(r'下(?=周|星期|礼拜|週|禮拜)'), ' next '),
   (_r(r'(\d+)\s*(?:个|個)?\s*(?:小时|小時|钟头|鐘頭)\s*(?:后|後|以后|以後)'), 'in \$1 hours'),
   (_r(r'(\d+)\s*(?:分钟|分鐘)\s*(?:后|後|以后|以後)'), 'in \$1 minutes'),
   (_r(r'半\s*(?:个|個)?\s*(?:小时|小時|钟头|鐘頭)\s*(?:后|後|以后|以後)'), 'in half an hour'),
@@ -652,6 +775,7 @@ final _Book _chinese = [
 ];
 
 final _Book _korean = [
+  (_r(r'다음\s*주'), ' next '),
   (_r(r'(\d+)\s*시간\s*(?:후|뒤|있다가)'), 'in \$1 hours'),
   (_r(r'(\d+)\s*분\s*(?:후|뒤|있다가)'), 'in \$1 minutes'),
   (_r(r'(?:30분|반\s*시간)\s*(?:후|뒤)'), 'in half an hour'),
