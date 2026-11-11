@@ -16,4 +16,11 @@ void main() {
     expect(send('call 555 123 4567 at 6'), isNull);
     expect(send('remind me at 7 to call grandma'), isNotNull);
   });
+
+  test('the question is asked once, and never in the Jewish editions', () {
+    expect(voiceLogMayAsk(false, false, jewishEdition: false), isTrue);
+    expect(voiceLogMayAsk(true, false, jewishEdition: false), isFalse);
+    expect(voiceLogMayAsk(false, true, jewishEdition: false), isFalse);
+    expect(voiceLogMayAsk(false, false, jewishEdition: true), isFalse);
+  });
 }

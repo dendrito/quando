@@ -1047,5 +1047,9 @@
   "askWakeWith": "Ti sveglia con {sound}",
   "askReadAs": "Letto come",
   "askHelpTitle": "Aiuta a migliorare le sveglie vocali",
-  "askHelpBody": "Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo."
+  "askHelpBody": "Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo.",
+  "askHelpPromptTitle": "Aiutare Quando? a capirti?",
+  "askHelpPromptBody": "Invieremmo ciò che dici o scrivi, come “{sentence}”, e se l’hai salvato. Anonimo: nessun nome, account o ID del dispositivo. Puoi disattivarlo quando vuoi.",
+  "askHelpYes": "Sì, aiuta",
+  "askHelpNo": "No grazie"
 }

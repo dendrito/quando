@@ -3484,4 +3484,18 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get askHelpBody => '話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? があなたを理解できるよう協力しますか？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '話した内容や入力した内容（例：「$sentence」）と、保存したかどうかを匿名で送信します。名前、アカウント、端末IDは送りません。いつでもオフにできます。';
+  }
+
+  @override
+  String get askHelpYes => '協力する';
+
+  @override
+  String get askHelpNo => '今はしない';
 }

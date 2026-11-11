@@ -3594,4 +3594,18 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askHelpBody => 'يرسل بشكل مجهول ما تقوله أو تكتبه وما فعلته به. بلا حساب ولا معرّف جهاز.';
+
+  @override
+  String get askHelpPromptTitle => 'هل تساعد Quando? على فهمك؟';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'سنرسل ما تقوله أو تكتبه، مثل «$sentence»، وهل حفظته. بشكل مجهول: بلا اسم أو حساب أو معرّف جهاز. يمكنك الإيقاف في أي وقت.';
+  }
+
+  @override
+  String get askHelpYes => 'نعم، ساعد';
+
+  @override
+  String get askHelpNo => 'لا، شكرًا';
 }

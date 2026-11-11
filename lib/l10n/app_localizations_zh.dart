@@ -3477,6 +3477,20 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askHelpBody => '匿名发送你说的或输入的内容以及你的操作。不含账号或设备 ID。';
+
+  @override
+  String get askHelpPromptTitle => '帮助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我们会匿名发送你说的或输入的内容（如“$sentence”）以及你是否保存。不含姓名、账号或设备 ID。你可以随时关闭。';
+  }
+
+  @override
+  String get askHelpYes => '好，帮忙';
+
+  @override
+  String get askHelpNo => '不用了';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6951,4 +6965,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askHelpBody => '匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。';
+
+  @override
+  String get askHelpPromptTitle => '協助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我們會匿名傳送你說的或輸入的內容（如「$sentence」）以及你是否儲存。不含姓名、帳號或裝置 ID。你可以隨時關閉。';
+  }
+
+  @override
+  String get askHelpYes => '好，幫忙';
+
+  @override
+  String get askHelpNo => '不用了';
 }

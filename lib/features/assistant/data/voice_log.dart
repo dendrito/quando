@@ -62,3 +62,10 @@ Map<String, Object?>? voiceSample({
   if (s.contains('@') || RegExp(r'\d[\d\s().-]{7,}\d').hasMatch(s)) return null;
   return {'sentence': s, 'lang': lang, 'understood': understood, 'outcome': outcome};
 }
+
+/// Whether the one-time "help improve" question may be asked: not once it
+/// was answered, not when the log is already on, not in the Jewish
+/// editions.
+bool voiceLogMayAsk(bool asked, bool on, {required bool jewishEdition}) => !asked && !on && !jewishEdition;
+
+const voiceLogAskedKey = 'voice.log.asked';

@@ -3610,4 +3610,18 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get askHelpBody =>
       'Анонімно надсилає те, що ви кажете чи вводите, і що ви з цим зробили. Без облікового запису та ID пристрою.';
+
+  @override
+  String get askHelpPromptTitle => 'Допомогти Quando? вас розуміти?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Ми б надсилали те, що ви кажете чи вводите, наприклад «$sentence», і чи ви зберегли будильник. Анонімно: без імені, облікового запису та ID пристрою. Можна вимкнути будь-коли.';
+  }
+
+  @override
+  String get askHelpYes => 'Так, допомогти';
+
+  @override
+  String get askHelpNo => 'Ні, дякую';
 }

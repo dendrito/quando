@@ -3534,4 +3534,18 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get askHelpBody =>
       'שולח באופן אנונימי את מה שאמרתם או הקלדתם ומה עשיתם איתו. בלי חשבון ובלי מזהה מכשיר.';
+
+  @override
+  String get askHelpPromptTitle => 'לעזור ל-Quando? להבין אתכם?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'נשלח את מה שאמרתם או הקלדתם, כמו “$sentence”, והאם שמרתם. באופן אנונימי: בלי שם, חשבון או מזהה מכשיר. אפשר לכבות בכל רגע.';
+  }
+
+  @override
+  String get askHelpYes => 'כן, לעזור';
+
+  @override
+  String get askHelpNo => 'לא, תודה';
 }

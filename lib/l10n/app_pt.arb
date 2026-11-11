@@ -1047,5 +1047,9 @@
   "askWakeWith": "Te acorda com {sound}",
   "askReadAs": "Lido como",
   "askHelpTitle": "Ajude a melhorar os alarmes por voz",
-  "askHelpBody": "Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho."
+  "askHelpBody": "Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho.",
+  "askHelpPromptTitle": "Ajudar o Quando? a entender você?",
+  "askHelpPromptBody": "Enviaríamos o que você diz ou digita, como “{sentence}”, e se você salvou. Anônimo: sem nome, conta nem ID do aparelho. Você pode desligar quando quiser.",
+  "askHelpYes": "Sim, ajudar",
+  "askHelpNo": "Agora não"
 }

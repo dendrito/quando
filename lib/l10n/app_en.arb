@@ -2129,5 +2129,10 @@
   "askHelpTitle": "Help improve voice alarms",
   "askHelpBody": "Send what you say or type, and what you did with it, anonymously. No account or device ID.",
   "@askHelpTitle": {},
-  "@askHelpBody": {}
+  "@askHelpBody": {},
+  "askHelpPromptTitle": "Help Quando? understand you?",
+  "askHelpPromptBody": "We'd send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.",
+  "askHelpYes": "Yes, help",
+  "askHelpNo": "No thanks",
+  "@askHelpPromptBody": {"placeholders": {"sentence": {"type": "String"}}}
 }

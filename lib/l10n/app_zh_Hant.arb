@@ -1047,5 +1047,9 @@
   "askWakeWith": "用{sound}叫醒你",
   "askReadAs": "理解為",
   "askHelpTitle": "協助改進語音鬧鐘",
-  "askHelpBody": "匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。"
+  "askHelpBody": "匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。",
+  "askHelpPromptTitle": "協助 Quando? 更懂你？",
+  "askHelpPromptBody": "我們會匿名傳送你說的或輸入的內容（如「{sentence}」）以及你是否儲存。不含姓名、帳號或裝置 ID。你可以隨時關閉。",
+  "askHelpYes": "好，幫忙",
+  "askHelpNo": "不用了"
 }

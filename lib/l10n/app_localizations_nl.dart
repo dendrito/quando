@@ -3557,4 +3557,18 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get askHelpBody =>
       'Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? helpen je te begrijpen?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'We zouden sturen wat je zegt of typt, zoals “$sentence”, en of je het bewaarde. Anoniem: geen naam, account of apparaat-ID. Je kunt het altijd uitzetten.';
+  }
+
+  @override
+  String get askHelpYes => 'Ja, help';
+
+  @override
+  String get askHelpNo => 'Nee bedankt';
 }

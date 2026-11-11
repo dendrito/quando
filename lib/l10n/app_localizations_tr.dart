@@ -3545,4 +3545,18 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get askHelpBody =>
       'Söylediklerinizi veya yazdıklarınızı ve ne yaptığınızı anonim olarak gönderir. Hesap veya cihaz kimliği yok.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando?’nun sizi anlamasına yardım edin?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Söylediğiniz veya yazdığınız şeyi, örneğin “$sentence”, ve kaydedip kaydetmediğinizi göndeririz. Anonim: ad, hesap veya cihaz kimliği yok. İstediğiniz zaman kapatabilirsiniz.';
+  }
+
+  @override
+  String get askHelpYes => 'Evet, yardım et';
+
+  @override
+  String get askHelpNo => 'Hayır, teşekkürler';
 }

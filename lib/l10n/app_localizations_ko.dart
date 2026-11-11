@@ -3485,4 +3485,18 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askHelpBody => '말하거나 입력한 내용과 그 후 동작을 익명으로 보냅니다. 계정이나 기기 ID는 없습니다.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando?가 더 잘 이해하도록 도와주시겠어요?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '말하거나 입력한 내용(예: “$sentence”)과 저장 여부를 익명으로 보냅니다. 이름, 계정, 기기 ID는 없습니다. 언제든 끌 수 있습니다.';
+  }
+
+  @override
+  String get askHelpYes => '네, 도울게요';
+
+  @override
+  String get askHelpNo => '괜찮아요';
 }

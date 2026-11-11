@@ -3536,4 +3536,18 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get askHelpBody =>
       'आप जो बोलते या टाइप करते हैं और उसके साथ क्या किया, वह गुमनाम रूप से भेजता है। कोई खाता या डिवाइस ID नहीं।';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? को आपको समझने में मदद करें?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'हम आपकी कही या टाइप की बात, जैसे “$sentence”, और आपने उसे सेव किया या नहीं, गुमनाम रूप से भेजेंगे। नाम, खाता या डिवाइस ID नहीं। आप कभी भी बंद कर सकते हैं।';
+  }
+
+  @override
+  String get askHelpYes => 'हाँ, मदद करें';
+
+  @override
+  String get askHelpNo => 'नहीं, धन्यवाद';
 }

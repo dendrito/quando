@@ -1047,5 +1047,9 @@
   "askWakeWith": "Membangunkan Anda dengan {sound}",
   "askReadAs": "Dibaca sebagai",
   "askHelpTitle": "Bantu tingkatkan alarm suara",
-  "askHelpBody": "Mengirim secara anonim apa yang Anda ucapkan atau ketik dan apa yang Anda lakukan. Tanpa akun atau ID perangkat."
+  "askHelpBody": "Mengirim secara anonim apa yang Anda ucapkan atau ketik dan apa yang Anda lakukan. Tanpa akun atau ID perangkat.",
+  "askHelpPromptTitle": "Bantu Quando? memahami Anda?",
+  "askHelpPromptBody": "Kami akan mengirim apa yang Anda ucapkan atau ketik, seperti “{sentence}”, dan apakah Anda menyimpannya. Anonim: tanpa nama, akun, atau ID perangkat. Bisa dimatikan kapan saja.",
+  "askHelpYes": "Ya, bantu",
+  "askHelpNo": "Tidak, terima kasih"
 }

@@ -3542,4 +3542,18 @@ class AppLocalizationsId extends AppLocalizations {
   @override
   String get askHelpBody =>
       'Mengirim secara anonim apa yang Anda ucapkan atau ketik dan apa yang Anda lakukan. Tanpa akun atau ID perangkat.';
+
+  @override
+  String get askHelpPromptTitle => 'Bantu Quando? memahami Anda?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Kami akan mengirim apa yang Anda ucapkan atau ketik, seperti “$sentence”, dan apakah Anda menyimpannya. Anonim: tanpa nama, akun, atau ID perangkat. Bisa dimatikan kapan saja.';
+  }
+
+  @override
+  String get askHelpYes => 'Ya, bantu';
+
+  @override
+  String get askHelpNo => 'Tidak, terima kasih';
 }

@@ -1047,5 +1047,9 @@
   "askWakeWith": "Wekt je met {sound}",
   "askReadAs": "Gelezen als",
   "askHelpTitle": "Help spraakwekkers te verbeteren",
-  "askHelpBody": "Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID."
+  "askHelpBody": "Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID.",
+  "askHelpPromptTitle": "Quando? helpen je te begrijpen?",
+  "askHelpPromptBody": "We zouden sturen wat je zegt of typt, zoals “{sentence}”, en of je het bewaarde. Anoniem: geen naam, account of apparaat-ID. Je kunt het altijd uitzetten.",
+  "askHelpYes": "Ja, help",
+  "askHelpNo": "Nee bedankt"
 }

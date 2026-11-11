@@ -3562,4 +3562,18 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get askHelpBody =>
       'Sendet anonym, was du sagst oder tippst und was du damit gemacht hast. Ohne Konto oder Geräte-ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? helfen, dich zu verstehen?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Wir würden senden, was du sagst oder tippst, etwa „$sentence“, und ob du es gespeichert hast. Anonym: kein Name, Konto oder Geräte-ID. Du kannst es jederzeit ausschalten.';
+  }
+
+  @override
+  String get askHelpYes => 'Ja, helfen';
+
+  @override
+  String get askHelpNo => 'Nein danke';
 }

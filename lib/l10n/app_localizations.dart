@@ -6417,6 +6417,30 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Send what you say or type, and what you did with it, anonymously. No account or device ID.'**
   String get askHelpBody;
+
+  /// No description provided for @askHelpPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help Quando? understand you?'**
+  String get askHelpPromptTitle;
+
+  /// No description provided for @askHelpPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'d send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.'**
+  String askHelpPromptBody(String sentence);
+
+  /// No description provided for @askHelpYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, help'**
+  String get askHelpYes;
+
+  /// No description provided for @askHelpNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No thanks'**
+  String get askHelpNo;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

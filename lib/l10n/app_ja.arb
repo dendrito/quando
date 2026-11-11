@@ -1047,5 +1047,9 @@
   "askWakeWith": "{sound}で起こします",
   "askReadAs": "読み取り結果",
   "askHelpTitle": "音声アラームの改善に協力",
-  "askHelpBody": "話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。"
+  "askHelpBody": "話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。",
+  "askHelpPromptTitle": "Quando? があなたを理解できるよう協力しますか？",
+  "askHelpPromptBody": "話した内容や入力した内容（例：「{sentence}」）と、保存したかどうかを匿名で送信します。名前、アカウント、端末IDは送りません。いつでもオフにできます。",
+  "askHelpYes": "協力する",
+  "askHelpNo": "今はしない"
 }

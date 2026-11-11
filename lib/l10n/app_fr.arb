@@ -1047,5 +1047,9 @@
   "askWakeWith": "Vous réveille avec {sound}",
   "askReadAs": "Lu comme",
   "askHelpTitle": "Aidez à améliorer les alarmes vocales",
-  "askHelpBody": "Envoie ce que vous dites ou tapez, et ce que vous en avez fait, de façon anonyme. Sans compte ni identifiant d’appareil."
+  "askHelpBody": "Envoie ce que vous dites ou tapez, et ce que vous en avez fait, de façon anonyme. Sans compte ni identifiant d’appareil.",
+  "askHelpPromptTitle": "Aider Quando? à vous comprendre ?",
+  "askHelpPromptBody": "Nous enverrions ce que vous dites ou tapez, comme « {sentence} », et si vous l’avez enregistré. Anonyme : sans nom, compte ni identifiant d’appareil. Vous pouvez désactiver à tout moment.",
+  "askHelpYes": "Oui, aider",
+  "askHelpNo": "Non merci"
 }

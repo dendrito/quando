@@ -16,6 +16,7 @@ import '../../events/domain/sun_times.dart';
 import '../../sounds/domain/sound.dart';
 import '../data/learned_phrases.dart';
 import '../data/voice_log.dart';
+import 'voice_log_prompt.dart';
 import '../domain/alarm_ai.dart';
 import '../domain/alarm_parser.dart';
 import '../domain/alarm_plan.dart';
@@ -28,12 +29,16 @@ import 'package:quando/l10n/l10n.dart';
 /// "Say or type it": a sentence becomes an alarm, on the device, with no
 /// account and no server. The phone's own speech recognition turns voice
 /// into text; [AlarmParser] reads the text. Nothing is saved until Save.
-Future<void> showAskSheet(BuildContext context, {bool listen = false}) => showModalBottomSheet<void>(
-  context: context,
-  showDragHandle: true,
-  isScrollControlled: true,
-  builder: (_) => _AskSheet(listenAtStart: listen),
-);
+Future<void> showAskSheet(BuildContext context, {bool listen = false}) async {
+  final container = ProviderScope.containerOf(context, listen: false);
+  final saved = await showModalBottomSheet<String>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    builder: (_) => _AskSheet(listenAtStart: listen),
+  );
+  if (saved != null && context.mounted) await askVoiceLog(context, container, saved);
+}
 
 String anchorName(TimeAnchor a) => switch (a) {
   TimeAnchor.sunrise => l10n.sunrise,
@@ -297,7 +302,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
             );
     }
     final messenger = ScaffoldMessenger.of(context);
-    Navigator.pop(context);
+    Navigator.pop(context, _lastInput);
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(l10n.askSaved(describePlan(plan, zone)))));

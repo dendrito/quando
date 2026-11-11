@@ -1047,5 +1047,9 @@
   "askWakeWith": "Budzi Cię: {sound}",
   "askReadAs": "Odczytano jako",
   "askHelpTitle": "Pomóż ulepszyć alarmy głosowe",
-  "askHelpBody": "Wysyła anonimowo to, co mówisz lub wpisujesz, i co z tym zrobiłeś. Bez konta ani identyfikatora urządzenia."
+  "askHelpBody": "Wysyła anonimowo to, co mówisz lub wpisujesz, i co z tym zrobiłeś. Bez konta ani identyfikatora urządzenia.",
+  "askHelpPromptTitle": "Pomóc Quando? Cię rozumieć?",
+  "askHelpPromptBody": "Wysłalibyśmy to, co mówisz lub wpisujesz, np. „{sentence}”, i czy to zapisano. Anonimowo: bez imienia, konta ani identyfikatora urządzenia. Możesz to wyłączyć w każdej chwili.",
+  "askHelpYes": "Tak, pomogę",
+  "askHelpNo": "Nie, dziękuję"
 }
