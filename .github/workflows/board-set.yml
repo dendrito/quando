@@ -1,0 +1,55 @@
+name: Board set card
+
+# Lets a Claude thread (or the coordinator, or you from the Actions tab) mark a card
+# done without a pull request: run it with the card id and the new status.
+on:
+  workflow_dispatch:
+    inputs:
+      card:
+        description: Card id (file name in dashboard/cards, without .json)
+        required: true
+      status:
+        description: decide, doing, review, next, hold or done
+        required: true
+        default: done
+      note:
+        description: Optional new note for the card (max 300 characters)
+        required: false
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: board-sync
+  cancel-in-progress: false
+
+jobs:
+  set:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Update the card
+        env:
+          CARD: ${{ inputs.card }}
+          STATUS: ${{ inputs.status }}
+          NOTE: ${{ inputs.note }}
+        run: python3 dashboard/set_card.py "$CARD" "$STATUS" "$NOTE"
+      - name: Commit and publish
+        env:
+          GH_TOKEN: ${{ github.token }}
+          CARD: ${{ inputs.card }}
+          STATUS: ${{ inputs.status }}
+        run: |
+          git config user.name "board-sync"
+          git config user.email "board-sync@users.noreply.github.com"
+          git add dashboard/cards
+          if git diff --cached --quiet; then echo "nothing to do"; exit 0; fi
+          git commit -m "Board: $CARD -> $STATUS"
+          for i in 1 2 3 4; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            sleep $((i * 3))
+          done
+          gh workflow run dashboard.yml --ref main

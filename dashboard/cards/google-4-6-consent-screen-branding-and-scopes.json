@@ -3,6 +3,7 @@
   "tag": "google",
   "plan": "business",
   "threads": [
+    "gmerge",
     "google"
   ],
   "title": "Google 4/6: consent screen branding and scopes",
