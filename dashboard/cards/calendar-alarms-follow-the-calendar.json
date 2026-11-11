@@ -1,7 +1,7 @@
 {
   "id": "calendar-alarms-follow-the-calendar",
   "title": "Calendar alarms follow the calendar live + slide/tap to stop",
-  "status": "review",
+  "status": "done",
   "tag": "app",
   "note": "PR #50 open for Thursday's build; Curió merges after testing on the phone.",
   "threadIds": [

@@ -1,0 +1,15 @@
+{
+  "id": "make-the-repo-private",
+  "title": "Make the GitHub repo private",
+  "status": "next",
+  "tag": "ip",
+  "threads": [
+    "biz"
+  ],
+  "prs": [
+    38
+  ],
+  "details": "Step 1: merge PR #38 (All rights reserved licence). Step 2: move this board from GitHub Pages to Cloudflare Pages (a second project such as board.quando.day, optionally behind Cloudflare Access) and let the live PR status use the saved token. Step 3: replace the public 'latest' APK links with Google Play closed testing or Firebase App Distribution. Step 4: keep iOS builds on the MacBook (private repos get 2,000 free Actions minutes a month, Mac minutes count 10x). Step 5: switch the repo to private just before the public launch. quando.day already builds on Cloudflare and keeps working.",
+  "note": "Licence in PR #38. Board move to Cloudflare in a coding thread.",
+  "order": 18
+}

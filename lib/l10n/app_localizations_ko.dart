@@ -3464,6 +3464,42 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askReadAs => '이렇게 읽었어요';
 
   @override
+  String get quickSetups => '빠른 설정';
+
+  @override
+  String get qsMorningTitle => '잘 되는 아침';
+
+  @override
+  String get qsStartTitle => '시작을 놓치지 않기';
+
+  @override
+  String get qsStretchTitle => '구간으로 작업하기';
+
+  @override
+  String get qsWillChange => '바뀌는 내용';
+
+  @override
+  String get qsAlreadyOn => '이미 켜져 있습니다. 바꿀 것이 없습니다.';
+
+  @override
+  String get qsApply => '적용';
+
+  @override
+  String get qsDone => '완료';
+
+  @override
+  String get qsUndo => '실행 취소';
+
+  @override
+  String get qsSnoozeTimes => '허용 스누즈 횟수';
+
+  @override
+  String get qsSnoozeMinutes => '스누즈 분';
+
+  @override
+  String get qsFiveLeft => '5분 남음';
+
+  @override
   String get syncHeading => '캘린더가 바뀌면';
 
   @override
@@ -3520,42 +3556,6 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '가운데를 탭하면 정지';
-
-  @override
-  String get quickSetups => '빠른 설정';
-
-  @override
-  String get qsMorningTitle => '잘 되는 아침';
-
-  @override
-  String get qsStartTitle => '시작을 놓치지 않기';
-
-  @override
-  String get qsStretchTitle => '구간으로 작업하기';
-
-  @override
-  String get qsWillChange => '바뀌는 내용';
-
-  @override
-  String get qsAlreadyOn => '이미 켜져 있습니다. 바꿀 것이 없습니다.';
-
-  @override
-  String get qsApply => '적용';
-
-  @override
-  String get qsDone => '완료';
-
-  @override
-  String get qsUndo => '실행 취소';
-
-  @override
-  String get qsSnoozeTimes => '허용 스누즈 횟수';
-
-  @override
-  String get qsSnoozeMinutes => '스누즈 분';
-
-  @override
-  String get qsFiveLeft => '5분 남음';
 
   @override
   String get uiSimple => '간단히';

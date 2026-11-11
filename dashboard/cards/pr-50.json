@@ -1,7 +1,7 @@
 {
   "id": "pr-50",
   "title": "Calendar alarms follow the calendar live; slide or tap the middle to stop",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     50

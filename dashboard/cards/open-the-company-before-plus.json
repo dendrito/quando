@@ -7,7 +7,11 @@
   "note": "Ideally early January. Launch stays free under personal store accounts until then.",
   "details": "One company will publish both apps. Plus is not switched on until it exists. Details stay in the private business plan.",
   "docs": [
-    {"title": "Business plan (private)", "url": "https://claude.ai/artifact/Rvh6qEd5G6ZzFdnSAs9jRH"}
+    {
+      "title": "Business plan (private)",
+      "url": "https://claude.ai/artifact/Rvh6qEd5G6ZzFdnSAs9jRH"
+    }
   ],
-  "order": 111
+  "order": 111,
+  "group": "Plus and company"
 }

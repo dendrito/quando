@@ -3539,6 +3539,42 @@ class AppLocalizationsId extends AppLocalizations {
   String get askReadAs => 'Dibaca sebagai';
 
   @override
+  String get quickSetups => 'Pengaturan cepat';
+
+  @override
+  String get qsMorningTitle => 'Pagi yang berhasil';
+
+  @override
+  String get qsStartTitle => 'Jangan lewatkan awal';
+
+  @override
+  String get qsStretchTitle => 'Bekerja per sesi';
+
+  @override
+  String get qsWillChange => 'Yang akan berubah';
+
+  @override
+  String get qsAlreadyOn => 'Sudah aktif. Tidak ada yang diubah.';
+
+  @override
+  String get qsApply => 'Terapkan';
+
+  @override
+  String get qsDone => 'Selesai';
+
+  @override
+  String get qsUndo => 'Urungkan';
+
+  @override
+  String get qsSnoozeTimes => 'Tunda yang diizinkan';
+
+  @override
+  String get qsSnoozeMinutes => 'Menit tunda';
+
+  @override
+  String get qsFiveLeft => 'Sisa 5 menit';
+
+  @override
   String get syncHeading => 'Saat kalender berubah';
 
   @override
@@ -3604,42 +3640,6 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Ketuk bagian tengah untuk berhenti';
-
-  @override
-  String get quickSetups => 'Pengaturan cepat';
-
-  @override
-  String get qsMorningTitle => 'Pagi yang berhasil';
-
-  @override
-  String get qsStartTitle => 'Jangan lewatkan awal';
-
-  @override
-  String get qsStretchTitle => 'Bekerja per sesi';
-
-  @override
-  String get qsWillChange => 'Yang akan berubah';
-
-  @override
-  String get qsAlreadyOn => 'Sudah aktif. Tidak ada yang diubah.';
-
-  @override
-  String get qsApply => 'Terapkan';
-
-  @override
-  String get qsDone => 'Selesai';
-
-  @override
-  String get qsUndo => 'Urungkan';
-
-  @override
-  String get qsSnoozeTimes => 'Tunda yang diizinkan';
-
-  @override
-  String get qsSnoozeMinutes => 'Menit tunda';
-
-  @override
-  String get qsFiveLeft => 'Sisa 5 menit';
 
   @override
   String get uiSimple => 'Sederhana';

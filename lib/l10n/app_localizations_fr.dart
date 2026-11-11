@@ -3571,6 +3571,42 @@ class AppLocalizationsFr extends AppLocalizations {
   String get askReadAs => 'Lu comme';
 
   @override
+  String get quickSetups => 'Réglages rapides';
+
+  @override
+  String get qsMorningTitle => 'Un matin qui marche';
+
+  @override
+  String get qsStartTitle => 'Ne ratez aucun début';
+
+  @override
+  String get qsStretchTitle => 'Travaillez par séquences';
+
+  @override
+  String get qsWillChange => 'Ce qui va changer';
+
+  @override
+  String get qsAlreadyOn => 'Déjà activé. Rien à changer.';
+
+  @override
+  String get qsApply => 'Appliquer';
+
+  @override
+  String get qsDone => 'Fait';
+
+  @override
+  String get qsUndo => 'Annuler';
+
+  @override
+  String get qsSnoozeTimes => 'Reports autorisés';
+
+  @override
+  String get qsSnoozeMinutes => 'Minutes de report';
+
+  @override
+  String get qsFiveLeft => 'Plus que 5 minutes';
+
+  @override
   String get syncHeading => 'Quand l\'agenda change';
 
   @override
@@ -3636,42 +3672,6 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Touchez le centre pour arrêter';
-
-  @override
-  String get quickSetups => 'Réglages rapides';
-
-  @override
-  String get qsMorningTitle => 'Un matin qui marche';
-
-  @override
-  String get qsStartTitle => 'Ne ratez aucun début';
-
-  @override
-  String get qsStretchTitle => 'Travaillez par séquences';
-
-  @override
-  String get qsWillChange => 'Ce qui va changer';
-
-  @override
-  String get qsAlreadyOn => 'Déjà activé. Rien à changer.';
-
-  @override
-  String get qsApply => 'Appliquer';
-
-  @override
-  String get qsDone => 'Fait';
-
-  @override
-  String get qsUndo => 'Annuler';
-
-  @override
-  String get qsSnoozeTimes => 'Reports autorisés';
-
-  @override
-  String get qsSnoozeMinutes => 'Minutes de report';
-
-  @override
-  String get qsFiveLeft => 'Plus que 5 minutes';
 
   @override
   String get uiSimple => 'Simple';

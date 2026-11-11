@@ -3463,6 +3463,42 @@ class AppLocalizationsJa extends AppLocalizations {
   String get askReadAs => '読み取り結果';
 
   @override
+  String get quickSetups => 'クイック設定';
+
+  @override
+  String get qsMorningTitle => 'うまくいく朝';
+
+  @override
+  String get qsStartTitle => '開始を逃さない';
+
+  @override
+  String get qsStretchTitle => '区切って作業する';
+
+  @override
+  String get qsWillChange => '変更される内容';
+
+  @override
+  String get qsAlreadyOn => 'すでにオンです。変更はありません。';
+
+  @override
+  String get qsApply => '適用';
+
+  @override
+  String get qsDone => '完了';
+
+  @override
+  String get qsUndo => '元に戻す';
+
+  @override
+  String get qsSnoozeTimes => 'スヌーズ回数';
+
+  @override
+  String get qsSnoozeMinutes => 'スヌーズの分数';
+
+  @override
+  String get qsFiveLeft => '残り5分';
+
+  @override
   String get syncHeading => 'カレンダーが変わったとき';
 
   @override
@@ -3520,42 +3556,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '中央をタップで停止';
-
-  @override
-  String get quickSetups => 'クイック設定';
-
-  @override
-  String get qsMorningTitle => 'うまくいく朝';
-
-  @override
-  String get qsStartTitle => '開始を逃さない';
-
-  @override
-  String get qsStretchTitle => '区切って作業する';
-
-  @override
-  String get qsWillChange => '変更される内容';
-
-  @override
-  String get qsAlreadyOn => 'すでにオンです。変更はありません。';
-
-  @override
-  String get qsApply => '適用';
-
-  @override
-  String get qsDone => '完了';
-
-  @override
-  String get qsUndo => '元に戻す';
-
-  @override
-  String get qsSnoozeTimes => 'スヌーズ回数';
-
-  @override
-  String get qsSnoozeMinutes => 'スヌーズの分数';
-
-  @override
-  String get qsFiveLeft => '残り5分';
 
   @override
   String get uiSimple => 'シンプル';

@@ -3540,6 +3540,42 @@ class AppLocalizationsTr extends AppLocalizations {
   String get askReadAs => 'Şöyle okundu';
 
   @override
+  String get quickSetups => 'Hızlı kurulumlar';
+
+  @override
+  String get qsMorningTitle => 'İşe yarayan sabah';
+
+  @override
+  String get qsStartTitle => 'Hiçbir başlangıcı kaçırma';
+
+  @override
+  String get qsStretchTitle => 'Bölümler halinde çalış';
+
+  @override
+  String get qsWillChange => 'Neler değişecek';
+
+  @override
+  String get qsAlreadyOn => 'Zaten açık. Değişecek bir şey yok.';
+
+  @override
+  String get qsApply => 'Uygula';
+
+  @override
+  String get qsDone => 'Tamam';
+
+  @override
+  String get qsUndo => 'Geri al';
+
+  @override
+  String get qsSnoozeTimes => 'İzin verilen erteleme';
+
+  @override
+  String get qsSnoozeMinutes => 'Erteleme dakikası';
+
+  @override
+  String get qsFiveLeft => '5 dakika kaldı';
+
+  @override
   String get syncHeading => 'Takvim değişince';
 
   @override
@@ -3605,42 +3641,6 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Durdurmak için ortaya dokun';
-
-  @override
-  String get quickSetups => 'Hızlı kurulumlar';
-
-  @override
-  String get qsMorningTitle => 'İşe yarayan sabah';
-
-  @override
-  String get qsStartTitle => 'Hiçbir başlangıcı kaçırma';
-
-  @override
-  String get qsStretchTitle => 'Bölümler halinde çalış';
-
-  @override
-  String get qsWillChange => 'Neler değişecek';
-
-  @override
-  String get qsAlreadyOn => 'Zaten açık. Değişecek bir şey yok.';
-
-  @override
-  String get qsApply => 'Uygula';
-
-  @override
-  String get qsDone => 'Tamam';
-
-  @override
-  String get qsUndo => 'Geri al';
-
-  @override
-  String get qsSnoozeTimes => 'İzin verilen erteleme';
-
-  @override
-  String get qsSnoozeMinutes => 'Erteleme dakikası';
-
-  @override
-  String get qsFiveLeft => '5 dakika kaldı';
 
   @override
   String get uiSimple => 'Basit';

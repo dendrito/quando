@@ -3528,6 +3528,42 @@ class AppLocalizationsHe extends AppLocalizations {
   String get askReadAs => 'נקרא כ־';
 
   @override
+  String get quickSetups => 'הגדרות מהירות';
+
+  @override
+  String get qsMorningTitle => 'בוקר שעובד';
+
+  @override
+  String get qsStartTitle => 'לא מפספסים התחלה';
+
+  @override
+  String get qsStretchTitle => 'עובדים במקטעים';
+
+  @override
+  String get qsWillChange => 'מה ישתנה';
+
+  @override
+  String get qsAlreadyOn => 'כבר פועל. אין מה לשנות.';
+
+  @override
+  String get qsApply => 'החלה';
+
+  @override
+  String get qsDone => 'בוצע';
+
+  @override
+  String get qsUndo => 'ביטול';
+
+  @override
+  String get qsSnoozeTimes => 'נודניקים מותרים';
+
+  @override
+  String get qsSnoozeMinutes => 'דקות נודניק';
+
+  @override
+  String get qsFiveLeft => 'נותרו 5 דקות';
+
+  @override
   String get syncHeading => 'כשהיומן משתנה';
 
   @override
@@ -3591,42 +3627,6 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'הקשה במרכז עוצרת';
-
-  @override
-  String get quickSetups => 'הגדרות מהירות';
-
-  @override
-  String get qsMorningTitle => 'בוקר שעובד';
-
-  @override
-  String get qsStartTitle => 'לא מפספסים התחלה';
-
-  @override
-  String get qsStretchTitle => 'עובדים במקטעים';
-
-  @override
-  String get qsWillChange => 'מה ישתנה';
-
-  @override
-  String get qsAlreadyOn => 'כבר פועל. אין מה לשנות.';
-
-  @override
-  String get qsApply => 'החלה';
-
-  @override
-  String get qsDone => 'בוצע';
-
-  @override
-  String get qsUndo => 'ביטול';
-
-  @override
-  String get qsSnoozeTimes => 'נודניקים מותרים';
-
-  @override
-  String get qsSnoozeMinutes => 'דקות נודניק';
-
-  @override
-  String get qsFiveLeft => 'נותרו 5 דקות';
 
   @override
   String get uiSimple => 'פשוט';

@@ -3587,6 +3587,42 @@ class AppLocalizationsAr extends AppLocalizations {
   String get askReadAs => 'قُرئ هكذا';
 
   @override
+  String get quickSetups => 'إعدادات سريعة';
+
+  @override
+  String get qsMorningTitle => 'صباح يعمل';
+
+  @override
+  String get qsStartTitle => 'لا تفوّت أي بداية';
+
+  @override
+  String get qsStretchTitle => 'اعمل على فترات';
+
+  @override
+  String get qsWillChange => 'ما الذي سيتغير';
+
+  @override
+  String get qsAlreadyOn => 'مفعّل بالفعل. لا شيء لتغييره.';
+
+  @override
+  String get qsApply => 'تطبيق';
+
+  @override
+  String get qsDone => 'تم';
+
+  @override
+  String get qsUndo => 'تراجع';
+
+  @override
+  String get qsSnoozeTimes => 'عدد الغفوات المسموح';
+
+  @override
+  String get qsSnoozeMinutes => 'دقائق الغفوة';
+
+  @override
+  String get qsFiveLeft => 'بقيت ٥ دقائق';
+
+  @override
   String get syncHeading => 'عندما يتغيّر التقويم';
 
   @override
@@ -3652,42 +3688,6 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'المس الوسط للإيقاف';
-
-  @override
-  String get quickSetups => 'إعدادات سريعة';
-
-  @override
-  String get qsMorningTitle => 'صباح يعمل';
-
-  @override
-  String get qsStartTitle => 'لا تفوّت أي بداية';
-
-  @override
-  String get qsStretchTitle => 'اعمل على فترات';
-
-  @override
-  String get qsWillChange => 'ما الذي سيتغير';
-
-  @override
-  String get qsAlreadyOn => 'مفعّل بالفعل. لا شيء لتغييره.';
-
-  @override
-  String get qsApply => 'تطبيق';
-
-  @override
-  String get qsDone => 'تم';
-
-  @override
-  String get qsUndo => 'تراجع';
-
-  @override
-  String get qsSnoozeTimes => 'عدد الغفوات المسموح';
-
-  @override
-  String get qsSnoozeMinutes => 'دقائق الغفوة';
-
-  @override
-  String get qsFiveLeft => 'بقيت ٥ دقائق';
 
   @override
   String get uiSimple => 'بسيط';

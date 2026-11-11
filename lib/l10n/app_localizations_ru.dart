@@ -3614,6 +3614,42 @@ class AppLocalizationsRu extends AppLocalizations {
   String get askReadAs => 'Прочитано как';
 
   @override
+  String get quickSetups => 'Быстрые настройки';
+
+  @override
+  String get qsMorningTitle => 'Утро, которое работает';
+
+  @override
+  String get qsStartTitle => 'Не пропускайте начало';
+
+  @override
+  String get qsStretchTitle => 'Работайте отрезками';
+
+  @override
+  String get qsWillChange => 'Что изменится';
+
+  @override
+  String get qsAlreadyOn => 'Уже включено. Менять нечего.';
+
+  @override
+  String get qsApply => 'Применить';
+
+  @override
+  String get qsDone => 'Готово';
+
+  @override
+  String get qsUndo => 'Отменить';
+
+  @override
+  String get qsSnoozeTimes => 'Разрешено отсрочек';
+
+  @override
+  String get qsSnoozeMinutes => 'Минуты отсрочки';
+
+  @override
+  String get qsFiveLeft => 'Осталось 5 минут';
+
+  @override
   String get syncHeading => 'Когда календарь меняется';
 
   @override
@@ -3679,42 +3715,6 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Коснитесь центра, чтобы выключить';
-
-  @override
-  String get quickSetups => 'Быстрые настройки';
-
-  @override
-  String get qsMorningTitle => 'Утро, которое работает';
-
-  @override
-  String get qsStartTitle => 'Не пропускайте начало';
-
-  @override
-  String get qsStretchTitle => 'Работайте отрезками';
-
-  @override
-  String get qsWillChange => 'Что изменится';
-
-  @override
-  String get qsAlreadyOn => 'Уже включено. Менять нечего.';
-
-  @override
-  String get qsApply => 'Применить';
-
-  @override
-  String get qsDone => 'Готово';
-
-  @override
-  String get qsUndo => 'Отменить';
-
-  @override
-  String get qsSnoozeTimes => 'Разрешено отсрочек';
-
-  @override
-  String get qsSnoozeMinutes => 'Минуты отсрочки';
-
-  @override
-  String get qsFiveLeft => 'Осталось 5 минут';
 
   @override
   String get uiSimple => 'Простой';

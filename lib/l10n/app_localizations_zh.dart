@@ -3456,6 +3456,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get askReadAs => '理解为';
 
   @override
+  String get quickSetups => '快速设置';
+
+  @override
+  String get qsMorningTitle => '管用的早晨';
+
+  @override
+  String get qsStartTitle => '不错过任何开始';
+
+  @override
+  String get qsStretchTitle => '分段工作';
+
+  @override
+  String get qsWillChange => '将更改的内容';
+
+  @override
+  String get qsAlreadyOn => '已开启，无需更改。';
+
+  @override
+  String get qsApply => '应用';
+
+  @override
+  String get qsDone => '完成';
+
+  @override
+  String get qsUndo => '撤销';
+
+  @override
+  String get qsSnoozeTimes => '允许的贪睡次数';
+
+  @override
+  String get qsSnoozeMinutes => '贪睡分钟数';
+
+  @override
+  String get qsFiveLeft => '还剩5分钟';
+
+  @override
   String get syncHeading => '日历变化时';
 
   @override
@@ -3511,42 +3547,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '点按中间即可停止';
-
-  @override
-  String get quickSetups => '快速设置';
-
-  @override
-  String get qsMorningTitle => '管用的早晨';
-
-  @override
-  String get qsStartTitle => '不错过任何开始';
-
-  @override
-  String get qsStretchTitle => '分段工作';
-
-  @override
-  String get qsWillChange => '将更改的内容';
-
-  @override
-  String get qsAlreadyOn => '已开启，无需更改。';
-
-  @override
-  String get qsApply => '应用';
-
-  @override
-  String get qsDone => '完成';
-
-  @override
-  String get qsUndo => '撤销';
-
-  @override
-  String get qsSnoozeTimes => '允许的贪睡次数';
-
-  @override
-  String get qsSnoozeMinutes => '贪睡分钟数';
-
-  @override
-  String get qsFiveLeft => '还剩5分钟';
 
   @override
   String get uiSimple => '简洁';
@@ -7079,6 +7079,42 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get askReadAs => '理解為';
 
   @override
+  String get quickSetups => '快速設定';
+
+  @override
+  String get qsMorningTitle => '管用的早晨';
+
+  @override
+  String get qsStartTitle => '不錯過任何開始';
+
+  @override
+  String get qsStretchTitle => '分段工作';
+
+  @override
+  String get qsWillChange => '將變更的內容';
+
+  @override
+  String get qsAlreadyOn => '已開啟，無需變更。';
+
+  @override
+  String get qsApply => '套用';
+
+  @override
+  String get qsDone => '完成';
+
+  @override
+  String get qsUndo => '復原';
+
+  @override
+  String get qsSnoozeTimes => '允許的貪睡次數';
+
+  @override
+  String get qsSnoozeMinutes => '貪睡分鐘數';
+
+  @override
+  String get qsFiveLeft => '還剩5分鐘';
+
+  @override
   String get syncHeading => '行事曆變更時';
 
   @override
@@ -7134,42 +7170,6 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get tapMiddleToStop => '點按中間即可停止';
-
-  @override
-  String get quickSetups => '快速設定';
-
-  @override
-  String get qsMorningTitle => '管用的早晨';
-
-  @override
-  String get qsStartTitle => '不錯過任何開始';
-
-  @override
-  String get qsStretchTitle => '分段工作';
-
-  @override
-  String get qsWillChange => '將變更的內容';
-
-  @override
-  String get qsAlreadyOn => '已開啟，無需變更。';
-
-  @override
-  String get qsApply => '套用';
-
-  @override
-  String get qsDone => '完成';
-
-  @override
-  String get qsUndo => '復原';
-
-  @override
-  String get qsSnoozeTimes => '允許的貪睡次數';
-
-  @override
-  String get qsSnoozeMinutes => '貪睡分鐘數';
-
-  @override
-  String get qsFiveLeft => '還剩5分鐘';
 
   @override
   String get uiSimple => '簡潔';
