@@ -1,7 +1,7 @@
 {
   "id": "pr-45",
   "title": "Send test builds to Firebase App Distribution (private APK downloads)",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     45
