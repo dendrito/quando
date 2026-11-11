@@ -61,6 +61,9 @@ wham_gogo songs morning en
 anita_bell songs any en
 bacharach_bell songs evening en
 borges_time literature any es
+aznavour_hier songs evening fr
+gabo_born literature morning es
+gabo_life literature evening es
 sun songs morning en
 lennon songs day en
 dylan songs any en
