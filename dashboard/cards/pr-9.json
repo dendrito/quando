@@ -1,0 +1,12 @@
+{
+  "id": "pr-9",
+  "title": "Add independent PR verification policy and read-only scope guard",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    9
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 148
+}
