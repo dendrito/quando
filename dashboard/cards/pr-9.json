@@ -1,7 +1,7 @@
 {
   "id": "pr-9",
   "title": "Add independent PR verification policy and read-only scope guard",
-  "status": "review",
+  "status": "hold",
   "tag": "pr",
   "prs": [
     9
