@@ -317,6 +317,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'ها هي الشمس تشرق، وأقول: كل شيء على ما يرام.',
       'جورج هاريسون',
@@ -1150,6 +1153,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Da kommt die Sonne, und ich sage: Alles ist gut.',
       'George Harrison',
@@ -1976,6 +1982,9 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('Wake me up when September ends.', 'Green Day', QuoteSource.songs, '09-30,sep'),
     Quote('I hope you had the time of your life.', 'Green Day', QuoteSource.songs, 'evening'),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote('Here comes the sun, and I say it\'s all right.', 'George Harrison', QuoteSource.songs, 'morning'),
     Quote(
       'Life is what happens to you while you\'re busy making other plans.',
@@ -2723,6 +2732,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Aquí viene el sol, y yo digo: todo está bien.',
       'George Harrison',
@@ -3610,6 +3622,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Voici le soleil, et je dis : tout va bien.',
       'George Harrison',
@@ -4423,6 +4438,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'הנה באה השמש, ואני אומר: הכול בסדר.',
       'ג׳ורג׳ הריסון',
@@ -5160,6 +5178,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'देखो सूरज आ रहा है, और मैं कहता हूँ: सब ठीक है।',
       'जॉर्ज हैरिसन',
@@ -6027,6 +6048,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Mentari datang, dan kubilang: semua baik-baik saja.',
       'George Harrison',
@@ -6877,6 +6901,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Ecco che arriva il sole, e io dico: va tutto bene.',
       'George Harrison',
@@ -7635,6 +7662,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'ほら、太陽が昇る。もう大丈夫。',
       'ジョージ・ハリスン',
@@ -8303,6 +8333,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       '해가 떠오르네, 이제 괜찮아.',
       '조지 해리슨',
@@ -9076,6 +9109,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Daar komt de zon, en ik zeg: het is goed.',
       'George Harrison',
@@ -9933,6 +9969,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Oto nadchodzi słońce i mówię: wszystko w porządku.',
       'George Harrison',
@@ -10784,6 +10823,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Aí vem o sol, e eu digo: está tudo bem.',
       'George Harrison',
@@ -11758,6 +11800,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Вот и солнце, и я говорю: всё хорошо.',
       'Джордж Харрисон',
@@ -12597,6 +12642,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'İşte güneş geliyor ve diyorum ki: her şey yolunda.',
       'George Harrison',
@@ -13460,6 +13508,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Ось і сонце, і я кажу: усе гаразд.',
       'Джордж Гаррісон',
@@ -14317,6 +14368,9 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'I hope you had the time of your life.',
     ),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       'Mặt trời đến rồi, và tôi nói: mọi thứ đều ổn.',
       'George Harrison',
@@ -15025,6 +15079,9 @@ const quoteBank = <String, List<Quote>>{
     Quote('什么时候醒来，就是你的早晨。', '印度谚语', QuoteSource.proverbs, 'morning', 'जब जागो, तभी सवेरा।'),
     Quote('九月结束时叫醒我。', '绿日乐队', QuoteSource.songs, '09-30,sep', 'Wake me up when September ends.'),
     Quote('愿你度过了一生中最美好的时光。', '绿日乐队', QuoteSource.songs, 'evening', 'I hope you had the time of your life.'),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       '太阳出来了，我说：一切都好。',
       '乔治·哈里森',
@@ -15573,6 +15630,9 @@ const quoteBank = <String, List<Quote>>{
     Quote('什麼時候醒來，就是你的早晨。', '印度諺語', QuoteSource.proverbs, 'morning', 'जब जागो, तभी सवेरा।'),
     Quote('九月結束時叫醒我。', '綠日樂隊', QuoteSource.songs, '09-30,sep', 'Wake me up when September ends.'),
     Quote('願你度過了一生中最美好的時光。', '綠日樂隊', QuoteSource.songs, 'evening', 'I hope you had the time of your life.'),
+    Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
+    Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
+    Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
       '太陽出來了，我說：一切都好。',
       '喬治·哈里森',

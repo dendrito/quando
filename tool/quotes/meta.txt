@@ -57,6 +57,9 @@ utro proverbs evening,night ru
 jago proverbs morning hi
 gd_sept songs 09-30,sep en
 gd_time songs evening en
+wham_gogo songs morning en
+anita_bell songs any en
+bacharach_bell songs evening en
 sun songs morning en
 lennon songs day en
 dylan songs any en
