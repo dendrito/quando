@@ -3002,10 +3002,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунди',
-      many: 'За $n секунд',
       other: 'За $n секунди',
+      many: 'За $n секунд',
+      few: 'За $n секунди',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3039,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунди',
-      many: '$n секунд',
       other: '$n секунди',
+      many: '$n секунд',
+      few: '$n секунди',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3052,10 @@ class AppLocalizationsUk extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 хвилина',
-      few: '$n хвилини',
-      many: '$n хвилин',
       other: '$n хвилини',
+      many: '$n хвилин',
+      few: '$n хвилини',
+      one: '1 хвилина',
     );
     return '$_temp0';
   }
@@ -3150,4 +3150,311 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Годинник на головному екрані';
+
+  @override
+  String get sizeSmall => 'Малий';
+
+  @override
+  String get sizeMedium => 'Середній';
+
+  @override
+  String get sizeLarge => 'Великий';
+
+  @override
+  String get homeLayout => 'Вигляд головного екрана';
+
+  @override
+  String get homeLayoutClassic => 'Класичний';
+
+  @override
+  String get homeLayoutCards => 'Картки';
+
+  @override
+  String get homeCardsHint =>
+      'Перетягніть картку, щоб перемістити. Потягніть за край або кут, щоб змінити розмір, або виберіть розмір.';
+
+  @override
+  String get homeAddCard => 'Додати картку';
+
+  @override
+  String get homeOnHome => 'На екрані';
+
+  @override
+  String get homeRemoveCard => 'Прибрати';
+
+  @override
+  String get cardNext => 'Наступний будильник';
+
+  @override
+  String get cardClock => 'Годинник і дата';
+
+  @override
+  String get cardSky => 'Сонце, місяць і погода';
+
+  @override
+  String get cardMoon => 'Місяць';
+
+  @override
+  String get cardWeather => 'Погода';
+
+  @override
+  String get cardAlarms => 'Ваші будильники';
+
+  @override
+  String get cardQuick => 'Швидкі будильники';
+
+  @override
+  String get cardTools => 'Секундомір, таймер і «увага»';
+
+  @override
+  String get cardWorld => 'Світовий час';
+
+  @override
+  String get cardWeek => 'Цей тиждень';
+
+  @override
+  String get cardShabbat => 'Шабат і свята';
+
+  @override
+  String get ringAtEventReminders => 'Дзвонити за нагадуваннями самої події';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Нагадування з вашого календаря дзвонять тут як гучні будильники, зі звуком цього будильника.';
+
+  @override
+  String get atEventReminders => 'за нагадуваннями події';
+
+  @override
+  String get everyEventReminderLoud => 'Гучно дзвонити за нагадуваннями кожної події';
+
+  @override
+  String get loudNotificationsHeading => 'ГУЧНІ СПОВІЩЕННЯ КАЛЕНДАРЯ';
+
+  @override
+  String get loudNotificationsTitle => 'Зробити сповіщення календаря гучними';
+
+  @override
+  String get loudNotificationsHint =>
+      'Коли календар показує нагадування, Quando? дзвонить ним як будильником, навіть у беззвучному режимі.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Дозволити Quando? читати сповіщення календаря?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Щоб гучно дзвонити нагадуваннями календаря, Quando? потрібен доступ до сповіщень. Він дивиться лише сповіщення вибраних вами календарів, читає їхній заголовок і текст на цьому телефоні, щоб показати на будильнику, і ніколи їх не зберігає й нікуди не надсилає. Це можна вимкнути будь-коли.';
+
+  @override
+  String get loudNotificationsAgree => 'Погодитися й продовжити';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Доступ до сповіщень вимкнено. Увімкніть Quando? у списку, що відкриється.';
+
+  @override
+  String get loudNotificationsAllow => 'Дозволити';
+
+  @override
+  String get loudNotificationsNoApps => 'На цьому телефоні немає підтримуваного календаря.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Події, які вже мають будильник Quando?, дзвонять лише раз.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Тихо в Шабат і свята.';
+
+  @override
+  String get busyMode => 'Режим «Зайнятий»';
+
+  @override
+  String get busyModeSubtitle => '«Не турбувати» й автовідповіді, поки ви зайняті';
+
+  @override
+  String get busyIntro =>
+      'Поки ви зайняті, Quando? може приглушити телефон і відповідати на повідомлення за вас. Будильники й далі дзвонять.';
+
+  @override
+  String get busyIosFocus =>
+      'На iPhone та iPad застосунки не можуть вмикати фокусування й відповідати на повідомлення. У застосунку «Швидкі команди» створіть автоматизацію «Коли відкривається Quando?» або за часом, яка вмикає фокусування, і налаштуйте в ньому автовідповідь.';
+
+  @override
+  String get busyWhileHeading => 'ПОКИ ВИ ЗАЙНЯТІ';
+
+  @override
+  String get busyDnd => 'Не турбувати';
+
+  @override
+  String get busyDndHint =>
+      'Лише важливі: дзвінки й повідомлення беззвучні, будильники дзвонять. Потім усе як було.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? поки не може змінювати «Не турбувати».';
+
+  @override
+  String get busyReplies => 'Відповідати на повідомлення';
+
+  @override
+  String get busyRepliesHint =>
+      'Один раз кожному, вашим текстом, через кнопку «Відповісти» самого застосунку. Лише Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Дозволити Quando? відповідати на повідомлення?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Щоб відповідати за вас, Quando? потрібен доступ до сповіщень. Лише поки ви зайняті, він дивиться сповіщення про повідомлення вибраних застосунків, читає ім\'я відправника на цьому телефоні й один раз надсилає ваш текст через кнопку «Відповісти» самого застосунку. Повідомлення ніколи не зберігаються й нікуди більше не надсилаються. Групи пропускаються, якщо ви їх не дозволите.';
+
+  @override
+  String get busyReplyText => 'Ваша відповідь';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until заміниться часом завершення режиму.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Зараз зайнятий, відповім після $until.';
+  }
+
+  @override
+  String get busyGroups => 'Відповідати й у групах';
+
+  @override
+  String get busyGroupsHint => 'Вимкнено: групам ніколи не відповідаємо.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Відповідати в Шабат і свята';
+
+  @override
+  String get busyAskRabbi => 'Типово вимкнено. Запитайте свого рабина, перш ніж вмикати на Шабат.';
+
+  @override
+  String get busyWhenHeading => 'КОЛИ ВИ ЗАЙНЯТІ';
+
+  @override
+  String get busyWhenHint =>
+      'Увімкніть «Зайнятий під час цих подій» у будильнику календаря або «Зайнятий після дзвінка» в будильнику.';
+
+  @override
+  String get busyDuringLock => 'Зайнятий, поки ввімкнено режим блокування';
+
+  @override
+  String get busyNoneComing => 'У найближчі 7 днів ви не зайняті.';
+
+  @override
+  String get busyDuringEvents => 'Зайнятий під час цих подій';
+
+  @override
+  String get busyDuringEventsHint => 'Режим «Зайнятий» від початку до кінця кожної події.';
+
+  @override
+  String get busySettings => 'Налаштування режиму «Зайнятий»';
+
+  @override
+  String get busyAfterRing => 'Зайнятий після дзвінка';
+
+  @override
+  String get busyAfterRingHint =>
+      '«Не турбувати» й автовідповіді на певний час, наприклад тренування чи денний сон.';
+
+  @override
+  String get shareCard => 'Поділитися ранком';
+
+  @override
+  String get shareCardSubtitle => 'Сьогоднішнє небо й цитата або ваше фото для історій і статусу';
+
+  @override
+  String get shareAppMissing => 'Цього застосунку немає на телефоні.';
+
+  @override
+  String get shareAsIs => 'Поділитися як є';
+
+  @override
+  String get shareTapQuote => 'Торкніться цитати, щоб змінити.';
+
+  @override
+  String get shareStory => 'Історія';
+
+  @override
+  String get shareSquare => 'Квадрат';
+
+  @override
+  String get shareYourWords => 'Власні слова (необов\'язково)';
+
+  @override
+  String get shareYourWordsHint => 'Замість сьогоднішньої цитати';
+
+  @override
+  String get shareYourPhoto => 'Своє фото';
+
+  @override
+  String get shareOtherPhoto => 'Інше фото';
+
+  @override
+  String get shareSkyBack => 'Сьогоднішнє небо';
+
+  @override
+  String get shareYourVideo => 'Своє відео';
+
+  @override
+  String get shareInstagramStory => 'Історії Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: статус або чат';
+
+  @override
+  String get shareMore => 'Інші застосунки';
+
+  @override
+  String get shareYouPost =>
+      'Quando? відкриває застосунок із готовою карткою. Ви самі обираєте, куди, і публікуєте.';
+
+  @override
+  String get shareAndroidFirst => 'Незабаром і на iPhone та iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '«$name» збережено як звук будильника';
+  }
+
+  @override
+  String get shareToQuando => 'Поділіться піснею з Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'У YouTube, YouTube Music, Spotify, SoundCloud або Apple Music натисніть «Поділитися», потім Quando?. Це стане звуком будильника, що грає у своєму застосунку.';
+
+  @override
+  String get askOption => 'Скажіть або напишіть';
+
+  @override
+  String get askOptionHint => '«Завтра о 6», «за 30 хв до сходу сонця»';
+
+  @override
+  String get askHint => 'напр.: розбуди мене в будні за 30 хв до сходу сонця';
+
+  @override
+  String get askListening => 'Слухаю…';
+
+  @override
+  String get askNotUnderstood => 'Не знайшов час. Спробуйте «о 7 в будні» або «через 20 хвилин».';
+
+  @override
+  String get askNoSpeech => 'Голос недоступний на цьому пристрої. Можна ввести текст.';
+
+  @override
+  String get askShabbatOff => 'Увімкніть Шабат у налаштуваннях, щоб дзвонили часи Шабату.';
+
+  @override
+  String askSaved(String what) {
+    return 'Збережено: $what';
+  }
+
+  @override
+  String get askMic => 'Говорити';
 }

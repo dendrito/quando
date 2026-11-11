@@ -315,11 +315,36 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
                 child: Text(l10n.useDefault(formatSpan(Duration(seconds: defaultRing)))),
               ),
             ),
+          const SizedBox(height: 8),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+            title: Text(l10n.busyAfterRing),
+            subtitle: Text(l10n.busyAfterRingHint, style: text.bodySmall),
+            trailing: DropdownButton<int>(
+              value: _busyChoices.contains(_alarm.busyMinutes) ? _alarm.busyMinutes : 0,
+              items: [
+                for (final m in _busyChoices)
+                  DropdownMenuItem(
+                    value: m,
+                    child: Text(m == 0 ? l10n.offLower : formatSpan(Duration(minutes: m))),
+                  ),
+              ],
+              onChanged: (m) => setState(() => _alarm = _alarm.copyWith(busyMinutes: m ?? 0)),
+            ),
+          ),
+          if (_alarm.busyMinutes > 0)
+            Align(
+              alignment: AlignmentDirectional.centerStart,
+              child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),
+            ),
           const SizedBox(height: 24),
         ],
       ),
     );
   }
+
+  static const _busyChoices = [0, 30, 60, 90, 120, 180, 240];
 }
 
 class _DayChip extends StatelessWidget {

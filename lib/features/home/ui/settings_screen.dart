@@ -212,6 +212,23 @@ class SettingsScreen extends ConsumerWidget {
             trailing: const Icon(Icons.chevron_right),
             onTap: () => context.push('/connections'),
           ),
+          ListTile(
+            contentPadding: EdgeInsets.zero,
+            leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+            title: Text(l10n.busyMode),
+            subtitle: Text(l10n.busyModeSubtitle),
+            trailing: const Icon(Icons.chevron_right),
+            onTap: () => context.push('/busy'),
+          ),
+          if (isAndroid)
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
+              title: Text(l10n.shareCard),
+              subtitle: Text(l10n.shareCardSubtitle),
+              trailing: const Icon(Icons.chevron_right),
+              onTap: () => context.push('/share'),
+            ),
 
           // ---- About ----
           group(l10n.settingsAbout),

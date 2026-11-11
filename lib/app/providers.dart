@@ -11,6 +11,9 @@ import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/data/google_calendar.dart';
+import '../features/calendar/data/loud_notifications.dart';
+import '../features/busy/data/busy_mode.dart';
+import '../features/busy/domain/busy.dart';
 import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
 import '../features/events/domain/event.dart';
@@ -55,10 +58,19 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
   @override
   HomeDisplay build() {
     try {
-      return HomeDisplay.fromJson(
-        jsonDecode(ref.read(prefsProvider).getString('home.display') ?? '{}') as Map<String, dynamic>,
+      final prefs = ref.read(prefsProvider);
+      var d = HomeDisplay.fromJson(
+        jsonDecode(prefs.getString('home.display') ?? '{}') as Map<String, dynamic>,
         parashaDefault: jewishHome,
       );
+      // Once: sun, moon, moon phase and weather became the default, so switch them on for people who had
+      // them off only because that used to be the default.
+      if (prefs.getBool('home.display.allOn') != true) {
+        prefs.setBool('home.display.allOn', true);
+        d = d.copyWith(night: true, moon: true, moonDetails: true, weather: true);
+        prefs.setString('home.display', jsonEncode(d.toJson()));
+      }
+      return d;
     } catch (_) {
       return HomeDisplay(parasha: jewishHome);
     }
@@ -511,6 +523,11 @@ final calendarReaderProvider = Provider<CalendarReader>(
   (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
 );
 
+/// "Make calendar notifications loud" (Android).
+final loudNotificationsProvider = Provider<LoudNotifications>(
+  (ref) => LoudNotifications(ref.watch(prefsProvider)),
+);
+
 /// Google Calendar read online, for when it isn't on the phone.
 final onlineCalendarsProvider = Provider<OnlineCalendars>((ref) => GoogleCalendars());
 
@@ -843,17 +860,20 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
 
   static int _byTime(UserAlarm a, UserAlarm b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
 
-  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time.
-  void save(UserAlarm alarm) {
+  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time,
+  /// or to [at] when given (e.g. "tomorrow at 6", said at 5 in the morning).
+  void save(UserAlarm alarm, {DateTime? at}) {
     final fixed = alarm.repeats
         ? alarm
         : alarm.copyWith(
-            onceAt: UserAlarm.nextAt(
-              alarm.hour,
-              alarm.minute,
-              ref.read(clockProvider)(),
-              alarm.zone ?? ref.read(homeZoneProvider),
-            ),
+            onceAt:
+                at ??
+                UserAlarm.nextAt(
+                  alarm.hour,
+                  alarm.minute,
+                  ref.read(clockProvider)(),
+                  alarm.zone ?? ref.read(homeZoneProvider),
+                ),
           );
     _set([
       for (final a in state)
@@ -1233,4 +1253,48 @@ final registrarProvider = Provider<AlarmRegistrar>((ref) {
   final r = AlarmRegistrar()..onHappening = (what, p) => sender.send(what, p);
   ref.onDispose(r.dispose);
   return r;
+});
+
+// ---- Busy mode ----
+
+class BusySettingsNotifier extends Notifier<BusySettings> {
+  @override
+  BusySettings build() => BusySettings.decode(ref.read(prefsProvider).getString(BusyMode.settingsKey));
+
+  void update(BusySettings Function(BusySettings) change) {
+    state = change(state);
+    ref.read(prefsProvider).setString(BusyMode.settingsKey, jsonEncode(state.toJson()));
+  }
+}
+
+final busySettingsProvider = NotifierProvider<BusySettingsNotifier, BusySettings>(BusySettingsNotifier.new);
+
+final busyModeProvider = Provider<BusyMode>((ref) => BusyMode(ref.watch(prefsProvider)));
+
+/// Busy stretches over the planning week.
+final busyWindowsProvider = Provider<List<BusyWindow>>((ref) {
+  final now = ref.watch(clockProvider)();
+  return busyWindows(
+    now: now,
+    until: now.add(scheduler.horizon),
+    events: ref.watch(eventsProvider),
+    calendarRules: ref.watch(calendarRulesProvider),
+    // From before now, so a stretch that already started still counts.
+    plan: [
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0)
+          ...a.plan(
+            now: now.subtract(Duration(minutes: a.busyMinutes)),
+            horizon: scheduler.horizon,
+            zone: ref.watch(homeZoneProvider),
+            defaultRing: const Duration(minutes: 1),
+          ),
+    ],
+    busyMinutesByAlarm: {
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0) a.id: a.busyMinutes,
+    },
+    locks: ref.watch(lockPeriodsProvider),
+    settings: ref.watch(busySettingsProvider),
+  );
 });

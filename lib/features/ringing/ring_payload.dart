@@ -196,6 +196,10 @@ class RingPayload {
     delivery: delivery ?? this.delivery,
   );
 
+  /// Rung from outside the plan (a calendar notification made loud), so
+  /// re-planning leaves it alone.
+  RingPayload asExternal() => _copy(transient: true);
+
   RingPayload withLink(String? url) => _copy(link: url, keepLink: false);
 
   /// A song link: played as the alarm ([plays]) or opened when you stop

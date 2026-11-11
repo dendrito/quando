@@ -2944,11 +2944,11 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqStartCalls => 'शुरू होने से पहले की पुकार';
 
   @override
-  String get seqStartCallsHelp => '"चलो" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
+  String get seqStartCallsHelp => '\"चलो\" से पहले ज़ोर से बोली जाती है, शुरुआत से उलटी गिनी जाती है।';
 
   @override
   String seqCallBefore(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड पहले', other: '$n सेकंड पहले');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड पहले', one: '1 सेकंड पहले');
     return '$_temp0';
   }
 
@@ -2978,13 +2978,13 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 सेकंड', other: '$n सेकंड');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n सेकंड', one: '1 सेकंड');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 मिनट', other: '$n मिनट');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n मिनट', one: '1 मिनट');
     return '$_temp0';
   }
 
@@ -3024,10 +3024,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get seqPresetRound => '1 मिनट का राउंड';
 
   @override
-  String get seqHintNoLimit => '"चलो" के बाद यह आपके रोकने तक ऊपर गिनता है।';
+  String get seqHintNoLimit => '\"चलो\" के बाद यह आपके रोकने तक ऊपर गिनता है।';
 
   @override
-  String get seqHintLength => '"चलो" के बाद यह शून्य तक उलटी गिनती करता है।';
+  String get seqHintLength => '\"चलो\" के बाद यह शून्य तक उलटी गिनती करता है।';
 
   @override
   String get seqWords => 'शब्द';
@@ -3078,4 +3078,310 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'होम पर घड़ी';
+
+  @override
+  String get sizeSmall => 'छोटी';
+
+  @override
+  String get sizeMedium => 'मध्यम';
+
+  @override
+  String get sizeLarge => 'बड़ी';
+
+  @override
+  String get homeLayout => 'होम लेआउट';
+
+  @override
+  String get homeLayoutClassic => 'क्लासिक';
+
+  @override
+  String get homeLayoutCards => 'कार्ड';
+
+  @override
+  String get homeCardsHint =>
+      'कार्ड को हिलाने के लिए खींचें। आकार बदलने के लिए उसका किनारा या कोना खींचें, या आकार चुनें।';
+
+  @override
+  String get homeAddCard => 'कार्ड जोड़ें';
+
+  @override
+  String get homeOnHome => 'होम पर';
+
+  @override
+  String get homeRemoveCard => 'हटाएँ';
+
+  @override
+  String get cardNext => 'अगला अलार्म';
+
+  @override
+  String get cardClock => 'घड़ी और तारीख';
+
+  @override
+  String get cardSky => 'सूरज, चाँद और मौसम';
+
+  @override
+  String get cardMoon => 'चाँद';
+
+  @override
+  String get cardWeather => 'मौसम';
+
+  @override
+  String get cardAlarms => 'आपके अलार्म';
+
+  @override
+  String get cardQuick => 'झटपट अलार्म';
+
+  @override
+  String get cardTools => 'स्टॉपवॉच, काउंटडाउन और तैयार';
+
+  @override
+  String get cardWorld => 'विश्व घड़ियाँ';
+
+  @override
+  String get cardWeek => 'इस हफ़्ते';
+
+  @override
+  String get cardShabbat => 'शब्बात और त्योहार';
+
+  @override
+  String get ringAtEventReminders => 'इवेंट के अपने रिमाइंडर पर बजाएँ';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'आपके कैलेंडर ऐप के रिमाइंडर यहाँ इस अलार्म की आवाज़ में तेज़ अलार्म की तरह बजते हैं।';
+
+  @override
+  String get atEventReminders => 'इवेंट के रिमाइंडर पर';
+
+  @override
+  String get everyEventReminderLoud => 'हर इवेंट के रिमाइंडर पर तेज़ बजाएँ';
+
+  @override
+  String get loudNotificationsHeading => 'तेज़ कैलेंडर सूचनाएँ';
+
+  @override
+  String get loudNotificationsTitle => 'कैलेंडर सूचनाओं को तेज़ बनाएँ';
+
+  @override
+  String get loudNotificationsHint =>
+      'जब कोई कैलेंडर ऐप रिमाइंडर दिखाता है, Quando? उसे अलार्म की तरह बजाता है, फ़ोन साइलेंट पर हो तब भी।';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? को कैलेंडर सूचनाएँ पढ़ने दें?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'आपके कैलेंडर रिमाइंडर तेज़ आवाज़ में बजाने के लिए Quando? को सूचना एक्सेस चाहिए। यह सिर्फ़ आपके चुने कैलेंडर ऐप की सूचनाएँ देखता है, अलार्म पर दिखाने के लिए उनका शीर्षक और टेक्स्ट इसी फ़ोन पर पढ़ता है, और उन्हें कभी सहेजता या कहीं भेजता नहीं। आप इसे कभी भी बंद कर सकते हैं।';
+
+  @override
+  String get loudNotificationsAgree => 'सहमत, आगे बढ़ें';
+
+  @override
+  String get loudNotificationsNoAccess => 'सूचना एक्सेस बंद है। खुलने वाली सूची में Quando? चालू करें।';
+
+  @override
+  String get loudNotificationsAllow => 'अनुमति दें';
+
+  @override
+  String get loudNotificationsNoApps => 'इस फ़ोन पर कोई समर्थित कैलेंडर ऐप नहीं मिला।';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'जिन इवेंट का पहले से Quando? कैलेंडर अलार्म है, वे सिर्फ़ एक बार बजते हैं।';
+
+  @override
+  String get loudNotificationsShabbatNote => 'शब्बात और त्योहारों में शांत।';
+
+  @override
+  String get busyMode => 'व्यस्त मोड';
+
+  @override
+  String get busyModeSubtitle => 'व्यस्त रहते हुए परेशान न करें और ऑटो-जवाब';
+
+  @override
+  String get busyIntro =>
+      'आपके व्यस्त रहने पर Quando? फ़ोन को शांत कर सकता है और आपकी ओर से संदेशों का जवाब दे सकता है। अलार्म फिर भी बजते हैं।';
+
+  @override
+  String get busyIosFocus =>
+      'iPhone और iPad पर ऐप Focus चालू नहीं कर सकते और न ही संदेशों का जवाब दे सकते हैं। Shortcuts ऐप में \"Quando? खुलने पर\" या किसी समय पर Focus चालू करने वाला ऑटोमेशन जोड़ें और Focus में ऑटो-जवाब सेट करें।';
+
+  @override
+  String get busyWhileHeading => 'व्यस्त रहते हुए';
+
+  @override
+  String get busyDnd => 'परेशान न करें';
+
+  @override
+  String get busyDndHint => 'केवल प्राथमिकता: कॉल और संदेश शांत, अलार्म बजते हैं। खत्म होने पर सामान्य।';
+
+  @override
+  String get busyDndNoAccess => 'Quando? को अभी परेशान न करें बदलने की अनुमति नहीं है।';
+
+  @override
+  String get busyReplies => 'संदेशों का जवाब दें';
+
+  @override
+  String get busyRepliesHint =>
+      'हर व्यक्ति को एक बार, आपके टेक्स्ट से, ऐप के अपने जवाब बटन से। सिर्फ़ Android।';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? को संदेशों का जवाब देने दें?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'आपकी ओर से जवाब देने के लिए Quando? को सूचना एक्सेस चाहिए। सिर्फ़ आपके व्यस्त रहने पर, यह आपके चुने ऐप की संदेश सूचनाएँ देखता है, इसी फ़ोन पर भेजने वाले का नाम पढ़ता है और ऐप के अपने जवाब बटन से आपका टेक्स्ट एक बार भेजता है। संदेश कभी सहेजे या कहीं और भेजे नहीं जाते। जब तक आप अनुमति न दें, ग्रुप छोड़ दिए जाते हैं।';
+
+  @override
+  String get busyReplyText => 'आपका जवाब';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until की जगह व्यस्त मोड खत्म होने का समय आएगा।';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'मैं अभी व्यस्त हूँ, $until के बाद जवाब दूँगा।';
+  }
+
+  @override
+  String get busyGroups => 'ग्रुप चैट में भी जवाब दें';
+
+  @override
+  String get busyGroupsHint => 'बंद: ग्रुप को कभी जवाब नहीं।';
+
+  @override
+  String get busyRepliesOnShabbat => 'शब्बात और त्योहारों में भी जवाब दें';
+
+  @override
+  String get busyAskRabbi => 'डिफ़ॉल्ट रूप से बंद। शब्बात के लिए चालू करने से पहले अपने रब्बी से पूछें।';
+
+  @override
+  String get busyWhenHeading => 'आप कब व्यस्त हैं';
+
+  @override
+  String get busyWhenHint =>
+      'किसी कैलेंडर अलार्म पर \"इन इवेंट के दौरान व्यस्त\" या किसी अलार्म पर \"बजने के बाद व्यस्त\" चालू करें।';
+
+  @override
+  String get busyDuringLock => 'लॉक मोड चालू रहने तक व्यस्त';
+
+  @override
+  String get busyNoneComing => 'अगले 7 दिनों में कुछ व्यस्त नहीं।';
+
+  @override
+  String get busyDuringEvents => 'इन इवेंट के दौरान व्यस्त';
+
+  @override
+  String get busyDuringEventsHint => 'हर इवेंट की शुरुआत से अंत तक व्यस्त मोड।';
+
+  @override
+  String get busySettings => 'व्यस्त मोड सेटिंग';
+
+  @override
+  String get busyAfterRing => 'बजने के बाद व्यस्त';
+
+  @override
+  String get busyAfterRingHint => 'कुछ देर परेशान न करें और ऑटो-जवाब, जैसे वर्कआउट या झपकी।';
+
+  @override
+  String get shareCard => 'अपनी सुबह शेयर करें';
+
+  @override
+  String get shareCardSubtitle => 'आज का आसमान और कोट, या अपनी फ़ोटो, स्टोरी और स्टेटस के लिए';
+
+  @override
+  String get shareAppMissing => 'यह ऐप इस फ़ोन पर नहीं है।';
+
+  @override
+  String get shareAsIs => 'जैसा है वैसा शेयर करें';
+
+  @override
+  String get shareTapQuote => 'दूसरे कोट के लिए कोट पर टैप करें।';
+
+  @override
+  String get shareStory => 'स्टोरी';
+
+  @override
+  String get shareSquare => 'चौकोर';
+
+  @override
+  String get shareYourWords => 'आपके अपने शब्द (वैकल्पिक)';
+
+  @override
+  String get shareYourWordsHint => 'आज के कोट की जगह';
+
+  @override
+  String get shareYourPhoto => 'आपकी फ़ोटो';
+
+  @override
+  String get shareOtherPhoto => 'दूसरी फ़ोटो';
+
+  @override
+  String get shareSkyBack => 'आज का आसमान';
+
+  @override
+  String get shareYourVideo => 'आपका वीडियो';
+
+  @override
+  String get shareInstagramStory => 'Instagram स्टोरी';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: स्टेटस या चैट';
+
+  @override
+  String get shareMore => 'और ऐप';
+
+  @override
+  String get shareYouPost =>
+      'Quando? आपके कार्ड के साथ ऐप खोलता है। कहाँ जाए, आप चुनते हैं और पोस्ट खुद टैप करते हैं।';
+
+  @override
+  String get shareAndroidFirst => 'शेयरिंग जल्द iPhone और iPad पर।';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” अलार्म ध्वनि के रूप में सहेजा गया';
+  }
+
+  @override
+  String get shareToQuando => 'Quando? पर गाना शेयर करें';
+
+  @override
+  String get shareToQuandoHint =>
+      'YouTube, YouTube Music, Spotify, SoundCloud या Apple Music में शेयर, फिर Quando? टैप करें। यह अलार्म ध्वनि बन जाता है जो अपने ऐप में बजती है।';
+
+  @override
+  String get askOption => 'बोलें या लिखें';
+
+  @override
+  String get askOptionHint => '“कल 6 बजे”, “सूर्योदय से 30 मिनट पहले”';
+
+  @override
+  String get askHint => 'जैसे: कार्यदिवसों में सूर्योदय से 30 मिनट पहले जगाओ';
+
+  @override
+  String get askListening => 'सुन रहा हूँ…';
+
+  @override
+  String get askNotUnderstood =>
+      'मुझे कोई समय नहीं मिला। “कार्यदिवसों में सुबह 7 बजे” या “20 मिनट में” आज़माएँ।';
+
+  @override
+  String get askNoSpeech => 'इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।';
+
+  @override
+  String get askShabbatOff => 'शब्बत समय बजने के लिए सेटिंग्स में शब्बत चालू करें।';
+
+  @override
+  String askSaved(String what) {
+    return 'सहेजा गया: $what';
+  }
+
+  @override
+  String get askMic => 'बोलें';
 }

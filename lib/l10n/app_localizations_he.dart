@@ -2941,15 +2941,15 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqStartCalls => 'הכרזות לפני הזינוק';
 
   @override
-  String get seqStartCallsHelp => 'נאמרות בקול לפני "צא", בספירה לאחור מרגע הזינוק.';
+  String get seqStartCallsHelp => 'נאמרות בקול לפני \"צא\", בספירה לאחור מרגע הזינוק.';
 
   @override
   String seqCallBefore(int n) {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'שנייה אחת לפני',
       other: '$n שניות לפני',
+      one: 'שנייה אחת לפני',
     );
     return '$_temp0';
   }
@@ -2980,13 +2980,13 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'שנייה אחת', other: '$n שניות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n שניות', one: 'שנייה אחת');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: 'דקה אחת', other: '$n דקות');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n דקות', one: 'דקה אחת');
     return '$_temp0';
   }
 
@@ -3026,10 +3026,10 @@ class AppLocalizationsHe extends AppLocalizations {
   String get seqPresetRound => 'סבב של דקה';
 
   @override
-  String get seqHintNoLimit => 'אחרי "צא" הוא סופר למעלה עד שתעצור אותו.';
+  String get seqHintNoLimit => 'אחרי \"צא\" הוא סופר למעלה עד שתעצור אותו.';
 
   @override
-  String get seqHintLength => 'אחרי "צא" הוא סופר לאחור עד אפס.';
+  String get seqHintLength => 'אחרי \"צא\" הוא סופר לאחור עד אפס.';
 
   @override
   String get seqWords => 'מילים';
@@ -3080,4 +3080,306 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'שעון במסך הבית';
+
+  @override
+  String get sizeSmall => 'קטן';
+
+  @override
+  String get sizeMedium => 'בינוני';
+
+  @override
+  String get sizeLarge => 'גדול';
+
+  @override
+  String get homeLayout => 'פריסת מסך הבית';
+
+  @override
+  String get homeLayoutClassic => 'קלאסי';
+
+  @override
+  String get homeLayoutCards => 'כרטיסים';
+
+  @override
+  String get homeCardsHint =>
+      'גררו כרטיס כדי להזיז אותו. גררו את הקצה או הפינה כדי לשנות גודל, או בחרו גודל.';
+
+  @override
+  String get homeAddCard => 'הוספת כרטיס';
+
+  @override
+  String get homeOnHome => 'במסך הבית';
+
+  @override
+  String get homeRemoveCard => 'הסרה';
+
+  @override
+  String get cardNext => 'ההשכמה הבאה';
+
+  @override
+  String get cardClock => 'שעון ותאריך';
+
+  @override
+  String get cardSky => 'שמש, ירח ומזג אוויר';
+
+  @override
+  String get cardMoon => 'ירח';
+
+  @override
+  String get cardWeather => 'מזג אוויר';
+
+  @override
+  String get cardAlarms => 'ההשכמות שלך';
+
+  @override
+  String get cardQuick => 'השכמות מהירות';
+
+  @override
+  String get cardTools => 'סטופר, טיימר ו״היכון״';
+
+  @override
+  String get cardWorld => 'שעוני עולם';
+
+  @override
+  String get cardWeek => 'השבוע';
+
+  @override
+  String get cardShabbat => 'שבת וחגים';
+
+  @override
+  String get ringAtEventReminders => 'לצלצל בתזכורות של האירוע עצמו';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'התזכורות שהוגדרו באפליקציית היומן מצלצלות כאן כהתראות חזקות, עם הצליל של ההתראה הזו.';
+
+  @override
+  String get atEventReminders => 'בתזכורות של האירוע';
+
+  @override
+  String get everyEventReminderLoud => 'לצלצל בקול בתזכורות של כל אירוע';
+
+  @override
+  String get loudNotificationsHeading => 'התראות יומן בקול';
+
+  @override
+  String get loudNotificationsTitle => 'להפוך התראות יומן לחזקות';
+
+  @override
+  String get loudNotificationsHint =>
+      'כשאפליקציית יומן מציגה תזכורת, Quando? מצלצל אותה כהתראה, גם כשהטלפון על שקט.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'לאפשר ל־Quando? לקרוא התראות יומן?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'כדי לצלצל את תזכורות היומן בקול, Quando? צריך גישה להתראות. הוא מסתכל רק על התראות מאפליקציות היומן שבחרת, קורא את הכותרת והטקסט בטלפון הזה כדי להציג אותם בהתראה, ואף פעם לא שומר או שולח אותם לשום מקום. אפשר לכבות את זה בכל עת.';
+
+  @override
+  String get loudNotificationsAgree => 'מסכים, המשך';
+
+  @override
+  String get loudNotificationsNoAccess => 'הגישה להתראות כבויה. הפעילו את Quando? ברשימה שתיפתח.';
+
+  @override
+  String get loudNotificationsAllow => 'לאפשר';
+
+  @override
+  String get loudNotificationsNoApps => 'לא נמצאה בטלפון אפליקציית יומן נתמכת.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'אירועים שכבר יש להם התראת יומן של Quando? מצלצלים פעם אחת בלבד.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'שקט בשבת ובחגים.';
+
+  @override
+  String get busyMode => 'מצב עסוק';
+
+  @override
+  String get busyModeSubtitle => 'נא לא להפריע ותשובות אוטומטיות כשאתם עסוקים';
+
+  @override
+  String get busyIntro =>
+      'כשאתם עסוקים, Quando? יכול להשתיק את הטלפון ולענות להודעות בשבילכם. ההתראות ממשיכות לצלצל.';
+
+  @override
+  String get busyIosFocus =>
+      'באייפון ובאייפד אפליקציות לא יכולות להפעיל ריכוז או לענות להודעות. באפליקציית קיצורים הוסיפו אוטומציה „כש־Quando? נפתח” או בשעה מסוימת שמפעילה ריכוז, והגדירו בו מענה אוטומטי.';
+
+  @override
+  String get busyWhileHeading => 'כשאתם עסוקים';
+
+  @override
+  String get busyDnd => 'נא לא להפריע';
+
+  @override
+  String get busyDndHint => 'עדיפות בלבד: שיחות והודעות בשקט, התראות מצלצלות. בסוף חוזר לרגיל.';
+
+  @override
+  String get busyDndNoAccess => 'ל־Quando? עדיין אין הרשאה לשנות את נא לא להפריע.';
+
+  @override
+  String get busyReplies => 'לענות להודעות';
+
+  @override
+  String get busyRepliesHint =>
+      'פעם אחת לכל אדם, עם הטקסט שלכם, דרך כפתור התשובה של האפליקציה. אנדרואיד בלבד.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'לאפשר ל־Quando? לענות להודעות?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'כדי לענות בשבילכם, Quando? צריך גישה להתראות. רק כשאתם עסוקים, הוא מסתכל על התראות הודעה מהאפליקציות שבחרתם, קורא את שם השולח בטלפון הזה ושולח את הטקסט שלכם פעם אחת דרך כפתור התשובה של האפליקציה. ההודעות אף פעם לא נשמרות ולא נשלחות לשום מקום אחר. קבוצות מדולגות, אלא אם תאפשרו.';
+
+  @override
+  String get busyReplyText => 'התשובה שלכם';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until יוחלף בשעה שבה מצב עסוק נגמר.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'אני עסוק כרגע ואענה אחרי $until.';
+  }
+
+  @override
+  String get busyGroups => 'לענות גם בקבוצות';
+
+  @override
+  String get busyGroupsHint => 'כבוי: אף פעם לא עונים בקבוצות.';
+
+  @override
+  String get busyRepliesOnShabbat => 'לענות גם בשבת ובחגים';
+
+  @override
+  String get busyAskRabbi => 'כבוי כברירת מחדל. שאלו את הרב לפני שמפעילים לשבת.';
+
+  @override
+  String get busyWhenHeading => 'מתי אתם עסוקים';
+
+  @override
+  String get busyWhenHint => 'הפעילו „עסוק במהלך האירועים האלה” בהתראת יומן, או „עסוק אחרי הצלצול” בהתראה.';
+
+  @override
+  String get busyDuringLock => 'עסוק כשמצב נעילה פעיל';
+
+  @override
+  String get busyNoneComing => 'אין זמן עסוק ב־7 הימים הקרובים.';
+
+  @override
+  String get busyDuringEvents => 'עסוק במהלך האירועים האלה';
+
+  @override
+  String get busyDuringEventsHint => 'מצב עסוק מתחילת כל אירוע ועד סופו.';
+
+  @override
+  String get busySettings => 'הגדרות מצב עסוק';
+
+  @override
+  String get busyAfterRing => 'עסוק אחרי הצלצול';
+
+  @override
+  String get busyAfterRingHint => 'נא לא להפריע ותשובות אוטומטיות לזמן מה, למשל אימון או תנומה.';
+
+  @override
+  String get shareCard => 'שתפו את הבוקר';
+
+  @override
+  String get shareCardSubtitle => 'השמיים והציטוט של היום, או התמונה שלכם, לסטוריז ולסטטוס';
+
+  @override
+  String get shareAppMissing => 'האפליקציה הזו לא מותקנת בטלפון.';
+
+  @override
+  String get shareAsIs => 'לשתף כמו שהוא';
+
+  @override
+  String get shareTapQuote => 'הקישו על הציטוט כדי להחליף.';
+
+  @override
+  String get shareStory => 'סטורי';
+
+  @override
+  String get shareSquare => 'ריבוע';
+
+  @override
+  String get shareYourWords => 'מילים משלכם (לא חובה)';
+
+  @override
+  String get shareYourWordsHint => 'במקום הציטוט של היום';
+
+  @override
+  String get shareYourPhoto => 'תמונה שלכם';
+
+  @override
+  String get shareOtherPhoto => 'תמונה אחרת';
+
+  @override
+  String get shareSkyBack => 'השמיים של היום';
+
+  @override
+  String get shareYourVideo => 'סרטון שלכם';
+
+  @override
+  String get shareInstagramStory => 'סטורי באינסטגרם';
+
+  @override
+  String get shareWhatsApp => 'וואטסאפ: סטטוס או צ\'אט';
+
+  @override
+  String get shareMore => 'אפליקציות נוספות';
+
+  @override
+  String get shareYouPost => 'Quando? פותח את האפליקציה עם הכרטיס מוכן. אתם בוחרים לאן ולוחצים פרסום בעצמכם.';
+
+  @override
+  String get shareAndroidFirst => 'שיתוף יגיע בקרוב לאייפון ולאייפד.';
+
+  @override
+  String songSaved(String name) {
+    return '„$name” נשמר כצליל התראה';
+  }
+
+  @override
+  String get shareToQuando => 'שתפו שיר ל־Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'ב־YouTube, YouTube Music, Spotify, SoundCloud או Apple Music הקישו שיתוף ואז Quando?. זה הופך לצליל התראה שמתנגן באפליקציה שלו.';
+
+  @override
+  String get askOption => 'אמרו או הקלידו';
+
+  @override
+  String get askOptionHint => '„מחר בשש”, „חצי שעה לפני הזריחה”';
+
+  @override
+  String get askHint => 'למשל: תעיר אותי חצי שעה לפני הזריחה בימי חול';
+
+  @override
+  String get askListening => 'מקשיב…';
+
+  @override
+  String get askNotUnderstood => 'לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.';
+
+  @override
+  String get askNoSpeech => 'קול לא זמין במכשיר הזה. אפשר להקליד.';
+
+  @override
+  String get askShabbatOff => 'הפעילו שבת בהגדרות כדי שזמני השבת יצלצלו.';
+
+  @override
+  String askSaved(String what) {
+    return 'נשמר: $what';
+  }
+
+  @override
+  String get askMic => 'דברו';
 }

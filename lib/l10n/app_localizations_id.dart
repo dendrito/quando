@@ -2950,8 +2950,8 @@ class AppLocalizationsId extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 detik sebelumnya',
       other: '$n detik sebelumnya',
+      one: '1 detik sebelumnya',
     );
     return '$_temp0';
   }
@@ -2982,13 +2982,13 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 detik', other: '$n detik');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n detik', one: '1 detik');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 menit', other: '$n menit');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n menit', one: '1 menit');
     return '$_temp0';
   }
 
@@ -3082,4 +3082,312 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get noAlarmsThatDay => 'Nothing rings this day';
+
+  @override
+  String get homeClockSize => 'Jam di beranda';
+
+  @override
+  String get sizeSmall => 'Kecil';
+
+  @override
+  String get sizeMedium => 'Sedang';
+
+  @override
+  String get sizeLarge => 'Besar';
+
+  @override
+  String get homeLayout => 'Tata letak beranda';
+
+  @override
+  String get homeLayoutClassic => 'Klasik';
+
+  @override
+  String get homeLayoutCards => 'Kartu';
+
+  @override
+  String get homeCardsHint =>
+      'Seret kartu untuk memindahkannya. Seret tepi atau sudutnya untuk mengubah ukuran, atau pilih ukuran.';
+
+  @override
+  String get homeAddCard => 'Tambah kartu';
+
+  @override
+  String get homeOnHome => 'Di beranda';
+
+  @override
+  String get homeRemoveCard => 'Hapus';
+
+  @override
+  String get cardNext => 'Alarm berikutnya';
+
+  @override
+  String get cardClock => 'Jam dan tanggal';
+
+  @override
+  String get cardSky => 'Matahari, bulan, dan cuaca';
+
+  @override
+  String get cardMoon => 'Bulan';
+
+  @override
+  String get cardWeather => 'Cuaca';
+
+  @override
+  String get cardAlarms => 'Alarm Anda';
+
+  @override
+  String get cardQuick => 'Alarm cepat';
+
+  @override
+  String get cardTools => 'Stopwatch, hitung mundur, dan bersiap';
+
+  @override
+  String get cardWorld => 'Jam dunia';
+
+  @override
+  String get cardWeek => 'Minggu ini';
+
+  @override
+  String get cardShabbat => 'Shabbat dan hari raya';
+
+  @override
+  String get ringAtEventReminders => 'Berbunyi di pengingat acara itu sendiri';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Pengingat di aplikasi kalender Anda berbunyi di sini sebagai alarm keras, dengan suara alarm ini.';
+
+  @override
+  String get atEventReminders => 'di pengingat acara';
+
+  @override
+  String get everyEventReminderLoud => 'Berbunyi keras di pengingat setiap acara';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFIKASI KALENDER KERAS';
+
+  @override
+  String get loudNotificationsTitle => 'Buat notifikasi kalender berbunyi keras';
+
+  @override
+  String get loudNotificationsHint =>
+      'Saat aplikasi kalender menampilkan pengingat, Quando? membunyikannya sebagai alarm, bahkan saat ponsel senyap.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Izinkan Quando? membaca notifikasi kalender?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Untuk membunyikan pengingat kalender dengan keras, Quando? memerlukan akses notifikasi. Ia hanya melihat notifikasi dari aplikasi kalender yang Anda pilih, membaca judul dan teksnya di ponsel ini untuk ditampilkan di alarm, dan tidak pernah menyimpan atau mengirimnya ke mana pun. Anda bisa mematikannya kapan saja.';
+
+  @override
+  String get loudNotificationsAgree => 'Setuju dan lanjutkan';
+
+  @override
+  String get loudNotificationsNoAccess => 'Akses notifikasi mati. Aktifkan Quando? di daftar yang terbuka.';
+
+  @override
+  String get loudNotificationsAllow => 'Izinkan';
+
+  @override
+  String get loudNotificationsNoApps => 'Tidak ada aplikasi kalender yang didukung di ponsel ini.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Acara yang sudah punya alarm kalender Quando? hanya berbunyi sekali.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Senyap selama Shabbat dan hari raya.';
+
+  @override
+  String get busyMode => 'Mode sibuk';
+
+  @override
+  String get busyModeSubtitle => 'Jangan Ganggu dan balasan otomatis saat Anda sibuk';
+
+  @override
+  String get busyIntro =>
+      'Saat Anda sibuk, Quando? bisa menyenyapkan ponsel dan membalas pesan untuk Anda. Alarm tetap berbunyi.';
+
+  @override
+  String get busyIosFocus =>
+      'Di iPhone dan iPad, aplikasi tidak bisa menyalakan Fokus atau membalas pesan. Di app Pintasan, tambahkan otomatisasi \"Saat Quando? dibuka\" atau pada jam tertentu yang menyalakan Fokus, lalu atur Fokus untuk membalas otomatis.';
+
+  @override
+  String get busyWhileHeading => 'SAAT ANDA SIBUK';
+
+  @override
+  String get busyDnd => 'Jangan Ganggu';
+
+  @override
+  String get busyDndHint =>
+      'Hanya prioritas: panggilan dan pesan senyap, alarm tetap berbunyi. Kembali normal setelahnya.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? belum diizinkan mengubah Jangan Ganggu.';
+
+  @override
+  String get busyReplies => 'Balas pesan';
+
+  @override
+  String get busyRepliesHint =>
+      'Sekali per orang, dengan teks Anda, lewat tombol Balas aplikasi itu. Hanya Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Izinkan Quando? membalas pesan?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Untuk membalas atas nama Anda, Quando? memerlukan akses notifikasi. Hanya saat Anda sibuk, ia melihat notifikasi pesan dari aplikasi yang Anda pilih, membaca nama pengirim di ponsel ini, dan mengirim teks Anda sekali lewat tombol Balas aplikasi itu. Pesan tidak pernah disimpan atau dikirim ke tempat lain. Grup dilewati kecuali Anda mengizinkannya.';
+
+  @override
+  String get busyReplyText => 'Jawaban Anda';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until menjadi jam berakhirnya mode sibuk.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Saya sedang sibuk, akan membalas setelah $until.';
+  }
+
+  @override
+  String get busyGroups => 'Balas juga di grup';
+
+  @override
+  String get busyGroupsHint => 'Mati: grup tidak pernah dibalas.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Balas juga saat Shabbat dan hari raya';
+
+  @override
+  String get busyAskRabbi => 'Mati secara bawaan. Tanya rabi Anda sebelum menyalakannya untuk Shabbat.';
+
+  @override
+  String get busyWhenHeading => 'KAPAN ANDA SIBUK';
+
+  @override
+  String get busyWhenHint =>
+      'Nyalakan \"Sibuk selama acara ini\" pada alarm kalender, atau \"Sibuk setelah berbunyi\" pada alarm.';
+
+  @override
+  String get busyDuringLock => 'Sibuk saat mode kunci menyala';
+
+  @override
+  String get busyNoneComing => 'Tidak ada waktu sibuk dalam 7 hari ke depan.';
+
+  @override
+  String get busyDuringEvents => 'Sibuk selama acara ini';
+
+  @override
+  String get busyDuringEventsHint => 'Mode sibuk dari awal hingga akhir setiap acara.';
+
+  @override
+  String get busySettings => 'Pengaturan mode sibuk';
+
+  @override
+  String get busyAfterRing => 'Sibuk setelah berbunyi';
+
+  @override
+  String get busyAfterRingHint =>
+      'Jangan Ganggu dan balasan otomatis sebentar, mis. olahraga atau tidur siang.';
+
+  @override
+  String get shareCard => 'Bagikan pagimu';
+
+  @override
+  String get shareCardSubtitle => 'Langit dan kutipan hari ini, atau fotomu, untuk Stories dan status';
+
+  @override
+  String get shareAppMissing => 'Aplikasi itu tidak ada di ponsel ini.';
+
+  @override
+  String get shareAsIs => 'Bagikan apa adanya';
+
+  @override
+  String get shareTapQuote => 'Ketuk kutipan untuk menggantinya.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Persegi';
+
+  @override
+  String get shareYourWords => 'Kata-katamu sendiri (opsional)';
+
+  @override
+  String get shareYourWordsHint => 'Sebagai ganti kutipan hari ini';
+
+  @override
+  String get shareYourPhoto => 'Fotomu';
+
+  @override
+  String get shareOtherPhoto => 'Foto lain';
+
+  @override
+  String get shareSkyBack => 'Langit hari ini saja';
+
+  @override
+  String get shareYourVideo => 'Videomu';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status atau chat';
+
+  @override
+  String get shareMore => 'Aplikasi lain';
+
+  @override
+  String get shareYouPost =>
+      'Quando? membuka aplikasi dengan kartumu siap. Kamu yang memilih tujuan dan mengetuk Posting.';
+
+  @override
+  String get shareAndroidFirst => 'Berbagi segera hadir di iPhone dan iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” disimpan sebagai suara alarm';
+  }
+
+  @override
+  String get shareToQuando => 'Bagikan lagu ke Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Di YouTube, YouTube Music, Spotify, SoundCloud, atau Apple Music, ketuk Bagikan lalu Quando?. Lagu jadi suara alarm yang diputar di aplikasinya.';
+
+  @override
+  String get askOption => 'Ucapkan atau ketik';
+
+  @override
+  String get askOptionHint => '“Besok jam 6”, “30 menit sebelum matahari terbit”';
+
+  @override
+  String get askHint => 'mis.: bangunkan aku 30 menit sebelum matahari terbit di hari kerja';
+
+  @override
+  String get askListening => 'Mendengarkan…';
+
+  @override
+  String get askNotUnderstood =>
+      'Saya tidak menemukan waktu. Coba “jam 7 di hari kerja” atau “dalam 20 menit”.';
+
+  @override
+  String get askNoSpeech => 'Suara tidak tersedia di perangkat ini. Anda bisa mengetik.';
+
+  @override
+  String get askShabbatOff => 'Aktifkan Sabat di Pengaturan agar waktu Sabat berbunyi.';
+
+  @override
+  String askSaved(String what) {
+    return 'Tersimpan: $what';
+  }
+
+  @override
+  String get askMic => 'Bicara';
 }
