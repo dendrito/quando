@@ -3,10 +3,13 @@
   "title": "Calendar alarms follow the calendar live + slide/tap to stop",
   "status": "review",
   "tag": "app",
-  "note": "PR open for Thursday's build; Curió merges after testing.",
+  "note": "PR #50 open for Thursday's build; Curió merges after testing on the phone.",
   "threadIds": [
     "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk1dhWzZWAgAXJxbbi1B3pk9"
   ],
   "details": "Calendar rules now follow the calendar: new matching events get alarms, moved events move them, deleted events drop them. Each rule picks Follow the calendar (default), Keep what I first saw, or Only events that exist now, with a (?) help sheet. Changes are noticed within seconds while the app is open (2-minute re-read for Google online), and on Android also with the app closed (calendar-change job + 15-minute backup). Ring screen: the amber arrow can be slid to press the button, and tapping the middle of the screen counts as Stop (tasks and wake-up check still apply). New text in 20 languages is machine-written and needs native review.",
-  "order": 6
+  "order": 6,
+  "prs": [
+    50
+  ]
 }
