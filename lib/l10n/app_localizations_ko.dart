@@ -2557,11 +2557,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '선택한 도시의 날씨입니다. MET Norway에 반올림한 좌표를 사용합니다.';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam 및 기타 학습 일정은 Hebcal에서 불러와 오프라인 사용을 위해 저장됩니다.';
 
   @override
   String get homeRefresh => 'Refresh';
