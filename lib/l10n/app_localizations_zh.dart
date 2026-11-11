@@ -2656,7 +2656,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get roshHodeshNext => '下一个新月（Rosh Hodesh）';
 
   @override
-  String get roshHodeshBegins => '日落时开始，日期：';
+  String get roshHodeshBegins => '日落时开始：';
 
   @override
   String get openParashaSefaria => '在 Sefaria 上阅读此托拉经文';
@@ -6107,7 +6107,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get roshHodeshNext => '下一個新月（Rosh Hodesh）';
 
   @override
-  String get roshHodeshBegins => '日落時開始，日期：';
+  String get roshHodeshBegins => '日落時開始：';
 
   @override
   String get openParashaSefaria => '在 Sefaria 上閱讀此托拉經文';

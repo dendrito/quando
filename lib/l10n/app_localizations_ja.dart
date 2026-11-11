@@ -2545,10 +2545,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get weatherSource => '予報 · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => '選んだ都市の天気。MET Norway に丸めた座標を使用します。';
+  String get weatherConsent => '選んだ都市の天気です。MET Norway には丸めた座標を使います。';
 
   @override
-  String get learningConsent => 'Rambam などの学習スケジュールは Hebcal から読み込まれ、オフライン用に保存されます。';
+  String get learningConsent => 'ランバムなどの学習スケジュールは Hebcal から読み込まれ、オフライン用に保存されます。';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2662,7 +2662,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get roshHodeshNext => '次のロシュ・ホデシュ';
 
   @override
-  String get roshHodeshBegins => '開始は日没、日付：';
+  String get roshHodeshBegins => '日没から開始：';
 
   @override
   String get openParashaSefaria => 'このトーラーの箇所をSefariaで読む';

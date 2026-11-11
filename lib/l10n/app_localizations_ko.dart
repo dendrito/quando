@@ -2546,10 +2546,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherSource => '예보 · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => '선택한 도시의 날씨입니다. MET Norway에 반올림한 좌표를 사용합니다.';
+  String get weatherConsent => '선택한 도시의 날씨입니다. MET Norway에는 반올림한 좌표를 사용합니다.';
 
   @override
-  String get learningConsent => 'Rambam 및 기타 학습 일정은 Hebcal에서 불러와 오프라인 사용을 위해 저장됩니다.';
+  String get learningConsent => '람밤 및 기타 학습 일정은 Hebcal에서 불러와 오프라인 사용을 위해 저장됩니다.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2663,7 +2663,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get roshHodeshNext => '다음 로시 호데시';
 
   @override
-  String get roshHodeshBegins => '시작: 일몰, 날짜:';
+  String get roshHodeshBegins => '일몰부터 시작:';
 
   @override
   String get openParashaSefaria => '이 토라 구절을 Sefaria에서 읽기';

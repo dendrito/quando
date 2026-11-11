@@ -2511,7 +2511,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherSwipeHint => 'مرّر بين السماء والطقس';
 
   @override
-  String get parashaHeading => 'باراشا الأسبوع';
+  String get parashaHeading => 'البراشا الأسبوعية';
 
   @override
   String get dailyStudyHeading => 'التعلّم اليومي';
@@ -2631,7 +2631,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherConsent => 'الطقس للمدينة التي اخترتها. يستخدم إحداثيات مقرّبة مع MET Norway.';
 
   @override
-  String get learningConsent => 'تُحمَّل جداول دراسة Rambam وغيرها من Hebcal وتُحفظ للاستخدام دون اتصال.';
+  String get learningConsent => 'تُحمَّل جداول دراسة الرمبام وغيرها من Hebcal وتُحفظ للاستخدام دون اتصال.';
 
   @override
   String get homeRefresh => 'Refresh';

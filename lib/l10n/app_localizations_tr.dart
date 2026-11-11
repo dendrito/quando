@@ -2709,7 +2709,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get roshHodeshNext => 'Sonraki Roş Hodeş';
 
   @override
-  String get roshHodeshBegins => 'Şu günün gün batımında başlar';
+  String get roshHodeshBegins => 'Gün batımında başlar:';
 
   @override
   String get openParashaSefaria => 'Bu Tora bölümünü Sefaria’da oku';

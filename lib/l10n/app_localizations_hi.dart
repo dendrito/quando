@@ -2477,10 +2477,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · रोज़ 1 अध्याय';
+  String get courseRambam1 => 'रमबाम · रोज़ 1 अध्याय';
 
   @override
-  String get courseRambam3 => 'Rambam · रोज़ 3 अध्याय';
+  String get courseRambam3 => 'रमबाम · रोज़ 3 अध्याय';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2590,7 +2590,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get learningConsent =>
-      'Rambam और अन्य अध्ययन कार्यक्रम Hebcal से लोड होते हैं और ऑफ़लाइन उपयोग के लिए सहेजे जाते हैं।';
+      'रमबाम और अन्य अध्ययन कार्यक्रम Hebcal से लोड होते हैं और ऑफ़लाइन उपयोग के लिए सहेजे जाते हैं।';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2708,7 +2708,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get roshHodeshNext => 'अगला रोश होदेश';
 
   @override
-  String get roshHodeshBegins => 'सूर्यास्त पर शुरू होता है';
+  String get roshHodeshBegins => 'सूर्यास्त पर शुरू:';
 
   @override
   String get openParashaSefaria => 'यह तोराह भाग Sefaria पर पढ़ें';

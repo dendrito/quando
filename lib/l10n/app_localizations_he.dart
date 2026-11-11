@@ -2330,7 +2330,7 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get preparationOff => 'תזכורות ההכנה כבויות. הבדלה ושעונים רגילים לא השתנו.';
+  String get preparationOff => 'תזכורות ההכנה כבויות. ההבדלה וההתראות הרגילות אינן משתנות.';
 
   @override
   String get preparationSkipped => 'תזכורות ההכנה דולגו השבוע. ההגדרות השבועיות נשמרו.';
@@ -2573,16 +2573,16 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherThunderExpected => 'צפויות סופות רעמים';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'התחברו כדי לטעון את לוח הלימוד של החודש';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'קריאת התורה בחג';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'לוח לימוד · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'תחזית · MET Norway · CC BY 4.0';
 
   @override
   String get weatherConsent => 'מזג האוויר בעיר שבחרת. משתמש בקואורדינטות מעוגלות עם MET Norway.';
@@ -2703,7 +2703,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get roshHodeshExplain => 'הצגת ראש החודש הבא, יום אחד או יומיים, במסך הבית.';
 
   @override
-  String get roshHodeshNext => 'ראש החודש הבא';
+  String get roshHodeshNext => 'ראש חודש הבא';
 
   @override
   String get roshHodeshBegins => 'מתחיל בשקיעה בתאריך';
