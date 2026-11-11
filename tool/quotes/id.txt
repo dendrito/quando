@@ -50,6 +50,7 @@ ichigo = Satu kali, satu pertemuan. | Ungkapan Jepang
 oiseau = Sedikit demi sedikit, burung membangun sarangnya. | Pepatah Prancis
 utro = Pagi lebih bijak daripada malam. | Pepatah Rusia
 jago = Kapan pun kau bangun, itulah pagimu. | Pepatah India
+borges_time = Waktu adalah zat yang membentukku. | Jorge Luis Borges
 +proverbs any = Sedikit demi sedikit, lama-lama menjadi bukit. | Peribahasa
 +proverbs any = Berakit-rakit ke hulu, berenang-renang ke tepian. | Peribahasa
 +literature any = Aku mau hidup seribu tahun lagi. | Chairil Anwar

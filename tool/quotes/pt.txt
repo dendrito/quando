@@ -50,6 +50,7 @@ ichigo = Uma vez, um encontro. | Ditado japonês
 oiseau = Pouco a pouco, o passarinho faz o ninho. | Provérbio francês
 utro = A manhã é mais sábia que a noite. | Provérbio russo
 jago = A hora em que você acorda é a sua manhã. | Provérbio indiano
+borges_time = O tempo é a substância de que sou feito. | Jorge Luis Borges
 +songs evening = Amanhã vai ser outro dia. | Chico Buarque
 +songs morning = Quem sabe faz a hora, não espera acontecer. | Geraldo Vandré
 +songs any = O tempo não para. | Cazuza

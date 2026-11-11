@@ -50,6 +50,7 @@ ichigo = Ein Mal, eine Begegnung. | Japanisches Sprichwort
 oiseau = Nach und nach baut der Vogel sein Nest. | Französisches Sprichwort
 utro = Der Morgen ist klüger als der Abend. | Russisches Sprichwort
 jago = Wann immer du aufwachst, das ist dein Morgen. | Indisches Sprichwort
+borges_time = Die Zeit ist die Substanz, aus der ich gemacht bin. | Jorge Luis Borges
 +songs any = Irgendwie, irgendwo, irgendwann. | Nena
 +literature any = Es gibt nichts Gutes, außer: Man tut es. | Erich Kästner
 +literature any = Die Zeit ist ein sonderbar Ding. | Hugo von Hofmannsthal

@@ -50,6 +50,7 @@ ichigo = Una volta, un incontro. | Detto giapponese
 oiseau = A poco a poco l'uccello fa il nido. | Proverbio francese
 utro = Il mattino è più saggio della sera. | Proverbio russo
 jago = Quando ti svegli, quello è il tuo mattino. | Proverbio indiano
+borges_time = Il tempo è la sostanza di cui sono fatto. | Jorge Luis Borges
 +proverbs any = Il tempo è un grande maestro. | Proverbio
 +literature any = E quindi uscimmo a riveder le stelle. | Dante Alighieri
 +proverbs morning = Chi dorme non piglia pesci. | Proverbio

@@ -50,6 +50,7 @@ ichigo = Jeden raz, jedno spotkanie. | Japońskie powiedzenie
 oiseau = Krok po kroku ptak buduje gniazdo. | Przysłowie francuskie
 utro = Ranek jest mądrzejszy od wieczoru. | Przysłowie rosyjskie
 jago = Kiedy się budzisz, wtedy jest twój poranek. | Przysłowie indyjskie
+borges_time = Czas jest substancją, z której jestem zrobiony. | Jorge Luis Borges
 +proverbs morning = Kto rano wstaje, temu Pan Bóg daje. | Przysłowie
 +proverbs any = Lepiej późno niż wcale. | Przysłowie
 +proverbs any = Co masz zrobić jutro, zrób dziś. | Przysłowie

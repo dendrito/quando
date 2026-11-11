@@ -60,6 +60,7 @@ lennon = Life is what happens to you while you're busy making other plans. | Joh
 dylan = The times they are a-changin'. | Bob Dylan
 seeger = To everything, turn, turn, turn, there is a season. | Pete Seeger
 yesterday = Yesterday, all my troubles seemed so far away. | Paul McCartney
+borges_time = Time is the substance I am made of. | Jorge Luis Borges
 +proverbs morning = The early bird catches the worm. | English proverb
 +proverbs any = Better late than never. | English proverb
 +proverbs any = Time and tide wait for no man. | English proverb

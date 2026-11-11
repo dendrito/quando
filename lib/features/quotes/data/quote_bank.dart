@@ -321,6 +321,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'الزمن هو المادة التي صُنعتُ منها.',
+      'خورخي لويس بورخيس',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'ها هي الشمس تشرق، وأقول: كل شيء على ما يرام.',
       'جورج هاريسون',
       QuoteSource.songs,
@@ -1157,6 +1164,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Die Zeit ist die Substanz, aus der ich gemacht bin.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Da kommt die Sonne, und ich sage: Alles ist gut.',
       'George Harrison',
       QuoteSource.songs,
@@ -1985,6 +1999,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'Time is the substance I am made of.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote('Here comes the sun, and I say it\'s all right.', 'George Harrison', QuoteSource.songs, 'morning'),
     Quote(
       'Life is what happens to you while you\'re busy making other plans.',
@@ -2735,6 +2756,12 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'El tiempo es la substancia de que estoy hecho.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+    ),
     Quote(
       'Aquí viene el sol, y yo digo: todo está bien.',
       'George Harrison',
@@ -3626,6 +3653,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Le temps est la substance dont je suis fait.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Voici le soleil, et je dis : tout va bien.',
       'George Harrison',
       QuoteSource.songs,
@@ -4442,6 +4476,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'הזמן הוא החומר שממנו אני עשוי.',
+      'חורחה לואיס בורחס',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'הנה באה השמש, ואני אומר: הכול בסדר.',
       'ג׳ורג׳ הריסון',
       QuoteSource.songs,
@@ -5181,6 +5222,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'समय वह पदार्थ है जिससे मैं बना हूँ।',
+      'होर्हे लुइस बोर्हेस',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       'देखो सूरज आ रहा है, और मैं कहता हूँ: सब ठीक है।',
       'जॉर्ज हैरिसन',
@@ -6052,6 +6100,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Waktu adalah zat yang membentukku.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Mentari datang, dan kubilang: semua baik-baik saja.',
       'George Harrison',
       QuoteSource.songs,
@@ -6905,6 +6960,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Il tempo è la sostanza di cui sono fatto.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Ecco che arriva il sole, e io dico: va tutto bene.',
       'George Harrison',
       QuoteSource.songs,
@@ -7666,6 +7728,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      '時間とは、私という人間を形づくっている実質である。',
+      'ホルヘ・ルイス・ボルヘス',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'ほら、太陽が昇る。もう大丈夫。',
       'ジョージ・ハリスン',
       QuoteSource.songs,
@@ -8336,6 +8405,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      '시간은 내가 만들어진 물질이다.',
+      '호르헤 루이스 보르헤스',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       '해가 떠오르네, 이제 괜찮아.',
       '조지 해리슨',
@@ -9112,6 +9188,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'De tijd is de substantie waaruit ik gemaakt ben.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       'Daar komt de zon, en ik zeg: het is goed.',
       'George Harrison',
@@ -9973,6 +10056,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Czas jest substancją, z której jestem zrobiony.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Oto nadchodzi słońce i mówię: wszystko w porządku.',
       'George Harrison',
       QuoteSource.songs,
@@ -10826,6 +10916,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'O tempo é a substância de que sou feito.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       'Aí vem o sol, e eu digo: está tudo bem.',
       'George Harrison',
@@ -11804,6 +11901,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Время — вещество, из которого я сделан.',
+      'Хорхе Луис Борхес',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Вот и солнце, и я говорю: всё хорошо.',
       'Джордж Харрисон',
       QuoteSource.songs,
@@ -12645,6 +12749,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      'Zaman, benim yapıldığım maddedir.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       'İşte güneş geliyor ve diyorum ki: her şey yolunda.',
       'George Harrison',
@@ -13512,6 +13623,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Час — це речовина, з якої я зроблений.',
+      'Хорхе Луїс Борхес',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Ось і сонце, і я кажу: усе гаразд.',
       'Джордж Гаррісон',
       QuoteSource.songs,
@@ -14372,6 +14490,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      'Thời gian là chất liệu tạo nên tôi.',
+      'Jorge Luis Borges',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       'Mặt trời đến rồi, và tôi nói: mọi thứ đều ổn.',
       'George Harrison',
       QuoteSource.songs,
@@ -15083,6 +15208,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
     Quote(
+      '时间是构成我的实质。',
+      '豪尔赫·路易斯·博尔赫斯',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
+    Quote(
       '太阳出来了，我说：一切都好。',
       '乔治·哈里森',
       QuoteSource.songs,
@@ -15633,6 +15765,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Wake me up before you go-go.', 'Wham!', QuoteSource.songs, 'morning'),
     Quote('You can ring my bell, ring my bell.', 'Anita Ward', QuoteSource.songs, 'any'),
     Quote('One less bell to answer.', 'Burt Bacharach & Hal David', QuoteSource.songs, 'evening'),
+    Quote(
+      '時間是構成我的實質。',
+      '豪爾赫·路易斯·博爾赫斯',
+      QuoteSource.literature,
+      'any',
+      'El tiempo es la substancia de que estoy hecho.',
+    ),
     Quote(
       '太陽出來了，我說：一切都好。',
       '喬治·哈里森',

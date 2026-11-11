@@ -50,6 +50,7 @@ ichigo = Một đời, một lần gặp. | Thành ngữ Nhật
 oiseau = Từng chút một, con chim làm tổ. | Tục ngữ Pháp
 utro = Buổi sáng khôn hơn buổi tối. | Tục ngữ Nga
 jago = Lúc nào thức dậy, đó là buổi sáng của bạn. | Tục ngữ Ấn Độ
+borges_time = Thời gian là chất liệu tạo nên tôi. | Jorge Luis Borges
 +proverbs any = Có công mài sắt, có ngày nên kim. | Tục ngữ
 +proverbs any = Thời gian là vàng bạc. | Tục ngữ
 +proverbs any = Sau cơn mưa trời lại sáng. | Tục ngữ

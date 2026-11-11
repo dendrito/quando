@@ -50,6 +50,7 @@ ichigo = Une fois, une rencontre. | Dicton japonais
 oiseau = Petit à petit, l'oiseau fait son nid. | Proverbe
 utro = La nuit porte conseil. | Proverbe
 jago = L'heure où tu te réveilles, c'est ton matin. | Proverbe indien
+borges_time = Le temps est la substance dont je suis fait. | Jorge Luis Borges
 +songs any = Hier encore, j'avais vingt ans. | Charles Aznavour
 +songs any = Non, rien de rien, non, je ne regrette rien. | Édith Piaf
 +songs any = Avec le temps, va, tout s'en va. | Léo Ferré

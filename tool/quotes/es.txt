@@ -50,6 +50,7 @@ ichigo = Una vez, un encuentro. | Dicho japonés
 oiseau = Poco a poco, el pájaro hace su nido. | Proverbio francés
 utro = La mañana es más sabia que la noche. | Proverbio ruso
 jago = Cuando despiertes, esa es tu mañana. | Proverbio indio
+borges_time = El tiempo es la substancia de que estoy hecho. | Jorge Luis Borges
 +songs any = Que veinte años no es nada. | Carlos Gardel
 +songs any = Cambia, todo cambia. | Mercedes Sosa
 +songs morning = Hoy puede ser un gran día. | Joan Manuel Serrat

@@ -60,6 +60,7 @@ gd_time songs evening en
 wham_gogo songs morning en
 anita_bell songs any en
 bacharach_bell songs evening en
+borges_time literature any es
 sun songs morning en
 lennon songs day en
 dylan songs any en

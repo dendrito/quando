@@ -50,6 +50,7 @@ ichigo = Bir kez, bir buluşma. | Japon deyişi
 oiseau = Kuş yuvasını azar azar yapar. | Fransız atasözü
 utro = Sabah akşamdan akıllıdır. | Rus atasözü
 jago = Ne zaman uyanırsan, o senin sabahındır. | Hint atasözü
+borges_time = Zaman, benim yapıldığım maddedir. | Jorge Luis Borges
 +proverbs any = Sabrın sonu selamettir. | Atasözü
 +proverbs any = Vakit nakittir. | Atasözü
 +proverbs any = Damlaya damlaya göl olur. | Atasözü

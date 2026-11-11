@@ -50,6 +50,7 @@ ichigo = Eén keer, één ontmoeting. | Japans gezegde
 oiseau = Beetje bij beetje bouwt de vogel zijn nest. | Frans spreekwoord
 utro = De ochtend is wijzer dan de avond. | Russisch spreekwoord
 jago = Wanneer je ook wakker wordt, dat is jouw ochtend. | Indiaas spreekwoord
+borges_time = De tijd is de substantie waaruit ik gemaakt ben. | Jorge Luis Borges
 +proverbs any = Komt tijd, komt raad. | Spreekwoord
 +proverbs any = Beter laat dan nooit. | Spreekwoord
 +proverbs any = Haastige spoed is zelden goed. | Spreekwoord
