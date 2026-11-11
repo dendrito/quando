@@ -39,6 +39,7 @@ To add a card by hand on GitHub: Add file → Create new file → `dashboard/car
 - **Merges:** when a pull request is merged, automatic PR cards go to Done, and so does any hand-made card in In progress or Needs your review that lists that PR (once every PR it lists is merged or closed). Decisions, plans and parked cards stay put. To catch up after a gap, run the "Board sync" workflow by hand from the Actions tab.
 - **Business tab:** plans with `"group": "business"` in `board.json` show on the Business tab (titles and links only, no notes). Add one with "+ Add document" on that tab when editing is on.
 - **GitHub tab:** open pull requests, open issues, recent builds and quick links (all open in a new browser tab). It reads GitHub live, so with a private repository turn on editing first so the page has a token.
+- **Groups:** give cards a `group` (a short theme name) and they fold into collapsible groups inside their column, closed by default; the page remembers which you opened.
 - **Mark a card done without a PR:** run the "Board set card" workflow (Actions tab, or `actions_run_trigger` from a Claude thread) with `card` = the card id (file name in `dashboard/cards`), `status` = `done`, and an optional `note`. Threads finishing a task with no PR should do this, or ask the coordinator to.
 - **Claude threads:** each thread keeps its own card in `dashboard/cards/` current (status, note, links). Because it is one file per card, threads don't collide.
 
