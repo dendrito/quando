@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/theme.dart';
@@ -41,7 +43,7 @@ void main() {
   testWidgets('a burst of calendar changes reads once, after a short pause', (tester) async {
     var reads = 0;
     final watch = CalendarWatch(onChange: () async => reads++);
-    await watch.start();
+    unawaited(watch.start());
     for (var i = 0; i < 10; i++) {
       watch.changed();
       await tester.pump(const Duration(milliseconds: 100));
@@ -52,7 +54,7 @@ void main() {
     // With no signal, it reads again every 2 minutes.
     await tester.pump(const Duration(minutes: 2, seconds: 2));
     expect(reads, 2);
-    await watch.stop();
+    unawaited(watch.stop());
     watch.changed();
     await tester.pump(const Duration(minutes: 5));
     expect(reads, 2);
