@@ -1,10 +1,10 @@
 {
   "id": "assess-quando-for-people-who-lose-track-of-time",
   "title": "Assess Quando? for ADHD users and propose a focus mode",
-  "status": "decide",
+  "status": "next",
   "tag": "plan",
-  "note": "Assessment written. Proposal: a narrow, free focus block after the 4 Dec public release. Nothing built.",
-  "details": "What helps, what gets in the way, the gaps, how other apps serve ADHD users, a focus mode proposal, which updates the business, marketing and market plans need, and how to reach this audience. It needs your yes or no on the focus block, free for everyone, and a first-run choice.",
+  "note": "Approved: a narrow, free focus block after the 4 Dec public release. Plan-update suggestions laid in the three plans. Nothing built.",
+  "details": "What helps, what gets in the way, the gaps, how other apps serve ADHD users, a focus mode proposal, which updates the business, marketing and market plans need, and how to reach this audience. All five decisions are approved: the focus block after release, free for everyone, a first-run choice, a voluntary tester question with five interviews in each person's preferred format, and plan updates as suggestions. Waiting on the freeze to end before any build.",
   "docs": [
     {
       "title": "Quando? for ADHD users: assessment and focus mode",
