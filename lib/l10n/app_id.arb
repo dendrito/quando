@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Saat Quando? terbuka: dalam hitungan detik. Google Kalender yang tersambung di sini dicek tiap 2 menit.",
   "syncHelpWhenClosed": "Saat Quando? tertutup: saat kamu membukanya lagi. Sampai saat itu, alarm yang sudah dipasang berbunyi di waktu lamanya.",
   "syncHelpWhenClosedApple": "iPhone dan iPad tidak mengizinkan aplikasi memantau kalender di latar belakang, jadi perubahan masuk saat Quando? dibuka.",
-  "tapMiddleToStop": "Ketuk bagian tengah untuk berhenti"
+  "tapMiddleToStop": "Ketuk bagian tengah untuk berhenti",
+  "quickSetups": "Pengaturan cepat",
+  "qsMorningTitle": "Pagi yang berhasil",
+  "qsStartTitle": "Jangan lewatkan awal",
+  "qsStretchTitle": "Bekerja per sesi",
+  "qsWillChange": "Yang akan berubah",
+  "qsAlreadyOn": "Sudah aktif. Tidak ada yang diubah.",
+  "qsApply": "Terapkan",
+  "qsDone": "Selesai",
+  "qsUndo": "Urungkan",
+  "qsSnoozeTimes": "Tunda yang diizinkan",
+  "qsSnoozeMinutes": "Menit tunda",
+  "qsFiveLeft": "Sisa 5 menit"
 }

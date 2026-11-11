@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Quando? ouvert : en quelques secondes. Google Agenda connecté ici est vérifié toutes les 2 minutes.",
   "syncHelpWhenClosed": "Quando? fermé : à la prochaine ouverture. D'ici là, les alarmes déjà posées sonnent aux heures prévues.",
   "syncHelpWhenClosedApple": "iPhone et iPad ne laissent pas les apps surveiller l'agenda en arrière-plan : c'est en ouvrant Quando? que les changements arrivent.",
-  "tapMiddleToStop": "Touchez le centre pour arrêter"
+  "tapMiddleToStop": "Touchez le centre pour arrêter",
+  "quickSetups": "Réglages rapides",
+  "qsMorningTitle": "Un matin qui marche",
+  "qsStartTitle": "Ne ratez aucun début",
+  "qsStretchTitle": "Travaillez par séquences",
+  "qsWillChange": "Ce qui va changer",
+  "qsAlreadyOn": "Déjà activé. Rien à changer.",
+  "qsApply": "Appliquer",
+  "qsDone": "Fait",
+  "qsUndo": "Annuler",
+  "qsSnoozeTimes": "Reports autorisés",
+  "qsSnoozeMinutes": "Minutes de report",
+  "qsFiveLeft": "Plus que 5 minutes"
 }

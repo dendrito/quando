@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Quando? açıkken: saniyeler içinde. Burada bağlı Google Takvim her 2 dakikada bir kontrol edilir.",
   "syncHelpWhenClosed": "Quando? kapalıyken: bir sonraki açışında. O zamana kadar kurulu alarmlar eski saatlerinde çalar.",
   "syncHelpWhenClosedApple": "iPhone ve iPad uygulamaların takvimi arka planda izlemesine izin vermez, bu yüzden değişiklikler Quando? açılınca alınır.",
-  "tapMiddleToStop": "Durdurmak için ortaya dokun"
+  "tapMiddleToStop": "Durdurmak için ortaya dokun",
+  "quickSetups": "Hızlı kurulumlar",
+  "qsMorningTitle": "İşe yarayan sabah",
+  "qsStartTitle": "Hiçbir başlangıcı kaçırma",
+  "qsStretchTitle": "Bölümler halinde çalış",
+  "qsWillChange": "Neler değişecek",
+  "qsAlreadyOn": "Zaten açık. Değişecek bir şey yok.",
+  "qsApply": "Uygula",
+  "qsDone": "Tamam",
+  "qsUndo": "Geri al",
+  "qsSnoozeTimes": "İzin verilen erteleme",
+  "qsSnoozeMinutes": "Erteleme dakikası",
+  "qsFiveLeft": "5 dakika kaldı"
 }

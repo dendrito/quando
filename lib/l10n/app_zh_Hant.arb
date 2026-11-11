@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Quando? 開啟時：幾秒內。在這裡登入的 Google 日曆每 2 分鐘檢查一次。",
   "syncHelpWhenClosed": "Quando? 關閉時：下次開啟時。在那之前，已設好的鬧鐘按原本的時間響。",
   "syncHelpWhenClosedApple": "iPhone 和 iPad 不允許 App 在背景監看行事曆，所以變更會在開啟 Quando? 時同步。",
-  "tapMiddleToStop": "點按中間即可停止"
+  "tapMiddleToStop": "點按中間即可停止",
+  "quickSetups": "快速設定",
+  "qsMorningTitle": "管用的早晨",
+  "qsStartTitle": "不錯過任何開始",
+  "qsStretchTitle": "分段工作",
+  "qsWillChange": "將變更的內容",
+  "qsAlreadyOn": "已開啟，無需變更。",
+  "qsApply": "套用",
+  "qsDone": "完成",
+  "qsUndo": "復原",
+  "qsSnoozeTimes": "允許的貪睡次數",
+  "qsSnoozeMinutes": "貪睡分鐘數",
+  "qsFiveLeft": "還剩5分鐘"
 }

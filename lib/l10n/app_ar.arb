@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "عندما يكون Quando? مفتوحًا: خلال ثوانٍ. تقويم Google المتصل هنا يُفحص كل دقيقتين.",
   "syncHelpWhenClosed": "عندما يكون Quando? مغلقًا: في المرة القادمة التي تفتحه فيها. حتى ذلك الحين ترنّ المنبّهات المضبوطة في أوقاتها السابقة.",
   "syncHelpWhenClosedApple": "لا يسمح iPhone وiPad للتطبيقات بمراقبة التقويم في الخلفية، لذلك تُلتقط التغييرات عند فتح Quando?.",
-  "tapMiddleToStop": "المس الوسط للإيقاف"
+  "tapMiddleToStop": "المس الوسط للإيقاف",
+  "quickSetups": "إعدادات سريعة",
+  "qsMorningTitle": "صباح يعمل",
+  "qsStartTitle": "لا تفوّت أي بداية",
+  "qsStretchTitle": "اعمل على فترات",
+  "qsWillChange": "ما الذي سيتغير",
+  "qsAlreadyOn": "مفعّل بالفعل. لا شيء لتغييره.",
+  "qsApply": "تطبيق",
+  "qsDone": "تم",
+  "qsUndo": "تراجع",
+  "qsSnoozeTimes": "عدد الغفوات المسموح",
+  "qsSnoozeMinutes": "دقائق الغفوة",
+  "qsFiveLeft": "بقيت ٥ دقائق"
 }

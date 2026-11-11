@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Quando? खुला हो तो: कुछ सेकंड में। यहाँ जुड़ा Google Calendar हर 2 मिनट में देखा जाता है।",
   "syncHelpWhenClosed": "Quando? बंद हो तो: अगली बार खोलने पर। तब तक लगे हुए अलार्म अपने पुराने समय पर बजते हैं।",
   "syncHelpWhenClosedApple": "iPhone और iPad ऐप को बैकग्राउंड में कैलेंडर देखने नहीं देते, इसलिए बदलाव Quando? खोलने पर आते हैं।",
-  "tapMiddleToStop": "रोकने के लिए बीच में टैप करें"
+  "tapMiddleToStop": "रोकने के लिए बीच में टैप करें",
+  "quickSetups": "त्वरित सेटअप",
+  "qsMorningTitle": "सुबह जो काम करे",
+  "qsStartTitle": "कोई शुरुआत न चूकें",
+  "qsStretchTitle": "हिस्सों में काम करें",
+  "qsWillChange": "क्या बदलेगा",
+  "qsAlreadyOn": "पहले से चालू है। बदलने को कुछ नहीं।",
+  "qsApply": "लागू करें",
+  "qsDone": "हो गया",
+  "qsUndo": "पूर्ववत करें",
+  "qsSnoozeTimes": "अनुमत स्नूज़",
+  "qsSnoozeMinutes": "स्नूज़ के मिनट",
+  "qsFiveLeft": "5 मिनट बचे"
 }

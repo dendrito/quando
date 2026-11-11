@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Wenn Quando? offen ist: in Sekunden. Hier angemeldeter Google Kalender wird alle 2 Minuten geprüft.",
   "syncHelpWhenClosed": "Wenn Quando? geschlossen ist: beim nächsten Öffnen. Bis dahin klingeln gestellte Wecker zu ihren bisherigen Zeiten.",
   "syncHelpWhenClosedApple": "iPhone und iPad lassen Apps den Kalender nicht im Hintergrund beobachten, darum übernimmt Quando? Änderungen beim Öffnen.",
-  "tapMiddleToStop": "Mitte antippen zum Stoppen"
+  "tapMiddleToStop": "Mitte antippen zum Stoppen",
+  "quickSetups": "Schnell einrichten",
+  "qsMorningTitle": "Ein Morgen, der klappt",
+  "qsStartTitle": "Keinen Start verpassen",
+  "qsStretchTitle": "In Etappen arbeiten",
+  "qsWillChange": "Das ändert sich",
+  "qsAlreadyOn": "Schon aktiv. Nichts zu ändern.",
+  "qsApply": "Anwenden",
+  "qsDone": "Fertig",
+  "qsUndo": "Rückgängig",
+  "qsSnoozeTimes": "Erlaubte Schlummern",
+  "qsSnoozeMinutes": "Schlummer-Minuten",
+  "qsFiveLeft": "Noch 5 Minuten"
 }

@@ -1064,5 +1064,17 @@
   "syncHelpWhenOpen": "Als Quando? open is: binnen seconden. Google Agenda die hier is gekoppeld, wordt elke 2 minuten gecontroleerd.",
   "syncHelpWhenClosed": "Als Quando? dicht is: de volgende keer dat je het opent. Tot dan gaan gezette wekkers af op hun oude tijden.",
   "syncHelpWhenClosedApple": "iPhone en iPad laten apps de agenda niet op de achtergrond volgen, dus wijzigingen komen binnen als je Quando? opent.",
-  "tapMiddleToStop": "Tik in het midden om te stoppen"
+  "tapMiddleToStop": "Tik in het midden om te stoppen",
+  "quickSetups": "Snel instellen",
+  "qsMorningTitle": "Een ochtend die werkt",
+  "qsStartTitle": "Mis nooit een start",
+  "qsStretchTitle": "Werk in blokken",
+  "qsWillChange": "Wat er verandert",
+  "qsAlreadyOn": "Staat al aan. Niets te wijzigen.",
+  "qsApply": "Toepassen",
+  "qsDone": "Klaar",
+  "qsUndo": "Ongedaan maken",
+  "qsSnoozeTimes": "Toegestane snoozes",
+  "qsSnoozeMinutes": "Snoozeminuten",
+  "qsFiveLeft": "Nog 5 minuten"
 }
