@@ -100,7 +100,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
       ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
       ref.listenManual(weatherAlertsProvider, (_, _) => _scheduleSync());
-      ref.listenManual(weatherAlarmSettingsProvider, (_, _) => ref.read(weatherAlertsProvider.notifier).refresh());
+      ref.listenManual(
+        weatherAlarmSettingsProvider,
+        (_, _) => ref.read(weatherAlertsProvider.notifier).refresh(),
+      );
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
       // Signed in to sync: pick up where it left off.
