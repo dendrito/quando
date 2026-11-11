@@ -147,3 +147,4 @@ howsoon = Quanto presto è adesso? | The Smiths
 +philosophy any = L'acqua che tocchi de' fiumi è l'ultima di quella che andò e la prima di quella che viene. Così il tempo presente. | Leonardo da Vinci
 +literature morning = Zefiro torna, e 'l bel tempo rimena. | Francesco Petrarca
 +literature evening = E il naufragar m'è dolce in questo mare. | Giacomo Leopardi
++proverbs evening = A tavola non s'invecchia. | Proverbio

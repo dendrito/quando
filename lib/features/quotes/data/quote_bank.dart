@@ -7894,6 +7894,7 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('Zefiro torna, e \'l bel tempo rimena.', 'Francesco Petrarca', QuoteSource.literature, 'morning'),
     Quote('E il naufragar m\'è dolce in questo mare.', 'Giacomo Leopardi', QuoteSource.literature, 'evening'),
+    Quote('A tavola non s\'invecchia.', 'Proverbio', QuoteSource.proverbs, 'evening'),
   ],
   'ja': [
     Quote(
