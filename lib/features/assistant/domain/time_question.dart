@@ -34,13 +34,16 @@ class TimeAnswer {
 }
 
 final _questionStart = RegExp(
-  r'^\s*(when|what\s+time|at\s+what\s+time|quando|que\s+horas|a\s+que\s+horas|qual\s+(o\s+)?hor[aá]rio|'
+  r'^\s*¿?\s*(when|what\s+time|at\s+what\s+time|quando|que\s+horas|a\s+que\s+horas|qual\s+(o\s+)?hor[aá]rio|'
+  r'cu[aá]ndo|a\s+qu[eé]\s+hora|qu[eé]\s+hora|quand|[aà]\s+quelle\s+heure|quelle\s+heure|'
+  r'wann|um\s+wie\s*viel\s+uhr|a\s+che\s+ora|che\s+ora|'
   r'מתי|באיזו\s+שעה|מה\s+השעה)',
   caseSensitive: false,
 );
 
 final _command = RegExp(
-  r'\b(wake|remind|alarm|set|ring|acord|despert|lembr|avis|toc)|תעיר|תזכיר|שעון\s+מעורר|השכמה',
+  r'\b(wake|remind|alarm|set|ring|acord|despert|lembr|avis|toc|recu[eé]rd|record|r[eé]veill|rappel|weck|erinner|svegli|ricord)|'
+  r'תעיר|תזכיר|שעון\s+מעורר|השכמה',
   caseSensitive: false,
 );
 
