@@ -27,10 +27,11 @@ Future<void> askVoiceLog(BuildContext context, ProviderContainer ref, String sen
   final yes = await showModalBottomSheet<bool>(
     context: context,
     showDragHandle: true,
+    isScrollControlled: true,
     builder: (ctx) {
       final text = Theme.of(ctx).textTheme;
       return SafeArea(
-        child: Padding(
+        child: SingleChildScrollView(
           padding: const EdgeInsets.fromLTRB(24, 0, 24, 16),
           child: Column(
             mainAxisSize: MainAxisSize.min,
