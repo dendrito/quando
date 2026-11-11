@@ -476,6 +476,84 @@ class AppLocalizationsId extends AppLocalizations {
   String get holdToUnlock => 'Tahan untuk membuka';
 
   @override
+  String get lockSentenceCalm => 'Kunci ponsel ke jam dan alarm: untuk ujian, rapat, atau malam yang tenang.';
+
+  @override
+  String get lockCalendarHeading => 'DENGAN KALENDERMU';
+
+  @override
+  String get lockCalendarExplain =>
+      'Kunci selama acara, atau dari satu acara sampai acara berikutnya yang kamu pilih. Bisa dengan kalender apa pun yang dipilih, termasuk yang dibagikan.';
+
+  @override
+  String get lockAddCalendar => 'Tambah kunci kalender';
+
+  @override
+  String get lockEditCalendar => 'Kunci kalender';
+
+  @override
+  String get lockDuring => 'Selama acara';
+
+  @override
+  String get lockBetween => 'Di antara dua acara';
+
+  @override
+  String get lockStartsAt => 'Acara bernama…';
+
+  @override
+  String get lockStartsAtBetween => 'Mulai di acara bernama…';
+
+  @override
+  String get lockEndsAt => 'Selesai di acara berikutnya bernama…';
+
+  @override
+  String get lockStartHint => 'mis. ujian, fokus, gym';
+
+  @override
+  String get lockEndHint => 'mis. di rumah';
+
+  @override
+  String get lockAnyCalendar => 'Kalender mana pun';
+
+  @override
+  String get lockNoMatches => 'Belum ada yang cocok di kalendermu.';
+
+  @override
+  String get lockNextTimes => 'BERIKUTNYA';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Selama “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Dari “$a” sampai “$b” berikutnya';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” berisi waktu Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Kunci dari menyalakan lilin sampai Havdalah';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Memakai waktu dari kalender itu, dengan lilin di layar.';
+
+  @override
+  String get lockMoreWays => 'Cara lain mengunci';
+
+  @override
+  String get lockQuietTime => 'Waktu tenang';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Menyalakan lilin berikutnya: $time, dari $name';
+  }
+
+  @override
   String get calendarAlarm => 'Alarm kalender';
 
   @override
@@ -3378,6 +3456,17 @@ class AppLocalizationsId extends AppLocalizations {
       'Saya tidak menemukan waktu. Coba “jam 7 di hari kerja” atau “dalam 20 menit”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Dari kalendermu “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Waktu Quando? untuk kotamu';
+
+  @override
+  String get askNoAnswer => 'Belum ada waktu untuk itu.';
+
+  @override
   String get askNoSpeech => 'Suara tidak tersedia di perangkat ini. Anda bisa mengetik.';
 
   @override
@@ -3390,4 +3479,60 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askMic => 'Bicara';
+
+  @override
+  String get askMorning => 'Pagi';
+
+  @override
+  String get askEvening => 'Malam';
+
+  @override
+  String get askUnsure => 'Mungkin ada yang terlewat. Periksa sebelum menyimpan.';
+
+  @override
+  String get askTeach => 'Ajari aku ini';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Mengerti: “$phrase” sekarang berarti $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Lewati';
+
+  @override
+  String get askNoMatch => 'Tidak ada alarm yang cocok.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Dimatikan: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Dilewati: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” di kalender Anda';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Hubungkan kalender agar Quando? bisa menemukan “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Tunda: $minutes mnt, untuk semua alarm';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Membangunkan Anda dengan $sound';
+  }
+
+  @override
+  String get askReadAs => 'Dibaca sebagai';
 }

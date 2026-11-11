@@ -478,6 +478,85 @@ class AppLocalizationsIt extends AppLocalizations {
   String get holdToUnlock => 'Tieni premuto per sbloccare';
 
   @override
+  String get lockSentenceCalm =>
+      'Blocca il telefono su orologio e sveglie: per un esame, una riunione o una serata tranquilla.';
+
+  @override
+  String get lockCalendarHeading => 'CON IL TUO CALENDARIO';
+
+  @override
+  String get lockCalendarExplain =>
+      'Blocca durante un evento, o da un evento fino al prossimo che scegli. Funziona con ogni calendario scelto, anche condiviso.';
+
+  @override
+  String get lockAddCalendar => 'Aggiungi blocco da calendario';
+
+  @override
+  String get lockEditCalendar => 'Blocco da calendario';
+
+  @override
+  String get lockDuring => 'Durante un evento';
+
+  @override
+  String get lockBetween => 'Tra due eventi';
+
+  @override
+  String get lockStartsAt => 'Eventi chiamati…';
+
+  @override
+  String get lockStartsAtBetween => 'Inizia a un evento chiamato…';
+
+  @override
+  String get lockEndsAt => 'Finisce al prossimo evento chiamato…';
+
+  @override
+  String get lockStartHint => 'es. esame, focus, palestra';
+
+  @override
+  String get lockEndHint => 'es. a casa';
+
+  @override
+  String get lockAnyCalendar => 'Qualsiasi calendario';
+
+  @override
+  String get lockNoMatches => 'Ancora niente nei tuoi calendari corrisponde.';
+
+  @override
+  String get lockNextTimes => 'PROSSIME VOLTE';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Durante “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Da “$a” al prossimo “$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” ha gli orari dello Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Blocca dall\'accensione delle candele all\'Havdalà';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Usa gli orari di quel calendario, con le candele sullo schermo.';
+
+  @override
+  String get lockMoreWays => 'Altri modi di bloccare';
+
+  @override
+  String get lockQuietTime => 'Momento di calma';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Prossima accensione delle candele: $time, da $name';
+  }
+
+  @override
   String get calendarAlarm => 'Sveglia del calendario';
 
   @override
@@ -3399,6 +3478,17 @@ class AppLocalizationsIt extends AppLocalizations {
       'Non ho trovato un orario. Prova “alle 7 nei giorni feriali” o “tra 20 minuti”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Dal tuo calendario “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Orari di Quando? per la tua città';
+
+  @override
+  String get askNoAnswer => 'Nessun orario trovato per ora.';
+
+  @override
   String get askNoSpeech => 'La voce non è disponibile su questo dispositivo. Puoi scrivere.';
 
   @override
@@ -3411,4 +3501,60 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askMic => 'Parla';
+
+  @override
+  String get askMorning => 'Mattina';
+
+  @override
+  String get askEvening => 'Sera';
+
+  @override
+  String get askUnsure => 'Forse mi è sfuggito qualcosa. Controlla prima di salvare.';
+
+  @override
+  String get askTeach => 'Insegnamelo';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Capito: “$phrase” ora vuol dire $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Salta';
+
+  @override
+  String get askNoMatch => 'Nessuna sveglia corrisponde.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Disattivata: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Saltata: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” nel tuo calendario';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Collega un calendario perché Quando? trovi “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Posticipa: $minutes min, per tutte le sveglie';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Ti sveglia con $sound';
+  }
+
+  @override
+  String get askReadAs => 'Letto come';
 }

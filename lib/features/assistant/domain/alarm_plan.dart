@@ -33,6 +33,14 @@ final class RulePlan extends AlarmPlan {
   final Set<int> days;
 }
 
+/// "30 minutes before my exam": a calendar rule on the user's own events
+/// matching [query].
+final class EventPlan extends AlarmPlan {
+  const EventPlan(this.query, this.offset, super.label);
+  final String query;
+  final Duration offset;
+}
+
 const anchorKinds = {
   TimeAnchor.sunrise: {EventKind.sunrise},
   TimeAnchor.sunset: {EventKind.sunset},
@@ -52,10 +60,14 @@ AlarmPlan? planFor(
   if (after != null) return OneOffPlan(now.add(after), r.label);
 
   final local = inZone(now, zone);
+  final query = r.eventQuery;
+  if (query != null) return EventPlan(query, r.offset, r.label);
+
+  // The one day asked for, if any: tomorrow, next Friday, the 15th.
+  final d = r.days.isNotEmpty ? null : dayAsked(r, local);
   final anchor = r.anchor;
   if (anchor != null) {
-    final d = r.dayOffset;
-    if (d != null && r.days.isEmpty) {
+    if (d != null) {
       final day = tz.TZDateTime(local.location, local.year, local.month, local.day + d);
       final kinds = anchorKinds[anchor]!;
       for (final e in eventsBetween(day.toUtc(), day.add(const Duration(days: 1)).toUtc())) {
@@ -76,7 +88,6 @@ AlarmPlan? planFor(
   // "At 7" with no am/pm: the next 7 o'clock, unless it's for tomorrow
   // or later, which usually means a morning.
   final hours = [h, if (r.halfDayUnsure) h + 12];
-  final d = r.dayOffset;
   if (d != null && d > 0) {
     return OneOffPlan(
       tz.TZDateTime(local.location, local.year, local.month, local.day + d, h, r.minute).toUtc(),
@@ -97,4 +108,28 @@ DateTime _next(tz.TZDateTime local, int hour, int minute) {
     t = tz.TZDateTime(local.location, local.year, local.month, local.day + 1, hour, minute);
   }
   return t.toUtc();
+}
+
+/// How many days from today the one day asked for is: 1 for tomorrow,
+/// the next Friday, the next 15th (or 15 May). null = none named.
+int? dayAsked(AlarmRequest r, tz.TZDateTime local) {
+  if (r.dayOffset != null) return r.dayOffset;
+  final today = DateTime(local.year, local.month, local.day);
+  final w = r.onWeekday;
+  if (w != null) {
+    final ahead = (w - local.weekday) % 7;
+    // "Next Friday" said on a Friday is a week away.
+    return ahead == 0 ? 7 : ahead;
+  }
+  final dom = r.dayOfMonth;
+  if (dom == null) return null;
+  for (var i = 0; i < 14; i++) {
+    final month = r.month ?? local.month + i;
+    final year = r.month == null ? local.year : local.year + i;
+    final date = DateTime(year, month, dom);
+    if (date.day != dom) continue; // 31 June doesn't exist
+    if (!date.isBefore(today)) return date.difference(today).inDays;
+    if (r.month != null && i > 0) break;
+  }
+  return null;
 }

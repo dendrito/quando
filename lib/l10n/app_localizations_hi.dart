@@ -474,6 +474,84 @@ class AppLocalizationsHi extends AppLocalizations {
   String get holdToUnlock => 'अनलॉक के लिए दबाकर रखें';
 
   @override
+  String get lockSentenceCalm => 'फ़ोन को घड़ी और अलार्म तक लॉक करें: परीक्षा, मीटिंग या शांत शाम के लिए।';
+
+  @override
+  String get lockCalendarHeading => 'अपने कैलेंडर से';
+
+  @override
+  String get lockCalendarExplain =>
+      'किसी इवेंट के दौरान, या एक इवेंट से आपके चुने अगले इवेंट तक लॉक करें। चुने गए हर कैलेंडर के साथ काम करता है, साझा वाले भी।';
+
+  @override
+  String get lockAddCalendar => 'कैलेंडर लॉक जोड़ें';
+
+  @override
+  String get lockEditCalendar => 'कैलेंडर लॉक';
+
+  @override
+  String get lockDuring => 'इवेंट के दौरान';
+
+  @override
+  String get lockBetween => 'दो इवेंट के बीच';
+
+  @override
+  String get lockStartsAt => 'इस नाम के इवेंट…';
+
+  @override
+  String get lockStartsAtBetween => 'इस नाम के इवेंट पर शुरू…';
+
+  @override
+  String get lockEndsAt => 'इस नाम के अगले इवेंट पर ख़त्म…';
+
+  @override
+  String get lockStartHint => 'जैसे परीक्षा, फ़ोकस, जिम';
+
+  @override
+  String get lockEndHint => 'जैसे घर पर';
+
+  @override
+  String get lockAnyCalendar => 'कोई भी कैलेंडर';
+
+  @override
+  String get lockNoMatches => 'अभी आपके कैलेंडर में कुछ मेल नहीं खाता।';
+
+  @override
+  String get lockNextTimes => 'अगली बार';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” के दौरान';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a” से अगले “$b” तक';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” में शब्बात के समय हैं।';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'मोमबत्ती जलाने से हवदाला तक लॉक करें';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'उस कैलेंडर के समय, लॉक स्क्रीन पर मोमबत्तियों के साथ।';
+
+  @override
+  String get lockMoreWays => 'लॉक करने के और तरीके';
+
+  @override
+  String get lockQuietTime => 'शांत समय';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'अगली मोमबत्ती: $time, $name से';
+  }
+
+  @override
   String get calendarAlarm => 'कैलेंडर अलार्म';
 
   @override
@@ -3372,6 +3450,17 @@ class AppLocalizationsHi extends AppLocalizations {
       'मुझे कोई समय नहीं मिला। “कार्यदिवसों में सुबह 7 बजे” या “20 मिनट में” आज़माएँ।';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'आपके कैलेंडर “$name” से';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'आपके शहर के लिए Quando? के अपने समय';
+
+  @override
+  String get askNoAnswer => 'अभी इसका समय नहीं मिला।';
+
+  @override
   String get askNoSpeech => 'इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।';
 
   @override
@@ -3384,4 +3473,60 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get askMic => 'बोलें';
+
+  @override
+  String get askMorning => 'सुबह';
+
+  @override
+  String get askEvening => 'शाम';
+
+  @override
+  String get askUnsure => 'शायद मुझसे कुछ छूट गया। सहेजने से पहले जाँच लें।';
+
+  @override
+  String get askTeach => 'मुझे यह सिखाएँ';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'समझ गया: “$phrase” का मतलब अब $time है।';
+  }
+
+  @override
+  String get askSkipAction => 'छोड़ें';
+
+  @override
+  String get askNoMatch => 'कोई अलार्म इससे मेल नहीं खाता।';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'बंद किया: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'छोड़ा: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return 'आपके कैलेंडर में “$event” से $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'कैलेंडर जोड़ें ताकि Quando? “$event” ढूँढ सके।';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'स्नूज़: $minutes मिनट, सभी अलार्म के लिए';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'आपको $sound से जगाता है';
+  }
+
+  @override
+  String get askReadAs => 'ऐसे पढ़ा गया';
 }

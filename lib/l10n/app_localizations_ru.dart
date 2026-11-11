@@ -511,6 +511,85 @@ class AppLocalizationsRu extends AppLocalizations {
   String get holdToUnlock => 'Удерживайте для разблокировки';
 
   @override
+  String get lockSentenceCalm =>
+      'Заблокируйте телефон на часах и будильниках: на экзамен, встречу или тихий вечер.';
+
+  @override
+  String get lockCalendarHeading => 'ПО КАЛЕНДАРЮ';
+
+  @override
+  String get lockCalendarExplain =>
+      'Блокировка во время события или от одного события до следующего, которое вы укажете. Работает с любым выбранным календарём, и с общими тоже.';
+
+  @override
+  String get lockAddCalendar => 'Добавить блокировку по календарю';
+
+  @override
+  String get lockEditCalendar => 'Блокировка по календарю';
+
+  @override
+  String get lockDuring => 'Во время события';
+
+  @override
+  String get lockBetween => 'Между двумя событиями';
+
+  @override
+  String get lockStartsAt => 'События с названием…';
+
+  @override
+  String get lockStartsAtBetween => 'Начинается с события…';
+
+  @override
+  String get lockEndsAt => 'Заканчивается на следующем событии…';
+
+  @override
+  String get lockStartHint => 'напр. экзамен, фокус, спорт';
+
+  @override
+  String get lockEndHint => 'напр. дома';
+
+  @override
+  String get lockAnyCalendar => 'Любой календарь';
+
+  @override
+  String get lockNoMatches => 'В календарях пока ничего не подходит.';
+
+  @override
+  String get lockNextTimes => 'СЛЕДУЮЩИЕ РАЗЫ';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Во время «$a»';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'От «$a» до следующего «$b»';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return 'В «$name» есть время шаббата.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Блокировать от зажигания свечей до авдалы';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Берёт время из этого календаря, со свечами на экране.';
+
+  @override
+  String get lockMoreWays => 'Другие способы блокировки';
+
+  @override
+  String get lockQuietTime => 'Время тишины';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Следующее зажигание свечей: $time, из $name';
+  }
+
+  @override
   String get calendarAlarm => 'Будильник календаря';
 
   @override
@@ -3446,6 +3525,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get askNotUnderstood => 'Не нашёл время. Попробуйте «в 7 по будням» или «через 20 минут».';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Из вашего календаря «$name»';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Время Quando? для вашего города';
+
+  @override
+  String get askNoAnswer => 'Пока время не найдено.';
+
+  @override
   String get askNoSpeech => 'Голос недоступен на этом устройстве. Можно ввести текст.';
 
   @override
@@ -3458,4 +3548,60 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get askMic => 'Говорить';
+
+  @override
+  String get askMorning => 'Утро';
+
+  @override
+  String get askEvening => 'Вечер';
+
+  @override
+  String get askUnsure => 'Возможно, я что-то упустил. Проверьте перед сохранением.';
+
+  @override
+  String get askTeach => 'Научи меня';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Понял: «$phrase» теперь значит $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Пропустить';
+
+  @override
+  String get askNoMatch => 'Нет подходящего будильника.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Выключен: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Пропущен: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset «$event» в вашем календаре';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Подключите календарь, чтобы Quando? нашёл «$event».';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Повтор: $minutes мин, для всех будильников';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Будит вас: $sound';
+  }
+
+  @override
+  String get askReadAs => 'Прочитано как';
 }

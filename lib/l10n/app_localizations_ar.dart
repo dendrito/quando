@@ -513,6 +513,84 @@ class AppLocalizationsAr extends AppLocalizations {
   String get holdToUnlock => 'اضغط مطولًا لفتح القفل';
 
   @override
+  String get lockSentenceCalm => 'اقفل الهاتف على الساعة والمنبهات: لامتحان أو اجتماع أو أمسية هادئة.';
+
+  @override
+  String get lockCalendarHeading => 'مع تقويمك';
+
+  @override
+  String get lockCalendarExplain =>
+      'اقفل خلال حدث، أو من حدث حتى الحدث التالي الذي تسمّيه. يعمل مع أي تقويم اخترته، حتى المشترك.';
+
+  @override
+  String get lockAddCalendar => 'إضافة قفل من التقويم';
+
+  @override
+  String get lockEditCalendar => 'قفل من التقويم';
+
+  @override
+  String get lockDuring => 'خلال حدث';
+
+  @override
+  String get lockBetween => 'بين حدثين';
+
+  @override
+  String get lockStartsAt => 'أحداث باسم…';
+
+  @override
+  String get lockStartsAtBetween => 'يبدأ عند حدث باسم…';
+
+  @override
+  String get lockEndsAt => 'ينتهي عند الحدث التالي باسم…';
+
+  @override
+  String get lockStartHint => 'مثل امتحان، تركيز، رياضة';
+
+  @override
+  String get lockEndHint => 'مثل في البيت';
+
+  @override
+  String get lockAnyCalendar => 'أي تقويم';
+
+  @override
+  String get lockNoMatches => 'لا شيء يطابق في تقويماتك بعد.';
+
+  @override
+  String get lockNextTimes => 'المرات التالية';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'خلال «$a»';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'من «$a» حتى «$b» التالي';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '«$name» فيه أوقات السبت.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'القفل من إشعال الشموع حتى الهفدالا';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'يستخدم أوقات ذلك التقويم، مع شموع على الشاشة.';
+
+  @override
+  String get lockMoreWays => 'طرق أخرى للقفل';
+
+  @override
+  String get lockQuietTime => 'وقت هادئ';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'إشعال الشموع التالي: $time، من $name';
+  }
+
+  @override
   String get calendarAlarm => 'منبه التقويم';
 
   @override
@@ -3431,6 +3509,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get askNotUnderstood => 'لم أجد وقتًا. جرّب «7 صباحًا في أيام العمل» أو «بعد 20 دقيقة».';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'من تقويمك «$name»';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'أوقات Quando? لمدينتك';
+
+  @override
+  String get askNoAnswer => 'لم يُعثر على وقت بعد.';
+
+  @override
   String get askNoSpeech => 'الصوت غير متاح على هذا الجهاز. يمكنك الكتابة.';
 
   @override
@@ -3443,4 +3532,60 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askMic => 'تحدّث';
+
+  @override
+  String get askMorning => 'صباحًا';
+
+  @override
+  String get askEvening => 'مساءً';
+
+  @override
+  String get askUnsure => 'ربما فاتني جزء من ذلك. تحقّق قبل الحفظ.';
+
+  @override
+  String get askTeach => 'علّمني هذا';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'فهمت: “$phrase” تعني الآن $time.';
+  }
+
+  @override
+  String get askSkipAction => 'تخطٍّ';
+
+  @override
+  String get askNoMatch => 'لا يوجد منبّه مطابق.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'تم الإيقاف: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'تم التخطي: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” في تقويمك';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'اربط تقويمًا ليجد Quando? “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'الغفوة: $minutes دقيقة، لكل المنبّهات';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'يوقظك بـ $sound';
+  }
+
+  @override
+  String get askReadAs => 'قُرئ هكذا';
 }

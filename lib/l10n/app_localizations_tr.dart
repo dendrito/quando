@@ -474,6 +474,85 @@ class AppLocalizationsTr extends AppLocalizations {
   String get holdToUnlock => 'Kilidi açmak için basılı tut';
 
   @override
+  String get lockSentenceCalm =>
+      'Telefonu saate ve alarmlarına kilitle: bir sınav, toplantı ya da sakin bir akşam için.';
+
+  @override
+  String get lockCalendarHeading => 'TAKVİMİNLE';
+
+  @override
+  String get lockCalendarExplain =>
+      'Bir etkinlik boyunca ya da bir etkinlikten seçtiğin bir sonrakine kadar kilitle. Seçtiğin her takvimle, paylaşılanlarla da çalışır.';
+
+  @override
+  String get lockAddCalendar => 'Takvim kilidi ekle';
+
+  @override
+  String get lockEditCalendar => 'Takvim kilidi';
+
+  @override
+  String get lockDuring => 'Bir etkinlik boyunca';
+
+  @override
+  String get lockBetween => 'İki etkinlik arasında';
+
+  @override
+  String get lockStartsAt => 'Adı şu olan etkinlikler…';
+
+  @override
+  String get lockStartsAtBetween => 'Şu adlı bir etkinlikte başlar…';
+
+  @override
+  String get lockEndsAt => 'Şu adlı bir sonraki etkinlikte biter…';
+
+  @override
+  String get lockStartHint => 'ör. sınav, odak, spor';
+
+  @override
+  String get lockEndHint => 'ör. evde';
+
+  @override
+  String get lockAnyCalendar => 'Herhangi bir takvim';
+
+  @override
+  String get lockNoMatches => 'Takvimlerinde henüz eşleşen yok.';
+
+  @override
+  String get lockNextTimes => 'SONRAKİ ZAMANLAR';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” boyunca';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a” ile bir sonraki “$b” arasında';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” Şabat saatlerini içeriyor.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Mum yakmadan Havdala\'ya kadar kilitle';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'O takvimin saatlerini kullanır, ekranda mumlarla.';
+
+  @override
+  String get lockMoreWays => 'Diğer kilit yolları';
+
+  @override
+  String get lockQuietTime => 'Sessiz zaman';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Sonraki mum yakma: $time, $name takviminden';
+  }
+
+  @override
   String get calendarAlarm => 'Takvim alarmı';
 
   @override
@@ -3380,6 +3459,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get askNotUnderstood => 'Bir saat bulamadım. “Hafta içi 7\'de” veya “20 dakika sonra” deneyin.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return '“$name” takviminden';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'nun şehrin için kendi saatleri';
+
+  @override
+  String get askNoAnswer => 'Henüz bir saat bulunamadı.';
+
+  @override
   String get askNoSpeech => 'Bu cihazda ses kullanılamıyor. Yazabilirsiniz.';
 
   @override
@@ -3392,4 +3482,60 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get askMic => 'Konuş';
+
+  @override
+  String get askMorning => 'Sabah';
+
+  @override
+  String get askEvening => 'Akşam';
+
+  @override
+  String get askUnsure => 'Bir kısmını kaçırmış olabilirim. Kaydetmeden önce kontrol edin.';
+
+  @override
+  String get askTeach => 'Bunu bana öğret';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Anladım: “$phrase” artık $time demek.';
+  }
+
+  @override
+  String get askSkipAction => 'Atla';
+
+  @override
+  String get askNoMatch => 'Buna uyan alarm yok.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Kapatıldı: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Atlandı: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return 'Takviminizdeki “$event” etkinliğinden $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Quando?\'nun “$event” etkinliğini bulması için bir takvim bağlayın.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Erteleme: $minutes dk, tüm alarmlar için';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Sizi $sound ile uyandırır';
+  }
+
+  @override
+  String get askReadAs => 'Şöyle okundu';
 }

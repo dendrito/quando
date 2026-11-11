@@ -25,6 +25,7 @@ import '../features/integrations/domain/tuya.dart';
 import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
+import '../features/lock/domain/shabbat_calendar.dart';
 import '../features/quotes/data/quote_bank.dart';
 import '../features/quotes/domain/quote.dart';
 import '../features/ringing/ring_payload.dart';
@@ -1043,6 +1044,16 @@ final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<Stri
   DismissedLocksNotifier.new,
 );
 
+/// The picked calendars that are Shabbat calendars (Hebcal, a synagogue's
+/// times...). Shabbat lock screens and suggestions show only for these.
+final shabbatCalendarsProvider = Provider<Set<String>>((ref) {
+  final cal = ref.watch(calendarProvider);
+  return shabbatCalendarIds([
+    for (final c in cal.calendars)
+      if (cal.selected.contains(c.id)) c,
+  ], cal.events);
+});
+
 /// Upcoming and current locks.
 final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
   ref.watch(localeProvider);
@@ -1052,6 +1063,7 @@ final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
     calendarEvents: ref.watch(calendarProvider.select((c) => c.events)),
     now: ref.watch(clockProvider)(),
     dismissed: ref.watch(dismissedLocksProvider),
+    shabbatCalendars: ref.watch(shabbatCalendarsProvider),
   );
 });
 

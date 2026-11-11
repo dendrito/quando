@@ -484,6 +484,84 @@ class AppLocalizationsHe extends AppLocalizations {
   String get holdToUnlock => 'החזיקו לשחרור';
 
   @override
+  String get lockSentenceCalm => 'נעלו את הטלפון על השעון וההתראות: למבחן, לפגישה או לערב שקט.';
+
+  @override
+  String get lockCalendarHeading => 'עם היומן';
+
+  @override
+  String get lockCalendarExplain =>
+      'נעילה בזמן אירוע, או מאירוע אחד עד האירוע הבא שתבחרו. עובד עם כל יומן שבחרתם, גם משותף.';
+
+  @override
+  String get lockAddCalendar => 'הוספת נעילה לפי יומן';
+
+  @override
+  String get lockEditCalendar => 'נעילה לפי יומן';
+
+  @override
+  String get lockDuring => 'בזמן אירוע';
+
+  @override
+  String get lockBetween => 'בין שני אירועים';
+
+  @override
+  String get lockStartsAt => 'אירועים בשם…';
+
+  @override
+  String get lockStartsAtBetween => 'מתחיל באירוע בשם…';
+
+  @override
+  String get lockEndsAt => 'מסתיים באירוע הבא בשם…';
+
+  @override
+  String get lockStartHint => 'למשל מבחן, ריכוז, חדר כושר';
+
+  @override
+  String get lockEndHint => 'למשל בבית';
+
+  @override
+  String get lockAnyCalendar => 'כל יומן';
+
+  @override
+  String get lockNoMatches => 'עדיין אין התאמות ביומנים שלך.';
+
+  @override
+  String get lockNextTimes => 'הפעמים הבאות';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'בזמן „$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'מ„$a” עד „$b” הבא';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return 'ב„$name” יש זמני שבת.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'נעילה מהדלקת נרות עד הבדלה';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'משתמש בזמנים מהיומן הזה, עם נרות במסך הנעילה.';
+
+  @override
+  String get lockMoreWays => 'דרכים נוספות לנעול';
+
+  @override
+  String get lockQuietTime => 'זמן שקט';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'הדלקת נרות הבאה: $time, מתוך $name';
+  }
+
+  @override
   String get calendarAlarm => 'התראת יומן';
 
   @override
@@ -3370,6 +3448,17 @@ class AppLocalizationsHe extends AppLocalizations {
   String get askNotUnderstood => 'לא מצאתי שעה. נסו „בשבע בימי חול” או „בעוד 20 דקות”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'מהיומן שלך „$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'הזמנים של Quando? לעיר שלך';
+
+  @override
+  String get askNoAnswer => 'עדיין לא נמצאה שעה לזה.';
+
+  @override
   String get askNoSpeech => 'קול לא זמין במכשיר הזה. אפשר להקליד.';
 
   @override
@@ -3382,4 +3471,60 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get askMic => 'דברו';
+
+  @override
+  String get askMorning => 'בוקר';
+
+  @override
+  String get askEvening => 'ערב';
+
+  @override
+  String get askUnsure => 'אולי פספסתי חלק. כדאי לבדוק לפני השמירה.';
+
+  @override
+  String get askTeach => 'תלמד אותי';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'הבנתי: ”$phrase” עכשיו אומר $time.';
+  }
+
+  @override
+  String get askSkipAction => 'דלג';
+
+  @override
+  String get askNoMatch => 'אין שעון מעורר שמתאים לזה.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'כובה: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'דולג: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset ”$event” ביומן שלך';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'חבר יומן כדי ש־Quando? ימצא את ”$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'נודניק: $minutes דק׳, לכל השעונים';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'מעיר אותך עם $sound';
+  }
+
+  @override
+  String get askReadAs => 'נקרא כ־';
 }

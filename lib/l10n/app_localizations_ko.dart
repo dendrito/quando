@@ -472,6 +472,83 @@ class AppLocalizationsKo extends AppLocalizations {
   String get holdToUnlock => '길게 눌러 잠금 해제';
 
   @override
+  String get lockSentenceCalm => '시험, 회의, 조용한 저녁을 위해 시계와 알람만 남기고 잠급니다.';
+
+  @override
+  String get lockCalendarHeading => '캘린더로';
+
+  @override
+  String get lockCalendarExplain => '일정 동안, 또는 한 일정부터 지정한 다음 일정까지 잠급니다. 선택한 모든 캘린더, 공유 캘린더에서도 됩니다.';
+
+  @override
+  String get lockAddCalendar => '캘린더 잠금 추가';
+
+  @override
+  String get lockEditCalendar => '캘린더 잠금';
+
+  @override
+  String get lockDuring => '일정 동안';
+
+  @override
+  String get lockBetween => '두 일정 사이';
+
+  @override
+  String get lockStartsAt => '이름이 이런 일정…';
+
+  @override
+  String get lockStartsAtBetween => '이 이름의 일정에서 시작…';
+
+  @override
+  String get lockEndsAt => '이 이름의 다음 일정에서 끝…';
+
+  @override
+  String get lockStartHint => '예: 시험, 집중, 헬스';
+
+  @override
+  String get lockEndHint => '예: 귀가';
+
+  @override
+  String get lockAnyCalendar => '모든 캘린더';
+
+  @override
+  String get lockNoMatches => '아직 캘린더에 맞는 일정이 없습니다.';
+
+  @override
+  String get lockNextTimes => '다음 시간';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a” 동안';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '“$a”부터 다음 “$b”까지';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name”에 안식일 시간이 있습니다.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '촛불 점화부터 하브달라까지 잠금';
+
+  @override
+  String get lockShabbatFromCalendarHint => '그 캘린더의 시간을 쓰고 잠금 화면에 촛불을 보여 줍니다.';
+
+  @override
+  String get lockMoreWays => '다른 잠금 방법';
+
+  @override
+  String get lockQuietTime => '조용한 시간';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '다음 촛불 점화: $time, $name에서';
+  }
+
+  @override
   String get calendarAlarm => '캘린더 알람';
 
   @override
@@ -3323,6 +3400,17 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askNotUnderstood => '시간을 찾지 못했어요. “평일 오전 7시”나 “20분 후”로 해 보세요.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return '캘린더 “$name”에서';
+  }
+
+  @override
+  String get askAnswerBuiltIn => '도시 기준 Quando? 시간';
+
+  @override
+  String get askNoAnswer => '아직 시간을 찾지 못했습니다.';
+
+  @override
   String get askNoSpeech => '이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.';
 
   @override
@@ -3335,4 +3423,60 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askMic => '말하기';
+
+  @override
+  String get askMorning => '아침';
+
+  @override
+  String get askEvening => '저녁';
+
+  @override
+  String get askUnsure => '일부를 놓쳤을 수 있어요. 저장하기 전에 확인하세요.';
+
+  @override
+  String get askTeach => '이걸 가르쳐 주기';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '알겠어요: “$phrase”는 이제 $time이에요.';
+  }
+
+  @override
+  String get askSkipAction => '건너뛰기';
+
+  @override
+  String get askNoMatch => '맞는 알람이 없어요.';
+
+  @override
+  String askTurnedOff(String what) {
+    return '껐어요: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '건너뛰었어요: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '캘린더의 “$event” $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Quando?가 “$event”를 찾을 수 있게 캘린더를 연결하세요.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '다시 알림: $minutes분, 모든 알람에 적용';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '$sound(으)로 깨워요';
+  }
+
+  @override
+  String get askReadAs => '이렇게 읽었어요';
 }

@@ -910,6 +910,144 @@ abstract class AppLocalizations {
   /// **'Hold to unlock'**
   String get holdToUnlock;
 
+  /// No description provided for @lockSentenceCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock the phone down to the clock and your alarms: for an exam, a meeting or a quiet evening.'**
+  String get lockSentenceCalm;
+
+  /// No description provided for @lockCalendarHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WITH YOUR CALENDAR'**
+  String get lockCalendarHeading;
+
+  /// No description provided for @lockCalendarExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock during an event, or from one event until the next one you name. Works with any calendar you picked, including shared ones.'**
+  String get lockCalendarExplain;
+
+  /// No description provided for @lockAddCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a calendar lock'**
+  String get lockAddCalendar;
+
+  /// No description provided for @lockEditCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar lock'**
+  String get lockEditCalendar;
+
+  /// No description provided for @lockDuring.
+  ///
+  /// In en, this message translates to:
+  /// **'During an event'**
+  String get lockDuring;
+
+  /// No description provided for @lockBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Between two events'**
+  String get lockBetween;
+
+  /// No description provided for @lockStartsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Events named…'**
+  String get lockStartsAt;
+
+  /// No description provided for @lockStartsAtBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts at an event named…'**
+  String get lockStartsAtBetween;
+
+  /// No description provided for @lockEndsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends at the next event named…'**
+  String get lockEndsAt;
+
+  /// No description provided for @lockStartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. exam, focus, gym'**
+  String get lockStartHint;
+
+  /// No description provided for @lockEndHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. back home'**
+  String get lockEndHint;
+
+  /// No description provided for @lockAnyCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Any calendar'**
+  String get lockAnyCalendar;
+
+  /// No description provided for @lockNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in your calendars matches yet.'**
+  String get lockNoMatches;
+
+  /// No description provided for @lockNextTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'NEXT TIMES'**
+  String get lockNextTimes;
+
+  /// No description provided for @lockDuringTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'During “{a}”'**
+  String lockDuringTitle(String a);
+
+  /// No description provided for @lockBetweenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'From “{a}” to the next “{b}”'**
+  String lockBetweenTitle(String a, String b);
+
+  /// No description provided for @lockShabbatCalendarFound.
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” has Shabbat times.'**
+  String lockShabbatCalendarFound(String name);
+
+  /// No description provided for @lockShabbatFromCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock from candle lighting to Havdalah'**
+  String get lockShabbatFromCalendar;
+
+  /// No description provided for @lockShabbatFromCalendarHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the times in that calendar, with candles on the lock screen.'**
+  String get lockShabbatFromCalendarHint;
+
+  /// No description provided for @lockMoreWays.
+  ///
+  /// In en, this message translates to:
+  /// **'More ways to lock'**
+  String get lockMoreWays;
+
+  /// No description provided for @lockQuietTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet time'**
+  String get lockQuietTime;
+
+  /// No description provided for @nextCandleLightingFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Next candle lighting: {time}, from {name}'**
+  String nextCandleLightingFrom(String time, String name);
+
   /// No description provided for @calendarAlarm.
   ///
   /// In en, this message translates to:
@@ -6142,6 +6280,24 @@ abstract class AppLocalizations {
   /// **'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.'**
   String get askNotUnderstood;
 
+  /// No description provided for @askAnswerFromCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'From your calendar “{name}”'**
+  String askAnswerFromCalendar(String name);
+
+  /// No description provided for @askAnswerBuiltIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando?\'s own times for your city'**
+  String get askAnswerBuiltIn;
+
+  /// No description provided for @askNoAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No time found for that yet.'**
+  String get askNoAnswer;
+
   /// No description provided for @askNoSpeech.
   ///
   /// In en, this message translates to:
@@ -6165,6 +6321,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Speak'**
   String get askMic;
+
+  /// No description provided for @askMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get askMorning;
+
+  /// No description provided for @askEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get askEvening;
+
+  /// No description provided for @askUnsure.
+  ///
+  /// In en, this message translates to:
+  /// **'I may have missed part of that. Check it before saving.'**
+  String get askUnsure;
+
+  /// No description provided for @askTeach.
+  ///
+  /// In en, this message translates to:
+  /// **'Teach me this'**
+  String get askTeach;
+
+  /// No description provided for @askTaught.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it: “{phrase}” now means {time}.'**
+  String askTaught(String phrase, String time);
+
+  /// No description provided for @askSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get askSkipAction;
+
+  /// No description provided for @askNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No alarm matches that.'**
+  String get askNoMatch;
+
+  /// No description provided for @askTurnedOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off: {what}'**
+  String askTurnedOff(String what);
+
+  /// No description provided for @askSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped: {what}'**
+  String askSkipped(String what);
+
+  /// No description provided for @askEventPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'{offset} “{event}” in your calendar'**
+  String askEventPlan(String offset, String event);
+
+  /// No description provided for @askEventNoCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar so Quando? can find “{event}”.'**
+  String askEventNoCalendar(String event);
+
+  /// No description provided for @askSnoozeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze: {minutes} min, for every alarm'**
+  String askSnoozeAll(int minutes);
+
+  /// No description provided for @askWakeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wakes you with {sound}'**
+  String askWakeWith(String sound);
+
+  /// No description provided for @askReadAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Read as'**
+  String get askReadAs;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -474,6 +474,86 @@ class AppLocalizationsEn extends AppLocalizations {
   String get holdToUnlock => 'Hold to unlock';
 
   @override
+  String get lockSentenceCalm =>
+      'Lock the phone down to the clock and your alarms: for an exam, a meeting or a quiet evening.';
+
+  @override
+  String get lockCalendarHeading => 'WITH YOUR CALENDAR';
+
+  @override
+  String get lockCalendarExplain =>
+      'Lock during an event, or from one event until the next one you name. Works with any calendar you picked, including shared ones.';
+
+  @override
+  String get lockAddCalendar => 'Add a calendar lock';
+
+  @override
+  String get lockEditCalendar => 'Calendar lock';
+
+  @override
+  String get lockDuring => 'During an event';
+
+  @override
+  String get lockBetween => 'Between two events';
+
+  @override
+  String get lockStartsAt => 'Events named…';
+
+  @override
+  String get lockStartsAtBetween => 'Starts at an event named…';
+
+  @override
+  String get lockEndsAt => 'Ends at the next event named…';
+
+  @override
+  String get lockStartHint => 'e.g. exam, focus, gym';
+
+  @override
+  String get lockEndHint => 'e.g. back home';
+
+  @override
+  String get lockAnyCalendar => 'Any calendar';
+
+  @override
+  String get lockNoMatches => 'Nothing in your calendars matches yet.';
+
+  @override
+  String get lockNextTimes => 'NEXT TIMES';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'During “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'From “$a” to the next “$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” has Shabbat times.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Lock from candle lighting to Havdalah';
+
+  @override
+  String get lockShabbatFromCalendarHint =>
+      'Uses the times in that calendar, with candles on the lock screen.';
+
+  @override
+  String get lockMoreWays => 'More ways to lock';
+
+  @override
+  String get lockQuietTime => 'Quiet time';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Next candle lighting: $time, from $name';
+  }
+
+  @override
   String get calendarAlarm => 'Calendar alarm';
 
   @override
@@ -3376,6 +3456,17 @@ class AppLocalizationsEn extends AppLocalizations {
   String get askNotUnderstood => 'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'From your calendar “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'s own times for your city';
+
+  @override
+  String get askNoAnswer => 'No time found for that yet.';
+
+  @override
   String get askNoSpeech => 'Voice isn\'t available on this device. You can type instead.';
 
   @override
@@ -3388,4 +3479,60 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askMic => 'Speak';
+
+  @override
+  String get askMorning => 'Morning';
+
+  @override
+  String get askEvening => 'Evening';
+
+  @override
+  String get askUnsure => 'I may have missed part of that. Check it before saving.';
+
+  @override
+  String get askTeach => 'Teach me this';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Got it: “$phrase” now means $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Skip';
+
+  @override
+  String get askNoMatch => 'No alarm matches that.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Turned off: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Skipped: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” in your calendar';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Connect a calendar so Quando? can find “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Snooze: $minutes min, for every alarm';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Wakes you with $sound';
+  }
+
+  @override
+  String get askReadAs => 'Read as';
 }

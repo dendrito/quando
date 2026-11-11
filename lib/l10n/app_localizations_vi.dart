@@ -475,6 +475,85 @@ class AppLocalizationsVi extends AppLocalizations {
   String get holdToUnlock => 'Giữ để mở khóa';
 
   @override
+  String get lockSentenceCalm =>
+      'Khóa điện thoại chỉ còn đồng hồ và báo thức: cho kỳ thi, cuộc họp hay buổi tối yên tĩnh.';
+
+  @override
+  String get lockCalendarHeading => 'THEO LỊCH';
+
+  @override
+  String get lockCalendarExplain =>
+      'Khóa trong một sự kiện, hoặc từ một sự kiện đến sự kiện tiếp theo bạn chọn. Dùng được với mọi lịch đã chọn, cả lịch chia sẻ.';
+
+  @override
+  String get lockAddCalendar => 'Thêm khóa theo lịch';
+
+  @override
+  String get lockEditCalendar => 'Khóa theo lịch';
+
+  @override
+  String get lockDuring => 'Trong sự kiện';
+
+  @override
+  String get lockBetween => 'Giữa hai sự kiện';
+
+  @override
+  String get lockStartsAt => 'Sự kiện có tên…';
+
+  @override
+  String get lockStartsAtBetween => 'Bắt đầu ở sự kiện tên…';
+
+  @override
+  String get lockEndsAt => 'Kết thúc ở sự kiện tiếp theo tên…';
+
+  @override
+  String get lockStartHint => 'vd. thi, tập trung, gym';
+
+  @override
+  String get lockEndHint => 'vd. về nhà';
+
+  @override
+  String get lockAnyCalendar => 'Lịch bất kỳ';
+
+  @override
+  String get lockNoMatches => 'Chưa có gì trong lịch khớp.';
+
+  @override
+  String get lockNextTimes => 'LẦN TỚI';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Trong “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Từ “$a” đến “$b” tiếp theo';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” có giờ Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Khóa từ lúc thắp nến đến Havdalah';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Dùng giờ trong lịch đó, có nến trên màn hình khóa.';
+
+  @override
+  String get lockMoreWays => 'Cách khóa khác';
+
+  @override
+  String get lockQuietTime => 'Giờ yên tĩnh';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Lần thắp nến tới: $time, từ $name';
+  }
+
+  @override
   String get calendarAlarm => 'Báo thức lịch';
 
   @override
@@ -3368,6 +3447,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askNotUnderstood => 'Không tìm thấy giờ. Thử “7 giờ sáng ngày thường” hoặc “sau 20 phút”.';
 
   @override
+  String askAnswerFromCalendar(String name) {
+    return 'Từ lịch “$name” của bạn';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Giờ của Quando? cho thành phố của bạn';
+
+  @override
+  String get askNoAnswer => 'Chưa tìm thấy giờ.';
+
+  @override
   String get askNoSpeech => 'Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.';
 
   @override
@@ -3380,4 +3470,60 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askMic => 'Nói';
+
+  @override
+  String get askMorning => 'Sáng';
+
+  @override
+  String get askEvening => 'Tối';
+
+  @override
+  String get askUnsure => 'Có thể tôi đã bỏ sót một phần. Hãy kiểm tra trước khi lưu.';
+
+  @override
+  String get askTeach => 'Dạy tôi điều này';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Đã hiểu: “$phrase” giờ có nghĩa là $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Bỏ qua';
+
+  @override
+  String get askNoMatch => 'Không có báo thức nào khớp.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Đã tắt: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Đã bỏ qua: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” trong lịch của bạn';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Kết nối lịch để Quando? tìm được “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Báo lại: $minutes phút, cho mọi báo thức';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Đánh thức bạn bằng $sound';
+  }
+
+  @override
+  String get askReadAs => 'Được hiểu là';
 }
