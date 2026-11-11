@@ -3666,4 +3666,83 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Mancano 5 minuti';
+
+  @override
+  String get uiSimple => 'Semplice';
+
+  @override
+  String get uiEverything => 'Tutto';
+
+  @override
+  String get firstRunTitle => 'Quanto vuoi vedere?';
+
+  @override
+  String get firstRunSimpleHint => 'Sveglie e le basi';
+
+  @override
+  String get firstRunEverythingHint => 'Calendario, Shabbat, timer, meteo e altro';
+
+  @override
+  String get firstRunChangeLater => 'Puoi cambiarlo quando vuoi nelle Impostazioni.';
+
+  @override
+  String get continueLabel => 'Continua';
+
+  @override
+  String get everyAlarm => 'Ogni sveglia';
+
+  @override
+  String get wakeMeWith => 'Svegliami con';
+
+  @override
+  String get ringOrMusic => 'Suoneria o musica';
+
+  @override
+  String get ringsForRow => 'Suona per';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min prima';
+  }
+
+  @override
+  String get quandoSounds => 'Suoni di Quando?';
+
+  @override
+  String get aSongApps => 'Una canzone (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'La mia registrazione';
+
+  @override
+  String get useForNewAlarms => 'Usa per le nuove sveglie';
+
+  @override
+  String get iWillLabel => 'Quando suona, io…';
+
+  @override
+  String get foldVolume => 'Volume e dissolvenze';
+
+  @override
+  String get foldSnoozeStop => 'Posticipa e ferma';
+
+  @override
+  String get foldExtras => 'Calendario e extra';
+
+  @override
+  String get groupAlarms => 'Sveglie';
+
+  @override
+  String get groupCalendarShabbat => 'Calendario e Shabbat';
+
+  @override
+  String get groupLookQuotes => 'Aspetto e citazioni';
+
+  @override
+  String get groupConnectionsSync => 'Collegamenti e sincronizzazione';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count impostazioni · $on attiva/e';
+  }
 }

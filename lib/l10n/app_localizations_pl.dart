@@ -3714,4 +3714,83 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Zostało 5 minut';
+
+  @override
+  String get uiSimple => 'Prosty';
+
+  @override
+  String get uiEverything => 'Wszystko';
+
+  @override
+  String get firstRunTitle => 'Ile chcesz widzieć?';
+
+  @override
+  String get firstRunSimpleHint => 'Budziki i podstawy';
+
+  @override
+  String get firstRunEverythingHint => 'Kalendarz, szabat, minutniki, pogoda i więcej';
+
+  @override
+  String get firstRunChangeLater => 'Możesz to zmienić w każdej chwili w Ustawieniach.';
+
+  @override
+  String get continueLabel => 'Dalej';
+
+  @override
+  String get everyAlarm => 'Każdy budzik';
+
+  @override
+  String get wakeMeWith => 'Budź mnie';
+
+  @override
+  String get ringOrMusic => 'Dzwonek lub muzyka';
+
+  @override
+  String get ringsForRow => 'Dzwoni przez';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min wcześniej';
+  }
+
+  @override
+  String get quandoSounds => 'Dźwięki Quando?';
+
+  @override
+  String get aSongApps => 'Piosenka (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Moje nagranie';
+
+  @override
+  String get useForNewAlarms => 'Użyj dla nowych budzików';
+
+  @override
+  String get iWillLabel => 'Gdy zadzwoni, zrobię…';
+
+  @override
+  String get foldVolume => 'Głośność i wyciszanie';
+
+  @override
+  String get foldSnoozeStop => 'Drzemka i stop';
+
+  @override
+  String get foldExtras => 'Kalendarz i dodatki';
+
+  @override
+  String get groupAlarms => 'Budziki';
+
+  @override
+  String get groupCalendarShabbat => 'Kalendarz i szabat';
+
+  @override
+  String get groupLookQuotes => 'Wygląd i cytaty';
+
+  @override
+  String get groupConnectionsSync => 'Połączenia i synchronizacja';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count zestawy · $on wł.';
+  }
 }

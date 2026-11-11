@@ -12,6 +12,7 @@ import 'package:quando/app/theme.dart';
 import 'package:quando/features/alarms/data/alarm_registrar.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
 import 'package:quando/features/ringing/ring_screen.dart';
+import 'package:quando/features/ringing/ring_style.dart';
 import 'package:quando/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -52,10 +53,13 @@ void main() {
     binding.defaultBinaryMessenger.setMockMethodCallHandler(const MethodChannel('flutter_tts'), null);
   });
 
-  Future<void> home(WidgetTester tester) async {
+  Future<void> home(WidgetTester tester, {SharedPreferences? prefs}) async {
     await tester.pumpWidget(
       ProviderScope(
-        overrides: [registrarProvider.overrideWithValue(registrar)],
+        overrides: [
+          registrarProvider.overrideWithValue(registrar),
+          ?prefs == null ? null : prefsProvider.overrideWithValue(prefs),
+        ],
         child: MaterialApp(
           navigatorKey: navigator,
           theme: buildTheme(),
@@ -253,6 +257,74 @@ void main() {
     });
     await tester.pumpAndSettle();
     expect(find.byType(RingScreen), findsNothing);
+  });
+
+  testWidgets('"When this rings, I will…" shows bold under the title, in place of the details', (
+    tester,
+  ) async {
+    await home(tester);
+    await ring(
+      tester,
+      1,
+      const RingPayload(
+        title: 'Work',
+        body: 'Weekdays',
+        ringSeconds: 60,
+        spoken: false,
+        iWill: 'Shower, then the 8:10 bus.',
+      ),
+    );
+    expect(find.byKey(const Key('ringIWill')), findsOneWidget);
+    expect(find.text('Shower, then the 8:10 bus.'), findsOneWidget);
+    expect(find.text('Weekdays'), findsNothing);
+    expect(tester.widget<Text>(find.byKey(const Key('ringIWill'))).style?.fontWeight, FontWeight.w800);
+    // Round countdown clock, Snooze and Stop are all still there.
+    expect(find.text(l10n.leftToRing), findsOneWidget);
+    expect(find.byKey(const Key('stopArrow')), findsOneWidget);
+  });
+
+  testWidgets('without a line the details show as before', (tester) async {
+    await home(tester);
+    await ring(tester, 1, const RingPayload(title: 'Work', body: 'Weekdays', ringSeconds: 60, spoken: false));
+    expect(find.byKey(const Key('ringIWill')), findsNothing);
+    expect(find.text('Weekdays'), findsOneWidget);
+  });
+
+  testWidgets('the hint line shows for the first three rings only', (tester) async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    await home(tester, prefs: prefs);
+    for (var n = 1; n <= 4; n++) {
+      await ring(
+        tester,
+        n,
+        const RingPayload(
+          title: 'Work',
+          body: 'x',
+          ringSeconds: 60,
+          spoken: false,
+          stopBy: {StopWay.volumeKeys},
+        ),
+      );
+      expect(prefs.getInt('ring.count'), n);
+      expect(
+        find.textContaining(l10n.tapMiddleToStop),
+        n <= 3 ? findsOneWidget : findsNothing,
+        reason: 'ring $n',
+      );
+      expect(
+        find.textContaining(l10n.wayToStop(StopWay.volumeKeys.label)),
+        n <= 3 ? findsOneWidget : findsNothing,
+        reason: 'ring $n',
+      );
+      // Tapping the middle still stops, whether or not the hint is shown.
+      await tester.runAsync(() async {
+        await tester.tap(find.byKey(const Key('ringCentre')));
+        await Future<void>.delayed(Duration.zero);
+      });
+      await tester.pumpAndSettle();
+      expect(find.byType(RingScreen), findsNothing, reason: 'ring $n');
+    }
   });
 
   testWidgets('tapping the middle still asks for the sum first', (tester) async {

@@ -12,7 +12,11 @@ class AlarmOptions {
     this.soundId,
     this.loudness = Loudness.standard,
     this.fadesForAll = false,
+    this.gentleMinutes = 0,
   });
+
+  /// New alarms start with a gentle wake-up this many minutes before. 0 = off.
+  final int gentleMinutes;
 
   /// Every alarm uses [loudness]'s fades instead of its own (each keeps its
   /// own volume).
@@ -52,6 +56,7 @@ class AlarmOptions {
     bool phoneSound = false,
     Loudness? loudness,
     bool? fadesForAll,
+    int? gentleMinutes,
   }) => AlarmOptions(
     spoken: spoken ?? this.spoken,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -62,6 +67,7 @@ class AlarmOptions {
     soundId: phoneSound ? null : (soundId ?? this.soundId),
     loudness: loudness ?? this.loudness,
     fadesForAll: fadesForAll ?? this.fadesForAll,
+    gentleMinutes: gentleMinutes ?? this.gentleMinutes,
   );
 
   Map<String, dynamic> toJson() => {
@@ -74,6 +80,7 @@ class AlarmOptions {
     'soundId': soundId,
     'loudness': loudness.toJson(),
     'fadesForAll': fadesForAll,
+    'gentleMinutes': gentleMinutes,
   };
 
   factory AlarmOptions.fromJson(Map<String, dynamic> j) => AlarmOptions(
@@ -86,5 +93,6 @@ class AlarmOptions {
     soundId: j['soundId'] as String?,
     loudness: Loudness.fromJson(j['loudness']) ?? Loudness.standard,
     fadesForAll: j['fadesForAll'] as bool? ?? false,
+    gentleMinutes: (j['gentleMinutes'] as num?)?.toInt() ?? 0,
   );
 }

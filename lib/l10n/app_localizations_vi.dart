@@ -3633,4 +3633,83 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Còn 5 phút';
+
+  @override
+  String get uiSimple => 'Đơn giản';
+
+  @override
+  String get uiEverything => 'Tất cả';
+
+  @override
+  String get firstRunTitle => 'Bạn muốn thấy bao nhiêu?';
+
+  @override
+  String get firstRunSimpleHint => 'Báo thức và những điều cơ bản';
+
+  @override
+  String get firstRunEverythingHint => 'Lịch, Shabbat, hẹn giờ, thời tiết và hơn thế';
+
+  @override
+  String get firstRunChangeLater => 'Bạn có thể đổi bất cứ lúc nào trong Cài đặt.';
+
+  @override
+  String get continueLabel => 'Tiếp tục';
+
+  @override
+  String get everyAlarm => 'Mọi báo thức';
+
+  @override
+  String get wakeMeWith => 'Đánh thức tôi bằng';
+
+  @override
+  String get ringOrMusic => 'Chuông hoặc nhạc';
+
+  @override
+  String get ringsForRow => 'Đổ chuông trong';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return 'Trước $minutes phút';
+  }
+
+  @override
+  String get quandoSounds => 'Âm thanh của Quando?';
+
+  @override
+  String get aSongApps => 'Một bài hát (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Bản ghi của tôi';
+
+  @override
+  String get useForNewAlarms => 'Dùng cho báo thức mới';
+
+  @override
+  String get iWillLabel => 'Khi chuông reo, tôi sẽ…';
+
+  @override
+  String get foldVolume => 'Âm lượng và mờ dần';
+
+  @override
+  String get foldSnoozeStop => 'Báo lại và tắt';
+
+  @override
+  String get foldExtras => 'Lịch và tiện ích thêm';
+
+  @override
+  String get groupAlarms => 'Báo thức';
+
+  @override
+  String get groupCalendarShabbat => 'Lịch và Shabbat';
+
+  @override
+  String get groupLookQuotes => 'Giao diện và trích dẫn';
+
+  @override
+  String get groupConnectionsSync => 'Kết nối và đồng bộ';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count thiết lập · $on đang bật';
+  }
 }

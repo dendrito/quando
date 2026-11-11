@@ -3688,4 +3688,83 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'بقيت ٥ دقائق';
+
+  @override
+  String get uiSimple => 'بسيط';
+
+  @override
+  String get uiEverything => 'كل شيء';
+
+  @override
+  String get firstRunTitle => 'ما مقدار ما تريد رؤيته؟';
+
+  @override
+  String get firstRunSimpleHint => 'المنبهات والأساسيات';
+
+  @override
+  String get firstRunEverythingHint => 'التقويم والسبت والمؤقتات والطقس والمزيد';
+
+  @override
+  String get firstRunChangeLater => 'يمكنك تغيير هذا في أي وقت من الإعدادات.';
+
+  @override
+  String get continueLabel => 'متابعة';
+
+  @override
+  String get everyAlarm => 'كل منبه';
+
+  @override
+  String get wakeMeWith => 'أيقظني بـ';
+
+  @override
+  String get ringOrMusic => 'نغمة أو موسيقى';
+
+  @override
+  String get ringsForRow => 'يرنّ لمدة';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return 'قبل $minutes د';
+  }
+
+  @override
+  String get quandoSounds => 'أصوات Quando?';
+
+  @override
+  String get aSongApps => 'أغنية (Spotify وYouTube…)';
+
+  @override
+  String get myRecording => 'تسجيلي';
+
+  @override
+  String get useForNewAlarms => 'استخدمه للمنبهات الجديدة';
+
+  @override
+  String get iWillLabel => 'عندما يرنّ هذا، سأقوم بـ…';
+
+  @override
+  String get foldVolume => 'مستوى الصوت والتلاشي';
+
+  @override
+  String get foldSnoozeStop => 'الغفوة والإيقاف';
+
+  @override
+  String get foldExtras => 'التقويم وإضافات';
+
+  @override
+  String get groupAlarms => 'المنبهات';
+
+  @override
+  String get groupCalendarShabbat => 'التقويم والسبت';
+
+  @override
+  String get groupLookQuotes => 'المظهر والاقتباسات';
+
+  @override
+  String get groupConnectionsSync => 'الاتصالات والمزامنة';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count إعدادات · $on مفعّل';
+  }
 }

@@ -3672,4 +3672,83 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Plus que 5 minutes';
+
+  @override
+  String get uiSimple => 'Simple';
+
+  @override
+  String get uiEverything => 'Tout';
+
+  @override
+  String get firstRunTitle => 'Combien voulez-vous voir ?';
+
+  @override
+  String get firstRunSimpleHint => 'Les alarmes et l’essentiel';
+
+  @override
+  String get firstRunEverythingHint => 'Agenda, Chabbat, minuteurs, météo et plus';
+
+  @override
+  String get firstRunChangeLater => 'Vous pouvez le changer à tout moment dans les Réglages.';
+
+  @override
+  String get continueLabel => 'Continuer';
+
+  @override
+  String get everyAlarm => 'Chaque alarme';
+
+  @override
+  String get wakeMeWith => 'Me réveiller avec';
+
+  @override
+  String get ringOrMusic => 'Sonnerie ou musique';
+
+  @override
+  String get ringsForRow => 'Sonne pendant';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min avant';
+  }
+
+  @override
+  String get quandoSounds => 'Sons de Quando?';
+
+  @override
+  String get aSongApps => 'Une chanson (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Mon enregistrement';
+
+  @override
+  String get useForNewAlarms => 'Utiliser pour les nouvelles alarmes';
+
+  @override
+  String get iWillLabel => 'Quand ça sonne, je vais…';
+
+  @override
+  String get foldVolume => 'Volume et fondus';
+
+  @override
+  String get foldSnoozeStop => 'Répéter et arrêter';
+
+  @override
+  String get foldExtras => 'Agenda et extras';
+
+  @override
+  String get groupAlarms => 'Alarmes';
+
+  @override
+  String get groupCalendarShabbat => 'Agenda et Chabbat';
+
+  @override
+  String get groupLookQuotes => 'Apparence et citations';
+
+  @override
+  String get groupConnectionsSync => 'Connexions et synchro';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count réglages · $on actif(s)';
+  }
 }

@@ -3627,4 +3627,83 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'נותרו 5 דקות';
+
+  @override
+  String get uiSimple => 'פשוט';
+
+  @override
+  String get uiEverything => 'הכול';
+
+  @override
+  String get firstRunTitle => 'כמה תרצו לראות?';
+
+  @override
+  String get firstRunSimpleHint => 'התראות והבסיס';
+
+  @override
+  String get firstRunEverythingHint => 'יומן, שבת, טיימרים, מזג אוויר ועוד';
+
+  @override
+  String get firstRunChangeLater => 'אפשר לשנות זאת בכל עת בהגדרות.';
+
+  @override
+  String get continueLabel => 'המשך';
+
+  @override
+  String get everyAlarm => 'כל התראה';
+
+  @override
+  String get wakeMeWith => 'להעיר אותי עם';
+
+  @override
+  String get ringOrMusic => 'צלצול או מוזיקה';
+
+  @override
+  String get ringsForRow => 'מצלצל למשך';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes דק׳ לפני';
+  }
+
+  @override
+  String get quandoSounds => 'צלילי Quando?';
+
+  @override
+  String get aSongApps => 'שיר (Spotify‏, YouTube…)';
+
+  @override
+  String get myRecording => 'ההקלטה שלי';
+
+  @override
+  String get useForNewAlarms => 'להשתמש בהתראות חדשות';
+
+  @override
+  String get iWillLabel => 'כשזה מצלצל, אני…';
+
+  @override
+  String get foldVolume => 'עוצמה והעלמה הדרגתית';
+
+  @override
+  String get foldSnoozeStop => 'נודניק ועצירה';
+
+  @override
+  String get foldExtras => 'יומן ותוספות';
+
+  @override
+  String get groupAlarms => 'התראות';
+
+  @override
+  String get groupCalendarShabbat => 'יומן ושבת';
+
+  @override
+  String get groupLookQuotes => 'מראה וציטוטים';
+
+  @override
+  String get groupConnectionsSync => 'חיבורים וסנכרון';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count הגדרות · $on פעילות';
+  }
 }
