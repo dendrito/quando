@@ -3562,5 +3562,5 @@ class AppLocalizationsEn extends AppLocalizations {
       'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.';
 
   @override
-  String get askHelpQuote => '“Stay hungry. Stay foolish.”\nWhole Earth Catalog';
+  String get askHelpQuote => '“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog';
 }

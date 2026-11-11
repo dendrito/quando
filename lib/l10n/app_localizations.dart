@@ -6451,7 +6451,7 @@ abstract class AppLocalizations {
   /// No description provided for @askHelpQuote.
   ///
   /// In en, this message translates to:
-  /// **'“Stay hungry. Stay foolish.”\nWhole Earth Catalog'**
+  /// **'“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog'**
   String get askHelpQuote;
 }
 

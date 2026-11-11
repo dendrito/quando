@@ -2136,5 +2136,5 @@
   "askHelpNo": "No thanks",
   "@askHelpPromptBody": {"placeholders": {"sentence": {"type": "String"}}},
   "askQuoteTranslation": "Life is not what one lived, but what one remembers and how one remembers it in order to tell it.",
-  "askHelpQuote": "“Stay hungry. Stay foolish.”\nWhole Earth Catalog"
+  "askHelpQuote": "“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog"
 }
