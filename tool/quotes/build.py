@@ -55,7 +55,7 @@ DARK = {
 # No Christian religious figures, scripture or holidays (Curió, 2026-11-04).
 CHRISTIAN_BY = re.compile(r'((?<![\w-])(saint|santo|santa|san|st\.|sankt|św\.|святой|святий|aziz|القديس|पोप|pope|papa|papst|apostle|apóstolo|reverend|reverendo|pastor|padre|father)(?![\w-])'
                           r'|jesus|jesús|jésus|cristo|christ|христ|المسيح|ישו|यीशु|イエス|예수|耶稣|耶穌|chúa giê-su'
-                          r'|augustin|agostin|agustín|aquin|luther(?!\s*king)|calvin|francis of assisi|thomas à kempis|bonhoeffer'
+                          r'|augustin|agostin|agustín|aquin|luther(?!\s*king)|calvin(?!o)|francis of assisi|thomas à kempis|bonhoeffer'
                           r'|(matthew|mark|luke|john|mateus|marcos|lucas|joão|mateo|juan|romans|romanos|corinthians|coríntios|revelation|apocalipse)\s+\d)', re.I)
 CHRISTIAN_TEXT = re.compile(r'\b(christmas|xmas|natal|navidad|noël|weihnacht\w*|natale|kerst\w*|boże narodzenie|рождеств\w*|різдв\w*|noel|easter|ostern|pâques|pascua|páscoa|pasqua|jesus|jesús|cristo|christ|holy spirit|espírito santo)\b', re.I)
 CHRISTIAN_WORDS = re.compile(r'(クリスマス|크리스마스|圣诞|聖誕|عيد الميلاد|חג המולד|क्रिसमस|giáng sinh|natal)', re.I)

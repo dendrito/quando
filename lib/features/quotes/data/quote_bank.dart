@@ -7885,7 +7885,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('Chi dorme non piglia pesci.', 'Proverbio', QuoteSource.proverbs, 'morning'),
     Quote('Meglio tardi che mai.', 'Proverbio', QuoteSource.proverbs, 'any'),
     Quote('Il tempo è galantuomo.', 'Proverbio', QuoteSource.proverbs, 'any'),
-    Quote('Nel mezzo del cammin di nostra vita.', 'Dante Alighieri', QuoteSource.literature, 'morning'),
     Quote(
       'Il tempo si caccia innanzi ogni cosa, e può condurre seco bene come male, e male come bene.',
       'Niccolò Machiavelli, Il Principe',
@@ -7906,6 +7905,13 @@ const quoteBank = <String, List<Quote>>{
       'Brillat-Savarin, Fisiologia del gusto',
       QuoteSource.literature,
       'evening',
+    ),
+    Quote('Affrettati lentamente.', 'Italo Calvino, Lezioni americane', QuoteSource.literature, 'any'),
+    Quote(
+      'Nella vita pratica il tempo è una ricchezza di cui siamo avari; in letteratura, il tempo è una ricchezza di cui disporre con agio e distacco.',
+      'Italo Calvino, Lezioni americane',
+      QuoteSource.literature,
+      'any',
     ),
   ],
   'ja': [
