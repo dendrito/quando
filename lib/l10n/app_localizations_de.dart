@@ -3631,4 +3631,40 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Mitte antippen zum Stoppen';
+
+  @override
+  String get quickSetups => 'Schnell einrichten';
+
+  @override
+  String get qsMorningTitle => 'Ein Morgen, der klappt';
+
+  @override
+  String get qsStartTitle => 'Keinen Start verpassen';
+
+  @override
+  String get qsStretchTitle => 'In Etappen arbeiten';
+
+  @override
+  String get qsWillChange => 'Das ändert sich';
+
+  @override
+  String get qsAlreadyOn => 'Schon aktiv. Nichts zu ändern.';
+
+  @override
+  String get qsApply => 'Anwenden';
+
+  @override
+  String get qsDone => 'Fertig';
+
+  @override
+  String get qsUndo => 'Rückgängig';
+
+  @override
+  String get qsSnoozeTimes => 'Erlaubte Schlummern';
+
+  @override
+  String get qsSnoozeMinutes => 'Schlummer-Minuten';
+
+  @override
+  String get qsFiveLeft => 'Noch 5 Minuten';
 }

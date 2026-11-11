@@ -3677,4 +3677,40 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Торкніться центру, щоб вимкнути';
+
+  @override
+  String get quickSetups => 'Швидкі налаштування';
+
+  @override
+  String get qsMorningTitle => 'Ранок, який працює';
+
+  @override
+  String get qsStartTitle => 'Не пропускайте початок';
+
+  @override
+  String get qsStretchTitle => 'Працюйте відрізками';
+
+  @override
+  String get qsWillChange => 'Що зміниться';
+
+  @override
+  String get qsAlreadyOn => 'Уже ввімкнено. Нічого змінювати.';
+
+  @override
+  String get qsApply => 'Застосувати';
+
+  @override
+  String get qsDone => 'Готово';
+
+  @override
+  String get qsUndo => 'Скасувати';
+
+  @override
+  String get qsSnoozeTimes => 'Дозволено відкладок';
+
+  @override
+  String get qsSnoozeMinutes => 'Хвилини відкладки';
+
+  @override
+  String get qsFiveLeft => 'Залишилось 5 хвилин';
 }

@@ -3602,4 +3602,40 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Tap the middle to stop';
+
+  @override
+  String get quickSetups => 'Quick setups';
+
+  @override
+  String get qsMorningTitle => 'Morning that works';
+
+  @override
+  String get qsStartTitle => 'Never miss a start';
+
+  @override
+  String get qsStretchTitle => 'Work in stretches';
+
+  @override
+  String get qsWillChange => 'What will change';
+
+  @override
+  String get qsAlreadyOn => 'Already on. Nothing to change.';
+
+  @override
+  String get qsApply => 'Apply';
+
+  @override
+  String get qsDone => 'Done';
+
+  @override
+  String get qsUndo => 'Undo';
+
+  @override
+  String get qsSnoozeTimes => 'Snoozes allowed';
+
+  @override
+  String get qsSnoozeMinutes => 'Snooze minutes';
+
+  @override
+  String get qsFiveLeft => '5 minutes left';
 }

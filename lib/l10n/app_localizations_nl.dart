@@ -3624,4 +3624,40 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Tik in het midden om te stoppen';
+
+  @override
+  String get quickSetups => 'Snel instellen';
+
+  @override
+  String get qsMorningTitle => 'Een ochtend die werkt';
+
+  @override
+  String get qsStartTitle => 'Mis nooit een start';
+
+  @override
+  String get qsStretchTitle => 'Werk in blokken';
+
+  @override
+  String get qsWillChange => 'Wat er verandert';
+
+  @override
+  String get qsAlreadyOn => 'Staat al aan. Niets te wijzigen.';
+
+  @override
+  String get qsApply => 'Toepassen';
+
+  @override
+  String get qsDone => 'Klaar';
+
+  @override
+  String get qsUndo => 'Ongedaan maken';
+
+  @override
+  String get qsSnoozeTimes => 'Toegestane snoozes';
+
+  @override
+  String get qsSnoozeMinutes => 'Snoozeminuten';
+
+  @override
+  String get qsFiveLeft => 'Nog 5 minuten';
 }
