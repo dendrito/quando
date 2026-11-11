@@ -64,6 +64,9 @@ borges_time literature any es
 aznavour_hier songs evening fr
 gabo_born literature morning es
 gabo_life literature evening es
+bergson_time philosophy any fr
+perec_vivre literature any fr
+gary_aube literature morning fr
 sun songs morning en
 lennon songs day en
 dylan songs any en
