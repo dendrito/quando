@@ -1,9 +1,10 @@
 {
   "id": "ship-quando-release",
   "title": "Ship Quando? release",
-  "status": "doing",
+  "status": "done",
   "tag": "release",
   "note": "Brings the home screen, growth features and voice alarms together into an Android release candidate and rebuilds the iPad app.",
+  "details": "Integrates PRs #22, #24, #25 and #26 into one Android Quando? release candidate and rebuilds the iPad app. Rule until Thursday midnight: no new features, only fixes needed to ship.",
   "prs": [
     22,
     24,
@@ -13,7 +14,6 @@
   "threads": [
     "release"
   ],
-  "details": "Integrates PRs #22, #24, #25 and #26 into one Android Quando? release candidate and rebuilds the iPad app. Rule until Thursday midnight: no new features, only fixes needed to ship.",
   "docs": [
     {
       "title": "Roadmap",

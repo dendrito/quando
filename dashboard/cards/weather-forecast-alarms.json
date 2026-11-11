@@ -1,13 +1,15 @@
 {
   "id": "weather-forecast-alarms",
   "title": "Weather forecast alarms",
-  "status": "decide",
+  "status": "review",
   "tag": "app",
-  "note": "Built and tested. Waiting for your review of the PR.",
+  "note": "Built in PR #36, waiting for CI and your review. Suggested: merge after the first public release.",
   "prs": [
     36
   ],
-  "threads": [],
+  "threads": [
+    "weather"
+  ],
   "details": "Pick the weather, any number of reminders (alarm or soft) and when: any time, or before your alarms and calendar events, with quiet hours. Settings, Weather reminders. Android re-checks the forecast in the background every few hours; texts in all 20 languages. Quiet on Shabbat and festivals.",
   "order": 5
 }
