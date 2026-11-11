@@ -3526,4 +3526,69 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get askReadAs => 'נקרא כ־';
+
+  @override
+  String get syncHeading => 'כשהיומן משתנה';
+
+  @override
+  String get syncLive => 'לעקוב אחרי היומן';
+
+  @override
+  String get syncLiveHint =>
+      'אירועים חדשים מקבלים התראה. אירוע שזז מזיז את ההתראה שלו. אירוע שנמחק מאבד אותה.';
+
+  @override
+  String get syncKeepFirst => 'לשמור כמו שראיתי בהתחלה';
+
+  @override
+  String get syncKeepFirstHint =>
+      'אירועים חדשים עדיין מקבלים התראה. אחרי שנקבעה, ההתראה נשארת במקומה, גם אם האירוע זז או נמחק.';
+
+  @override
+  String get syncSnapshot => 'רק אירועים שקיימים עכשיו';
+
+  @override
+  String get syncSnapshotHint => 'רק האירועים שביומן ברגע השמירה, כמו שהם עכשיו. שום דבר חדש לא נוסף אחר כך.';
+
+  @override
+  String get syncHelpButton => 'איך זה עובד';
+
+  @override
+  String get syncHelpTitle => 'איך ההתראות עוקבות אחרי היומן';
+
+  @override
+  String get syncHelpIntro =>
+      'הכלל הזה ממשיך לחפש אירועים שמתאימים לחיפוש שלך. את/ה בוחר/ת מה קורה כשהיומן משתנה.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'דוגמה: כלל ל“רופא שיניים”. רופא השיניים מעביר את התור משלישי לרביעי, וההתראה עוברת גם היא לרביעי. אם התור מבוטל, ההתראה שלו נעלמת.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'אותו כלל: התור עובר לרביעי, אבל ההתראה נשארת בשלישי, כמו ש־Quando? ראה בהתחלה. תור חדש בחודש הבא עדיין מקבל התראה משלו.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'אותו כלל: מקבלים התראות לתורים שביומן היום, והן נשארות כמו שהן. תור שנוסף בחודש הבא לא מקבל התראה.';
+
+  @override
+  String get syncHelpTip => 'לא בטוח/ה? השאר/י “לעקוב אחרי היומן”.';
+
+  @override
+  String get syncHelpWhenTitle => 'מתי Quando? שם לב לשינויים?';
+
+  @override
+  String get syncHelpWhenOpen => 'כש־Quando? פתוח: תוך שניות. יומן Google שמחובר כאן נבדק כל 2 דקות.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'כש־Quando? סגור: בפעם הבאה שפותחים אותו. עד אז, התראות שכבר נקבעו מצלצלות בזמנים שהיו להן.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'אייפון ואייפד לא מאפשרים לאפליקציות לעקוב אחרי היומן ברקע, לכן השינויים נקלטים כשפותחים את Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'הקשה במרכז עוצרת';
 }

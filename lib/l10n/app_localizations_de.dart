@@ -3564,4 +3564,71 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get askReadAs => 'Gelesen als';
+
+  @override
+  String get syncHeading => 'Wenn sich der Kalender ändert';
+
+  @override
+  String get syncLive => 'Dem Kalender folgen';
+
+  @override
+  String get syncLiveHint =>
+      'Neue Termine bekommen Wecker. Verschobene Termine nehmen ihre Wecker mit. Gelöschte Termine verlieren sie.';
+
+  @override
+  String get syncKeepFirst => 'Behalten, wie zuerst gesehen';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Neue Termine bekommen weiter Wecker. Ein gestellter Wecker bleibt aber, auch wenn der Termin verschoben oder gelöscht wird.';
+
+  @override
+  String get syncSnapshot => 'Nur Termine, die es jetzt gibt';
+
+  @override
+  String get syncSnapshotHint =>
+      'Nur die Termine, die beim Speichern im Kalender stehen, so wie sie jetzt sind. Später kommt nichts Neues dazu.';
+
+  @override
+  String get syncHelpButton => 'So funktioniert\'s';
+
+  @override
+  String get syncHelpTitle => 'So folgen Wecker deinem Kalender';
+
+  @override
+  String get syncHelpIntro =>
+      'Diese Regel sucht weiter nach Terminen, die zu deiner Suche passen. Du wählst, was passiert, wenn sich dein Kalender ändert.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Beispiel: eine Regel für „Zahnarzt“. Der Zahnarzt verlegt den Termin von Dienstag auf Mittwoch, und dein Wecker zieht mit auf Mittwoch. Wird der Termin abgesagt, fällt sein Wecker weg.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Gleiche Regel: Der Termin wandert auf Mittwoch, dein Wecker bleibt aber am Dienstag, wie Quando? ihn zuerst sah. Ein neuer Termin nächsten Monat bekommt trotzdem seinen Wecker.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Gleiche Regel: Du bekommst Wecker für die Termine, die heute im Kalender stehen, und sie bleiben so. Ein Termin, der nächsten Monat dazukommt, bekommt keinen Wecker.';
+
+  @override
+  String get syncHelpTip => 'Unsicher? Lass „Dem Kalender folgen“.';
+
+  @override
+  String get syncHelpWhenTitle => 'Wann bemerkt Quando? Änderungen?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Wenn Quando? offen ist: in Sekunden. Hier angemeldeter Google Kalender wird alle 2 Minuten geprüft.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Wenn Quando? geschlossen ist: beim nächsten Öffnen. Bis dahin klingeln gestellte Wecker zu ihren bisherigen Zeiten.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone und iPad lassen Apps den Kalender nicht im Hintergrund beobachten, darum übernimmt Quando? Änderungen beim Öffnen.';
+
+  @override
+  String get tapMiddleToStop => 'Mitte antippen zum Stoppen';
 }

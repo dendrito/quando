@@ -10,6 +10,7 @@ import 'app/app.dart';
 import 'app/providers.dart';
 import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
+import 'features/calendar/data/calendar_background.dart';
 import 'features/ringing/data/spotify.dart';
 import 'features/sounds/data/spotify_account.dart';
 import 'features/sounds/data/soundcloud.dart';
@@ -31,6 +32,18 @@ Future<void> main() async {
       'Unicode CLDR date words (Say or type it)',
     ], await rootBundle.loadString('third_party/cldr/LICENSE'));
   });
+  final (prefs, deviceZone) = await _setUp();
+  runApp(
+    ProviderScope(
+      overrides: [prefsProvider.overrideWithValue(prefs), deviceZoneProvider.overrideWithValue(deviceZone)],
+      child: const QuandoApp(),
+    ),
+  );
+}
+
+/// What the app and its background runs both need: time zones, settings,
+/// language and accounts.
+Future<(SharedPreferences, String?)> _setUp() async {
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
   // Speak the chosen language (or the phone's) from the very first word,
@@ -51,10 +64,27 @@ Future<void> main() async {
   } catch (_) {
     deviceZone = null;
   }
-  runApp(
-    ProviderScope(
+  return (prefs, deviceZone);
+}
+
+/// Android wakes this when the calendar changes with Quando? closed: read
+/// the calendar again and move, add or remove calendar alarms to match.
+@pragma('vm:entry-point')
+Future<void> calendarBackground() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  var ok = false;
+  try {
+    final (prefs, deviceZone) = await _setUp();
+    final container = ProviderContainer(
       overrides: [prefsProvider.overrideWithValue(prefs), deviceZoneProvider.overrideWithValue(deviceZone)],
-      child: const QuandoApp(),
-    ),
-  );
+    );
+    try {
+      ok = await CalendarBackground.run(container);
+    } finally {
+      container.dispose();
+    }
+  } catch (e) {
+    debugPrint('Quando?: background calendar check failed: $e');
+  }
+  await CalendarBackground.done(ok);
 }

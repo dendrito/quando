@@ -3530,4 +3530,71 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askReadAs => 'Được hiểu là';
+
+  @override
+  String get syncHeading => 'Khi lịch thay đổi';
+
+  @override
+  String get syncLive => 'Theo lịch';
+
+  @override
+  String get syncLiveHint =>
+      'Sự kiện mới có báo thức. Sự kiện dời giờ thì báo thức dời theo. Sự kiện bị xoá thì mất báo thức.';
+
+  @override
+  String get syncKeepFirst => 'Giữ như lúc đầu thấy';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Sự kiện mới vẫn có báo thức. Đã đặt rồi thì báo thức giữ nguyên, kể cả khi sự kiện bị dời hay bị xoá.';
+
+  @override
+  String get syncSnapshot => 'Chỉ các sự kiện hiện có';
+
+  @override
+  String get syncSnapshotHint =>
+      'Chỉ các sự kiện có trong lịch lúc bạn lưu, đúng như hiện tại. Sau đó không thêm gì mới.';
+
+  @override
+  String get syncHelpButton => 'Cách hoạt động';
+
+  @override
+  String get syncHelpTitle => 'Báo thức theo lịch của bạn như thế nào';
+
+  @override
+  String get syncHelpIntro =>
+      'Quy tắc này tiếp tục tìm các sự kiện khớp với tìm kiếm của bạn. Bạn chọn điều gì xảy ra khi lịch thay đổi.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Ví dụ: quy tắc cho “nha sĩ”. Nha sĩ dời lịch hẹn từ thứ Ba sang thứ Tư, báo thức của bạn cũng sang thứ Tư. Nếu lịch hẹn bị huỷ, báo thức biến mất.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Cùng quy tắc: lịch hẹn dời sang thứ Tư, nhưng báo thức vẫn ở thứ Ba, như Quando? thấy lúc đầu. Lịch hẹn mới tháng sau vẫn có báo thức riêng.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Cùng quy tắc: bạn có báo thức cho các lịch hẹn có trong lịch hôm nay, và chúng giữ nguyên. Lịch hẹn thêm vào tháng sau không có báo thức.';
+
+  @override
+  String get syncHelpTip => 'Chưa chắc? Cứ để “Theo lịch”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Khi nào Quando? nhận ra thay đổi?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Khi Quando? đang mở: trong vài giây. Google Lịch kết nối ở đây được kiểm tra mỗi 2 phút.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Khi Quando? đóng: lần tới bạn mở nó. Đến lúc đó, báo thức đã đặt vẫn reo vào giờ cũ.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone và iPad không cho ứng dụng theo dõi lịch ở chế độ nền, nên thay đổi được nhận khi bạn mở Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Chạm vào giữa để tắt';
 }

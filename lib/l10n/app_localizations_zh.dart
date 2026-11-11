@@ -3454,6 +3454,63 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askReadAs => '理解为';
+
+  @override
+  String get syncHeading => '日历变化时';
+
+  @override
+  String get syncLive => '跟随日历';
+
+  @override
+  String get syncLiveHint => '新日程会有闹钟。日程改时间，闹钟跟着改；日程删除，闹钟也删除。';
+
+  @override
+  String get syncKeepFirst => '保持最初看到的样子';
+
+  @override
+  String get syncKeepFirstHint => '新日程仍会有闹钟。闹钟一旦设好就不变，即使日程改时间或被删除。';
+
+  @override
+  String get syncSnapshot => '只要现在已有的日程';
+
+  @override
+  String get syncSnapshotHint => '只取保存时日历里已有的日程，保持现在的样子。之后不再添加新的。';
+
+  @override
+  String get syncHelpButton => '如何运作';
+
+  @override
+  String get syncHelpTitle => '闹钟如何跟随你的日历';
+
+  @override
+  String get syncHelpIntro => '这条规则会一直寻找符合搜索的日程。日历变化时怎么做，由你选择。';
+
+  @override
+  String get syncHelpExampleLive => '例子：一条“牙医”规则。牙医把周二的预约改到周三，你的闹钟也改到周三。预约取消，闹钟也随之消失。';
+
+  @override
+  String get syncHelpExampleKeepFirst => '同一规则：预约改到周三，但闹钟仍留在周二，保持 Quando? 最初看到的样子。下个月的新预约仍会有自己的闹钟。';
+
+  @override
+  String get syncHelpExampleSnapshot => '同一规则：今天日历里已有的预约会有闹钟，并保持不变。下个月新加的预约不会有闹钟。';
+
+  @override
+  String get syncHelpTip => '拿不准？就保留“跟随日历”。';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? 何时发现变化？';
+
+  @override
+  String get syncHelpWhenOpen => 'Quando? 打开时：几秒内。在这里登录的 Google 日历每 2 分钟检查一次。';
+
+  @override
+  String get syncHelpWhenClosed => 'Quando? 关闭时：下次打开时。在那之前，已设好的闹钟按原来的时间响。';
+
+  @override
+  String get syncHelpWhenClosedApple => 'iPhone 和 iPad 不允许应用在后台监视日历，所以变化会在打开 Quando? 时同步。';
+
+  @override
+  String get tapMiddleToStop => '点按中间即可停止';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6905,4 +6962,61 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askReadAs => '理解為';
+
+  @override
+  String get syncHeading => '行事曆變更時';
+
+  @override
+  String get syncLive => '跟隨行事曆';
+
+  @override
+  String get syncLiveHint => '新活動會有鬧鐘。活動改時間，鬧鐘跟著改；活動刪除，鬧鐘也刪除。';
+
+  @override
+  String get syncKeepFirst => '保持最初看到的樣子';
+
+  @override
+  String get syncKeepFirstHint => '新活動仍會有鬧鐘。鬧鐘一旦設好就不變，即使活動改時間或被刪除。';
+
+  @override
+  String get syncSnapshot => '只要現在已有的活動';
+
+  @override
+  String get syncSnapshotHint => '只取儲存時行事曆裡已有的活動，保持現在的樣子。之後不再加入新的。';
+
+  @override
+  String get syncHelpButton => '如何運作';
+
+  @override
+  String get syncHelpTitle => '鬧鐘如何跟隨你的行事曆';
+
+  @override
+  String get syncHelpIntro => '這條規則會一直尋找符合搜尋的活動。行事曆變更時怎麼做，由你選擇。';
+
+  @override
+  String get syncHelpExampleLive => '例子：一條「牙醫」規則。牙醫把週二的預約改到週三，你的鬧鐘也改到週三。預約取消，鬧鐘也隨之消失。';
+
+  @override
+  String get syncHelpExampleKeepFirst => '同一規則：預約改到週三，但鬧鐘仍留在週二，保持 Quando? 最初看到的樣子。下個月的新預約仍會有自己的鬧鐘。';
+
+  @override
+  String get syncHelpExampleSnapshot => '同一規則：今天行事曆裡已有的預約會有鬧鐘，並保持不變。下個月新加的預約不會有鬧鐘。';
+
+  @override
+  String get syncHelpTip => '拿不定主意？就保留「跟隨行事曆」。';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? 何時發現變更？';
+
+  @override
+  String get syncHelpWhenOpen => 'Quando? 開啟時：幾秒內。在這裡登入的 Google 日曆每 2 分鐘檢查一次。';
+
+  @override
+  String get syncHelpWhenClosed => 'Quando? 關閉時：下次開啟時。在那之前，已設好的鬧鐘按原本的時間響。';
+
+  @override
+  String get syncHelpWhenClosedApple => 'iPhone 和 iPad 不允許 App 在背景監看行事曆，所以變更會在開啟 Quando? 時同步。';
+
+  @override
+  String get tapMiddleToStop => '點按中間即可停止';
 }
