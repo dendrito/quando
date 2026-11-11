@@ -122,14 +122,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'هكذا يمضي كل شيء، بلا توقف، ليلًا ونهارًا.',
-      'كونفوشيوس',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote('يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.', 'الحسن البصري', QuoteSource.philosophy, 'any'),
     Quote('الوقت يطير.', 'فيرجيل', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'أقوى محاربَين هما الصبر والوقت.',
@@ -215,13 +207,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'من أراد أن يكون سعيدًا فليكن: لا يقين في الغد.',
-      'لورنزو دي ميديشي',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'ما للغد افعله اليوم، وما لليوم افعله الآن.',
@@ -863,6 +848,7 @@ const quoteBank = <String, List<Quote>>{
     Quote('ما كل ما يتمنى المرء يدركه.', 'المتنبي', QuoteSource.literature, 'any'),
     Quote('قم للمعلم وفه التبجيلا.', 'أحمد شوقي', QuoteSource.literature, 'any'),
     Quote('ما فات فات.', 'مثل عربي', QuoteSource.proverbs, 'any'),
+    Quote('الوقت من ذهب.', 'مثل عربي', QuoteSource.proverbs, 'any'),
   ],
   'de': [
     Quote(
@@ -992,20 +978,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'So fließt alles dahin, unaufhörlich, Tag und Nacht.',
-      'Konfuzius',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Du bist nichts als Tage: Mit jedem Tag, der geht, geht ein Teil von dir.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Die Zeit flieht.', 'Vergil', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Die zwei mächtigsten Krieger sind Geduld und Zeit.',
@@ -1091,13 +1063,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Wer froh sein will, der sei es: Für morgen gibt es keine Gewissheit.',
-      'Lorenzo de’ Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Was morgen zu tun ist, tu heute; was heute zu tun ist, tu jetzt.',
@@ -1904,20 +1869,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('Seize the day.', 'Horace', QuoteSource.philosophy, 'morning', 'Carpe diem.'),
     Quote('No one steps in the same river twice.', 'Heraclitus', QuoteSource.philosophy, 'any'),
     Quote('Lost time is never found again.', 'Benjamin Franklin', QuoteSource.philosophy, 'day'),
-    Quote(
-      'It passes on like this, never ceasing, day and night.',
-      'Confucius',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'You are nothing but days: whenever a day goes, part of you goes.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Time flies.', 'Virgil', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'The two most powerful warriors are patience and time.',
@@ -1989,13 +1940,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Whoever wants to be happy, let them be: there is no certainty of tomorrow.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Do tomorrow\'s work today, and today\'s work now.',
@@ -2665,20 +2609,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Todo fluye así, sin cesar, día y noche.',
-      'Confucio',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'No eres más que días: cada día que se va se lleva una parte de ti.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('El tiempo vuela.', 'Virgilio', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Los dos guerreros más poderosos son la paciencia y el tiempo.',
@@ -2769,13 +2699,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Quien quiera ser feliz, que lo sea: del mañana no hay certeza.',
-      'Lorenzo de Médici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Lo de mañana hazlo hoy, y lo de hoy hazlo ahora.',
@@ -3613,20 +3536,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Tout s\'écoule ainsi, sans cesse, jour et nuit.',
-      'Confucius',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Tu n\'es que des jours : chaque jour qui s\'en va emporte une part de toi.',
-      'Hassan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Le temps fuit.', 'Virgile', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Les deux guerriers les plus puissants sont la patience et le temps.',
@@ -3711,13 +3620,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Qui veut être heureux, qu\'il le soit : de demain, nulle certitude.',
-      'Laurent de Médicis',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Ce qui est pour demain, fais-le aujourd\'hui ; ce qui est pour aujourd\'hui, fais-le maintenant.',
@@ -4455,20 +4357,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'כָּךְ הוּא חוֹלֵף, בְּלִי הֶרֶף, יוֹם וָלַיְלָה.',
-      'קונפוציוס',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'אֵינְךָ אֶלָּא יָמִים: כָּל יוֹם שֶׁהוֹלֵךְ, חֵלֶק מִמְּךָ הוֹלֵךְ.',
-      'חסן אל-בצרי',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('הַזְּמַן טָס.', 'ורגיליוס', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'שְׁנֵי הַלּוֹחֲמִים הַחֲזָקִים בְּיוֹתֵר הֵם סַבְלָנוּת וּזְמַן.',
@@ -4560,13 +4448,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'מִי שֶׁרוֹצֶה לִשְׂמֹחַ, שֶׁיִּשְׂמַח: אֵין וַדָּאוּת בַּמָּחָר.',
-      'לורנצו דה מדיצ׳י',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'אֶת שֶׁל מָחָר עֲשֵׂה הַיּוֹם, וְאֶת שֶׁל הַיּוֹם עֲשֵׂה עַכְשָׁיו.',
@@ -5262,20 +5143,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'सब कुछ ऐसे ही बहता है, बिना रुके, दिन और रात।',
-      'कन्फ़्यूशियस',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'तुम बस दिन हो: हर बीतते दिन के साथ तुम्हारा एक हिस्सा चला जाता है।',
-      'हसन अल-बसरी',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('समय उड़ता है।', 'वर्जिल', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'दो सबसे शक्तिशाली योद्धा हैं: धैर्य और समय।',
@@ -5367,13 +5234,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'जो ख़ुश रहना चाहे, रहे: कल का कोई भरोसा नहीं।',
-      'लोरेंज़ो दे मेदिची',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
@@ -6172,20 +6032,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Semua mengalir begini, tanpa henti, siang dan malam.',
-      'Konfusius',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Kau hanyalah kumpulan hari: setiap hari berlalu, sebagian dirimu ikut pergi.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Waktu berlalu cepat.', 'Vergilius', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Dua pejuang terkuat adalah kesabaran dan waktu.',
@@ -6277,13 +6123,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Siapa ingin bahagia, bahagialah: esok tak ada kepastian.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Kerjakan hari ini yang untuk besok, dan sekarang yang untuk hari ini.',
@@ -7093,20 +6932,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Tutto scorre così, senza sosta, giorno e notte.',
-      'Confucio',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Non sei che giorni: ogni giorno che se ne va porta via una parte di te.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Il tempo fugge.', 'Virgilio', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'I due guerrieri più potenti sono la pazienza e il tempo.',
@@ -7192,12 +7017,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
     ),
     Quote(
       'Quello che è per domani fallo oggi, e quello che è per oggi fallo adesso.',
@@ -8013,14 +7832,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote('逝く者は斯くの如きか、昼夜を舎かず。', '孔子『論語』', QuoteSource.philosophy, 'any', '逝者如斯夫，不舍昼夜。'),
-    Quote(
-      'あなたは日々にすぎない。一日が去るたび、あなたの一部も去る。',
-      'ハサン・アル＝バスリー',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('時は飛ぶ。', 'ウェルギリウス', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       '最も強い二人の戦士は、忍耐と時間だ。',
@@ -8089,13 +7900,6 @@ const quoteBank = <String, List<Quote>>{
       'Ché perder tempo a chi più sa più spiace.',
     ),
     Quote('何事も二度は起こらない。', 'シンボルスカ', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
-    Quote(
-      '楽しみたい者は楽しめ。明日は定かではない。',
-      'ロレンツォ・デ・メディチ',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-    ),
     Quote(
       '明日の仕事は今日に、今日の仕事は今に。',
       'カビール',
@@ -8728,14 +8532,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote('흘러가는 것은 이와 같구나, 밤낮을 쉬지 않는다.', '공자, 논어', QuoteSource.philosophy, 'any', '逝者如斯夫，不舍昼夜。'),
-    Quote(
-      '너는 날들일 뿐이다. 하루가 갈 때마다 너의 일부도 간다.',
-      '하산 알바스리',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('시간은 날아간다.', '베르길리우스', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       '가장 강한 두 전사는 인내와 시간이다.',
@@ -8804,13 +8600,6 @@ const quoteBank = <String, List<Quote>>{
       'Ché perder tempo a chi più sa più spiace.',
     ),
     Quote('아무것도 두 번 일어나지 않는다.', '비스와바 심보르스카', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
-    Quote(
-      '즐거우려는 자는 즐거워하라. 내일은 확실하지 않으니.',
-      '로렌초 데 메디치',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-    ),
     Quote(
       '내일 할 일은 오늘, 오늘 할 일은 지금 하라.',
       '카비르',
@@ -9476,20 +9265,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Zo stroomt alles voorbij, zonder ophouden, dag en nacht.',
-      'Confucius',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Je bent niets dan dagen: met elke dag die gaat, gaat een deel van jou.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('De tijd vliegt.', 'Vergilius', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'De twee machtigste krijgers zijn geduld en tijd.',
@@ -9581,13 +9356,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Wie gelukkig wil zijn, die zij het: over morgen is er geen zekerheid.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Wat voor morgen is, doe vandaag; wat voor vandaag is, doe nu.',
@@ -10401,20 +10169,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Tak wszystko płynie, bez ustanku, dniem i nocą.',
-      'Konfucjusz',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Jesteś tylko dniami: z każdym dniem, który mija, odchodzi część ciebie.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Czas ucieka.', 'Wergiliusz', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Dwaj najpotężniejsi wojownicy to cierpliwość i czas.',
@@ -10501,13 +10255,6 @@ const quoteBank = <String, List<Quote>>{
       'Ché perder tempo a chi più sa più spiace.',
     ),
     Quote('Nic dwa razy się nie zdarza.', 'Wisława Szymborska', QuoteSource.literature, 'any'),
-    Quote(
-      'Kto chce być szczęśliwy, niech będzie: jutro nie jest pewne.',
-      'Wawrzyniec Medyceusz',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-    ),
     Quote(
       'Co na jutro, zrób dziś; co na dziś, zrób teraz.',
       'Kabir',
@@ -11313,20 +11060,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Tudo passa assim, sem parar, dia e noite.',
-      'Confúcio',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Você não é mais que dias: cada dia que se vai leva uma parte de você.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('O tempo voa.', 'Virgílio', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Os dois guerreiros mais poderosos são a paciência e o tempo.',
@@ -11418,13 +11151,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Quem quiser ser feliz, que seja: do amanhã não há certeza.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'O que é para amanhã, faça hoje; o que é para hoje, faça agora.',
@@ -12345,20 +12071,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Всё течёт вот так, не останавливаясь ни днём, ни ночью.',
-      'Конфуций',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Ты — лишь дни: с каждым ушедшим днём уходит часть тебя.',
-      'Хасан аль-Басри',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Время летит.', 'Вергилий', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote('Нет сильнее тех двух воинов — терпение и время.', 'Лев Толстой', QuoteSource.literature, 'any'),
     Quote(
@@ -12444,13 +12156,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Хочешь быть счастливым — будь: завтрашний день неведом.',
-      'Лоренцо Медичи',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Что на завтра — сделай сегодня, что на сегодня — сделай сейчас.',
@@ -13239,20 +12944,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Her şey böyle akıp gider, durmadan, gece gündüz.',
-      'Konfüçyüs',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Sen günlerden ibaretsin: Giden her günle bir parçan gider.',
-      'Hasan-ı Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Zaman uçup gidiyor.', 'Vergilius', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'En güçlü iki savaşçı sabır ve zamandır.',
@@ -13338,13 +13029,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Mutlu olmak isteyen olsun: Yarına dair kesinlik yok.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Yarının işini bugün, bugünün işini şimdi yap.',
@@ -14147,20 +13831,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Усе тече ось так, не спиняючись ні вдень, ні вночі.',
-      'Конфуцій',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Ти — лише дні: з кожним днем, що минає, минає частина тебе.',
-      'Хасан аль-Басрі',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Час летить.', 'Вергілій', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Двоє найсильніших воїнів — терпіння і час.',
@@ -14252,13 +13922,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Хто хоче бути щасливим, хай буде: завтра не певне.',
-      'Лоренцо Медічі',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Що на завтра — зроби сьогодні, що на сьогодні — зроби зараз.',
@@ -15073,20 +14736,6 @@ const quoteBank = <String, List<Quote>>{
       'day',
       'Lost time is never found again.',
     ),
-    Quote(
-      'Trôi đi như thế này, không ngừng ngày đêm.',
-      'Khổng Tử',
-      QuoteSource.philosophy,
-      'any',
-      '逝者如斯夫，不舍昼夜。',
-    ),
-    Quote(
-      'Bạn chỉ là những ngày: mỗi ngày qua đi, một phần của bạn cũng đi.',
-      'Hasan al-Basri',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('Thời gian bay.', 'Virgil', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       'Hai chiến binh mạnh nhất là kiên nhẫn và thời gian.',
@@ -15178,13 +14827,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
       'Nic dwa razy się nie zdarza.',
-    ),
-    Quote(
-      'Ai muốn vui, hãy vui: ngày mai không có gì chắc chắn.',
-      'Lorenzo de\' Medici',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
     Quote(
       'Việc của ngày mai hãy làm hôm nay, việc của hôm nay hãy làm ngay.',
@@ -15958,14 +15600,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('及时行乐，把握今天。', '贺拉斯', QuoteSource.philosophy, 'morning', 'Carpe diem.'),
     Quote('人不能两次踏进同一条河流。', '赫拉克利特', QuoteSource.philosophy, 'any'),
     Quote('失去的时间再也找不回来。', '本杰明·富兰克林', QuoteSource.philosophy, 'day', 'Lost time is never found again.'),
-    Quote('逝者如斯夫，不舍昼夜。', '孔子《论语》', QuoteSource.philosophy, 'any'),
-    Quote(
-      '你不过是一些日子：每过去一天，你的一部分就随之而去。',
-      '哈桑·巴士里',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('光阴似箭。', '维吉尔', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       '最强大的两位战士是耐心和时间。',
@@ -16022,13 +15656,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('停一停吧，你真美丽！', '歌德', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
     Quote('浪费时间，最懂的人最痛惜。', '但丁', QuoteSource.literature, 'day', 'Ché perder tempo a chi più sa più spiace.'),
     Quote('没有任何事物会发生两次。', '辛波斯卡', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
-    Quote(
-      '想快乐的人，就快乐吧：明天没有定数。',
-      '洛伦佐·德·美第奇',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-    ),
     Quote(
       '明天的事今天做，今天的事现在做。',
       '迦比尔',
@@ -16476,10 +16103,11 @@ const quoteBank = <String, List<Quote>>{
     Quote('盛年不重来，一日难再晨。', '陶渊明', QuoteSource.literature, 'any'),
     Quote('明日复明日，明日何其多。', '钱福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但愿人长久，千里共婵娟。', '苏轼', QuoteSource.literature, 'evening'),
-    Quote('三人行，必有我师焉。', '孔子《论语·述而》', QuoteSource.philosophy, 'any'),
-    Quote('学而时习之，不亦说乎？', '孔子《论语·学而》', QuoteSource.philosophy, 'any'),
     Quote('一年之计在于春，一日之计在于晨。', '谚语', QuoteSource.proverbs, 'morning'),
     Quote('天地者，万物之逆旅也；光阴者，百代之过客也。', '李白《春夜宴桃李园序》', QuoteSource.literature, 'any'),
+    Quote('欲穷千里目，更上一层楼。', '王之涣《登鹳雀楼》', QuoteSource.literature, 'morning'),
+    Quote('长风破浪会有时，直挂云帆济沧海。', '李白《行路难》', QuoteSource.literature, 'morning'),
+    Quote('但是，聪明的，你告诉我，我们的日子为什么一去不复返呢？', '朱自清《匆匆》', QuoteSource.literature, 'any'),
   ],
   'zh_Hant': [
     Quote(
@@ -16562,14 +16190,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('及時行樂，把握今天。', '賀拉斯', QuoteSource.philosophy, 'morning', 'Carpe diem.'),
     Quote('人不能兩次踏進同一條河流。', '赫拉克利特', QuoteSource.philosophy, 'any'),
     Quote('失去的時間再也找不回來。', '本傑明·富蘭克林', QuoteSource.philosophy, 'day', 'Lost time is never found again.'),
-    Quote('逝者如斯夫，不捨晝夜。', '孔子《論語》', QuoteSource.philosophy, 'any', '逝者如斯夫，不舍昼夜。'),
-    Quote(
-      '你不過是一些日子：每過去一天，你的一部分就隨之而去。',
-      '哈桑·巴士裡',
-      QuoteSource.philosophy,
-      'any',
-      'يا ابن آدم، إنما أنت أيام، كلما ذهب يوم ذهب بعضك.',
-    ),
     Quote('光陰似箭。', '維吉爾', QuoteSource.literature, 'day', 'Fugit inreparabile tempus.'),
     Quote(
       '最強大的兩位戰士是耐心和時間。',
@@ -16626,13 +16246,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('停一停吧，你真美麗！', '歌德', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
     Quote('浪費時間，最懂的人最痛惜。', '但丁', QuoteSource.literature, 'day', 'Ché perder tempo a chi più sa più spiace.'),
     Quote('沒有任何事物會發生兩次。', '辛波斯卡', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
-    Quote(
-      '想快樂的人，就快樂吧：明天沒有定數。',
-      '洛倫佐·德·美第奇',
-      QuoteSource.literature,
-      'evening',
-      'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
-    ),
     Quote(
       '明天的事今天做，今天的事現在做。',
       '迦比爾',
@@ -17080,9 +16693,10 @@ const quoteBank = <String, List<Quote>>{
     Quote('盛年不重來，一日難再晨。', '陶淵明', QuoteSource.literature, 'any'),
     Quote('明日復明日，明日何其多。', '錢福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但願人長久，千里共嬋娟。', '蘇軾', QuoteSource.literature, 'evening'),
-    Quote('三人行，必有我師焉。', '孔子《論語·述而》', QuoteSource.philosophy, 'any'),
-    Quote('學而時習之，不亦說乎？', '孔子《論語·學而》', QuoteSource.philosophy, 'any'),
     Quote('一年之計在於春，一日之計在於晨。', '諺語', QuoteSource.proverbs, 'morning'),
     Quote('天地者，萬物之逆旅也；光陰者，百代之過客也。', '李白《春夜宴桃李園序》', QuoteSource.literature, 'any'),
+    Quote('欲窮千里目，更上一層樓。', '王之渙《登鸛雀樓》', QuoteSource.literature, 'morning'),
+    Quote('長風破浪會有時，直掛雲帆濟滄海。', '李白《行路難》', QuoteSource.literature, 'morning'),
+    Quote('但是，聰明的，你告訴我，我們的日子為什麼一去不復返呢？', '朱自清《匆匆》', QuoteSource.literature, 'any'),
   ],
 };
