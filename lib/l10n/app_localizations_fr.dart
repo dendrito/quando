@@ -3560,4 +3560,71 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get askReadAs => 'Lu comme';
+
+  @override
+  String get syncHeading => 'Quand l\'agenda change';
+
+  @override
+  String get syncLive => 'Suivre l\'agenda';
+
+  @override
+  String get syncLiveHint =>
+      'Les nouveaux événements ont une alarme. Un événement déplacé déplace son alarme. Un événement supprimé perd la sienne.';
+
+  @override
+  String get syncKeepFirst => 'Garder ce que j\'ai vu d\'abord';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Les nouveaux événements ont toujours une alarme. Une fois posée, l\'alarme ne bouge plus, même si l\'événement est déplacé ou supprimé.';
+
+  @override
+  String get syncSnapshot => 'Seulement les événements actuels';
+
+  @override
+  String get syncSnapshotHint =>
+      'Seulement les événements de votre agenda au moment d\'enregistrer, tels qu\'ils sont. Rien de nouveau n\'est ajouté ensuite.';
+
+  @override
+  String get syncHelpButton => 'Comment ça marche';
+
+  @override
+  String get syncHelpTitle => 'Comment les alarmes suivent votre agenda';
+
+  @override
+  String get syncHelpIntro =>
+      'Cette règle continue de chercher les événements qui correspondent à votre recherche. Vous choisissez ce qui se passe quand l\'agenda change.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Exemple : une règle pour « dentiste ». Le dentiste déplace le rendez-vous de mardi à mercredi, et votre alarme passe aussi à mercredi. Si le rendez-vous est annulé, son alarme disparaît.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Même règle : le rendez-vous passe à mercredi, mais votre alarme reste mardi, comme Quando? l\'a vu d\'abord. Un nouveau rendez-vous le mois prochain a quand même son alarme.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Même règle : vous avez des alarmes pour les rendez-vous présents aujourd\'hui, et elles restent telles quelles. Un rendez-vous ajouté le mois prochain n\'a pas d\'alarme.';
+
+  @override
+  String get syncHelpTip => 'Un doute ? Gardez « Suivre l\'agenda ».';
+
+  @override
+  String get syncHelpWhenTitle => 'Quand Quando? voit-il les changements ?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Quando? ouvert : en quelques secondes. Google Agenda connecté ici est vérifié toutes les 2 minutes.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Quando? fermé : à la prochaine ouverture. D\'ici là, les alarmes déjà posées sonnent aux heures prévues.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone et iPad ne laissent pas les apps surveiller l\'agenda en arrière-plan : c\'est en ouvrant Quando? que les changements arrivent.';
+
+  @override
+  String get tapMiddleToStop => 'Touchez le centre pour arrêter';
 }

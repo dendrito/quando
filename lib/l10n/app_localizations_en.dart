@@ -3535,4 +3535,71 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askReadAs => 'Read as';
+
+  @override
+  String get syncHeading => 'When the calendar changes';
+
+  @override
+  String get syncLive => 'Follow the calendar';
+
+  @override
+  String get syncLiveHint =>
+      'New events get alarms. Moved events move their alarms. Deleted events lose them.';
+
+  @override
+  String get syncKeepFirst => 'Keep what I first saw';
+
+  @override
+  String get syncKeepFirstHint =>
+      'New events still get alarms. Once set, an alarm stays put, even if its event moves or is deleted.';
+
+  @override
+  String get syncSnapshot => 'Only events that exist now';
+
+  @override
+  String get syncSnapshotHint =>
+      'Just the events in your calendar when you save, as they are now. Nothing new is added later.';
+
+  @override
+  String get syncHelpButton => 'How this works';
+
+  @override
+  String get syncHelpTitle => 'How alarms follow your calendar';
+
+  @override
+  String get syncHelpIntro =>
+      'This rule keeps looking for events that match your search. You choose what happens when your calendar changes.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Example: a rule for “dentist”. The dentist moves Tuesday\'s visit to Wednesday, and your alarm moves to Wednesday too. If the visit is cancelled, its alarm goes away.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Same rule: the visit moves to Wednesday, but your alarm stays on Tuesday, as Quando? first saw it. A new visit next month still gets its own alarm.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Same rule: you get alarms for the visits in your calendar today, and they stay as they are. A visit added next month gets no alarm.';
+
+  @override
+  String get syncHelpTip => 'Not sure? Keep “Follow the calendar”.';
+
+  @override
+  String get syncHelpWhenTitle => 'When does Quando? notice changes?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone and iPad don\'t let apps watch the calendar in the background, so opening Quando? is what picks changes up.';
+
+  @override
+  String get tapMiddleToStop => 'Tap the middle to stop';
 }

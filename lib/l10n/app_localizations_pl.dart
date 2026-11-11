@@ -3605,4 +3605,71 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get askReadAs => 'Odczytano jako';
+
+  @override
+  String get syncHeading => 'Gdy kalendarz się zmienia';
+
+  @override
+  String get syncLive => 'Podążaj za kalendarzem';
+
+  @override
+  String get syncLiveHint =>
+      'Nowe wydarzenia dostają budzik. Przesunięte wydarzenie przesuwa swój budzik. Usunięte traci go.';
+
+  @override
+  String get syncKeepFirst => 'Zachowaj to, co zobaczyłem najpierw';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Nowe wydarzenia nadal dostają budzik. Ustawiony budzik zostaje na miejscu, nawet gdy wydarzenie się przesunie lub zniknie.';
+
+  @override
+  String get syncSnapshot => 'Tylko wydarzenia, które są teraz';
+
+  @override
+  String get syncSnapshotHint =>
+      'Tylko wydarzenia z kalendarza w chwili zapisu, takie jak teraz. Później nic nowego nie dochodzi.';
+
+  @override
+  String get syncHelpButton => 'Jak to działa';
+
+  @override
+  String get syncHelpTitle => 'Jak budziki podążają za kalendarzem';
+
+  @override
+  String get syncHelpIntro =>
+      'Ta reguła cały czas szuka wydarzeń pasujących do wyszukiwania. Ty wybierasz, co się dzieje, gdy kalendarz się zmienia.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Przykład: reguła dla „dentysta”. Dentysta przenosi wizytę z wtorku na środę, a twój budzik też przechodzi na środę. Gdy wizyta zostanie odwołana, budzik znika.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Ta sama reguła: wizyta przechodzi na środę, ale budzik zostaje we wtorek, tak jak Quando? zobaczył ją najpierw. Nowa wizyta w przyszłym miesiącu i tak dostaje swój budzik.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Ta sama reguła: dostajesz budziki dla wizyt, które są dziś w kalendarzu, i zostają bez zmian. Wizyta dodana w przyszłym miesiącu nie dostaje budzika.';
+
+  @override
+  String get syncHelpTip => 'Nie wiesz? Zostaw „Podążaj za kalendarzem”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Kiedy Quando? zauważa zmiany?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Gdy Quando? jest otwarte: w kilka sekund. Połączony tu Kalendarz Google jest sprawdzany co 2 minuty.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Gdy Quando? jest zamknięte: przy następnym otwarciu. Do tego czasu ustawione budziki dzwonią o dawnych porach.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone i iPad nie pozwalają aplikacjom śledzić kalendarza w tle, więc zmiany trafiają do Quando? po jego otwarciu.';
+
+  @override
+  String get tapMiddleToStop => 'Dotknij środka, by wyłączyć';
 }

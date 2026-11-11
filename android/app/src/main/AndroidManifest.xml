@@ -9,6 +9,7 @@
     <!-- Record your own alarm sounds. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.READ_CALENDAR" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- Required by the calendar plugin for full access. Quando never writes events. -->
     <uses-permission android:name="android.permission.WRITE_CALENDAR" />
     <application
@@ -86,6 +87,11 @@
                 android:resource="@xml/share_paths" />
         </provider>
         <!-- Home-screen widget: next alarm, countdown and the sun's arc. -->
+        <!-- Calendar alarms follow the calendar with Quando? closed. -->
+        <service
+            android:name=".CalendarJob"
+            android:exported="false"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
         <receiver android:name=".QuandoWidget" android:exported="false" android:label="${appLabel}">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>

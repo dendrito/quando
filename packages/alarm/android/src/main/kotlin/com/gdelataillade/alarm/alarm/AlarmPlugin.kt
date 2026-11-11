@@ -23,13 +23,23 @@ class AlarmPlugin : FlutterPlugin, ActivityAware {
     companion object {
         private const val TAG = "AlarmPlugin"
 
+        // Quando: one per Flutter engine (the app, and a short background
+        // calendar check). Ring events go to the newest one still attached,
+        // so a background engine ending never cuts the app off.
+        private val triggerApis = mutableListOf<AlarmTriggerApi>()
+
         @JvmStatic
-        var alarmTriggerApi: AlarmTriggerApi? = null
+        val alarmTriggerApi: AlarmTriggerApi?
+            get() = synchronized(triggerApis) { triggerApis.lastOrNull() }
     }
+
+    private var myTriggerApi: AlarmTriggerApi? = null
 
     override fun onAttachedToEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         AlarmApi.setUp(binding.binaryMessenger, AlarmApiImpl(binding.applicationContext))
-        alarmTriggerApi = AlarmTriggerApi(binding.binaryMessenger)
+        val api = AlarmTriggerApi(binding.binaryMessenger)
+        myTriggerApi = api
+        synchronized(triggerApis) { triggerApis.add(api) }
         backupAudioChannel = MethodChannel(binding.binaryMessenger, "quando/alarm_audio").apply {
             setMethodCallHandler { call, result ->
                 val id = call.argument<Int>("id")
@@ -43,7 +53,8 @@ class AlarmPlugin : FlutterPlugin, ActivityAware {
 
     override fun onDetachedFromEngine(binding: FlutterPlugin.FlutterPluginBinding) {
         AlarmApi.setUp(binding.binaryMessenger, null)
-        alarmTriggerApi = null
+        myTriggerApi?.let { api -> synchronized(triggerApis) { triggerApis.remove(api) } }
+        myTriggerApi = null
         backupAudioChannel?.setMethodCallHandler(null)
         backupAudioChannel = null
     }

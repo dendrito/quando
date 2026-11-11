@@ -1,3 +1,4 @@
+import EventKit
 import Flutter
 import MusicKit
 import UIKit
@@ -20,6 +21,48 @@ import alarm
     if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "QuandoAppleMusic") {
       AppleMusicBridge.register(registrar.messenger())
     }
+    if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "QuandoCalendarWatch") {
+      CalendarWatch.register(registrar.messenger())
+    }
+  }
+}
+
+/// Calendar alarms follow the calendar: tells Dart the moment the phone's
+/// calendars change (EventKit posts this for edits here, in other apps and
+/// from syncing), while the app is open.
+enum CalendarWatch {
+  private static var channel: FlutterMethodChannel?
+  private static var observer: NSObjectProtocol?
+
+  static func register(_ messenger: FlutterBinaryMessenger) {
+    let channel = FlutterMethodChannel(name: "quando/calendar_watch", binaryMessenger: messenger)
+    self.channel = channel
+    channel.setMethodCallHandler { call, result in
+      switch call.method {
+      case "start":
+        start()
+        result(true)
+      case "stop":
+        stop()
+        result(true)
+      default:
+        result(FlutterMethodNotImplemented)
+      }
+    }
+  }
+
+  private static func start() {
+    guard observer == nil else { return }
+    observer = NotificationCenter.default.addObserver(
+      forName: .EKEventStoreChanged, object: nil, queue: .main
+    ) { _ in
+      channel?.invokeMethod("changed", arguments: nil)
+    }
+  }
+
+  private static func stop() {
+    if let observer { NotificationCenter.default.removeObserver(observer) }
+    observer = nil
   }
 }
 

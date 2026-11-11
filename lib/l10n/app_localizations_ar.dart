@@ -3588,4 +3588,71 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askReadAs => 'قُرئ هكذا';
+
+  @override
+  String get syncHeading => 'عندما يتغيّر التقويم';
+
+  @override
+  String get syncLive => 'اتّباع التقويم';
+
+  @override
+  String get syncLiveHint =>
+      'الأحداث الجديدة تحصل على منبّه. إذا تغيّر موعد حدث يتغيّر منبّهه معه. إذا حُذف حدث يُحذف منبّهه.';
+
+  @override
+  String get syncKeepFirst => 'الإبقاء على ما رأيته أولًا';
+
+  @override
+  String get syncKeepFirstHint =>
+      'الأحداث الجديدة تحصل على منبّه أيضًا. بعد ضبطه يبقى المنبّه في مكانه، حتى لو تغيّر موعد الحدث أو حُذف.';
+
+  @override
+  String get syncSnapshot => 'الأحداث الموجودة الآن فقط';
+
+  @override
+  String get syncSnapshotHint =>
+      'فقط الأحداث الموجودة في تقويمك عند الحفظ، كما هي الآن. لا يُضاف شيء جديد لاحقًا.';
+
+  @override
+  String get syncHelpButton => 'كيف يعمل هذا';
+
+  @override
+  String get syncHelpTitle => 'كيف تتّبع المنبّهات تقويمك';
+
+  @override
+  String get syncHelpIntro =>
+      'تستمر هذه القاعدة في البحث عن الأحداث التي تطابق بحثك. أنت تختار ما يحدث عندما يتغيّر تقويمك.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'مثال: قاعدة لكلمة “طبيب الأسنان”. ينقل الطبيب الموعد من الثلاثاء إلى الأربعاء، فينتقل منبّهك إلى الأربعاء أيضًا. وإذا أُلغي الموعد يختفي منبّهه.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'القاعدة نفسها: ينتقل الموعد إلى الأربعاء، لكن منبّهك يبقى يوم الثلاثاء كما رآه Quando? أولًا. وموعد جديد الشهر القادم يحصل على منبّهه.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'القاعدة نفسها: تحصل على منبّهات للمواعيد الموجودة في تقويمك اليوم، وتبقى كما هي. موعد يُضاف الشهر القادم لا يحصل على منبّه.';
+
+  @override
+  String get syncHelpTip => 'غير متأكد؟ اترك “اتّباع التقويم”.';
+
+  @override
+  String get syncHelpWhenTitle => 'متى يلاحظ Quando? التغييرات؟';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'عندما يكون Quando? مفتوحًا: خلال ثوانٍ. تقويم Google المتصل هنا يُفحص كل دقيقتين.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'عندما يكون Quando? مغلقًا: في المرة القادمة التي تفتحه فيها. حتى ذلك الحين ترنّ المنبّهات المضبوطة في أوقاتها السابقة.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'لا يسمح iPhone وiPad للتطبيقات بمراقبة التقويم في الخلفية، لذلك تُلتقط التغييرات عند فتح Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'المس الوسط للإيقاف';
 }

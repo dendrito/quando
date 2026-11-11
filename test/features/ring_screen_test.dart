@@ -182,6 +182,96 @@ void main() {
     await tester.pumpAndSettle();
     expect(find.byType(RingScreen), findsNothing);
   });
+
+  testWidgets('sliding the arrow far enough stops, once', (tester) async {
+    final pending = _PendingStopRegistrar();
+    registrar = pending;
+    await home(tester);
+    await ring(tester, 1, mainAlarm);
+    final arrow = find.byKey(const Key('stopArrow'));
+    final gesture = await tester.startGesture(tester.getCenter(arrow));
+    for (var i = 0; i < 20; i++) {
+      await gesture.moveBy(const Offset(30, 0));
+      await tester.pump();
+    }
+    await gesture.up();
+    expect(pending.calls, 1);
+    pending.result.complete(null);
+    await tester.pumpAndSettle();
+    expect(find.byType(RingScreen), findsNothing);
+  });
+
+  testWidgets('a short slide springs back and does nothing; a tap on the arrow still stops', (tester) async {
+    final pending = _PendingStopRegistrar();
+    registrar = pending;
+    await home(tester);
+    await ring(tester, 1, mainAlarm);
+    final arrow = find.byKey(const Key('stopArrow'));
+    final start = tester.getCenter(arrow);
+    await tester.drag(arrow, const Offset(60, 0));
+    await tester.pumpAndSettle();
+    expect(pending.calls, 0);
+    expect(tester.getCenter(arrow), start);
+    await tester.tap(arrow);
+    expect(pending.calls, 1);
+    pending.result.complete(null);
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('in right-to-left languages the arrow slides the other way', (tester) async {
+    final pending = _PendingStopRegistrar();
+    registrar = pending;
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [registrarProvider.overrideWithValue(registrar)],
+        child: MaterialApp(
+          navigatorKey: navigator,
+          theme: buildTheme(),
+          builder: (context, child) => Directionality(textDirection: TextDirection.rtl, child: child!),
+          home: const Scaffold(body: Text('Alarm home')),
+        ),
+      ),
+    );
+    await ring(tester, 1, mainAlarm);
+    final arrow = find.byKey(const Key('stopArrow'));
+    await tester.drag(arrow, const Offset(600, 0));
+    await tester.pumpAndSettle();
+    expect(pending.calls, 0);
+    await tester.drag(arrow, const Offset(-600, 0));
+    expect(pending.calls, 1);
+    pending.result.complete(null);
+    await tester.pumpAndSettle();
+  });
+
+  testWidgets('tapping the middle of the screen stops, like Stop', (tester) async {
+    await home(tester);
+    await ring(tester, 1, mainAlarm);
+    expect(find.text(l10n.tapMiddleToStop), findsOneWidget);
+    await tester.runAsync(() async {
+      await tester.tap(find.byKey(const Key('ringCentre')));
+      await Future<void>.delayed(Duration.zero);
+    });
+    await tester.pumpAndSettle();
+    expect(find.byType(RingScreen), findsNothing);
+  });
+
+  testWidgets('tapping the middle still asks for the sum first', (tester) async {
+    await home(tester);
+    await ring(
+      tester,
+      1,
+      const RingPayload(title: 'Wake', body: '', ringSeconds: 60, spoken: false, mathTask: true),
+    );
+    await tester.tap(find.byKey(const Key('ringCentre')));
+    await tester.pumpAndSettle();
+    expect(find.byType(RingScreen), findsOneWidget);
+    expect(find.text(l10n.solveToStop), findsOneWidget);
+    // Tapping the middle again does not skip the sum.
+    await tester.tap(find.byKey(const Key('ringCentre')), warnIfMissed: false);
+    await tester.pumpAndSettle();
+    expect(find.byType(RingScreen), findsOneWidget);
+    expect(hostCalls, isNot(contains('stopAlarm')));
+  });
 }
 
 class _PendingStopRegistrar extends AlarmRegistrar {

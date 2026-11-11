@@ -1,4 +1,5 @@
 import '../../events/domain/event.dart';
+import 'calendar_sync.dart';
 import '../../ringing/ring_style.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../rules/domain/reminder_delivery.dart';
@@ -27,7 +28,12 @@ class CalendarRule {
     this.eventReminders = false,
     this.busy = false,
     this.days = const {},
+    this.sync = CalendarSync.live,
   });
+
+  /// How the rule follows the calendar after it is saved: live (default),
+  /// keep each event as first seen, or only the events there when saved.
+  final CalendarSync sync;
 
   /// Only on these weekdays, 1 = Monday ... 7 = Sunday. Empty = any day.
   final Set<int> days;
@@ -91,6 +97,7 @@ class CalendarRule {
   List<AlarmRule> toAlarmRules() {
     final sources = calendarIds.isEmpty ? null : calendarIds;
     final kw = keyword.trim().isEmpty ? null : keyword.trim();
+    final owner = sync == CalendarSync.live ? null : id;
     return [
       AlarmRule(
         id: 'cal.$id.start',
@@ -107,6 +114,7 @@ class CalendarRule {
         deliveries: deliveries,
         eventReminders: eventReminders,
         days: days,
+        owner: owner,
       ),
       AlarmRule(
         id: 'cal.$id.end',
@@ -120,6 +128,7 @@ class CalendarRule {
         style: style,
         deliveries: deliveries,
         days: days,
+        owner: owner,
       ),
       // Shabbat, festival and sun times are single moments: before, at and
       // after all hang off the moment itself.
@@ -147,6 +156,26 @@ class CalendarRule {
     ];
   }
 
+  /// A calendar event (start or end) this rule looks for, whatever it
+  /// would ring for it. Used to remember events.
+  bool wants(AnchorEvent e) {
+    if (!e.kind.isCalendar || e.owner != null) return false;
+    final r = toAlarmRules();
+    final live = (e.kind == EventKind.calendar ? r[0] : r[1]);
+    return AlarmRule(
+      id: live.id,
+      name: live.name,
+      appliesTo: live.appliesTo,
+      sources: live.sources,
+      keyword: live.keyword,
+      days: live.days,
+    ).matches(e);
+  }
+
+  /// What decides which events the rule finds. When it changes, what the
+  /// rule remembered starts again.
+  String get searchKey => [keyword.trim(), (calendarIds.toList()..sort()).join(','), sync.name].join('|');
+
   CalendarRule copyWith({
     String? name,
     String? keyword,
@@ -166,6 +195,7 @@ class CalendarRule {
     bool? eventReminders,
     bool? busy,
     Set<int>? days,
+    CalendarSync? sync,
   }) => CalendarRule(
     id: id,
     name: name ?? this.name,
@@ -184,6 +214,7 @@ class CalendarRule {
     eventReminders: eventReminders ?? this.eventReminders,
     busy: busy ?? this.busy,
     days: days ?? this.days,
+    sync: sync ?? this.sync,
   );
 
   static List<int> _mins(List<Duration> l) => [for (final d in l) d.inMinutes];
@@ -209,6 +240,7 @@ class CalendarRule {
     if (eventReminders) 'eventReminders': true,
     if (busy) 'busy': true,
     if (days.isNotEmpty) 'days': days.toList()..sort(),
+    if (sync != CalendarSync.live) 'sync': sync.name,
   };
 
   factory CalendarRule.fromJson(Map<String, dynamic> j) => CalendarRule(
@@ -229,5 +261,6 @@ class CalendarRule {
     eventReminders: j['eventReminders'] as bool? ?? false,
     busy: j['busy'] as bool? ?? false,
     days: {for (final d in (j['days'] as List? ?? const [])) (d as num).toInt()},
+    sync: CalendarSync.values.where((s) => s.name == j['sync']).firstOrNull ?? CalendarSync.live,
   );
 }

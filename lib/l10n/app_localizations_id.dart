@@ -3535,4 +3535,71 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askReadAs => 'Dibaca sebagai';
+
+  @override
+  String get syncHeading => 'Saat kalender berubah';
+
+  @override
+  String get syncLive => 'Ikuti kalender';
+
+  @override
+  String get syncLiveHint =>
+      'Acara baru dapat alarm. Acara yang dipindah ikut memindah alarmnya. Acara yang dihapus kehilangan alarmnya.';
+
+  @override
+  String get syncKeepFirst => 'Simpan seperti yang pertama kulihat';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Acara baru tetap dapat alarm. Setelah dipasang, alarm tetap di tempatnya, walau acaranya dipindah atau dihapus.';
+
+  @override
+  String get syncSnapshot => 'Hanya acara yang ada sekarang';
+
+  @override
+  String get syncSnapshotHint =>
+      'Hanya acara di kalendermu saat kamu menyimpan, seperti apa adanya sekarang. Tidak ada yang baru ditambahkan nanti.';
+
+  @override
+  String get syncHelpButton => 'Cara kerjanya';
+
+  @override
+  String get syncHelpTitle => 'Cara alarm mengikuti kalendermu';
+
+  @override
+  String get syncHelpIntro =>
+      'Aturan ini terus mencari acara yang cocok dengan pencarianmu. Kamu yang memilih apa yang terjadi saat kalendermu berubah.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Contoh: aturan untuk “dokter gigi”. Dokter gigi memindah janji dari Selasa ke Rabu, dan alarmmu ikut pindah ke Rabu. Kalau janjinya batal, alarmnya hilang.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Aturan yang sama: janji pindah ke Rabu, tapi alarmmu tetap di Selasa, seperti yang pertama dilihat Quando?. Janji baru bulan depan tetap dapat alarm sendiri.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Aturan yang sama: kamu dapat alarm untuk janji yang ada di kalender hari ini, dan tetap seperti itu. Janji yang ditambahkan bulan depan tidak dapat alarm.';
+
+  @override
+  String get syncHelpTip => 'Ragu? Biarkan “Ikuti kalender”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Kapan Quando? melihat perubahan?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Saat Quando? terbuka: dalam hitungan detik. Google Kalender yang tersambung di sini dicek tiap 2 menit.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Saat Quando? tertutup: saat kamu membukanya lagi. Sampai saat itu, alarm yang sudah dipasang berbunyi di waktu lamanya.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone dan iPad tidak mengizinkan aplikasi memantau kalender di latar belakang, jadi perubahan masuk saat Quando? dibuka.';
+
+  @override
+  String get tapMiddleToStop => 'Ketuk bagian tengah untuk berhenti';
 }
