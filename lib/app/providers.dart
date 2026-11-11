@@ -38,6 +38,7 @@ import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 import '../features/shabbat/domain/preparation.dart';
 import '../features/home/domain/home_display.dart';
+import '../features/settings/domain/ui_level.dart';
 import '../features/home/domain/zone_places.dart';
 
 import 'edition.dart';
@@ -85,6 +86,33 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
 }
 
 final homeDisplayProvider = NotifierProvider<HomeDisplayNotifier, HomeDisplay>(HomeDisplayNotifier.new);
+
+// ---- Simple or Everything ----
+
+class UiLevelNotifier extends Notifier<UiLevel> {
+  @override
+  UiLevel build() => UiLevelStore.read(ref.read(prefsProvider));
+
+  void set(UiLevel level) {
+    ref.read(prefsProvider).setString(UiLevelStore.levelKey, level.name);
+    state = level;
+  }
+}
+
+final uiLevelProvider = NotifierProvider<UiLevelNotifier, UiLevel>(UiLevelNotifier.new);
+
+/// True on a brand-new install until its one question is answered.
+class FirstRunNotifier extends Notifier<bool> {
+  @override
+  bool build() => UiLevelStore.pending(ref.read(prefsProvider));
+
+  void answer(UiLevel level) {
+    ref.read(uiLevelProvider.notifier).set(level);
+    state = false;
+  }
+}
+
+final firstRunProvider = NotifierProvider<FirstRunNotifier, bool>(FirstRunNotifier.new);
 
 // ---- Language ----
 
@@ -971,6 +999,27 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
       if (a.id != id) a,
   ]);
 
+  /// Before the defaults change: alarms that follow the default sound or
+  /// ring length keep what they have now, so only new alarms follow the new.
+  void pinDefaults(AlarmOptions before, {bool sound = false, bool ring = false}) {
+    var changed = false;
+    final out = [
+      for (final a in state)
+        () {
+          var x = a;
+          if (sound && a.delivery.soundId == null) {
+            x = x.copyWith(
+              delivery: x.delivery.copyWith(soundId: before.soundId ?? '__phone__', useDefaultSound: false),
+            );
+          }
+          if (ring && a.ringSeconds == null) x = x.copyWith(ringSeconds: before.ringSeconds);
+          changed = changed || !identical(x, a);
+          return x;
+        }(),
+    ];
+    if (changed) _set(out);
+  }
+
   /// Every group name in use, A to Z.
   List<String> get groups => {
     for (final a in state)
@@ -1230,6 +1279,7 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
+    if (a.iWill.isNotEmpty && !a.ruleId.startsWith('gentle.')) p = p.withIWill(a.iWill);
     final delivery = a.ruleId.startsWith('gentle.')
         ? const ReminderDelivery(pushoverEnabled: false)
         : a.delivery;

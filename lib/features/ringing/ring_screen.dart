@@ -13,6 +13,7 @@ import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
+import '../settings/domain/ui_level.dart';
 import '../sounds/ui/sound_player.dart';
 import 'data/apps.dart';
 import 'data/music.dart';
@@ -51,6 +52,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   var _stage = _Stage.ringing;
   var _resolving = false;
   final _openedAt = DateTime.now();
+
+  /// Which ring of the app's life this is. The hint line is for the first
+  /// few only.
+  static const hintRings = 3;
+  var _ringNo = 1;
   Timer? _second;
   int? _checkId;
   late final (int, int) _sum = (Random().nextInt(60) + 12, Random().nextInt(30) + 7);
@@ -80,6 +86,14 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   @override
   void initState() {
     super.initState();
+    if (!p.isCheck && !p.gentle && !p.isLock) {
+      // A counter must never keep an alarm from showing.
+      try {
+        final prefs = ref.read(prefsProvider);
+        _ringNo = (prefs.getInt(UiLevelStore.ringsKey) ?? 0) + 1;
+        prefs.setInt(UiLevelStore.ringsKey, _ringNo);
+      } catch (_) {}
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(SoundPreview.instance.stop());
       unawaited(Music.stopPreview());
@@ -310,7 +324,16 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                           const SizedBox(height: 8),
                           Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
                           const SizedBox(height: 6),
-                          Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
+                          // "When this rings, I will…" stands in for the
+                          // repeat details.
+                          if (p.iWill.isNotEmpty)
+                            Text(
+                              p.iWill,
+                              key: const Key('ringIWill'),
+                              style: text.titleLarge?.copyWith(color: ink, fontWeight: FontWeight.w800),
+                            )
+                          else
+                            Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
                           const SizedBox(height: 10),
                           if (_stage == _Stage.ringing)
                             Text.rich(
@@ -319,11 +342,15 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                                   TextSpan(text: l10n.ringQuote),
                                   TextSpan(
                                     text: '  — ${l10n.ringQuoteBy}',
-                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
+                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
                                   ),
                                 ],
                               ),
-                              style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
+                              style: text.bodyMedium?.copyWith(
+                                color: ink.withValues(alpha: 0.7),
+                                fontStyle: FontStyle.italic,
+                                fontSize: 14,
+                              ),
                             ),
                           if (p.shabbatSafe) ...[
                             const SizedBox(height: 16),
@@ -501,12 +528,15 @@ extension on _RingScreenState {
   /// "Volume buttons stop · shake to snooze".
   List<String> get _hints => [
     if (p.song != null) l10n.startingSong,
-    l10n.tapMiddleToStop,
-    for (final w in StopWay.values)
-      if (p.stopBy.contains(w))
-        l10n.wayToStop(w.label)
-      else if (p.snoozeBy.contains(w) && p.canSnooze)
-        l10n.wayToSnooze(w.label),
+    // Only the first few rings of the app; after that it knows.
+    if (_ringNo <= _RingScreenState.hintRings) ...[
+      l10n.tapMiddleToStop,
+      for (final w in StopWay.values)
+        if (p.stopBy.contains(w))
+          l10n.wayToStop(w.label)
+        else if (p.snoozeBy.contains(w) && p.canSnooze)
+          l10n.wayToSnooze(w.label),
+    ],
   ];
 }
 

@@ -10,6 +10,27 @@ import 'service_logo.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
+/// Which kind of sound a list shows, when it shows only one.
+enum SoundKind { quando, song, recording }
+
+/// The sound list as a bottom sheet. Returns the id picked, `__default__`,
+/// [SoundPickerTile.phone] or `__manage__` (open the sounds screen).
+Future<String?> showSoundSheet(
+  BuildContext context, {
+  required String? value,
+  bool allowDefault = true,
+  SoundKind? kind,
+}) async {
+  final picked = await showModalBottomSheet<String>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: kind != null,
+    builder: (context) => _Sheet(value: value, allowDefault: allowDefault, kind: kind),
+  );
+  await SoundPreview.instance.stop();
+  return picked;
+}
+
 /// A row showing the chosen sound; tap to pick another.
 ///
 /// [value] null means "use the default" when [allowDefault] is on, or the
@@ -53,12 +74,7 @@ class SoundPickerTile extends ConsumerWidget {
         ? l10n.builtIn
         : l10n.yourRecording;
     Future<void> pick() async {
-      final picked = await showModalBottomSheet<String>(
-        context: context,
-        showDragHandle: true,
-        builder: (context) => _Sheet(value: value, allowDefault: allowDefault),
-      );
-      await SoundPreview.instance.stop();
+      final picked = await showSoundSheet(context, value: value, allowDefault: allowDefault);
       if (picked == null) return;
       if (picked == '__manage__') {
         if (context.mounted) context.push('/sounds');
@@ -154,10 +170,11 @@ class SoundPickerTile extends ConsumerWidget {
 }
 
 class _Sheet extends ConsumerStatefulWidget {
-  const _Sheet({required this.value, required this.allowDefault});
+  const _Sheet({required this.value, required this.allowDefault, this.kind});
 
   final String? value;
   final bool allowDefault;
+  final SoundKind? kind;
 
   @override
   ConsumerState<_Sheet> createState() => _SheetState();
@@ -182,7 +199,17 @@ class _SheetState extends ConsumerState<_Sheet> {
 
   @override
   Widget build(BuildContext context) {
-    final sounds = ref.watch(soundsProvider);
+    final kind = widget.kind;
+    final sounds = [
+      for (final s in ref.watch(soundsProvider))
+        if (switch (kind) {
+          null => true,
+          SoundKind.quando => s.builtIn,
+          SoundKind.song => s.isLink || s.isRadio,
+          SoundKind.recording => !s.builtIn && !s.isLink && !s.isRadio,
+        })
+          s,
+    ];
     final current = widget.value ?? (widget.allowDefault ? '__default__' : SoundPickerTile.phone);
     Widget option(String id, String name, {VoidCallback? onListen, bool playing = false}) => ListTile(
       leading: Icon(
@@ -269,12 +296,12 @@ class _SheetState extends ConsumerState<_Sheet> {
               ),
             ),
           ),
-          if (widget.allowDefault)
+          if (kind == null && widget.allowDefault)
             option(
               '__default__',
               l10n.defaultNamed(soundName(sounds, ref.watch(alarmOptionsProvider).soundId)),
             ),
-          option(SoundPickerTile.phone, l10n.phoneAlarmSound),
+          if (kind == null) option(SoundPickerTile.phone, l10n.phoneAlarmSound),
           for (final s in sounds)
             option(
               s.id,

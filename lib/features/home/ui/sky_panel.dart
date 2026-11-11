@@ -39,13 +39,16 @@ String moonPhaseLabel(int phase) => switch (phase) {
 enum SkyCard { sun, moon, phase, weather }
 
 class SkyPanel extends ConsumerStatefulWidget {
-  const SkyPanel({super.key, required this.sky, this.marks = const [], this.only});
+  const SkyPanel({super.key, required this.sky, this.marks = const [], this.only, this.simple = false});
   final SkyDay sky;
   final List<double> marks;
 
   /// Shows just one of the cards, with no tabs: [SkyCard.sun], [SkyCard.moon]
   /// or [SkyCard.weather]. null shows them all as swipeable pages.
   final SkyCard? only;
+
+  /// Simple level: just the day's sky, with no tabs, city or display buttons.
+  final bool simple;
   @override
   ConsumerState<SkyPanel> createState() => _SkyPanelState();
 }
@@ -395,6 +398,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
               : const SizedBox.shrink(),
       };
     }
+    if (widget.simple) return sunContent;
     final onDetailsPage = options.moon && options.moonDetails && details != null && _page == 2;
     if (_page >= pages.length) {
       _page = 0;

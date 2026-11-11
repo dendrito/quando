@@ -2156,5 +2156,47 @@
   "syncHelpWhenOpen": "While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.",
   "syncHelpWhenClosed": "While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.",
   "syncHelpWhenClosedApple": "iPhone and iPad don't let apps watch the calendar in the background, so opening Quando? is what picks changes up.",
-  "tapMiddleToStop": "Tap the middle to stop"
+  "tapMiddleToStop": "Tap the middle to stop",
+  "uiSimple": "Simple",
+  "uiEverything": "Everything",
+  "firstRunTitle": "How much do you want to see?",
+  "firstRunSimpleHint": "Alarms and the basics",
+  "firstRunEverythingHint": "Calendar, Shabbat, timers, weather and more",
+  "firstRunChangeLater": "You can change this any time in Settings.",
+  "continueLabel": "Continue",
+  "everyAlarm": "Every alarm",
+  "wakeMeWith": "Wake me with",
+  "ringOrMusic": "Ring or music",
+  "ringsForRow": "Rings for",
+  "gentleBeforeValue": "{minutes} min before",
+  "@gentleBeforeValue": {
+    "placeholders": {
+      "minutes": {
+        "type": "int"
+      }
+    }
+  },
+  "quandoSounds": "Quando? sounds",
+  "aSongApps": "A song (Spotify, YouTube…)",
+  "myRecording": "My recording",
+  "useForNewAlarms": "Use for new alarms",
+  "iWillLabel": "When this rings, I will…",
+  "foldVolume": "Volume and fades",
+  "foldSnoozeStop": "Snooze and stop",
+  "foldExtras": "Calendar and extras",
+  "groupAlarms": "Alarms",
+  "groupCalendarShabbat": "Calendar and Shabbat",
+  "groupLookQuotes": "Look and quotes",
+  "groupConnectionsSync": "Connections and sync",
+  "qsSummary": "{count} setups · {on} on",
+  "@qsSummary": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      },
+      "on": {
+        "type": "int"
+      }
+    }
+  }
 }

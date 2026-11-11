@@ -3640,4 +3640,83 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Ketuk bagian tengah untuk berhenti';
+
+  @override
+  String get uiSimple => 'Sederhana';
+
+  @override
+  String get uiEverything => 'Semua';
+
+  @override
+  String get firstRunTitle => 'Seberapa banyak yang ingin kamu lihat?';
+
+  @override
+  String get firstRunSimpleHint => 'Alarm dan dasar-dasarnya';
+
+  @override
+  String get firstRunEverythingHint => 'Kalender, Sabat, timer, cuaca, dan lainnya';
+
+  @override
+  String get firstRunChangeLater => 'Kamu bisa mengubahnya kapan saja di Pengaturan.';
+
+  @override
+  String get continueLabel => 'Lanjut';
+
+  @override
+  String get everyAlarm => 'Setiap alarm';
+
+  @override
+  String get wakeMeWith => 'Bangunkan aku dengan';
+
+  @override
+  String get ringOrMusic => 'Dering atau musik';
+
+  @override
+  String get ringsForRow => 'Berdering selama';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes mnt sebelumnya';
+  }
+
+  @override
+  String get quandoSounds => 'Suara Quando?';
+
+  @override
+  String get aSongApps => 'Sebuah lagu (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Rekamanku';
+
+  @override
+  String get useForNewAlarms => 'Pakai untuk alarm baru';
+
+  @override
+  String get iWillLabel => 'Saat ini berbunyi, aku akan…';
+
+  @override
+  String get foldVolume => 'Volume dan fade';
+
+  @override
+  String get foldSnoozeStop => 'Tunda dan berhenti';
+
+  @override
+  String get foldExtras => 'Kalender dan tambahan';
+
+  @override
+  String get groupAlarms => 'Alarm';
+
+  @override
+  String get groupCalendarShabbat => 'Kalender dan Sabat';
+
+  @override
+  String get groupLookQuotes => 'Tampilan dan kutipan';
+
+  @override
+  String get groupConnectionsSync => 'Koneksi dan sinkronisasi';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count pengaturan · $on aktif';
+  }
 }

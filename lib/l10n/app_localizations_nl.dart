@@ -3660,4 +3660,83 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Tik in het midden om te stoppen';
+
+  @override
+  String get uiSimple => 'Eenvoudig';
+
+  @override
+  String get uiEverything => 'Alles';
+
+  @override
+  String get firstRunTitle => 'Hoeveel wil je zien?';
+
+  @override
+  String get firstRunSimpleHint => 'Wekkers en de basis';
+
+  @override
+  String get firstRunEverythingHint => 'Agenda, Sjabbat, timers, weer en meer';
+
+  @override
+  String get firstRunChangeLater => 'Je kunt dit altijd wijzigen in Instellingen.';
+
+  @override
+  String get continueLabel => 'Doorgaan';
+
+  @override
+  String get everyAlarm => 'Elke wekker';
+
+  @override
+  String get wakeMeWith => 'Wek me met';
+
+  @override
+  String get ringOrMusic => 'Beltoon of muziek';
+
+  @override
+  String get ringsForRow => 'Gaat af gedurende';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min ervoor';
+  }
+
+  @override
+  String get quandoSounds => 'Quando?-geluiden';
+
+  @override
+  String get aSongApps => 'Een nummer (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Mijn opname';
+
+  @override
+  String get useForNewAlarms => 'Gebruiken voor nieuwe wekkers';
+
+  @override
+  String get iWillLabel => 'Als dit afgaat, ga ik…';
+
+  @override
+  String get foldVolume => 'Volume en fades';
+
+  @override
+  String get foldSnoozeStop => 'Snooze en stop';
+
+  @override
+  String get foldExtras => 'Agenda en extra’s';
+
+  @override
+  String get groupAlarms => 'Wekkers';
+
+  @override
+  String get groupCalendarShabbat => 'Agenda en Sjabbat';
+
+  @override
+  String get groupLookQuotes => 'Uiterlijk en citaten';
+
+  @override
+  String get groupConnectionsSync => 'Koppelingen en sync';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count setups · $on aan';
+  }
 }

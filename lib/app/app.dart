@@ -21,6 +21,7 @@ import '../features/calendar/data/calendar_watch.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/integrations/ui/integrations_screen.dart';
 import '../features/home/ui/settings_screen.dart';
+import '../features/settings/ui/first_run_screen.dart';
 import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
 import '../features/ringing/ring_payload.dart';
@@ -44,7 +45,10 @@ final _messenger = GlobalKey<ScaffoldMessengerState>();
 final _router = GoRouter(
   navigatorKey: _navigatorKey,
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const FirstRunGate(child: HomeScreen()),
+    ),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),

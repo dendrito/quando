@@ -10,7 +10,18 @@ import '../domain/quick_setups.dart';
 
 /// The top of Settings: three setups, each one tap and one line.
 class QuickSetupsRow extends ConsumerWidget {
-  const QuickSetupsRow({super.key});
+  const QuickSetupsRow({super.key, this.showTitle = true});
+
+  /// Off when the rows sit inside a fold that already has the title.
+  final bool showTitle;
+
+  /// How many setups there are.
+  static const total = 3;
+
+  /// How many are on right now ("Never miss a start" is not a saved setting).
+  static int onCount(WidgetRef ref) =>
+      (morningIsOn(ref.watch(alarmOptionsProvider)) ? 1 : 0) +
+      (stretchIsOn(ref.watch(sequenceConfigProvider)) ? 1 : 0);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
@@ -29,10 +40,11 @@ class QuickSetupsRow extends ConsumerWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Padding(
-          padding: const EdgeInsets.only(top: 8, bottom: 4),
-          child: Text(l10n.quickSetups.toUpperCase(), style: text.labelSmall),
-        ),
+        if (showTitle)
+          Padding(
+            padding: const EdgeInsets.only(top: 8, bottom: 4),
+            child: Text(l10n.quickSetups.toUpperCase(), style: text.labelSmall),
+          ),
         tile(Icons.wb_sunny_outlined, l10n.qsMorningTitle, morningIsOn(o), () => _morning(context, ref)),
         tile(Icons.event_available_outlined, l10n.qsStartTitle, false, () => _start(context)),
         tile(Icons.hourglass_bottom, l10n.qsStretchTitle, stretchIsOn(seq), () => _stretch(context, ref)),

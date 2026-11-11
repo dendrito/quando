@@ -3556,4 +3556,83 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '가운데를 탭하면 정지';
+
+  @override
+  String get uiSimple => '간단히';
+
+  @override
+  String get uiEverything => '전부';
+
+  @override
+  String get firstRunTitle => '얼마나 보고 싶으세요?';
+
+  @override
+  String get firstRunSimpleHint => '알람과 기본 기능';
+
+  @override
+  String get firstRunEverythingHint => '캘린더, 안식일, 타이머, 날씨 등';
+
+  @override
+  String get firstRunChangeLater => '설정에서 언제든 바꿀 수 있어요.';
+
+  @override
+  String get continueLabel => '계속';
+
+  @override
+  String get everyAlarm => '모든 알람';
+
+  @override
+  String get wakeMeWith => '깨우는 방법';
+
+  @override
+  String get ringOrMusic => '벨소리 또는 음악';
+
+  @override
+  String get ringsForRow => '울리는 시간';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes분 전';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? 소리';
+
+  @override
+  String get aSongApps => '노래 (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => '내 녹음';
+
+  @override
+  String get useForNewAlarms => '새 알람에 사용';
+
+  @override
+  String get iWillLabel => '이 알람이 울리면 나는…';
+
+  @override
+  String get foldVolume => '음량과 페이드';
+
+  @override
+  String get foldSnoozeStop => '다시 알림과 중지';
+
+  @override
+  String get foldExtras => '캘린더 및 기타';
+
+  @override
+  String get groupAlarms => '알람';
+
+  @override
+  String get groupCalendarShabbat => '캘린더와 안식일';
+
+  @override
+  String get groupLookQuotes => '화면과 명언';
+
+  @override
+  String get groupConnectionsSync => '연결 및 동기화';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '설정 $count개 · $on개 켜짐';
+  }
 }

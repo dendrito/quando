@@ -12,6 +12,7 @@ import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
 import 'features/calendar/data/calendar_background.dart';
 import 'features/ringing/data/spotify.dart';
+import 'features/settings/domain/ui_level.dart';
 import 'features/sounds/data/spotify_account.dart';
 import 'features/sounds/data/soundcloud.dart';
 import 'features/sounds/data/youtube_library.dart';
@@ -46,6 +47,8 @@ Future<void> main() async {
 Future<(SharedPreferences, String?)> _setUp() async {
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();
+  // Before anything saves a setting: is this a brand-new install?
+  UiLevelStore.init(prefs);
   // Speak the chosen language (or the phone's) from the very first word,
   // including alarms set before any screen is built.
   final language = prefs.getString('language');

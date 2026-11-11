@@ -3713,4 +3713,83 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Торкніться центру, щоб вимкнути';
+
+  @override
+  String get uiSimple => 'Простий';
+
+  @override
+  String get uiEverything => 'Усе';
+
+  @override
+  String get firstRunTitle => 'Скільки ви хочете бачити?';
+
+  @override
+  String get firstRunSimpleHint => 'Будильники й основне';
+
+  @override
+  String get firstRunEverythingHint => 'Календар, Шабат, таймери, погода та інше';
+
+  @override
+  String get firstRunChangeLater => 'Це можна змінити будь-коли в Налаштуваннях.';
+
+  @override
+  String get continueLabel => 'Продовжити';
+
+  @override
+  String get everyAlarm => 'Кожен будильник';
+
+  @override
+  String get wakeMeWith => 'Будити за допомогою';
+
+  @override
+  String get ringOrMusic => 'Дзвінок або музика';
+
+  @override
+  String get ringsForRow => 'Дзвонить';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return 'За $minutes хв';
+  }
+
+  @override
+  String get quandoSounds => 'Звуки Quando?';
+
+  @override
+  String get aSongApps => 'Пісня (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Мій запис';
+
+  @override
+  String get useForNewAlarms => 'Використовувати для нових будильників';
+
+  @override
+  String get iWillLabel => 'Коли це задзвонить, я…';
+
+  @override
+  String get foldVolume => 'Гучність і плавність';
+
+  @override
+  String get foldSnoozeStop => 'Відкласти й стоп';
+
+  @override
+  String get foldExtras => 'Календар та інше';
+
+  @override
+  String get groupAlarms => 'Будильники';
+
+  @override
+  String get groupCalendarShabbat => 'Календар і Шабат';
+
+  @override
+  String get groupLookQuotes => 'Вигляд і цитати';
+
+  @override
+  String get groupConnectionsSync => 'Підключення та синхронізація';
+
+  @override
+  String qsSummary(int count, int on) {
+    return 'Наборів: $count · увімкнено: $on';
+  }
 }

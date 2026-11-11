@@ -3632,4 +3632,83 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'रोकने के लिए बीच में टैप करें';
+
+  @override
+  String get uiSimple => 'सरल';
+
+  @override
+  String get uiEverything => 'सब कुछ';
+
+  @override
+  String get firstRunTitle => 'आप कितना देखना चाहते हैं?';
+
+  @override
+  String get firstRunSimpleHint => 'अलार्म और ज़रूरी चीज़ें';
+
+  @override
+  String get firstRunEverythingHint => 'कैलेंडर, शब्बात, टाइमर, मौसम और बहुत कुछ';
+
+  @override
+  String get firstRunChangeLater => 'आप इसे कभी भी सेटिंग में बदल सकते हैं।';
+
+  @override
+  String get continueLabel => 'आगे बढ़ें';
+
+  @override
+  String get everyAlarm => 'हर अलार्म';
+
+  @override
+  String get wakeMeWith => 'मुझे इससे जगाएँ';
+
+  @override
+  String get ringOrMusic => 'घंटी या संगीत';
+
+  @override
+  String get ringsForRow => 'इतनी देर बजे';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes मिनट पहले';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? की आवाज़ें';
+
+  @override
+  String get aSongApps => 'एक गाना (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'मेरी रिकॉर्डिंग';
+
+  @override
+  String get useForNewAlarms => 'नए अलार्म के लिए इस्तेमाल करें';
+
+  @override
+  String get iWillLabel => 'यह बजे तो मैं…';
+
+  @override
+  String get foldVolume => 'वॉल्यूम और फ़ेड';
+
+  @override
+  String get foldSnoozeStop => 'स्नूज़ और रोकें';
+
+  @override
+  String get foldExtras => 'कैलेंडर और अतिरिक्त';
+
+  @override
+  String get groupAlarms => 'अलार्म';
+
+  @override
+  String get groupCalendarShabbat => 'कैलेंडर और शब्बात';
+
+  @override
+  String get groupLookQuotes => 'रूप और उद्धरण';
+
+  @override
+  String get groupConnectionsSync => 'कनेक्शन और सिंक';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count सेटअप · $on चालू';
+  }
 }

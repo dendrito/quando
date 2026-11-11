@@ -3556,4 +3556,83 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '中央をタップで停止';
+
+  @override
+  String get uiSimple => 'シンプル';
+
+  @override
+  String get uiEverything => 'すべて';
+
+  @override
+  String get firstRunTitle => 'どこまで表示しますか？';
+
+  @override
+  String get firstRunSimpleHint => 'アラームと基本機能';
+
+  @override
+  String get firstRunEverythingHint => 'カレンダー、シャバット、タイマー、天気など';
+
+  @override
+  String get firstRunChangeLater => '設定でいつでも変更できます。';
+
+  @override
+  String get continueLabel => '続ける';
+
+  @override
+  String get everyAlarm => 'すべてのアラーム';
+
+  @override
+  String get wakeMeWith => '起こす方法';
+
+  @override
+  String get ringOrMusic => '音またはミュージック';
+
+  @override
+  String get ringsForRow => '鳴る長さ';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes分前';
+  }
+
+  @override
+  String get quandoSounds => 'Quando?のサウンド';
+
+  @override
+  String get aSongApps => '曲（Spotify、YouTubeなど）';
+
+  @override
+  String get myRecording => '自分の録音';
+
+  @override
+  String get useForNewAlarms => '新しいアラームに使う';
+
+  @override
+  String get iWillLabel => 'これが鳴ったら、私は…';
+
+  @override
+  String get foldVolume => '音量とフェード';
+
+  @override
+  String get foldSnoozeStop => 'スヌーズと停止';
+
+  @override
+  String get foldExtras => 'カレンダーとその他';
+
+  @override
+  String get groupAlarms => 'アラーム';
+
+  @override
+  String get groupCalendarShabbat => 'カレンダーとシャバット';
+
+  @override
+  String get groupLookQuotes => '外観と名言';
+
+  @override
+  String get groupConnectionsSync => '連携と同期';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count件の設定・$on件オン';
+  }
 }

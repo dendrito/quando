@@ -6591,6 +6591,156 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Tap the middle to stop'**
   String get tapMiddleToStop;
+
+  /// No description provided for @uiSimple.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple'**
+  String get uiSimple;
+
+  /// No description provided for @uiEverything.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything'**
+  String get uiEverything;
+
+  /// No description provided for @firstRunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How much do you want to see?'**
+  String get firstRunTitle;
+
+  /// No description provided for @firstRunSimpleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms and the basics'**
+  String get firstRunSimpleHint;
+
+  /// No description provided for @firstRunEverythingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar, Shabbat, timers, weather and more'**
+  String get firstRunEverythingHint;
+
+  /// No description provided for @firstRunChangeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this any time in Settings.'**
+  String get firstRunChangeLater;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @everyAlarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Every alarm'**
+  String get everyAlarm;
+
+  /// No description provided for @wakeMeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake me with'**
+  String get wakeMeWith;
+
+  /// No description provided for @ringOrMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring or music'**
+  String get ringOrMusic;
+
+  /// No description provided for @ringsForRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Rings for'**
+  String get ringsForRow;
+
+  /// No description provided for @gentleBeforeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min before'**
+  String gentleBeforeValue(int minutes);
+
+  /// No description provided for @quandoSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? sounds'**
+  String get quandoSounds;
+
+  /// No description provided for @aSongApps.
+  ///
+  /// In en, this message translates to:
+  /// **'A song (Spotify, YouTube…)'**
+  String get aSongApps;
+
+  /// No description provided for @myRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'My recording'**
+  String get myRecording;
+
+  /// No description provided for @useForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Use for new alarms'**
+  String get useForNewAlarms;
+
+  /// No description provided for @iWillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'When this rings, I will…'**
+  String get iWillLabel;
+
+  /// No description provided for @foldVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume and fades'**
+  String get foldVolume;
+
+  /// No description provided for @foldSnoozeStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze and stop'**
+  String get foldSnoozeStop;
+
+  /// No description provided for @foldExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and extras'**
+  String get foldExtras;
+
+  /// No description provided for @groupAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms'**
+  String get groupAlarms;
+
+  /// No description provided for @groupCalendarShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and Shabbat'**
+  String get groupCalendarShabbat;
+
+  /// No description provided for @groupLookQuotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Look and quotes'**
+  String get groupLookQuotes;
+
+  /// No description provided for @groupConnectionsSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections and sync'**
+  String get groupConnectionsSync;
+
+  /// No description provided for @qsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} setups · {on} on'**
+  String qsSummary(int count, int on);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

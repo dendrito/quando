@@ -3641,4 +3641,83 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => 'Durdurmak için ortaya dokun';
+
+  @override
+  String get uiSimple => 'Basit';
+
+  @override
+  String get uiEverything => 'Her şey';
+
+  @override
+  String get firstRunTitle => 'Ne kadarını görmek istersin?';
+
+  @override
+  String get firstRunSimpleHint => 'Alarmlar ve temel özellikler';
+
+  @override
+  String get firstRunEverythingHint => 'Takvim, Şabat, zamanlayıcılar, hava durumu ve daha fazlası';
+
+  @override
+  String get firstRunChangeLater => 'Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.';
+
+  @override
+  String get continueLabel => 'Devam';
+
+  @override
+  String get everyAlarm => 'Her alarm';
+
+  @override
+  String get wakeMeWith => 'Beni şununla uyandır';
+
+  @override
+  String get ringOrMusic => 'Zil veya müzik';
+
+  @override
+  String get ringsForRow => 'Çalma süresi';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes dk önce';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? sesleri';
+
+  @override
+  String get aSongApps => 'Bir şarkı (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Kaydım';
+
+  @override
+  String get useForNewAlarms => 'Yeni alarmlar için kullan';
+
+  @override
+  String get iWillLabel => 'Bu çaldığında, şunu yapacağım…';
+
+  @override
+  String get foldVolume => 'Ses ve geçişler';
+
+  @override
+  String get foldSnoozeStop => 'Ertele ve durdur';
+
+  @override
+  String get foldExtras => 'Takvim ve ekstralar';
+
+  @override
+  String get groupAlarms => 'Alarmlar';
+
+  @override
+  String get groupCalendarShabbat => 'Takvim ve Şabat';
+
+  @override
+  String get groupLookQuotes => 'Görünüm ve alıntılar';
+
+  @override
+  String get groupConnectionsSync => 'Bağlantılar ve eşitleme';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count kurulum · $on açık';
+  }
 }

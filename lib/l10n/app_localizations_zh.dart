@@ -3547,6 +3547,85 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get tapMiddleToStop => '点按中间即可停止';
+
+  @override
+  String get uiSimple => '简洁';
+
+  @override
+  String get uiEverything => '全部';
+
+  @override
+  String get firstRunTitle => '你想看到多少？';
+
+  @override
+  String get firstRunSimpleHint => '闹钟和基本功能';
+
+  @override
+  String get firstRunEverythingHint => '日历、安息日、计时器、天气等';
+
+  @override
+  String get firstRunChangeLater => '你可以随时在设置中更改。';
+
+  @override
+  String get continueLabel => '继续';
+
+  @override
+  String get everyAlarm => '每个闹钟';
+
+  @override
+  String get wakeMeWith => '唤醒方式';
+
+  @override
+  String get ringOrMusic => '铃声或音乐';
+
+  @override
+  String get ringsForRow => '响铃时长';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '提前$minutes分钟';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? 铃声';
+
+  @override
+  String get aSongApps => '一首歌（Spotify、YouTube…）';
+
+  @override
+  String get myRecording => '我的录音';
+
+  @override
+  String get useForNewAlarms => '用于新闹钟';
+
+  @override
+  String get iWillLabel => '闹钟响时，我要…';
+
+  @override
+  String get foldVolume => '音量与渐变';
+
+  @override
+  String get foldSnoozeStop => '贪睡与停止';
+
+  @override
+  String get foldExtras => '日历和其他';
+
+  @override
+  String get groupAlarms => '闹钟';
+
+  @override
+  String get groupCalendarShabbat => '日历和安息日';
+
+  @override
+  String get groupLookQuotes => '外观和名言';
+
+  @override
+  String get groupConnectionsSync => '连接与同步';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count个设置 · $on个已开启';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -7091,4 +7170,83 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get tapMiddleToStop => '點按中間即可停止';
+
+  @override
+  String get uiSimple => '簡潔';
+
+  @override
+  String get uiEverything => '全部';
+
+  @override
+  String get firstRunTitle => '你想看到多少？';
+
+  @override
+  String get firstRunSimpleHint => '鬧鐘和基本功能';
+
+  @override
+  String get firstRunEverythingHint => '日曆、安息日、計時器、天氣等';
+
+  @override
+  String get firstRunChangeLater => '你可以隨時在設定中更改。';
+
+  @override
+  String get continueLabel => '繼續';
+
+  @override
+  String get everyAlarm => '每個鬧鐘';
+
+  @override
+  String get wakeMeWith => '喚醒方式';
+
+  @override
+  String get ringOrMusic => '鈴聲或音樂';
+
+  @override
+  String get ringsForRow => '響鈴時長';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '提前$minutes分鐘';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? 鈴聲';
+
+  @override
+  String get aSongApps => '一首歌（Spotify、YouTube…）';
+
+  @override
+  String get myRecording => '我的錄音';
+
+  @override
+  String get useForNewAlarms => '用於新鬧鐘';
+
+  @override
+  String get iWillLabel => '鬧鐘響時，我要…';
+
+  @override
+  String get foldVolume => '音量與漸變';
+
+  @override
+  String get foldSnoozeStop => '貪睡與停止';
+
+  @override
+  String get foldExtras => '日曆和其他';
+
+  @override
+  String get groupAlarms => '鬧鐘';
+
+  @override
+  String get groupCalendarShabbat => '日曆和安息日';
+
+  @override
+  String get groupLookQuotes => '外觀和名言';
+
+  @override
+  String get groupConnectionsSync => '連線與同步';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count個設定 · $on個已開啟';
+  }
 }
