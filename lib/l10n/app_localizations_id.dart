@@ -2287,10 +2287,10 @@ class AppLocalizationsId extends AppLocalizations {
   String get deliveryReset => 'Gunakan pengaturan yang ada';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Sebelum Sabat';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Pengingat persiapan';
 
   @override
   String get skipThisWeek => 'Lewati minggu ini';
@@ -2302,7 +2302,7 @@ class AppLocalizationsId extends AppLocalizations {
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Waktu & suara';
 
   @override
   String get changeCity => 'Change city';
@@ -2326,17 +2326,17 @@ class AppLocalizationsId extends AppLocalizations {
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => 'Pengingat persiapan mati. Havdalah dan alarm biasa tidak berubah.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Pengingat persiapan dilewati minggu ini. Pengaturan mingguanmu tetap tersimpan.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Kontrol Sabat';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Selama / setelah Sabat';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
@@ -2347,49 +2347,49 @@ class AppLocalizationsId extends AppLocalizations {
   String get currentLocation => 'Lokasi saat ini';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Uji suara di Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Memutar suara yang dipilih di perangkat Pushover yang kamu pilih. Pengaturan senyap dan jam tenang tetap berlaku.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Bagikan kredensial ke perangkatku';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Kunci pengguna Pushover dan token aplikasimu dapat mengikuti akunmu yang sudah masuk di Quando? dan Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => 'Kredensial antre untuk perangkatmu yang sudah masuk.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Masuk ke akun aplikasi yang sama di setiap perangkat untuk membagikan kredensial Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Jalankan skena Tuya langsung, atau hubungkan otomasi Home Assistant atau Node-RED milikmu.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Bagikan koneksi layanan';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Gunakan akun aplikasi yang sama di perangkatmu untuk membagikan koneksi Pushover, Tuya, pustaka Spotify, dan otomasi. YouTube dan izin perangkat mungkin masih perlu disetujui di setiap perangkat.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Gunakan proyek pengembang Tuya yang tertaut. Masukkan pusat datanya, Access ID, Access Secret, dan UID yang tampil di “Link App Account”. Home Assistant tidak diperlukan.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID akun tertaut';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2402,48 +2402,48 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Tidak ada skena Tap-to-Run yang tersedia. Periksa akun tertaut, pusat data, dan izin API skena.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Jalankan skena sekarang';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Jalankan skena ini di perangkat Tuya-mu sekarang?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya menerima perintah skena. Periksa perangkatmu.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya tidak dapat menyelesaikan permintaan. Periksa izin proyek, pusat data, dan langganan. Kesalahan:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Skena Tuya saat alarm ini berbunyi';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Buat otomasi Home Assistant dengan pemicu Webhook yang menerima POST dan JSON. Tempel URL-nya di sini. Gunakan kejadian alarm (ring, stopped, snoozed, atau auto_stopped) untuk memilih tindakanmu. Perangkat baru menerima koneksi ini dalam keadaan mati.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Gunakan node HTTP In Node-RED yang menerima POST, diikuti otomasimu dan node HTTP Response. Tempel endpoint di sini. Hub HTTP lokal dan endpoint HTTPS didukung.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Hubungkan layanan rumah pintar';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'Pengujian langsung menjalankan otomasi yang terhubung.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Jalankan aksi alarm rumah pintar di perangkat ini';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Pilih satu perangkat untuk menjalankan otomasimu. Koneksi dibagikan; sakelar ini hanya berlaku di perangkat ini.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Aksi alarm mati di perangkat ini. Aktifkan di Koneksi; uji skena manual tetap berfungsi.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2467,19 +2467,19 @@ class AppLocalizationsId extends AppLocalizations {
   String get weatherSwipeHint => 'Geser antara langit dan cuaca';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Parasyah mingguan';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Belajar harian';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 1 pasal per hari';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 3 pasal per hari';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2572,16 +2572,16 @@ class AppLocalizationsId extends AppLocalizations {
   String get weatherThunderExpected => 'Prakiraan badai petir';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Hubungkan untuk memuat jadwal belajar bulan ini';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Pembacaan Taurat hari raya';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Kalender belajar · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Prakiraan · MET Norway · CC BY 4.0';
 
   @override
   String get weatherConsent =>
@@ -2653,10 +2653,10 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Masuk dengan akun belum tersedia di versi ini. Jika kamu sudah punya proyek pengembang Tuya, gunakan penyiapan lanjutan.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Penyiapan lanjutan';
 
   @override
   String get tuyaSignInTitle => 'Masuk dengan akun Smart Life';
@@ -2701,16 +2701,17 @@ class AppLocalizationsId extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Menampilkan hari pertama atau dua hari pertama bulan Ibrani berikutnya di Beranda.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Rosh Hodesh berikutnya';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Dimulai saat matahari terbenam pada';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Baca bagian Taurat ini di Sefaria';
 
   @override
   String get skyMyLocation => 'My location';

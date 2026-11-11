@@ -2285,10 +2285,10 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deliveryReset => 'Dùng cài đặt hiện có';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Trước Shabbat';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Nhắc nhở chuẩn bị';
 
   @override
   String get skipThisWeek => 'Bỏ qua tuần này';
@@ -2300,7 +2300,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Giờ & âm thanh';
 
   @override
   String get changeCity => 'Change city';
@@ -2324,17 +2324,17 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => 'Nhắc nhở chuẩn bị đang tắt. Havdalah và các báo thức thông thường không đổi.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Nhắc nhở chuẩn bị tuần này được bỏ qua. Cài đặt hằng tuần của bạn vẫn được giữ.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Điều khiển Shabbat';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Trong / sau Shabbat';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
@@ -2345,49 +2345,49 @@ class AppLocalizationsVi extends AppLocalizations {
   String get currentLocation => 'Vị trí hiện tại';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Thử âm thanh trên Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Phát âm thanh đã chọn trên các thiết bị Pushover bạn đã chọn. Cài đặt im lặng và giờ yên tĩnh vẫn được áp dụng.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Chia sẻ thông tin đăng nhập với thiết bị của tôi';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Khóa người dùng Pushover và mã thông báo ứng dụng của bạn có thể đi theo tài khoản đã đăng nhập trong Quando? và Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => 'Thông tin đăng nhập đang chờ gửi tới các thiết bị đã đăng nhập của bạn.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Đăng nhập cùng một tài khoản ứng dụng trên mỗi thiết bị để chia sẻ thông tin đăng nhập Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Chạy trực tiếp các cảnh Tuya, hoặc kết nối tự động hóa Home Assistant hay Node-RED của riêng bạn.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Chia sẻ kết nối dịch vụ';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Dùng cùng một tài khoản ứng dụng trên các thiết bị để chia sẻ kết nối Pushover, Tuya, thư viện Spotify và tự động hóa. YouTube và quyền của thiết bị vẫn có thể cần được duyệt trên từng thiết bị.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Dùng dự án nhà phát triển Tuya đã liên kết của bạn. Nhập trung tâm dữ liệu, Access ID, Access Secret và UID hiển thị trong “Link App Account”. Không cần Home Assistant.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID của tài khoản đã liên kết';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2400,48 +2400,48 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Không tìm thấy cảnh Tap-to-Run khả dụng. Hãy kiểm tra tài khoản đã liên kết, trung tâm dữ liệu và quyền API cảnh.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Chạy cảnh ngay';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Chạy cảnh này trên các thiết bị Tuya của bạn ngay bây giờ?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya đã chấp nhận lệnh cảnh. Hãy kiểm tra các thiết bị của bạn.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya không thể hoàn tất yêu cầu. Hãy kiểm tra quyền của dự án, trung tâm dữ liệu và gói đăng ký. Lỗi:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Cảnh Tuya khi báo thức này đổ chuông';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Tạo một tự động hóa Home Assistant với trình kích hoạt Webhook nhận POST và JSON. Dán URL của nó vào đây. Dùng sự kiện báo thức (ring, stopped, snoozed hoặc auto_stopped) để chọn hành động. Thiết bị mới nhận kết nối này ở trạng thái tắt.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Dùng một nút HTTP In của Node-RED nhận POST, tiếp theo là tự động hóa của bạn và một nút HTTP Response. Dán điểm cuối vào đây. Hỗ trợ hub HTTP cục bộ và điểm cuối HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Kết nối dịch vụ nhà thông minh';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'Khi thử, tự động hóa đã kết nối sẽ chạy ngay.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Chạy hành động báo thức nhà thông minh trên thiết bị này';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Chọn một thiết bị để chạy các tự động hóa của bạn. Các kết nối được chia sẻ; công tắc này chỉ áp dụng cho thiết bị này.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Hành động báo thức đang tắt trên thiết bị này. Hãy bật trong Kết nối; thử cảnh thủ công vẫn hoạt động.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2465,19 +2465,19 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherSwipeHint => 'Vuốt giữa bầu trời và thời tiết';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Parashah hằng tuần';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Học mỗi ngày';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 1 chương/ngày';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 3 chương/ngày';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2570,16 +2570,16 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherThunderExpected => 'Dự báo có dông';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Kết nối để tải lịch học của tháng này';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Bài đọc Torah ngày lễ';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Lịch học · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Dự báo · MET Norway · CC BY 4.0';
 
   @override
   String get weatherConsent => 'Thời tiết cho thành phố bạn đã chọn. Dùng tọa độ đã làm tròn với MET Norway.';
@@ -2652,10 +2652,10 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Đăng nhập bằng tài khoản chưa có trong bản này. Nếu bạn đã có dự án nhà phát triển Tuya, hãy dùng thiết lập nâng cao.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Thiết lập nâng cao';
 
   @override
   String get tuyaSignInTitle => 'Đăng nhập bằng tài khoản Smart Life';
@@ -2700,16 +2700,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Hiện trên Trang chủ ngày đầu hoặc hai ngày đầu của tháng Do Thái tiếp theo.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Rosh Hodesh tiếp theo';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Bắt đầu lúc hoàng hôn ngày';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Đọc phần Torah này trên Sefaria';
 
   @override
   String get skyMyLocation => 'My location';

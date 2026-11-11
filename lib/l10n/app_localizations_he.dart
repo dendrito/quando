@@ -2373,24 +2373,24 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'הפעלת סצנות Tuya ישירות, או חיבור האוטומציות שלך ב-Home Assistant או ב-Node-RED.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'שיתוף חיבורי שירותים';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'השתמשו באותו חשבון אפליקציה במכשירים שלכם כדי לשתף חיבורי Pushover, Tuya, ספריית Spotify ואוטומציות. ייתכן שעדיין יידרש אישור של YouTube והרשאות המכשיר בכל מכשיר.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'השתמשו בפרויקט המפתחים המקושר שלכם ב-Tuya. הזינו את מרכז הנתונים, Access ID, Access Secret ואת ה-UID שמופיע תחת “Link App Account”. אין צורך ב-Home Assistant.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID של החשבון המקושר';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2403,48 +2403,48 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'לא נמצאו סצנות Tap-to-Run זמינות. בדקו את החשבון המקושר, מרכז הנתונים והרשאות ה-API של הסצנות.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'הפעל סצנה עכשיו';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'להפעיל את הסצנה הזו במכשירי Tuya שלכם עכשיו?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya קיבלה את פקודת הסצנה. בדקו את המכשירים שלכם.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya לא הצליחה להשלים את הבקשה. בדקו את הרשאות הפרויקט, מרכז הנתונים והמנוי. שגיאה:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'סצנת Tuya כשההתראה הזו מצלצלת';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'צרו אוטומציה ב-Home Assistant עם טריגר Webhook שמקבל POST ו-JSON, והדביקו כאן את הכתובת שלה. השתמשו באירוע ההתראה (ring, stopped, snoozed או auto_stopped) כדי לבחור את הפעולות. במכשירים חדשים החיבור הזה כבוי.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'השתמשו בצומת HTTP In של Node-RED שמקבל POST, ואחריו האוטומציה שלכם וצומת HTTP Response. הדביקו כאן את נקודת הקצה. נתמכים רכזות HTTP מקומיות ונקודות קצה של HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'חיבור שירות בית חכם';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'בדיקה מפעילה את האוטומציה המחוברת מיד.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'הפעלת פעולות התראה של בית חכם במכשיר הזה';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'בחרו מכשיר אחד שיריץ את האוטומציות שלכם. החיבורים משותפים; המתג הזה חל רק על המכשיר הזה.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'פעולות ההתראה כבויות במכשיר הזה. הפעילו אותן ב״חיבורים״; בדיקות ידניות של סצנות ממשיכות לעבוד.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2468,25 +2468,25 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherSwipeHint => 'החלק בין השמיים למזג האוויר';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'פרשת השבוע';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'לימוד יומי';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'רמב״ם · פרק אחד ביום';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'רמב״ם · שלושה פרקים ביום';
 
   @override
-  String get courseMitzvot => 'Sefer HaMitzvot';
+  String get courseMitzvot => 'ספר המצוות';
 
   @override
-  String get courseMishnah => 'Mishnah Yomit';
+  String get courseMishnah => 'משנה יומית';
 
   @override
   String get courseNach => 'Nach Yomi';

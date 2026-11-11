@@ -2340,10 +2340,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deliveryReset => 'Использовать текущие настройки';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Перед Шаббатом';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Напоминания о подготовке';
 
   @override
   String get skipThisWeek => 'Пропустить эту неделю';
@@ -2355,7 +2355,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Время и звук';
 
   @override
   String get changeCity => 'Change city';
@@ -2380,17 +2380,17 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => 'Напоминания о подготовке выключены. Авдала и обычные будильники не меняются.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Напоминания о подготовке на этой неделе пропущены. Ваши недельные настройки сохранены.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Настройки Шаббата';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Во время / после Шаббата';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
@@ -2401,49 +2401,50 @@ class AppLocalizationsRu extends AppLocalizations {
   String get currentLocation => 'Текущее местоположение';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Проверить звук в Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Воспроизводит выбранный звук на выбранных устройствах Pushover. Настройки беззвучного режима и тихих часов продолжают действовать.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Поделиться данными доступа с моими устройствами';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Ваш пользовательский ключ Pushover и токен приложения могут следовать за вашим аккаунтом в Quando? и Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued =>
+      'Данные доступа поставлены в очередь для ваших устройств с выполненным входом.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Войдите в один и тот же аккаунт приложения на каждом устройстве, чтобы поделиться данными Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Запускайте сцены Tuya напрямую или подключите собственные автоматизации Home Assistant или Node-RED.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Поделиться подключениями к сервисам';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Используйте один и тот же аккаунт приложения на своих устройствах, чтобы поделиться подключениями к Pushover, Tuya, библиотеке Spotify и автоматизациям. YouTube и разрешения устройства могут по-прежнему требовать подтверждения на каждом устройстве.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Используйте связанный проект разработчика Tuya. Введите его дата-центр, Access ID, Access Secret и UID, указанный в разделе «Link App Account». Home Assistant не нужен.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID связанного аккаунта';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2456,48 +2457,48 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Доступных сцен Tap-to-Run не найдено. Проверьте связанный аккаунт, дата-центр и разрешения API сцен.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Запустить сцену сейчас';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Запустить эту сцену на ваших устройствах Tuya сейчас?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya приняла команду сцены. Проверьте свои устройства.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya не смогла выполнить запрос. Проверьте разрешения проекта, дата-центр и подписку. Ошибка:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Сцена Tuya, когда звонит этот будильник';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Создайте автоматизацию Home Assistant с триггером Webhook, принимающим POST и JSON. Вставьте сюда её URL. Используйте событие будильника (ring, stopped, snoozed или auto_stopped), чтобы выбрать действия. Новые устройства получают это подключение выключенным.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Используйте узел HTTP In в Node-RED, принимающий POST, затем вашу автоматизацию и узел HTTP Response. Вставьте сюда конечную точку. Поддерживаются локальные HTTP-хабы и конечные точки HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Подключить сервис умного дома';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'При проверке подключённая автоматизация запускается сразу.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Выполнять действия будильников для умного дома на этом устройстве';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Выберите одно устройство для запуска ваших автоматизаций. Подключения общие; этот переключатель действует только на этом устройстве.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Действия будильников на этом устройстве выключены. Включите их в разделе «Подключения»; ручная проверка сцен по-прежнему работает.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2521,19 +2522,19 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weatherSwipeHint => 'Листайте между небом и погодой';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Недельная глава Торы';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Ежедневное изучение';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Рамбам · 1 глава в день';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Рамбам · 3 главы в день';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2626,16 +2627,16 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weatherThunderExpected => 'Ожидаются грозы';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Подключитесь, чтобы загрузить план изучения на этот месяц';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Праздничное чтение Торы';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Календарь изучения · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Прогноз · MET Norway · CC BY 4.0';
 
   @override
   String get weatherConsent =>
@@ -2709,10 +2710,10 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Вход через аккаунт в этой версии пока недоступен. Если у вас уже есть проект разработчика Tuya, используйте расширенную настройку.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Расширенная настройка';
 
   @override
   String get tuyaSignInTitle => 'Войти с аккаунтом Smart Life';
@@ -2757,16 +2758,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Показывает на главном экране первый день или два дня следующего еврейского месяца.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Следующий Рош-ходеш';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Начинается на закате';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Читать эту главу Торы на Sefaria';
 
   @override
   String get skyMyLocation => 'My location';
