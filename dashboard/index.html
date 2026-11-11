@@ -367,7 +367,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     } else {
       h += "<p>To save changes from this page, paste a GitHub token once. It stays in this browser only.</p><ol style='padding-left:20px;margin:0'>" +
         '<li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a fine-grained token</a>.</li>' +
-        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>.</li><li>Copy the token and paste it here.</li></ol>" +
+        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>, <b>Pull requests: Read</b> and <b>Issues: Read</b> (the last two let the live pull request list work while the repository is private).</li><li>Copy the token and paste it here.</li></ol>" +
         '<label>Token</label><input id="tk" type="password" autocomplete="off" placeholder="github_pat_…">' +
         '<div class="actions"><button class="btn primary" id="on">Turn on</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>';
     }
@@ -379,7 +379,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     };
   }
 
-  function gh(path) { return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function gh(path) { var hd = { Accept: "application/vnd.github+json" }; if (token) hd.Authorization = "Bearer " + token; return fetch("https://api.github.com/repos/" + data.repo + path, { headers: hd }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function live() {
     gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
@@ -389,7 +389,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       $("prs").innerHTML = open.length ? open.map(function (p) {
         return '<div class="row"><div class="grow"><a href="' + esc(p.html_url) + '" target="_blank" rel="noopener">#' + p.number + " " + esc(p.title) + '</a><div class="mute">' + esc(p.head.ref) + " → " + esc(p.base.ref) + " · updated " + ago(p.updated_at) + "</div></div>" + prPill(p.number) + "</div>";
       }).join("") : '<div class="empty">No open pull requests.</div>';
-    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes.</div>'; });
+    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub. If the repository is private, turn on editing (top right) and paste a token that can read pull requests and issues; otherwise it may be rate limiting, so try again in a few minutes.</div>'; });
     gh("/issues?state=open&per_page=50").then(function (list) {
       var issues = list.filter(function (i) { return !i.pull_request; });
       $("issues").innerHTML = issues.length ? issues.map(function (i) {
