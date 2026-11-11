@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Conecte uma agenda para o Quando? achar “{event}”.",
   "askSnoozeAll": "Soneca: {minutes} min, para todos os alarmes",
   "askWakeWith": "Te acorda com {sound}",
-  "askReadAs": "Lido como"
+  "askReadAs": "Lido como",
+  "quickSetups": "Configurações rápidas",
+  "qsMorningTitle": "Manhã que funciona",
+  "qsStartTitle": "Nunca perca um início",
+  "qsStretchTitle": "Trabalhe em etapas",
+  "qsWillChange": "O que vai mudar",
+  "qsAlreadyOn": "Já está ligado. Nada a mudar.",
+  "qsApply": "Aplicar",
+  "qsDone": "Pronto",
+  "qsUndo": "Desfazer",
+  "qsSnoozeTimes": "Sonecas permitidas",
+  "qsSnoozeMinutes": "Minutos de soneca",
+  "qsFiveLeft": "Faltam 5 minutos"
 }
