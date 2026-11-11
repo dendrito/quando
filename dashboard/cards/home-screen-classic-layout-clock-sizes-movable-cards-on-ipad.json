@@ -1,7 +1,7 @@
 {
   "id": "home-screen-classic-layout-clock-sizes-movable-cards-on-ipad",
   "title": "Home screen: classic layout, clock sizes, movable cards on iPad/Mac",
-  "status": "review",
+  "status": "done",
   "tag": "app",
   "prs": [
     24
@@ -16,5 +16,6 @@
       "url": "https://github.com/dendrito/quando/blob/main/docs/HOME_INFORMATION.md"
     }
   ],
-  "order": 2
+  "order": 2,
+  "note": "Shipped via release PR #28; PRs #22/#23/#24 redundant."
 }
