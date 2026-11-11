@@ -439,6 +439,13 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
     $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); }; $("add-biz").onclick = function () { editPlan("", "business"); };
+    /* Coming back to the page after a while: reload the board and GitHub data so nothing is stale. */
+    var hiddenAt = 0;
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      if (!hiddenAt || Date.now() - hiddenAt < 60000 || $("dlg").open) return;
+      fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) { data = d; chrome(); deadlines(); board(); plans(); live(); runs(); }).catch(function () {});
+    });
   }).catch(function (e) {
     document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
