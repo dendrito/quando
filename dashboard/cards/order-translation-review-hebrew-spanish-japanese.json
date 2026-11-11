@@ -10,7 +10,11 @@
     "local"
   ],
   "docs": [
-    {"title": "Marketing plan (private)", "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf"}
+    {
+      "title": "Marketing plan (private)",
+      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf"
+    }
   ],
-  "order": 113
+  "order": 113,
+  "group": "Languages and quotes"
 }
