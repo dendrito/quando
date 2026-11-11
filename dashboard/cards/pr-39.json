@@ -1,7 +1,7 @@
 {
   "id": "pr-39",
   "title": "Voice alarms: fix \"10 minutes before 7\", per-alarm snooze",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     39
