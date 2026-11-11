@@ -6,7 +6,7 @@
     "google"
   ],
   "title": "Google 1/6: merge PR #31 (quando.day website)",
-  "status": "review",
+  "status": "done",
   "note": "Adds the home, privacy and terms pages.",
   "details": "Step 0 of the guide: the site folder must be on main before Cloudflare can publish it.",
   "docs": [
