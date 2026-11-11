@@ -152,3 +152,4 @@ queen_dontstop = No me detengas ahora, me lo estoy pasando tan bien. | Queen
 queen_iwantit = Lo quiero todo, y lo quiero ya. | Queen
 queen_forever = ¿Quién quiere vivir para siempre? | Queen
 howsoon = ¿Cuán pronto es ahora? | The Smiths
++literature any = Parece que el tiempo diera vueltas en redondo y hubiéramos vuelto al principio. | Gabriel García Márquez, Cien años de soledad

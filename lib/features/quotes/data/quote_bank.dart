@@ -3473,6 +3473,12 @@ const quoteBank = <String, List<Quote>>{
     Quote('No por mucho madrugar amanece más temprano.', 'Refrán', QuoteSource.proverbs, 'morning'),
     Quote('Más vale tarde que nunca.', 'Refrán', QuoteSource.proverbs, 'any'),
     Quote('No dejes para mañana lo que puedas hacer hoy.', 'Refrán', QuoteSource.proverbs, 'any'),
+    Quote(
+      'Parece que el tiempo diera vueltas en redondo y hubiéramos vuelto al principio.',
+      'Gabriel García Márquez, Cien años de soledad',
+      QuoteSource.literature,
+      'any',
+    ),
   ],
   'fr': [
     Quote(
