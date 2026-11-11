@@ -2105,10 +2105,10 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Mijn apparaten synchroniseren';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Log in met Google om wekkers en instellingen op al je apparaten gelijk te houden.';
 
   @override
   String syncOn(String email) {
@@ -2122,85 +2122,85 @@ class AppLocalizationsNl extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Verbinden mislukt. Tik om het opnieuw te proberen.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'Synchronisatie is in deze versie nog niet ingesteld.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Toch laten overgaan';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Deze $n vandaag overslaan';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '“$name” uitzetten';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '“$name” aanzetten';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '“$name” uitgezet';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '“$time” verwijderen uit “$name”';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '“$time” verwijderd uit “$name”';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Naar een groep verplaatsen';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'In “$group” verplaatsen';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'Verplaatst naar “$group”';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '“$name” verwijderen';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Inloggen met Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'Inloggen met e-mail';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Account maken';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'Ik heb al een account';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Wachtwoord vergeten?';
 
   @override
   String get email => 'Email';
@@ -2209,43 +2209,43 @@ class AppLocalizationsNl extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'We hebben je een link gestuurd om een nieuw wachtwoord te kiezen.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'We hebben een link gestuurd naar $email. Open hem, kom terug en tik op “Ik heb bevestigd”.';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Ik heb bevestigd';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Nog niet bevestigd. Open eerst de link in de e-mail.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'E-mail opnieuw sturen';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Verstuurd. Kijk in je inbox en in je spam.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Dat lijkt geen e-mailadres.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'Verkeerd e-mailadres of wachtwoord.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Er bestaat al een account met dit e-mailadres. Log in, of gebruik Google als je het met Google hebt gemaakt.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'Kies een wachtwoord van minstens 6 tekens.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'Inloggen met e-mail staat nog niet aan.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Te veel pogingen. Wacht een paar minuten.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2308,10 +2308,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Deze week overslaan';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Deze week herstellen';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2323,21 +2323,22 @@ class AppLocalizationsNl extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Mijn locatie gebruiken';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable =>
+      'De locatie is tijdelijk niet beschikbaar. Probeer het opnieuw of kies een stad.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Deze locatie bevestigen';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Deze locatie wordt alleen op dit apparaat bewaard. Controleer de tijdzone en de Israël-instelling voordat je deze tijden gebruikt.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · plaatselijke tijd';
   }
 
   @override
@@ -2355,11 +2356,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Breedtegraad $latitude · lengtegraad $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Huidige locatie';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2479,7 +2480,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Veeg tussen hemel en weer';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2515,13 +2516,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Maan de hele dag boven de horizon';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Maan de hele dag onder de horizon';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Vandaag geen opkomst';
 
   @override
   String get noSetToday => 'No set today';
@@ -2530,25 +2531,25 @@ class AppLocalizationsNl extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Wassende sikkel';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'Eerste kwartier';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Wassende maan';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Afnemende maan';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Afnemende sikkel';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2569,13 +2570,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Onweer';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Weer tijdelijk niet beschikbaar';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Opgeslagen voorspelling';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2584,7 +2585,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Onweer voorspeld';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2615,14 +2616,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Referentiestad voor de tijdzone';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Hemelstad kiezen';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Zon en Maan gebruiken de coördinaten van deze stad. Je Sjabbat-stad en de tijdzone van je wekkers blijven zoals gekozen.';
 
   @override
   String get skySun => 'Sun today';
@@ -2631,39 +2632,41 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Maan boven de horizon';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Maan onder de horizon';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Volgende nieuwe maan';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Volgende volle maan';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff =>
+      'Locatievoorzieningen staan uit. Zet ze aan in Instellingen of kies een stad.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied =>
+      'Toegang tot de locatie is geweigerd. Sta het toe in Instellingen of kies een stad.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Nog geen locatie. Laat op de Mac wifi aan staan en probeer het opnieuw, of kies een stad.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Gebruik een stad in de gekozen tijdzone, of volg de tijdzone van je apparaat voordat je de locatie gebruikt.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Locatie-instellingen openen';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Locatie bepalen…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Maan tonen: opkomst, ondergang en fase';
 
   @override
   String get tuyaConsumerPending =>
@@ -2731,7 +2734,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Hemeltijden gebruiken de tijdzone van deze locatie. De tijdzone van je wekkers en je Sjabbat-stad blijven ongewijzigd. Alleen op dit apparaat bewaard.';
 
   @override
   String get musicRingDurationHint =>
@@ -2894,19 +2897,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get keysShareNeedsPassphrase => 'Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Standaardinstellingen voor wekkers';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Plaatsen & tijd';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Uiterlijk, taal & citaten';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'Standaard voor nieuwe wekkers';
 
   @override
   String get preview => 'Preview';
@@ -2917,13 +2920,13 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Een agenda koppelen';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Uit een kant-en-klare';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'Zonsopgang, zonsondergang en andere wekkers die al voor je klaarstaan';
 
   @override
   String get calendarSourcesIntro =>
@@ -3133,7 +3136,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint =>
+      'Sleep aan de greep om een kaart te verplaatsen, in te klappen of van grootte te veranderen.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3154,27 +3158,27 @@ class AppLocalizationsNl extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'ZON, MAAN EN WEER';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'SJABBAT EN FEESTDAGEN';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Stad voor de hemel';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Volgende wekker · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Alle dagen tonen';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'Op deze dag gaat niets af';
 
   @override
   String get homeClockSize => 'Klok op het beginscherm';

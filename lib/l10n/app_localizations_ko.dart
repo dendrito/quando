@@ -2063,10 +2063,10 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => '내 기기 동기화';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Google로 로그인하면 알람과 설정이 모든 기기에서 똑같이 유지됩니다.';
 
   @override
   String syncOn(String email) {
@@ -2080,85 +2080,85 @@ class AppLocalizationsKo extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '연결하지 못했어요. 탭해서 다시 시도하세요.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => '이 버전에서는 아직 동기화가 설정되지 않았어요.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => '그래도 울리기';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '오늘 이 $n개 건너뛰기';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '“$name” 끄기';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '“$name” 켜기';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '“$name”을(를) 껐어요';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '“$name”에서 “$time” 삭제';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '“$name”에서 “$time”을(를) 삭제했어요';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => '그룹으로 이동';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '“$group”(으)로 이동';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '“$group”(으)로 옮겼어요';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '“$name” 삭제';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Google로 로그인';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => '이메일로 로그인';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => '계정 만들기';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => '이미 계정이 있어요';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => '비밀번호를 잊으셨나요?';
 
   @override
   String get email => 'Email';
@@ -2167,43 +2167,42 @@ class AppLocalizationsKo extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '새 비밀번호를 정할 수 있는 링크를 보냈어요.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '$email(으)로 링크를 보냈어요. 링크를 연 다음 돌아와서 “확인했어요”를 탭하세요.';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '확인했어요';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => '아직 확인되지 않았어요. 먼저 이메일의 링크를 여세요.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => '이메일 다시 보내기';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '보냈어요. 받은편지함과 스팸함을 확인하세요.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => '이메일 주소처럼 보이지 않아요.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => '이메일 또는 비밀번호가 틀렸어요.';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => '이 이메일로 만든 계정이 이미 있어요. 로그인하거나, Google로 만들었다면 Google을 사용하세요.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '6자 이상의 비밀번호를 정하세요.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => '이메일 로그인이 아직 켜지지 않았어요.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '시도가 너무 많아요. 몇 분 뒤에 다시 해 보세요.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2266,10 +2265,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '이번 주 건너뛰기';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '이번 주 되돌리기';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2281,21 +2280,20 @@ class AppLocalizationsKo extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '내 위치 사용';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '위치를 일시적으로 사용할 수 없어요. 다시 시도하거나 도시를 고르세요.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => '이 위치 확인';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => '이 위치는 이 기기에만 저장돼요. 이 시각을 쓰기 전에 시간대와 이스라엘 설정을 확인하세요.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 도시 시각';
   }
 
   @override
@@ -2313,11 +2311,11 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '위도 $latitude · 경도 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '현재 위치';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2437,7 +2435,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '하늘과 날씨 사이를 넘겨 보세요';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2473,13 +2471,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '달이 하루 종일 지평선 위에 있음';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '달이 하루 종일 지평선 아래에 있음';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '오늘은 뜨지 않음';
 
   @override
   String get noSetToday => 'No set today';
@@ -2488,25 +2486,25 @@ class AppLocalizationsKo extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '초승달';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '상현달';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '차오르는 볼록달';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '기우는 볼록달';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '그믐달';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2527,13 +2525,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '뇌우';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '날씨를 일시적으로 사용할 수 없어요';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '저장된 예보';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2542,7 +2540,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '뇌우 예보';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2573,14 +2571,13 @@ class AppLocalizationsKo extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => '시간대 기준 도시';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '하늘 도시 고르기';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '해와 달은 이 도시의 좌표를 사용해요. 안식일 도시와 알람 시간대는 고른 그대로 유지돼요.';
 
   @override
   String get skySun => 'Sun today';
@@ -2589,39 +2586,37 @@ class AppLocalizationsKo extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '달이 지평선 위에 있음';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '달이 지평선 아래에 있음';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '다음 신월';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '다음 보름달';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '위치 서비스가 꺼져 있어요. 설정에서 켜거나 도시를 고르세요.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '위치 접근이 거부되었어요. 설정에서 허용하거나 도시를 고르세요.';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => '아직 위치를 찾지 못했어요. Mac에서는 Wi-Fi를 켜 둔 채 다시 시도하거나 도시를 고르세요.';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '위치를 사용하기 전에 선택한 시간대의 도시를 쓰거나 기기의 시간대를 따르세요.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '위치 설정 열기';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '위치 확인 중…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '달 표시: 월출, 월몰, 위상';
 
   @override
   String get tuyaConsumerPending =>
@@ -2688,8 +2683,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '하늘 시각은 이 위치의 시간대를 사용해요. 알람 시간대와 안식일 도시는 바뀌지 않아요. 이 기기에만 저장돼요.';
 
   @override
   String get musicRingDurationHint => '재생은 이 알람의 울림 시간을 따르며 중지 또는 다시 알림으로 멈춥니다.';
@@ -2844,19 +2838,19 @@ class AppLocalizationsKo extends AppLocalizations {
   String get keysShareNeedsPassphrase => '먼저 \'기기 간 키\'에서 동기화 암호 문구를 정하세요.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => '알람 기본값';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '장소 및 시간';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '화면, 언어 및 명언';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '새 알람의 기본값';
 
   @override
   String get preview => 'Preview';
@@ -2867,13 +2861,13 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => '캘린더 연결';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '준비된 알람에서';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '일출, 일몰 등 이미 준비된 알람';
 
   @override
   String get calendarSourcesIntro => 'Quando?는 캘린더 일정 전후에 울릴 수 있어요. 어디서 가져올지 고르세요.';
@@ -3073,7 +3067,7 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => '핸들을 끌어 카드를 옮기거나, 접거나, 크기를 바꾸세요.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3094,27 +3088,27 @@ class AppLocalizationsKo extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '해, 달, 날씨';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => '안식일과 명절';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '하늘 도시';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '다음 알람 · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => '모든 날 보기';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => '이날은 울리는 알람이 없어요';
 
   @override
   String get homeClockSize => '홈 화면 시계';

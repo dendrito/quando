@@ -2465,7 +2465,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'החלק בין השמיים למזג האוויר';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2501,13 +2501,13 @@ class AppLocalizationsHe extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'הירח מעל האופק כל היום';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'הירח מתחת לאופק כל היום';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'אין זריחה היום';
 
   @override
   String get noSetToday => 'No set today';
@@ -2516,25 +2516,25 @@ class AppLocalizationsHe extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'סהר מתמלא';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'רבע ראשון';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'ירח מתמלא (גיבוסי)';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'ירח מתמעט (גיבוסי)';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'סהר מתמעט';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2555,13 +2555,13 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'סופות רעמים';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'מזג האוויר אינו זמין זמנית';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'תחזית שמורה';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2570,7 +2570,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'צפויות סופות רעמים';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2877,19 +2877,19 @@ class AppLocalizationsHe extends AppLocalizations {
   String get keysShareNeedsPassphrase => 'קודם בחר סיסמת סנכרון, תחת מפתחות במכשירים שלך.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'ברירות מחדל להתראות';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'מקומות וזמן';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'מראה, שפה וציטוטים';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'ברירת מחדל להתראות חדשות';
 
   @override
   String get preview => 'Preview';
@@ -2900,13 +2900,13 @@ class AppLocalizationsHe extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'חיבור לוח שנה';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'מתוך מוכנה';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'זריחה, שקיעה והתראות אחרות שכבר הוגדרו בשבילך';
 
   @override
   String get calendarSourcesIntro =>
@@ -3116,7 +3116,7 @@ class AppLocalizationsHe extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'גרור את הידית כדי להזיז כרטיס, לקפל אותו או לשנות את גודלו.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3137,27 +3137,27 @@ class AppLocalizationsHe extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'שמש, ירח ומזג אוויר';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'שבת וחגים';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'עיר לשמיים';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'ההתראה הבאה · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'הצג את כל הימים';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'שום דבר לא מצלצל ביום הזה';
 
   @override
   String get homeClockSize => 'שעון במסך הבית';

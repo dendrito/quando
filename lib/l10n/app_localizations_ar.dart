@@ -2136,10 +2136,10 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'مزامنة أجهزتي';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'سجّل الدخول بحساب Google لتبقى المنبّهات والإعدادات نفسها على جميع أجهزتك.';
 
   @override
   String syncOn(String email) {
@@ -2153,85 +2153,85 @@ class AppLocalizationsAr extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'تعذّر الاتصال. اضغط للمحاولة مرة أخرى.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'المزامنة لم تُعدّ بعد في هذا الإصدار.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'اجعلها ترنّ مع ذلك';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'تخطَّ هذه المنبّهات الـ$n اليوم';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return 'إيقاف «$name»';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return 'تشغيل «$name»';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return 'تم إيقاف «$name»';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return 'إزالة «$time» من «$name»';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return 'تمت إزالة «$time» من «$name»';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'النقل إلى مجموعة';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'في «$group»، انقل';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'تم النقل إلى «$group»';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return 'حذف «$name»';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'تسجيل الدخول بحساب Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'تسجيل الدخول بالبريد الإلكتروني';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'إنشاء حساب';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'لدي حساب';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'نسيت كلمة المرور؟';
 
   @override
   String get email => 'Email';
@@ -2240,43 +2240,43 @@ class AppLocalizationsAr extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'أرسلنا إليك رابطًا لاختيار كلمة مرور جديدة.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'أرسلنا رابطًا إلى $email. افتحه ثم عد واضغط «أكّدت».';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'أكّدت';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'لم يتم التأكيد بعد. افتح الرابط في البريد أولًا.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'إرسال البريد مرة أخرى';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'تم الإرسال. تحقّق من صندوق الوارد والرسائل غير المرغوبة.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'هذا لا يبدو عنوان بريد إلكتروني.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'البريد الإلكتروني أو كلمة المرور غير صحيحة.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'يوجد حساب بهذا البريد الإلكتروني بالفعل. سجّل الدخول، أو استخدم Google إذا أنشأته عبر Google.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'اختر كلمة مرور من 6 أحرف على الأقل.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'تسجيل الدخول بالبريد الإلكتروني غير مفعّل بعد.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'محاولات كثيرة جدًا. انتظر بضع دقائق.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2339,10 +2339,10 @@ class AppLocalizationsAr extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'تخطَّ هذا الأسبوع';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'استعادة هذا الأسبوع';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2354,21 +2354,21 @@ class AppLocalizationsAr extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'استخدام موقعي';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => 'الموقع غير متاح مؤقتًا. حاول مرة أخرى أو اختر مدينة.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'تأكيد هذا الموقع';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'هذا الموقع محفوظ على هذا الجهاز فقط. تحقّق من المنطقة الزمنية وإعداد إسرائيل قبل استخدام هذه الأوقات.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · توقيت المدينة';
   }
 
   @override
@@ -2386,11 +2386,11 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'خط العرض $latitude · خط الطول $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'الموقع الحالي';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2510,7 +2510,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'مرّر بين السماء والطقس';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2546,13 +2546,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'القمر فوق الأفق طوال اليوم';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'القمر تحت الأفق طوال اليوم';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'لا شروق اليوم';
 
   @override
   String get noSetToday => 'No set today';
@@ -2561,25 +2561,25 @@ class AppLocalizationsAr extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'هلال متزايد';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'التربيع الأول';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'أحدب متزايد';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'أحدب متناقص';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'هلال متناقص';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2600,13 +2600,13 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'عواصف رعدية';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'الطقس غير متاح مؤقتًا';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'توقعات محفوظة';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2615,7 +2615,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'عواصف رعدية متوقعة';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2646,14 +2646,14 @@ class AppLocalizationsAr extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'مدينة مرجعية للمنطقة الزمنية';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'اختر مدينة السماء';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'تستخدم الشمس والقمر إحداثيات هذه المدينة. تبقى مدينة السبت والمنطقة الزمنية للمنبّهات كما اخترتها.';
 
   @override
   String get skySun => 'Sun today';
@@ -2662,39 +2662,39 @@ class AppLocalizationsAr extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'القمر فوق الأفق';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'القمر تحت الأفق';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'المحاق التالي';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'البدر التالي';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => 'خدمات الموقع متوقفة. شغّلها من الإعدادات أو اختر مدينة.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => 'تم رفض الوصول إلى الموقع. اسمح به من الإعدادات أو اختر مدينة.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'لم يتحدد الموقع بعد. على جهاز Mac أبقِ Wi-Fi مفعّلًا وحاول مرة أخرى، أو اختر مدينة.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'استخدم مدينة في المنطقة الزمنية المحددة، أو اتبع المنطقة الزمنية لجهازك قبل استخدام الموقع.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'فتح إعدادات الموقع';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'جارٍ تحديد الموقع…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'عرض القمر: الشروق والغروب والطور';
 
   @override
   String get tuyaConsumerPending =>
@@ -2762,7 +2762,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'تستخدم أوقات السماء المنطقة الزمنية لهذا الموقع. لا تتغير المنطقة الزمنية للمنبّهات ولا مدينة السبت. محفوظ على هذا الجهاز فقط.';
 
   @override
   String get musicRingDurationHint => 'يتبع التشغيل مدة رنين هذا المنبّه ويتوقف عند الإيقاف أو الغفوة.';
@@ -2921,19 +2921,19 @@ class AppLocalizationsAr extends AppLocalizations {
   String get keysShareNeedsPassphrase => 'اختر أولًا عبارة مزامنة من قسم المفاتيح على أجهزتك.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'الإعدادات الافتراضية للمنبّهات';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'الأماكن والوقت';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'المظهر واللغة والاقتباسات';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'الافتراضي للمنبّهات الجديدة';
 
   @override
   String get preview => 'Preview';
@@ -2944,13 +2944,13 @@ class AppLocalizationsAr extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'ربط تقويم';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'من قالب جاهز';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'الشروق والغروب ومنبّهات أخرى مُعدّة لك مسبقًا';
 
   @override
   String get calendarSourcesIntro =>
@@ -3179,7 +3179,7 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'اسحب المقبض لنقل بطاقة أو طيّها أو تغيير حجمها.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3200,27 +3200,27 @@ class AppLocalizationsAr extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'الشمس والقمر والطقس';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'السبت والأعياد';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'مدينة السماء';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'المنبّه التالي · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'عرض كل الأيام';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'لا شيء يرنّ في هذا اليوم';
 
   @override
   String get homeClockSize => 'الساعة في الشاشة الرئيسية';

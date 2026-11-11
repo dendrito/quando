@@ -2057,10 +2057,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => '同步我的设备';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => '用 Google 登录，让闹钟和设置在你所有设备上保持一致。';
 
   @override
   String syncOn(String email) {
@@ -2074,85 +2074,85 @@ class AppLocalizationsZh extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '无法连接。点按重试。';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => '此版本尚未设置同步。';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => '仍然响铃';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '今天跳过这 $n 个';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '关闭“$name”';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '开启“$name”';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '已关闭“$name”';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '从“$name”中移除“$time”';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '已从“$name”中移除“$time”';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => '移到分组';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '在“$group”中，移动';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '已移到“$group”';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '删除“$name”';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => '使用 Google 登录';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => '使用邮箱登录';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => '创建账号';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => '我已有账号';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => '忘记密码？';
 
   @override
   String get email => 'Email';
@@ -2161,43 +2161,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '我们已向你发送了设置新密码的链接。';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '我们已向 $email 发送了链接。打开链接后回到这里，点按“我已确认”。';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '我已确认';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => '尚未确认。请先打开邮件中的链接。';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => '重新发送邮件';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '已发送。请查看收件箱和垃圾邮件。';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => '这看起来不像邮箱地址。';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => '邮箱或密码错误。';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => '这个邮箱已有账号。请直接登录；如果你是用 Google 创建的，请使用 Google 登录。';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '请设置至少 6 个字符的密码。';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => '邮箱登录尚未开启。';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '尝试次数过多。请等几分钟。';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2260,10 +2259,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '跳过本周';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '恢复本周';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2275,21 +2274,20 @@ class AppLocalizationsZh extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '使用我的位置';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '位置暂时无法使用。请重试或选择一个城市。';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => '确认此位置';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => '此位置仅保存在这台设备上。使用这些时间之前，请检查时区和以色列设置。';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 城市时间';
   }
 
   @override
@@ -2307,11 +2305,11 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '纬度 $latitude · 经度 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '当前位置';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2431,7 +2429,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '在天空和天气之间滑动';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2467,13 +2465,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '月亮整天在地平线上方';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '月亮整天在地平线下方';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '今天没有月出';
 
   @override
   String get noSetToday => 'No set today';
@@ -2482,25 +2480,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '蛾眉月（渐盈）';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '上弦月';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '盈凸月';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '亏凸月';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '残月（渐亏）';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2521,13 +2519,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '雷暴';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '天气暂时无法使用';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '已保存的预报';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2536,7 +2534,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '预报有雷暴';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2567,14 +2565,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => '时区参考城市';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '选择天空城市';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '太阳和月亮使用这个城市的坐标。你的安息日城市和闹钟时区保持你的选择不变。';
 
   @override
   String get skySun => 'Sun today';
@@ -2583,39 +2580,37 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '月亮在地平线上方';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '月亮在地平线下方';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '下次新月';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '下次满月';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '定位服务已关闭。请在“设置”中开启，或选择一个城市。';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '定位权限被拒绝。请在“设置”中允许，或选择一个城市。';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => '暂未获取到位置。在 Mac 上请保持 Wi-Fi 开启后重试，或选择一个城市。';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '使用位置之前，请选择所选时区内的城市，或跟随设备时区。';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '打开定位设置';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '正在获取位置…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '显示月亮：月出、月落和月相';
 
   @override
   String get tuyaConsumerPending =>
@@ -2681,8 +2676,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '天空时间使用此位置的时区。你的闹钟时区和安息日城市保持不变。仅保存在这台设备上。';
 
   @override
   String get musicRingDurationHint => '播放遵循此闹钟的响铃时长，并在停止或稍后提醒时结束。';
@@ -2837,19 +2831,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => '闹钟默认设置';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '地点与时间';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '外观、语言与名言';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '新闹钟的默认设置';
 
   @override
   String get preview => 'Preview';
@@ -2860,13 +2854,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => '连接日历';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '从现成闹钟中选';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '日出、日落以及其他已为你设置好的闹钟';
 
   @override
   String get calendarSourcesIntro => 'Quando? 可以在日历活动前后响铃。选择活动来自哪里。';
@@ -3065,7 +3059,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => '拖动手柄可移动卡片、折叠卡片或调整卡片大小。';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3086,27 +3080,27 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '太阳、月亮和天气';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => '安息日与节日';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '天空城市';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '下一个闹钟 · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => '显示所有日期';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => '这一天没有闹钟响铃';
 
   @override
   String get homeClockSize => '主屏幕时钟';
@@ -5525,10 +5519,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => '同步我的裝置';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => '用 Google 登入，讓鬧鐘和設定在你所有裝置上保持一致。';
 
   @override
   String syncOn(String email) {
@@ -5542,85 +5536,85 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '無法連線。點一下重試。';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => '此版本尚未設定同步。';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => '仍然響鈴';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '今天略過這 $n 個';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '關閉「$name」';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '開啟「$name」';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '已關閉「$name」';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '從「$name」移除「$time」';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '已從「$name」移除「$time」';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => '移到群組';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '在「$group」中，移動';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '已移到「$group」';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '刪除「$name」';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => '使用 Google 登入';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => '使用電子郵件登入';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => '建立帳號';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => '我已有帳號';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => '忘記密碼？';
 
   @override
   String get email => 'Email';
@@ -5629,43 +5623,42 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '我們已寄出設定新密碼的連結給你。';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '我們已將連結寄到 $email。開啟連結後回到這裡，點一下「我已確認」。';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '我已確認';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => '尚未確認。請先開啟郵件中的連結。';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => '重新寄送郵件';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '已寄出。請查看收件匣和垃圾郵件。';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => '這看起來不像電子郵件地址。';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => '電子郵件或密碼錯誤。';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => '這個電子郵件已有帳號。請直接登入；如果你是用 Google 建立的，請使用 Google 登入。';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '請設定至少 6 個字元的密碼。';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => '電子郵件登入尚未開啟。';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '嘗試次數過多。請等幾分鐘。';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -5728,10 +5721,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '略過本週';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '還原本週';
 
   @override
   String get allAlarms => 'All alarms';
@@ -5743,21 +5736,20 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '使用我的位置';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '位置暫時無法使用。請重試或選擇一個城市。';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => '確認此位置';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => '此位置只儲存在這台裝置上。使用這些時間之前，請檢查時區和以色列設定。';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 城市時間';
   }
 
   @override
@@ -5775,11 +5767,11 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '緯度 $latitude · 經度 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '目前位置';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -5899,7 +5891,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '在天空和天氣之間滑動';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -5935,13 +5927,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '月亮整天在地平線上方';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '月亮整天在地平線下方';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '今天沒有月出';
 
   @override
   String get noSetToday => 'No set today';
@@ -5950,25 +5942,25 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '蛾眉月（漸盈）';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '上弦月';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '盈凸月';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '虧凸月';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '殘月（漸虧）';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -5989,13 +5981,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '雷暴';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '天氣暫時無法使用';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '已儲存的預報';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -6004,7 +5996,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '預報有雷暴';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -6035,14 +6027,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => '時區參考城市';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '選擇天空城市';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '太陽和月亮使用這個城市的座標。你的安息日城市和鬧鐘時區會維持你的選擇不變。';
 
   @override
   String get skySun => 'Sun today';
@@ -6051,39 +6042,37 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '月亮在地平線上方';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '月亮在地平線下方';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '下次新月';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '下次滿月';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '定位服務已關閉。請在「設定」中開啟，或選擇一個城市。';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '定位權限遭到拒絕。請在「設定」中允許，或選擇一個城市。';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => '暫時還沒取得位置。在 Mac 上請保持 Wi-Fi 開啟後重試，或選擇一個城市。';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '使用位置之前，請選擇所選時區內的城市，或跟隨裝置時區。';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '開啟定位設定';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '正在取得位置…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '顯示月亮：月出、月落和月相';
 
   @override
   String get tuyaConsumerPending =>
@@ -6149,8 +6138,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '天空時間使用此位置的時區。你的鬧鐘時區和安息日城市維持不變。只儲存在這台裝置上。';
 
   @override
   String get musicRingDurationHint => '播放遵循此鬧鐘的響鈴時長，並在停止或稍後提醒時結束。';
@@ -6305,19 +6293,19 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => '鬧鐘預設值';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '地點與時間';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '外觀、語言與名言';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '新鬧鐘的預設值';
 
   @override
   String get preview => 'Preview';
@@ -6328,13 +6316,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => '連接行事曆';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '從現成鬧鐘中選';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '日出、日落以及其他已為你設定好的鬧鐘';
 
   @override
   String get calendarSourcesIntro => 'Quando? 可以在行事曆活動前後響鈴。選擇活動來自哪裡。';
@@ -6533,7 +6521,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => '拖曳握把可移動卡片、收合卡片或調整卡片大小。';
 
   @override
   String get homeReset => 'Reset layout';
@@ -6554,27 +6542,27 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '太陽、月亮和天氣';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => '安息日與節日';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '天空城市';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '下一個鬧鐘 · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => '顯示所有日期';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => '這一天沒有鬧鐘響鈴';
 
   @override
   String get homeClockSize => '主畫面時鐘';

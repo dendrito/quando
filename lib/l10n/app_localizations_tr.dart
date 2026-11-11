@@ -2093,10 +2093,10 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Cihazlarımı eşitle';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Alarmların ve ayarların tüm cihazlarında aynı kalması için Google ile giriş yap.';
 
   @override
   String syncOn(String email) {
@@ -2110,85 +2110,85 @@ class AppLocalizationsTr extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Bağlanılamadı. Tekrar denemek için dokun.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'Eşitleme bu sürümde henüz kurulmadı.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Yine de çalsın';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Bugün bu $n alarmı atla';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '“$name” alarmını kapat';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '“$name” alarmını aç';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '“$name” kapatıldı';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '“$time” saatini “$name” alarmından kaldır';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '“$time” saati “$name” alarmından kaldırıldı';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Bir gruba taşı';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '“$group” grubunda, taşı';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '“$group” grubuna taşındı';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '“$name” alarmını sil';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Google ile giriş yap';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'E-posta ile giriş yap';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Hesap oluştur';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'Hesabım var';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Şifreni mi unuttun?';
 
   @override
   String get email => 'Email';
@@ -2197,43 +2197,43 @@ class AppLocalizationsTr extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'Yeni şifre seçmen için sana bir bağlantı gönderdik.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '$email adresine bir bağlantı gönderdik. Bağlantıyı aç, sonra geri dönüp “Onayladım”a dokun.';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Onayladım';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Henüz onaylanmadı. Önce e-postadaki bağlantıyı aç.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'E-postayı tekrar gönder';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Gönderildi. Gelen kutunu ve spam klasörünü kontrol et.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Bu bir e-posta adresine benzemiyor.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'E-posta veya şifre yanlış.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Bu e-posta ile zaten bir hesap var. Giriş yap veya hesabı Google ile oluşturduysan Google’ı kullan.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'En az 6 karakterlik bir şifre seç.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'E-posta ile giriş henüz açılmadı.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Çok fazla deneme. Birkaç dakika bekle.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2296,10 +2296,10 @@ class AppLocalizationsTr extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Bu haftayı atla';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Bu haftayı geri yükle';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2311,21 +2311,21 @@ class AppLocalizationsTr extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Konumumu kullan';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => 'Konum geçici olarak kullanılamıyor. Tekrar dene veya bir şehir seç.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Bu konumu onayla';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Bu konum yalnızca bu cihazda saklanır. Bu saatleri kullanmadan önce saat dilimini ve İsrail ayarını kontrol et.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · şehir saati';
   }
 
   @override
@@ -2343,11 +2343,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Enlem $latitude · boylam $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Geçerli konum';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2467,7 +2467,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Gökyüzü ile hava durumu arasında kaydır';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2503,13 +2503,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Ay gün boyu ufkun üstünde';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Ay gün boyu ufkun altında';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Bugün doğuş yok';
 
   @override
   String get noSetToday => 'No set today';
@@ -2518,25 +2518,25 @@ class AppLocalizationsTr extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Hilal (büyüyen)';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'İlk dördün';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Şişkin ay (büyüyen)';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Şişkin ay (küçülen)';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Hilal (küçülen)';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2557,13 +2557,13 @@ class AppLocalizationsTr extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Gök gürültülü fırtınalar';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Hava durumu geçici olarak kullanılamıyor';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Kayıtlı tahmin';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2572,7 +2572,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Gök gürültülü fırtına bekleniyor';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2603,14 +2603,14 @@ class AppLocalizationsTr extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Saat dilimi referans şehri';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Gökyüzü şehrini seç';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Güneş ve Ay bu şehrin koordinatlarını kullanır. Şabat şehrin ve alarm saat dilimin seçtiğin gibi kalır.';
 
   @override
   String get skySun => 'Sun today';
@@ -2619,39 +2619,39 @@ class AppLocalizationsTr extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Ay ufkun üstünde';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Ay ufkun altında';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Sonraki yeni ay';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Sonraki dolunay';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => 'Konum Servisleri kapalı. Ayarlar’dan aç veya bir şehir seç.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => 'Konum erişimi reddedildi. Ayarlar’dan izin ver veya bir şehir seç.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Henüz konum alınamadı. Mac’te Wi-Fi’yi açık tut ve tekrar dene veya bir şehir seç.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Konumu kullanmadan önce seçili saat dilimindeki bir şehri kullan veya cihazının saat dilimini izle.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Konum ayarlarını aç';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Konum alınıyor…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Ay’ı göster: doğuş, batış ve evre';
 
   @override
   String get tuyaConsumerPending =>
@@ -2719,7 +2719,7 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Gökyüzü saatleri bu konumun saat dilimini kullanır. Alarm saat diliminin ve Şabat şehrin değişmez. Yalnızca bu cihazda saklanır.';
 
   @override
   String get musicRingDurationHint =>
@@ -2883,19 +2883,19 @@ class AppLocalizationsTr extends AppLocalizations {
       'Önce Cihazlarındaki anahtarlar bölümünde bir eşitleme parolası seç.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Alarm varsayılanları';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Yerler ve saat';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Görünüm, dil ve alıntılar';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'Yeni alarmlar için varsayılan';
 
   @override
   String get preview => 'Preview';
@@ -2906,13 +2906,13 @@ class AppLocalizationsTr extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Takvim bağla';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Hazır bir alarmdan';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'Gün doğumu, gün batımı ve senin için zaten hazırlanmış diğer alarmlar';
 
   @override
   String get calendarSourcesIntro =>
@@ -3122,7 +3122,7 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'Bir kartı taşımak, katlamak veya boyutunu değiştirmek için tutamacı sürükle.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3143,27 +3143,27 @@ class AppLocalizationsTr extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'GÜNEŞ, AY VE HAVA DURUMU';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'ŞABAT VE BAYRAMLAR';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Gökyüzü için şehir';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Sonraki alarm · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Tüm günleri göster';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'Bu gün hiçbir şey çalmıyor';
 
   @override
   String get homeClockSize => 'Ana ekranda saat';

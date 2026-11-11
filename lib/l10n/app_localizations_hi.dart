@@ -2092,10 +2092,10 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'मेरे डिवाइस सिंक करें';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'अलार्म और सेटिंग सभी डिवाइस पर एक जैसी रखने के लिए Google से साइन इन करें।';
 
   @override
   String syncOn(String email) {
@@ -2109,85 +2109,85 @@ class AppLocalizationsHi extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'कनेक्ट नहीं हो सका। दोबारा कोशिश करने के लिए टैप करें।';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'इस वर्शन में सिंक अभी सेट नहीं है।';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'फिर भी बजाएँ';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'आज ये $n छोड़ें';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '“$name” बंद करें';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '“$name” चालू करें';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '“$name” बंद किया गया';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '“$name” से “$time” हटाएँ';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '“$name” से “$time” हटाया गया';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'ग्रुप में ले जाएँ';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '“$group” में, ले जाएँ';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '“$group” में ले जाया गया';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '“$name” हटाएँ';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Google से साइन इन करें';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'ईमेल से साइन इन करें';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'खाता बनाएँ';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'मेरा खाता है';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'पासवर्ड भूल गए?';
 
   @override
   String get email => 'Email';
@@ -2196,43 +2196,43 @@ class AppLocalizationsHi extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'हमने आपको नया पासवर्ड चुनने का लिंक भेजा है।';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'हमने $email पर एक लिंक भेजा है। उसे खोलें, फिर वापस आकर “मैंने पुष्टि कर दी” पर टैप करें।';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'मैंने पुष्टि कर दी';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'अभी पुष्टि नहीं हुई। पहले ईमेल का लिंक खोलें।';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'ईमेल दोबारा भेजें';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'भेज दिया। अपना इनबॉक्स और स्पैम देखें।';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'यह ईमेल पता नहीं लगता।';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'ईमेल या पासवर्ड गलत है।';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'इस ईमेल से खाता पहले से है। साइन इन करें, या अगर आपने Google से बनाया था तो Google इस्तेमाल करें।';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'कम से कम 6 अक्षरों का पासवर्ड चुनें।';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'ईमेल से साइन-इन अभी चालू नहीं है।';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'बहुत ज़्यादा कोशिशें। कुछ मिनट रुकें।';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2295,10 +2295,10 @@ class AppLocalizationsHi extends AppLocalizations {
   String get preparationReminders => 'Preparation reminders';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'इस हफ़्ते को छोड़ें';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'इस हफ़्ते को वापस लाएँ';
 
   @override
   String get allAlarms => 'All alarms';
@@ -2310,21 +2310,21 @@ class AppLocalizationsHi extends AppLocalizations {
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'मेरी लोकेशन इस्तेमाल करें';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => 'लोकेशन अभी उपलब्ध नहीं है। दोबारा कोशिश करें या कोई शहर चुनें।';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'इस लोकेशन की पुष्टि करें';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'यह लोकेशन सिर्फ़ इसी डिवाइस पर सहेजी जाती है। ये समय इस्तेमाल करने से पहले टाइमज़ोन और इज़राइल सेटिंग जाँच लें।';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · शहर का समय';
   }
 
   @override
@@ -2342,11 +2342,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'अक्षांश $latitude · देशांतर $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'मौजूदा लोकेशन';
 
   @override
   String get testPushoverSound => 'Test sound on Pushover';
@@ -2466,7 +2466,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'आकाश और मौसम के बीच स्वाइप करें';
 
   @override
   String get parashaHeading => 'Weekly parashah';
@@ -2502,13 +2502,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'चाँद पूरे दिन क्षितिज के ऊपर';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'चाँद पूरे दिन क्षितिज के नीचे';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'आज उदय नहीं';
 
   @override
   String get noSetToday => 'No set today';
@@ -2517,25 +2517,25 @@ class AppLocalizationsHi extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'बढ़ता हुआ अर्धचंद्र';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'पहली तिमाही';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'बढ़ता हुआ गिबस चाँद';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'घटता हुआ गिबस चाँद';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'घटता हुआ अर्धचंद्र';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2556,13 +2556,13 @@ class AppLocalizationsHi extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'आँधी-तूफ़ान के साथ बारिश';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'मौसम अभी उपलब्ध नहीं है';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'सहेजा हुआ पूर्वानुमान';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2571,7 +2571,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'आँधी-तूफ़ान का पूर्वानुमान';
 
   @override
   String get learningUnavailable => 'Connect to load this month’s learning schedule';
@@ -2602,14 +2602,14 @@ class AppLocalizationsHi extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'टाइमज़ोन का संदर्भ शहर';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'आकाश का शहर चुनें';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'सूरज और चाँद इस शहर के निर्देशांक इस्तेमाल करते हैं। आपका शब्बात शहर और अलार्म का टाइमज़ोन वैसे ही रहते हैं जैसे आपने चुने।';
 
   @override
   String get skySun => 'Sun today';
@@ -2618,39 +2618,39 @@ class AppLocalizationsHi extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'चाँद क्षितिज के ऊपर';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'चाँद क्षितिज के नीचे';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'अगली अमावस्या';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'अगली पूर्णिमा';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => 'लोकेशन सेवाएँ बंद हैं। उन्हें सेटिंग में चालू करें या कोई शहर चुनें।';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => 'लोकेशन की अनुमति नहीं मिली। उसे सेटिंग में दें या कोई शहर चुनें।';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'अभी लोकेशन नहीं मिली। Mac पर वाई-फ़ाई चालू रखें और दोबारा कोशिश करें, या कोई शहर चुनें।';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'लोकेशन इस्तेमाल करने से पहले चुने हुए टाइमज़ोन का कोई शहर इस्तेमाल करें, या अपने डिवाइस का टाइमज़ोन अपनाएँ।';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'लोकेशन सेटिंग खोलें';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'लोकेशन मिल रही है…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'चाँद दिखाएँ: उदय, अस्त और कला';
 
   @override
   String get tuyaConsumerPending =>
@@ -2718,7 +2718,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'आकाश के समय इस जगह का टाइमज़ोन इस्तेमाल करते हैं। आपके अलार्म का टाइमज़ोन और शब्बात शहर नहीं बदलते। सिर्फ़ इसी डिवाइस पर सहेजा गया।';
 
   @override
   String get musicRingDurationHint =>
@@ -2880,19 +2880,19 @@ class AppLocalizationsHi extends AppLocalizations {
   String get keysShareNeedsPassphrase => 'पहले \'आपके डिवाइसों पर कुंजियाँ\' में सिंक पासफ़्रेज़ चुनें।';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'अलार्म की डिफ़ॉल्ट सेटिंग';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'जगहें और समय';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'रूप, भाषा और उद्धरण';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'नए अलार्म के लिए डिफ़ॉल्ट';
 
   @override
   String get preview => 'Preview';
@@ -2903,13 +2903,13 @@ class AppLocalizationsHi extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'कैलेंडर जोड़ें';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'तैयार अलार्म से';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'सूर्योदय, सूर्यास्त और आपके लिए पहले से तैयार दूसरे अलार्म';
 
   @override
   String get calendarSourcesIntro =>
@@ -3114,7 +3114,7 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'कार्ड को हिलाने, समेटने या उसका आकार बदलने के लिए हैंडल खींचें।';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3135,27 +3135,27 @@ class AppLocalizationsHi extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'सूरज, चाँद और मौसम';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'शब्बात और त्योहार';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'आकाश के लिए शहर';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'अगला अलार्म · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'सभी दिन दिखाएँ';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'इस दिन कुछ नहीं बजता';
 
   @override
   String get homeClockSize => 'होम पर घड़ी';
