@@ -1,0 +1,25 @@
+Copyright (c) 2026 dendrito, the owner of Quando?, Matai? and Matai? Kosher.
+All rights reserved.
+
+This repository is public so that its code can be read. Reading it does not
+grant any licence. Without prior written permission from the copyright owner,
+you may not copy, modify, merge, publish, distribute, sublicense, sell, or
+build and publish apps from this software, in whole or in part.
+
+"Quando?", "Matai?", "Quanday", their logos and app icons are names and marks
+of the owner and may not be used for other apps or services.
+
+Third-party code keeps its own licence. Each of these folders has a LICENSE
+file that applies to the code in it, not this one:
+
+- packages/alarm (MIT)
+- third_party/astronomia (MIT)
+- third_party/cldr (Unicode License v3)
+- third_party/hebcal (BSD 2-Clause)
+- third_party/suncalc (BSD 2-Clause)
+
+Packages fetched by Flutter and Dart from pub.dev are covered by their own
+licences.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED.
