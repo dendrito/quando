@@ -2062,10 +2062,10 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'デバイス間で同期';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Googleでログインすると、アラームと設定をすべてのデバイスで同じに保てます。';
 
   @override
   String syncOn(String email) {
@@ -2079,85 +2079,85 @@ class AppLocalizationsJa extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '接続できませんでした。タップして再試行してください。';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'このバージョンでは同期がまだ設定されていません。';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'やはり鳴らす';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '今日はこの$n件をスキップ';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '「$name」をオフにする';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '「$name」をオンにする';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '「$name」をオフにしました';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '「$name」から「$time」を削除';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '「$name」から「$time」を削除しました';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'グループに移動';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '「$group」に移動する';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '「$group」に移動しました';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '「$name」を削除';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Googleでログイン';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'メールでログイン';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'アカウントを作成';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'アカウントをお持ちの方';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'パスワードをお忘れですか？';
 
   @override
   String get email => 'Email';
@@ -2166,43 +2166,42 @@ class AppLocalizationsJa extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '新しいパスワードを選ぶためのリンクを送信しました。';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '$emailにリンクを送信しました。リンクを開いてから戻り、「確認しました」をタップしてください。';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '確認しました';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'まだ確認されていません。先にメールのリンクを開いてください。';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'メールを再送する';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '送信しました。受信トレイと迷惑メールを確認してください。';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'メールアドレスの形式が正しくないようです。';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'メールアドレスまたはパスワードが違います。';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => 'このメールアドレスのアカウントはすでにあります。ログインするか、Googleで作成した場合はGoogleを使ってください。';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '6文字以上のパスワードを選んでください。';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'メールでのログインはまだ有効になっていません。';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '試行回数が多すぎます。数分待ってください。';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2259,109 +2258,103 @@ class AppLocalizationsJa extends AppLocalizations {
   String get deliveryReset => '既存の設定を使う';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => '安息日の前に';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => '準備のリマインダー';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '今週をスキップ';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '今週を元に戻す';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => '時間と音';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '現在地を使う';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '現在地を一時的に取得できません。もう一度試すか、都市を選んでください。';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'この場所を確認';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => 'この場所はこのデバイスにのみ保存されます。これらの時刻を使う前に、タイムゾーンとイスラエルの設定を確認してください。';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 都市の時刻';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => '準備のリマインダーはオフです。ハヴダラーと通常のアラームは変わりません。';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => '今週の準備のリマインダーはスキップされました。毎週の設定は保存されています。';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => '安息日のコントロール';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => '安息日中／安息日後';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '緯度 $latitude · 経度 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '現在地';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Pushoverでサウンドをテスト';
 
   @override
-  String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+  String get pushoverSoundTestHint => '選択したサウンドを、選んだPushoverデバイスで再生します。サイレントとおやすみ時間の設定は引き続き適用されます。';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => '認証情報を自分のデバイスと共有';
 
   @override
-  String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+  String get pushoverShareHint => 'Pushoverのユーザーキーとアプリトークンを、Quando?とMatai?にサインインしているアカウントと共有できます。';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => '認証情報をサインイン済みのデバイスに送信待ちです。';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => 'Pushoverの認証情報を共有するには、各デバイスで同じアプリアカウントにサインインしてください。';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => 'Tuyaのシーンを直接実行するか、独自のHome AssistantやNode-REDの自動化を接続します。';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'サービス接続を共有';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'デバイス間で同じアプリアカウントを使うと、Pushover、Tuya、Spotifyライブラリ、自動化の接続を共有できます。YouTubeとデバイスの権限は、各デバイスで承認が必要な場合があります。';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'リンク済みのTuya開発者プロジェクトを使用します。データセンター、Access ID、Access Secret、「Link App Account」に表示されるUIDを入力してください。Home Assistantは不要です。';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'リンク済みアカウントのUID';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2373,49 +2366,45 @@ class AppLocalizationsJa extends AppLocalizations {
   String get tuyaLoadScenes => 'Load scenes';
 
   @override
-  String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+  String get tuyaNoScenes => '利用可能なTap-to-Runシーンが見つかりません。リンク済みアカウント、データセンター、シーンAPIの権限を確認してください。';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => '今すぐシーンを実行';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'このシーンをTuyaデバイスで今すぐ実行しますか？';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuyaがシーンコマンドを受け付けました。デバイスを確認してください。';
 
   @override
-  String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+  String get tuyaFailed => 'Tuyaがリクエストを完了できませんでした。プロジェクトの権限、データセンター、サブスクリプションを確認してください。エラー：';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'このアラームが鳴るときのTuyaシーン';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'POSTとJSONを受け付けるWebhookトリガーのHome Assistant自動化を作成し、そのURLをここに貼り付けてください。アラームイベント（ring、stopped、snoozed、auto_stopped）でアクションを切り替えられます。新しいデバイスではこの連携はオフの状態です。';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'POSTを受け付けるNode-REDのHTTP Inノードに、自動化とHTTP Responseノードを続けて使用します。エンドポイントをここに貼り付けてください。ローカルのHTTPハブとHTTPSエンドポイントに対応しています。';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'スマートホームサービスを接続';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'テストすると、接続した自動化がすぐに実行されます。';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'このデバイスでスマートホームのアラーム操作を実行';
 
   @override
-  String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+  String get smartHomeDeviceHint => '自動化を実行するデバイスを1台選びます。接続は共有されますが、このスイッチはこのデバイスだけに適用されます。';
 
   @override
-  String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+  String get smartHomeDeviceOff => 'このデバイスではアラーム操作がオフです。「接続」でオンにしてください。手動のシーンテストは引き続き使えます。';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2436,22 +2425,22 @@ class AppLocalizationsJa extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '空と天気をスワイプで切り替え';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => '週のパラシャ';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => '毎日の学習';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'ランバム・1日1章';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'ランバム・1日3章';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2472,13 +2461,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '月は一日中地平線の上';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '月は一日中地平線の下';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '今日は月の出なし';
 
   @override
   String get noSetToday => 'No set today';
@@ -2487,25 +2476,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '三日月（満ちていく）';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '上弦の月';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '十三夜ごろの月（満ちていく）';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '十八夜ごろの月（欠けていく）';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '三日月（欠けていく）';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2526,13 +2515,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '雷雨';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '天気を一時的に取得できません';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '保存済みの予報';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2541,26 +2530,25 @@ class AppLocalizationsJa extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '雷雨の予報';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => '接続して今月の学習スケジュールを読み込む';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => '祝祭日のトーラー朗読';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => '学習カレンダー · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => '予報 · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '選んだ都市の天気です。MET Norway には丸めた座標を使います。';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'ランバムなどの学習スケジュールは Hebcal から読み込まれ、オフライン用に保存されます。';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2572,14 +2560,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'タイムゾーンの基準都市';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '空の都市を選ぶ';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '太陽と月はこの都市の座標を使います。シャバットの都市とアラームのタイムゾーンは選んだままです。';
 
   @override
   String get skySun => 'Sun today';
@@ -2588,46 +2575,43 @@ class AppLocalizationsJa extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '月は地平線の上';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '月は地平線の下';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '次の新月';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '次の満月';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '位置情報サービスがオフです。設定でオンにするか、都市を選んでください。';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '位置情報へのアクセスが拒否されました。設定で許可するか、都市を選んでください。';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => 'まだ位置を取得できません。Macでは Wi-Fi をオンにしたままもう一度試すか、都市を選んでください。';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '位置情報を使う前に、選択したタイムゾーン内の都市を選ぶか、デバイスのタイムゾーンに合わせてください。';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '位置情報の設定を開く';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '位置を取得中…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '月を表示：月の出・月の入りと月相';
 
   @override
-  String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+  String get tuyaConsumerPending => 'アカウントでのサインインは、このバージョンではまだ利用できません。Tuya開発者プロジェクトをお持ちの場合は、詳細設定を使用してください。';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => '詳細設定';
 
   @override
   String get tuyaSignInTitle => 'Smart Life アカウントでログイン';
@@ -2672,23 +2656,22 @@ class AppLocalizationsJa extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain => 'ホームに、次のヘブライ暦の月の最初の1〜2日を表示します。';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => '次のロシュ・ホデシュ';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => '日没から開始：';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'このトーラーの箇所をSefariaで読む';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '空の時刻はこの場所のタイムゾーンを使います。アラームのタイムゾーンとシャバットの都市は変わりません。このデバイスにのみ保存されます。';
 
   @override
   String get musicRingDurationHint => '再生はこのアラームの鳴動時間に従い、停止またはスヌーズで止まります。';
@@ -2843,19 +2826,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get keysShareNeedsPassphrase => '先に「デバイス間のキー」で同期パスフレーズを選んでください。';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'アラームの初期設定';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '場所と時間';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '外観・言語・名言';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '新しいアラームの初期設定';
 
   @override
   String get preview => 'Preview';
@@ -2866,13 +2849,13 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'カレンダーを接続';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '既成のアラームから';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '日の出、日の入り、あらかじめ用意されたその他のアラーム';
 
   @override
   String get calendarSourcesIntro => 'Quando? はカレンダーの予定の前後に鳴らせます。どこから読むか選んでください。';
@@ -3072,7 +3055,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'ハンドルをドラッグして、カードを移動、折りたたみ、またはサイズ変更できます。';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3093,27 +3076,27 @@ class AppLocalizationsJa extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '太陽・月・天気';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'シャバットと祝日';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '空の都市';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '次のアラーム · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'すべての日を表示';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'この日は鳴るものがありません';
 
   @override
   String get homeClockSize => 'ホームの時計';
