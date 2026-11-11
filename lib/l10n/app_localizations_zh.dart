@@ -2549,11 +2549,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '所选城市的天气。使用取整后的坐标，通过 MET Norway 获取。';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam 等学习日程从 Hebcal 加载，并保存以供离线使用。';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -6011,11 +6010,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '所選城市的天氣。使用四捨五入後的座標，透過 MET Norway 取得。';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam 等學習日程會從 Hebcal 載入，並儲存供離線使用。';
 
   @override
   String get homeRefresh => 'Refresh';
