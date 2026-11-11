@@ -3,7 +3,7 @@
   "title": "Simple and Everything levels, new Edit alarm and ring screen",
   "status": "review",
   "tag": "app",
-  "note": "PR open for Thursday's build, stacked on PR #50; Curió merges after testing on the phone.",
+  "note": "PR #51 open for Thursday's build, stacked on PR #50; Curió merges after testing on the phone.",
   "threadIds": [
     "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkYFNrvKXmoUEoDS1H87NS2X"
   ],
@@ -18,5 +18,8 @@
       "url": "https://claude.ai/artifact/4LJzTGp9vjRC69pu99kkRj"
     }
   ],
-  "order": 7
+  "order": 7,
+  "prs": [
+    51
+  ]
 }
