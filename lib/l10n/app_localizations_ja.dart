@@ -3503,5 +3503,5 @@ class AppLocalizationsJa extends AppLocalizations {
   String get askQuoteTranslation => '人生とは、生きたことではなく、記憶していること、そして語るためにどう記憶しているかである。';
 
   @override
-  String get askHelpQuote => '「千日の稽古を鍛とし、万日の稽古を錬とす。」\n宮本武蔵『五輪書』';
+  String get askHelpQuote => '「千日の稽古を鍛とし、万日の稽古を練とす。」\n宮本武蔵『五輪書』';
 }
