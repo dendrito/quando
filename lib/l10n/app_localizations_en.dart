@@ -3544,7 +3544,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Send what you say or type, and what you did with it, anonymously. No account or device ID.';
 
   @override
-  String get askHelpPromptTitle => 'Now you\'re talking.';
+  String get askHelpPromptTitle => 'Quando? has a student\'s heart.';
 
   @override
   String askHelpPromptBody(String sentence) {

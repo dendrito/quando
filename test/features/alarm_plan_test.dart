@@ -119,7 +119,7 @@ void main() {
     final saved = c.read(userAlarmsProvider).single;
     expect((saved.hour, saved.minute, saved.label, saved.days.length), (20, 0, 'Take my pills', 7));
     // Once, after the first saved voice or typed alarm: may we learn from it?
-    expect(find.text("Now you're talking."), findsOneWidget);
+    expect(find.text("Quando? has a student's heart."), findsOneWidget);
     expect(c.read(voiceLogProvider), isFalse);
     await tester.tap(find.text('Yes, help'));
     await tester.pumpAndSettle();

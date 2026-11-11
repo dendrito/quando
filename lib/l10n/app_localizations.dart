@@ -6421,7 +6421,7 @@ abstract class AppLocalizations {
   /// No description provided for @askHelpPromptTitle.
   ///
   /// In en, this message translates to:
-  /// **'Now you\'re talking.'**
+  /// **'Quando? has a student\'s heart.'**
   String get askHelpPromptTitle;
 
   /// No description provided for @askHelpPromptBody.
