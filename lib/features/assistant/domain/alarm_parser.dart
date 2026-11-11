@@ -53,7 +53,11 @@ class Lexicon {
             },
             relativeDays: [
               for (final MapEntry(:key, :value) in cl.relativeDays.entries)
-                if (!known(key, [for (final w in own) ...w.relativeDays.map((r) => r.$1), for (final w in own) w.am, for (final w in own) w.pm]))
+                if (!known(key, [
+                  for (final w in own) ...w.relativeDays.map((r) => r.$1),
+                  for (final w in own) w.am,
+                  for (final w in own) w.pm,
+                ]))
                   (RegExp.escape(key), value),
             ],
             am: cl.morning.where((x) => !known(x, own.map((w) => w.am))).map(RegExp.escape).join('|'),
@@ -120,9 +124,7 @@ class Lexicon {
     dir = '(?:$before|$after)';
     article = alt((w) => w.article);
     at = '(?:${alt((w) => w.at)}\\s+)?(?:${alt((w) => w.article)}\\s*)?';
-    moments = {
-      for (final a in TimeAnchor.values) a: alt((w) => w.moments[a] ?? ''),
-    };
+    moments = {for (final a in TimeAnchor.values) a: alt((w) => w.moments[a] ?? '')};
     am = alt((w) => w.am);
     pm = alt((w) => w.pm);
     noon = alt((w) => w.noon);
@@ -331,9 +333,36 @@ class _Pass {
   final _labelEaten = <(int, int)>[];
 
   static const _accents = {
-    'á': 'a', 'à': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e', 'í': 'i',
-    'ì': 'i', 'î': 'i', 'ï': 'i', 'ó': 'o', 'ò': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ú': 'u', 'ù': 'u',
-    'û': 'u', 'ü': 'u', 'ç': 'c', 'ñ': 'n', 'ß': 's', '’': "'", '‘': "'", '״': '"', '׳': "'", '“': '"',
+    'á': 'a',
+    'à': 'a',
+    'â': 'a',
+    'ã': 'a',
+    'ä': 'a',
+    'é': 'e',
+    'è': 'e',
+    'ê': 'e',
+    'ë': 'e',
+    'í': 'i',
+    'ì': 'i',
+    'î': 'i',
+    'ï': 'i',
+    'ó': 'o',
+    'ò': 'o',
+    'ô': 'o',
+    'õ': 'o',
+    'ö': 'o',
+    'ú': 'u',
+    'ù': 'u',
+    'û': 'u',
+    'ü': 'u',
+    'ç': 'c',
+    'ñ': 'n',
+    'ß': 's',
+    '’': "'",
+    '‘': "'",
+    '״': '"',
+    '׳': "'",
+    '“': '"',
     '”': '"',
   };
 
@@ -420,7 +449,9 @@ class _Pass {
   // ---- What to do: set, remove, skip ----
 
   void _action() {
-    final skip = _find('(?:${lex.skip})(?:\\s+(?:${lex.article}))?(?:\\s+(?:alarm|alarme|alarma|wecker|sveglia))?');
+    final skip = _find(
+      '(?:${lex.skip})(?:\\s+(?:${lex.article}))?(?:\\s+(?:alarm|alarme|alarma|wecker|sveglia))?',
+    );
     if (skip != null) {
       action = AlarmAction.skip;
       _eat(skip.start, skip.end);
@@ -438,9 +469,7 @@ class _Pass {
   // ---- In a while ----
 
   void _relative() {
-    final m =
-        _find('(?:${lex.inWords})\\s+(${lex.dur})') ??
-        _find('(${lex.dur})\\s+(?:${lex.fromNow})');
+    final m = _find('(?:${lex.inWords})\\s+(${lex.dur})') ?? _find('(${lex.dur})\\s+(?:${lex.fromNow})');
     if (m == null) return;
     final d = lex.durOf(m.group(1)!);
     if (d == null) return;
@@ -701,7 +730,9 @@ class _Pass {
       }
     }
     // quinze para as sete, רבע ל-7
-    if (lex.codes.contains('pt')) m = _find('($num|um\\s+quarto)\\s+(?:${lex.minutesTo})\\s+(?:as?\\s+)?($num)');
+    if (lex.codes.contains('pt')) {
+      m = _find('($num|um\\s+quarto)\\s+(?:${lex.minutesTo})\\s+(?:as?\\s+)?($num)');
+    }
     if (lex.hebrew) m ??= _find('(רבע|$num\\s+דקות)\\s+ל\\s*($num)');
     if (m != null && (lex.codes.contains('pt') || lex.hebrew)) {
       final g = m.group(1)!;
@@ -777,13 +808,17 @@ class _Pass {
   // ---- Sound and snooze ----
 
   void _extras() {
-    final sn = _find('(?:${lex.snooze})\\s+(?:(?:${lex.atHour})|of\\s+|de\\s+)?(\\d{1,2})\\s*(?:${lex.minute})?');
+    final sn = _find(
+      '(?:${lex.snooze})\\s+(?:(?:${lex.atHour})|of\\s+|de\\s+)?(\\d{1,2})\\s*(?:${lex.minute})?',
+    );
     if (sn != null) {
       snoozeMinutes = int.parse(sn.group(1)!);
       _eat(sn.start, sn.end);
     }
     for (final MapEntry(:key, :value) in lex.soundWords.entries) {
-      final m = _find('(?:(?:with|to|com|con|avec|mit|con|עם)\\s+)?(?:(?:the|a|my|o|a|la|le|el|il|die|das|ה)\\s+)?(?:$key)');
+      final m = _find(
+        '(?:(?:with|to|com|con|avec|mit|con|עם)\\s+)?(?:(?:the|a|my|o|a|la|le|el|il|die|das|ה)\\s+)?(?:$key)',
+      );
       if (m != null) {
         sound = value;
         _eat(m.start, m.end);

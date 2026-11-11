@@ -49,12 +49,18 @@ void main() {
     expect(p('skip tomorrow', 'en'), const AlarmRequest(dayOffset: 1, action: AlarmAction.skip));
     expect(p('wake me at 7 with the radio', 'en'), const AlarmRequest(hour: 7, sound: 'radio'));
     expect(p('me acorda às 7 com o rádio', 'pt'), const AlarmRequest(hour: 7, sound: 'radio'));
-    expect(p('alarm at 6:30 snooze 10 minutes', 'en'), const AlarmRequest(hour: 6, minute: 30, snoozeMinutes: 10));
+    expect(
+      p('alarm at 6:30 snooze 10 minutes', 'en'),
+      const AlarmRequest(hour: 6, minute: 30, snoozeMinutes: 10),
+    );
   });
 
   test('times said in words', () {
     expect(p('set an alarm for five hundred and thirty am', 'en'), const AlarmRequest(hour: 5, minute: 30));
-    expect(p('make me a wake up alarm for eight forty five am', 'en'), const AlarmRequest(hour: 8, minute: 45));
+    expect(
+      p('make me a wake up alarm for eight forty five am', 'en'),
+      const AlarmRequest(hour: 8, minute: 45),
+    );
     expect(p('please set my alarm for five p. m.', 'en'), const AlarmRequest(hour: 17));
     expect(p('set an alarm for twenty minutes', 'en'), const AlarmRequest(after: Duration(minutes: 20)));
     expect(p('me acorda às sete e meia', 'pt'), const AlarmRequest(hour: 7, minute: 30));
@@ -93,14 +99,23 @@ void main() {
         planFor(r, now: now, zone: 'America/Sao_Paulo', eventsBetween: (_, _) => const []);
 
     test('next Friday, the 15th, 25 May', () {
-      expect((plan(const AlarmRequest(hour: 9, onWeekday: 5)) as OneOffPlan).at, DateTime.utc(2026, 11, 13, 12));
-      expect((plan(const AlarmRequest(hour: 8, dayOfMonth: 15)) as OneOffPlan).at, DateTime.utc(2026, 11, 15, 11));
+      expect(
+        (plan(const AlarmRequest(hour: 9, onWeekday: 5)) as OneOffPlan).at,
+        DateTime.utc(2026, 11, 13, 12),
+      );
+      expect(
+        (plan(const AlarmRequest(hour: 8, dayOfMonth: 15)) as OneOffPlan).at,
+        DateTime.utc(2026, 11, 15, 11),
+      );
       expect(
         (plan(const AlarmRequest(hour: 7, month: 5, dayOfMonth: 25)) as OneOffPlan).at,
         DateTime.utc(2027, 5, 25, 10),
       );
       // "Next Wednesday" said on a Wednesday is a week away.
-      expect((plan(const AlarmRequest(hour: 9, onWeekday: 3)) as OneOffPlan).at, DateTime.utc(2026, 11, 18, 12));
+      expect(
+        (plan(const AlarmRequest(hour: 9, onWeekday: 3)) as OneOffPlan).at,
+        DateTime.utc(2026, 11, 18, 12),
+      );
     });
 
     test('a calendar event becomes a rule on that event', () {

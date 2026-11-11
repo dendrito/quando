@@ -20,7 +20,10 @@ String spokenNumbers(String text, Lexicon lex) {
   /// replaces in [s], so "três" is read like "tres".
   void sub(String pattern, String? Function(RegExpMatch m) out) {
     final plain = _plain(s);
-    final matches = RegExp('(?<![\\p{L}\\d])(?:$pattern)(?![\\p{L}\\d])', unicode: true).allMatches(plain).toList();
+    final matches = RegExp(
+      '(?<![\\p{L}\\d])(?:$pattern)(?![\\p{L}\\d])',
+      unicode: true,
+    ).allMatches(plain).toList();
     for (final m in matches.reversed) {
       final r = out(m);
       if (r != null) s = s.replaceRange(m.start, m.end, r);
@@ -45,15 +48,14 @@ String spokenNumbers(String text, Lexicon lex) {
 
   // "seven thirty", "sete e quinze", "sieben uhr zwanzig": an hour, then
   // minutes from 10 to 59, and not "minutes" after them.
-  sub(
-    '($w)\\s+(?:(?:${lex.hourWord})\\s+)?(?:(?:${lex.connector})\\s+)?($run)(?!\\s+$units(?![\\p{L}]))',
-    (m) {
-      final h = lex.numOf(m[1]!), mm = lex.numOf(m[2]!);
-      if (h == null || mm == null || h > 23 || mm < 10 || mm > 59) return null;
-      if (RegExp(r'^\s*עשרה?\s*$').hasMatch(m[2]!)) return null; // שתיים עשרה = 12
-      return '$h:${two(mm)}';
-    },
-  );
+  sub('($w)\\s+(?:(?:${lex.hourWord})\\s+)?(?:(?:${lex.connector})\\s+)?($run)(?!\\s+$units(?![\\p{L}]))', (
+    m,
+  ) {
+    final h = lex.numOf(m[1]!), mm = lex.numOf(m[2]!);
+    if (h == null || mm == null || h > 23 || mm < 10 || mm > 59) return null;
+    if (RegExp(r'^\s*עשרה?\s*$').hasMatch(m[2]!)) return null; // שתיים עשרה = 12
+    return '$h:${two(mm)}';
+  });
   // "seven and a half", "sete e meia", "sept heures et quart".
   sub('($num)\\s+(?:(?:${lex.hourWord})\\s+)?((?:${lex.halfPast})|(?:${lex.quarterPast}))', (m) {
     final h = lex.numOf(m[1]!);
@@ -70,9 +72,31 @@ String spokenNumbers(String text, Lexicon lex) {
 }
 
 const _accents = {
-  'á': 'a', 'à': 'a', 'â': 'a', 'ã': 'a', 'ä': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e', 'í': 'i',
-  'ì': 'i', 'î': 'i', 'ï': 'i', 'ó': 'o', 'ò': 'o', 'ô': 'o', 'õ': 'o', 'ö': 'o', 'ú': 'u', 'ù': 'u',
-  'û': 'u', 'ü': 'u', 'ç': 'c', 'ñ': 'n', 'ß': 's',
+  'á': 'a',
+  'à': 'a',
+  'â': 'a',
+  'ã': 'a',
+  'ä': 'a',
+  'é': 'e',
+  'è': 'e',
+  'ê': 'e',
+  'ë': 'e',
+  'í': 'i',
+  'ì': 'i',
+  'î': 'i',
+  'ï': 'i',
+  'ó': 'o',
+  'ò': 'o',
+  'ô': 'o',
+  'õ': 'o',
+  'ö': 'o',
+  'ú': 'u',
+  'ù': 'u',
+  'û': 'u',
+  'ü': 'u',
+  'ç': 'c',
+  'ñ': 'n',
+  'ß': 's',
 };
 
 String _plain(String s) {

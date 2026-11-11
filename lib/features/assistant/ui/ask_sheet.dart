@@ -52,8 +52,10 @@ String describePlan(AlarmPlan plan, String zone) => switch (plan) {
     anchorName(anchor),
     if (days.isNotEmpty) _daysLabel(days),
   ].join(' · '),
-  EventPlan(:final query, :final offset) =>
-    l10n.askEventPlan(offset == Duration.zero ? l10n.atTheMoment : describeOffset(offset), query),
+  EventPlan(:final query, :final offset) => l10n.askEventPlan(
+    offset == Duration.zero ? l10n.atTheMoment : describeOffset(offset),
+    query,
+  ),
 };
 
 /// The alarm sound "with the radio", "with a song", "with my voice" picks.
@@ -292,10 +294,15 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     bool fits(ScheduledAlarm a) {
       final t = inZone(a.at, zone);
       if (day != null) {
-        final d = DateTime(t.year, t.month, t.day).difference(DateTime(local.year, local.month, local.day)).inDays;
+        final d = DateTime(
+          t.year,
+          t.month,
+          t.day,
+        ).difference(DateTime(local.year, local.month, local.day)).inDays;
         if (d != day) return false;
       }
-      if (h != null && !(t.minute == r.minute && (t.hour == h || (r.halfDayUnsure && t.hour % 12 == h % 12)))) {
+      if (h != null &&
+          !(t.minute == r.minute && (t.hour == h || (r.halfDayUnsure && t.hour % 12 == h % 12)))) {
         return false;
       }
       return true;
@@ -386,7 +393,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
 
     final action = request?.action ?? AlarmAction.set;
     final plan = action == AlarmAction.set ? _plan(request) : null;
-    final turnOff = action == AlarmAction.remove && request != null ? _toTurnOff(request) : const <UserAlarm>[];
+    final turnOff = action == AlarmAction.remove && request != null
+        ? _toTurnOff(request)
+        : const <UserAlarm>[];
     final skip = action == AlarmAction.skip && request != null ? _toSkip(request) : const <ScheduledAlarm>[];
     final answer = question == null ? null : _answer(question);
     final shabbatOff =
@@ -395,8 +404,13 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
         !ref.watch(shabbatInUseProvider);
     final sound = soundOfKind(request?.sound, ref.watch(soundsProvider));
     final noCalendar = plan is EventPlan && !ref.watch(calendarProvider.select((c) => c.access));
-    final canTeach = input.isNotEmpty && !_listening && question == null && (plan == null || unsure) &&
-        action == AlarmAction.set && !learned.phrases.containsKey(input.toLowerCase());
+    final canTeach =
+        input.isNotEmpty &&
+        !_listening &&
+        question == null &&
+        (plan == null || unsure) &&
+        action == AlarmAction.set &&
+        !learned.phrases.containsKey(input.toLowerCase());
 
     return SafeArea(
       child: Padding(
@@ -466,17 +480,19 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                     color: QuandoColors.amber,
                   ),
                   title: Text(describePlan(plan, zone), style: text.titleMedium),
-                  subtitle: [
-                    if (plan.label.isNotEmpty) plan.label,
-                    if (sound != null) l10n.askWakeWith(sound.name),
-                    if (request?.snoozeMinutes case final n? when n > 0 && n <= 60) l10n.askSnoozeAll(n),
-                  ].isEmpty
+                  subtitle:
+                      [
+                        if (plan.label.isNotEmpty) plan.label,
+                        if (sound != null) l10n.askWakeWith(sound.name),
+                        if (request?.snoozeMinutes case final n? when n > 0 && n <= 60) l10n.askSnoozeAll(n),
+                      ].isEmpty
                       ? null
                       : Text(
                           [
                             if (plan.label.isNotEmpty) plan.label,
                             if (sound != null) l10n.askWakeWith(sound.name),
-                            if (request?.snoozeMinutes case final n? when n > 0 && n <= 60) l10n.askSnoozeAll(n),
+                            if (request?.snoozeMinutes case final n? when n > 0 && n <= 60)
+                              l10n.askSnoozeAll(n),
                           ].join('\n'),
                         ),
                 ),
@@ -486,7 +502,8 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 lines: [
                   for (final a in turnOff)
                     '${hhmm(DateTime(2000, 1, 1, a.hour, a.minute))} · ${a.repeats ? a.repeatLabel : l10n.once}${a.label.isEmpty ? '' : ' · ${a.label}'}',
-                  for (final a in skip) '${dayLabel(inZone(a.at, zone))} ${hhmm(inZone(a.at, zone))} · ${a.title}',
+                  for (final a in skip)
+                    '${dayLabel(inZone(a.at, zone))} ${hhmm(inZone(a.at, zone))} · ${a.title}',
                 ],
                 icon: action == AlarmAction.remove ? Icons.alarm_off : Icons.skip_next,
               )
@@ -506,7 +523,10 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 ],
               ),
             ],
-            if (plan != null && unsure) ...[const SizedBox(height: 8), Text(l10n.askUnsure, style: text.bodySmall)],
+            if (plan != null && unsure) ...[
+              const SizedBox(height: 8),
+              Text(l10n.askUnsure, style: text.bodySmall),
+            ],
             if (noCalendar) ...[
               const SizedBox(height: 8),
               Text(l10n.askEventNoCalendar(plan.query), style: text.bodySmall),

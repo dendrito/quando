@@ -153,8 +153,7 @@ class AlarmRequest {
       other.snoozeMinutes == snoozeMinutes;
 
   @override
-  int get hashCode =>
-      Object.hash(
+  int get hashCode => Object.hash(
     hour,
     minute,
     Object.hashAllUnordered(days),

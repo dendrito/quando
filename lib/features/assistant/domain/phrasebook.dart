@@ -47,16 +47,27 @@ String _numberWords(String s, String lang) {
   }();
   s = s.replaceAllMapped(
     pattern,
-    (m) => "${switch (m[1]) { 'و' => 'و ', 'ل' || 'ب' || 'ع' => 'at ', _ => '' }}${words[m[2]]}${m[3] == null || m[3]!.isEmpty ? '' : "'${m[3]!.replaceAll("'", '')}"}",
+    (m) =>
+        "${switch (m[1]) {
+          'و' => 'و ',
+          'ل' || 'ب' || 'ع' => 'at ',
+          _ => '',
+        }}${words[m[2]]}${m[3] == null || m[3]!.isEmpty ? '' : "'${m[3]!.replaceAll("'", '')}"}",
   );
   // Tens and units said apart: "сорок пять", "dua puluh lima" → 45.
-  s = s.replaceAllMapped(RegExp(r'(?<!\d)([2-5]0)\s+([1-9])(?!\d)'), (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}');
+  s = s.replaceAllMapped(
+    RegExp(r'(?<!\d)([2-5]0)\s+([1-9])(?!\d)'),
+    (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}',
+  );
   // "восемь ноль ноль", "eight o o": 8:00.
   s = s.replaceAllMapped(RegExp(r'(?<!\d)(\d{1,2})\s+0\s+0(?!\d)'), (m) => '${m[1]}:00');
   if (lang == 'ar') {
     // Arabic says units before tens: "خمسة وأربعين" = 45; "ثمنية و45" = 8:45.
     s = s
-        .replaceAllMapped(RegExp(r'(?<!\d)([1-9])\s*و\s*([2-5]0)(?!\d)'), (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}')
+        .replaceAllMapped(
+          RegExp(r'(?<!\d)([1-9])\s*و\s*([2-5]0)(?!\d)'),
+          (m) => '${int.parse(m[1]!) + int.parse(m[2]!)}',
+        )
         .replaceAllMapped(RegExp(r'(?<!\d)(\d{1,2})\s*و\s*(\d{2})(?!\d)'), (m) => '${m[1]}:${m[2]}');
   }
   return s;

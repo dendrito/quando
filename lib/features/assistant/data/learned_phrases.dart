@@ -24,7 +24,10 @@ class Learned {
     var s = input;
     final keys = phrases.keys.toList()..sort((a, b) => b.length.compareTo(a.length));
     for (final k in keys) {
-      s = s.replaceAll(RegExp('(?<![\\p{L}\\d])${RegExp.escape(k)}(?![\\p{L}\\d])', unicode: true, caseSensitive: false), phrases[k]!);
+      s = s.replaceAll(
+        RegExp('(?<![\\p{L}\\d])${RegExp.escape(k)}(?![\\p{L}\\d])', unicode: true, caseSensitive: false),
+        phrases[k]!,
+      );
     }
     return s;
   }
@@ -37,7 +40,8 @@ class Learned {
   factory Learned.fromJson(Map<String, dynamic> j) => Learned(
     phrases: {for (final MapEntry(:key, :value) in (j['phrases'] as Map? ?? {}).entries) '$key': '$value'},
     halfDay: {
-      for (final MapEntry(:key, :value) in (j['halfDay'] as Map? ?? {}).entries) int.parse('$key'): value == true,
+      for (final MapEntry(:key, :value) in (j['halfDay'] as Map? ?? {}).entries)
+        int.parse('$key'): value == true,
     },
   );
 }
@@ -59,10 +63,12 @@ class LearnedNotifier extends Notifier<Learned> {
   void teach(String phrase, int hour, int minute) {
     final p = phrase.trim().toLowerCase();
     if (p.isEmpty) return;
-    _set(Learned(
-      phrases: {...state.phrases, p: '$hour:${minute.toString().padLeft(2, '0')}'},
-      halfDay: state.halfDay,
-    ));
+    _set(
+      Learned(
+        phrases: {...state.phrases, p: '$hour:${minute.toString().padLeft(2, '0')}'},
+        halfDay: state.halfDay,
+      ),
+    );
   }
 
   void forget(String phrase) =>

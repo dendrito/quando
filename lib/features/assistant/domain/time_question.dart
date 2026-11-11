@@ -103,6 +103,22 @@ TimeAnswer? answerTimeQuestion(
 }
 
 String _plain(String s) {
-  const accents = {'á': 'a', 'à': 'a', 'â': 'a', 'ã': 'a', 'é': 'e', 'è': 'e', 'ê': 'e', 'í': 'i', 'ó': 'o', 'ô': 'o', 'õ': 'o', 'ú': 'u', 'ü': 'u', 'ç': 'c', 'ñ': 'n'};
+  const accents = {
+    'á': 'a',
+    'à': 'a',
+    'â': 'a',
+    'ã': 'a',
+    'é': 'e',
+    'è': 'e',
+    'ê': 'e',
+    'í': 'i',
+    'ó': 'o',
+    'ô': 'o',
+    'õ': 'o',
+    'ú': 'u',
+    'ü': 'u',
+    'ç': 'c',
+    'ñ': 'n',
+  };
   return s.toLowerCase().split('').map((c) => accents[c] ?? c).join();
 }
