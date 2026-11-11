@@ -52,4 +52,3 @@ jobs:
             git pull --rebase origin main && git push origin HEAD:main && break
             sleep $((i * 3))
           done
-          gh workflow run dashboard.yml --ref main
