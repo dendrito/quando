@@ -8615,7 +8615,6 @@ const quoteBank = <String, List<Quote>>{
     Quote('光陰矢の如し。', 'ことわざ', QuoteSource.proverbs, 'any'),
     Quote('ゆく河の流れは絶えずして、しかももとの水にあらず。', '鴨長明『方丈記』', QuoteSource.literature, 'any'),
     Quote('上を向いて歩こう、涙がこぼれないように。', '永六輔', QuoteSource.songs, 'any'),
-    Quote('月日は百代の過客にして、行きかふ年も又旅人也。', '松尾芭蕉『おくのほそ道』', QuoteSource.literature, 'any'),
   ],
   'ko': [
     Quote(
@@ -14010,8 +14009,8 @@ const quoteBank = <String, List<Quote>>{
     Quote('Bugünün işini yarına bırakma.', 'Atasözü', QuoteSource.proverbs, 'any'),
     Quote('Sakla samanı, gelir zamanı.', 'Atasözü', QuoteSource.proverbs, 'any'),
     Quote('Gülü seven dikenine katlanır.', 'Atasözü', QuoteSource.proverbs, 'any'),
-    Quote('Sevelim sevilelim, dünya kimseye kalmaz.', 'Yunus Emre', QuoteSource.literature, 'any'),
     Quote('Sabreden derviş muradına ermiş.', 'Atasözü', QuoteSource.proverbs, 'any'),
+    Quote('Yaş otuz beş! yolun yarısı eder.', 'Cahit Sıtkı Tarancı', QuoteSource.literature, 'any'),
   ],
   'uk': [
     Quote(
@@ -16465,9 +16464,9 @@ const quoteBank = <String, List<Quote>>{
     Quote('明日复明日，明日何其多。', '钱福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但愿人长久，千里共婵娟。', '苏轼', QuoteSource.literature, 'evening'),
     Quote('三人行，必有我师焉。', '孔子《论语·述而》', QuoteSource.philosophy, 'any'),
-    Quote('千里之行，始于足下。', '老子《道德经》', QuoteSource.philosophy, 'any'),
     Quote('学而时习之，不亦说乎？', '孔子《论语·学而》', QuoteSource.philosophy, 'any'),
     Quote('一年之计在于春，一日之计在于晨。', '谚语', QuoteSource.proverbs, 'morning'),
+    Quote('天地者，万物之逆旅也；光阴者，百代之过客也。', '李白《春夜宴桃李园序》', QuoteSource.literature, 'any'),
   ],
   'zh_Hant': [
     Quote(
@@ -17069,9 +17068,8 @@ const quoteBank = <String, List<Quote>>{
     Quote('明日復明日，明日何其多。', '錢福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但願人長久，千里共嬋娟。', '蘇軾', QuoteSource.literature, 'evening'),
     Quote('三人行，必有我師焉。', '孔子《論語·述而》', QuoteSource.philosophy, 'any'),
-    Quote('逝者如斯夫，不舍晝夜。', '孔子《論語·子罕》', QuoteSource.philosophy, 'any'),
-    Quote('千里之行，始於足下。', '老子《道德經》', QuoteSource.philosophy, 'any'),
     Quote('學而時習之，不亦說乎？', '孔子《論語·學而》', QuoteSource.philosophy, 'any'),
     Quote('一年之計在於春，一日之計在於晨。', '諺語', QuoteSource.proverbs, 'morning'),
+    Quote('天地者，萬物之逆旅也；光陰者，百代之過客也。', '李白《春夜宴桃李園序》', QuoteSource.literature, 'any'),
   ],
 };
