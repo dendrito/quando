@@ -9,6 +9,8 @@ import 'package:go_router/go_router.dart';
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/busy/ui/busy_screen.dart';
+import '../features/weather_alarms/data/weather_alarm_providers.dart';
+import '../features/weather_alarms/ui/weather_alarms_screen.dart';
 import '../features/share/share_channel.dart';
 import '../features/home/domain/sky.dart';
 import '../features/widget/home_widget.dart';
@@ -55,6 +57,7 @@ final _router = GoRouter(
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
     GoRoute(path: '/busy', builder: (context, state) => const BusyScreen()),
+    GoRoute(path: '/weather-alarms', builder: (context, state) => const WeatherAlarmsScreen()),
     GoRoute(path: '/share', builder: (context, state) => const ShareCardScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
@@ -96,6 +99,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
       ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
       ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
+      ref.listenManual(weatherAlertsProvider, (_, _) => _scheduleSync());
+      ref.listenManual(weatherAlarmSettingsProvider, (_, _) => ref.read(weatherAlertsProvider.notifier).refresh());
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
       // Signed in to sync: pick up where it left off.
@@ -141,6 +146,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
+    await ref.read(weatherAlertsProvider.notifier).refresh();
     await _sync();
   }
 
@@ -206,6 +212,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
+      ref.read(weatherAlertsProvider.notifier).refresh();
     }
   }
 
