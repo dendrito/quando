@@ -3557,4 +3557,11 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get askReadAs => 'Lido como';
+
+  @override
+  String get askHelpTitle => 'Ajude a melhorar os alarmes por voz';
+
+  @override
+  String get askHelpBody =>
+      'Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho.';
 }

@@ -3550,4 +3550,11 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get askReadAs => 'Gelezen als';
+
+  @override
+  String get askHelpTitle => 'Help spraakwekkers te verbeteren';
+
+  @override
+  String get askHelpBody =>
+      'Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID.';
 }

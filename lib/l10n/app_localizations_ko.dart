@@ -3479,4 +3479,10 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askReadAs => '이렇게 읽었어요';
+
+  @override
+  String get askHelpTitle => '음성 알람 개선에 참여';
+
+  @override
+  String get askHelpBody => '말하거나 입력한 내용과 그 후 동작을 익명으로 보냅니다. 계정이나 기기 ID는 없습니다.';
 }

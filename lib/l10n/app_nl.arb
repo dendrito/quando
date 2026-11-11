@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Koppel een agenda zodat Quando? ‘{event}’ kan vinden.",
   "askSnoozeAll": "Snooze: {minutes} min, voor deze wekker",
   "askWakeWith": "Wekt je met {sound}",
-  "askReadAs": "Gelezen als"
+  "askReadAs": "Gelezen als",
+  "askHelpTitle": "Help spraakwekkers te verbeteren",
+  "askHelpBody": "Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID."
 }

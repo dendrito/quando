@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Collega un calendario perché Quando? trovi “{event}”.",
   "askSnoozeAll": "Posticipa: {minutes} min, per questa sveglia",
   "askWakeWith": "Ti sveglia con {sound}",
-  "askReadAs": "Letto come"
+  "askReadAs": "Letto come",
+  "askHelpTitle": "Aiuta a migliorare le sveglie vocali",
+  "askHelpBody": "Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo."
 }

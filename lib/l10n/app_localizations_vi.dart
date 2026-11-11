@@ -3526,4 +3526,11 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askReadAs => 'Được hiểu là';
+
+  @override
+  String get askHelpTitle => 'Giúp cải thiện báo thức bằng giọng nói';
+
+  @override
+  String get askHelpBody =>
+      'Gửi ẩn danh điều bạn nói hoặc gõ và việc bạn đã làm. Không có tài khoản hay ID thiết bị.';
 }

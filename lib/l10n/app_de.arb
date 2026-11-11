@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Verbinde einen Kalender, damit Quando? „{event}“ findet.",
   "askSnoozeAll": "Schlummern: {minutes} Min., für diesen Wecker",
   "askWakeWith": "Weckt dich mit {sound}",
-  "askReadAs": "Gelesen als"
+  "askReadAs": "Gelesen als",
+  "askHelpTitle": "Hilf mit, Sprachwecker zu verbessern",
+  "askHelpBody": "Sendet anonym, was du sagst oder tippst und was du damit gemacht hast. Ohne Konto oder Geräte-ID."
 }

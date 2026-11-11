@@ -3527,4 +3527,11 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get askReadAs => 'נקרא כ־';
+
+  @override
+  String get askHelpTitle => 'עזרו לשפר שעונים בקול';
+
+  @override
+  String get askHelpBody =>
+      'שולח באופן אנונימי את מה שאמרתם או הקלדתם ומה עשיתם איתו. בלי חשבון ובלי מזהה מכשיר.';
 }

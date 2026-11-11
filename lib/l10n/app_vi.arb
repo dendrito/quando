@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Kết nối lịch để Quando? tìm được “{event}”.",
   "askSnoozeAll": "Báo lại: {minutes} phút, cho báo thức này",
   "askWakeWith": "Đánh thức bạn bằng {sound}",
-  "askReadAs": "Được hiểu là"
+  "askReadAs": "Được hiểu là",
+  "askHelpTitle": "Giúp cải thiện báo thức bằng giọng nói",
+  "askHelpBody": "Gửi ẩn danh điều bạn nói hoặc gõ và việc bạn đã làm. Không có tài khoản hay ID thiết bị."
 }

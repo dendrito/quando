@@ -3557,4 +3557,11 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askReadAs => 'Letto come';
+
+  @override
+  String get askHelpTitle => 'Aiuta a migliorare le sveglie vocali';
+
+  @override
+  String get askHelpBody =>
+      'Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo.';
 }

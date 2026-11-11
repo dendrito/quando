@@ -6405,6 +6405,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Read as'**
   String get askReadAs;
+
+  /// No description provided for @askHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve voice alarms'**
+  String get askHelpTitle;
+
+  /// No description provided for @askHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send what you say or type, and what you did with it, anonymously. No account or device ID.'**
+  String get askHelpBody;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

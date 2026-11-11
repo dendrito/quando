@@ -3588,4 +3588,10 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askReadAs => 'قُرئ هكذا';
+
+  @override
+  String get askHelpTitle => 'ساعد في تحسين المنبّهات الصوتية';
+
+  @override
+  String get askHelpBody => 'يرسل بشكل مجهول ما تقوله أو تكتبه وما فعلته به. بلا حساب ولا معرّف جهاز.';
 }

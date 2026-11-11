@@ -15,6 +15,7 @@ import '../../calendar/domain/calendar_rule.dart';
 import '../../events/domain/sun_times.dart';
 import '../../sounds/domain/sound.dart';
 import '../data/learned_phrases.dart';
+import '../data/voice_log.dart';
 import '../domain/alarm_ai.dart';
 import '../domain/alarm_parser.dart';
 import '../domain/alarm_plan.dart';
@@ -90,14 +91,37 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   AlarmRequest? _ai;
   String? _aiFor;
 
+  /// What was on screen last, for the optional "help improve" log.
+  String _lastInput = '';
+  String _lastUnderstood = '';
+  String _lastLang = '';
+  bool _logged = false;
+  late final ProviderContainer _container = ProviderScope.containerOf(context, listen: false);
+
+  /// Sends the sentence once, only if the person turned the log on.
+  void _log(String outcome) {
+    if (_logged || !_container.read(voiceLogProvider)) return;
+    final sample = voiceSample(
+      sentence: _lastInput,
+      lang: _lastLang,
+      understood: _lastUnderstood,
+      outcome: outcome,
+    );
+    if (sample == null) return;
+    _logged = true;
+    unawaited(_container.read(voiceLogSinkProvider).send(sample));
+  }
+
   @override
   void initState() {
     super.initState();
+    _container;
     if (widget.listenAtStart) WidgetsBinding.instance.addPostFrameCallback((_) => _listen());
   }
 
   @override
   void dispose() {
+    _log(_lastUnderstood.isEmpty ? 'not_understood' : 'cancelled');
     unawaited(_speech.stop());
     _text.dispose();
     super.dispose();
@@ -193,6 +217,8 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   }
 
   void _save(AlarmPlan plan, AlarmRequest request) {
+    _lastUnderstood = request.toString();
+    _log('saved');
     final id = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
     final zone = ref.read(homeZoneProvider);
     final soundId = soundOfKind(request.sound, ref.read(soundsProvider))?.id;
@@ -416,6 +442,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     final evening = askHalf ? _evening ?? learned.halfDay[r0.hour! % 12] : null;
     if (askHalf && evening != null) request = r0.withHalfDay(evening: evening);
 
+    _lastInput = input;
+    _lastLang = lang;
+    _lastUnderstood = request?.toString() ?? '';
     final action = request?.action ?? AlarmAction.set;
     final plan = action == AlarmAction.set ? _plan(request) : null;
     final turnOff = action == AlarmAction.remove && request != null
@@ -591,6 +620,14 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 onPressed: plan == null || noCalendar ? null : () => _save(plan, request!),
                 child: Text(l10n.save),
               ),
+            SwitchListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.askHelpTitle),
+              subtitle: Text(l10n.askHelpBody),
+              value: ref.watch(voiceLogProvider),
+              onChanged: (v) => ref.read(voiceLogProvider.notifier).set(v),
+            ),
           ],
         ),
       ),

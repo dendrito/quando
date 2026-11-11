@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Hubungkan kalender agar Quando? bisa menemukan “{event}”.",
   "askSnoozeAll": "Tunda: {minutes} mnt, untuk alarm ini",
   "askWakeWith": "Membangunkan Anda dengan {sound}",
-  "askReadAs": "Dibaca sebagai"
+  "askReadAs": "Dibaca sebagai",
+  "askHelpTitle": "Bantu tingkatkan alarm suara",
+  "askHelpBody": "Mengirim secara anonim apa yang Anda ucapkan atau ketik dan apa yang Anda lakukan. Tanpa akun atau ID perangkat."
 }

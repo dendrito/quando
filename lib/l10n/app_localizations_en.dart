@@ -3535,4 +3535,11 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askReadAs => 'Read as';
+
+  @override
+  String get askHelpTitle => 'Help improve voice alarms';
+
+  @override
+  String get askHelpBody =>
+      'Send what you say or type, and what you did with it, anonymously. No account or device ID.';
 }

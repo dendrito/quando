@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "連結行事曆，Quando? 才能找到「{event}」。",
   "askSnoozeAll": "貪睡：{minutes} 分鐘，僅適用於這個鬧鐘",
   "askWakeWith": "用{sound}叫醒你",
-  "askReadAs": "理解為"
+  "askReadAs": "理解為",
+  "askHelpTitle": "協助改進語音鬧鐘",
+  "askHelpBody": "匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。"
 }

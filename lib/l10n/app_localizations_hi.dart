@@ -3529,4 +3529,11 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get askReadAs => 'ऐसे पढ़ा गया';
+
+  @override
+  String get askHelpTitle => 'वॉइस अलार्म बेहतर बनाने में मदद करें';
+
+  @override
+  String get askHelpBody =>
+      'आप जो बोलते या टाइप करते हैं और उसके साथ क्या किया, वह गुमनाम रूप से भेजता है। कोई खाता या डिवाइस ID नहीं।';
 }

@@ -3555,4 +3555,11 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get askReadAs => 'Gelesen als';
+
+  @override
+  String get askHelpTitle => 'Hilf mit, Sprachwecker zu verbessern';
+
+  @override
+  String get askHelpBody =>
+      'Sendet anonym, was du sagst oder tippst und was du damit gemacht hast. Ohne Konto oder Geräte-ID.';
 }

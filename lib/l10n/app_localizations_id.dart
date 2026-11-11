@@ -3535,4 +3535,11 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askReadAs => 'Dibaca sebagai';
+
+  @override
+  String get askHelpTitle => 'Bantu tingkatkan alarm suara';
+
+  @override
+  String get askHelpBody =>
+      'Mengirim secara anonim apa yang Anda ucapkan atau ketik dan apa yang Anda lakukan. Tanpa akun atau ID perangkat.';
 }

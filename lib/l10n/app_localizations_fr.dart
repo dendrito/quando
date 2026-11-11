@@ -3560,4 +3560,11 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get askReadAs => 'Lu comme';
+
+  @override
+  String get askHelpTitle => 'Aidez à améliorer les alarmes vocales';
+
+  @override
+  String get askHelpBody =>
+      'Envoie ce que vous dites ou tapez, et ce que vous en avez fait, de façon anonyme. Sans compte ni identifiant d’appareil.';
 }

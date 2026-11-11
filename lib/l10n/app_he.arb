@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "חבר יומן כדי ש־Quando? ימצא את ”{event}”.",
   "askSnoozeAll": "נודניק: {minutes} דק׳, לשעון הזה",
   "askWakeWith": "מעיר אותך עם {sound}",
-  "askReadAs": "נקרא כ־"
+  "askReadAs": "נקרא כ־",
+  "askHelpTitle": "עזרו לשפר שעונים בקול",
+  "askHelpBody": "שולח באופן אנונימי את מה שאמרתם או הקלדתם ומה עשיתם איתו. בלי חשבון ובלי מזהה מכשיר."
 }

@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Conecta un calendario para que Quando? encuentre “{event}”.",
   "askSnoozeAll": "Posponer: {minutes} min, para esta alarma",
   "askWakeWith": "Te despierta con {sound}",
-  "askReadAs": "Leído como"
+  "askReadAs": "Leído como",
+  "askHelpTitle": "Ayuda a mejorar las alarmas por voz",
+  "askHelpBody": "Envía lo que dices o escribes, y lo que hiciste con ello, de forma anónima. Sin cuenta ni ID del dispositivo."
 }

@@ -3471,6 +3471,12 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askReadAs => '理解为';
+
+  @override
+  String get askHelpTitle => '帮助改进语音闹钟';
+
+  @override
+  String get askHelpBody => '匿名发送你说的或输入的内容以及你的操作。不含账号或设备 ID。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6939,4 +6945,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askReadAs => '理解為';
+
+  @override
+  String get askHelpTitle => '協助改進語音鬧鐘';
+
+  @override
+  String get askHelpBody => '匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。';
 }

@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Quando?'nun “{event}” etkinliğini bulması için bir takvim bağlayın.",
   "askSnoozeAll": "Erteleme: {minutes} dk, bu alarm için",
   "askWakeWith": "Sizi {sound} ile uyandırır",
-  "askReadAs": "Şöyle okundu"
+  "askReadAs": "Şöyle okundu",
+  "askHelpTitle": "Sesli alarmları geliştirmeye yardım et",
+  "askHelpBody": "Söylediklerinizi veya yazdıklarınızı ve ne yaptığınızı anonim olarak gönderir. Hesap veya cihaz kimliği yok."
 }

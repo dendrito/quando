@@ -2125,5 +2125,9 @@
       }
     }
   },
-  "askReadAs": "Read as"
+  "askReadAs": "Read as",
+  "askHelpTitle": "Help improve voice alarms",
+  "askHelpBody": "Send what you say or type, and what you did with it, anonymously. No account or device ID.",
+  "@askHelpTitle": {},
+  "@askHelpBody": {}
 }

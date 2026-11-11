@@ -3538,4 +3538,11 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get askReadAs => 'Şöyle okundu';
+
+  @override
+  String get askHelpTitle => 'Sesli alarmları geliştirmeye yardım et';
+
+  @override
+  String get askHelpBody =>
+      'Söylediklerinizi veya yazdıklarınızı ve ne yaptığınızı anonim olarak gönderir. Hesap veya cihaz kimliği yok.';
 }

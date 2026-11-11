@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Conecte uma agenda para o Quando? achar “{event}”.",
   "askSnoozeAll": "Soneca: {minutes} min, para este alarme",
   "askWakeWith": "Te acorda com {sound}",
-  "askReadAs": "Lido como"
+  "askReadAs": "Lido como",
+  "askHelpTitle": "Ajude a melhorar os alarmes por voz",
+  "askHelpBody": "Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho."
 }

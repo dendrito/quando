@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "Quando?が「{event}」を見つけられるようカレンダーを接続してください。",
   "askSnoozeAll": "スヌーズ：{minutes}分、このアラームに適用",
   "askWakeWith": "{sound}で起こします",
-  "askReadAs": "読み取り結果"
+  "askReadAs": "読み取り結果",
+  "askHelpTitle": "音声アラームの改善に協力",
+  "askHelpBody": "話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。"
 }

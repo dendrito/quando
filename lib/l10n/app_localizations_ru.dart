@@ -3604,4 +3604,11 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get askReadAs => 'Прочитано как';
+
+  @override
+  String get askHelpTitle => 'Помогите улучшить голосовые будильники';
+
+  @override
+  String get askHelpBody =>
+      'Анонимно отправляет то, что вы говорите или вводите, и что вы с этим сделали. Без аккаунта и ID устройства.';
 }

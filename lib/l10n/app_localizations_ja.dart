@@ -3478,4 +3478,10 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get askReadAs => '読み取り結果';
+
+  @override
+  String get askHelpTitle => '音声アラームの改善に協力';
+
+  @override
+  String get askHelpBody => '話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。';
 }

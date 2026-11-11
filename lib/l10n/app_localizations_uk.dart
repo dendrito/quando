@@ -3603,4 +3603,11 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get askReadAs => 'Прочитано як';
+
+  @override
+  String get askHelpTitle => 'Допоможіть покращити голосові будильники';
+
+  @override
+  String get askHelpBody =>
+      'Анонімно надсилає те, що ви кажете чи вводите, і що ви з цим зробили. Без облікового запису та ID пристрою.';
 }

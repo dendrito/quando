@@ -1045,5 +1045,7 @@
   "askEventNoCalendar": "连接日历，Quando? 才能找到“{event}”。",
   "askSnoozeAll": "贪睡：{minutes} 分钟，仅适用于这个闹钟",
   "askWakeWith": "用{sound}叫醒你",
-  "askReadAs": "理解为"
+  "askReadAs": "理解为",
+  "askHelpTitle": "帮助改进语音闹钟",
+  "askHelpBody": "匿名发送你说的或输入的内容以及你的操作。不含账号或设备 ID。"
 }
