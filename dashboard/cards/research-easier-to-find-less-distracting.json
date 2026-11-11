@@ -1,13 +1,18 @@
 {
   "id": "research-easier-to-find-less-distracting",
   "title": "Research: make features easier to find and less distracting",
-  "status": "review",
+  "status": "done",
   "tag": "app",
-  "note": "Research done. Top picks: Quick setup values as recommended defaults, a five-person task test before 4 Dec, label the Timers icon, notification audit.",
+  "note": "Doc \"Easier to find, less distracting\" is ready (private). Top wins: make the Quick setup values the defaults, label the Timers icon, cut notifications to the ones the person asked for, test 5 people before 4 Dec.",
   "details": "Studies, UX practice and tools on discoverability, choice overload, defaults, notifications and showing time. Ends with 12 experiments ranked by effort and impact. Research only, no app code.",
   "docs": [
-    {"title": "Easier to find, less distracting", "url": "https://claude.ai/artifact/4LJzTGp9vjRC69pu99kkRj"}
+    {
+      "title": "Easier to find, less distracting",
+      "url": "https://claude.ai/artifact/4LJzTGp9vjRC69pu99kkRj"
+    }
   ],
-  "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzkFGpptauXCJ24HJUWXJYAQy"],
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkFGpptauXCJ24HJUWXJYAQy"
+  ],
   "order": 115
 }
