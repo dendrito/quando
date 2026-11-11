@@ -14,6 +14,7 @@ import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../ringing/ui/alarm_extras.dart';
 import '../../settings/domain/alarm_options.dart';
+import '../../settings/ui/quick_setups.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
 import '../../ready/ready_screen.dart';
@@ -58,6 +59,9 @@ class SettingsScreen extends ConsumerWidget {
 
           // ---- Your account & devices ----
           const _AccountCard(),
+
+          // ---- Quick setups ----
+          const QuickSetupsRow(),
 
           // ---- Alarm defaults ----
           group(l10n.settingsAlarmDefaults),

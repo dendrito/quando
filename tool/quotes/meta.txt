@@ -23,8 +23,6 @@ seneca philosophy day la
 horace philosophy morning la
 heraclitus philosophy any
 franklin philosophy day en
-confucius philosophy any zh
-hasan philosophy any ar
 virgil literature day la
 tolstoy literature any ru
 basho literature any ja
@@ -39,7 +37,6 @@ lamartine literature evening fr
 goethe literature any de
 dante literature day it
 szymborska literature any pl
-lorenzo literature evening it
 kabir literature day hi
 churchill speeches evening en
 jfk speeches day en
@@ -57,6 +54,16 @@ utro proverbs evening,night ru
 jago proverbs morning hi
 gd_sept songs 09-30,sep en
 gd_time songs evening en
+wham_gogo songs morning en
+anita_bell songs any en
+bacharach_bell songs evening en
+borges_time literature any es
+aznavour_hier songs evening fr
+gabo_born literature morning es
+gabo_life literature evening es
+bergson_time philosophy any fr
+perec_vivre literature any fr
+gary_aube literature morning fr
 sun songs morning en
 lennon songs day en
 dylan songs any en

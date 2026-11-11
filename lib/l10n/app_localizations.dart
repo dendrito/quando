@@ -6406,6 +6406,78 @@ abstract class AppLocalizations {
   /// **'Read as'**
   String get askReadAs;
 
+  /// No description provided for @quickSetups.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick setups'**
+  String get quickSetups;
+
+  /// No description provided for @qsMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning that works'**
+  String get qsMorningTitle;
+
+  /// No description provided for @qsStartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a start'**
+  String get qsStartTitle;
+
+  /// No description provided for @qsStretchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Work in stretches'**
+  String get qsStretchTitle;
+
+  /// No description provided for @qsWillChange.
+  ///
+  /// In en, this message translates to:
+  /// **'What will change'**
+  String get qsWillChange;
+
+  /// No description provided for @qsAlreadyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already on. Nothing to change.'**
+  String get qsAlreadyOn;
+
+  /// No description provided for @qsApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get qsApply;
+
+  /// No description provided for @qsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get qsDone;
+
+  /// No description provided for @qsUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get qsUndo;
+
+  /// No description provided for @qsSnoozeTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snoozes allowed'**
+  String get qsSnoozeTimes;
+
+  /// No description provided for @qsSnoozeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze minutes'**
+  String get qsSnoozeMinutes;
+
+  /// No description provided for @qsFiveLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes left'**
+  String get qsFiveLeft;
+
   /// No description provided for @syncHeading.
   ///
   /// In en, this message translates to:

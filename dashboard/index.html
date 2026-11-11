@@ -42,7 +42,7 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
 .row:last-child{border-bottom:0}.row .grow{flex:1;min-width:200px}
 .mute{color:var(--mute);font-size:.88rem}
-.tabs{display:flex;gap:6px;margin:18px 0 0}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--chip);color:var(--ink);cursor:pointer}.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg,#fff)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.grp{margin:6px 0;border:1px solid var(--line);border-radius:8px;padding:2px 6px}.grp>summary{cursor:pointer;font-size:.85rem;padding:4px 0;list-style:none;display:flex;justify-content:space-between}.grp>summary::-webkit-details-marker{display:none}.grp>summary::before{content:"▸";margin-right:6px}.grp[open]>summary::before{content:"▾"}.grp>summary span{color:var(--mute)}.tabs{display:flex;gap:6px;margin:18px 0 0}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--chip);color:var(--ink);cursor:pointer}.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg,#fff)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .empty{padding:14px;color:var(--mute)}
 .card{cursor:pointer}.card:hover{border-color:var(--accent)}
 dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:620px;width:calc(100% - 24px);padding:20px}
@@ -161,13 +161,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     return '<a class="pill ' + (s ? s.cls : "") + '" href="' + base + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">#' + n + (s ? " · " + s.label : "") + "</a>";
   }
 
-  function board() {
-    var q = query.toLowerCase();
-    $("board").innerHTML = data.statuses.map(function (st) {
-      var items = [];
-      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
-      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
-        (items.map(function (x) {
+  function cardHtml(x) {
           var i = x[0];
           return '<div class="card" data-i="' + x[1] + '"><b>' + esc(i.title) + "</b>" +
             (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
@@ -175,8 +169,26 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
             (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
             (i.prs || []).map(prPill).join("") +
             threadsOf(i).map(function (t) { return '<a class="pill thr" href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener" title="' + esc(t.title) + '" onclick="event.stopPropagation()">💬 ' + esc(t.title.length > 26 ? t.title.slice(0, 25) + "…" : t.title) + "</a>"; }).join("") + "</div>";
-        }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
+  }
+  var openGroups = {};
+  try { openGroups = JSON.parse(localStorage.getItem("quando.board.groups") || "{}"); } catch (e) {}
+  function colBody(items) {
+    var loose = items.filter(function (x) { return !x[0].group; }), groups = [], by = {};
+    items.forEach(function (x) { var g = x[0].group; if (g) { if (!by[g]) { by[g] = []; groups.push(g); } by[g].push(x); } });
+    return loose.map(cardHtml).join("") + groups.map(function (g) {
+      return '<details class="grp" data-g="' + esc(g) + '"' + (openGroups[g] || query ? " open" : "") + "><summary>" + esc(g) + "<span>" + by[g].length + "</span></summary>" + by[g].map(cardHtml).join("") + "</details>";
+    }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>';
+  }
+
+  function board() {
+    var q = query.toLowerCase();
+    $("board").innerHTML = data.statuses.map(function (st) {
+      var items = [];
+      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
+        colBody(items) + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("details.grp"), function (d) { d.addEventListener("toggle", function () { openGroups[d.getAttribute("data-g")] = d.open; try { localStorage.setItem("quando.board.groups", JSON.stringify(openGroups)); } catch (e) {} }); });
     Array.prototype.forEach.call(document.querySelectorAll(".addc"), function (b) { b.onclick = function () { editItem(-1, b.getAttribute("data-s")); }; });
     Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
@@ -228,6 +240,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       '<label>Title</label><input id="f-title" value="' + esc(i.title) + '">' +
       '<label>Status</label><select id="f-status">' + opts(data.statuses.map(function (s) { return [s.id, s.label]; }), i.status) + "</select>" +
       '<label>Tag (one short word)</label><input id="f-tag" value="' + esc(i.tag || "") + '">' +
+      '<label>Group (optional; cards with the same group fold together)</label><input id="f-group" value="' + esc(i.group || "") + '">' +
       '<label>Plan it comes from</label><select id="f-plan">' + opts(data.plans.filter(function (p) { return p.id; }).map(function (p) { return [p.id, p.title]; }), i.plan || "", "None") + "</select>" +
       '<label>Short note (shown on the card)</label><input id="f-note" value="' + esc(i.note || "") + '">' +
       '<label>Details (shown when you click the card)</label><textarea id="f-details">' + esc(i.details || "") + "</textarea>" +
@@ -242,7 +255,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       if (!title) { say("Give it a title.", 1); return; }
       var item = { title: title, status: $("f-status").value };
       var tag = $("f-tag").value.trim(), plan = $("f-plan").value, note = $("f-note").value.trim(), det = $("f-details").value.trim();
-      if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
+      if ($("f-group").value.trim()) item.group = $("f-group").value.trim(); if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
       var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
       var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
       if (i.threadIds && i.threadIds.length) item.threadIds = i.threadIds;
@@ -439,6 +452,13 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
     $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); }; $("add-biz").onclick = function () { editPlan("", "business"); };
+    /* Coming back to the page after a while: reload the board and GitHub data so nothing is stale. */
+    var hiddenAt = 0;
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      if (!hiddenAt || Date.now() - hiddenAt < 60000 || $("dlg").open) return;
+      fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) { data = d; chrome(); deadlines(); board(); plans(); live(); runs(); }).catch(function () {});
+    });
   }).catch(function (e) {
     document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
