@@ -3491,6 +3491,9 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人们所经历的，而是人们所记住的，以及为了讲述而如何记住它。';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6979,4 +6982,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人們所經歷的，而是人們所記住的，以及為了講述而如何記住它。';
 }

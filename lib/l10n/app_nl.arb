@@ -1051,5 +1051,6 @@
   "askHelpPromptTitle": "Quando? helpen je te begrijpen?",
   "askHelpPromptBody": "We zouden sturen wat je zegt of typt, zoals “{sentence}”, en of je het bewaarde. Anoniem: geen naam, account of apparaat-ID. Je kunt het altijd uitzetten.",
   "askHelpYes": "Ja, help",
-  "askHelpNo": "Nee bedankt"
+  "askHelpNo": "Nee bedankt",
+  "askQuoteTranslation": "Het leven is niet wat je geleefd hebt, maar wat je je herinnert en hoe je het je herinnert om het te vertellen."
 }

@@ -3498,4 +3498,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get askHelpNo => '今はしない';
+
+  @override
+  String get askQuoteTranslation => '人生とは、生きたことではなく、記憶していること、そして語るためにどう記憶しているかである。';
 }

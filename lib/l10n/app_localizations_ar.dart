@@ -3608,4 +3608,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askHelpNo => 'لا، شكرًا';
+
+  @override
+  String get askQuoteTranslation => 'الحياة ليست ما عاشه المرء، بل ما يتذكّره وكيف يتذكّره ليرويه.';
 }

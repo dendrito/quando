@@ -1051,5 +1051,6 @@
   "askHelpPromptTitle": "Ajudar o Quando? a entender você?",
   "askHelpPromptBody": "Enviaríamos o que você diz ou digita, como “{sentence}”, e se você salvou. Anônimo: sem nome, conta nem ID do aparelho. Você pode desligar quando quiser.",
   "askHelpYes": "Sim, ajudar",
-  "askHelpNo": "Agora não"
+  "askHelpNo": "Agora não",
+  "askQuoteTranslation": "A vida não é a que a gente viveu, e sim a que a gente recorda e como a recorda para contá-la."
 }

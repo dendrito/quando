@@ -3625,4 +3625,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Нет, спасибо';
+
+  @override
+  String get askQuoteTranslation =>
+      'Жизнь — это не то, что было прожито, а то, что запомнилось, и как запомнилось, чтобы рассказать о ней.';
 }

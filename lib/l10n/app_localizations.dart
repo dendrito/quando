@@ -6441,6 +6441,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'No thanks'**
   String get askHelpNo;
+
+  /// No description provided for @askQuoteTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.'**
+  String get askQuoteTranslation;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

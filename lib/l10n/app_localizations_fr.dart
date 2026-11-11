@@ -3581,4 +3581,8 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Non merci';
+
+  @override
+  String get askQuoteTranslation =>
+      'La vie n’est pas celle qu’on a vécue, mais celle dont on se souvient et comment on s’en souvient pour la raconter.';
 }

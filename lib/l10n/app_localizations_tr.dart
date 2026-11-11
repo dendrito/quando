@@ -3559,4 +3559,8 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Hayır, teşekkürler';
+
+  @override
+  String get askQuoteTranslation =>
+      'Hayat, yaşadığın değil; hatırladığın ve anlatmak için nasıl hatırladığındır.';
 }

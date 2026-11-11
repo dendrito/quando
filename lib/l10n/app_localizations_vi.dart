@@ -3547,4 +3547,8 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Không, cảm ơn';
+
+  @override
+  String get askQuoteTranslation =>
+      'Cuộc đời không phải là những gì ta đã sống, mà là những gì ta nhớ và cách ta nhớ để kể lại.';
 }

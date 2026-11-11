@@ -3499,4 +3499,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askHelpNo => '괜찮아요';
+
+  @override
+  String get askQuoteTranslation => '삶은 우리가 살아온 것이 아니라, 우리가 기억하는 것, 그리고 그것을 이야기하기 위해 어떻게 기억하느냐이다.';
 }

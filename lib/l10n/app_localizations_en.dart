@@ -3556,4 +3556,8 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askHelpNo => 'No thanks';
+
+  @override
+  String get askQuoteTranslation =>
+      'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.';
 }

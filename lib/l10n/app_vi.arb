@@ -1051,5 +1051,6 @@
   "askHelpPromptTitle": "Giúp Quando? hiểu bạn hơn?",
   "askHelpPromptBody": "Chúng tôi sẽ gửi điều bạn nói hoặc gõ, như “{sentence}”, và việc bạn đã lưu hay chưa. Ẩn danh: không tên, tài khoản hay ID thiết bị. Bạn có thể tắt bất cứ lúc nào.",
   "askHelpYes": "Có, giúp",
-  "askHelpNo": "Không, cảm ơn"
+  "askHelpNo": "Không, cảm ơn",
+  "askQuoteTranslation": "Cuộc đời không phải là những gì ta đã sống, mà là những gì ta nhớ và cách ta nhớ để kể lại."
 }

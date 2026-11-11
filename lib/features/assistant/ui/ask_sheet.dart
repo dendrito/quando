@@ -568,6 +568,20 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
               )
             else if (input.isNotEmpty && !_listening)
               Text(l10n.askNotUnderstood, style: text.bodySmall),
+            if (input.isEmpty && !_listening) ...[
+              const SizedBox(height: 16),
+              Text(
+                '“La vida no es la que uno vivió, sino la que uno recuerda y cómo la recuerda para contarla.”',
+                style: text.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+              ),
+              if (lang != 'es') ...[
+                const SizedBox(height: 4),
+                Text(l10n.askQuoteTranslation, style: text.bodySmall, textAlign: TextAlign.center),
+              ],
+              const SizedBox(height: 4),
+              Text('Gabriel García Márquez', style: text.labelSmall, textAlign: TextAlign.center),
+            ],
             if (askHalf) ...[
               const SizedBox(height: 12),
               Wrap(

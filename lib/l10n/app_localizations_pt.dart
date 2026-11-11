@@ -3578,4 +3578,8 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Agora não';
+
+  @override
+  String get askQuoteTranslation =>
+      'A vida não é a que a gente viveu, e sim a que a gente recorda e como a recorda para contá-la.';
 }

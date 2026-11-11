@@ -3626,4 +3626,8 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Nie, dziękuję';
+
+  @override
+  String get askQuoteTranslation =>
+      'Życie to nie to, które się przeżyło, lecz to, które się pamięta, i jak się je pamięta, by o nim opowiedzieć.';
 }

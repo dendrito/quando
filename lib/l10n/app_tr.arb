@@ -1051,5 +1051,6 @@
   "askHelpPromptTitle": "Quando?’nun sizi anlamasına yardım edin?",
   "askHelpPromptBody": "Söylediğiniz veya yazdığınız şeyi, örneğin “{sentence}”, ve kaydedip kaydetmediğinizi göndeririz. Anonim: ad, hesap veya cihaz kimliği yok. İstediğiniz zaman kapatabilirsiniz.",
   "askHelpYes": "Evet, yardım et",
-  "askHelpNo": "Hayır, teşekkürler"
+  "askHelpNo": "Hayır, teşekkürler",
+  "askQuoteTranslation": "Hayat, yaşadığın değil; hatırladığın ve anlatmak için nasıl hatırladığındır."
 }

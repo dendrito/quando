@@ -3556,4 +3556,8 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askHelpNo => 'Tidak, terima kasih';
+
+  @override
+  String get askQuoteTranslation =>
+      'Hidup bukanlah apa yang dijalani, melainkan apa yang diingat dan bagaimana mengingatnya untuk diceritakan.';
 }
