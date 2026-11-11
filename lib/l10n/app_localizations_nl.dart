@@ -3547,7 +3547,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Snooze: $minutes min, voor alle wekkers';
+    return 'Snooze: $minutes min, voor deze wekker';
   }
 
   @override
@@ -3559,6 +3559,32 @@ class AppLocalizationsNl extends AppLocalizations {
   String get askReadAs => 'Gelezen als';
 
   @override
+  String get askHelpTitle => 'Help spraakwekkers te verbeteren';
+
+  @override
+  String get askHelpBody =>
+      'Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? helpen je te begrijpen?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'We zouden sturen wat je zegt of typt, zoals “$sentence”, en of je het bewaarde. Anoniem: geen naam, account of apparaat-ID. Je kunt het altijd uitzetten.';
+  }
+
+  @override
+  String get askHelpYes => 'Ja, help';
+
+  @override
+  String get askHelpNo => 'Nee bedankt';
+
+  @override
+  String get askQuoteTranslation =>
+      'Het leven is niet wat je geleefd hebt, maar wat je je herinnert en hoe je het je herinnert om het te vertellen.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Snel instellen';
 
   @override

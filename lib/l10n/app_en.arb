@@ -2109,7 +2109,7 @@
       }
     }
   },
-  "askSnoozeAll": "Snooze: {minutes} min, for every alarm",
+  "askSnoozeAll": "Snooze: {minutes} min, for this alarm",
   "@askSnoozeAll": {
     "placeholders": {
       "minutes": {
@@ -2126,6 +2126,17 @@
     }
   },
   "askReadAs": "Read as",
+  "askHelpTitle": "Help improve voice alarms",
+  "askHelpBody": "Send what you say or type, and what you did with it, anonymously. No account or device ID.",
+  "@askHelpTitle": {},
+  "@askHelpBody": {},
+  "askHelpPromptTitle": "Quando? has a student's heart.",
+  "askHelpPromptBody": "We'd send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.",
+  "askHelpYes": "Yes, help",
+  "askHelpNo": "No thanks",
+  "@askHelpPromptBody": {"placeholders": {"sentence": {"type": "String"}}},
+  "askQuoteTranslation": "Life is not what one lived, but what one remembers and how one remembers it in order to tell it.",
+  "askHelpQuote": "“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog",
   "quickSetups": "Quick setups",
   "qsMorningTitle": "Morning that works",
   "qsStartTitle": "Never miss a start",

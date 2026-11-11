@@ -3525,7 +3525,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Snooze: $minutes min, for every alarm';
+    return 'Snooze: $minutes min, for this alarm';
   }
 
   @override
@@ -3537,6 +3537,32 @@ class AppLocalizationsEn extends AppLocalizations {
   String get askReadAs => 'Read as';
 
   @override
+  String get askHelpTitle => 'Help improve voice alarms';
+
+  @override
+  String get askHelpBody =>
+      'Send what you say or type, and what you did with it, anonymously. No account or device ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? has a student\'s heart.';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'We\'d send what you say or type, like “$sentence”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.';
+  }
+
+  @override
+  String get askHelpYes => 'Yes, help';
+
+  @override
+  String get askHelpNo => 'No thanks';
+
+  @override
+  String get askQuoteTranslation =>
+      'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.';
+
+  @override
+  String get askHelpQuote => '“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog';
   String get quickSetups => 'Quick setups';
 
   @override

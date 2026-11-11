@@ -3600,7 +3600,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Повтор: $minutes хв, для всіх будильників';
+    return 'Повтор: $minutes хв, для цього будильника';
   }
 
   @override
@@ -3612,6 +3612,32 @@ class AppLocalizationsUk extends AppLocalizations {
   String get askReadAs => 'Прочитано як';
 
   @override
+  String get askHelpTitle => 'Допоможіть покращити голосові будильники';
+
+  @override
+  String get askHelpBody =>
+      'Анонімно надсилає те, що ви кажете чи вводите, і що ви з цим зробили. Без облікового запису та ID пристрою.';
+
+  @override
+  String get askHelpPromptTitle => 'Допомогти Quando? вас розуміти?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Ми б надсилали те, що ви кажете чи вводите, наприклад «$sentence», і чи ви зберегли будильник. Анонімно: без імені, облікового запису та ID пристрою. Можна вимкнути будь-коли.';
+  }
+
+  @override
+  String get askHelpYes => 'Так, допомогти';
+
+  @override
+  String get askHelpNo => 'Ні, дякую';
+
+  @override
+  String get askQuoteTranslation =>
+      'Життя — це не те, що було прожите, а те, що запам’яталося, і як запам’яталося, щоб про нього розповісти.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Швидкі налаштування';
 
   @override

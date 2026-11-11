@@ -3519,7 +3519,7 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'स्नूज़: $minutes मिनट, सभी अलार्म के लिए';
+    return 'स्नूज़: $minutes मिनट, इस अलार्म के लिए';
   }
 
   @override
@@ -3531,6 +3531,32 @@ class AppLocalizationsHi extends AppLocalizations {
   String get askReadAs => 'ऐसे पढ़ा गया';
 
   @override
+  String get askHelpTitle => 'वॉइस अलार्म बेहतर बनाने में मदद करें';
+
+  @override
+  String get askHelpBody =>
+      'आप जो बोलते या टाइप करते हैं और उसके साथ क्या किया, वह गुमनाम रूप से भेजता है। कोई खाता या डिवाइस ID नहीं।';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? को आपको समझने में मदद करें?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'हम आपकी कही या टाइप की बात, जैसे “$sentence”, और आपने उसे सेव किया या नहीं, गुमनाम रूप से भेजेंगे। नाम, खाता या डिवाइस ID नहीं। आप कभी भी बंद कर सकते हैं।';
+  }
+
+  @override
+  String get askHelpYes => 'हाँ, मदद करें';
+
+  @override
+  String get askHelpNo => 'नहीं, धन्यवाद';
+
+  @override
+  String get askQuoteTranslation =>
+      'जीवन वह नहीं जो जिया गया, बल्कि वह है जो याद रहता है और जिस तरह याद रहता है, उसे सुनाने के लिए।';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'त्वरित सेटअप';
 
   @override

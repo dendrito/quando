@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
+import 'package:quando/features/assistant/data/voice_log.dart';
 import 'package:quando/features/assistant/domain/alarm_parser.dart';
 import 'package:quando/features/assistant/domain/alarm_plan.dart';
 import 'package:quando/features/assistant/ui/ask_sheet.dart';
@@ -117,5 +118,11 @@ void main() {
     await tester.pumpAndSettle();
     final saved = c.read(userAlarmsProvider).single;
     expect((saved.hour, saved.minute, saved.label, saved.days.length), (20, 0, 'Take my pills', 7));
+    // Once, after the first saved voice or typed alarm: may we learn from it?
+    expect(find.text("Quando? has a student's heart."), findsOneWidget);
+    expect(c.read(voiceLogProvider), isFalse);
+    await tester.tap(find.text('Yes, help'));
+    await tester.pumpAndSettle();
+    expect(c.read(voiceLogProvider), isTrue);
   });
 }

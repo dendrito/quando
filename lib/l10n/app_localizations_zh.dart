@@ -3444,7 +3444,7 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '贪睡：$minutes 分钟，适用于所有闹钟';
+    return '贪睡：$minutes 分钟，仅适用于这个闹钟';
   }
 
   @override
@@ -3456,6 +3456,30 @@ class AppLocalizationsZh extends AppLocalizations {
   String get askReadAs => '理解为';
 
   @override
+  String get askHelpTitle => '帮助改进语音闹钟';
+
+  @override
+  String get askHelpBody => '匿名发送你说的或输入的内容以及你的操作。不含账号或设备 ID。';
+
+  @override
+  String get askHelpPromptTitle => '帮助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我们会匿名发送你说的或输入的内容（如“$sentence”）以及你是否保存。不含姓名、账号或设备 ID。你可以随时关闭。';
+  }
+
+  @override
+  String get askHelpYes => '好，帮忙';
+
+  @override
+  String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人们所经历的，而是人们所记住的，以及为了讲述而如何记住它。';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => '快速设置';
 
   @override
@@ -7067,7 +7091,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '貪睡：$minutes 分鐘，適用於所有鬧鐘';
+    return '貪睡：$minutes 分鐘，僅適用於這個鬧鐘';
   }
 
   @override
@@ -7079,6 +7103,30 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get askReadAs => '理解為';
 
   @override
+  String get askHelpTitle => '協助改進語音鬧鐘';
+
+  @override
+  String get askHelpBody => '匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。';
+
+  @override
+  String get askHelpPromptTitle => '協助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我們會匿名傳送你說的或輸入的內容（如「$sentence」）以及你是否儲存。不含姓名、帳號或裝置 ID。你可以隨時關閉。';
+  }
+
+  @override
+  String get askHelpYes => '好，幫忙';
+
+  @override
+  String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人們所經歷的，而是人們所記住的，以及為了講述而如何記住它。';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => '快速設定';
 
   @override

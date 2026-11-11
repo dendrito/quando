@@ -3553,7 +3553,7 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Posticipa: $minutes min, per tutte le sveglie';
+    return 'Posticipa: $minutes min, per questa sveglia';
   }
 
   @override
@@ -3565,6 +3565,32 @@ class AppLocalizationsIt extends AppLocalizations {
   String get askReadAs => 'Letto come';
 
   @override
+  String get askHelpTitle => 'Aiuta a migliorare le sveglie vocali';
+
+  @override
+  String get askHelpBody =>
+      'Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo.';
+
+  @override
+  String get askHelpPromptTitle => 'Aiutare Quando? a capirti?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Invieremmo ciò che dici o scrivi, come “$sentence”, e se l’hai salvato. Anonimo: nessun nome, account o ID del dispositivo. Puoi disattivarlo quando vuoi.';
+  }
+
+  @override
+  String get askHelpYes => 'Sì, aiuta';
+
+  @override
+  String get askHelpNo => 'No grazie';
+
+  @override
+  String get askQuoteTranslation =>
+      'La vita non è quella che si è vissuta, ma quella che si ricorda e come la si ricorda per raccontarla.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Impostazioni rapide';
 
   @override

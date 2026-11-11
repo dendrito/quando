@@ -3452,7 +3452,7 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return '다시 알림: $minutes분, 모든 알람에 적용';
+    return '다시 알림: $minutes분, 이 알람에 적용';
   }
 
   @override
@@ -3464,6 +3464,30 @@ class AppLocalizationsKo extends AppLocalizations {
   String get askReadAs => '이렇게 읽었어요';
 
   @override
+  String get askHelpTitle => '음성 알람 개선에 참여';
+
+  @override
+  String get askHelpBody => '말하거나 입력한 내용과 그 후 동작을 익명으로 보냅니다. 계정이나 기기 ID는 없습니다.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando?가 더 잘 이해하도록 도와주시겠어요?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '말하거나 입력한 내용(예: “$sentence”)과 저장 여부를 익명으로 보냅니다. 이름, 계정, 기기 ID는 없습니다. 언제든 끌 수 있습니다.';
+  }
+
+  @override
+  String get askHelpYes => '네, 도울게요';
+
+  @override
+  String get askHelpNo => '괜찮아요';
+
+  @override
+  String get askQuoteTranslation => '삶은 우리가 살아온 것이 아니라, 우리가 기억하는 것, 그리고 그것을 이야기하기 위해 어떻게 기억하느냐이다.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => '빠른 설정';
 
   @override

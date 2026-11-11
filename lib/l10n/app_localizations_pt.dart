@@ -3547,7 +3547,7 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Soneca: $minutes min, para todos os alarmes';
+    return 'Soneca: $minutes min, para este alarme';
   }
 
   @override
@@ -3559,6 +3559,33 @@ class AppLocalizationsPt extends AppLocalizations {
   String get askReadAs => 'Lido como';
 
   @override
+  String get askHelpTitle => 'Ajude a melhorar os alarmes por voz';
+
+  @override
+  String get askHelpBody =>
+      'Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? tem coração de estudante.';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Enviaríamos o que você diz ou digita, como “$sentence”, e se você salvou. Anônimo: sem nome, conta nem ID do aparelho. Você pode desligar quando quiser.';
+  }
+
+  @override
+  String get askHelpYes => 'Sim, ajudar';
+
+  @override
+  String get askHelpNo => 'Agora não';
+
+  @override
+  String get askQuoteTranslation =>
+      'A vida não é a que a gente viveu, e sim a que a gente recorda e como a recorda para contá-la.';
+
+  @override
+  String get askHelpQuote =>
+      '“Há que se cuidar da vida, há que se cuidar do mundo.”\nMilton Nascimento e Wagner Tiso';
   String get quickSetups => 'Configurações rápidas';
 
   @override

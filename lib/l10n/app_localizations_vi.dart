@@ -3520,7 +3520,7 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Báo lại: $minutes phút, cho mọi báo thức';
+    return 'Báo lại: $minutes phút, cho báo thức này';
   }
 
   @override
@@ -3532,6 +3532,32 @@ class AppLocalizationsVi extends AppLocalizations {
   String get askReadAs => 'Được hiểu là';
 
   @override
+  String get askHelpTitle => 'Giúp cải thiện báo thức bằng giọng nói';
+
+  @override
+  String get askHelpBody =>
+      'Gửi ẩn danh điều bạn nói hoặc gõ và việc bạn đã làm. Không có tài khoản hay ID thiết bị.';
+
+  @override
+  String get askHelpPromptTitle => 'Giúp Quando? hiểu bạn hơn?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Chúng tôi sẽ gửi điều bạn nói hoặc gõ, như “$sentence”, và việc bạn đã lưu hay chưa. Ẩn danh: không tên, tài khoản hay ID thiết bị. Bạn có thể tắt bất cứ lúc nào.';
+  }
+
+  @override
+  String get askHelpYes => 'Có, giúp';
+
+  @override
+  String get askHelpNo => 'Không, cảm ơn';
+
+  @override
+  String get askQuoteTranslation =>
+      'Cuộc đời không phải là những gì ta đã sống, mà là những gì ta nhớ và cách ta nhớ để kể lại.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Thiết lập nhanh';
 
   @override

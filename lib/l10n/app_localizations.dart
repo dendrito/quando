@@ -6391,7 +6391,7 @@ abstract class AppLocalizations {
   /// No description provided for @askSnoozeAll.
   ///
   /// In en, this message translates to:
-  /// **'Snooze: {minutes} min, for every alarm'**
+  /// **'Snooze: {minutes} min, for this alarm'**
   String askSnoozeAll(int minutes);
 
   /// No description provided for @askWakeWith.
@@ -6406,6 +6406,53 @@ abstract class AppLocalizations {
   /// **'Read as'**
   String get askReadAs;
 
+  /// No description provided for @askHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve voice alarms'**
+  String get askHelpTitle;
+
+  /// No description provided for @askHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send what you say or type, and what you did with it, anonymously. No account or device ID.'**
+  String get askHelpBody;
+
+  /// No description provided for @askHelpPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? has a student\'s heart.'**
+  String get askHelpPromptTitle;
+
+  /// No description provided for @askHelpPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'d send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.'**
+  String askHelpPromptBody(String sentence);
+
+  /// No description provided for @askHelpYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, help'**
+  String get askHelpYes;
+
+  /// No description provided for @askHelpNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No thanks'**
+  String get askHelpNo;
+
+  /// No description provided for @askQuoteTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.'**
+  String get askQuoteTranslation;
+
+  /// No description provided for @askHelpQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog'**
+  String get askHelpQuote;
   /// No description provided for @quickSetups.
   ///
   /// In en, this message translates to:

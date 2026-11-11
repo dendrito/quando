@@ -3516,7 +3516,7 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'נודניק: $minutes דק׳, לכל השעונים';
+    return 'נודניק: $minutes דק׳, לשעון הזה';
   }
 
   @override
@@ -3528,6 +3528,32 @@ class AppLocalizationsHe extends AppLocalizations {
   String get askReadAs => 'נקרא כ־';
 
   @override
+  String get askHelpTitle => 'עזרו לשפר שעונים בקול';
+
+  @override
+  String get askHelpBody =>
+      'שולח באופן אנונימי את מה שאמרתם או הקלדתם ומה עשיתם איתו. בלי חשבון ובלי מזהה מכשיר.';
+
+  @override
+  String get askHelpPromptTitle => 'לעזור ל-Quando? להבין אתכם?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'נשלח את מה שאמרתם או הקלדתם, כמו “$sentence”, והאם שמרתם. באופן אנונימי: בלי שם, חשבון או מזהה מכשיר. אפשר לכבות בכל רגע.';
+  }
+
+  @override
+  String get askHelpYes => 'כן, לעזור';
+
+  @override
+  String get askHelpNo => 'לא, תודה';
+
+  @override
+  String get askQuoteTranslation =>
+      'החיים אינם מה שחיית, אלא מה שאתה זוכר וכיצד אתה זוכר אותו כדי לספר אותו.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'הגדרות מהירות';
 
   @override

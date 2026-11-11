@@ -3559,7 +3559,7 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Rappel : $minutes min, pour toutes les alarmes';
+    return 'Rappel : $minutes min, pour cette alarme';
   }
 
   @override
@@ -3571,6 +3571,32 @@ class AppLocalizationsFr extends AppLocalizations {
   String get askReadAs => 'Lu comme';
 
   @override
+  String get askHelpTitle => 'Aidez à améliorer les alarmes vocales';
+
+  @override
+  String get askHelpBody =>
+      'Envoie ce que vous dites ou tapez, et ce que vous en avez fait, de façon anonyme. Sans compte ni identifiant d’appareil.';
+
+  @override
+  String get askHelpPromptTitle => 'Aider Quando? à vous comprendre ?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Nous enverrions ce que vous dites ou tapez, comme « $sentence », et si vous l’avez enregistré. Anonyme : sans nom, compte ni identifiant d’appareil. Vous pouvez désactiver à tout moment.';
+  }
+
+  @override
+  String get askHelpYes => 'Oui, aider';
+
+  @override
+  String get askHelpNo => 'Non merci';
+
+  @override
+  String get askQuoteTranslation =>
+      'La vie n’est pas celle qu’on a vécue, mais celle dont on se souvient et comment on s’en souvient pour la raconter.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Réglages rapides';
 
   @override

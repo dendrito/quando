@@ -3575,7 +3575,7 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'الغفوة: $minutes دقيقة، لكل المنبّهات';
+    return 'الغفوة: $minutes دقيقة، لهذا المنبّه';
   }
 
   @override
@@ -3587,6 +3587,30 @@ class AppLocalizationsAr extends AppLocalizations {
   String get askReadAs => 'قُرئ هكذا';
 
   @override
+  String get askHelpTitle => 'ساعد في تحسين المنبّهات الصوتية';
+
+  @override
+  String get askHelpBody => 'يرسل بشكل مجهول ما تقوله أو تكتبه وما فعلته به. بلا حساب ولا معرّف جهاز.';
+
+  @override
+  String get askHelpPromptTitle => 'هل تساعد Quando? على فهمك؟';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'سنرسل ما تقوله أو تكتبه، مثل «$sentence»، وهل حفظته. بشكل مجهول: بلا اسم أو حساب أو معرّف جهاز. يمكنك الإيقاف في أي وقت.';
+  }
+
+  @override
+  String get askHelpYes => 'نعم، ساعد';
+
+  @override
+  String get askHelpNo => 'لا، شكرًا';
+
+  @override
+  String get askQuoteTranslation => 'الحياة ليست ما عاشه المرء، بل ما يتذكّره وكيف يتذكّره ليرويه.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'إعدادات سريعة';
 
   @override

@@ -3451,7 +3451,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'スヌーズ：$minutes分、すべてのアラームに適用';
+    return 'スヌーズ：$minutes分、このアラームに適用';
   }
 
   @override
@@ -3463,6 +3463,30 @@ class AppLocalizationsJa extends AppLocalizations {
   String get askReadAs => '読み取り結果';
 
   @override
+  String get askHelpTitle => '音声アラームの改善に協力';
+
+  @override
+  String get askHelpBody => '話した内容や入力した内容と、その後の操作を匿名で送信します。アカウントや端末IDは送りません。';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? があなたを理解できるよう協力しますか？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '話した内容や入力した内容（例：「$sentence」）と、保存したかどうかを匿名で送信します。名前、アカウント、端末IDは送りません。いつでもオフにできます。';
+  }
+
+  @override
+  String get askHelpYes => '協力する';
+
+  @override
+  String get askHelpNo => '今はしない';
+
+  @override
+  String get askQuoteTranslation => '人生とは、生きたことではなく、記憶していること、そして語るためにどう記憶しているかである。';
+
+  @override
+  String get askHelpQuote => '「千日の稽古を鍛とし、万日の稽古を練とす。」\n宮本武蔵『五輪書』';
   String get quickSetups => 'クイック設定';
 
   @override

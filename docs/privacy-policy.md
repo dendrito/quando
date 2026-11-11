@@ -6,7 +6,7 @@ Quando is an alarm and reminder app. Matai is its Jewish edition; Quando Mine is
 
 ## Local information
 
-Alarms, preferences, recorded/imported sounds and cached schedules are stored on your device. Calendar access reads events to create reminders. Scanning a stop code uses the camera locally without saving a picture. Recording uses the microphone while recording. Optional foreground location finds a local city; there is no background location tracking. The precise local location entry is excluded from configuration sync.
+Alarms, preferences, recorded/imported sounds and cached schedules are stored on your device. Calendar access reads events to create reminders. Scanning a stop code uses the camera locally without saving a picture. Recording uses the microphone while recording. Voice and typed alarms are read on your device. Only if you turn on "Help improve voice alarms" (off by default, switch off any time in the alarm sheet), the sentence you said or typed, its language, how Quando? understood it and whether you saved or cancelled are sent anonymously, with no account, device or location identifier, to improve how Quando? understands alarm requests. Sentences that look like they contain an email address or phone number are not sent. Optional foreground location finds a local city; there is no background location tracking. The precise local location entry is excluded from configuration sync.
 
 ## Optional account sync
 

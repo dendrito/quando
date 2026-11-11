@@ -408,6 +408,7 @@ class _Pass {
     _relative();
     _anchor();
     _event();
+    _offsetClock();
     _date();
     _days();
     _noonMidnight();
@@ -416,7 +417,7 @@ class _Pass {
     _fallbackHour();
     _extras();
     var h = hour;
-    if (h != null) {
+    if (h != null && !_hourFinal) {
       if (pm == true && h < 12) h += 12;
       if (pm == false && h == 12) h = 0;
     }
@@ -432,7 +433,7 @@ class _Pass {
       anchor: after != null ? null : anchor,
       offset: offset,
       label: label,
-      halfDayUnsure: !timed && pm == null && h != null && h >= 1 && h <= 11,
+      halfDayUnsure: !timed && !_hourFinal && pm == null && h != null && h >= 1 && h <= 11,
       onWeekday: repeating || after != null ? null : onWeekday,
       month: month,
       dayOfMonth: dayOfMonth,
@@ -558,6 +559,36 @@ class _Pass {
     // Leave the time and day words after the event for the others.
     final rest = all.skip(words.length).join(' ');
     _eat(m.start, m.end - (rest.isEmpty ? 0 : rest.length + 1));
+  }
+
+  bool _hourFinal = false;
+
+  /// "10 minutes before 7", "an hour after 8:30 pm": a clock time moved
+  /// earlier or later, not an event.
+  void _offsetClock() {
+    if (hour != null || after != null || anchor != null || eventQuery != null) return;
+    final m = _find(
+      '(${lex.dur})\\s+(${lex.dir})\\s+(?:(?:${lex.atWords})\\s+)?(\\d{1,2})(?:\\s*[:.h]\\s*(\\d{2}))?(?:\\s*(${lex.am}|${lex.pm}))?(?!\\d)',
+    );
+    if (m == null) return;
+    final d = lex.durOf(m.group(1)!);
+    var h = int.parse(m.group(3)!);
+    final mm = int.tryParse(m.group(4) ?? '') ?? 0;
+    if (d == null || h > 23 || mm > 59) return;
+    final tail = m.group(5);
+    if (tail != null) {
+      if (RegExp('^(?:${lex.pm})\$').hasMatch(tail)) {
+        if (h < 12) h += 12;
+      } else if (h == 12) {
+        h = 0;
+      }
+      _hourFinal = true;
+    }
+    final move = lex.isBefore(m.group(2)!) ? -d.inMinutes : d.inMinutes;
+    final total = ((h * 60 + mm + move) % 1440 + 1440) % 1440;
+    hour = total ~/ 60;
+    minute = total % 60;
+    _eat(m.start, m.end);
   }
 
   // ---- Days and dates ----

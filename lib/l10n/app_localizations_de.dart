@@ -3554,7 +3554,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Schlummern: $minutes Min., für alle Wecker';
+    return 'Schlummern: $minutes Min., für diesen Wecker';
   }
 
   @override
@@ -3566,6 +3566,32 @@ class AppLocalizationsDe extends AppLocalizations {
   String get askReadAs => 'Gelesen als';
 
   @override
+  String get askHelpTitle => 'Hilf mit, Sprachwecker zu verbessern';
+
+  @override
+  String get askHelpBody =>
+      'Sendet anonym, was du sagst oder tippst und was du damit gemacht hast. Ohne Konto oder Geräte-ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? helfen, dich zu verstehen?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Wir würden senden, was du sagst oder tippst, etwa „$sentence“, und ob du es gespeichert hast. Anonym: kein Name, Konto oder Geräte-ID. Du kannst es jederzeit ausschalten.';
+  }
+
+  @override
+  String get askHelpYes => 'Ja, helfen';
+
+  @override
+  String get askHelpNo => 'Nein danke';
+
+  @override
+  String get askQuoteTranslation =>
+      'Das Leben ist nicht das, was man gelebt hat, sondern das, woran man sich erinnert, und wie man sich erinnert, um davon zu erzählen.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Schnell einrichten';
 
   @override

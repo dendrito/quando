@@ -3602,7 +3602,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Повтор: $minutes мин, для всех будильников';
+    return 'Повтор: $minutes мин, для этого будильника';
   }
 
   @override
@@ -3614,6 +3614,32 @@ class AppLocalizationsRu extends AppLocalizations {
   String get askReadAs => 'Прочитано как';
 
   @override
+  String get askHelpTitle => 'Помогите улучшить голосовые будильники';
+
+  @override
+  String get askHelpBody =>
+      'Анонимно отправляет то, что вы говорите или вводите, и что вы с этим сделали. Без аккаунта и ID устройства.';
+
+  @override
+  String get askHelpPromptTitle => 'Помочь Quando? вас понимать?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Мы бы отправляли то, что вы говорите или вводите, например «$sentence», и сохранили ли вы будильник. Анонимно: без имени, аккаунта и ID устройства. Можно отключить в любой момент.';
+  }
+
+  @override
+  String get askHelpYes => 'Да, помочь';
+
+  @override
+  String get askHelpNo => 'Нет, спасибо';
+
+  @override
+  String get askQuoteTranslation =>
+      'Жизнь — это не то, что было прожито, а то, что запомнилось, и как запомнилось, чтобы рассказать о ней.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Быстрые настройки';
 
   @override

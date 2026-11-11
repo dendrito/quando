@@ -3601,7 +3601,7 @@ class AppLocalizationsPl extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Drzemka: $minutes min, dla wszystkich alarmów';
+    return 'Drzemka: $minutes min, dla tego alarmu';
   }
 
   @override
@@ -3613,6 +3613,32 @@ class AppLocalizationsPl extends AppLocalizations {
   String get askReadAs => 'Odczytano jako';
 
   @override
+  String get askHelpTitle => 'Pomóż ulepszyć alarmy głosowe';
+
+  @override
+  String get askHelpBody =>
+      'Wysyła anonimowo to, co mówisz lub wpisujesz, i co z tym zrobiłeś. Bez konta ani identyfikatora urządzenia.';
+
+  @override
+  String get askHelpPromptTitle => 'Pomóc Quando? Cię rozumieć?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Wysłalibyśmy to, co mówisz lub wpisujesz, np. „$sentence”, i czy to zapisano. Anonimowo: bez imienia, konta ani identyfikatora urządzenia. Możesz to wyłączyć w każdej chwili.';
+  }
+
+  @override
+  String get askHelpYes => 'Tak, pomogę';
+
+  @override
+  String get askHelpNo => 'Nie, dziękuję';
+
+  @override
+  String get askQuoteTranslation =>
+      'Życie to nie to, które się przeżyło, lecz to, które się pamięta, i jak się je pamięta, by o nim opowiedzieć.';
+
+  @override
+  String get askHelpQuote => '';
   String get quickSetups => 'Szybkie ustawienia';
 
   @override
