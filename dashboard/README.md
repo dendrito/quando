@@ -2,19 +2,30 @@
 
 A small website that shows where Quando? / Matai? stands: deadlines, work by status, open pull requests and issues, and plan links. It needs no server and no Claude.
 
-Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time setup").
+Live at `https://board.quando.day/` (Cloudflare Pages project `quando-board`; see "Hosting").
 
 ## Click a card, edit from the page
 
 - Click any card to read its details, documentation links, pull requests and links to the Claude threads about it (thread links need your Claude login).
-- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the public page refreshes about a minute later.
+- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the page refreshes about a minute later.
 - Never share the token. To remove it, press **Editing: on** → turn off.
+
+## Hosting (Cloudflare Pages, works with a private repo)
+
+The board is a second Cloudflare Pages project, separate from the quando.day site. GitHub Pages is not used any more (it needs a public repo on the free plan).
+
+- Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → `dendrito/quando`, project name `quando-board`, production branch `main`.
+- Build command: `python3 dashboard/build.py`. Build output directory: `dashboard`. Environment variable `PYTHON_VERSION` = `3.11` if the build says Python is missing.
+- Custom domain: `board.quando.day` (Pages project → Custom domains; Cloudflare adds the DNS record).
+- Optional lock: Zero Trust → Access → Applications → add `board.quando.day`, policy "Allow" for your email. Then only you see the board. Also protect the `*.pages.dev` address, or turn off its preview access.
+- Every push to `main` (including the automatic Board sync commits) rebuilds the board, about a minute.
+- Live pull requests and issues: the page asks GitHub directly. A public repo needs no token; a private one needs the token below (Contents: Read and write, Pull requests: Read, Issues: Read) turned on once per browser.
 
 ## How the board is stored
 
 - **One file per card:** `dashboard/cards/<id>.json`. Two people (or Claude threads) editing different cards never conflict.
 - **Everything else** (dates, plans, columns, thread list, headline): `dashboard/board.json`.
-- The site builds `data.json` from those files (`python3 dashboard/build.py`, run automatically on publish). A typo in any file fails the build with the file name, and the old site stays up.
+- The site builds `data.json` from those files (`python3 dashboard/build.py`, run by Cloudflare on every deploy). A typo in any file fails the build with the file name, and the old site stays up.
 
 Card fields: `id` (optional; it is the file name), `title`, `status` (`decide`, `doing`, `review`, `next`, `hold`, `done`, or any column id in `board.json`), optional `tag`, `note`, `details`, `plan`, `prs` (pull request numbers), `threads` (ids from `board.json`), `docs` (`[{"title","url"}]`), `order` (sort number).
 

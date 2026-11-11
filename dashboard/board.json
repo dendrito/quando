@@ -112,7 +112,8 @@
   "downloads": [
     {
       "title": "Quando? Android APK",
-      "url": "https://github.com/dendrito/quando/releases/download/latest/quando.apk"
+      "url": "https://github.com/dendrito/quando/releases/download/latest/quando.apk",
+      "note": "Works while the repo is public. Once it is private, use Google Play closed testing or Firebase App Distribution."
     },
     {
       "title": "Matai? Android APK",

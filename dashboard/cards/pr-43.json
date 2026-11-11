@@ -1,7 +1,7 @@
 {
   "id": "pr-43",
   "title": "Move board to Cloudflare Pages so the repo can go private",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     43
