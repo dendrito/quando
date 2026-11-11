@@ -18,6 +18,7 @@ The board is a second Cloudflare Pages project, separate from the quando.day sit
 - Build command: `python3 dashboard/build.py`. Build output directory: `dashboard`. Environment variable `PYTHON_VERSION` = `3.11` if the build says Python is missing.
 - Custom domain: `board.quando.day` (Pages project → Custom domains; Cloudflare adds the DNS record).
 - Optional lock: Zero Trust → Access → Applications → add `board.quando.day`, policy "Allow" for your email. Then only you see the board. Also protect the `*.pages.dev` address, or turn off its preview access.
+- `_headers` tells Cloudflare and browsers to re-check every file on each visit, and the page reloads its data when you return to it after a minute.
 - Every push to `main` (including the automatic Board sync commits) rebuilds the board, about a minute.
 - Live pull requests and issues: the page asks GitHub directly. A public repo needs no token; a private one needs the token below (Contents: Read and write, Pull requests: Read, Issues: Read) turned on once per browser.
 
