@@ -42,7 +42,7 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
 .row:last-child{border-bottom:0}.row .grow{flex:1;min-width:200px}
 .mute{color:var(--mute);font-size:.88rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.tabs{display:flex;gap:6px;margin:18px 0 0}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--chip);color:var(--ink);cursor:pointer}.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg,#fff)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .empty{padding:14px;color:var(--mute)}
 .card{cursor:pointer}.card:hover{border-color:var(--accent)}
 dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:620px;width:calc(100% - 24px);padding:20px}
@@ -74,6 +74,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   <div class="count" id="count"></div>
 </section>
 
+<div class="tabs" id="tabs"><button data-t="board">Board</button><button data-t="business">Business</button></div>
+<div id="tab-board">
 <h2>Dates <button class="btn tool" id="add-dl" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add date</button></h2>
 <div class="deadlines" id="deadlines"></div>
 
@@ -87,8 +89,14 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="issues"><div class="empty">Loading…</div></div>
 
-<h2>Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
+<h2 id="plans-h">Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
 <div class="grid" id="plans"></div>
+</div>
+<div id="tab-business" hidden>
+<h2>Business side <button class="btn tool" id="add-biz" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add document</button></h2>
+<p class="mute">Plans and research for the business side of the app. These open only for signed-in owners; nothing from them is stored in this repository.</p>
+<div class="grid" id="biz"></div>
+</div>
 
 <footer>
   This page is built from <code>dashboard/board.json</code>, <code>dashboard/cards/</code> (one file per card) and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
@@ -167,13 +175,22 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
 
+  function planCard(p, quiet) {
+    var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
+    return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status && !quiet ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note && !quiet ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+  }
   function plans() {
-    $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
-      var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
-      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
-    }).join("");
+    $("plans").innerHTML = data.plans.filter(function (p) { return p.group !== "business"; }).concat(data.downloads || []).map(function (p) { return planCard(p); }).join("");
+    $("biz").innerHTML = data.plans.filter(function (p) { return p.group === "business"; }).map(function (p) { return planCard(p, true); }).join("");
     Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); editPlan(b.getAttribute("data-p")); }; });
   }
+  function tab(t) {
+    $("tab-board").hidden = t !== "business" ? false : true; $("tab-business").hidden = t === "business" ? false : true;
+    Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-t") === t ? "true" : "false"); });
+    try { history.replaceState(null, "", t === "business" ? "#business" : location.pathname + location.search); } catch (e) {}
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.onclick = function () { tab(b.getAttribute("data-t")); }; });
+  tab(location.hash === "#business" ? "business" : "board");
 
   /* ---------- card detail ---------- */
   function stLabel(id) { var s = data.statuses.filter(function (x) { return x.id === id; })[0]; return s ? s.label : id; }
@@ -258,8 +275,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; saveBoard("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
   }
 
-  function editPlan(id) {
-    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "" };
+  function editPlan(id, group) {
+    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "", group: group };
     open("<h3>" + (id ? "Edit plan" : "New plan") + "</h3>" +
       '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
       '<label>Link</label><input id="f-u" value="' + esc(x.url) + '" placeholder="https://…">' +
@@ -272,6 +289,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       var t = $("f-t").value.trim(), u = $("f-u").value.trim();
       if (!t || !u) { say("Give it a title and a link.", 1); return; }
       var pid = id || slug(t), np = { id: pid, title: t, url: u, status: $("f-s").value };
+      if (x.group) np.group = x.group;
       if ($("f-pv").checked) np.private = true; if ($("f-n").value.trim()) np.note = $("f-n").value.trim();
       saveBoard("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
         if (!id) { cur.plans.push(np); return; }
@@ -403,7 +421,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
-    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); };
+    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); }; $("add-biz").onclick = function () { editPlan("", "business"); };
   }).catch(function (e) {
     document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
