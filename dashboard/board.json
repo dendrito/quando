@@ -51,7 +51,17 @@
       "url": "https://claude.ai/artifact/Rvh6qEd5G6ZzFdnSAs9jRH",
       "status": "proposed",
       "private": true,
-      "note": "Pricing, editions, launch gates. Private (needs your Claude login); kept out of this public repo."
+      "note": "Pricing, editions, launch gates. Private (needs your Claude login); kept out of this public repo.",
+      "group": "business"
+    },
+    {
+      "id": "marketing",
+      "title": "Marketing plan",
+      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf",
+      "status": "proposed",
+      "private": true,
+      "note": "Launch and growth ideas. Private page.",
+      "group": "business"
     },
     {
       "id": "haredi",
@@ -59,14 +69,32 @@
       "url": "https://claude.ai/artifact/J9Fw4tMWF6283PjdiSkjwd",
       "status": "proposed",
       "private": true,
-      "note": "Matai? for Haredi users, offline Android edition."
+      "note": "Matai? for Haredi users, offline Android edition.",
+      "group": "business"
     },
     {
       "id": "sharedays",
       "title": "Share days review",
       "url": "https://claude.ai/artifact/SAgKfxpEW3UuyrsvxgugzE",
       "status": "proposed",
-      "private": true
+      "private": true,
+      "group": "business"
+    },
+    {
+      "id": "market",
+      "title": "Market assessment and accelerators",
+      "url": "https://claude.ai/artifact/8CiGHiLYdUMN6hSE6YNK3S",
+      "status": "proposed",
+      "private": true,
+      "group": "business"
+    },
+    {
+      "id": "adhd",
+      "title": "ADHD and focus mode",
+      "url": "https://claude.ai/artifact/2vF4g2TkmJAzDDY58GrLC5",
+      "status": "proposed",
+      "private": true,
+      "group": "business"
     },
     {
       "id": "roadmap",
@@ -79,14 +107,6 @@
       "title": "Growth features spec",
       "url": "https://github.com/dendrito/quando/pull/25",
       "status": "agreed"
-    },
-    {
-      "id": "marketing",
-      "title": "Marketing plan",
-      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf",
-      "status": "proposed",
-      "private": true,
-      "note": "Launch and growth ideas. Private page."
     }
   ],
   "downloads": [

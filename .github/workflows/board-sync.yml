@@ -10,7 +10,6 @@ on:
 
 permissions:
   contents: write
-  actions: write
 
 concurrency:
   group: board-sync
@@ -47,3 +46,4 @@ jobs:
             git pull --rebase origin main && git push origin HEAD:main && break
             sleep $((i * 3))
           done
+          # The board is built and published by Cloudflare Pages on every push to main.
