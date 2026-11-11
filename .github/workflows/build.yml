@@ -87,11 +87,11 @@ jobs:
           GH_TOKEN: ${{ github.token }}
 
       # Private test downloads: Firebase App Distribution (works when the repo
-      # is private). Skipped until the three secrets below are saved in GitHub.
+      # is private). Skipped until the secret FIREBASE_SERVICE_ACCOUNT_JSON is saved in GitHub. (App IDs are public identifiers, not secrets.)
       - name: Send test builds to Firebase App Distribution
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          if [ -z "$FIREBASE_SERVICE_ACCOUNT_JSON" ] || [ -z "$FIREBASE_APP_ID_QUANDO" ]; then
+          if [ -z "$FIREBASE_SERVICE_ACCOUNT_JSON" ]; then
             echo "Firebase App Distribution secrets not set yet: skipping"
             exit 0
           fi
@@ -108,8 +108,8 @@ jobs:
           fi
         env:
           FIREBASE_SERVICE_ACCOUNT_JSON: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_JSON }}
-          FIREBASE_APP_ID_QUANDO: ${{ secrets.FIREBASE_APP_ID_QUANDO }}
-          FIREBASE_APP_ID_MATAI: ${{ secrets.FIREBASE_APP_ID_MATAI }}
+          FIREBASE_APP_ID_QUANDO: 1:216517788382:android:1379ca100435e0099e384f
+          FIREBASE_APP_ID_MATAI: 1:216517788382:android:c0d17f9cc4c601139e384f
 
   # iPhone and iPad: proves the app builds. Unsigned until the Apple
   # Developer account is set up, so it can't be installed yet.
