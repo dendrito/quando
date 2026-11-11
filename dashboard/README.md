@@ -2,19 +2,31 @@
 
 A small website that shows where Quando? / Matai? stands: deadlines, work by status, open pull requests and issues, and plan links. It needs no server and no Claude.
 
-Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time setup").
+Live at `https://board.quando.day/` (Cloudflare Pages project `quando-board`; see "Hosting").
 
 ## Click a card, edit from the page
 
 - Click any card to read its details, documentation links, pull requests and links to the Claude threads about it (thread links need your Claude login).
-- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the public page refreshes about a minute later.
+- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the page refreshes about a minute later.
 - Never share the token. To remove it, press **Editing: on** → turn off.
+
+## Hosting (Cloudflare Pages, works with a private repo)
+
+The board is a second Cloudflare Pages project, separate from the quando.day site. GitHub Pages is not used any more (it needs a public repo on the free plan).
+
+- Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → `dendrito/quando`, project name `quando-board`, production branch `main`.
+- Build command: `python3 dashboard/build.py`. Build output directory: `dashboard`. Environment variable `PYTHON_VERSION` = `3.11` if the build says Python is missing.
+- Custom domain: `board.quando.day` (Pages project → Custom domains; Cloudflare adds the DNS record).
+- Optional lock: Zero Trust → Access → Applications → add `board.quando.day`, policy "Allow" for your email. Then only you see the board. Also protect the `*.pages.dev` address, or turn off its preview access.
+- `_headers` tells Cloudflare and browsers to re-check every file on each visit, and the page reloads its data when you return to it after a minute.
+- Every push to `main` (including the automatic Board sync commits) rebuilds the board, about a minute.
+- Live pull requests and issues: the page asks GitHub directly. A public repo needs no token; a private one needs the token below (Contents: Read and write, Pull requests: Read, Issues: Read) turned on once per browser.
 
 ## How the board is stored
 
 - **One file per card:** `dashboard/cards/<id>.json`. Two people (or Claude threads) editing different cards never conflict.
 - **Everything else** (dates, plans, columns, thread list, headline): `dashboard/board.json`.
-- The site builds `data.json` from those files (`python3 dashboard/build.py`, run automatically on publish). A typo in any file fails the build with the file name, and the old site stays up.
+- The site builds `data.json` from those files (`python3 dashboard/build.py`, run by Cloudflare on every deploy). A typo in any file fails the build with the file name, and the old site stays up.
 
 Card fields: `id` (optional; it is the file name), `title`, `status` (`decide`, `doing`, `review`, `next`, `hold`, `done`, or any column id in `board.json`), optional `tag`, `note`, `details`, `plan`, `prs` (pull request numbers), `threads` (ids from `board.json`), `docs` (`[{"title","url"}]`), `order` (sort number).
 
@@ -25,6 +37,8 @@ To add a card by hand on GitHub: Add file → Create new file → `dashboard/car
 - **Pull requests:** the "Board sync" workflow gives every new pull request a card and moves it as the PR moves: draft = In progress, ready = Needs your review, merged = Done, closed = On hold. Cards written by hand are never touched, and editing an automatic card on the site makes it yours.
 - **Thread links:** every card shows a 💬 link to its Claude thread. Automatic PR cards take it from the "project thread" link in the PR description; other cards list thread keys in `threads` (see `board.json`) or raw ids in `threadIds`.
 - **Merges:** when a pull request is merged, automatic PR cards go to Done, and so does any hand-made card in In progress or Needs your review that lists that PR (once every PR it lists is merged or closed). Decisions, plans and parked cards stay put. To catch up after a gap, run the "Board sync" workflow by hand from the Actions tab.
+- **Business tab:** plans with `"group": "business"` in `board.json` show on the Business tab (titles and links only, no notes). Add one with "+ Add document" on that tab when editing is on.
+- **GitHub tab:** open pull requests, open issues, recent builds and quick links (all open in a new browser tab). It reads GitHub live, so with a private repository turn on editing first so the page has a token.
 - **Mark a card done without a PR:** run the "Board set card" workflow (Actions tab, or `actions_run_trigger` from a Claude thread) with `card` = the card id (file name in `dashboard/cards`), `status` = `done`, and an optional `note`. Threads finishing a task with no PR should do this, or ask the coordinator to.
 - **Claude threads:** each thread keeps its own card in `dashboard/cards/` current (status, note, links). Because it is one file per card, threads don't collide.
 

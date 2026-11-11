@@ -27,34 +27,35 @@ MAX_LEN = 150
 # Numbers people read as omens, in digits or words.
 OMENS = [r'\b666\b', r'\b13\b', r'seiscentos e sessenta', r'six hundred (and )?sixty', r'sechshundert(und)?sechzig',
          r'шестьсот шестьдесят', r'sexcent']
-# Death, killing, hell and the devil, per language. An alarm clock should not
-# greet anyone with these. Latin-script words match whole words or stems.
+# Killing, suicide, hell and the devil, per language. An alarm clock should not
+# greet anyone with these. Death itself is allowed when the line is warm or fitting
+# (Curió, 2026-11-11), so each quote with death in it is judged by a person. Latin-script words match whole words or stems.
 DARK = {
-    'en': r'\b(death|dead|die[sd]?|dying|kill\w*|suicid\w*|hell|devil|satan|grave|bur(y|ied|ies)|funeral|blood)\b',
-    'pt': r'\b(mort[eo]s?|morr\w*|mata\w*|suicíd\w*|inferno|diabo|satanás|enterr\w*|túmulo|sangue|cova)\b',
-    'es': r'\b(muert\w*|mor[ií]\w*|mata\w*|suicid\w*|infierno|diablo|entierr\w*|tumba|sangre)\b',
-    'fr': r'\b(mort\w*|meur\w*|mourir|tue[rz]?|suicid\w*|enfer|diable|tombe(au)?|sang)\b',
-    'de': r'\b(tod\w*|tot\w*|sterb\w*|stirb\w*|töt\w*|hölle|teufel|grab|begrab\w*|blut)\b',
-    'it': r'\b(mort[eio]\w*|mori\w*|muor\w*|uccid\w*|inferno|diavolo|tomba|sepol\w*|sangue)\b',
-    'nl': r'\b(dood|doden|sterf\w*|sterv\w*|hel|duivel|graf|begr\w*|bloed)\b',
-    'pl': r'\b(śmier\w*|umr\w*|umier\w*|zabi\w*|piekł\w*|diab\w*|grób|grob\w*|krew|krwi)\b',
-    'ru': r'(смерт|умер|умир|убий|\bубит|\bад\b|дьявол|могил|похорон|кров[ьи])',
-    'uk': r'(смерт|помер|вмир|вбив|пекл|дияв|могил|похорон|кров)',
-    'tr': r'\b(ölüm\w*|öldür\w*|cehennem|şeytan|mezar\w*|kan)\b',
-    'ar': r'(\bموت|\bالموت|يموت|قتل|جحيم|شيطان|قبر|\bدم\b|الدم)',
-    'he': r'(מָוֶת|מוות|מִיתָה|מיתה|יָמוּת|ימות|הָרַג|הרג|גֵּיהִנֹּם|גיהנום|שָּׂטָן|שטן|קֶבֶר|קבר|(^|\s)דָּ?ם(\s|[.,]|$))',
-    'hi': r'(मृत्यु|मौत|मरना|मर जा|हत्या|नरक|शैतान|कब्र|ख़ून|खून)',
-    'id': r'\b(mati|kematian|bunuh\w*|neraka|setan|kubur\w*|darah)\b',
-    'ja': r'(死|殺|地獄|悪魔|墓|血)',
-    'ko': r'(죽음|죽는|죽었|죽이|살인|지옥|악마|무덤)',
-    'zh': r'(死|杀|殺|地狱|地獄|魔鬼|坟|墳|血)',
-    'zh_Hant': r'(死|殺|地獄|魔鬼|墳|血)',
-    'vi': r'\b(chết|giết|địa ngục|quỷ|mộ|máu)\b',
+    'en': r'\b(kill\w*|suicid\w*|hell|devil|satan)\b',
+    'pt': r'\b(mata\w*|suicíd\w*|inferno|diabo|satanás)\b',
+    'es': r'\b(mata\w*|suicid\w*|infierno|diablo)\b',
+    'fr': r'\b(tue[rz]?|suicid\w*|enfer|diable)\b',
+    'de': r'\b(töt\w*|hölle|teufel)\b',
+    'it': r'\b(uccid\w*|inferno|diavolo)\b',
+    'nl': r'\b(hel|duivel)\b',
+    'pl': r'\b(zabi\w*|piekł\w*|diab\w*)\b',
+    'ru': r'(убий|\bубит|\bад\b|дьявол)',
+    'uk': r'(вбив|пекл|дияв)',
+    'tr': r'\b(öldür\w*|cehennem|şeytan)\b',
+    'ar': r'(قتل|جحيم|شيطان)',
+    'he': r'(הָרַג|הרג|גֵּיהִנֹּם|גיהנום|שָּׂטָן|שטן)',
+    'hi': r'(हत्या|नरक|शैतान)',
+    'id': r'\b(bunuh\w*|neraka|setan)\b',
+    'ja': r'(殺|地獄|悪魔)',
+    'ko': r'(살인|지옥|악마)',
+    'zh': r'(杀|殺|地狱|地獄|魔鬼)',
+    'zh_Hant': r'(殺|地獄|魔鬼)',
+    'vi': r'\b(giết|địa ngục|quỷ)\b',
 }
 # No Christian religious figures, scripture or holidays (Curió, 2026-11-04).
 CHRISTIAN_BY = re.compile(r'((?<![\w-])(saint|santo|santa|san|st\.|sankt|św\.|святой|святий|aziz|القديس|पोप|pope|papa|papst|apostle|apóstolo|reverend|reverendo|pastor|padre|father)(?![\w-])'
                           r'|jesus|jesús|jésus|cristo|christ|христ|المسيح|ישו|यीशु|イエス|예수|耶稣|耶穌|chúa giê-su'
-                          r'|augustin|agostin|agustín|aquin|luther(?!\s*king)|calvin|francis of assisi|thomas à kempis|bonhoeffer'
+                          r'|augustin|agostin|agustín|aquin|luther(?!\s*king)|calvin(?!o)|francis of assisi|thomas à kempis|bonhoeffer'
                           r'|(matthew|mark|luke|john|mateus|marcos|lucas|joão|mateo|juan|romans|romanos|corinthians|coríntios|revelation|apocalipse)\s+\d)', re.I)
 CHRISTIAN_TEXT = re.compile(r'\b(christmas|xmas|natal|navidad|noël|weihnacht\w*|natale|kerst\w*|boże narodzenie|рождеств\w*|різдв\w*|noel|easter|ostern|pâques|pascua|páscoa|pasqua|jesus|jesús|cristo|christ|holy spirit|espírito santo)\b', re.I)
 CHRISTIAN_WORDS = re.compile(r'(クリスマス|크리스마스|圣诞|聖誕|عيد الميلاد|חג המולד|क्रिसमस|giáng sinh|natal)', re.I)

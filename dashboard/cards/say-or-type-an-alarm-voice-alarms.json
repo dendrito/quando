@@ -3,7 +3,7 @@
   "title": "Say or type an alarm (voice alarms)",
   "status": "done",
   "tag": "app",
-  "note": "Choice still open: add an on-device AI fallback or keep the parser only.",
+  "note": "Merged via PR #26 (in Thursday's version). On-device AI fallback and Siri/Android assistant hookups are parked until after the release.",
   "prs": [
     26
   ],
