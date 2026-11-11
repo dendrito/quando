@@ -1031,5 +1031,19 @@
   "askNoSpeech": "此裝置不支援語音。你可以輸入。",
   "askShabbatOff": "在設定中開啟安息日，安息日時間才會響鈴。",
   "askSaved": "已儲存：{what}",
-  "askMic": "說話"
+  "askMic": "說話",
+  "askMorning": "早上",
+  "askEvening": "晚上",
+  "askUnsure": "我可能漏掉了一部分。儲存前請檢查。",
+  "askTeach": "教我這個",
+  "askTaught": "明白了：「{phrase}」現在表示 {time}。",
+  "askSkipAction": "略過",
+  "askNoMatch": "沒有符合的鬧鐘。",
+  "askTurnedOff": "已關閉：{what}",
+  "askSkipped": "已略過：{what}",
+  "askEventPlan": "行事曆中「{event}」{offset}",
+  "askEventNoCalendar": "連結行事曆，Quando? 才能找到「{event}」。",
+  "askSnoozeAll": "貪睡：{minutes} 分鐘，適用於所有鬧鐘",
+  "askWakeWith": "用{sound}叫醒你",
+  "askReadAs": "理解為"
 }

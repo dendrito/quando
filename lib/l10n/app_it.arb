@@ -1031,5 +1031,19 @@
   "askNoSpeech": "La voce non è disponibile su questo dispositivo. Puoi scrivere.",
   "askShabbatOff": "Attiva lo Shabbat nelle Impostazioni perché i suoi orari suonino.",
   "askSaved": "Salvato: {what}",
-  "askMic": "Parla"
+  "askMic": "Parla",
+  "askMorning": "Mattina",
+  "askEvening": "Sera",
+  "askUnsure": "Forse mi è sfuggito qualcosa. Controlla prima di salvare.",
+  "askTeach": "Insegnamelo",
+  "askTaught": "Capito: “{phrase}” ora vuol dire {time}.",
+  "askSkipAction": "Salta",
+  "askNoMatch": "Nessuna sveglia corrisponde.",
+  "askTurnedOff": "Disattivata: {what}",
+  "askSkipped": "Saltata: {what}",
+  "askEventPlan": "{offset} “{event}” nel tuo calendario",
+  "askEventNoCalendar": "Collega un calendario perché Quando? trovi “{event}”.",
+  "askSnoozeAll": "Posticipa: {minutes} min, per tutte le sveglie",
+  "askWakeWith": "Ti sveglia con {sound}",
+  "askReadAs": "Letto come"
 }

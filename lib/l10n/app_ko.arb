@@ -1031,5 +1031,19 @@
   "askNoSpeech": "이 기기에서는 음성을 사용할 수 없어요. 입력할 수 있어요.",
   "askShabbatOff": "안식일 시간이 울리려면 설정에서 안식일을 켜세요.",
   "askSaved": "저장됨: {what}",
-  "askMic": "말하기"
+  "askMic": "말하기",
+  "askMorning": "아침",
+  "askEvening": "저녁",
+  "askUnsure": "일부를 놓쳤을 수 있어요. 저장하기 전에 확인하세요.",
+  "askTeach": "이걸 가르쳐 주기",
+  "askTaught": "알겠어요: “{phrase}”는 이제 {time}이에요.",
+  "askSkipAction": "건너뛰기",
+  "askNoMatch": "맞는 알람이 없어요.",
+  "askTurnedOff": "껐어요: {what}",
+  "askSkipped": "건너뛰었어요: {what}",
+  "askEventPlan": "캘린더의 “{event}” {offset}",
+  "askEventNoCalendar": "Quando?가 “{event}”를 찾을 수 있게 캘린더를 연결하세요.",
+  "askSnoozeAll": "다시 알림: {minutes}분, 모든 알람에 적용",
+  "askWakeWith": "{sound}(으)로 깨워요",
+  "askReadAs": "이렇게 읽었어요"
 }

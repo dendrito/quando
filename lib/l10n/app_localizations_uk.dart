@@ -3547,4 +3547,60 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get askMic => 'Говорити';
+
+  @override
+  String get askMorning => 'Ранок';
+
+  @override
+  String get askEvening => 'Вечір';
+
+  @override
+  String get askUnsure => 'Можливо, я щось пропустив. Перевірте перед збереженням.';
+
+  @override
+  String get askTeach => 'Навчи мене';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Зрозумів: «$phrase» тепер означає $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Пропустити';
+
+  @override
+  String get askNoMatch => 'Немає відповідного будильника.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Вимкнено: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Пропущено: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset «$event» у вашому календарі';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Під’єднайте календар, щоб Quando? знайшов «$event».';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Повтор: $minutes хв, для всіх будильників';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Будить вас: $sound';
+  }
+
+  @override
+  String get askReadAs => 'Прочитано як';
 }

@@ -3422,4 +3422,60 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get askMic => '話す';
+
+  @override
+  String get askMorning => '朝';
+
+  @override
+  String get askEvening => '夜';
+
+  @override
+  String get askUnsure => '一部を読み取れなかったかもしれません。保存前に確認してください。';
+
+  @override
+  String get askTeach => 'これを覚えさせる';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'わかりました：「$phrase」は今後 $time です。';
+  }
+
+  @override
+  String get askSkipAction => 'スキップ';
+
+  @override
+  String get askNoMatch => '一致するアラームはありません。';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'オフにしました：$what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'スキップしました：$what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return 'カレンダーの「$event」の$offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Quando?が「$event」を見つけられるようカレンダーを接続してください。';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'スヌーズ：$minutes分、すべてのアラームに適用';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '$soundで起こします';
+  }
+
+  @override
+  String get askReadAs => '読み取り結果';
 }

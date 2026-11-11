@@ -1031,5 +1031,19 @@
   "askNoSpeech": "इस डिवाइस पर आवाज़ उपलब्ध नहीं है। आप लिख सकते हैं।",
   "askShabbatOff": "शब्बत समय बजने के लिए सेटिंग्स में शब्बत चालू करें।",
   "askSaved": "सहेजा गया: {what}",
-  "askMic": "बोलें"
+  "askMic": "बोलें",
+  "askMorning": "सुबह",
+  "askEvening": "शाम",
+  "askUnsure": "शायद मुझसे कुछ छूट गया। सहेजने से पहले जाँच लें।",
+  "askTeach": "मुझे यह सिखाएँ",
+  "askTaught": "समझ गया: “{phrase}” का मतलब अब {time} है।",
+  "askSkipAction": "छोड़ें",
+  "askNoMatch": "कोई अलार्म इससे मेल नहीं खाता।",
+  "askTurnedOff": "बंद किया: {what}",
+  "askSkipped": "छोड़ा: {what}",
+  "askEventPlan": "आपके कैलेंडर में “{event}” से {offset}",
+  "askEventNoCalendar": "कैलेंडर जोड़ें ताकि Quando? “{event}” ढूँढ सके।",
+  "askSnoozeAll": "स्नूज़: {minutes} मिनट, सभी अलार्म के लिए",
+  "askWakeWith": "आपको {sound} से जगाता है",
+  "askReadAs": "ऐसे पढ़ा गया"
 }

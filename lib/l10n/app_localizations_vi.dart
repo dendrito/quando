@@ -3470,4 +3470,60 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askMic => 'Nói';
+
+  @override
+  String get askMorning => 'Sáng';
+
+  @override
+  String get askEvening => 'Tối';
+
+  @override
+  String get askUnsure => 'Có thể tôi đã bỏ sót một phần. Hãy kiểm tra trước khi lưu.';
+
+  @override
+  String get askTeach => 'Dạy tôi điều này';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Đã hiểu: “$phrase” giờ có nghĩa là $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Bỏ qua';
+
+  @override
+  String get askNoMatch => 'Không có báo thức nào khớp.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Đã tắt: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Đã bỏ qua: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” trong lịch của bạn';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Kết nối lịch để Quando? tìm được “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Báo lại: $minutes phút, cho mọi báo thức';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Đánh thức bạn bằng $sound';
+  }
+
+  @override
+  String get askReadAs => 'Được hiểu là';
 }

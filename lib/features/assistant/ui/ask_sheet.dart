@@ -9,10 +9,15 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../../core/scheduler/scheduler.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../events/domain/sun_times.dart';
+import '../../sounds/domain/sound.dart';
+import '../data/learned_phrases.dart';
+import '../domain/alarm_ai.dart';
 import '../domain/alarm_parser.dart';
 import '../domain/alarm_plan.dart';
+import '../domain/phrasebook.dart';
 import '../domain/alarm_request.dart';
 import '../domain/time_question.dart';
 
@@ -47,6 +52,17 @@ String describePlan(AlarmPlan plan, String zone) => switch (plan) {
     anchorName(anchor),
     if (days.isNotEmpty) _daysLabel(days),
   ].join(' · '),
+  EventPlan(:final query, :final offset) =>
+    l10n.askEventPlan(offset == Duration.zero ? l10n.atTheMoment : describeOffset(offset), query),
+};
+
+/// The alarm sound "with the radio", "with a song", "with my voice" picks.
+AlarmSound? soundOfKind(String? kind, List<AlarmSound> all) => switch (kind) {
+  'radio' => all.where((s) => s.isRadio).firstOrNull,
+  'song' => all.where((s) => s.isLink).firstOrNull,
+  'voice' => all.where((s) => !s.builtIn && !s.isRadio && !s.isLink).firstOrNull,
+  'chime' || 'beep' => all.where((s) => s.builtIn && s.name.toLowerCase().contains(kind!)).firstOrNull,
+  _ => null,
 };
 
 class _AskSheet extends ConsumerStatefulWidget {
@@ -63,6 +79,13 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   final _speech = SpeechToText();
   bool _listening = false;
   bool? _speechOk;
+
+  /// Morning or evening, picked on the chips for a bare "at 7".
+  bool? _evening;
+
+  /// The on-device AI's reading of [_aiFor], when the parser wasn't sure.
+  AlarmRequest? _ai;
+  String? _aiFor;
 
   @override
   void initState() {
@@ -166,22 +189,43 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     );
   }
 
-  void _save(AlarmPlan plan) {
+  void _save(AlarmPlan plan, AlarmRequest request) {
     final id = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
     final zone = ref.read(homeZoneProvider);
+    final soundId = soundOfKind(request.sound, ref.read(soundsProvider))?.id;
+    final snooze = request.snoozeMinutes;
+    if (snooze != null && snooze > 0 && snooze <= 60) {
+      ref.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(snoozeMinutes: snooze));
+    }
+    final h = request.hour;
+    if (_evening != null && h != null) ref.read(learnedProvider.notifier).halfDay(h % 12, evening: _evening!);
     switch (plan) {
       case OneOffPlan(:final at, :final label):
         final local = inZone(at, zone);
         ref
             .read(userAlarmsProvider.notifier)
             .save(
-              UserAlarm(id: id, hour: local.hour, minute: local.minute, label: label),
+              UserAlarm(id: id, hour: local.hour, minute: local.minute, label: label, soundId: soundId),
               at: at,
             );
       case RepeatPlan(:final hour, :final minute, :final days, :final label):
         ref
             .read(userAlarmsProvider.notifier)
-            .save(UserAlarm(id: id, hour: hour, minute: minute, days: days, label: label));
+            .save(UserAlarm(id: id, hour: hour, minute: minute, days: days, label: label, soundId: soundId));
+      case EventPlan(:final query, :final offset, :final label):
+        ref
+            .read(calendarRulesProvider.notifier)
+            .save(
+              CalendarRule(
+                id: id,
+                name: label.isEmpty ? query : label,
+                keyword: query,
+                before: [if (offset.isNegative) -offset],
+                atStart: offset == Duration.zero,
+                after: [if (offset > Duration.zero) offset],
+                soundId: soundId,
+              ),
+            );
       case RulePlan(:final anchor, :final offset, :final days, :final label):
         ref
             .read(calendarRulesProvider.notifier)
@@ -195,6 +239,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 atStart: offset == Duration.zero,
                 after: [if (offset > Duration.zero) offset],
                 days: days,
+                soundId: soundId,
               ),
             );
     }
@@ -205,20 +250,153 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
       ..showSnackBar(SnackBar(content: Text(l10n.askSaved(describePlan(plan, zone)))));
   }
 
+  /// Asks the on-device AI (if the phone has one) about a sentence the
+  /// parser wasn't sure of; the answer replaces the parser's.
+  void _askAi(AlarmAi ai, String input, String lang) {
+    if (_aiFor == input) return;
+    _aiFor = input;
+    _ai = null;
+    Future<void>.delayed(const Duration(milliseconds: 600), () async {
+      if (!mounted || _aiFor != input) return;
+      final r = await ai.read(input, lang: lang);
+      if (mounted && _aiFor == input) setState(() => _ai = r);
+    });
+  }
+
+  /// Alarms "turn off the 7am alarm" points at.
+  List<UserAlarm> _toTurnOff(AlarmRequest r) {
+    final h = r.hour;
+    if (h == null && r.label.isEmpty) return const [];
+    return [
+      for (final a in ref.read(userAlarmsProvider))
+        if (a.enabled &&
+            (h == null ||
+                (a.minute == r.minute && (a.hour == h || (r.halfDayUnsure && a.hour % 12 == h % 12)))) &&
+            (r.label.isEmpty || a.label.toLowerCase().contains(r.label.toLowerCase())))
+          a,
+    ];
+  }
+
+  /// Rings "skip tomorrow", "skip the 7am on Friday" points at.
+  List<ScheduledAlarm> _toSkip(AlarmRequest r) {
+    final now = ref.read(clockProvider)();
+    final zone = ref.read(homeZoneProvider);
+    final local = inZone(now, zone);
+    final skipped = ref.read(skippedProvider);
+    final day = dayAsked(r, local);
+    final h = r.hour;
+    final all = [
+      for (final a in ref.read(fullPlanProvider))
+        if (!skipped.contains(a.id) && a.at.isAfter(now)) a,
+    ]..sort((a, b) => a.at.compareTo(b.at));
+    bool fits(ScheduledAlarm a) {
+      final t = inZone(a.at, zone);
+      if (day != null) {
+        final d = DateTime(t.year, t.month, t.day).difference(DateTime(local.year, local.month, local.day)).inDays;
+        if (d != day) return false;
+      }
+      if (h != null && !(t.minute == r.minute && (t.hour == h || (r.halfDayUnsure && t.hour % 12 == h % 12)))) {
+        return false;
+      }
+      return true;
+    }
+
+    final hits = all.where(fits).toList();
+    return day == null && h == null ? hits.take(1).toList() : hits;
+  }
+
+  void _turnOff(List<UserAlarm> alarms) {
+    final n = ref.read(userAlarmsProvider.notifier);
+    for (final a in alarms) {
+      n.toggle(a.id, false);
+    }
+    final what = alarms.map((a) => '${hhmm(DateTime(2000, 1, 1, a.hour, a.minute))} ${a.title}').join(', ');
+    _done(l10n.askTurnedOff(what), () {
+      for (final a in alarms) {
+        n.toggle(a.id, true);
+      }
+    });
+  }
+
+  void _skip(List<ScheduledAlarm> rings) {
+    final n = ref.read(skippedProvider.notifier);
+    for (final a in rings) {
+      n.skip(a.id, true);
+    }
+    final zone = ref.read(homeZoneProvider);
+    final what = rings.map((a) => '${dayLabel(inZone(a.at, zone))} ${hhmm(inZone(a.at, zone))}').join(', ');
+    _done(l10n.askSkipped(what), () {
+      for (final a in rings) {
+        n.skip(a.id, false);
+      }
+    });
+  }
+
+  void _done(String message, VoidCallback undo) {
+    final messenger = ScaffoldMessenger.of(context);
+    Navigator.pop(context);
+    messenger
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(
+          content: Text(message),
+          action: SnackBarAction(label: l10n.undo, onPressed: undo),
+        ),
+      );
+  }
+
+  /// "Teach me this": the sentence becomes a phrase for a time of day.
+  Future<void> _teach(String phrase) async {
+    final t = await showTimePicker(context: context, initialTime: const TimeOfDay(hour: 7, minute: 0));
+    if (t == null || !mounted) return;
+    ref.read(learnedProvider.notifier).teach(phrase, t.hour, t.minute);
+    setState(() {});
+    ScaffoldMessenger.of(context)
+      ..hideCurrentSnackBar()
+      ..showSnackBar(
+        SnackBar(content: Text(l10n.askTaught(phrase, hhmm(DateTime(2000, 1, 1, t.hour, t.minute))))),
+      );
+  }
+
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final input = _text.text.trim();
     final zone = ref.watch(homeZoneProvider);
     final lang = ref.watch(localeProvider).languageCode;
-    final question = input.isEmpty ? null : readTimeQuestion(input, lang: lang);
-    final request = input.isEmpty || question != null ? null : const AlarmParser().parse(input, lang: lang);
-    final plan = _plan(request);
+    final learned = ref.watch(learnedProvider);
+    final said = learned.apply(input);
+    final question = input.isEmpty ? null : readTimeQuestion(said, lang: lang);
+    final reading = input.isEmpty || question != null ? null : const AlarmParser().read(said, lang: lang);
+    final unsure = reading != null && reading.confidence < AlarmReading.unsure;
+    AlarmRequest? request = reading == null || reading.isEmpty ? null : reading.request;
+
+    // Not sure: the phone's own AI, if it has one, reads it too.
+    final ai = ref.watch(alarmAiProvider);
+    if (ai != null && reading != null && (request == null || unsure)) {
+      _askAi(ai, said, lang);
+      if (_aiFor == said && _ai != null) request = _ai;
+    }
+
+    // "At 7": morning or evening, as picked on the chips or learned.
+    final r0 = request;
+    final askHalf = r0 != null && r0.halfDayUnsure && r0.hour != null && r0.action == AlarmAction.set;
+    final evening = askHalf ? _evening ?? learned.halfDay[r0.hour! % 12] : null;
+    if (askHalf && evening != null) request = r0.withHalfDay(evening: evening);
+
+    final action = request?.action ?? AlarmAction.set;
+    final plan = action == AlarmAction.set ? _plan(request) : null;
+    final turnOff = action == AlarmAction.remove && request != null ? _toTurnOff(request) : const <UserAlarm>[];
+    final skip = action == AlarmAction.skip && request != null ? _toSkip(request) : const <ScheduledAlarm>[];
     final answer = question == null ? null : _answer(question);
     final shabbatOff =
         plan is RulePlan &&
         (plan.anchor == TimeAnchor.candleLighting || plan.anchor == TimeAnchor.havdalah) &&
         !ref.watch(shabbatInUseProvider);
+    final sound = soundOfKind(request?.sound, ref.watch(soundsProvider));
+    final noCalendar = plan is EventPlan && !ref.watch(calendarProvider.select((c) => c.access));
+    final canTeach = input.isNotEmpty && !_listening && question == null && (plan == null || unsure) &&
+        action == AlarmAction.set && !learned.phrases.containsKey(input.toLowerCase());
 
     return SafeArea(
       child: Padding(
@@ -240,9 +418,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                     textCapitalization: TextCapitalization.sentences,
                     textInputAction: TextInputAction.done,
                     decoration: InputDecoration(hintText: _listening ? l10n.askListening : l10n.askHint),
-                    onChanged: (_) => setState(() {}),
+                    onChanged: (_) => setState(() => _evening = null),
                     onSubmitted: (_) {
-                      if (plan != null) _save(plan);
+                      if (plan != null) _save(plan, request!);
                     },
                   ),
                 ),
@@ -266,6 +444,12 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
               const SizedBox(height: 8),
               Text(l10n.askNoSpeech, style: text.bodySmall),
             ],
+            // Languages first rewritten into English by the phrasebook skip
+            // this: the English it read would only confuse.
+            if (reading != null && reading.understood.isNotEmpty && !hasPhrasebook(lang)) ...[
+              const SizedBox(height: 8),
+              UnderstoodText(reading: reading, typed: input),
+            ],
             const SizedBox(height: 16),
             if (question != null)
               _AnswerCard(question: question, answer: answer, zone: zone)
@@ -274,16 +458,69 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 margin: EdgeInsets.zero,
                 child: ListTile(
                   leading: Icon(
-                    plan is RulePlan ? Icons.wb_twilight : Icons.alarm,
+                    plan is RulePlan
+                        ? Icons.wb_twilight
+                        : plan is EventPlan
+                        ? Icons.event
+                        : Icons.alarm,
                     color: QuandoColors.amber,
                   ),
                   title: Text(describePlan(plan, zone), style: text.titleMedium),
-                  subtitle: plan.label.isEmpty ? null : Text(plan.label),
+                  subtitle: [
+                    if (plan.label.isNotEmpty) plan.label,
+                    if (sound != null) l10n.askWakeWith(sound.name),
+                    if (request?.snoozeMinutes case final n? when n > 0 && n <= 60) l10n.askSnoozeAll(n),
+                  ].isEmpty
+                      ? null
+                      : Text(
+                          [
+                            if (plan.label.isNotEmpty) plan.label,
+                            if (sound != null) l10n.askWakeWith(sound.name),
+                            if (request?.snoozeMinutes case final n? when n > 0 && n <= 60) l10n.askSnoozeAll(n),
+                          ].join('\n'),
+                        ),
                 ),
+              )
+            else if (action == AlarmAction.remove || action == AlarmAction.skip)
+              _MatchesCard(
+                lines: [
+                  for (final a in turnOff)
+                    '${hhmm(DateTime(2000, 1, 1, a.hour, a.minute))} · ${a.repeats ? a.repeatLabel : l10n.once}${a.label.isEmpty ? '' : ' · ${a.label}'}',
+                  for (final a in skip) '${dayLabel(inZone(a.at, zone))} ${hhmm(inZone(a.at, zone))} · ${a.title}',
+                ],
+                icon: action == AlarmAction.remove ? Icons.alarm_off : Icons.skip_next,
               )
             else if (input.isNotEmpty && !_listening)
               Text(l10n.askNotUnderstood, style: text.bodySmall),
+            if (askHalf) ...[
+              const SizedBox(height: 12),
+              Wrap(
+                spacing: 8,
+                children: [
+                  for (final (label, value) in [(l10n.askMorning, false), (l10n.askEvening, true)])
+                    ChoiceChip(
+                      label: Text(label),
+                      selected: evening == value,
+                      onSelected: (_) => setState(() => _evening = value),
+                    ),
+                ],
+              ),
+            ],
+            if (plan != null && unsure) ...[const SizedBox(height: 8), Text(l10n.askUnsure, style: text.bodySmall)],
+            if (noCalendar) ...[
+              const SizedBox(height: 8),
+              Text(l10n.askEventNoCalendar(plan.query), style: text.bodySmall),
+            ],
             if (shabbatOff) ...[const SizedBox(height: 8), Text(l10n.askShabbatOff, style: text.bodySmall)],
+            if (canTeach)
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton.icon(
+                  icon: const Icon(Icons.school_outlined),
+                  label: Text(l10n.askTeach),
+                  onPressed: () => _teach(input.toLowerCase()),
+                ),
+              ),
             const SizedBox(height: 16),
             if (question != null)
               FilledButton(
@@ -291,15 +528,94 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 onPressed: () => Navigator.pop(context),
                 child: Text(l10n.done),
               )
+            else if (action == AlarmAction.remove)
+              FilledButton(
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                onPressed: turnOff.isEmpty ? null : () => _turnOff(turnOff),
+                child: Text(turnOff.isEmpty ? l10n.askNoMatch : l10n.turnOff),
+              )
+            else if (action == AlarmAction.skip)
+              FilledButton(
+                style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
+                onPressed: skip.isEmpty ? null : () => _skip(skip),
+                child: Text(skip.isEmpty ? l10n.askNoMatch : l10n.askSkipAction),
+              )
             else
               FilledButton(
                 style: FilledButton.styleFrom(minimumSize: const Size.fromHeight(56)),
-                onPressed: plan == null ? null : () => _save(plan),
+                onPressed: plan == null || noCalendar ? null : () => _save(plan, request!),
                 child: Text(l10n.save),
               ),
           ],
         ),
       ),
+    );
+  }
+}
+
+/// The alarms or rings a "turn off" or "skip" points at.
+class _MatchesCard extends StatelessWidget {
+  const _MatchesCard({required this.lines, required this.icon});
+
+  final List<String> lines;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    if (lines.isEmpty) return const SizedBox.shrink();
+    return Card(
+      margin: EdgeInsets.zero,
+      child: Column(
+        children: [
+          for (final l in lines.take(4))
+            ListTile(
+              dense: true,
+              leading: Icon(icon, color: QuandoColors.amber),
+              title: Text(l),
+            ),
+        ],
+      ),
+    );
+  }
+}
+
+/// The sentence with the parts that were understood lit up, so it's clear
+/// what was read and what was left out. When the sentence was first
+/// rewritten (another language, a taught phrase), it shows what was read.
+class UnderstoodText extends StatelessWidget {
+  const UnderstoodText({super.key, required this.reading, required this.typed});
+
+  final AlarmReading reading;
+  final String typed;
+
+  @override
+  Widget build(BuildContext context) {
+    final style = Theme.of(context).textTheme.bodySmall;
+    final t = reading.text;
+    final spans = <TextSpan>[];
+    var i = 0;
+    for (final (a, b) in reading.understood) {
+      if (a > i) spans.add(TextSpan(text: t.substring(i, a)));
+      spans.add(
+        TextSpan(
+          text: t.substring(a, b),
+          style: const TextStyle(color: QuandoColors.amber, fontWeight: FontWeight.w600),
+        ),
+      );
+      i = b;
+    }
+    if (i < t.length) spans.add(TextSpan(text: t.substring(i)));
+    final rewritten = t.trim().toLowerCase() != typed.trim().toLowerCase();
+    return Text.rich(
+      TextSpan(
+        style: style,
+        children: [
+          if (rewritten) TextSpan(text: '${l10n.askReadAs}: '),
+          ...spans,
+        ],
+      ),
+      maxLines: 3,
+      overflow: TextOverflow.ellipsis,
     );
   }
 }

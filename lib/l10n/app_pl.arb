@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Głos jest niedostępny na tym urządzeniu. Możesz pisać.",
   "askShabbatOff": "Włącz szabat w Ustawieniach, aby godziny szabatu dzwoniły.",
   "askSaved": "Zapisano: {what}",
-  "askMic": "Mów"
+  "askMic": "Mów",
+  "askMorning": "Rano",
+  "askEvening": "Wieczorem",
+  "askUnsure": "Mogłem coś pominąć. Sprawdź przed zapisaniem.",
+  "askTeach": "Naucz mnie tego",
+  "askTaught": "Rozumiem: „{phrase}” oznacza teraz {time}.",
+  "askSkipAction": "Pomiń",
+  "askNoMatch": "Żaden alarm do tego nie pasuje.",
+  "askTurnedOff": "Wyłączono: {what}",
+  "askSkipped": "Pominięto: {what}",
+  "askEventPlan": "{offset} „{event}” w Twoim kalendarzu",
+  "askEventNoCalendar": "Połącz kalendarz, aby Quando? znalazł „{event}”.",
+  "askSnoozeAll": "Drzemka: {minutes} min, dla wszystkich alarmów",
+  "askWakeWith": "Budzi Cię: {sound}",
+  "askReadAs": "Odczytano jako"
 }

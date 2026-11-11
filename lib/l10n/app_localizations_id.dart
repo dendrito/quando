@@ -3479,4 +3479,60 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askMic => 'Bicara';
+
+  @override
+  String get askMorning => 'Pagi';
+
+  @override
+  String get askEvening => 'Malam';
+
+  @override
+  String get askUnsure => 'Mungkin ada yang terlewat. Periksa sebelum menyimpan.';
+
+  @override
+  String get askTeach => 'Ajari aku ini';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Mengerti: “$phrase” sekarang berarti $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Lewati';
+
+  @override
+  String get askNoMatch => 'Tidak ada alarm yang cocok.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Dimatikan: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Dilewati: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” di kalender Anda';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Hubungkan kalender agar Quando? bisa menemukan “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Tunda: $minutes mnt, untuk semua alarm';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Membangunkan Anda dengan $sound';
+  }
+
+  @override
+  String get askReadAs => 'Dibaca sebagai';
 }

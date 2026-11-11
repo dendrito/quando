@@ -3482,4 +3482,60 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get askMic => 'Konuş';
+
+  @override
+  String get askMorning => 'Sabah';
+
+  @override
+  String get askEvening => 'Akşam';
+
+  @override
+  String get askUnsure => 'Bir kısmını kaçırmış olabilirim. Kaydetmeden önce kontrol edin.';
+
+  @override
+  String get askTeach => 'Bunu bana öğret';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Anladım: “$phrase” artık $time demek.';
+  }
+
+  @override
+  String get askSkipAction => 'Atla';
+
+  @override
+  String get askNoMatch => 'Buna uyan alarm yok.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Kapatıldı: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Atlandı: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return 'Takviminizdeki “$event” etkinliğinden $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Quando?\'nun “$event” etkinliğini bulması için bir takvim bağlayın.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Erteleme: $minutes dk, tüm alarmlar için';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Sizi $sound ile uyandırır';
+  }
+
+  @override
+  String get askReadAs => 'Şöyle okundu';
 }

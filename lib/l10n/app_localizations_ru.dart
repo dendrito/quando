@@ -3548,4 +3548,60 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get askMic => 'Говорить';
+
+  @override
+  String get askMorning => 'Утро';
+
+  @override
+  String get askEvening => 'Вечер';
+
+  @override
+  String get askUnsure => 'Возможно, я что-то упустил. Проверьте перед сохранением.';
+
+  @override
+  String get askTeach => 'Научи меня';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Понял: «$phrase» теперь значит $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Пропустить';
+
+  @override
+  String get askNoMatch => 'Нет подходящего будильника.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Выключен: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Пропущен: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset «$event» в вашем календаре';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Подключите календарь, чтобы Quando? нашёл «$event».';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Повтор: $minutes мин, для всех будильников';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Будит вас: $sound';
+  }
+
+  @override
+  String get askReadAs => 'Прочитано как';
 }

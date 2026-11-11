@@ -27,6 +27,9 @@ Future<void> main() async {
     yield LicenseEntryWithLineBreaks([
       'SunCalc lunar astronomy',
     ], await rootBundle.loadString('third_party/suncalc/LICENSE'));
+    yield LicenseEntryWithLineBreaks([
+      'Unicode CLDR date words (Say or type it)',
+    ], await rootBundle.loadString('third_party/cldr/LICENSE'));
   });
   ensureTimeZones();
   final prefs = await SharedPreferences.getInstance();

@@ -109,6 +109,29 @@ class AlarmRequest {
     snoozeMinutes: snoozeMinutes,
   );
 
+  /// "At 7", told it means the evening (or the morning).
+  AlarmRequest withHalfDay({required bool evening}) {
+    final h = hour;
+    if (h == null) return this;
+    return AlarmRequest(
+      hour: evening ? h % 12 + 12 : h % 12,
+      minute: minute,
+      days: days,
+      dayOffset: dayOffset,
+      after: after,
+      anchor: anchor,
+      offset: offset,
+      label: label,
+      onWeekday: onWeekday,
+      month: month,
+      dayOfMonth: dayOfMonth,
+      eventQuery: eventQuery,
+      action: action,
+      sound: sound,
+      snoozeMinutes: snoozeMinutes,
+    );
+  }
+
   @override
   bool operator ==(Object other) =>
       other is AlarmRequest &&

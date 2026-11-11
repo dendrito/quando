@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Thiết bị này không hỗ trợ giọng nói. Bạn có thể gõ.",
   "askShabbatOff": "Bật Shabbat trong Cài đặt để giờ Shabbat đổ chuông.",
   "askSaved": "Đã lưu: {what}",
-  "askMic": "Nói"
+  "askMic": "Nói",
+  "askMorning": "Sáng",
+  "askEvening": "Tối",
+  "askUnsure": "Có thể tôi đã bỏ sót một phần. Hãy kiểm tra trước khi lưu.",
+  "askTeach": "Dạy tôi điều này",
+  "askTaught": "Đã hiểu: “{phrase}” giờ có nghĩa là {time}.",
+  "askSkipAction": "Bỏ qua",
+  "askNoMatch": "Không có báo thức nào khớp.",
+  "askTurnedOff": "Đã tắt: {what}",
+  "askSkipped": "Đã bỏ qua: {what}",
+  "askEventPlan": "{offset} “{event}” trong lịch của bạn",
+  "askEventNoCalendar": "Kết nối lịch để Quando? tìm được “{event}”.",
+  "askSnoozeAll": "Báo lại: {minutes} phút, cho mọi báo thức",
+  "askWakeWith": "Đánh thức bạn bằng {sound}",
+  "askReadAs": "Được hiểu là"
 }

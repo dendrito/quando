@@ -6321,6 +6321,90 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Speak'**
   String get askMic;
+
+  /// No description provided for @askMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get askMorning;
+
+  /// No description provided for @askEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get askEvening;
+
+  /// No description provided for @askUnsure.
+  ///
+  /// In en, this message translates to:
+  /// **'I may have missed part of that. Check it before saving.'**
+  String get askUnsure;
+
+  /// No description provided for @askTeach.
+  ///
+  /// In en, this message translates to:
+  /// **'Teach me this'**
+  String get askTeach;
+
+  /// No description provided for @askTaught.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it: “{phrase}” now means {time}.'**
+  String askTaught(String phrase, String time);
+
+  /// No description provided for @askSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get askSkipAction;
+
+  /// No description provided for @askNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No alarm matches that.'**
+  String get askNoMatch;
+
+  /// No description provided for @askTurnedOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off: {what}'**
+  String askTurnedOff(String what);
+
+  /// No description provided for @askSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped: {what}'**
+  String askSkipped(String what);
+
+  /// No description provided for @askEventPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'{offset} “{event}” in your calendar'**
+  String askEventPlan(String offset, String event);
+
+  /// No description provided for @askEventNoCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar so Quando? can find “{event}”.'**
+  String askEventNoCalendar(String event);
+
+  /// No description provided for @askSnoozeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze: {minutes} min, for every alarm'**
+  String askSnoozeAll(int minutes);
+
+  /// No description provided for @askWakeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wakes you with {sound}'**
+  String askWakeWith(String sound);
+
+  /// No description provided for @askReadAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Read as'**
+  String get askReadAs;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

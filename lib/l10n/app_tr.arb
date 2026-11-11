@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Bu cihazda ses kullanılamıyor. Yazabilirsiniz.",
   "askShabbatOff": "Şabat saatlerinin çalması için Ayarlar'dan Şabat'ı açın.",
   "askSaved": "Kaydedildi: {what}",
-  "askMic": "Konuş"
+  "askMic": "Konuş",
+  "askMorning": "Sabah",
+  "askEvening": "Akşam",
+  "askUnsure": "Bir kısmını kaçırmış olabilirim. Kaydetmeden önce kontrol edin.",
+  "askTeach": "Bunu bana öğret",
+  "askTaught": "Anladım: “{phrase}” artık {time} demek.",
+  "askSkipAction": "Atla",
+  "askNoMatch": "Buna uyan alarm yok.",
+  "askTurnedOff": "Kapatıldı: {what}",
+  "askSkipped": "Atlandı: {what}",
+  "askEventPlan": "Takviminizdeki “{event}” etkinliğinden {offset}",
+  "askEventNoCalendar": "Quando?'nun “{event}” etkinliğini bulması için bir takvim bağlayın.",
+  "askSnoozeAll": "Erteleme: {minutes} dk, tüm alarmlar için",
+  "askWakeWith": "Sizi {sound} ile uyandırır",
+  "askReadAs": "Şöyle okundu"
 }

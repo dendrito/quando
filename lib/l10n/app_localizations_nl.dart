@@ -3494,4 +3494,60 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get askMic => 'Spreek';
+
+  @override
+  String get askMorning => 'Ochtend';
+
+  @override
+  String get askEvening => 'Avond';
+
+  @override
+  String get askUnsure => 'Misschien heb ik iets gemist. Controleer het voor je opslaat.';
+
+  @override
+  String get askTeach => 'Leer me dit';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Begrepen: ‘$phrase’ betekent nu $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Overslaan';
+
+  @override
+  String get askNoMatch => 'Geen wekker past daarbij.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Uitgezet: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Overgeslagen: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset ‘$event’ in je agenda';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Koppel een agenda zodat Quando? ‘$event’ kan vinden.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Snooze: $minutes min, voor alle wekkers';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Wekt je met $sound';
+  }
+
+  @override
+  String get askReadAs => 'Gelezen als';
 }

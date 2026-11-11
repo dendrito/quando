@@ -1031,5 +1031,19 @@
   "askNoSpeech": "A voz não está disponível neste aparelho. Você pode digitar.",
   "askShabbatOff": "Ative o Shabat nos Ajustes para os horários do Shabat tocarem.",
   "askSaved": "Salvo: {what}",
-  "askMic": "Falar"
+  "askMic": "Falar",
+  "askMorning": "Manhã",
+  "askEvening": "Noite",
+  "askUnsure": "Posso ter perdido parte disso. Confira antes de salvar.",
+  "askTeach": "Me ensine isso",
+  "askTaught": "Entendi: “{phrase}” agora quer dizer {time}.",
+  "askSkipAction": "Pular",
+  "askNoMatch": "Nenhum alarme combina com isso.",
+  "askTurnedOff": "Desligado: {what}",
+  "askSkipped": "Pulado: {what}",
+  "askEventPlan": "{offset} “{event}” na sua agenda",
+  "askEventNoCalendar": "Conecte uma agenda para o Quando? achar “{event}”.",
+  "askSnoozeAll": "Soneca: {minutes} min, para todos os alarmes",
+  "askWakeWith": "Te acorda com {sound}",
+  "askReadAs": "Lido como"
 }

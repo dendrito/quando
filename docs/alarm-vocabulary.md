@@ -30,6 +30,11 @@ Sources, by short name:
 | **Moment** (sun and holy times) | `anchor` | sunrise, dawn, sunset, dusk, candle lighting, Shabbat starts, havdalah, Shabbat ends | "at sunset" / "no pôr do sol" / "בשקיעה" | Calendars (see table below) | `event_name` | none (ours) |
 | **Before / After** | `offset` (minus = before) | before, after, earlier, ahead of, prior to | "20 min before candle lighting" / "20 min antes de acender as velas" / "20 דקות לפני הדלקת נרות" | RT and Duckling (`before`/`after` rules) | `time` | `datetimeV2` with `Mod` before/after |
 | **Label** (Name) | `label` | to, for, called, named, remind me to | "to take pills" / "para tomar remédio" / "לקחת כדורים" | MASSIVE (the rest of the phrase) | `alarm_type`, `event_name` | none |
+| **One date** | `onWeekday`, `dayOfMonth`, `month` | next Friday, on the 15th, 25 May | "next Friday at 7" / "dia 15 às 7" / "ביום שישי הבא ב־7" | CLDR weekday and month names | `date` | `datetimeV2.date` |
+| **My event** | `eventQuery` | before my exam, after my meeting | "30 min before my exam" / "30 min antes da minha prova" | the user's calendar | `event_name` | none |
+| **Turn off / Skip** | `action` | turn off, cancel, delete; skip, not tomorrow | "turn off the 7am alarm" / "desliga o alarme das 7" | MASSIVE intent `alarm_remove` | intent | none |
+| **Sound** | `sound` | with the radio, with a song, with my voice | "wake me with the radio" | MASSIVE `music` slots | `song_name`, `radio_name` | none |
+| **Snooze** | `snoozeMinutes` | snooze 10 minutes | "snooze 10 minutes" | none | none | none |
 
 Not alarm parts, but the parser needs them:
 
@@ -46,8 +51,6 @@ it does, add a row above.
 
 | Our name (app) | Code (`Alarm`) | People also say | MASSIVE |
 |---|---|---|---|
-| **Sound** | `sound` | ringtone, tone, song, music, radio, wake up to | `music` slots (`song_name`, `artist_name`, `radio_name`) |
-| **Snooze** | `snooze` | five more minutes, delay, later | none |
 | **Snooze limit** | snooze count | how many times | none |
 | **Ring for** | ring length | ring for, how long it rings | none |
 | **Gentle wake-up** | gentle sound | soft start, slowly, gradually | none |

@@ -1031,5 +1031,19 @@
   "askNoSpeech": "この端末では音声を使えません。入力してください。",
   "askShabbatOff": "シャバットの時刻を鳴らすには設定でシャバットをオンにしてください。",
   "askSaved": "保存しました：{what}",
-  "askMic": "話す"
+  "askMic": "話す",
+  "askMorning": "朝",
+  "askEvening": "夜",
+  "askUnsure": "一部を読み取れなかったかもしれません。保存前に確認してください。",
+  "askTeach": "これを覚えさせる",
+  "askTaught": "わかりました：「{phrase}」は今後 {time} です。",
+  "askSkipAction": "スキップ",
+  "askNoMatch": "一致するアラームはありません。",
+  "askTurnedOff": "オフにしました：{what}",
+  "askSkipped": "スキップしました：{what}",
+  "askEventPlan": "カレンダーの「{event}」の{offset}",
+  "askEventNoCalendar": "Quando?が「{event}」を見つけられるようカレンダーを接続してください。",
+  "askSnoozeAll": "スヌーズ：{minutes}分、すべてのアラームに適用",
+  "askWakeWith": "{sound}で起こします",
+  "askReadAs": "読み取り結果"
 }

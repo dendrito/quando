@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Sprache ist auf diesem Gerät nicht verfügbar. Du kannst tippen.",
   "askShabbatOff": "Schalte Schabbat in den Einstellungen ein, damit Schabbat-Zeiten klingeln.",
   "askSaved": "Gespeichert: {what}",
-  "askMic": "Sprechen"
+  "askMic": "Sprechen",
+  "askMorning": "Morgens",
+  "askEvening": "Abends",
+  "askUnsure": "Vielleicht habe ich etwas übersehen. Bitte vor dem Speichern prüfen.",
+  "askTeach": "Bring mir das bei",
+  "askTaught": "Verstanden: „{phrase}“ heißt jetzt {time}.",
+  "askSkipAction": "Überspringen",
+  "askNoMatch": "Kein Wecker passt dazu.",
+  "askTurnedOff": "Ausgeschaltet: {what}",
+  "askSkipped": "Übersprungen: {what}",
+  "askEventPlan": "{offset} „{event}“ in deinem Kalender",
+  "askEventNoCalendar": "Verbinde einen Kalender, damit Quando? „{event}“ findet.",
+  "askSnoozeAll": "Schlummern: {minutes} Min., für alle Wecker",
+  "askWakeWith": "Weckt dich mit {sound}",
+  "askReadAs": "Gelesen als"
 }

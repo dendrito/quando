@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Голос недоступен на этом устройстве. Можно ввести текст.",
   "askShabbatOff": "Включите Шаббат в настройках, чтобы звонили времена Шаббата.",
   "askSaved": "Сохранено: {what}",
-  "askMic": "Говорить"
+  "askMic": "Говорить",
+  "askMorning": "Утро",
+  "askEvening": "Вечер",
+  "askUnsure": "Возможно, я что-то упустил. Проверьте перед сохранением.",
+  "askTeach": "Научи меня",
+  "askTaught": "Понял: «{phrase}» теперь значит {time}.",
+  "askSkipAction": "Пропустить",
+  "askNoMatch": "Нет подходящего будильника.",
+  "askTurnedOff": "Выключен: {what}",
+  "askSkipped": "Пропущен: {what}",
+  "askEventPlan": "{offset} «{event}» в вашем календаре",
+  "askEventNoCalendar": "Подключите календарь, чтобы Quando? нашёл «{event}».",
+  "askSnoozeAll": "Повтор: {minutes} мин, для всех будильников",
+  "askWakeWith": "Будит вас: {sound}",
+  "askReadAs": "Прочитано как"
 }

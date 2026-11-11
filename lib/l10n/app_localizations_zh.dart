@@ -3415,6 +3415,62 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askMic => '说话';
+
+  @override
+  String get askMorning => '早上';
+
+  @override
+  String get askEvening => '晚上';
+
+  @override
+  String get askUnsure => '我可能漏掉了一部分。保存前请检查。';
+
+  @override
+  String get askTeach => '教我这个';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '明白了：“$phrase”现在表示 $time。';
+  }
+
+  @override
+  String get askSkipAction => '跳过';
+
+  @override
+  String get askNoMatch => '没有匹配的闹钟。';
+
+  @override
+  String askTurnedOff(String what) {
+    return '已关闭：$what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '已跳过：$what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '日历中“$event”$offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return '连接日历，Quando? 才能找到“$event”。';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '贪睡：$minutes 分钟，适用于所有闹钟';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '用$sound叫醒你';
+  }
+
+  @override
+  String get askReadAs => '理解为';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -6827,4 +6883,60 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askMic => '說話';
+
+  @override
+  String get askMorning => '早上';
+
+  @override
+  String get askEvening => '晚上';
+
+  @override
+  String get askUnsure => '我可能漏掉了一部分。儲存前請檢查。';
+
+  @override
+  String get askTeach => '教我這個';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '明白了：「$phrase」現在表示 $time。';
+  }
+
+  @override
+  String get askSkipAction => '略過';
+
+  @override
+  String get askNoMatch => '沒有符合的鬧鐘。';
+
+  @override
+  String askTurnedOff(String what) {
+    return '已關閉：$what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '已略過：$what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '行事曆中「$event」$offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return '連結行事曆，Quando? 才能找到「$event」。';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '貪睡：$minutes 分鐘，適用於所有鬧鐘';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '用$sound叫醒你';
+  }
+
+  @override
+  String get askReadAs => '理解為';
 }

@@ -1031,5 +1031,19 @@
   "askNoSpeech": "קול לא זמין במכשיר הזה. אפשר להקליד.",
   "askShabbatOff": "הפעילו שבת בהגדרות כדי שזמני השבת יצלצלו.",
   "askSaved": "נשמר: {what}",
-  "askMic": "דברו"
+  "askMic": "דברו",
+  "askMorning": "בוקר",
+  "askEvening": "ערב",
+  "askUnsure": "אולי פספסתי חלק. כדאי לבדוק לפני השמירה.",
+  "askTeach": "תלמד אותי",
+  "askTaught": "הבנתי: ”{phrase}” עכשיו אומר {time}.",
+  "askSkipAction": "דלג",
+  "askNoMatch": "אין שעון מעורר שמתאים לזה.",
+  "askTurnedOff": "כובה: {what}",
+  "askSkipped": "דולג: {what}",
+  "askEventPlan": "{offset} ”{event}” ביומן שלך",
+  "askEventNoCalendar": "חבר יומן כדי ש־Quando? ימצא את ”{event}”.",
+  "askSnoozeAll": "נודניק: {minutes} דק׳, לכל השעונים",
+  "askWakeWith": "מעיר אותך עם {sound}",
+  "askReadAs": "נקרא כ־"
 }

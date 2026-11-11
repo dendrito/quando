@@ -3501,4 +3501,60 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askMic => 'Parla';
+
+  @override
+  String get askMorning => 'Mattina';
+
+  @override
+  String get askEvening => 'Sera';
+
+  @override
+  String get askUnsure => 'Forse mi è sfuggito qualcosa. Controlla prima di salvare.';
+
+  @override
+  String get askTeach => 'Insegnamelo';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Capito: “$phrase” ora vuol dire $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Salta';
+
+  @override
+  String get askNoMatch => 'Nessuna sveglia corrisponde.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Disattivata: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Saltata: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” nel tuo calendario';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Collega un calendario perché Quando? trovi “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Posticipa: $minutes min, per tutte le sveglie';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Ti sveglia con $sound';
+  }
+
+  @override
+  String get askReadAs => 'Letto come';
 }

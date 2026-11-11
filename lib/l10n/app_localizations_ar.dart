@@ -3532,4 +3532,60 @@ class AppLocalizationsAr extends AppLocalizations {
 
   @override
   String get askMic => 'تحدّث';
+
+  @override
+  String get askMorning => 'صباحًا';
+
+  @override
+  String get askEvening => 'مساءً';
+
+  @override
+  String get askUnsure => 'ربما فاتني جزء من ذلك. تحقّق قبل الحفظ.';
+
+  @override
+  String get askTeach => 'علّمني هذا';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'فهمت: “$phrase” تعني الآن $time.';
+  }
+
+  @override
+  String get askSkipAction => 'تخطٍّ';
+
+  @override
+  String get askNoMatch => 'لا يوجد منبّه مطابق.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'تم الإيقاف: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'تم التخطي: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” في تقويمك';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'اربط تقويمًا ليجد Quando? “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'الغفوة: $minutes دقيقة، لكل المنبّهات';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'يوقظك بـ $sound';
+  }
+
+  @override
+  String get askReadAs => 'قُرئ هكذا';
 }

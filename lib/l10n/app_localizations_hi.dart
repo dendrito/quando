@@ -3473,4 +3473,60 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get askMic => 'बोलें';
+
+  @override
+  String get askMorning => 'सुबह';
+
+  @override
+  String get askEvening => 'शाम';
+
+  @override
+  String get askUnsure => 'शायद मुझसे कुछ छूट गया। सहेजने से पहले जाँच लें।';
+
+  @override
+  String get askTeach => 'मुझे यह सिखाएँ';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'समझ गया: “$phrase” का मतलब अब $time है।';
+  }
+
+  @override
+  String get askSkipAction => 'छोड़ें';
+
+  @override
+  String get askNoMatch => 'कोई अलार्म इससे मेल नहीं खाता।';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'बंद किया: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'छोड़ा: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return 'आपके कैलेंडर में “$event” से $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'कैलेंडर जोड़ें ताकि Quando? “$event” ढूँढ सके।';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'स्नूज़: $minutes मिनट, सभी अलार्म के लिए';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'आपको $sound से जगाता है';
+  }
+
+  @override
+  String get askReadAs => 'ऐसे पढ़ा गया';
 }

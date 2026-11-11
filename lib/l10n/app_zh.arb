@@ -1031,5 +1031,19 @@
   "askNoSpeech": "此设备不支持语音。你可以输入。",
   "askShabbatOff": "在设置中打开安息日，安息日时间才会响铃。",
   "askSaved": "已保存：{what}",
-  "askMic": "说话"
+  "askMic": "说话",
+  "askMorning": "早上",
+  "askEvening": "晚上",
+  "askUnsure": "我可能漏掉了一部分。保存前请检查。",
+  "askTeach": "教我这个",
+  "askTaught": "明白了：“{phrase}”现在表示 {time}。",
+  "askSkipAction": "跳过",
+  "askNoMatch": "没有匹配的闹钟。",
+  "askTurnedOff": "已关闭：{what}",
+  "askSkipped": "已跳过：{what}",
+  "askEventPlan": "日历中“{event}”{offset}",
+  "askEventNoCalendar": "连接日历，Quando? 才能找到“{event}”。",
+  "askSnoozeAll": "贪睡：{minutes} 分钟，适用于所有闹钟",
+  "askWakeWith": "用{sound}叫醒你",
+  "askReadAs": "理解为"
 }

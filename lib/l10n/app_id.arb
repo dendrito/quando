@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Suara tidak tersedia di perangkat ini. Anda bisa mengetik.",
   "askShabbatOff": "Aktifkan Sabat di Pengaturan agar waktu Sabat berbunyi.",
   "askSaved": "Tersimpan: {what}",
-  "askMic": "Bicara"
+  "askMic": "Bicara",
+  "askMorning": "Pagi",
+  "askEvening": "Malam",
+  "askUnsure": "Mungkin ada yang terlewat. Periksa sebelum menyimpan.",
+  "askTeach": "Ajari aku ini",
+  "askTaught": "Mengerti: “{phrase}” sekarang berarti {time}.",
+  "askSkipAction": "Lewati",
+  "askNoMatch": "Tidak ada alarm yang cocok.",
+  "askTurnedOff": "Dimatikan: {what}",
+  "askSkipped": "Dilewati: {what}",
+  "askEventPlan": "{offset} “{event}” di kalender Anda",
+  "askEventNoCalendar": "Hubungkan kalender agar Quando? bisa menemukan “{event}”.",
+  "askSnoozeAll": "Tunda: {minutes} mnt, untuk semua alarm",
+  "askWakeWith": "Membangunkan Anda dengan {sound}",
+  "askReadAs": "Dibaca sebagai"
 }

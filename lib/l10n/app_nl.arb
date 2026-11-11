@@ -1031,5 +1031,19 @@
   "askNoSpeech": "Spraak is niet beschikbaar op dit apparaat. Je kunt typen.",
   "askShabbatOff": "Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.",
   "askSaved": "Bewaard: {what}",
-  "askMic": "Spreek"
+  "askMic": "Spreek",
+  "askMorning": "Ochtend",
+  "askEvening": "Avond",
+  "askUnsure": "Misschien heb ik iets gemist. Controleer het voor je opslaat.",
+  "askTeach": "Leer me dit",
+  "askTaught": "Begrepen: ‘{phrase}’ betekent nu {time}.",
+  "askSkipAction": "Overslaan",
+  "askNoMatch": "Geen wekker past daarbij.",
+  "askTurnedOff": "Uitgezet: {what}",
+  "askSkipped": "Overgeslagen: {what}",
+  "askEventPlan": "{offset} ‘{event}’ in je agenda",
+  "askEventNoCalendar": "Koppel een agenda zodat Quando? ‘{event}’ kan vinden.",
+  "askSnoozeAll": "Snooze: {minutes} min, voor alle wekkers",
+  "askWakeWith": "Wekt je met {sound}",
+  "askReadAs": "Gelezen als"
 }

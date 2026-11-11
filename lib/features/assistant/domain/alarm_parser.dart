@@ -94,7 +94,7 @@ class Lexicon {
     final connectors = [for (final j in numberJoins) '$j\\s+', if (hebrew) 'ו'];
     dur = [
       ...multi.keys,
-      '$one\\s*$hour(?:\\s+$halfHourAfter)?(?:\\s*(?:${connectors.isEmpty ? '' : '${connectors.join('|')}'})?$num\\s*$minute)?',
+      '$one\\s*$hour(?:\\s+$halfHourAfter)?(?:\\s*(?:${connectors.join('|')})?$num\\s*$minute)?',
       '$one\\s*$minute',
       ...single.keys,
     ].map((p) => '(?:$p)').join('|');
@@ -127,6 +127,7 @@ class Lexicon {
     pm = alt((w) => w.pm);
     noon = alt((w) => w.noon);
     midnight = alt((w) => w.midnight);
+    atWords = alt((w) => w.atHour);
     atHour = '(?:(?:${alt((w) => w.atHour)})\\s+${hebrew ? r'|(?:ב|ל)(?:שעה\s*)?\s*' : ''})';
     timePrefix = '(?:(?:${alt((w) => w.timePrefix)})\\s+${hebrew ? r'|(?:ב|ל)(?:שעה\s*)?\s*' : ''})?';
     oclock = alt((w) => w.oclock);
@@ -186,7 +187,7 @@ class Lexicon {
   late final Map<TimeAnchor, String> moments;
   late final String atHour, timePrefix, oclock, hourWord, halfPast, quarterPast, quarterTo, minutesTo;
   late final String connector, labelTriggers, question, command, remove, skip, month, ordinalDay;
-  late final String myEvent, snooze, article;
+  late final String myEvent, snooze, article, atWords;
   late final Set<String> filler;
   late final Map<String, String> soundWords;
 
@@ -377,13 +378,13 @@ class _Pass {
     _action();
     _relative();
     _anchor();
+    _event();
     _date();
     _days();
     _noonMidnight();
     _clock();
     _hints();
     _fallbackHour();
-    _event();
     _extras();
     var h = hour;
     if (h != null) {
@@ -496,17 +497,38 @@ class _Pass {
 
   /// "30 minutes before my exam": any calendar event is a moment too.
   void _event() {
-    if (anchor != null || after != null || hour != null) return;
+    if (anchor != null || after != null) return;
     final m = _find('(${lex.dur})\\s+(${lex.dir})\\s+(?:(?:${lex.myEvent})\\s+)?(\\S+(?:\\s+\\S+){0,3})');
     if (m == null) return;
-    final words = orig.substring(m.end - m.group(3)!.length, m.end).split(RegExp(r'\s+'));
+    // "10 minutes before 7" or "before tomorrow" is not an event.
+    final first = m.group(3)!.split(RegExp(r'\s+')).first;
+    if (RegExp(r'\d').hasMatch(first) ||
+        RegExp('^(?:${lex.day}|${lex.am}|${lex.pm}|${lex.noon}|${lex.midnight})\$').hasMatch(first) ||
+        lex.relativeDays.any((r) => RegExp('^(?:${r.$1})\$').hasMatch(first))) {
+      return;
+    }
+    // Stop at the first time or day word: "before my exam tomorrow at 9".
+    final all = orig.substring(m.end - m.group(3)!.length, m.end).split(RegExp(r'\s+'));
+    final words = <String>[];
+    for (final w in all) {
+      final c = _clean(w);
+      if (RegExp(r'\d').hasMatch(c) ||
+          RegExp('^(?:${lex.atWords}|${lex.day}|${lex.dayPrefix}|${lex.am}|${lex.pm})\$').hasMatch(c) ||
+          lex.relativeDays.any((r) => RegExp('^(?:${r.$1})\$').hasMatch(c))) {
+        break;
+      }
+      words.add(w);
+    }
+
     while (words.isNotEmpty && lex.filler.contains(_clean(words.last))) {
       words.removeLast();
     }
     if (words.isEmpty) return;
     eventQuery = words.join(' ');
     _setOffset(m.group(1), m.group(2));
-    _eat(m.start, m.end);
+    // Leave the time and day words after the event for the others.
+    final rest = all.skip(words.length).join(' ');
+    _eat(m.start, m.end - (rest.isEmpty ? 0 : rest.length + 1));
   }
 
   // ---- Days and dates ----
@@ -822,7 +844,14 @@ class _Pass {
         while (b > a && orig[b - 1].trim().isEmpty) {
           b--;
         }
-        if (b > a) out.add((a, b));
+        if (b > a) {
+          // Join with the one before when only spaces are between.
+          if (out.isNotEmpty && orig.substring(out.last.$2, a).trim().isEmpty) {
+            out[out.length - 1] = (out.last.$1, b);
+          } else {
+            out.add((a, b));
+          }
+        }
         start = null;
       }
     }
@@ -832,7 +861,7 @@ class _Pass {
   /// The share of the sentence's real words that were read (times, days,
   /// moments, the label), ignoring words like "please" and "alarm".
   double _confidence() {
-    final words = RegExp(r'\S+').allMatches(orig).toList();
+    final words = RegExp(r'[^\s\-]+').allMatches(orig).toList();
     var counted = 0, read = 0;
     for (final w in words) {
       if (lex.filler.contains(_clean(w.group(0)!))) continue;

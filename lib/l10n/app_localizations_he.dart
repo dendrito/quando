@@ -3471,4 +3471,60 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get askMic => 'דברו';
+
+  @override
+  String get askMorning => 'בוקר';
+
+  @override
+  String get askEvening => 'ערב';
+
+  @override
+  String get askUnsure => 'אולי פספסתי חלק. כדאי לבדוק לפני השמירה.';
+
+  @override
+  String get askTeach => 'תלמד אותי';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'הבנתי: ”$phrase” עכשיו אומר $time.';
+  }
+
+  @override
+  String get askSkipAction => 'דלג';
+
+  @override
+  String get askNoMatch => 'אין שעון מעורר שמתאים לזה.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'כובה: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'דולג: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset ”$event” ביומן שלך';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'חבר יומן כדי ש־Quando? ימצא את ”$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'נודניק: $minutes דק׳, לכל השעונים';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'מעיר אותך עם $sound';
+  }
+
+  @override
+  String get askReadAs => 'נקרא כ־';
 }

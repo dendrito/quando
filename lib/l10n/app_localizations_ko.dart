@@ -3423,4 +3423,60 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get askMic => '말하기';
+
+  @override
+  String get askMorning => '아침';
+
+  @override
+  String get askEvening => '저녁';
+
+  @override
+  String get askUnsure => '일부를 놓쳤을 수 있어요. 저장하기 전에 확인하세요.';
+
+  @override
+  String get askTeach => '이걸 가르쳐 주기';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '알겠어요: “$phrase”는 이제 $time이에요.';
+  }
+
+  @override
+  String get askSkipAction => '건너뛰기';
+
+  @override
+  String get askNoMatch => '맞는 알람이 없어요.';
+
+  @override
+  String askTurnedOff(String what) {
+    return '껐어요: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '건너뛰었어요: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '캘린더의 “$event” $offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Quando?가 “$event”를 찾을 수 있게 캘린더를 연결하세요.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '다시 알림: $minutes분, 모든 알람에 적용';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '$sound(으)로 깨워요';
+  }
+
+  @override
+  String get askReadAs => '이렇게 읽었어요';
 }

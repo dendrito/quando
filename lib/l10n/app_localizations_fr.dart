@@ -3504,4 +3504,60 @@ class AppLocalizationsFr extends AppLocalizations {
 
   @override
   String get askMic => 'Parler';
+
+  @override
+  String get askMorning => 'Matin';
+
+  @override
+  String get askEvening => 'Soir';
+
+  @override
+  String get askUnsure => 'J’ai peut-être manqué une partie. Vérifiez avant d’enregistrer.';
+
+  @override
+  String get askTeach => 'Apprends-moi ça';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Compris : « $phrase » veut dire $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Sauter';
+
+  @override
+  String get askNoMatch => 'Aucune alarme ne correspond.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Désactivée : $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Sautée : $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset « $event » dans votre agenda';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Connectez un agenda pour que Quando? trouve « $event ».';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Rappel : $minutes min, pour toutes les alarmes';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Vous réveille avec $sound';
+  }
+
+  @override
+  String get askReadAs => 'Lu comme';
 }
