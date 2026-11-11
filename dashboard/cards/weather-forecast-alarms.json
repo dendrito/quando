@@ -1,0 +1,11 @@
+{
+  "id": "weather-forecast-alarms",
+  "title": "Weather forecast alarms",
+  "status": "waiting",
+  "tag": "app",
+  "note": "Design proposed in the thread, waiting on your answers before building.",
+  "prs": [],
+  "threads": [],
+  "details": "Reminders N times before forecast rain, thunderstorm, snow and so on. Research found no app that does exactly this. Design and open questions are in the thread.",
+  "order": 5
+}
