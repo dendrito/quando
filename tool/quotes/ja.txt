@@ -143,3 +143,4 @@ queen_dontstop = 今は止めないで、最高に楽しいんだ。 | Queen
 queen_iwantit = すべてが欲しい、今すぐに。 | Queen
 queen_forever = 永遠に生きたいのは誰？ | Queen
 howsoon = 「今」はどれほどすぐなのか？ | The Smiths
++movies any = まあだかい？　まあだだよ！ | 黒澤明『まあだだよ』

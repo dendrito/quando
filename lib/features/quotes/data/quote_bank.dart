@@ -8615,6 +8615,7 @@ const quoteBank = <String, List<Quote>>{
     Quote('光陰矢の如し。', 'ことわざ', QuoteSource.proverbs, 'any'),
     Quote('ゆく河の流れは絶えずして、しかももとの水にあらず。', '鴨長明『方丈記』', QuoteSource.literature, 'any'),
     Quote('上を向いて歩こう、涙がこぼれないように。', '永六輔', QuoteSource.songs, 'any'),
+    Quote('まあだかい？　まあだだよ！', '黒澤明『まあだだよ』', QuoteSource.movies, 'any'),
   ],
   'ko': [
     Quote(
