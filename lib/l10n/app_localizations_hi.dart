@@ -3554,4 +3554,7 @@ class AppLocalizationsHi extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'जीवन वह नहीं जो जिया गया, बल्कि वह है जो याद रहता है और जिस तरह याद रहता है, उसे सुनाने के लिए।';
+
+  @override
+  String get askHelpQuote => '';
 }

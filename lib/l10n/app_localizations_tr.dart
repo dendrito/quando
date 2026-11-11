@@ -3563,4 +3563,7 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'Hayat, yaşadığın değil; hatırladığın ve anlatmak için nasıl hatırladığındır.';
+
+  @override
+  String get askHelpQuote => '';
 }

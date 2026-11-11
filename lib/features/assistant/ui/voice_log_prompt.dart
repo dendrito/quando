@@ -39,6 +39,14 @@ Future<void> askVoiceLog(BuildContext context, ProviderContainer ref, String sen
               Text(l10n.askHelpPromptTitle, style: text.titleLarge),
               const SizedBox(height: 8),
               Text(shown ? l10n.askHelpPromptBody(sentence) : l10n.askHelpBody),
+              if (l10n.askHelpQuote.isNotEmpty) ...[
+                const SizedBox(height: 12),
+                Text(
+                  l10n.askHelpQuote,
+                  style: text.bodySmall?.copyWith(fontStyle: FontStyle.italic),
+                  textAlign: TextAlign.center,
+                ),
+              ],
               const SizedBox(height: 16),
               Row(
                 children: [

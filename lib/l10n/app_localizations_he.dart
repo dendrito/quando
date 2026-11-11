@@ -3552,4 +3552,7 @@ class AppLocalizationsHe extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'החיים אינם מה שחיית, אלא מה שאתה זוכר וכיצד אתה זוכר אותו כדי לספר אותו.';
+
+  @override
+  String get askHelpQuote => '';
 }

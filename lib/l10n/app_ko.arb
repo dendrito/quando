@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "말하거나 입력한 내용(예: “{sentence}”)과 저장 여부를 익명으로 보냅니다. 이름, 계정, 기기 ID는 없습니다. 언제든 끌 수 있습니다.",
   "askHelpYes": "네, 도울게요",
   "askHelpNo": "괜찮아요",
-  "askQuoteTranslation": "삶은 우리가 살아온 것이 아니라, 우리가 기억하는 것, 그리고 그것을 이야기하기 위해 어떻게 기억하느냐이다."
+  "askQuoteTranslation": "삶은 우리가 살아온 것이 아니라, 우리가 기억하는 것, 그리고 그것을 이야기하기 위해 어떻게 기억하느냐이다.",
+  "askHelpQuote": ""
 }

@@ -3575,4 +3575,7 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'Het leven is niet wat je geleefd hebt, maar wat je je herinnert en hoe je het je herinnert om het te vertellen.';
+
+  @override
+  String get askHelpQuote => '';
 }

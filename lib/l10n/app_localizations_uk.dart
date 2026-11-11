@@ -3628,4 +3628,7 @@ class AppLocalizationsUk extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'Життя — це не те, що було прожите, а те, що запам’яталося, і як запам’яталося, щоб про нього розповісти.';
+
+  @override
+  String get askHelpQuote => '';
 }

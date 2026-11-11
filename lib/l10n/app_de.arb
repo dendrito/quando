@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "Wir würden senden, was du sagst oder tippst, etwa „{sentence}“, und ob du es gespeichert hast. Anonym: kein Name, Konto oder Geräte-ID. Du kannst es jederzeit ausschalten.",
   "askHelpYes": "Ja, helfen",
   "askHelpNo": "Nein danke",
-  "askQuoteTranslation": "Das Leben ist nicht das, was man gelebt hat, sondern das, woran man sich erinnert, und wie man sich erinnert, um davon zu erzählen."
+  "askQuoteTranslation": "Das Leben ist nicht das, was man gelebt hat, sondern das, woran man sich erinnert, und wie man sich erinnert, um davon zu erzählen.",
+  "askHelpQuote": ""
 }

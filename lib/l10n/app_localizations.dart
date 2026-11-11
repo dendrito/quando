@@ -6421,7 +6421,7 @@ abstract class AppLocalizations {
   /// No description provided for @askHelpPromptTitle.
   ///
   /// In en, this message translates to:
-  /// **'Help Quando? understand you?'**
+  /// **'Now you\'re talking.'**
   String get askHelpPromptTitle;
 
   /// No description provided for @askHelpPromptBody.
@@ -6447,6 +6447,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.'**
   String get askQuoteTranslation;
+
+  /// No description provided for @askHelpQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Stay hungry. Stay foolish.”\nWhole Earth Catalog'**
+  String get askHelpQuote;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

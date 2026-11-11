@@ -3566,7 +3566,7 @@ class AppLocalizationsPt extends AppLocalizations {
       'Envia o que você diz ou digita, e o que fez com isso, de forma anônima. Sem conta nem ID do aparelho.';
 
   @override
-  String get askHelpPromptTitle => 'Ajudar o Quando? a entender você?';
+  String get askHelpPromptTitle => 'Quando? tem coração de estudante.';
 
   @override
   String askHelpPromptBody(String sentence) {
@@ -3582,4 +3582,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'A vida não é a que a gente viveu, e sim a que a gente recorda e como a recorda para contá-la.';
+
+  @override
+  String get askHelpQuote =>
+      '“Há que se cuidar da vida, há que se cuidar do mundo.”\nMilton Nascimento e Wagner Tiso';
 }

@@ -3580,4 +3580,7 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'Das Leben ist nicht das, was man gelebt hat, sondern das, woran man sich erinnert, und wie man sich erinnert, um davon zu erzählen.';
+
+  @override
+  String get askHelpQuote => '';
 }

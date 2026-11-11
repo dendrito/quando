@@ -3544,7 +3544,7 @@ class AppLocalizationsEn extends AppLocalizations {
       'Send what you say or type, and what you did with it, anonymously. No account or device ID.';
 
   @override
-  String get askHelpPromptTitle => 'Help Quando? understand you?';
+  String get askHelpPromptTitle => 'Now you\'re talking.';
 
   @override
   String askHelpPromptBody(String sentence) {
@@ -3560,4 +3560,7 @@ class AppLocalizationsEn extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.';
+
+  @override
+  String get askHelpQuote => '“Stay hungry. Stay foolish.”\nWhole Earth Catalog';
 }

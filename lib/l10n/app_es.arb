@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "Enviaríamos lo que dices o escribes, como “{sentence}”, y si lo guardaste. Anónimo: sin nombre, cuenta ni ID del dispositivo. Puedes desactivarlo cuando quieras.",
   "askHelpYes": "Sí, ayudar",
   "askHelpNo": "No, gracias",
-  "askQuoteTranslation": "La vida no es la que uno vivió, sino la que uno recuerda y cómo la recuerda para contarla."
+  "askQuoteTranslation": "La vida no es la que uno vivió, sino la que uno recuerda y cómo la recuerda para contarla.",
+  "askHelpQuote": ""
 }

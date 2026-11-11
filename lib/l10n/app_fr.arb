@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "Nous enverrions ce que vous dites ou tapez, comme « {sentence} », et si vous l’avez enregistré. Anonyme : sans nom, compte ni identifiant d’appareil. Vous pouvez désactiver à tout moment.",
   "askHelpYes": "Oui, aider",
   "askHelpNo": "Non merci",
-  "askQuoteTranslation": "La vie n’est pas celle qu’on a vécue, mais celle dont on se souvient et comment on s’en souvient pour la raconter."
+  "askQuoteTranslation": "La vie n’est pas celle qu’on a vécue, mais celle dont on se souvient et comment on s’en souvient pour la raconter.",
+  "askHelpQuote": ""
 }

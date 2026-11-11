@@ -3582,4 +3582,7 @@ class AppLocalizationsIt extends AppLocalizations {
   @override
   String get askQuoteTranslation =>
       'La vita non è quella che si è vissuta, ma quella che si ricorda e come la si ricorda per raccontarla.';
+
+  @override
+  String get askHelpQuote => '';
 }

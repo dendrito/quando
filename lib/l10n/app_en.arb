@@ -2130,10 +2130,11 @@
   "askHelpBody": "Send what you say or type, and what you did with it, anonymously. No account or device ID.",
   "@askHelpTitle": {},
   "@askHelpBody": {},
-  "askHelpPromptTitle": "Help Quando? understand you?",
+  "askHelpPromptTitle": "Now you're talking.",
   "askHelpPromptBody": "We'd send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.",
   "askHelpYes": "Yes, help",
   "askHelpNo": "No thanks",
   "@askHelpPromptBody": {"placeholders": {"sentence": {"type": "String"}}},
-  "askQuoteTranslation": "Life is not what one lived, but what one remembers and how one remembers it in order to tell it."
+  "askQuoteTranslation": "Life is not what one lived, but what one remembers and how one remembers it in order to tell it.",
+  "askHelpQuote": "“Stay hungry. Stay foolish.”\nWhole Earth Catalog"
 }

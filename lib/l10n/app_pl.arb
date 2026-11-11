@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "Wysłalibyśmy to, co mówisz lub wpisujesz, np. „{sentence}”, i czy to zapisano. Anonimowo: bez imienia, konta ani identyfikatora urządzenia. Możesz to wyłączyć w każdej chwili.",
   "askHelpYes": "Tak, pomogę",
   "askHelpNo": "Nie, dziękuję",
-  "askQuoteTranslation": "Życie to nie to, które się przeżyło, lecz to, które się pamięta, i jak się je pamięta, by o nim opowiedzieć."
+  "askQuoteTranslation": "Życie to nie to, które się przeżyło, lecz to, które się pamięta, i jak się je pamięta, by o nim opowiedzieć.",
+  "askHelpQuote": ""
 }

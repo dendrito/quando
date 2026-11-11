@@ -1052,5 +1052,6 @@
   "askHelpPromptBody": "我們會匿名傳送你說的或輸入的內容（如「{sentence}」）以及你是否儲存。不含姓名、帳號或裝置 ID。你可以隨時關閉。",
   "askHelpYes": "好，幫忙",
   "askHelpNo": "不用了",
-  "askQuoteTranslation": "生活不是人們所經歷的，而是人們所記住的，以及為了講述而如何記住它。"
+  "askQuoteTranslation": "生活不是人們所經歷的，而是人們所記住的，以及為了講述而如何記住它。",
+  "askHelpQuote": ""
 }
