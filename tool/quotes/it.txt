@@ -142,3 +142,5 @@ queen_dontstop = Non fermarmi ora, mi sto divertendo così tanto. | Queen
 queen_iwantit = Voglio tutto, e lo voglio adesso. | Queen
 queen_forever = Chi vuole vivere per sempre? | Queen
 howsoon = Quanto presto è adesso? | The Smiths
++literature morning = Nel mezzo del cammin di nostra vita. | Dante Alighieri
++literature evening = Quant'è bella giovinezza, che si fugge tuttavia! | Lorenzo de' Medici

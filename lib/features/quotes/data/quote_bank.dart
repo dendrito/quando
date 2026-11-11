@@ -228,7 +228,7 @@ const quoteBank = <String, List<Quote>>{
       'كبير',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'هذه ليست النهاية. ليست حتى بداية النهاية. لكنها ربما نهاية البداية.',
@@ -860,6 +860,9 @@ const quoteBank = <String, List<Quote>>{
     Quote('في التأني السلامة وفي العجلة الندامة.', 'مثل عربي', QuoteSource.proverbs, 'any'),
     Quote('على هذه الأرض ما يستحق الحياة.', 'محمود درويش', QuoteSource.literature, 'any'),
     Quote('بكرة أحلى.', 'مثل شعبي', QuoteSource.proverbs, 'evening'),
+    Quote('ما كل ما يتمنى المرء يدركه.', 'المتنبي', QuoteSource.literature, 'any'),
+    Quote('قم للمعلم وفه التبجيلا.', 'أحمد شوقي', QuoteSource.literature, 'any'),
+    Quote('ما فات فات.', 'مثل عربي', QuoteSource.proverbs, 'any'),
   ],
   'de': [
     Quote(
@@ -1101,7 +1104,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Dies ist nicht das Ende. Es ist nicht einmal der Anfang vom Ende. Aber es ist vielleicht das Ende des Anfangs.',
@@ -1783,6 +1786,7 @@ const quoteBank = <String, List<Quote>>{
       'any',
     ),
     Quote('Und jedem Anfang wohnt ein Zauber inne.', 'Hermann Hesse', QuoteSource.literature, '01-01'),
+    Quote('Ich lebe mein Leben in wachsenden Ringen.', 'Rainer Maria Rilke', QuoteSource.literature, 'any'),
   ],
   'en': [
     Quote(
@@ -1998,7 +2002,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'This is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning.',
@@ -2778,7 +2782,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Esto no es el final. Ni siquiera es el principio del final. Pero es, quizás, el final del principio.',
@@ -3714,7 +3718,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Ce n\'est pas la fin. Ce n\'est même pas le commencement de la fin. Mais c\'est peut-être la fin du commencement.',
@@ -4563,7 +4567,7 @@ const quoteBank = <String, List<Quote>>{
       'כביר',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'זֶה אֵינוֹ הַסּוֹף. זֶה אֲפִלּוּ לֹא תְּחִלַּת הַסּוֹף. אֲבָל זֶה, אוּלַי, סוֹף הַהַתְחָלָה.',
@@ -5365,7 +5369,12 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
-    Quote('काल करे सो आज कर, आज करे सो अब।', 'कबीर', QuoteSource.literature, 'day'),
+    Quote(
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
+      'कबीर',
+      QuoteSource.literature,
+      'day',
+    ),
     Quote(
       'यह अंत नहीं है। यह अंत की शुरुआत भी नहीं है। पर शायद यह शुरुआत का अंत है।',
       'विंस्टन चर्चिल',
@@ -6025,6 +6034,10 @@ const quoteBank = <String, List<Quote>>{
     Quote('धीरे-धीरे रे मना, धीरे सब कुछ होय।', 'कबीर', QuoteSource.literature, 'any'),
     Quote('जो है समाँ, कल हो ना हो।', 'जावेद अख़्तर, कल हो ना हो', QuoteSource.songs, 'any'),
     Quote('बूँद-बूँद से घड़ा भरता है।', 'कहावत', QuoteSource.proverbs, 'any'),
+    Quote('जब जागो तभी सवेरा।', 'कहावत', QuoteSource.proverbs, 'morning'),
+    Quote('बीती ताहि बिसार दे, आगे की सुध ले।', 'कहावत', QuoteSource.proverbs, 'any'),
+    Quote('करत-करत अभ्यास के जड़मति होत सुजान।', 'वृंद', QuoteSource.literature, 'any'),
+    Quote('समय किसी का इंतज़ार नहीं करता।', 'कहावत', QuoteSource.proverbs, 'any'),
   ],
   'id': [
     Quote(
@@ -6271,7 +6284,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Ini bukan akhir. Ini bahkan bukan awal dari akhir. Tapi mungkin, ini akhir dari awal.',
@@ -6945,6 +6958,12 @@ const quoteBank = <String, List<Quote>>{
     Quote('Berakit-rakit ke hulu, berenang-renang ke tepian.', 'Peribahasa', QuoteSource.proverbs, 'any'),
     Quote('Aku mau hidup seribu tahun lagi.', 'Chairil Anwar', QuoteSource.literature, 'any'),
     Quote('Yang fana adalah waktu. Kita abadi.', 'Sapardi Djoko Damono', QuoteSource.literature, 'any'),
+    Quote('Sedia payung sebelum hujan.', 'Peribahasa', QuoteSource.proverbs, 'any'),
+    Quote('Rajin pangkal pandai.', 'Peribahasa', QuoteSource.proverbs, 'any'),
+    Quote('Bersakit-sakit dahulu, bersenang-senang kemudian.', 'Peribahasa', QuoteSource.proverbs, 'any'),
+    Quote('Sekali merengkuh dayung, dua tiga pulau terlampaui.', 'Peribahasa', QuoteSource.proverbs, 'any'),
+    Quote('Waktu adalah uang.', 'Peribahasa', QuoteSource.proverbs, 'any'),
+    Quote('Menulis adalah bekerja untuk keabadian.', 'Pramoedya Ananta Toer', QuoteSource.literature, 'any'),
   ],
   'it': [
     Quote(
@@ -7179,7 +7198,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Questa non è la fine. Non è nemmeno l\'inizio della fine. Ma è, forse, la fine dell\'inizio.',
@@ -7860,6 +7879,13 @@ const quoteBank = <String, List<Quote>>{
     Quote('Chi dorme non piglia pesci.', 'Proverbio', QuoteSource.proverbs, 'morning'),
     Quote('Meglio tardi che mai.', 'Proverbio', QuoteSource.proverbs, 'any'),
     Quote('Il tempo è galantuomo.', 'Proverbio', QuoteSource.proverbs, 'any'),
+    Quote('Nel mezzo del cammin di nostra vita.', 'Dante Alighieri', QuoteSource.literature, 'morning'),
+    Quote(
+      'Quant\'è bella giovinezza, che si fugge tuttavia!',
+      'Lorenzo de\' Medici',
+      QuoteSource.literature,
+      'evening',
+    ),
   ],
   'ja': [
     Quote(
@@ -8043,7 +8069,13 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
-    Quote('明日の仕事は今日に、今日の仕事は今に。', 'カビール', QuoteSource.literature, 'day', 'काल करे सो आज कर, आज करे सो अब।'),
+    Quote(
+      '明日の仕事は今日に、今日の仕事は今に。',
+      'カビール',
+      QuoteSource.literature,
+      'day',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
+    ),
     Quote(
       'これは終わりではない。終わりの始まりですらない。だが、おそらく始まりの終わりだ。',
       'ウィンストン・チャーチル',
@@ -8568,6 +8600,7 @@ const quoteBank = <String, List<Quote>>{
     Quote('光陰矢の如し。', 'ことわざ', QuoteSource.proverbs, 'any'),
     Quote('ゆく河の流れは絶えずして、しかももとの水にあらず。', '鴨長明『方丈記』', QuoteSource.literature, 'any'),
     Quote('上を向いて歩こう、涙がこぼれないように。', '永六輔', QuoteSource.songs, 'any'),
+    Quote('月日は百代の過客にして、行きかふ年も又旅人也。', '松尾芭蕉『おくのほそ道』', QuoteSource.literature, 'any'),
   ],
   'ko': [
     Quote(
@@ -8756,7 +8789,7 @@ const quoteBank = <String, List<Quote>>{
       '카비르',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       '이것은 끝이 아니다. 끝의 시작도 아니다. 그러나 어쩌면 시작의 끝일 것이다.',
@@ -9287,6 +9320,12 @@ const quoteBank = <String, List<Quote>>{
     Quote('티끌 모아 태산.', '속담', QuoteSource.proverbs, 'any'),
     Quote('일찍 일어나는 새가 벌레를 잡는다.', '속담', QuoteSource.proverbs, 'morning'),
     Quote('고생 끝에 낙이 온다.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('천 리 길도 한 걸음부터.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('가는 말이 고우면 오는 말이 곱다.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('백지장도 맞들면 낫다.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('세 살 버릇 여든까지 간다.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('무소식이 희소식.', '속담', QuoteSource.proverbs, 'any'),
+    Quote('별 하나에 추억과, 별 하나에 사랑과.', '윤동주', QuoteSource.literature, 'evening'),
   ],
   'nl': [
     Quote(
@@ -9528,7 +9567,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Dit is niet het einde. Het is zelfs niet het begin van het einde. Maar het is misschien het einde van het begin.',
@@ -10202,6 +10241,16 @@ const quoteBank = <String, List<Quote>>{
     Quote('Beter laat dan nooit.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
     Quote('Haastige spoed is zelden goed.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
     Quote('De tijd heelt alle wonden.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
+    Quote(
+      'Hoe heerlijk is het, dat niemand een minuut hoeft te wachten met te beginnen de wereld langzaam te doen veranderen!',
+      'Anne Frank',
+      QuoteSource.literature,
+      'any',
+    ),
+    Quote('Na regen komt zonneschijn.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
+    Quote('Oost west, thuis best.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
+    Quote('Wie A zegt, moet ook B zeggen.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
+    Quote('Eén zwaluw maakt de zomer niet.', 'Spreekwoord', QuoteSource.proverbs, 'any'),
   ],
   'pl': [
     Quote(
@@ -10437,7 +10486,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'To nie jest koniec. To nawet nie jest początek końca. Ale być może jest to koniec początku.',
@@ -11105,6 +11154,15 @@ const quoteBank = <String, List<Quote>>{
     Quote('Lepiej późno niż wcale.', 'Przysłowie', QuoteSource.proverbs, 'any'),
     Quote('Co masz zrobić jutro, zrób dziś.', 'Przysłowie', QuoteSource.proverbs, 'any'),
     Quote('Śpieszmy się kochać ludzi, tak szybko odchodzą.', 'Jan Twardowski', QuoteSource.literature, 'any'),
+    Quote(
+      'Szlachetne zdrowie, nikt się nie dowie, jako smakujesz, aż się zepsujesz.',
+      'Jan Kochanowski',
+      QuoteSource.literature,
+      'any',
+    ),
+    Quote('Czas leczy rany.', 'Przysłowie', QuoteSource.proverbs, 'any'),
+    Quote('Nie ma tego złego, co by na dobre nie wyszło.', 'Przysłowie', QuoteSource.proverbs, 'any'),
+    Quote('Dobry początek to połowa roboty.', 'Przysłowie', QuoteSource.proverbs, 'any'),
   ],
   'pt': [
     Quote(
@@ -11346,7 +11404,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Este não é o fim. Não é nem o começo do fim. Mas é, talvez, o fim do começo.',
@@ -12372,7 +12430,7 @@ const quoteBank = <String, List<Quote>>{
       'Кабир',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Это не конец. Это даже не начало конца. Но это, возможно, конец начала.',
@@ -13034,6 +13092,9 @@ const quoteBank = <String, List<Quote>>{
     Quote('Пора, мой друг, пора! покоя сердце просит.', 'Александр Пушкин', QuoteSource.literature, 'any'),
     Quote('Счастливые часов не наблюдают.', 'Александр Грибоедов', QuoteSource.literature, 'any'),
     Quote('Не думай о секундах свысока.', 'Роберт Рождественский', QuoteSource.songs, 'any'),
+    Quote('Мороз и солнце; день чудесный!', 'Александр Пушкин', QuoteSource.literature, 'morning'),
+    Quote('Семь раз отмерь, один раз отрежь.', 'Пословица', QuoteSource.proverbs, 'any'),
+    Quote('В человеке должно быть все прекрасно.', 'Антон Чехов', QuoteSource.literature, 'any'),
   ],
   'tr': [
     Quote(
@@ -13263,7 +13324,7 @@ const quoteBank = <String, List<Quote>>{
       'Kebir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Bu son değil. Sonun başlangıcı bile değil. Ama belki de başlangıcın sonu.',
@@ -13931,6 +13992,11 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
     ),
+    Quote('Bugünün işini yarına bırakma.', 'Atasözü', QuoteSource.proverbs, 'any'),
+    Quote('Sakla samanı, gelir zamanı.', 'Atasözü', QuoteSource.proverbs, 'any'),
+    Quote('Gülü seven dikenine katlanır.', 'Atasözü', QuoteSource.proverbs, 'any'),
+    Quote('Sevelim sevilelim, dünya kimseye kalmaz.', 'Yunus Emre', QuoteSource.literature, 'any'),
+    Quote('Sabreden derviş muradına ermiş.', 'Atasözü', QuoteSource.proverbs, 'any'),
   ],
   'uk': [
     Quote(
@@ -14172,7 +14238,7 @@ const quoteBank = <String, List<Quote>>{
       'Кабір',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Це не кінець. Це навіть не початок кінця. Але це, можливо, кінець початку.',
@@ -14840,6 +14906,17 @@ const quoteBank = <String, List<Quote>>{
     Quote('Не відкладай на завтра те, що можна зробити сьогодні.', 'Прислів\'я', QuoteSource.proverbs, 'any'),
     Quote('Світ ловив мене, та не спіймав.', 'Григорій Сковорода', QuoteSource.literature, 'any'),
     Quote('Без надії сподіваюсь!', 'Леся Українка', QuoteSource.literature, 'any'),
+    Quote('Краще пізно, ніж ніколи.', 'Прислів\'я', QuoteSource.proverbs, 'any'),
+    Quote('Ранок вечора мудріший.', 'Прислів\'я', QuoteSource.proverbs, 'evening'),
+    Quote('Терпіння і труд усе перетруть.', 'Прислів\'я', QuoteSource.proverbs, 'any'),
+    Quote('Життя іде і все без коректур.', 'Ліна Костенко', QuoteSource.literature, 'any'),
+    Quote(
+      'Учітесь, читайте, і чужому научайтесь, й свого не цурайтесь.',
+      'Тарас Шевченко',
+      QuoteSource.literature,
+      'any',
+    ),
+    Quote('Не все те золото, що блищить.', 'Прислів\'я', QuoteSource.proverbs, 'any'),
   ],
   'vi': [
     Quote(
@@ -15087,7 +15164,7 @@ const quoteBank = <String, List<Quote>>{
       'Kabir',
       QuoteSource.literature,
       'day',
-      'काल करे सो आज कर, आज करे सो अब।',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
     ),
     Quote(
       'Đây không phải là kết thúc. Thậm chí không phải là khởi đầu của kết thúc. Nhưng có lẽ là kết thúc của khởi đầu.',
@@ -15760,6 +15837,18 @@ const quoteBank = <String, List<Quote>>{
     Quote('Có công mài sắt, có ngày nên kim.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
     Quote('Thời gian là vàng bạc.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
     Quote('Sau cơn mưa trời lại sáng.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
+    Quote('Trăm năm trong cõi người ta.', 'Nguyễn Du, Truyện Kiều', QuoteSource.literature, 'any'),
+    Quote('Đi một ngày đàng, học một sàng khôn.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
+    Quote('Có chí thì nên.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
+    Quote('Nước chảy đá mòn.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
+    Quote('Thất bại là mẹ thành công.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
+    Quote(
+      'Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao.',
+      'Ca dao',
+      QuoteSource.proverbs,
+      'any',
+    ),
+    Quote('Ăn quả nhớ kẻ trồng cây.', 'Tục ngữ', QuoteSource.proverbs, 'any'),
   ],
   'zh': [
     Quote(
@@ -15913,7 +16002,13 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
-    Quote('明天的事今天做，今天的事现在做。', '迦比尔', QuoteSource.literature, 'day', 'काल करे सो आज कर, आज करे सो अब।'),
+    Quote(
+      '明天的事今天做，今天的事现在做。',
+      '迦比尔',
+      QuoteSource.literature,
+      'day',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
+    ),
     Quote(
       '这不是结束，甚至不是结束的开始，但这也许是开始的结束。',
       '温斯顿·丘吉尔',
@@ -16354,6 +16449,10 @@ const quoteBank = <String, List<Quote>>{
     Quote('盛年不重来，一日难再晨。', '陶渊明', QuoteSource.literature, 'any'),
     Quote('明日复明日，明日何其多。', '钱福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但愿人长久，千里共婵娟。', '苏轼', QuoteSource.literature, 'evening'),
+    Quote('三人行，必有我师焉。', '孔子《论语·述而》', QuoteSource.philosophy, 'any'),
+    Quote('千里之行，始于足下。', '老子《道德经》', QuoteSource.philosophy, 'any'),
+    Quote('学而时习之，不亦说乎？', '孔子《论语·学而》', QuoteSource.philosophy, 'any'),
+    Quote('一年之计在于春，一日之计在于晨。', '谚语', QuoteSource.proverbs, 'morning'),
   ],
   'zh_Hant': [
     Quote(
@@ -16507,7 +16606,13 @@ const quoteBank = <String, List<Quote>>{
       'evening',
       'Chi vuol esser lieto, sia: di doman non c\'è certezza.',
     ),
-    Quote('明天的事今天做，今天的事現在做。', '迦比爾', QuoteSource.literature, 'day', 'काल करे सो आज कर, आज करे सो अब।'),
+    Quote(
+      '明天的事今天做，今天的事現在做。',
+      '迦比爾',
+      QuoteSource.literature,
+      'day',
+      'काल करे सो आज कर, आज करे सो अब; पल में प्रलय होएगी, बहुरि करेगा कब?',
+    ),
     Quote(
       '這不是結束，甚至不是結束的開始，但這也許是開始的結束。',
       '溫斯頓·丘吉爾',
@@ -16948,5 +17053,10 @@ const quoteBank = <String, List<Quote>>{
     Quote('盛年不重來，一日難再晨。', '陶淵明', QuoteSource.literature, 'any'),
     Quote('明日復明日，明日何其多。', '錢福《明日歌》', QuoteSource.literature, 'evening'),
     Quote('但願人長久，千里共嬋娟。', '蘇軾', QuoteSource.literature, 'evening'),
+    Quote('三人行，必有我師焉。', '孔子《論語·述而》', QuoteSource.philosophy, 'any'),
+    Quote('逝者如斯夫，不舍晝夜。', '孔子《論語·子罕》', QuoteSource.philosophy, 'any'),
+    Quote('千里之行，始於足下。', '老子《道德經》', QuoteSource.philosophy, 'any'),
+    Quote('學而時習之，不亦說乎？', '孔子《論語·學而》', QuoteSource.philosophy, 'any'),
+    Quote('一年之計在於春，一日之計在於晨。', '諺語', QuoteSource.proverbs, 'morning'),
   ],
 };

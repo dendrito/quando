@@ -141,3 +141,7 @@ queen_dontstop = لا توقفني الآن، أنا أستمتع كثيرًا. 
 queen_iwantit = أريد كل شيء، وأريده الآن. | Queen
 queen_forever = من يريد أن يعيش إلى الأبد؟ | Queen
 howsoon = كم هو قريبٌ الآن؟ | The Smiths
++literature any = ما كل ما يتمنى المرء يدركه. | المتنبي
++literature any = قم للمعلم وفه التبجيلا. | أحمد شوقي
++proverbs any = الوقت كالسيف، إن لم تقطعه قطعك. | مثل عربي
++proverbs any = ما فات فات. | مثل عربي
