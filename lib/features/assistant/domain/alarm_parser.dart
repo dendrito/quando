@@ -1,4 +1,5 @@
 import 'alarm_request.dart';
+import 'phrasebook.dart';
 
 /// Turns a sentence into an [AlarmRequest], with no network and no model:
 /// "wake me 30 minutes before sunrise on weekdays", "me acorda amanhã às
@@ -11,8 +12,10 @@ import 'alarm_request.dart';
 class AlarmParser {
   const AlarmParser();
 
-  AlarmRequest? parse(String input) {
-    final p = _Pass(input);
+  /// [lang] is the app's language: Dutch, Polish, Russian, Japanese and
+  /// Quando?'s other languages are first rewritten by [rewriteForParser].
+  AlarmRequest? parse(String input, {String? lang}) {
+    final p = _Pass(rewriteForParser(input, lang, keepCase: true));
     final req = p.run();
     return req.isEmpty ? null : req;
   }
@@ -584,6 +587,21 @@ class _Pass {
 
   void _anchor() {
     for (final MapEntry(key: a, value: pattern) in _anchorPatterns.entries) {
+      // Word orders other languages use: "sunrise 30 minutes before"
+      // (Japanese, Korean, Turkish, Hindi), "sunrise before 30 minutes"
+      // (Chinese), "before sunrise by 30 minutes" (Arabic).
+      for (final (re, dur, dir) in [
+        ('$_at($pattern)\\s+(?:of\\s+|from\\s+|to\\s+)?($_dur)\\s+($_dir)', 2, 3),
+        ('$_at($pattern)\\s+($_dir)\\s+($_dur)', 3, 2),
+        ('($_dir)\\s+$_at($pattern)\\s+(?:by\\s+)?($_dur)', 3, 1),
+      ]) {
+        final r = _find(re);
+        if (r != null) {
+          _setAnchor(a, r.group(dur), r.group(dir));
+          _eat(r.start, r.end);
+          return;
+        }
+      }
       final m = _find('(?:($_dur)\\s+)?(?:($_dir)\\s+)?$_at($pattern)');
       if (m != null) {
         _setAnchor(a, m.group(1), m.group(2));

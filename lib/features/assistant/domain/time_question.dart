@@ -3,6 +3,7 @@ import '../../events/domain/event.dart';
 import '../../lock/domain/shabbat_calendar.dart';
 import 'alarm_parser.dart';
 import 'alarm_request.dart';
+import 'phrasebook.dart';
 
 /// "When is candle lighting this Friday?", "que horas é a havdalá?",
 /// "מתי השקיעה מחר?": a question about a time, not an alarm to set.
@@ -49,10 +50,14 @@ final _command = RegExp(
 
 /// A question about sunrise, sunset, candle lighting or havdalah; null for
 /// anything else, including "wake me before candle lighting".
-TimeQuestion? readTimeQuestion(String input, {AlarmParser parser = const AlarmParser()}) {
-  final asks = _questionStart.hasMatch(input) || input.trim().endsWith('?');
-  if (!asks || _command.hasMatch(input)) return null;
-  final r = parser.parse(input);
+TimeQuestion? readTimeQuestion(String input, {String? lang, AlarmParser parser = const AlarmParser()}) {
+  final text = rewriteForParser(input, lang);
+  final asks =
+      _questionStart.hasMatch(text) ||
+      RegExp(r'[?？؟]$').hasMatch(text.trim()) ||
+      (hasPhrasebook(lang) && RegExp(r'(?<![a-z])(?:when|what\s+time)(?![a-z])').hasMatch(text));
+  if (!asks || _command.hasMatch(text)) return null;
+  final r = parser.parse(input, lang: lang);
   final anchor = r?.anchor;
   if (r == null || anchor == null || r.hour != null || r.after != null) return null;
   return TimeQuestion(

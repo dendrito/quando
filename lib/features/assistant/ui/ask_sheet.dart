@@ -210,8 +210,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     final text = Theme.of(context).textTheme;
     final input = _text.text.trim();
     final zone = ref.watch(homeZoneProvider);
-    final question = input.isEmpty ? null : readTimeQuestion(input);
-    final request = input.isEmpty || question != null ? null : const AlarmParser().parse(input);
+    final lang = ref.watch(localeProvider).languageCode;
+    final question = input.isEmpty ? null : readTimeQuestion(input, lang: lang);
+    final request = input.isEmpty || question != null ? null : const AlarmParser().parse(input, lang: lang);
     final plan = _plan(request);
     final answer = question == null ? null : _answer(question);
     final shabbatOff =
