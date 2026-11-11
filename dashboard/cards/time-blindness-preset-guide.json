@@ -1,14 +1,20 @@
 {
   "id": "time-blindness-preset-guide",
   "title": "Build quick setups inside the app",
-  "status": "review",
+  "status": "done",
   "tag": "marketing",
   "plan": "marketing",
-  "note": "Quick setups row built at the top of Settings (3 tiles, apply sheet, 8 s Undo, 20 languages). PR open, waiting for your try-out and merge.",
+  "note": "PR #49 merged to main, in Thursday's build.",
   "details": "Replaces the guide: Morning that works, Never miss a start (opens Calendar alarms), Work in stretches (Get set). Each tile applies existing settings in one tap, lists what changed and can be undone. Nothing new on Home.",
   "docs": [
-    {"title": "ADHD and focus mode", "url": "https://claude.ai/artifact/2vF4g2TkmJAzDDY58GrLC5"}
+    {
+      "title": "ADHD and focus mode",
+      "url": "https://claude.ai/artifact/2vF4g2TkmJAzDDY58GrLC5"
+    }
   ],
-  "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzk9m3uqihLWxPL2dkShLLcHf", "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVcw9RtTsXxvoh6aL4824iz"],
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk9m3uqihLWxPL2dkShLLcHf",
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVcw9RtTsXxvoh6aL4824iz"
+  ],
   "order": 114
 }
