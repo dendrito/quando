@@ -74,7 +74,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   <div class="count" id="count"></div>
 </section>
 
-<div class="tabs" id="tabs"><button data-t="board">Board</button><button data-t="business">Business</button></div>
+<div class="tabs" id="tabs"><button data-t="board">Board</button><button data-t="business">Business</button><button data-t="github">GitHub</button></div>
 <div id="tab-board">
 <h2>Dates <button class="btn tool" id="add-dl" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add date</button></h2>
 <div class="deadlines" id="deadlines"></div>
@@ -83,14 +83,20 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <div class="board" id="board"></div>
 <dialog id="dlg"></dialog>
 
+<h2 id="plans-h">Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
+<div class="grid" id="plans"></div>
+</div>
+<div id="tab-github" hidden>
+<h2>GitHub</h2>
+<div class="btns" id="ghlinks" style="margin-bottom:6px"></div>
 <h2>Open pull requests <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="prs"><div class="empty">Loading…</div></div>
 
 <h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="issues"><div class="empty">Loading…</div></div>
 
-<h2 id="plans-h">Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
-<div class="grid" id="plans"></div>
+<h2>Recent builds <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
+<div class="list" id="runs"><div class="empty">Loading…</div></div>
 </div>
 <div id="tab-business" hidden>
 <h2>Business side <button class="btn tool" id="add-biz" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add document</button></h2>
@@ -127,11 +133,11 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 
   function chrome() {
     var base = "https://github.com/" + data.repo;
+    function gl(path, label) { return '<a class="btn" href="' + base + path + '" target="_blank" rel="noopener">' + label + "</a>"; }
     $("btns").innerHTML =
       '<button class="btn" id="unlock">' + (token ? "Editing: on" : "Turn on editing") + "</button>" +
-      '<a class="btn" href="' + base + '/issues/new/choose">New issue</a>' +
-      '<a class="btn" href="' + base + '/pulls">All PRs</a>' +
-      '<a class="btn" href="' + base + '/actions">Builds</a>';
+      gl("/issues/new/choose", "New issue") + gl("/pulls", "All PRs") + gl("/actions", "Builds");
+    $("ghlinks").innerHTML = gl("/pulls", "Pull requests") + gl("/issues", "Issues") + gl("/actions", "Builds") + gl("/releases", "Releases") + gl("", "Repository") + gl("/issues/new/choose", "New issue");
     $("unlock").onclick = tokenDialog;
     $("add").style.display = token ? "" : "none";
     Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = token ? "" : "none"; });
@@ -185,12 +191,13 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); editPlan(b.getAttribute("data-p")); }; });
   }
   function tab(t) {
-    $("tab-board").hidden = t !== "business" ? false : true; $("tab-business").hidden = t === "business" ? false : true;
+    if (t !== "business" && t !== "github") t = "board";
+    ["board", "business", "github"].forEach(function (n) { $("tab-" + n).hidden = n !== t; });
     Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-t") === t ? "true" : "false"); });
-    try { history.replaceState(null, "", t === "business" ? "#business" : location.pathname + location.search); } catch (e) {}
+    try { history.replaceState(null, "", t === "board" ? location.pathname + location.search : "#" + t); } catch (e) {}
   }
   Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.onclick = function () { tab(b.getAttribute("data-t")); }; });
-  tab(location.hash === "#business" ? "business" : "board");
+  tab(location.hash.slice(1));
 
   /* ---------- card detail ---------- */
   function stLabel(id) { var s = data.statuses.filter(function (x) { return x.id === id; })[0]; return s ? s.label : id; }
@@ -416,8 +423,18 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     }).catch(function () { $("issues").innerHTML = '<div class="empty">Could not load issues.</div>'; });
   }
 
+  function runs() {
+    gh("/actions/runs?per_page=15").then(function (r) {
+      var list = r.workflow_runs || [];
+      $("runs").innerHTML = list.length ? list.map(function (w) {
+        var c = w.status !== "completed" ? "running" : w.conclusion || "done";
+        return '<div class="row"><div class="grow"><a href="' + esc(w.html_url) + '" target="_blank" rel="noopener">' + esc(w.name) + " · " + esc((w.display_title || "").split("\n")[0].slice(0, 80)) + '</a><div class="mute">' + esc(w.head_branch) + " · " + ago(w.updated_at) + '</div></div><span class="tag">' + esc(c) + "</span></div>";
+      }).join("") : '<div class="empty">No builds yet.</div>';
+    }).catch(function () { $("runs").innerHTML = '<div class="empty">Could not load builds.</div>'; });
+  }
+
   fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
-    data = d; chrome(); deadlines(); board(); plans(); live();
+    data = d; chrome(); deadlines(); board(); plans(); live(); runs();
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
