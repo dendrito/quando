@@ -1,0 +1,13 @@
+{
+  "id": "decide-quando-or-quanday-before-4-dec",
+  "title": "Decide the name (Quando? or Quanday) before Play goes public",
+  "status": "decide",
+  "tag": "business",
+  "plan": "business",
+  "note": "The Android package id is permanent once the app is public on 4 Dec.",
+  "details": "From the market assessment: settle the name before the Play listing is public, because the package id cannot change afterwards. quanday.app is already registered.",
+  "docs": [
+    {"title": "Market assessment", "url": "https://claude.ai/artifact/8CiGHiLYdUMN6hSE6YNK3S"}
+  ],
+  "order": 110
+}

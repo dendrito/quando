@@ -1,0 +1,15 @@
+{
+  "id": "time-blindness-preset-guide",
+  "title": "Write the no-code \"time blindness\" preset guide",
+  "status": "review",
+  "tag": "marketing",
+  "plan": "marketing",
+  "note": "Guide written from the app's real settings. Next: walk it once on a phone, then make the Reel and screenshot.",
+  "details": "A five-minute guide for people who lose track of time: five presets using only settings that exist today, plus Reel and screenshot wording with no medical claims. The focus block itself waits until after the 4 Dec release.",
+  "docs": [
+    {"title": "Set up Quando? for people who lose track of time", "url": "https://claude.ai/artifact/Cxtj2amUno8JDNMUhaAvtH"},
+    {"title": "ADHD and focus mode", "url": "https://claude.ai/artifact/2vF4g2TkmJAzDDY58GrLC5"}
+  ],
+  "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzk9m3uqihLWxPL2dkShLLcHf"],
+  "order": 114
+}
