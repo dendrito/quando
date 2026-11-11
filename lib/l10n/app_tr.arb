@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Quando?'nun “{event}” etkinliğini bulması için bir takvim bağlayın.",
   "askSnoozeAll": "Erteleme: {minutes} dk, tüm alarmlar için",
   "askWakeWith": "Sizi {sound} ile uyandırır",
-  "askReadAs": "Şöyle okundu"
+  "askReadAs": "Şöyle okundu",
+  "quickSetups": "Hızlı kurulumlar",
+  "qsMorningTitle": "İşe yarayan sabah",
+  "qsStartTitle": "Hiçbir başlangıcı kaçırma",
+  "qsStretchTitle": "Bölümler halinde çalış",
+  "qsWillChange": "Neler değişecek",
+  "qsAlreadyOn": "Zaten açık. Değişecek bir şey yok.",
+  "qsApply": "Uygula",
+  "qsDone": "Tamam",
+  "qsUndo": "Geri al",
+  "qsSnoozeTimes": "İzin verilen erteleme",
+  "qsSnoozeMinutes": "Erteleme dakikası",
+  "qsFiveLeft": "5 dakika kaldı"
 }

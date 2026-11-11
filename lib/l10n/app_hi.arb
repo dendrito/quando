@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "कैलेंडर जोड़ें ताकि Quando? “{event}” ढूँढ सके।",
   "askSnoozeAll": "स्नूज़: {minutes} मिनट, सभी अलार्म के लिए",
   "askWakeWith": "आपको {sound} से जगाता है",
-  "askReadAs": "ऐसे पढ़ा गया"
+  "askReadAs": "ऐसे पढ़ा गया",
+  "quickSetups": "त्वरित सेटअप",
+  "qsMorningTitle": "सुबह जो काम करे",
+  "qsStartTitle": "कोई शुरुआत न चूकें",
+  "qsStretchTitle": "हिस्सों में काम करें",
+  "qsWillChange": "क्या बदलेगा",
+  "qsAlreadyOn": "पहले से चालू है। बदलने को कुछ नहीं।",
+  "qsApply": "लागू करें",
+  "qsDone": "हो गया",
+  "qsUndo": "पूर्ववत करें",
+  "qsSnoozeTimes": "अनुमत स्नूज़",
+  "qsSnoozeMinutes": "स्नूज़ के मिनट",
+  "qsFiveLeft": "5 मिनट बचे"
 }

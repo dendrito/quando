@@ -3530,4 +3530,40 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askReadAs => 'Được hiểu là';
+
+  @override
+  String get quickSetups => 'Thiết lập nhanh';
+
+  @override
+  String get qsMorningTitle => 'Buổi sáng hiệu quả';
+
+  @override
+  String get qsStartTitle => 'Không bỏ lỡ giờ bắt đầu';
+
+  @override
+  String get qsStretchTitle => 'Làm việc theo từng đợt';
+
+  @override
+  String get qsWillChange => 'Điều sẽ thay đổi';
+
+  @override
+  String get qsAlreadyOn => 'Đã bật. Không có gì để đổi.';
+
+  @override
+  String get qsApply => 'Áp dụng';
+
+  @override
+  String get qsDone => 'Xong';
+
+  @override
+  String get qsUndo => 'Hoàn tác';
+
+  @override
+  String get qsSnoozeTimes => 'Số lần báo lại cho phép';
+
+  @override
+  String get qsSnoozeMinutes => 'Số phút báo lại';
+
+  @override
+  String get qsFiveLeft => 'Còn 5 phút';
 }

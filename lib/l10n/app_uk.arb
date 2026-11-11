@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Під’єднайте календар, щоб Quando? знайшов «{event}».",
   "askSnoozeAll": "Повтор: {minutes} хв, для всіх будильників",
   "askWakeWith": "Будить вас: {sound}",
-  "askReadAs": "Прочитано як"
+  "askReadAs": "Прочитано як",
+  "quickSetups": "Швидкі налаштування",
+  "qsMorningTitle": "Ранок, який працює",
+  "qsStartTitle": "Не пропускайте початок",
+  "qsStretchTitle": "Працюйте відрізками",
+  "qsWillChange": "Що зміниться",
+  "qsAlreadyOn": "Уже ввімкнено. Нічого змінювати.",
+  "qsApply": "Застосувати",
+  "qsDone": "Готово",
+  "qsUndo": "Скасувати",
+  "qsSnoozeTimes": "Дозволено відкладок",
+  "qsSnoozeMinutes": "Хвилини відкладки",
+  "qsFiveLeft": "Залишилось 5 хвилин"
 }

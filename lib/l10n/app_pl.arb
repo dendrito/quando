@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Połącz kalendarz, aby Quando? znalazł „{event}”.",
   "askSnoozeAll": "Drzemka: {minutes} min, dla wszystkich alarmów",
   "askWakeWith": "Budzi Cię: {sound}",
-  "askReadAs": "Odczytano jako"
+  "askReadAs": "Odczytano jako",
+  "quickSetups": "Szybkie ustawienia",
+  "qsMorningTitle": "Poranek, który działa",
+  "qsStartTitle": "Nie przegap żadnego startu",
+  "qsStretchTitle": "Pracuj etapami",
+  "qsWillChange": "Co się zmieni",
+  "qsAlreadyOn": "Już włączone. Nic do zmiany.",
+  "qsApply": "Zastosuj",
+  "qsDone": "Gotowe",
+  "qsUndo": "Cofnij",
+  "qsSnoozeTimes": "Dozwolone drzemki",
+  "qsSnoozeMinutes": "Minuty drzemki",
+  "qsFiveLeft": "Zostało 5 minut"
 }

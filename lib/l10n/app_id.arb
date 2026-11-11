@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "Hubungkan kalender agar Quando? bisa menemukan “{event}”.",
   "askSnoozeAll": "Tunda: {minutes} mnt, untuk semua alarm",
   "askWakeWith": "Membangunkan Anda dengan {sound}",
-  "askReadAs": "Dibaca sebagai"
+  "askReadAs": "Dibaca sebagai",
+  "quickSetups": "Pengaturan cepat",
+  "qsMorningTitle": "Pagi yang berhasil",
+  "qsStartTitle": "Jangan lewatkan awal",
+  "qsStretchTitle": "Bekerja per sesi",
+  "qsWillChange": "Yang akan berubah",
+  "qsAlreadyOn": "Sudah aktif. Tidak ada yang diubah.",
+  "qsApply": "Terapkan",
+  "qsDone": "Selesai",
+  "qsUndo": "Urungkan",
+  "qsSnoozeTimes": "Tunda yang diizinkan",
+  "qsSnoozeMinutes": "Menit tunda",
+  "qsFiveLeft": "Sisa 5 menit"
 }

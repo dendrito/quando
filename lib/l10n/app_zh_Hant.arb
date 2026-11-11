@@ -1045,5 +1045,17 @@
   "askEventNoCalendar": "連結行事曆，Quando? 才能找到「{event}」。",
   "askSnoozeAll": "貪睡：{minutes} 分鐘，適用於所有鬧鐘",
   "askWakeWith": "用{sound}叫醒你",
-  "askReadAs": "理解為"
+  "askReadAs": "理解為",
+  "quickSetups": "快速設定",
+  "qsMorningTitle": "管用的早晨",
+  "qsStartTitle": "不錯過任何開始",
+  "qsStretchTitle": "分段工作",
+  "qsWillChange": "將變更的內容",
+  "qsAlreadyOn": "已開啟，無需變更。",
+  "qsApply": "套用",
+  "qsDone": "完成",
+  "qsUndo": "復原",
+  "qsSnoozeTimes": "允許的貪睡次數",
+  "qsSnoozeMinutes": "貪睡分鐘數",
+  "qsFiveLeft": "還剩5分鐘"
 }
