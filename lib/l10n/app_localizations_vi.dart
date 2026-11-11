@@ -2088,10 +2088,10 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Đồng bộ các thiết bị của tôi';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Đăng nhập bằng Google để báo thức và cài đặt giống nhau trên mọi thiết bị của bạn.';
 
   @override
   String syncOn(String email) {
@@ -2105,85 +2105,85 @@ class AppLocalizationsVi extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Không kết nối được. Chạm để thử lại.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'Bản này chưa thiết lập đồng bộ.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Vẫn cho đổ chuông';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Bỏ qua $n báo thức này hôm nay';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return 'Tắt “$name”';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return 'Bật “$name”';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return 'Đã tắt “$name”';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return 'Xóa “$time” khỏi “$name”';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return 'Đã xóa “$time” khỏi “$name”';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Chuyển vào nhóm';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'Trong “$group”, chuyển';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'Đã chuyển vào “$group”';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return 'Xóa “$name”';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Đăng nhập bằng Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'Đăng nhập bằng email';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Tạo tài khoản';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'Tôi đã có tài khoản';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Quên mật khẩu?';
 
   @override
   String get email => 'Email';
@@ -2192,43 +2192,43 @@ class AppLocalizationsVi extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'Chúng tôi đã gửi cho bạn liên kết để chọn mật khẩu mới.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'Chúng tôi đã gửi liên kết tới $email. Hãy mở liên kết, rồi quay lại và chạm “Tôi đã xác nhận”.';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Tôi đã xác nhận';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Chưa xác nhận. Hãy mở liên kết trong email trước.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'Gửi lại email';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Đã gửi. Hãy kiểm tra hộp thư đến và thư rác.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Đây không giống một địa chỉ email.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'Email hoặc mật khẩu không đúng.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Đã có tài khoản với email này. Hãy đăng nhập, hoặc dùng Google nếu bạn đã tạo bằng Google.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'Hãy chọn mật khẩu có ít nhất 6 ký tự.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'Đăng nhập bằng email chưa được bật.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Thử quá nhiều lần. Hãy chờ vài phút.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2285,109 +2285,109 @@ class AppLocalizationsVi extends AppLocalizations {
   String get deliveryReset => 'Dùng cài đặt hiện có';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Trước Shabbat';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Nhắc nhở chuẩn bị';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Bỏ qua tuần này';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Khôi phục tuần này';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Giờ & âm thanh';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Dùng vị trí của tôi';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => 'Vị trí tạm thời không khả dụng. Hãy thử lại hoặc chọn một thành phố.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Xác nhận vị trí này';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Vị trí này chỉ được lưu trên thiết bị này. Hãy kiểm tra múi giờ và cài đặt Israel trước khi dùng các giờ này.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · giờ của thành phố';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => 'Nhắc nhở chuẩn bị đang tắt. Havdalah và các báo thức thông thường không đổi.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Nhắc nhở chuẩn bị tuần này được bỏ qua. Cài đặt hằng tuần của bạn vẫn được giữ.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Điều khiển Shabbat';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Trong / sau Shabbat';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Vĩ độ $latitude · kinh độ $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Vị trí hiện tại';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Thử âm thanh trên Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Phát âm thanh đã chọn trên các thiết bị Pushover bạn đã chọn. Cài đặt im lặng và giờ yên tĩnh vẫn được áp dụng.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Chia sẻ thông tin đăng nhập với thiết bị của tôi';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Khóa người dùng Pushover và mã thông báo ứng dụng của bạn có thể đi theo tài khoản đã đăng nhập trong Quando? và Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => 'Thông tin đăng nhập đang chờ gửi tới các thiết bị đã đăng nhập của bạn.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Đăng nhập cùng một tài khoản ứng dụng trên mỗi thiết bị để chia sẻ thông tin đăng nhập Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Chạy trực tiếp các cảnh Tuya, hoặc kết nối tự động hóa Home Assistant hay Node-RED của riêng bạn.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Chia sẻ kết nối dịch vụ';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Dùng cùng một tài khoản ứng dụng trên các thiết bị để chia sẻ kết nối Pushover, Tuya, thư viện Spotify và tự động hóa. YouTube và quyền của thiết bị vẫn có thể cần được duyệt trên từng thiết bị.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Dùng dự án nhà phát triển Tuya đã liên kết của bạn. Nhập trung tâm dữ liệu, Access ID, Access Secret và UID hiển thị trong “Link App Account”. Không cần Home Assistant.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID của tài khoản đã liên kết';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2400,48 +2400,48 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Không tìm thấy cảnh Tap-to-Run khả dụng. Hãy kiểm tra tài khoản đã liên kết, trung tâm dữ liệu và quyền API cảnh.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Chạy cảnh ngay';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Chạy cảnh này trên các thiết bị Tuya của bạn ngay bây giờ?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya đã chấp nhận lệnh cảnh. Hãy kiểm tra các thiết bị của bạn.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya không thể hoàn tất yêu cầu. Hãy kiểm tra quyền của dự án, trung tâm dữ liệu và gói đăng ký. Lỗi:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Cảnh Tuya khi báo thức này đổ chuông';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Tạo một tự động hóa Home Assistant với trình kích hoạt Webhook nhận POST và JSON. Dán URL của nó vào đây. Dùng sự kiện báo thức (ring, stopped, snoozed hoặc auto_stopped) để chọn hành động. Thiết bị mới nhận kết nối này ở trạng thái tắt.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Dùng một nút HTTP In của Node-RED nhận POST, tiếp theo là tự động hóa của bạn và một nút HTTP Response. Dán điểm cuối vào đây. Hỗ trợ hub HTTP cục bộ và điểm cuối HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Kết nối dịch vụ nhà thông minh';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'Khi thử, tự động hóa đã kết nối sẽ chạy ngay.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Chạy hành động báo thức nhà thông minh trên thiết bị này';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Chọn một thiết bị để chạy các tự động hóa của bạn. Các kết nối được chia sẻ; công tắc này chỉ áp dụng cho thiết bị này.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Hành động báo thức đang tắt trên thiết bị này. Hãy bật trong Kết nối; thử cảnh thủ công vẫn hoạt động.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2462,22 +2462,22 @@ class AppLocalizationsVi extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Vuốt giữa bầu trời và thời tiết';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Parashah hằng tuần';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Học mỗi ngày';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 1 chương/ngày';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 3 chương/ngày';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2498,13 +2498,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Mặt trăng trên đường chân trời cả ngày';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Mặt trăng dưới đường chân trời cả ngày';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Hôm nay không mọc';
 
   @override
   String get noSetToday => 'No set today';
@@ -2513,25 +2513,25 @@ class AppLocalizationsVi extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Trăng lưỡi liềm đầu tháng';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'Trăng bán nguyệt đầu tháng';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Trăng khuyết đầu tháng';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Trăng khuyết cuối tháng';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Trăng lưỡi liềm cuối tháng';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2552,13 +2552,13 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Dông';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Thời tiết tạm thời không khả dụng';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Dự báo đã lưu';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2567,26 +2567,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Dự báo có dông';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Kết nối để tải lịch học của tháng này';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Bài đọc Torah ngày lễ';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Lịch học · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Dự báo · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => 'Thời tiết cho thành phố bạn đã chọn. Dùng tọa độ đã làm tròn với MET Norway.';
 
   @override
   String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+      'Lịch học Rambam và các lịch khác được tải từ Hebcal và lưu để dùng ngoại tuyến.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2598,14 +2598,14 @@ class AppLocalizationsVi extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Thành phố tham chiếu múi giờ';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Chọn thành phố cho bầu trời';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Mặt trời và Mặt trăng dùng tọa độ của thành phố này. Thành phố Shabbat và múi giờ báo thức vẫn giữ như bạn đã chọn.';
 
   @override
   String get skySun => 'Sun today';
@@ -2614,46 +2614,48 @@ class AppLocalizationsVi extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Mặt trăng trên đường chân trời';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Mặt trăng dưới đường chân trời';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Trăng non tiếp theo';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Trăng tròn tiếp theo';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff =>
+      'Dịch vụ định vị đang tắt. Hãy bật trong Cài đặt hoặc chọn một thành phố.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied =>
+      'Quyền truy cập vị trí đã bị từ chối. Hãy cho phép trong Cài đặt hoặc chọn một thành phố.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Chưa xác định được vị trí. Trên Mac, hãy để Wi-Fi bật và thử lại, hoặc chọn một thành phố.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Hãy dùng một thành phố trong múi giờ đã chọn, hoặc theo múi giờ của thiết bị trước khi dùng vị trí.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Mở cài đặt vị trí';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Đang xác định vị trí…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Hiện Mặt trăng: giờ mọc, lặn và pha';
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Đăng nhập bằng tài khoản chưa có trong bản này. Nếu bạn đã có dự án nhà phát triển Tuya, hãy dùng thiết lập nâng cao.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Thiết lập nâng cao';
 
   @override
   String get tuyaSignInTitle => 'Đăng nhập bằng tài khoản Smart Life';
@@ -2698,23 +2700,24 @@ class AppLocalizationsVi extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Hiện trên Trang chủ ngày đầu hoặc hai ngày đầu của tháng Do Thái tiếp theo.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Rosh Hodesh tiếp theo';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Bắt đầu lúc hoàng hôn ngày';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Đọc phần Torah này trên Sefaria';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Giờ của bầu trời dùng múi giờ của vị trí này. Múi giờ báo thức và thành phố Shabbat không đổi. Chỉ lưu trên thiết bị này.';
 
   @override
   String get musicRingDurationHint =>
@@ -2878,19 +2881,19 @@ class AppLocalizationsVi extends AppLocalizations {
       'Hãy chọn cụm mật khẩu đồng bộ trước, trong Khóa trên các thiết bị của bạn.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Mặc định cho báo thức';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Địa điểm & thời gian';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Giao diện, ngôn ngữ & trích dẫn';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'Mặc định cho báo thức mới';
 
   @override
   String get preview => 'Preview';
@@ -2901,13 +2904,14 @@ class AppLocalizationsVi extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Kết nối lịch';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Từ mẫu có sẵn';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint =>
+      'Bình minh, hoàng hôn và các báo thức khác đã được thiết lập sẵn cho bạn';
 
   @override
   String get calendarSourcesIntro =>
@@ -3112,7 +3116,7 @@ class AppLocalizationsVi extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => 'Kéo tay cầm để di chuyển thẻ, thu gọn hoặc đổi kích thước thẻ.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3133,27 +3137,27 @@ class AppLocalizationsVi extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'MẶT TRỜI, MẶT TRĂNG VÀ THỜI TIẾT';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'SHABBAT VÀ NGÀY LỄ';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Thành phố cho bầu trời';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Báo thức tiếp theo · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Hiện tất cả các ngày';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'Không có gì đổ chuông vào ngày này';
 
   @override
   String get homeClockSize => 'Đồng hồ trên màn hình chính';
@@ -3554,4 +3558,184 @@ class AppLocalizationsVi extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+  String get quickSetups => 'Thiết lập nhanh';
+
+  @override
+  String get qsMorningTitle => 'Buổi sáng hiệu quả';
+
+  @override
+  String get qsStartTitle => 'Không bỏ lỡ giờ bắt đầu';
+
+  @override
+  String get qsStretchTitle => 'Làm việc theo từng đợt';
+
+  @override
+  String get qsWillChange => 'Điều sẽ thay đổi';
+
+  @override
+  String get qsAlreadyOn => 'Đã bật. Không có gì để đổi.';
+
+  @override
+  String get qsApply => 'Áp dụng';
+
+  @override
+  String get qsDone => 'Xong';
+
+  @override
+  String get qsUndo => 'Hoàn tác';
+
+  @override
+  String get qsSnoozeTimes => 'Số lần báo lại cho phép';
+
+  @override
+  String get qsSnoozeMinutes => 'Số phút báo lại';
+
+  @override
+  String get qsFiveLeft => 'Còn 5 phút';
+
+  @override
+  String get syncHeading => 'Khi lịch thay đổi';
+
+  @override
+  String get syncLive => 'Theo lịch';
+
+  @override
+  String get syncLiveHint =>
+      'Sự kiện mới có báo thức. Sự kiện dời giờ thì báo thức dời theo. Sự kiện bị xoá thì mất báo thức.';
+
+  @override
+  String get syncKeepFirst => 'Giữ như lúc đầu thấy';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Sự kiện mới vẫn có báo thức. Đã đặt rồi thì báo thức giữ nguyên, kể cả khi sự kiện bị dời hay bị xoá.';
+
+  @override
+  String get syncSnapshot => 'Chỉ các sự kiện hiện có';
+
+  @override
+  String get syncSnapshotHint =>
+      'Chỉ các sự kiện có trong lịch lúc bạn lưu, đúng như hiện tại. Sau đó không thêm gì mới.';
+
+  @override
+  String get syncHelpButton => 'Cách hoạt động';
+
+  @override
+  String get syncHelpTitle => 'Báo thức theo lịch của bạn như thế nào';
+
+  @override
+  String get syncHelpIntro =>
+      'Quy tắc này tiếp tục tìm các sự kiện khớp với tìm kiếm của bạn. Bạn chọn điều gì xảy ra khi lịch thay đổi.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Ví dụ: quy tắc cho “nha sĩ”. Nha sĩ dời lịch hẹn từ thứ Ba sang thứ Tư, báo thức của bạn cũng sang thứ Tư. Nếu lịch hẹn bị huỷ, báo thức biến mất.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Cùng quy tắc: lịch hẹn dời sang thứ Tư, nhưng báo thức vẫn ở thứ Ba, như Quando? thấy lúc đầu. Lịch hẹn mới tháng sau vẫn có báo thức riêng.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Cùng quy tắc: bạn có báo thức cho các lịch hẹn có trong lịch hôm nay, và chúng giữ nguyên. Lịch hẹn thêm vào tháng sau không có báo thức.';
+
+  @override
+  String get syncHelpTip => 'Chưa chắc? Cứ để “Theo lịch”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Khi nào Quando? nhận ra thay đổi?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Khi Quando? đang mở: trong vài giây. Google Lịch kết nối ở đây được kiểm tra mỗi 2 phút.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Khi Quando? đóng: lần tới bạn mở nó. Đến lúc đó, báo thức đã đặt vẫn reo vào giờ cũ.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone và iPad không cho ứng dụng theo dõi lịch ở chế độ nền, nên thay đổi được nhận khi bạn mở Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Chạm vào giữa để tắt';
+
+  @override
+  String get uiSimple => 'Đơn giản';
+
+  @override
+  String get uiEverything => 'Tất cả';
+
+  @override
+  String get firstRunTitle => 'Bạn muốn thấy bao nhiêu?';
+
+  @override
+  String get firstRunSimpleHint => 'Báo thức và những điều cơ bản';
+
+  @override
+  String get firstRunEverythingHint => 'Lịch, Shabbat, hẹn giờ, thời tiết và hơn thế';
+
+  @override
+  String get firstRunChangeLater => 'Bạn có thể đổi bất cứ lúc nào trong Cài đặt.';
+
+  @override
+  String get continueLabel => 'Tiếp tục';
+
+  @override
+  String get everyAlarm => 'Mọi báo thức';
+
+  @override
+  String get wakeMeWith => 'Đánh thức tôi bằng';
+
+  @override
+  String get ringOrMusic => 'Chuông hoặc nhạc';
+
+  @override
+  String get ringsForRow => 'Đổ chuông trong';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return 'Trước $minutes phút';
+  }
+
+  @override
+  String get quandoSounds => 'Âm thanh của Quando?';
+
+  @override
+  String get aSongApps => 'Một bài hát (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Bản ghi của tôi';
+
+  @override
+  String get useForNewAlarms => 'Dùng cho báo thức mới';
+
+  @override
+  String get iWillLabel => 'Khi chuông reo, tôi sẽ…';
+
+  @override
+  String get foldVolume => 'Âm lượng và mờ dần';
+
+  @override
+  String get foldSnoozeStop => 'Báo lại và tắt';
+
+  @override
+  String get foldExtras => 'Lịch và tiện ích thêm';
+
+  @override
+  String get groupAlarms => 'Báo thức';
+
+  @override
+  String get groupCalendarShabbat => 'Lịch và Shabbat';
+
+  @override
+  String get groupLookQuotes => 'Giao diện và trích dẫn';
+
+  @override
+  String get groupConnectionsSync => 'Kết nối và đồng bộ';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count thiết lập · $on đang bật';
+  }
 }

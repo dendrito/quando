@@ -21,6 +21,7 @@ class ScheduledAlarm {
     this.ringDurationOverride = false,
     this.style = RingStyle.none,
     this.delivery = ReminderDelivery.inherit,
+    this.iWill = '',
   });
 
   /// Stable across re-planning, so the same alarm is never registered twice.
@@ -42,6 +43,9 @@ class ScheduledAlarm {
 
   /// Delivery choices retained for the reminder delivery layer.
   final ReminderDelivery delivery;
+
+  /// "When this rings, I will…": shown and read aloud when it rings.
+  final String iWill;
 
   @override
   String toString() => 'ScheduledAlarm(${at.toIso8601String()}, $title, $body)';

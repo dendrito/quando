@@ -1,6 +1,8 @@
 package com.dendrito.quando
 
 import android.content.Intent
+import android.database.ContentObserver
+import android.provider.CalendarContract
 import android.graphics.Bitmap
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
@@ -19,11 +21,19 @@ import java.io.ByteArrayOutputStream
 import java.util.concurrent.Executors
 
 class MainActivity : FlutterActivity() {
+    companion object {
+        /** The running app, while it has an engine: background calendar checks go through it. */
+        @Volatile
+        var live: MainActivity? = null
+    }
+
     private val worker = Executors.newSingleThreadExecutor()
     private val main = Handler(Looper.getMainLooper())
     private val pauseLater = Runnable { mediaKey(KeyEvent.KEYCODE_MEDIA_PAUSE) }
     private var shareChannel: MethodChannel? = null
     private var pendingShared: String? = null
+    private var calendarChannel: MethodChannel? = null
+    private var calendarObserver: ContentObserver? = null
 
     override fun onCreate(savedInstanceState: android.os.Bundle?) {
         pendingShared = sharedText(intent)
@@ -68,6 +78,8 @@ class MainActivity : FlutterActivity() {
             }
         }
         phoneChannel(flutterEngine)
+        calendarWatch(flutterEngine)
+        live = this
         // Share card out, and song links shared in.
         shareChannel = MethodChannel(flutterEngine.dartExecutor.binaryMessenger, "quando/share").also {
             it.setMethodCallHandler { call, result ->
@@ -146,6 +158,62 @@ class MainActivity : FlutterActivity() {
                 else -> result.notImplemented()
             }
         }
+    }
+
+    // Calendar alarms follow the calendar: tell Dart the moment any calendar
+    // on the phone changes (an event added, moved or deleted, or synced in).
+    private fun calendarWatch(engine: FlutterEngine) {
+        calendarChannel = MethodChannel(engine.dartExecutor.binaryMessenger, "quando/calendar_watch").also {
+            it.setMethodCallHandler { call, result ->
+                when (call.method) {
+                    "start" -> result.success(startCalendarWatch())
+                    "stop" -> {
+                        stopCalendarWatch()
+                        result.success(true)
+                    }
+                    // Keep following the calendar with Quando? closed.
+                    "background" -> result.success(CalendarJob.schedule(applicationContext))
+                    else -> result.notImplemented()
+                }
+            }
+        }
+    }
+
+    private fun startCalendarWatch(): Boolean {
+        if (calendarObserver != null) return true
+        val observer = object : ContentObserver(main) {
+            override fun onChange(selfChange: Boolean) {
+                calendarChannel?.invokeMethod("changed", null)
+            }
+        }
+        return try {
+            contentResolver.registerContentObserver(CalendarContract.CONTENT_URI, true, observer)
+            calendarObserver = observer
+            true
+        } catch (e: Exception) {
+            false
+        }
+    }
+
+    /** The background job saw a change while Quando? was running. */
+    fun calendarChangedInBackground() {
+        main.post { calendarChannel?.invokeMethod("refresh", null) }
+    }
+
+    private fun stopCalendarWatch() {
+        calendarObserver?.let {
+            try {
+                contentResolver.unregisterContentObserver(it)
+            } catch (e: Exception) {
+            }
+        }
+        calendarObserver = null
+    }
+
+    override fun onDestroy() {
+        stopCalendarWatch()
+        if (live === this) live = null
+        super.onDestroy()
     }
 
     // "Ready to ring" checks the plugins don't cover.

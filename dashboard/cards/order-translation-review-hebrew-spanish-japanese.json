@@ -1,0 +1,20 @@
+{
+  "id": "order-translation-review-hebrew-spanish-japanese",
+  "title": "Get a native review of Hebrew, Spanish and Japanese",
+  "status": "next",
+  "tag": "marketing",
+  "plan": "marketing",
+  "note": "All 20 languages are machine-translated for now; low-cost freelance review, three languages first.",
+  "details": "Check the Crowdin open-source plan still applies once the repo is private. Quotes were written from memory and need a native check before any public marketing.",
+  "threads": [
+    "local"
+  ],
+  "docs": [
+    {
+      "title": "Marketing plan (private)",
+      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf"
+    }
+  ],
+  "order": 113,
+  "group": "Languages and quotes"
+}

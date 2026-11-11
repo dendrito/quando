@@ -45,4 +45,4 @@ Project "Quando": https://console.cloud.google.com/auth
 
 ## Hosting note
 
-quando.day is served by Cloudflare Pages from `site/`. The project board stays on GitHub Pages at `https://dendrito.github.io/quando/`. Do **not** set a custom domain in GitHub's Pages settings, or the board would redirect to quando.day.
+quando.day is served by Cloudflare Pages from `site/`. The project board is a separate Cloudflare Pages project (`quando-board`) at `https://board.quando.day/` (see `dashboard/README.md`). GitHub Pages is no longer used.

@@ -143,12 +143,12 @@ List<BusyWindow> busyWindows({
   final out = <BusyWindow>[];
   final ends = {
     for (final e in events)
-      if (e.kind == EventKind.calendarEnd) e.id: e.at,
+      if (e.kind == EventKind.calendarEnd) '${e.owner}|${e.id}': e.at,
   };
   for (final r in calendarRules.where((r) => r.enabled && r.busy)) {
     final start = r.toAlarmRules().first.copyWith(enabled: true);
     for (final e in events.where((e) => e.kind == EventKind.calendar && start.matches(e))) {
-      final end = ends[e.id.replaceFirst('cal.', 'calend.')];
+      final end = ends['${e.owner}|${e.id.replaceFirst('cal.', 'calend.')}'];
       if (end == null || !end.isAfter(e.at)) continue;
       out.add(BusyWindow(id: 'cal.${r.id}.${e.id}', start: e.at, end: end, label: e.title));
     }

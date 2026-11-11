@@ -1,0 +1,15 @@
+{
+  "id": "pr-45",
+  "title": "Send test builds to Firebase App Distribution (private APK downloads)",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    45
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 45,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkYZF9jBs6vzMkLm8n9sNTLd"
+  ]
+}

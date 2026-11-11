@@ -13,12 +13,29 @@ import 'tasks.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
+/// The parts of [AlarmExtras].
+enum ExtrasPart {
+  all,
+
+  /// Volume and the gentle wake-up.
+  volume,
+
+  /// Snooze, Stop and the wake-up check.
+  snoozeStop,
+
+  /// Open an app after.
+  extras,
+}
+
 /// One alarm's extras as short rows and cards, each opening its own small
 /// screen: Volume, Snooze, Stop, Gentle wake-up, Wake-up check, Open an app.
 class AlarmExtras extends ConsumerWidget {
-  const AlarmExtras({super.key, required this.value, required this.onChanged});
+  const AlarmExtras({super.key, required this.value, required this.onChanged, this.part = ExtrasPart.all});
 
   final RingStyle value;
+
+  /// Which of the rows to show; the editor puts them in separate folds.
+  final ExtrasPart part;
   final ValueChanged<RingStyle> onChanged;
 
   Future<void> _open(BuildContext context, Widget screen) async {
@@ -36,74 +53,86 @@ class AlarmExtras extends ConsumerWidget {
     final open = s.openAfter;
     final hasOpen = open != null && open.isNotEmpty;
 
+    final all = part == ExtrasPart.all;
+    final vol = all || part == ExtrasPart.volume;
+    final snoozeStop = all || part == ExtrasPart.snoozeStop;
+    final extras = all || part == ExtrasPart.extras;
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Row(
-          icon: Icons.volume_up_outlined,
-          title: l10n.volume,
-          subtitle: (s.loudness ?? o.loudness).summary,
-          onTap: () => _open(context, VolumeScreen(initial: s)),
-        ),
-        const SizedBox(height: 10),
-        Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: _ActionCard(
-                title: l10n.snooze,
-                ways: s.snoozeBy,
-                off: plan.times == 0,
-                line: plan.times == 0 ? l10n.off : l10n.minutesShort(plan.minutes),
-                task: s.snoozeTask ?? StopTask.none,
-                onTap: () => _open(context, SnoozeScreen(initial: s)),
+        if (vol)
+          _Row(
+            icon: Icons.volume_up_outlined,
+            title: l10n.volume,
+            subtitle: (s.loudness ?? o.loudness).summary,
+            onTap: () => _open(context, VolumeScreen(initial: s)),
+          ),
+        if (snoozeStop) ...[
+          if (vol) const SizedBox(height: 10),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Expanded(
+                child: _ActionCard(
+                  title: l10n.snooze,
+                  ways: s.snoozeBy,
+                  off: plan.times == 0,
+                  line: plan.times == 0 ? l10n.off : l10n.minutesShort(plan.minutes),
+                  task: s.snoozeTask ?? StopTask.none,
+                  onTap: () => _open(context, SnoozeScreen(initial: s)),
+                ),
               ),
-            ),
-            const SizedBox(width: 10),
-            Expanded(
-              child: _ActionCard(
-                title: l10n.stop,
-                ways: s.stopBy,
-                line: wakeCheck ? l10n.wakeCheckOn : l10n.stopsAtOnce,
-                task: stopTask,
-                onTap: () => _open(context, StopScreen(initial: s)),
+              const SizedBox(width: 10),
+              Expanded(
+                child: _ActionCard(
+                  title: l10n.stop,
+                  ways: s.stopBy,
+                  line: wakeCheck ? l10n.wakeCheckOn : l10n.stopsAtOnce,
+                  task: stopTask,
+                  onTap: () => _open(context, StopScreen(initial: s)),
+                ),
               ),
-            ),
-          ],
-        ),
-        const SizedBox(height: 10),
-        _Row(
-          icon: Icons.wb_twilight,
-          title: l10n.gentleWakeUp,
-          subtitle: s.gentleMinutes > 0
-              ? l10n.gentleSummary(s.gentleMinutes, calmName(s.gentleSound))
-              : l10n.off,
-          on: s.gentleMinutes > 0,
-          onSwitch: (v) => onChanged(s.copyWith(gentleMinutes: v ? 20 : 0)),
-          onTap: () => _open(context, GentleScreen(initial: s)),
-        ),
-        _Row(
-          icon: Icons.task_alt,
-          title: l10n.wakeUpCheck,
-          subtitle: l10n.ringsAgainIfNotUp,
-          on: wakeCheck,
-          onSwitch: (v) => onChanged(s.copyWith(wakeCheck: v)),
-        ),
-        _Row(
-          icon: Icons.apps,
-          title: l10n.openAppAfter,
-          subtitle: hasOpen ? AppLink.label(open) : l10n.off,
-          on: hasOpen,
-          onSwitch: (v) async {
-            if (!v) return onChanged(s.copyWith(noOpenAfter: true));
-            final picked = await pickOpenAfter(context, s.openAfter);
-            if (picked != null) onChanged(s.copyWith(openAfter: picked));
-          },
-          onTap: () async {
-            final picked = await pickOpenAfter(context, s.openAfter);
-            if (picked != null) onChanged(s.copyWith(openAfter: picked));
-          },
-        ),
+            ],
+          ),
+          const SizedBox(height: 10),
+        ] else if (vol)
+          const SizedBox(height: 10),
+        if (vol)
+          _Row(
+            icon: Icons.wb_twilight,
+            title: l10n.gentleWakeUp,
+            subtitle: s.gentleMinutes > 0
+                ? l10n.gentleSummary(s.gentleMinutes, calmName(s.gentleSound))
+                : l10n.off,
+            on: s.gentleMinutes > 0,
+            onSwitch: (v) => onChanged(s.copyWith(gentleMinutes: v ? 20 : 0)),
+            onTap: () => _open(context, GentleScreen(initial: s)),
+          ),
+        if (snoozeStop)
+          _Row(
+            icon: Icons.task_alt,
+            title: l10n.wakeUpCheck,
+            subtitle: l10n.ringsAgainIfNotUp,
+            on: wakeCheck,
+            onSwitch: (v) => onChanged(s.copyWith(wakeCheck: v)),
+          ),
+        if (extras)
+          _Row(
+            icon: Icons.apps,
+            title: l10n.openAppAfter,
+            subtitle: hasOpen ? AppLink.label(open) : l10n.off,
+            on: hasOpen,
+            onSwitch: (v) async {
+              if (!v) return onChanged(s.copyWith(noOpenAfter: true));
+              final picked = await pickOpenAfter(context, s.openAfter);
+              if (picked != null) onChanged(s.copyWith(openAfter: picked));
+            },
+            onTap: () async {
+              final picked = await pickOpenAfter(context, s.openAfter);
+              if (picked != null) onChanged(s.copyWith(openAfter: picked));
+            },
+          ),
       ],
     );
   }

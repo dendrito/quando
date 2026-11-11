@@ -1,0 +1,17 @@
+{
+  "id": "launch-gates-before-applying-anywhere",
+  "title": "Track the launch gates before applying to any accelerator",
+  "status": "hold",
+  "tag": "business",
+  "plan": "business",
+  "note": "Target: by Quando Day (20 March 2027). No accelerator emails before the gates are met.",
+  "details": "Gates: public on Google Play and iPhone TestFlight, about 5,000 installs, day-7 retention 30%, 4.5 stars from 50 reviews, store conversion 25%, three pilot shuls, first revenue, a rabbi's written review for Matai?. Accelerator facts still need confirming on official sites.",
+  "docs": [
+    {
+      "title": "Market assessment",
+      "url": "https://claude.ai/artifact/8CiGHiLYdUMN6hSE6YNK3S"
+    }
+  ],
+  "order": 112,
+  "group": "Proof and gates"
+}

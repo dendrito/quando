@@ -1,0 +1,15 @@
+{
+  "id": "pr-39",
+  "title": "Voice alarms: fix \"10 minutes before 7\", per-alarm snooze",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    39
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 39,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk8ezJkp5NFHycQqxpKbJ4cM"
+  ]
+}

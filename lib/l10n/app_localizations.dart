@@ -6453,6 +6453,341 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog'**
   String get askHelpQuote;
+  /// No description provided for @quickSetups.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick setups'**
+  String get quickSetups;
+
+  /// No description provided for @qsMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning that works'**
+  String get qsMorningTitle;
+
+  /// No description provided for @qsStartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a start'**
+  String get qsStartTitle;
+
+  /// No description provided for @qsStretchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Work in stretches'**
+  String get qsStretchTitle;
+
+  /// No description provided for @qsWillChange.
+  ///
+  /// In en, this message translates to:
+  /// **'What will change'**
+  String get qsWillChange;
+
+  /// No description provided for @qsAlreadyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already on. Nothing to change.'**
+  String get qsAlreadyOn;
+
+  /// No description provided for @qsApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get qsApply;
+
+  /// No description provided for @qsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get qsDone;
+
+  /// No description provided for @qsUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get qsUndo;
+
+  /// No description provided for @qsSnoozeTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snoozes allowed'**
+  String get qsSnoozeTimes;
+
+  /// No description provided for @qsSnoozeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze minutes'**
+  String get qsSnoozeMinutes;
+
+  /// No description provided for @qsFiveLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes left'**
+  String get qsFiveLeft;
+
+  /// No description provided for @syncHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'When the calendar changes'**
+  String get syncHeading;
+
+  /// No description provided for @syncLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the calendar'**
+  String get syncLive;
+
+  /// No description provided for @syncLiveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events get alarms. Moved events move their alarms. Deleted events lose them.'**
+  String get syncLiveHint;
+
+  /// No description provided for @syncKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep what I first saw'**
+  String get syncKeepFirst;
+
+  /// No description provided for @syncKeepFirstHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events still get alarms. Once set, an alarm stays put, even if its event moves or is deleted.'**
+  String get syncKeepFirstHint;
+
+  /// No description provided for @syncSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Only events that exist now'**
+  String get syncSnapshot;
+
+  /// No description provided for @syncSnapshotHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just the events in your calendar when you save, as they are now. Nothing new is added later.'**
+  String get syncSnapshotHint;
+
+  /// No description provided for @syncHelpButton.
+  ///
+  /// In en, this message translates to:
+  /// **'How this works'**
+  String get syncHelpButton;
+
+  /// No description provided for @syncHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How alarms follow your calendar'**
+  String get syncHelpTitle;
+
+  /// No description provided for @syncHelpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This rule keeps looking for events that match your search. You choose what happens when your calendar changes.'**
+  String get syncHelpIntro;
+
+  /// No description provided for @syncHelpExampleLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Example: a rule for “dentist”. The dentist moves Tuesday\'s visit to Wednesday, and your alarm moves to Wednesday too. If the visit is cancelled, its alarm goes away.'**
+  String get syncHelpExampleLive;
+
+  /// No description provided for @syncHelpExampleKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: the visit moves to Wednesday, but your alarm stays on Tuesday, as Quando? first saw it. A new visit next month still gets its own alarm.'**
+  String get syncHelpExampleKeepFirst;
+
+  /// No description provided for @syncHelpExampleSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: you get alarms for the visits in your calendar today, and they stay as they are. A visit added next month gets no alarm.'**
+  String get syncHelpExampleSnapshot;
+
+  /// No description provided for @syncHelpTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure? Keep “Follow the calendar”.'**
+  String get syncHelpTip;
+
+  /// No description provided for @syncHelpWhenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When does Quando? notice changes?'**
+  String get syncHelpWhenTitle;
+
+  /// No description provided for @syncHelpWhenOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.'**
+  String get syncHelpWhenOpen;
+
+  /// No description provided for @syncHelpWhenClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.'**
+  String get syncHelpWhenClosed;
+
+  /// No description provided for @syncHelpWhenClosedApple.
+  ///
+  /// In en, this message translates to:
+  /// **'iPhone and iPad don\'t let apps watch the calendar in the background, so opening Quando? is what picks changes up.'**
+  String get syncHelpWhenClosedApple;
+
+  /// No description provided for @tapMiddleToStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the middle to stop'**
+  String get tapMiddleToStop;
+
+  /// No description provided for @uiSimple.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple'**
+  String get uiSimple;
+
+  /// No description provided for @uiEverything.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything'**
+  String get uiEverything;
+
+  /// No description provided for @firstRunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How much do you want to see?'**
+  String get firstRunTitle;
+
+  /// No description provided for @firstRunSimpleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms and the basics'**
+  String get firstRunSimpleHint;
+
+  /// No description provided for @firstRunEverythingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar, Shabbat, timers, weather and more'**
+  String get firstRunEverythingHint;
+
+  /// No description provided for @firstRunChangeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this any time in Settings.'**
+  String get firstRunChangeLater;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @everyAlarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Every alarm'**
+  String get everyAlarm;
+
+  /// No description provided for @wakeMeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake me with'**
+  String get wakeMeWith;
+
+  /// No description provided for @ringOrMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring or music'**
+  String get ringOrMusic;
+
+  /// No description provided for @ringsForRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Rings for'**
+  String get ringsForRow;
+
+  /// No description provided for @gentleBeforeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min before'**
+  String gentleBeforeValue(int minutes);
+
+  /// No description provided for @quandoSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? sounds'**
+  String get quandoSounds;
+
+  /// No description provided for @aSongApps.
+  ///
+  /// In en, this message translates to:
+  /// **'A song (Spotify, YouTube…)'**
+  String get aSongApps;
+
+  /// No description provided for @myRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'My recording'**
+  String get myRecording;
+
+  /// No description provided for @useForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Use for new alarms'**
+  String get useForNewAlarms;
+
+  /// No description provided for @iWillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'When this rings, I will…'**
+  String get iWillLabel;
+
+  /// No description provided for @foldVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume and fades'**
+  String get foldVolume;
+
+  /// No description provided for @foldSnoozeStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze and stop'**
+  String get foldSnoozeStop;
+
+  /// No description provided for @foldExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and extras'**
+  String get foldExtras;
+
+  /// No description provided for @groupAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms'**
+  String get groupAlarms;
+
+  /// No description provided for @groupCalendarShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and Shabbat'**
+  String get groupCalendarShabbat;
+
+  /// No description provided for @groupLookQuotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Look and quotes'**
+  String get groupLookQuotes;
+
+  /// No description provided for @groupConnectionsSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections and sync'**
+  String get groupConnectionsSync;
+
+  /// No description provided for @qsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} setups · {on} on'**
+  String qsSummary(int count, int on);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

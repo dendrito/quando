@@ -16,9 +16,12 @@ import '../features/share/ui/share_card_screen.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
 import '../features/calendar/ui/calendar_screen.dart';
+import '../features/calendar/data/calendar_background.dart';
+import '../features/calendar/data/calendar_watch.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/integrations/ui/integrations_screen.dart';
 import '../features/home/ui/settings_screen.dart';
+import '../features/settings/ui/first_run_screen.dart';
 import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
 import '../features/ringing/ring_payload.dart';
@@ -42,7 +45,10 @@ final _messenger = GlobalKey<ScaffoldMessengerState>();
 final _router = GoRouter(
   navigatorKey: _navigatorKey,
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const FirstRunGate(child: HomeScreen()),
+    ),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
@@ -85,11 +91,15 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   final _shown = <int>{};
   Timer? _syncTimer;
 
+  /// Calendar alarms follow the calendar while the app is open.
+  late final _calendarWatch = CalendarWatch(onChange: () => ref.read(calendarProvider.notifier).refresh());
+
   @override
   void initState() {
     super.initState();
     if (supportsLocalAlarms) {
       WidgetsBinding.instance.addObserver(this);
+      _calendarWatch.start();
       _listen();
       // Keep the phone's alarms in step with the plan, whatever changes it.
       ref.listenManual(planProvider, (_, _) => _scheduleSync());
@@ -97,7 +107,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
       ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
-      ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
+      ref.listenManual(calendarRulesProvider, (_, next) {
+        ref.read(calendarProvider.notifier).refresh();
+        if (isAndroid && next.isNotEmpty) CalendarBackground.schedule();
+      });
       // Signed in to sync: pick up where it left off.
       ref.read(syncProvider);
       _start();
@@ -142,6 +155,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
     await _sync();
+    // Android: keep following the calendar with Quando? closed.
+    if (isAndroid && ref.read(calendarRulesProvider).isNotEmpty) unawaited(CalendarBackground.schedule());
   }
 
   void _scheduleSync() {
@@ -206,6 +221,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
+      _calendarWatch.start();
+    } else if (state == AppLifecycleState.paused) {
+      _calendarWatch.stop();
     }
   }
 
@@ -238,6 +256,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _calendarWatch.stop();
     _syncTimer?.cancel();
     _ringingSub?.cancel();
     super.dispose();
