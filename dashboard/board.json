@@ -180,6 +180,10 @@
     "gmerge": {
       "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkKW8QJamk23jtaQKSBMwFqP",
       "title": "Merge Google projects into one"
+    },
+    "weather": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkSGmqtZLXnJpJgmB47DEGqz",
+      "title": "Add weather forecast alarms"
     }
   }
 }
