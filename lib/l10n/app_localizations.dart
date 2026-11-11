@@ -6477,6 +6477,120 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'5 minutes left'**
   String get qsFiveLeft;
+
+  /// No description provided for @syncHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'When the calendar changes'**
+  String get syncHeading;
+
+  /// No description provided for @syncLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the calendar'**
+  String get syncLive;
+
+  /// No description provided for @syncLiveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events get alarms. Moved events move their alarms. Deleted events lose them.'**
+  String get syncLiveHint;
+
+  /// No description provided for @syncKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep what I first saw'**
+  String get syncKeepFirst;
+
+  /// No description provided for @syncKeepFirstHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events still get alarms. Once set, an alarm stays put, even if its event moves or is deleted.'**
+  String get syncKeepFirstHint;
+
+  /// No description provided for @syncSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Only events that exist now'**
+  String get syncSnapshot;
+
+  /// No description provided for @syncSnapshotHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just the events in your calendar when you save, as they are now. Nothing new is added later.'**
+  String get syncSnapshotHint;
+
+  /// No description provided for @syncHelpButton.
+  ///
+  /// In en, this message translates to:
+  /// **'How this works'**
+  String get syncHelpButton;
+
+  /// No description provided for @syncHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How alarms follow your calendar'**
+  String get syncHelpTitle;
+
+  /// No description provided for @syncHelpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This rule keeps looking for events that match your search. You choose what happens when your calendar changes.'**
+  String get syncHelpIntro;
+
+  /// No description provided for @syncHelpExampleLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Example: a rule for “dentist”. The dentist moves Tuesday\'s visit to Wednesday, and your alarm moves to Wednesday too. If the visit is cancelled, its alarm goes away.'**
+  String get syncHelpExampleLive;
+
+  /// No description provided for @syncHelpExampleKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: the visit moves to Wednesday, but your alarm stays on Tuesday, as Quando? first saw it. A new visit next month still gets its own alarm.'**
+  String get syncHelpExampleKeepFirst;
+
+  /// No description provided for @syncHelpExampleSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: you get alarms for the visits in your calendar today, and they stay as they are. A visit added next month gets no alarm.'**
+  String get syncHelpExampleSnapshot;
+
+  /// No description provided for @syncHelpTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure? Keep “Follow the calendar”.'**
+  String get syncHelpTip;
+
+  /// No description provided for @syncHelpWhenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When does Quando? notice changes?'**
+  String get syncHelpWhenTitle;
+
+  /// No description provided for @syncHelpWhenOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.'**
+  String get syncHelpWhenOpen;
+
+  /// No description provided for @syncHelpWhenClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.'**
+  String get syncHelpWhenClosed;
+
+  /// No description provided for @syncHelpWhenClosedApple.
+  ///
+  /// In en, this message translates to:
+  /// **'iPhone and iPad don\'t let apps watch the calendar in the background, so opening Quando? is what picks changes up.'**
+  String get syncHelpWhenClosedApple;
+
+  /// No description provided for @tapMiddleToStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the middle to stop'**
+  String get tapMiddleToStop;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

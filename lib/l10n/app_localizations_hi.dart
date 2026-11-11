@@ -3565,4 +3565,71 @@ class AppLocalizationsHi extends AppLocalizations {
 
   @override
   String get qsFiveLeft => '5 मिनट बचे';
+
+  @override
+  String get syncHeading => 'जब कैलेंडर बदले';
+
+  @override
+  String get syncLive => 'कैलेंडर के साथ चलें';
+
+  @override
+  String get syncLiveHint =>
+      'नए इवेंट को अलार्म मिलता है। इवेंट खिसके तो उसका अलार्म भी खिसकता है। इवेंट हटे तो उसका अलार्म हटता है।';
+
+  @override
+  String get syncKeepFirst => 'जैसा पहली बार देखा वैसा रखें';
+
+  @override
+  String get syncKeepFirstHint =>
+      'नए इवेंट को अब भी अलार्म मिलता है। लगने के बाद अलार्म वहीं रहता है, चाहे इवेंट खिसके या हटे।';
+
+  @override
+  String get syncSnapshot => 'सिर्फ़ अभी के इवेंट';
+
+  @override
+  String get syncSnapshotHint =>
+      'सिर्फ़ वे इवेंट जो सेव करते समय आपके कैलेंडर में हैं, जैसे अभी हैं। बाद में कुछ नया नहीं जुड़ता।';
+
+  @override
+  String get syncHelpButton => 'यह कैसे काम करता है';
+
+  @override
+  String get syncHelpTitle => 'अलार्म आपके कैलेंडर के साथ कैसे चलते हैं';
+
+  @override
+  String get syncHelpIntro =>
+      'यह नियम आपकी खोज से मिलते इवेंट ढूँढता रहता है। कैलेंडर बदलने पर क्या हो, यह आप चुनते हैं।';
+
+  @override
+  String get syncHelpExampleLive =>
+      'उदाहरण: “डेंटिस्ट” के लिए नियम। डेंटिस्ट मंगलवार की मुलाक़ात बुधवार कर देता है, तो आपका अलार्म भी बुधवार चला जाता है। मुलाक़ात रद्द हो तो उसका अलार्म हट जाता है।';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'वही नियम: मुलाक़ात बुधवार चली जाती है, पर अलार्म मंगलवार पर ही रहता है, जैसा Quando? ने पहली बार देखा। अगले महीने की नई मुलाक़ात को फिर भी अपना अलार्म मिलता है।';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'वही नियम: आज कैलेंडर में जो मुलाक़ातें हैं उनके अलार्म मिलते हैं, और वे वैसे ही रहते हैं। अगले महीने जुड़ी मुलाक़ात को अलार्म नहीं मिलता।';
+
+  @override
+  String get syncHelpTip => 'पक्का नहीं? “कैलेंडर के साथ चलें” रहने दें।';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? बदलाव कब देखता है?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Quando? खुला हो तो: कुछ सेकंड में। यहाँ जुड़ा Google Calendar हर 2 मिनट में देखा जाता है।';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Quando? बंद हो तो: अगली बार खोलने पर। तब तक लगे हुए अलार्म अपने पुराने समय पर बजते हैं।';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone और iPad ऐप को बैकग्राउंड में कैलेंडर देखने नहीं देते, इसलिए बदलाव Quando? खोलने पर आते हैं।';
+
+  @override
+  String get tapMiddleToStop => 'रोकने के लिए बीच में टैप करें';
 }

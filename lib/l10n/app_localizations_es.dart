@@ -3595,4 +3595,71 @@ class AppLocalizationsEs extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Faltan 5 minutos';
+
+  @override
+  String get syncHeading => 'Cuando cambie el calendario';
+
+  @override
+  String get syncLive => 'Seguir el calendario';
+
+  @override
+  String get syncLiveHint =>
+      'Los eventos nuevos tienen alarma. Si un evento se mueve, su alarma también. Si se borra, su alarma desaparece.';
+
+  @override
+  String get syncKeepFirst => 'Mantener lo que vi primero';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Los eventos nuevos siguen teniendo alarma. Una vez puesta, la alarma se queda, aunque el evento se mueva o se borre.';
+
+  @override
+  String get syncSnapshot => 'Solo los eventos que existen ahora';
+
+  @override
+  String get syncSnapshotHint =>
+      'Solo los eventos que están en tu calendario al guardar, tal como están ahora. No se añade nada nuevo después.';
+
+  @override
+  String get syncHelpButton => 'Cómo funciona';
+
+  @override
+  String get syncHelpTitle => 'Cómo siguen las alarmas tu calendario';
+
+  @override
+  String get syncHelpIntro =>
+      'Esta regla sigue buscando eventos que coinciden con tu búsqueda. Tú eliges qué pasa cuando cambia tu calendario.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Ejemplo: una regla para “dentista”. El dentista pasa la cita del martes al miércoles y tu alarma también pasa al miércoles. Si se cancela la cita, su alarma desaparece.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Misma regla: la cita pasa al miércoles, pero tu alarma se queda el martes, como Quando? la vio primero. Una cita nueva el mes que viene sigue teniendo su alarma.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Misma regla: tienes alarmas para las citas que hay hoy en tu calendario, y se quedan como están. Una cita añadida el mes que viene no tiene alarma.';
+
+  @override
+  String get syncHelpTip => '¿Dudas? Deja “Seguir el calendario”.';
+
+  @override
+  String get syncHelpWhenTitle => '¿Cuándo nota Quando? los cambios?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Con Quando? abierto: en segundos. Google Calendar conectado aquí se revisa cada 2 minutos.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Con Quando? cerrado: la próxima vez que lo abras. Hasta entonces, las alarmas ya puestas suenan a las horas que tenían.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone y iPad no dejan que las apps vigilen el calendario en segundo plano, así que los cambios entran al abrir Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Toca el centro para parar';
 }

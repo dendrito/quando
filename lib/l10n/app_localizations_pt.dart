@@ -3593,4 +3593,71 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Faltam 5 minutos';
+
+  @override
+  String get syncHeading => 'Quando a agenda mudar';
+
+  @override
+  String get syncLive => 'Seguir a agenda';
+
+  @override
+  String get syncLiveHint =>
+      'Novos eventos ganham alarmes. Eventos que mudam de hora levam seus alarmes junto. Eventos apagados perdem os alarmes.';
+
+  @override
+  String get syncKeepFirst => 'Manter como vi primeiro';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Novos eventos ainda ganham alarmes. Depois de criado, o alarme fica onde está, mesmo se o evento mudar ou for apagado.';
+
+  @override
+  String get syncSnapshot => 'Só os eventos que existem agora';
+
+  @override
+  String get syncSnapshotHint =>
+      'Só os eventos que estão na agenda quando você salva, do jeito que estão agora. Nada novo é acrescentado depois.';
+
+  @override
+  String get syncHelpButton => 'Como funciona';
+
+  @override
+  String get syncHelpTitle => 'Como os alarmes seguem sua agenda';
+
+  @override
+  String get syncHelpIntro =>
+      'Esta regra continua procurando eventos que combinam com sua busca. Você escolhe o que acontece quando a agenda muda.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Exemplo: uma regra para “dentista”. O dentista passa a consulta de terça para quarta, e seu alarme vai para quarta também. Se a consulta for cancelada, o alarme some.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Mesma regra: a consulta passa para quarta, mas seu alarme fica na terça, como o Quando? viu primeiro. Uma consulta nova no mês que vem ainda ganha seu alarme.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Mesma regra: você ganha alarmes para as consultas que estão na agenda hoje, e elas ficam como estão. Uma consulta marcada no mês que vem não ganha alarme.';
+
+  @override
+  String get syncHelpTip => 'Na dúvida? Deixe “Seguir a agenda”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando o Quando? percebe as mudanças?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Com o Quando? aberto: em segundos. O Google Agenda conectado aqui é verificado a cada 2 minutos.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Com o Quando? fechado: na próxima vez que você abrir. Até lá, os alarmes já marcados tocam nos horários que tinham.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone e iPad não deixam apps vigiar a agenda em segundo plano, então é ao abrir o Quando? que as mudanças entram.';
+
+  @override
+  String get tapMiddleToStop => 'Toque no meio para parar';
 }

@@ -3497,4 +3497,63 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get qsFiveLeft => '残り5分';
+
+  @override
+  String get syncHeading => 'カレンダーが変わったとき';
+
+  @override
+  String get syncLive => 'カレンダーに合わせる';
+
+  @override
+  String get syncLiveHint => '新しい予定にアラームが付きます。予定が動けばアラームも動き、消えればアラームも消えます。';
+
+  @override
+  String get syncKeepFirst => '最初に見たままにする';
+
+  @override
+  String get syncKeepFirstHint => '新しい予定にもアラームは付きます。一度付いたアラームは、予定が動いても消えてもそのままです。';
+
+  @override
+  String get syncSnapshot => '今ある予定だけ';
+
+  @override
+  String get syncSnapshotHint => '保存したときにカレンダーにある予定だけを、今のままで。あとから新しいものは加わりません。';
+
+  @override
+  String get syncHelpButton => 'しくみ';
+
+  @override
+  String get syncHelpTitle => 'アラームがカレンダーに合わせるしくみ';
+
+  @override
+  String get syncHelpIntro => 'このルールは、検索に合う予定を探し続けます。カレンダーが変わったときにどうするかを選べます。';
+
+  @override
+  String get syncHelpExampleLive => '例：「歯医者」のルール。歯医者が火曜の予約を水曜に移すと、アラームも水曜に移ります。予約が取り消されると、そのアラームも消えます。';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      '同じルール：予約は水曜に移っても、アラームは Quando? が最初に見た火曜のままです。来月の新しい予約には、ちゃんとアラームが付きます。';
+
+  @override
+  String get syncHelpExampleSnapshot => '同じルール：今日カレンダーにある予約にだけアラームが付き、そのまま変わりません。来月加わった予約にはアラームは付きません。';
+
+  @override
+  String get syncHelpTip => '迷ったら「カレンダーに合わせる」のままで。';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? はいつ変更に気づく？';
+
+  @override
+  String get syncHelpWhenOpen => 'Quando? を開いているとき：数秒で。ここでつないだ Google カレンダーは2分ごとに確認します。';
+
+  @override
+  String get syncHelpWhenClosed => 'Quando? を閉じているとき：次に開いたとき。それまでは、設定済みのアラームが元の時刻に鳴ります。';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone と iPad ではアプリがバックグラウンドでカレンダーを見張れないため、Quando? を開いたときに変更を取り込みます。';
+
+  @override
+  String get tapMiddleToStop => '中央をタップで停止';
 }

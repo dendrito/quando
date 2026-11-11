@@ -3648,4 +3648,71 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Осталось 5 минут';
+
+  @override
+  String get syncHeading => 'Когда календарь меняется';
+
+  @override
+  String get syncLive => 'Следовать за календарём';
+
+  @override
+  String get syncLiveHint =>
+      'Новые события получают будильник. Перенесённое событие переносит свой будильник. Удалённое теряет его.';
+
+  @override
+  String get syncKeepFirst => 'Оставить, как увидел сначала';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Новые события по-прежнему получают будильник. Поставленный будильник остаётся на месте, даже если событие перенесут или удалят.';
+
+  @override
+  String get syncSnapshot => 'Только события, которые есть сейчас';
+
+  @override
+  String get syncSnapshotHint =>
+      'Только события, которые есть в календаре при сохранении, такими, как сейчас. Новое потом не добавляется.';
+
+  @override
+  String get syncHelpButton => 'Как это работает';
+
+  @override
+  String get syncHelpTitle => 'Как будильники следуют за календарём';
+
+  @override
+  String get syncHelpIntro =>
+      'Это правило продолжает искать события, подходящие под ваш поиск. Вы выбираете, что происходит, когда календарь меняется.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Пример: правило для «стоматолог». Стоматолог переносит приём со вторника на среду, и будильник тоже переходит на среду. Если приём отменён, его будильник исчезает.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'То же правило: приём переходит на среду, но будильник остаётся во вторник, как Quando? увидел его сначала. Новый приём в следующем месяце всё равно получит свой будильник.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'То же правило: вы получаете будильники для приёмов, которые есть в календаре сегодня, и они остаются как есть. Приём, добавленный в следующем месяце, будильника не получит.';
+
+  @override
+  String get syncHelpTip => 'Сомневаетесь? Оставьте «Следовать за календарём».';
+
+  @override
+  String get syncHelpWhenTitle => 'Когда Quando? замечает изменения?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Когда Quando? открыт: за секунды. Подключённый здесь Google Календарь проверяется каждые 2 минуты.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Когда Quando? закрыт: при следующем открытии. До тех пор поставленные будильники звонят в прежнее время.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone и iPad не позволяют приложениям следить за календарём в фоне, поэтому изменения подхватываются при открытии Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Коснитесь центра, чтобы выключить';
 }

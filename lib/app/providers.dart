@@ -16,6 +16,7 @@ import '../features/busy/data/busy_mode.dart';
 import '../features/busy/domain/busy.dart';
 import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
+import '../features/calendar/domain/calendar_sync.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
@@ -569,6 +570,45 @@ final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<Calen
   CalendarRulesNotifier.new,
 );
 
+/// What rules that don't follow the calendar live remember of it: each
+/// event as first seen. See [CalendarSync].
+class CalendarMemoryNotifier extends Notifier<Map<String, RuleMemory>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+  static const _key = 'calendarMemory';
+
+  @override
+  Map<String, RuleMemory> build() {
+    try {
+      final raw = _prefs.getString(_key);
+      if (raw == null) return const {};
+      return {
+        for (final e in (jsonDecode(raw) as Map<String, dynamic>).entries)
+          e.key: ?RuleMemory.fromJson(e.value),
+      };
+    } catch (_) {
+      return const {};
+    }
+  }
+
+  /// Takes in the calendar as read just now.
+  void observe(List<AnchorEvent> events, DateTime now) {
+    final next = rememberEvents(
+      rules: ref.read(calendarRulesProvider),
+      events: events,
+      memory: state,
+      now: now,
+    );
+    final raw = jsonEncode({for (final e in next.entries) e.key: e.value.toJson()});
+    if (raw == _prefs.getString(_key)) return;
+    state = next;
+    _prefs.setString(_key, raw);
+  }
+}
+
+final calendarMemoryProvider = NotifierProvider<CalendarMemoryNotifier, Map<String, RuleMemory>>(
+  CalendarMemoryNotifier.new,
+);
+
 /// What we know about your calendars: the phone's own, and Google
 /// Calendar read online.
 class CalendarState {
@@ -776,16 +816,38 @@ class CalendarNotifier extends Notifier<CalendarState> {
         events.addAll(state.events.where((e) => googleIds.contains(e.source)));
       }
     }
+    // Rules that don't follow the calendar live take what is new. Only
+    // from a full read: an event missing from a failed read isn't new news.
+    if (error == null && googleError == null) {
+      ref.read(calendarMemoryProvider.notifier).observe(events, now);
+    }
     state = CalendarState(
       phone: phone,
       google: google,
       loaded: true,
       calendars: calendars,
       selected: selected,
-      events: events,
+      // Nothing changed (most re-reads): keep the same list, so alarms
+      // aren't planned and set again for nothing.
+      events: _sameEvents(events, state.events) ? state.events : events,
       error: error,
       googleError: googleError,
     );
+  }
+
+  static bool _sameEvents(List<AnchorEvent> a, List<AnchorEvent> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      final x = a[i], y = b[i];
+      if (x.id != y.id || x.at != y.at || x.title != y.title || x.source != y.source || x.kind != y.kind) {
+        return false;
+      }
+      if (x.reminders.length != y.reminders.length) return false;
+      for (var j = 0; j < x.reminders.length; j++) {
+        if (x.reminders[j] != y.reminders[j]) return false;
+      }
+    }
+    return true;
   }
 
   Future<void> select(String id, bool on) async {
@@ -811,7 +873,8 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
   final now = ref.watch(clockProvider)();
   final window = scheduler.eventWindow(now, ref.watch(allRulesProvider));
   final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
-    ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
+    ..addAll(ref.watch(calendarProvider.select((c) => c.events)))
+    ..addAll(rememberedEvents(ref.watch(calendarRulesProvider), ref.watch(calendarMemoryProvider)));
   final wantsSun = ref
       .watch(allRulesProvider)
       .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));

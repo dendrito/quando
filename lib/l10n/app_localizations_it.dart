@@ -3599,4 +3599,71 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Mancano 5 minuti';
+
+  @override
+  String get syncHeading => 'Quando il calendario cambia';
+
+  @override
+  String get syncLive => 'Segui il calendario';
+
+  @override
+  String get syncLiveHint =>
+      'I nuovi eventi hanno una sveglia. Se un evento si sposta, si sposta anche la sveglia. Se viene cancellato, la sveglia sparisce.';
+
+  @override
+  String get syncKeepFirst => 'Tieni com\'era all\'inizio';
+
+  @override
+  String get syncKeepFirstHint =>
+      'I nuovi eventi hanno comunque una sveglia. Una volta impostata, la sveglia resta lì, anche se l\'evento si sposta o viene cancellato.';
+
+  @override
+  String get syncSnapshot => 'Solo gli eventi che ci sono ora';
+
+  @override
+  String get syncSnapshotHint =>
+      'Solo gli eventi nel calendario quando salvi, così come sono ora. Dopo non si aggiunge nulla di nuovo.';
+
+  @override
+  String get syncHelpButton => 'Come funziona';
+
+  @override
+  String get syncHelpTitle => 'Come le sveglie seguono il calendario';
+
+  @override
+  String get syncHelpIntro =>
+      'Questa regola continua a cercare gli eventi che corrispondono alla tua ricerca. Scegli tu cosa succede quando il calendario cambia.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Esempio: una regola per “dentista”. Il dentista sposta l\'appuntamento da martedì a mercoledì, e anche la sveglia passa a mercoledì. Se l\'appuntamento viene annullato, la sveglia sparisce.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Stessa regola: l\'appuntamento passa a mercoledì, ma la sveglia resta martedì, come Quando? l\'ha visto all\'inizio. Un nuovo appuntamento il mese prossimo ha comunque la sua sveglia.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Stessa regola: hai sveglie per gli appuntamenti che ci sono oggi nel calendario, e restano così. Un appuntamento aggiunto il mese prossimo non ha sveglia.';
+
+  @override
+  String get syncHelpTip => 'Nel dubbio? Lascia “Segui il calendario”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando si accorge Quando? dei cambiamenti?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Con Quando? aperta: in pochi secondi. Google Calendar collegato qui viene controllato ogni 2 minuti.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Con Quando? chiusa: la prossima volta che la apri. Fino ad allora, le sveglie già impostate suonano agli orari che avevano.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone e iPad non lasciano alle app guardare il calendario in background, quindi i cambiamenti arrivano quando apri Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Tocca il centro per fermare';
 }

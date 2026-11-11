@@ -3574,4 +3574,71 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get qsFiveLeft => '5 dakika kaldı';
+
+  @override
+  String get syncHeading => 'Takvim değişince';
+
+  @override
+  String get syncLive => 'Takvimi takip et';
+
+  @override
+  String get syncLiveHint =>
+      'Yeni etkinlikler alarm alır. Taşınan etkinlik alarmını da taşır. Silinen etkinliğin alarmı kalkar.';
+
+  @override
+  String get syncKeepFirst => 'İlk gördüğüm gibi kalsın';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Yeni etkinlikler yine alarm alır. Kurulan alarm, etkinlik taşınsa ya da silinse bile yerinde kalır.';
+
+  @override
+  String get syncSnapshot => 'Yalnızca şu an olan etkinlikler';
+
+  @override
+  String get syncSnapshotHint =>
+      'Yalnızca kaydettiğin anda takviminde olan etkinlikler, şu anki halleriyle. Sonra yeni bir şey eklenmez.';
+
+  @override
+  String get syncHelpButton => 'Nasıl çalışır';
+
+  @override
+  String get syncHelpTitle => 'Alarmlar takvimini nasıl takip eder';
+
+  @override
+  String get syncHelpIntro =>
+      'Bu kural aramanla eşleşen etkinlikleri aramaya devam eder. Takvimin değişince ne olacağını sen seçersin.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Örnek: “dişçi” için bir kural. Dişçi salı randevusunu çarşambaya alır, alarmın da çarşambaya geçer. Randevu iptal olursa alarmı da kalkar.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Aynı kural: randevu çarşambaya geçer ama alarmın Quando?\'nun ilk gördüğü gibi salıda kalır. Gelecek ay yeni bir randevu yine kendi alarmını alır.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Aynı kural: bugün takviminde olan randevular için alarm alırsın ve olduğu gibi kalırlar. Gelecek ay eklenen randevu alarm almaz.';
+
+  @override
+  String get syncHelpTip => 'Emin değil misin? “Takvimi takip et”i bırak.';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? değişiklikleri ne zaman fark eder?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Quando? açıkken: saniyeler içinde. Burada bağlı Google Takvim her 2 dakikada bir kontrol edilir.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Quando? kapalıyken: bir sonraki açışında. O zamana kadar kurulu alarmlar eski saatlerinde çalar.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone ve iPad uygulamaların takvimi arka planda izlemesine izin vermez, bu yüzden değişiklikler Quando? açılınca alınır.';
+
+  @override
+  String get tapMiddleToStop => 'Durdurmak için ortaya dokun';
 }

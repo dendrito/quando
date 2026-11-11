@@ -3593,4 +3593,71 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get qsFiveLeft => 'Nog 5 minuten';
+
+  @override
+  String get syncHeading => 'Als de agenda verandert';
+
+  @override
+  String get syncLive => 'De agenda volgen';
+
+  @override
+  String get syncLiveHint =>
+      'Nieuwe afspraken krijgen een wekker. Verzette afspraken nemen hun wekker mee. Verwijderde afspraken verliezen hem.';
+
+  @override
+  String get syncKeepFirst => 'Houden zoals ik het eerst zag';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Nieuwe afspraken krijgen nog steeds een wekker. Eenmaal gezet blijft een wekker staan, ook als de afspraak verzet of verwijderd wordt.';
+
+  @override
+  String get syncSnapshot => 'Alleen afspraken die er nu zijn';
+
+  @override
+  String get syncSnapshotHint =>
+      'Alleen de afspraken die in je agenda staan als je opslaat, zoals ze nu zijn. Later komt er niets nieuws bij.';
+
+  @override
+  String get syncHelpButton => 'Hoe werkt dit';
+
+  @override
+  String get syncHelpTitle => 'Hoe wekkers je agenda volgen';
+
+  @override
+  String get syncHelpIntro =>
+      'Deze regel blijft zoeken naar afspraken die bij je zoekopdracht passen. Jij kiest wat er gebeurt als je agenda verandert.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Voorbeeld: een regel voor ‘tandarts’. De tandarts verzet de afspraak van dinsdag naar woensdag, en je wekker gaat ook naar woensdag. Wordt de afspraak afgezegd, dan verdwijnt de wekker.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Zelfde regel: de afspraak gaat naar woensdag, maar je wekker blijft op dinsdag, zoals Quando? hem eerst zag. Een nieuwe afspraak volgende maand krijgt toch een eigen wekker.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Zelfde regel: je krijgt wekkers voor de afspraken die vandaag in je agenda staan, en die blijven zo. Een afspraak die volgende maand bijkomt, krijgt geen wekker.';
+
+  @override
+  String get syncHelpTip => 'Twijfel je? Laat ‘De agenda volgen’ staan.';
+
+  @override
+  String get syncHelpWhenTitle => 'Wanneer ziet Quando? veranderingen?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Als Quando? open is: binnen seconden. Google Agenda die hier is gekoppeld, wordt elke 2 minuten gecontroleerd.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Als Quando? dicht is: de volgende keer dat je het opent. Tot dan gaan gezette wekkers af op hun oude tijden.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone en iPad laten apps de agenda niet op de achtergrond volgen, dus wijzigingen komen binnen als je Quando? opent.';
+
+  @override
+  String get tapMiddleToStop => 'Tik in het midden om te stoppen';
 }

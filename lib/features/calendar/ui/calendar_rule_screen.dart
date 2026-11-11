@@ -14,6 +14,8 @@ import '../../rules/domain/reminder_delivery.dart';
 import '../domain/calendar_rule.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
+import 'calendar_sync_choice.dart';
+
 import 'package:quando/l10n/l10n.dart';
 
 /// Set up one calendar alarm: which events, and when to ring.
@@ -394,6 +396,11 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 label: Text(l10n.connectACalendar),
               ),
             ],
+            const SizedBox(height: 12),
+            CalendarSyncChoice(
+              value: _rule.sync,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(sync: v)),
+            ),
             const SizedBox(height: 12),
             Material(
               color: QuandoColors.surface,

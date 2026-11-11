@@ -45,11 +45,16 @@ class AlarmRule {
     this.deliveries = const {},
     this.eventReminders = false,
     this.days = const {},
+    this.owner,
   });
 
   /// Only events on these weekdays (1 = Monday ... 7 = Sunday, local
   /// time). Empty = any day.
   final Set<int> days;
+
+  /// The calendar rule whose remembered events this rule rings for, instead
+  /// of the calendar as it is now (see [AnchorEvent.owner]). null = live.
+  final String? owner;
 
   final String id;
   final String name;
@@ -107,6 +112,7 @@ class AlarmRule {
   /// also catch Shabbat, festival and sun times.
   bool matches(AnchorEvent e) =>
       appliesTo.contains(e.kind) &&
+      (e.owner == null ? (owner == null || !e.kind.isCalendar) : e.owner == owner) &&
       (days.isEmpty || days.contains(e.at.toLocal().weekday)) &&
       (sources == null || !e.kind.isCalendar || sources!.contains(e.source)) &&
       (keyword == null || keyword!.isEmpty || _search(keyword!, e));
@@ -178,6 +184,7 @@ class AlarmRule {
     deliveries: deliveries ?? this.deliveries,
     eventReminders: eventReminders,
     days: days,
+    owner: owner,
   );
 
   /// The same rule ringing at exactly [offsets] (negative = before, zero =
