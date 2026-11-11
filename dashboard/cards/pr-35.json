@@ -1,7 +1,7 @@
 {
   "id": "pr-35",
   "title": "Board: link every card to its Claude thread",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     35
