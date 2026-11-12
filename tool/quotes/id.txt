@@ -143,3 +143,4 @@ howsoon = Seberapa cepat itu sekarang? | The Smiths
 +proverbs any = Sekali merengkuh dayung, dua tiga pulau terlampaui. | Peribahasa
 +proverbs any = Waktu adalah uang. | Peribahasa
 +literature any = Menulis adalah bekerja untuk keabadian. | Pramoedya Ananta Toer
+fiddler_sunrise = Matahari terbit, matahari terbenam, hari-hari berlalu begitu cepat. | Sheldon Harnick, Fiddler on the Roof

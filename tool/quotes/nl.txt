@@ -143,3 +143,4 @@ howsoon = Hoe gauw is nu? | The Smiths
 +proverbs any = Oost west, thuis best. | Spreekwoord
 +proverbs any = Wie A zegt, moet ook B zeggen. | Spreekwoord
 +proverbs any = Eén zwaluw maakt de zomer niet. | Spreekwoord
+fiddler_sunrise = Zonsopgang, zonsondergang, hoe snel gaan de dagen. | Sheldon Harnick, Fiddler on the Roof

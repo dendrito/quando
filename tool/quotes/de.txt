@@ -141,3 +141,4 @@ queen_iwantit = Ich will alles, und ich will es jetzt. | Queen
 queen_forever = Wer will schon ewig leben? | Queen
 howsoon = Wie bald ist jetzt? | The Smiths
 +literature any = Ich lebe mein Leben in wachsenden Ringen. | Rainer Maria Rilke
+fiddler_sunrise = Sonnenaufgang, Sonnenuntergang, wie schnell vergehen die Tage. | Sheldon Harnick, Anatevka

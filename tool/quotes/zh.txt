@@ -143,3 +143,4 @@ howsoon = “现在”有多快？ | The Smiths
 +literature morning = 欲穷千里目，更上一层楼。 | 王之涣《登鹳雀楼》
 +literature morning = 长风破浪会有时，直挂云帆济沧海。 | 李白《行路难》
 +literature any = 但是，聪明的，你告诉我，我们的日子为什么一去不复返呢？ | 朱自清《匆匆》
+fiddler_sunrise = 日出，日落，岁月匆匆流逝。 | 谢尔登·哈尼克，《屋顶上的提琴手》

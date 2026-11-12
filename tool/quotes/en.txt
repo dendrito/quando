@@ -150,3 +150,4 @@ queen_dontstop = Don't stop me now, I'm having such a good time. | Queen
 queen_iwantit = I want it all, and I want it now. | Queen
 queen_forever = Who wants to live forever? | Queen
 howsoon = How soon is now? | The Smiths
+fiddler_sunrise = Sunrise, sunset, swiftly flow the days. | Sheldon Harnick, Fiddler on the Roof

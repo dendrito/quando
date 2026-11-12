@@ -193,3 +193,4 @@ queen_dontstop = Não me pare agora, estou me divertindo tanto. | Queen
 queen_iwantit = Eu quero tudo, e quero agora. | Queen
 queen_forever = Quem quer viver para sempre? | Queen
 howsoon = Quão cedo é agora? | The Smiths
+fiddler_sunrise = Nasce o sol, põe-se o sol, depressa correm os dias. | Sheldon Harnick, Um Violinista no Telhado

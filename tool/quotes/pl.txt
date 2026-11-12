@@ -142,3 +142,4 @@ howsoon = Jak szybko jest teraz? | The Smiths
 +proverbs any = Czas leczy rany. | Przysłowie
 +proverbs any = Nie ma tego złego, co by na dobre nie wyszło. | Przysłowie
 +proverbs any = Dobry początek to połowa roboty. | Przysłowie
+fiddler_sunrise = Wschód słońca, zachód słońca, tak szybko mijają dni. | Sheldon Harnick, Skrzypek na dachu
