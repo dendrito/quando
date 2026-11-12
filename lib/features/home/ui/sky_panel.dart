@@ -373,8 +373,10 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 )
         : plainSun;
 
+    // Pages before the Moon's: the Sun's, unless it is hidden.
+    final lead = options.sun ? 1 : 0;
     final pages = <({String label, Widget child})>[
-      (label: l10n.skySun, child: sunContent),
+      if (options.sun) (label: l10n.skySun, child: sunContent),
       if (options.moon) (label: l10n.skyMoon, child: moonContent),
       if (options.moon && options.moonDetails && details != null) (label: l10n.skyMoonPhase, child: details),
       if (options.weather && weatherPlace != null)
@@ -382,14 +384,14 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           label: l10n.weatherLabel,
           child: WeatherPanel(
             now: sky.now,
-            active: _page == 1 + (options.moon ? 1 : 0) + (options.moon && options.moonDetails ? 1 : 0),
+            active: _page == lead + (options.moon ? 1 : 0) + (options.moon && options.moonDetails ? 1 : 0),
             place: weatherPlace,
           ),
         ),
     ];
     if (widget.only case final only?) {
       return switch (only) {
-        SkyCard.sun => sunContent,
+        SkyCard.sun => options.sun ? sunContent : const SizedBox.shrink(),
         SkyCard.moon => options.moon ? moonCard(compact: true) : const SizedBox.shrink(),
         SkyCard.phase => details ?? const SizedBox.shrink(),
         SkyCard.weather =>
@@ -398,8 +400,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
               : const SizedBox.shrink(),
       };
     }
-    if (widget.simple) return sunContent;
-    final onDetailsPage = options.moon && options.moonDetails && details != null && _page == 2;
+    if (pages.isEmpty) return const SizedBox.shrink();
+    if (widget.simple) return options.sun ? sunContent : const SizedBox.shrink();
+    final onDetailsPage = options.moon && options.moonDetails && details != null && _page == lead + 1;
     if (_page >= pages.length) {
       _page = 0;
       WidgetsBinding.instance.addPostFrameCallback((_) {
@@ -455,13 +458,13 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 height: onDetailsPage
                     ? (constraints.maxWidth >= 560 ? 260 : 460) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
-                    : _page == 1 && options.moon
+                    : _page == lead && options.moon
                     ? (constraints.maxWidth - 36 >= 700 * MediaQuery.textScalerOf(context).scale(1)
                               ? 300
                               : 390) *
                           (report == null ? 1 : 1.2) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
-                    : _page == 0 && options.weather && weatherPlace != null
+                    : options.sun && _page == 0 && options.weather && weatherPlace != null
                     ? (nightMoonCard ? 300 : 370) * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : max(228.0, options.night ? 260.0 : 180.0),
                 child: PageView(

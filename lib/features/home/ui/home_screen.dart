@@ -641,11 +641,12 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               fill: sky.color,
               child: SkyPanel(sky: sky, only: SkyCard.moon),
             ),
-            HomeCard.weather: GridCardSpec(
-              title: cardName(HomeCard.weather),
-              fill: sky.color,
-              child: SkyPanel(sky: sky, only: SkyCard.weather),
-            ),
+            if (display.weather)
+              HomeCard.weather: GridCardSpec(
+                title: cardName(HomeCard.weather),
+                fill: sky.color,
+                child: SkyPanel(sky: sky, only: SkyCard.weather),
+              ),
             HomeCard.alarms: GridCardSpec(
               title: cardName(HomeCard.alarms),
               child: titled(l10n.yourAlarmsHeading, alarms),
