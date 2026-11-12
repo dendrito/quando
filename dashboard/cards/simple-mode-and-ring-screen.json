@@ -1,0 +1,25 @@
+{
+  "id": "simple-mode-and-ring-screen",
+  "title": "Simple and Everything levels, new Edit alarm and ring screen",
+  "status": "done",
+  "tag": "app",
+  "note": "PR #51 open for Thursday's build, stacked on PR #50; Curió merges after testing on the phone.",
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkYFNrvKXmoUEoDS1H87NS2X"
+  ],
+  "details": "A Simple or Everything switch at the top of Settings. New installs get one first-run question (Simple ticked); existing installs stay on Everything and never see it. Simple keeps alarms and the basics; Everything is today's app with the header icons as labelled pills and Settings in five folded groups. Edit alarm gets Ring or music, Rings for and Gentle wake, each with a small menu and Use for new alarms, plus a When this rings, I will… line. The ring screen shows that line, a smaller quote and the hint line only for the first three rings; the round countdown clock stays. Nothing about how alarms are scheduled or ring changed. New text in 20 languages is machine-written and needs native review.",
+  "docs": [
+    {
+      "title": "Mockups",
+      "url": "https://claude.ai/artifact/WrqEV4Ya6MyKHKCqTMEwgf"
+    },
+    {
+      "title": "Easier to find, less distracting (research)",
+      "url": "https://claude.ai/artifact/4LJzTGp9vjRC69pu99kkRj"
+    }
+  ],
+  "order": 7,
+  "prs": [
+    51
+  ]
+}

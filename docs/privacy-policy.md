@@ -1,12 +1,12 @@
 # Quando and Matai privacy policy
 
-_Development policy updated 6 November 2026. Contact and cloud deletion procedures must be finalized before public release._
+_Updated 12 November 2026. Contact: support@quando.day. Operator name must be finalized before public release._
 
 Quando is an alarm and reminder app. Matai is its Jewish edition; Quando Mine is a private edition. Local alarms work without an account. The current apps contain no advertising or analytics SDK and do not sell user data.
 
 ## Local information
 
-Alarms, preferences, recorded/imported sounds and cached schedules are stored on your device. Calendar access reads events to create reminders. Scanning a stop code uses the camera locally without saving a picture. Recording uses the microphone while recording. Optional foreground location finds a local city; there is no background location tracking. The precise local location entry is excluded from configuration sync.
+Alarms, preferences, recorded/imported sounds and cached schedules are stored on your device. Calendar access reads events to create reminders. Scanning a stop code uses the camera locally without saving a picture. Recording uses the microphone while recording. Voice and typed alarms are read on your device. Only if you turn on "Help improve voice alarms" (off by default, switch off any time in the alarm sheet), the sentence you said or typed, its language, how Quando? understood it and whether you saved or cancelled are sent anonymously, with no account, device or location identifier, to improve how Quando? understands alarm requests. Sentences that look like they contain an email address or phone number are not sent. Optional foreground location finds a local city; there is no background location tracking. The precise local location entry is excluded from configuration sync.
 
 ## Optional account sync
 
@@ -28,8 +28,10 @@ Each provider has its own privacy policy. Google's API information is used only 
 
 ## Disconnecting and deletion
 
-Disable an optional feature to stop future requests from it; a request already in progress may finish. Disconnect connections in the app and revoke provider permissions at [Google account permissions](https://myaccount.google.com/permissions) or [Spotify apps](https://www.spotify.com/account/apps/). Signing out stops account sync on that device; it does not delete cloud records or revoke every external credential. Uninstalling does not delete cloud records, other devices' copies, provider accounts or credentials. Device backups may retain local data according to OS settings. A verified cloud-data deletion procedure and retention period remain required before public release.
+Disable an optional feature to stop future requests from it; a request already in progress may finish. Disconnect connections in the app and revoke provider permissions at [Google account permissions](https://myaccount.google.com/permissions) or [Spotify apps](https://www.spotify.com/account/apps/). Signing out stops account sync on that device; it does not delete cloud records.
+
+**Delete your account.** In the app: Settings, your account, Delete account. You confirm with your password or a fresh Google sign-in. Quando then erases your synced record (alarms, settings and any synced connection keys) from Google Firebase and removes your sign-in account, and clears the sign-in and synced keys from that device. It does this immediately. Alarms already on your devices stay on them until you remove the app. Other signed-in devices lose sync. Without the app, open [quando.day/delete-account](https://quando.day/delete-account/) or email support@quando.day from the address you signed in with; we delete the account within 30 days. Short-lived backups held by Google may take up to 90 days to clear. Uninstalling alone does not delete cloud records, provider accounts or credentials; revoke those at the provider links above. Device backups may retain local data according to OS settings.
 
 ## Children and contact
 
-The app is not directed at children. Before public release, replace this development contact requirement with the verified operator name and support contact in the store listing and this policy. Publish future changes with a new date.
+The app is not directed at children. Questions: support@quando.day. Before public release, add the verified operator name here and in the store listing. Publish future changes with a new date.

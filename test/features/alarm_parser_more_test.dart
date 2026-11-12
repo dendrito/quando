@@ -124,4 +124,22 @@ void main() {
       expect(e.offset, const Duration(minutes: -30));
     });
   });
+
+  test('minutes before or after a clock time', () {
+    expect(p('10 minutes before 7', 'en'), const AlarmRequest(hour: 6, minute: 50));
+    expect(
+      p('wake me 5 minutes before 7:30 tomorrow', 'en'),
+      const AlarmRequest(hour: 7, minute: 25, dayOffset: 1),
+    );
+    expect(p('an hour before 8', 'en'), const AlarmRequest(hour: 7));
+    expect(p('10 minutes after 7', 'en'), const AlarmRequest(hour: 7, minute: 10));
+    expect(p('20 minutes before 7am tomorrow', 'en'), const AlarmRequest(hour: 6, minute: 40, dayOffset: 1));
+    expect(p('10 minutes before 7 pm', 'en'), const AlarmRequest(hour: 18, minute: 50));
+    expect(
+      p('alarm 10 minutes before 7 on weekdays', 'en'),
+      const AlarmRequest(hour: 6, minute: 50, days: {1, 2, 3, 4, 5}),
+    );
+    // Events still win over clock times.
+    expect(p('30 minutes before my exam', 'en')!.eventQuery, 'exam');
+  });
 }

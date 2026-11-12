@@ -9,11 +9,14 @@ import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
 import '../../../core/util/local_time.dart';
 import '../../alarms/domain/user_alarm.dart';
+import '../../ringing/ring_style.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../events/domain/sun_times.dart';
 import '../../sounds/domain/sound.dart';
 import '../data/learned_phrases.dart';
+import '../data/voice_log.dart';
+import 'voice_log_prompt.dart';
 import '../domain/alarm_ai.dart';
 import '../domain/alarm_parser.dart';
 import '../domain/alarm_plan.dart';
@@ -26,12 +29,16 @@ import 'package:quando/l10n/l10n.dart';
 /// "Say or type it": a sentence becomes an alarm, on the device, with no
 /// account and no server. The phone's own speech recognition turns voice
 /// into text; [AlarmParser] reads the text. Nothing is saved until Save.
-Future<void> showAskSheet(BuildContext context, {bool listen = false}) => showModalBottomSheet<void>(
-  context: context,
-  showDragHandle: true,
-  isScrollControlled: true,
-  builder: (_) => _AskSheet(listenAtStart: listen),
-);
+Future<void> showAskSheet(BuildContext context, {bool listen = false}) async {
+  final container = ProviderScope.containerOf(context, listen: false);
+  final saved = await showModalBottomSheet<String>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    builder: (_) => _AskSheet(listenAtStart: listen),
+  );
+  if (saved != null && context.mounted) await askVoiceLog(context, container, saved);
+}
 
 String anchorName(TimeAnchor a) => switch (a) {
   TimeAnchor.sunrise => l10n.sunrise,
@@ -89,14 +96,37 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   AlarmRequest? _ai;
   String? _aiFor;
 
+  /// What was on screen last, for the optional "help improve" log.
+  String _lastInput = '';
+  String _lastUnderstood = '';
+  String _lastLang = '';
+  bool _logged = false;
+  late final ProviderContainer _container = ProviderScope.containerOf(context, listen: false);
+
+  /// Sends the sentence once, only if the person turned the log on.
+  void _log(String outcome) {
+    if (_logged || !_container.read(voiceLogProvider)) return;
+    final sample = voiceSample(
+      sentence: _lastInput,
+      lang: _lastLang,
+      understood: _lastUnderstood,
+      outcome: outcome,
+    );
+    if (sample == null) return;
+    _logged = true;
+    unawaited(_container.read(voiceLogSinkProvider).send(sample));
+  }
+
   @override
   void initState() {
     super.initState();
+    _container;
     if (widget.listenAtStart) WidgetsBinding.instance.addPostFrameCallback((_) => _listen());
   }
 
   @override
   void dispose() {
+    _log(_lastUnderstood.isEmpty ? 'not_understood' : 'cancelled');
     unawaited(_speech.stop());
     _text.dispose();
     super.dispose();
@@ -192,13 +222,20 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
   }
 
   void _save(AlarmPlan plan, AlarmRequest request) {
+    _lastUnderstood = request.toString();
+    _log('saved');
     final id = DateTime.now().microsecondsSinceEpoch.toRadixString(36);
     final zone = ref.read(homeZoneProvider);
     final soundId = soundOfKind(request.sound, ref.read(soundsProvider))?.id;
+    // "Snooze 5 minutes" belongs to this alarm only; the others keep the
+    // snooze set in Settings.
     final snooze = request.snoozeMinutes;
-    if (snooze != null && snooze > 0 && snooze <= 60) {
-      ref.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(snoozeMinutes: snooze));
-    }
+    final options = ref.read(alarmOptionsProvider);
+    final style = snooze != null && snooze > 0 && snooze <= 60
+        ? RingStyle(
+            snooze: SnoozePlan(minutes: snooze, times: options.maxSnoozes == 0 ? 2 : options.maxSnoozes),
+          )
+        : RingStyle.none;
     final h = request.hour;
     if (_evening != null && h != null) ref.read(learnedProvider.notifier).halfDay(h % 12, evening: _evening!);
     switch (plan) {
@@ -207,13 +244,30 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
         ref
             .read(userAlarmsProvider.notifier)
             .save(
-              UserAlarm(id: id, hour: local.hour, minute: local.minute, label: label, soundId: soundId),
+              UserAlarm(
+                id: id,
+                hour: local.hour,
+                minute: local.minute,
+                label: label,
+                soundId: soundId,
+                style: style,
+              ),
               at: at,
             );
       case RepeatPlan(:final hour, :final minute, :final days, :final label):
         ref
             .read(userAlarmsProvider.notifier)
-            .save(UserAlarm(id: id, hour: hour, minute: minute, days: days, label: label, soundId: soundId));
+            .save(
+              UserAlarm(
+                id: id,
+                hour: hour,
+                minute: minute,
+                days: days,
+                label: label,
+                soundId: soundId,
+                style: style,
+              ),
+            );
       case EventPlan(:final query, :final offset, :final label):
         ref
             .read(calendarRulesProvider.notifier)
@@ -226,6 +280,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 atStart: offset == Duration.zero,
                 after: [if (offset > Duration.zero) offset],
                 soundId: soundId,
+                style: style,
               ),
             );
       case RulePlan(:final anchor, :final offset, :final days, :final label):
@@ -242,11 +297,12 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 after: [if (offset > Duration.zero) offset],
                 days: days,
                 soundId: soundId,
+                style: style,
               ),
             );
     }
     final messenger = ScaffoldMessenger.of(context);
-    Navigator.pop(context);
+    Navigator.pop(context, _lastInput);
     messenger
       ..hideCurrentSnackBar()
       ..showSnackBar(SnackBar(content: Text(l10n.askSaved(describePlan(plan, zone)))));
@@ -391,6 +447,9 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
     final evening = askHalf ? _evening ?? learned.halfDay[r0.hour! % 12] : null;
     if (askHalf && evening != null) request = r0.withHalfDay(evening: evening);
 
+    _lastInput = input;
+    _lastLang = lang;
+    _lastUnderstood = request?.toString() ?? '';
     final action = request?.action ?? AlarmAction.set;
     final plan = action == AlarmAction.set ? _plan(request) : null;
     final turnOff = action == AlarmAction.remove && request != null
@@ -509,6 +568,20 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
               )
             else if (input.isNotEmpty && !_listening)
               Text(l10n.askNotUnderstood, style: text.bodySmall),
+            if (input.isEmpty && !_listening) ...[
+              const SizedBox(height: 16),
+              Text(
+                '“La vida no es la que uno vivió, sino la que uno recuerda y cómo la recuerda para contarla.”',
+                style: text.bodyMedium?.copyWith(fontStyle: FontStyle.italic),
+                textAlign: TextAlign.center,
+              ),
+              if (lang != 'es') ...[
+                const SizedBox(height: 4),
+                Text(l10n.askQuoteTranslation, style: text.bodySmall, textAlign: TextAlign.center),
+              ],
+              const SizedBox(height: 4),
+              Text('Gabriel García Márquez', style: text.labelSmall, textAlign: TextAlign.center),
+            ],
             if (askHalf) ...[
               const SizedBox(height: 12),
               Wrap(
@@ -566,6 +639,14 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
                 onPressed: plan == null || noCalendar ? null : () => _save(plan, request!),
                 child: Text(l10n.save),
               ),
+            SwitchListTile(
+              dense: true,
+              contentPadding: EdgeInsets.zero,
+              title: Text(l10n.askHelpTitle),
+              subtitle: Text(l10n.askHelpBody),
+              value: ref.watch(voiceLogProvider),
+              onChanged: (v) => ref.read(voiceLogProvider.notifier).set(v),
+            ),
           ],
         ),
       ),

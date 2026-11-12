@@ -3525,7 +3525,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String askSnoozeAll(int minutes) {
-    return 'Snooze: $minutes min, for every alarm';
+    return 'Snooze: $minutes min, for this alarm';
   }
 
   @override
@@ -3535,6 +3535,232 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get askReadAs => 'Read as';
+
+  @override
+  String get askHelpTitle => 'Help improve voice alarms';
+
+  @override
+  String get askHelpBody =>
+      'Send what you say or type, and what you did with it, anonymously. No account or device ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? has a student\'s heart.';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'We\'d send what you say or type, like “$sentence”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.';
+  }
+
+  @override
+  String get askHelpYes => 'Yes, help';
+
+  @override
+  String get askHelpNo => 'No thanks';
+
+  @override
+  String get askQuoteTranslation =>
+      'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.';
+
+  @override
+  String get askHelpQuote => '“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog';
+
+  @override
+  String get quickSetups => 'Quick setups';
+
+  @override
+  String get qsMorningTitle => 'Morning that works';
+
+  @override
+  String get qsStartTitle => 'Never miss a start';
+
+  @override
+  String get qsStretchTitle => 'Work in stretches';
+
+  @override
+  String get qsWillChange => 'What will change';
+
+  @override
+  String get qsAlreadyOn => 'Already on. Nothing to change.';
+
+  @override
+  String get qsApply => 'Apply';
+
+  @override
+  String get qsDone => 'Done';
+
+  @override
+  String get qsUndo => 'Undo';
+
+  @override
+  String get qsSnoozeTimes => 'Snoozes allowed';
+
+  @override
+  String get qsSnoozeMinutes => 'Snooze minutes';
+
+  @override
+  String get qsFiveLeft => '5 minutes left';
+
+  @override
+  String get syncHeading => 'When the calendar changes';
+
+  @override
+  String get syncLive => 'Follow the calendar';
+
+  @override
+  String get syncLiveHint =>
+      'New events get alarms. Moved events move their alarms. Deleted events lose them.';
+
+  @override
+  String get syncKeepFirst => 'Keep what I first saw';
+
+  @override
+  String get syncKeepFirstHint =>
+      'New events still get alarms. Once set, an alarm stays put, even if its event moves or is deleted.';
+
+  @override
+  String get syncSnapshot => 'Only events that exist now';
+
+  @override
+  String get syncSnapshotHint =>
+      'Just the events in your calendar when you save, as they are now. Nothing new is added later.';
+
+  @override
+  String get syncHelpButton => 'How this works';
+
+  @override
+  String get syncHelpTitle => 'How alarms follow your calendar';
+
+  @override
+  String get syncHelpIntro =>
+      'This rule keeps looking for events that match your search. You choose what happens when your calendar changes.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Example: a rule for “dentist”. The dentist moves Tuesday\'s visit to Wednesday, and your alarm moves to Wednesday too. If the visit is cancelled, its alarm goes away.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Same rule: the visit moves to Wednesday, but your alarm stays on Tuesday, as Quando? first saw it. A new visit next month still gets its own alarm.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Same rule: you get alarms for the visits in your calendar today, and they stay as they are. A visit added next month gets no alarm.';
+
+  @override
+  String get syncHelpTip => 'Not sure? Keep “Follow the calendar”.';
+
+  @override
+  String get syncHelpWhenTitle => 'When does Quando? notice changes?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone and iPad don\'t let apps watch the calendar in the background, so opening Quando? is what picks changes up.';
+
+  @override
+  String get tapMiddleToStop => 'Tap the middle to stop';
+
+  @override
+  String get uiSimple => 'Simple';
+
+  @override
+  String get uiEverything => 'Everything';
+
+  @override
+  String get firstRunTitle => 'How much do you want to see?';
+
+  @override
+  String get firstRunSimpleHint => 'Alarms and the basics';
+
+  @override
+  String get firstRunEverythingHint => 'Calendar, Shabbat, timers, weather and more';
+
+  @override
+  String get firstRunChangeLater => 'You can change this any time in Settings.';
+
+  @override
+  String get continueLabel => 'Continue';
+
+  @override
+  String get everyAlarm => 'Every alarm';
+
+  @override
+  String get wakeMeWith => 'Wake me with';
+
+  @override
+  String get ringOrMusic => 'Ring or music';
+
+  @override
+  String get ringsForRow => 'Rings for';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min before';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? sounds';
+
+  @override
+  String get aSongApps => 'A song (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'My recording';
+
+  @override
+  String get useForNewAlarms => 'Use for new alarms';
+
+  @override
+  String get iWillLabel => 'When this rings, I will…';
+
+  @override
+  String get foldVolume => 'Volume and fades';
+
+  @override
+  String get foldSnoozeStop => 'Snooze and stop';
+
+  @override
+  String get foldExtras => 'Calendar and extras';
+
+  @override
+  String get groupAlarms => 'Alarms';
+
+  @override
+  String get groupCalendarShabbat => 'Calendar and Shabbat';
+
+  @override
+  String get groupLookQuotes => 'Look and quotes';
+
+  @override
+  String get groupConnectionsSync => 'Connections and sync';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count setups · $on on';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
 
   @override
   String get weatherRemindersTitle => 'Weather reminders';

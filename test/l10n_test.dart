@@ -111,6 +111,13 @@ void main() {
       router.go('/settings');
       await tester.pumpAndSettle();
       await tester.scrollUntilVisible(
+        find.text(l10n.groupLookQuotes),
+        400,
+        scrollable: find.byType(Scrollable).first,
+      );
+      await tester.tap(find.text(l10n.groupLookQuotes));
+      await tester.pumpAndSettle();
+      await tester.scrollUntilVisible(
         find.text(l10n.language),
         400,
         scrollable: find.byType(Scrollable).first,

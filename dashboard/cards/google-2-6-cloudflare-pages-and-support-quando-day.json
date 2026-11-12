@@ -6,8 +6,8 @@
     "google"
   ],
   "title": "Google 2/6: Cloudflare Pages and support@quando.day",
-  "status": "next",
-  "note": "Publish site/ on quando.day and make support@quando.day forward to you.",
+  "status": "done",
+  "note": "quando.day is live on Cloudflare Pages and support@quando.day forwards to Curió.",
   "details": "Guide section A. Do not set a custom domain in GitHub Pages or the board would redirect to quando.day.",
   "docs": [
     {

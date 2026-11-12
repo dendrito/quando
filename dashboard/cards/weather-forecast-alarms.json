@@ -1,9 +1,9 @@
 {
   "id": "weather-forecast-alarms",
   "title": "Weather forecast alarms",
-  "status": "review",
+  "status": "hold",
   "tag": "app",
-  "note": "Built in PR #36, waiting for CI and your review. Suggested: merge after the first public release.",
+  "note": "Built in PR #36 (open). Held until after the first public release.",
   "prs": [
     36
   ],

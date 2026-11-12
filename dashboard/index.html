@@ -42,7 +42,7 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
 .row:last-child{border-bottom:0}.row .grow{flex:1;min-width:200px}
 .mute{color:var(--mute);font-size:.88rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.grp{margin:6px 0;border:1px solid var(--line);border-radius:8px;padding:2px 6px}.grp>summary{cursor:pointer;font-size:.85rem;padding:4px 0;list-style:none;display:flex;justify-content:space-between}.grp>summary::-webkit-details-marker{display:none}.grp>summary::before{content:"▸";margin-right:6px}.grp[open]>summary::before{content:"▾"}.grp>summary span{color:var(--mute)}.tabs{display:flex;gap:6px;margin:18px 0 0}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--chip);color:var(--ink);cursor:pointer}.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg,#fff)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .empty{padding:14px;color:var(--mute)}
 .card{cursor:pointer}.card:hover{border-color:var(--accent)}
 dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:620px;width:calc(100% - 24px);padding:20px}
@@ -74,6 +74,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   <div class="count" id="count"></div>
 </section>
 
+<div class="tabs" id="tabs"><button data-t="board">Board</button><button data-t="business">Business</button><button data-t="github">GitHub</button></div>
+<div id="tab-board">
 <h2>Dates <button class="btn tool" id="add-dl" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add date</button></h2>
 <div class="deadlines" id="deadlines"></div>
 
@@ -81,14 +83,26 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 <div class="board" id="board"></div>
 <dialog id="dlg"></dialog>
 
+<h2 id="plans-h">Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
+<div class="grid" id="plans"></div>
+</div>
+<div id="tab-github" hidden>
+<h2>GitHub</h2>
+<div class="btns" id="ghlinks" style="margin-bottom:6px"></div>
 <h2>Open pull requests <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="prs"><div class="empty">Loading…</div></div>
 
 <h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="issues"><div class="empty">Loading…</div></div>
 
-<h2>Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
-<div class="grid" id="plans"></div>
+<h2>Recent builds <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
+<div class="list" id="runs"><div class="empty">Loading…</div></div>
+</div>
+<div id="tab-business" hidden>
+<h2>Business side <button class="btn tool" id="add-biz" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add document</button></h2>
+<p class="mute">Plans and research for the business side of the app. These open only for signed-in owners; nothing from them is stored in this repository.</p>
+<div class="grid" id="biz"></div>
+</div>
 
 <footer>
   This page is built from <code>dashboard/board.json</code>, <code>dashboard/cards/</code> (one file per card) and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
@@ -119,11 +133,11 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 
   function chrome() {
     var base = "https://github.com/" + data.repo;
+    function gl(path, label) { return '<a class="btn" href="' + base + path + '" target="_blank" rel="noopener">' + label + "</a>"; }
     $("btns").innerHTML =
       '<button class="btn" id="unlock">' + (token ? "Editing: on" : "Turn on editing") + "</button>" +
-      '<a class="btn" href="' + base + '/issues/new/choose">New issue</a>' +
-      '<a class="btn" href="' + base + '/pulls">All PRs</a>' +
-      '<a class="btn" href="' + base + '/actions">Builds</a>';
+      gl("/issues/new/choose", "New issue") + gl("/pulls", "All PRs") + gl("/actions", "Builds");
+    $("ghlinks").innerHTML = gl("/pulls", "Pull requests") + gl("/issues", "Issues") + gl("/actions", "Builds") + gl("/releases", "Releases") + gl("", "Repository") + gl("/issues/new/choose", "New issue");
     $("unlock").onclick = tokenDialog;
     $("add").style.display = token ? "" : "none";
     Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = token ? "" : "none"; });
@@ -147,13 +161,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     return '<a class="pill ' + (s ? s.cls : "") + '" href="' + base + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">#' + n + (s ? " · " + s.label : "") + "</a>";
   }
 
-  function board() {
-    var q = query.toLowerCase();
-    $("board").innerHTML = data.statuses.map(function (st) {
-      var items = [];
-      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
-      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
-        (items.map(function (x) {
+  function cardHtml(x) {
           var i = x[0];
           return '<div class="card" data-i="' + x[1] + '"><b>' + esc(i.title) + "</b>" +
             (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
@@ -161,19 +169,47 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
             (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
             (i.prs || []).map(prPill).join("") +
             threadsOf(i).map(function (t) { return '<a class="pill thr" href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener" title="' + esc(t.title) + '" onclick="event.stopPropagation()">💬 ' + esc(t.title.length > 26 ? t.title.slice(0, 25) + "…" : t.title) + "</a>"; }).join("") + "</div>";
-        }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
+  }
+  var openGroups = {};
+  try { openGroups = JSON.parse(localStorage.getItem("quando.board.groups") || "{}"); } catch (e) {}
+  function colBody(items) {
+    var loose = items.filter(function (x) { return !x[0].group; }), groups = [], by = {};
+    items.forEach(function (x) { var g = x[0].group; if (g) { if (!by[g]) { by[g] = []; groups.push(g); } by[g].push(x); } });
+    return loose.map(cardHtml).join("") + groups.map(function (g) {
+      return '<details class="grp" data-g="' + esc(g) + '"' + (openGroups[g] || query ? " open" : "") + "><summary>" + esc(g) + "<span>" + by[g].length + "</span></summary>" + by[g].map(cardHtml).join("") + "</details>";
+    }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>';
+  }
+
+  function board() {
+    var q = query.toLowerCase();
+    $("board").innerHTML = data.statuses.map(function (st) {
+      var items = [];
+      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
+        colBody(items) + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("details.grp"), function (d) { d.addEventListener("toggle", function () { openGroups[d.getAttribute("data-g")] = d.open; try { localStorage.setItem("quando.board.groups", JSON.stringify(openGroups)); } catch (e) {} }); });
     Array.prototype.forEach.call(document.querySelectorAll(".addc"), function (b) { b.onclick = function () { editItem(-1, b.getAttribute("data-s")); }; });
     Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
 
+  function planCard(p, quiet) {
+    var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
+    return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status && !quiet ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note && !quiet ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+  }
   function plans() {
-    $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
-      var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
-      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
-    }).join("");
+    $("plans").innerHTML = data.plans.filter(function (p) { return p.group !== "business"; }).concat(data.downloads || []).map(function (p) { return planCard(p); }).join("");
+    $("biz").innerHTML = data.plans.filter(function (p) { return p.group === "business"; }).map(function (p) { return planCard(p, true); }).join("");
     Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); editPlan(b.getAttribute("data-p")); }; });
   }
+  function tab(t) {
+    if (t !== "business" && t !== "github") t = "board";
+    ["board", "business", "github"].forEach(function (n) { $("tab-" + n).hidden = n !== t; });
+    Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-t") === t ? "true" : "false"); });
+    try { history.replaceState(null, "", t === "board" ? location.pathname + location.search : "#" + t); } catch (e) {}
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.onclick = function () { tab(b.getAttribute("data-t")); }; });
+  tab(location.hash.slice(1));
 
   /* ---------- card detail ---------- */
   function stLabel(id) { var s = data.statuses.filter(function (x) { return x.id === id; })[0]; return s ? s.label : id; }
@@ -204,6 +240,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       '<label>Title</label><input id="f-title" value="' + esc(i.title) + '">' +
       '<label>Status</label><select id="f-status">' + opts(data.statuses.map(function (s) { return [s.id, s.label]; }), i.status) + "</select>" +
       '<label>Tag (one short word)</label><input id="f-tag" value="' + esc(i.tag || "") + '">' +
+      '<label>Group (optional; cards with the same group fold together)</label><input id="f-group" value="' + esc(i.group || "") + '">' +
       '<label>Plan it comes from</label><select id="f-plan">' + opts(data.plans.filter(function (p) { return p.id; }).map(function (p) { return [p.id, p.title]; }), i.plan || "", "None") + "</select>" +
       '<label>Short note (shown on the card)</label><input id="f-note" value="' + esc(i.note || "") + '">' +
       '<label>Details (shown when you click the card)</label><textarea id="f-details">' + esc(i.details || "") + "</textarea>" +
@@ -218,7 +255,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       if (!title) { say("Give it a title.", 1); return; }
       var item = { title: title, status: $("f-status").value };
       var tag = $("f-tag").value.trim(), plan = $("f-plan").value, note = $("f-note").value.trim(), det = $("f-details").value.trim();
-      if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
+      if ($("f-group").value.trim()) item.group = $("f-group").value.trim(); if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
       var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
       var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
       if (i.threadIds && i.threadIds.length) item.threadIds = i.threadIds;
@@ -258,8 +295,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; saveBoard("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
   }
 
-  function editPlan(id) {
-    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "" };
+  function editPlan(id, group) {
+    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "", group: group };
     open("<h3>" + (id ? "Edit plan" : "New plan") + "</h3>" +
       '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
       '<label>Link</label><input id="f-u" value="' + esc(x.url) + '" placeholder="https://…">' +
@@ -272,6 +309,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       var t = $("f-t").value.trim(), u = $("f-u").value.trim();
       if (!t || !u) { say("Give it a title and a link.", 1); return; }
       var pid = id || slug(t), np = { id: pid, title: t, url: u, status: $("f-s").value };
+      if (x.group) np.group = x.group;
       if ($("f-pv").checked) np.private = true; if ($("f-n").value.trim()) np.note = $("f-n").value.trim();
       saveBoard("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
         if (!id) { cur.plans.push(np); return; }
@@ -367,7 +405,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     } else {
       h += "<p>To save changes from this page, paste a GitHub token once. It stays in this browser only.</p><ol style='padding-left:20px;margin:0'>" +
         '<li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a fine-grained token</a>.</li>' +
-        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>.</li><li>Copy the token and paste it here.</li></ol>" +
+        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>, <b>Pull requests: Read</b> and <b>Issues: Read</b> (the last two let the live pull request list work while the repository is private).</li><li>Copy the token and paste it here.</li></ol>" +
         '<label>Token</label><input id="tk" type="password" autocomplete="off" placeholder="github_pat_…">' +
         '<div class="actions"><button class="btn primary" id="on">Turn on</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>';
     }
@@ -379,7 +417,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     };
   }
 
-  function gh(path) { return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function gh(path) { var hd = { Accept: "application/vnd.github+json" }; if (token) hd.Authorization = "Bearer " + token; return fetch("https://api.github.com/repos/" + data.repo + path, { headers: hd }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function live() {
     gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
@@ -389,7 +427,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
       $("prs").innerHTML = open.length ? open.map(function (p) {
         return '<div class="row"><div class="grow"><a href="' + esc(p.html_url) + '" target="_blank" rel="noopener">#' + p.number + " " + esc(p.title) + '</a><div class="mute">' + esc(p.head.ref) + " → " + esc(p.base.ref) + " · updated " + ago(p.updated_at) + "</div></div>" + prPill(p.number) + "</div>";
       }).join("") : '<div class="empty">No open pull requests.</div>';
-    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes.</div>'; });
+    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub. If the repository is private, turn on editing (top right) and paste a token that can read pull requests and issues; otherwise it may be rate limiting, so try again in a few minutes.</div>'; });
     gh("/issues?state=open&per_page=50").then(function (list) {
       var issues = list.filter(function (i) { return !i.pull_request; });
       $("issues").innerHTML = issues.length ? issues.map(function (i) {
@@ -398,12 +436,29 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     }).catch(function () { $("issues").innerHTML = '<div class="empty">Could not load issues.</div>'; });
   }
 
+  function runs() {
+    gh("/actions/runs?per_page=15").then(function (r) {
+      var list = r.workflow_runs || [];
+      $("runs").innerHTML = list.length ? list.map(function (w) {
+        var c = w.status !== "completed" ? "running" : w.conclusion || "done";
+        return '<div class="row"><div class="grow"><a href="' + esc(w.html_url) + '" target="_blank" rel="noopener">' + esc(w.name) + " · " + esc((w.display_title || "").split("\n")[0].slice(0, 80)) + '</a><div class="mute">' + esc(w.head_branch) + " · " + ago(w.updated_at) + '</div></div><span class="tag">' + esc(c) + "</span></div>";
+      }).join("") : '<div class="empty">No builds yet.</div>';
+    }).catch(function () { $("runs").innerHTML = '<div class="empty">Could not load builds.</div>'; });
+  }
+
   fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
-    data = d; chrome(); deadlines(); board(); plans(); live();
+    data = d; chrome(); deadlines(); board(); plans(); live(); runs();
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
     $("add").onclick = function () { editItem(-1); };
-    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); };
+    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); }; $("add-biz").onclick = function () { editPlan("", "business"); };
+    /* Coming back to the page after a while: reload the board and GitHub data so nothing is stale. */
+    var hiddenAt = 0;
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      if (!hiddenAt || Date.now() - hiddenAt < 60000 || $("dlg").open) return;
+      fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) { data = d; chrome(); deadlines(); board(); plans(); live(); runs(); }).catch(function () {});
+    });
   }).catch(function (e) {
     document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });

@@ -1,0 +1,15 @@
+{
+  "id": "pr-52",
+  "title": "Fix release builds: skip icon trimming, add ship.sh, fix Mac installer ID",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    52
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 150,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk3eMP7MwBexe56nFvksyWur"
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "id": "voice-alarm-parser-follow-ups",
+  "title": "Voice alarm parser follow-ups",
+  "status": "decide",
+  "tag": "app",
+  "note": "Parser fixes merged in PR #39. Still needs your call on the Plus paywall and the on-device model.",
+  "threads": [
+    "voice-followups"
+  ],
+  "details": "Not part of the Thursday release unless you say so. Calendar lock has no Plus paywall yet because the app has no Plus mechanism; on-device model is a proposal only.",
+  "order": 6
+}

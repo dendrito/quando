@@ -39,6 +39,7 @@ class RingPayload {
     this.scanCode,
     this.gentle = false,
     this.delivery = ReminderDelivery.inherit,
+    this.iWill = '',
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -72,6 +73,10 @@ class RingPayload {
   final bool wakeCheck;
   final bool mathTask;
   final bool shabbatSafe;
+
+  /// "When this rings, I will…": shown under the title instead of [body],
+  /// and read aloud after it.
+  final String iWill;
 
   /// This is the "are you up?" follow-up, not the original alarm.
   final bool isCheck;
@@ -165,6 +170,7 @@ class RingPayload {
     String? scanCode,
     bool? gentle,
     ReminderDelivery? delivery,
+    String? iWill,
   }) => RingPayload(
     title: title ?? this.title,
     body: body ?? this.body,
@@ -194,6 +200,7 @@ class RingPayload {
     scanCode: scanCode ?? this.scanCode,
     gentle: gentle ?? this.gentle,
     delivery: delivery ?? this.delivery,
+    iWill: iWill ?? this.iWill,
   );
 
   /// Rung from outside the plan (a calendar notification made loud), so
@@ -212,6 +219,8 @@ class RingPayload {
   RingPayload withFadesOf(Loudness fades) => _copy(
     loudness: loudness.copyWith(fadeInSeconds: fades.fadeInSeconds, fadeOutSeconds: fades.fadeOutSeconds),
   );
+
+  RingPayload withIWill(String line) => _copy(iWill: line.trim());
 
   RingPayload withRingSeconds(int seconds) => _copy(ringSeconds: seconds);
 
@@ -261,6 +270,7 @@ class RingPayload {
   /// just before the real alarm.
   RingPayload gentleLeadUp(int minutesBefore, String? sound) => _copy(
     body: l10n.gentleToGo(minutesBefore),
+    iWill: '',
     ringSeconds: (minutesBefore * 60 - 15).clamp(30, 3600),
     spoken: false,
     maxSnoozes: 0,
@@ -291,7 +301,7 @@ class RingPayload {
   bool get canSnooze => snoozeCount < maxSnoozes;
 
   /// What gets read aloud, e.g. "Candle lighting, Shabbat. 15 minutes before."
-  String get spokenText => '${title.replaceAll(' · ', ', ')}. $body.';
+  String get spokenText => '${title.replaceAll(' · ', ', ')}. ${iWill.isEmpty ? body : iWill}.';
 
   RingPayload snoozed() => _copy(
     body: body.startsWith(l10n.snoozedBody('')) ? body : l10n.snoozedBody(body),
@@ -303,6 +313,7 @@ class RingPayload {
   RingPayload check() => _copy(
     title: l10n.areYouUp,
     body: l10n.tapImUp,
+    iWill: '',
     maxSnoozes: 0,
     wakeCheck: false,
     mathTask: false,
@@ -345,6 +356,7 @@ class RingPayload {
     'scanCode': scanCode,
     'gentle': gentle,
     'delivery': delivery.toJson(),
+    if (iWill.isNotEmpty) 'iWill': iWill,
   });
 
   static RingPayload decode(String? raw, {String? fallbackTitle, String fallbackBody = ''}) {
@@ -379,6 +391,7 @@ class RingPayload {
         scanCode: j['scanCode'] as String?,
         gentle: j['gentle'] as bool? ?? false,
         delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
+        iWill: j['iWill'] as String? ?? '',
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle ?? l10n.alarm, body: fallbackBody, ringSeconds: 60);

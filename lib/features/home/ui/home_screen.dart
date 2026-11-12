@@ -32,7 +32,9 @@ import '../domain/home_grid.dart';
 import '../data/home_grid_provider.dart';
 import 'home_grid_view.dart';
 import 'home_tool_cards.dart';
+import 'header_pills.dart';
 import 'sky_panel.dart';
+import '../../settings/domain/ui_level.dart';
 import 'learning_card.dart';
 import 'week_list.dart';
 
@@ -451,6 +453,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final skyPlace = ref.watch(skyPlaceProvider);
     final sky = skyPlace == null ? SkyDay(now: now) : SkyDay.of(skyPlace, now);
     final display = ref.watch(homeDisplayProvider);
+    final simple = ref.watch(uiLevelProvider) == UiLevel.simple;
 
     // Shabbat times in the Shabbat city's clock; everything else in yours.
     String cityTime(DateTime utc) => hhmm(inZone(utc, place.timeZone));
@@ -631,7 +634,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             HomeCard.sky: GridCardSpec(
               title: cardName(HomeCard.sky),
               fill: sky.color,
-              child: SkyPanel(sky: sky, marks: marks),
+              child: SkyPanel(sky: sky, marks: marks, simple: simple),
             ),
             HomeCard.moon: GridCardSpec(
               title: cardName(HomeCard.moon),
@@ -727,30 +730,45 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: const Icon(Icons.dashboard_customize_outlined),
                         onPressed: () => setState(() => _arranging = !_arranging),
                       ),
-                    // The tools card has the timers; on a phone the header needs the room.
-                    if (!cardsMode || width >= 700)
+                    // Simple: only Settings. Everything: the pills below.
+                    if (simple)
                       IconButton(
-                        tooltip: l10n.timersTitle,
-                        icon: const Icon(Icons.timer_outlined),
-                        onPressed: () => context.push('/timers'),
+                        tooltip: l10n.settings,
+                        icon: const Icon(Icons.tune),
+                        onPressed: () => context.push('/settings'),
                       ),
-                    IconButton(
-                      tooltip: l10n.lockMode,
-                      icon: const Icon(Icons.lock_outline),
-                      onPressed: () => context.push('/lock'),
-                    ),
-                    IconButton(
-                      tooltip: l10n.calendars,
-                      icon: const Icon(Icons.event_outlined),
-                      onPressed: () => context.push('/calendar'),
-                    ),
-                    IconButton(
-                      tooltip: l10n.settings,
-                      icon: const Icon(Icons.tune),
-                      onPressed: () => context.push('/settings'),
-                    ),
                   ],
                 ),
+                if (!simple)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 6),
+                    child: HeaderPills(
+                      actions: [
+                        // The tools card has the timers; on a phone the header needs the room.
+                        if (!cardsMode || width >= 700)
+                          HeaderAction(
+                            icon: Icons.timer_outlined,
+                            label: l10n.timersTitle,
+                            onTap: () => context.push('/timers'),
+                          ),
+                        HeaderAction(
+                          icon: Icons.event_outlined,
+                          label: l10n.calendars,
+                          onTap: () => context.push('/calendar'),
+                        ),
+                        HeaderAction(
+                          icon: Icons.lock_outline,
+                          label: l10n.lockMode,
+                          onTap: () => context.push('/lock'),
+                        ),
+                        HeaderAction(
+                          icon: Icons.tune,
+                          label: l10n.settings,
+                          onTap: () => context.push('/settings'),
+                        ),
+                      ],
+                    ),
+                  ),
                 // Quando? Shabbat: the Hebrew date and this week's parasha.
                 if (jewishHome || display.parasha)
                   Builder(
@@ -866,6 +884,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         QuoteLine(now: now, idle: next == null),
                         const SizedBox(height: 10),
                         SkyPanel(
+                          simple: simple,
                           sky: sky,
                           marks: [
                             for (final a in upcoming)
@@ -936,12 +955,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     onChanged: ref.read(homeGridProvider.notifier).set,
                   ),
                 ] else if (!jewishHome || !_showShabbat) ...[
-                  // ---- Stopwatch, timer and "get set": one tap away ----
-                  const _TimerTiles(),
-                  const SizedBox(height: 16),
-                  // ---- One-tap "when" ----
-                  quick,
-                  const SizedBox(height: 16),
+                  if (!simple) ...[
+                    // ---- Stopwatch, timer and "get set": one tap away ----
+                    const _TimerTiles(),
+                    const SizedBox(height: 16),
+                    // ---- One-tap "when" ----
+                    quick,
+                    const SizedBox(height: 16),
+                  ],
 
                   if (!jewishHome && ref.watch(shabbatInUseProvider)) ...shabbat,
                   // ---- Your alarms ----
@@ -980,29 +1001,31 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                     ],
                   ],
 
-                  // ---- This week ----
-                  const SizedBox(height: 18),
-                  Text(l10n.thisWeekHeading, style: text.labelSmall),
-                  if (ref.watch(fullPlanProvider).isEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 12),
-                      child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
+                  if (!simple) ...[
+                    // ---- This week ----
+                    const SizedBox(height: 18),
+                    Text(l10n.thisWeekHeading, style: text.labelSmall),
+                    if (ref.watch(fullPlanProvider).isEmpty)
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 12),
+                        child: Text(l10n.noAlarmsThisWeek, style: text.bodySmall),
+                      ),
+                    WeekList(
+                      days: weekPlan(ref.watch(fullPlanProvider), home),
+                      today: inZone(now, home),
+                      zone: home,
+                      skipped: ref.watch(skippedProvider),
+                      onTap: _alarmActions,
+                      onSeries: (s) => _actions(s.alarms),
                     ),
-                  WeekList(
-                    days: weekPlan(ref.watch(fullPlanProvider), home),
-                    today: inZone(now, home),
-                    zone: home,
-                    skipped: ref.watch(skippedProvider),
-                    onTap: _alarmActions,
-                    onSeries: (s) => _actions(s.alarms),
-                  ),
 
-                  // ---- World clocks ----
-                  const SizedBox(height: 22),
-                  const WorldClocks(),
+                    // ---- World clocks ----
+                    const SizedBox(height: 22),
+                    const WorldClocks(),
 
-                  const SizedBox(height: 16),
-                  Text(l10n.alarmsSetThemselves, style: text.bodySmall),
+                    const SizedBox(height: 16),
+                    Text(l10n.alarmsSetThemselves, style: text.bodySmall),
+                  ],
                 ],
               ],
             ),

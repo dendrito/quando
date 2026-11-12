@@ -1,0 +1,19 @@
+{
+  "id": "assess-quando-for-market-and-accelerators",
+  "title": "Assess Quando? for market and accelerators",
+  "status": "decide",
+  "tag": "business",
+  "plan": "business",
+  "note": "Assessment doc is ready to read: how the app will be perceived, what to change, accelerator gates, emails and prompts.",
+  "details": "Private Claude doc linked below. Covers perception today, strengths and weaknesses, what to change before Thursday, one product versus split, the superapp question, a timeline with gates, accelerator options, and outreach emails. Nothing is sent without your yes.",
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkGpraLCjecBQRdpxWaGAGNw"
+  ],
+  "docs": [
+    {
+      "title": "Market and accelerator assessment (private doc)",
+      "url": "https://claude.ai/artifact/8CiGHiLYdUMN6hSE6YNK3S"
+    }
+  ],
+  "order": 16
+}

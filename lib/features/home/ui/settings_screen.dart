@@ -14,6 +14,10 @@ import '../../timezones/ui/zone_picker.dart';
 import '../../ringing/ring_payload.dart';
 import '../../ringing/ui/alarm_extras.dart';
 import '../../settings/domain/alarm_options.dart';
+import '../../settings/domain/ui_level.dart';
+import '../../settings/ui/level_switch.dart';
+import '../../settings/ui/quick_setups.dart';
+import '../../../app/widgets/fold.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
 import '../../ready/ready_screen.dart';
@@ -40,6 +44,219 @@ class SettingsScreen extends ConsumerWidget {
       child: Text(title.toUpperCase(), style: text.labelSmall),
     );
 
+    final simple = ref.watch(uiLevelProvider) == UiLevel.simple;
+
+    // ---- The rows. Each entry is one row, so a fold can count them. ----
+    final sound = <Widget>[
+      SoundPickerTile(
+        value: o.soundId,
+        allowDefault: false,
+        onChanged: (id) => setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
+      ),
+    ];
+    final snooze = Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Text(o.maxSnoozes == 0 ? l10n.noSnooze : l10n.snoozeUpTo(o.maxSnoozes, o.snoozeMinutes)),
+        Slider(
+          min: 0,
+          max: 5,
+          divisions: 5,
+          value: o.maxSnoozes.toDouble(),
+          label: '${o.maxSnoozes}',
+          onChanged: (v) => setO((x) => x.copyWith(maxSnoozes: v.round())),
+        ),
+      ],
+    );
+    final wakeCheck = SwitchListTile(
+      contentPadding: EdgeInsets.zero,
+      title: Text(l10n.wakeUpCheck),
+      subtitle: Text(l10n.wakeUpCheckHint),
+      value: o.wakeCheck,
+      onChanged: (v) => setO((x) => x.copyWith(wakeCheck: v)),
+    );
+
+    final alarmRows = <Widget>[
+      ...sound,
+      Align(
+        alignment: Alignment.centerLeft,
+        child: TextButton.icon(
+          onPressed: () => context.push('/sounds'),
+          icon: const Icon(Icons.mic_none),
+          label: Text(l10n.recordOrAddSounds),
+        ),
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.defaultForNewAlarms, style: text.labelSmall),
+          const SizedBox(height: 2),
+          Text(l10n.ringsForThisLong, style: text.bodySmall),
+          const SizedBox(height: 8),
+          RingLengthPicker(
+            seconds: o.ringSeconds,
+            onChanged: (s) => setO((x) => x.copyWith(ringSeconds: s)),
+          ),
+        ],
+      ),
+      Column(
+        children: [
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.sameFades),
+            subtitle: Text(o.fadesForAll ? l10n.sameFadesOn : l10n.sameFadesOff),
+            value: o.fadesForAll,
+            onChanged: (v) => setO((x) => x.copyWith(fadesForAll: v)),
+          ),
+          if (o.fadesForAll)
+            LoudnessEditor(
+              fadesOnly: true,
+              value: o.loudness,
+              onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
+            ),
+        ],
+      ),
+      SwitchListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(l10n.sayItOutLoud),
+        subtitle: Text(l10n.sayItOutLoudHint),
+        value: o.spoken,
+        onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
+      ),
+      snooze,
+      wakeCheck,
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          SwitchListTile(
+            contentPadding: EdgeInsets.zero,
+            title: Text(l10n.solveSum),
+            subtitle: Text(l10n.provesAwake),
+            value: o.mathTask,
+            onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
+          ),
+          if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
+        ],
+      ),
+      Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          const SizedBox(height: 8),
+          OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
+          if (isMacOS)
+            Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: Text(
+                Localizations.localeOf(context).languageCode == 'pt'
+                    ? 'No Mac, mantenha o app aberto e o computador acordado para os alarmes. Fechar a janela mantém o app em execução; Sair o encerra.'
+                    : 'On Mac, keep the app running and the computer awake for alarms. Closing the window keeps the app running; Quit stops it.',
+                style: text.bodySmall,
+              ),
+            ),
+        ],
+      ),
+    ];
+
+    final calendarShabbat = <Widget>[
+      // In Quando? Shabbat stays tucked away until it is turned on.
+      if (!kodesh)
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+          title: Text(l10n.shabbatAndFestivals),
+          subtitle: Text(shabbatOn ? l10n.on : l10n.off),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.push('/shabbat'),
+        ),
+    ];
+    final places = <Widget>[
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.public, color: QuandoColors.amber),
+        title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
+        subtitle: Text(
+          zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+        ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => _pickHomeZone(context, ref),
+      ),
+    ];
+    final look = <Widget>[
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.translate, color: QuandoColors.amber),
+        title: Text(l10n.language),
+        subtitle: Text(
+          ref.watch(languageProvider) == null
+              ? l10n.phoneLanguage
+              : languageNames[ref.watch(languageProvider)] ?? '',
+        ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => _pickLanguage(context, ref),
+      ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
+        title: Text(l10n.quotesTitle),
+        subtitle: Text(
+          ref.watch(quoteSourcesProvider).isEmpty
+              ? l10n.quotesOff
+              : [
+                  for (final s in QuoteSource.values)
+                    if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
+                ].join(', '),
+          maxLines: 2,
+          overflow: TextOverflow.ellipsis,
+        ),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => showModalBottomSheet<void>(
+          context: context,
+          showDragHandle: true,
+          isScrollControlled: true,
+          builder: (context) => const QuoteSourcesSheet(),
+        ),
+      ),
+    ];
+    final connections = <Widget>[
+      if (ref.read(syncProvider.notifier).available) const _AccountCard(),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
+        title: Text(l10n.connections),
+        subtitle: const Text('Pushover, Zapier, IFTTT'),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/connections'),
+      ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+        title: Text(l10n.busyMode),
+        subtitle: Text(l10n.busyModeSubtitle),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/busy'),
+      ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
+        title: Text(l10n.weatherRemindersTitle),
+        subtitle: Text(l10n.weatherRemindersSubtitle),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/weather-alarms'),
+      ),
+      if (isAndroid)
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
+          title: Text(l10n.shareCard),
+          subtitle: Text(l10n.shareCardSubtitle),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.push('/share'),
+        ),
+    ];
+
+    Widget fold(String title, List<Widget> rows) =>
+        rows.isEmpty ? const SizedBox.shrink() : Fold(title: title, count: rows.length, children: rows);
+
     return Scaffold(
       appBar: AppBar(title: Text(l10n.settings), backgroundColor: Colors.transparent),
       body: ListView(
@@ -56,187 +273,31 @@ class SettingsScreen extends ConsumerWidget {
               onTap: () => context.push('/ready'),
             ),
 
-          // ---- Your account & devices ----
-          const _AccountCard(),
+          // ---- Simple or Everything ----
+          const LevelSwitch(),
 
-          // ---- Alarm defaults ----
-          group(l10n.settingsAlarmDefaults),
-          SoundPickerTile(
-            value: o.soundId,
-            allowDefault: false,
-            onChanged: (id) =>
-                setO((x) => id == null ? x.copyWith(phoneSound: true) : x.copyWith(soundId: id)),
-          ),
-          Align(
-            alignment: Alignment.centerLeft,
-            child: TextButton.icon(
-              onPressed: () => context.push('/sounds'),
-              icon: const Icon(Icons.mic_none),
-              label: Text(l10n.recordOrAddSounds),
-            ),
-          ),
-          Text(l10n.defaultForNewAlarms, style: text.labelSmall),
-          const SizedBox(height: 2),
-          Text(l10n.ringsForThisLong, style: text.bodySmall),
-          const SizedBox(height: 8),
-          RingLengthPicker(
-            seconds: o.ringSeconds,
-            onChanged: (s) => setO((x) => x.copyWith(ringSeconds: s)),
-          ),
-          const SizedBox(height: 8),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.sameFades),
-            subtitle: Text(o.fadesForAll ? l10n.sameFadesOn : l10n.sameFadesOff),
-            value: o.fadesForAll,
-            onChanged: (v) => setO((x) => x.copyWith(fadesForAll: v)),
-          ),
-          if (o.fadesForAll)
-            LoudnessEditor(
-              fadesOnly: true,
-              value: o.loudness,
-              onChanged: (l) => setO((x) => x.copyWith(loudness: l)),
-            ),
-          const SizedBox(height: 8),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.sayItOutLoud),
-            subtitle: Text(l10n.sayItOutLoudHint),
-            value: o.spoken,
-            onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
-          ),
-          Text(o.maxSnoozes == 0 ? l10n.noSnooze : l10n.snoozeUpTo(o.maxSnoozes, o.snoozeMinutes)),
-          Slider(
-            min: 0,
-            max: 5,
-            divisions: 5,
-            value: o.maxSnoozes.toDouble(),
-            label: '${o.maxSnoozes}',
-            onChanged: (v) => setO((x) => x.copyWith(maxSnoozes: v.round())),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.wakeUpCheck),
-            subtitle: Text(l10n.wakeUpCheckHint),
-            value: o.wakeCheck,
-            onChanged: (v) => setO((x) => x.copyWith(wakeCheck: v)),
-          ),
-          SwitchListTile(
-            contentPadding: EdgeInsets.zero,
-            title: Text(l10n.solveSum),
-            subtitle: Text(l10n.provesAwake),
-            value: o.mathTask,
-            onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
-          ),
-          if (shabbatOn) Text(l10n.shabbatNoTasks, style: text.bodySmall),
-          const SizedBox(height: 16),
-          OutlinedButton(onPressed: () => _testAlarm(context, ref, o), child: Text(l10n.testAlarmIn1)),
-          if (isMacOS)
-            Padding(
-              padding: const EdgeInsets.only(top: 8),
-              child: Text(
-                Localizations.localeOf(context).languageCode == 'pt'
-                    ? 'No Mac, mantenha o app aberto e o computador acordado para os alarmes. Fechar a janela mantém o app em execução; Sair o encerra.'
-                    : 'On Mac, keep the app running and the computer awake for alarms. Closing the window keeps the app running; Quit stops it.',
-                style: text.bodySmall,
-              ),
-            ),
+          if (simple) ...[
+            // ---- Quick setups ----
+            const QuickSetupsRow(),
 
-          // ---- Places & time ----
-          group(l10n.settingsPlacesTime),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.public, color: QuandoColors.amber),
-            title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
-            subtitle: Text(
-              zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+            // ---- Every alarm ----
+            group(l10n.everyAlarm),
+            ...sound,
+            snooze,
+            wakeCheck,
+          ] else ...[
+            // ---- Quick setups, folded ----
+            Fold(
+              title: l10n.quickSetups,
+              summary: l10n.qsSummary(QuickSetupsRow.total, QuickSetupsRow.onCount(ref)),
+              children: const [QuickSetupsRow(showTitle: false)],
             ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickHomeZone(context, ref),
-          ),
-          // In Quando? Shabbat stays tucked away until it is turned on.
-          if (!kodesh)
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
-              title: Text(l10n.shabbatAndFestivals),
-              subtitle: Text(shabbatOn ? l10n.on : l10n.off),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.push('/shabbat'),
-            ),
-
-          // ---- Look, language & quotes ----
-          group(l10n.settingsLook),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.translate, color: QuandoColors.amber),
-            title: Text(l10n.language),
-            subtitle: Text(
-              ref.watch(languageProvider) == null
-                  ? l10n.phoneLanguage
-                  : languageNames[ref.watch(languageProvider)] ?? '',
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _pickLanguage(context, ref),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
-            title: Text(l10n.quotesTitle),
-            subtitle: Text(
-              ref.watch(quoteSourcesProvider).isEmpty
-                  ? l10n.quotesOff
-                  : [
-                      for (final s in QuoteSource.values)
-                        if (ref.watch(quoteSourcesProvider).contains(s)) quoteSourceName(s),
-                    ].join(', '),
-              maxLines: 2,
-              overflow: TextOverflow.ellipsis,
-            ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => showModalBottomSheet<void>(
-              context: context,
-              showDragHandle: true,
-              isScrollControlled: true,
-              builder: (context) => const QuoteSourcesSheet(),
-            ),
-          ),
-
-          // ---- Connections ----
-          group(l10n.connections),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
-            title: Text(l10n.connections),
-            subtitle: const Text('Pushover, Zapier, IFTTT'),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.push('/connections'),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
-            title: Text(l10n.busyMode),
-            subtitle: Text(l10n.busyModeSubtitle),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.push('/busy'),
-          ),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
-            title: Text(l10n.weatherRemindersTitle),
-            subtitle: Text(l10n.weatherRemindersSubtitle),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => context.push('/weather-alarms'),
-          ),
-          if (isAndroid)
-            ListTile(
-              contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
-              title: Text(l10n.shareCard),
-              subtitle: Text(l10n.shareCardSubtitle),
-              trailing: const Icon(Icons.chevron_right),
-              onTap: () => context.push('/share'),
-            ),
+            fold(l10n.groupAlarms, alarmRows),
+            fold(l10n.groupCalendarShabbat, calendarShabbat),
+            fold(l10n.settingsPlacesTime, places),
+            fold(l10n.groupLookQuotes, look),
+            fold(l10n.groupConnectionsSync, connections),
+          ],
 
           // ---- About ----
           group(l10n.settingsAbout),
@@ -462,6 +523,13 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                     onPressed: notifier.signOut,
                     icon: const Icon(Icons.logout, size: 18),
                     label: Text(l10n.signOut),
+                  ),
+                if (on)
+                  TextButton(
+                    style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+                    onPressed: () =>
+                        showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
+                    child: Text(l10n.deleteAccount),
                   )
                 else if (sync.phase == SyncPhase.verify) ...[
                   FilledButton(
@@ -644,4 +712,83 @@ class _VersionLine extends StatelessWidget {
     padding: const EdgeInsets.symmetric(vertical: 16),
     child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
   );
+}
+
+/// Asks twice-over before erasing the account: a warning, and the password
+/// (email accounts) or a fresh Google sign-in.
+class _DeleteAccountDialog extends ConsumerStatefulWidget {
+  const _DeleteAccountDialog();
+
+  @override
+  ConsumerState<_DeleteAccountDialog> createState() => _DeleteAccountDialogState();
+}
+
+class _DeleteAccountDialogState extends ConsumerState<_DeleteAccountDialog> {
+  final _password = TextEditingController();
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _delete() async {
+    final notifier = ref.read(syncProvider.notifier);
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    final error = await notifier.deleteAccount(password: _password.text);
+    if (!mounted) return;
+    if (error == null) {
+      navigator.pop();
+      messenger.showSnackBar(SnackBar(content: Text(l10n.accountDeleted)));
+    } else {
+      setState(() {
+        _busy = false;
+        _error = error.isEmpty ? null : error;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final usesPassword = ref.read(syncProvider.notifier).usesPassword;
+    return AlertDialog(
+      title: Text(l10n.deleteAccountTitle),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.deleteAccountBody),
+          if (usesPassword) ...[
+            const SizedBox(height: 12),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              decoration: InputDecoration(labelText: l10n.password),
+            ),
+          ],
+          if (_error != null) ...[
+            const SizedBox(height: 12),
+            Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(onPressed: _busy ? null : () => Navigator.of(context).pop(), child: Text(l10n.cancel)),
+        TextButton(
+          style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+          onPressed: _busy ? null : _delete,
+          child: _busy
+              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              : Text(l10n.deleteAccount),
+        ),
+      ],
+    );
+  }
 }
