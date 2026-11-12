@@ -375,6 +375,7 @@ class WeatherLocationNotifier extends Notifier<Place?> {
     try {
       final point = await ref.read(locationLookupProvider).current();
       final device = ref.read(deviceZoneProvider);
+      // ignore: prefer_if_null_operators
       final String zone = device != null ? device : ref.read(homeZoneProvider);
       _store(
         Place(
