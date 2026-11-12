@@ -1,11 +1,11 @@
 import 'dart:async';
-import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../app/providers.dart';
+import '../../../core/geo/offline_cities.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
 import '../../../core/util/local_time.dart';
@@ -106,23 +106,6 @@ class _CityPickerState extends ConsumerState<CityPicker> {
     }
   }
 
-  /// The known city within 60 km of the fix, so a fix in Rio reads "Rio de
-  /// Janeiro" instead of its time zone's name ("São Paulo").
-  static String? _nearestCity(double lat, double lon) {
-    String? best;
-    var bestKm = 60.0;
-    for (final p in Places.all) {
-      final dLat = (p.latitude - lat) * 111.2;
-      final dLon = (p.longitude - lon) * 111.2 * math.cos(lat * math.pi / 180);
-      final km = math.sqrt(dLat * dLat + dLon * dLon);
-      if (km < bestKm) {
-        bestKm = km;
-        best = p.name;
-      }
-    }
-    return best;
-  }
-
   static String normalized(String s) {
     const accents = 'áàâãäéèêëíìîïóòôõöúùûüç';
     const plain = 'aaaaaeeeeiiiiooooouuuuc';
@@ -146,6 +129,8 @@ class _CityPickerState extends ConsumerState<CityPicker> {
       }
       final point = await ref.read(locationLookupProvider).current();
       if (!mounted) return;
+      // Not awaited: the dialog opens at once and the city name fills in.
+      final nearby = OfflineCities.nearest(point.latitude, point.longitude);
       var inIsrael = zone == 'Asia/Jerusalem';
       final confirmed = await showDialog<bool>(
         context: context,
@@ -162,7 +147,10 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  Text(_nearestCity(point.latitude, point.longitude) ?? cityOf(zone)),
+                  FutureBuilder<String?>(
+                    future: nearby,
+                    builder: (context, snap) => Text(snap.data ?? cityOf(zone)),
+                  ),
                   if (!widget.forSky)
                     SwitchListTile(
                       title: Text(l10n.inIsraelOneDay),

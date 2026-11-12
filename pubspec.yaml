@@ -63,10 +63,12 @@ flutter:
   assets:
     - assets/sounds/
     - assets/brands/
+    - assets/geo/
     - third_party/suncalc/LICENSE
     - third_party/astronomia/LICENSE
     - third_party/hebcal/LICENSE
     - third_party/cldr/LICENSE
+    - third_party/geonames/LICENSE
   fonts:
     - family: Bricolage
       fonts:
