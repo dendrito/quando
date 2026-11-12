@@ -30,7 +30,6 @@ tolkien = Wir müssen nur entscheiden, was wir mit der Zeit anfangen wollen, die
 machado = Wanderer, es gibt keinen Weg; der Weg entsteht beim Gehen. | Antonio Machado
 lamartine = O Zeit, halte deinen Flug an! | Alphonse de Lamartine
 goethe = Verweile doch! Du bist so schön! | Johann Wolfgang von Goethe
-dante = Zeit zu verlieren schmerzt am meisten den, der am meisten weiß. | Dante Alighieri
 szymborska = Nichts geschieht zweimal. | Wisława Szymborska
 kabir = Was morgen zu tun ist, tu heute; was heute zu tun ist, tu jetzt. | Kabir
 churchill = Dies ist nicht das Ende. Es ist nicht einmal der Anfang vom Ende. Aber es ist vielleicht das Ende des Anfangs. | Winston Churchill

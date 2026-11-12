@@ -30,7 +30,6 @@ tolkien = Tout ce que nous avons à décider, c'est ce que nous devons faire du 
 machado = Voyageur, il n'y a pas de chemin ; le chemin se fait en marchant. | Antonio Machado
 lamartine = Ô temps, suspends ton vol ! | Alphonse de Lamartine
 goethe = Arrête-toi, tu es si beau ! | Goethe
-dante = Perdre son temps déplaît surtout à qui en sait le plus. | Dante Alighieri
 szymborska = Rien n'arrive deux fois. | Wisława Szymborska
 kabir = Ce qui est pour demain, fais-le aujourd'hui ; ce qui est pour aujourd'hui, fais-le maintenant. | Kabir
 churchill = Ce n'est pas la fin. Ce n'est même pas le commencement de la fin. Mais c'est peut-être la fin du commencement. | Winston Churchill

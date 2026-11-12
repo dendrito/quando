@@ -30,7 +30,6 @@ tolkien = Tudo o que temos de decidir é o que fazer com o tempo que nos é dado
 machado = Caminhante, não há caminho; o caminho se faz ao andar. | Antonio Machado
 lamartine = Ó tempo, suspende o teu voo! | Alphonse de Lamartine
 goethe = Detém-te, és tão belo! | Goethe
-dante = Perder tempo desagrada mais a quem mais sabe. | Dante Alighieri
 szymborska = Nada acontece duas vezes. | Wisława Szymborska
 kabir = O que é para amanhã, faça hoje; o que é para hoje, faça agora. | Kabir
 churchill = Este não é o fim. Não é nem o começo do fim. Mas é, talvez, o fim do começo. | Winston Churchill

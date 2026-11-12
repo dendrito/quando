@@ -35,7 +35,6 @@ tolkien literature any en
 machado literature morning es
 lamartine literature evening fr
 goethe literature any de
-dante literature day it
 szymborska literature any pl
 kabir literature day hi
 churchill speeches evening en

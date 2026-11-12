@@ -30,7 +30,6 @@ tolkien = Musimy tylko zdecydować, co zrobić z czasem, który został nam dany
 machado = Wędrowcze, nie ma drogi; drogę tworzy się, idąc. | Antonio Machado
 lamartine = O czasie, wstrzymaj swój lot! | Alphonse de Lamartine
 goethe = Trwaj, chwilo, jesteś piękna! | Goethe
-dante = Strata czasu najbardziej boli tego, kto najwięcej wie. | Dante Alighieri
 szymborska = Nic dwa razy się nie zdarza. | Wisława Szymborska
 kabir = Co na jutro, zrób dziś; co na dziś, zrób teraz. | Kabir
 churchill = To nie jest koniec. To nawet nie jest początek końca. Ale być może jest to koniec początku. | Winston Churchill

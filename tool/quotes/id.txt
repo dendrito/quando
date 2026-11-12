@@ -30,7 +30,6 @@ tolkien = Yang perlu kita putuskan hanyalah apa yang kita lakukan dengan waktu y
 machado = Pengembara, tak ada jalan; jalan tercipta dengan berjalan. | Antonio Machado
 lamartine = Wahai waktu, hentikan terbangmu! | Alphonse de Lamartine
 goethe = Tinggallah sejenak, kau begitu indah! | Goethe
-dante = Kehilangan waktu paling menyakitkan bagi dia yang paling tahu. | Dante Alighieri
 szymborska = Tak ada yang terjadi dua kali. | Wisława Szymborska
 kabir = Kerjakan hari ini yang untuk besok, dan sekarang yang untuk hari ini. | Kabir
 churchill = Ini bukan akhir. Ini bahkan bukan awal dari akhir. Tapi mungkin, ini akhir dari awal. | Winston Churchill
