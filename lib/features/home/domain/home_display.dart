@@ -9,6 +9,7 @@ enum HomeStyle { auto, classic, cards }
 
 class HomeDisplay {
   const HomeDisplay({
+    this.sun = true,
     this.night = true,
     this.moon = true,
     this.moonDetails = true,
@@ -21,7 +22,7 @@ class HomeDisplay {
     this.clock = ClockSize.large,
     this.style = HomeStyle.auto,
   });
-  final bool night, moon, weather, parasha, roshHodesh;
+  final bool sun, night, moon, weather, parasha, roshHodesh;
 
   /// An extra swipe page with the big Moon phase view.
   final bool moonDetails;
@@ -39,6 +40,7 @@ class HomeDisplay {
   bool cardsOn(double width) => style == HomeStyle.cards || (style == HomeStyle.auto && width >= 700);
   static const courseIds = {'daf', 'rambam1', 'rambam3', 'mitzvot', 'mishnah', 'nach'};
   HomeDisplay copyWith({
+    bool? sun,
     bool? night,
     bool? moon,
     bool? moonDetails,
@@ -51,6 +53,7 @@ class HomeDisplay {
     ClockSize? clock,
     HomeStyle? style,
   }) => HomeDisplay(
+    sun: sun ?? this.sun,
     night: night ?? this.night,
     moon: moon ?? this.moon,
     moonDetails: moonDetails ?? this.moonDetails,
@@ -64,6 +67,7 @@ class HomeDisplay {
     style: style ?? this.style,
   );
   Map<String, dynamic> toJson() => {
+    'sun': sun,
     'night': night,
     'moon': moon,
     'moonDetails': moonDetails,
@@ -77,6 +81,7 @@ class HomeDisplay {
     'style': style.name,
   };
   factory HomeDisplay.fromJson(Map<String, dynamic> j, {bool parashaDefault = false}) => HomeDisplay(
+    sun: j['sun'] as bool? ?? true,
     night: j['night'] as bool? ?? true,
     moon: j['moon'] as bool? ?? true,
     moonDetails: j['moonDetails'] as bool? ?? true,

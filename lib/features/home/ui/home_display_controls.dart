@@ -76,6 +76,11 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   ),
                 ),
                 SwitchListTile(
+                  title: Text(l10n.skySun),
+                  value: s.sun,
+                  onChanged: (v) => n.set(s.copyWith(sun: v)),
+                ),
+                SwitchListTile(
                   title: Text(l10n.skyDayNight),
                   subtitle: Text('${l10n.moonriseLabel} · ${l10n.moonsetLabel} · ${l10n.nightfallLabel}'),
                   value: s.night,
