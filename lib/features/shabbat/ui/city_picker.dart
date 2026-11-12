@@ -67,8 +67,11 @@ class LocationFailure implements Exception {
 final locationLookupProvider = Provider<LocationLookup>((ref) => LocationLookup());
 
 class CityPicker extends ConsumerStatefulWidget {
-  const CityPicker({super.key, this.forSky = false, this.locateOnOpen = false});
+  const CityPicker({super.key, this.forSky = false, this.forWeather = false, this.locateOnOpen = false});
   final bool forSky;
+
+  /// Picks only where the weather is for; Shabbat and the sky stay as they are.
+  final bool forWeather;
   final bool locateOnOpen;
   @override
   ConsumerState<CityPicker> createState() => _CityPickerState();
@@ -91,7 +94,10 @@ class _CityPickerState extends ConsumerState<CityPicker> {
   }
 
   void _save(Place place, {bool local = false}) {
-    if (widget.forSky) {
+    if (widget.forWeather) {
+      ref.read(weatherLocationProvider.notifier).setManual(place);
+      unawaited(ref.read(weatherAlertsProvider.notifier).refresh());
+    } else if (widget.forSky) {
       ref.read(skyLocationProvider.notifier).set(place);
       unawaited(
         ref
@@ -125,6 +131,13 @@ class _CityPickerState extends ConsumerState<CityPicker> {
       final zone = ref.read(deviceZoneProvider);
       if (zone == null) {
         throw const LocationFailure(LocationProblem.timezone);
+      }
+      if (widget.forWeather) {
+        ref.read(weatherLocationProvider.notifier).useDevice();
+        await ref.read(weatherLocationProvider.notifier).refreshPrecise(force: true);
+        unawaited(ref.read(weatherAlertsProvider.notifier).refresh());
+        if (mounted) Navigator.pop(context);
+        return;
       }
       final point = await ref.read(locationLookupProvider).current();
       if (!mounted) return;
@@ -200,7 +213,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
 
   @override
   Widget build(BuildContext context) {
-    final choices = widget.forSky
+    final choices = widget.forSky || widget.forWeather
         ? <String, Place>{
             for (final p in [...ZonePlaces.all, ...Places.all]) '${p.name}|${p.timeZone}': p,
           }.values
@@ -209,7 +222,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
         choices.where((p) => normalized('${p.name} ${p.timeZone}').contains(normalized(_query))).toList()
           ..sort((a, b) => a.name.compareTo(b.name));
     return Scaffold(
-      appBar: AppBar(title: Text(widget.forSky ? l10n.skyChooseCity : l10n.changeCity)),
+      appBar: AppBar(title: Text(widget.forSky || widget.forWeather ? l10n.skyChooseCity : l10n.changeCity)),
       body: Column(
         children: [
           Padding(

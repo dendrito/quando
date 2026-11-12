@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/foundation.dart' show debugPrint;
 import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,6 +37,7 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+import '../features/shabbat/ui/city_picker.dart' show locationLookupProvider;
 import '../features/weather_alarms/data/weather_alarm_alarms.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/shabbat/domain/preparation.dart';
@@ -323,6 +325,84 @@ final skyPlaceProvider = Provider<Place?>((ref) {
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
   return ZonePlaces.forZone(zone);
+});
+
+/// Where the weather is for. Separate from the Shabbat place and the sky:
+/// by default the phone's precise position, or a city picked by hand.
+class WeatherLocationNotifier extends Notifier<Place?> {
+  DateTime? _lastFix;
+
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+
+  /// True when a city was picked by hand, so the phone's position is not used.
+  bool get manual => _prefs.getBool('weather.place.manual') ?? false;
+
+  @override
+  Place? build() {
+    try {
+      final raw = _prefs.getString('weather.place');
+      return raw == null ? null : Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  void _store(Place place, {required bool manual}) {
+    state = place;
+    _prefs
+      ..setString('weather.place', jsonEncode(place.toJson()))
+      ..setBool('weather.place.manual', manual);
+  }
+
+  void setManual(Place place) => _store(place, manual: true);
+
+  /// Back to the phone's position.
+  void useDevice() {
+    _prefs
+      ..remove('weather.place')
+      ..remove('weather.place.manual');
+    _lastFix = null;
+    state = null;
+  }
+
+  /// A fresh GPS fix, unless a city was picked by hand. Throws a
+  /// [LocationFailure] when there is none; [quiet] callers ignore it.
+  Future<void> refreshPrecise({bool force = false}) async {
+    if (manual) return;
+    final last = _lastFix;
+    if (!force && last != null && DateTime.now().difference(last) < const Duration(minutes: 20)) return;
+    _lastFix = DateTime.now();
+    try {
+      final point = await ref.read(locationLookupProvider).current();
+      final zone = ref.read(deviceZoneProvider) ?? ref.read(homeZoneProvider);
+      _store(
+        Place(
+          name: l10n.currentLocation,
+          latitude: point.latitude,
+          longitude: point.longitude,
+          timeZone: zone,
+        ),
+        manual: false,
+      );
+    } catch (e) {
+      _lastFix = null;
+      if (force) rethrow;
+      debugPrint('Quando?: no precise weather location: $e');
+    }
+  }
+}
+
+final weatherLocationProvider = NotifierProvider<WeatherLocationNotifier, Place?>(
+  WeatherLocationNotifier.new,
+);
+
+/// The place weather is read for: the precise or chosen weather location,
+/// else the sky's place until a fix arrives. Never the Shabbat setting alone.
+final weatherPlaceProvider = Provider<Place?>((ref) {
+  final own = ref.watch(weatherLocationProvider);
+  if (own != null) return own;
+  final zone = ref.watch(homeZoneProvider);
+  return ref.watch(skyLocationProvider) ?? ZonePlaces.forZone(zone);
 });
 
 class PlaceNotifier extends Notifier<Place> {

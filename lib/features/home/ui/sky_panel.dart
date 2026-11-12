@@ -73,6 +73,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
   @override
   Widget build(BuildContext context) {
     final options = ref.watch(homeDisplayProvider), place = ref.watch(skyPlaceProvider), sky = widget.sky;
+    final weatherPlace = ref.watch(weatherPlaceProvider);
     final text = Theme.of(context).textTheme;
     final moon = options.night && place != null ? MoonDay.of(place, sky.now) : null;
     final illumination = options.moon ? MoonIllumination.at(sky.now) : null;
@@ -159,9 +160,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     // The card follows the sky right now: a starry night, or the day's sky.
     final skyNow = place == null ? sky : SkyDay.of(place, sky.now);
     final nightCard = !skyNow.isDay;
-    final report = options.weather && place != null
+    final report = options.weather && weatherPlace != null
         ? ref
-              .watch(weatherReportProvider((place, ref.watch(weatherRepositoryProvider).pollBucket(sky.now))))
+              .watch(weatherReportProvider((weatherPlace, ref.watch(weatherRepositoryProvider).pollBucket(sky.now))))
               .value
         : null;
     final current = report?.current(sky.now);
@@ -356,12 +357,12 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     // the Moon's path and the weather; by day it is the Sun's own arc.
     final nightMoonCard =
         options.weather && options.moon && nightCard && illumination != null && track != null;
-    final Widget sunContent = options.weather && place != null && _page == 0
+    final Widget sunContent = options.weather && weatherPlace != null && _page == 0
         ? nightMoonCard
               ? moonCard(compact: true)
               : _SunWeatherCard(
                   sky: sky,
-                  place: place,
+                  place: weatherPlace,
                   zone: zone,
                   marks: widget.marks,
                   fallback: plainSun,
@@ -377,13 +378,13 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
       (label: l10n.skySun, child: sunContent),
       if (options.moon) (label: l10n.skyMoon, child: moonContent),
       if (options.moon && options.moonDetails && details != null) (label: l10n.skyMoonPhase, child: details),
-      if (options.weather && place != null)
+      if (options.weather && weatherPlace != null)
         (
           label: l10n.weatherLabel,
           child: WeatherPanel(
             now: sky.now,
             active: _page == 1 + (options.moon ? 1 : 0) + (options.moon && options.moonDetails ? 1 : 0),
-            place: place,
+            place: weatherPlace,
           ),
         ),
     ];
@@ -393,8 +394,8 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
         SkyCard.moon => options.moon ? moonCard(compact: true) : const SizedBox.shrink(),
         SkyCard.phase => details ?? const SizedBox.shrink(),
         SkyCard.weather =>
-          options.weather && place != null
-              ? WeatherPanel(now: sky.now, active: true, place: place)
+          options.weather && weatherPlace != null
+              ? WeatherPanel(now: sky.now, active: true, place: weatherPlace)
               : const SizedBox.shrink(),
       };
     }
@@ -461,7 +462,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                               : 390) *
                           (report == null ? 1 : 1.2) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
-                    : _page == 0 && options.weather && place != null
+                    : _page == 0 && options.weather && weatherPlace != null
                     ? (nightMoonCard ? 300 : 370) * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : max(228.0, options.night ? 260.0 : 180.0),
                 child: PageView(

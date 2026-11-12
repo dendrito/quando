@@ -111,6 +111,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
       ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
       ref.listenManual(weatherAlertsProvider, (_, _) => _scheduleSync());
+      ref.listenManual(weatherPlaceProvider, (_, _) => ref.read(weatherAlertsProvider.notifier).refresh());
       ref.listenManual(
         weatherAlarmSettingsProvider,
         (_, _) => ref.read(weatherAlertsProvider.notifier).refresh(),
@@ -163,6 +164,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
+    await _weatherFix();
     await ref.read(weatherAlertsProvider.notifier).refresh();
     if (isAndroid) await WeatherBackground.schedule(ref.read(weatherAlarmSettingsProvider).active);
     await _sync();
@@ -232,10 +234,17 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
-      ref.read(weatherAlertsProvider.notifier).refresh();
+      _weatherFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
       _calendarWatch.start();
     } else if (state == AppLifecycleState.paused) {
       _calendarWatch.stop();
+    }
+  }
+
+  /// A fresh precise position for the weather, when weather is in use.
+  Future<void> _weatherFix() async {
+    if (ref.read(weatherAlarmSettingsProvider).active || ref.read(homeDisplayProvider).weather) {
+      await ref.read(weatherLocationProvider.notifier).refreshPrecise();
     }
   }
 
