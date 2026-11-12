@@ -1,9 +1,9 @@
 {
   "id": "voice-alarm-parser-follow-ups",
   "title": "Voice alarm parser follow-ups",
-  "status": "review",
+  "status": "decide",
   "tag": "app",
-  "note": "Fixes '10 minutes before 7' and makes voice snooze per-alarm. Native review sheets ready for 12 languages. Needs your call on the Plus paywall and the on-device model.",
+  "note": "Parser fixes merged in PR #39. Still needs your call on the Plus paywall and the on-device model.",
   "threads": [
     "voice-followups"
   ],
