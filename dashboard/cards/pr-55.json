@@ -1,7 +1,7 @@
 {
   "id": "pr-55",
   "title": "Mark Firestore rules published, delete-account card done",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     55
