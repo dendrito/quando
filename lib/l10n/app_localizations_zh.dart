@@ -3650,6 +3650,21 @@ class AppLocalizationsZh extends AppLocalizations {
   String qsSummary(int count, int on) {
     return '$count个设置 · $on个已开启';
   }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody => 'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
