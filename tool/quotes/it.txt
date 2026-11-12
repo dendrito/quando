@@ -147,3 +147,4 @@ howsoon = Quanto presto è adesso? | The Smiths
 +literature any = Nella vita pratica il tempo è una ricchezza di cui siamo avari; in letteratura, il tempo è una ricchezza di cui disporre con agio e distacco. | Italo Calvino, Lezioni americane
 +literature any = Se vogliamo che tutto rimanga come è, bisogna che tutto cambi. | Giuseppe Tomasi di Lampedusa, Il Gattopardo
 +proverbs morning = Chi ha tempo non aspetti tempo. | Proverbio
+fiddler_sunrise = Sorge il sole, tramonta il sole, i giorni volano via. | Sheldon Harnick, Il violinista sul tetto

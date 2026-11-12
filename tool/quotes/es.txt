@@ -148,3 +148,4 @@ queen_iwantit = Lo quiero todo, y lo quiero ya. | Queen
 queen_forever = ¿Quién quiere vivir para siempre? | Queen
 howsoon = ¿Cuán pronto es ahora? | The Smiths
 +literature any = Es como si el tiempo diera vueltas en redondo y hubiéramos vuelto al principio. | Gabriel García Márquez, Cien años de soledad
+fiddler_sunrise = Amanecer, atardecer, qué rápido pasan los días. | Sheldon Harnick, El violinista en el tejado

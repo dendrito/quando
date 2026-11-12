@@ -143,3 +143,4 @@ howsoon = Şimdi ne kadar yakın? | The Smiths
 +proverbs any = Gülü seven dikenine katlanır. | Atasözü
 +proverbs any = Sabreden derviş muradına ermiş. | Atasözü
 +literature any = Yaş otuz beş! yolun yarısı eder. | Cahit Sıtkı Tarancı
+fiddler_sunrise = Gün doğar, gün batar, günler hızla akar. | Sheldon Harnick, Damdaki Kemancı

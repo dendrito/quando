@@ -142,3 +142,4 @@ queen_dontstop = Ne m'arrête pas maintenant, je m'amuse tellement. | Queen
 queen_iwantit = Je veux tout, et je le veux maintenant. | Queen
 queen_forever = Qui veut vivre éternellement ? | Queen
 howsoon = À quel point maintenant, c'est bientôt ? | The Smiths
+fiddler_sunrise = Soleil levant, soleil couchant, les jours filent si vite. | Sheldon Harnick, Un violon sur le toit

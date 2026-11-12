@@ -143,3 +143,4 @@ howsoon = Bây giờ là sớm đến mức nào? | The Smiths
 +proverbs any = Thất bại là mẹ thành công. | Tục ngữ
 +proverbs any = Một cây làm chẳng nên non, ba cây chụm lại nên hòn núi cao. | Ca dao
 +proverbs any = Ăn quả nhớ kẻ trồng cây. | Tục ngữ
+fiddler_sunrise = Mặt trời mọc, mặt trời lặn, ngày tháng trôi nhanh. | Sheldon Harnick, Fiddler on the Roof

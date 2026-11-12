@@ -143,3 +143,4 @@ howsoon = 지금은 얼마나 곧인가? | The Smiths
 +proverbs any = 세 살 버릇 여든까지 간다. | 속담
 +proverbs any = 무소식이 희소식. | 속담
 +literature evening = 별 하나에 추억과, 별 하나에 사랑과. | 윤동주
+fiddler_sunrise = 해가 뜨고, 해가 지고, 날들은 빠르게 흘러가네. | 셸던 하닉, 〈지붕 위의 바이올린〉

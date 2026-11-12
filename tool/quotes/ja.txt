@@ -143,3 +143,4 @@ howsoon = 「今」はどれほどすぐなのか？ | The Smiths
 +literature any = 千日の稽古を鍛とし、万日の稽古を練とす。 | 宮本武蔵『五輪書』
 +literature any = 千里の道も一足づゝはこぶなり。 | 宮本武蔵『五輪書』
 +literature morning = 朝々時時に怠らず。 | 宮本武蔵『五輪書』
+fiddler_sunrise = 日が昇り、日が沈み、日々は足早に流れていく。 | シェルドン・ハーニック『屋根の上のバイオリン弾き』
