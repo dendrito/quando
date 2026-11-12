@@ -30,7 +30,6 @@ tolkien = Tất cả những gì ta phải quyết định là làm gì với th
 machado = Lữ khách ơi, không có con đường; đường hình thành khi ta bước đi. | Antonio Machado
 lamartine = Hỡi thời gian, hãy ngừng bay! | Alphonse de Lamartine
 goethe = Hãy dừng lại, ngươi đẹp quá! | Goethe
-dante = Mất thời gian làm người hiểu biết nhất tiếc nhất. | Dante Alighieri
 szymborska = Không có gì xảy ra hai lần. | Wisława Szymborska
 kabir = Việc của ngày mai hãy làm hôm nay, việc của hôm nay hãy làm ngay. | Kabir
 churchill = Đây không phải là kết thúc. Thậm chí không phải là khởi đầu của kết thúc. Nhưng có lẽ là kết thúc của khởi đầu. | Winston Churchill

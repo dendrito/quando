@@ -30,7 +30,6 @@ tolkien = Bize düşen tek şey, bize verilen zamanla ne yapacağımıza karar v
 machado = Yolcu, yol yoktur; yol yürüyerek yapılır. | Antonio Machado
 lamartine = Ey zaman, uçuşunu durdur! | Alphonse de Lamartine
 goethe = Dur, ne güzelsin! | Goethe
-dante = Zaman kaybı en çok, en çok bileni üzer. | Dante Alighieri
 szymborska = Hiçbir şey iki kez olmaz. | Wisława Szymborska
 kabir = Yarının işini bugün, bugünün işini şimdi yap. | Kebir
 churchill = Bu son değil. Sonun başlangıcı bile değil. Ama belki de başlangıcın sonu. | Winston Churchill

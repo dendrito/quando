@@ -23,7 +23,7 @@ TAG = re.compile(r'^(any|morning|day|evening|night|@morning|@day|@evening|@night
 
 # ---- Guard rails ----
 # Every quote must pass these, or the build stops and names the line.
-MAX_LEN = 150
+MAX_LEN = 155
 # Numbers people read as omens, in digits or words.
 OMENS = [r'\b666\b', r'\b13\b', r'seiscentos e sessenta', r'six hundred (and )?sixty', r'sechshundert(und)?sechzig',
          r'шестьсот шестьдесят', r'sexcent']

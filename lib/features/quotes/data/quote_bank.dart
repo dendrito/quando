@@ -195,13 +195,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('توقّف، ما أجملك!', 'غوته', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
     Quote(
-      'إضاعة الوقت تؤلم أكثر من يعرف أكثر.',
-      'دانتي أليغييري',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'لا شيء يحدث مرتين.',
       'فيسوافا شيمبورسكا',
       QuoteSource.literature,
@@ -324,7 +317,7 @@ const quoteBank = <String, List<Quote>>{
       'غابرييل غارسيا ماركيز',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'الحياة ليست ما عاشه المرء، بل ما يتذكره وكيف يتذكره ليرويه.',
@@ -1051,13 +1044,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('Verweile doch! Du bist so schön!', 'Johann Wolfgang von Goethe', QuoteSource.literature, 'any'),
     Quote(
-      'Zeit zu verlieren schmerzt am meisten den, der am meisten weiß.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Nichts geschieht zweimal.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -1192,7 +1178,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Das Leben ist nicht das, was man gelebt hat, sondern das, woran man sich erinnert, und wie man sich erinnert, um davon zu erzählen.',
@@ -1928,13 +1914,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Losing time grieves most the one who knows the most.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Nothing can ever happen twice.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -2050,7 +2029,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Life is not what one lived, but what one remembers and how one remembers it in order to recount it.',
@@ -2687,13 +2666,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Perder el tiempo disgusta más a quien más sabe.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Nada sucede dos veces.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -2823,7 +2795,7 @@ const quoteBank = <String, List<Quote>>{
       'Hier encore, j\'avais vingt ans.',
     ),
     Quote(
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
@@ -3384,12 +3356,6 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
     ),
-    Quote(
-      'La vida no es la que uno vivió, sino la que uno recuerda.',
-      'Gabriel García Márquez',
-      QuoteSource.literature,
-      'any',
-    ),
     Quote('¿Qué es la vida? Un frenesí.', 'Calderón de la Barca', QuoteSource.literature, 'evening'),
     Quote('Todo pasa y todo queda.', 'Antonio Machado', QuoteSource.literature, 'any'),
     Quote('Al que madruga, Dios lo ayuda.', 'Refrán', QuoteSource.proverbs, 'morning'),
@@ -3397,7 +3363,7 @@ const quoteBank = <String, List<Quote>>{
     Quote('Más vale tarde que nunca.', 'Refrán', QuoteSource.proverbs, 'any'),
     Quote('No dejes para mañana lo que puedas hacer hoy.', 'Refrán', QuoteSource.proverbs, 'any'),
     Quote(
-      'Parece que el tiempo diera vueltas en redondo y hubiéramos vuelto al principio.',
+      'Es como si el tiempo diera vueltas en redondo y hubiéramos vuelto al principio.',
       'Gabriel García Márquez, Cien años de soledad',
       QuoteSource.literature,
       'any',
@@ -3608,13 +3574,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Perdre son temps déplaît surtout à qui en sait le plus.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Rien n\'arrive deux fois.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -3743,7 +3702,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'La vie n\'est pas celle que l\'on a vécue, mais celle dont on se souvient et la façon dont on s\'en souvient pour la raconter.',
@@ -4436,13 +4395,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'אִבּוּד זְמַן מְצַעֵר יוֹתֵר מִכֹּל אֶת מִי שֶׁיּוֹדֵעַ יוֹתֵר מִכֹּל.',
-      'דנטה אליגיירי',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'שׁוּם דָּבָר אֵינוֹ קוֹרֶה פַּעֲמַיִם.',
       'ויסלבה שימבורסקה',
       QuoteSource.literature,
@@ -4583,7 +4535,7 @@ const quoteBank = <String, List<Quote>>{
       'גבריאל גרסיה מרקס',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'החיים אינם מה שחיית, אלא מה שאתה זוכר, וכיצד אתה זוכר אותו כדי לספר אותו.',
@@ -5222,13 +5174,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'समय गँवाना सबसे ज़्यादा उसे खलता है जो सबसे ज़्यादा जानता है।',
-      'दांते अलिगियेरी',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'कुछ भी दो बार नहीं होता।',
       'विस्वावा शिम्बोर्स्का',
       QuoteSource.literature,
@@ -5356,7 +5301,7 @@ const quoteBank = <String, List<Quote>>{
       'गैब्रिएल गार्सिया मार्केज़',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'ज़िंदगी वह नहीं जो हमने जी, बल्कि वह है जो हमें याद रहती है और जिस तरह याद रहती है, उसे सुनाने के लिए।',
@@ -6111,13 +6056,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Kehilangan waktu paling menyakitkan bagi dia yang paling tahu.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Tak ada yang terjadi dua kali.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -6258,7 +6196,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Hidup bukanlah apa yang kita jalani, melainkan apa yang kita ingat dan bagaimana kita mengingatnya untuk menceritakannya.',
@@ -7010,7 +6948,6 @@ const quoteBank = <String, List<Quote>>{
       'any',
       'Verweile doch! Du bist so schön!',
     ),
-    Quote('Ché perder tempo a chi più sa più spiace.', 'Dante Alighieri', QuoteSource.literature, 'day'),
     Quote(
       'Nulla due volte accade.',
       'Wisława Szymborska',
@@ -7146,7 +7083,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'La vita non è quella che si è vissuta, ma quella che si ricorda e come la si ricorda per raccontarla.',
@@ -7700,7 +7637,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('Quanto presto è adesso?', 'The Smiths', QuoteSource.songs, 'any,idle', 'How soon is now?'),
     Quote('Il tempo è un grande maestro.', 'Proverbio', QuoteSource.proverbs, 'any'),
-    Quote('E quindi uscimmo a riveder le stelle.', 'Dante Alighieri', QuoteSource.literature, 'any'),
     Quote('Chi dorme non piglia pesci.', 'Proverbio', QuoteSource.proverbs, 'morning'),
     Quote('Meglio tardi che mai.', 'Proverbio', QuoteSource.proverbs, 'any'),
     Quote('Il tempo è galantuomo.', 'Proverbio', QuoteSource.proverbs, 'any'),
@@ -7732,6 +7668,13 @@ const quoteBank = <String, List<Quote>>{
       QuoteSource.literature,
       'any',
     ),
+    Quote(
+      'Se vogliamo che tutto rimanga come è, bisogna che tutto cambi.',
+      'Giuseppe Tomasi di Lampedusa, Il Gattopardo',
+      QuoteSource.literature,
+      'any',
+    ),
+    Quote('Chi ha tempo non aspetti tempo.', 'Proverbio', QuoteSource.proverbs, 'morning'),
   ],
   'ja': [
     Quote(
@@ -7892,13 +7835,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('おお時よ、その飛翔を止めよ！', 'ラマルティーヌ', QuoteSource.literature, 'evening', 'Ô temps, suspends ton vol !'),
     Quote('時よ止まれ、お前は美しい！', 'ゲーテ', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
-    Quote(
-      '時を失うことは、最も知る者にとって最もつらい。',
-      'ダンテ',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
     Quote('何事も二度は起こらない。', 'シンボルスカ', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
     Quote(
       '明日の仕事は今日に、今日の仕事は今に。',
@@ -7975,7 +7911,7 @@ const quoteBank = <String, List<Quote>>{
       'ガブリエル・ガルシア＝マルケス',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       '人生とは、人が生きたことではなく、人が記憶していることであり、それを語るためにどう記憶しているかである。',
@@ -8433,6 +8369,8 @@ const quoteBank = <String, List<Quote>>{
     Quote('上を向いて歩こう、涙がこぼれないように。', '永六輔', QuoteSource.songs, 'any'),
     Quote('まあだかい？　まあだだよ！', '黒澤明『まあだだよ』、内田百閒原作', QuoteSource.movies, 'any'),
     Quote('千日の稽古を鍛とし、万日の稽古を練とす。', '宮本武蔵『五輪書』', QuoteSource.literature, 'any'),
+    Quote('千里の道も一足づゝはこぶなり。', '宮本武蔵『五輪書』', QuoteSource.literature, 'any'),
+    Quote('朝々時時に怠らず。', '宮本武蔵『五輪書』', QuoteSource.literature, 'morning'),
   ],
   'ko': [
     Quote(
@@ -8593,13 +8531,6 @@ const quoteBank = <String, List<Quote>>{
       'Ô temps, suspends ton vol !',
     ),
     Quote('멈추어라, 너는 정말 아름답구나!', '괴테', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
-    Quote(
-      '시간을 잃는 것은 가장 많이 아는 이에게 가장 아프다.',
-      '단테 알리기에리',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
     Quote('아무것도 두 번 일어나지 않는다.', '비스와바 심보르스카', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
     Quote(
       '내일 할 일은 오늘, 오늘 할 일은 지금 하라.',
@@ -8682,7 +8613,7 @@ const quoteBank = <String, List<Quote>>{
       '가브리엘 가르시아 마르케스',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       '삶이란 사람이 살아온 것이 아니라, 사람이 기억하는 것, 그리고 그것을 이야기하기 위해 기억하는 방식이다.',
@@ -9345,13 +9276,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Tijd verliezen spijt het meest wie het meest weet.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Niets gebeurt twee keer.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -9492,7 +9416,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Het leven is niet wat je geleefd hebt, maar wat je je herinnert en hoe je het je herinnert om het te vertellen.',
@@ -10248,13 +10172,6 @@ const quoteBank = <String, List<Quote>>{
       'any',
       'Verweile doch! Du bist so schön!',
     ),
-    Quote(
-      'Strata czasu najbardziej boli tego, kto najwięcej wie.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
     Quote('Nic dwa razy się nie zdarza.', 'Wisława Szymborska', QuoteSource.literature, 'any'),
     Quote(
       'Co na jutro, zrób dziś; co na dziś, zrób teraz.',
@@ -10390,7 +10307,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Życie to nie to, co się przeżyło, lecz to, co się pamięta, i jak się to pamięta, by o tym opowiedzieć.',
@@ -11140,13 +11057,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Perder tempo desagrada mais a quem mais sabe.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Nada acontece duas vezes.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -11281,7 +11191,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'A vida não é a que a gente viveu, e sim a que a gente recorda e como a recorda para contá-la.',
@@ -12145,13 +12055,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Терять время больше всего огорчает того, кто больше знает.',
-      'Данте Алигьери',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Ничто не случается дважды.',
       'Вислава Шимборская',
       QuoteSource.literature,
@@ -12286,7 +12189,7 @@ const quoteBank = <String, List<Quote>>{
       'Габриэль Гарсиа Маркес',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Жизнь — это не то, что было прожито, а то, что запомнилось, и как запомнилось, чтобы рассказать о ней.',
@@ -13018,13 +12921,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('Dur, ne güzelsin!', 'Goethe', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
     Quote(
-      'Zaman kaybı en çok, en çok bileni üzer.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Hiçbir şey iki kez olmaz.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -13159,7 +13055,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Hayat, yaşadığımız değil, hatırladığımız ve anlatmak için nasıl hatırladığımız şeydir.',
@@ -13911,13 +13807,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Втрата часу найбільше засмучує того, хто найбільше знає.',
-      'Данте Аліг\'єрі',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Ніщо не трапляється двічі.',
       'Віслава Шимборська',
       QuoteSource.literature,
@@ -14058,7 +13947,7 @@ const quoteBank = <String, List<Quote>>{
       'Габрієль Гарсія Маркес',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Життя — це не те, що було прожите, а те, що запам\'яталося, і як запам\'яталося, щоб його розповісти.',
@@ -14816,13 +14705,6 @@ const quoteBank = <String, List<Quote>>{
       'Verweile doch! Du bist so schön!',
     ),
     Quote(
-      'Mất thời gian làm người hiểu biết nhất tiếc nhất.',
-      'Dante Alighieri',
-      QuoteSource.literature,
-      'day',
-      'Ché perder tempo a chi più sa più spiace.',
-    ),
-    Quote(
       'Không có gì xảy ra hai lần.',
       'Wisława Szymborska',
       QuoteSource.literature,
@@ -14957,7 +14839,7 @@ const quoteBank = <String, List<Quote>>{
       'Gabriel García Márquez',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       'Cuộc đời không phải là điều người ta đã sống, mà là điều người ta nhớ và cách người ta nhớ để kể lại.',
@@ -15655,7 +15537,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('时间啊，请停止你的飞翔！', '拉马丁', QuoteSource.literature, 'evening', 'Ô temps, suspends ton vol !'),
     Quote('停一停吧，你真美丽！', '歌德', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
-    Quote('浪费时间，最懂的人最痛惜。', '但丁', QuoteSource.literature, 'day', 'Ché perder tempo a chi più sa più spiace.'),
     Quote('没有任何事物会发生两次。', '辛波斯卡', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
     Quote(
       '明天的事今天做，今天的事现在做。',
@@ -15714,7 +15595,7 @@ const quoteBank = <String, List<Quote>>{
       '加西亚·马尔克斯',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       '生活不是你经历过的生活，而是你记住的生活，以及为了讲述它而记住的方式。',
@@ -16245,7 +16126,6 @@ const quoteBank = <String, List<Quote>>{
     ),
     Quote('時間啊，請停止你的飛翔！', '拉馬丁', QuoteSource.literature, 'evening', 'Ô temps, suspends ton vol !'),
     Quote('停一停吧，你真美麗！', '歌德', QuoteSource.literature, 'any', 'Verweile doch! Du bist so schön!'),
-    Quote('浪費時間，最懂的人最痛惜。', '但丁', QuoteSource.literature, 'day', 'Ché perder tempo a chi più sa più spiace.'),
     Quote('沒有任何事物會發生兩次。', '辛波斯卡', QuoteSource.literature, 'any', 'Nic dwa razy się nie zdarza.'),
     Quote(
       '明天的事今天做，今天的事現在做。',
@@ -16304,7 +16184,7 @@ const quoteBank = <String, List<Quote>>{
       '賈西亞·馬奎斯',
       QuoteSource.literature,
       'morning',
-      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga a parirse a sí mismos una y otra vez.',
+      'Los seres humanos no nacen para siempre el día en que sus madres los alumbran, sino que la vida los obliga otra vez y muchas veces a parirse a sí mismos.',
     ),
     Quote(
       '生活不是你經歷過的生活，而是你記住的生活，以及為了講述它而記住的方式。',

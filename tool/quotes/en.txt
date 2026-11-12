@@ -30,7 +30,6 @@ tolkien = All we have to decide is what to do with the time that is given us. | 
 machado = Traveller, there is no road; the road is made by walking. | Antonio Machado
 lamartine = O time, suspend your flight! | Alphonse de Lamartine
 goethe = Linger a while, you are so beautiful! | Goethe
-dante = Losing time grieves most the one who knows the most. | Dante Alighieri
 szymborska = Nothing can ever happen twice. | Wisława Szymborska
 kabir = Do tomorrow's work today, and today's work now. | Kabir
 churchill = This is not the end. It is not even the beginning of the end. But it is, perhaps, the end of the beginning. | Winston Churchill
