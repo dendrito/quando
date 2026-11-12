@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../app/providers.dart';
+import '../../../core/geo/offline_cities.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
 import '../../../core/util/local_time.dart';
@@ -128,6 +129,8 @@ class _CityPickerState extends ConsumerState<CityPicker> {
       }
       final point = await ref.read(locationLookupProvider).current();
       if (!mounted) return;
+      // Not awaited: the dialog opens at once and the city name fills in.
+      final nearby = OfflineCities.nearest(point.latitude, point.longitude);
       var inIsrael = zone == 'Asia/Jerusalem';
       final confirmed = await showDialog<bool>(
         context: context,
@@ -144,7 +147,10 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  Text(cityOf(zone)),
+                  FutureBuilder<String?>(
+                    future: nearby,
+                    builder: (context, snap) => Text(snap.data ?? cityOf(zone)),
+                  ),
                   if (!widget.forSky)
                     SwitchListTile(
                       title: Text(l10n.inIsraelOneDay),
