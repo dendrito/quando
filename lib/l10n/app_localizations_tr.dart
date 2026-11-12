@@ -3566,6 +3566,8 @@ class AppLocalizationsTr extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'Hızlı kurulumlar';
 
   @override
@@ -3745,5 +3747,136 @@ class AppLocalizationsTr extends AppLocalizations {
   @override
   String qsSummary(int count, int on) {
     return '$count kurulum · $on açık';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => 'Hava durumu hatırlatıcıları';
+
+  @override
+  String get weatherRemindersSubtitle => 'Yağmur, fırtına veya kardan önce çalar';
+
+  @override
+  String get weatherIntro =>
+      'Yağmur, fırtına veya kardan önce istediğiniz kadar hatırlatıcı alın. Quando? tahmini okur ve telefonunuza kurar.';
+
+  @override
+  String get weatherBackgroundNote => 'Ayrıca tahmini arka planda birkaç saatte bir kontrol eder.';
+
+  @override
+  String get weatherOpenNote => 'Uygulamayı açtığınızda tahmini okur, kapalıyken kontrol edemez.';
+
+  @override
+  String get weatherNoPlace => 'Önce ana ekranda yerinizi seçin ki okunacak bir tahmin olsun.';
+
+  @override
+  String get weatherWhichHeading => 'Hangi hava';
+
+  @override
+  String get weatherWhenHeading => 'Ne zaman';
+
+  @override
+  String get weatherAnytime => 'Günün her saati';
+
+  @override
+  String get weatherAnytimeHint => 'Ne yapıyor olursanız olun, hava gelmeden önce.';
+
+  @override
+  String get weatherTied => 'Alarmlarımdan ve takvim etkinliklerimden önce';
+
+  @override
+  String get weatherTiedHint =>
+      'Tahmin bir alarm veya etkinliğin çevresinde o havayı gösteriyorsa, örneğin işe çıkmadan önce, beni önceden uyar.';
+
+  @override
+  String get weatherRemindersHeading => 'Hatırlatıcılar';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n dk önce';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n sa önce';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Alarm';
+
+  @override
+  String get weatherSoftOption => 'Sessiz';
+
+  @override
+  String get weatherRemove => 'Kaldır';
+
+  @override
+  String get weatherAddReminder => 'Hatırlatıcı ekle';
+
+  @override
+  String get weatherQuietHeading => 'Sessiz saatler';
+
+  @override
+  String get weatherQuietSwitch => 'Sessiz saatler';
+
+  @override
+  String get weatherQuietHint =>
+      'Bu saatlerde hatırlatıcı çalmaz. İçine düşen, hava o zamana kadar gelmediyse bitişini bekler.';
+
+  @override
+  String get weatherQuietFrom => 'Başlangıç';
+
+  @override
+  String get weatherQuietTo => 'Bitiş';
+
+  @override
+  String get weatherComingUp => 'Yaklaşanlar';
+
+  @override
+  String get weatherNothingComing => 'Önümüzdeki iki gün için tahminde bir şey yok.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$when çalar';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Hava durumu hatırlatıcıları Şabat ve bayramlarda sessiz kalır.';
+
+  @override
+  String get weatherTitleRain => 'Yağmur tahmini';
+
+  @override
+  String get weatherTitleThunder => 'Fırtına tahmini';
+
+  @override
+  String get weatherTitleSnow => 'Kar tahmini';
+
+  @override
+  String get weatherTitleFog => 'Sis tahmini';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Saat $time civarı';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · saat $time civarı';
   }
 }

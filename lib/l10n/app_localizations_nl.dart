@@ -3585,6 +3585,8 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'Snel instellen';
 
   @override
@@ -3764,5 +3766,138 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String qsSummary(int count, int on) {
     return '$count setups · $on aan';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => 'Weerherinneringen';
+
+  @override
+  String get weatherRemindersSubtitle => 'Gaat af voor regen, onweer of sneeuw';
+
+  @override
+  String get weatherIntro =>
+      'Krijg herinneringen voor het gaat regenen, onweren of sneeuwen, zoveel je wilt. Quando? leest de voorspelling en zet ze op je telefoon.';
+
+  @override
+  String get weatherBackgroundNote => 'Het controleert de voorspelling ook om de paar uur op de achtergrond.';
+
+  @override
+  String get weatherOpenNote =>
+      'Het leest de voorspelling als je de app opent en kan niet controleren als de app dicht is.';
+
+  @override
+  String get weatherNoPlace =>
+      'Kies eerst je plaats op het startscherm, zodat er een voorspelling is om te lezen.';
+
+  @override
+  String get weatherWhichHeading => 'Welk weer';
+
+  @override
+  String get weatherWhenHeading => 'Wanneer';
+
+  @override
+  String get weatherAnytime => 'Op elk moment van de dag';
+
+  @override
+  String get weatherAnytimeHint => 'Voordat het weer komt, wat je ook aan het doen bent.';
+
+  @override
+  String get weatherTied => 'Voor mijn wekkers en agenda-afspraken';
+
+  @override
+  String get weatherTiedHint =>
+      'Als de voorspelling dat weer rond een wekker of afspraak laat zien, herinner me er dan eerder aan, bijvoorbeeld voor ik naar mijn werk vertrek.';
+
+  @override
+  String get weatherRemindersHeading => 'Herinneringen';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min ervoor';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n u ervoor';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Wekker';
+
+  @override
+  String get weatherSoftOption => 'Zacht';
+
+  @override
+  String get weatherRemove => 'Verwijderen';
+
+  @override
+  String get weatherAddReminder => 'Herinnering toevoegen';
+
+  @override
+  String get weatherQuietHeading => 'Stille uren';
+
+  @override
+  String get weatherQuietSwitch => 'Stille uren';
+
+  @override
+  String get weatherQuietHint =>
+      'In deze tijd gaat er geen herinnering af. Eentje die erin valt wacht tot het einde, als het weer er dan nog niet is.';
+
+  @override
+  String get weatherQuietFrom => 'Van';
+
+  @override
+  String get weatherQuietTo => 'Tot';
+
+  @override
+  String get weatherComingUp => 'Binnenkort';
+
+  @override
+  String get weatherNothingComing => 'Niets in de voorspelling voor de komende twee dagen.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Gaat af $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Weerherinneringen zijn stil tijdens sjabbat en feestdagen.';
+
+  @override
+  String get weatherTitleRain => 'Regenvoorspelling';
+
+  @override
+  String get weatherTitleThunder => 'Onweersvoorspelling';
+
+  @override
+  String get weatherTitleSnow => 'Sneeuwvoorspelling';
+
+  @override
+  String get weatherTitleFog => 'Mistvoorspelling';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Rond $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · rond $time';
   }
 }

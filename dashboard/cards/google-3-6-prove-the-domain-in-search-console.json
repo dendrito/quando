@@ -6,8 +6,8 @@
     "google"
   ],
   "title": "Google 3/6: prove the domain in Search Console",
-  "status": "next",
-  "note": "Add the TXT record Google gives you in Cloudflare DNS.",
+  "status": "done",
+  "note": "quando.day is verified as a Domain property through Cloudflare DNS on the Quando project's Google account.",
   "details": "Guide section B. Use the same Google account that owns the Google Cloud project “Quando”.",
   "docs": [
     {

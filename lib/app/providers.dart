@@ -36,6 +36,8 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
+import '../features/weather_alarms/data/weather_alarm_alarms.dart';
+import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/shabbat/domain/preparation.dart';
 import '../features/home/domain/home_display.dart';
 import '../features/settings/domain/ui_level.dart';
@@ -1251,6 +1253,7 @@ final fullPlanProvider = Provider<List<ScheduledAlarm>>((ref) {
     for (final a in ref.watch(userAlarmsProvider))
       ...a.plan(now: now, horizon: scheduler.horizon, zone: zone, defaultRing: ring),
     ...ref.watch(lockStartAlarmsProvider),
+    ...weatherAlarmsFor(ref.watch(weatherAlertsProvider), now),
   ]..sort((a, b) => a.at.compareTo(b.at));
 });
 

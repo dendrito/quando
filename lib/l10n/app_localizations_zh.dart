@@ -3480,6 +3480,8 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => '快速设置';
 
   @override
@@ -3649,6 +3651,134 @@ class AppLocalizationsZh extends AppLocalizations {
   @override
   String qsSummary(int count, int on) {
     return '$count个设置 · $on个已开启';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => '天气提醒';
+
+  @override
+  String get weatherRemindersSubtitle => '在下雨、雷暴或下雪前响铃';
+
+  @override
+  String get weatherIntro => '在下雨、雷暴或下雪前收到提醒，数量随你设定。Quando? 会读取预报并在手机上设置提醒。';
+
+  @override
+  String get weatherBackgroundNote => '它也会每隔几小时在后台检查一次预报。';
+
+  @override
+  String get weatherOpenNote => '它在你打开应用时读取预报，应用关闭时无法检查。';
+
+  @override
+  String get weatherNoPlace => '请先在主屏幕上选择你的位置，这样才有预报可读。';
+
+  @override
+  String get weatherWhichHeading => '哪种天气';
+
+  @override
+  String get weatherWhenHeading => '何时';
+
+  @override
+  String get weatherAnytime => '一天中的任何时间';
+
+  @override
+  String get weatherAnytimeHint => '无论你在做什么，都在天气到来之前。';
+
+  @override
+  String get weatherTied => '在我的闹钟和日历事件之前';
+
+  @override
+  String get weatherTiedHint => '当预报显示闹钟或事件前后会有这种天气时，提前提醒我，比如出门上班之前。';
+
+  @override
+  String get weatherRemindersHeading => '提醒';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '提前$n分钟';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '提前$n小时';
+  }
+
+  @override
+  String get weatherAlarmOption => '闹钟';
+
+  @override
+  String get weatherSoftOption => '轻柔';
+
+  @override
+  String get weatherRemove => '移除';
+
+  @override
+  String get weatherAddReminder => '添加提醒';
+
+  @override
+  String get weatherQuietHeading => '免打扰时段';
+
+  @override
+  String get weatherQuietSwitch => '免打扰时段';
+
+  @override
+  String get weatherQuietHint => '此时段内不会响起任何提醒。落在其中的提醒会等到时段结束，前提是那时天气还没到。';
+
+  @override
+  String get weatherQuietFrom => '从';
+
+  @override
+  String get weatherQuietTo => '到';
+
+  @override
+  String get weatherComingUp => '即将到来';
+
+  @override
+  String get weatherNothingComing => '未来两天的预报中没有相关天气。';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$when响铃';
+  }
+
+  @override
+  String get weatherShabbatNote => '安息日和节日期间，天气提醒保持静音。';
+
+  @override
+  String get weatherTitleRain => '降雨预报';
+
+  @override
+  String get weatherTitleThunder => '雷暴预报';
+
+  @override
+  String get weatherTitleSnow => '降雪预报';
+
+  @override
+  String get weatherTitleFog => '大雾预报';
+
+  @override
+  String weatherBodyAny(String time) {
+    return '$time左右';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · $time左右';
   }
 }
 
@@ -7127,6 +7257,8 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => '快速設定';
 
   @override
@@ -7296,5 +7428,133 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   @override
   String qsSummary(int count, int on) {
     return '$count個設定 · $on個已開啟';
+  }
+
+  @override
+  String get deleteAccount => 'Delete account';
+
+  @override
+  String get deleteAccountTitle => 'Delete account?';
+
+  @override
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+
+  @override
+  String get accountDeleted => 'Account deleted';
+
+  @override
+  String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => '天氣提醒';
+
+  @override
+  String get weatherRemindersSubtitle => '在下雨、雷暴或下雪前響鈴';
+
+  @override
+  String get weatherIntro => '在下雨、雷暴或下雪前收到提醒，數量隨你設定。Quando? 會讀取預報並在手機上設定提醒。';
+
+  @override
+  String get weatherBackgroundNote => '它也會每隔幾小時在背景檢查一次預報。';
+
+  @override
+  String get weatherOpenNote => '它在你開啟應用程式時讀取預報，應用程式關閉時無法檢查。';
+
+  @override
+  String get weatherNoPlace => '請先在主畫面上選擇你的位置，這樣才有預報可讀。';
+
+  @override
+  String get weatherWhichHeading => '哪種天氣';
+
+  @override
+  String get weatherWhenHeading => '何時';
+
+  @override
+  String get weatherAnytime => '一天中的任何時間';
+
+  @override
+  String get weatherAnytimeHint => '無論你在做什麼，都在天氣到來之前。';
+
+  @override
+  String get weatherTied => '在我的鬧鐘和行事曆事件之前';
+
+  @override
+  String get weatherTiedHint => '當預報顯示鬧鐘或事件前後會有這種天氣時，提前提醒我，例如出門上班之前。';
+
+  @override
+  String get weatherRemindersHeading => '提醒';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '提前$n分鐘';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '提前$n小時';
+  }
+
+  @override
+  String get weatherAlarmOption => '鬧鐘';
+
+  @override
+  String get weatherSoftOption => '輕柔';
+
+  @override
+  String get weatherRemove => '移除';
+
+  @override
+  String get weatherAddReminder => '新增提醒';
+
+  @override
+  String get weatherQuietHeading => '勿擾時段';
+
+  @override
+  String get weatherQuietSwitch => '勿擾時段';
+
+  @override
+  String get weatherQuietHint => '此時段內不會響起任何提醒。落在其中的提醒會等到時段結束，前提是那時天氣還沒到。';
+
+  @override
+  String get weatherQuietFrom => '從';
+
+  @override
+  String get weatherQuietTo => '到';
+
+  @override
+  String get weatherComingUp => '即將到來';
+
+  @override
+  String get weatherNothingComing => '未來兩天的預報中沒有相關天氣。';
+
+  @override
+  String weatherRingsAt(String when) {
+    return '$when響鈴';
+  }
+
+  @override
+  String get weatherShabbatNote => '安息日和節日期間，天氣提醒保持靜音。';
+
+  @override
+  String get weatherTitleRain => '降雨預報';
+
+  @override
+  String get weatherTitleThunder => '雷暴預報';
+
+  @override
+  String get weatherTitleSnow => '降雪預報';
+
+  @override
+  String get weatherTitleFog => '大霧預報';
+
+  @override
+  String weatherBodyAny(String time) {
+    return '$time左右';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · $time左右';
   }
 }

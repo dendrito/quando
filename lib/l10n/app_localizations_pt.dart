@@ -3586,6 +3586,8 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String get askHelpQuote =>
       '“Há que se cuidar da vida, há que se cuidar do mundo.”\nMilton Nascimento e Wagner Tiso';
+
+  @override
   String get quickSetups => 'Configurações rápidas';
 
   @override
@@ -3765,5 +3767,138 @@ class AppLocalizationsPt extends AppLocalizations {
   @override
   String qsSummary(int count, int on) {
     return '$count configurações · $on ativa(s)';
+  }
+
+  @override
+  String get deleteAccount => 'Apagar conta';
+
+  @override
+  String get deleteAccountTitle => 'Apagar conta?';
+
+  @override
+  String get deleteAccountBody =>
+      'Seus alarmes, ajustes e chaves sincronizados serão apagados da nuvem e o seu login será removido. Os alarmes neste aparelho ficam.';
+
+  @override
+  String get accountDeleted => 'Conta apagada';
+
+  @override
+  String get deleteAccountFailed => 'Não foi possível apagar a conta. Tente de novo.';
+
+  @override
+  String get weatherRemindersTitle => 'Lembretes do tempo';
+
+  @override
+  String get weatherRemindersSubtitle => 'Toque antes da chuva, tempestade ou neve';
+
+  @override
+  String get weatherIntro =>
+      'Receba lembretes antes de chover, de uma tempestade ou de neve, quantos quiser. O Quando? lê a previsão e programa tudo no seu celular.';
+
+  @override
+  String get weatherBackgroundNote =>
+      'Ele também confere a previsão em segundo plano, de poucas em poucas horas.';
+
+  @override
+  String get weatherOpenNote =>
+      'Ele lê a previsão quando você abre o app e não consegue conferir com o app fechado.';
+
+  @override
+  String get weatherNoPlace => 'Escolha antes o seu local na tela inicial, para haver uma previsão a ler.';
+
+  @override
+  String get weatherWhichHeading => 'Qual tempo';
+
+  @override
+  String get weatherWhenHeading => 'Quando';
+
+  @override
+  String get weatherAnytime => 'A qualquer hora do dia';
+
+  @override
+  String get weatherAnytimeHint => 'Antes de o tempo chegar, seja o que for que você esteja fazendo.';
+
+  @override
+  String get weatherTied => 'Antes dos meus alarmes e eventos do calendário';
+
+  @override
+  String get weatherTiedHint =>
+      'Quando a previsão trouxer esse tempo perto de um alarme ou evento, avise-me antes, por exemplo antes de sair para o trabalho.';
+
+  @override
+  String get weatherRemindersHeading => 'Lembretes';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min antes';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n h antes';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Alarme';
+
+  @override
+  String get weatherSoftOption => 'Suave';
+
+  @override
+  String get weatherRemove => 'Remover';
+
+  @override
+  String get weatherAddReminder => 'Adicionar lembrete';
+
+  @override
+  String get weatherQuietHeading => 'Horário silencioso';
+
+  @override
+  String get weatherQuietSwitch => 'Horário silencioso';
+
+  @override
+  String get weatherQuietHint =>
+      'Nenhum lembrete toca nesse período. O que cair dentro dele espera o fim, se o tempo ainda não tiver chegado.';
+
+  @override
+  String get weatherQuietFrom => 'De';
+
+  @override
+  String get weatherQuietTo => 'Até';
+
+  @override
+  String get weatherComingUp => 'A seguir';
+
+  @override
+  String get weatherNothingComing => 'Nada na previsão para os próximos dois dias.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Toca $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Os lembretes do tempo ficam em silêncio no Shabat e nas festas.';
+
+  @override
+  String get weatherTitleRain => 'Previsão de chuva';
+
+  @override
+  String get weatherTitleThunder => 'Previsão de tempestade';
+
+  @override
+  String get weatherTitleSnow => 'Previsão de neve';
+
+  @override
+  String get weatherTitleFog => 'Previsão de neblina';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Por volta das $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · por volta das $time';
   }
 }
