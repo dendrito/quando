@@ -48,9 +48,8 @@ class WeatherAlarmsScreen extends ConsumerWidget {
     final hasPlace = weatherPlace != null;
     final ownPlace = ref.watch(weatherLocationProvider) != null;
     void pickPlace(bool locate) {
-      Navigator.of(context).push<void>(
-        MaterialPageRoute(builder: (_) => CityPicker(forWeather: true, locateOnOpen: locate)),
-      );
+      final page = CityPicker(forWeather: true, locateOnOpen: locate);
+      Navigator.of(context).push<void>(MaterialPageRoute(builder: (_) => page));
     }
 
     final shabbat = ref.watch(shabbatInUseProvider);
