@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "カレンダーとシャバット",
   "groupLookQuotes": "外観と名言",
   "groupConnectionsSync": "連携と同期",
-  "qsSummary": "{count}件の設定・{on}件オン"
+  "qsSummary": "{count}件の設定・{on}件オン",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete account?",
+  "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
+  "accountDeleted": "Account deleted",
+  "deleteAccountFailed": "Couldn't delete the account. Try again."
 }

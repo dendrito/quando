@@ -515,6 +515,13 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                     onPressed: notifier.signOut,
                     icon: const Icon(Icons.logout, size: 18),
                     label: Text(l10n.signOut),
+                  ),
+                if (on)
+                  TextButton(
+                    style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+                    onPressed: () =>
+                        showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
+                    child: Text(l10n.deleteAccount),
                   )
                 else if (sync.phase == SyncPhase.verify) ...[
                   FilledButton(
@@ -697,4 +704,83 @@ class _VersionLine extends StatelessWidget {
     padding: const EdgeInsets.symmetric(vertical: 16),
     child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
   );
+}
+
+/// Asks twice-over before erasing the account: a warning, and the password
+/// (email accounts) or a fresh Google sign-in.
+class _DeleteAccountDialog extends ConsumerStatefulWidget {
+  const _DeleteAccountDialog();
+
+  @override
+  ConsumerState<_DeleteAccountDialog> createState() => _DeleteAccountDialogState();
+}
+
+class _DeleteAccountDialogState extends ConsumerState<_DeleteAccountDialog> {
+  final _password = TextEditingController();
+  bool _busy = false;
+  String? _error;
+
+  @override
+  void dispose() {
+    _password.dispose();
+    super.dispose();
+  }
+
+  Future<void> _delete() async {
+    final notifier = ref.read(syncProvider.notifier);
+    final messenger = ScaffoldMessenger.of(context);
+    final navigator = Navigator.of(context);
+    setState(() {
+      _busy = true;
+      _error = null;
+    });
+    final error = await notifier.deleteAccount(password: _password.text);
+    if (!mounted) return;
+    if (error == null) {
+      navigator.pop();
+      messenger.showSnackBar(SnackBar(content: Text(l10n.accountDeleted)));
+    } else {
+      setState(() {
+        _busy = false;
+        _error = error.isEmpty ? null : error;
+      });
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final usesPassword = ref.read(syncProvider.notifier).usesPassword;
+    return AlertDialog(
+      title: Text(l10n.deleteAccountTitle),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(l10n.deleteAccountBody),
+          if (usesPassword) ...[
+            const SizedBox(height: 12),
+            TextField(
+              controller: _password,
+              obscureText: true,
+              decoration: InputDecoration(labelText: l10n.password),
+            ),
+          ],
+          if (_error != null) ...[
+            const SizedBox(height: 12),
+            Text(_error!, style: TextStyle(color: Theme.of(context).colorScheme.error)),
+          ],
+        ],
+      ),
+      actions: [
+        TextButton(onPressed: _busy ? null : () => Navigator.of(context).pop(), child: Text(l10n.cancel)),
+        TextButton(
+          style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
+          onPressed: _busy ? null : _delete,
+          child: _busy
+              ? const SizedBox.square(dimension: 18, child: CircularProgressIndicator(strokeWidth: 2))
+              : Text(l10n.deleteAccount),
+        ),
+      ],
+    );
+  }
 }

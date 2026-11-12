@@ -3767,4 +3767,19 @@ class AppLocalizationsEs extends AppLocalizations {
   String qsSummary(int count, int on) {
     return '$count ajustes · $on activo(s)';
   }
+
+  @override
+  String get deleteAccount => 'Eliminar cuenta';
+
+  @override
+  String get deleteAccountTitle => '¿Eliminar cuenta?';
+
+  @override
+  String get deleteAccountBody => 'Tus alarmas, ajustes y claves sincronizados se borran de la nube y se elimina tu inicio de sesión. Las alarmas de este dispositivo se quedan.';
+
+  @override
+  String get accountDeleted => 'Cuenta eliminada';
+
+  @override
+  String get deleteAccountFailed => 'No se pudo eliminar la cuenta. Inténtalo de nuevo.';
 }

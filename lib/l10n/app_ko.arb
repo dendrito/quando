@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "캘린더와 안식일",
   "groupLookQuotes": "화면과 명언",
   "groupConnectionsSync": "연결 및 동기화",
-  "qsSummary": "설정 {count}개 · {on}개 켜짐"
+  "qsSummary": "설정 {count}개 · {on}개 켜짐",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete account?",
+  "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
+  "accountDeleted": "Account deleted",
+  "deleteAccountFailed": "Couldn't delete the account. Try again."
 }
