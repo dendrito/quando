@@ -18,6 +18,12 @@ void main() {
     expect(await OfflineCities.nearest(31.7683, 35.2137), 'Jerusalem');
   });
 
+  test('Lisbon and Porto districts are named with their city', () async {
+    expect(await OfflineCities.nearest(38.7139, -9.1334), 'Baixa, Lisbon');
+    expect(await OfflineCities.nearest(38.7110, -9.1296), 'Alfama, Lisbon');
+    expect(await OfflineCities.nearest(41.1496, -8.6109), 'Porto');
+  });
+
   test('nothing within range gives no name', () async {
     expect(await OfflineCities.nearest(-30.0, -30.0), isNull);
   });

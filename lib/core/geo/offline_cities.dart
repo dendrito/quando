@@ -17,17 +17,21 @@ class OfflineCities {
     return _nearestIn(cities, latitude, longitude, maxKm: maxKm);
   }
 
-  /// Names the city the position sits in, plus the district within 3 km when
-  /// there is one ("Santa Teresa, Rio de Janeiro"). The city is the one whose
-  /// own size the position sits closest to: distance
-  /// divided by the city's rough radius (sqrt(population) / 125 km, about
-  /// 5,000 people per km²). That keeps a big city's neighbourhoods and its
-  /// bigger neighbour from winning over the city the position is inside.
+  /// Names the place for a position: the city it sits in, plus the district
+  /// within 3 km when there is one ("Alfama, Lisbon").
+  ///
+  /// The city is the one whose own size the position is closest to: distance
+  /// divided by a rough radius (sqrt(population) / 125 km, about 5,000 people
+  /// per km²). Cities of 200,000+ are tried first, so a district never counts
+  /// as the city; then towns of 15,000+. Distances are to centre points, so a
+  /// suburb nearer a big neighbour's centre can take its name.
   static String? _nearestIn(List<_City> cities, double latitude, double longitude, {double maxKm = 30}) {
     final cosLat = math.cos(latitude * math.pi / 180);
-    _City? city;
+    _City? big;
+    _City? town;
     _City? district;
-    var cityScore = 1.5;
+    var bigScore = 1.5;
+    var townScore = 1.5;
     var districtKm = 3.0;
     for (final c in cities) {
       final dLat = (c.latitude - latitude) * 111.2;
@@ -35,15 +39,21 @@ class OfflineCities {
       final km = math.sqrt(dLat * dLat + dLon * dLon);
       if (km > maxKm) continue;
       final score = km / math.max(2.0, math.sqrt(c.population) / 125);
-      if (score < cityScore) {
-        cityScore = score;
-        city = c;
+      if (c.population >= 200000) {
+        if (score < bigScore) {
+          bigScore = score;
+          big = c;
+        }
+      } else if (c.population >= 15000 && score < townScore) {
+        townScore = score;
+        town = c;
       }
       if (km < districtKm) {
         districtKm = km;
         district = c;
       }
     }
+    final city = big ?? town;
     if (city == null) return district?.name;
     if (district == null || district.name == city.name) return city.name;
     return '${district.name}, ${city.name}';
