@@ -1,0 +1,12 @@
+{
+  "id": "site-redesign",
+  "tag": "site",
+  "title": "Update quando.day with the new features",
+  "status": "review",
+  "note": "PR #32 now shows Simple mode, quick setups, calendar alarms, voice in 20 languages, quotes and the widget.",
+  "threads": ["site"],
+  "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzk7kJGUqGUQi7cUGzHGfKorn"],
+  "docs": [{"title": "PR #32", "url": "https://github.com/dendrito/quando/pull/32"}],
+  "prs": [32],
+  "order": 40
+}
