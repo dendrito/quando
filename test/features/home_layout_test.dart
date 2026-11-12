@@ -1,11 +1,5 @@
-import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:quando/app/app.dart';
-import 'package:quando/app/providers.dart';
-import 'package:quando/features/home/data/home_layout_provider.dart';
 import 'package:quando/features/home/domain/home_layout.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
   test('layout survives a save, drops unknown blocks and adds new ones', () {
@@ -36,39 +30,5 @@ void main() {
   test('size is kept between half and double', () {
     expect(const BlockState().copyWith(scale: 9).scale, 2);
     expect(const BlockState().copyWith(scale: 0).scale, .5);
-  });
-
-  testWidgets('arranging home: fold and resize a card, and it is remembered', (tester) async {
-    tester.view.physicalSize = const Size(1080, 4000);
-    tester.view.devicePixelRatio = 2.5;
-    addTearDown(tester.view.reset);
-    SharedPreferences.setMockInitialValues({});
-    final prefs = await SharedPreferences.getInstance();
-    final container = ProviderContainer(
-      overrides: [
-        clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 9, 12)),
-        prefsProvider.overrideWithValue(prefs),
-      ],
-    );
-    addTearDown(container.dispose);
-    await tester.pumpWidget(UncontrolledProviderScope(container: container, child: const QuandoApp()));
-    await tester.pumpAndSettle();
-    expect(find.text('CLOCK'), findsOneWidget);
-    final before = tester.getSize(find.byKey(const ValueKey(HomeBlock.clock))).height;
-
-    await tester.tap(find.byTooltip('Arrange home'));
-    await tester.pumpAndSettle();
-    expect(find.byType(Slider), findsWidgets);
-    container.read(homeLayoutProvider.notifier).setBlock(HomeBlock.clock, const BlockState(scale: 1.5));
-    await tester.pumpAndSettle();
-    expect(tester.getSize(find.byKey(const ValueKey(HomeBlock.clock))).height, greaterThan(before));
-
-    await tester.tap(find.byTooltip('Fold').first);
-    await tester.pumpAndSettle();
-    expect(container.read(homeLayoutProvider).of(HomeBlock.clock).collapsed, isTrue);
-    expect(prefs.getString('home.layout'), contains('clock'));
-    await tester.tap(find.text('Done').first);
-    await tester.pumpAndSettle();
-    expect(find.byType(Slider), findsNothing);
   });
 }

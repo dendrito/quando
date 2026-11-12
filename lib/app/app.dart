@@ -8,11 +8,20 @@ import 'package:go_router/go_router.dart';
 
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
+import '../features/busy/ui/busy_screen.dart';
+import '../features/share/share_channel.dart';
+import '../features/home/domain/sky.dart';
+import '../features/widget/home_widget.dart';
+import '../features/share/ui/share_card_screen.dart';
+import '../features/sounds/domain/sound.dart';
 import '../features/calendar/ui/calendar_rule_screen.dart';
 import '../features/calendar/ui/calendar_screen.dart';
+import '../features/calendar/data/calendar_background.dart';
+import '../features/calendar/data/calendar_watch.dart';
 import '../features/home/ui/home_screen.dart';
 import '../features/integrations/ui/integrations_screen.dart';
 import '../features/home/ui/settings_screen.dart';
+import '../features/settings/ui/first_run_screen.dart';
 import '../features/lock/ui/lock_gate.dart';
 import '../features/lock/ui/lock_screen.dart';
 import '../features/ringing/ring_payload.dart';
@@ -31,10 +40,15 @@ import 'theme.dart';
 
 final _navigatorKey = GlobalKey<NavigatorState>();
 
+final _messenger = GlobalKey<ScaffoldMessengerState>();
+
 final _router = GoRouter(
   navigatorKey: _navigatorKey,
   routes: [
-    GoRoute(path: '/', builder: (context, state) => const HomeScreen()),
+    GoRoute(
+      path: '/',
+      builder: (context, state) => const FirstRunGate(child: HomeScreen()),
+    ),
     GoRoute(path: '/settings', builder: (context, state) => const SettingsScreen()),
     GoRoute(path: '/calendar', builder: (context, state) => const CalendarScreen()),
     GoRoute(path: '/lock', builder: (context, state) => const LockScreen()),
@@ -46,6 +60,8 @@ final _router = GoRouter(
     GoRoute(path: '/sounds', builder: (context, state) => const SoundsScreen()),
     GoRoute(path: '/connections', builder: (context, state) => const IntegrationsScreen()),
     GoRoute(path: '/ready', builder: (context, state) => const ReadyScreen()),
+    GoRoute(path: '/busy', builder: (context, state) => const BusyScreen()),
+    GoRoute(path: '/share', builder: (context, state) => const ShareCardScreen()),
     GoRoute(
       path: '/calendar/rule/:id',
       builder: (context, state) =>
@@ -75,21 +91,63 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   final _shown = <int>{};
   Timer? _syncTimer;
 
+  /// Calendar alarms follow the calendar while the app is open.
+  late final _calendarWatch = CalendarWatch(onChange: () => ref.read(calendarProvider.notifier).refresh());
+
   @override
   void initState() {
     super.initState();
     if (supportsLocalAlarms) {
       WidgetsBinding.instance.addObserver(this);
+      _calendarWatch.start();
       _listen();
       // Keep the phone's alarms in step with the plan, whatever changes it.
       ref.listenManual(planProvider, (_, _) => _scheduleSync());
       ref.listenManual(payloadForProvider, (_, _) => _scheduleSync());
+      ref.listenManual(busyWindowsProvider, (_, _) => _scheduleSync());
+      ref.listenManual(busySettingsProvider, (_, _) => _scheduleSync());
       // New calendar rules may reach further ahead: read events again.
-      ref.listenManual(calendarRulesProvider, (_, _) => ref.read(calendarProvider.notifier).refresh());
+      ref.listenManual(calendarRulesProvider, (_, next) {
+        ref.read(calendarProvider.notifier).refresh();
+        if (isAndroid && next.isNotEmpty) CalendarBackground.schedule();
+      });
       // Signed in to sync: pick up where it left off.
       ref.read(syncProvider);
       _start();
     }
+    // Share to Quando?: a song link shared from another app.
+    if (isAndroid) {
+      ShareChannel.onShared(_songShared);
+      ShareChannel.sharedText().then((t) {
+        if (t != null) _songShared(t);
+      });
+    }
+  }
+
+  /// Saves a shared song link as an alarm sound. At ring time it opens in
+  /// its own app, with a built-in sound as the backup.
+  void _songShared(String text) {
+    final link = songLinkIn(text);
+    if (link == null) {
+      _messenger.currentState?.showSnackBar(SnackBar(content: Text(l10n.notALink)));
+      return;
+    }
+    final sounds = ref.read(soundsProvider.notifier);
+    if (ref.read(soundsProvider).any((s) => s.link == link)) {
+      _router.push('/sounds');
+      return;
+    }
+    final sound = AlarmSound(
+      id: 'link.${DateTime.now().millisecondsSinceEpoch}',
+      name: '',
+      path: AlarmSound.builtIns[1].path,
+      link: link,
+      plays: true,
+    );
+    final named = sound.rename(l10n.songOn(sound.linkApp ?? l10n.theWeb));
+    sounds.add(named);
+    _router.push('/sounds');
+    _messenger.currentState?.showSnackBar(SnackBar(content: Text(l10n.songSaved(named.name))));
   }
 
   Future<void> _start() async {
@@ -97,6 +155,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
     await _sync();
+    // Android: keep following the calendar with Quando? closed.
+    if (isAndroid && ref.read(calendarRulesProvider).isNotEmpty) unawaited(CalendarBackground.schedule());
   }
 
   void _scheduleSync() {
@@ -110,6 +170,49 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }
+    if (isAndroid) {
+      try {
+        await ref
+            .read(loudNotificationsProvider)
+            .publish(
+              now: DateTime.now(),
+              plan: ref.read(planProvider),
+              payloadFor: ref.read(payloadForProvider),
+              quiet: ref.read(shabbatInUseProvider) ? ref.read(periodsProvider) : const [],
+            );
+      } catch (e) {
+        debugPrint('Quando?: could not prepare loud calendar notifications: $e');
+      }
+      try {
+        final busy = ref.read(busySettingsProvider);
+        await ref
+            .read(busyModeProvider)
+            .publish(
+              settings: busy,
+              windows: ref.read(busyWindowsProvider),
+              replyText: busy.replyText.trim().isEmpty
+                  ? l10n.busyReplyDefault('{until}')
+                  : busy.replyText.trim(),
+              holy: ref.read(shabbatInUseProvider) ? ref.read(periodsProvider) : const [],
+            );
+      } catch (e) {
+        debugPrint('Quando?: could not prepare Busy mode: $e');
+      }
+      try {
+        final now = DateTime.now();
+        final place = ref.read(skyPlaceProvider);
+        final sky = place == null ? null : SkyDay.of(place, now);
+        await HomeWidget(ref.read(prefsProvider)).publish(
+          plan: ref.read(planProvider),
+          sunrise: sky?.sunrise,
+          sunset: sky?.sunset,
+          label: l10n.nextAlarmHeading,
+          none: l10n.noAlarmsThisWeek,
+        );
+      } catch (e) {
+        debugPrint('Quando?: could not update the widget: $e');
+      }
+    }
   }
 
   @override
@@ -118,6 +221,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     if (state == AppLifecycleState.resumed) {
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
+      _calendarWatch.start();
+    } else if (state == AppLifecycleState.paused) {
+      _calendarWatch.stop();
     }
   }
 
@@ -150,6 +256,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   @override
   void dispose() {
     WidgetsBinding.instance.removeObserver(this);
+    _calendarWatch.stop();
     _syncTimer?.cancel();
     _ringingSub?.cancel();
     super.dispose();
@@ -163,6 +270,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       debugShowCheckedModeBanner: false,
       theme: buildTheme(),
       routerConfig: _router,
+      scaffoldMessengerKey: _messenger,
       locale: language == null ? null : localeFromTag(language),
       localizationsDelegates: AppLocalizations.localizationsDelegates,
       supportedLocales: AppLocalizations.supportedLocales,

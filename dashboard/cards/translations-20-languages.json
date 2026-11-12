@@ -1,0 +1,12 @@
+{
+  "id": "translations-20-languages",
+  "title": "Translations (20 languages)",
+  "status": "done",
+  "tag": "app",
+  "threads": [
+    "local"
+  ],
+  "details": "20 languages including right-to-left already exist; new strings need translating each time.",
+  "order": 11,
+  "note": "PR #41 merged. Quote bank (Musashi in; Medici, al-Basri and Confucius out) and full 20-language translation are on main for Thursday's build."
+}

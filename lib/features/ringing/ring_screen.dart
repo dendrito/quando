@@ -13,6 +13,7 @@ import '../../app/providers.dart';
 import '../../app/theme.dart';
 import '../../core/util/local_time.dart';
 import '../alarms/data/alarm_registrar.dart';
+import '../settings/domain/ui_level.dart';
 import '../sounds/ui/sound_player.dart';
 import 'data/apps.dart';
 import 'data/music.dart';
@@ -51,6 +52,11 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   var _stage = _Stage.ringing;
   var _resolving = false;
   final _openedAt = DateTime.now();
+
+  /// Which ring of the app's life this is. The hint line is for the first
+  /// few only.
+  static const hintRings = 3;
+  var _ringNo = 1;
   Timer? _second;
   int? _checkId;
   late final (int, int) _sum = (Random().nextInt(60) + 12, Random().nextInt(30) + 7);
@@ -80,6 +86,14 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   @override
   void initState() {
     super.initState();
+    if (!p.isCheck && !p.gentle && !p.isLock) {
+      // A counter must never keep an alarm from showing.
+      try {
+        final prefs = ref.read(prefsProvider);
+        _ringNo = (prefs.getInt(UiLevelStore.ringsKey) ?? 0) + 1;
+        prefs.setInt(UiLevelStore.ringsKey, _ringNo);
+      } catch (_) {}
+    }
     WidgetsBinding.instance.addPostFrameCallback((_) {
       unawaited(SoundPreview.instance.stop());
       unawaited(Music.stopPreview());
@@ -310,7 +324,16 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                           const SizedBox(height: 8),
                           Text(p.title, style: text.headlineMedium?.copyWith(color: ink)),
                           const SizedBox(height: 6),
-                          Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
+                          // "When this rings, I will…" stands in for the
+                          // repeat details.
+                          if (p.iWill.isNotEmpty)
+                            Text(
+                              p.iWill,
+                              key: const Key('ringIWill'),
+                              style: text.titleLarge?.copyWith(color: ink, fontWeight: FontWeight.w800),
+                            )
+                          else
+                            Text(p.body, style: text.titleMedium?.copyWith(color: ink)),
                           const SizedBox(height: 10),
                           if (_stage == _Stage.ringing)
                             Text.rich(
@@ -319,11 +342,15 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                                   TextSpan(text: l10n.ringQuote),
                                   TextSpan(
                                     text: '  — ${l10n.ringQuoteBy}',
-                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 13),
+                                    style: const TextStyle(fontStyle: FontStyle.normal, fontSize: 12),
                                   ),
                                 ],
                               ),
-                              style: text.bodyLarge?.copyWith(color: ink, fontStyle: FontStyle.italic),
+                              style: text.bodyMedium?.copyWith(
+                                color: ink.withValues(alpha: 0.7),
+                                fontStyle: FontStyle.italic,
+                                fontSize: 14,
+                              ),
                             ),
                           if (p.shabbatSafe) ...[
                             const SizedBox(height: 16),
@@ -342,11 +369,19 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                             ),
                           ],
                           Expanded(
-                            child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
-                                ? Center(
-                                    child: _RingLeft(left: left, total: p.ringSeconds),
-                                  )
-                                : const SizedBox.shrink(),
+                            // Tapping the middle of the screen is the same
+                            // as pressing Stop: any task or wake-up check
+                            // still comes first.
+                            child: GestureDetector(
+                              key: const Key('ringCentre'),
+                              behavior: HitTestBehavior.opaque,
+                              onTap: _stage == _Stage.ringing ? (p.isCheck ? _stopNow : _onStop) : null,
+                              child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                                  ? Center(
+                                      child: _RingLeft(left: left, total: p.ringSeconds),
+                                    )
+                                  : const SizedBox.expand(),
+                            ),
                           ),
                           ..._actions(text, snoozesLeft),
                         ],
@@ -493,44 +528,121 @@ extension on _RingScreenState {
   /// "Volume buttons stop · shake to snooze".
   List<String> get _hints => [
     if (p.song != null) l10n.startingSong,
-    for (final w in StopWay.values)
-      if (p.stopBy.contains(w))
-        l10n.wayToStop(w.label)
-      else if (p.snoozeBy.contains(w) && p.canSnooze)
-        l10n.wayToSnooze(w.label),
+    // Only the first few rings of the app; after that it knows.
+    if (_ringNo <= _RingScreenState.hintRings) ...[
+      l10n.tapMiddleToStop,
+      for (final w in StopWay.values)
+        if (p.stopBy.contains(w))
+          l10n.wayToStop(w.label)
+        else if (p.snoozeBy.contains(w) && p.canSnooze)
+          l10n.wayToSnooze(w.label),
+    ],
   ];
 }
 
-/// The big plum Stop button with its amber arrow.
-class _StopButton extends StatelessWidget {
+/// The big plum Stop button with its amber arrow. Tap anywhere on it, or
+/// slide the arrow along it: past [fireAt] of the way counts as a press,
+/// once per slide; let go sooner and it springs back. Mirrored in
+/// right-to-left languages.
+class _StopButton extends StatefulWidget {
   const _StopButton({required this.label, required this.onPressed});
 
   final String label;
   final VoidCallback onPressed;
 
+  static const fireAt = 0.7;
+
+  @override
+  State<_StopButton> createState() => _StopButtonState();
+}
+
+class _StopButtonState extends State<_StopButton> {
+  static const _knob = 60.0;
+  static const _pad = 8.0;
+
+  /// How far the arrow has slid, in logical pixels from its start.
+  double _offset = 0;
+  bool _dragging = false;
+  bool _fired = false;
+
+  void _start(DragStartDetails _) => setState(() {
+    _dragging = true;
+    _fired = false;
+  });
+
+  void _update(DragUpdateDetails d, double track, bool rtl) {
+    final dx = rtl ? -d.delta.dx : d.delta.dx;
+    setState(() => _offset = (_offset + dx).clamp(0.0, track));
+    if (!_fired && track > 0 && _offset >= track * _StopButton.fireAt) {
+      _fired = true;
+      HapticFeedback.mediumImpact();
+      widget.onPressed();
+    }
+  }
+
+  void _end() {
+    if (!mounted) return;
+    setState(() {
+      _dragging = false;
+      _offset = 0;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final rtl = Directionality.of(context) == TextDirection.rtl;
     return SizedBox(
       height: 76,
       child: FilledButton(
-        onPressed: onPressed,
+        onPressed: widget.onPressed,
         style: FilledButton.styleFrom(
           backgroundColor: QuandoColors.ground,
           foregroundColor: QuandoColors.text,
-          padding: const EdgeInsets.symmetric(horizontal: 8),
+          padding: const EdgeInsets.symmetric(horizontal: _pad),
           textStyle: const TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 22),
         ),
-        child: Row(
-          children: [
-            Container(
-              width: 60,
-              height: 60,
-              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
-              child: const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
-            ),
-            Expanded(child: Text(label, textAlign: TextAlign.center)),
-            const SizedBox(width: 60),
-          ],
+        child: LayoutBuilder(
+          builder: (context, c) {
+            final track = (c.maxWidth - _knob).clamp(0.0, double.infinity);
+            return Stack(
+              alignment: Alignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: _knob),
+                  child: Opacity(
+                    // The label fades as the arrow slides over it.
+                    opacity: track == 0 ? 1 : (1 - _offset / track).clamp(0.2, 1.0),
+                    child: Text(widget.label, textAlign: TextAlign.center),
+                  ),
+                ),
+                AnimatedPositionedDirectional(
+                  duration: _dragging ? Duration.zero : const Duration(milliseconds: 250),
+                  curve: Curves.easeOutBack,
+                  start: _offset,
+                  top: 0,
+                  bottom: 0,
+                  child: ExcludeSemantics(
+                    child: GestureDetector(
+                      key: const Key('stopArrow'),
+                      behavior: HitTestBehavior.opaque,
+                      onHorizontalDragStart: _start,
+                      onHorizontalDragUpdate: (d) => _update(d, track, rtl),
+                      onHorizontalDragEnd: (_) => _end(),
+                      onHorizontalDragCancel: _end,
+                      child: Center(
+                        child: Container(
+                          width: _knob,
+                          height: _knob,
+                          decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
+                          child: const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

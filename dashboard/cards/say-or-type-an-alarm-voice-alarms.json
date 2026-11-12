@@ -1,0 +1,15 @@
+{
+  "id": "say-or-type-an-alarm-voice-alarms",
+  "title": "Say or type an alarm (voice alarms)",
+  "status": "done",
+  "tag": "app",
+  "note": "Merged via PR #26 (in Thursday's version). On-device AI fallback and Siri/Android assistant hookups are parked until after the release.",
+  "prs": [
+    26
+  ],
+  "threads": [
+    "voice"
+  ],
+  "details": "A sentence, spoken or typed, becomes an alarm, parsed on the device in English, Portuguese and Hebrew. Open choice: add an on-device AI fallback for sentences the parser can't read.",
+  "order": 4
+}

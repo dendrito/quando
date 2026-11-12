@@ -89,6 +89,8 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSSpeechRecognitionUsageDescription</key>
+	<string>Turn what you say, like “wake me at 7 on weekdays”, into an alarm.</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>Record your own voice or sound to wake up to.</string>
 	<key>NSCameraUsageDescription</key>

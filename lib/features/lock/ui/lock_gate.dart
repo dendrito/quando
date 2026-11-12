@@ -150,10 +150,10 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
     String at(DateTime utc) => '${dayLabel(inZone(utc, zone))} · ${hhmm(inZone(utc, zone))}';
     final text = Theme.of(context).textTheme;
 
-    final holy = widget.period.id.startsWith('holy.');
+    final holy = widget.period.look == LockLook.shabbat;
     final greeting = !holy
-        ? l10n.locked
-        : widget.period.reason.contains(l10n.shabbat)
+        ? (widget.period.allIds.every((id) => id.startsWith('manual.')) ? l10n.locked : l10n.lockQuietTime)
+        : widget.period.reason.contains(l10n.shabbat) || widget.period.id.startsWith('cl.')
         ? l10n.shabbatShalom
         : l10n.chagSameach;
     final endLocal = inZone(widget.period.end, zone);
@@ -178,7 +178,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                     ],
                   )
                 else
-                  const Center(child: Icon(Icons.lock_outline, size: 64, color: QuandoColors.amber)),
+                  const Center(child: _CalmOrb()),
                 const SizedBox(height: 20),
                 FittedBox(
                   fit: BoxFit.scaleDown,
@@ -272,4 +272,58 @@ class _Row extends StatelessWidget {
       ],
     );
   }
+}
+
+/// The generic lock picture: a slow, breathing glow, like a moon behind
+/// mist. No religious or brand symbols, so it fits any event.
+class _CalmOrb extends StatefulWidget {
+  const _CalmOrb();
+
+  @override
+  State<_CalmOrb> createState() => _CalmOrbState();
+}
+
+class _CalmOrbState extends State<_CalmOrb> with SingleTickerProviderStateMixin {
+  late final AnimationController _breath = AnimationController(
+    vsync: this,
+    duration: const Duration(seconds: 6),
+  )..repeat(reverse: true);
+
+  @override
+  void dispose() {
+    _breath.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => SizedBox(
+    height: 130,
+    width: 130,
+    child: AnimatedBuilder(
+      animation: _breath,
+      builder: (context, _) {
+        final t = Curves.easeInOut.transform(_breath.value);
+        return Center(
+          child: Container(
+            width: 96 + 30 * t,
+            height: 96 + 30 * t,
+            decoration: BoxDecoration(
+              shape: BoxShape.circle,
+              gradient: RadialGradient(
+                colors: [
+                  QuandoColors.blush,
+                  QuandoColors.blush.withValues(alpha: 0.85),
+                  QuandoColors.coral.withValues(alpha: 0.3 + 0.15 * t),
+                  Colors.transparent,
+                ],
+                stops: const [0.0, 0.42, 0.6, 1.0],
+              ),
+            ),
+            alignment: Alignment.center,
+            child: const Icon(Icons.lock_outline, size: 34, color: QuandoColors.night),
+          ),
+        );
+      },
+    ),
+  );
 }

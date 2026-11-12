@@ -1,0 +1,12 @@
+{
+  "id": "discreet-calendar-lock",
+  "title": "Discreet calendar lock",
+  "status": "done",
+  "tag": "app",
+  "note": "Merged via PR #29; religious calendars parked in business plan.",
+  "threads": [
+    "lock"
+  ],
+  "details": "Locks during and between calendar events. Shabbat visuals only if a Shabbat calendar is picked; Shabbat is never the default. Own branch, not part of the release.",
+  "order": 5
+}

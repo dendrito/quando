@@ -478,6 +478,85 @@ class AppLocalizationsIt extends AppLocalizations {
   String get holdToUnlock => 'Tieni premuto per sbloccare';
 
   @override
+  String get lockSentenceCalm =>
+      'Blocca il telefono su orologio e sveglie: per un esame, una riunione o una serata tranquilla.';
+
+  @override
+  String get lockCalendarHeading => 'CON IL TUO CALENDARIO';
+
+  @override
+  String get lockCalendarExplain =>
+      'Blocca durante un evento, o da un evento fino al prossimo che scegli. Funziona con ogni calendario scelto, anche condiviso.';
+
+  @override
+  String get lockAddCalendar => 'Aggiungi blocco da calendario';
+
+  @override
+  String get lockEditCalendar => 'Blocco da calendario';
+
+  @override
+  String get lockDuring => 'Durante un evento';
+
+  @override
+  String get lockBetween => 'Tra due eventi';
+
+  @override
+  String get lockStartsAt => 'Eventi chiamati…';
+
+  @override
+  String get lockStartsAtBetween => 'Inizia a un evento chiamato…';
+
+  @override
+  String get lockEndsAt => 'Finisce al prossimo evento chiamato…';
+
+  @override
+  String get lockStartHint => 'es. esame, focus, palestra';
+
+  @override
+  String get lockEndHint => 'es. a casa';
+
+  @override
+  String get lockAnyCalendar => 'Qualsiasi calendario';
+
+  @override
+  String get lockNoMatches => 'Ancora niente nei tuoi calendari corrisponde.';
+
+  @override
+  String get lockNextTimes => 'PROSSIME VOLTE';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Durante “$a”';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Da “$a” al prossimo “$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name” ha gli orari dello Shabbat.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Blocca dall\'accensione delle candele all\'Havdalà';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Usa gli orari di quel calendario, con le candele sullo schermo.';
+
+  @override
+  String get lockMoreWays => 'Altri modi di bloccare';
+
+  @override
+  String get lockQuietTime => 'Momento di calma';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Prossima accensione delle candele: $time, da $name';
+  }
+
+  @override
   String get calendarAlarm => 'Sveglia del calendario';
 
   @override
@@ -2029,10 +2108,11 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Sincronizza i miei dispositivi';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Accedi con Google per avere sveglie e impostazioni uguali su tutti i tuoi dispositivi.';
 
   @override
   String syncOn(String email) {
@@ -2046,85 +2126,85 @@ class AppLocalizationsIt extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Impossibile connettersi. Tocca per riprovare.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'La sincronizzazione non è ancora configurata in questa versione.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Falle suonare comunque';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Salta queste $n oggi';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return 'Disattiva «$name»';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return 'Attiva «$name»';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '«$name» disattivata';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return 'Rimuovi «$time» da «$name»';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '«$time» rimossa da «$name»';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Sposta in un gruppo';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'In «$group», sposta';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'Spostata in «$group»';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return 'Elimina «$name»';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Accedi con Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'Accedi con l’email';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Crea account';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'Ho già un account';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Password dimenticata?';
 
   @override
   String get email => 'Email';
@@ -2133,43 +2213,43 @@ class AppLocalizationsIt extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'Ti abbiamo mandato un link per scegliere una nuova password.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'Abbiamo mandato un link a $email. Aprilo, poi torna qui e tocca «Ho confermato».';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Ho confermato';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Non ancora confermato. Apri prima il link nell’email.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'Invia di nuovo l’email';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Inviata. Controlla la posta in arrivo e lo spam.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Non sembra un indirizzo email.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'Email o password errata.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Esiste già un account con questa email. Accedi, oppure usa Google se l’hai creato con Google.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'Scegli una password di almeno 6 caratteri.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'L’accesso con email non è ancora attivo.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Troppi tentativi. Aspetta qualche minuto.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2227,109 +2307,110 @@ class AppLocalizationsIt extends AppLocalizations {
   String get deliveryReset => 'Usa le impostazioni esistenti';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Prima di Shabbat';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Promemoria di preparazione';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Salta questa settimana';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Ripristina questa settimana';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Orari e suono';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Usa la mia posizione';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => 'La posizione non è disponibile per ora. Riprova o scegli una città.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Conferma questa posizione';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Questa posizione è salvata solo su questo dispositivo. Controlla il fuso orario e l’impostazione Israele prima di usare questi orari.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · ora della città';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff =>
+      'I promemoria di preparazione sono disattivati. Havdalà e sveglie normali non cambiano.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'I promemoria di preparazione sono saltati questa settimana. Le tue impostazioni settimanali restano.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Controlli di Shabbat';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Durante / dopo Shabbat';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Latitudine $latitude · longitudine $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Posizione attuale';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Prova il suono su Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Riproduce il suono scelto sui dispositivi Pushover selezionati. Restano valide le impostazioni di silenzio e di ore tranquille.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Condividi le credenziali con i miei dispositivi';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'La tua chiave utente Pushover e il token dell’app possono seguire il tuo account in Quando? e Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => 'Credenziali in coda per i tuoi dispositivi con accesso effettuato.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Accedi allo stesso account dell’app su ogni dispositivo per condividere le credenziali Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Esegui direttamente le scene Tuya, oppure collega le tue automazioni Home Assistant o Node-RED.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Condividi i collegamenti ai servizi';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Usa lo stesso account dell’app sui tuoi dispositivi per condividere i collegamenti a Pushover, Tuya, libreria Spotify e automazioni. YouTube e le autorizzazioni del dispositivo potrebbero richiedere conferma su ogni dispositivo.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Usa il tuo progetto sviluppatore Tuya collegato. Inserisci il suo data center, Access ID, Access Secret e l’UID mostrato in «Link App Account». Home Assistant non serve.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID dell’account collegato';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2342,48 +2423,48 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Nessuna scena Tap-to-Run disponibile. Controlla l’account collegato, il data center e i permessi dell’API delle scene.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Esegui la scena ora';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Eseguire ora questa scena sui tuoi dispositivi Tuya?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya ha accettato il comando della scena. Controlla i tuoi dispositivi.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya non ha potuto completare la richiesta. Controlla i permessi del progetto, il data center e l’abbonamento. Errore:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Scena Tuya quando suona questa sveglia';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Crea un’automazione Home Assistant con un trigger Webhook che accetta POST e JSON. Incolla qui il suo URL. Usa l’evento della sveglia (ring, stopped, snoozed o auto_stopped) per scegliere le azioni. I nuovi dispositivi ricevono questo collegamento disattivato.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Usa un nodo HTTP In di Node-RED che accetta POST, seguito dalla tua automazione e da un nodo HTTP Response. Incolla qui l’endpoint. Sono supportati hub HTTP locali ed endpoint HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Collega un servizio di casa intelligente';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'Il test esegue subito l’automazione collegata.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Esegui su questo dispositivo le azioni di casa intelligente delle sveglie';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Scegli un dispositivo per eseguire le tue automazioni. I collegamenti sono condivisi; questo interruttore resta su questo dispositivo.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Le azioni delle sveglie sono disattivate su questo dispositivo. Attivale in Collegamenti; i test manuali delle scene funzionano ancora.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2404,22 +2485,22 @@ class AppLocalizationsIt extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Scorri tra cielo e meteo';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Parashà settimanale';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Studio quotidiano';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 1 capitolo al giorno';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 3 capitoli al giorno';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2440,13 +2521,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Luna sopra l’orizzonte tutto il giorno';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Luna sotto l’orizzonte tutto il giorno';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Oggi non sorge';
 
   @override
   String get noSetToday => 'No set today';
@@ -2455,25 +2536,25 @@ class AppLocalizationsIt extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Luna crescente';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'Primo quarto';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Gibbosa crescente';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Gibbosa calante';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Luna calante';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2494,13 +2575,13 @@ class AppLocalizationsIt extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Temporali';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Meteo non disponibile per ora';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Previsioni salvate';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2509,26 +2590,26 @@ class AppLocalizationsIt extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Previsti temporali';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Connettiti per caricare il programma di studio di questo mese';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Lettura della Torà della festa';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Calendario di studio · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Previsioni · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => 'Il meteo della città scelta. Usa coordinate arrotondate con MET Norway.';
 
   @override
   String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+      'I programmi di studio del Rambam e altri vengono caricati da Hebcal e salvati per l’uso offline.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2540,14 +2621,14 @@ class AppLocalizationsIt extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Città di riferimento del fuso orario';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Scegli la città del cielo';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Sole e Luna usano le coordinate di questa città. La tua città di Shabbat e il fuso orario delle sveglie restano come scelti.';
 
   @override
   String get skySun => 'Sun today';
@@ -2556,46 +2637,48 @@ class AppLocalizationsIt extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Luna sopra l’orizzonte';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Luna sotto l’orizzonte';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Prossima luna nuova';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Prossima luna piena';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff =>
+      'I servizi di localizzazione sono disattivati. Attivali in Impostazioni o scegli una città.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied =>
+      'L’accesso alla posizione è stato negato. Consentilo in Impostazioni o scegli una città.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Ancora nessuna posizione. Su Mac tieni attivo il Wi-Fi e riprova, oppure scegli una città.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Usa una città nel fuso orario scelto, oppure segui il fuso orario del dispositivo prima di usare la posizione.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Apri le impostazioni di localizzazione';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Ricerca della posizione…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Mostra la Luna: sorgere, tramonto e fase';
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'L’accesso con account non è ancora disponibile in questa versione. Se hai già un progetto sviluppatore Tuya, usa la configurazione avanzata.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Configurazione avanzata';
 
   @override
   String get tuyaSignInTitle => 'Accedi con il tuo account Smart Life';
@@ -2640,23 +2723,24 @@ class AppLocalizationsIt extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Mostra nella Home il primo giorno o i due giorni del prossimo mese ebraico.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Prossimo Rosh Chodesh';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Inizia al tramonto del';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Leggi questa porzione della Torà su Sefaria';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Gli orari del cielo usano il fuso orario di questa posizione. Il fuso orario delle sveglie e la tua città di Shabbat non cambiano. Salvato solo su questo dispositivo.';
 
   @override
   String get musicRingDurationHint =>
@@ -2821,19 +2905,19 @@ class AppLocalizationsIt extends AppLocalizations {
       'Scegli prima una frase di sincronizzazione, in Chiavi sui tuoi dispositivi.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Impostazioni predefinite delle sveglie';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Luoghi e ora';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Aspetto, lingua e citazioni';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'Predefinito per le nuove sveglie';
 
   @override
   String get preview => 'Preview';
@@ -2844,13 +2928,13 @@ class AppLocalizationsIt extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Collega un calendario';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Da un modello pronto';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'Alba, tramonto e altre sveglie già pronte per te';
 
   @override
   String get calendarSourcesIntro =>
@@ -2970,8 +3054,8 @@ class AppLocalizationsIt extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 secondo prima',
       other: '$n secondi prima',
+      one: '1 secondo prima',
     );
     return '$_temp0';
   }
@@ -3002,13 +3086,13 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 secondo', other: '$n secondi');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n secondi', one: '1 secondo');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuto', other: '$n minuti');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuti', one: '1 minuto');
     return '$_temp0';
   }
 
@@ -3060,7 +3144,8 @@ class AppLocalizationsIt extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint =>
+      'Trascina la maniglia per spostare una scheda, comprimerla o cambiarne la dimensione.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3081,25 +3166,609 @@ class AppLocalizationsIt extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'SOLE, LUNA E METEO';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'SHABBAT E FESTE';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Città per il cielo';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Prossima sveglia · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Mostra tutti i giorni';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'Niente suona in questo giorno';
+
+  @override
+  String get homeClockSize => 'Orologio nella home';
+
+  @override
+  String get sizeSmall => 'Piccolo';
+
+  @override
+  String get sizeMedium => 'Medio';
+
+  @override
+  String get sizeLarge => 'Grande';
+
+  @override
+  String get homeLayout => 'Layout della home';
+
+  @override
+  String get homeLayoutClassic => 'Classico';
+
+  @override
+  String get homeLayoutCards => 'Schede';
+
+  @override
+  String get homeCardsHint =>
+      'Trascina una scheda per spostarla. Trascina il bordo o l\'angolo per ridimensionarla, o scegli una misura.';
+
+  @override
+  String get homeAddCard => 'Aggiungi scheda';
+
+  @override
+  String get homeOnHome => 'Nella home';
+
+  @override
+  String get homeRemoveCard => 'Rimuovi';
+
+  @override
+  String get cardNext => 'Prossima sveglia';
+
+  @override
+  String get cardClock => 'Orologio e data';
+
+  @override
+  String get cardSky => 'Sole, luna e meteo';
+
+  @override
+  String get cardMoon => 'Luna';
+
+  @override
+  String get cardWeather => 'Meteo';
+
+  @override
+  String get cardAlarms => 'Le tue sveglie';
+
+  @override
+  String get cardQuick => 'Sveglie rapide';
+
+  @override
+  String get cardTools => 'Cronometro, timer e pronti';
+
+  @override
+  String get cardWorld => 'Orologi del mondo';
+
+  @override
+  String get cardWeek => 'Questa settimana';
+
+  @override
+  String get cardShabbat => 'Shabbat e festività';
+
+  @override
+  String get ringAtEventReminders => 'Suona ai promemoria dell\'evento';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'I promemoria della tua app calendario suonano qui come sveglie forti, con il suono di questa sveglia.';
+
+  @override
+  String get atEventReminders => 'ai promemoria dell\'evento';
+
+  @override
+  String get everyEventReminderLoud => 'Suona forte ai promemoria di ogni evento';
+
+  @override
+  String get loudNotificationsHeading => 'NOTIFICHE DEL CALENDARIO A VOLUME ALTO';
+
+  @override
+  String get loudNotificationsTitle => 'Rendi forti le notifiche del calendario';
+
+  @override
+  String get loudNotificationsHint =>
+      'Quando un\'app calendario mostra un promemoria, Quando? lo fa suonare come sveglia, anche col telefono in silenzioso.';
+
+  @override
+  String get loudNotificationsDisclosureTitle =>
+      'Consentire a Quando? di leggere le notifiche del calendario?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Per far suonare i promemoria del calendario, Quando? ha bisogno dell\'accesso alle notifiche. Guarda solo quelle delle app calendario che scegli, ne legge titolo e testo su questo telefono per mostrarli sulla sveglia, e non li salva né li invia mai. Puoi disattivarlo quando vuoi.';
+
+  @override
+  String get loudNotificationsAgree => 'Accetta e continua';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'L\'accesso alle notifiche è disattivato. Attiva Quando? nell\'elenco che si apre.';
+
+  @override
+  String get loudNotificationsAllow => 'Consenti';
+
+  @override
+  String get loudNotificationsNoApps => 'Nessuna app calendario supportata su questo telefono.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'Gli eventi che hanno già una sveglia di calendario Quando? suonano una volta sola.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'In silenzio durante lo Shabbat e le feste.';
+
+  @override
+  String get busyMode => 'Modalità occupato';
+
+  @override
+  String get busyModeSubtitle => 'Non disturbare e risposte automatiche quando sei occupato';
+
+  @override
+  String get busyIntro =>
+      'Mentre sei occupato, Quando? può silenziare il telefono e rispondere ai messaggi per te. Le sveglie suonano comunque.';
+
+  @override
+  String get busyIosFocus =>
+      'Su iPhone e iPad le app non possono attivare Full immersion né rispondere ai messaggi. Nell\'app Comandi crea un\'automazione \"Quando si apre Quando?\" o a un orario che attivi una Full immersion, e impostala per rispondere automaticamente.';
+
+  @override
+  String get busyWhileHeading => 'MENTRE SEI OCCUPATO';
+
+  @override
+  String get busyDnd => 'Non disturbare';
+
+  @override
+  String get busyDndHint =>
+      'Solo priorità: chiamate e messaggi in silenzio, le sveglie suonano. Torna normale alla fine.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? non può ancora cambiare Non disturbare.';
+
+  @override
+  String get busyReplies => 'Rispondi ai messaggi';
+
+  @override
+  String get busyRepliesHint =>
+      'Una volta per persona, col tuo testo, tramite il pulsante Rispondi dell\'app. Solo Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Consentire a Quando? di rispondere ai messaggi?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Per rispondere al posto tuo, Quando? ha bisogno dell\'accesso alle notifiche. Solo mentre sei occupato, guarda le notifiche dei messaggi delle app che scegli, legge il nome del mittente su questo telefono e invia il tuo testo una volta tramite il pulsante Rispondi dell\'app. I messaggi non vengono mai salvati né inviati altrove. I gruppi sono esclusi, se non li consenti.';
+
+  @override
+  String get busyReplyText => 'La tua risposta';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until diventa l\'ora in cui finisce la modalità occupato.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ora sono occupato, rispondo dopo le $until.';
+  }
+
+  @override
+  String get busyGroups => 'Rispondi anche nei gruppi';
+
+  @override
+  String get busyGroupsHint => 'Disattivato: i gruppi non ricevono mai risposta.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Rispondi durante Shabbat e feste';
+
+  @override
+  String get busyAskRabbi => 'Disattivato di default. Chiedi al tuo rabbino prima di attivarlo per Shabbat.';
+
+  @override
+  String get busyWhenHeading => 'QUANDO SEI OCCUPATO';
+
+  @override
+  String get busyWhenHint =>
+      'Attiva \"Occupato durante questi eventi\" su una sveglia di calendario, o \"Occupato dopo che suona\" su una sveglia.';
+
+  @override
+  String get busyDuringLock => 'Occupato mentre la modalità blocco è attiva';
+
+  @override
+  String get busyNoneComing => 'Niente di occupato nei prossimi 7 giorni.';
+
+  @override
+  String get busyDuringEvents => 'Occupato durante questi eventi';
+
+  @override
+  String get busyDuringEventsHint => 'Modalità occupato dall\'inizio alla fine di ogni evento.';
+
+  @override
+  String get busySettings => 'Impostazioni modalità occupato';
+
+  @override
+  String get busyAfterRing => 'Occupato dopo che suona';
+
+  @override
+  String get busyAfterRingHint =>
+      'Non disturbare e risposte automatiche per un po\', ad es. allenamento o pisolino.';
+
+  @override
+  String get shareCard => 'Condividi il tuo mattino';
+
+  @override
+  String get shareCardSubtitle => 'Il cielo e la frase di oggi, o la tua foto, per Storie e stati';
+
+  @override
+  String get shareAppMissing => 'Quell\'app non è su questo telefono.';
+
+  @override
+  String get shareAsIs => 'Condividi così com\'è';
+
+  @override
+  String get shareTapQuote => 'Tocca la frase per cambiarla.';
+
+  @override
+  String get shareStory => 'Storia';
+
+  @override
+  String get shareSquare => 'Quadrato';
+
+  @override
+  String get shareYourWords => 'Le tue parole (facoltativo)';
+
+  @override
+  String get shareYourWordsHint => 'Al posto della frase di oggi';
+
+  @override
+  String get shareYourPhoto => 'La tua foto';
+
+  @override
+  String get shareOtherPhoto => 'Un\'altra foto';
+
+  @override
+  String get shareSkyBack => 'Il cielo di oggi';
+
+  @override
+  String get shareYourVideo => 'Il tuo video';
+
+  @override
+  String get shareInstagramStory => 'Storie di Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: stato o chat';
+
+  @override
+  String get shareMore => 'Altre app';
+
+  @override
+  String get shareYouPost => 'Quando? apre l\'app con la tua card pronta. Scegli tu dove e tocchi Pubblica.';
+
+  @override
+  String get shareAndroidFirst => 'La condivisione arriva presto su iPhone e iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” salvato come suono della sveglia';
+  }
+
+  @override
+  String get shareToQuando => 'Condividi un brano con Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'In YouTube, YouTube Music, Spotify, SoundCloud o Apple Music tocca Condividi e poi Quando?. Diventa un suono della sveglia che parte nella sua app.';
+
+  @override
+  String get askOption => 'Dillo o scrivilo';
+
+  @override
+  String get askOptionHint => '“Domani alle 6”, “30 min prima dell\'alba”';
+
+  @override
+  String get askHint => 'es.: svegliami 30 min prima dell\'alba nei giorni feriali';
+
+  @override
+  String get askListening => 'In ascolto…';
+
+  @override
+  String get askNotUnderstood =>
+      'Non ho trovato un orario. Prova “alle 7 nei giorni feriali” o “tra 20 minuti”.';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return 'Dal tuo calendario “$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Orari di Quando? per la tua città';
+
+  @override
+  String get askNoAnswer => 'Nessun orario trovato per ora.';
+
+  @override
+  String get askNoSpeech => 'La voce non è disponibile su questo dispositivo. Puoi scrivere.';
+
+  @override
+  String get askShabbatOff => 'Attiva lo Shabbat nelle Impostazioni perché i suoi orari suonino.';
+
+  @override
+  String askSaved(String what) {
+    return 'Salvato: $what';
+  }
+
+  @override
+  String get askMic => 'Parla';
+
+  @override
+  String get askMorning => 'Mattina';
+
+  @override
+  String get askEvening => 'Sera';
+
+  @override
+  String get askUnsure => 'Forse mi è sfuggito qualcosa. Controlla prima di salvare.';
+
+  @override
+  String get askTeach => 'Insegnamelo';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Capito: “$phrase” ora vuol dire $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Salta';
+
+  @override
+  String get askNoMatch => 'Nessuna sveglia corrisponde.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Disattivata: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Saltata: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset “$event” nel tuo calendario';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Collega un calendario perché Quando? trovi “$event”.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Posticipa: $minutes min, per questa sveglia';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Ti sveglia con $sound';
+  }
+
+  @override
+  String get askReadAs => 'Letto come';
+
+  @override
+  String get askHelpTitle => 'Aiuta a migliorare le sveglie vocali';
+
+  @override
+  String get askHelpBody =>
+      'Invia in forma anonima ciò che dici o scrivi e cosa ne hai fatto. Nessun account né ID del dispositivo.';
+
+  @override
+  String get askHelpPromptTitle => 'Aiutare Quando? a capirti?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Invieremmo ciò che dici o scrivi, come “$sentence”, e se l’hai salvato. Anonimo: nessun nome, account o ID del dispositivo. Puoi disattivarlo quando vuoi.';
+  }
+
+  @override
+  String get askHelpYes => 'Sì, aiuta';
+
+  @override
+  String get askHelpNo => 'No grazie';
+
+  @override
+  String get askQuoteTranslation =>
+      'La vita non è quella che si è vissuta, ma quella che si ricorda e come la si ricorda per raccontarla.';
+
+  @override
+  String get askHelpQuote => '';
+  String get quickSetups => 'Impostazioni rapide';
+
+  @override
+  String get qsMorningTitle => 'Una mattina che funziona';
+
+  @override
+  String get qsStartTitle => 'Non perdere nessun inizio';
+
+  @override
+  String get qsStretchTitle => 'Lavora a tappe';
+
+  @override
+  String get qsWillChange => 'Cosa cambierà';
+
+  @override
+  String get qsAlreadyOn => 'Già attivo. Niente da cambiare.';
+
+  @override
+  String get qsApply => 'Applica';
+
+  @override
+  String get qsDone => 'Fatto';
+
+  @override
+  String get qsUndo => 'Annulla';
+
+  @override
+  String get qsSnoozeTimes => 'Rinvii consentiti';
+
+  @override
+  String get qsSnoozeMinutes => 'Minuti di rinvio';
+
+  @override
+  String get qsFiveLeft => 'Mancano 5 minuti';
+
+  @override
+  String get syncHeading => 'Quando il calendario cambia';
+
+  @override
+  String get syncLive => 'Segui il calendario';
+
+  @override
+  String get syncLiveHint =>
+      'I nuovi eventi hanno una sveglia. Se un evento si sposta, si sposta anche la sveglia. Se viene cancellato, la sveglia sparisce.';
+
+  @override
+  String get syncKeepFirst => 'Tieni com\'era all\'inizio';
+
+  @override
+  String get syncKeepFirstHint =>
+      'I nuovi eventi hanno comunque una sveglia. Una volta impostata, la sveglia resta lì, anche se l\'evento si sposta o viene cancellato.';
+
+  @override
+  String get syncSnapshot => 'Solo gli eventi che ci sono ora';
+
+  @override
+  String get syncSnapshotHint =>
+      'Solo gli eventi nel calendario quando salvi, così come sono ora. Dopo non si aggiunge nulla di nuovo.';
+
+  @override
+  String get syncHelpButton => 'Come funziona';
+
+  @override
+  String get syncHelpTitle => 'Come le sveglie seguono il calendario';
+
+  @override
+  String get syncHelpIntro =>
+      'Questa regola continua a cercare gli eventi che corrispondono alla tua ricerca. Scegli tu cosa succede quando il calendario cambia.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Esempio: una regola per “dentista”. Il dentista sposta l\'appuntamento da martedì a mercoledì, e anche la sveglia passa a mercoledì. Se l\'appuntamento viene annullato, la sveglia sparisce.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Stessa regola: l\'appuntamento passa a mercoledì, ma la sveglia resta martedì, come Quando? l\'ha visto all\'inizio. Un nuovo appuntamento il mese prossimo ha comunque la sua sveglia.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Stessa regola: hai sveglie per gli appuntamenti che ci sono oggi nel calendario, e restano così. Un appuntamento aggiunto il mese prossimo non ha sveglia.';
+
+  @override
+  String get syncHelpTip => 'Nel dubbio? Lascia “Segui il calendario”.';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando si accorge Quando? dei cambiamenti?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Con Quando? aperta: in pochi secondi. Google Calendar collegato qui viene controllato ogni 2 minuti.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Con Quando? chiusa: la prossima volta che la apri. Fino ad allora, le sveglie già impostate suonano agli orari che avevano.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone e iPad non lasciano alle app guardare il calendario in background, quindi i cambiamenti arrivano quando apri Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Tocca il centro per fermare';
+
+  @override
+  String get uiSimple => 'Semplice';
+
+  @override
+  String get uiEverything => 'Tutto';
+
+  @override
+  String get firstRunTitle => 'Quanto vuoi vedere?';
+
+  @override
+  String get firstRunSimpleHint => 'Sveglie e le basi';
+
+  @override
+  String get firstRunEverythingHint => 'Calendario, Shabbat, timer, meteo e altro';
+
+  @override
+  String get firstRunChangeLater => 'Puoi cambiarlo quando vuoi nelle Impostazioni.';
+
+  @override
+  String get continueLabel => 'Continua';
+
+  @override
+  String get everyAlarm => 'Ogni sveglia';
+
+  @override
+  String get wakeMeWith => 'Svegliami con';
+
+  @override
+  String get ringOrMusic => 'Suoneria o musica';
+
+  @override
+  String get ringsForRow => 'Suona per';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min prima';
+  }
+
+  @override
+  String get quandoSounds => 'Suoni di Quando?';
+
+  @override
+  String get aSongApps => 'Una canzone (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'La mia registrazione';
+
+  @override
+  String get useForNewAlarms => 'Usa per le nuove sveglie';
+
+  @override
+  String get iWillLabel => 'Quando suona, io…';
+
+  @override
+  String get foldVolume => 'Volume e dissolvenze';
+
+  @override
+  String get foldSnoozeStop => 'Posticipa e ferma';
+
+  @override
+  String get foldExtras => 'Calendario e extra';
+
+  @override
+  String get groupAlarms => 'Sveglie';
+
+  @override
+  String get groupCalendarShabbat => 'Calendario e Shabbat';
+
+  @override
+  String get groupLookQuotes => 'Aspetto e citazioni';
+
+  @override
+  String get groupConnectionsSync => 'Collegamenti e sincronizzazione';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count impostazioni · $on attiva/e';
+  }
 }

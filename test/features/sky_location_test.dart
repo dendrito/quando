@@ -277,7 +277,8 @@ void main() {
       addTearDown(tester.view.reset);
       SharedPreferences.setMockInitialValues({
         'place.name': 'São Paulo',
-        'home.display': '{"moon":true,"moonDetails":true,"skyUseShabbat":true}',
+        'home.display.allOn': true,
+        'home.display': '{"moon":true,"moonDetails":true,"weather":false,"skyUseShabbat":true}',
       });
       final prefs = await SharedPreferences.getInstance();
       final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
@@ -357,7 +358,8 @@ void main() {
       addTearDown(tester.view.reset);
       SharedPreferences.setMockInitialValues({
         'place.name': 'São Paulo',
-        'home.display': '{"moon":true,"night":true}',
+        'home.display.allOn': true,
+        'home.display': '{"moon":true,"night":true,"moonDetails":false,"weather":false}',
       });
       final prefs = await SharedPreferences.getInstance();
       final c = ProviderContainer(

@@ -511,6 +511,85 @@ class AppLocalizationsRu extends AppLocalizations {
   String get holdToUnlock => 'Удерживайте для разблокировки';
 
   @override
+  String get lockSentenceCalm =>
+      'Заблокируйте телефон на часах и будильниках: на экзамен, встречу или тихий вечер.';
+
+  @override
+  String get lockCalendarHeading => 'ПО КАЛЕНДАРЮ';
+
+  @override
+  String get lockCalendarExplain =>
+      'Блокировка во время события или от одного события до следующего, которое вы укажете. Работает с любым выбранным календарём, и с общими тоже.';
+
+  @override
+  String get lockAddCalendar => 'Добавить блокировку по календарю';
+
+  @override
+  String get lockEditCalendar => 'Блокировка по календарю';
+
+  @override
+  String get lockDuring => 'Во время события';
+
+  @override
+  String get lockBetween => 'Между двумя событиями';
+
+  @override
+  String get lockStartsAt => 'События с названием…';
+
+  @override
+  String get lockStartsAtBetween => 'Начинается с события…';
+
+  @override
+  String get lockEndsAt => 'Заканчивается на следующем событии…';
+
+  @override
+  String get lockStartHint => 'напр. экзамен, фокус, спорт';
+
+  @override
+  String get lockEndHint => 'напр. дома';
+
+  @override
+  String get lockAnyCalendar => 'Любой календарь';
+
+  @override
+  String get lockNoMatches => 'В календарях пока ничего не подходит.';
+
+  @override
+  String get lockNextTimes => 'СЛЕДУЮЩИЕ РАЗЫ';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Во время «$a»';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'От «$a» до следующего «$b»';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return 'В «$name» есть время шаббата.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Блокировать от зажигания свечей до авдалы';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Берёт время из этого календаря, со свечами на экране.';
+
+  @override
+  String get lockMoreWays => 'Другие способы блокировки';
+
+  @override
+  String get lockQuietTime => 'Время тишины';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Следующее зажигание свечей: $time, из $name';
+  }
+
+  @override
   String get calendarAlarm => 'Будильник календаря';
 
   @override
@@ -2063,10 +2142,11 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Синхронизировать мои устройства';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint =>
+      'Войдите через Google, чтобы будильники и настройки были одинаковыми на всех ваших устройствах.';
 
   @override
   String syncOn(String email) {
@@ -2080,85 +2160,85 @@ class AppLocalizationsRu extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Не удалось подключиться. Нажмите, чтобы повторить.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'Синхронизация в этой версии ещё не настроена.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Всё же звонить';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Пропустить эти $n сегодня';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return 'Выключить «$name»';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return 'Включить «$name»';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '«$name» выключен';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return 'Убрать «$time» из «$name»';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '«$time» убрано из «$name»';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Переместить в группу';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'В «$group», переместить';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'Перемещено в «$group»';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return 'Удалить «$name»';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Войти через Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'Войти по почте';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Создать аккаунт';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'У меня есть аккаунт';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Забыли пароль?';
 
   @override
   String get email => 'Email';
@@ -2167,43 +2247,43 @@ class AppLocalizationsRu extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'Мы отправили вам ссылку для выбора нового пароля.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'Мы отправили ссылку на $email. Откройте её, вернитесь и нажмите «Я подтвердил».';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Я подтвердил';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Пока не подтверждено. Сначала откройте ссылку в письме.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'Отправить письмо ещё раз';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Отправлено. Проверьте входящие и спам.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Это не похоже на адрес электронной почты.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'Неверная почта или пароль.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Аккаунт с этой почтой уже существует. Войдите или используйте Google, если создавали его через Google.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'Выберите пароль не короче 6 символов.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'Вход по почте ещё не включён.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Слишком много попыток. Подождите несколько минут.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2260,109 +2340,111 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deliveryReset => 'Использовать текущие настройки';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Перед Шаббатом';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Напоминания о подготовке';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Пропустить эту неделю';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Вернуть эту неделю';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Время и звук';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Использовать моё местоположение';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable =>
+      'Местоположение временно недоступно. Повторите попытку или выберите город.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Подтвердить это местоположение';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Это местоположение хранится только на этом устройстве. Проверьте часовой пояс и настройку Израиля, прежде чем использовать это время.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · время города';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => 'Напоминания о подготовке выключены. Авдала и обычные будильники не меняются.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Напоминания о подготовке на этой неделе пропущены. Ваши недельные настройки сохранены.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Настройки Шаббата';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Во время / после Шаббата';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Широта $latitude · долгота $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Текущее местоположение';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Проверить звук в Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Воспроизводит выбранный звук на выбранных устройствах Pushover. Настройки беззвучного режима и тихих часов продолжают действовать.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Поделиться данными доступа с моими устройствами';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Ваш пользовательский ключ Pushover и токен приложения могут следовать за вашим аккаунтом в Quando? и Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued =>
+      'Данные доступа поставлены в очередь для ваших устройств с выполненным входом.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Войдите в один и тот же аккаунт приложения на каждом устройстве, чтобы поделиться данными Pushover.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Запускайте сцены Tuya напрямую или подключите собственные автоматизации Home Assistant или Node-RED.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Поделиться подключениями к сервисам';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Используйте один и тот же аккаунт приложения на своих устройствах, чтобы поделиться подключениями к Pushover, Tuya, библиотеке Spotify и автоматизациям. YouTube и разрешения устройства могут по-прежнему требовать подтверждения на каждом устройстве.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Используйте связанный проект разработчика Tuya. Введите его дата-центр, Access ID, Access Secret и UID, указанный в разделе «Link App Account». Home Assistant не нужен.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID связанного аккаунта';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2375,48 +2457,48 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Доступных сцен Tap-to-Run не найдено. Проверьте связанный аккаунт, дата-центр и разрешения API сцен.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Запустить сцену сейчас';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Запустить эту сцену на ваших устройствах Tuya сейчас?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya приняла команду сцены. Проверьте свои устройства.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya не смогла выполнить запрос. Проверьте разрешения проекта, дата-центр и подписку. Ошибка:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Сцена Tuya, когда звонит этот будильник';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Создайте автоматизацию Home Assistant с триггером Webhook, принимающим POST и JSON. Вставьте сюда её URL. Используйте событие будильника (ring, stopped, snoozed или auto_stopped), чтобы выбрать действия. Новые устройства получают это подключение выключенным.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Используйте узел HTTP In в Node-RED, принимающий POST, затем вашу автоматизацию и узел HTTP Response. Вставьте сюда конечную точку. Поддерживаются локальные HTTP-хабы и конечные точки HTTPS.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Подключить сервис умного дома';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'При проверке подключённая автоматизация запускается сразу.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Выполнять действия будильников для умного дома на этом устройстве';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Выберите одно устройство для запуска ваших автоматизаций. Подключения общие; этот переключатель действует только на этом устройстве.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Действия будильников на этом устройстве выключены. Включите их в разделе «Подключения»; ручная проверка сцен по-прежнему работает.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2437,22 +2519,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Листайте между небом и погодой';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Недельная глава Торы';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Ежедневное изучение';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Рамбам · 1 глава в день';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Рамбам · 3 главы в день';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2473,13 +2555,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Луна над горизонтом весь день';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Луна под горизонтом весь день';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Сегодня без восхода';
 
   @override
   String get noSetToday => 'No set today';
@@ -2488,25 +2570,25 @@ class AppLocalizationsRu extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Растущий серп';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'Первая четверть';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Растущая Луна';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Убывающая Луна';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Убывающий серп';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2527,13 +2609,13 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Грозы';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Погода временно недоступна';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Сохранённый прогноз';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2542,26 +2624,27 @@ class AppLocalizationsRu extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Ожидаются грозы';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Подключитесь, чтобы загрузить план изучения на этот месяц';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Праздничное чтение Торы';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Календарь изучения · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Прогноз · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent =>
+      'Погода для выбранного города. Использует округлённые координаты с MET Norway.';
 
   @override
   String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+      'Расписания учёбы Рамбама и другие загружаются из Hebcal и сохраняются для использования офлайн.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2573,14 +2656,14 @@ class AppLocalizationsRu extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Опорный город часового пояса';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Выбрать город для неба';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Солнце и Луна используют координаты этого города. Ваш город для Шаббата и часовой пояс будильников остаются как выбраны.';
 
   @override
   String get skySun => 'Sun today';
@@ -2589,46 +2672,48 @@ class AppLocalizationsRu extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Луна над горизонтом';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Луна под горизонтом';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Следующее новолуние';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Следующее полнолуние';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff =>
+      'Службы геолокации выключены. Включите их в Настройках или выберите город.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied =>
+      'Доступ к местоположению запрещён. Разрешите его в Настройках или выберите город.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Местоположение пока не определено. На Mac оставьте Wi-Fi включённым и повторите попытку или выберите город.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Выберите город в нужном часовом поясе или используйте часовой пояс устройства, прежде чем применять местоположение.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Открыть настройки геолокации';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Определяем местоположение…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Показывать Луну: восход, закат и фазу';
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Вход через аккаунт в этой версии пока недоступен. Если у вас уже есть проект разработчика Tuya, используйте расширенную настройку.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Расширенная настройка';
 
   @override
   String get tuyaSignInTitle => 'Войти с аккаунтом Smart Life';
@@ -2673,23 +2758,24 @@ class AppLocalizationsRu extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Показывает на главном экране первый день или два дня следующего еврейского месяца.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Следующий Рош-ходеш';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Начинается на закате';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Читать эту главу Торы на Sefaria';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Время неба использует часовой пояс этого места. Часовой пояс будильников и город для Шаббата не меняются. Хранится только на этом устройстве.';
 
   @override
   String get musicRingDurationHint =>
@@ -2853,19 +2939,19 @@ class AppLocalizationsRu extends AppLocalizations {
       'Сначала выберите фразу синхронизации в разделе «Ключи на ваших устройствах».';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Настройки будильников по умолчанию';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Места и время';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Оформление, язык и цитаты';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'По умолчанию для новых будильников';
 
   @override
   String get preview => 'Preview';
@@ -2876,13 +2962,13 @@ class AppLocalizationsRu extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Подключить календарь';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Из готового набора';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'Восход, закат и другие будильники, которые уже настроены для вас';
 
   @override
   String get calendarSourcesIntro =>
@@ -3002,10 +3088,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: 'За 1 секунду',
-      few: 'За $n секунды',
-      many: 'За $n секунд',
       other: 'За $n секунды',
+      many: 'За $n секунд',
+      few: 'За $n секунды',
+      one: 'За 1 секунду',
     );
     return '$_temp0';
   }
@@ -3039,10 +3125,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 секунда',
-      few: '$n секунды',
-      many: '$n секунд',
       other: '$n секунды',
+      many: '$n секунд',
+      few: '$n секунды',
+      one: '1 секунда',
     );
     return '$_temp0';
   }
@@ -3052,10 +3138,10 @@ class AppLocalizationsRu extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 минута',
-      few: '$n минуты',
-      many: '$n минут',
       other: '$n минуты',
+      many: '$n минут',
+      few: '$n минуты',
+      one: '1 минута',
     );
     return '$_temp0';
   }
@@ -3108,7 +3194,8 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint =>
+      'Потяните за ручку, чтобы переместить карточку, свернуть её или изменить размер.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3129,25 +3216,608 @@ class AppLocalizationsRu extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'СОЛНЦЕ, ЛУНА И ПОГОДА';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'ШАББАТ И ПРАЗДНИКИ';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Город для неба';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Следующий будильник · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Показать все дни';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'В этот день ничего не звонит';
+
+  @override
+  String get homeClockSize => 'Часы на главном экране';
+
+  @override
+  String get sizeSmall => 'Маленькие';
+
+  @override
+  String get sizeMedium => 'Средние';
+
+  @override
+  String get sizeLarge => 'Большие';
+
+  @override
+  String get homeLayout => 'Вид главного экрана';
+
+  @override
+  String get homeLayoutClassic => 'Классический';
+
+  @override
+  String get homeLayoutCards => 'Карточки';
+
+  @override
+  String get homeCardsHint =>
+      'Перетащите карточку, чтобы переместить. Потяните за край или угол, чтобы изменить размер, или выберите размер.';
+
+  @override
+  String get homeAddCard => 'Добавить карточку';
+
+  @override
+  String get homeOnHome => 'На экране';
+
+  @override
+  String get homeRemoveCard => 'Убрать';
+
+  @override
+  String get cardNext => 'Следующий будильник';
+
+  @override
+  String get cardClock => 'Часы и дата';
+
+  @override
+  String get cardSky => 'Солнце, луна и погода';
+
+  @override
+  String get cardMoon => 'Луна';
+
+  @override
+  String get cardWeather => 'Погода';
+
+  @override
+  String get cardAlarms => 'Ваши будильники';
+
+  @override
+  String get cardQuick => 'Быстрые будильники';
+
+  @override
+  String get cardTools => 'Секундомер, таймер и «внимание»';
+
+  @override
+  String get cardWorld => 'Мировое время';
+
+  @override
+  String get cardWeek => 'Эта неделя';
+
+  @override
+  String get cardShabbat => 'Шаббат и праздники';
+
+  @override
+  String get ringAtEventReminders => 'Звонить по напоминаниям самого события';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'Напоминания из вашего календаря звонят здесь как громкие будильники, со звуком этого будильника.';
+
+  @override
+  String get atEventReminders => 'по напоминаниям события';
+
+  @override
+  String get everyEventReminderLoud => 'Громко звонить по напоминаниям каждого события';
+
+  @override
+  String get loudNotificationsHeading => 'ГРОМКИЕ УВЕДОМЛЕНИЯ КАЛЕНДАРЯ';
+
+  @override
+  String get loudNotificationsTitle => 'Сделать уведомления календаря громкими';
+
+  @override
+  String get loudNotificationsHint =>
+      'Когда календарь показывает напоминание, Quando? звонит им как будильником, даже в беззвучном режиме.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Разрешить Quando? читать уведомления календаря?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Чтобы громко звонить напоминаниями календаря, Quando? нужен доступ к уведомлениям. Он смотрит только уведомления выбранных вами календарей, читает их заголовок и текст на этом телефоне, чтобы показать на будильнике, и никогда их не хранит и никуда не отправляет. Это можно выключить в любой момент.';
+
+  @override
+  String get loudNotificationsAgree => 'Согласиться и продолжить';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Доступ к уведомлениям выключен. Включите Quando? в открывшемся списке.';
+
+  @override
+  String get loudNotificationsAllow => 'Разрешить';
+
+  @override
+  String get loudNotificationsNoApps => 'На этом телефоне нет поддерживаемого календаря.';
+
+  @override
+  String get loudNotificationsTwiceNote =>
+      'События, у которых уже есть будильник Quando?, звонят только один раз.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Тихо в Шаббат и праздники.';
+
+  @override
+  String get busyMode => 'Режим «Занят»';
+
+  @override
+  String get busyModeSubtitle => '«Не беспокоить» и автоответы, пока вы заняты';
+
+  @override
+  String get busyIntro =>
+      'Пока вы заняты, Quando? может приглушить телефон и отвечать на сообщения за вас. Будильники по-прежнему звонят.';
+
+  @override
+  String get busyIosFocus =>
+      'На iPhone и iPad приложения не могут включать фокусирование и отвечать на сообщения. В приложении «Команды» создайте автоматизацию «При открытии Quando?» или по времени, которая включает фокусирование, и настройте в нём автоответ.';
+
+  @override
+  String get busyWhileHeading => 'ПОКА ВЫ ЗАНЯТЫ';
+
+  @override
+  String get busyDnd => 'Не беспокоить';
+
+  @override
+  String get busyDndHint =>
+      'Только важные: звонки и сообщения беззвучны, будильники звонят. Потом всё как было.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? пока не может менять «Не беспокоить».';
+
+  @override
+  String get busyReplies => 'Отвечать на сообщения';
+
+  @override
+  String get busyRepliesHint =>
+      'Один раз каждому, вашим текстом, через кнопку «Ответить» самого приложения. Только Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Разрешить Quando? отвечать на сообщения?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Чтобы отвечать за вас, Quando? нужен доступ к уведомлениям. Только пока вы заняты, он смотрит уведомления о сообщениях выбранных приложений, читает имя отправителя на этом телефоне и один раз отправляет ваш текст через кнопку «Ответить» самого приложения. Сообщения никогда не сохраняются и никуда больше не отправляются. Группы пропускаются, если вы их не разрешите.';
+
+  @override
+  String get busyReplyText => 'Ваш ответ';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until заменится временем окончания режима.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Сейчас занят, отвечу после $until.';
+  }
+
+  @override
+  String get busyGroups => 'Отвечать и в группах';
+
+  @override
+  String get busyGroupsHint => 'Выключено: группам никогда не отвечаем.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Отвечать в Шаббат и праздники';
+
+  @override
+  String get busyAskRabbi =>
+      'По умолчанию выключено. Спросите своего раввина, прежде чем включать на Шаббат.';
+
+  @override
+  String get busyWhenHeading => 'КОГДА ВЫ ЗАНЯТЫ';
+
+  @override
+  String get busyWhenHint =>
+      'Включите «Занят во время этих событий» в будильнике календаря или «Занят после звонка» в будильнике.';
+
+  @override
+  String get busyDuringLock => 'Занят, пока включён режим блокировки';
+
+  @override
+  String get busyNoneComing => 'В ближайшие 7 дней вы не заняты.';
+
+  @override
+  String get busyDuringEvents => 'Занят во время этих событий';
+
+  @override
+  String get busyDuringEventsHint => 'Режим «Занят» от начала до конца каждого события.';
+
+  @override
+  String get busySettings => 'Настройки режима «Занят»';
+
+  @override
+  String get busyAfterRing => 'Занят после звонка';
+
+  @override
+  String get busyAfterRingHint => '«Не беспокоить» и автоответы на время, например тренировка или сон днём.';
+
+  @override
+  String get shareCard => 'Поделиться утром';
+
+  @override
+  String get shareCardSubtitle => 'Сегодняшнее небо и цитата или ваше фото для историй и статуса';
+
+  @override
+  String get shareAppMissing => 'Этого приложения нет на телефоне.';
+
+  @override
+  String get shareAsIs => 'Поделиться как есть';
+
+  @override
+  String get shareTapQuote => 'Нажмите на цитату, чтобы сменить.';
+
+  @override
+  String get shareStory => 'История';
+
+  @override
+  String get shareSquare => 'Квадрат';
+
+  @override
+  String get shareYourWords => 'Свои слова (необязательно)';
+
+  @override
+  String get shareYourWordsHint => 'Вместо сегодняшней цитаты';
+
+  @override
+  String get shareYourPhoto => 'Своё фото';
+
+  @override
+  String get shareOtherPhoto => 'Другое фото';
+
+  @override
+  String get shareSkyBack => 'Сегодняшнее небо';
+
+  @override
+  String get shareYourVideo => 'Своё видео';
+
+  @override
+  String get shareInstagramStory => 'Истории Instagram';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: статус или чат';
+
+  @override
+  String get shareMore => 'Другие приложения';
+
+  @override
+  String get shareYouPost =>
+      'Quando? открывает приложение с готовой карточкой. Вы сами выбираете, куда, и публикуете.';
+
+  @override
+  String get shareAndroidFirst => 'Скоро и на iPhone и iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '«$name» сохранено как звук будильника';
+  }
+
+  @override
+  String get shareToQuando => 'Поделитесь песней с Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'В YouTube, YouTube Music, Spotify, SoundCloud или Apple Music нажмите «Поделиться», затем Quando?. Это станет звуком будильника, который играет в своём приложении.';
+
+  @override
+  String get askOption => 'Скажите или напишите';
+
+  @override
+  String get askOptionHint => '«Завтра в 6», «за 30 мин до восхода»';
+
+  @override
+  String get askHint => 'напр.: разбуди меня по будням за 30 мин до восхода';
+
+  @override
+  String get askListening => 'Слушаю…';
+
+  @override
+  String get askNotUnderstood => 'Не нашёл время. Попробуйте «в 7 по будням» или «через 20 минут».';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return 'Из вашего календаря «$name»';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Время Quando? для вашего города';
+
+  @override
+  String get askNoAnswer => 'Пока время не найдено.';
+
+  @override
+  String get askNoSpeech => 'Голос недоступен на этом устройстве. Можно ввести текст.';
+
+  @override
+  String get askShabbatOff => 'Включите Шаббат в настройках, чтобы звонили времена Шаббата.';
+
+  @override
+  String askSaved(String what) {
+    return 'Сохранено: $what';
+  }
+
+  @override
+  String get askMic => 'Говорить';
+
+  @override
+  String get askMorning => 'Утро';
+
+  @override
+  String get askEvening => 'Вечер';
+
+  @override
+  String get askUnsure => 'Возможно, я что-то упустил. Проверьте перед сохранением.';
+
+  @override
+  String get askTeach => 'Научи меня';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Понял: «$phrase» теперь значит $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Пропустить';
+
+  @override
+  String get askNoMatch => 'Нет подходящего будильника.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Выключен: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Пропущен: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset «$event» в вашем календаре';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Подключите календарь, чтобы Quando? нашёл «$event».';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Повтор: $minutes мин, для этого будильника';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Будит вас: $sound';
+  }
+
+  @override
+  String get askReadAs => 'Прочитано как';
+
+  @override
+  String get askHelpTitle => 'Помогите улучшить голосовые будильники';
+
+  @override
+  String get askHelpBody =>
+      'Анонимно отправляет то, что вы говорите или вводите, и что вы с этим сделали. Без аккаунта и ID устройства.';
+
+  @override
+  String get askHelpPromptTitle => 'Помочь Quando? вас понимать?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'Мы бы отправляли то, что вы говорите или вводите, например «$sentence», и сохранили ли вы будильник. Анонимно: без имени, аккаунта и ID устройства. Можно отключить в любой момент.';
+  }
+
+  @override
+  String get askHelpYes => 'Да, помочь';
+
+  @override
+  String get askHelpNo => 'Нет, спасибо';
+
+  @override
+  String get askQuoteTranslation =>
+      'Жизнь — это не то, что было прожито, а то, что запомнилось, и как запомнилось, чтобы рассказать о ней.';
+
+  @override
+  String get askHelpQuote => '';
+  String get quickSetups => 'Быстрые настройки';
+
+  @override
+  String get qsMorningTitle => 'Утро, которое работает';
+
+  @override
+  String get qsStartTitle => 'Не пропускайте начало';
+
+  @override
+  String get qsStretchTitle => 'Работайте отрезками';
+
+  @override
+  String get qsWillChange => 'Что изменится';
+
+  @override
+  String get qsAlreadyOn => 'Уже включено. Менять нечего.';
+
+  @override
+  String get qsApply => 'Применить';
+
+  @override
+  String get qsDone => 'Готово';
+
+  @override
+  String get qsUndo => 'Отменить';
+
+  @override
+  String get qsSnoozeTimes => 'Разрешено отсрочек';
+
+  @override
+  String get qsSnoozeMinutes => 'Минуты отсрочки';
+
+  @override
+  String get qsFiveLeft => 'Осталось 5 минут';
+
+  @override
+  String get syncHeading => 'Когда календарь меняется';
+
+  @override
+  String get syncLive => 'Следовать за календарём';
+
+  @override
+  String get syncLiveHint =>
+      'Новые события получают будильник. Перенесённое событие переносит свой будильник. Удалённое теряет его.';
+
+  @override
+  String get syncKeepFirst => 'Оставить, как увидел сначала';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Новые события по-прежнему получают будильник. Поставленный будильник остаётся на месте, даже если событие перенесут или удалят.';
+
+  @override
+  String get syncSnapshot => 'Только события, которые есть сейчас';
+
+  @override
+  String get syncSnapshotHint =>
+      'Только события, которые есть в календаре при сохранении, такими, как сейчас. Новое потом не добавляется.';
+
+  @override
+  String get syncHelpButton => 'Как это работает';
+
+  @override
+  String get syncHelpTitle => 'Как будильники следуют за календарём';
+
+  @override
+  String get syncHelpIntro =>
+      'Это правило продолжает искать события, подходящие под ваш поиск. Вы выбираете, что происходит, когда календарь меняется.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Пример: правило для «стоматолог». Стоматолог переносит приём со вторника на среду, и будильник тоже переходит на среду. Если приём отменён, его будильник исчезает.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'То же правило: приём переходит на среду, но будильник остаётся во вторник, как Quando? увидел его сначала. Новый приём в следующем месяце всё равно получит свой будильник.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'То же правило: вы получаете будильники для приёмов, которые есть в календаре сегодня, и они остаются как есть. Приём, добавленный в следующем месяце, будильника не получит.';
+
+  @override
+  String get syncHelpTip => 'Сомневаетесь? Оставьте «Следовать за календарём».';
+
+  @override
+  String get syncHelpWhenTitle => 'Когда Quando? замечает изменения?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Когда Quando? открыт: за секунды. Подключённый здесь Google Календарь проверяется каждые 2 минуты.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Когда Quando? закрыт: при следующем открытии. До тех пор поставленные будильники звонят в прежнее время.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone и iPad не позволяют приложениям следить за календарём в фоне, поэтому изменения подхватываются при открытии Quando?.';
+
+  @override
+  String get tapMiddleToStop => 'Коснитесь центра, чтобы выключить';
+
+  @override
+  String get uiSimple => 'Простой';
+
+  @override
+  String get uiEverything => 'Всё';
+
+  @override
+  String get firstRunTitle => 'Сколько вы хотите видеть?';
+
+  @override
+  String get firstRunSimpleHint => 'Будильники и основное';
+
+  @override
+  String get firstRunEverythingHint => 'Календарь, Шаббат, таймеры, погода и другое';
+
+  @override
+  String get firstRunChangeLater => 'Это можно изменить в любой момент в Настройках.';
+
+  @override
+  String get continueLabel => 'Продолжить';
+
+  @override
+  String get everyAlarm => 'Каждый будильник';
+
+  @override
+  String get wakeMeWith => 'Будить с помощью';
+
+  @override
+  String get ringOrMusic => 'Звонок или музыка';
+
+  @override
+  String get ringsForRow => 'Звонит';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return 'За $minutes мин';
+  }
+
+  @override
+  String get quandoSounds => 'Звуки Quando?';
+
+  @override
+  String get aSongApps => 'Песня (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Моя запись';
+
+  @override
+  String get useForNewAlarms => 'Использовать для новых будильников';
+
+  @override
+  String get iWillLabel => 'Когда это зазвонит, я…';
+
+  @override
+  String get foldVolume => 'Громкость и плавность';
+
+  @override
+  String get foldSnoozeStop => 'Отложить и стоп';
+
+  @override
+  String get foldExtras => 'Календарь и прочее';
+
+  @override
+  String get groupAlarms => 'Будильники';
+
+  @override
+  String get groupCalendarShabbat => 'Календарь и Шаббат';
+
+  @override
+  String get groupLookQuotes => 'Оформление и цитаты';
+
+  @override
+  String get groupConnectionsSync => 'Подключения и синхронизация';
+
+  @override
+  String qsSummary(int count, int on) {
+    return 'Наборов: $count · включено: $on';
+  }
 }

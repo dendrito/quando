@@ -36,13 +36,28 @@ header{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:s
 .tag{display:inline-block;padding:1px 8px;border-radius:99px;background:var(--chip);color:var(--mute);font-size:.75rem;margin-right:4px}
 .pill{display:inline-block;padding:1px 8px;border-radius:99px;font-size:.75rem;text-decoration:none;border:1px solid var(--line);margin:6px 4px 0 0;color:var(--ink)}
 .pill.open{border-color:var(--ok);color:var(--ok)}.pill.draft{border-color:var(--warn);color:var(--warn)}
+.pill.thr{border-color:var(--accent);color:var(--accent)}
 .pill.merged{border-color:#8957e5;color:#8957e5}.pill.closed{border-color:var(--bad);color:var(--bad)}
 .list{background:var(--card);border:1px solid var(--line);border-radius:12px}
 .row{display:flex;gap:10px;padding:10px 14px;border-bottom:1px solid var(--line);align-items:baseline;flex-wrap:wrap}
 .row:last-child{border-bottom:0}.row .grow{flex:1;min-width:200px}
 .mute{color:var(--mute);font-size:.88rem}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.grp{margin:6px 0;border:1px solid var(--line);border-radius:8px;padding:2px 6px}.grp>summary{cursor:pointer;font-size:.85rem;padding:4px 0;list-style:none;display:flex;justify-content:space-between}.grp>summary::-webkit-details-marker{display:none}.grp>summary::before{content:"▸";margin-right:6px}.grp[open]>summary::before{content:"▾"}.grp>summary span{color:var(--mute)}.tabs{display:flex;gap:6px;margin:18px 0 0}.tabs button{font:inherit;padding:6px 14px;border:1px solid var(--line);border-radius:99px;background:var(--chip);color:var(--ink);cursor:pointer}.tabs button[aria-pressed=true]{background:var(--ink);color:var(--bg,#fff)}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
 .empty{padding:14px;color:var(--mute)}
+.card{cursor:pointer}.card:hover{border-color:var(--accent)}
+dialog{border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);max-width:620px;width:calc(100% - 24px);padding:20px}
+dialog::backdrop{background:rgba(0,0,0,.5)}
+dialog h3{margin:0 0 8px;font-size:1.2rem}
+dialog h4{margin:16px 0 6px;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+dialog ul{margin:0;padding-left:20px}
+dialog label{display:block;margin:10px 0 3px;font-size:.85rem;color:var(--mute)}
+dialog input,dialog select,dialog textarea{width:100%;padding:7px 9px;border-radius:8px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font:inherit}
+dialog textarea{min-height:70px}
+.actions{display:flex;gap:8px;margin-top:16px;flex-wrap:wrap}
+.btn.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.danger{color:var(--bad)}
+.msg{margin-top:10px;font-size:.88rem}
+.msg.err{color:var(--bad)}.msg.ok{color:var(--ok)}
 footer{margin-top:40px;color:var(--mute);font-size:.85rem}
 code{background:var(--chip);padding:1px 5px;border-radius:5px}
 </style>
@@ -59,23 +74,38 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   <div class="count" id="count"></div>
 </section>
 
-<h2>Dates</h2>
+<div class="tabs" id="tabs"><button data-t="board">Board</button><button data-t="business">Business</button><button data-t="github">GitHub</button></div>
+<div id="tab-board">
+<h2>Dates <button class="btn tool" id="add-dl" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add date</button></h2>
 <div class="deadlines" id="deadlines"></div>
 
-<h2>Work <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
+<h2>Work <button class="btn" id="add" style="margin-left:10px;text-transform:none;letter-spacing:0">+ Add task</button> <button class="btn tool" id="cols" style="text-transform:none;letter-spacing:0;display:none">Edit columns</button> <input class="search" id="q" type="search" placeholder="Filter…" style="margin-left:10px;text-transform:none;letter-spacing:0"></h2>
 <div class="board" id="board"></div>
+<dialog id="dlg"></dialog>
 
+<h2 id="plans-h">Plans &amp; links <button class="btn tool" id="add-plan" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add plan</button></h2>
+<div class="grid" id="plans"></div>
+</div>
+<div id="tab-github" hidden>
+<h2>GitHub</h2>
+<div class="btns" id="ghlinks" style="margin-bottom:6px"></div>
 <h2>Open pull requests <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="prs"><div class="empty">Loading…</div></div>
 
 <h2>Open issues <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
 <div class="list" id="issues"><div class="empty">Loading…</div></div>
 
-<h2>Plans &amp; links</h2>
-<div class="grid" id="plans"></div>
+<h2>Recent builds <span class="mute" style="text-transform:none;letter-spacing:0">(live from GitHub)</span></h2>
+<div class="list" id="runs"><div class="empty">Loading…</div></div>
+</div>
+<div id="tab-business" hidden>
+<h2>Business side <button class="btn tool" id="add-biz" style="margin-left:10px;text-transform:none;letter-spacing:0;display:none">+ Add document</button></h2>
+<p class="mute">Plans and research for the business side of the app. These open only for signed-in owners; nothing from them is stored in this repository.</p>
+<div class="grid" id="biz"></div>
+</div>
 
 <footer>
-  This page reads <code>dashboard/data.json</code> and GitHub. To change anything here, edit that file on GitHub (see the Edit button). Nothing else to install.
+  This page is built from <code>dashboard/board.json</code>, <code>dashboard/cards/</code> (one file per card) and GitHub. Click a card to read about it. Turn on editing (top right) to change tasks from this page, or edit that file on GitHub.
 </footer>
 </main>
 
@@ -83,30 +113,34 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 (function () {
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
-  var data, prState = {}, query = "";
+  var data, prState = {}, query = "", TK = "quando.board.token";
+  var token = ""; try { token = localStorage.getItem(TK) || ""; } catch (e) {}
 
-  function ago(iso) {
-    var d = (Date.now() - new Date(iso).getTime()) / 1000;
-    if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago";
-    if (d < 86400) return Math.round(d / 3600) + " h ago";
-    return Math.round(d / 86400) + " d ago";
-  }
-  function left(ms) {
-    if (ms <= 0) return "passed";
-    var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60);
-    return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left";
-  }
-  function fmt(iso) {
-    return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" });
+  function ago(iso) { var d = (Date.now() - new Date(iso).getTime()) / 1000; if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago"; if (d < 86400) return Math.round(d / 3600) + " h ago"; return Math.round(d / 86400) + " d ago"; }
+  function left(ms) { if (ms <= 0) return "passed"; var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left"; }
+  function fmt(iso) { return new Date(iso).toLocaleString(undefined, { weekday: "short", day: "numeric", month: "short", hour: "2-digit", minute: "2-digit" }); }
+  function threadUrl(id) { return data.projectUrl + "?thread=" + id; }
+  function threadsOf(i) {
+    var out = [], seen = {};
+    (i.threads || []).forEach(function (k) { var t = data.threads[k]; if (t && !seen[t.id]) { seen[t.id] = 1; out.push(t); } });
+    (i.threadIds || []).forEach(function (id) {
+      if (seen[id]) return; seen[id] = 1;
+      var known = Object.keys(data.threads || {}).map(function (k) { return data.threads[k]; }).filter(function (t) { return t.id === id; })[0];
+      out.push(known || { id: id, title: "Claude thread" });
+    });
+    return out;
   }
 
   function chrome() {
     var base = "https://github.com/" + data.repo;
+    function gl(path, label) { return '<a class="btn" href="' + base + path + '" target="_blank" rel="noopener">' + label + "</a>"; }
     $("btns").innerHTML =
-      '<a class="btn" href="' + base + '/edit/main/dashboard/data.json">Edit this board</a>' +
-      '<a class="btn" href="' + base + '/issues/new/choose">New task</a>' +
-      '<a class="btn" href="' + base + '/pulls">All PRs</a>' +
-      '<a class="btn" href="' + base + '/actions">Builds</a>';
+      '<button class="btn" id="unlock">' + (token ? "Editing: on" : "Turn on editing") + "</button>" +
+      gl("/issues/new/choose", "New issue") + gl("/pulls", "All PRs") + gl("/actions", "Builds");
+    $("ghlinks").innerHTML = gl("/pulls", "Pull requests") + gl("/issues", "Issues") + gl("/actions", "Builds") + gl("/releases", "Releases") + gl("", "Repository") + gl("/issues/new/choose", "New issue");
+    $("unlock").onclick = tokenDialog;
+    $("add").style.display = token ? "" : "none";
+    Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = token ? "" : "none"; });
     $("headline").textContent = data.headline;
     $("updated").textContent = "Board last edited " + data.updated;
   }
@@ -117,75 +151,316 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("count").innerHTML = next ? esc(left(new Date(next.date) - now)) + "<small>" + esc(next.title) + "</small>" : "";
     $("deadlines").innerHTML = list.map(function (x) {
       var ms = new Date(x.date) - now;
-      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + '</span>' + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
+      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"' + (token ? ' data-d="' + esc(x.title) + '" style="cursor:pointer"' : "") + '><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("[data-d]"), function (c) { c.onclick = function () { editDate(c.getAttribute("data-d")); }; });
   }
 
   function prPill(n) {
     var s = prState[n], base = "https://github.com/" + data.repo + "/pull/" + n;
-    var cls = s ? s.cls : "", txt = s ? s.label : "";
-    return '<a class="pill ' + cls + '" href="' + base + '" target="_blank" rel="noopener">#' + n + (txt ? " · " + txt : "") + "</a>";
+    return '<a class="pill ' + (s ? s.cls : "") + '" href="' + base + '" target="_blank" rel="noopener" onclick="event.stopPropagation()">#' + n + (s ? " · " + s.label : "") + "</a>";
+  }
+
+  function cardHtml(x) {
+          var i = x[0];
+          return '<div class="card" data-i="' + x[1] + '"><b>' + esc(i.title) + "</b>" +
+            (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
+            (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
+            (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
+            (i.prs || []).map(prPill).join("") +
+            threadsOf(i).map(function (t) { return '<a class="pill thr" href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener" title="' + esc(t.title) + '" onclick="event.stopPropagation()">💬 ' + esc(t.title.length > 26 ? t.title.slice(0, 25) + "…" : t.title) + "</a>"; }).join("") + "</div>";
+  }
+  var openGroups = {};
+  try { openGroups = JSON.parse(localStorage.getItem("quando.board.groups") || "{}"); } catch (e) {}
+  function colBody(items) {
+    var loose = items.filter(function (x) { return !x[0].group; }), groups = [], by = {};
+    items.forEach(function (x) { var g = x[0].group; if (g) { if (!by[g]) { by[g] = []; groups.push(g); } by[g].push(x); } });
+    return loose.map(cardHtml).join("") + groups.map(function (g) {
+      return '<details class="grp" data-g="' + esc(g) + '"' + (openGroups[g] || query ? " open" : "") + "><summary>" + esc(g) + "<span>" + by[g].length + "</span></summary>" + by[g].map(cardHtml).join("") + "</details>";
+    }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>';
   }
 
   function board() {
     var q = query.toLowerCase();
     $("board").innerHTML = data.statuses.map(function (st) {
-      var items = data.items.filter(function (i) {
-        return i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0);
-      });
-      return '<div class="col"><h3>' + esc(st.label) + "<span>" + items.length + "</span></h3>" +
-        (items.map(function (i) {
-          return '<div class="card"><b>' + esc(i.title) + "</b>" +
-            (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "") +
-            (i.plan ? '<span class="tag">plan: ' + esc(i.plan) + "</span>" : "") +
-            (i.note ? "<p>" + esc(i.note) + "</p>" : "") +
-            (i.prs || []).map(prPill).join("") + "</div>";
-        }).join("") || '<div class="mute" style="padding:6px">Nothing here.</div>') + "</div>";
+      var items = [];
+      data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
+        colBody(items) + "</div>";
     }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("details.grp"), function (d) { d.addEventListener("toggle", function () { openGroups[d.getAttribute("data-g")] = d.open; try { localStorage.setItem("quando.board.groups", JSON.stringify(openGroups)); } catch (e) {} }); });
+    Array.prototype.forEach.call(document.querySelectorAll(".addc"), function (b) { b.onclick = function () { editItem(-1, b.getAttribute("data-s")); }; });
+    Array.prototype.forEach.call(document.querySelectorAll(".card"), function (c) { c.onclick = function () { viewItem(+c.getAttribute("data-i")); }; });
   }
 
+  function planCard(p, quiet) {
+    var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
+    return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status && !quiet ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note && !quiet ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+  }
   function plans() {
-    $("plans").innerHTML = data.plans.concat(data.downloads || []).map(function (p) {
-      var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
-      return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + "</b>" + (p.status ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
-    }).join("");
+    $("plans").innerHTML = data.plans.filter(function (p) { return p.group !== "business"; }).concat(data.downloads || []).map(function (p) { return planCard(p); }).join("");
+    $("biz").innerHTML = data.plans.filter(function (p) { return p.group === "business"; }).map(function (p) { return planCard(p, true); }).join("");
+    Array.prototype.forEach.call(document.querySelectorAll("[data-p]"), function (b) { b.onclick = function (e) { e.preventDefault(); e.stopPropagation(); editPlan(b.getAttribute("data-p")); }; });
+  }
+  function tab(t) {
+    if (t !== "business" && t !== "github") t = "board";
+    ["board", "business", "github"].forEach(function (n) { $("tab-" + n).hidden = n !== t; });
+    Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.setAttribute("aria-pressed", b.getAttribute("data-t") === t ? "true" : "false"); });
+    try { history.replaceState(null, "", t === "board" ? location.pathname + location.search : "#" + t); } catch (e) {}
+  }
+  Array.prototype.forEach.call(document.querySelectorAll("#tabs button"), function (b) { b.onclick = function () { tab(b.getAttribute("data-t")); }; });
+  tab(location.hash.slice(1));
+
+  /* ---------- card detail ---------- */
+  function stLabel(id) { var s = data.statuses.filter(function (x) { return x.id === id; })[0]; return s ? s.label : id; }
+  function open(html) { var d = $("dlg"); d.innerHTML = html; if (!d.open) d.showModal(); return d; }
+  function close() { $("dlg").close(); }
+
+  function viewItem(idx) {
+    var i = data.items[idx], plan = data.plans.filter(function (p) { return p.id === i.plan; })[0];
+    var h = "<h3>" + esc(i.title) + '</h3><span class="tag">' + esc(stLabel(i.status)) + "</span>" + (i.tag ? '<span class="tag">' + esc(i.tag) + "</span>" : "");
+    if (i.details || i.note) h += "<h4>About</h4><p style='margin:0'>" + esc(i.details || i.note) + "</p>";
+    var docs = (i.docs || []).slice();
+    if (plan) docs.unshift({ title: "Plan: " + plan.title + (plan.private ? " (private)" : ""), url: plan.url });
+    if (docs.length) h += "<h4>Documentation</h4><ul>" + docs.map(function (d) { return '<li><a href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.title) + "</a></li>"; }).join("") + "</ul>";
+    if ((i.prs || []).length) h += "<h4>Pull requests</h4><div>" + i.prs.map(prPill).join("") + "</div>";
+    var th = threadsOf(i);
+    if (th.length) h += "<h4>Claude threads (needs your login)</h4><ul>" + th.map(function (t) { return '<li><a href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener">' + esc(t.title) + "</a></li>"; }).join("") + "</ul>";
+    h += '<div class="actions">' + (token ? '<button class="btn primary" id="ed">Edit</button>' : '<span class="mute">Turn on editing (top right) to change this card.</span>') + '<button class="btn" id="cl">Close</button></div>';
+    open(h); $("cl").onclick = close; if (token) $("ed").onclick = function () { editItem(idx); };
   }
 
-  function gh(path) {
-    return fetch("https://api.github.com/repos/" + data.repo + path, { headers: { Accept: "application/vnd.github+json" } })
-      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); });
+  /* ---------- editing ---------- */
+  function opts(list, sel, blank) { return (blank ? '<option value="">' + blank + "</option>" : "") + list.map(function (o) { return '<option value="' + esc(o[0]) + '"' + (o[0] === sel ? " selected" : "") + ">" + esc(o[1]) + "</option>"; }).join(""); }
+
+  function editItem(idx, st) {
+    var isNew = idx < 0, i = isNew ? { title: "", status: st || "next" } : data.items[idx];
+    var thr = Object.keys(data.threads || {});
+    var h = "<h3>" + (isNew ? "New task" : "Edit task") + "</h3>" +
+      '<label>Title</label><input id="f-title" value="' + esc(i.title) + '">' +
+      '<label>Status</label><select id="f-status">' + opts(data.statuses.map(function (s) { return [s.id, s.label]; }), i.status) + "</select>" +
+      '<label>Tag (one short word)</label><input id="f-tag" value="' + esc(i.tag || "") + '">' +
+      '<label>Group (optional; cards with the same group fold together)</label><input id="f-group" value="' + esc(i.group || "") + '">' +
+      '<label>Plan it comes from</label><select id="f-plan">' + opts(data.plans.filter(function (p) { return p.id; }).map(function (p) { return [p.id, p.title]; }), i.plan || "", "None") + "</select>" +
+      '<label>Short note (shown on the card)</label><input id="f-note" value="' + esc(i.note || "") + '">' +
+      '<label>Details (shown when you click the card)</label><textarea id="f-details">' + esc(i.details || "") + "</textarea>" +
+      '<label>Pull request numbers, comma separated</label><input id="f-prs" value="' + esc((i.prs || []).join(", ")) + '">' +
+      '<label>Claude threads (hold Ctrl/Cmd to pick several)</label><select id="f-threads" multiple size="5">' + thr.map(function (k) { return '<option value="' + k + '"' + ((i.threads || []).indexOf(k) >= 0 ? " selected" : "") + ">" + esc(data.threads[k].title) + "</option>"; }).join("") + "</select>" +
+      '<label>Documentation links, one per line as: Title | https://…</label><textarea id="f-docs">' + esc((i.docs || []).map(function (d) { return d.title + " | " + d.url; }).join("\n")) + "</textarea>" +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (isNew ? "" : '<button class="btn danger" id="rm">Delete</button>') + '</div><div class="msg" id="msg"></div>';
+    open(h);
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var title = $("f-title").value.trim();
+      if (!title) { say("Give it a title.", 1); return; }
+      var item = { title: title, status: $("f-status").value };
+      var tag = $("f-tag").value.trim(), plan = $("f-plan").value, note = $("f-note").value.trim(), det = $("f-details").value.trim();
+      if ($("f-group").value.trim()) item.group = $("f-group").value.trim(); if (tag) item.tag = tag; if (plan) item.plan = plan; if (note) item.note = note; if (det) item.details = det;
+      var prs = $("f-prs").value.split(",").map(function (x) { return parseInt(x.replace(/\D/g, ""), 10); }).filter(Boolean); if (prs.length) item.prs = prs;
+      var ths = Array.prototype.filter.call($("f-threads").options, function (o) { return o.selected; }).map(function (o) { return o.value; }); if (ths.length) item.threads = ths;
+      if (i.threadIds && i.threadIds.length) item.threadIds = i.threadIds;
+      var docs = $("f-docs").value.split("\n").map(function (l) { var p = l.split("|"); return p.length > 1 ? { title: p[0].trim(), url: p.slice(1).join("|").trim() } : null; }).filter(Boolean); if (docs.length) item.docs = docs;
+      var id = isNew ? uniqueId(slug(title)) : i.id;
+      item = Object.assign({ id: id }, item);
+      if (typeof i.order === "number") item.order = i.order; else item.order = nextOrder();
+      saveCard(id, "Board: " + (isNew ? "add " : "update ") + title, item);
+    };
+    if (!isNew) $("rm").onclick = function () {
+      if (!confirm("Delete this card?")) return;
+      removeCard(i.id, "Board: remove " + i.title);
+    };
   }
+
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "x" + Date.now(); }
+
+  function editDate(title) {
+    var x = title ? data.deadlines.filter(function (d) { return d.title === title; })[0] : { title: "", date: "", note: "" };
+    var off = (x.date && /[+-]\d\d:\d\d$/.test(x.date)) ? x.date.slice(-6) : "-03:00";
+    open("<h3>" + (title ? "Edit date" : "New date") + "</h3>" +
+      '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
+      '<label>When (Brasília time)</label><input id="f-d" type="datetime-local" value="' + esc((x.date || "").slice(0, 16)) + '">' +
+      '<label>Note</label><input id="f-n" value="' + esc(x.note || "") + '">' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (title ? '<button class="btn danger" id="rm">Delete</button>' : "") + '</div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var t = $("f-t").value.trim(), d = $("f-d").value;
+      if (!t || !d) { say("Give it a title and a date.", 1); return; }
+      var nd = { title: t, date: d + ":00" + off }; if ($("f-n").value.trim()) nd.note = $("f-n").value.trim();
+      saveBoard("Board: " + (title ? "update" : "add") + " date " + t, function (cur) {
+        if (!title) { cur.deadlines.push(nd); return; }
+        var k = -1; cur.deadlines.forEach(function (y, n) { if (y.title === title) k = n; });
+        if (k < 0) throw new Error("This date changed elsewhere. Reload the page."); cur.deadlines[k] = nd;
+      });
+    };
+    if (title) $("rm").onclick = function () { if (!confirm("Delete this date?")) return; saveBoard("Board: remove date " + title, function (cur) { cur.deadlines = cur.deadlines.filter(function (y) { return y.title !== title; }); }); };
+  }
+
+  function editPlan(id, group) {
+    var x = id ? data.plans.filter(function (p) { return p.id === id; })[0] : { title: "", url: "", status: "proposed", note: "", group: group };
+    open("<h3>" + (id ? "Edit plan" : "New plan") + "</h3>" +
+      '<label>Title</label><input id="f-t" value="' + esc(x.title) + '">' +
+      '<label>Link</label><input id="f-u" value="' + esc(x.url) + '" placeholder="https://…">' +
+      '<label>Status</label><select id="f-s">' + opts([["proposed", "Proposed"], ["agreed", "Agreed"]], x.status) + "</select>" +
+      '<label><input id="f-pv" type="checkbox" style="width:auto"' + (x.private ? " checked" : "") + '> Private page (needs your login; its content stays out of this public repo)</label>' +
+      '<label>Note</label><input id="f-n" value="' + esc(x.note || "") + '">' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button>' + (id ? '<button class="btn danger" id="rm">Delete</button>' : "") + '</div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    $("sv").onclick = function () {
+      var t = $("f-t").value.trim(), u = $("f-u").value.trim();
+      if (!t || !u) { say("Give it a title and a link.", 1); return; }
+      var pid = id || slug(t), np = { id: pid, title: t, url: u, status: $("f-s").value };
+      if (x.group) np.group = x.group;
+      if ($("f-pv").checked) np.private = true; if ($("f-n").value.trim()) np.note = $("f-n").value.trim();
+      saveBoard("Board: " + (id ? "update" : "add") + " plan " + t, function (cur) {
+        if (!id) { cur.plans.push(np); return; }
+        var k = -1; cur.plans.forEach(function (y, n) { if (y.id === id) k = n; });
+        if (k < 0) throw new Error("This plan changed elsewhere. Reload the page."); cur.plans[k] = np;
+      });
+    };
+    if (id) $("rm").onclick = function () { if (!confirm("Delete this plan? Cards keep their plan tag.")) return; saveBoard("Board: remove plan " + id, function (cur) { cur.plans = cur.plans.filter(function (y) { return y.id !== id; }); }); };
+  }
+
+  function editColumns() {
+    var rows = data.statuses.map(function (st, n) {
+      var cnt = data.items.filter(function (i) { return i.status === st.id; }).length;
+      return '<div class="row" data-id="' + esc(st.id) + '"><input class="cl-l" value="' + esc(st.label) + '" style="flex:1"><button class="btn up">↑</button><button class="btn dn">↓</button><button class="btn danger rmc"' + (cnt ? ' disabled title="Move its cards first"' : "") + ">Delete</button></div>";
+    }).join("");
+    open('<h3>Columns</h3><div class="list" id="cl-list">' + rows + '</div><div class="actions"><button class="btn" id="ac">+ Add column</button></div>' +
+      '<div class="actions"><button class="btn primary" id="sv">Save to GitHub</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>');
+    $("cl").onclick = close;
+    var list = $("cl-list");
+    list.onclick = function (e) {
+      var r = e.target.closest(".row"); if (!r) return;
+      if (e.target.classList.contains("up") && r.previousElementSibling) list.insertBefore(r, r.previousElementSibling);
+      if (e.target.classList.contains("dn") && r.nextElementSibling) list.insertBefore(r.nextElementSibling, r);
+      if (e.target.classList.contains("rmc") && !e.target.disabled) r.remove();
+    };
+    $("ac").onclick = function () { list.insertAdjacentHTML("beforeend", '<div class="row" data-id="" data-new="1"><input class="cl-l" placeholder="Column name" style="flex:1"><button class="btn up">↑</button><button class="btn dn">↓</button><button class="btn danger rmc">Delete</button></div>'); };
+    $("sv").onclick = function () {
+      var out = [], used = {};
+      Array.prototype.forEach.call(list.children, function (r) {
+        var l = r.querySelector(".cl-l").value.trim(); if (!l) return;
+        var id = r.getAttribute("data-id") || slug(l); while (used[id]) id += "-2"; used[id] = 1; out.push({ id: id, label: l });
+      });
+      if (!out.length) { say("Keep at least one column.", 1); return; }
+      saveBoard("Board: update columns", function (cur) {
+        var keep = {}; out.forEach(function (o) { keep[o.id] = 1; });
+        data.items.forEach(function (i) { if (!keep[i.status]) throw new Error("A card still uses a column you removed. Reload the page."); });
+        cur.statuses = out;
+      });
+    };
+  }
+  function say(t, err) { var m = $("msg"); if (m) { m.className = "msg " + (err ? "err" : "ok"); m.textContent = t; } }
+
+  function b64(str) { var b = new TextEncoder().encode(str), s = ""; b.forEach(function (c) { s += String.fromCharCode(c); }); return btoa(s); }
+  function unb64(x) { var s = atob(x.replace(/\n/g, "")), a = new Uint8Array(s.length); for (var k = 0; k < s.length; k++) a[k] = s.charCodeAt(k); return new TextDecoder().decode(a); }
+  function api(path, opt) {
+    opt = opt || {}; opt.headers = { Accept: "application/vnd.github+json", Authorization: "Bearer " + token };
+    return fetch("https://api.github.com/repos/" + data.repo + path, opt).then(function (r) {
+      return r.json().then(function (j) { if (!r.ok) { var e = new Error(r.status === 401 || r.status === 403 ? "GitHub refused the token (" + r.status + "). Check it has Contents: Read and write on this repository." : (j.message || r.status)); e.status = r.status; throw e; } return j; });
+    });
+  }
+  var DIR = "/contents/dashboard/";
+  function getFile(path) { return api(DIR + path + "?ref=main").then(function (f) { return { sha: f.sha, json: JSON.parse(unb64(f.content)) }; }, function (e) { if (e.status === 404) return null; throw e; }); }
+  function putFile(path, message, obj, sha) {
+    var body = { message: message, content: b64(JSON.stringify(obj, null, 2) + "\n"), branch: "main" }; if (sha) body.sha = sha;
+    return api(DIR + path, { method: "PUT", body: JSON.stringify(body) });
+  }
+  function done() { chrome(); deadlines(); board(); plans(); close(); }
+  function uniqueId(base) { var id = base, n = 2; while (data.items.some(function (x) { return x.id === id; })) id = base + "-" + n++; return id; }
+  function nextOrder() { return data.items.reduce(function (m, x) { return Math.max(m, typeof x.order === "number" ? x.order : 0); }, 0) + 1; }
+
+  /* One file per card (dashboard/cards/<id>.json), so several people or Claude threads never overwrite each other. */
+  function saveCard(id, message, item) {
+    say("Saving…");
+    getFile("cards/" + id + ".json").then(function (f) { return putFile("cards/" + id + ".json", message, item, f && f.sha); }).then(function () {
+      var k = -1; data.items.forEach(function (x, n) { if (x.id === id) k = n; });
+      if (k < 0) data.items.push(item); else data.items[k] = item;
+      done();
+    }).catch(function (e) { say(e.message, 1); });
+  }
+  function removeCard(id, message) {
+    say("Saving…");
+    getFile("cards/" + id + ".json").then(function (f) {
+      if (!f) return;
+      return api(DIR + "cards/" + id + ".json", { method: "DELETE", body: JSON.stringify({ message: message, sha: f.sha, branch: "main" }) });
+    }).then(function () { data.items = data.items.filter(function (x) { return x.id !== id; }); done(); }).catch(function (e) { say(e.message, 1); });
+  }
+  /* Dates, plans, columns and headline live in board.json. */
+  function saveBoard(message, mutate) {
+    say("Saving…");
+    getFile("board.json").then(function (f) {
+      var cur = f.json; mutate(cur);
+      return putFile("board.json", message, cur, f.sha).then(function () { return cur; });
+    }).then(function (cur) {
+      var items = data.items; data = cur; data.items = items; data.updated = new Date().toISOString().slice(0, 10); done();
+    }).catch(function (e) { say(e.message, 1); });
+  }
+
+  function tokenDialog() {
+    var h = "<h3>Editing</h3>";
+    if (token) {
+      h += "<p>Editing is on in this browser. You can click any card, then Edit, or use “+ Add task”. Changes are saved to GitHub straight away; the public page refreshes about a minute later.</p>" +
+        '<div class="actions"><button class="btn danger" id="off">Turn off and forget token</button><button class="btn" id="cl">Close</button></div>';
+    } else {
+      h += "<p>To save changes from this page, paste a GitHub token once. It stays in this browser only.</p><ol style='padding-left:20px;margin:0'>" +
+        '<li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a fine-grained token</a>.</li>' +
+        "<li>Repository access: only <code>dendrito/quando</code>.</li><li>Permissions → Repository → <b>Contents: Read and write</b>, <b>Pull requests: Read</b> and <b>Issues: Read</b> (the last two let the live pull request list work while the repository is private).</li><li>Copy the token and paste it here.</li></ol>" +
+        '<label>Token</label><input id="tk" type="password" autocomplete="off" placeholder="github_pat_…">' +
+        '<div class="actions"><button class="btn primary" id="on">Turn on</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>';
+    }
+    open(h); $("cl").onclick = close;
+    if (token) $("off").onclick = function () { token = ""; try { localStorage.removeItem(TK); } catch (e) {} chrome(); close(); };
+    else $("on").onclick = function () {
+      var t = $("tk").value.trim(); if (!t) return; token = t;
+      api(DIR + "board.json?ref=main").then(function () { try { localStorage.setItem(TK, t); } catch (e) {} chrome(); close(); }).catch(function (e) { token = ""; say(e.message, 1); });
+    };
+  }
+
+  function gh(path) { var hd = { Accept: "application/vnd.github+json" }; if (token) hd.Authorization = "Bearer " + token; return fetch("https://api.github.com/repos/" + data.repo + path, { headers: hd }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function live() {
     gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
-      prs.forEach(function (p) {
-        prState[p.number] = p.merged_at ? { cls: "merged", label: "merged" } : p.state === "closed" ? { cls: "closed", label: "closed" } : p.draft ? { cls: "draft", label: "draft" } : { cls: "open", label: "ready" };
-      });
+      prs.forEach(function (p) { prState[p.number] = p.merged_at ? { cls: "merged", label: "merged" } : p.state === "closed" ? { cls: "closed", label: "closed" } : p.draft ? { cls: "draft", label: "draft" } : { cls: "open", label: "ready" }; });
       board();
       var open = prs.filter(function (p) { return p.state === "open"; });
       $("prs").innerHTML = open.length ? open.map(function (p) {
         return '<div class="row"><div class="grow"><a href="' + esc(p.html_url) + '" target="_blank" rel="noopener">#' + p.number + " " + esc(p.title) + '</a><div class="mute">' + esc(p.head.ref) + " → " + esc(p.base.ref) + " · updated " + ago(p.updated_at) + "</div></div>" + prPill(p.number) + "</div>";
       }).join("") : '<div class="empty">No open pull requests.</div>';
-    }).catch(function () {
-      $("prs").innerHTML = '<div class="empty">Could not load from GitHub (it may be rate limiting). Try again in a few minutes, or <a href="https://github.com/' + data.repo + '/pulls">open the PR list</a>.</div>';
-    });
+    }).catch(function () { $("prs").innerHTML = '<div class="empty">Could not load from GitHub. If the repository is private, turn on editing (top right) and paste a token that can read pull requests and issues; otherwise it may be rate limiting, so try again in a few minutes.</div>'; });
     gh("/issues?state=open&per_page=50").then(function (list) {
       var issues = list.filter(function (i) { return !i.pull_request; });
       $("issues").innerHTML = issues.length ? issues.map(function (i) {
-        return '<div class="row"><div class="grow"><a href="' + esc(i.html_url) + '" target="_blank" rel="noopener">#' + i.number + " " + esc(i.title) + "</a></div>" +
-          i.labels.map(function (l) { return '<span class="tag">' + esc(l.name) + "</span>"; }).join("") + '<span class="mute">' + ago(i.updated_at) + "</span></div>";
-      }).join("") : '<div class="empty">No open issues. Use “New task” above to add one.</div>';
-    }).catch(function () {
-      $("issues").innerHTML = '<div class="empty">Could not load issues.</div>';
-    });
+        return '<div class="row"><div class="grow"><a href="' + esc(i.html_url) + '" target="_blank" rel="noopener">#' + i.number + " " + esc(i.title) + "</a></div>" + i.labels.map(function (l) { return '<span class="tag">' + esc(l.name) + "</span>"; }).join("") + '<span class="mute">' + ago(i.updated_at) + "</span></div>";
+      }).join("") : '<div class="empty">No open issues.</div>';
+    }).catch(function () { $("issues").innerHTML = '<div class="empty">Could not load issues.</div>'; });
   }
 
-  fetch("data.json", { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
-    data = d; chrome(); deadlines(); board(); plans(); live();
+  function runs() {
+    gh("/actions/runs?per_page=15").then(function (r) {
+      var list = r.workflow_runs || [];
+      $("runs").innerHTML = list.length ? list.map(function (w) {
+        var c = w.status !== "completed" ? "running" : w.conclusion || "done";
+        return '<div class="row"><div class="grow"><a href="' + esc(w.html_url) + '" target="_blank" rel="noopener">' + esc(w.name) + " · " + esc((w.display_title || "").split("\n")[0].slice(0, 80)) + '</a><div class="mute">' + esc(w.head_branch) + " · " + ago(w.updated_at) + '</div></div><span class="tag">' + esc(c) + "</span></div>";
+      }).join("") : '<div class="empty">No builds yet.</div>';
+    }).catch(function () { $("runs").innerHTML = '<div class="empty">Could not load builds.</div>'; });
+  }
+
+  fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+    data = d; chrome(); deadlines(); board(); plans(); live(); runs();
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
+    $("add").onclick = function () { editItem(-1); };
+    $("cols").onclick = editColumns; $("add-dl").onclick = function () { editDate(""); }; $("add-plan").onclick = function () { editPlan(""); }; $("add-biz").onclick = function () { editPlan("", "business"); };
+    /* Coming back to the page after a while: reload the board and GitHub data so nothing is stale. */
+    var hiddenAt = 0;
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) { hiddenAt = Date.now(); return; }
+      if (!hiddenAt || Date.now() - hiddenAt < 60000 || $("dlg").open) return;
+      fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) { data = d; chrome(); deadlines(); board(); plans(); live(); runs(); }).catch(function () {});
+    });
   }).catch(function (e) {
-    document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ". If you just edited it, check for a missing comma or quote.</p>");
+    document.querySelector("main").insertAdjacentHTML("afterbegin", '<p style="color:var(--bad)">Could not read data.json: ' + esc(e.message) + ".</p>");
   });
 })();
 </script>

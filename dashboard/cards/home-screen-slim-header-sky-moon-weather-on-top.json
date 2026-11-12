@@ -1,0 +1,20 @@
+{
+  "id": "home-screen-slim-header-sky-moon-weather-on-top",
+  "title": "Home screen: slim header, sky/moon/weather on top",
+  "status": "done",
+  "tag": "app",
+  "prs": [
+    22
+  ],
+  "threads": [
+    "sky"
+  ],
+  "details": "Slim header; sky, moon and weather card back on top; night, moon and weather on by default. Shabbat stays opt-in. Rule from you: always use the newest sky card.",
+  "docs": [
+    {
+      "title": "Home information",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/HOME_INFORMATION.md"
+    }
+  ],
+  "order": 1
+}

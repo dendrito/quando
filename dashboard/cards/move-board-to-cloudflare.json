@@ -1,0 +1,12 @@
+{
+  "id": "move-board-to-cloudflare",
+  "title": "Move this board to Cloudflare Pages",
+  "status": "done",
+  "tag": "ip",
+  "prs": [
+    43
+  ],
+  "details": "Part of making the repo private. Merge the PR, then create a second Cloudflare Pages project (quando-board) on dendrito/quando with build command `python3 dashboard/build.py`, output `dashboard`, domain board.quando.day, optional Cloudflare Access. Steps are in dashboard/README.md. Then delete the GitHub Pages site. quando.day itself needs no change.",
+  "note": "Live at board.quando.day; GitHub Pages turned off. Optional: Cloudflare Access lock.",
+  "order": 19
+}

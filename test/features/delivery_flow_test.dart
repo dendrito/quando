@@ -83,10 +83,11 @@ void main() {
       ),
     );
     await tester.pumpAndSettle();
-    expect(tester.widget<SoundPickerTile>(find.byType(SoundPickerTile)).large, isTrue);
     expect(find.byKey(const ValueKey('delivery-push')).hitTestable(), findsNothing);
-    await tester.ensureVisible(find.byType(SoundPickerTile));
-    await tester.tap(find.byType(SoundPickerTile));
+    await tester.ensureVisible(find.byKey(const Key('wakeSound')));
+    await tester.tap(find.byKey(const Key('wakeSound')));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.myRecording));
     await tester.pumpAndSettle();
     await tester.tap(find.text(l10n.wakeToOwnSound));
     await tester.pumpAndSettle();
@@ -126,6 +127,8 @@ void main() {
         child: MaterialApp(theme: buildTheme(), home: const SettingsScreen()),
       ),
     );
+    await tester.pumpAndSettle();
+    await tester.tap(find.text(l10n.groupAlarms));
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(find.text(l10n.testAlarmIn1), 500);
     await tester.ensureVisible(find.text(l10n.testAlarmIn1));

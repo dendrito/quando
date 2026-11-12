@@ -1,0 +1,13 @@
+{
+  "id": "sign-in-with-apple",
+  "title": "Sign in with Apple",
+  "status": "next",
+  "tag": "launch",
+  "plan": "business",
+  "note": "Needs the paid Apple membership.",
+  "threads": [
+    "local"
+  ],
+  "details": "Needs the paid Apple membership.",
+  "order": 19
+}

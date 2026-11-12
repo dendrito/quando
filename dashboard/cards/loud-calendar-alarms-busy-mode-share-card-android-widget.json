@@ -1,0 +1,21 @@
+{
+  "id": "loud-calendar-alarms-busy-mode-share-card-android-widget",
+  "title": "Loud calendar alarms, Busy mode, share card, Android widget",
+  "status": "done",
+  "tag": "app",
+  "prs": [
+    25
+  ],
+  "plan": "growth",
+  "threads": [
+    "growth"
+  ],
+  "details": "Calendar reminders become loud alarms; Busy mode sets Do Not Disturb and can auto-reply; share card for Stories/WhatsApp; Android home-screen widget. Not yet done: video of the sky, Slack status, iOS widget.",
+  "docs": [
+    {
+      "title": "What's in the PR",
+      "url": "https://github.com/dendrito/quando/pull/25"
+    }
+  ],
+  "order": 3
+}

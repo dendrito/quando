@@ -21,6 +21,8 @@ import 'day_arc.dart';
 import 'moon_details.dart';
 import 'weather_overlay.dart';
 import 'weather_panel.dart';
+import 'place_sheet.dart';
+import 'home_display_controls.dart';
 
 String moonPhaseLabel(int phase) => switch (phase) {
   0 => l10n.moonNew,
@@ -33,10 +35,20 @@ String moonPhaseLabel(int phase) => switch (phase) {
   _ => l10n.moonWaningCrescent,
 };
 
+/// One of the sky cards, for showing it on its own.
+enum SkyCard { sun, moon, phase, weather }
+
 class SkyPanel extends ConsumerStatefulWidget {
-  const SkyPanel({super.key, required this.sky, this.marks = const []});
+  const SkyPanel({super.key, required this.sky, this.marks = const [], this.only, this.simple = false});
   final SkyDay sky;
   final List<double> marks;
+
+  /// Shows just one of the cards, with no tabs: [SkyCard.sun], [SkyCard.moon]
+  /// or [SkyCard.weather]. null shows them all as swipeable pages.
+  final SkyCard? only;
+
+  /// Simple level: just the day's sky, with no tabs, city or display buttons.
+  final bool simple;
   @override
   ConsumerState<SkyPanel> createState() => _SkyPanelState();
 }
@@ -112,7 +124,12 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
       mainAxisSize: MainAxisSize.min,
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        if (place == null) Text(l10n.skyCityExplain),
+        if (place == null)
+          TextButton.icon(
+            onPressed: () => showPlaceSheet(context),
+            icon: const Icon(Icons.place_outlined),
+            label: Text(l10n.skyChooseCity),
+          ),
         DayArc(sky: sky, marks: widget.marks),
         Row(
           textDirection: TextDirection.ltr,
@@ -370,6 +387,18 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           ),
         ),
     ];
+    if (widget.only case final only?) {
+      return switch (only) {
+        SkyCard.sun => sunContent,
+        SkyCard.moon => options.moon ? moonCard(compact: true) : const SizedBox.shrink(),
+        SkyCard.phase => details ?? const SizedBox.shrink(),
+        SkyCard.weather =>
+          options.weather && place != null
+              ? WeatherPanel(now: sky.now, active: true, place: place)
+              : const SizedBox.shrink(),
+      };
+    }
+    if (widget.simple) return sunContent;
     final onDetailsPage = options.moon && options.moonDetails && details != null && _page == 2;
     if (_page >= pages.length) {
       _page = 0;
@@ -380,22 +409,42 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
+        Row(
+          children: [
+            Expanded(
+              child: pages.length == 1
+                  ? const SizedBox.shrink()
+                  : SingleChildScrollView(
+                      scrollDirection: Axis.horizontal,
+                      child: Row(
+                        children: [
+                          for (var i = 0; i < pages.length; i++)
+                            TextButton(
+                              onPressed: () => _toPage(context, i),
+                              style: TextButton.styleFrom(
+                                foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                              ),
+                              child: Text(pages[i].label),
+                            ),
+                        ],
+                      ),
+                    ),
+            ),
+            IconButton(
+              tooltip: l10n.homePlaceTitle,
+              icon: const Icon(Icons.place_outlined),
+              onPressed: () => showPlaceSheet(context),
+            ),
+            IconButton(
+              tooltip: l10n.homeDisplay,
+              icon: const Icon(Icons.tune),
+              onPressed: () => showHomeDisplayControls(context),
+            ),
+          ],
+        ),
         if (pages.length == 1)
           sunContent
         else ...[
-          Wrap(
-            spacing: 8,
-            children: [
-              for (var i = 0; i < pages.length; i++)
-                TextButton(
-                  onPressed: () => _toPage(context, i),
-                  style: TextButton.styleFrom(
-                    foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
-                  ),
-                  child: Text(pages[i].label),
-                ),
-            ],
-          ),
           LayoutBuilder(
             builder: (context, constraints) => AnimatedSize(
               duration: MediaQuery.disableAnimationsOf(context)

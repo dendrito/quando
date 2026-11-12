@@ -62,7 +62,7 @@ class WeekRibbon extends StatelessWidget {
     final on = selected != null && d.sameDay(selected!);
     final shown = d.dots.take(6).toList();
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 6),
+      padding: const EdgeInsets.symmetric(vertical: 2),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
@@ -70,10 +70,10 @@ class WeekRibbon extends StatelessWidget {
             weekdayNarrow(d.day.weekday),
             style: text.labelSmall?.copyWith(color: on ? QuandoColors.amber : QuandoColors.blush),
           ),
-          const SizedBox(height: 4),
+          const SizedBox(height: 2),
           Container(
-            width: 34,
-            height: 34,
+            width: 28,
+            height: 28,
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
@@ -89,9 +89,9 @@ class WeekRibbon extends StatelessWidget {
               style: text.titleSmall?.copyWith(color: d.today ? QuandoColors.ground : QuandoColors.text),
             ),
           ),
-          const SizedBox(height: 5),
+          const SizedBox(height: 3),
           SizedBox(
-            height: 12,
+            height: 8,
             child: Wrap(
               alignment: WrapAlignment.center,
               spacing: 2,

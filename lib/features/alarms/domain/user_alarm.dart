@@ -24,6 +24,8 @@ class UserAlarm {
     this.group = '',
     this.style = RingStyle.none,
     this.delivery = ReminderDelivery.inherit,
+    this.busyMinutes = 0,
+    this.iWill = '',
   });
 
   final String id;
@@ -55,6 +57,13 @@ class UserAlarm {
   /// Volume, fades, gentle wake-up, tasks and more for this alarm.
   final RingStyle style;
   final ReminderDelivery delivery;
+
+  /// Busy mode for this long after it rings. 0 = off.
+  final int busyMinutes;
+
+  /// "When this rings, I will…": one line shown on the ring screen and
+  /// read aloud. Empty = nothing.
+  final String iWill;
 
   bool get repeats => days.isNotEmpty;
 
@@ -124,6 +133,7 @@ class UserAlarm {
           soundId: delivery.resolveSound(soundId),
           delivery: delivery,
           style: style,
+          iWill: iWill,
         ),
     ];
   }
@@ -144,6 +154,8 @@ class UserAlarm {
     String? group,
     RingStyle? style,
     ReminderDelivery? delivery,
+    int? busyMinutes,
+    String? iWill,
   }) => UserAlarm(
     id: id,
     hour: hour ?? this.hour,
@@ -158,6 +170,8 @@ class UserAlarm {
     group: group ?? this.group,
     style: style ?? this.style,
     delivery: delivery ?? this.delivery,
+    busyMinutes: busyMinutes ?? this.busyMinutes,
+    iWill: iWill ?? this.iWill,
   );
 
   Map<String, dynamic> toJson() => {
@@ -174,6 +188,8 @@ class UserAlarm {
     'group': group,
     'style': style.toJson(),
     'delivery': delivery.toJson(),
+    if (busyMinutes > 0) 'busyMinutes': busyMinutes,
+    if (iWill.isNotEmpty) 'iWill': iWill,
   };
 
   factory UserAlarm.fromJson(Map<String, dynamic> j) => UserAlarm(
@@ -190,5 +206,7 @@ class UserAlarm {
     group: (j['group'] as String? ?? '').trim(),
     style: RingStyle.fromJson(j['style']),
     delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
+    busyMinutes: (j['busyMinutes'] as num?)?.toInt() ?? 0,
+    iWill: (j['iWill'] as String? ?? '').trim(),
   );
 }

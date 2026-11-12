@@ -32,6 +32,8 @@ class AnchorEvent {
     required this.at,
     required this.source,
     this.alias,
+    this.reminders = const [],
+    this.owner,
   });
 
   /// Stable id: the same real-world event always gets the same id, so
@@ -49,6 +51,54 @@ class AnchorEvent {
   /// The English title of a built-in time ("Candle lighting · Shabbat"),
   /// so searches like `candle*` work in every language. null = [title] only.
   final String? alias;
+
+  /// The event's own reminders from its calendar app, as lead times before
+  /// it ("15 minutes before"). Empty for everything but calendar events.
+  final List<Duration> reminders;
+
+  /// Set when this is a calendar rule's own remembered copy of an event
+  /// ("Keep what I first saw", "Only events that exist now"): only that
+  /// rule rings for it. null = the calendar as it is now, for everyone.
+  final String? owner;
+
+  /// This event, as rule [owner]'s own copy.
+  AnchorEvent ownedBy(String? owner) => AnchorEvent(
+    id: id,
+    kind: kind,
+    title: title,
+    at: at,
+    source: source,
+    alias: alias,
+    reminders: reminders,
+    owner: owner,
+  );
+
+  Map<String, dynamic> toJson() => {
+    'id': id,
+    'kind': kind.name,
+    'title': title,
+    'at': at.toUtc().toIso8601String(),
+    'source': source,
+    if (alias != null) 'alias': alias,
+    if (reminders.isNotEmpty) 'reminders': [for (final r in reminders) r.inMinutes],
+  };
+
+  static AnchorEvent? fromJson(Map<String, dynamic> j) {
+    final kind = EventKind.values.where((k) => k.name == j['kind']).firstOrNull;
+    final at = DateTime.tryParse(j['at'] as String? ?? '');
+    if (kind == null || at == null || j['id'] is! String) return null;
+    return AnchorEvent(
+      id: j['id'] as String,
+      kind: kind,
+      title: j['title'] as String? ?? '',
+      at: at.toUtc(),
+      source: j['source'] as String? ?? '',
+      alias: j['alias'] as String?,
+      reminders: [
+        for (final m in (j['reminders'] as List? ?? const [])) Duration(minutes: (m as num).toInt()),
+      ],
+    );
+  }
 
   @override
   String toString() => 'AnchorEvent($kind, $title, ${at.toIso8601String()})';

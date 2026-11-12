@@ -1,0 +1,28 @@
+{
+  "id": "google-4-6-consent-screen-branding-and-scopes",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "gmerge",
+    "google"
+  ],
+  "title": "Google 4/6: consent screen branding and scopes",
+  "status": "next",
+  "note": "Branding, calendar.readonly and youtube.readonly, then Publish app.",
+  "details": "Guide section C, steps 8 to 11. Add only the scopes the app uses.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#c-google-cloud-consent-screen-google-auth-platform"
+    },
+    {
+      "title": "Privacy policy (quando.day)",
+      "url": "https://quando.day/privacy/"
+    },
+    {
+      "title": "Terms (quando.day)",
+      "url": "https://quando.day/terms/"
+    }
+  ],
+  "order": 28
+}

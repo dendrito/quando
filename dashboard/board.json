@@ -1,0 +1,210 @@
+{
+  "repo": "dendrito/quando",
+  "headline": "Get one Quando? version ready to install by Thursday midnight.",
+  "deadlines": [
+    {
+      "date": "2026-11-12T23:59:00-03:00",
+      "title": "One app version ready",
+      "note": "Android Quando? release candidate, plus the iPad rebuild. No new features before then."
+    },
+    {
+      "date": "2026-11-14T12:00:00-03:00",
+      "title": "iPad/Mac test builds expire",
+      "note": "Free Apple account: rebuild before this day."
+    },
+    {
+      "date": "2027-03-20T00:00:00-03:00",
+      "title": "Quando Day",
+      "note": "20 March, the equinox."
+    }
+  ],
+  "statuses": [
+    {
+      "id": "decide",
+      "label": "Needs your decision"
+    },
+    {
+      "id": "doing",
+      "label": "In progress"
+    },
+    {
+      "id": "review",
+      "label": "Needs your review"
+    },
+    {
+      "id": "next",
+      "label": "Up next"
+    },
+    {
+      "id": "hold",
+      "label": "On hold"
+    },
+    {
+      "id": "done",
+      "label": "Done"
+    }
+  ],
+  "plans": [
+    {
+      "id": "business",
+      "title": "Business plan",
+      "url": "https://claude.ai/artifact/Rvh6qEd5G6ZzFdnSAs9jRH",
+      "status": "proposed",
+      "private": true,
+      "note": "Pricing, editions, launch gates. Private (needs your Claude login); kept out of this public repo.",
+      "group": "business"
+    },
+    {
+      "id": "marketing",
+      "title": "Marketing plan",
+      "url": "https://claude.ai/artifact/YHyyHVTdVHsu6745FmfnBf",
+      "status": "proposed",
+      "private": true,
+      "note": "Launch and growth ideas. Private page.",
+      "group": "business"
+    },
+    {
+      "id": "haredi",
+      "title": "Haredi edition plan",
+      "url": "https://claude.ai/artifact/J9Fw4tMWF6283PjdiSkjwd",
+      "status": "proposed",
+      "private": true,
+      "note": "Matai? for Haredi users, offline Android edition.",
+      "group": "business"
+    },
+    {
+      "id": "sharedays",
+      "title": "Share days review",
+      "url": "https://claude.ai/artifact/SAgKfxpEW3UuyrsvxgugzE",
+      "status": "proposed",
+      "private": true,
+      "group": "business"
+    },
+    {
+      "id": "market",
+      "title": "Market assessment and accelerators",
+      "url": "https://claude.ai/artifact/8CiGHiLYdUMN6hSE6YNK3S",
+      "status": "proposed",
+      "private": true,
+      "group": "business"
+    },
+    {
+      "id": "focus",
+      "title": "Focus mode",
+      "url": "https://claude.ai/artifact/2vF4g2TkmJAzDDY58GrLC5",
+      "status": "proposed",
+      "private": true,
+      "group": "business"
+    },
+    {
+      "id": "roadmap",
+      "title": "Roadmap",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/ROADMAP.md",
+      "status": "agreed"
+    },
+    {
+      "id": "growth",
+      "title": "Growth features spec",
+      "url": "https://github.com/dendrito/quando/pull/25",
+      "status": "agreed"
+    }
+  ],
+  "downloads": [
+    {
+      "title": "Quando? Android APK",
+      "url": "https://github.com/dendrito/quando/releases/download/latest/quando.apk",
+      "note": "Works while the repo is public. Once it is private, use Google Play closed testing or Firebase App Distribution."
+    },
+    {
+      "title": "Matai? Android APK",
+      "url": "https://github.com/dendrito/quando/releases/download/latest/matai.apk"
+    }
+  ],
+  "projectUrl": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk",
+  "threads": {
+    "release": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUW86iMfPztCwKPW19gUHUA",
+      "title": "Ship Quando? release by Thursday"
+    },
+    "sky": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkEgTEmUEYjQJoBtG6dnJHDA",
+      "title": "Bring back sky and weather on home"
+    },
+    "home": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUWdhhHKMXZiHrmSErgwf62",
+      "title": "Redesign the home screen from scratch"
+    },
+    "growth": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkNX9CnFnwA8ZoDxYNX5xXx7",
+      "title": "Build calendar alarms, Busy mode and sharing"
+    },
+    "voice": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkDqQoo1gXyccs6uhqSuBpJ2",
+      "title": "Create alarms by voice with on-device AI"
+    },
+    "lock": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk5gn1gHPmjWwM6PmEyozUBR",
+      "title": "Build discreet lock between calendar events"
+    },
+    "dash": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkTqzDhdyvpsKwWwGn5yZZb3",
+      "title": "Build a project dashboard website"
+    },
+    "biz": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkM5jPHGnerYqvJRWq3LeKN7",
+      "title": "Build Quando? business plan"
+    },
+    "redesign": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkXBT8Swei9Fa2bfoERDrePr",
+      "title": "Redesign Quando logo and UI"
+    },
+    "local": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkEeLFpsAzb1xDe91VNnGT73",
+      "title": "Localize Quando? and add time quotes"
+    },
+    "ipad": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkPP8muDjenFvrB57cj4mn1W",
+      "title": "Build iPad and Android, run iPad app on Mac"
+    },
+    "ipadmac": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkUSHNbUKscxumyMGS626wrF",
+      "title": "Build Quando? on iPad and Mac"
+    },
+    "spotify": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkTFVPfHoFoGb6k9jFSHjDJF",
+      "title": "Connect Spotify and YouTube playlists"
+    },
+    "tuya": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkDeADqDFXXqxGqUSgBai3KP",
+      "title": "Trigger Tuya Smart Life scenes from alarms"
+    },
+    "haredi": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkJC1msryTJ8rxpRcXfQrYRB",
+      "title": "Plan Quando? for Haredi users and kosher phones"
+    },
+    "days": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVFZmrebCcdqCyCR6rWoNUn",
+      "title": "Plan the yearly share-days calendar"
+    },
+    "plan": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkHFAnxPpyuGZz1ZPFJN6YJk",
+      "title": "Plan the alarm clock app"
+    },
+    "google": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk4LFBJbLbsEsrnqyQW3GfrH",
+      "title": "Set up quando.day for Google verification"
+    },
+    "demo": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkHiCzj7WeU1gAcqZLyMyFvM",
+      "title": "Make Google verification demo video"
+    },
+    "gmerge": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkKW8QJamk23jtaQKSBMwFqP",
+      "title": "Merge Google projects into one"
+    },
+    "weather": {
+      "id": "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkSGmqtZLXnJpJgmB47DEGqz",
+      "title": "Add weather forecast alarms"
+    }
+  }
+}

@@ -9,11 +9,14 @@ import '../../../core/util/local_time.dart';
 import '../domain/user_alarm.dart';
 import '../../rules/ui/delivery_tile.dart';
 import '../../integrations/ui/smart_home_tile.dart';
-import '../../sounds/ui/sound_picker.dart';
 import '../../timezones/ui/zone_picker.dart';
 import 'group_picker.dart';
 import 'ring_length_picker.dart';
+import '../../ringing/ring_style.dart';
 import '../../ringing/ui/alarm_extras.dart';
+import '../../settings/domain/ui_level.dart';
+import '../../../app/widgets/fold.dart';
+import 'wake_me_with.dart';
 import '../../../core/scheduler/scheduler.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -31,6 +34,7 @@ class EditAlarmScreen extends ConsumerStatefulWidget {
 class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
   late UserAlarm _alarm;
   late final TextEditingController _label;
+  late final TextEditingController _iWill;
   late final bool _isNew;
 
   @override
@@ -39,14 +43,22 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     final existing = ref.read(userAlarmsProvider).where((a) => a.id == widget.id);
     _isNew = existing.isEmpty;
     _alarm = _isNew
-        ? UserAlarm(id: DateTime.now().microsecondsSinceEpoch.toRadixString(36), hour: 7, minute: 0)
+        ? UserAlarm(
+            id: DateTime.now().microsecondsSinceEpoch.toRadixString(36),
+            hour: 7,
+            minute: 0,
+            // "Use for new alarms" from the Gentle wake menu.
+            style: RingStyle(gentleMinutes: ref.read(alarmOptionsProvider).gentleMinutes),
+          )
         : existing.first;
     _label = TextEditingController(text: _alarm.label);
+    _iWill = TextEditingController(text: _alarm.iWill);
   }
 
   @override
   void dispose() {
     _label.dispose();
+    _iWill.dispose();
     super.dispose();
   }
 
@@ -104,7 +116,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
 
   /// Rings this alarm, exactly as set, in 5 seconds.
   Future<void> _preview() async {
-    final a = _alarm.copyWith(label: _label.text.trim());
+    final a = _alarm.copyWith(label: _label.text.trim(), iWill: _iWill.text.trim());
     final at = DateTime.now().toUtc().add(const Duration(seconds: 5));
     final payload = ref
         .read(payloadForProvider)(
@@ -120,6 +132,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             soundId: a.delivery.resolveSound(a.soundId),
             delivery: a.delivery,
             style: a.style,
+            iWill: a.iWill,
           ),
         )
         .asPreview();
@@ -130,7 +143,9 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
   }
 
   void _save() {
-    ref.read(userAlarmsProvider.notifier).save(_alarm.copyWith(label: _label.text.trim(), enabled: true));
+    ref
+        .read(userAlarmsProvider.notifier)
+        .save(_alarm.copyWith(label: _label.text.trim(), iWill: _iWill.text.trim(), enabled: true));
     final next = _alarm.repeats
         ? null
         : UserAlarm.nextAt(
@@ -159,6 +174,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
     final defaultRing = ref.watch(alarmOptionsProvider).ringSeconds;
     final ring = _alarm.ringSeconds ?? defaultRing;
     final letters = [for (var d = 1; d <= 7; d++) weekdayNarrow(d)];
+    final simple = ref.watch(uiLevelProvider) == UiLevel.simple;
 
     return Scaffold(
       appBar: AppBar(
@@ -217,17 +233,18 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          Center(
-            child: TextButton.icon(
-              icon: const Icon(Icons.public, size: 18),
-              label: Text(
-                _alarm.zone == null
-                    ? l10n.yourTimeCity(cityOf(ref.watch(homeZoneProvider)))
-                    : l10n.cityTimeForYou(cityOf(_alarm.zone!), hhmm(_ringsLocally())),
+          if (!simple)
+            Center(
+              child: TextButton.icon(
+                icon: const Icon(Icons.public, size: 18),
+                label: Text(
+                  _alarm.zone == null
+                      ? l10n.yourTimeCity(cityOf(ref.watch(homeZoneProvider)))
+                      : l10n.cityTimeForYou(cityOf(_alarm.zone!), hhmm(_ringsLocally())),
+                ),
+                onPressed: _pickZone,
               ),
-              onPressed: _pickZone,
             ),
-          ),
           const SizedBox(height: 8),
           Text(l10n.repeatHeading(_alarm.repeatLabel.toUpperCase()), style: text.labelSmall),
           const SizedBox(height: 8),
@@ -253,73 +270,136 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             decoration: InputDecoration(labelText: l10n.labelField),
           ),
           const SizedBox(height: 12),
-          ListTile(
-            contentPadding: EdgeInsets.zero,
-            leading: const Icon(Icons.folder_outlined),
-            title: Text(l10n.group),
-            subtitle: Text(_alarm.group.isEmpty ? l10n.noGroup : _alarm.group),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () async {
-              final g = await pickGroup(
-                context,
-                groups: ref.read(userAlarmsProvider.notifier).groups,
-                current: _alarm.group,
-              );
-              if (g != null) setState(() => _alarm = _alarm.copyWith(group: g));
-            },
+          TextField(
+            key: const Key('iWill'),
+            controller: _iWill,
+            textCapitalization: TextCapitalization.sentences,
+            decoration: InputDecoration(labelText: l10n.iWillLabel),
           ),
-          const SizedBox(height: 4),
-          SoundPickerTile(
-            large: true,
-            value: _alarm.delivery.resolveSound(_alarm.soundId),
-            onChanged: (id) => setState(
+          const SizedBox(height: 20),
+          WakeMeWith(
+            soundId: _alarm.delivery.resolveSound(_alarm.soundId),
+            ringSeconds: ring,
+            gentleMinutes: _alarm.style.gentleMinutes,
+            onSound: (id) => setState(
               () => _alarm = _alarm.copyWith(
-                delivery: _alarm.delivery.copyWith(
-                  soundId: id,
-                  clearSound: id == null,
-                  useDefaultSound: id == null,
+                delivery: _alarm.delivery.copyWith(soundId: id, useDefaultSound: false),
+              ),
+            ),
+            onRing: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
+            onGentle: (m) =>
+                setState(() => _alarm = _alarm.copyWith(style: _alarm.style.copyWith(gentleMinutes: m))),
+          ),
+          if (!simple) ...[
+            const SizedBox(height: 12),
+            Fold(
+              title: l10n.foldVolume,
+              children: [
+                AlarmExtras(
+                  part: ExtrasPart.volume,
+                  value: _alarm.style,
+                  onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
                 ),
-              ),
+                const SizedBox(height: 16),
+                Text(
+                  l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()),
+                  style: text.labelSmall,
+                ),
+                const SizedBox(height: 8),
+                RingLengthPicker(
+                  seconds: ring,
+                  onChanged: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
+                ),
+                if (_alarm.ringSeconds != null)
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton(
+                      onPressed: () => setState(() => _alarm = _alarm.copyWith(clearRingSeconds: true)),
+                      child: Text(l10n.useDefault(formatSpan(Duration(seconds: defaultRing)))),
+                    ),
+                  ),
+              ],
             ),
-          ),
-          DeliveryTile(
-            title: 'Pushover',
-            value: _alarm.delivery,
-            ruleSound: _alarm.soundId,
-            showSoundPicker: false,
-            onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
-          ),
-          SmartHomeTile(
-            value: _alarm.delivery,
-            onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
-          ),
-          AlarmExtras(
-            value: _alarm.style,
-            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
-          ),
-          const SizedBox(height: 16),
-          Text(
-            l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()),
-            style: text.labelSmall,
-          ),
-          const SizedBox(height: 8),
-          RingLengthPicker(
-            seconds: ring,
-            onChanged: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
-          ),
-          if (_alarm.ringSeconds != null)
-            Align(
-              alignment: Alignment.centerLeft,
-              child: TextButton(
-                onPressed: () => setState(() => _alarm = _alarm.copyWith(clearRingSeconds: true)),
-                child: Text(l10n.useDefault(formatSpan(Duration(seconds: defaultRing)))),
-              ),
+            Fold(
+              title: l10n.foldSnoozeStop,
+              children: [
+                AlarmExtras(
+                  part: ExtrasPart.snoozeStop,
+                  value: _alarm.style,
+                  onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
+                ),
+              ],
             ),
+            Fold(
+              title: l10n.foldExtras,
+              children: [
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.folder_outlined),
+                  title: Text(l10n.group),
+                  subtitle: Text(_alarm.group.isEmpty ? l10n.noGroup : _alarm.group),
+                  trailing: const Icon(Icons.chevron_right),
+                  onTap: () async {
+                    final g = await pickGroup(
+                      context,
+                      groups: ref.read(userAlarmsProvider.notifier).groups,
+                      current: _alarm.group,
+                    );
+                    if (g != null) setState(() => _alarm = _alarm.copyWith(group: g));
+                  },
+                ),
+                DeliveryTile(
+                  title: 'Pushover',
+                  value: _alarm.delivery,
+                  ruleSound: _alarm.soundId,
+                  showSoundPicker: false,
+                  onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
+                ),
+                SmartHomeTile(
+                  value: _alarm.delivery,
+                  onChanged: (d) => setState(() => _alarm = _alarm.copyWith(delivery: d)),
+                ),
+                AlarmExtras(
+                  part: ExtrasPart.extras,
+                  value: _alarm.style,
+                  onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
+                ),
+                ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                  title: Text(l10n.busyAfterRing),
+                  subtitle: Text(l10n.busyAfterRingHint, style: text.bodySmall),
+                  trailing: ConstrainedBox(
+                    constraints: const BoxConstraints(maxWidth: 96),
+                    child: DropdownButton<int>(
+                      isExpanded: true,
+                      value: _busyChoices.contains(_alarm.busyMinutes) ? _alarm.busyMinutes : 0,
+                      items: [
+                        for (final m in _busyChoices)
+                          DropdownMenuItem(
+                            value: m,
+                            child: Text(m == 0 ? l10n.offLower : formatSpan(Duration(minutes: m))),
+                          ),
+                      ],
+                      onChanged: (m) => setState(() => _alarm = _alarm.copyWith(busyMinutes: m ?? 0)),
+                    ),
+                  ),
+                ),
+                if (_alarm.busyMinutes > 0)
+                  Align(
+                    alignment: AlignmentDirectional.centerStart,
+                    child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),
+                  ),
+              ],
+            ),
+          ],
           const SizedBox(height: 24),
         ],
       ),
     );
   }
+
+  static const _busyChoices = [0, 30, 60, 90, 120, 180, 240];
 }
 
 class _DayChip extends StatelessWidget {

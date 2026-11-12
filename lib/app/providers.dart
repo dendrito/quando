@@ -11,8 +11,12 @@ import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/data/google_calendar.dart';
+import '../features/calendar/data/loud_notifications.dart';
+import '../features/busy/data/busy_mode.dart';
+import '../features/busy/domain/busy.dart';
 import '../features/calendar/data/mac_calendar_reader.dart';
 import '../features/calendar/domain/calendar_rule.dart';
+import '../features/calendar/domain/calendar_sync.dart';
 import '../features/events/domain/event.dart';
 import '../features/events/domain/sun_times.dart';
 import '../features/integrations/data/sender.dart';
@@ -22,6 +26,7 @@ import '../features/integrations/domain/tuya.dart';
 import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
+import '../features/lock/domain/shabbat_calendar.dart';
 import '../features/quotes/data/quote_bank.dart';
 import '../features/quotes/domain/quote.dart';
 import '../features/ringing/ring_payload.dart';
@@ -33,6 +38,7 @@ import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
 import '../features/shabbat/domain/preparation.dart';
 import '../features/home/domain/home_display.dart';
+import '../features/settings/domain/ui_level.dart';
 import '../features/home/domain/zone_places.dart';
 
 import 'edition.dart';
@@ -55,10 +61,19 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
   @override
   HomeDisplay build() {
     try {
-      return HomeDisplay.fromJson(
-        jsonDecode(ref.read(prefsProvider).getString('home.display') ?? '{}') as Map<String, dynamic>,
+      final prefs = ref.read(prefsProvider);
+      var d = HomeDisplay.fromJson(
+        jsonDecode(prefs.getString('home.display') ?? '{}') as Map<String, dynamic>,
         parashaDefault: jewishHome,
       );
+      // Once: sun, moon, moon phase and weather became the default, so switch them on for people who had
+      // them off only because that used to be the default.
+      if (prefs.getBool('home.display.allOn') != true) {
+        prefs.setBool('home.display.allOn', true);
+        d = d.copyWith(night: true, moon: true, moonDetails: true, weather: true);
+        prefs.setString('home.display', jsonEncode(d.toJson()));
+      }
+      return d;
     } catch (_) {
       return HomeDisplay(parasha: jewishHome);
     }
@@ -71,6 +86,33 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
 }
 
 final homeDisplayProvider = NotifierProvider<HomeDisplayNotifier, HomeDisplay>(HomeDisplayNotifier.new);
+
+// ---- Simple or Everything ----
+
+class UiLevelNotifier extends Notifier<UiLevel> {
+  @override
+  UiLevel build() => UiLevelStore.read(ref.read(prefsProvider));
+
+  void set(UiLevel level) {
+    ref.read(prefsProvider).setString(UiLevelStore.levelKey, level.name);
+    state = level;
+  }
+}
+
+final uiLevelProvider = NotifierProvider<UiLevelNotifier, UiLevel>(UiLevelNotifier.new);
+
+/// True on a brand-new install until its one question is answered.
+class FirstRunNotifier extends Notifier<bool> {
+  @override
+  bool build() => UiLevelStore.pending(ref.read(prefsProvider));
+
+  void answer(UiLevel level) {
+    ref.read(uiLevelProvider.notifier).set(level);
+    state = false;
+  }
+}
+
+final firstRunProvider = NotifierProvider<FirstRunNotifier, bool>(FirstRunNotifier.new);
 
 // ---- Language ----
 
@@ -511,6 +553,11 @@ final calendarReaderProvider = Provider<CalendarReader>(
   (ref) => isMacOS ? MacCalendarReader() : DeviceCalendarReader(),
 );
 
+/// "Make calendar notifications loud" (Android).
+final loudNotificationsProvider = Provider<LoudNotifications>(
+  (ref) => LoudNotifications(ref.watch(prefsProvider)),
+);
+
 /// Google Calendar read online, for when it isn't on the phone.
 final onlineCalendarsProvider = Provider<OnlineCalendars>((ref) => GoogleCalendars());
 
@@ -549,6 +596,45 @@ class CalendarRulesNotifier extends Notifier<List<CalendarRule>> {
 
 final calendarRulesProvider = NotifierProvider<CalendarRulesNotifier, List<CalendarRule>>(
   CalendarRulesNotifier.new,
+);
+
+/// What rules that don't follow the calendar live remember of it: each
+/// event as first seen. See [CalendarSync].
+class CalendarMemoryNotifier extends Notifier<Map<String, RuleMemory>> {
+  SharedPreferences get _prefs => ref.read(prefsProvider);
+  static const _key = 'calendarMemory';
+
+  @override
+  Map<String, RuleMemory> build() {
+    try {
+      final raw = _prefs.getString(_key);
+      if (raw == null) return const {};
+      return {
+        for (final e in (jsonDecode(raw) as Map<String, dynamic>).entries)
+          e.key: ?RuleMemory.fromJson(e.value),
+      };
+    } catch (_) {
+      return const {};
+    }
+  }
+
+  /// Takes in the calendar as read just now.
+  void observe(List<AnchorEvent> events, DateTime now) {
+    final next = rememberEvents(
+      rules: ref.read(calendarRulesProvider),
+      events: events,
+      memory: state,
+      now: now,
+    );
+    final raw = jsonEncode({for (final e in next.entries) e.key: e.value.toJson()});
+    if (raw == _prefs.getString(_key)) return;
+    state = next;
+    _prefs.setString(_key, raw);
+  }
+}
+
+final calendarMemoryProvider = NotifierProvider<CalendarMemoryNotifier, Map<String, RuleMemory>>(
+  CalendarMemoryNotifier.new,
 );
 
 /// What we know about your calendars: the phone's own, and Google
@@ -758,16 +844,38 @@ class CalendarNotifier extends Notifier<CalendarState> {
         events.addAll(state.events.where((e) => googleIds.contains(e.source)));
       }
     }
+    // Rules that don't follow the calendar live take what is new. Only
+    // from a full read: an event missing from a failed read isn't new news.
+    if (error == null && googleError == null) {
+      ref.read(calendarMemoryProvider.notifier).observe(events, now);
+    }
     state = CalendarState(
       phone: phone,
       google: google,
       loaded: true,
       calendars: calendars,
       selected: selected,
-      events: events,
+      // Nothing changed (most re-reads): keep the same list, so alarms
+      // aren't planned and set again for nothing.
+      events: _sameEvents(events, state.events) ? state.events : events,
       error: error,
       googleError: googleError,
     );
+  }
+
+  static bool _sameEvents(List<AnchorEvent> a, List<AnchorEvent> b) {
+    if (a.length != b.length) return false;
+    for (var i = 0; i < a.length; i++) {
+      final x = a[i], y = b[i];
+      if (x.id != y.id || x.at != y.at || x.title != y.title || x.source != y.source || x.kind != y.kind) {
+        return false;
+      }
+      if (x.reminders.length != y.reminders.length) return false;
+      for (var j = 0; j < x.reminders.length; j++) {
+        if (x.reminders[j] != y.reminders[j]) return false;
+      }
+    }
+    return true;
   }
 
   Future<void> select(String id, bool on) async {
@@ -793,7 +901,8 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
   final now = ref.watch(clockProvider)();
   final window = scheduler.eventWindow(now, ref.watch(allRulesProvider));
   final events = ref.watch(jewishTimesProvider).events(window.from, window.to)
-    ..addAll(ref.watch(calendarProvider.select((c) => c.events)));
+    ..addAll(ref.watch(calendarProvider.select((c) => c.events)))
+    ..addAll(rememberedEvents(ref.watch(calendarRulesProvider), ref.watch(calendarMemoryProvider)));
   final wantsSun = ref
       .watch(allRulesProvider)
       .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));
@@ -843,17 +952,20 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
 
   static int _byTime(UserAlarm a, UserAlarm b) => (a.hour * 60 + a.minute).compareTo(b.hour * 60 + b.minute);
 
-  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time.
-  void save(UserAlarm alarm) {
+  /// Adds or replaces [alarm]. A one-off alarm is pinned to its next time,
+  /// or to [at] when given (e.g. "tomorrow at 6", said at 5 in the morning).
+  void save(UserAlarm alarm, {DateTime? at}) {
     final fixed = alarm.repeats
         ? alarm
         : alarm.copyWith(
-            onceAt: UserAlarm.nextAt(
-              alarm.hour,
-              alarm.minute,
-              ref.read(clockProvider)(),
-              alarm.zone ?? ref.read(homeZoneProvider),
-            ),
+            onceAt:
+                at ??
+                UserAlarm.nextAt(
+                  alarm.hour,
+                  alarm.minute,
+                  ref.read(clockProvider)(),
+                  alarm.zone ?? ref.read(homeZoneProvider),
+                ),
           );
     _set([
       for (final a in state)
@@ -886,6 +998,27 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
     for (final a in state)
       if (a.id != id) a,
   ]);
+
+  /// Before the defaults change: alarms that follow the default sound or
+  /// ring length keep what they have now, so only new alarms follow the new.
+  void pinDefaults(AlarmOptions before, {bool sound = false, bool ring = false}) {
+    var changed = false;
+    final out = [
+      for (final a in state)
+        () {
+          var x = a;
+          if (sound && a.delivery.soundId == null) {
+            x = x.copyWith(
+              delivery: x.delivery.copyWith(soundId: before.soundId ?? '__phone__', useDefaultSound: false),
+            );
+          }
+          if (ring && a.ringSeconds == null) x = x.copyWith(ringSeconds: before.ringSeconds);
+          changed = changed || !identical(x, a);
+          return x;
+        }(),
+    ];
+    if (changed) _set(out);
+  }
 
   /// Every group name in use, A to Z.
   List<String> get groups => {
@@ -1023,6 +1156,16 @@ final dismissedLocksProvider = NotifierProvider<DismissedLocksNotifier, Set<Stri
   DismissedLocksNotifier.new,
 );
 
+/// The picked calendars that are Shabbat calendars (Hebcal, a synagogue's
+/// times...). Shabbat lock screens and suggestions show only for these.
+final shabbatCalendarsProvider = Provider<Set<String>>((ref) {
+  final cal = ref.watch(calendarProvider);
+  return shabbatCalendarIds([
+    for (final c in cal.calendars)
+      if (cal.selected.contains(c.id)) c,
+  ], cal.events);
+});
+
 /// Upcoming and current locks.
 final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
   ref.watch(localeProvider);
@@ -1032,6 +1175,7 @@ final lockPeriodsProvider = Provider<List<LockPeriod>>((ref) {
     calendarEvents: ref.watch(calendarProvider.select((c) => c.events)),
     now: ref.watch(clockProvider)(),
     dismissed: ref.watch(dismissedLocksProvider),
+    shabbatCalendars: ref.watch(shabbatCalendarsProvider),
   );
 });
 
@@ -1135,6 +1279,7 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   return (a) {
     final id = a.soundId ?? options.soundId;
     var p = _payload(a, options, periods);
+    if (a.iWill.isNotEmpty && !a.ruleId.startsWith('gentle.')) p = p.withIWill(a.iWill);
     final delivery = a.ruleId.startsWith('gentle.')
         ? const ReminderDelivery(pushoverEnabled: false)
         : a.delivery;
@@ -1233,4 +1378,48 @@ final registrarProvider = Provider<AlarmRegistrar>((ref) {
   final r = AlarmRegistrar()..onHappening = (what, p) => sender.send(what, p);
   ref.onDispose(r.dispose);
   return r;
+});
+
+// ---- Busy mode ----
+
+class BusySettingsNotifier extends Notifier<BusySettings> {
+  @override
+  BusySettings build() => BusySettings.decode(ref.read(prefsProvider).getString(BusyMode.settingsKey));
+
+  void update(BusySettings Function(BusySettings) change) {
+    state = change(state);
+    ref.read(prefsProvider).setString(BusyMode.settingsKey, jsonEncode(state.toJson()));
+  }
+}
+
+final busySettingsProvider = NotifierProvider<BusySettingsNotifier, BusySettings>(BusySettingsNotifier.new);
+
+final busyModeProvider = Provider<BusyMode>((ref) => BusyMode(ref.watch(prefsProvider)));
+
+/// Busy stretches over the planning week.
+final busyWindowsProvider = Provider<List<BusyWindow>>((ref) {
+  final now = ref.watch(clockProvider)();
+  return busyWindows(
+    now: now,
+    until: now.add(scheduler.horizon),
+    events: ref.watch(eventsProvider),
+    calendarRules: ref.watch(calendarRulesProvider),
+    // From before now, so a stretch that already started still counts.
+    plan: [
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0)
+          ...a.plan(
+            now: now.subtract(Duration(minutes: a.busyMinutes)),
+            horizon: scheduler.horizon,
+            zone: ref.watch(homeZoneProvider),
+            defaultRing: const Duration(minutes: 1),
+          ),
+    ],
+    busyMinutesByAlarm: {
+      for (final a in ref.watch(userAlarmsProvider))
+        if (a.busyMinutes > 0) a.id: a.busyMinutes,
+    },
+    locks: ref.watch(lockPeriodsProvider),
+    settings: ref.watch(busySettingsProvider),
+  );
 });

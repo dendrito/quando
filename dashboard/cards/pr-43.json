@@ -1,0 +1,14 @@
+{
+  "id": "pr-43",
+  "title": "Move board to Cloudflare Pages so the repo can go private",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    43
+  ],
+  "note": "Board move ready in PR #43, needs review and merge. After merging, Curió does the Cloudflare steps (quando-board Pages project, board.quando.day, optional Access), then turns off GitHub Pages. APK links must be replaced before the repo goes private.",
+  "order": 43,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkYZF9jBs6vzMkLm8n9sNTLd"
+  ]
+}

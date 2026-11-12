@@ -1,0 +1,13 @@
+{
+  "id": "review-the-business-plan-and-mark-what-you-agree-with",
+  "title": "Review the business plan and mark what you agree with",
+  "status": "decide",
+  "tag": "business",
+  "plan": "business",
+  "note": "Pricing, editions and the three-app idea are proposals until you confirm.",
+  "threads": [
+    "biz"
+  ],
+  "details": "Pricing, editions and the three-app idea are proposals until you confirm.",
+  "order": 15
+}

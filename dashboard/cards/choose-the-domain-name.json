@@ -1,0 +1,14 @@
+{
+  "id": "choose-the-domain-name",
+  "title": "Choose the domain name",
+  "status": "done",
+  "tag": "brand",
+  "plan": "business",
+  "note": "quando.day is registered (Cloudflare). Still to decide: matai.day for Matai?.",
+  "details": "quando.day is registered on Cloudflare. Next: check and register matai.day for Matai?, then point both at the app and the store listings.",
+  "threads": [
+    "biz"
+  ],
+  "order": 17,
+  "group": "Launch and store"
+}

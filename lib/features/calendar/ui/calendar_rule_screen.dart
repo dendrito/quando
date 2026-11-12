@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
@@ -12,6 +13,8 @@ import '../../rules/ui/delivery_tile.dart';
 import '../../rules/domain/reminder_delivery.dart';
 import '../domain/calendar_rule.dart';
 import '../../ringing/ui/alarm_extras.dart';
+
+import 'calendar_sync_choice.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -138,6 +141,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
         ? CalendarRule(
             id: DateTime.now().microsecondsSinceEpoch.toRadixString(36),
             before: const [Duration(minutes: 15)],
+            eventReminders: widget.timesQuery == null,
             keyword: widget.timesQuery ?? '',
             includeTimes: widget.timesQuery != null,
           )
@@ -256,7 +260,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     final nextTimes = next == null
         ? const <String>[]
         : [
-            for (final o in (next.kind.isCalendar ? startRule : timesRule).offsets())
+            for (final o in next.kind.isCalendar ? startRule.offsetsFor(next) : timesRule.offsets())
               if (next.at.add(o).isAfter(ref.read(clockProvider)())) hhmm(inZone(next.at.add(o), home)),
           ];
 
@@ -327,6 +331,38 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               value: _rule.includeTimes,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(includeTimes: v)),
             ),
+            // Only on some weekdays, e.g. sunrise on weekdays. None = every day.
+            Text(
+              l10n
+                  .repeatHeading(
+                    _rule.days.isEmpty || _rule.days.length == 7
+                        ? l10n.everyDay
+                        : [
+                            for (var d = 1; d <= 7; d++)
+                              if (_rule.days.contains(d)) weekdayShort(d),
+                          ].join(', '),
+                  )
+                  .toUpperCase(),
+              style: text.labelSmall,
+            ),
+            const SizedBox(height: 4),
+            Wrap(
+              spacing: 6,
+              children: [
+                for (var d = 1; d <= 7; d++)
+                  FilterChip(
+                    label: Text(weekdayNarrow(d)),
+                    showCheckmark: false,
+                    selected: _rule.days.contains(d),
+                    onSelected: (on) => setState(() {
+                      final days = {..._rule.days};
+                      on ? days.add(d) : days.remove(d);
+                      _rule = _rule.copyWith(days: days);
+                    }),
+                  ),
+              ],
+            ),
+            const SizedBox(height: 8),
             if (cal.calendars.isNotEmpty)
               Wrap(
                 spacing: 8,
@@ -360,6 +396,11 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 label: Text(l10n.connectACalendar),
               ),
             ],
+            const SizedBox(height: 12),
+            CalendarSyncChoice(
+              value: _rule.sync,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(sync: v)),
+            ),
             const SizedBox(height: 12),
             Material(
               color: QuandoColors.surface,
@@ -417,6 +458,28 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               ),
             ),
           ] else if (_step == 1) ...[
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.notifications_active_outlined, color: QuandoColors.amber),
+              title: Text(l10n.ringAtEventReminders),
+              subtitle: Text(l10n.ringAtEventRemindersHint),
+              value: _rule.eventReminders,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(eventReminders: v)),
+            ),
+            SwitchListTile(
+              contentPadding: EdgeInsets.zero,
+              secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+              title: Text(l10n.busyDuringEvents),
+              subtitle: Text(l10n.busyDuringEventsHint),
+              value: _rule.busy,
+              onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
+            ),
+            if (_rule.busy)
+              Align(
+                alignment: AlignmentDirectional.centerStart,
+                child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),
+              ),
+            const SizedBox(height: 8),
             Text(l10n.ringBeforeStartsHeading, style: text.labelSmall),
             const SizedBox(height: 8),
             Wrap(

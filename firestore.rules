@@ -14,6 +14,20 @@ service cloud.firestore {
       allow read, write: if isAuthorizedOwner() && request.auth.uid == userId;
     }
 
+    // "Help improve voice alarms" (opt-in): anonymous, create only, small
+    // and shaped. Nothing can read, change or delete these from a phone.
+    match /voice_samples/{id} {
+      allow create: if request.resource.data.keys().hasOnly(['sentence', 'lang', 'understood', 'outcome', 'at'])
+        && request.resource.data.sentence is string
+        && request.resource.data.sentence.size() > 0
+        && request.resource.data.sentence.size() <= 200
+        && request.resource.data.lang is string
+        && request.resource.data.lang.size() <= 10
+        && request.resource.data.understood is string
+        && request.resource.data.understood.size() <= 500
+        && request.resource.data.outcome in ['saved', 'cancelled', 'not_understood'];
+    }
+
     // Explicit default deny for every other collection and document.
     match /{document=**} {
       allow read, write: if false;

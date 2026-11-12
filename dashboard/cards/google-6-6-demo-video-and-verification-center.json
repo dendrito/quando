@@ -1,0 +1,20 @@
+{
+  "id": "google-6-6-demo-video-and-verification-center",
+  "tag": "google",
+  "plan": "business",
+  "threads": [
+    "demo",
+    "google"
+  ],
+  "title": "Google 6/6: demo video and Verification Center",
+  "status": "next",
+  "note": "Record the unlisted demo video and submit for verification.",
+  "details": "Guide section D. Scope review takes days to weeks; answer reviewer emails fast. The thread can write a shot list.",
+  "docs": [
+    {
+      "title": "Step-by-step guide",
+      "url": "https://github.com/dendrito/quando/blob/main/docs/GOOGLE_VERIFICATION.md#d-submit-for-verification"
+    }
+  ],
+  "order": 30
+}

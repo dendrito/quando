@@ -910,6 +910,144 @@ abstract class AppLocalizations {
   /// **'Hold to unlock'**
   String get holdToUnlock;
 
+  /// No description provided for @lockSentenceCalm.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock the phone down to the clock and your alarms: for an exam, a meeting or a quiet evening.'**
+  String get lockSentenceCalm;
+
+  /// No description provided for @lockCalendarHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WITH YOUR CALENDAR'**
+  String get lockCalendarHeading;
+
+  /// No description provided for @lockCalendarExplain.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock during an event, or from one event until the next one you name. Works with any calendar you picked, including shared ones.'**
+  String get lockCalendarExplain;
+
+  /// No description provided for @lockAddCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Add a calendar lock'**
+  String get lockAddCalendar;
+
+  /// No description provided for @lockEditCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar lock'**
+  String get lockEditCalendar;
+
+  /// No description provided for @lockDuring.
+  ///
+  /// In en, this message translates to:
+  /// **'During an event'**
+  String get lockDuring;
+
+  /// No description provided for @lockBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Between two events'**
+  String get lockBetween;
+
+  /// No description provided for @lockStartsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Events named…'**
+  String get lockStartsAt;
+
+  /// No description provided for @lockStartsAtBetween.
+  ///
+  /// In en, this message translates to:
+  /// **'Starts at an event named…'**
+  String get lockStartsAtBetween;
+
+  /// No description provided for @lockEndsAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Ends at the next event named…'**
+  String get lockEndsAt;
+
+  /// No description provided for @lockStartHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. exam, focus, gym'**
+  String get lockStartHint;
+
+  /// No description provided for @lockEndHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. back home'**
+  String get lockEndHint;
+
+  /// No description provided for @lockAnyCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Any calendar'**
+  String get lockAnyCalendar;
+
+  /// No description provided for @lockNoMatches.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing in your calendars matches yet.'**
+  String get lockNoMatches;
+
+  /// No description provided for @lockNextTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'NEXT TIMES'**
+  String get lockNextTimes;
+
+  /// No description provided for @lockDuringTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'During “{a}”'**
+  String lockDuringTitle(String a);
+
+  /// No description provided for @lockBetweenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'From “{a}” to the next “{b}”'**
+  String lockBetweenTitle(String a, String b);
+
+  /// No description provided for @lockShabbatCalendarFound.
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” has Shabbat times.'**
+  String lockShabbatCalendarFound(String name);
+
+  /// No description provided for @lockShabbatFromCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Lock from candle lighting to Havdalah'**
+  String get lockShabbatFromCalendar;
+
+  /// No description provided for @lockShabbatFromCalendarHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Uses the times in that calendar, with candles on the lock screen.'**
+  String get lockShabbatFromCalendarHint;
+
+  /// No description provided for @lockMoreWays.
+  ///
+  /// In en, this message translates to:
+  /// **'More ways to lock'**
+  String get lockMoreWays;
+
+  /// No description provided for @lockQuietTime.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet time'**
+  String get lockQuietTime;
+
+  /// No description provided for @nextCandleLightingFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Next candle lighting: {time}, from {name}'**
+  String nextCandleLightingFrom(String time, String name);
+
   /// No description provided for @calendarAlarm.
   ///
   /// In en, this message translates to:
@@ -5595,6 +5733,1061 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Nothing rings this day'**
   String get noAlarmsThatDay;
+
+  /// No description provided for @homeClockSize.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock on home'**
+  String get homeClockSize;
+
+  /// No description provided for @sizeSmall.
+  ///
+  /// In en, this message translates to:
+  /// **'Small'**
+  String get sizeSmall;
+
+  /// No description provided for @sizeMedium.
+  ///
+  /// In en, this message translates to:
+  /// **'Medium'**
+  String get sizeMedium;
+
+  /// No description provided for @sizeLarge.
+  ///
+  /// In en, this message translates to:
+  /// **'Large'**
+  String get sizeLarge;
+
+  /// No description provided for @homeLayout.
+  ///
+  /// In en, this message translates to:
+  /// **'Home layout'**
+  String get homeLayout;
+
+  /// No description provided for @homeLayoutClassic.
+  ///
+  /// In en, this message translates to:
+  /// **'Classic'**
+  String get homeLayoutClassic;
+
+  /// No description provided for @homeLayoutCards.
+  ///
+  /// In en, this message translates to:
+  /// **'Cards'**
+  String get homeLayoutCards;
+
+  /// No description provided for @homeCardsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Drag a card to move it. Drag its edge or corner to resize it, or pick a size.'**
+  String get homeCardsHint;
+
+  /// No description provided for @homeAddCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Add card'**
+  String get homeAddCard;
+
+  /// No description provided for @homeOnHome.
+  ///
+  /// In en, this message translates to:
+  /// **'On home'**
+  String get homeOnHome;
+
+  /// No description provided for @homeRemoveCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Remove'**
+  String get homeRemoveCard;
+
+  /// No description provided for @cardNext.
+  ///
+  /// In en, this message translates to:
+  /// **'Next alarm'**
+  String get cardNext;
+
+  /// No description provided for @cardClock.
+  ///
+  /// In en, this message translates to:
+  /// **'Clock and date'**
+  String get cardClock;
+
+  /// No description provided for @cardSky.
+  ///
+  /// In en, this message translates to:
+  /// **'Sun, moon and weather'**
+  String get cardSky;
+
+  /// No description provided for @cardMoon.
+  ///
+  /// In en, this message translates to:
+  /// **'Moon'**
+  String get cardMoon;
+
+  /// No description provided for @cardWeather.
+  ///
+  /// In en, this message translates to:
+  /// **'Weather'**
+  String get cardWeather;
+
+  /// No description provided for @cardAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Your alarms'**
+  String get cardAlarms;
+
+  /// No description provided for @cardQuick.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick alarms'**
+  String get cardQuick;
+
+  /// No description provided for @cardTools.
+  ///
+  /// In en, this message translates to:
+  /// **'Stopwatch, countdown and get set'**
+  String get cardTools;
+
+  /// No description provided for @cardWorld.
+  ///
+  /// In en, this message translates to:
+  /// **'World clocks'**
+  String get cardWorld;
+
+  /// No description provided for @cardWeek.
+  ///
+  /// In en, this message translates to:
+  /// **'This week'**
+  String get cardWeek;
+
+  /// No description provided for @cardShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Shabbat and holidays'**
+  String get cardShabbat;
+
+  /// No description provided for @ringAtEventReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring at the event\'s own reminders'**
+  String get ringAtEventReminders;
+
+  /// No description provided for @ringAtEventRemindersHint.
+  ///
+  /// In en, this message translates to:
+  /// **'The reminders set in your calendar app ring here as loud alarms, with this alarm\'s sound.'**
+  String get ringAtEventRemindersHint;
+
+  /// No description provided for @atEventReminders.
+  ///
+  /// In en, this message translates to:
+  /// **'at the event\'s reminders'**
+  String get atEventReminders;
+
+  /// No description provided for @everyEventReminderLoud.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring loud at every event\'s own reminders'**
+  String get everyEventReminderLoud;
+
+  /// No description provided for @loudNotificationsHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'LOUD CALENDAR NOTIFICATIONS'**
+  String get loudNotificationsHeading;
+
+  /// No description provided for @loudNotificationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Make calendar notifications loud'**
+  String get loudNotificationsTitle;
+
+  /// No description provided for @loudNotificationsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'When a calendar app shows a reminder, Quando? rings it as an alarm, even with the phone on silent.'**
+  String get loudNotificationsHint;
+
+  /// No description provided for @loudNotificationsDisclosureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let Quando? read calendar notifications?'**
+  String get loudNotificationsDisclosureTitle;
+
+  /// No description provided for @loudNotificationsDisclosure.
+  ///
+  /// In en, this message translates to:
+  /// **'To ring your calendar reminders out loud, Quando? needs notification access. It only looks at notifications from the calendar apps you pick, reads their title and text on this phone to show them on the alarm, and never stores or sends them anywhere. You can turn this off at any time.'**
+  String get loudNotificationsDisclosure;
+
+  /// No description provided for @loudNotificationsAgree.
+  ///
+  /// In en, this message translates to:
+  /// **'Agree and continue'**
+  String get loudNotificationsAgree;
+
+  /// No description provided for @loudNotificationsNoAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification access is off. Turn Quando? on in the list that opens.'**
+  String get loudNotificationsNoAccess;
+
+  /// No description provided for @loudNotificationsAllow.
+  ///
+  /// In en, this message translates to:
+  /// **'Allow'**
+  String get loudNotificationsAllow;
+
+  /// No description provided for @loudNotificationsNoApps.
+  ///
+  /// In en, this message translates to:
+  /// **'No supported calendar app found on this phone.'**
+  String get loudNotificationsNoApps;
+
+  /// No description provided for @loudNotificationsTwiceNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Events that already have a Quando? calendar alarm ring only once.'**
+  String get loudNotificationsTwiceNote;
+
+  /// No description provided for @loudNotificationsShabbatNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet during Shabbat and festivals.'**
+  String get loudNotificationsShabbatNote;
+
+  /// No description provided for @busyMode.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode'**
+  String get busyMode;
+
+  /// No description provided for @busyModeSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb and auto-replies while you\'re busy'**
+  String get busyModeSubtitle;
+
+  /// No description provided for @busyIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'While you\'re busy, Quando? can quiet the phone and answer messages for you. Alarms still ring.'**
+  String get busyIntro;
+
+  /// No description provided for @busyIosFocus.
+  ///
+  /// In en, this message translates to:
+  /// **'On iPhone and iPad, apps can\'t turn on Focus or answer messages. In the Shortcuts app, add an automation \"When Quando? opens\" or a time of day that turns on a Focus, and set the Focus to auto-reply.'**
+  String get busyIosFocus;
+
+  /// No description provided for @busyWhileHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WHILE YOU\'RE BUSY'**
+  String get busyWhileHeading;
+
+  /// No description provided for @busyDnd.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb'**
+  String get busyDnd;
+
+  /// No description provided for @busyDndHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority only: calls and messages stay quiet, alarms still ring. Back to normal when it ends.'**
+  String get busyDndHint;
+
+  /// No description provided for @busyDndNoAccess.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? isn\'t allowed to change Do Not Disturb yet.'**
+  String get busyDndNoAccess;
+
+  /// No description provided for @busyReplies.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer messages'**
+  String get busyReplies;
+
+  /// No description provided for @busyRepliesHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Once per person, with your text, through the app\'s own Reply button. Android only.'**
+  String get busyRepliesHint;
+
+  /// No description provided for @busyRepliesDisclosureTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Let Quando? answer messages?'**
+  String get busyRepliesDisclosureTitle;
+
+  /// No description provided for @busyRepliesDisclosure.
+  ///
+  /// In en, this message translates to:
+  /// **'To answer for you, Quando? needs notification access. Only while you\'re busy, it looks at message notifications from the apps you pick, reads the sender\'s name on this phone, and sends your text once through the app\'s own Reply button. Messages are never stored or sent anywhere else. Group chats are skipped unless you allow them.'**
+  String get busyRepliesDisclosure;
+
+  /// No description provided for @busyReplyText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your answer'**
+  String get busyReplyText;
+
+  /// No description provided for @busyReplyTextHint.
+  ///
+  /// In en, this message translates to:
+  /// **'{until} becomes the time Busy mode ends.'**
+  String busyReplyTextHint(String until);
+
+  /// No description provided for @busyReplyDefault.
+  ///
+  /// In en, this message translates to:
+  /// **'I\'m busy right now and will answer after {until}.'**
+  String busyReplyDefault(String until);
+
+  /// No description provided for @busyGroups.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer in group chats too'**
+  String get busyGroups;
+
+  /// No description provided for @busyGroupsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Off: groups are never answered.'**
+  String get busyGroupsHint;
+
+  /// No description provided for @busyRepliesOnShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Answer during Shabbat and festivals'**
+  String get busyRepliesOnShabbat;
+
+  /// No description provided for @busyAskRabbi.
+  ///
+  /// In en, this message translates to:
+  /// **'Off by default. Ask your rabbi before turning this on for Shabbat.'**
+  String get busyAskRabbi;
+
+  /// No description provided for @busyWhenHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'WHEN YOU\'RE BUSY'**
+  String get busyWhenHeading;
+
+  /// No description provided for @busyWhenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on \"Busy during these events\" on a calendar alarm, or \"Busy after it rings\" on an alarm.'**
+  String get busyWhenHint;
+
+  /// No description provided for @busyDuringLock.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy while lock mode is on'**
+  String get busyDuringLock;
+
+  /// No description provided for @busyNoneComing.
+  ///
+  /// In en, this message translates to:
+  /// **'Nothing busy in the next 7 days.'**
+  String get busyNoneComing;
+
+  /// No description provided for @busyDuringEvents.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy during these events'**
+  String get busyDuringEvents;
+
+  /// No description provided for @busyDuringEventsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode from each event\'s start to its end.'**
+  String get busyDuringEventsHint;
+
+  /// No description provided for @busySettings.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy mode settings'**
+  String get busySettings;
+
+  /// No description provided for @busyAfterRing.
+  ///
+  /// In en, this message translates to:
+  /// **'Busy after it rings'**
+  String get busyAfterRing;
+
+  /// No description provided for @busyAfterRingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Do Not Disturb and auto-replies for a while, e.g. a workout or a nap.'**
+  String get busyAfterRingHint;
+
+  /// No description provided for @shareCard.
+  ///
+  /// In en, this message translates to:
+  /// **'Share your morning'**
+  String get shareCard;
+
+  /// No description provided for @shareCardSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s sky and quote, or your own photo, for Stories and status'**
+  String get shareCardSubtitle;
+
+  /// No description provided for @shareAppMissing.
+  ///
+  /// In en, this message translates to:
+  /// **'That app isn\'t on this phone.'**
+  String get shareAppMissing;
+
+  /// No description provided for @shareAsIs.
+  ///
+  /// In en, this message translates to:
+  /// **'Share as it is'**
+  String get shareAsIs;
+
+  /// No description provided for @shareTapQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the quote for another one.'**
+  String get shareTapQuote;
+
+  /// No description provided for @shareStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Story'**
+  String get shareStory;
+
+  /// No description provided for @shareSquare.
+  ///
+  /// In en, this message translates to:
+  /// **'Square'**
+  String get shareSquare;
+
+  /// No description provided for @shareYourWords.
+  ///
+  /// In en, this message translates to:
+  /// **'Your own words (optional)'**
+  String get shareYourWords;
+
+  /// No description provided for @shareYourWordsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Instead of today\'s quote'**
+  String get shareYourWordsHint;
+
+  /// No description provided for @shareYourPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Your photo'**
+  String get shareYourPhoto;
+
+  /// No description provided for @shareOtherPhoto.
+  ///
+  /// In en, this message translates to:
+  /// **'Another photo'**
+  String get shareOtherPhoto;
+
+  /// No description provided for @shareSkyBack.
+  ///
+  /// In en, this message translates to:
+  /// **'Today\'s sky instead'**
+  String get shareSkyBack;
+
+  /// No description provided for @shareYourVideo.
+  ///
+  /// In en, this message translates to:
+  /// **'Your video'**
+  String get shareYourVideo;
+
+  /// No description provided for @shareInstagramStory.
+  ///
+  /// In en, this message translates to:
+  /// **'Instagram Stories'**
+  String get shareInstagramStory;
+
+  /// No description provided for @shareWhatsApp.
+  ///
+  /// In en, this message translates to:
+  /// **'WhatsApp: status or chat'**
+  String get shareWhatsApp;
+
+  /// No description provided for @shareMore.
+  ///
+  /// In en, this message translates to:
+  /// **'More apps'**
+  String get shareMore;
+
+  /// No description provided for @shareYouPost.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? opens the app with your card loaded. You choose where it goes and tap Post yourself.'**
+  String get shareYouPost;
+
+  /// No description provided for @shareAndroidFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Sharing comes to iPhone and iPad soon.'**
+  String get shareAndroidFirst;
+
+  /// No description provided for @songSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'“{name}” saved as an alarm sound'**
+  String songSaved(String name);
+
+  /// No description provided for @shareToQuando.
+  ///
+  /// In en, this message translates to:
+  /// **'Share a song to Quando?'**
+  String get shareToQuando;
+
+  /// No description provided for @shareToQuandoHint.
+  ///
+  /// In en, this message translates to:
+  /// **'In YouTube, YouTube Music, Spotify, SoundCloud or Apple Music, tap Share, then Quando?. It becomes an alarm sound that plays in its app.'**
+  String get shareToQuandoHint;
+
+  /// No description provided for @askOption.
+  ///
+  /// In en, this message translates to:
+  /// **'Say or type it'**
+  String get askOption;
+
+  /// No description provided for @askOptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'“Tomorrow at 6”, “30 min before sunrise”'**
+  String get askOptionHint;
+
+  /// No description provided for @askHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. wake me 30 min before sunrise on weekdays'**
+  String get askHint;
+
+  /// No description provided for @askListening.
+  ///
+  /// In en, this message translates to:
+  /// **'Listening…'**
+  String get askListening;
+
+  /// No description provided for @askNotUnderstood.
+  ///
+  /// In en, this message translates to:
+  /// **'I couldn\'t find a time in that. Try “7am on weekdays” or “in 20 minutes”.'**
+  String get askNotUnderstood;
+
+  /// No description provided for @askAnswerFromCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'From your calendar “{name}”'**
+  String askAnswerFromCalendar(String name);
+
+  /// No description provided for @askAnswerBuiltIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando?\'s own times for your city'**
+  String get askAnswerBuiltIn;
+
+  /// No description provided for @askNoAnswer.
+  ///
+  /// In en, this message translates to:
+  /// **'No time found for that yet.'**
+  String get askNoAnswer;
+
+  /// No description provided for @askNoSpeech.
+  ///
+  /// In en, this message translates to:
+  /// **'Voice isn\'t available on this device. You can type instead.'**
+  String get askNoSpeech;
+
+  /// No description provided for @askShabbatOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turn on Shabbat in Settings so Shabbat times can ring.'**
+  String get askShabbatOff;
+
+  /// No description provided for @askSaved.
+  ///
+  /// In en, this message translates to:
+  /// **'Saved: {what}'**
+  String askSaved(String what);
+
+  /// No description provided for @askMic.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak'**
+  String get askMic;
+
+  /// No description provided for @askMorning.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning'**
+  String get askMorning;
+
+  /// No description provided for @askEvening.
+  ///
+  /// In en, this message translates to:
+  /// **'Evening'**
+  String get askEvening;
+
+  /// No description provided for @askUnsure.
+  ///
+  /// In en, this message translates to:
+  /// **'I may have missed part of that. Check it before saving.'**
+  String get askUnsure;
+
+  /// No description provided for @askTeach.
+  ///
+  /// In en, this message translates to:
+  /// **'Teach me this'**
+  String get askTeach;
+
+  /// No description provided for @askTaught.
+  ///
+  /// In en, this message translates to:
+  /// **'Got it: “{phrase}” now means {time}.'**
+  String askTaught(String phrase, String time);
+
+  /// No description provided for @askSkipAction.
+  ///
+  /// In en, this message translates to:
+  /// **'Skip'**
+  String get askSkipAction;
+
+  /// No description provided for @askNoMatch.
+  ///
+  /// In en, this message translates to:
+  /// **'No alarm matches that.'**
+  String get askNoMatch;
+
+  /// No description provided for @askTurnedOff.
+  ///
+  /// In en, this message translates to:
+  /// **'Turned off: {what}'**
+  String askTurnedOff(String what);
+
+  /// No description provided for @askSkipped.
+  ///
+  /// In en, this message translates to:
+  /// **'Skipped: {what}'**
+  String askSkipped(String what);
+
+  /// No description provided for @askEventPlan.
+  ///
+  /// In en, this message translates to:
+  /// **'{offset} “{event}” in your calendar'**
+  String askEventPlan(String offset, String event);
+
+  /// No description provided for @askEventNoCalendar.
+  ///
+  /// In en, this message translates to:
+  /// **'Connect a calendar so Quando? can find “{event}”.'**
+  String askEventNoCalendar(String event);
+
+  /// No description provided for @askSnoozeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze: {minutes} min, for this alarm'**
+  String askSnoozeAll(int minutes);
+
+  /// No description provided for @askWakeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wakes you with {sound}'**
+  String askWakeWith(String sound);
+
+  /// No description provided for @askReadAs.
+  ///
+  /// In en, this message translates to:
+  /// **'Read as'**
+  String get askReadAs;
+
+  /// No description provided for @askHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Help improve voice alarms'**
+  String get askHelpTitle;
+
+  /// No description provided for @askHelpBody.
+  ///
+  /// In en, this message translates to:
+  /// **'Send what you say or type, and what you did with it, anonymously. No account or device ID.'**
+  String get askHelpBody;
+
+  /// No description provided for @askHelpPromptTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? has a student\'s heart.'**
+  String get askHelpPromptTitle;
+
+  /// No description provided for @askHelpPromptBody.
+  ///
+  /// In en, this message translates to:
+  /// **'We\'d send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.'**
+  String askHelpPromptBody(String sentence);
+
+  /// No description provided for @askHelpYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes, help'**
+  String get askHelpYes;
+
+  /// No description provided for @askHelpNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No thanks'**
+  String get askHelpNo;
+
+  /// No description provided for @askQuoteTranslation.
+  ///
+  /// In en, this message translates to:
+  /// **'Life is not what one lived, but what one remembers and how one remembers it in order to tell it.'**
+  String get askQuoteTranslation;
+
+  /// No description provided for @askHelpQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog'**
+  String get askHelpQuote;
+  /// No description provided for @quickSetups.
+  ///
+  /// In en, this message translates to:
+  /// **'Quick setups'**
+  String get quickSetups;
+
+  /// No description provided for @qsMorningTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Morning that works'**
+  String get qsMorningTitle;
+
+  /// No description provided for @qsStartTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Never miss a start'**
+  String get qsStartTitle;
+
+  /// No description provided for @qsStretchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Work in stretches'**
+  String get qsStretchTitle;
+
+  /// No description provided for @qsWillChange.
+  ///
+  /// In en, this message translates to:
+  /// **'What will change'**
+  String get qsWillChange;
+
+  /// No description provided for @qsAlreadyOn.
+  ///
+  /// In en, this message translates to:
+  /// **'Already on. Nothing to change.'**
+  String get qsAlreadyOn;
+
+  /// No description provided for @qsApply.
+  ///
+  /// In en, this message translates to:
+  /// **'Apply'**
+  String get qsApply;
+
+  /// No description provided for @qsDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Done'**
+  String get qsDone;
+
+  /// No description provided for @qsUndo.
+  ///
+  /// In en, this message translates to:
+  /// **'Undo'**
+  String get qsUndo;
+
+  /// No description provided for @qsSnoozeTimes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snoozes allowed'**
+  String get qsSnoozeTimes;
+
+  /// No description provided for @qsSnoozeMinutes.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze minutes'**
+  String get qsSnoozeMinutes;
+
+  /// No description provided for @qsFiveLeft.
+  ///
+  /// In en, this message translates to:
+  /// **'5 minutes left'**
+  String get qsFiveLeft;
+
+  /// No description provided for @syncHeading.
+  ///
+  /// In en, this message translates to:
+  /// **'When the calendar changes'**
+  String get syncHeading;
+
+  /// No description provided for @syncLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Follow the calendar'**
+  String get syncLive;
+
+  /// No description provided for @syncLiveHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events get alarms. Moved events move their alarms. Deleted events lose them.'**
+  String get syncLiveHint;
+
+  /// No description provided for @syncKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Keep what I first saw'**
+  String get syncKeepFirst;
+
+  /// No description provided for @syncKeepFirstHint.
+  ///
+  /// In en, this message translates to:
+  /// **'New events still get alarms. Once set, an alarm stays put, even if its event moves or is deleted.'**
+  String get syncKeepFirstHint;
+
+  /// No description provided for @syncSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Only events that exist now'**
+  String get syncSnapshot;
+
+  /// No description provided for @syncSnapshotHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Just the events in your calendar when you save, as they are now. Nothing new is added later.'**
+  String get syncSnapshotHint;
+
+  /// No description provided for @syncHelpButton.
+  ///
+  /// In en, this message translates to:
+  /// **'How this works'**
+  String get syncHelpButton;
+
+  /// No description provided for @syncHelpTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How alarms follow your calendar'**
+  String get syncHelpTitle;
+
+  /// No description provided for @syncHelpIntro.
+  ///
+  /// In en, this message translates to:
+  /// **'This rule keeps looking for events that match your search. You choose what happens when your calendar changes.'**
+  String get syncHelpIntro;
+
+  /// No description provided for @syncHelpExampleLive.
+  ///
+  /// In en, this message translates to:
+  /// **'Example: a rule for “dentist”. The dentist moves Tuesday\'s visit to Wednesday, and your alarm moves to Wednesday too. If the visit is cancelled, its alarm goes away.'**
+  String get syncHelpExampleLive;
+
+  /// No description provided for @syncHelpExampleKeepFirst.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: the visit moves to Wednesday, but your alarm stays on Tuesday, as Quando? first saw it. A new visit next month still gets its own alarm.'**
+  String get syncHelpExampleKeepFirst;
+
+  /// No description provided for @syncHelpExampleSnapshot.
+  ///
+  /// In en, this message translates to:
+  /// **'Same rule: you get alarms for the visits in your calendar today, and they stay as they are. A visit added next month gets no alarm.'**
+  String get syncHelpExampleSnapshot;
+
+  /// No description provided for @syncHelpTip.
+  ///
+  /// In en, this message translates to:
+  /// **'Not sure? Keep “Follow the calendar”.'**
+  String get syncHelpTip;
+
+  /// No description provided for @syncHelpWhenTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'When does Quando? notice changes?'**
+  String get syncHelpWhenTitle;
+
+  /// No description provided for @syncHelpWhenOpen.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is open: within seconds. Google Calendar signed in here is checked every 2 minutes.'**
+  String get syncHelpWhenOpen;
+
+  /// No description provided for @syncHelpWhenClosed.
+  ///
+  /// In en, this message translates to:
+  /// **'While Quando? is closed: the next time you open it. Until then, alarms already set ring at the times they had.'**
+  String get syncHelpWhenClosed;
+
+  /// No description provided for @syncHelpWhenClosedApple.
+  ///
+  /// In en, this message translates to:
+  /// **'iPhone and iPad don\'t let apps watch the calendar in the background, so opening Quando? is what picks changes up.'**
+  String get syncHelpWhenClosedApple;
+
+  /// No description provided for @tapMiddleToStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap the middle to stop'**
+  String get tapMiddleToStop;
+
+  /// No description provided for @uiSimple.
+  ///
+  /// In en, this message translates to:
+  /// **'Simple'**
+  String get uiSimple;
+
+  /// No description provided for @uiEverything.
+  ///
+  /// In en, this message translates to:
+  /// **'Everything'**
+  String get uiEverything;
+
+  /// No description provided for @firstRunTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'How much do you want to see?'**
+  String get firstRunTitle;
+
+  /// No description provided for @firstRunSimpleHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms and the basics'**
+  String get firstRunSimpleHint;
+
+  /// No description provided for @firstRunEverythingHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar, Shabbat, timers, weather and more'**
+  String get firstRunEverythingHint;
+
+  /// No description provided for @firstRunChangeLater.
+  ///
+  /// In en, this message translates to:
+  /// **'You can change this any time in Settings.'**
+  String get firstRunChangeLater;
+
+  /// No description provided for @continueLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Continue'**
+  String get continueLabel;
+
+  /// No description provided for @everyAlarm.
+  ///
+  /// In en, this message translates to:
+  /// **'Every alarm'**
+  String get everyAlarm;
+
+  /// No description provided for @wakeMeWith.
+  ///
+  /// In en, this message translates to:
+  /// **'Wake me with'**
+  String get wakeMeWith;
+
+  /// No description provided for @ringOrMusic.
+  ///
+  /// In en, this message translates to:
+  /// **'Ring or music'**
+  String get ringOrMusic;
+
+  /// No description provided for @ringsForRow.
+  ///
+  /// In en, this message translates to:
+  /// **'Rings for'**
+  String get ringsForRow;
+
+  /// No description provided for @gentleBeforeValue.
+  ///
+  /// In en, this message translates to:
+  /// **'{minutes} min before'**
+  String gentleBeforeValue(int minutes);
+
+  /// No description provided for @quandoSounds.
+  ///
+  /// In en, this message translates to:
+  /// **'Quando? sounds'**
+  String get quandoSounds;
+
+  /// No description provided for @aSongApps.
+  ///
+  /// In en, this message translates to:
+  /// **'A song (Spotify, YouTube…)'**
+  String get aSongApps;
+
+  /// No description provided for @myRecording.
+  ///
+  /// In en, this message translates to:
+  /// **'My recording'**
+  String get myRecording;
+
+  /// No description provided for @useForNewAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Use for new alarms'**
+  String get useForNewAlarms;
+
+  /// No description provided for @iWillLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'When this rings, I will…'**
+  String get iWillLabel;
+
+  /// No description provided for @foldVolume.
+  ///
+  /// In en, this message translates to:
+  /// **'Volume and fades'**
+  String get foldVolume;
+
+  /// No description provided for @foldSnoozeStop.
+  ///
+  /// In en, this message translates to:
+  /// **'Snooze and stop'**
+  String get foldSnoozeStop;
+
+  /// No description provided for @foldExtras.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and extras'**
+  String get foldExtras;
+
+  /// No description provided for @groupAlarms.
+  ///
+  /// In en, this message translates to:
+  /// **'Alarms'**
+  String get groupAlarms;
+
+  /// No description provided for @groupCalendarShabbat.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar and Shabbat'**
+  String get groupCalendarShabbat;
+
+  /// No description provided for @groupLookQuotes.
+  ///
+  /// In en, this message translates to:
+  /// **'Look and quotes'**
+  String get groupLookQuotes;
+
+  /// No description provided for @groupConnectionsSync.
+  ///
+  /// In en, this message translates to:
+  /// **'Connections and sync'**
+  String get groupConnectionsSync;
+
+  /// No description provided for @qsSummary.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} setups · {on} on'**
+  String qsSummary(int count, int on);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

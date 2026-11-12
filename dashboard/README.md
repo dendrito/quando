@@ -2,41 +2,53 @@
 
 A small website that shows where Quando? / Matai? stands: deadlines, work by status, open pull requests and issues, and plan links. It needs no server and no Claude.
 
-Live at `https://dendrito.github.io/quando/` once Pages is on (see "One-time setup").
+Live at `https://board.quando.day/` (Cloudflare Pages project `quando-board`; see "Hosting").
 
-## Change what the board shows
+## Click a card, edit from the page
 
-Everything you see in the columns, dates and links comes from **`dashboard/data.json`**.
+- Click any card to read its details, documentation links, pull requests and links to the Claude threads about it (thread links need your Claude login).
+- **Turn on editing** (top right) once per browser: create a fine-grained GitHub token for only this repo with **Contents: Read and write**, and paste it. It is stored only in that browser. Then click a card → **Edit**, or **+ Add task** (or the **+** on a column). **Edit columns** renames, reorders, adds and removes columns; **+ Add date** and **+ Add plan** add dates and plans, and clicking a date or a plan's Edit button changes it. Saving commits to `main`, and the page refreshes about a minute later.
+- Never share the token. To remove it, press **Editing: on** → turn off.
 
-1. Open the file on GitHub and press the pencil (or use the **Edit this board** button on the site).
-2. Change the text between quotes. To move a card to another column, change its `"status"` to one of: `doing`, `review`, `next`, `hold`, `done`.
-3. Press **Commit changes**. The site updates in about a minute.
+## Hosting (Cloudflare Pages, works with a private repo)
 
-To add a card, copy a block from `{` to `},`, paste it below another one, and change the words. Keep the commas between blocks, and no comma after the last one. If the site shows "Could not read data.json", a comma or quote is wrong. GitHub's editor underlines the problem.
+The board is a second Cloudflare Pages project, separate from the quando.day site. GitHub Pages is not used any more (it needs a public repo on the free plan).
 
-Card fields: `title`, `status`, `tag` (any short word), `note` (optional), `prs` (optional list of pull request numbers, which show live as draft / ready / merged).
+- Cloudflare dashboard → Workers & Pages → Create → Pages → Connect to Git → `dendrito/quando`, project name `quando-board`, production branch `main`.
+- Build command: `python3 dashboard/build.py`. Build output directory: `dashboard`. Environment variable `PYTHON_VERSION` = `3.11` if the build says Python is missing.
+- Custom domain: `board.quando.day` (Pages project → Custom domains; Cloudflare adds the DNS record).
+- Optional lock: Zero Trust → Access → Applications → add `board.quando.day`, policy "Allow" for your email. Then only you see the board. Also protect the `*.pages.dev` address, or turn off its preview access.
+- `_headers` tells Cloudflare and browsers to re-check every file on each visit, and the page reloads its data when you return to it after a minute.
+- Every push to `main` (including the automatic Board sync commits) rebuilds the board, about a minute.
+- Live pull requests and issues: the page asks GitHub directly. A public repo needs no token; a private one needs the token below (Contents: Read and write, Pull requests: Read, Issues: Read) turned on once per browser.
 
-Dates are written like `2026-11-12T23:59:00-03:00` (the `-03:00` is Brasília time).
+## How the board is stored
 
-## Things that update by themselves
+- **One file per card:** `dashboard/cards/<id>.json`. Two people (or Claude threads) editing different cards never conflict.
+- **Everything else** (dates, plans, columns, thread list, headline): `dashboard/board.json`.
+- The site builds `data.json` from those files (`python3 dashboard/build.py`, run by Cloudflare on every deploy). A typo in any file fails the build with the file name, and the old site stays up.
 
-- **Open pull requests** and **open issues** come straight from GitHub.
-- The little pill on a card (`#25 · draft`) follows that pull request.
-- To add a task without touching the file, press **New task** to open a GitHub issue. It appears under Open issues.
+Card fields: `id` (optional; it is the file name), `title`, `status` (`decide`, `doing`, `review`, `next`, `hold`, `done`, or any column id in `board.json`), optional `tag`, `note`, `details`, `plan`, `prs` (pull request numbers), `threads` (ids from `board.json`), `docs` (`[{"title","url"}]`), `order` (sort number).
 
-## One-time setup
+To add a card by hand on GitHub: Add file → Create new file → `dashboard/cards/my-card.json` with `{"id": "my-card", "title": "…", "status": "next"}`.
 
-1. On GitHub: **Settings → Pages → Build and deployment → Source: GitHub Actions.**
-2. After the pull request that added this folder is merged, the **Project board** workflow publishes the site. Later edits to `dashboard/` publish automatically.
+## Updates that happen by themselves
 
-Don't put private information here. This repository is public.
+- **Pull requests:** the "Board sync" workflow gives every new pull request a card and moves it as the PR moves: draft = In progress, ready = Needs your review, merged = Done, closed = On hold. Cards written by hand are never touched, and editing an automatic card on the site makes it yours.
+- **Thread links:** every card shows a 💬 link to its Claude thread. Automatic PR cards take it from the "project thread" link in the PR description; other cards list thread keys in `threads` (see `board.json`) or raw ids in `threadIds`.
+- **Merges:** when a pull request is merged, automatic PR cards go to Done, and so does any hand-made card in In progress or Needs your review that lists that PR (once every PR it lists is merged or closed). Decisions, plans and parked cards stay put. To catch up after a gap, run the "Board sync" workflow by hand from the Actions tab.
+- **Business tab:** plans with `"group": "business"` in `board.json` show on the Business tab (titles and links only, no notes). Add one with "+ Add document" on that tab when editing is on.
+- **GitHub tab:** open pull requests, open issues, recent builds and quick links (all open in a new browser tab). It reads GitHub live, so with a private repository turn on editing first so the page has a token.
+- **Groups:** give cards a `group` (a short theme name) and they fold into collapsible groups inside their column, closed by default; the page remembers which you opened.
+- **Mark a card done without a PR:** run the "Board set card" workflow (Actions tab, or `actions_run_trigger` from a Claude thread) with `card` = the card id (file name in `dashboard/cards`), `status` = `done`, and an optional `note`. Threads finishing a task with no PR should do this, or ask the coordinator to.
+- **Claude threads:** each thread keeps its own card in `dashboard/cards/` current (status, note, links). Because it is one file per card, threads don't collide.
 
 ## Plans and tasks
 
 Each plan in `"plans"` has an `id`, a `status` (`proposed` until you agree, then `agreed`) and a link. A card with `"plan": "business"` is a task that comes from that plan, and the plan tile counts its open tasks. When a plan changes, change its cards here.
 
-**Business, pricing, tax and legal plans stay out of this public repo.** They live as private Claude pages; this site only links to them. Do not paste their content into `data.json`.
+**Business, pricing, tax and legal plans stay out of this public repo.** They live as private Claude pages; this site only links to them. Do not paste their content into the board files.
 
 ## One source of truth for Claude too
 
-`dashboard/data.json` on `main` is the project's task list. Your edits there are the latest word. Every Claude thread should read it before starting work and treat it as overriding older chat. When a thread finishes something it should update the card, not just say so in chat.
+`dashboard/cards/` and `dashboard/board.json` on `main` are the project's task list. Your edits there are the latest word. Every Claude thread should read it before starting work and treat it as overriding older chat. When a thread finishes something it should update the card, not just say so in chat.

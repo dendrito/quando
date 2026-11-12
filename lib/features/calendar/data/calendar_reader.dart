@@ -82,6 +82,10 @@ class DeviceCalendarReader implements CalendarReader {
             title: e.title.isEmpty ? l10n.event : e.title,
             at: e.startDate.toUtc(),
             source: e.calendarId,
+            reminders: [
+              for (final r in e.reminders ?? const <Duration>[])
+                if (r >= Duration.zero) r,
+            ],
           ),
           AnchorEvent(
             id: 'calend.${e.instanceId}',

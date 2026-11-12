@@ -1,0 +1,10 @@
+{
+  "id": "make-repo-private-reminder",
+  "title": "Reminder: make the GitHub repo private",
+  "status": "next",
+  "tag": "ip",
+  "prs": [43, 45],
+  "details": "Ready: All rights reserved licence (PR #38 if not yet merged), board on Cloudflare at board.quando.day, Firebase App Distribution uploads private test builds. Before switching: (1) have Thursday's build in testers' hands, (2) add testers to the Firebase group testers, (3) check the Cloudflare GitHub app still has access to the repo (github.com/settings/installations), (4) paste a GitHub token on the board for the live PR list. Then Settings, General, Danger zone, Change visibility. After: confirm quando.day and board.quando.day still rebuild. Past history and forks stay public. Only on your go.",
+  "note": "Waiting for your go. Not before Thursday's build is shared.",
+  "order": 21
+}

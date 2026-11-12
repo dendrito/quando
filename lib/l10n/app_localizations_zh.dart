@@ -471,6 +471,83 @@ class AppLocalizationsZh extends AppLocalizations {
   String get holdToUnlock => '按住解锁';
 
   @override
+  String get lockSentenceCalm => '把手机锁定在时钟和闹钟：用于考试、会议或安静的夜晚。';
+
+  @override
+  String get lockCalendarHeading => '按日历';
+
+  @override
+  String get lockCalendarExplain => '在日程期间锁定，或从一个日程锁到你指定的下一个日程。适用于你选的任何日历，包括共享日历。';
+
+  @override
+  String get lockAddCalendar => '添加日历锁定';
+
+  @override
+  String get lockEditCalendar => '日历锁定';
+
+  @override
+  String get lockDuring => '日程期间';
+
+  @override
+  String get lockBetween => '两个日程之间';
+
+  @override
+  String get lockStartsAt => '名称为…的日程';
+
+  @override
+  String get lockStartsAtBetween => '从名为…的日程开始';
+
+  @override
+  String get lockEndsAt => '到下一个名为…的日程结束';
+
+  @override
+  String get lockStartHint => '例如 考试、专注、健身';
+
+  @override
+  String get lockEndHint => '例如 到家';
+
+  @override
+  String get lockAnyCalendar => '任何日历';
+
+  @override
+  String get lockNoMatches => '你的日历里还没有匹配的日程。';
+
+  @override
+  String get lockNextTimes => '接下来';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '“$a”期间';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '从“$a”到下一个“$b”';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '“$name”包含安息日时间。';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '从点蜡烛锁到哈夫达拉';
+
+  @override
+  String get lockShabbatFromCalendarHint => '使用该日历的时间，锁屏显示蜡烛。';
+
+  @override
+  String get lockMoreWays => '更多锁定方式';
+
+  @override
+  String get lockQuietTime => '安静时间';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '下次点蜡烛：$time，来自 $name';
+  }
+
+  @override
   String get calendarAlarm => '日历闹钟';
 
   @override
@@ -1980,10 +2057,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => '同步我的设备';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => '用 Google 登录，让闹钟和设置在你所有设备上保持一致。';
 
   @override
   String syncOn(String email) {
@@ -1997,85 +2074,85 @@ class AppLocalizationsZh extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '无法连接。点按重试。';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => '此版本尚未设置同步。';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => '仍然响铃';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '今天跳过这 $n 个';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '关闭“$name”';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '开启“$name”';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '已关闭“$name”';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '从“$name”中移除“$time”';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '已从“$name”中移除“$time”';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => '移到分组';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '在“$group”中，移动';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '已移到“$group”';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '删除“$name”';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => '使用 Google 登录';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => '使用邮箱登录';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => '创建账号';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => '我已有账号';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => '忘记密码？';
 
   @override
   String get email => 'Email';
@@ -2084,43 +2161,42 @@ class AppLocalizationsZh extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '我们已向你发送了设置新密码的链接。';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '我们已向 $email 发送了链接。打开链接后回到这里，点按“我已确认”。';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '我已确认';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => '尚未确认。请先打开邮件中的链接。';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => '重新发送邮件';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '已发送。请查看收件箱和垃圾邮件。';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => '这看起来不像邮箱地址。';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => '邮箱或密码错误。';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => '这个邮箱已有账号。请直接登录；如果你是用 Google 创建的，请使用 Google 登录。';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '请设置至少 6 个字符的密码。';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => '邮箱登录尚未开启。';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '尝试次数过多。请等几分钟。';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2177,109 +2253,103 @@ class AppLocalizationsZh extends AppLocalizations {
   String get deliveryReset => '使用现有设置';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => '安息日之前';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => '准备提醒';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '跳过本周';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '恢复本周';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => '时间与声音';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '使用我的位置';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '位置暂时无法使用。请重试或选择一个城市。';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => '确认此位置';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => '此位置仅保存在这台设备上。使用这些时间之前，请检查时区和以色列设置。';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 城市时间';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => '准备提醒已关闭。哈夫达拉和普通闹钟不受影响。';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => '本周的准备提醒已跳过。你的每周设置仍会保留。';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => '安息日控制';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => '安息日期间 / 之后';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '纬度 $latitude · 经度 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '当前位置';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => '在 Pushover 上测试声音';
 
   @override
-  String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+  String get pushoverSoundTestHint => '在你选择的 Pushover 设备上播放所选声音。静音和免打扰时段设置仍然有效。';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => '与我的设备共享凭据';
 
   @override
-  String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+  String get pushoverShareHint => '你的 Pushover 用户密钥和应用令牌可以跟随你在 Quando? 和 Matai? 中登录的账号。';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => '凭据已排队，将发送到你已登录的设备。';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => '在每台设备上登录同一个应用账号，即可共享 Pushover 凭据。';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => '直接运行 Tuya 场景，或连接你自己的 Home Assistant 或 Node-RED 自动化。';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => '共享服务连接';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      '在你的各台设备上使用同一个应用账号，即可共享 Pushover、Tuya、Spotify 资料库和自动化连接。YouTube 和设备权限可能仍需在每台设备上单独批准。';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      '使用你已关联的 Tuya 开发者项目。输入其数据中心、Access ID、Access Secret，以及“Link App Account”下显示的 UID。无需 Home Assistant。';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => '已关联账号的 UID';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2291,49 +2361,45 @@ class AppLocalizationsZh extends AppLocalizations {
   String get tuyaLoadScenes => 'Load scenes';
 
   @override
-  String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+  String get tuyaNoScenes => '未找到可用的 Tap-to-Run 场景。请检查已关联的账号、数据中心和场景 API 权限。';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => '立即运行场景';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => '现在在你的 Tuya 设备上运行此场景吗？';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya 已接受场景指令。请检查你的设备。';
 
   @override
-  String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+  String get tuyaFailed => 'Tuya 无法完成该请求。请检查项目权限、数据中心和订阅。错误：';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => '此闹钟响起时的 Tuya 场景';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      '创建一个使用 Webhook 触发器的 Home Assistant 自动化，接受 POST 和 JSON，并在此粘贴其 URL。用闹钟事件（ring、stopped、snoozed 或 auto_stopped）来选择你的动作。新设备上此连接默认关闭。';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      '使用接受 POST 的 Node-RED HTTP In 节点，后接你的自动化和一个 HTTP Response 节点。在此粘贴端点。支持本地 HTTP 中枢和 HTTPS 端点。';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => '连接智能家居服务';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => '测试会立即运行已连接的自动化。';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => '在此设备上运行智能家居闹钟动作';
 
   @override
-  String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+  String get smartHomeDeviceHint => '选择一台设备来运行你的自动化。连接是共享的；此开关只对这台设备生效。';
 
   @override
-  String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+  String get smartHomeDeviceOff => '此设备上的闹钟动作已关闭。请在“连接”中开启；手动场景测试仍可使用。';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2354,22 +2420,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '在天空和天气之间滑动';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => '每周经文段落';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => '每日学习';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 每天 1 章';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 每天 3 章';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2390,13 +2456,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '月亮整天在地平线上方';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '月亮整天在地平线下方';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '今天没有月出';
 
   @override
   String get noSetToday => 'No set today';
@@ -2405,25 +2471,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '蛾眉月（渐盈）';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '上弦月';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '盈凸月';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '亏凸月';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '残月（渐亏）';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2444,13 +2510,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '雷暴';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '天气暂时无法使用';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '已保存的预报';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2459,26 +2525,25 @@ class AppLocalizationsZh extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '预报有雷暴';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => '连接以加载本月的学习安排';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => '节日托拉诵读';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => '学习日历 · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => '天气预报 · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '所选城市的天气。使用取整后的坐标，通过 MET Norway 获取。';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam 等学习日程从 Hebcal 加载，并保存以供离线使用。';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2490,14 +2555,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => '时区参考城市';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '选择天空城市';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '太阳和月亮使用这个城市的坐标。你的安息日城市和闹钟时区保持你的选择不变。';
 
   @override
   String get skySun => 'Sun today';
@@ -2506,46 +2570,43 @@ class AppLocalizationsZh extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '月亮在地平线上方';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '月亮在地平线下方';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '下次新月';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '下次满月';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '定位服务已关闭。请在“设置”中开启，或选择一个城市。';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '定位权限被拒绝。请在“设置”中允许，或选择一个城市。';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => '暂未获取到位置。在 Mac 上请保持 Wi-Fi 开启后重试，或选择一个城市。';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '使用位置之前，请选择所选时区内的城市，或跟随设备时区。';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '打开定位设置';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '正在获取位置…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '显示月亮：月出、月落和月相';
 
   @override
-  String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+  String get tuyaConsumerPending => '此版本暂不支持账号登录。如果你已有 Tuya 开发者项目，请使用高级设置。';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => '高级设置';
 
   @override
   String get tuyaSignInTitle => '使用 Smart Life 账号登录';
@@ -2589,23 +2650,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain => '在主页显示下一个希伯来月的第一天或前两天。';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => '下一个新月（Rosh Hodesh）';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => '日落时开始：';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => '在 Sefaria 上阅读此托拉经文';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '天空时间使用此位置的时区。你的闹钟时区和安息日城市保持不变。仅保存在这台设备上。';
 
   @override
   String get musicRingDurationHint => '播放遵循此闹钟的响铃时长，并在停止或稍后提醒时结束。';
@@ -2760,19 +2820,19 @@ class AppLocalizationsZh extends AppLocalizations {
   String get keysShareNeedsPassphrase => '请先在“设备间的密钥”中设置同步口令。';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => '闹钟默认设置';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '地点与时间';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '外观、语言与名言';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '新闹钟的默认设置';
 
   @override
   String get preview => 'Preview';
@@ -2783,13 +2843,13 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => '连接日历';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '从现成闹钟中选';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '日出、日落以及其他已为你设置好的闹钟';
 
   @override
   String get calendarSourcesIntro => 'Quando? 可以在日历活动前后响铃。选择活动来自哪里。';
@@ -2988,7 +3048,7 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => '拖动手柄可移动卡片、折叠卡片或调整卡片大小。';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3009,27 +3069,587 @@ class AppLocalizationsZh extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '太阳、月亮和天气';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => '安息日与节日';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '天空城市';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '下一个闹钟 · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => '显示所有日期';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => '这一天没有闹钟响铃';
+
+  @override
+  String get homeClockSize => '主屏幕时钟';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主屏布局';
+
+  @override
+  String get homeLayoutClassic => '经典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖动卡片即可移动。拖动边缘或角落调整大小，或选择尺寸。';
+
+  @override
+  String get homeAddCard => '添加卡片';
+
+  @override
+  String get homeOnHome => '已在主屏';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一个闹钟';
+
+  @override
+  String get cardClock => '时钟和日期';
+
+  @override
+  String get cardSky => '太阳、月亮和天气';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天气';
+
+  @override
+  String get cardAlarms => '你的闹钟';
+
+  @override
+  String get cardQuick => '快速闹钟';
+
+  @override
+  String get cardTools => '秒表、倒计时和预备';
+
+  @override
+  String get cardWorld => '世界时钟';
+
+  @override
+  String get cardWeek => '本周';
+
+  @override
+  String get cardShabbat => '安息日和节日';
+
+  @override
+  String get ringAtEventReminders => '在日程自带的提醒时间响铃';
+
+  @override
+  String get ringAtEventRemindersHint => '日历应用里设置的提醒会在这里以本闹钟的铃声大声响起。';
+
+  @override
+  String get atEventReminders => '在日程提醒时';
+
+  @override
+  String get everyEventReminderLoud => '每个日程提醒时都大声响铃';
+
+  @override
+  String get loudNotificationsHeading => '日历通知大声响';
+
+  @override
+  String get loudNotificationsTitle => '让日历通知大声响铃';
+
+  @override
+  String get loudNotificationsHint => '日历应用弹出提醒时，Quando? 会把它当作闹钟响起，即使手机处于静音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允许 Quando? 读取日历通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大声响起日历提醒，Quando? 需要通知使用权。它只查看你所选日历应用的通知，在本机读取标题和内容以显示在闹钟上，从不保存或发送到任何地方。你可以随时关闭。';
+
+  @override
+  String get loudNotificationsAgree => '同意并继续';
+
+  @override
+  String get loudNotificationsNoAccess => '通知使用权已关闭。请在打开的列表中开启 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允许';
+
+  @override
+  String get loudNotificationsNoApps => '本机未找到支持的日历应用。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日历闹钟的日程只会响一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和节日期间静音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌时开启勿扰和自动回复';
+
+  @override
+  String get busyIntro => '忙碌时，Quando? 可以让手机安静并替你回复消息。闹钟照常响。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，应用无法开启专注模式或回复消息。请在“快捷指令”App 中添加“打开 Quando? 时”或定时开启专注模式的自动化，并在专注模式中设置自动回复。';
+
+  @override
+  String get busyWhileHeading => '忙碌时';
+
+  @override
+  String get busyDnd => '勿扰';
+
+  @override
+  String get busyDndHint => '仅限优先：来电和消息静音，闹钟照响。结束后恢复。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 还没有更改勿扰的权限。';
+
+  @override
+  String get busyReplies => '回复消息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，通过应用自带的回复按钮。仅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允许 Quando? 回复消息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '为了替你回复，Quando? 需要通知使用权。仅在你忙碌时，它查看你所选应用的消息通知，在本机读取发送者名字，并通过应用自带的回复按钮发送一次你的文字。消息从不保存，也不会发往别处。除非你允许，群聊会被跳过。';
+
+  @override
+  String get busyReplyText => '你的回复';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 会变成忙碌模式结束的时间。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我现在在忙，$until 后回复。';
+  }
+
+  @override
+  String get busyGroups => '群聊也回复';
+
+  @override
+  String get busyGroupsHint => '关闭：从不回复群聊。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和节日也回复';
+
+  @override
+  String get busyAskRabbi => '默认关闭。在安息日开启前请先请教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何时忙碌';
+
+  @override
+  String get busyWhenHint => '在日历闹钟上开启“这些日程期间忙碌”，或在闹钟上开启“响铃后忙碌”。';
+
+  @override
+  String get busyDuringLock => '锁定模式开启时忙碌';
+
+  @override
+  String get busyNoneComing => '未来 7 天没有忙碌时段。';
+
+  @override
+  String get busyDuringEvents => '这些日程期间忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每个日程从开始到结束都处于忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式设置';
+
+  @override
+  String get busyAfterRing => '响铃后忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段时间内勿扰和自动回复，例如锻炼或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用于快拍和状态';
+
+  @override
+  String get shareAppMissing => '这台手机上没有该应用。';
+
+  @override
+  String get shareAsIs => '按原样分享';
+
+  @override
+  String get shareTapQuote => '点按名言可换一句。';
+
+  @override
+  String get shareStory => '快拍';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的话（可选）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '换一张照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的视频';
+
+  @override
+  String get shareInstagramStory => 'Instagram 快拍';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：状态或聊天';
+
+  @override
+  String get shareMore => '更多应用';
+
+  @override
+  String get shareYouPost => 'Quando? 会打开应用并载入你的卡片。发到哪里由你选，发布也由你点。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即将支持分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已将“$name”存为闹钟铃声';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中点“分享”，再选 Quando?，它就成为在原应用中播放的闹钟铃声。';
+
+  @override
+  String get askOption => '说出或输入';
+
+  @override
+  String get askOptionHint => '“明天6点”“日出前30分钟”';
+
+  @override
+  String get askHint => '例如：工作日日出前30分钟叫醒我';
+
+  @override
+  String get askListening => '正在听…';
+
+  @override
+  String get askNotUnderstood => '没有找到时间。试试“工作日早上7点”或“20分钟后”。';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return '来自你的日历“$name”';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando? 为你所在城市计算的时间';
+
+  @override
+  String get askNoAnswer => '还没有找到时间。';
+
+  @override
+  String get askNoSpeech => '此设备不支持语音。你可以输入。';
+
+  @override
+  String get askShabbatOff => '在设置中打开安息日，安息日时间才会响铃。';
+
+  @override
+  String askSaved(String what) {
+    return '已保存：$what';
+  }
+
+  @override
+  String get askMic => '说话';
+
+  @override
+  String get askMorning => '早上';
+
+  @override
+  String get askEvening => '晚上';
+
+  @override
+  String get askUnsure => '我可能漏掉了一部分。保存前请检查。';
+
+  @override
+  String get askTeach => '教我这个';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '明白了：“$phrase”现在表示 $time。';
+  }
+
+  @override
+  String get askSkipAction => '跳过';
+
+  @override
+  String get askNoMatch => '没有匹配的闹钟。';
+
+  @override
+  String askTurnedOff(String what) {
+    return '已关闭：$what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '已跳过：$what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '日历中“$event”$offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return '连接日历，Quando? 才能找到“$event”。';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '贪睡：$minutes 分钟，仅适用于这个闹钟';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '用$sound叫醒你';
+  }
+
+  @override
+  String get askReadAs => '理解为';
+
+  @override
+  String get askHelpTitle => '帮助改进语音闹钟';
+
+  @override
+  String get askHelpBody => '匿名发送你说的或输入的内容以及你的操作。不含账号或设备 ID。';
+
+  @override
+  String get askHelpPromptTitle => '帮助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我们会匿名发送你说的或输入的内容（如“$sentence”）以及你是否保存。不含姓名、账号或设备 ID。你可以随时关闭。';
+  }
+
+  @override
+  String get askHelpYes => '好，帮忙';
+
+  @override
+  String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人们所经历的，而是人们所记住的，以及为了讲述而如何记住它。';
+
+  @override
+  String get askHelpQuote => '';
+  String get quickSetups => '快速设置';
+
+  @override
+  String get qsMorningTitle => '管用的早晨';
+
+  @override
+  String get qsStartTitle => '不错过任何开始';
+
+  @override
+  String get qsStretchTitle => '分段工作';
+
+  @override
+  String get qsWillChange => '将更改的内容';
+
+  @override
+  String get qsAlreadyOn => '已开启，无需更改。';
+
+  @override
+  String get qsApply => '应用';
+
+  @override
+  String get qsDone => '完成';
+
+  @override
+  String get qsUndo => '撤销';
+
+  @override
+  String get qsSnoozeTimes => '允许的贪睡次数';
+
+  @override
+  String get qsSnoozeMinutes => '贪睡分钟数';
+
+  @override
+  String get qsFiveLeft => '还剩5分钟';
+
+  @override
+  String get syncHeading => '日历变化时';
+
+  @override
+  String get syncLive => '跟随日历';
+
+  @override
+  String get syncLiveHint => '新日程会有闹钟。日程改时间，闹钟跟着改；日程删除，闹钟也删除。';
+
+  @override
+  String get syncKeepFirst => '保持最初看到的样子';
+
+  @override
+  String get syncKeepFirstHint => '新日程仍会有闹钟。闹钟一旦设好就不变，即使日程改时间或被删除。';
+
+  @override
+  String get syncSnapshot => '只要现在已有的日程';
+
+  @override
+  String get syncSnapshotHint => '只取保存时日历里已有的日程，保持现在的样子。之后不再添加新的。';
+
+  @override
+  String get syncHelpButton => '如何运作';
+
+  @override
+  String get syncHelpTitle => '闹钟如何跟随你的日历';
+
+  @override
+  String get syncHelpIntro => '这条规则会一直寻找符合搜索的日程。日历变化时怎么做，由你选择。';
+
+  @override
+  String get syncHelpExampleLive => '例子：一条“牙医”规则。牙医把周二的预约改到周三，你的闹钟也改到周三。预约取消，闹钟也随之消失。';
+
+  @override
+  String get syncHelpExampleKeepFirst => '同一规则：预约改到周三，但闹钟仍留在周二，保持 Quando? 最初看到的样子。下个月的新预约仍会有自己的闹钟。';
+
+  @override
+  String get syncHelpExampleSnapshot => '同一规则：今天日历里已有的预约会有闹钟，并保持不变。下个月新加的预约不会有闹钟。';
+
+  @override
+  String get syncHelpTip => '拿不准？就保留“跟随日历”。';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? 何时发现变化？';
+
+  @override
+  String get syncHelpWhenOpen => 'Quando? 打开时：几秒内。在这里登录的 Google 日历每 2 分钟检查一次。';
+
+  @override
+  String get syncHelpWhenClosed => 'Quando? 关闭时：下次打开时。在那之前，已设好的闹钟按原来的时间响。';
+
+  @override
+  String get syncHelpWhenClosedApple => 'iPhone 和 iPad 不允许应用在后台监视日历，所以变化会在打开 Quando? 时同步。';
+
+  @override
+  String get tapMiddleToStop => '点按中间即可停止';
+
+  @override
+  String get uiSimple => '简洁';
+
+  @override
+  String get uiEverything => '全部';
+
+  @override
+  String get firstRunTitle => '你想看到多少？';
+
+  @override
+  String get firstRunSimpleHint => '闹钟和基本功能';
+
+  @override
+  String get firstRunEverythingHint => '日历、安息日、计时器、天气等';
+
+  @override
+  String get firstRunChangeLater => '你可以随时在设置中更改。';
+
+  @override
+  String get continueLabel => '继续';
+
+  @override
+  String get everyAlarm => '每个闹钟';
+
+  @override
+  String get wakeMeWith => '唤醒方式';
+
+  @override
+  String get ringOrMusic => '铃声或音乐';
+
+  @override
+  String get ringsForRow => '响铃时长';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '提前$minutes分钟';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? 铃声';
+
+  @override
+  String get aSongApps => '一首歌（Spotify、YouTube…）';
+
+  @override
+  String get myRecording => '我的录音';
+
+  @override
+  String get useForNewAlarms => '用于新闹钟';
+
+  @override
+  String get iWillLabel => '闹钟响时，我要…';
+
+  @override
+  String get foldVolume => '音量与渐变';
+
+  @override
+  String get foldSnoozeStop => '贪睡与停止';
+
+  @override
+  String get foldExtras => '日历和其他';
+
+  @override
+  String get groupAlarms => '闹钟';
+
+  @override
+  String get groupCalendarShabbat => '日历和安息日';
+
+  @override
+  String get groupLookQuotes => '外观和名言';
+
+  @override
+  String get groupConnectionsSync => '连接与同步';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count个设置 · $on个已开启';
+  }
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -3496,6 +4116,83 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get holdToUnlock => '按住解鎖';
+
+  @override
+  String get lockSentenceCalm => '把手機鎖定在時鐘和鬧鐘：用於考試、會議或安靜的夜晚。';
+
+  @override
+  String get lockCalendarHeading => '依行事曆';
+
+  @override
+  String get lockCalendarExplain => '在活動期間鎖定，或從一個活動鎖到你指定的下一個活動。適用於你選的任何行事曆，包括共用的。';
+
+  @override
+  String get lockAddCalendar => '新增行事曆鎖定';
+
+  @override
+  String get lockEditCalendar => '行事曆鎖定';
+
+  @override
+  String get lockDuring => '活動期間';
+
+  @override
+  String get lockBetween => '兩個活動之間';
+
+  @override
+  String get lockStartsAt => '名稱為…的活動';
+
+  @override
+  String get lockStartsAtBetween => '從名為…的活動開始';
+
+  @override
+  String get lockEndsAt => '到下一個名為…的活動結束';
+
+  @override
+  String get lockStartHint => '例如 考試、專注、健身';
+
+  @override
+  String get lockEndHint => '例如 到家';
+
+  @override
+  String get lockAnyCalendar => '任何行事曆';
+
+  @override
+  String get lockNoMatches => '你的行事曆裡還沒有符合的活動。';
+
+  @override
+  String get lockNextTimes => '接下來';
+
+  @override
+  String lockDuringTitle(String a) {
+    return '「$a」期間';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return '從「$a」到下一個「$b」';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '「$name」包含安息日時間。';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => '從點蠟燭鎖到哈夫達拉';
+
+  @override
+  String get lockShabbatFromCalendarHint => '使用該行事曆的時間，鎖定畫面顯示蠟燭。';
+
+  @override
+  String get lockMoreWays => '更多鎖定方式';
+
+  @override
+  String get lockQuietTime => '安靜時間';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return '下次點蠟燭：$time，來自 $name';
+  }
 
   @override
   String get calendarAlarm => '日曆鬧鐘';
@@ -5007,10 +5704,10 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => '同步我的裝置';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => '用 Google 登入，讓鬧鐘和設定在你所有裝置上保持一致。';
 
   @override
   String syncOn(String email) {
@@ -5024,85 +5721,85 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => '無法連線。點一下重試。';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => '此版本尚未設定同步。';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => '仍然響鈴';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return '今天略過這 $n 個';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '關閉「$name」';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '開啟「$name」';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '已關閉「$name」';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '從「$name」移除「$time」';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '已從「$name」移除「$time」';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => '移到群組';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return '在「$group」中，移動';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return '已移到「$group」';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '刪除「$name」';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => '使用 Google 登入';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => '使用電子郵件登入';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => '建立帳號';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => '我已有帳號';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => '忘記密碼？';
 
   @override
   String get email => 'Email';
@@ -5111,43 +5808,42 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => '我們已寄出設定新密碼的連結給你。';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return '我們已將連結寄到 $email。開啟連結後回到這裡，點一下「我已確認」。';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => '我已確認';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => '尚未確認。請先開啟郵件中的連結。';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => '重新寄送郵件';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => '已寄出。請查看收件匣和垃圾郵件。';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => '這看起來不像電子郵件地址。';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => '電子郵件或密碼錯誤。';
 
   @override
-  String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+  String get emailInUse => '這個電子郵件已有帳號。請直接登入；如果你是用 Google 建立的，請使用 Google 登入。';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => '請設定至少 6 個字元的密碼。';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => '電子郵件登入尚未開啟。';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => '嘗試次數過多。請等幾分鐘。';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -5204,109 +5900,103 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get deliveryReset => '使用現有設定';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => '安息日之前';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => '準備提醒';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => '略過本週';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => '還原本週';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => '時間與聲音';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => '使用我的位置';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable => '位置暫時無法使用。請重試或選擇一個城市。';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => '確認此位置';
 
   @override
-  String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+  String get locationDeviceOnly => '此位置只儲存在這台裝置上。使用這些時間之前，請檢查時區和以色列設定。';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · 城市時間';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff => '準備提醒已關閉。哈夫達拉與一般鬧鐘不受影響。';
 
   @override
-  String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+  String get preparationSkipped => '本週的準備提醒已略過。你的每週設定仍會保留。';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => '安息日控制';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => '安息日期間 / 之後';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return '緯度 $latitude · 經度 $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => '目前位置';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => '在 Pushover 上測試聲音';
 
   @override
-  String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+  String get pushoverSoundTestHint => '在你選擇的 Pushover 裝置上播放所選聲音。靜音與勿擾時段設定仍然有效。';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => '與我的裝置共用憑證';
 
   @override
-  String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+  String get pushoverShareHint => '你的 Pushover 使用者金鑰與應用程式權杖可以跟隨你在 Quando? 與 Matai? 中登入的帳號。';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => '憑證已排入佇列，將傳送到你已登入的裝置。';
 
   @override
-  String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+  String get pushoverShareSignIn => '在每部裝置上登入同一個應用程式帳號，即可共用 Pushover 憑證。';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
-  String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+  String get smartHomeHint => '直接執行 Tuya 情境，或連接你自己的 Home Assistant 或 Node-RED 自動化。';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => '共用服務連線';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      '在你的各部裝置上使用同一個應用程式帳號，即可共用 Pushover、Tuya、Spotify 資料庫與自動化連線。YouTube 與裝置權限可能仍需在每部裝置上個別核准。';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      '使用你已連結的 Tuya 開發者專案。輸入其資料中心、Access ID、Access Secret，以及「Link App Account」下顯示的 UID。不需要 Home Assistant。';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => '已連結帳號的 UID';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -5318,49 +6008,45 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get tuyaLoadScenes => 'Load scenes';
 
   @override
-  String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+  String get tuyaNoScenes => '找不到可用的 Tap-to-Run 情境。請檢查已連結的帳號、資料中心與情境 API 權限。';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => '立即執行情境';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => '現在在你的 Tuya 裝置上執行此情境嗎？';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya 已接受情境指令。請檢查你的裝置。';
 
   @override
-  String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+  String get tuyaFailed => 'Tuya 無法完成該請求。請檢查專案權限、資料中心與訂閱。錯誤：';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => '此鬧鐘響起時的 Tuya 情境';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      '建立一個使用 Webhook 觸發器的 Home Assistant 自動化，接受 POST 與 JSON，並在此貼上其 URL。用鬧鐘事件（ring、stopped、snoozed 或 auto_stopped）來選擇你的動作。新裝置上此連線預設為關閉。';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      '使用接受 POST 的 Node-RED HTTP In 節點，後接你的自動化與一個 HTTP Response 節點。在此貼上端點。支援本機 HTTP 中樞與 HTTPS 端點。';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => '連接智慧家庭服務';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => '測試會立即執行已連接的自動化。';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => '在此裝置上執行智慧家庭鬧鐘動作';
 
   @override
-  String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+  String get smartHomeDeviceHint => '選擇一部裝置來執行你的自動化。連線是共用的；此開關只對這部裝置生效。';
 
   @override
-  String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+  String get smartHomeDeviceOff => '此裝置上的鬧鐘動作已關閉。請在「連線」中開啟；手動情境測試仍可使用。';
 
   @override
   String get homeDisplay => 'Home display';
@@ -5381,22 +6067,22 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => '在天空和天氣之間滑動';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => '每週經文段落';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => '每日學習';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 每天 1 章';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 每天 3 章';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -5417,13 +6103,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => '月亮整天在地平線上方';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => '月亮整天在地平線下方';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => '今天沒有月出';
 
   @override
   String get noSetToday => 'No set today';
@@ -5432,25 +6118,25 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => '蛾眉月（漸盈）';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => '上弦月';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => '盈凸月';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => '虧凸月';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => '殘月（漸虧）';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -5471,13 +6157,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => '雷暴';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => '天氣暫時無法使用';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => '已儲存的預報';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -5486,26 +6172,25 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => '預報有雷暴';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => '連線以載入本月的學習安排';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => '節日托拉誦讀';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => '學習日曆 · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => '天氣預報 · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent => '所選城市的天氣。使用四捨五入後的座標，透過 MET Norway 取得。';
 
   @override
-  String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+  String get learningConsent => 'Rambam 等學習日程會從 Hebcal 載入，並儲存供離線使用。';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -5517,14 +6202,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => '時區參考城市';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => '選擇天空城市';
 
   @override
-  String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+  String get skyCityExplain => '太陽和月亮使用這個城市的座標。你的安息日城市和鬧鐘時區會維持你的選擇不變。';
 
   @override
   String get skySun => 'Sun today';
@@ -5533,46 +6217,43 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => '月亮在地平線上方';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => '月亮在地平線下方';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => '下次新月';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => '下次滿月';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff => '定位服務已關閉。請在「設定」中開啟，或選擇一個城市。';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied => '定位權限遭到拒絕。請在「設定」中允許，或選擇一個城市。';
 
   @override
-  String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+  String get locationTimedOut => '暫時還沒取得位置。在 Mac 上請保持 Wi-Fi 開啟後重試，或選擇一個城市。';
 
   @override
-  String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+  String get locationTimeZoneUnavailable => '使用位置之前，請選擇所選時區內的城市，或跟隨裝置時區。';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => '開啟定位設定';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => '正在取得位置…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => '顯示月亮：月出、月落和月相';
 
   @override
-  String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+  String get tuyaConsumerPending => '此版本尚不支援帳號登入。如果你已有 Tuya 開發者專案，請使用進階設定。';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => '進階設定';
 
   @override
   String get tuyaSignInTitle => '使用 Smart Life 帳號登入';
@@ -5616,23 +6297,22 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain => '在主畫面顯示下一個希伯來月的第一天或前兩天。';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => '下一個新月（Rosh Hodesh）';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => '日落時開始：';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => '在 Sefaria 上閱讀此托拉經文';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
-  String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+  String get skyLocationLocalTimes => '天空時間使用此位置的時區。你的鬧鐘時區和安息日城市維持不變。只儲存在這台裝置上。';
 
   @override
   String get musicRingDurationHint => '播放遵循此鬧鐘的響鈴時長，並在停止或稍後提醒時結束。';
@@ -5787,19 +6467,19 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get keysShareNeedsPassphrase => '請先在「裝置間的金鑰」中設定同步密語。';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => '鬧鐘預設值';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => '地點與時間';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => '外觀、語言與名言';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => '新鬧鐘的預設值';
 
   @override
   String get preview => 'Preview';
@@ -5810,13 +6490,13 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => '連接行事曆';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => '從現成鬧鐘中選';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => '日出、日落以及其他已為你設定好的鬧鐘';
 
   @override
   String get calendarSourcesIntro => 'Quando? 可以在行事曆活動前後響鈴。選擇活動來自哪裡。';
@@ -6015,7 +6695,7 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint => '拖曳握把可移動卡片、收合卡片或調整卡片大小。';
 
   @override
   String get homeReset => 'Reset layout';
@@ -6036,25 +6716,585 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => '太陽、月亮和天氣';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => '安息日與節日';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => '天空城市';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return '下一個鬧鐘 · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => '顯示所有日期';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => '這一天沒有鬧鐘響鈴';
+
+  @override
+  String get homeClockSize => '主畫面時鐘';
+
+  @override
+  String get sizeSmall => '小';
+
+  @override
+  String get sizeMedium => '中';
+
+  @override
+  String get sizeLarge => '大';
+
+  @override
+  String get homeLayout => '主畫面版面';
+
+  @override
+  String get homeLayoutClassic => '經典';
+
+  @override
+  String get homeLayoutCards => '卡片';
+
+  @override
+  String get homeCardsHint => '拖動卡片即可移動。拖動邊緣或角落調整大小，或選擇尺寸。';
+
+  @override
+  String get homeAddCard => '新增卡片';
+
+  @override
+  String get homeOnHome => '已在主畫面';
+
+  @override
+  String get homeRemoveCard => '移除';
+
+  @override
+  String get cardNext => '下一個鬧鐘';
+
+  @override
+  String get cardClock => '時鐘和日期';
+
+  @override
+  String get cardSky => '太陽、月亮和天氣';
+
+  @override
+  String get cardMoon => '月亮';
+
+  @override
+  String get cardWeather => '天氣';
+
+  @override
+  String get cardAlarms => '你的鬧鐘';
+
+  @override
+  String get cardQuick => '快速鬧鐘';
+
+  @override
+  String get cardTools => '碼錶、倒數和預備';
+
+  @override
+  String get cardWorld => '世界時鐘';
+
+  @override
+  String get cardWeek => '本週';
+
+  @override
+  String get cardShabbat => '安息日和節日';
+
+  @override
+  String get ringAtEventReminders => '在行程自帶的提醒時間響鈴';
+
+  @override
+  String get ringAtEventRemindersHint => '日曆 App 裡設定的提醒會在這裡以本鬧鐘的鈴聲大聲響起。';
+
+  @override
+  String get atEventReminders => '在行程提醒時';
+
+  @override
+  String get everyEventReminderLoud => '每個行程提醒時都大聲響鈴';
+
+  @override
+  String get loudNotificationsHeading => '日曆通知大聲響';
+
+  @override
+  String get loudNotificationsTitle => '讓日曆通知大聲響鈴';
+
+  @override
+  String get loudNotificationsHint => '日曆 App 跳出提醒時，Quando? 會把它當作鬧鐘響起，即使手機處於靜音。';
+
+  @override
+  String get loudNotificationsDisclosureTitle => '允許 Quando? 讀取日曆通知？';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      '要大聲響起日曆提醒，Quando? 需要通知存取權。它只查看你所選日曆 App 的通知，在本機讀取標題和內容以顯示在鬧鐘上，從不儲存或傳送到任何地方。你可以隨時關閉。';
+
+  @override
+  String get loudNotificationsAgree => '同意並繼續';
+
+  @override
+  String get loudNotificationsNoAccess => '通知存取權已關閉。請在開啟的清單中開啟 Quando?。';
+
+  @override
+  String get loudNotificationsAllow => '允許';
+
+  @override
+  String get loudNotificationsNoApps => '本機找不到支援的日曆 App。';
+
+  @override
+  String get loudNotificationsTwiceNote => '已有 Quando? 日曆鬧鐘的行程只會響一次。';
+
+  @override
+  String get loudNotificationsShabbatNote => '安息日和節日期間靜音。';
+
+  @override
+  String get busyMode => '忙碌模式';
+
+  @override
+  String get busyModeSubtitle => '忙碌時開啟勿擾和自動回覆';
+
+  @override
+  String get busyIntro => '忙碌時，Quando? 可以讓手機安靜並替你回覆訊息。鬧鐘照常響。';
+
+  @override
+  String get busyIosFocus =>
+      '在 iPhone 和 iPad 上，App 無法開啟專注模式或回覆訊息。請在「捷徑」App 中加入「打開 Quando? 時」或定時開啟專注模式的自動化，並在專注模式中設定自動回覆。';
+
+  @override
+  String get busyWhileHeading => '忙碌時';
+
+  @override
+  String get busyDnd => '勿擾';
+
+  @override
+  String get busyDndHint => '僅限優先：來電和訊息靜音，鬧鐘照響。結束後恢復。';
+
+  @override
+  String get busyDndNoAccess => 'Quando? 還沒有變更勿擾的權限。';
+
+  @override
+  String get busyReplies => '回覆訊息';
+
+  @override
+  String get busyRepliesHint => '每人一次，用你的文字，透過 App 自帶的回覆按鈕。僅限 Android。';
+
+  @override
+  String get busyRepliesDisclosureTitle => '允許 Quando? 回覆訊息？';
+
+  @override
+  String get busyRepliesDisclosure =>
+      '為了替你回覆，Quando? 需要通知存取權。僅在你忙碌時，它查看你所選 App 的訊息通知，在本機讀取傳送者名字，並透過 App 自帶的回覆按鈕傳送一次你的文字。訊息從不儲存，也不會傳往別處。除非你允許，群組會被略過。';
+
+  @override
+  String get busyReplyText => '你的回覆';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until 會變成忙碌模式結束的時間。';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return '我現在在忙，$until 後回覆。';
+  }
+
+  @override
+  String get busyGroups => '群組也回覆';
+
+  @override
+  String get busyGroupsHint => '關閉：從不回覆群組。';
+
+  @override
+  String get busyRepliesOnShabbat => '安息日和節日也回覆';
+
+  @override
+  String get busyAskRabbi => '預設關閉。在安息日開啟前請先請教你的拉比。';
+
+  @override
+  String get busyWhenHeading => '何時忙碌';
+
+  @override
+  String get busyWhenHint => '在日曆鬧鐘上開啟「這些行程期間忙碌」，或在鬧鐘上開啟「響鈴後忙碌」。';
+
+  @override
+  String get busyDuringLock => '鎖定模式開啟時忙碌';
+
+  @override
+  String get busyNoneComing => '未來 7 天沒有忙碌時段。';
+
+  @override
+  String get busyDuringEvents => '這些行程期間忙碌';
+
+  @override
+  String get busyDuringEventsHint => '每個行程從開始到結束都處於忙碌模式。';
+
+  @override
+  String get busySettings => '忙碌模式設定';
+
+  @override
+  String get busyAfterRing => '響鈴後忙碌';
+
+  @override
+  String get busyAfterRingHint => '一段時間內勿擾和自動回覆，例如運動或午睡。';
+
+  @override
+  String get shareCard => '分享你的早晨';
+
+  @override
+  String get shareCardSubtitle => '今天的天空和名言，或你自己的照片，用於限時動態和狀態';
+
+  @override
+  String get shareAppMissing => '這支手機上沒有該 App。';
+
+  @override
+  String get shareAsIs => '按原樣分享';
+
+  @override
+  String get shareTapQuote => '點按名言可換一句。';
+
+  @override
+  String get shareStory => '限時動態';
+
+  @override
+  String get shareSquare => '方形';
+
+  @override
+  String get shareYourWords => '你自己的話（選填）';
+
+  @override
+  String get shareYourWordsHint => '代替今天的名言';
+
+  @override
+  String get shareYourPhoto => '你的照片';
+
+  @override
+  String get shareOtherPhoto => '換一張照片';
+
+  @override
+  String get shareSkyBack => '改用今天的天空';
+
+  @override
+  String get shareYourVideo => '你的影片';
+
+  @override
+  String get shareInstagramStory => 'Instagram 限時動態';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp：狀態或聊天';
+
+  @override
+  String get shareMore => '更多 App';
+
+  @override
+  String get shareYouPost => 'Quando? 會打開 App 並載入你的卡片。發到哪裡由你選，發佈也由你點。';
+
+  @override
+  String get shareAndroidFirst => 'iPhone 和 iPad 即將支援分享。';
+
+  @override
+  String songSaved(String name) {
+    return '已將「$name」存為鬧鐘鈴聲';
+  }
+
+  @override
+  String get shareToQuando => '把歌曲分享到 Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      '在 YouTube、YouTube Music、Spotify、SoundCloud 或 Apple Music 中點「分享」，再選 Quando?，它就成為在原 App 中播放的鬧鐘鈴聲。';
+
+  @override
+  String get askOption => '說出或輸入';
+
+  @override
+  String get askOptionHint => '「明天6點」「日出前30分鐘」';
+
+  @override
+  String get askHint => '例如：平日日出前30分鐘叫醒我';
+
+  @override
+  String get askListening => '正在聽…';
+
+  @override
+  String get askNotUnderstood => '沒有找到時間。試試「平日早上7點」或「20分鐘後」。';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return '來自你的行事曆「$name」';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando? 為你所在城市計算的時間';
+
+  @override
+  String get askNoAnswer => '還沒有找到時間。';
+
+  @override
+  String get askNoSpeech => '此裝置不支援語音。你可以輸入。';
+
+  @override
+  String get askShabbatOff => '在設定中開啟安息日，安息日時間才會響鈴。';
+
+  @override
+  String askSaved(String what) {
+    return '已儲存：$what';
+  }
+
+  @override
+  String get askMic => '說話';
+
+  @override
+  String get askMorning => '早上';
+
+  @override
+  String get askEvening => '晚上';
+
+  @override
+  String get askUnsure => '我可能漏掉了一部分。儲存前請檢查。';
+
+  @override
+  String get askTeach => '教我這個';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return '明白了：「$phrase」現在表示 $time。';
+  }
+
+  @override
+  String get askSkipAction => '略過';
+
+  @override
+  String get askNoMatch => '沒有符合的鬧鐘。';
+
+  @override
+  String askTurnedOff(String what) {
+    return '已關閉：$what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return '已略過：$what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '行事曆中「$event」$offset';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return '連結行事曆，Quando? 才能找到「$event」。';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return '貪睡：$minutes 分鐘，僅適用於這個鬧鐘';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return '用$sound叫醒你';
+  }
+
+  @override
+  String get askReadAs => '理解為';
+
+  @override
+  String get askHelpTitle => '協助改進語音鬧鐘';
+
+  @override
+  String get askHelpBody => '匿名傳送你說的或輸入的內容以及你的操作。不含帳號或裝置 ID。';
+
+  @override
+  String get askHelpPromptTitle => '協助 Quando? 更懂你？';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return '我們會匿名傳送你說的或輸入的內容（如「$sentence」）以及你是否儲存。不含姓名、帳號或裝置 ID。你可以隨時關閉。';
+  }
+
+  @override
+  String get askHelpYes => '好，幫忙';
+
+  @override
+  String get askHelpNo => '不用了';
+
+  @override
+  String get askQuoteTranslation => '生活不是人們所經歷的，而是人們所記住的，以及為了講述而如何記住它。';
+
+  @override
+  String get askHelpQuote => '';
+  String get quickSetups => '快速設定';
+
+  @override
+  String get qsMorningTitle => '管用的早晨';
+
+  @override
+  String get qsStartTitle => '不錯過任何開始';
+
+  @override
+  String get qsStretchTitle => '分段工作';
+
+  @override
+  String get qsWillChange => '將變更的內容';
+
+  @override
+  String get qsAlreadyOn => '已開啟，無需變更。';
+
+  @override
+  String get qsApply => '套用';
+
+  @override
+  String get qsDone => '完成';
+
+  @override
+  String get qsUndo => '復原';
+
+  @override
+  String get qsSnoozeTimes => '允許的貪睡次數';
+
+  @override
+  String get qsSnoozeMinutes => '貪睡分鐘數';
+
+  @override
+  String get qsFiveLeft => '還剩5分鐘';
+
+  @override
+  String get syncHeading => '行事曆變更時';
+
+  @override
+  String get syncLive => '跟隨行事曆';
+
+  @override
+  String get syncLiveHint => '新活動會有鬧鐘。活動改時間，鬧鐘跟著改；活動刪除，鬧鐘也刪除。';
+
+  @override
+  String get syncKeepFirst => '保持最初看到的樣子';
+
+  @override
+  String get syncKeepFirstHint => '新活動仍會有鬧鐘。鬧鐘一旦設好就不變，即使活動改時間或被刪除。';
+
+  @override
+  String get syncSnapshot => '只要現在已有的活動';
+
+  @override
+  String get syncSnapshotHint => '只取儲存時行事曆裡已有的活動，保持現在的樣子。之後不再加入新的。';
+
+  @override
+  String get syncHelpButton => '如何運作';
+
+  @override
+  String get syncHelpTitle => '鬧鐘如何跟隨你的行事曆';
+
+  @override
+  String get syncHelpIntro => '這條規則會一直尋找符合搜尋的活動。行事曆變更時怎麼做，由你選擇。';
+
+  @override
+  String get syncHelpExampleLive => '例子：一條「牙醫」規則。牙醫把週二的預約改到週三，你的鬧鐘也改到週三。預約取消，鬧鐘也隨之消失。';
+
+  @override
+  String get syncHelpExampleKeepFirst => '同一規則：預約改到週三，但鬧鐘仍留在週二，保持 Quando? 最初看到的樣子。下個月的新預約仍會有自己的鬧鐘。';
+
+  @override
+  String get syncHelpExampleSnapshot => '同一規則：今天行事曆裡已有的預約會有鬧鐘，並保持不變。下個月新加的預約不會有鬧鐘。';
+
+  @override
+  String get syncHelpTip => '拿不定主意？就保留「跟隨行事曆」。';
+
+  @override
+  String get syncHelpWhenTitle => 'Quando? 何時發現變更？';
+
+  @override
+  String get syncHelpWhenOpen => 'Quando? 開啟時：幾秒內。在這裡登入的 Google 日曆每 2 分鐘檢查一次。';
+
+  @override
+  String get syncHelpWhenClosed => 'Quando? 關閉時：下次開啟時。在那之前，已設好的鬧鐘按原本的時間響。';
+
+  @override
+  String get syncHelpWhenClosedApple => 'iPhone 和 iPad 不允許 App 在背景監看行事曆，所以變更會在開啟 Quando? 時同步。';
+
+  @override
+  String get tapMiddleToStop => '點按中間即可停止';
+
+  @override
+  String get uiSimple => '簡潔';
+
+  @override
+  String get uiEverything => '全部';
+
+  @override
+  String get firstRunTitle => '你想看到多少？';
+
+  @override
+  String get firstRunSimpleHint => '鬧鐘和基本功能';
+
+  @override
+  String get firstRunEverythingHint => '日曆、安息日、計時器、天氣等';
+
+  @override
+  String get firstRunChangeLater => '你可以隨時在設定中更改。';
+
+  @override
+  String get continueLabel => '繼續';
+
+  @override
+  String get everyAlarm => '每個鬧鐘';
+
+  @override
+  String get wakeMeWith => '喚醒方式';
+
+  @override
+  String get ringOrMusic => '鈴聲或音樂';
+
+  @override
+  String get ringsForRow => '響鈴時長';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '提前$minutes分鐘';
+  }
+
+  @override
+  String get quandoSounds => 'Quando? 鈴聲';
+
+  @override
+  String get aSongApps => '一首歌（Spotify、YouTube…）';
+
+  @override
+  String get myRecording => '我的錄音';
+
+  @override
+  String get useForNewAlarms => '用於新鬧鐘';
+
+  @override
+  String get iWillLabel => '鬧鐘響時，我要…';
+
+  @override
+  String get foldVolume => '音量與漸變';
+
+  @override
+  String get foldSnoozeStop => '貪睡與停止';
+
+  @override
+  String get foldExtras => '日曆和其他';
+
+  @override
+  String get groupAlarms => '鬧鐘';
+
+  @override
+  String get groupCalendarShabbat => '日曆和安息日';
+
+  @override
+  String get groupLookQuotes => '外觀和名言';
+
+  @override
+  String get groupConnectionsSync => '連線與同步';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count個設定 · $on個已開啟';
+  }
 }

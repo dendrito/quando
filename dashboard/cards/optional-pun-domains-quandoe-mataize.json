@@ -1,0 +1,13 @@
+{
+  "id": "optional-pun-domains-quandoe-mataize",
+  "title": "Optional: pun domains (quandoe, mataize)",
+  "status": "hold",
+  "tag": "optional",
+  "plan": "business",
+  "note": "quandoe.com / quandoeh.com (“Quando é?”) and mataize.com / mataizeh.com (“Matai ze?”). Only as cheap redirects to quando.day / matai.day, if the price is low.",
+  "details": "Puns: “Quando é?” is “when is it?” in Portuguese and “Matai ze?” is “when is this?” in Hebrew. They read as typos to other people, so keep them as redirects and as taglines for the Portuguese and Hebrew store listings, not as the main address.",
+  "threads": [
+    "biz"
+  ],
+  "order": 23
+}

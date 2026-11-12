@@ -477,6 +477,85 @@ class AppLocalizationsNl extends AppLocalizations {
   String get holdToUnlock => 'Vasthouden om te ontgrendelen';
 
   @override
+  String get lockSentenceCalm =>
+      'Vergrendel de telefoon op de klok en je wekkers: voor een examen, een vergadering of een rustige avond.';
+
+  @override
+  String get lockCalendarHeading => 'MET JE AGENDA';
+
+  @override
+  String get lockCalendarExplain =>
+      'Vergrendel tijdens een afspraak, of van een afspraak tot de volgende die je noemt. Werkt met elke gekozen agenda, ook gedeelde.';
+
+  @override
+  String get lockAddCalendar => 'Agendavergrendeling toevoegen';
+
+  @override
+  String get lockEditCalendar => 'Agendavergrendeling';
+
+  @override
+  String get lockDuring => 'Tijdens een afspraak';
+
+  @override
+  String get lockBetween => 'Tussen twee afspraken';
+
+  @override
+  String get lockStartsAt => 'Afspraken met de naam…';
+
+  @override
+  String get lockStartsAtBetween => 'Begint bij een afspraak met de naam…';
+
+  @override
+  String get lockEndsAt => 'Eindigt bij de volgende afspraak met de naam…';
+
+  @override
+  String get lockStartHint => 'bijv. examen, focus, sport';
+
+  @override
+  String get lockEndHint => 'bijv. thuis';
+
+  @override
+  String get lockAnyCalendar => 'Elke agenda';
+
+  @override
+  String get lockNoMatches => 'Nog niets in je agenda\'s past.';
+
+  @override
+  String get lockNextTimes => 'VOLGENDE KEREN';
+
+  @override
+  String lockDuringTitle(String a) {
+    return 'Tijdens ‘$a’';
+  }
+
+  @override
+  String lockBetweenTitle(String a, String b) {
+    return 'Van ‘$a’ tot de volgende ‘$b’';
+  }
+
+  @override
+  String lockShabbatCalendarFound(String name) {
+    return '‘$name’ bevat sjabbattijden.';
+  }
+
+  @override
+  String get lockShabbatFromCalendar => 'Vergrendel van kaarsen aansteken tot havdala';
+
+  @override
+  String get lockShabbatFromCalendarHint => 'Gebruikt de tijden uit die agenda, met kaarsen op het scherm.';
+
+  @override
+  String get lockMoreWays => 'Meer manieren om te vergrendelen';
+
+  @override
+  String get lockQuietTime => 'Rustmoment';
+
+  @override
+  String nextCandleLightingFrom(String time, String name) {
+    return 'Volgende kaarsen aansteken: $time, uit $name';
+  }
+
+  @override
   String get calendarAlarm => 'Agendawekker';
 
   @override
@@ -2026,10 +2105,10 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get syncTitle => 'Sync my devices';
+  String get syncTitle => 'Mijn apparaten synchroniseren';
 
   @override
-  String get syncHint => 'Sign in with Google to keep alarms and settings the same on all your devices.';
+  String get syncHint => 'Log in met Google om wekkers en instellingen op al je apparaten gelijk te houden.';
 
   @override
   String syncOn(String email) {
@@ -2043,85 +2122,85 @@ class AppLocalizationsNl extends AppLocalizations {
   String get syncNotAllowed => 'This Google account can\'t sync.';
 
   @override
-  String get syncFailed => 'Couldn\'t connect. Tap to try again.';
+  String get syncFailed => 'Verbinden mislukt. Tik om het opnieuw te proberen.';
 
   @override
   String get syncStop => 'Stop syncing';
 
   @override
-  String get syncNotSetUp => 'Sync isn\'t set up in this build yet.';
+  String get syncNotSetUp => 'Synchronisatie is in deze versie nog niet ingesteld.';
 
   @override
-  String get ringTheseAfterAll => 'Ring these after all';
+  String get ringTheseAfterAll => 'Toch laten overgaan';
 
   @override
   String skipTheseDay(int n) {
-    return 'Skip these $n today';
+    return 'Deze $n vandaag overslaan';
   }
 
   @override
   String turnOffNamed(String name) {
-    return 'Turn off “$name”';
+    return '“$name” uitzetten';
   }
 
   @override
   String turnOnNamed(String name) {
-    return 'Turn on “$name”';
+    return '“$name” aanzetten';
   }
 
   @override
   String turnedOffNamed(String name) {
-    return 'Turned off “$name”';
+    return '“$name” uitgezet';
   }
 
   @override
   String removeTimeFrom(String time, String name) {
-    return 'Remove “$time” from “$name”';
+    return '“$time” verwijderen uit “$name”';
   }
 
   @override
   String removedTimeFrom(String time, String name) {
-    return 'Removed “$time” from “$name”';
+    return '“$time” verwijderd uit “$name”';
   }
 
   @override
-  String get moveToGroup => 'Move to a group';
+  String get moveToGroup => 'Naar een groep verplaatsen';
 
   @override
   String inGroupMove(String group) {
-    return 'In “$group”, move';
+    return 'In “$group” verplaatsen';
   }
 
   @override
   String movedToGroup(String group) {
-    return 'Moved to “$group”';
+    return 'Verplaatst naar “$group”';
   }
 
   @override
   String deleteNamed(String name) {
-    return 'Delete “$name”';
+    return '“$name” verwijderen';
   }
 
   @override
-  String get signInWithGoogle => 'Sign in with Google';
+  String get signInWithGoogle => 'Inloggen met Google';
 
   @override
   String get signOut => 'Sign out';
 
   @override
-  String get signInWithEmail => 'Sign in with email';
+  String get signInWithEmail => 'Inloggen met e-mail';
 
   @override
   String get signIn => 'Sign in';
 
   @override
-  String get createAccount => 'Create account';
+  String get createAccount => 'Account maken';
 
   @override
-  String get haveAccount => 'I have an account';
+  String get haveAccount => 'Ik heb al een account';
 
   @override
-  String get forgotPassword => 'Forgot password?';
+  String get forgotPassword => 'Wachtwoord vergeten?';
 
   @override
   String get email => 'Email';
@@ -2130,43 +2209,43 @@ class AppLocalizationsNl extends AppLocalizations {
   String get password => 'Password';
 
   @override
-  String get passwordResetSent => 'We sent you a link to choose a new password.';
+  String get passwordResetSent => 'We hebben je een link gestuurd om een nieuw wachtwoord te kiezen.';
 
   @override
   String emailCheckInbox(String email) {
-    return 'We sent a link to $email. Open it, then come back and tap “I’ve confirmed”.';
+    return 'We hebben een link gestuurd naar $email. Open hem, kom terug en tik op “Ik heb bevestigd”.';
   }
 
   @override
-  String get emailConfirmed => 'I’ve confirmed';
+  String get emailConfirmed => 'Ik heb bevestigd';
 
   @override
-  String get emailNotYet => 'Not confirmed yet. Open the link in the email first.';
+  String get emailNotYet => 'Nog niet bevestigd. Open eerst de link in de e-mail.';
 
   @override
-  String get emailSendAgain => 'Send the email again';
+  String get emailSendAgain => 'E-mail opnieuw sturen';
 
   @override
-  String get emailSentAgain => 'Sent. Check your inbox and spam.';
+  String get emailSentAgain => 'Verstuurd. Kijk in je inbox en in je spam.';
 
   @override
-  String get emailInvalid => 'That doesn’t look like an email address.';
+  String get emailInvalid => 'Dat lijkt geen e-mailadres.';
 
   @override
-  String get emailWrong => 'Wrong email or password.';
+  String get emailWrong => 'Verkeerd e-mailadres of wachtwoord.';
 
   @override
   String get emailInUse =>
-      'There’s already an account with this email. Sign in instead, or use Google if you made it with Google.';
+      'Er bestaat al een account met dit e-mailadres. Log in, of gebruik Google als je het met Google hebt gemaakt.';
 
   @override
-  String get passwordWeak => 'Choose a password of at least 6 characters.';
+  String get passwordWeak => 'Kies een wachtwoord van minstens 6 tekens.';
 
   @override
-  String get emailNotSwitchedOn => 'Email sign-in isn’t switched on yet.';
+  String get emailNotSwitchedOn => 'Inloggen met e-mail staat nog niet aan.';
 
   @override
-  String get tooManyTries => 'Too many tries. Wait a few minutes.';
+  String get tooManyTries => 'Te veel pogingen. Wacht een paar minuten.';
 
   @override
   String get spotifyLibrary => 'Spotify';
@@ -2223,109 +2302,111 @@ class AppLocalizationsNl extends AppLocalizations {
   String get deliveryReset => 'Bestaande instellingen gebruiken';
 
   @override
-  String get beforeShabbat => 'Before Shabbat';
+  String get beforeShabbat => 'Vóór Sjabbat';
 
   @override
-  String get preparationReminders => 'Preparation reminders';
+  String get preparationReminders => 'Herinneringen voor de voorbereiding';
 
   @override
-  String get skipThisWeek => 'Skip this week';
+  String get skipThisWeek => 'Deze week overslaan';
 
   @override
-  String get restoreThisWeek => 'Restore this week';
+  String get restoreThisWeek => 'Deze week herstellen';
 
   @override
   String get allAlarms => 'All alarms';
 
   @override
-  String get timesAndSound => 'Times & sound';
+  String get timesAndSound => 'Tijden & geluid';
 
   @override
   String get changeCity => 'Change city';
 
   @override
-  String get useMyLocation => 'Use my location';
+  String get useMyLocation => 'Mijn locatie gebruiken';
 
   @override
-  String get locationUnavailable => 'Location is temporarily unavailable. Try again or choose a city.';
+  String get locationUnavailable =>
+      'De locatie is tijdelijk niet beschikbaar. Probeer het opnieuw of kies een stad.';
 
   @override
-  String get locationReview => 'Confirm this location';
+  String get locationReview => 'Deze locatie bevestigen';
 
   @override
   String get locationDeviceOnly =>
-      'This location is saved only on this device. Check the timezone and Israel setting before using these times.';
+      'Deze locatie wordt alleen op dit apparaat bewaard. Controleer de tijdzone en de Israël-instelling voordat je deze tijden gebruikt.';
 
   @override
   String timesIn(String city, String zone) {
-    return '$city · $zone · city time';
+    return '$city · $zone · plaatselijke tijd';
   }
 
   @override
-  String get preparationOff => 'Preparation reminders are off. Havdalah and ordinary alarms are unchanged.';
+  String get preparationOff =>
+      'Herinneringen voor de voorbereiding staan uit. Havdala en gewone wekkers blijven ongewijzigd.';
 
   @override
   String get preparationSkipped =>
-      'Preparation reminders are skipped this week. Your weekly settings are kept.';
+      'Herinneringen voor de voorbereiding worden deze week overgeslagen. Je weekinstellingen blijven bewaard.';
 
   @override
-  String get shabbatControls => 'Shabbat controls';
+  String get shabbatControls => 'Sjabbat-bediening';
 
   @override
-  String get duringAfterShabbat => 'During / after Shabbat';
+  String get duringAfterShabbat => 'Tijdens / na Sjabbat';
 
   @override
   String locationCoordinates(String latitude, String longitude) {
-    return 'Latitude $latitude · longitude $longitude';
+    return 'Breedtegraad $latitude · lengtegraad $longitude';
   }
 
   @override
-  String get currentLocation => 'Current location';
+  String get currentLocation => 'Huidige locatie';
 
   @override
-  String get testPushoverSound => 'Test sound on Pushover';
+  String get testPushoverSound => 'Geluid testen op Pushover';
 
   @override
   String get pushoverSoundTestHint =>
-      'Plays the selected sound on your selected Pushover devices. Silent and quiet-hour settings still apply.';
+      'Speelt het gekozen geluid af op je geselecteerde Pushover-apparaten. Instellingen voor stil en rusturen blijven gelden.';
 
   @override
-  String get pushoverShareDevices => 'Share credentials with my devices';
+  String get pushoverShareDevices => 'Inloggegevens delen met mijn apparaten';
 
   @override
   String get pushoverShareHint =>
-      'Your Pushover user key and app token can follow your signed-in account across Quando? and Matai?.';
+      'Je Pushover-gebruikerssleutel en app-token kunnen je ingelogde account volgen in Quando? en Matai?.';
 
   @override
-  String get pushoverShareQueued => 'Credentials queued for your signed-in devices.';
+  String get pushoverShareQueued => 'Inloggegevens staan klaar voor je ingelogde apparaten.';
 
   @override
   String get pushoverShareSignIn =>
-      'Sign in to the same app account on each device to share Pushover credentials.';
+      'Log op elk apparaat in met hetzelfde appaccount om Pushover-gegevens te delen.';
 
   @override
   String get smartHomeHeading => 'Smart home';
 
   @override
   String get smartHomeHint =>
-      'Run Tuya scenes directly, or connect your own Home Assistant or Node-RED automations.';
+      'Voer Tuya-scènes direct uit, of koppel je eigen Home Assistant- of Node-RED-automatiseringen.';
 
   @override
-  String get shareServices => 'Share service connections';
+  String get shareServices => 'Servicekoppelingen delen';
 
   @override
   String get shareServicesHint =>
-      'Use the same app account on your devices to share Pushover, Tuya, Spotify library and automation connections. YouTube and device permissions may still need approval on each device.';
+      'Gebruik hetzelfde appaccount op je apparaten om koppelingen met Pushover, Tuya, de Spotify-bibliotheek en automatiseringen te delen. YouTube en apparaatrechten moeten mogelijk op elk apparaat nog worden goedgekeurd.';
 
   @override
   String get tuyaSetupHint =>
-      'Use your linked Tuya developer project. Enter its data center, Access ID, Access Secret and the UID shown under Link App Account. No Home Assistant needed.';
+      'Gebruik je gekoppelde Tuya-ontwikkelaarsproject. Vul het datacenter, de Access ID, het Access Secret en de UID in die onder “Link App Account” staat. Home Assistant is niet nodig.';
 
   @override
   String get tuyaDataCenter => 'Data center';
 
   @override
-  String get tuyaUserId => 'Linked account UID';
+  String get tuyaUserId => 'UID van het gekoppelde account';
 
   @override
   String get tuyaAccessId => 'Access ID / Client ID';
@@ -2338,48 +2419,48 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get tuyaNoScenes =>
-      'No available Tap-to-Run scenes found. Check the linked account, data center and scene API permissions.';
+      'Geen beschikbare Tap-to-Run-scènes gevonden. Controleer het gekoppelde account, het datacenter en de rechten van de scène-API.';
 
   @override
-  String get tuyaRunNow => 'Run scene now';
+  String get tuyaRunNow => 'Scène nu uitvoeren';
 
   @override
-  String get tuyaRunConfirm => 'Run this scene on your Tuya devices now?';
+  String get tuyaRunConfirm => 'Deze scène nu uitvoeren op je Tuya-apparaten?';
 
   @override
-  String get tuyaSent => 'Tuya accepted the scene command. Check your devices.';
+  String get tuyaSent => 'Tuya heeft het scène-commando geaccepteerd. Controleer je apparaten.';
 
   @override
   String get tuyaFailed =>
-      'Tuya could not complete the request. Check project permissions, data center and subscription. Error:';
+      'Tuya kon het verzoek niet afronden. Controleer de projectrechten, het datacenter en het abonnement. Fout:';
 
   @override
-  String get tuyaAlarmScene => 'Tuya scene when this alarm rings';
+  String get tuyaAlarmScene => 'Tuya-scène wanneer deze wekker overgaat';
 
   @override
   String get homeAssistantHowTo =>
-      'Create a Home Assistant automation with a Webhook trigger accepting POST and JSON. Paste its URL here. Use the alarm event (ring, stopped, snoozed or auto_stopped) to choose your actions. New devices receive this connection switched off.';
+      'Maak een Home Assistant-automatisering met een Webhook-trigger die POST en JSON accepteert. Plak de URL hier. Gebruik de wekkergebeurtenis (ring, stopped, snoozed of auto_stopped) om je acties te kiezen. Nieuwe apparaten krijgen deze koppeling uitgeschakeld.';
 
   @override
   String get nodeRedHowTo =>
-      'Use a Node-RED HTTP In node accepting POST, followed by your automation and an HTTP Response node. Paste the endpoint here. Local HTTP hubs and HTTPS endpoints are supported.';
+      'Gebruik een Node-RED HTTP In-node die POST accepteert, gevolgd door je automatisering en een HTTP Response-node. Plak het eindpunt hier. Lokale HTTP-hubs en HTTPS-eindpunten worden ondersteund.';
 
   @override
-  String get smartHomeConnect => 'Connect a smart-home service';
+  String get smartHomeConnect => 'Een slimme-woningservice koppelen';
 
   @override
-  String get automationTestHint => 'Testing runs the connected automation immediately.';
+  String get automationTestHint => 'Bij testen wordt de gekoppelde automatisering direct uitgevoerd.';
 
   @override
-  String get smartHomeDeviceOn => 'Run smart-home alarm actions on this device';
+  String get smartHomeDeviceOn => 'Slimme-woningacties van wekkers op dit apparaat uitvoeren';
 
   @override
   String get smartHomeDeviceHint =>
-      'Choose one device to run your automations. Connections are shared; this switch stays on this device.';
+      'Kies één apparaat om je automatiseringen uit te voeren. Koppelingen worden gedeeld; deze schakelaar blijft op dit apparaat.';
 
   @override
   String get smartHomeDeviceOff =>
-      'Alarm actions are off on this device. Enable them in Connections; manual scene tests still work.';
+      'Wekkeracties staan uit op dit apparaat. Zet ze aan bij Koppelingen; handmatige scènetests werken nog steeds.';
 
   @override
   String get homeDisplay => 'Home display';
@@ -2400,22 +2481,22 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyLabel => 'Sky';
 
   @override
-  String get weatherSwipeHint => 'Swipe between sky and weather';
+  String get weatherSwipeHint => 'Veeg tussen hemel en weer';
 
   @override
-  String get parashaHeading => 'Weekly parashah';
+  String get parashaHeading => 'Wekelijkse parasja';
 
   @override
-  String get dailyStudyHeading => 'Daily learning';
+  String get dailyStudyHeading => 'Dagelijks leren';
 
   @override
   String get courseDaf => 'Daf Yomi';
 
   @override
-  String get courseRambam1 => 'Rambam · 1 chapter/day';
+  String get courseRambam1 => 'Rambam · 1 hoofdstuk per dag';
 
   @override
-  String get courseRambam3 => 'Rambam · 3 chapters/day';
+  String get courseRambam3 => 'Rambam · 3 hoofdstukken per dag';
 
   @override
   String get courseMitzvot => 'Sefer HaMitzvot';
@@ -2436,13 +2517,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get nightfallLabel => 'Nightfall';
 
   @override
-  String get moonAlwaysUp => 'Moon above horizon all day';
+  String get moonAlwaysUp => 'Maan de hele dag boven de horizon';
 
   @override
-  String get moonAlwaysDown => 'Moon below horizon all day';
+  String get moonAlwaysDown => 'Maan de hele dag onder de horizon';
 
   @override
-  String get noRiseToday => 'No rise today';
+  String get noRiseToday => 'Vandaag geen opkomst';
 
   @override
   String get noSetToday => 'No set today';
@@ -2451,25 +2532,25 @@ class AppLocalizationsNl extends AppLocalizations {
   String get moonNew => 'New moon';
 
   @override
-  String get moonWaxingCrescent => 'Waxing crescent';
+  String get moonWaxingCrescent => 'Wassende sikkel';
 
   @override
-  String get moonFirstQuarter => 'First quarter';
+  String get moonFirstQuarter => 'Eerste kwartier';
 
   @override
-  String get moonWaxingGibbous => 'Waxing gibbous';
+  String get moonWaxingGibbous => 'Wassende maan';
 
   @override
   String get moonFull => 'Full moon';
 
   @override
-  String get moonWaningGibbous => 'Waning gibbous';
+  String get moonWaningGibbous => 'Afnemende maan';
 
   @override
   String get moonLastQuarter => 'Last quarter';
 
   @override
-  String get moonWaningCrescent => 'Waning crescent';
+  String get moonWaningCrescent => 'Afnemende sikkel';
 
   @override
   String get moonIlluminated => 'illuminated';
@@ -2490,13 +2571,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherFog => 'Fog';
 
   @override
-  String get weatherThunder => 'Thunderstorms';
+  String get weatherThunder => 'Onweer';
 
   @override
-  String get weatherUnavailable => 'Weather is temporarily unavailable';
+  String get weatherUnavailable => 'Weer tijdelijk niet beschikbaar';
 
   @override
-  String get weatherCached => 'Saved forecast';
+  String get weatherCached => 'Opgeslagen voorspelling';
 
   @override
   String get weatherUpdated => 'Updated';
@@ -2505,26 +2586,27 @@ class AppLocalizationsNl extends AppLocalizations {
   String get weatherForecast => 'Forecast';
 
   @override
-  String get weatherThunderExpected => 'Thunderstorms forecast';
+  String get weatherThunderExpected => 'Onweer voorspeld';
 
   @override
-  String get learningUnavailable => 'Connect to load this month’s learning schedule';
+  String get learningUnavailable => 'Maak verbinding om het leerschema van deze maand te laden';
 
   @override
-  String get festivalReading => 'Festival Torah reading';
+  String get festivalReading => 'Feestdag-Torahlezing';
 
   @override
-  String get learningCalendarSource => 'Learning calendar · Hebcal · CC BY 4.0';
+  String get learningCalendarSource => 'Leerkalender · Hebcal · CC BY 4.0';
 
   @override
-  String get weatherSource => 'Forecast · MET Norway · CC BY 4.0';
+  String get weatherSource => 'Voorspelling · MET Norway · CC BY 4.0';
 
   @override
-  String get weatherConsent => 'Weather for your selected city. Uses rounded coordinates with MET Norway.';
+  String get weatherConsent =>
+      'Het weer voor de gekozen stad. Gebruikt afgeronde coördinaten met MET Norway.';
 
   @override
   String get learningConsent =>
-      'Rambam and other study schedules are loaded from Hebcal and saved for offline use.';
+      'Rambam- en andere studieschema’s worden geladen van Hebcal en opgeslagen voor offline gebruik.';
 
   @override
   String get homeRefresh => 'Refresh';
@@ -2536,14 +2618,14 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyShabbat => 'Shabbat city';
 
   @override
-  String get skyReferenceCity => 'Timezone reference city';
+  String get skyReferenceCity => 'Referentiestad voor de tijdzone';
 
   @override
-  String get skyChooseCity => 'Choose sky city';
+  String get skyChooseCity => 'Hemelstad kiezen';
 
   @override
   String get skyCityExplain =>
-      'Sun and Moon use this city’s coordinates. Your Shabbat city and alarm timezone stay as chosen.';
+      'Zon en Maan gebruiken de coördinaten van deze stad. Je Sjabbat-stad en de tijdzone van je wekkers blijven zoals gekozen.';
 
   @override
   String get skySun => 'Sun today';
@@ -2552,46 +2634,48 @@ class AppLocalizationsNl extends AppLocalizations {
   String get skyMoon => 'Moon today';
 
   @override
-  String get moonAboveHorizon => 'Moon above the horizon';
+  String get moonAboveHorizon => 'Maan boven de horizon';
 
   @override
-  String get moonBelowHorizon => 'Moon below the horizon';
+  String get moonBelowHorizon => 'Maan onder de horizon';
 
   @override
-  String get moonNextNew => 'Next new moon';
+  String get moonNextNew => 'Volgende nieuwe maan';
 
   @override
-  String get moonNextFull => 'Next full moon';
+  String get moonNextFull => 'Volgende volle maan';
 
   @override
-  String get locationServicesOff => 'Location Services is off. Turn it on in Settings or choose a city.';
+  String get locationServicesOff =>
+      'Locatievoorzieningen staan uit. Zet ze aan in Instellingen of kies een stad.';
 
   @override
-  String get locationDenied => 'Location access was denied. Allow it in Settings or choose a city.';
+  String get locationDenied =>
+      'Toegang tot de locatie is geweigerd. Sta het toe in Instellingen of kies een stad.';
 
   @override
   String get locationTimedOut =>
-      'No location fix yet. On Mac, keep Wi-Fi on and try again, or choose a city.';
+      'Nog geen locatie. Laat op de Mac wifi aan staan en probeer het opnieuw, of kies een stad.';
 
   @override
   String get locationTimeZoneUnavailable =>
-      'Use a city in the selected timezone, or follow your device timezone before using location.';
+      'Gebruik een stad in de gekozen tijdzone, of volg de tijdzone van je apparaat voordat je de locatie gebruikt.';
 
   @override
-  String get locationSettings => 'Open location settings';
+  String get locationSettings => 'Locatie-instellingen openen';
 
   @override
-  String get locationLooking => 'Getting a location fix…';
+  String get locationLooking => 'Locatie bepalen…';
 
   @override
-  String get skyMoonDisplay => 'Show Moon: rise, set and phase';
+  String get skyMoonDisplay => 'Maan tonen: opkomst, ondergang en fase';
 
   @override
   String get tuyaConsumerPending =>
-      'Account sign-in isn’t available in this build yet. If you already have a Tuya developer project, use Advanced setup.';
+      'Inloggen met een account is in deze versie nog niet beschikbaar. Heb je al een Tuya-ontwikkelaarsproject, gebruik dan de geavanceerde instelling.';
 
   @override
-  String get tuyaAdvanced => 'Advanced setup';
+  String get tuyaAdvanced => 'Geavanceerde instelling';
 
   @override
   String get tuyaSignInTitle => 'Inloggen met je Smart Life-account';
@@ -2636,23 +2720,24 @@ class AppLocalizationsNl extends AppLocalizations {
   String get roshHodeshHeading => 'Rosh Hodesh';
 
   @override
-  String get roshHodeshExplain => 'Show the next Hebrew month’s first day or two days on Home.';
+  String get roshHodeshExplain =>
+      'Toont op Home de eerste dag of twee dagen van de volgende Hebreeuwse maand.';
 
   @override
-  String get roshHodeshNext => 'Next Rosh Hodesh';
+  String get roshHodeshNext => 'Volgende Rosj Chodesj';
 
   @override
-  String get roshHodeshBegins => 'Begins at sunset on';
+  String get roshHodeshBegins => 'Begint bij zonsondergang op';
 
   @override
-  String get openParashaSefaria => 'Read this Torah portion on Sefaria';
+  String get openParashaSefaria => 'Deze Torahlezing lezen op Sefaria';
 
   @override
   String get skyMyLocation => 'My location';
 
   @override
   String get skyLocationLocalTimes =>
-      'Sky times use this location’s timezone. Your alarm-clock timezone and Shabbat city stay unchanged. Saved only on this device.';
+      'Hemeltijden gebruiken de tijdzone van deze locatie. De tijdzone van je wekkers en je Sjabbat-stad blijven ongewijzigd. Alleen op dit apparaat bewaard.';
 
   @override
   String get musicRingDurationHint =>
@@ -2815,19 +2900,19 @@ class AppLocalizationsNl extends AppLocalizations {
   String get keysShareNeedsPassphrase => 'Kies eerst een sync-wachtzin, onder Sleutels op je apparaten.';
 
   @override
-  String get settingsAlarmDefaults => 'Alarm defaults';
+  String get settingsAlarmDefaults => 'Standaardinstellingen voor wekkers';
 
   @override
-  String get settingsPlacesTime => 'Places & time';
+  String get settingsPlacesTime => 'Plaatsen & tijd';
 
   @override
-  String get settingsLook => 'Look, language & quotes';
+  String get settingsLook => 'Uiterlijk, taal & citaten';
 
   @override
   String get settingsAbout => 'About';
 
   @override
-  String get defaultForNewAlarms => 'Default for new alarms';
+  String get defaultForNewAlarms => 'Standaard voor nieuwe wekkers';
 
   @override
   String get preview => 'Preview';
@@ -2838,13 +2923,13 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get connectACalendar => 'Connect a calendar';
+  String get connectACalendar => 'Een agenda koppelen';
 
   @override
-  String get newFromReadyMade => 'From a ready-made';
+  String get newFromReadyMade => 'Uit een kant-en-klare';
 
   @override
-  String get newFromReadyMadeHint => 'Sunrise, sunset and other alarms that are already set up for you';
+  String get newFromReadyMadeHint => 'Zonsopgang, zonsondergang en andere wekkers die al voor je klaarstaan';
 
   @override
   String get calendarSourcesIntro =>
@@ -2964,8 +3049,8 @@ class AppLocalizationsNl extends AppLocalizations {
     String _temp0 = intl.Intl.pluralLogic(
       n,
       locale: localeName,
-      one: '1 seconde ervoor',
       other: '$n seconden ervoor',
+      one: '1 seconde ervoor',
     );
     return '$_temp0';
   }
@@ -2996,13 +3081,13 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String seqEverySeconds(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 seconde', other: '$n seconden');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n seconden', one: '1 seconde');
     return '$_temp0';
   }
 
   @override
   String seqEveryMinutes(int n) {
-    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, one: '1 minuut', other: '$n minuten');
+    String _temp0 = intl.Intl.pluralLogic(n, locale: localeName, other: '$n minuten', one: '1 minuut');
     return '$_temp0';
   }
 
@@ -3054,7 +3139,8 @@ class AppLocalizationsNl extends AppLocalizations {
   String get homeEdit => 'Arrange home';
 
   @override
-  String get homeEditHint => 'Drag the handle to move a card, fold it, or change its size.';
+  String get homeEditHint =>
+      'Sleep aan de greep om een kaart te verplaatsen, in te klappen of van grootte te veranderen.';
 
   @override
   String get homeReset => 'Reset layout';
@@ -3075,25 +3161,608 @@ class AppLocalizationsNl extends AppLocalizations {
   String get homeBlockClock => 'CLOCK';
 
   @override
-  String get homeBlockSky => 'SUN, MOON AND WEATHER';
+  String get homeBlockSky => 'ZON, MAAN EN WEER';
 
   @override
   String get homeBlockQuick => 'QUICK ALARMS';
 
   @override
-  String get homeBlockShabbat => 'SHABBAT AND HOLIDAYS';
+  String get homeBlockShabbat => 'SJABBAT EN FEESTDAGEN';
 
   @override
-  String get homePlaceTitle => 'City for the sky';
+  String get homePlaceTitle => 'Stad voor de hemel';
 
   @override
   String nextAlarmLine(String title, String time) {
-    return 'Next alarm · $title $time';
+    return 'Volgende wekker · $title $time';
   }
 
   @override
-  String get showAllAlarms => 'Show all days';
+  String get showAllAlarms => 'Alle dagen tonen';
 
   @override
-  String get noAlarmsThatDay => 'Nothing rings this day';
+  String get noAlarmsThatDay => 'Op deze dag gaat niets af';
+
+  @override
+  String get homeClockSize => 'Klok op het beginscherm';
+
+  @override
+  String get sizeSmall => 'Klein';
+
+  @override
+  String get sizeMedium => 'Middel';
+
+  @override
+  String get sizeLarge => 'Groot';
+
+  @override
+  String get homeLayout => 'Indeling startscherm';
+
+  @override
+  String get homeLayoutClassic => 'Klassiek';
+
+  @override
+  String get homeLayoutCards => 'Kaarten';
+
+  @override
+  String get homeCardsHint =>
+      'Sleep een kaart om hem te verplaatsen. Sleep de rand of hoek om de grootte te wijzigen, of kies een maat.';
+
+  @override
+  String get homeAddCard => 'Kaart toevoegen';
+
+  @override
+  String get homeOnHome => 'Op startscherm';
+
+  @override
+  String get homeRemoveCard => 'Verwijderen';
+
+  @override
+  String get cardNext => 'Volgende wekker';
+
+  @override
+  String get cardClock => 'Klok en datum';
+
+  @override
+  String get cardSky => 'Zon, maan en weer';
+
+  @override
+  String get cardMoon => 'Maan';
+
+  @override
+  String get cardWeather => 'Weer';
+
+  @override
+  String get cardAlarms => 'Je wekkers';
+
+  @override
+  String get cardQuick => 'Snelle wekkers';
+
+  @override
+  String get cardTools => 'Stopwatch, timer en klaar';
+
+  @override
+  String get cardWorld => 'Wereldklokken';
+
+  @override
+  String get cardWeek => 'Deze week';
+
+  @override
+  String get cardShabbat => 'Sjabbat en feestdagen';
+
+  @override
+  String get ringAtEventReminders => 'Afgaan bij de eigen herinneringen van het afspraak';
+
+  @override
+  String get ringAtEventRemindersHint =>
+      'De herinneringen uit je agenda-app gaan hier af als luide wekkers, met het geluid van deze wekker.';
+
+  @override
+  String get atEventReminders => 'bij de herinneringen van de afspraak';
+
+  @override
+  String get everyEventReminderLoud => 'Luid afgaan bij de herinneringen van elke afspraak';
+
+  @override
+  String get loudNotificationsHeading => 'LUIDE AGENDAMELDINGEN';
+
+  @override
+  String get loudNotificationsTitle => 'Agendameldingen luid maken';
+
+  @override
+  String get loudNotificationsHint =>
+      'Toont een agenda-app een herinnering, dan laat Quando? die afgaan als wekker, ook als je telefoon op stil staat.';
+
+  @override
+  String get loudNotificationsDisclosureTitle => 'Quando? agendameldingen laten lezen?';
+
+  @override
+  String get loudNotificationsDisclosure =>
+      'Om je agendaherinneringen luid te laten afgaan, heeft Quando? toegang tot meldingen nodig. Het kijkt alleen naar meldingen van de agenda-apps die je kiest, leest titel en tekst op deze telefoon om ze bij de wekker te tonen, en bewaart of verstuurt ze nooit. Je kunt dit altijd uitzetten.';
+
+  @override
+  String get loudNotificationsAgree => 'Akkoord en doorgaan';
+
+  @override
+  String get loudNotificationsNoAccess =>
+      'Toegang tot meldingen staat uit. Zet Quando? aan in de lijst die opent.';
+
+  @override
+  String get loudNotificationsAllow => 'Toestaan';
+
+  @override
+  String get loudNotificationsNoApps => 'Geen ondersteunde agenda-app gevonden op deze telefoon.';
+
+  @override
+  String get loudNotificationsTwiceNote => 'Afspraken met al een Quando?-agendawekker gaan maar één keer af.';
+
+  @override
+  String get loudNotificationsShabbatNote => 'Stil tijdens sjabbat en feestdagen.';
+
+  @override
+  String get busyMode => 'Bezet-modus';
+
+  @override
+  String get busyModeSubtitle => 'Niet storen en automatische antwoorden als je bezet bent';
+
+  @override
+  String get busyIntro =>
+      'Terwijl je bezet bent, kan Quando? je telefoon stil zetten en berichten voor je beantwoorden. Wekkers gaan gewoon af.';
+
+  @override
+  String get busyIosFocus =>
+      'Op iPhone en iPad kunnen apps geen focus aanzetten of berichten beantwoorden. Maak in de Opdrachten-app een automatisering \"Als Quando? opent\" of op een tijdstip die een focus aanzet, en laat die focus automatisch antwoorden.';
+
+  @override
+  String get busyWhileHeading => 'TERWIJL JE BEZET BENT';
+
+  @override
+  String get busyDnd => 'Niet storen';
+
+  @override
+  String get busyDndHint =>
+      'Alleen prioriteit: oproepen en berichten stil, wekkers gaan af. Daarna weer normaal.';
+
+  @override
+  String get busyDndNoAccess => 'Quando? mag Niet storen nog niet wijzigen.';
+
+  @override
+  String get busyReplies => 'Berichten beantwoorden';
+
+  @override
+  String get busyRepliesHint =>
+      'Eén keer per persoon, met jouw tekst, via de Beantwoorden-knop van de app. Alleen Android.';
+
+  @override
+  String get busyRepliesDisclosureTitle => 'Quando? berichten laten beantwoorden?';
+
+  @override
+  String get busyRepliesDisclosure =>
+      'Om voor je te antwoorden, heeft Quando? toegang tot meldingen nodig. Alleen terwijl je bezet bent, kijkt het naar berichtmeldingen van de gekozen apps, leest de naam van de afzender op deze telefoon en stuurt je tekst één keer via de Beantwoorden-knop van de app. Berichten worden nooit bewaard of ergens anders heen gestuurd. Groepen worden overgeslagen, tenzij je ze toestaat.';
+
+  @override
+  String get busyReplyText => 'Je antwoord';
+
+  @override
+  String busyReplyTextHint(String until) {
+    return '$until wordt de tijd waarop bezet-modus eindigt.';
+  }
+
+  @override
+  String busyReplyDefault(String until) {
+    return 'Ik ben nu bezet en antwoord na $until.';
+  }
+
+  @override
+  String get busyGroups => 'Ook in groepen antwoorden';
+
+  @override
+  String get busyGroupsHint => 'Uit: groepen krijgen nooit antwoord.';
+
+  @override
+  String get busyRepliesOnShabbat => 'Ook op sjabbat en feestdagen antwoorden';
+
+  @override
+  String get busyAskRabbi => 'Standaard uit. Vraag je rabbijn voor je dit voor sjabbat aanzet.';
+
+  @override
+  String get busyWhenHeading => 'WANNEER JE BEZET BENT';
+
+  @override
+  String get busyWhenHint =>
+      'Zet \"Bezet tijdens deze afspraken\" aan bij een agendawekker, of \"Bezet nadat hij afgaat\" bij een wekker.';
+
+  @override
+  String get busyDuringLock => 'Bezet zolang vergrendelmodus aan staat';
+
+  @override
+  String get busyNoneComing => 'Niets bezet in de komende 7 dagen.';
+
+  @override
+  String get busyDuringEvents => 'Bezet tijdens deze afspraken';
+
+  @override
+  String get busyDuringEventsHint => 'Bezet-modus van begin tot eind van elke afspraak.';
+
+  @override
+  String get busySettings => 'Instellingen bezet-modus';
+
+  @override
+  String get busyAfterRing => 'Bezet nadat hij afgaat';
+
+  @override
+  String get busyAfterRingHint =>
+      'Niet storen en automatische antwoorden voor even, bijv. sporten of een dutje.';
+
+  @override
+  String get shareCard => 'Deel je ochtend';
+
+  @override
+  String get shareCardSubtitle =>
+      'De lucht en het citaat van vandaag, of je eigen foto, voor Stories en status';
+
+  @override
+  String get shareAppMissing => 'Die app staat niet op deze telefoon.';
+
+  @override
+  String get shareAsIs => 'Delen zoals het is';
+
+  @override
+  String get shareTapQuote => 'Tik op het citaat voor een ander.';
+
+  @override
+  String get shareStory => 'Story';
+
+  @override
+  String get shareSquare => 'Vierkant';
+
+  @override
+  String get shareYourWords => 'Je eigen woorden (optioneel)';
+
+  @override
+  String get shareYourWordsHint => 'In plaats van het citaat van vandaag';
+
+  @override
+  String get shareYourPhoto => 'Je foto';
+
+  @override
+  String get shareOtherPhoto => 'Andere foto';
+
+  @override
+  String get shareSkyBack => 'Toch de lucht van vandaag';
+
+  @override
+  String get shareYourVideo => 'Je video';
+
+  @override
+  String get shareInstagramStory => 'Instagram Stories';
+
+  @override
+  String get shareWhatsApp => 'WhatsApp: status of chat';
+
+  @override
+  String get shareMore => 'Meer apps';
+
+  @override
+  String get shareYouPost =>
+      'Quando? opent de app met je kaart klaar. Jij kiest waar en tikt zelf op Plaatsen.';
+
+  @override
+  String get shareAndroidFirst => 'Delen komt binnenkort naar iPhone en iPad.';
+
+  @override
+  String songSaved(String name) {
+    return '“$name” bewaard als wekgeluid';
+  }
+
+  @override
+  String get shareToQuando => 'Deel een nummer met Quando?';
+
+  @override
+  String get shareToQuandoHint =>
+      'Tik in YouTube, YouTube Music, Spotify, SoundCloud of Apple Music op Delen en dan op Quando?. Het wordt een wekgeluid dat in zijn eigen app speelt.';
+
+  @override
+  String get askOption => 'Zeg of typ het';
+
+  @override
+  String get askOptionHint => '‘Morgen om 6 uur’, ‘30 min voor zonsopgang’';
+
+  @override
+  String get askHint => 'bijv. maak me op werkdagen 30 min voor zonsopgang wakker';
+
+  @override
+  String get askListening => 'Aan het luisteren…';
+
+  @override
+  String get askNotUnderstood => 'Ik vond geen tijd. Probeer ‘7 uur op werkdagen’ of ‘over 20 minuten’.';
+
+  @override
+  String askAnswerFromCalendar(String name) {
+    return 'Uit je agenda ‘$name’';
+  }
+
+  @override
+  String get askAnswerBuiltIn => 'Quando?\'s eigen tijden voor je stad';
+
+  @override
+  String get askNoAnswer => 'Nog geen tijd gevonden.';
+
+  @override
+  String get askNoSpeech => 'Spraak is niet beschikbaar op dit apparaat. Je kunt typen.';
+
+  @override
+  String get askShabbatOff => 'Zet Sjabbat aan in Instellingen zodat sjabbattijden afgaan.';
+
+  @override
+  String askSaved(String what) {
+    return 'Bewaard: $what';
+  }
+
+  @override
+  String get askMic => 'Spreek';
+
+  @override
+  String get askMorning => 'Ochtend';
+
+  @override
+  String get askEvening => 'Avond';
+
+  @override
+  String get askUnsure => 'Misschien heb ik iets gemist. Controleer het voor je opslaat.';
+
+  @override
+  String get askTeach => 'Leer me dit';
+
+  @override
+  String askTaught(String phrase, String time) {
+    return 'Begrepen: ‘$phrase’ betekent nu $time.';
+  }
+
+  @override
+  String get askSkipAction => 'Overslaan';
+
+  @override
+  String get askNoMatch => 'Geen wekker past daarbij.';
+
+  @override
+  String askTurnedOff(String what) {
+    return 'Uitgezet: $what';
+  }
+
+  @override
+  String askSkipped(String what) {
+    return 'Overgeslagen: $what';
+  }
+
+  @override
+  String askEventPlan(String offset, String event) {
+    return '$offset ‘$event’ in je agenda';
+  }
+
+  @override
+  String askEventNoCalendar(String event) {
+    return 'Koppel een agenda zodat Quando? ‘$event’ kan vinden.';
+  }
+
+  @override
+  String askSnoozeAll(int minutes) {
+    return 'Snooze: $minutes min, voor deze wekker';
+  }
+
+  @override
+  String askWakeWith(String sound) {
+    return 'Wekt je met $sound';
+  }
+
+  @override
+  String get askReadAs => 'Gelezen als';
+
+  @override
+  String get askHelpTitle => 'Help spraakwekkers te verbeteren';
+
+  @override
+  String get askHelpBody =>
+      'Stuurt anoniem wat je zegt of typt en wat je ermee deed. Geen account of apparaat-ID.';
+
+  @override
+  String get askHelpPromptTitle => 'Quando? helpen je te begrijpen?';
+
+  @override
+  String askHelpPromptBody(String sentence) {
+    return 'We zouden sturen wat je zegt of typt, zoals “$sentence”, en of je het bewaarde. Anoniem: geen naam, account of apparaat-ID. Je kunt het altijd uitzetten.';
+  }
+
+  @override
+  String get askHelpYes => 'Ja, help';
+
+  @override
+  String get askHelpNo => 'Nee bedankt';
+
+  @override
+  String get askQuoteTranslation =>
+      'Het leven is niet wat je geleefd hebt, maar wat je je herinnert en hoe je het je herinnert om het te vertellen.';
+
+  @override
+  String get askHelpQuote => '';
+  String get quickSetups => 'Snel instellen';
+
+  @override
+  String get qsMorningTitle => 'Een ochtend die werkt';
+
+  @override
+  String get qsStartTitle => 'Mis nooit een start';
+
+  @override
+  String get qsStretchTitle => 'Werk in blokken';
+
+  @override
+  String get qsWillChange => 'Wat er verandert';
+
+  @override
+  String get qsAlreadyOn => 'Staat al aan. Niets te wijzigen.';
+
+  @override
+  String get qsApply => 'Toepassen';
+
+  @override
+  String get qsDone => 'Klaar';
+
+  @override
+  String get qsUndo => 'Ongedaan maken';
+
+  @override
+  String get qsSnoozeTimes => 'Toegestane snoozes';
+
+  @override
+  String get qsSnoozeMinutes => 'Snoozeminuten';
+
+  @override
+  String get qsFiveLeft => 'Nog 5 minuten';
+
+  @override
+  String get syncHeading => 'Als de agenda verandert';
+
+  @override
+  String get syncLive => 'De agenda volgen';
+
+  @override
+  String get syncLiveHint =>
+      'Nieuwe afspraken krijgen een wekker. Verzette afspraken nemen hun wekker mee. Verwijderde afspraken verliezen hem.';
+
+  @override
+  String get syncKeepFirst => 'Houden zoals ik het eerst zag';
+
+  @override
+  String get syncKeepFirstHint =>
+      'Nieuwe afspraken krijgen nog steeds een wekker. Eenmaal gezet blijft een wekker staan, ook als de afspraak verzet of verwijderd wordt.';
+
+  @override
+  String get syncSnapshot => 'Alleen afspraken die er nu zijn';
+
+  @override
+  String get syncSnapshotHint =>
+      'Alleen de afspraken die in je agenda staan als je opslaat, zoals ze nu zijn. Later komt er niets nieuws bij.';
+
+  @override
+  String get syncHelpButton => 'Hoe werkt dit';
+
+  @override
+  String get syncHelpTitle => 'Hoe wekkers je agenda volgen';
+
+  @override
+  String get syncHelpIntro =>
+      'Deze regel blijft zoeken naar afspraken die bij je zoekopdracht passen. Jij kiest wat er gebeurt als je agenda verandert.';
+
+  @override
+  String get syncHelpExampleLive =>
+      'Voorbeeld: een regel voor ‘tandarts’. De tandarts verzet de afspraak van dinsdag naar woensdag, en je wekker gaat ook naar woensdag. Wordt de afspraak afgezegd, dan verdwijnt de wekker.';
+
+  @override
+  String get syncHelpExampleKeepFirst =>
+      'Zelfde regel: de afspraak gaat naar woensdag, maar je wekker blijft op dinsdag, zoals Quando? hem eerst zag. Een nieuwe afspraak volgende maand krijgt toch een eigen wekker.';
+
+  @override
+  String get syncHelpExampleSnapshot =>
+      'Zelfde regel: je krijgt wekkers voor de afspraken die vandaag in je agenda staan, en die blijven zo. Een afspraak die volgende maand bijkomt, krijgt geen wekker.';
+
+  @override
+  String get syncHelpTip => 'Twijfel je? Laat ‘De agenda volgen’ staan.';
+
+  @override
+  String get syncHelpWhenTitle => 'Wanneer ziet Quando? veranderingen?';
+
+  @override
+  String get syncHelpWhenOpen =>
+      'Als Quando? open is: binnen seconden. Google Agenda die hier is gekoppeld, wordt elke 2 minuten gecontroleerd.';
+
+  @override
+  String get syncHelpWhenClosed =>
+      'Als Quando? dicht is: de volgende keer dat je het opent. Tot dan gaan gezette wekkers af op hun oude tijden.';
+
+  @override
+  String get syncHelpWhenClosedApple =>
+      'iPhone en iPad laten apps de agenda niet op de achtergrond volgen, dus wijzigingen komen binnen als je Quando? opent.';
+
+  @override
+  String get tapMiddleToStop => 'Tik in het midden om te stoppen';
+
+  @override
+  String get uiSimple => 'Eenvoudig';
+
+  @override
+  String get uiEverything => 'Alles';
+
+  @override
+  String get firstRunTitle => 'Hoeveel wil je zien?';
+
+  @override
+  String get firstRunSimpleHint => 'Wekkers en de basis';
+
+  @override
+  String get firstRunEverythingHint => 'Agenda, Sjabbat, timers, weer en meer';
+
+  @override
+  String get firstRunChangeLater => 'Je kunt dit altijd wijzigen in Instellingen.';
+
+  @override
+  String get continueLabel => 'Doorgaan';
+
+  @override
+  String get everyAlarm => 'Elke wekker';
+
+  @override
+  String get wakeMeWith => 'Wek me met';
+
+  @override
+  String get ringOrMusic => 'Beltoon of muziek';
+
+  @override
+  String get ringsForRow => 'Gaat af gedurende';
+
+  @override
+  String gentleBeforeValue(int minutes) {
+    return '$minutes min ervoor';
+  }
+
+  @override
+  String get quandoSounds => 'Quando?-geluiden';
+
+  @override
+  String get aSongApps => 'Een nummer (Spotify, YouTube…)';
+
+  @override
+  String get myRecording => 'Mijn opname';
+
+  @override
+  String get useForNewAlarms => 'Gebruiken voor nieuwe wekkers';
+
+  @override
+  String get iWillLabel => 'Als dit afgaat, ga ik…';
+
+  @override
+  String get foldVolume => 'Volume en fades';
+
+  @override
+  String get foldSnoozeStop => 'Snooze en stop';
+
+  @override
+  String get foldExtras => 'Agenda en extra’s';
+
+  @override
+  String get groupAlarms => 'Wekkers';
+
+  @override
+  String get groupCalendarShabbat => 'Agenda en Sjabbat';
+
+  @override
+  String get groupLookQuotes => 'Uiterlijk en citaten';
+
+  @override
+  String get groupConnectionsSync => 'Koppelingen en sync';
+
+  @override
+  String qsSummary(int count, int on) {
+    return '$count setups · $on aan';
+  }
 }

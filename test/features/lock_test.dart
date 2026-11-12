@@ -36,7 +36,9 @@ void main() {
 
   test('calendar events with the keyword lock from start to end', () {
     final periods = lockPeriods(
-      settings: const LockSettings(calendarKeyword: 'exam'),
+      settings: const LockSettings(
+        calendarLocks: [CalendarLock(id: 'k', startQuery: 'exam')],
+      ),
       holy: const [],
       now: _now,
       calendarEvents: [
@@ -99,7 +101,10 @@ void main() {
       ),
     ];
     final merged = lockPeriods(
-      settings: const LockSettings(shabbat: true, calendarKeyword: 'lock'),
+      settings: const LockSettings(
+        shabbat: true,
+        calendarLocks: [CalendarLock(id: 'k', startQuery: 'lock')],
+      ),
       holy: holy,
       calendarEvents: cal,
       now: _now,
@@ -107,7 +112,10 @@ void main() {
     expect(merged.end, DateTime.utc(2026, 11, 7, 20));
     expect(
       lockPeriods(
-        settings: const LockSettings(shabbat: true, calendarKeyword: 'lock'),
+        settings: const LockSettings(
+          shabbat: true,
+          calendarLocks: [CalendarLock(id: 'k', startQuery: 'lock')],
+        ),
         holy: holy,
         calendarEvents: cal,
         now: _now,

@@ -1,0 +1,14 @@
+{
+  "id": "redesign-localization-matai-sync-calendar-picker",
+  "title": "Redesign, localization, Matai?, sync, calendar picker",
+  "status": "done",
+  "tag": "app",
+  "note": "Merged into main earlier (PRs #1 to #5, #10, #15).",
+  "threads": [
+    "plan",
+    "redesign",
+    "local"
+  ],
+  "details": "Earlier work already merged into main.",
+  "order": 14
+}
