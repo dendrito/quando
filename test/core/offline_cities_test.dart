@@ -4,8 +4,9 @@ import 'package:quando/core/geo/offline_cities.dart';
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
 
-  test('a fix in Rio is named Rio de Janeiro, not one of its districts', () async {
-    expect(await OfflineCities.nearest(-22.916, -43.182), 'Rio de Janeiro');
+  test('a fix in Rio names the district and the city', () async {
+    expect(await OfflineCities.nearest(-22.916, -43.182), 'Santa Teresa, Rio de Janeiro');
+    expect(await OfflineCities.nearest(-22.906, -43.182), 'Rio de Janeiro');
   });
 
   test('the centre of Niterói is named Niterói, not its larger neighbour', () async {
