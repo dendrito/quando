@@ -52,3 +52,12 @@ Each plan in `"plans"` has an `id`, a `status` (`proposed` until you agree, then
 ## One source of truth for Claude too
 
 `dashboard/cards/` and `dashboard/board.json` on `main` are the project's task list. Your edits there are the latest word. Every Claude thread should read it before starting work and treat it as overriding older chat. When a thread finishes something it should update the card, not just say so in chat.
+
+## Editing without a token (Cloudflare Access)
+
+`functions/api/gh/[[path]].js` is a Pages Function. When it is configured, the board skips the paste-a-token dialog: Cloudflare Access signs you in, and the function writes to GitHub with a secret kept in Cloudflare. It only touches `dashboard/cards/*.json` and `dashboard/board.json`, and reads pulls, issues and builds.
+
+One-time setup:
+1. Cloudflare Zero Trust → Access → Applications → add a self-hosted app for `board.quando.day` (and `quando-board.pages.dev`), policy: allow your email only. Copy the application's **AUD tag**.
+2. Pages project `quando-board` → Settings → Variables and Secrets (Production): `GH_TOKEN` (secret, fine-grained token on this repo: Contents read/write, Pull requests read, Issues read, Actions read), `ACCESS_TEAM` (your Zero Trust team name, the part before `.cloudflareaccess.com`), `ACCESS_AUD` (the AUD tag).
+3. Redeploy. If anything is missing the function answers 503 and the board falls back to the token dialog.
