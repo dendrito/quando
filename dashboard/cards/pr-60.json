@@ -1,0 +1,15 @@
+{
+  "id": "pr-60",
+  "title": "Hide the Weather card when Weather is off",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    60
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 158,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkByvsuBMKFFed9f5nfwSy11"
+  ]
+}
