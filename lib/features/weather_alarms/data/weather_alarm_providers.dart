@@ -59,7 +59,7 @@ class WeatherAlertsNotifier extends Notifier<List<WeatherAlert>> {
       if (state.isNotEmpty) _set(const []);
       return;
     }
-    final place = ref.read(skyPlaceProvider);
+    final place = ref.read(weatherPlaceProvider);
     if (place == null) return;
     try {
       final now = ref.read(clockProvider)();

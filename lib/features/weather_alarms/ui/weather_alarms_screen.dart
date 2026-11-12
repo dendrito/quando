@@ -6,6 +6,7 @@ import '../../../app/theme.dart';
 import '../../../core/util/platform.dart';
 import '../../../l10n/l10n.dart';
 import '../../home/data/weather_repository.dart';
+import '../../shabbat/ui/city_picker.dart';
 import '../data/weather_alarm_alarms.dart';
 import '../data/weather_alarm_providers.dart';
 import '../domain/weather_alarms.dart';
@@ -43,7 +44,14 @@ class WeatherAlarmsScreen extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final s = ref.watch(weatherAlarmSettingsProvider);
     final alerts = ref.watch(weatherAlertsProvider);
-    final hasPlace = ref.watch(skyPlaceProvider) != null;
+    final weatherPlace = ref.watch(weatherPlaceProvider);
+    final hasPlace = weatherPlace != null;
+    final ownPlace = ref.watch(weatherLocationProvider) != null;
+    void pickPlace(bool locate) {
+      final page = CityPicker(forWeather: true, locateOnOpen: locate);
+      Navigator.of(context).push<void>(MaterialPageRoute(builder: (_) => page));
+    }
+
     final shabbat = ref.watch(shabbatInUseProvider);
     final loc = MaterialLocalizations.of(context);
     String clock(int minutes) => loc.formatTimeOfDay(TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60));
@@ -83,6 +91,20 @@ class WeatherAlarmsScreen extends ConsumerWidget {
             value: s.enabled,
             onChanged: (v) => update((s) => s.copyWith(enabled: v)),
           ),
+          if (s.enabled) ...[
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(ownPlace ? Icons.my_location : Icons.place_outlined),
+              title: Text(weatherPlace?.name ?? l10n.skyChooseCity),
+              onTap: () => pickPlace(false),
+            ),
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: const Icon(Icons.my_location),
+              title: Text(l10n.useMyLocation),
+              onTap: () => pickPlace(true),
+            ),
+          ],
           if (s.enabled && !hasPlace)
             ListTile(
               contentPadding: EdgeInsets.zero,

@@ -27,7 +27,15 @@ class _ZonePickerState extends State<_ZonePicker> {
   Widget build(BuildContext context) {
     final now = DateTime.now().toUtc();
     final q = _query.toLowerCase().replaceAll(' ', '_');
-    final shown = q.isEmpty ? _all : _all.where((z) => z.toLowerCase().contains(q)).toList();
+    // Names people search by that are not a zone's own city name.
+    const aliases = {'rio': 'sao_paulo', 'rio_de_janeiro': 'sao_paulo'};
+    final alias = aliases[q];
+    final shown = q.isEmpty
+        ? _all
+        : _all.where((z) {
+            final l = z.toLowerCase();
+            return l.contains(q) || (alias != null && l.contains(alias));
+          }).toList();
     final text = Theme.of(context).textTheme;
 
     return Scaffold(
