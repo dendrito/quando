@@ -44,7 +44,15 @@ class WeatherAlarmsScreen extends ConsumerWidget {
     final text = Theme.of(context).textTheme;
     final s = ref.watch(weatherAlarmSettingsProvider);
     final alerts = ref.watch(weatherAlertsProvider);
-    final hasPlace = ref.watch(weatherPlaceProvider) != null;
+    final weatherPlace = ref.watch(weatherPlaceProvider);
+    final hasPlace = weatherPlace != null;
+    final ownPlace = ref.watch(weatherLocationProvider) != null;
+    void pickPlace(bool locate) {
+      Navigator.of(context).push<void>(
+        MaterialPageRoute(builder: (_) => CityPicker(forWeather: true, locateOnOpen: locate)),
+      );
+    }
+
     final shabbat = ref.watch(shabbatInUseProvider);
     final loc = MaterialLocalizations.of(context);
     String clock(int minutes) => loc.formatTimeOfDay(TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60));
@@ -85,27 +93,17 @@ class WeatherAlarmsScreen extends ConsumerWidget {
             onChanged: (v) => update((s) => s.copyWith(enabled: v)),
           ),
           if (s.enabled) ...[
-            Builder(
-              builder: (context) {
-                final weatherPlace = ref.watch(weatherPlaceProvider);
-                final own = ref.watch(weatherLocationProvider) != null;
-                return ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: Icon(own ? Icons.my_location : Icons.place_outlined),
-                  title: Text(weatherPlace?.name ?? l10n.skyChooseCity),
-                  onTap: () => Navigator.of(context).push<void>(
-                    MaterialPageRoute(builder: (_) => const CityPicker(forWeather: true)),
-                  ),
-                );
-              },
+            ListTile(
+              contentPadding: EdgeInsets.zero,
+              leading: Icon(ownPlace ? Icons.my_location : Icons.place_outlined),
+              title: Text(weatherPlace?.name ?? l10n.skyChooseCity),
+              onTap: () => pickPlace(false),
             ),
             ListTile(
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.my_location),
               title: Text(l10n.useMyLocation),
-              onTap: () => Navigator.of(context).push<void>(
-                MaterialPageRoute(builder: (_) => const CityPicker(forWeather: true, locateOnOpen: true)),
-              ),
+              onTap: () => pickPlace(true),
             ),
           ],
           if (s.enabled && !hasPlace)

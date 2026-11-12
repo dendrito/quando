@@ -160,10 +160,9 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
     // The card follows the sky right now: a starry night, or the day's sky.
     final skyNow = place == null ? sky : SkyDay.of(place, sky.now);
     final nightCard = !skyNow.isDay;
+    final bucket = ref.watch(weatherRepositoryProvider).pollBucket(sky.now);
     final report = options.weather && weatherPlace != null
-        ? ref
-              .watch(weatherReportProvider((weatherPlace, ref.watch(weatherRepositoryProvider).pollBucket(sky.now))))
-              .value
+        ? ref.watch(weatherReportProvider((weatherPlace, bucket))).value
         : null;
     final current = report?.current(sky.now);
     final moonSky = place != null && track != null ? SkyStrip.ofMoon(place, track, report) : null;
