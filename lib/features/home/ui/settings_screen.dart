@@ -519,7 +519,8 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                 if (on)
                   TextButton(
                     style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
-                    onPressed: () => showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
+                    onPressed: () =>
+                        showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
                     child: Text(l10n.deleteAccount),
                   )
                 else if (sync.phase == SyncPhase.verify) ...[
