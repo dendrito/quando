@@ -7,8 +7,8 @@
     "google"
   ],
   "title": "Google 4/6: consent screen branding and scopes",
-  "status": "next",
-  "note": "Branding, calendar.readonly and youtube.readonly, then Publish app.",
+  "status": "done",
+  "note": "Branding and scopes (openid, email, profile, calendar.readonly, youtube.readonly) saved on quando-27c24.",
   "details": "Guide section C, steps 8 to 11. Add only the scopes the app uses.",
   "docs": [
     {
