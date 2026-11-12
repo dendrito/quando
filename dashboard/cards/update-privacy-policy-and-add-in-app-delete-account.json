@@ -1,10 +1,10 @@
 {
   "id": "update-privacy-policy-and-add-in-app-delete-account",
   "title": "Update privacy policy and add in-app delete account",
-  "status": "review",
+  "status": "done",
   "tag": "launch",
   "plan": "business",
-  "note": "Delete account built in sync settings; privacy policy and quando.day/delete-account updated. Firestore rules not yet published.",
+  "note": "Delete account, deletion page and privacy policy are live; Firestore rules published 12 Nov.",
   "threads": [
     "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk4XKJKXjnT5ExNQKZPmNv3k"
   ],
