@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -105,6 +106,23 @@ class _CityPickerState extends ConsumerState<CityPicker> {
     }
   }
 
+  /// The known city within 60 km of the fix, so a fix in Rio reads "Rio de
+  /// Janeiro" instead of its time zone's name ("São Paulo").
+  static String? _nearestCity(double lat, double lon) {
+    String? best;
+    var bestKm = 60.0;
+    for (final p in Places.all) {
+      final dLat = (p.latitude - lat) * 111.2;
+      final dLon = (p.longitude - lon) * 111.2 * math.cos(lat * math.pi / 180);
+      final km = math.sqrt(dLat * dLat + dLon * dLon);
+      if (km < bestKm) {
+        bestKm = km;
+        best = p.name;
+      }
+    }
+    return best;
+  }
+
   static String normalized(String s) {
     const accents = 'áàâãäéèêëíìîïóòôõöúùûüç';
     const plain = 'aaaaaeeeeiiiiooooouuuuc';
@@ -144,7 +162,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  Text(cityOf(zone)),
+                  Text(_nearestCity(point.latitude, point.longitude) ?? cityOf(zone)),
                   if (!widget.forSky)
                     SwitchListTile(
                       title: Text(l10n.inIsraelOneDay),
