@@ -1,7 +1,7 @@
 {
   "id": "pr-60",
   "title": "Hide the Weather card when Weather is off",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     60
