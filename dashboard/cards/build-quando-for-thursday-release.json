@@ -1,7 +1,7 @@
 {
   "id": "build-quando-for-thursday-release",
   "title": "Build Quando? for Thursday release",
-  "status": "waiting",
+  "status": "review",
   "tag": "release",
   "note": "Fresh builds of Quando? from main (with #39, #49, #50, #51): iPad and Mac installed, Android APK built. Waiting on Curió to check the new first-run, Home and ring screens on a phone.",
   "details": "Fixed the build script: iPad and Mac builds hung on Flutter's icon-trimming step, the Mac installer expected the old bundle ID, and the iPad profile had expired. Free-account installs last about 7 days.",
