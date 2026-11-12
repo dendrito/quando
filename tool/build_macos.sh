@@ -21,7 +21,7 @@ restore() {
 }
 trap restore EXIT
 tool/macos_edition.sh "$edition"
-flutter build macos --release --config-only --no-pub --dart-define="QUANDO_EDITION=$edition" \
+flutter build macos --release --config-only --no-pub --no-tree-shake-icons --dart-define="QUANDO_EDITION=$edition" \
   --dart-define="QUANDO_MAC_DIAGNOSTICS=${QUANDO_MAC_DIAGNOSTICS:-false}"
 # Prepare explicitly: Xcode's scheme pre-action can leave an incomplete cached
 # framework after relocating DerivedData. Use Flutter's own engine unpack step.
