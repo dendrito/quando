@@ -1,7 +1,7 @@
 {
   "id": "pr-52",
   "title": "Fix release builds: skip icon trimming, add ship.sh, fix Mac installer ID",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     52
