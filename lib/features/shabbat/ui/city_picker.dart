@@ -9,6 +9,7 @@ import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
 import '../../../core/util/local_time.dart';
 import '../../home/domain/zone_places.dart';
+import '../../weather_alarms/data/weather_alarm_providers.dart';
 import '../domain/place.dart';
 
 Future<void> pickShabbatPlace(BuildContext context) =>

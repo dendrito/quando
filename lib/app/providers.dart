@@ -374,7 +374,8 @@ class WeatherLocationNotifier extends Notifier<Place?> {
     _lastFix = DateTime.now();
     try {
       final point = await ref.read(locationLookupProvider).current();
-      final zone = ref.read(deviceZoneProvider) ?? ref.read(homeZoneProvider);
+      final device = ref.read(deviceZoneProvider);
+      final String zone = device != null ? device : ref.read(homeZoneProvider);
       _store(
         Place(
           name: l10n.currentLocation,
