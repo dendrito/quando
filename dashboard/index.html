@@ -114,7 +114,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   var $ = function (id) { return document.getElementById(id); };
   var esc = function (s) { return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) { return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]; }); };
   var data, prState = {}, query = "", TK = "quando.board.token";
-  var token = ""; try { token = localStorage.getItem(TK) || ""; } catch (e) {}
+  var token = "", viaProxy = false; function can() { return !!(token || viaProxy); } try { token = localStorage.getItem(TK) || ""; } catch (e) {}
 
   function ago(iso) { var d = (Date.now() - new Date(iso).getTime()) / 1000; if (d < 3600) return Math.max(1, Math.round(d / 60)) + " min ago"; if (d < 86400) return Math.round(d / 3600) + " h ago"; return Math.round(d / 86400) + " d ago"; }
   function left(ms) { if (ms <= 0) return "passed"; var m = Math.floor(ms / 60000), d = Math.floor(m / 1440), h = Math.floor(m % 1440 / 60); return d > 0 ? d + " d " + h + " h left" : h + " h " + (m % 60) + " min left"; }
@@ -135,12 +135,12 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     var base = "https://github.com/" + data.repo;
     function gl(path, label) { return '<a class="btn" href="' + base + path + '" target="_blank" rel="noopener">' + label + "</a>"; }
     $("btns").innerHTML =
-      '<button class="btn" id="unlock">' + (token ? "Editing: on" : "Turn on editing") + "</button>" +
+      '<button class="btn" id="unlock">' + (can() ? "Editing: on" : "Turn on editing") + "</button>" +
       gl("/issues/new/choose", "New issue") + gl("/pulls", "All PRs") + gl("/actions", "Builds");
     $("ghlinks").innerHTML = gl("/pulls", "Pull requests") + gl("/issues", "Issues") + gl("/actions", "Builds") + gl("/releases", "Releases") + gl("", "Repository") + gl("/issues/new/choose", "New issue");
     $("unlock").onclick = tokenDialog;
-    $("add").style.display = token ? "" : "none";
-    Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = token ? "" : "none"; });
+    $("add").style.display = can() ? "" : "none";
+    Array.prototype.forEach.call(document.querySelectorAll(".tool"), function (b) { b.style.display = can() ? "" : "none"; });
     $("headline").textContent = data.headline;
     $("updated").textContent = "Board last edited " + data.updated;
   }
@@ -151,7 +151,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("count").innerHTML = next ? esc(left(new Date(next.date) - now)) + "<small>" + esc(next.title) + "</small>" : "";
     $("deadlines").innerHTML = list.map(function (x) {
       var ms = new Date(x.date) - now;
-      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"' + (token ? ' data-d="' + esc(x.title) + '" style="cursor:pointer"' : "") + '><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
+      return '<div class="dl' + (ms <= 0 ? " past" : "") + '"' + (can() ? ' data-d="' + esc(x.title) + '" style="cursor:pointer"' : "") + '><b>' + esc(x.title) + '</b><span class="when">' + esc(fmt(x.date)) + '</span> · <span class="left">' + esc(left(ms)) + "</span>" + (x.note ? '<div class="mute">' + esc(x.note) + "</div>" : "") + "</div>";
     }).join("");
     Array.prototype.forEach.call(document.querySelectorAll("[data-d]"), function (c) { c.onclick = function () { editDate(c.getAttribute("data-d")); }; });
   }
@@ -185,7 +185,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     $("board").innerHTML = data.statuses.map(function (st) {
       var items = [];
       data.items.forEach(function (i, idx) { if (i.status === st.id && (!q || (i.title + " " + (i.note || "") + " " + (i.tag || "")).toLowerCase().indexOf(q) >= 0)) items.push([i, idx]); });
-      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (token ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
+      return '<div class="col"><h3>' + esc(st.label) + "<span>" + (can() ? '<button class="btn addc" data-s="' + esc(st.id) + '" style="padding:0 8px;margin-right:6px">+</button>' : "") + items.length + "</span></h3>" +
         colBody(items) + "</div>";
     }).join("");
     Array.prototype.forEach.call(document.querySelectorAll("details.grp"), function (d) { d.addEventListener("toggle", function () { openGroups[d.getAttribute("data-g")] = d.open; try { localStorage.setItem("quando.board.groups", JSON.stringify(openGroups)); } catch (e) {} }); });
@@ -195,7 +195,7 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 
   function planCard(p, quiet) {
     var n = p.id ? data.items.filter(function (i) { return i.plan === p.id && i.status !== "done"; }).length : 0;
-    return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (token && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status && !quiet ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note && !quiet ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
+    return '<a class="dl" style="text-decoration:none;color:inherit" href="' + esc(p.url) + '" target="_blank" rel="noopener"><b>' + esc(p.title) + (can() && p.id ? ' <button class="btn" data-p="' + esc(p.id) + '" style="padding:0 7px;float:right">Edit</button>' : "") + "</b>" + (p.status && !quiet ? '<span class="tag">' + esc(p.status) + "</span>" : "") + (p.private ? '<span class="tag">private</span>' : "") + (n ? '<span class="tag">' + n + " open task" + (n > 1 ? "s" : "") + "</span>" : "") + (p.note && !quiet ? '<div class="mute">' + esc(p.note) + "</div>" : "") + "</a>";
   }
   function plans() {
     $("plans").innerHTML = data.plans.filter(function (p) { return p.group !== "business"; }).concat(data.downloads || []).map(function (p) { return planCard(p); }).join("");
@@ -226,8 +226,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     if ((i.prs || []).length) h += "<h4>Pull requests</h4><div>" + i.prs.map(prPill).join("") + "</div>";
     var th = threadsOf(i);
     if (th.length) h += "<h4>Claude threads (needs your login)</h4><ul>" + th.map(function (t) { return '<li><a href="' + esc(threadUrl(t.id)) + '" target="_blank" rel="noopener">' + esc(t.title) + "</a></li>"; }).join("") + "</ul>";
-    h += '<div class="actions">' + (token ? '<button class="btn primary" id="ed">Edit</button>' : '<span class="mute">Turn on editing (top right) to change this card.</span>') + '<button class="btn" id="cl">Close</button></div>';
-    open(h); $("cl").onclick = close; if (token) $("ed").onclick = function () { editItem(idx); };
+    h += '<div class="actions">' + (can() ? '<button class="btn primary" id="ed">Edit</button>' : '<span class="mute">Turn on editing (top right) to change this card.</span>') + '<button class="btn" id="cl">Close</button></div>';
+    open(h); $("cl").onclick = close; if (can()) $("ed").onclick = function () { editItem(idx); };
   }
 
   /* ---------- editing ---------- */
@@ -355,8 +355,8 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
   function b64(str) { var b = new TextEncoder().encode(str), s = ""; b.forEach(function (c) { s += String.fromCharCode(c); }); return btoa(s); }
   function unb64(x) { var s = atob(x.replace(/\n/g, "")), a = new Uint8Array(s.length); for (var k = 0; k < s.length; k++) a[k] = s.charCodeAt(k); return new TextDecoder().decode(a); }
   function api(path, opt) {
-    opt = opt || {}; opt.headers = { Accept: "application/vnd.github+json", Authorization: "Bearer " + token };
-    return fetch("https://api.github.com/repos/" + data.repo + path, opt).then(function (r) {
+    opt = opt || {}; opt.headers = { Accept: "application/vnd.github+json" }; if (!viaProxy) opt.headers.Authorization = "Bearer " + token;
+    return fetch(viaProxy ? "/api/gh" + path.replace(/^\//, "/") : "https://api.github.com/repos/" + data.repo + path, opt).then(function (r) {
       return r.json().then(function (j) { if (!r.ok) { var e = new Error(r.status === 401 || r.status === 403 ? "GitHub refused the token (" + r.status + "). Check it has Contents: Read and write on this repository." : (j.message || r.status)); e.status = r.status; throw e; } return j; });
     });
   }
@@ -399,9 +399,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
 
   function tokenDialog() {
     var h = "<h3>Editing</h3>";
-    if (token) {
+    if (can()) {
       h += "<p>Editing is on in this browser. You can click any card, then Edit, or use “+ Add task”. Changes are saved to GitHub straight away; the public page refreshes about a minute later.</p>" +
-        '<div class="actions"><button class="btn danger" id="off">Turn off and forget token</button><button class="btn" id="cl">Close</button></div>';
+        '<div class="actions">' + (viaProxy ? "" : '<button class="btn danger" id="off">Turn off and forget token</button>') + '<button class="btn" id="cl">Close</button></div>';
     } else {
       h += "<p>To save changes from this page, paste a GitHub token once. It stays in this browser only.</p><ol style='padding-left:20px;margin:0'>" +
         '<li><a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">Create a fine-grained token</a>.</li>' +
@@ -410,14 +410,14 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
         '<div class="actions"><button class="btn primary" id="on">Turn on</button><button class="btn" id="cl">Cancel</button></div><div class="msg" id="msg"></div>';
     }
     open(h); $("cl").onclick = close;
-    if (token) $("off").onclick = function () { token = ""; try { localStorage.removeItem(TK); } catch (e) {} chrome(); close(); };
+    if (token && !viaProxy) $("off").onclick = function () { token = ""; try { localStorage.removeItem(TK); } catch (e) {} chrome(); close(); };
     else $("on").onclick = function () {
       var t = $("tk").value.trim(); if (!t) return; token = t;
       api(DIR + "board.json?ref=main").then(function () { try { localStorage.setItem(TK, t); } catch (e) {} chrome(); close(); }).catch(function (e) { token = ""; say(e.message, 1); });
     };
   }
 
-  function gh(path) { var hd = { Accept: "application/vnd.github+json" }; if (token) hd.Authorization = "Bearer " + token; return fetch("https://api.github.com/repos/" + data.repo + path, { headers: hd }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
+  function gh(path) { var hd = { Accept: "application/vnd.github+json" }; if (token && !viaProxy) hd.Authorization = "Bearer " + token; return fetch(viaProxy ? "/api/gh" + path : "https://api.github.com/repos/" + data.repo + path, { headers: hd }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); }); }
 
   function live() {
     gh("/pulls?state=all&per_page=100&sort=updated&direction=desc").then(function (prs) {
@@ -446,7 +446,9 @@ code{background:var(--chip);padding:1px 5px;border-radius:5px}
     }).catch(function () { $("runs").innerHTML = '<div class="empty">Could not load builds.</div>'; });
   }
 
-  fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }).then(function (d) {
+  /* Signed in through Cloudflare Access: the server holds the GitHub token, so no paste is needed. */
+  var probe = fetch("/api/gh/whoami", { cache: "no-store" }).then(function (r) { viaProxy = r.ok; }).catch(function () {});
+  Promise.all([fetch("data.json?t=" + Date.now(), { cache: "no-store" }).then(function (r) { return r.json(); }), probe]).then(function (a) { return a[0]; }).then(function (d) {
     data = d; chrome(); deadlines(); board(); plans(); live(); runs();
     setInterval(deadlines, 30000);
     $("q").addEventListener("input", function (e) { query = e.target.value; board(); });
