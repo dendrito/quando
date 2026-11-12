@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart' show Locale;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../core/geo/offline_cities.dart';
 import '../core/scheduler/scheduler.dart';
 import '../core/util/format.dart';
 import '../core/util/platform.dart';
@@ -374,12 +375,13 @@ class WeatherLocationNotifier extends Notifier<Place?> {
     _lastFix = DateTime.now();
     try {
       final point = await ref.read(locationLookupProvider).current();
+      final name = await OfflineCities.nearest(point.latitude, point.longitude);
       final device = ref.read(deviceZoneProvider);
       // ignore: prefer_if_null_operators
       final String zone = device != null ? device : ref.read(homeZoneProvider);
       _store(
         Place(
-          name: l10n.currentLocation,
+          name: name ?? l10n.currentLocation,
           latitude: point.latitude,
           longitude: point.longitude,
           timeZone: zone,
