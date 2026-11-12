@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "Agenda e Shabat",
   "groupLookQuotes": "Aparência e frases",
   "groupConnectionsSync": "Conexões e sincronização",
-  "qsSummary": "{count} configurações · {on} ativa(s)"
+  "qsSummary": "{count} configurações · {on} ativa(s)",
+  "deleteAccount": "Apagar conta",
+  "deleteAccountTitle": "Apagar conta?",
+  "deleteAccountBody": "Seus alarmes, ajustes e chaves sincronizados serão apagados da nuvem e o seu login será removido. Os alarmes neste aparelho ficam.",
+  "accountDeleted": "Conta apagada",
+  "deleteAccountFailed": "Não foi possível apagar a conta. Tente de novo."
 }

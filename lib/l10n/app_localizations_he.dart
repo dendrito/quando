@@ -3732,4 +3732,19 @@ class AppLocalizationsHe extends AppLocalizations {
   String qsSummary(int count, int on) {
     return '$count הגדרות · $on פעילות';
   }
+
+  @override
+  String get deleteAccount => 'מחיקת חשבון';
+
+  @override
+  String get deleteAccountTitle => 'למחוק את החשבון?';
+
+  @override
+  String get deleteAccountBody => 'ההתראות, ההגדרות והמפתחות המסונכרנים שלך יימחקו מהענן וההתחברות תוסר. התראות במכשיר הזה יישארו.';
+
+  @override
+  String get accountDeleted => 'החשבון נמחק';
+
+  @override
+  String get deleteAccountFailed => 'לא ניתן היה למחוק את החשבון. נסו שוב.';
 }

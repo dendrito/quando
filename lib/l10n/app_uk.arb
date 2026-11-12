@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "Календар і Шабат",
   "groupLookQuotes": "Вигляд і цитати",
   "groupConnectionsSync": "Підключення та синхронізація",
-  "qsSummary": "Наборів: {count} · увімкнено: {on}"
+  "qsSummary": "Наборів: {count} · увімкнено: {on}",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete account?",
+  "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
+  "accountDeleted": "Account deleted",
+  "deleteAccountFailed": "Couldn't delete the account. Try again."
 }

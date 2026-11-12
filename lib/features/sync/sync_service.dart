@@ -286,6 +286,61 @@ class SyncNotifier extends Notifier<SyncStatus> {
     state = SyncStatus(revealed: state.revealed);
   }
 
+  /// True when this account signs in with an email and password.
+  bool get usesPassword =>
+      FirebaseAuth.instance.currentUser?.providerData.any((i) => i.providerId == 'password') ?? false;
+
+  /// Deletes the account for good: asks the user to prove it is them again,
+  /// erases the cloud record, removes the sign-in, then clears this device's
+  /// sign-in and synced keys. Alarms on this device stay. Returns what went
+  /// wrong, in words, or null.
+  Future<String?> deleteAccount({String? password}) async {
+    try {
+      await _firebase();
+      final auth = FirebaseAuth.instance;
+      final user = auth.currentUser;
+      if (user == null) return l10n.syncFailed;
+      if (usesPassword) {
+        await user.reauthenticateWithCredential(
+          EmailAuthProvider.credential(email: user.email ?? '', password: password ?? ''),
+        );
+      } else {
+        await YouTubeAccount.init();
+        final account = await GoogleSignIn.instance.authenticate();
+        await user.reauthenticateWithCredential(
+          GoogleAuthProvider.credential(idToken: account.authentication.idToken),
+        );
+      }
+      await _engine?.stop();
+      _engine = null;
+      await FirebaseFirestore.instance.collection('users').doc(user.uid).delete();
+      await user.delete();
+      await _clearLocalAccount();
+      return null;
+    } on GoogleSignInException catch (e) {
+      return e.code == GoogleSignInExceptionCode.canceled ? '' : l10n.deleteAccountFailed;
+    } on FirebaseAuthException catch (e) {
+      return emailError(e.code) == l10n.syncFailed ? l10n.deleteAccountFailed : emailError(e.code);
+    } catch (e) {
+      debugPrint('Quando? delete account: $e');
+      return l10n.deleteAccountFailed;
+    }
+  }
+
+  Future<void> _clearLocalAccount() async {
+    final prefs = ref.read(prefsProvider);
+    for (final k in [
+      PushoverCredentialsSync.key,
+      PushoverCredentialsSync.ownerKey,
+      PushoverCredentialsSync.accountKey,
+      ServiceConnectionsSync.key,
+      'services.connections.owner',
+    ]) {
+      await prefs.remove(k);
+    }
+    await signOut();
+  }
+
   /// Chooses (or starts over with) the sync passphrase on this device and
   /// sends this device's keys, locked with it, to your other devices.
   Future<void> setKeyPassphrase(String passphrase) async {

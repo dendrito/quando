@@ -3766,4 +3766,19 @@ class AppLocalizationsPt extends AppLocalizations {
   String qsSummary(int count, int on) {
     return '$count configurações · $on ativa(s)';
   }
+
+  @override
+  String get deleteAccount => 'Apagar conta';
+
+  @override
+  String get deleteAccountTitle => 'Apagar conta?';
+
+  @override
+  String get deleteAccountBody => 'Seus alarmes, ajustes e chaves sincronizados serão apagados da nuvem e o seu login será removido. Os alarmes neste aparelho ficam.';
+
+  @override
+  String get accountDeleted => 'Conta apagada';
+
+  @override
+  String get deleteAccountFailed => 'Não foi possível apagar a conta. Tente de novo.';
 }

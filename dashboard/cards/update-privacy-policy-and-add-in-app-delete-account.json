@@ -1,12 +1,12 @@
 {
   "id": "update-privacy-policy-and-add-in-app-delete-account",
   "title": "Update privacy policy and add in-app delete account",
-  "status": "next",
+  "status": "review",
   "tag": "launch",
   "plan": "business",
-  "note": "Needed before sync opens to everyone in the stores.",
+  "note": "Delete account built in sync settings; privacy policy and quando.day/delete-account updated. Firestore rules not yet published.",
   "threads": [
-    "local"
+    "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk4XKJKXjnT5ExNQKZPmNv3k"
   ],
   "details": "Needed before sync opens to everyone in the stores.",
   "docs": [
@@ -17,6 +17,10 @@
     {
       "title": "Sync setup",
       "url": "https://github.com/dendrito/quando/blob/main/docs/FIREBASE_SYNC_SETUP.md"
+    },
+    {
+      "title": "Deletion page",
+      "url": "https://quando.day/delete-account/"
     }
   ],
   "order": 18

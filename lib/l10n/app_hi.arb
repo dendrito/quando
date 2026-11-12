@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "कैलेंडर और शब्बात",
   "groupLookQuotes": "रूप और उद्धरण",
   "groupConnectionsSync": "कनेक्शन और सिंक",
-  "qsSummary": "{count} सेटअप · {on} चालू"
+  "qsSummary": "{count} सेटअप · {on} चालू",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete account?",
+  "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
+  "accountDeleted": "Account deleted",
+  "deleteAccountFailed": "Couldn't delete the account. Try again."
 }

@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "יומן ושבת",
   "groupLookQuotes": "מראה וציטוטים",
   "groupConnectionsSync": "חיבורים וסנכרון",
-  "qsSummary": "{count} הגדרות · {on} פעילות"
+  "qsSummary": "{count} הגדרות · {on} פעילות",
+  "deleteAccount": "מחיקת חשבון",
+  "deleteAccountTitle": "למחוק את החשבון?",
+  "deleteAccountBody": "ההתראות, ההגדרות והמפתחות המסונכרנים שלך יימחקו מהענן וההתחברות תוסר. התראות במכשיר הזה יישארו.",
+  "accountDeleted": "החשבון נמחק",
+  "deleteAccountFailed": "לא ניתן היה למחוק את החשבון. נסו שוב."
 }

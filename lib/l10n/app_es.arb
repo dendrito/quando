@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "Calendario y Shabat",
   "groupLookQuotes": "Aspecto y citas",
   "groupConnectionsSync": "Conexiones y sincronización",
-  "qsSummary": "{count} ajustes · {on} activo(s)"
+  "qsSummary": "{count} ajustes · {on} activo(s)",
+  "deleteAccount": "Eliminar cuenta",
+  "deleteAccountTitle": "¿Eliminar cuenta?",
+  "deleteAccountBody": "Tus alarmas, ajustes y claves sincronizados se borran de la nube y se elimina tu inicio de sesión. Las alarmas de este dispositivo se quedan.",
+  "accountDeleted": "Cuenta eliminada",
+  "deleteAccountFailed": "No se pudo eliminar la cuenta. Inténtalo de nuevo."
 }

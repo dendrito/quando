@@ -1109,5 +1109,10 @@
   "groupCalendarShabbat": "日历和安息日",
   "groupLookQuotes": "外观和名言",
   "groupConnectionsSync": "连接与同步",
-  "qsSummary": "{count}个设置 · {on}个已开启"
+  "qsSummary": "{count}个设置 · {on}个已开启",
+  "deleteAccount": "Delete account",
+  "deleteAccountTitle": "Delete account?",
+  "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
+  "accountDeleted": "Account deleted",
+  "deleteAccountFailed": "Couldn't delete the account. Try again."
 }
