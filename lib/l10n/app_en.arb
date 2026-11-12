@@ -2134,7 +2134,13 @@
   "askHelpPromptBody": "We'd send what you say or type, like “{sentence}”, and whether you saved it. Anonymous: no name, account or device ID. You can switch it off anytime.",
   "askHelpYes": "Yes, help",
   "askHelpNo": "No thanks",
-  "@askHelpPromptBody": {"placeholders": {"sentence": {"type": "String"}}},
+  "@askHelpPromptBody": {
+    "placeholders": {
+      "sentence": {
+        "type": "String"
+      }
+    }
+  },
   "askQuoteTranslation": "Life is not what one lived, but what one remembers and how one remembers it in order to tell it.",
   "askHelpQuote": "“Stay hungry. Stay foolish.”\nSteve Jobs, after the Whole Earth Catalog",
   "quickSetups": "Quick setups",
@@ -2214,5 +2220,77 @@
   "deleteAccountTitle": "Delete account?",
   "deleteAccountBody": "Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.",
   "accountDeleted": "Account deleted",
-  "deleteAccountFailed": "Couldn't delete the account. Try again."
+  "deleteAccountFailed": "Couldn't delete the account. Try again.",
+  "weatherRemindersTitle": "Weather reminders",
+  "weatherRemindersSubtitle": "Ring before rain, thunderstorm or snow",
+  "weatherIntro": "Get reminders before it rains, storms or snows, as many as you want. Quando? reads the forecast and sets them on your phone.",
+  "weatherBackgroundNote": "It also checks the forecast in the background every couple of hours.",
+  "weatherOpenNote": "It reads the forecast when you open it and can't check while closed.",
+  "weatherNoPlace": "Choose your place on the home screen first, so there is a forecast to read.",
+  "weatherWhichHeading": "Which weather",
+  "weatherWhenHeading": "When",
+  "weatherAnytime": "Any time of day",
+  "weatherAnytimeHint": "Before the weather arrives, whatever you are doing.",
+  "weatherTied": "Before my alarms and calendar events",
+  "weatherTiedHint": "When the forecast has that weather around an alarm or event, remind me ahead of it, for example before leaving for work.",
+  "weatherRemindersHeading": "Reminders",
+  "weatherLeadMinutes": "{n} min before",
+  "@weatherLeadMinutes": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "weatherLeadHours": "{n} h before",
+  "@weatherLeadHours": {
+    "placeholders": {
+      "n": {
+        "type": "int"
+      }
+    }
+  },
+  "weatherAlarmOption": "Alarm",
+  "weatherSoftOption": "Soft",
+  "weatherRemove": "Remove",
+  "weatherAddReminder": "Add a reminder",
+  "weatherQuietHeading": "Quiet hours",
+  "weatherQuietSwitch": "Quiet hours",
+  "weatherQuietHint": "No reminder rings in this time. One that falls inside waits until it ends, if the weather has not arrived by then.",
+  "weatherQuietFrom": "From",
+  "weatherQuietTo": "Until",
+  "weatherComingUp": "Coming up",
+  "weatherNothingComing": "Nothing in the forecast for the next two days.",
+  "weatherRingsAt": "Rings {when}",
+  "@weatherRingsAt": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherShabbatNote": "Weather reminders stay quiet during Shabbat and festivals.",
+  "weatherTitleRain": "Rain forecast",
+  "weatherTitleThunder": "Thunderstorm forecast",
+  "weatherTitleSnow": "Snow forecast",
+  "weatherTitleFog": "Fog forecast",
+  "weatherBodyAny": "Around {time}",
+  "@weatherBodyAny": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
+  "weatherBodyTied": "{event} · around {time}",
+  "@weatherBodyTied": {
+    "placeholders": {
+      "event": {
+        "type": "String"
+      },
+      "time": {
+        "type": "String"
+      }
+    }
+  }
 }

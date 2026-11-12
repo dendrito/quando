@@ -45,6 +45,7 @@ dependencies:
   webview_flutter: ^4.14.1
   webview_flutter_android: ^4.14.1
   webview_flutter_wkwebview: ^3.27.2
+  workmanager: ^0.10.10
 
 # Quando's copy of the alarm plugin: it can also ring an online radio
 # stream, falling back to the phone's alarm sound. See packages/alarm.

@@ -3591,6 +3591,8 @@ class AppLocalizationsIt extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'Impostazioni rapide';
 
   @override
@@ -3779,11 +3781,129 @@ class AppLocalizationsIt extends AppLocalizations {
   String get deleteAccountTitle => 'Delete account?';
 
   @override
-  String get deleteAccountBody => 'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
 
   @override
   String get accountDeleted => 'Account deleted';
 
   @override
   String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => 'Promemoria meteo';
+
+  @override
+  String get weatherRemindersSubtitle => 'Suona prima di pioggia, temporale o neve';
+
+  @override
+  String get weatherIntro =>
+      'Ricevi promemoria prima di pioggia, temporale o neve, quanti ne vuoi. Quando? legge le previsioni e li imposta sul telefono.';
+
+  @override
+  String get weatherBackgroundNote => 'Controlla anche le previsioni in background ogni due ore circa.';
+
+  @override
+  String get weatherOpenNote =>
+      'Legge le previsioni quando apri l\'app e non può controllare quando è chiusa.';
+
+  @override
+  String get weatherNoPlace =>
+      'Scegli prima il tuo luogo nella schermata iniziale, così c\'è una previsione da leggere.';
+
+  @override
+  String get weatherWhichHeading => 'Quale meteo';
+
+  @override
+  String get weatherWhenHeading => 'Quando';
+
+  @override
+  String get weatherAnytime => 'A qualsiasi ora del giorno';
+
+  @override
+  String get weatherAnytimeHint => 'Prima che arrivi il meteo, qualunque cosa tu stia facendo.';
+
+  @override
+  String get weatherTied => 'Prima delle mie sveglie e degli eventi del calendario';
+
+  @override
+  String get weatherTiedHint =>
+      'Quando le previsioni indicano quel meteo vicino a una sveglia o a un evento, avvisami prima, per esempio prima di uscire per il lavoro.';
+
+  @override
+  String get weatherRemindersHeading => 'Promemoria';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n min prima';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n h prima';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Sveglia';
+
+  @override
+  String get weatherSoftOption => 'Discreto';
+
+  @override
+  String get weatherRemove => 'Rimuovi';
+
+  @override
+  String get weatherAddReminder => 'Aggiungi un promemoria';
+
+  @override
+  String get weatherQuietHeading => 'Ore di silenzio';
+
+  @override
+  String get weatherQuietSwitch => 'Ore di silenzio';
+
+  @override
+  String get weatherQuietHint =>
+      'In questa fascia nessun promemoria suona. Uno che ci cade dentro aspetta la fine, se il meteo non è ancora arrivato.';
+
+  @override
+  String get weatherQuietFrom => 'Dalle';
+
+  @override
+  String get weatherQuietTo => 'Alle';
+
+  @override
+  String get weatherComingUp => 'In arrivo';
+
+  @override
+  String get weatherNothingComing => 'Niente nelle previsioni per i prossimi due giorni.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Suona $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'I promemoria meteo restano in silenzio durante lo Shabbat e le feste.';
+
+  @override
+  String get weatherTitleRain => 'Previsione di pioggia';
+
+  @override
+  String get weatherTitleThunder => 'Previsione di temporale';
+
+  @override
+  String get weatherTitleSnow => 'Previsione di neve';
+
+  @override
+  String get weatherTitleFog => 'Previsione di nebbia';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Verso le $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · verso le $time';
+  }
 }

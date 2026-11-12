@@ -3554,6 +3554,8 @@ class AppLocalizationsHe extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'הגדרות מהירות';
 
   @override
@@ -3740,11 +3742,127 @@ class AppLocalizationsHe extends AppLocalizations {
   String get deleteAccountTitle => 'למחוק את החשבון?';
 
   @override
-  String get deleteAccountBody => 'ההתראות, ההגדרות והמפתחות המסונכרנים שלך יימחקו מהענן וההתחברות תוסר. התראות במכשיר הזה יישארו.';
+  String get deleteAccountBody =>
+      'ההתראות, ההגדרות והמפתחות המסונכרנים שלך יימחקו מהענן וההתחברות תוסר. התראות במכשיר הזה יישארו.';
 
   @override
   String get accountDeleted => 'החשבון נמחק';
 
   @override
   String get deleteAccountFailed => 'לא ניתן היה למחוק את החשבון. נסו שוב.';
+
+  @override
+  String get weatherRemindersTitle => 'תזכורות מזג אוויר';
+
+  @override
+  String get weatherRemindersSubtitle => 'מצלצל לפני גשם, סערה או שלג';
+
+  @override
+  String get weatherIntro =>
+      'קבלו תזכורות לפני גשם, סופת רעמים או שלג, כמה שתרצו. Quando? קורא את התחזית ומגדיר אותן בטלפון.';
+
+  @override
+  String get weatherBackgroundNote => 'הוא גם בודק את התחזית ברקע כל כמה שעות.';
+
+  @override
+  String get weatherOpenNote => 'הוא קורא את התחזית כשפותחים את האפליקציה ולא יכול לבדוק כשהיא סגורה.';
+
+  @override
+  String get weatherNoPlace => 'בחרו קודם את המקום שלכם במסך הבית, כדי שתהיה תחזית לקרוא.';
+
+  @override
+  String get weatherWhichHeading => 'איזה מזג אוויר';
+
+  @override
+  String get weatherWhenHeading => 'מתי';
+
+  @override
+  String get weatherAnytime => 'בכל שעה ביום';
+
+  @override
+  String get weatherAnytimeHint => 'לפני שמזג האוויר מגיע, מה שלא תעשו.';
+
+  @override
+  String get weatherTied => 'לפני ההתראות ואירועי היומן שלי';
+
+  @override
+  String get weatherTiedHint =>
+      'כשהתחזית מראה את מזג האוויר הזה סביב התראה או אירוע, הזכירו לי מראש, למשל לפני היציאה לעבודה.';
+
+  @override
+  String get weatherRemindersHeading => 'תזכורות';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n דק׳ לפני';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n שע׳ לפני';
+  }
+
+  @override
+  String get weatherAlarmOption => 'התראה';
+
+  @override
+  String get weatherSoftOption => 'שקט';
+
+  @override
+  String get weatherRemove => 'הסרה';
+
+  @override
+  String get weatherAddReminder => 'הוספת תזכורת';
+
+  @override
+  String get weatherQuietHeading => 'שעות שקט';
+
+  @override
+  String get weatherQuietSwitch => 'שעות שקט';
+
+  @override
+  String get weatherQuietHint =>
+      'בזמן הזה אף תזכורת לא מצלצלת. תזכורת שנופלת בתוכו ממתינה לסיומו, אם מזג האוויר עוד לא הגיע.';
+
+  @override
+  String get weatherQuietFrom => 'מ־';
+
+  @override
+  String get weatherQuietTo => 'עד';
+
+  @override
+  String get weatherComingUp => 'בקרוב';
+
+  @override
+  String get weatherNothingComing => 'אין כלום בתחזית לשני הימים הקרובים.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'תצלצל $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'תזכורות מזג האוויר שותקות בשבת ובחגים.';
+
+  @override
+  String get weatherTitleRain => 'תחזית גשם';
+
+  @override
+  String get weatherTitleThunder => 'תחזית סופת רעמים';
+
+  @override
+  String get weatherTitleSnow => 'תחזית שלג';
+
+  @override
+  String get weatherTitleFog => 'תחזית ערפל';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'בסביבות $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · בסביבות $time';
+  }
 }

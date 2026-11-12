@@ -3640,6 +3640,8 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'Быстрые настройки';
 
   @override
@@ -3828,11 +3830,128 @@ class AppLocalizationsRu extends AppLocalizations {
   String get deleteAccountTitle => 'Delete account?';
 
   @override
-  String get deleteAccountBody => 'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
 
   @override
   String get accountDeleted => 'Account deleted';
 
   @override
   String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => 'Напоминания о погоде';
+
+  @override
+  String get weatherRemindersSubtitle => 'Звонит перед дождём, грозой или снегом';
+
+  @override
+  String get weatherIntro =>
+      'Получайте напоминания перед дождём, грозой или снегом, сколько захотите. Quando? читает прогноз и настраивает их на телефоне.';
+
+  @override
+  String get weatherBackgroundNote => 'Он также проверяет прогноз в фоне каждые пару часов.';
+
+  @override
+  String get weatherOpenNote =>
+      'Он читает прогноз, когда вы открываете приложение, и не может проверять, пока оно закрыто.';
+
+  @override
+  String get weatherNoPlace => 'Сначала выберите место на главном экране, чтобы было что читать в прогнозе.';
+
+  @override
+  String get weatherWhichHeading => 'Какая погода';
+
+  @override
+  String get weatherWhenHeading => 'Когда';
+
+  @override
+  String get weatherAnytime => 'В любое время суток';
+
+  @override
+  String get weatherAnytimeHint => 'Прежде чем придёт непогода, чем бы вы ни занимались.';
+
+  @override
+  String get weatherTied => 'Перед моими будильниками и событиями календаря';
+
+  @override
+  String get weatherTiedHint =>
+      'Если прогноз обещает такую погоду рядом с будильником или событием, напомните заранее, например перед выходом на работу.';
+
+  @override
+  String get weatherRemindersHeading => 'Напоминания';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return 'За $n мин';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return 'За $n ч';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Будильник';
+
+  @override
+  String get weatherSoftOption => 'Тихо';
+
+  @override
+  String get weatherRemove => 'Убрать';
+
+  @override
+  String get weatherAddReminder => 'Добавить напоминание';
+
+  @override
+  String get weatherQuietHeading => 'Тихие часы';
+
+  @override
+  String get weatherQuietSwitch => 'Тихие часы';
+
+  @override
+  String get weatherQuietHint =>
+      'В это время напоминания не звонят. Попавшее в этот промежуток ждёт его конца, если погода к тому времени ещё не пришла.';
+
+  @override
+  String get weatherQuietFrom => 'С';
+
+  @override
+  String get weatherQuietTo => 'До';
+
+  @override
+  String get weatherComingUp => 'Скоро';
+
+  @override
+  String get weatherNothingComing => 'В прогнозе на ближайшие два дня ничего нет.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Прозвонит $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'В шаббат и праздники напоминания о погоде молчат.';
+
+  @override
+  String get weatherTitleRain => 'Прогноз дождя';
+
+  @override
+  String get weatherTitleThunder => 'Прогноз грозы';
+
+  @override
+  String get weatherTitleSnow => 'Прогноз снега';
+
+  @override
+  String get weatherTitleFog => 'Прогноз тумана';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Около $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · около $time';
+  }
 }

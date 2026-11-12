@@ -235,6 +235,14 @@ class SettingsScreen extends ConsumerWidget {
         trailing: const Icon(Icons.chevron_right),
         onTap: () => context.push('/busy'),
       ),
+      ListTile(
+        contentPadding: EdgeInsets.zero,
+        leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
+        title: Text(l10n.weatherRemindersTitle),
+        subtitle: Text(l10n.weatherRemindersSubtitle),
+        trailing: const Icon(Icons.chevron_right),
+        onTap: () => context.push('/weather-alarms'),
+      ),
       if (isAndroid)
         ListTile(
           contentPadding: EdgeInsets.zero,

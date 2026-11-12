@@ -3565,6 +3565,8 @@ class AppLocalizationsId extends AppLocalizations {
 
   @override
   String get askHelpQuote => '';
+
+  @override
   String get quickSetups => 'Pengaturan cepat';
 
   @override
@@ -3753,11 +3755,130 @@ class AppLocalizationsId extends AppLocalizations {
   String get deleteAccountTitle => 'Delete account?';
 
   @override
-  String get deleteAccountBody => 'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
+  String get deleteAccountBody =>
+      'Your synced alarms, settings and keys are erased from the cloud and your sign-in is removed. Alarms on this device stay.';
 
   @override
   String get accountDeleted => 'Account deleted';
 
   @override
   String get deleteAccountFailed => 'Couldn\'t delete the account. Try again.';
+
+  @override
+  String get weatherRemindersTitle => 'Pengingat cuaca';
+
+  @override
+  String get weatherRemindersSubtitle => 'Berbunyi sebelum hujan, badai, atau salju';
+
+  @override
+  String get weatherIntro =>
+      'Dapatkan pengingat sebelum hujan, badai, atau salju, sebanyak yang Anda mau. Quando? membaca prakiraan dan mengaturnya di ponsel Anda.';
+
+  @override
+  String get weatherBackgroundNote =>
+      'Aplikasi juga memeriksa prakiraan di latar belakang setiap beberapa jam.';
+
+  @override
+  String get weatherOpenNote =>
+      'Aplikasi membaca prakiraan saat Anda membukanya dan tidak bisa memeriksa saat tertutup.';
+
+  @override
+  String get weatherNoPlace =>
+      'Pilih dulu lokasi Anda di layar beranda, agar ada prakiraan yang bisa dibaca.';
+
+  @override
+  String get weatherWhichHeading => 'Cuaca apa';
+
+  @override
+  String get weatherWhenHeading => 'Kapan';
+
+  @override
+  String get weatherAnytime => 'Kapan saja sepanjang hari';
+
+  @override
+  String get weatherAnytimeHint => 'Sebelum cuaca datang, apa pun yang sedang Anda lakukan.';
+
+  @override
+  String get weatherTied => 'Sebelum alarm dan acara kalender saya';
+
+  @override
+  String get weatherTiedHint =>
+      'Jika prakiraan menunjukkan cuaca itu di sekitar alarm atau acara, ingatkan saya lebih dulu, misalnya sebelum berangkat kerja.';
+
+  @override
+  String get weatherRemindersHeading => 'Pengingat';
+
+  @override
+  String weatherLeadMinutes(int n) {
+    return '$n mnt sebelum';
+  }
+
+  @override
+  String weatherLeadHours(int n) {
+    return '$n jam sebelum';
+  }
+
+  @override
+  String get weatherAlarmOption => 'Alarm';
+
+  @override
+  String get weatherSoftOption => 'Lembut';
+
+  @override
+  String get weatherRemove => 'Hapus';
+
+  @override
+  String get weatherAddReminder => 'Tambah pengingat';
+
+  @override
+  String get weatherQuietHeading => 'Jam tenang';
+
+  @override
+  String get weatherQuietSwitch => 'Jam tenang';
+
+  @override
+  String get weatherQuietHint =>
+      'Tidak ada pengingat yang berbunyi pada waktu ini. Yang jatuh di dalamnya menunggu sampai selesai, jika cuaca belum datang.';
+
+  @override
+  String get weatherQuietFrom => 'Dari';
+
+  @override
+  String get weatherQuietTo => 'Sampai';
+
+  @override
+  String get weatherComingUp => 'Akan datang';
+
+  @override
+  String get weatherNothingComing => 'Tidak ada apa pun dalam prakiraan untuk dua hari ke depan.';
+
+  @override
+  String weatherRingsAt(String when) {
+    return 'Berbunyi $when';
+  }
+
+  @override
+  String get weatherShabbatNote => 'Pengingat cuaca tetap senyap saat Sabat dan hari raya.';
+
+  @override
+  String get weatherTitleRain => 'Prakiraan hujan';
+
+  @override
+  String get weatherTitleThunder => 'Prakiraan badai petir';
+
+  @override
+  String get weatherTitleSnow => 'Prakiraan salju';
+
+  @override
+  String get weatherTitleFog => 'Prakiraan kabut';
+
+  @override
+  String weatherBodyAny(String time) {
+    return 'Sekitar pukul $time';
+  }
+
+  @override
+  String weatherBodyTied(String event, String time) {
+    return '$event · sekitar pukul $time';
+  }
 }
