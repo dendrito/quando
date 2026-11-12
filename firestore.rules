@@ -4,8 +4,7 @@ service cloud.firestore {
   match /databases/{database}/documents {
     // Each signed-in account may read, write and delete only its own user
     // document (delete is what "Delete account" in the app uses). A verified
-    // email is required. NOT YET DEPLOYED: the console still has the
-    // single-owner version until Curió says to publish.
+    // email is required. Published in the console 12 Nov 2026.
     function isVerifiedOwner(userId) {
       return request.auth != null
         && request.auth.uid == userId
