@@ -706,7 +706,6 @@ class _VersionLine extends StatelessWidget {
   );
 }
 
-
 /// Asks twice-over before erasing the account: a warning, and the password
 /// (email accounts) or a fresh Google sign-in.
 class _DeleteAccountDialog extends ConsumerStatefulWidget {
