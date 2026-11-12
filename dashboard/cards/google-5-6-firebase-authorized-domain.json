@@ -7,8 +7,8 @@
     "google"
   ],
   "title": "Google 5/6: Firebase authorized domain",
-  "status": "next",
-  "note": "Add quando.day under Authentication → Settings → Authorized domains in project quando-27c24.",
+  "status": "done",
+  "note": "quando.day added to authorized domains on quando-27c24 (10 Nov). Android's move off quando-513703 is handled by the Merge Google projects thread.",
   "details": "Guide step 12. Repeat the consent screen steps there if sign-in runs on that project.",
   "docs": [
     {
