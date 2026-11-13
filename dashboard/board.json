@@ -97,6 +97,24 @@
       "group": "business"
     },
     {
+      "id": "beta",
+      "title": "Beta tester plan",
+      "url": "https://claude.ai/artifact/SvX5rdnf2vuWCTG16xTj8B",
+      "status": "proposed",
+      "private": true,
+      "note": "Testing stack, /beta site, rollout. Private page.",
+      "group": "business"
+    },
+    {
+      "id": "social",
+      "title": "Social and community plan",
+      "url": "https://claude.ai/artifact/Cc4M8UfLK8LgHHQ8T13iRG",
+      "status": "proposed",
+      "private": true,
+      "note": "Channels, partners, event idea. Private page.",
+      "group": "business"
+    },
+    {
       "id": "roadmap",
       "title": "Roadmap",
       "url": "https://github.com/dendrito/quando/blob/main/docs/ROADMAP.md",
