@@ -1145,7 +1145,19 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
       final mine = raw == null
           ? const <AlarmSound>[]
           : [for (final j in jsonDecode(raw) as List) AlarmSound.fromJson(j as Map<String, dynamic>)];
-      return [...AlarmSound.builtIns, ...mine];
+      // Drive songs follow you between devices; each device keeps its own
+      // downloaded copy, or streams.
+      final files = (jsonDecode(_prefs.getString('sounds.drive.files') ?? '{}') as Map).cast<String, String>();
+      final drive = [
+        for (final j in jsonDecode(_prefs.getString('sounds.drive') ?? '[]') as List)
+          AlarmSound(
+            id: j['id'] as String,
+            name: j['name'] as String,
+            path: files[j['id']] ?? AlarmSound.driveUrl(j['drive'] as String),
+            drive: j['drive'] as String,
+          ),
+      ];
+      return [...AlarmSound.builtIns, ...mine, ...drive];
     } catch (_) {
       return AlarmSound.builtIns;
     }
@@ -1173,9 +1185,20 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
       'sounds',
       jsonEncode([
         for (final s in all)
-          if (!s.builtIn) s.toJson(),
+          if (!s.builtIn && !s.isDrive) s.toJson(),
       ]),
     );
+    final d = [
+      for (final s in all)
+        if (s.isDrive) s,
+    ];
+    _prefs.setString(
+      'sounds.drive',
+      jsonEncode([
+        for (final s in d) {'id': s.id, 'name': s.name, 'drive': s.drive},
+      ]),
+    );
+    _prefs.setString('sounds.drive.files', jsonEncode({for (final s in d) if (s.offline) s.id: s.path}));
   }
 }
 

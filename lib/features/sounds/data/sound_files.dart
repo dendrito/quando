@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
+import '../domain/sound.dart';
+
 /// Where recordings and imported files live: `<documents>/sounds/`.
 class SoundFiles {
   static Future<Directory> _docs() => getApplicationDocumentsDirectory();
@@ -37,9 +39,7 @@ class SoundFiles {
   /// needs Drive or a Google sign-in. Returns the relative path.
   static Future<String> downloadDrive(String id) async {
     await ensureFolder();
-    final res = await http.get(
-      Uri.parse('https://drive.usercontent.google.com/download?id=$id&export=download&confirm=t'),
-    );
+    final res = await http.get(Uri.parse(AlarmSound.driveUrl(id)));
     final type = res.headers['content-type'] ?? '';
     if (res.statusCode != 200 || type.contains('text/html') || res.bodyBytes.isEmpty) {
       throw 'not shared';

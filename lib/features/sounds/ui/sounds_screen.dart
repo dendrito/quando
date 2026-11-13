@@ -102,6 +102,22 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
     _rename(sound);
   }
 
+  /// Drive song: keep a copy on this device, or stream it to save space.
+  Future<void> _toggleOffline(AlarmSound s) async {
+    final notifier = ref.read(soundsProvider.notifier);
+    if (s.offline) {
+      notifier.replace(s.copyWith(path: AlarmSound.driveUrl(s.drive!)));
+      await SoundFiles.delete(s.path);
+      return;
+    }
+    final messenger = ScaffoldMessenger.of(context);
+    try {
+      notifier.replace(s.copyWith(path: await SoundFiles.downloadDrive(s.drive!)));
+    } catch (e) {
+      messenger.showSnackBar(SnackBar(content: Text(l10n.couldNotAddFile('$e'))));
+    }
+  }
+
   Future<void> _pickFile() async {
     final messenger = ScaffoldMessenger.of(context);
     try {
@@ -236,9 +252,10 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
         final rel = await SoundFiles.downloadDrive(driveId);
         sounds.add(
           AlarmSound(
-            id: 'mine.${DateTime.now().millisecondsSinceEpoch}',
+            id: 'drive.${DateTime.now().millisecondsSinceEpoch}',
             name: label.isNotEmpty ? label : l10n.songOn('Drive'),
             path: rel,
+            drive: driveId,
           ),
         );
         return;
@@ -644,7 +661,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   if (s.builtIn) l10n.builtIn,
                   if (s.isLink) s.plays ? l10n.playsIn(s.linkApp ?? '') : l10n.opensIn(s.linkApp ?? ''),
                   if (s.isLink && s.plays) l10n.musicRingDurationHint,
-                  if (s.isRadio) l10n.onlineRadio,
+                  if (s.isRadio && !s.isDrive) l10n.onlineRadio,
                   if (s.id == defaultId) l10n.defaultLabel,
                 ].join(' · '),
                 style: text.bodySmall,
@@ -652,13 +669,23 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               onTap: s.builtIn ? null : () => s.isLink ? _addLink(editing: s) : _rename(s),
               trailing: s.builtIn
                   ? null
-                  : IconButton(
+                  : Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        if (s.isDrive)
+                          IconButton(
+                            icon: Icon(s.offline ? Icons.download_done : Icons.cloud_outlined),
+                            onPressed: () => _toggleOffline(s),
+                          ),
+                        IconButton(
                       tooltip: l10n.delete,
                       icon: const Icon(Icons.delete_outline),
                       onPressed: () {
                         ref.read(soundsProvider.notifier).delete(s.id);
-                        if (!s.isLink && !s.isRadio) SoundFiles.delete(s.path);
+                        if (s.offline || (!s.isLink && !s.isRadio)) SoundFiles.delete(s.path);
                       },
+                    ),
+                      ],
                     ),
             ),
           const SizedBox(height: 20),
