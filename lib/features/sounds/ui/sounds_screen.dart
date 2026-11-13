@@ -678,13 +678,13 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                             onPressed: () => _toggleOffline(s),
                           ),
                         IconButton(
-                      tooltip: l10n.delete,
-                      icon: const Icon(Icons.delete_outline),
-                      onPressed: () {
-                        ref.read(soundsProvider.notifier).delete(s.id);
-                        if (s.offline || (!s.isLink && !s.isRadio)) SoundFiles.delete(s.path);
-                      },
-                    ),
+                          tooltip: l10n.delete,
+                          icon: const Icon(Icons.delete_outline),
+                          onPressed: () {
+                            ref.read(soundsProvider.notifier).delete(s.id);
+                            if (s.offline || (!s.isLink && !s.isRadio)) SoundFiles.delete(s.path);
+                          },
+                        ),
                       ],
                     ),
             ),

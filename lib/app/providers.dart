@@ -1147,7 +1147,8 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
           : [for (final j in jsonDecode(raw) as List) AlarmSound.fromJson(j as Map<String, dynamic>)];
       // Drive songs follow you between devices; each device keeps its own
       // downloaded copy, or streams.
-      final files = (jsonDecode(_prefs.getString('sounds.drive.files') ?? '{}') as Map).cast<String, String>();
+      final files = (jsonDecode(_prefs.getString('sounds.drive.files') ?? '{}') as Map)
+          .cast<String, String>();
       final drive = [
         for (final j in jsonDecode(_prefs.getString('sounds.drive') ?? '[]') as List)
           AlarmSound(
@@ -1198,7 +1199,13 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
         for (final s in d) {'id': s.id, 'name': s.name, 'drive': s.drive},
       ]),
     );
-    _prefs.setString('sounds.drive.files', jsonEncode({for (final s in d) if (s.offline) s.id: s.path}));
+    _prefs.setString(
+      'sounds.drive.files',
+      jsonEncode({
+        for (final s in d)
+          if (s.offline) s.id: s.path,
+      }),
+    );
   }
 }
 
