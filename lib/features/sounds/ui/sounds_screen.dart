@@ -229,6 +229,24 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.notALink)));
       return;
     }
+    final driveId = SoundFiles.driveId(link);
+    if (driveId != null) {
+      final messenger = ScaffoldMessenger.of(context);
+      try {
+        final rel = await SoundFiles.downloadDrive(driveId);
+        sounds.add(
+          AlarmSound(
+            id: 'mine.${DateTime.now().millisecondsSinceEpoch}',
+            name: label.isNotEmpty ? label : l10n.songOn('Drive'),
+            path: rel,
+          ),
+        );
+        return;
+      } catch (_) {
+        // Not shared with "anyone with the link": keep it as a plain link.
+        messenger.hideCurrentSnackBar();
+      }
+    }
     final sound = AlarmSound(
       id: 'link.${DateTime.now().millisecondsSinceEpoch}',
       name: '',
