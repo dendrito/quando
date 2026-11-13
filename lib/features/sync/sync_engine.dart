@@ -28,6 +28,7 @@ const syncedKeys = [
   'quoteSources',
   'quoteOccasions',
   'language',
+  'sounds.drive',
 ];
 
 /// One setting as the server keeps it: when it changed, on which device,
