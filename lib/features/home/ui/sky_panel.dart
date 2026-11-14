@@ -354,8 +354,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
 
     // After sunset and before sunrise the Sun page shows the night sky with
     // the Moon's path and the weather; by day it is the Sun's own arc.
-    final nightMoonCard =
-        options.weather && options.moon && nightCard && illumination != null && track != null;
+    const nightMoonCard = false;
     final Widget sunContent = options.weather && weatherPlace != null && _page == 0
         ? nightMoonCard
               ? moonCard(compact: true)
