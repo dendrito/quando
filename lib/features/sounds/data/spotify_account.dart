@@ -29,7 +29,9 @@ class SpotifyAccount {
   /// Signed in to the library (kept under [prefKey]).
   static bool connected = false;
 
-  static bool get available => !kIsWeb && SpotifyPlay.clientId.isNotEmpty;
+  // Spotify login is off in every build (dev-mode limit of 25 users).
+  // Pasted Spotify links keep working. Restore the old condition to re-enable.
+  static bool get available => false;
 
   static String? _token;
   static String? _tokenRefresh;
