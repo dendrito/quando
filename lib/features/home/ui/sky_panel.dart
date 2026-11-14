@@ -131,7 +131,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             icon: const Icon(Icons.place_outlined),
             label: Text(l10n.skyChooseCity),
           ),
-        DayArc(sky: sky, marks: widget.marks),
+        if (sky.isDay) DayArc(sky: sky, marks: widget.marks),
         Row(
           textDirection: TextDirection.ltr,
           children: [
@@ -535,8 +535,21 @@ class _SunWeatherCard extends ConsumerWidget {
     // By day the card's sky runs from sunrise (left) to sunset (right), with
     // the forecast weather blended along it, as on the Moon card.
     final rise = sky.sunrise, set = sky.sunset;
+    final isNight = !skyNow.isDay;
+    // By night the card is the real night sky from now to the next sunrise:
+    // no Sun path, stars as they appear, and the coming weather.
+    DateTime? nextRise;
+    if (isNight) {
+      final tomorrow = SkyDay.of(place, sky.now.add(const Duration(days: 1)));
+      nextRise = rise != null && sky.now.isBefore(rise) ? rise : tomorrow.sunrise;
+    }
+    String label(String Function(String) f, DateTime? at) => at == null ? '' : f(time(at));
+    final leftLabel = isNight ? label(l10n.sunsetAt, sky.sunset) : label(l10n.sunriseAt, sky.sunrise);
+    final rightLabel = isNight ? label(l10n.sunriseAt, nextRise) : label(l10n.sunsetAt, sky.sunset);
     final strip = skyNow.isDay && rise != null && set != null
         ? SkyStrip.between(place, rise, set, report, now: sky.now)
+        : isNight && nextRise != null
+        ? SkyStrip.between(place, sky.now, nextRise, report, now: sky.now)
         : null;
     return Container(
       key: const ValueKey('sun-weather-card'),
@@ -558,6 +571,7 @@ class _SunWeatherCard extends ConsumerWidget {
               ),
             ),
       child: _Overlaid(
+        stars: isNight ? _StarsPainter(strip?.night, true) : null,
         kinds: strip?.kinds,
         child: Padding(
           padding: const EdgeInsets.all(18),
@@ -584,25 +598,28 @@ class _SunWeatherCard extends ConsumerWidget {
               ),
               if (subtitle.isNotEmpty)
                 Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
-              DayArc(
-                sky: sky,
-                marks: marks,
-                weather: arcWeather(sky, report, zone),
-                nowWeather: skyNow.isDay ? current.kind : null,
-                nowLabel: skyNow.isDay ? '${l10n.nowCap} ${hhmm(local)}' : null,
-              ),
+              if (isNight)
+                const SizedBox(height: 120)
+              else
+                DayArc(
+                  sky: sky,
+                  marks: marks,
+                  weather: arcWeather(sky, report, zone),
+                  nowWeather: current.kind,
+                  nowLabel: '${l10n.nowCap} ${hhmm(local)}',
+                ),
               Row(
                 textDirection: TextDirection.ltr,
                 children: [
                   Expanded(
                     child: Text(
-                      sky.sunrise == null ? '' : l10n.sunriseAt(time(sky.sunrise)),
+                      leftLabel,
                       style: text.bodySmall?.copyWith(color: QuandoColors.text),
                     ),
                   ),
                   Expanded(
                     child: Text(
-                      sky.sunset == null ? '' : l10n.sunsetAt(time(sky.sunset)),
+                      rightLabel,
                       textAlign: TextAlign.end,
                       style: text.bodySmall?.copyWith(color: QuandoColors.text),
                     ),
@@ -639,20 +656,25 @@ class _SunWeatherCard extends ConsumerWidget {
 /// [child] with the falling weather of [kinds] drawn behind it, when any is
 /// forecast.
 class _Overlaid extends StatelessWidget {
-  const _Overlaid({required this.kinds, required this.child});
+  const _Overlaid({required this.kinds, required this.child, this.stars});
   final List<WeatherKind?>? kinds;
   final Widget child;
+
+  /// Stars drawn behind everything, at night.
+  final CustomPainter? stars;
 
   @override
   Widget build(BuildContext context) {
     final k = kinds;
-    if (k == null || !WeatherOverlay.needed(k)) return child;
-    return Stack(
-      children: [
-        WeatherOverlay(kinds: k),
-        child,
-      ],
-    );
+    final content = k == null || !WeatherOverlay.needed(k)
+        ? child
+        : Stack(
+            children: [
+              WeatherOverlay(kinds: k),
+              child,
+            ],
+          );
+    return stars == null ? content : CustomPaint(painter: stars, child: content);
   }
 }
 
@@ -660,8 +682,16 @@ class _Overlaid extends StatelessWidget {
 class _StarsPainter extends CustomPainter {
   /// [night] is how dark the sky is from left to right (0 day, 1 night);
   /// the stars fade out where it is day. Null means all night.
-  const _StarsPainter([this.night]);
+  _StarsPainter([this.night, this.dense = false]);
   final List<double>? night;
+
+  /// Many more stars, for the Sun card's night sky.
+  final bool dense;
+  static final _many = List.generate(60, (i) {
+    // A fixed scatter, so the sky doesn't shimmer between frames.
+    double f(int k) => ((i * 7919 + k * 104729) % 1000) / 1000;
+    return (f(1), f(2) * .8, .5 + f(3) * 1.1, .3 + f(4) * .6);
+  });
   static const _stars = [
     (.14, .10, 1.2, .7),
     (.31, .20, .9, .5),
@@ -673,7 +703,7 @@ class _StarsPainter extends CustomPainter {
   ];
   @override
   void paint(Canvas canvas, Size size) {
-    for (final (x, y, r, a) in _stars) {
+    for (final (x, y, r, a) in dense ? _many : _stars) {
       var dark = 1.0;
       final n = night;
       if (n != null && n.length > 1) {
@@ -690,5 +720,5 @@ class _StarsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_StarsPainter old) => old.night != night;
+  bool shouldRepaint(_StarsPainter old) => old.night != night || old.dense != dense;
 }
