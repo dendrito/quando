@@ -99,7 +99,10 @@ ship_android() {
   local e=$1 apk=build/app/outputs/flutter-apk/app-$1-release.apk jdk=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
   # macOS has no system Java; fall back to Homebrew's JDK 17 (the project's jvmTarget).
   if [[ -z ${JAVA_HOME:-} ]] && ! /usr/libexec/java_home > /dev/null 2>&1 && [[ -d $jdk ]]; then export JAVA_HOME=$jdk; fi
-  run "$e android build" "$e-android-build" flutter build apk --release --flavor "$e" --dart-define="QUANDO_EDITION=$e"
+  # Version code = minutes since 2023-11-14, far above CI's (2001 = build 1 + arm64 offset),
+  # so a local install always replaces a CI one. Reinstalling the CI APK needs an uninstall first.
+  local code=$(( ($(date +%s) - 1700000000) / 60 ))
+  run "$e android build" "$e-android-build" flutter build apk --release --flavor "$e" --build-number="$code" --dart-define="QUANDO_EDITION=$e"
   mkdir -p "$logs/android" && cp "$apk" "$logs/android/$e.apk"
   if $install; then run "$e android install" "$e-android-install" adb install -r "$logs/android/$e.apk"; fi
 }

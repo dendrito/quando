@@ -1,0 +1,14 @@
+{
+  "id": "local-android-builds-replace-ci-installs",
+  "title": "Local Android builds replace CI installs",
+  "status": "review",
+  "tag": "release",
+  "note": "tool/ship.sh now gives local Android builds a version code far above CI's (2001), so `tool/ship.sh quando android` installs over the CI app instead of failing as a downgrade.",
+  "details": "Use quando-pr10 (main) for builds. Apps: Quando? = com.dendrito.alarmapp, Matai? = com.dendrito.quando.kodesh, Quando Mine = com.dendrito.quando.mine.",
+  "prs": [],
+  "threads": [
+    "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzkJbWt4ms6Ab1so7EvBuuNZw"
+  ],
+  "docs": [],
+  "order": 2
+}
