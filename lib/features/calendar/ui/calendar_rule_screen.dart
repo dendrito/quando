@@ -12,6 +12,7 @@ import '../../sounds/ui/sound_picker.dart';
 import '../../rules/ui/delivery_tile.dart';
 import '../../rules/domain/reminder_delivery.dart';
 import '../domain/calendar_rule.dart';
+import '../data/calendar_reader.dart';
 import '../../ringing/ui/alarm_extras.dart';
 
 import 'calendar_sync_choice.dart';
@@ -223,6 +224,47 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     ),
   ];
 
+  /// Calendars under their account: "All my calendars" first, then each
+  /// account's calendars as a plain list with a check on the chosen ones.
+  Widget _calendarList(List<PhoneCalendar> calendars, TextTheme text) {
+    final groups = <String, List<PhoneCalendar>>{};
+    for (final c in calendars) {
+      groups.putIfAbsent(c.account ?? '', () => []).add(c);
+    }
+    Widget row(String label, bool on, VoidCallback tap) => ListTile(
+      dense: true,
+      contentPadding: EdgeInsets.zero,
+      title: Text(label),
+      trailing: on ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary) : null,
+      onTap: tap,
+    );
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        row(
+          l10n.allMyCalendars,
+          _rule.calendarIds.isEmpty,
+          () => setState(() => _rule = _rule.copyWith(calendarIds: {})),
+        ),
+        for (final g in groups.entries) ...[
+          if (g.key.isNotEmpty)
+            Padding(
+              padding: const EdgeInsets.only(top: 12, bottom: 2),
+              child: Text(g.key.toUpperCase(), style: text.labelSmall),
+            ),
+          for (final c in g.value)
+            row(c.name, _rule.calendarIds.contains(c.id), () {
+              setState(() {
+                final ids = {..._rule.calendarIds};
+                ids.contains(c.id) ? ids.remove(c.id) : ids.add(c.id);
+                _rule = _rule.copyWith(calendarIds: ids);
+              });
+            }),
+        ],
+      ],
+    );
+  }
+
   void _save() {
     ref
         .read(calendarRulesProvider.notifier)
@@ -364,27 +406,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             ),
             const SizedBox(height: 8),
             if (cal.calendars.isNotEmpty)
-              Wrap(
-                spacing: 8,
-                runSpacing: 4,
-                children: [
-                  FilterChip(
-                    label: Text(l10n.allMyCalendars),
-                    selected: _rule.calendarIds.isEmpty,
-                    onSelected: (_) => setState(() => _rule = _rule.copyWith(calendarIds: {})),
-                  ),
-                  for (final c in cal.calendars.where((c) => cal.selected.contains(c.id)))
-                    FilterChip(
-                      label: Text(c.name),
-                      selected: _rule.calendarIds.contains(c.id),
-                      onSelected: (on) => setState(() {
-                        final ids = {..._rule.calendarIds};
-                        on ? ids.add(c.id) : ids.remove(c.id);
-                        _rule = _rule.copyWith(calendarIds: ids);
-                      }),
-                    ),
-                ],
-              )
+              _calendarList(cal.calendars.where((c) => cal.selected.contains(c.id)).toList(), text)
             else if (!cal.access) ...[
               const SizedBox(height: 4),
               Text(l10n.connectToSearch, style: text.bodySmall),
