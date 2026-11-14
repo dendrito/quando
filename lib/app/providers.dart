@@ -428,8 +428,45 @@ class PlaceNotifier extends Notifier<Place> {
     );
   }
 
+  DateTime? _lastFix;
+
+  /// True when a city was picked by hand, so the phone's position is not used.
+  bool get manual => _prefs.getBool('place.manual') ?? false;
+
+  /// Follows the phone's position unless a city was picked by hand.
+  Future<void> refreshPrecise() async {
+    if (manual) return;
+    final last = _lastFix;
+    if (last != null && DateTime.now().difference(last) < const Duration(minutes: 20)) return;
+    _lastFix = DateTime.now();
+    try {
+      final point = await ref.read(locationLookupProvider).current();
+      final name = await OfflineCities.nearest(point.latitude, point.longitude);
+      final device = ref.read(deviceZoneProvider);
+      if (device == null) return;
+      final here = state;
+      if ((here.latitude - point.latitude).abs() < .02 && (here.longitude - point.longitude).abs() < .02) {
+        return;
+      }
+      setLocal(
+        Place(
+          name: name ?? l10n.currentLocation,
+          latitude: point.latitude,
+          longitude: point.longitude,
+          timeZone: device,
+          inIsrael: device == 'Asia/Jerusalem',
+          candleLightingMinutes: here.candleLightingMinutes,
+        ),
+      );
+    } catch (e) {
+      _lastFix = null;
+      debugPrint('Quando?: no precise Shabbat location: $e');
+    }
+  }
+
   void set(Place place) {
     state = place;
+    _prefs.setBool('place.manual', true);
     _prefs.remove('place.local');
     _prefs
       ..setString('place.name', place.name)
@@ -440,6 +477,7 @@ class PlaceNotifier extends Notifier<Place> {
   /// Coordinates from location services stay on this device.
   void setLocal(Place place) {
     state = place;
+    _prefs.remove('place.manual');
     _prefs.setString('place.local', jsonEncode(place.toJson()));
   }
 
@@ -1417,6 +1455,8 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     }
     if (p.isLock) return p;
     p = p.withStyle(a.style);
+    // Candle lighting and Havdalah: no Snooze.
+    if (a.eventId.startsWith('jewish.')) p = p.withoutSnooze();
     if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
     final calm =
         (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;

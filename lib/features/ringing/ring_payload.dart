@@ -298,6 +298,8 @@ class RingPayload {
   /// outside the plan.
   RingPayload asPreview() => _copy(body: l10n.previewBody(body), transient: true);
 
+  RingPayload withoutSnooze() => _copy(maxSnoozes: 0, autoSnoozeMinutes: 0);
+
   bool get canSnooze => snoozeCount < maxSnoozes;
 
   /// What gets read aloud, e.g. "Candle lighting, Shabbat. 15 minutes before."

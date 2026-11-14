@@ -99,6 +99,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       path: rel,
     );
     ref.read(soundsProvider.notifier).add(sound);
+    _useAsDefault(sound.id);
     _rename(sound);
   }
 
@@ -127,9 +128,9 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       if (file == null || path == null) return;
       final rel = await SoundFiles.import(path);
       final name = file.name.replaceAll(RegExp(r'\.[^.]+$'), '');
-      ref
-          .read(soundsProvider.notifier)
-          .add(AlarmSound(id: 'mine.${DateTime.now().millisecondsSinceEpoch}', name: name, path: rel));
+      final sound = AlarmSound(id: 'mine.${DateTime.now().millisecondsSinceEpoch}', name: name, path: rel);
+      ref.read(soundsProvider.notifier).add(sound);
+      _useAsDefault(sound.id);
     } catch (e) {
       messenger.showSnackBar(SnackBar(content: Text(l10n.couldNotAddFile('$e'))));
     }
@@ -272,6 +273,13 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
       plays: plays && playable,
     );
     sounds.add(sound.rename(label.isNotEmpty ? label : l10n.songOn(sound.linkApp ?? l10n.theWeb)));
+    _useAsDefault(sound.id);
+  }
+
+  /// A sound just added becomes the one alarms ring with, no extra tap.
+  void _useAsDefault(String id) {
+    ref.read(userAlarmsProvider.notifier).pinDefaults(ref.read(alarmOptionsProvider), sound: true);
+    ref.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(soundId: id));
   }
 
   /// YouTube and YouTube Music: sign in with Google, then pick from your

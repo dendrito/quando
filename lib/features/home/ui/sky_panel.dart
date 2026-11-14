@@ -352,25 +352,19 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
 
     final moonContent = moonCard(compact: false);
 
-    // After sunset and before sunrise the Sun page shows the night sky with
-    // the Moon's path and the weather; by day it is the Sun's own arc.
-    final nightMoonCard =
-        options.weather && options.moon && nightCard && illumination != null && track != null;
     final Widget sunContent = options.weather && weatherPlace != null && _page == 0
-        ? nightMoonCard
-              ? moonCard(compact: true)
-              : _SunWeatherCard(
-                  sky: sky,
-                  place: weatherPlace,
-                  zone: zone,
-                  marks: widget.marks,
-                  fallback: plainSun,
-                  nightfall: nightfallText,
-                  footer: [
-                    if (moon != null && moon.alwaysUp) Text(l10n.moonAlwaysUp, style: text.bodySmall),
-                    if (moon != null && moon.alwaysDown) Text(l10n.moonAlwaysDown, style: text.bodySmall),
-                  ],
-                )
+        ? _SunWeatherCard(
+            sky: sky,
+            place: weatherPlace,
+            zone: zone,
+            marks: widget.marks,
+            fallback: plainSun,
+            nightfall: nightfallText,
+            footer: [
+              if (moon != null && moon.alwaysUp) Text(l10n.moonAlwaysUp, style: text.bodySmall),
+              if (moon != null && moon.alwaysDown) Text(l10n.moonAlwaysDown, style: text.bodySmall),
+            ],
+          )
         : plainSun;
 
     // Pages before the Moon's: the Sun's, unless it is hidden.
@@ -465,7 +459,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                           (report == null ? 1 : 1.2) *
                           MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : options.sun && _page == 0 && options.weather && weatherPlace != null
-                    ? (nightMoonCard ? 300 : 370) * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
+                    ? 370 * MediaQuery.textScalerOf(context).scale(1).clamp(1, 2)
                     : max(228.0, options.night ? 260.0 : 180.0),
                 child: PageView(
                   controller: _pager,
