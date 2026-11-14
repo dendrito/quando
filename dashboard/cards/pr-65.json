@@ -1,7 +1,7 @@
 {
   "id": "pr-65",
   "title": "Hide Spotify login in all builds",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     65
