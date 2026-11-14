@@ -257,7 +257,7 @@ void main() {
         expect(find.text(word), findsWidgets, reason: word);
       }
       expect(find.byKey(const Key('headerPills')), findsOneWidget);
-      expect(find.text(l10n.thisWeekHeading), findsOneWidget);
+      expect(find.text(l10n.thisWeekHeading, skipOffstage: false), findsOneWidget);
       expect(find.textContaining('Work'), findsWidgets);
 
       // Pills open their screens.
