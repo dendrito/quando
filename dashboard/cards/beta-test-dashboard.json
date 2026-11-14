@@ -1,0 +1,9 @@
+{
+  "id": "beta-test-dashboard",
+  "title": "Beta test dashboard",
+  "status": "decide",
+  "group": "Launch",
+  "order": 210,
+  "note": "Mockup ready, waiting on Curió's reaction. Private page behind a login, not in the public repo.",
+  "links": [{"label": "Mockup", "url": "https://claude.ai/artifact/BusHowwk8RaZQb8EoBZPei"}]
+}
