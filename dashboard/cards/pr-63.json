@@ -1,7 +1,7 @@
 {
   "id": "pr-63",
   "title": "Fix Sun tab showing the moon; auto-select new sounds",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     63
