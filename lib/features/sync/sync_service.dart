@@ -385,6 +385,7 @@ class SyncNotifier extends Notifier<SyncStatus> {
       lockSettingsProvider,
       dismissedLocksProvider,
       integrationsProvider,
+      soundsProvider,
     ]) {
       ref.invalidate(p);
     }

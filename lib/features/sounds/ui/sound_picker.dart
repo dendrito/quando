@@ -205,8 +205,8 @@ class _SheetState extends ConsumerState<_Sheet> {
         if (switch (kind) {
           null => true,
           SoundKind.quando => s.builtIn,
-          SoundKind.song => s.isLink || s.isRadio,
-          SoundKind.recording => !s.builtIn && !s.isLink && !s.isRadio,
+          SoundKind.song => s.isLink || s.isRadio || s.isDrive,
+          SoundKind.recording => !s.builtIn && !s.isLink && !s.isRadio && !s.isDrive,
         })
           s,
     ];

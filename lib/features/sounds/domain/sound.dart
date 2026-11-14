@@ -12,7 +12,18 @@ class AlarmSound {
     this.link,
     this.plays = false,
     this.playSeconds = 0,
+    this.drive,
   });
+
+  /// A Google Drive file shared by link. It streams from Drive, or plays from
+  /// a downloaded copy when [path] is a local file.
+  final String? drive;
+
+  static String driveUrl(String id) =>
+      'https://drive.usercontent.google.com/download?id=$id&export=download&confirm=t';
+
+  bool get isDrive => drive != null;
+  bool get offline => isDrive && !isRadio;
 
   final String id;
   final String name;
@@ -85,6 +96,7 @@ class AlarmSound {
     link: link,
     plays: plays ?? this.plays,
     playSeconds: playSeconds ?? this.playSeconds,
+    drive: drive,
   );
 
   Map<String, dynamic> toJson() => {

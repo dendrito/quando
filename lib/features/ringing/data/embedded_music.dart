@@ -59,7 +59,9 @@ class EmbeddedMusic {
               ? 'e.target.cuePlaylist({listType:"playlist",list:${_js(playlist)}});'
               : 'e.target.cueVideoById(${_js(video)});'}
             ready=true;quandoAllow(allowed);
+            setTimeout(function(){if(allowed&&!started&&!finished)player.playVideo();},1500);
           }, onStateChange:function(e){
+            if (e.data === 5 && allowed && !started && !finished) { player.playVideo(); }
             if (e.data === 1 && !allowed) { player.pauseVideo(); return; }
             if(e.data===1) started=true;send(e.data === 1 ? 'playing' : 'waiting');
           }, onError:function(e){ send('error'); }, onAutoplayBlocked:function(){send('waiting');}}
