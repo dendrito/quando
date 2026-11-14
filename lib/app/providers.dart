@@ -1387,6 +1387,8 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     }
     if (p.isLock) return p;
     p = p.withStyle(a.style);
+    // Candle lighting and Havdalah: no Snooze.
+    if (a.eventId.startsWith('jewish.')) p = p.withoutSnooze();
     if (!a.ruleId.startsWith('gentle.')) return options.fadesForAll ? p.withFadesOf(options.loudness) : p;
     final calm =
         (AlarmSound.calm.where((c) => c.id == a.style.gentleSound).firstOrNull ?? AlarmSound.calm.first).path;
