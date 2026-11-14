@@ -8,6 +8,7 @@ import 'package:flutter_web_auth_2/flutter_web_auth_2.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../app/edition.dart';
 import '../../ringing/data/spotify.dart';
 import '../../integrations/data/service_connections_sync.dart';
 
@@ -29,9 +30,9 @@ class SpotifyAccount {
   /// Signed in to the library (kept under [prefKey]).
   static bool connected = false;
 
-  // Spotify login is off in every build (dev-mode limit of 25 users).
-  // Pasted Spotify links keep working. Restore the old condition to re-enable.
-  static bool get available => false;
+  // Spotify login is on only in Quando Mine (dev-mode limit of 25 users).
+  // Pasted Spotify links keep working everywhere.
+  static bool get available => mine && !kIsWeb && SpotifyPlay.clientId.isNotEmpty;
 
   static String? _token;
   static String? _tokenRefresh;
