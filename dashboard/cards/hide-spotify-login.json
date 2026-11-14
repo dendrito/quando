@@ -1,0 +1,11 @@
+{
+  "id": "hide-spotify-login",
+  "title": "Hide Spotify login",
+  "status": "review",
+  "tag": "launch",
+  "note": "Login only in the personal build. Pasting Spotify links still works.",
+  "plan": "business",
+  "threads": [],
+  "details": "Spotify allows only 25 test users, so the sign-in row is hidden except in the personal build. The code stays in place.",
+  "order": 9
+}

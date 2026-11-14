@@ -1,0 +1,15 @@
+{
+  "id": "pr-65",
+  "title": "Hide Spotify login in all builds",
+  "status": "done",
+  "tag": "pr",
+  "prs": [
+    65
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 902,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkW1bTDEw79nYrs8XnEVyzUf"
+  ]
+}
