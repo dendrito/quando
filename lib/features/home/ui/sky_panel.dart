@@ -612,10 +612,7 @@ class _SunWeatherCard extends ConsumerWidget {
                 textDirection: TextDirection.ltr,
                 children: [
                   Expanded(
-                    child: Text(
-                      leftLabel,
-                      style: text.bodySmall?.copyWith(color: QuandoColors.text),
-                    ),
+                    child: Text(leftLabel, style: text.bodySmall?.copyWith(color: QuandoColors.text)),
                   ),
                   Expanded(
                     child: Text(
