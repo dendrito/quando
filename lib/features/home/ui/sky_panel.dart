@@ -216,8 +216,8 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
           child: InkWell(
             onTap: details == null ? null : () => showMoonDetails(context, details),
             child: CustomPaint(
-              painter: stars ? _StarsPainter(moonSky?.night) : null,
-              child: _Overlaid(
+              painter: stars ? SkyStars(moonSky?.night) : null,
+              child: SkyOverlaid(
                 kinds: moonSky?.kinds,
                 child: Padding(
                   padding: const EdgeInsets.all(18),
@@ -570,8 +570,8 @@ class _SunWeatherCard extends ConsumerWidget {
                 colors: [Color(0x00000000), SkyStrip.shade],
               ),
             ),
-      child: _Overlaid(
-        stars: isNight ? _StarsPainter(strip?.night, true) : null,
+      child: SkyOverlaid(
+        stars: isNight ? SkyStars(strip?.night, true) : null,
         kinds: strip?.kinds,
         child: Padding(
           padding: const EdgeInsets.all(18),
@@ -652,8 +652,8 @@ class _SunWeatherCard extends ConsumerWidget {
 
 /// [child] with the falling weather of [kinds] drawn behind it, when any is
 /// forecast.
-class _Overlaid extends StatelessWidget {
-  const _Overlaid({required this.kinds, required this.child, this.stars});
+class SkyOverlaid extends StatelessWidget {
+  const SkyOverlaid({super.key, required this.kinds, required this.child, this.stars});
   final List<WeatherKind?>? kinds;
   final Widget child;
 
@@ -676,10 +676,10 @@ class _Overlaid extends StatelessWidget {
 }
 
 /// A few fixed stars for the night Moon card.
-class _StarsPainter extends CustomPainter {
+class SkyStars extends CustomPainter {
   /// [night] is how dark the sky is from left to right (0 day, 1 night);
   /// the stars fade out where it is day. Null means all night.
-  _StarsPainter([this.night, this.dense = false]);
+  SkyStars([this.night, this.dense = false]);
   final List<double>? night;
 
   /// Many more stars, for the Sun card's night sky.
@@ -717,5 +717,5 @@ class _StarsPainter extends CustomPainter {
   }
 
   @override
-  bool shouldRepaint(_StarsPainter old) => old.night != night || old.dense != dense;
+  bool shouldRepaint(SkyStars old) => old.night != night || old.dense != dense;
 }
