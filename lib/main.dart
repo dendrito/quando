@@ -1,3 +1,5 @@
+import 'dart:ui' show PlatformDispatcher;
+
 import 'package:flutter/material.dart';
 import 'package:flutter/foundation.dart' show LicenseEntryWithLineBreaks, LicenseRegistry;
 import 'package:flutter/services.dart' show rootBundle;
@@ -10,6 +12,7 @@ import 'app/app.dart';
 import 'app/providers.dart';
 import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
+import 'features/beta/beta_log.dart';
 import 'features/calendar/data/calendar_background.dart';
 import 'features/ringing/data/spotify.dart';
 import 'features/settings/domain/ui_level.dart';
@@ -34,6 +37,17 @@ Future<void> main() async {
     ], await rootBundle.loadString('third_party/cldr/LICENSE'));
   });
   final (prefs, deviceZone) = await _setUp();
+  // Beta: only does anything once a tester has turned sharing on.
+  BetaLog.init(prefs);
+  final presentError = FlutterError.onError;
+  FlutterError.onError = (details) {
+    presentError?.call(details);
+    BetaLog.crash(details.exception, details.stack);
+  };
+  PlatformDispatcher.instance.onError = (error, stack) {
+    BetaLog.crash(error, stack);
+    return false;
+  };
   runApp(
     ProviderScope(
       overrides: [prefsProvider.overrideWithValue(prefs), deviceZoneProvider.overrideWithValue(deviceZone)],

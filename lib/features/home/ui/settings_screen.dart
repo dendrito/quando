@@ -21,6 +21,8 @@ import '../../../app/widgets/fold.dart';
 import '../../quotes/domain/quote.dart';
 import '../../quotes/ui/quote_sources_sheet.dart';
 import '../../ready/ready_screen.dart';
+import '../../beta/beta_log.dart';
+import '../../beta/beta_ui.dart';
 import '../../sync/sync_service.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -298,6 +300,9 @@ class SettingsScreen extends ConsumerWidget {
             fold(l10n.groupLookQuotes, look),
             fold(l10n.groupConnectionsSync, connections),
           ],
+
+          // ---- Beta ----
+          if (BetaLog.showInSettings) ...[group(BetaWords.group), const BetaSettings()],
 
           // ---- About ----
           group(l10n.settingsAbout),

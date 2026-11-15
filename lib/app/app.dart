@@ -8,6 +8,8 @@ import 'package:go_router/go_router.dart';
 
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
+import '../features/beta/beta_log.dart';
+import '../features/beta/beta_ui.dart';
 import '../features/busy/ui/busy_screen.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/weather_alarms/data/weather_background.dart';
@@ -161,6 +163,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   }
 
   Future<void> _start() async {
+    BetaLog.opened();
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
@@ -232,6 +235,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Back after a while: plan again from the real time now.
     if (state == AppLifecycleState.resumed) {
+      BetaLog.opened();
+      final ctx = _navigatorKey.currentContext;
+      if (ctx != null && BetaLog.surveyDue()) unawaited(askBetaSurvey(ctx));
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
       _weatherFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
