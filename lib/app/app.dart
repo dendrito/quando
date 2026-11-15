@@ -1,3 +1,5 @@
+import '../features/beta/beta_log.dart';
+import '../features/beta/beta_ui.dart';
 import 'dart:async';
 
 import 'package:alarm/alarm.dart';
@@ -161,6 +163,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   }
 
   Future<void> _start() async {
+    BetaLog.opened();
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
@@ -232,6 +235,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   void didChangeAppLifecycleState(AppLifecycleState state) {
     // Back after a while: plan again from the real time now.
     if (state == AppLifecycleState.resumed) {
+      BetaLog.opened();
+      final ctx = _navigatorKey.currentContext;
+      if (ctx != null && BetaLog.surveyDue()) unawaited(askBetaSurvey(ctx));
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
       _weatherFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());

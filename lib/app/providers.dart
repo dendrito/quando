@@ -1,3 +1,4 @@
+import '../features/beta/beta_log.dart';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show debugPrint;
@@ -1096,6 +1097,7 @@ class UserAlarmsNotifier extends Notifier<List<UserAlarm>> {
         if (a.id != alarm.id) a,
       fixed,
     ]);
+    BetaLog.alarmSaved();
   }
 
   /// A copy of alarm [id], right after it in the list. Returns the copy.
