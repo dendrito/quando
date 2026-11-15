@@ -5,7 +5,7 @@ compatibility_date = "2025-01-01"
 [[d1_databases]]
 binding = "DB"
 database_name = "quando-beta"
-database_id = "REPLACE_WITH_D1_ID"   # from `npx wrangler d1 create quando-beta`
+database_id = "6a7c5a3a-566e-4ca9-aff9-1a4f9a9d87d5"   # from `npx wrangler d1 create quando-beta`
 
 # Set in the Pages dashboard (Settings > Variables), not here:
 #   ACCESS_TEAM_DOMAIN  e.g. yourteam.cloudflareaccess.com
