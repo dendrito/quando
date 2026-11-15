@@ -405,8 +405,7 @@ void main() {
         ),
       );
       await tester.pumpAndSettle();
-      expect(find.byType(DayArc), findsOneWidget);
-      expect(tester.widget<DayArc>(find.byType(DayArc)).sky.isDay, isFalse); // Detroit before sunrise.
+      expect(find.byType(DayArc), findsNothing); // Detroit before sunrise: night has no Sun path.
       await tester.tap(find.text(l10n.skyMoon));
       await tester.pumpAndSettle();
       expect(find.byType(MoonArc), findsOneWidget);
