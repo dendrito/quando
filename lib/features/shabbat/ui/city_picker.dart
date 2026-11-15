@@ -193,7 +193,7 @@ class _CityPickerState extends ConsumerState<CityPicker> {
           // Keep the chosen custom when already in this timezone; always editable.
           candleLightingMinutes: ref.read(placeProvider).timeZone == zone
               ? ref.read(placeProvider).candleLightingMinutes
-              : 18,
+              : Places.candleMinutesAt(point.latitude, point.longitude),
         ),
         local: true,
       );
