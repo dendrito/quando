@@ -5830,6 +5830,30 @@ abstract class AppLocalizations {
   /// **'Weather'**
   String get cardWeather;
 
+  /// No description provided for @cardSkyLiving.
+  ///
+  /// In en, this message translates to:
+  /// **'Living sky'**
+  String get cardSkyLiving;
+
+  /// No description provided for @cardSkyBand.
+  ///
+  /// In en, this message translates to:
+  /// **'Horizon band'**
+  String get cardSkyBand;
+
+  /// No description provided for @cardSkyRing.
+  ///
+  /// In en, this message translates to:
+  /// **'Day ring'**
+  String get cardSkyRing;
+
+  /// No description provided for @cardSkyTimeline.
+  ///
+  /// In en, this message translates to:
+  /// **'Timeline'**
+  String get cardSkyTimeline;
+
   /// No description provided for @cardAlarms.
   ///
   /// In en, this message translates to:

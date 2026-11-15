@@ -34,6 +34,7 @@ import 'home_grid_view.dart';
 import 'home_tool_cards.dart';
 import 'header_pills.dart';
 import 'sky_panel.dart';
+import 'sky_styles.dart';
 import '../../settings/domain/ui_level.dart';
 import 'learning_card.dart';
 import 'week_list.dart';
@@ -641,6 +642,17 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
               fill: sky.color,
               child: SkyPanel(sky: sky, only: SkyCard.moon),
             ),
+            for (final (card, style) in [
+              (HomeCard.skyLiving, SkyStyle.living),
+              (HomeCard.skyBand, SkyStyle.band),
+              (HomeCard.skyRing, SkyStyle.ring),
+              (HomeCard.skyTimeline, SkyStyle.timeline),
+            ])
+              card: GridCardSpec(
+                title: cardName(card),
+                fill: sky.color,
+                child: SkyStyleCard(style: style, sky: sky),
+              ),
             if (display.weather)
               HomeCard.weather: GridCardSpec(
                 title: cardName(HomeCard.weather),
@@ -1227,6 +1239,10 @@ String cardName(HomeCard c) => switch (c) {
   HomeCard.sky => l10n.cardSky,
   HomeCard.moon => l10n.cardMoon,
   HomeCard.weather => l10n.cardWeather,
+  HomeCard.skyLiving => l10n.cardSkyLiving,
+  HomeCard.skyBand => l10n.cardSkyBand,
+  HomeCard.skyRing => l10n.cardSkyRing,
+  HomeCard.skyTimeline => l10n.cardSkyTimeline,
   HomeCard.alarms => l10n.cardAlarms,
   HomeCard.quick => l10n.cardQuick,
   HomeCard.tools => l10n.cardTools,
@@ -1244,6 +1260,10 @@ IconData cardIcon(HomeCard c) => switch (c) {
   HomeCard.sky => Icons.wb_twilight,
   HomeCard.moon => Icons.nightlight_round,
   HomeCard.weather => Icons.cloud_outlined,
+  HomeCard.skyLiving => Icons.nights_stay_outlined,
+  HomeCard.skyBand => Icons.gradient,
+  HomeCard.skyRing => Icons.donut_large,
+  HomeCard.skyTimeline => Icons.timeline,
   HomeCard.alarms => Icons.list_alt,
   HomeCard.quick => Icons.bolt,
   HomeCard.tools => Icons.av_timer,

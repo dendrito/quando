@@ -3288,6 +3288,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get cardWeather => 'Погода';
 
   @override
+  String get cardSkyLiving => 'Living sky';
+
+  @override
+  String get cardSkyBand => 'Horizon band';
+
+  @override
+  String get cardSkyRing => 'Day ring';
+
+  @override
+  String get cardSkyTimeline => 'Timeline';
+
+  @override
   String get cardAlarms => 'Ваши будильники';
 
   @override

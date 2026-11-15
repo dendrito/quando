@@ -8,6 +8,10 @@ enum HomeCard {
   sky,
   moon,
   weather,
+  skyLiving,
+  skyBand,
+  skyRing,
+  skyTimeline,
   alarms,
   quick,
 
@@ -79,6 +83,10 @@ class HomeGrid {
       HomeCard.clock => wide ? pick([(3, 1), (3, 2), (4, 2)]) : pick([(2, 1), (4, 1), (4, 2)]),
       HomeCard.sky => wide ? pick([(6, 4), (8, 4), (12, 4)]) : pick([(4, 5), (4, 5), (4, 6)]),
       HomeCard.moon => wide ? pick([(4, 4), (6, 4), (8, 4)]) : pick([(4, 5), (4, 5), (4, 6)]),
+      HomeCard.skyLiving ||
+      HomeCard.skyBand ||
+      HomeCard.skyRing ||
+      HomeCard.skyTimeline => wide ? pick([(4, 4), (6, 4), (8, 4)]) : pick([(4, 4), (4, 5), (4, 6)]),
       HomeCard.weather => wide ? pick([(4, 3), (6, 3), (8, 3)]) : pick([(4, 4), (4, 4), (4, 5)]),
       HomeCard.alarms => wide ? pick([(4, 2), (4, 3), (4, 5)]) : pick([(4, 2), (4, 3), (4, 5)]),
       HomeCard.quick => wide ? pick([(4, 1), (4, 2), (6, 1)]) : pick([(2, 1), (4, 1), (4, 2)]),
