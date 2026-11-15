@@ -16,6 +16,7 @@ import '../../alarms/domain/user_alarm.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
+import '../../shabbat/ui/city_picker.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../shabbat/ui/preparation_controls.dart';
 import '../../../app/edition.dart';
@@ -364,6 +365,21 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     setState(() => _openGroups.remove(from));
   }
 
+  var _askedCity = false;
+  Timer? _askTimer;
+
+  /// Shabbat just appeared and no city is known: ask once, after the phone
+  /// had a moment to find one. Never in Quando? before Shabbat is in use.
+  void _askCityOnce() {
+    if (_askedCity) return;
+    _askedCity = true;
+    _askTimer = Timer(const Duration(seconds: 4), () {
+      if (!mounted || !ref.read(placeNeedsAskProvider)) return;
+      ref.read(prefsProvider).setBool('place.asked', true);
+      pickShabbatPlace(context);
+    });
+  }
+
   @override
   void initState() {
     super.initState();
@@ -377,6 +393,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
   @override
   void dispose() {
     _tick?.cancel();
+    _askTimer?.cancel();
     super.dispose();
   }
 
@@ -455,6 +472,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     final sky = skyPlace == null ? SkyDay(now: now) : SkyDay.of(skyPlace, now);
     final display = ref.watch(homeDisplayProvider);
     final simple = ref.watch(uiLevelProvider) == UiLevel.simple;
+    if (ref.watch(placeNeedsAskProvider)) _askCityOnce();
 
     // Shabbat times in the Shabbat city's clock; everything else in yours.
     String cityTime(DateTime utc) => hhmm(inZone(utc, place.timeZone));

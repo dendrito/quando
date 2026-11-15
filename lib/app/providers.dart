@@ -456,7 +456,11 @@ class PlaceNotifier extends Notifier<Place> {
           longitude: point.longitude,
           timeZone: device,
           inIsrael: device == 'Asia/Jerusalem',
-          candleLightingMinutes: here.candleLightingMinutes,
+          // Keep a custom the person chose only while they stay in the same
+          // timezone; a new place gets that place's common custom.
+          candleLightingMinutes: (_prefs.getBool('place.candleChosen') ?? false) && here.timeZone == device
+              ? here.candleLightingMinutes
+              : Places.candleMinutesAt(point.latitude, point.longitude),
         ),
       );
     } catch (e) {
@@ -468,6 +472,7 @@ class PlaceNotifier extends Notifier<Place> {
   void set(Place place) {
     state = place;
     _prefs.setBool('place.manual', true);
+    _prefs.remove('place.candleChosen');
     _prefs.remove('place.local');
     _prefs
       ..setString('place.name', place.name)
@@ -493,6 +498,7 @@ class PlaceNotifier extends Notifier<Place> {
 
   void setCandleMinutes(int minutes) {
     state = state.copyWith(candleLightingMinutes: minutes);
+    _prefs.setBool('place.candleChosen', true);
     if (_prefs.containsKey('place.local')) {
       _prefs.setString('place.local', jsonEncode(state.toJson()));
     } else {
@@ -1284,13 +1290,28 @@ class LockSettingsNotifier extends Notifier<LockSettings> {
 final lockSettingsProvider = NotifierProvider<LockSettingsNotifier, LockSettings>(LockSettingsNotifier.new);
 
 /// Whether Shabbat shows on Quando?'s home and settings: always in Matai?,
-/// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm.
+/// and in Quando? only once you've turned on Shabbat mode or a Shabbat alarm,
+/// or once a Shabbat or holiday calendar is detected.
 final shabbatInUseProvider = Provider<bool>(
   (ref) =>
       jewishHome ||
       ref.watch(lockSettingsProvider).shabbat ||
-      ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset'),
+      ref.watch(rulesProvider).any((r) => r.enabled && r.id != 'preset.sunrise' && r.id != 'preset.sunset') ||
+      // A Shabbat or holiday calendar (or candle lighting / havdalah events)
+      // among the calendars the person picked also brings Shabbat in.
+      ref.watch(shabbatCalendarsProvider).isNotEmpty,
 );
+
+/// True once Shabbat is in use but no city was ever chosen or found, so the
+/// times would silently be Jerusalem's. Asked once.
+final placeNeedsAskProvider = Provider<bool>((ref) {
+  if (!ref.watch(shabbatInUseProvider)) return false;
+  ref.watch(placeProvider);
+  final p = ref.read(prefsProvider);
+  return !p.containsKey('place.name') &&
+      !p.containsKey('place.local') &&
+      !(p.getBool('place.asked') ?? false);
+});
 
 /// Locks the user ended early with "hold to unlock".
 class DismissedLocksNotifier extends Notifier<Set<String>> {

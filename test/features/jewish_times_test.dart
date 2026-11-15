@@ -94,4 +94,17 @@ void main() {
     // About 16:37 local on Friday 6 Nov = 00:37 UTC on Saturday.
     expect(start.at, DateTime.utc(2026, 11, 7, 0, 37, 28));
   });
+
+  test('far north in summer havdalah still exists (72 minutes after sunset)', () {
+    const oslo = Place(name: 'Oslo', latitude: 59.9139, longitude: 10.7522, timeZone: 'Europe/Oslo');
+    final events = JewishTimes(place: oslo).events(DateTime.utc(2026, 6, 18), DateTime.utc(2026, 6, 22));
+    expect(events.where((e) => e.kind == EventKind.holyDayEnd), hasLength(1));
+  });
+
+  test('candle lighting custom follows the place', () {
+    expect(Places.candleMinutesAt(31.78, 35.22), 40); // Jerusalem
+    expect(Places.candleMinutesAt(32.8, 34.99), 30); // Haifa
+    expect(Places.candleMinutesAt(40.71, -74.0), 18); // New York
+    expect(Places.candleMinutesAt(51.51, -0.13), 18); // London
+  });
 }

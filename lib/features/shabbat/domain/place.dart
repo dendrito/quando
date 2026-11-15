@@ -1,3 +1,5 @@
+import 'dart:math' as math;
+
 part 'city_catalog.dart';
 
 /// A place to calculate Shabbat and festival times for.
@@ -102,6 +104,20 @@ class Places {
     longitude: -118.2437,
     timeZone: 'America/Los_Angeles',
   );
+
+  /// The common custom for candle lighting at these coordinates: 40 minutes
+  /// in and around Jerusalem, 30 around Haifa, 18 everywhere else.
+  static int candleMinutesAt(double latitude, double longitude) {
+    bool near(Place p, double km) {
+      final dLat = (latitude - p.latitude) * 111.0;
+      final dLon = (longitude - p.longitude) * 111.0 * math.cos(p.latitude * math.pi / 180);
+      return dLat * dLat + dLon * dLon <= km * km;
+    }
+
+    if (near(jerusalem, 20)) return jerusalem.candleLightingMinutes;
+    if (near(haifa, 20)) return haifa.candleLightingMinutes;
+    return 18;
+  }
 
   static const all = [jerusalem, telAviv, haifa, saoPaulo, newYork, london, losAngeles, ...extraPlaces];
 }

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/app.dart';
 import 'package:quando/app/providers.dart';
+import 'package:quando/features/shabbat/ui/city_picker.dart';
 
 import 'shabbat_on.dart';
 
@@ -77,6 +78,46 @@ void main() {
       scrollable: find.byType(Scrollable).first,
     );
     expect(find.textContaining('set themselves on this phone'), findsOneWidget);
+  });
+
+  testWidgets('Shabbat on with no city known asks for the city once', (tester) async {
+    tester.view.physicalSize = const Size(1080, 4000);
+    tester.view.devicePixelRatio = 2.5;
+    addTearDown(tester.view.reset);
+
+    SharedPreferences.setMockInitialValues({...shabbatOn}..remove('place.name'));
+    final prefs = await SharedPreferences.getInstance();
+    await tester.pumpWidget(
+      ProviderScope(
+        overrides: [
+          clockProvider.overrideWithValue(() => DateTime.utc(2026, 11, 3, 12)),
+          prefsProvider.overrideWithValue(prefs),
+        ],
+        child: const QuandoApp(),
+      ),
+    );
+    await tester.pump(const Duration(seconds: 5));
+    await tester.pumpAndSettle();
+
+    expect(find.byType(CityPicker), findsOneWidget);
+    expect(prefs.getBool('place.asked'), isTrue);
+  });
+
+  test('a detected Shabbat calendar brings Shabbat in; none leaves it out', () async {
+    SharedPreferences.setMockInitialValues({});
+    final prefs = await SharedPreferences.getInstance();
+    ProviderContainer make(Set<String> calendars) => ProviderContainer(
+      overrides: [
+        prefsProvider.overrideWithValue(prefs),
+        shabbatCalendarsProvider.overrideWithValue(calendars),
+      ],
+    );
+    final without = make({});
+    final withOne = make({'hebcal'});
+    addTearDown(without.dispose);
+    addTearDown(withOne.dispose);
+    expect(without.read(shabbatInUseProvider), isFalse);
+    expect(withOne.read(shabbatInUseProvider), isTrue);
   });
 
   testWidgets('a week row has quick actions: remove a time, turn off, undo', (tester) async {

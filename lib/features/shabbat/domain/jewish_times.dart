@@ -154,7 +154,10 @@ class JewishTimes {
       HavdalahOpinion.geonim => z.getTzais(),
       HavdalahOpinion.rabbeinuTam => z.getTzais72(),
     };
-    return t?.toUtc();
+    if (t != null) return t.toUtc();
+    // Far north in summer the sun never gets 8.5° below the horizon: end at a
+    // fixed 72 minutes after sunset rather than dropping the whole Shabbat.
+    return z.getSeaLevelSunset()?.add(const Duration(minutes: 72)).toUtc();
   }
 }
 
