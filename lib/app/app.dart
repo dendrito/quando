@@ -1,5 +1,3 @@
-import '../features/beta/beta_log.dart';
-import '../features/beta/beta_ui.dart';
 import 'dart:async';
 
 import 'package:alarm/alarm.dart';
@@ -10,6 +8,8 @@ import 'package:go_router/go_router.dart';
 
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
+import '../features/beta/beta_log.dart';
+import '../features/beta/beta_ui.dart';
 import '../features/busy/ui/busy_screen.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/weather_alarms/data/weather_background.dart';

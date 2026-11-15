@@ -552,8 +552,9 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                         onPressed: () async {
                           await notifier.resendConfirmation();
                           if (context.mounted) {
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                            ScaffoldMessenger.of(
+                              context,
+                            ).showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
                           }
                         },
                         child: Text(l10n.emailSendAgain),

@@ -111,13 +111,21 @@ class _FeedbackSheetState extends State<_FeedbackSheet> {
         Wrap(
           spacing: 8,
           children: [
-            for (final (k, l) in const [('bug', BetaWords.bug), ('idea', BetaWords.idea), ('love', BetaWords.love)])
+            for (final (k, l) in const [
+              ('bug', BetaWords.bug),
+              ('idea', BetaWords.idea),
+              ('love', BetaWords.love),
+            ])
               ChoiceChip(label: Text(l), selected: _kind == k, onSelected: (_) => setState(() => _kind = k)),
           ],
         ),
         const SizedBox(height: 12),
         TextField(controller: _text, autofocus: true, minLines: 3, maxLines: 6, maxLength: 2000),
-        TextField(controller: _contact, keyboardType: TextInputType.emailAddress, decoration: const InputDecoration(hintText: BetaWords.email)),
+        TextField(
+          controller: _contact,
+          keyboardType: TextInputType.emailAddress,
+          decoration: const InputDecoration(hintText: BetaWords.email),
+        ),
         const SizedBox(height: 12),
         FilledButton(onPressed: _busy ? null : _send, child: const Text(BetaWords.send)),
       ],
@@ -140,11 +148,20 @@ Future<void> askBetaSurvey(BuildContext context) async {
           children: [
             Text(BetaWords.survey(appTitle), style: Theme.of(context).textTheme.titleMedium),
             const SizedBox(height: 12),
-            FilledButton(onPressed: () => Navigator.pop(context, 'very'), child: const Text(BetaWords.veryDisappointed)),
+            FilledButton(
+              onPressed: () => Navigator.pop(context, 'very'),
+              child: const Text(BetaWords.veryDisappointed),
+            ),
             const SizedBox(height: 8),
-            OutlinedButton(onPressed: () => Navigator.pop(context, 'somewhat'), child: const Text(BetaWords.somewhat)),
+            OutlinedButton(
+              onPressed: () => Navigator.pop(context, 'somewhat'),
+              child: const Text(BetaWords.somewhat),
+            ),
             const SizedBox(height: 8),
-            OutlinedButton(onPressed: () => Navigator.pop(context, 'not'), child: const Text(BetaWords.notReally)),
+            OutlinedButton(
+              onPressed: () => Navigator.pop(context, 'not'),
+              child: const Text(BetaWords.notReally),
+            ),
           ],
         ),
       ),

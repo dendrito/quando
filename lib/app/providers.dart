@@ -1,4 +1,3 @@
-import '../features/beta/beta_log.dart';
 import 'dart:convert';
 
 import 'package:flutter/foundation.dart' show debugPrint;
@@ -12,6 +11,7 @@ import '../core/util/format.dart';
 import '../core/util/platform.dart';
 import '../features/alarms/data/alarm_registrar.dart';
 import '../features/alarms/domain/user_alarm.dart';
+import '../features/beta/beta_log.dart';
 import '../features/calendar/data/calendar_reader.dart';
 import '../features/calendar/data/google_calendar.dart';
 import '../features/calendar/data/loud_notifications.dart';

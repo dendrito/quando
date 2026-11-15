@@ -108,22 +108,29 @@ class BetaLog {
     final p = _p;
     final at = p?.getInt(_at);
     if (p == null || !on || at == null || (p.getBool(_survey) ?? false)) return false;
-    return (now ?? DateTime.now()).difference(DateTime.fromMillisecondsSinceEpoch(at)) >= const Duration(days: 7);
+    return (now ?? DateTime.now()).difference(DateTime.fromMillisecondsSinceEpoch(at)) >=
+        const Duration(days: 7);
   }
 
   static Future<void> answerSurvey(String answer) async {
     await _p?.setBool(_survey, true);
-    await sink.post('/api/feedback', {'kind': 'survey', 'body': answer, 'platform': platform, 'version': appVersion});
+    await sink.post('/api/feedback', {
+      'kind': 'survey',
+      'body': answer,
+      'platform': platform,
+      'version': appVersion,
+    });
   }
 
   /// Feedback is the person's own choice, so it does not need the switch.
-  static Future<bool> feedback(String kind, String body, {String contact = ''}) => sink.post('/api/feedback', {
-    'kind': kind,
-    'body': body,
-    'platform': platform,
-    'version': appVersion,
-    if (contact.isNotEmpty) 'contact': contact,
-  });
+  static Future<bool> feedback(String kind, String body, {String contact = ''}) =>
+      sink.post('/api/feedback', {
+        'kind': kind,
+        'body': body,
+        'platform': platform,
+        'version': appVersion,
+        if (contact.isNotEmpty) 'contact': contact,
+      });
 }
 
 abstract interface class BetaSink {
@@ -135,7 +142,11 @@ class HttpBetaSink implements BetaSink {
   Future<bool> post(String path, Map<String, Object?> json) async {
     try {
       final r = await http
-          .post(Uri.parse('${BetaLog.base}$path'), headers: {'content-type': 'application/json'}, body: jsonEncode(json))
+          .post(
+            Uri.parse('${BetaLog.base}$path'),
+            headers: {'content-type': 'application/json'},
+            body: jsonEncode(json),
+          )
           .timeout(const Duration(seconds: 10));
       return r.statusCode == 200;
     } catch (e) {
