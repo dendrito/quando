@@ -1,9 +1,10 @@
 {
   "id": "audit-quando-against-goals",
   "title": "Audit Quando? against its goals",
-  "status": "review",
+  "status": "done",
   "group": "Launch",
   "order": 205,
-  "note": "Audit done 15 Nov. Findings are in the project files, not in this public repo.",
+  "note": "Audit done 15 Nov; first fixes merged in #70 (build number, candle minutes, Shabbat reveal). Other findings are in the project files, not in this public repo.",
+  "prs": [70],
   "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzk9z7uexPB2odbX8GqYN7Fhq"]
 }
