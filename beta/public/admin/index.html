@@ -118,7 +118,7 @@ const PL={android:"Android",ios:"iPhone / iPad",iphone:"iPhone",ipad:"iPad",mac:
 const GATES=[["Installed","installed",70],["Activated","activated",60],["Day 7","retained",40],["Crash-free","crashFree",99],["Very disappointed","veryDisappointed",40]];
 let D,ff="new",tf="all",q="",armed=null,loaded=0;
 const toast=t=>{const e=$("toast");e.textContent=t;e.classList.add("on");setTimeout(()=>e.classList.remove("on"),1600)};
-const post=(u,b)=>fetch(u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(load);
+const post=(u,b)=>fetch(u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(async r=>{const j=await r.json().catch(()=>({}));if(j.invited)toast("Invited to TestFlight");else if(!r.ok)toast("TestFlight said no");return load()});
 const chips=(box,opts,cur,set)=>box.replaceChildren(...opts.map(([k,l,n])=>{const c=el("button","chip"+(k===cur?" on":""),l);if(n!=null)c.append(el("em","",n));c.onclick=()=>{set(k);draw()};return c}));
 const empty=(a,b)=>{const d=el("div","empty");d.append(el("b","",a),b);return d};
 
