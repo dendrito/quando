@@ -115,7 +115,9 @@ function draw(){
  window._tl=tl;
  const tb=el("tbody"),th=el("thead"),hd=el("tr");["Email","Device","Signed up","Status"].forEach(h=>hd.append(el("th","",h)));th.append(hd);
  tl.forEach(s=>{const r=el("tr");r.append(el("td","",s.email),el("td","",PL[s.platform]||s.platform));const t3=el("td");t3.append(when(s.created_at));r.append(t3);
-  const td=el("td"),b=el("button","add"+(s.added?" done":""),s.added?"✓ Added":"Mark added");b.onclick=()=>post("/admin/api/signup",{id:s.id,added:!s.added});td.append(b);r.append(td);tb.append(r)});
+  const td=el("td"),b=el("button","add"+(s.added?" done":""),s.added?"✓ Added":"Mark added");b.onclick=()=>post("/admin/api/signup",{id:s.id,added:!s.added});td.append(b);
+  if(!s.added&&D.integrations&&D.integrations.testflight&&["iphone","ipad","mac"].includes(s.platform)){const iv=el("button","add","Invite to TestFlight");iv.style.marginLeft="6px";iv.onclick=async()=>{iv.disabled=true;const r=await fetch("/admin/api/invite",{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify({id:s.id})});toast(r.ok?"Invited":"Invite failed ("+r.status+")");load()};td.append(iv)}
+  r.append(td);tb.append(r)});
  if(!tl.length){const r=el("tr"),td=el("td","mute",D.signups.length?"No match.":"No testers yet.");td.colSpan=4;r.append(td);tb.append(r)}
  $("tt").replaceChildren(th,tb);
 }

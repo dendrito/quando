@@ -20,6 +20,7 @@ export async function onRequestGet({ env }) {
   const pct = (a, b) => (b ? Math.round((a / b) * 1000) / 10 : null);
   return json({
     signups, feedback, crashes,
+    integrations: { testflight: !!(env.ASC_KEY_ID && env.ASC_ISSUER_ID && env.ASC_PRIVATE_KEY && env.ASC_GROUP_ID) },
     platforms: signups.reduce((m, s) => ((m[s.platform] = (m[s.platform] || 0) + 1), m), {}),
     perDay: (await q("SELECT date(created_at,'unixepoch') d, COUNT(*) c FROM signups GROUP BY d ORDER BY d")),
     metrics: {
