@@ -1,0 +1,106 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex"><title>Quando Beta</title>
+<style>
+/* Same tokens as board.quando.day: warm paper, orange accent. Layout: numbers on top, then three lists. */
+:root{--bg:#f6f5f1;--card:#fff;--ink:#1d1b16;--mute:#6b675c;--line:#e3e0d6;--accent:#c2590a;--ok:#1f7a45;--warn:#a86a00;--bad:#b3261e;--chip:#efece3;--a:#3ddc84;--i:#4a90e2;--m:#8957e5}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14130f;--card:#1e1d18;--ink:#f1eee4;--mute:#a09b8c;--line:#33312a;--accent:#ff9a4d;--ok:#5fcf8a;--warn:#f0b34a;--bad:#ff8a80;--chip:#2a2822;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14130f;--card:#1e1d18;--ink:#f1eee4;--mute:#a09b8c;--line:#33312a;--accent:#ff9a4d;--ok:#5fcf8a;--warn:#f0b34a;--bad:#ff8a80;--chip:#2a2822;color-scheme:dark}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px))}
+main{max-width:1100px;margin:0 auto;padding-block:20px 56px}
+header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:1.5rem;margin:0}
+.ex{font-size:.75rem;color:var(--mute);background:var(--chip);padding:2px 9px;border-radius:99px}
+h2{font-size:.9rem;margin:28px 0 10px;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);display:flex;justify-content:space-between}
+h2 span{text-transform:none;letter-spacing:0;font-weight:400}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:16px}
+.tile{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.n{font-size:2.2rem;font-weight:700;line-height:1;font-variant-numeric:tabular-nums}
+.n.acc{color:var(--accent)}.n.bad{color:var(--bad)}
+.tile small{display:block;color:var(--mute);margin-top:6px;font-size:.85rem}
+.up{color:var(--ok);font-size:.8rem;font-weight:600}
+.two{display:grid;grid-template-columns:2fr 1fr;gap:10px;margin-top:10px}
+@media(max-width:700px){.two{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px 16px;min-width:0}
+.bar{display:flex;height:12px;border-radius:99px;overflow:hidden;gap:2px;margin:6px 0 12px}
+.bar i{display:block}
+.leg{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;font-size:.9rem}
+.leg b{font-variant-numeric:tabular-nums}.dot{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+svg{display:block;width:100%;height:auto}
+.list{background:var(--card);border:1px solid var(--line);border-radius:14px}
+.row{display:flex;gap:10px;padding:11px 14px;border-bottom:1px solid var(--line);align-items:baseline}
+.row:last-child{border-bottom:0}.grow{flex:1;min-width:0}
+.mute{color:var(--mute);font-size:.85rem;white-space:nowrap}
+.tag{display:inline-block;padding:1px 9px;border-radius:99px;background:var(--chip);color:var(--mute);font-size:.75rem;white-space:nowrap}
+.tag.bug{background:transparent;border:1px solid var(--bad);color:var(--bad)}
+.tag.idea{background:transparent;border:1px solid var(--accent);color:var(--accent)}
+.tag.love{background:transparent;border:1px solid var(--ok);color:var(--ok)}
+.new{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;align-self:center}
+.read .new{visibility:hidden}.read{opacity:.65}
+.crash b{display:block;font-weight:600}.crash code{font:.8rem ui-monospace,monospace;color:var(--mute)}
+.ct{font-weight:700;font-variant-numeric:tabular-nums;color:var(--bad)}
+.tabs{display:flex;gap:6px;flex-wrap:wrap}.tabs span{padding:5px 12px;border:1px solid var(--line);border-radius:99px;font-size:.85rem;background:var(--card);color:var(--mute)}.tabs .on{border-color:var(--accent);color:var(--accent)}
+.tbl{overflow-x:auto}.tbl table{width:100%;border-collapse:collapse;min-width:520px}
+.tbl th{font-weight:400;color:var(--mute);font-size:.8rem;text-align:left;padding:10px 14px;border-bottom:1px solid var(--line)}
+.tbl td{padding:9px 14px;border-bottom:1px solid var(--line);font-size:.92rem}.tbl tr:last-child td{border:0}
+.st{display:inline-flex;align-items:center;gap:6px}.st:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--ok)}
+.st.idle:before{background:var(--warn)}.st.wait:before{background:var(--line)}
+.row select,.row button,.tbl button{font:inherit;font-size:.8rem;padding:2px 6px;border:1px solid var(--line);border-radius:8px;background:var(--card);color:var(--ink)}
+.gate{font-size:.8rem;color:var(--mute)}.gate.ok{color:var(--ok)}
+.tabs span{cursor:pointer}
+</style></head><body><main>
+<header><h1>Beta</h1><span class="gate" id="gates"></span></header>
+<div class="tiles" id="tiles"></div>
+<div class="two"><div class="box"><svg id="spark" viewBox="0 0 520 120"></svg></div><div class="box" id="plat"></div></div>
+<h2>Feedback <span class="tabs" id="ftabs"></span></h2><div class="list" id="fb"></div>
+<h2>Crashes</h2><div class="list" id="cr"></div>
+<h2>Testers <span class="tabs" id="ttabs"></span></h2><div class="list tbl"><table id="tt"></table></div>
+</main><script>
+const $=id=>document.getElementById(id);
+const el=(t,c,x)=>{const e=document.createElement(t);if(c)e.className=c;if(x!==undefined)e.textContent=x;return e};
+const ago=s=>{const d=Date.now()/1000-s;return d<3600?Math.max(1,d/60|0)+"m":d<86400?(d/3600|0)+"h":(d/86400|0)+"d"};
+const PL={android:"Android",iphone:"iPhone",ipad:"iPad",mac:"Mac"},COL={android:"var(--a)",iphone:"var(--i)",ipad:"var(--accent)",mac:"var(--m)"};
+let D,ff="new",tf="all";
+const post=(u,b)=>fetch(u,{method:"POST",headers:{"content-type":"application/json"},body:JSON.stringify(b)}).then(load);
+const tabs=(box,opts,cur,set)=>{box.replaceChildren(...opts.map(([k,l])=>{const s=el("span",k===cur?"on":"",l);s.onclick=()=>{set(k);draw()};return s}))};
+function draw(){
+ const m=D.metrics,T=[["Installed","installed",70],["Activated","activated",60],["Day 7","retained",40],["Crash-free","crashFree",99],["Very disappointed","veryDisappointed",40]];
+ let met=0;const tiles=T.map(([l,k,t])=>{const v=m[k],ok=v!=null&&v>=t;if(ok)met++;const x=el("div","tile"),n=el("div","n"+(v==null?"":ok?" acc":" bad"),v==null?"–":v+"%");x.append(n,el("small","",l+" · "+t));return x});
+ const s1=el("div","tile"),n1=el("div","n"+(m.openSev1?" bad":""),m.openSev1);s1.append(n1,el("small","","Open sev 1"));tiles.push(s1);
+ $("tiles").replaceChildren(...tiles);$("gates").textContent=met+" of 5 gates";$("gates").className="gate"+(met==5&&!m.openSev1?" ok":"");
+ // signups per day
+ const pd=D.perDay,svg=$("spark");svg.replaceChildren();
+ if(pd.length){let c=0;const pts=pd.map(p=>c+=p.c),mx=c,X=i=>pd.length<2?520:i*520/(pd.length-1),Y=v=>100-v/mx*80;
+  const line=pts.map((v,i)=>(i?"L":"M")+X(i)+" "+Y(v)).join(" "),ns="http://www.w3.org/2000/svg";
+  const mk=(t,a,x)=>{const e=document.createElementNS(ns,t);for(const k in a)e.setAttribute(k,a[k]);if(x)e.textContent=x;svg.append(e)};
+  mk("path",{d:line+" L520 100 L0 100Z",fill:"var(--accent)",opacity:".14"});mk("path",{d:line,fill:"none",stroke:"var(--accent)","stroke-width":2.5});
+  mk("circle",{cx:520,cy:Y(c),r:5,fill:"var(--accent)"});mk("text",{x:0,y:116,fill:"var(--mute)","font-size":11},pd[0].d);mk("text",{x:520,y:116,"text-anchor":"end",fill:"var(--mute)","font-size":11},c+" testers")}
+ // platforms
+ const tot=D.signups.length||1,bar=el("div","bar"),leg=el("div","leg");
+ for(const p in PL){const n=D.platforms[p]||0;const i=el("i");i.style.width=(n/tot*100)+"%";i.style.background=COL[p];bar.append(i);
+  const sp=el("span");const d=el("i","dot");d.style.background=COL[p];sp.append(d,PL[p]+" ",el("b","",n));leg.append(sp)}
+ $("plat").replaceChildren(bar,leg);
+ // feedback
+ tabs($("ftabs"),[["new","New"],["all","All"],["bug","Bugs"],["idea","Ideas"]],ff,v=>ff=v);
+ const fl=D.feedback.filter(f=>ff==="all"||(ff==="new"?f.status==="new":f.kind===ff));
+ $("fb").replaceChildren(...(fl.length?fl:[null]).map(f=>{if(!f)return el("div","row mute","Nothing here");
+  const r=el("div","row"+(f.status==="new"?"":" read"));r.append(el("i","new"),el("span","tag "+f.kind,f.kind[0].toUpperCase()+f.kind.slice(1)));
+  if(f.kind==="bug"){const sv=el("select");[["","Sev"],[1,"Sev 1"],[2,"Sev 2"],[3,"Sev 3"]].forEach(([v,l])=>{const o=el("option","",l);o.value=v;if(v==f.severity)o.selected=true;sv.append(o)});sv.onchange=()=>post("/admin/api/feedback",{id:f.id,severity:+sv.value});r.append(sv)}
+  r.append(el("div","grow",f.body),el("span","mute",[PL[f.platform]||f.platform,f.version].filter(Boolean).join(" · ")),el("span","mute",ago(f.created_at)));
+  const st=el("select");["new","now","next","later","wont","done"].forEach(v=>{const o=el("option","",v);o.value=v;if(v===f.status)o.selected=true;st.append(o)});st.onchange=()=>post("/admin/api/feedback",{id:f.id,status:st.value});r.append(st);
+  if(f.contact)r.append(el("span","mute",f.contact));return r}));
+ // crashes
+ $("cr").replaceChildren(...(D.crashes.length?D.crashes:[null]).map(c=>{if(!c)return el("div","row mute","No crashes");
+  const r=el("div","row crash"),g=el("div","grow"),b=el("b","",c.detail||"Crash"),code=el("code","",[PL[c.platform]||c.platform,c.version].filter(Boolean).join(" · "));g.append(b,code);
+  r.append(g,el("span","ct",c.c+"×"),el("span","mute",c.u+" installs"),el("span","mute",ago(c.last)));return r}));
+ // testers
+ tabs($("ttabs"),[["all","All"],["todo","To add"],...Object.entries(PL)],tf,v=>tf=v);
+ const tl=D.signups.filter(s=>tf==="all"||(tf==="todo"?!s.added:s.platform===tf));
+ const tb=el("tbody"),hd=el("tr");["Email","Device","Signed up","Added"].forEach(h=>hd.append(el("th","",h)));tb.append(hd);
+ tl.forEach(s=>{const r=el("tr");r.append(el("td","",s.email),el("td","",PL[s.platform]||s.platform),el("td","",ago(s.created_at)));
+  const td=el("td"),b=el("button","",s.added?"Added":"Add");b.onclick=()=>post("/admin/api/signup",{id:s.id,added:!s.added});td.append(b);r.append(td);tb.append(r)});
+ $("tt").replaceChildren(tb);
+}
+async function load(){const r=await fetch("/admin/api/data");if(!r.ok){$("gates").textContent="No access";return}D=await r.json();draw()}
+load();setInterval(load,60000);
+</script></body></html>

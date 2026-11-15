@@ -1,0 +1,12 @@
+name = "quando-beta"
+pages_build_output_dir = "public"
+compatibility_date = "2025-01-01"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "quando-beta"
+database_id = "REPLACE_WITH_D1_ID"   # from `npx wrangler d1 create quando-beta`
+
+# Set in the Pages dashboard (Settings > Variables), not here:
+#   ACCESS_TEAM_DOMAIN  e.g. yourteam.cloudflareaccess.com
+#   ACCESS_AUD          the Application Audience tag of the Access app
