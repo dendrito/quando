@@ -13,3 +13,6 @@ No tester data is in this repo. It lives in Cloudflare D1.
 2. Cloudflare Pages: new project `quando-beta` from this repo, root `beta`, no build command, output `public`. Bind D1 as `DB`. Domain `beta.quando.day`.
 3. Zero Trust > Access > Applications: self-hosted, `beta.quando.day/admin*`, policy: only your email. Copy the Audience tag.
 4. Pages variables: `ACCESS_AUD` (the tag) and `ACCESS_TEAM_DOMAIN` (`<team>.cloudflareaccess.com`).
+
+## TestFlight link (optional, dormant)
+Set Pages secrets `ASC_KEY_ID`, `ASC_ISSUER_ID`, `ASC_PRIVATE_KEY` (the .p8 text) and `ASC_GROUP_ID` (the TestFlight group id). Then "Add" on an iPhone, iPad or Mac tester also invites them in TestFlight. Needs the paid Apple membership and an App Store Connect API key (Users and Access > Integrations). Google Play has no tester API: use "Copy emails" into the Google Group.
