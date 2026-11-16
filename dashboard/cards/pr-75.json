@@ -1,0 +1,15 @@
+{
+  "id": "pr-75",
+  "title": "Location: sky follows GPS, right city by next alarm, no prompt unless Shabbat is on",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    75
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 912,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkRBs1o14oK7N73sRKhwhoEg"
+  ]
+}
