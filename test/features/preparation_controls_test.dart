@@ -215,9 +215,11 @@ void main() {
     await tester.tap(find.text('Open picker'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(l10n.useMyLocation));
+    // The offline city list loads from assets: give it real time.
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 500)));
     await tester.pumpAndSettle();
     expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('São Paulo'), findsWidgets);
+    expect(find.textContaining('São Paulo'), findsWidgets);
     await tester.tap(find.text(l10n.save));
     await tester.pumpAndSettle();
     expect(c.read(placeProvider).latitude, -23.55);

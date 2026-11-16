@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../app/providers.dart';
-import '../../../core/geo/offline_cities.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
 import '../../../core/util/local_time.dart';
@@ -141,10 +140,21 @@ class _CityPickerState extends ConsumerState<CityPicker> {
         if (mounted) Navigator.pop(context);
         return;
       }
-      final point = await ref.read(locationLookupProvider).current();
+      if (widget.forSky) {
+        // The sky follows the phone again, as weather does.
+        ref.read(skyLocationProvider.notifier).clear();
+        unawaited(
+          ref
+              .read(homeDisplayProvider.notifier)
+              .set(ref.read(homeDisplayProvider).copyWith(skyUseShabbat: false)),
+        );
+        await ref.read(hereProvider.notifier).refresh(force: true);
+        if (mounted) Navigator.pop(context);
+        return;
+      }
+      // Named offline from the bundled city list; nothing leaves the phone.
+      final point = await ref.read(hereProvider.notifier).refresh(force: true);
       if (!mounted) return;
-      // Not awaited: the dialog opens at once and the city name fills in.
-      final nearby = OfflineCities.nearest(point.latitude, point.longitude);
       var inIsrael = zone == 'Asia/Jerusalem';
       final confirmed = await showDialog<bool>(
         context: context,
@@ -161,17 +171,13 @@ class _CityPickerState extends ConsumerState<CityPicker> {
                       point.longitude.toStringAsFixed(3),
                     ),
                   ),
-                  FutureBuilder<String?>(
-                    future: nearby,
-                    builder: (context, snap) => Text(snap.data ?? cityOf(zone)),
+                  Text(point.name),
+                  SwitchListTile(
+                    title: Text(l10n.inIsraelOneDay),
+                    value: inIsrael,
+                    onChanged: (v) => update(() => inIsrael = v),
                   ),
-                  if (!widget.forSky)
-                    SwitchListTile(
-                      title: Text(l10n.inIsraelOneDay),
-                      value: inIsrael,
-                      onChanged: (v) => update(() => inIsrael = v),
-                    ),
-                  Text(widget.forSky ? l10n.skyLocationLocalTimes : l10n.locationDeviceOnly),
+                  Text(l10n.locationDeviceOnly),
                 ],
               ),
             ),
@@ -185,15 +191,12 @@ class _CityPickerState extends ConsumerState<CityPicker> {
       if (!mounted || confirmed != true) return;
       _save(
         Place(
-          name: l10n.currentLocation,
+          name: point.name,
           latitude: point.latitude,
           longitude: point.longitude,
           timeZone: zone,
           inIsrael: inIsrael,
-          // Keep the chosen custom when already in this timezone; always editable.
-          candleLightingMinutes: ref.read(placeProvider).timeZone == zone
-              ? ref.read(placeProvider).candleLightingMinutes
-              : Places.candleMinutesAt(point.latitude, point.longitude),
+          candleLightingMinutes: ref.read(placeProvider.notifier).candleMinutesFor(point, zone),
         ),
         local: true,
       );

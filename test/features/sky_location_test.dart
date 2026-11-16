@@ -258,16 +258,19 @@ void main() {
     await tester.tap(find.text('Choose'));
     await tester.pumpAndSettle();
     await tester.tap(find.text(l10n.useMyLocation));
+    // The bundled city list loads for real.
+    await tester.runAsync(() => Future<void>.delayed(const Duration(milliseconds: 500)));
     await tester.pumpAndSettle();
-    expect(find.text(l10n.locationReview), findsOneWidget);
-    expect(find.text('São Paulo'), findsOneWidget);
-    await tester.tap(find.text(l10n.save));
-    await tester.pumpAndSettle();
+    // The sky follows the phone, named offline, with no dialog.
+    expect(find.text(l10n.locationReview), findsNothing);
+    expect(c.read(skyLocationProvider), isNull);
+    expect(c.read(skyPlaceProvider)?.name, contains('São Paulo'));
     expect(c.read(skyPlaceProvider)?.latitude, -23.55);
     expect(c.read(skyPlaceProvider)?.timeZone, 'America/Sao_Paulo');
     expect(c.read(placeProvider).name, 'Jerusalem');
     expect(c.read(homeZoneProvider), 'America/Detroit');
     expect(syncedKeys, isNot(contains('sky.place.local')));
+    expect(syncedKeys, isNot(contains(HereNotifier.key)));
   });
 
   for (final width in [390.0, 1100.0]) {

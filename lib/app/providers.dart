@@ -205,7 +205,8 @@ final quoteOccasionsProvider = NotifierProvider<QuoteOccasionsNotifier, Set<Quot
 
 /// Where the user is, for "Near me" quotes.
 final quotePlacesProvider = Provider<Set<String>>(
-  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name),
+  // A place named with its district ("Santa Teresa, Rio de Janeiro") counts as its city.
+  (ref) => placeTags(ref.watch(homeZoneProvider), city: ref.watch(placeProvider).name.split(', ').last),
 );
 
 /// Every quote for the language in use.
@@ -315,25 +316,88 @@ class SkyLocationNotifier extends Notifier<Place?> {
     state = place;
     ref.read(prefsProvider).setString('sky.place.local', jsonEncode(place.toJson()));
   }
+
+  /// Back to following the phone.
+  void clear() {
+    state = null;
+    ref.read(prefsProvider).remove('sky.place.local');
+  }
 }
 
 final skyLocationProvider = NotifierProvider<SkyLocationNotifier, Place?>(SkyLocationNotifier.new);
 
+/// Where the phone is: its last automatic fix, named offline from the bundled
+/// city list. One fix serves every place that follows the phone (Shabbat, sky
+/// and weather), so they never ask for location at the same moment. Stays on
+/// this device and is never synced.
+class HereNotifier extends Notifier<Place?> {
+  static const key = 'here.place';
+  DateTime? _lastFix;
+  Future<Place>? _pending;
+
+  @override
+  Place? build() {
+    try {
+      final raw = ref.read(prefsProvider).getString(key);
+      return raw == null ? null : Place.fromJson(jsonDecode(raw) as Map<String, dynamic>);
+    } catch (_) {
+      return null;
+    }
+  }
+
+  /// A fresh fix, at most every 20 minutes unless [force]. Throws a
+  /// [LocationFailure] when there is none.
+  Future<Place> refresh({bool force = false}) {
+    final here = state, last = _lastFix;
+    if (!force &&
+        here != null &&
+        last != null &&
+        DateTime.now().difference(last) < const Duration(minutes: 20)) {
+      return Future.value(here);
+    }
+    return _pending ??= _fix().whenComplete(() => _pending = null);
+  }
+
+  Future<Place> _fix() async {
+    final point = await ref.read(locationLookupProvider).current();
+    final name = await OfflineCities.nearest(point.latitude, point.longitude);
+    final place = Place(
+      name: name ?? l10n.currentLocation,
+      latitude: point.latitude,
+      longitude: point.longitude,
+      timeZone: ref.read(deviceZoneProvider) ?? ref.read(homeZoneProvider),
+    );
+    _lastFix = DateTime.now();
+    state = place;
+    await ref.read(prefsProvider).setString(key, jsonEncode(place.toJson()));
+    return place;
+  }
+}
+
+final hereProvider = NotifierProvider<HereNotifier, Place?>(HereNotifier.new);
+
+/// Where the sun and moon are for: the Shabbat city when chosen for the sky,
+/// else a city picked for the sky, else the phone's own position, else the
+/// time zone's city until a fix arrives.
 final skyPlaceProvider = Provider<Place?>((ref) {
   if (ref.watch(homeDisplayProvider).skyUseShabbat) return ref.watch(placeProvider);
   final zone = ref.watch(homeZoneProvider);
   final saved = ref.watch(skyLocationProvider);
   if (saved != null) return saved;
+  final here = ref.watch(hereProvider);
+  if (here != null) return here;
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
   return ZonePlaces.forZone(zone);
 });
 
+/// Where sunrise and sunset alarms are for: the same place as the sky card,
+/// never the Shabbat city alone (which may be another city on purpose).
+final sunPlaceProvider = Provider<Place>((ref) => ref.watch(skyPlaceProvider) ?? ref.watch(placeProvider));
+
 /// Where the weather is for. Separate from the Shabbat place and the sky:
 /// by default the phone's precise position, or a city picked by hand.
 class WeatherLocationNotifier extends Notifier<Place?> {
-  DateTime? _lastFix;
-
   SharedPreferences get _prefs => ref.read(prefsProvider);
 
   /// True when a city was picked by hand, so the phone's position is not used.
@@ -363,7 +427,6 @@ class WeatherLocationNotifier extends Notifier<Place?> {
     _prefs
       ..remove('weather.place')
       ..remove('weather.place.manual');
-    _lastFix = null;
     state = null;
   }
 
@@ -371,26 +434,9 @@ class WeatherLocationNotifier extends Notifier<Place?> {
   /// [LocationFailure] when there is none; [quiet] callers ignore it.
   Future<void> refreshPrecise({bool force = false}) async {
     if (manual) return;
-    final last = _lastFix;
-    if (!force && last != null && DateTime.now().difference(last) < const Duration(minutes: 20)) return;
-    _lastFix = DateTime.now();
     try {
-      final point = await ref.read(locationLookupProvider).current();
-      final name = await OfflineCities.nearest(point.latitude, point.longitude);
-      final device = ref.read(deviceZoneProvider);
-      // ignore: prefer_if_null_operators
-      final String zone = device != null ? device : ref.read(homeZoneProvider);
-      _store(
-        Place(
-          name: name ?? l10n.currentLocation,
-          latitude: point.latitude,
-          longitude: point.longitude,
-          timeZone: zone,
-        ),
-        manual: false,
-      );
+      _store(await ref.read(hereProvider.notifier).refresh(force: force), manual: false);
     } catch (e) {
-      _lastFix = null;
       if (force) rethrow;
       debugPrint('Quando?: no precise weather location: $e');
     }
@@ -407,7 +453,7 @@ final weatherPlaceProvider = Provider<Place?>((ref) {
   final own = ref.watch(weatherLocationProvider);
   if (own != null) return own;
   final zone = ref.watch(homeZoneProvider);
-  return ref.watch(skyLocationProvider) ?? ZonePlaces.forZone(zone);
+  return ref.watch(hereProvider) ?? ref.watch(skyLocationProvider) ?? ZonePlaces.forZone(zone);
 });
 
 class PlaceNotifier extends Notifier<Place> {
@@ -429,45 +475,44 @@ class PlaceNotifier extends Notifier<Place> {
     );
   }
 
-  DateTime? _lastFix;
-
   /// True when a city was picked by hand, so the phone's position is not used.
   bool get manual => _prefs.getBool('place.manual') ?? false;
 
   /// Follows the phone's position unless a city was picked by hand.
   Future<void> refreshPrecise() async {
     if (manual) return;
-    final last = _lastFix;
-    if (last != null && DateTime.now().difference(last) < const Duration(minutes: 20)) return;
-    _lastFix = DateTime.now();
     try {
-      final point = await ref.read(locationLookupProvider).current();
-      final name = await OfflineCities.nearest(point.latitude, point.longitude);
+      final fix = await ref.read(hereProvider.notifier).refresh();
       final device = ref.read(deviceZoneProvider);
       if (device == null) return;
       final here = state;
-      if ((here.latitude - point.latitude).abs() < .02 && (here.longitude - point.longitude).abs() < .02) {
+      if ((here.latitude - fix.latitude).abs() < .02 && (here.longitude - fix.longitude).abs() < .02) {
+        // Same spot: keep its settings, but replace a bare "Current location"
+        // with the city's name.
+        if (_prefs.containsKey('place.local') && here.name != fix.name) setLocal(here.renamed(fix.name));
         return;
       }
       setLocal(
         Place(
-          name: name ?? l10n.currentLocation,
-          latitude: point.latitude,
-          longitude: point.longitude,
+          name: fix.name,
+          latitude: fix.latitude,
+          longitude: fix.longitude,
           timeZone: device,
           inIsrael: device == 'Asia/Jerusalem',
-          // Keep a custom the person chose only while they stay in the same
-          // timezone; a new place gets that place's common custom.
-          candleLightingMinutes: (_prefs.getBool('place.candleChosen') ?? false) && here.timeZone == device
-              ? here.candleLightingMinutes
-              : Places.candleMinutesAt(point.latitude, point.longitude),
+          candleLightingMinutes: candleMinutesFor(fix, device),
         ),
       );
     } catch (e) {
-      _lastFix = null;
       debugPrint('Quando?: no precise Shabbat location: $e');
     }
   }
+
+  /// Keep a custom the person chose only while they stay in the same
+  /// timezone; a new place gets that place's common custom.
+  int candleMinutesFor(Place fix, String zone) =>
+      (_prefs.getBool('place.candleChosen') ?? false) && state.timeZone == zone
+      ? state.candleLightingMinutes
+      : Places.candleMinutesAt(fix.latitude, fix.longitude);
 
   void set(Place place) {
     state = place;
@@ -1038,7 +1083,7 @@ final eventsProvider = Provider<List<AnchorEvent>>((ref) {
       .watch(allRulesProvider)
       .any((r) => r.enabled && r.appliesTo.any((k) => k == EventKind.sunrise || k == EventKind.sunset));
   if (wantsSun) {
-    events.addAll(SunTimes(place: ref.watch(placeProvider)).events(window.from, window.to));
+    events.addAll(SunTimes(place: ref.watch(sunPlaceProvider)).events(window.from, window.to));
   }
   return events..sort((a, b) => a.at.compareTo(b.at));
 });
@@ -1053,7 +1098,7 @@ final searchableEventsProvider = FutureProvider.autoDispose<List<AnchorEvent>>((
   final cal = ref.watch(calendarProvider);
   final out = <AnchorEvent>[
     ...ref.watch(jewishTimesProvider).events(now, to),
-    ...SunTimes(place: ref.watch(placeProvider)).events(now, now.add(const Duration(days: 14))),
+    ...SunTimes(place: ref.watch(sunPlaceProvider)).events(now, now.add(const Duration(days: 14))),
   ];
   if (cal.access && cal.selected.isNotEmpty) {
     try {

@@ -479,6 +479,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     String cityDay(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
     String local(DateTime utc) => hhmm(inZone(utc, home));
     String day(DateTime utc) => dayLabel(inZone(utc, home));
+    // Name the time zone only when it is not the phone's own: Rio and São Paulo
+    // share one, so naming it always would put São Paulo on a phone in Rio.
+    final zoneNote = home == ref.watch(deviceZoneProvider) ? '' : ' · ${cityOf(home)}';
 
     final upcoming = plan.where((a) => a.at.isAfter(now) && a.ruleId != 'lock').toList();
     final next = upcoming.firstOrNull;
@@ -544,7 +547,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             // A reminder ahead of an event says so: "Candle lighting ·
             // 6 hours before · Fri 13 Nov · 12:09", never just the
             // event's name at the reminder's time.
-            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
+            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)}$zoneNote',
             style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
           ),
           const SizedBox(height: 8),

@@ -60,7 +60,8 @@ Future<void> showPlaceSheet(BuildContext context) => showModalBottomSheet<void>(
       final text = Theme.of(sheet).textTheme;
       final options = ref.watch(homeDisplayProvider);
       final place = ref.watch(skyPlaceProvider);
-      final located = ref.watch(skyLocationProvider) != null;
+      // A city picked for the sky, or the phone's own position it follows.
+      final located = ref.watch(skyLocationProvider) != null || ref.watch(hereProvider) != null;
       Future<void> open(Widget page) async {
         Navigator.of(sheet).pop();
         await Navigator.of(context).push<void>(MaterialPageRoute(builder: (_) => page));
