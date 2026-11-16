@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:geolocator/geolocator.dart';
 
 import '../../../app/providers.dart';
+import '../../../core/geo/offline_cities.dart';
 import '../../../l10n/l10n.dart';
 import '../../../core/util/platform.dart';
 import '../../../core/util/local_time.dart';
@@ -87,6 +88,13 @@ class _CityPickerState extends ConsumerState<CityPicker> {
   @override
   void initState() {
     super.initState();
+    if (!OfflineCities.loaded) {
+      unawaited(
+        OfflineCities.load().then((_) {
+          if (mounted) setState(() {});
+        }),
+      );
+    }
     if (widget.locateOnOpen) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         if (mounted) _locate();
@@ -228,9 +236,28 @@ class _CityPickerState extends ConsumerState<CityPicker> {
             for (final p in [...ZonePlaces.all, ...Places.all]) '${p.name}|${p.timeZone}': p,
           }.values
         : Places.all;
-    final cities =
+    final listed =
         choices.where((p) => normalized('${p.name} ${p.timeZone}').contains(normalized(_query))).toList()
           ..sort((a, b) => a.name.compareTo(b.name));
+    // Any other town or district, from the offline list.
+    bool near(Place p, OfflineCity c) =>
+        (p.latitude - c.latitude).abs() < .3 && (p.longitude - c.longitude).abs() < .3;
+    final cities = <(Place, String)>[
+      for (final p in listed) (p, ''),
+      for (final c in OfflineCities.search(_query))
+        if (knownZone(c.timeZone) && !listed.any((p) => OfflineCities.fold(p.name) == c.folded && near(p, c)))
+          (
+            Place(
+              name: c.name,
+              latitude: c.latitude,
+              longitude: c.longitude,
+              timeZone: c.timeZone,
+              inIsrael: c.country == 'IL',
+              candleLightingMinutes: Places.candleMinutesAt(c.latitude, c.longitude),
+            ),
+            c.flag,
+          ),
+    ];
     return Scaffold(
       appBar: AppBar(title: Text(widget.forSky || widget.forWeather ? l10n.skyChooseCity : l10n.changeCity)),
       body: Column(
@@ -262,12 +289,14 @@ class _CityPickerState extends ConsumerState<CityPicker> {
             child: ListView.builder(
               itemCount: cities.length,
               itemBuilder: (context, i) {
-                final place = cities[i];
+                final (place, flag) = cities[i];
+                final zone = place.name == cityOf(place.timeZone)
+                    ? ''
+                    : l10n.cityTime(cityOf(place.timeZone));
+                final note = [flag, zone].where((s) => s.isNotEmpty).join(' ');
                 return ListTile(
                   title: Text(place.name),
-                  subtitle: place.name == cityOf(place.timeZone)
-                      ? null
-                      : Text(l10n.cityTime(cityOf(place.timeZone))),
+                  subtitle: note.isEmpty ? null : Text(note),
                   onTap: () {
                     _save(place);
                     Navigator.pop(context);

@@ -10,6 +10,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:go_router/go_router.dart';
 import 'package:quando/app/edition.dart';
 import 'package:quando/app/providers.dart';
+import 'package:quando/core/geo/offline_cities.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/core/scheduler/scheduler.dart';
 import 'package:quando/core/util/local_time.dart';
@@ -36,6 +37,11 @@ class FakeLocationLookup extends LocationLookup {
 }
 
 void main() {
+  // The bundled city list, read for real before any fake-clock test.
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await OfflineCities.load();
+  });
   setUp(() {
     ensureTimeZones();
     useLocale([const Locale('en')]);
@@ -181,7 +187,7 @@ void main() {
     );
     await tester.enterText(find.byType(TextField), 'Sao Paulo');
     await tester.pumpAndSettle();
-    expect(find.text('São Paulo'), findsOneWidget);
+    expect(find.text('São Paulo'), findsWidgets); // Also a district of Lisbon.
     // Do not pop a root route; persistence is covered above and in the real navigator flow.
     expect(find.text(l10n.useMyLocation), findsOneWidget);
   });
@@ -234,7 +240,7 @@ void main() {
     expect(find.text(l10n.locationUnavailable), findsOneWidget);
     await tester.enterText(find.byType(TextField), 'London');
     await tester.pumpAndSettle();
-    await tester.tap(find.widgetWithText(ListTile, 'London'));
+    await tester.tap(find.widgetWithText(ListTile, 'London').first); // London, Ontario follows.
     await tester.pumpAndSettle();
     expect(c.read(placeProvider).name, 'London');
     expect(prefs.containsKey('place.local'), isFalse);

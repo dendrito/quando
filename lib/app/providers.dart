@@ -518,7 +518,12 @@ class PlaceNotifier extends Notifier<Place> {
     state = place;
     _prefs.setBool('place.manual', true);
     _prefs.remove('place.candleChosen');
-    _prefs.remove('place.local');
+    // A city from the offline list isn't in the catalog: keep its details here.
+    if (Places.all.any((p) => p.name == place.name && p.timeZone == place.timeZone)) {
+      _prefs.remove('place.local');
+    } else {
+      _prefs.setString('place.local', jsonEncode(place.toJson()));
+    }
     _prefs
       ..setString('place.name', place.name)
       ..remove('place.inIsrael')

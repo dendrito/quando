@@ -1,7 +1,8 @@
-import 'package:flutter/widgets.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
+import 'package:quando/core/geo/offline_cities.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/shabbat/domain/place.dart';
 import 'package:quando/features/shabbat/ui/city_picker.dart';
@@ -21,6 +22,11 @@ class _RioLookup extends LocationLookup {
 }
 
 void main() {
+  // The bundled city list, read for real before any fake-clock test.
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await OfflineCities.load();
+  });
   TestWidgetsFlutterBinding.ensureInitialized();
   setUp(() {
     ensureTimeZones();
@@ -97,5 +103,47 @@ void main() {
     await c.read(hereProvider.notifier).refresh();
     expect(c.read(sunPlaceProvider).name, contains('Rio de Janeiro'));
     expect(c.read(placeProvider).name, 'Jerusalem');
+  });
+
+  test('every place in the offline list has a known time zone', () async {
+    final cities = await OfflineCities.load();
+    final unknown = {for (final c in cities) c.timeZone}.where((z) => !knownZone(z)).toList();
+    expect(unknown, isEmpty);
+  });
+
+  test('city search uses the offline list, ignoring accents', () async {
+    await OfflineCities.load();
+    final found = OfflineCities.search('niteroi');
+    expect(found.first.name, 'Niterói');
+    expect(found.first.timeZone, 'America/Sao_Paulo');
+    expect(found.first.flag, '🇧🇷');
+  });
+
+  test('time zone labels give the GMT offset', () {
+    final jan = DateTime.utc(2027, 1, 15);
+    expect(gmtLabel('America/Sao_Paulo', jan), 'GMT−3');
+    expect(gmtLabel('Asia/Kolkata', jan), 'GMT+5:30');
+    expect(gmtLabel('Europe/London', jan), 'GMT');
+  });
+
+  testWidgets('a town from the offline list can be picked for Shabbat, and stays', (tester) async {
+    final (c, _, p) =
+        await tester.runAsync(() => phone({})) as (ProviderContainer, _RioLookup, SharedPreferences);
+    await tester.pumpWidget(
+      UncontrolledProviderScope(
+        container: c,
+        child: const MaterialApp(home: CityPicker()),
+      ),
+    );
+    await tester.enterText(find.byType(TextField), 'niter');
+    await tester.pumpAndSettle();
+    await tester.tap(find.widgetWithText(ListTile, 'Niterói'));
+    await tester.pumpAndSettle();
+    expect(c.read(placeProvider).name, 'Niterói');
+    expect(c.read(placeProvider).timeZone, 'America/Sao_Paulo');
+    expect(c.read(placeProvider).candleLightingMinutes, 18);
+    expect(p.getBool('place.manual'), isTrue);
+    await tester.runAsync(() => c.read(placeProvider.notifier).refreshPrecise());
+    expect(c.read(placeProvider).name, 'Niterói'); // Picked by hand: GPS doesn't move it.
   });
 }

@@ -9,6 +9,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:quando/app/providers.dart';
+import 'package:quando/core/geo/offline_cities.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/home/domain/moon.dart';
@@ -27,6 +28,11 @@ import 'package:quando/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 void main() {
+  // The bundled city list, read for real before any fake-clock test.
+  setUpAll(() async {
+    TestWidgetsFlutterBinding.ensureInitialized();
+    await OfflineCities.load();
+  });
   TestWidgetsFlutterBinding.ensureInitialized();
   setUpAll(() async {
     await (FontLoader(
