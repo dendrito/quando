@@ -1,0 +1,1 @@
+{"id":"fix-local-android-build","title":"Fix the local Android build","status":"decide","group":"Fixes","order":10,"note":"Local builds hang; the CI APK is used for phones meanwhile."}
