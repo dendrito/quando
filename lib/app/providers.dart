@@ -883,9 +883,8 @@ class CalendarNotifier extends Notifier<CalendarState> {
     return [for (final e in indexed) e.$2];
   }
 
-  /// Saves a new order for [ids] (one group); the rest keep their places.
+  /// Saves a new order for [ids] (one group); [to] is the final index. The rest keep their places.
   Future<void> moveCalendar(List<String> ids, int from, int to) async {
-    if (to > from) to -= 1;
     final group = [...ids];
     group.insert(to, group.removeAt(from));
     final all = [for (final c in state.calendars) c.id];

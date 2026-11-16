@@ -271,7 +271,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               buildDefaultDragHandles: false,
-              onReorder: (from, to) =>
+              onReorderItem: (from, to) =>
                   ref.read(calendarProvider.notifier).moveCalendar([for (final c in g.value) c.id], from, to),
               children: [
                 for (var i = 0; i < g.value.length; i++)
