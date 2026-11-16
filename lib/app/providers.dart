@@ -889,7 +889,10 @@ class CalendarNotifier extends Notifier<CalendarState> {
     final group = [...ids];
     group.insert(to, group.removeAt(from));
     final all = [for (final c in state.calendars) c.id];
-    final slots = [for (var i = 0; i < all.length; i++) if (ids.contains(all[i])) i];
+    final slots = [
+      for (var i = 0; i < all.length; i++)
+        if (ids.contains(all[i])) i,
+    ];
     for (var i = 0; i < slots.length; i++) {
       all[slots[i]] = group[i];
     }
