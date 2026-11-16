@@ -249,7 +249,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   /// A fresh precise position for the weather, when weather is in use.
   Future<void> _weatherFix() async {
-    unawaited(ref.read(placeProvider.notifier).refreshPrecise());
+    // Only once Shabbat is in use: Quando? must not ask everyone for location.
+    if (ref.read(shabbatInUseProvider)) unawaited(ref.read(placeProvider.notifier).refreshPrecise());
     if (ref.read(weatherAlarmSettingsProvider).active || ref.read(homeDisplayProvider).weather) {
       await ref.read(weatherLocationProvider.notifier).refreshPrecise();
     }

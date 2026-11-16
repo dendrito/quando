@@ -544,7 +544,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             // A reminder ahead of an event says so: "Candle lighting ·
             // 6 hours before · Fri 13 Nov · 12:09", never just the
             // event's name at the reminder's time.
-            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
+            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${_hereName(ref, home)}',
             style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
           ),
           const SizedBox(height: 8),
@@ -1318,4 +1318,12 @@ class _ArrangeBar extends StatelessWidget {
       ],
     ),
   );
+}
+
+/// The city to show beside the next alarm: the phone's own city (from GPS)
+/// when it is in the home zone, else the zone's city. Rio and São Paulo share
+/// a zone, so the zone alone would always say São Paulo.
+String _hereName(WidgetRef ref, String home) {
+  final here = ref.watch(skyPlaceProvider);
+  return here != null && here.timeZone == home ? here.name : cityOf(home);
 }

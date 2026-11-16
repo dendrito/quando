@@ -324,6 +324,10 @@ final skyPlaceProvider = Provider<Place?>((ref) {
   final zone = ref.watch(homeZoneProvider);
   final saved = ref.watch(skyLocationProvider);
   if (saved != null) return saved;
+  // The phone's own position, when weather found one by GPS: so the sun and
+  // moon are for where the person is, not the time zone's main city.
+  final gps = ref.watch(weatherLocationProvider);
+  if (gps != null && !ref.read(weatherLocationProvider.notifier).manual) return gps;
   // Prefer the catalog's named timezone city, never an unrelated city that
   // merely shares an offset. Fixed-offset zones have no geographic location.
   return ZonePlaces.forZone(zone);
