@@ -863,8 +863,58 @@ class CalendarNotifier extends Notifier<CalendarState> {
   static const _googleKey = 'calendars.google';
   static const _selectedKey = 'calendars.selected';
 
+  static const _orderKey = 'calendars.order';
+  static const _collapsedKey = 'calendars.collapsed';
+
   @override
   CalendarState build() => const CalendarState();
+
+  /// Calendars in the user's own order; new ones go last, in the phone's order.
+  List<PhoneCalendar> _ordered(List<PhoneCalendar> cals) {
+    final order = _prefs.getStringList(_orderKey) ?? const <String>[];
+    if (order.isEmpty) return cals;
+    final rank = {for (var i = 0; i < order.length; i++) order[i]: i};
+    final indexed = [for (var i = 0; i < cals.length; i++) (i, cals[i])];
+    indexed.sort((a, b) {
+      final ra = rank[a.$2.id] ?? order.length + a.$1;
+      final rb = rank[b.$2.id] ?? order.length + b.$1;
+      return ra.compareTo(rb);
+    });
+    return [for (final e in indexed) e.$2];
+  }
+
+  /// Saves a new order for [ids] (one group); the rest keep their places.
+  Future<void> moveCalendar(List<String> ids, int from, int to) async {
+    if (to > from) to -= 1;
+    final group = [...ids];
+    group.insert(to, group.removeAt(from));
+    final all = [for (final c in state.calendars) c.id];
+    final slots = [for (var i = 0; i < all.length; i++) if (ids.contains(all[i])) i];
+    for (var i = 0; i < slots.length; i++) {
+      all[slots[i]] = group[i];
+    }
+    await _prefs.setStringList(_orderKey, all);
+    final byId = {for (final c in state.calendars) c.id: c};
+    state = CalendarState(
+      phone: state.phone,
+      google: state.google,
+      loaded: state.loaded,
+      calendars: [for (final id in all) byId[id]!],
+      selected: state.selected,
+      events: state.events,
+      error: state.error,
+      googleError: state.googleError,
+    );
+  }
+
+  /// Account groups the user folded away.
+  Set<String> get collapsedGroups => _prefs.getStringList(_collapsedKey)?.toSet() ?? {};
+
+  Future<void> setGroupCollapsed(String group, bool collapsed) async {
+    final s = collapsedGroups;
+    collapsed ? s.add(group) : s.remove(group);
+    await _prefs.setStringList(_collapsedKey, s.toList());
+  }
 
   /// null = never chosen: every calendar is used.
   Set<String>? get _savedSelection => _prefs.getStringList(_selectedKey)?.toSet();
@@ -994,7 +1044,7 @@ class CalendarNotifier extends Notifier<CalendarState> {
       return;
     }
 
-    final calendars = [...phoneCals, ...googleCals];
+    final calendars = _ordered([...phoneCals, ...googleCals]);
     final selected =
         _savedSelection ??
         {

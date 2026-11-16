@@ -1,0 +1,9 @@
+{
+  "id": "sort-and-collapse-calendars",
+  "title": "Sort and collapse calendars in the picker",
+  "status": "doing",
+  "group": "Fixes",
+  "thread": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzkN97q44ZmN1wcpMZVM6zdGx",
+  "note": "Long-press to drag calendars; tap an account to fold it. Order and folds are remembered.",
+  "order": 906
+}
