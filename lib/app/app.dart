@@ -167,7 +167,9 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
-    await _weatherFix();
+    // The fix runs alongside: alarms are set without waiting for GPS, and a new
+    // weather place refreshes the forecast by itself.
+    unawaited(_locationFix());
     await ref.read(weatherAlertsProvider.notifier).refresh();
     if (isAndroid) await WeatherBackground.schedule(ref.read(weatherAlarmSettingsProvider).active);
     await _sync();
@@ -240,18 +242,28 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       if (ctx != null && BetaLog.surveyDue()) unawaited(askBetaSurvey(ctx));
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
-      _weatherFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
+      _locationFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
       _calendarWatch.start();
     } else if (state == AppLifecycleState.paused) {
       _calendarWatch.stop();
     }
   }
 
-  /// A fresh precise position for the weather, when weather is in use.
-  Future<void> _weatherFix() async {
+  /// One fresh position for every place that follows the phone: Shabbat
+  /// (unless a city was picked by hand), the sky (unless a city was picked for
+  /// it) and the weather (when in use and not picked by hand).
+  Future<void> _locationFix() async {
+    final display = ref.read(homeDisplayProvider);
+    final sky = !display.skyUseShabbat && ref.read(skyLocationProvider) == null;
+    final weather = ref.read(weatherAlarmSettingsProvider).active || display.weather;
     unawaited(ref.read(placeProvider.notifier).refreshPrecise());
-    if (ref.read(weatherAlarmSettingsProvider).active || ref.read(homeDisplayProvider).weather) {
-      await ref.read(weatherLocationProvider.notifier).refreshPrecise();
+    if (weather) await ref.read(weatherLocationProvider.notifier).refreshPrecise();
+    if (sky) {
+      try {
+        await ref.read(hereProvider.notifier).refresh();
+      } catch (e) {
+        debugPrint('Quando?: no location for the sky: $e');
+      }
     }
   }
 

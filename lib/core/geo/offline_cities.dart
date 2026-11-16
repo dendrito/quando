@@ -8,12 +8,51 @@ import 'package:flutter/services.dart';
 class OfflineCities {
   OfflineCities._();
 
-  static List<_City>? _cities;
+  static List<OfflineCity>? _cities;
+
+  /// Reads the bundled list once; [search] finds nothing until it is loaded.
+  static Future<List<OfflineCity>> load() async =>
+      _cities ??= _parse(await rootBundle.loadString('assets/geo/cities.tsv'));
+
+  static bool get loaded => _cities != null;
+
+  /// Places whose name starts with, or else contains, [query], biggest
+  /// first. Accents and case are ignored ("niteroi" finds Niterói).
+  static List<OfflineCity> search(String query, {int limit = 40}) {
+    final q = fold(query.trim());
+    final cities = _cities;
+    if (q.length < 2 || cities == null) return const [];
+    final starts = <OfflineCity>[];
+    final inside = <OfflineCity>[];
+    for (final c in cities) {
+      final i = c.folded.indexOf(q);
+      if (i == 0) {
+        starts.add(c);
+      } else if (i > 0) {
+        inside.add(c);
+      }
+    }
+    int bigFirst(OfflineCity a, OfflineCity b) => b.population.compareTo(a.population);
+    return [...(starts..sort(bigFirst)), ...(inside..sort(bigFirst))].take(limit).toList();
+  }
+
+  static const _accented = 'áàâãäåāăąçćčďéèêëēėęěğíìîïīįıłñńňóòôõöøōőřśšşșťţțúùûüūůűųýÿźżž';
+  static const _plain = 'aaaaaaaaacccdeeeeeeeegiiiiiiilnnnoooooooorsssstttuuuuuuuuyyzzz';
+
+  /// Lower case without accents, for matching what people type.
+  static String fold(String s) {
+    final out = StringBuffer();
+    for (final ch in s.toLowerCase().split('')) {
+      final i = _accented.indexOf(ch);
+      out.write(i < 0 ? ch : _plain[i]);
+    }
+    return out.toString();
+  }
 
   /// Distances are to city centres, so a spot at the edge of one city can be
   /// nearer the centre of its neighbour; callers should treat this as a label.
   static Future<String?> nearest(double latitude, double longitude, {double maxKm = 30}) async {
-    final cities = _cities ??= _parse(await rootBundle.loadString('assets/geo/cities.tsv'));
+    final cities = await load();
     return _nearestIn(cities, latitude, longitude, maxKm: maxKm);
   }
 
@@ -25,11 +64,16 @@ class OfflineCities {
   /// per km²). Cities of 200,000+ are tried first, so a district never counts
   /// as the city; then towns of 15,000+. Distances are to centre points, so a
   /// suburb nearer a big neighbour's centre can take its name.
-  static String? _nearestIn(List<_City> cities, double latitude, double longitude, {double maxKm = 30}) {
+  static String? _nearestIn(
+    List<OfflineCity> cities,
+    double latitude,
+    double longitude, {
+    double maxKm = 30,
+  }) {
     final cosLat = math.cos(latitude * math.pi / 180);
-    _City? big;
-    _City? town;
-    _City? district;
+    OfflineCity? big;
+    OfflineCity? town;
+    OfflineCity? district;
     var bigScore = 1.5;
     var townScore = 1.5;
     var districtKm = 3.0;
@@ -59,20 +103,37 @@ class OfflineCities {
     return '${district.name}, ${city.name}';
   }
 
-  static List<_City> _parse(String text) => [
+  static List<OfflineCity> _parse(String text) => [
     for (final line in text.split('\n'))
-      if (line.isNotEmpty) _City.parse(line),
+      if (line.isNotEmpty) OfflineCity.parse(line),
   ];
 }
 
-class _City {
-  const _City(this.name, this.latitude, this.longitude, this.population);
-  factory _City.parse(String line) {
+/// One place in the bundled list, with its time zone and country code.
+class OfflineCity {
+  OfflineCity(this.name, this.latitude, this.longitude, this.population, this.timeZone, this.country)
+    : folded = OfflineCities.fold(name);
+  factory OfflineCity.parse(String line) {
     final f = line.split('\t');
-    return _City(f[0], double.parse(f[1]), double.parse(f[2]), int.parse(f[3]));
+    return OfflineCity(
+      f[0],
+      double.parse(f[1]),
+      double.parse(f[2]),
+      int.parse(f[3]),
+      f.length > 4 ? f[4] : '',
+      f.length > 5 ? f[5] : '',
+    );
   }
   final String name;
   final double latitude;
   final double longitude;
   final int population;
+  final String timeZone;
+  final String country;
+  final String folded;
+
+  /// The country's flag, from its two-letter code.
+  String get flag => country.length == 2
+      ? String.fromCharCodes(country.toUpperCase().codeUnits.map((c) => 0x1F1E6 + c - 0x41))
+      : '';
 }

@@ -5,14 +5,15 @@
 
 Keeps every place of 15,000+ people, plus the smaller places in cities1000 that
 lie inside the metro area (radius = sqrt(population) / 125 km * 1.5, at least
-8 km) of a city of 200,000+ people, which brings in districts such as Alfama."""
+8 km) of a city of 200,000+ people, which brings in districts such as Alfama.
+Columns: name, latitude, longitude, population, time zone, country code."""
 import math, sys
 
 def read(path):
     out = []
     for line in open(path, encoding='utf-8'):
         f = line.rstrip('\n').split('\t')
-        out.append((f[0], f[1], float(f[4]), float(f[5]), int(f[14])))
+        out.append((f[0], f[1], float(f[4]), float(f[5]), int(f[14]), f[17], f[8]))
     return out
 
 big_file, small_file = sys.argv[1], sys.argv[2]
@@ -30,6 +31,6 @@ for r in small:
         if math.hypot((r[2] - c[2]) * 111.2, (r[3] - c[3]) * 111.2 * cos) <= radius:
             keep[r[0]] = r
             break
-rows = [f"{r[1]}\t{r[2]:.3f}\t{r[3]:.3f}\t{r[4]}" for r in keep.values()]
+rows = [f"{r[1]}\t{r[2]:.3f}\t{r[3]:.3f}\t{r[4]}\t{r[5]}\t{r[6]}" for r in keep.values()]
 open('assets/geo/cities.tsv', 'w', encoding='utf-8').write('\n'.join(rows) + '\n')
 print(len(rows), 'places')

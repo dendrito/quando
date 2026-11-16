@@ -177,7 +177,12 @@ class SettingsScreen extends ConsumerWidget {
         leading: const Icon(Icons.public, color: QuandoColors.amber),
         title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
         subtitle: Text(
-          zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+          zones.fixed == null
+              ? l10n.followPhoneNow(
+                  '${l10n.cityTime(cityOf(ref.watch(homeZoneProvider)))} '
+                  '(${gmtLabel(ref.watch(homeZoneProvider), DateTime.now().toUtc())})',
+                )
+              : l10n.zoneFixed,
         ),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => _pickHomeZone(context, ref),

@@ -44,6 +44,15 @@ class Place {
     candleLightingMinutes: j['candleMinutes'] as int? ?? 18,
   );
 
+  Place renamed(String name) => Place(
+    name: name,
+    latitude: latitude,
+    longitude: longitude,
+    timeZone: timeZone,
+    inIsrael: inIsrael,
+    candleLightingMinutes: candleLightingMinutes,
+  );
+
   Place copyWith({bool? inIsrael, int? candleLightingMinutes}) => Place(
     name: name,
     latitude: latitude,

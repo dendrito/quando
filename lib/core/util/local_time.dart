@@ -82,6 +82,21 @@ List<String> allZones() {
     ..sort((a, b) => cityOf(a).compareTo(cityOf(b)));
 }
 
+/// True when the tz database knows [zone].
+bool knownZone(String zone) {
+  ensureTimeZones();
+  return tz.timeZoneDatabase.locations.containsKey(zone);
+}
+
+/// "GMT−3", "GMT+5:30" or "GMT": the zone's offset at [utc].
+String gmtLabel(String zone, DateTime utc) {
+  final d = inZone(utc, zone).timeZoneOffset;
+  if (d == Duration.zero) return 'GMT';
+  final m = d.inMinutes.abs();
+  final mins = m % 60 == 0 ? '' : ':${(m % 60).toString().padLeft(2, '0')}';
+  return 'GMT${d.isNegative ? '−' : '+'}${m ~/ 60}$mins';
+}
+
 /// "+3 h", "−5:30 h" or "same time" compared with [home].
 String offsetFrom(String zone, String home, DateTime utc) {
   final d = inZone(utc, zone).timeZoneOffset - inZone(utc, home).timeZoneOffset;
