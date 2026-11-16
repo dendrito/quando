@@ -1,0 +1,9 @@
+{
+  "id": "build-apps-from-mac",
+  "title": "Build the apps from my Mac",
+  "status": "doing",
+  "group": "Launch",
+  "order": 205,
+  "note": "Run tool/ship.sh in Terminal for iPad and Mac (expire 18-19 Nov). Android: use the CI APK.",
+  "links": [{"label": "Thread", "url": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzkRBs1o14oK7N73sRKhwhoEg"}]
+}
