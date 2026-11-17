@@ -909,6 +909,29 @@ class CalendarNotifier extends Notifier<CalendarState> {
     );
   }
 
+  /// Puts every account's calendars in A–Z order and remembers it.
+  Future<void> sortCalendarsAlphabetically() async {
+    final groups = <String, List<PhoneCalendar>>{};
+    for (final c in state.calendars) {
+      groups.putIfAbsent(c.account ?? '', () => []).add(c);
+    }
+    final sorted = [
+      for (final g in groups.values)
+        ...([...g]..sort((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()))),
+    ];
+    await _prefs.setStringList(_orderKey, [for (final c in sorted) c.id]);
+    state = CalendarState(
+      phone: state.phone,
+      google: state.google,
+      loaded: state.loaded,
+      calendars: sorted,
+      selected: state.selected,
+      events: state.events,
+      error: state.error,
+      googleError: state.googleError,
+    );
+  }
+
   /// Account groups the user folded away.
   Set<String> get collapsedGroups => _prefs.getStringList(_collapsedKey)?.toSet() ?? {};
 
