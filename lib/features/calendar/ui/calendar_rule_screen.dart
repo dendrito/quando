@@ -289,6 +289,23 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                 child: Row(
                   children: [
                     Expanded(child: Text(g.key.toUpperCase(), style: text.labelSmall)),
+                    IconButton(
+                      visualDensity: VisualDensity.compact,
+                      icon: Icon(
+                        g.value.every((c) => _rule.calendarIds.contains(c.id))
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        size: 20,
+                      ),
+                      onPressed: () => setState(() {
+                        final ids = {..._rule.calendarIds};
+                        final all = g.value.every((c) => ids.contains(c.id));
+                        for (final c in g.value) {
+                          all ? ids.remove(c.id) : ids.add(c.id);
+                        }
+                        _rule = _rule.copyWith(calendarIds: ids);
+                      }),
+                    ),
                     Icon(_collapsed.contains(g.key) ? Icons.expand_more : Icons.expand_less, size: 18),
                   ],
                 ),
