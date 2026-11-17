@@ -233,11 +233,24 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     for (final c in calendars) {
       groups.putIfAbsent(c.account ?? '', () => []).add(c);
     }
-    Widget row(String label, bool on, VoidCallback tap) => ListTile(
+    Widget row(String label, bool on, VoidCallback tap, {int? index}) => ListTile(
       dense: true,
       contentPadding: EdgeInsets.zero,
       title: Text(label),
-      trailing: on ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary) : null,
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (on) Icon(Icons.check, color: Theme.of(context).colorScheme.primary),
+          if (index != null)
+            ReorderableDragStartListener(
+              index: index,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 12, right: 4),
+                child: Icon(Icons.drag_handle, size: 20),
+              ),
+            ),
+        ],
+      ),
       onTap: tap,
     );
     return Column(
@@ -275,9 +288,8 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                   ref.read(calendarProvider.notifier).moveCalendar([for (final c in g.value) c.id], from, to),
               children: [
                 for (var i = 0; i < g.value.length; i++)
-                  ReorderableDelayedDragStartListener(
+                  KeyedSubtree(
                     key: ValueKey(g.value[i].id),
-                    index: i,
                     child: row(g.value[i].name, _rule.calendarIds.contains(g.value[i].id), () {
                       setState(() {
                         final ids = {..._rule.calendarIds};
@@ -285,7 +297,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
                         ids.contains(id) ? ids.remove(id) : ids.add(id);
                         _rule = _rule.copyWith(calendarIds: ids);
                       });
-                    }),
+                    }, index: i),
                   ),
               ],
             ),
