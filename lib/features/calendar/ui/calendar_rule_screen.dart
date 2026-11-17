@@ -75,6 +75,8 @@ String _short(Duration d) {
 }
 
 class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
+  late final Set<String> _collapsed = ref.read(calendarProvider.notifier).collapsedGroups;
+
   late CalendarRule _rule;
   late final bool _isNew;
   late final TextEditingController _name;
@@ -248,18 +250,45 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
         ),
         for (final g in groups.entries) ...[
           if (g.key.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 2),
-              child: Text(g.key.toUpperCase(), style: text.labelSmall),
+            InkWell(
+              onTap: () => setState(() {
+                final open = _collapsed.contains(g.key);
+                open ? _collapsed.remove(g.key) : _collapsed.add(g.key);
+                ref.read(calendarProvider.notifier).setGroupCollapsed(g.key, !open);
+              }),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12, bottom: 2),
+                child: Row(
+                  children: [
+                    Expanded(child: Text(g.key.toUpperCase(), style: text.labelSmall)),
+                    Icon(_collapsed.contains(g.key) ? Icons.expand_more : Icons.expand_less, size: 18),
+                  ],
+                ),
+              ),
             ),
-          for (final c in g.value)
-            row(c.name, _rule.calendarIds.contains(c.id), () {
-              setState(() {
-                final ids = {..._rule.calendarIds};
-                ids.contains(c.id) ? ids.remove(c.id) : ids.add(c.id);
-                _rule = _rule.copyWith(calendarIds: ids);
-              });
-            }),
+          if (!_collapsed.contains(g.key))
+            ReorderableListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              buildDefaultDragHandles: false,
+              onReorderItem: (from, to) =>
+                  ref.read(calendarProvider.notifier).moveCalendar([for (final c in g.value) c.id], from, to),
+              children: [
+                for (var i = 0; i < g.value.length; i++)
+                  ReorderableDelayedDragStartListener(
+                    key: ValueKey(g.value[i].id),
+                    index: i,
+                    child: row(g.value[i].name, _rule.calendarIds.contains(g.value[i].id), () {
+                      setState(() {
+                        final ids = {..._rule.calendarIds};
+                        final id = g.value[i].id;
+                        ids.contains(id) ? ids.remove(id) : ids.add(id);
+                        _rule = _rule.copyWith(calendarIds: ids);
+                      });
+                    }),
+                  ),
+              ],
+            ),
         ],
       ],
     );
