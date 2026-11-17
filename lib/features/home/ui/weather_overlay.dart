@@ -130,7 +130,7 @@ class WeatherOverlayPainter extends CustomPainter {
 
     // Rain: slanted streaks falling, only over the hours it is expected.
     final rain = Paint()
-      ..strokeWidth = 1.4
+      ..strokeWidth = 1.1
       ..strokeCap = StrokeCap.round;
     for (var i = 0; i < _columns; i++) {
       final x = (i + _rand(i, 1)) / _columns;
@@ -140,7 +140,9 @@ class WeatherOverlayPainter extends CustomPainter {
       final phase = (t * speed + _rand(i, 4)) % 1;
       final y = phase * (h + 30) - 15;
       final len = 9 + _rand(i, 5) * 8;
-      rain.color = QuandoColors.text.withValues(alpha: (.18 + .3 * _rand(i, 6)) * strength.clamp(0, 1));
+      // Faint and eased in, so forecast rain reads as a hint, not as lines.
+      final soft = strength.clamp(0, 1) * strength.clamp(0, 1);
+      rain.color = QuandoColors.text.withValues(alpha: (.08 + .14 * _rand(i, 6)) * soft);
       canvas.drawLine(Offset(x * w, y), Offset(x * w - len * .22, y + len), rain);
     }
 
