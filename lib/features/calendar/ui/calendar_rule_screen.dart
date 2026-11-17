@@ -256,10 +256,25 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        row(
-          l10n.allMyCalendars,
-          _rule.calendarIds.isEmpty,
-          () => setState(() => _rule = _rule.copyWith(calendarIds: {})),
+        ListTile(
+          dense: true,
+          contentPadding: EdgeInsets.zero,
+          title: Text(l10n.allMyCalendars),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (_rule.calendarIds.isEmpty) Icon(Icons.check, color: Theme.of(context).colorScheme.primary),
+              IconButton(
+                icon: const Icon(Icons.sort_by_alpha, size: 20),
+                onPressed: () => ref.read(calendarProvider.notifier).sortCalendarsAlphabetically(),
+              ),
+              IconButton(
+                icon: const Icon(Icons.history, size: 20),
+                onPressed: () => ref.read(calendarProvider.notifier).sortCalendarsByRecent(),
+              ),
+            ],
+          ),
+          onTap: () => setState(() => _rule = _rule.copyWith(calendarIds: {})),
         ),
         for (final g in groups.entries) ...[
           if (g.key.isNotEmpty)
@@ -310,6 +325,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     ref
         .read(calendarRulesProvider.notifier)
         .save(_rule.copyWith(name: _name.text.trim(), keyword: _keyword.text.trim()));
+    ref.read(calendarProvider.notifier).markUsed(_rule.calendarIds);
     // The search may now reach further ahead: read the calendars again.
     ref.read(calendarProvider.notifier).refresh();
     Navigator.of(context).pop();

@@ -909,6 +909,54 @@ class CalendarNotifier extends Notifier<CalendarState> {
     );
   }
 
+  /// Puts every account's calendars in A–Z order and remembers it.
+  Future<void> sortCalendarsAlphabetically() =>
+      _regroup((a, b) => a.name.toLowerCase().compareTo(b.name.toLowerCase()));
+
+  Future<void> _regroup(int Function(PhoneCalendar, PhoneCalendar) compare) async {
+    final groups = <String, List<PhoneCalendar>>{};
+    for (final c in state.calendars) {
+      groups.putIfAbsent(c.account ?? '', () => []).add(c);
+    }
+    // List.sort isn't stable, so break ties by the current position.
+    final pos = {for (var i = 0; i < state.calendars.length; i++) state.calendars[i].id: i};
+    final sorted = [
+      for (final g in groups.values)
+        ...([...g]..sort((a, b) {
+          final c = compare(a, b);
+          return c != 0 ? c : pos[a.id]!.compareTo(pos[b.id]!);
+        })),
+    ];
+    await _prefs.setStringList(_orderKey, [for (final c in sorted) c.id]);
+    state = CalendarState(
+      phone: state.phone,
+      google: state.google,
+      loaded: state.loaded,
+      calendars: sorted,
+      selected: state.selected,
+      events: state.events,
+      error: state.error,
+      googleError: state.googleError,
+    );
+  }
+
+  static const _recentKey = 'calendars.recent';
+
+  /// Remembers calendars just chosen for an alarm, newest first.
+  Future<void> markUsed(Iterable<String> ids) async {
+    final used = ids.toList();
+    if (used.isEmpty) return;
+    final old = _prefs.getStringList(_recentKey) ?? const <String>[];
+    await _prefs.setStringList(_recentKey, [...used, ...old.where((id) => !used.contains(id))]);
+  }
+
+  /// Puts every account's most recently used calendars first.
+  Future<void> sortCalendarsByRecent() async {
+    final recent = _prefs.getStringList(_recentKey) ?? const <String>[];
+    final rank = {for (var i = 0; i < recent.length; i++) recent[i]: i};
+    await _regroup((a, b) => (rank[a.id] ?? recent.length).compareTo(rank[b.id] ?? recent.length));
+  }
+
   /// Account groups the user folded away.
   Set<String> get collapsedGroups => _prefs.getStringList(_collapsedKey)?.toSet() ?? {};
 
