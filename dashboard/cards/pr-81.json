@@ -1,7 +1,7 @@
 {
   "id": "pr-81",
   "title": "Select a whole account in the event alarm picker",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     81
