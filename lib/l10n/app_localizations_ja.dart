@@ -3611,6 +3611,12 @@ class AppLocalizationsJa extends AppLocalizations {
   String get firstRunEverythingHint => 'カレンダー、シャバット、タイマー、天気など';
 
   @override
+  String get firstRunEverythingHintPlain => 'カレンダー、タイマー、天気など';
+
+  @override
+  String get firstRunLoseTrack => '時間を忘れがち';
+
+  @override
   String get firstRunChangeLater => '設定でいつでも変更できます。';
 
   @override

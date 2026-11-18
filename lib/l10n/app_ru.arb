@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Сколько вы хотите видеть?",
   "firstRunSimpleHint": "Будильники и основное",
   "firstRunEverythingHint": "Календарь, Шаббат, таймеры, погода и другое",
+  "firstRunEverythingHintPlain": "Календарь, таймеры, погода и другое",
+  "firstRunLoseTrack": "Я теряю счёт времени",
   "firstRunChangeLater": "Это можно изменить в любой момент в Настройках.",
   "continueLabel": "Продолжить",
   "everyAlarm": "Каждый будильник",

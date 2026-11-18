@@ -3717,6 +3717,12 @@ class AppLocalizationsNl extends AppLocalizations {
   String get firstRunEverythingHint => 'Agenda, Sjabbat, timers, weer en meer';
 
   @override
+  String get firstRunEverythingHintPlain => 'Agenda, timers, weer en meer';
+
+  @override
+  String get firstRunLoseTrack => 'Ik verlies het besef van tijd';
+
+  @override
   String get firstRunChangeLater => 'Je kunt dit altijd wijzigen in Instellingen.';
 
   @override

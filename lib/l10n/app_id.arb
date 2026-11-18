@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Seberapa banyak yang ingin kamu lihat?",
   "firstRunSimpleHint": "Alarm dan dasar-dasarnya",
   "firstRunEverythingHint": "Kalender, Sabat, timer, cuaca, dan lainnya",
+  "firstRunEverythingHintPlain": "Kalender, timer, cuaca, dan lainnya",
+  "firstRunLoseTrack": "Saya sering lupa waktu",
   "firstRunChangeLater": "Kamu bisa mengubahnya kapan saja di Pengaturan.",
   "continueLabel": "Lanjut",
   "everyAlarm": "Setiap alarm",

@@ -3772,6 +3772,12 @@ class AppLocalizationsRu extends AppLocalizations {
   String get firstRunEverythingHint => 'Календарь, Шаббат, таймеры, погода и другое';
 
   @override
+  String get firstRunEverythingHintPlain => 'Календарь, таймеры, погода и другое';
+
+  @override
+  String get firstRunLoseTrack => 'Я теряю счёт времени';
+
+  @override
   String get firstRunChangeLater => 'Это можно изменить в любой момент в Настройках.';
 
   @override

@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Ne kadarını görmek istersin?",
   "firstRunSimpleHint": "Alarmlar ve temel özellikler",
   "firstRunEverythingHint": "Takvim, Şabat, zamanlayıcılar, hava durumu ve daha fazlası",
+  "firstRunEverythingHintPlain": "Takvim, zamanlayıcılar, hava durumu ve daha fazlası",
+  "firstRunLoseTrack": "Zamanın nasıl geçtiğini fark etmiyorum",
   "firstRunChangeLater": "Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.",
   "continueLabel": "Devam",
   "everyAlarm": "Her alarm",

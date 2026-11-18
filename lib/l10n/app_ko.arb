@@ -1094,6 +1094,8 @@
   "firstRunTitle": "얼마나 보고 싶으세요?",
   "firstRunSimpleHint": "알람과 기본 기능",
   "firstRunEverythingHint": "캘린더, 안식일, 타이머, 날씨 등",
+  "firstRunEverythingHintPlain": "캘린더, 타이머, 날씨 등",
+  "firstRunLoseTrack": "시간 가는 줄 몰라요",
   "firstRunChangeLater": "설정에서 언제든 바꿀 수 있어요.",
   "continueLabel": "계속",
   "everyAlarm": "모든 알람",

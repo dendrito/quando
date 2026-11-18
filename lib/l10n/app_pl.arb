@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Ile chcesz widzieć?",
   "firstRunSimpleHint": "Budziki i podstawy",
   "firstRunEverythingHint": "Kalendarz, szabat, minutniki, pogoda i więcej",
+  "firstRunEverythingHintPlain": "Kalendarz, minutniki, pogoda i więcej",
+  "firstRunLoseTrack": "Tracę poczucie czasu",
   "firstRunChangeLater": "Możesz to zmienić w każdej chwili w Ustawieniach.",
   "continueLabel": "Dalej",
   "everyAlarm": "Każdy budzik",

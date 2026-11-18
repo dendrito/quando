@@ -10,6 +10,7 @@ import '../core/scheduler/scheduler.dart';
 import '../core/util/format.dart';
 import '../core/util/platform.dart';
 import '../features/alarms/data/alarm_registrar.dart';
+import '../features/settings/domain/quick_setups.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/beta/beta_log.dart';
 import '../features/calendar/data/calendar_reader.dart';
@@ -112,8 +113,11 @@ class FirstRunNotifier extends Notifier<bool> {
   @override
   bool build() => UiLevelStore.pending(ref.read(prefsProvider));
 
+  /// New installs start with "Morning that works" (wake-up check on, snooze
+  /// once), the setup most people need.
   void answer(UiLevel level) {
     ref.read(uiLevelProvider.notifier).set(level);
+    ref.read(alarmOptionsProvider.notifier).update(morningApplied);
     state = false;
   }
 }

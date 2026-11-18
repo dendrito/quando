@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
+import '../../timers/data/timer_providers.dart';
+import '../domain/quick_setups.dart';
 import '../domain/ui_level.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -30,6 +33,16 @@ class FirstRunScreen extends ConsumerStatefulWidget {
 
 class _FirstRunScreenState extends ConsumerState<FirstRunScreen> {
   var _level = UiLevel.simple;
+  var _loseTrack = false;
+
+  void _continue() {
+    // "I lose track of time" also sets up "Work in stretches".
+    if (_loseTrack) {
+      final seq = ref.read(sequenceConfigProvider.notifier);
+      seq.set(stretchApplied(ref.read(sequenceConfigProvider), l10n.qsFiveLeft));
+    }
+    ref.read(firstRunProvider.notifier).answer(_level);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -84,13 +97,28 @@ class _FirstRunScreenState extends ConsumerState<FirstRunScreen> {
                 const SizedBox(height: 28),
                 choice(UiLevel.simple, l10n.uiSimple, l10n.firstRunSimpleHint),
                 const SizedBox(height: 12),
-                choice(UiLevel.everything, l10n.uiEverything, l10n.firstRunEverythingHint),
+                choice(
+                  UiLevel.everything,
+                  l10n.uiEverything,
+                  // Quando? keeps Shabbat out of sight until it is in use.
+                  jewishHome ? l10n.firstRunEverythingHint : l10n.firstRunEverythingHintPlain,
+                ),
+                const SizedBox(height: 12),
+                CheckboxListTile(
+                  key: const Key('firstRunLoseTrack'),
+                  value: _loseTrack,
+                  onChanged: (v) => setState(() => _loseTrack = v ?? false),
+                  title: Text(l10n.firstRunLoseTrack),
+                  activeColor: QuandoColors.amber,
+                  controlAffinity: ListTileControlAffinity.leading,
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                ),
                 const SizedBox(height: 28),
                 SizedBox(
                   height: 60,
                   child: FilledButton(
                     key: const Key('firstRunContinue'),
-                    onPressed: () => ref.read(firstRunProvider.notifier).answer(_level),
+                    onPressed: _continue,
                     child: Text(l10n.continueLabel),
                   ),
                 ),

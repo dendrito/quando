@@ -3698,6 +3698,12 @@ class AppLocalizationsTr extends AppLocalizations {
   String get firstRunEverythingHint => 'Takvim, Şabat, zamanlayıcılar, hava durumu ve daha fazlası';
 
   @override
+  String get firstRunEverythingHintPlain => 'Takvim, zamanlayıcılar, hava durumu ve daha fazlası';
+
+  @override
+  String get firstRunLoseTrack => 'Zamanın nasıl geçtiğini fark etmiyorum';
+
+  @override
   String get firstRunChangeLater => 'Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.';
 
   @override

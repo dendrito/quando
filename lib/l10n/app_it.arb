@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Quanto vuoi vedere?",
   "firstRunSimpleHint": "Sveglie e le basi",
   "firstRunEverythingHint": "Calendario, Shabbat, timer, meteo e altro",
+  "firstRunEverythingHintPlain": "Calendario, timer, meteo e altro",
+  "firstRunLoseTrack": "Perdo la cognizione del tempo",
   "firstRunChangeLater": "Puoi cambiarlo quando vuoi nelle Impostazioni.",
   "continueLabel": "Continua",
   "everyAlarm": "Ogni sveglia",

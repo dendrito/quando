@@ -764,7 +764,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: const Icon(Icons.dashboard_customize_outlined),
                         onPressed: () => setState(() => _arranging = !_arranging),
                       ),
-                    // Simple: only Settings. Everything: the pills below.
+                    // Simple: Timers and Settings. Everything: the pills below.
+                    if (simple)
+                      IconButton(
+                        key: const ValueKey('simple-timers'),
+                        tooltip: l10n.timersTitle,
+                        icon: const Icon(Icons.timer_outlined),
+                        onPressed: () => context.push('/timers'),
+                      ),
                     if (simple)
                       IconButton(
                         tooltip: l10n.settings,

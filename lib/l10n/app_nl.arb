@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Hoeveel wil je zien?",
   "firstRunSimpleHint": "Wekkers en de basis",
   "firstRunEverythingHint": "Agenda, Sjabbat, timers, weer en meer",
+  "firstRunEverythingHintPlain": "Agenda, timers, weer en meer",
+  "firstRunLoseTrack": "Ik verlies het besef van tijd",
   "firstRunChangeLater": "Je kunt dit altijd wijzigen in Instellingen.",
   "continueLabel": "Doorgaan",
   "everyAlarm": "Elke wekker",

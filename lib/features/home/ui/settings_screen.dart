@@ -300,7 +300,7 @@ class SettingsScreen extends ConsumerWidget {
               children: const [QuickSetupsRow(showTitle: false)],
             ),
             fold(l10n.groupAlarms, alarmRows),
-            fold(l10n.groupCalendarShabbat, calendarShabbat),
+            fold(shabbatOn ? l10n.groupCalendarShabbat : l10n.calendar, calendarShabbat),
             fold(l10n.settingsPlacesTime, places),
             fold(l10n.groupLookQuotes, look),
             fold(l10n.groupConnectionsSync, connections),

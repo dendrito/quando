@@ -1094,6 +1094,8 @@
   "firstRunTitle": "Combien voulez-vous voir ?",
   "firstRunSimpleHint": "Les alarmes et l’essentiel",
   "firstRunEverythingHint": "Agenda, Chabbat, minuteurs, météo et plus",
+  "firstRunEverythingHintPlain": "Agenda, minuteurs, météo et plus",
+  "firstRunLoseTrack": "Je perds la notion du temps",
   "firstRunChangeLater": "Vous pouvez le changer à tout moment dans les Réglages.",
   "continueLabel": "Continuer",
   "everyAlarm": "Chaque alarme",

@@ -1094,6 +1094,8 @@
   "firstRunTitle": "どこまで表示しますか？",
   "firstRunSimpleHint": "アラームと基本機能",
   "firstRunEverythingHint": "カレンダー、シャバット、タイマー、天気など",
+  "firstRunEverythingHintPlain": "カレンダー、タイマー、天気など",
+  "firstRunLoseTrack": "時間を忘れがち",
   "firstRunChangeLater": "設定でいつでも変更できます。",
   "continueLabel": "続ける",
   "everyAlarm": "すべてのアラーム",

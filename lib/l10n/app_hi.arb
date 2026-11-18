@@ -1094,6 +1094,8 @@
   "firstRunTitle": "आप कितना देखना चाहते हैं?",
   "firstRunSimpleHint": "अलार्म और ज़रूरी चीज़ें",
   "firstRunEverythingHint": "कैलेंडर, शब्बात, टाइमर, मौसम और बहुत कुछ",
+  "firstRunEverythingHintPlain": "कैलेंडर, टाइमर, मौसम और बहुत कुछ",
+  "firstRunLoseTrack": "समय का पता नहीं चलता",
   "firstRunChangeLater": "आप इसे कभी भी सेटिंग में बदल सकते हैं।",
   "continueLabel": "आगे बढ़ें",
   "everyAlarm": "हर अलार्म",

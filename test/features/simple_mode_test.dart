@@ -14,7 +14,9 @@ import 'package:quando/features/alarms/domain/user_alarm.dart';
 import 'package:quando/features/alarms/ui/edit_alarm_screen.dart';
 import 'package:quando/features/home/ui/settings_screen.dart';
 import 'package:quando/features/ringing/ring_payload.dart';
+import 'package:quando/features/settings/domain/quick_setups.dart';
 import 'package:quando/features/settings/domain/ui_level.dart';
+import 'package:quando/features/timers/data/timer_providers.dart';
 import 'package:quando/features/settings/ui/first_run_screen.dart';
 import 'package:quando/l10n/l10n.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -64,7 +66,9 @@ void main() {
       );
       expect(find.text(l10n.firstRunTitle), findsOneWidget);
       expect(find.text(l10n.firstRunSimpleHint), findsOneWidget);
-      expect(find.text(l10n.firstRunEverythingHint), findsOneWidget);
+      // Quando? keeps Shabbat out of the first question.
+      expect(find.text(l10n.firstRunEverythingHintPlain), findsOneWidget);
+      expect(find.text(l10n.firstRunEverythingHint), findsNothing);
       expect(find.text('Home'), findsNothing);
       final ticked = find.descendant(
         of: find.byKey(const Key('first-simple')),
@@ -78,6 +82,30 @@ void main() {
       expect(c.read(uiLevelProvider), UiLevel.simple);
       expect(prefs.getString('ui.level'), 'simple');
       expect(c.read(firstRunProvider), isFalse);
+      // New installs start with "Morning that works"; stretches only on request.
+      expect(morningIsOn(c.read(alarmOptionsProvider)), isTrue);
+      expect(stretchIsOn(c.read(sequenceConfigProvider)), isFalse);
+    });
+
+    testWidgets('"I lose track of time" also sets up Work in stretches', (tester) async {
+      final prefs = await prefsWith({}, start: true);
+      final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(prefs)]);
+      addTearDown(c.dispose);
+      await tester.pumpWidget(
+        UncontrolledProviderScope(
+          container: c,
+          child: MaterialApp(
+            theme: buildTheme(),
+            home: const FirstRunGate(child: Text('Home')),
+          ),
+        ),
+      );
+      await tester.tap(find.byKey(const Key('firstRunLoseTrack')));
+      await tester.pump();
+      await tester.tap(find.byKey(const Key('firstRunContinue')));
+      await tester.pumpAndSettle();
+      expect(morningIsOn(c.read(alarmOptionsProvider)), isTrue);
+      expect(stretchIsOn(c.read(sequenceConfigProvider)), isTrue);
     });
 
     testWidgets('choosing Everything is saved too, and an existing install is never asked', (tester) async {
@@ -135,7 +163,7 @@ void main() {
 
     List<String> folds() => [
       l10n.groupAlarms,
-      l10n.groupCalendarShabbat,
+      l10n.calendar,
       l10n.settingsPlacesTime,
       l10n.groupLookQuotes,
       l10n.groupConnectionsSync,
@@ -244,6 +272,8 @@ void main() {
       expect(find.textContaining('Work'), findsWidgets);
       expect(find.text(l10n.when), findsOneWidget);
       expect(find.byTooltip(l10n.settings), findsOneWidget);
+      // Timers stay one tap away in Simple too.
+      expect(find.byKey(const ValueKey('simple-timers')), findsOneWidget);
       for (final word in [l10n.timersTitle, l10n.calendars, l10n.lockMode]) {
         expect(find.text(word), findsNothing, reason: word);
       }

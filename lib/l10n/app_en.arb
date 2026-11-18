@@ -2183,6 +2183,8 @@
   "firstRunTitle": "How much do you want to see?",
   "firstRunSimpleHint": "Alarms and the basics",
   "firstRunEverythingHint": "Calendar, Shabbat, timers, weather and more",
+  "firstRunEverythingHintPlain": "Calendar, timers, weather and more",
+  "firstRunLoseTrack": "I lose track of time",
   "firstRunChangeLater": "You can change this any time in Settings.",
   "continueLabel": "Continue",
   "everyAlarm": "Every alarm",

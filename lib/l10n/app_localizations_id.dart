@@ -3697,6 +3697,12 @@ class AppLocalizationsId extends AppLocalizations {
   String get firstRunEverythingHint => 'Kalender, Sabat, timer, cuaca, dan lainnya';
 
   @override
+  String get firstRunEverythingHintPlain => 'Kalender, timer, cuaca, dan lainnya';
+
+  @override
+  String get firstRunLoseTrack => 'Saya sering lupa waktu';
+
+  @override
   String get firstRunChangeLater => 'Kamu bisa mengubahnya kapan saja di Pengaturan.';
 
   @override

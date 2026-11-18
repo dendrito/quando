@@ -3724,6 +3724,12 @@ class AppLocalizationsDe extends AppLocalizations {
   String get firstRunEverythingHint => 'Kalender, Schabbat, Timer, Wetter und mehr';
 
   @override
+  String get firstRunEverythingHintPlain => 'Kalender, Timer, Wetter und mehr';
+
+  @override
+  String get firstRunLoseTrack => 'Ich verliere die Zeit aus den Augen';
+
+  @override
   String get firstRunChangeLater => 'Das kannst du jederzeit in den Einstellungen ändern.';
 
   @override

@@ -3684,6 +3684,12 @@ class AppLocalizationsHe extends AppLocalizations {
   String get firstRunEverythingHint => 'יומן, שבת, טיימרים, מזג אוויר ועוד';
 
   @override
+  String get firstRunEverythingHintPlain => 'יומן, טיימרים, מזג אוויר ועוד';
+
+  @override
+  String get firstRunLoseTrack => 'קשה לי לעקוב אחרי הזמן';
+
+  @override
   String get firstRunChangeLater => 'אפשר לשנות זאת בכל עת בהגדרות.';
 
   @override

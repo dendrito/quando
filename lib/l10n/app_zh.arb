@@ -1094,6 +1094,8 @@
   "firstRunTitle": "你想看到多少？",
   "firstRunSimpleHint": "闹钟和基本功能",
   "firstRunEverythingHint": "日历、安息日、计时器、天气等",
+  "firstRunEverythingHintPlain": "日历、计时器、天气等",
+  "firstRunLoseTrack": "我常常忘了时间",
   "firstRunChangeLater": "你可以随时在设置中更改。",
   "continueLabel": "继续",
   "everyAlarm": "每个闹钟",

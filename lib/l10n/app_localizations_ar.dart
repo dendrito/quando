@@ -3743,6 +3743,12 @@ class AppLocalizationsAr extends AppLocalizations {
   String get firstRunEverythingHint => 'التقويم والسبت والمؤقتات والطقس والمزيد';
 
   @override
+  String get firstRunEverythingHintPlain => 'التقويم والمؤقتات والطقس والمزيد';
+
+  @override
+  String get firstRunLoseTrack => 'أفقد الإحساس بالوقت';
+
+  @override
   String get firstRunChangeLater => 'يمكنك تغيير هذا في أي وقت من الإعدادات.';
 
   @override

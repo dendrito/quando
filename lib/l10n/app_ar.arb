@@ -1094,6 +1094,8 @@
   "firstRunTitle": "ما مقدار ما تريد رؤيته؟",
   "firstRunSimpleHint": "المنبهات والأساسيات",
   "firstRunEverythingHint": "التقويم والسبت والمؤقتات والطقس والمزيد",
+  "firstRunEverythingHintPlain": "التقويم والمؤقتات والطقس والمزيد",
+  "firstRunLoseTrack": "أفقد الإحساس بالوقت",
   "firstRunChangeLater": "يمكنك تغيير هذا في أي وقت من الإعدادات.",
   "continueLabel": "متابعة",
   "everyAlarm": "كل منبه",

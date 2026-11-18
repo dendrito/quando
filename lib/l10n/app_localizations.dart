@@ -6694,6 +6694,18 @@ abstract class AppLocalizations {
   /// **'Calendar, Shabbat, timers, weather and more'**
   String get firstRunEverythingHint;
 
+  /// No description provided for @firstRunEverythingHintPlain.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar, timers, weather and more'**
+  String get firstRunEverythingHintPlain;
+
+  /// No description provided for @firstRunLoseTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'I lose track of time'**
+  String get firstRunLoseTrack;
+
   /// No description provided for @firstRunChangeLater.
   ///
   /// In en, this message translates to:

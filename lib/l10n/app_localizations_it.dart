@@ -3723,6 +3723,12 @@ class AppLocalizationsIt extends AppLocalizations {
   String get firstRunEverythingHint => 'Calendario, Shabbat, timer, meteo e altro';
 
   @override
+  String get firstRunEverythingHintPlain => 'Calendario, timer, meteo e altro';
+
+  @override
+  String get firstRunLoseTrack => 'Perdo la cognizione del tempo';
+
+  @override
   String get firstRunChangeLater => 'Puoi cambiarlo quando vuoi nelle Impostazioni.';
 
   @override
