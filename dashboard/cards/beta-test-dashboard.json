@@ -1,9 +1,9 @@
 {
   "id": "beta-test-dashboard",
   "title": "Beta test dashboard",
-  "status": "next",
+  "status": "done",
   "group": "Launch",
   "order": 210,
-  "note": "Code and app wiring merged (#67). Next: Cloudflare setup, 4 steps in beta/README.md (D1, Pages project, Access, variables).",
+  "note": "Live at beta.quando.day/admin behind Cloudflare Access (18 Nov).",
   "links": [{"label": "Mockup", "url": "https://claude.ai/artifact/BusHowwk8RaZQb8EoBZPei"}, {"label": "Setup steps", "url": "https://github.com/dendrito/quando/blob/main/beta/README.md"}]
 }
