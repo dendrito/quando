@@ -720,9 +720,11 @@ class _VersionLine extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Padding(
     padding: const EdgeInsets.symmetric(vertical: 8),
-    child: Row(
+    child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 8,
       children: [
-        Expanded(child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall)),
+        Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
         // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
         TextButton(
           key: const Key('licences'),
