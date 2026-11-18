@@ -21,6 +21,11 @@ class BetaWords {
   static const veryDisappointed = 'Very disappointed';
   static const somewhat = 'Somewhat';
   static const notReally = 'Not really';
+  static const timeAsk = 'Do you lose track of time?';
+  static const often = 'Often';
+  static const sometimes = 'Sometimes';
+  static const rarely = 'Rarely';
+  static const talkHint = 'Email, if you would talk for 15 minutes (optional)';
   static String survey(String app) => 'How would you feel if you could no longer use $app?';
 }
 
@@ -168,4 +173,45 @@ Future<void> askBetaSurvey(BuildContext context) async {
     ),
   );
   if (answer != null) await BetaLog.answerSurvey(answer);
+  if (answer != null && context.mounted) await _askTime(context);
+}
+
+/// Optional, right after the day-7 question: how often the tester loses track
+/// of time, and an email only if they would talk about it. No diagnosis asked.
+Future<void> _askTime(BuildContext context) async {
+  final email = TextEditingController();
+  final answer = await showModalBottomSheet<String>(
+    context: context,
+    showDragHandle: true,
+    isScrollControlled: true,
+    builder: (context) => SafeArea(
+      child: Padding(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 16 + MediaQuery.viewInsetsOf(context).bottom),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Text(BetaWords.timeAsk, style: Theme.of(context).textTheme.titleMedium),
+            const SizedBox(height: 12),
+            for (final (k, l) in const [
+              ('often', BetaWords.often),
+              ('sometimes', BetaWords.sometimes),
+              ('rarely', BetaWords.rarely),
+            ]) ...[
+              OutlinedButton(key: Key('time-$k'), onPressed: () => Navigator.pop(context, k), child: Text(l)),
+              const SizedBox(height: 8),
+            ],
+            TextField(
+              key: const Key('time-email'),
+              controller: email,
+              keyboardType: TextInputType.emailAddress,
+              decoration: const InputDecoration(hintText: BetaWords.talkHint),
+            ),
+          ],
+        ),
+      ),
+    ),
+  );
+  if (answer != null) await BetaLog.answerTime(answer, contact: email.text.trim());
+  email.dispose();
 }

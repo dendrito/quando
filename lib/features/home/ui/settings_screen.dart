@@ -719,8 +719,19 @@ class _VersionLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
-    child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Row(
+      children: [
+        Expanded(child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall)),
+        // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
+        TextButton(
+          key: const Key('licences'),
+          onPressed: () =>
+              showLicensePage(context: context, applicationName: appTitle, applicationVersion: appVersion),
+          child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
+        ),
+      ],
+    ),
   );
 }
 

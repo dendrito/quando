@@ -36,6 +36,9 @@ Future<void> main() async {
     yield LicenseEntryWithLineBreaks([
       'Unicode CLDR date words (Say or type it)',
     ], await rootBundle.loadString('third_party/cldr/LICENSE'));
+    yield LicenseEntryWithLineBreaks([
+      'GeoNames city names (offline)',
+    ], await rootBundle.loadString('third_party/geonames/LICENSE'));
   });
   final (prefs, deviceZone) = await _setUp();
   // Beta: only does anything once a tester has turned sharing on.

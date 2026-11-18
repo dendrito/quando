@@ -132,6 +132,7 @@ function draw(){
  const s1=m.openSev1,h=$("hero");
  h.replaceChildren();const a=el("strong","",met+" of 5 gates met");h.append(a,el("span","",s1?" · "+s1+" open sev 1":" · no open sev 1"));
  const ms=(D.missed||[]);if(ms.length)h.append(el("span","",' · '+ms.reduce((t,x)=>t+x.c,0)+" missed alarms ("+ms.map(x=>(PL[x.platform]||x.platform)+" "+x.c).join(", ")+")"));
+ const tm=(D.time||[]);if(tm.length)h.append(el("span","",' · lose track of time: '+tm.map(x=>x.body+" "+x.c).join(", ")+" ("+tm.reduce((t,x)=>t+(x.talk||0),0)+" would talk)"));
  // signups
  $("total").textContent=D.signups.length;
  const days=[];for(let i=13;i>=0;i--){const d=new Date(Date.now()-i*864e5).toISOString().slice(0,10);days.push([d,0])}
