@@ -196,7 +196,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }
-    if (isAndroid) {
+    // Matai? has no notification listener and no Busy mode (fewer permissions).
+    if (isAndroid && !kodesh) {
       try {
         await ref
             .read(loudNotificationsProvider)
@@ -224,6 +225,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       } catch (e) {
         debugPrint('Quando?: could not prepare Busy mode: $e');
       }
+    }
+    if (isAndroid) {
       try {
         final now = DateTime.now();
         final place = ref.read(skyPlaceProvider);

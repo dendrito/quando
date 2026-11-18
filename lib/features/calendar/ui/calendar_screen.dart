@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
@@ -163,7 +164,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
                 trailing: Text(when(e.at), style: text.bodySmall?.copyWith(color: QuandoColors.amber)),
               ),
           ],
-          if (isAndroid) ...[const SizedBox(height: 28), const LoudNotificationsSection()],
+          if (isAndroid && !kodesh) ...[const SizedBox(height: 28), const LoudNotificationsSection()],
         ],
       ),
     );

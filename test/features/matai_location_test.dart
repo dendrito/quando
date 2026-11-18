@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:quando/app/edition.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/features/shabbat/ui/city_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -18,7 +19,8 @@ class _Lookup implements LocationLookup {
 
 void main() {
   TestWidgetsFlutterBinding.ensureInitialized();
-  test('Quando? follows the phone; "stop" turns it off until a tap allows it again', () async {
+  // Run with --dart-define=QUANDO_EDITION=kodesh to check Matai?.
+  test('Quando? follows the phone, Matai? waits for a tap; "stop" turns it off', () async {
     SharedPreferences.setMockInitialValues({});
     final prefs = await SharedPreferences.getInstance();
     final lookup = _Lookup();
@@ -27,8 +29,14 @@ void main() {
     );
     addTearDown(c.dispose);
     final here = c.read(hereProvider.notifier);
-    expect(here.allowed, isTrue); // Quando? (Matai? starts with false)
-    await here.refresh();
+    expect(here.allowed, !kodesh);
+    if (kodesh) {
+      await expectLater(here.refresh(), throwsA(isA<LocationFailure>()));
+      expect(lookup.calls, 0); // Matai? never asks the phone by itself
+      await here.refresh(force: true);
+    } else {
+      await here.refresh();
+    }
     expect(lookup.calls, 1);
 
     await here.stop();
