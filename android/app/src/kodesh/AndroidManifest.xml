@@ -1,0 +1,10 @@
+<!-- Matai? asks for less: no exact location (the city is enough for zmanim),
+     no notification access and no Busy mode. -->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" tools:node="remove" />
+    <application>
+        <service android:name=".QuandoListener" tools:node="remove" />
+        <receiver android:name=".BusyReceiver" tools:node="remove" />
+    </application>
+</manifest>

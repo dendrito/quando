@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
@@ -562,15 +563,16 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               value: _rule.eventReminders,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(eventReminders: v)),
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
-              title: Text(l10n.busyDuringEvents),
-              subtitle: Text(l10n.busyDuringEventsHint),
-              value: _rule.busy,
-              onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
-            ),
-            if (_rule.busy)
+            if (!kodesh)
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                title: Text(l10n.busyDuringEvents),
+                subtitle: Text(l10n.busyDuringEventsHint),
+                value: _rule.busy,
+                onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
+              ),
+            if (!kodesh && _rule.busy)
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),
