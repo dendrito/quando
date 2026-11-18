@@ -1099,6 +1099,7 @@
   "missedAsk": "Будильник на {time} прозвонил?",
   "missedYes": "Да",
   "missedNo": "Нет",
+  "againUntilDone": "Повторять, пока не сделано",
   "firstRunChangeLater": "Это можно изменить в любой момент в Настройках.",
   "continueLabel": "Продолжить",
   "everyAlarm": "Каждый будильник",

@@ -3788,6 +3788,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get missedNo => 'Nie';
 
   @override
+  String get againUntilDone => 'Ponownie aż do skutku';
+
+  @override
   String get firstRunChangeLater => 'Możesz to zmienić w każdej chwili w Ustawieniach.';
 
   @override

@@ -1099,6 +1099,7 @@
   "missedAsk": "Hat {time} geklingelt?",
   "missedYes": "Ja",
   "missedNo": "Nein",
+  "againUntilDone": "Wieder, bis erledigt",
   "firstRunChangeLater": "Das kannst du jederzeit in den Einstellungen ändern.",
   "continueLabel": "Weiter",
   "everyAlarm": "Jeder Wecker",

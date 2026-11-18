@@ -1099,6 +1099,7 @@
   "missedAsk": "La sveglia delle {time} ha suonato?",
   "missedYes": "Sì",
   "missedNo": "No",
+  "againUntilDone": "Di nuovo finché fatto",
   "firstRunChangeLater": "Puoi cambiarlo quando vuoi nelle Impostazioni.",
   "continueLabel": "Continua",
   "everyAlarm": "Ogni sveglia",

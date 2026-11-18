@@ -1099,6 +1099,7 @@
   "missedAsk": "Apakah alarm {time} berbunyi?",
   "missedYes": "Ya",
   "missedNo": "Tidak",
+  "againUntilDone": "Lagi sampai selesai",
   "firstRunChangeLater": "Kamu bisa mengubahnya kapan saja di Pengaturan.",
   "continueLabel": "Lanjut",
   "everyAlarm": "Setiap alarm",

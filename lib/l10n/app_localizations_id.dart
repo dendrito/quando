@@ -3714,6 +3714,9 @@ class AppLocalizationsId extends AppLocalizations {
   String get missedNo => 'Tidak';
 
   @override
+  String get againUntilDone => 'Lagi sampai selesai';
+
+  @override
   String get firstRunChangeLater => 'Kamu bisa mengubahnya kapan saja di Pengaturan.';
 
   @override

@@ -1099,6 +1099,7 @@
   "missedAsk": "{time} のアラームは鳴りましたか？",
   "missedYes": "はい",
   "missedNo": "いいえ",
+  "againUntilDone": "完了するまで繰り返す",
   "firstRunChangeLater": "設定でいつでも変更できます。",
   "continueLabel": "続ける",
   "everyAlarm": "すべてのアラーム",

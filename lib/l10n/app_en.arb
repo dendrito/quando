@@ -2189,6 +2189,7 @@
   "@missedAsk": {"placeholders": {"time": {"type": "String"}}},
   "missedYes": "Yes",
   "missedNo": "No",
+  "againUntilDone": "Again until done",
   "firstRunChangeLater": "You can change this any time in Settings.",
   "continueLabel": "Continue",
   "everyAlarm": "Every alarm",

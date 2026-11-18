@@ -1099,6 +1099,7 @@
   "missedAsk": "¿Sonó la alarma de las {time}?",
   "missedYes": "Sí",
   "missedNo": "No",
+  "againUntilDone": "Otra vez hasta terminar",
   "firstRunChangeLater": "Puedes cambiarlo cuando quieras en Ajustes.",
   "continueLabel": "Continuar",
   "everyAlarm": "Cada alarma",

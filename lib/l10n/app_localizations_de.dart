@@ -3741,6 +3741,9 @@ class AppLocalizationsDe extends AppLocalizations {
   String get missedNo => 'Nein';
 
   @override
+  String get againUntilDone => 'Wieder, bis erledigt';
+
+  @override
   String get firstRunChangeLater => 'Das kannst du jederzeit in den Einstellungen ändern.';
 
   @override

@@ -3706,6 +3706,9 @@ class AppLocalizationsHi extends AppLocalizations {
   String get missedNo => 'नहीं';
 
   @override
+  String get againUntilDone => 'हो जाने तक दोबारा';
+
+  @override
   String get firstRunChangeLater => 'आप इसे कभी भी सेटिंग में बदल सकते हैं।';
 
   @override

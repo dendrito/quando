@@ -1099,6 +1099,7 @@
   "missedAsk": "Czy alarm o {time} zadzwonił?",
   "missedYes": "Tak",
   "missedNo": "Nie",
+  "againUntilDone": "Ponownie aż do skutku",
   "firstRunChangeLater": "Możesz to zmienić w każdej chwili w Ustawieniach.",
   "continueLabel": "Dalej",
   "everyAlarm": "Każdy budzik",

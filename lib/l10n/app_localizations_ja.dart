@@ -3628,6 +3628,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get missedNo => 'いいえ';
 
   @override
+  String get againUntilDone => '完了するまで繰り返す';
+
+  @override
   String get firstRunChangeLater => '設定でいつでも変更できます。';
 
   @override

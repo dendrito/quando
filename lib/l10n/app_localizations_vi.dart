@@ -3707,6 +3707,9 @@ class AppLocalizationsVi extends AppLocalizations {
   String get missedNo => 'Không';
 
   @override
+  String get againUntilDone => 'Lặp lại đến khi xong';
+
+  @override
   String get firstRunChangeLater => 'Bạn có thể đổi bất cứ lúc nào trong Cài đặt.';
 
   @override

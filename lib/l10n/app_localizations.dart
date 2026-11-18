@@ -6724,6 +6724,12 @@ abstract class AppLocalizations {
   /// **'No'**
   String get missedNo;
 
+  /// No description provided for @againUntilDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Again until done'**
+  String get againUntilDone;
+
   /// No description provided for @firstRunChangeLater.
   ///
   /// In en, this message translates to:

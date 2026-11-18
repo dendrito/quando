@@ -371,6 +371,23 @@ void main() {
       expect(find.text(l10n.busyAfterRing), findsOneWidget);
     });
 
+    testWidgets('Rings for: "Again until done" comes back every 10 minutes until stopped', (tester) async {
+      final prefs = await prefsWith({'ui.level': 'simple', 'userAlarms': '[]'});
+      final c = await edit(tester, prefs);
+      await tester.tap(find.byKey(const Key('wakeRing')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.byKey(const Key('untilDone')));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text(l10n.done));
+      await tester.pumpAndSettle();
+      expect(find.textContaining(l10n.againUntilDone), findsOneWidget);
+      await tester.tap(find.text(l10n.saveCaps));
+      await tester.pumpAndSettle();
+      final plan = c.read(userAlarmsProvider).single.style.snooze!;
+      expect(plan.isUntilDone, isTrue);
+      expect(plan.minutes, 10);
+    });
+
     testWidgets('Rings for: the menu sets this alarm; "Use for new alarms" sets the default only', (
       tester,
     ) async {

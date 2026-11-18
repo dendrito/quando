@@ -1099,6 +1099,7 @@
   "missedAsk": "هل رنّ منبه {time}؟",
   "missedYes": "نعم",
   "missedNo": "لا",
+  "againUntilDone": "مرة أخرى حتى الإنجاز",
   "firstRunChangeLater": "يمكنك تغيير هذا في أي وقت من الإعدادات.",
   "continueLabel": "متابعة",
   "everyAlarm": "كل منبه",

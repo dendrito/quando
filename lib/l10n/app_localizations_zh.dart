@@ -3619,6 +3619,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get missedNo => '否';
 
   @override
+  String get againUntilDone => '重复直到完成';
+
+  @override
   String get firstRunChangeLater => '你可以随时在设置中更改。';
 
   @override
@@ -7423,6 +7426,9 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get missedNo => '否';
+
+  @override
+  String get againUntilDone => '重複直到完成';
 
   @override
   String get firstRunChangeLater => '你可以隨時在設定中更改。';

@@ -1099,6 +1099,7 @@
   "missedAsk": "האם {time} צלצל?",
   "missedYes": "כן",
   "missedNo": "לא",
+  "againUntilDone": "שוב עד שסיימתי",
   "firstRunChangeLater": "אפשר לשנות זאת בכל עת בהגדרות.",
   "continueLabel": "המשך",
   "everyAlarm": "כל התראה",

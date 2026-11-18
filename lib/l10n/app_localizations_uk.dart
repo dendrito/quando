@@ -3787,6 +3787,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get missedNo => 'Ні';
 
   @override
+  String get againUntilDone => 'Знову, доки не зроблено';
+
+  @override
   String get firstRunChangeLater => 'Це можна змінити будь-коли в Налаштуваннях.';
 
   @override

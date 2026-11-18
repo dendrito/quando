@@ -1099,6 +1099,7 @@
   "missedAsk": "{time} 알람이 울렸나요?",
   "missedYes": "네",
   "missedNo": "아니요",
+  "againUntilDone": "끝날 때까지 다시",
   "firstRunChangeLater": "설정에서 언제든 바꿀 수 있어요.",
   "continueLabel": "계속",
   "everyAlarm": "모든 알람",

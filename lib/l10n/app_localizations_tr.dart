@@ -3715,6 +3715,9 @@ class AppLocalizationsTr extends AppLocalizations {
   String get missedNo => 'Hayır';
 
   @override
+  String get againUntilDone => 'Bitene kadar tekrar';
+
+  @override
   String get firstRunChangeLater => 'Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.';
 
   @override

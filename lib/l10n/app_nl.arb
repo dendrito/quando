@@ -1099,6 +1099,7 @@
   "missedAsk": "Ging {time} af?",
   "missedYes": "Ja",
   "missedNo": "Nee",
+  "againUntilDone": "Opnieuw tot klaar",
   "firstRunChangeLater": "Je kunt dit altijd wijzigen in Instellingen.",
   "continueLabel": "Doorgaan",
   "everyAlarm": "Elke wekker",

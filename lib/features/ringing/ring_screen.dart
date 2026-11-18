@@ -510,7 +510,13 @@ class _RingScreenState extends ConsumerState<RingScreen> {
           if (p.isCheck)
             _StopButton(label: l10n.imUp, onPressed: _stopNow)
           else
-            _StopButton(label: p.link == null ? l10n.stop : l10n.stopThenOpen, onPressed: _onStop),
+            _StopButton(
+              // "Again until done": stopping is what marks it done.
+              label: p.link != null
+                  ? l10n.stopThenOpen
+                  : (p.maxSnoozes >= SnoozePlan.unlimited && p.autoSnoozeMinutes > 0 ? l10n.done : l10n.stop),
+              onPressed: _onStop,
+            ),
           if (!p.isCheck && _hints.isNotEmpty) ...[
             const SizedBox(height: 10),
             Text(

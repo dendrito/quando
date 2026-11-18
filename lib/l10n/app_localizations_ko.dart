@@ -3628,6 +3628,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get missedNo => '아니요';
 
   @override
+  String get againUntilDone => '끝날 때까지 다시';
+
+  @override
   String get firstRunChangeLater => '설정에서 언제든 바꿀 수 있어요.';
 
   @override

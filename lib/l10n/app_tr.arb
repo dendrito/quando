@@ -1099,6 +1099,7 @@
   "missedAsk": "{time} alarmı çaldı mı?",
   "missedYes": "Evet",
   "missedNo": "Hayır",
+  "againUntilDone": "Bitene kadar tekrar",
   "firstRunChangeLater": "Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.",
   "continueLabel": "Devam",
   "everyAlarm": "Her alarm",

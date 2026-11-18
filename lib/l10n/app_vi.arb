@@ -1099,6 +1099,7 @@
   "missedAsk": "Báo thức {time} có reo không?",
   "missedYes": "Có",
   "missedNo": "Không",
+  "againUntilDone": "Lặp lại đến khi xong",
   "firstRunChangeLater": "Bạn có thể đổi bất cứ lúc nào trong Cài đặt.",
   "continueLabel": "Tiếp tục",
   "everyAlarm": "Mọi báo thức",

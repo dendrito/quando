@@ -1099,6 +1099,7 @@
   "missedAsk": "{time} 的闹钟响了吗？",
   "missedYes": "是",
   "missedNo": "否",
+  "againUntilDone": "重复直到完成",
   "firstRunChangeLater": "你可以随时在设置中更改。",
   "continueLabel": "继续",
   "everyAlarm": "每个闹钟",

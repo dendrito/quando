@@ -1099,6 +1099,7 @@
   "missedAsk": "क्या {time} का अलार्म बजा?",
   "missedYes": "हाँ",
   "missedNo": "नहीं",
+  "againUntilDone": "हो जाने तक दोबारा",
   "firstRunChangeLater": "आप इसे कभी भी सेटिंग में बदल सकते हैं।",
   "continueLabel": "आगे बढ़ें",
   "everyAlarm": "हर अलार्म",

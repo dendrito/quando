@@ -3701,6 +3701,9 @@ class AppLocalizationsHe extends AppLocalizations {
   String get missedNo => 'לא';
 
   @override
+  String get againUntilDone => 'שוב עד שסיימתי';
+
+  @override
   String get firstRunChangeLater => 'אפשר לשנות זאת בכל עת בהגדרות.';
 
   @override
