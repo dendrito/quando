@@ -3749,6 +3749,17 @@ class AppLocalizationsAr extends AppLocalizations {
   String get firstRunLoseTrack => 'أفقد الإحساس بالوقت';
 
   @override
+  String missedAsk(String time) {
+    return 'هل رنّ منبه $time؟';
+  }
+
+  @override
+  String get missedYes => 'نعم';
+
+  @override
+  String get missedNo => 'لا';
+
+  @override
   String get firstRunChangeLater => 'يمكنك تغيير هذا في أي وقت من الإعدادات.';
 
   @override

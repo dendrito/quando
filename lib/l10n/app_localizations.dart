@@ -6706,6 +6706,24 @@ abstract class AppLocalizations {
   /// **'I lose track of time'**
   String get firstRunLoseTrack;
 
+  /// No description provided for @missedAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Did {time} ring?'**
+  String missedAsk(String time);
+
+  /// No description provided for @missedYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get missedYes;
+
+  /// No description provided for @missedNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get missedNo;
+
   /// No description provided for @firstRunChangeLater.
   ///
   /// In en, this message translates to:

@@ -16,6 +16,7 @@ import '../../alarms/domain/user_alarm.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
+import '../../alarms/ui/missed_ask.dart';
 import '../../shabbat/ui/city_picker.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../shabbat/ui/preparation_controls.dart';
@@ -945,6 +946,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // ---- An alarm that may not have rung ----
+                const MissedAsk(),
                 // ---- Something stops alarms from ringing ----
                 if ((ref.watch(readinessProvider).value?.values.where((ok) => !ok).length ?? 0) > 0) ...[
                   Material(

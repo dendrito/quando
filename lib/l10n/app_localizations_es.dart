@@ -3725,6 +3725,17 @@ class AppLocalizationsEs extends AppLocalizations {
   String get firstRunLoseTrack => 'Pierdo la noción del tiempo';
 
   @override
+  String missedAsk(String time) {
+    return '¿Sonó la alarma de las $time?';
+  }
+
+  @override
+  String get missedYes => 'Sí';
+
+  @override
+  String get missedNo => 'No';
+
+  @override
   String get firstRunChangeLater => 'Puedes cambiarlo cuando quieras en Ajustes.';
 
   @override

@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/alarms/data/missed_log.dart';
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/beta/beta_log.dart';
@@ -184,7 +185,14 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   Future<void> _sync() async {
     try {
-      await ref.read(registrarProvider).sync(ref.read(planProvider), ref.read(payloadForProvider));
+      final plan = ref.read(planProvider);
+      await ref.read(registrarProvider).sync(plan, ref.read(payloadForProvider));
+      // Real alarms only: not gentle lead-ups, locks or silent reminders.
+      MissedLog.remember([
+        for (final a in plan)
+          if (a.delivery.localAudio && a.ruleId != 'lock' && !a.ruleId.startsWith('gentle.'))
+            (id: a.id, at: a.at),
+      ], ref.read(clockProvider)());
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }

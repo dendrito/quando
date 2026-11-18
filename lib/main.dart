@@ -12,6 +12,7 @@ import 'app/app.dart';
 import 'app/providers.dart';
 import 'core/util/local_time.dart';
 import 'l10n/l10n.dart';
+import 'features/alarms/data/missed_log.dart';
 import 'features/beta/beta_log.dart';
 import 'features/calendar/data/calendar_background.dart';
 import 'features/ringing/data/spotify.dart';
@@ -39,6 +40,7 @@ Future<void> main() async {
   final (prefs, deviceZone) = await _setUp();
   // Beta: only does anything once a tester has turned sharing on.
   BetaLog.init(prefs);
+  MissedLog.init(prefs);
   final presentError = FlutterError.onError;
   FlutterError.onError = (details) {
     presentError?.call(details);

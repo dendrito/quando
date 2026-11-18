@@ -3776,6 +3776,17 @@ class AppLocalizationsUk extends AppLocalizations {
   String get firstRunLoseTrack => 'Я втрачаю відчуття часу';
 
   @override
+  String missedAsk(String time) {
+    return 'Будильник на $time задзвонив?';
+  }
+
+  @override
+  String get missedYes => 'Так';
+
+  @override
+  String get missedNo => 'Ні';
+
+  @override
   String get firstRunChangeLater => 'Це можна змінити будь-коли в Налаштуваннях.';
 
   @override

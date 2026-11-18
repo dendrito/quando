@@ -3696,6 +3696,17 @@ class AppLocalizationsVi extends AppLocalizations {
   String get firstRunLoseTrack => 'Tôi hay quên mất thời gian';
 
   @override
+  String missedAsk(String time) {
+    return 'Báo thức $time có reo không?';
+  }
+
+  @override
+  String get missedYes => 'Có';
+
+  @override
+  String get missedNo => 'Không';
+
+  @override
   String get firstRunChangeLater => 'Bạn có thể đổi bất cứ lúc nào trong Cài đặt.';
 
   @override

@@ -3778,6 +3778,17 @@ class AppLocalizationsRu extends AppLocalizations {
   String get firstRunLoseTrack => 'Я теряю счёт времени';
 
   @override
+  String missedAsk(String time) {
+    return 'Будильник на $time прозвонил?';
+  }
+
+  @override
+  String get missedYes => 'Да';
+
+  @override
+  String get missedNo => 'Нет';
+
+  @override
   String get firstRunChangeLater => 'Это можно изменить в любой момент в Настройках.';
 
   @override

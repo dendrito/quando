@@ -3690,6 +3690,17 @@ class AppLocalizationsHe extends AppLocalizations {
   String get firstRunLoseTrack => 'קשה לי לעקוב אחרי הזמן';
 
   @override
+  String missedAsk(String time) {
+    return 'האם $time צלצל?';
+  }
+
+  @override
+  String get missedYes => 'כן';
+
+  @override
+  String get missedNo => 'לא';
+
+  @override
   String get firstRunChangeLater => 'אפשר לשנות זאת בכל עת בהגדרות.';
 
   @override

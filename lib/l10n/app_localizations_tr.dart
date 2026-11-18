@@ -3704,6 +3704,17 @@ class AppLocalizationsTr extends AppLocalizations {
   String get firstRunLoseTrack => 'Zamanın nasıl geçtiğini fark etmiyorum';
 
   @override
+  String missedAsk(String time) {
+    return '$time alarmı çaldı mı?';
+  }
+
+  @override
+  String get missedYes => 'Evet';
+
+  @override
+  String get missedNo => 'Hayır';
+
+  @override
   String get firstRunChangeLater => 'Bunu istediğin zaman Ayarlar’dan değiştirebilirsin.';
 
   @override

@@ -3,7 +3,7 @@ const DAY = 86400;
 export async function onRequestGet({ env }) {
   const q = async (sql, ...a) => (await env.DB.prepare(sql).bind(...a).all()).results;
   const n = Math.floor(Date.now() / 1000);
-  const [signups, feedback, installs, act, ret, sess, crashes, surv] = await Promise.all([
+  const [signups, feedback, installs, act, ret, sess, crashes, surv, missed] = await Promise.all([
     q("SELECT id, email, platform, added, created_at FROM signups ORDER BY created_at DESC LIMIT 500"),
     q("SELECT id, kind, body, severity, status, platform, version, contact, created_at FROM feedback WHERE kind != 'survey' ORDER BY created_at DESC LIMIT 300"),
     q("SELECT install_id, MIN(created_at) t FROM events WHERE type='install' GROUP BY install_id"),
@@ -13,13 +13,15 @@ export async function onRequestGet({ env }) {
     q("SELECT COUNT(*) c FROM events WHERE type='open'"),
     q("SELECT detail, version, platform, COUNT(*) c, COUNT(DISTINCT install_id) u, MAX(created_at) last FROM events WHERE type='crash' GROUP BY detail, version, platform ORDER BY last DESC LIMIT 50"),
     q("SELECT body, COUNT(*) c FROM feedback WHERE kind='survey' GROUP BY body"),
+    // Testers who said an alarm did not ring.
+    q("SELECT platform, COUNT(*) c FROM events WHERE type='missed' GROUP BY platform"),
   ]);
   const inst = installs.length, old = installs.filter((i) => i.t <= n - 7 * DAY).length;
   const crashTotal = crashes.reduce((s, c) => s + c.c, 0), sessions = sess[0].c;
   const sv = Object.fromEntries(surv.map((s) => [s.body, s.c])), svT = surv.reduce((s, x) => s + x.c, 0);
   const pct = (a, b) => (b ? Math.round((a / b) * 1000) / 10 : null);
   return json({
-    signups, feedback, crashes,
+    signups, feedback, crashes, missed,
     platforms: signups.reduce((m, s) => ((m[s.platform] = (m[s.platform] || 0) + 1), m), {}),
     perDay: (await q("SELECT date(created_at,'unixepoch') d, COUNT(*) c FROM signups GROUP BY d ORDER BY d")),
     metrics: {
