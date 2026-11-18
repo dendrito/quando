@@ -16,6 +16,7 @@ import '../../alarms/domain/user_alarm.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
+import '../../alarms/ui/missed_ask.dart';
 import '../../shabbat/ui/city_picker.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../shabbat/ui/preparation_controls.dart';
@@ -764,7 +765,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: const Icon(Icons.dashboard_customize_outlined),
                         onPressed: () => setState(() => _arranging = !_arranging),
                       ),
-                    // Simple: only Settings. Everything: the pills below.
+                    // Simple: Timers and Settings. Everything: the pills below.
+                    if (simple)
+                      IconButton(
+                        key: const ValueKey('simple-timers'),
+                        tooltip: l10n.timersTitle,
+                        icon: const Icon(Icons.timer_outlined),
+                        onPressed: () => context.push('/timers'),
+                      ),
                     if (simple)
                       IconButton(
                         tooltip: l10n.settings,
@@ -938,6 +946,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // ---- An alarm that may not have rung ----
+                const MissedAsk(),
                 // ---- Something stops alarms from ringing ----
                 if ((ref.watch(readinessProvider).value?.values.where((ok) => !ok).length ?? 0) > 0) ...[
                   Material(

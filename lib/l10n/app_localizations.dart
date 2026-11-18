@@ -6694,6 +6694,42 @@ abstract class AppLocalizations {
   /// **'Calendar, Shabbat, timers, weather and more'**
   String get firstRunEverythingHint;
 
+  /// No description provided for @firstRunEverythingHintPlain.
+  ///
+  /// In en, this message translates to:
+  /// **'Calendar, timers, weather and more'**
+  String get firstRunEverythingHintPlain;
+
+  /// No description provided for @firstRunLoseTrack.
+  ///
+  /// In en, this message translates to:
+  /// **'I lose track of time'**
+  String get firstRunLoseTrack;
+
+  /// No description provided for @missedAsk.
+  ///
+  /// In en, this message translates to:
+  /// **'Did {time} ring?'**
+  String missedAsk(String time);
+
+  /// No description provided for @missedYes.
+  ///
+  /// In en, this message translates to:
+  /// **'Yes'**
+  String get missedYes;
+
+  /// No description provided for @missedNo.
+  ///
+  /// In en, this message translates to:
+  /// **'No'**
+  String get missedNo;
+
+  /// No description provided for @againUntilDone.
+  ///
+  /// In en, this message translates to:
+  /// **'Again until done'**
+  String get againUntilDone;
+
   /// No description provided for @firstRunChangeLater.
   ///
   /// In en, this message translates to:

@@ -287,6 +287,14 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               ),
             ),
             onRing: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
+            untilDone: _alarm.style.snooze?.isUntilDone ?? false,
+            onUntilDone: (v) => setState(
+              () => _alarm = _alarm.copyWith(
+                style: v
+                    ? _alarm.style.copyWith(snooze: SnoozePlan.untilDone)
+                    : _alarm.style.copyWith(defaultSnooze: true),
+              ),
+            ),
             onGentle: (m) =>
                 setState(() => _alarm = _alarm.copyWith(style: _alarm.style.copyWith(gentleMinutes: m))),
           ),

@@ -6,6 +6,7 @@ import 'package:alarm/utils/alarm_set.dart';
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
 import '../../integrations/domain/integrations.dart';
+import 'missed_log.dart';
 import '../../ringing/data/music.dart';
 import '../../ringing/data/alarm_audio.dart';
 import '../../ringing/data/embedded_music.dart';
@@ -133,6 +134,7 @@ class AlarmRegistrar {
   void _enforceRingDuration(AlarmSet ringing) {
     for (final settings in ringing.alarms) {
       if (_stopTimers.containsKey(settings.id)) continue;
+      MissedLog.rang(settings.id, settings.dateTime);
       _tell(AlarmHappening.ring, settings);
       final p = RingPayload.decode(settings.payload);
       // The real alarm takes over from its gentle lead-up.

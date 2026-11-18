@@ -3770,6 +3770,26 @@ class AppLocalizationsUk extends AppLocalizations {
   String get firstRunEverythingHint => 'Календар, Шабат, таймери, погода та інше';
 
   @override
+  String get firstRunEverythingHintPlain => 'Календар, таймери, погода та інше';
+
+  @override
+  String get firstRunLoseTrack => 'Я втрачаю відчуття часу';
+
+  @override
+  String missedAsk(String time) {
+    return 'Будильник на $time задзвонив?';
+  }
+
+  @override
+  String get missedYes => 'Так';
+
+  @override
+  String get missedNo => 'Ні';
+
+  @override
+  String get againUntilDone => 'Знову, доки не зроблено';
+
+  @override
   String get firstRunChangeLater => 'Це можна змінити будь-коли в Налаштуваннях.';
 
   @override

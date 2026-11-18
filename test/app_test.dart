@@ -32,7 +32,7 @@ void main() {
     expect(find.textContaining('— '), findsOneWidget); // a quote under the countdown
     await tester.tap(find.text('Settings'));
     await tester.pumpAndSettle();
-    await tester.tap(find.text('Calendar and Shabbat'));
+    await tester.tap(find.text('Calendar'));
     await tester.pumpAndSettle();
     expect(find.text('Shabbat & festivals'), findsOneWidget);
     expect(find.text('Off'), findsWidgets);

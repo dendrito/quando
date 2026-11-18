@@ -58,6 +58,12 @@ class SnoozePlan {
   /// Stands for "as many as you like".
   static const unlimited = 99;
 
+  /// "Again until done": back every 10 minutes, also when left ringing,
+  /// until it is stopped.
+  static const untilDone = SnoozePlan(minutes: 10, times: unlimited, autoSnoozeMinutes: 10);
+
+  bool get isUntilDone => times >= unlimited && autoSnoozeMinutes > 0;
+
   /// The length of snooze number [n], counting from 0. Never under a minute.
   int lengthOf(int n) => (minutes - shortenBy * n).clamp(1, 120);
 

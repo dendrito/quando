@@ -10,6 +10,7 @@ import '../core/scheduler/scheduler.dart';
 import '../core/util/format.dart';
 import '../core/util/platform.dart';
 import '../features/alarms/data/alarm_registrar.dart';
+import '../features/settings/domain/quick_setups.dart';
 import '../features/alarms/domain/user_alarm.dart';
 import '../features/beta/beta_log.dart';
 import '../features/calendar/data/calendar_reader.dart';
@@ -39,7 +40,8 @@ import '../features/settings/domain/alarm_options.dart';
 import '../features/sounds/domain/sound.dart';
 import '../features/shabbat/domain/jewish_times.dart';
 import '../features/shabbat/domain/place.dart';
-import '../features/shabbat/ui/city_picker.dart' show locationLookupProvider;
+import '../features/shabbat/ui/city_picker.dart'
+    show LocationFailure, LocationProblem, locationLookupProvider;
 import '../features/weather_alarms/data/weather_alarm_alarms.dart';
 import '../features/weather_alarms/data/weather_alarm_providers.dart';
 import '../features/shabbat/domain/preparation.dart';
@@ -112,8 +114,11 @@ class FirstRunNotifier extends Notifier<bool> {
   @override
   bool build() => UiLevelStore.pending(ref.read(prefsProvider));
 
+  /// New installs start with "Morning that works" (wake-up check on, snooze
+  /// once), the setup most people need.
   void answer(UiLevel level) {
     ref.read(uiLevelProvider.notifier).set(level);
+    ref.read(alarmOptionsProvider.notifier).update(morningApplied);
     state = false;
   }
 }
@@ -345,9 +350,27 @@ class HereNotifier extends Notifier<Place?> {
     }
   }
 
+  static const allowedKey = 'here.allowed';
+
+  /// Matai? never asks for the phone's position on its own: only after the
+  /// person taps "Use my location" once. Quando? follows the phone.
+  bool get allowed => ref.read(prefsProvider).getBool(allowedKey) ?? !kodesh;
+
+  /// Stops using the phone's position until "Use my location" is tapped again.
+  Future<void> stop() async {
+    final p = ref.read(prefsProvider);
+    await p.setBool(allowedKey, false);
+    await p.remove(key);
+    _lastFix = null;
+    state = null;
+  }
+
   /// A fresh fix, at most every 20 minutes unless [force]. Throws a
-  /// [LocationFailure] when there is none.
+  /// [LocationFailure] when there is none. [force] is a person's own tap, so
+  /// it also allows the phone's position from then on.
   Future<Place> refresh({bool force = false}) {
+    if (force && !allowed) ref.read(prefsProvider).setBool(allowedKey, true);
+    if (!force && !allowed) return Future.error(const LocationFailure(LocationProblem.denied));
     final here = state, last = _lastFix;
     if (!force &&
         here != null &&
@@ -517,6 +540,8 @@ class PlaceNotifier extends Notifier<Place> {
   void set(Place place) {
     state = place;
     _prefs.setBool('place.manual', true);
+    // Matai?: a city picked by name means the phone's position is not used.
+    if (kodesh) ref.read(hereProvider.notifier).stop();
     _prefs.remove('place.candleChosen');
     // A city from the offline list isn't in the catalog: keep its details here.
     if (Places.all.any((p) => p.name == place.name && p.timeZone == place.timeZone)) {

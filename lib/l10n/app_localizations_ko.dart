@@ -3611,6 +3611,26 @@ class AppLocalizationsKo extends AppLocalizations {
   String get firstRunEverythingHint => '캘린더, 안식일, 타이머, 날씨 등';
 
   @override
+  String get firstRunEverythingHintPlain => '캘린더, 타이머, 날씨 등';
+
+  @override
+  String get firstRunLoseTrack => '시간 가는 줄 몰라요';
+
+  @override
+  String missedAsk(String time) {
+    return '$time 알람이 울렸나요?';
+  }
+
+  @override
+  String get missedYes => '네';
+
+  @override
+  String get missedNo => '아니요';
+
+  @override
+  String get againUntilDone => '끝날 때까지 다시';
+
+  @override
   String get firstRunChangeLater => '설정에서 언제든 바꿀 수 있어요.';
 
   @override

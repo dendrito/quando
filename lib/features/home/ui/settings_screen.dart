@@ -300,7 +300,7 @@ class SettingsScreen extends ConsumerWidget {
               children: const [QuickSetupsRow(showTitle: false)],
             ),
             fold(l10n.groupAlarms, alarmRows),
-            fold(l10n.groupCalendarShabbat, calendarShabbat),
+            fold(shabbatOn ? l10n.groupCalendarShabbat : l10n.calendar, calendarShabbat),
             fold(l10n.settingsPlacesTime, places),
             fold(l10n.groupLookQuotes, look),
             fold(l10n.groupConnectionsSync, connections),
@@ -719,8 +719,21 @@ class _VersionLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
-    child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 8,
+      children: [
+        Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+        // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
+        TextButton(
+          key: const Key('licences'),
+          onPressed: () =>
+              showLicensePage(context: context, applicationName: appTitle, applicationVersion: appVersion),
+          child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
+        ),
+      ],
+    ),
   );
 }
 

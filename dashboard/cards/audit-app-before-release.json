@@ -1,0 +1,10 @@
+{
+  "id": "audit-app-before-release",
+  "title": "Audit the app before release",
+  "status": "decide",
+  "group": "Launch",
+  "order": 206,
+  "note": "Audit done 18 Nov. Findings are in the project files, not in this public repo. Waiting on Curió to pick which fixes to make.",
+  "prs": [],
+  "threadIds": ["cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVHtNRfGCbSgGLgtXnUso99"]
+}

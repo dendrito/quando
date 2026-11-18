@@ -1,8 +1,9 @@
 {
   "id": "track-focus-blocks-started-per-active-user",
   "title": "Track focus blocks started per active user",
-  "status": "next",
+  "status": "hold",
   "group": "Focus and time",
   "plan": "marketing",
-  "order": 142
+  "order": 142,
+  "note": "On hold until the focus block exists (audit 18 Nov)."
 }
