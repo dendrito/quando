@@ -125,7 +125,7 @@ class _Stacked extends StatelessWidget {
           const SizedBox(height: 2),
           Text(
             action.label,
-            style: style.copyWith(fontSize: 10),
+            style: style.copyWith(fontSize: 11),
             textAlign: TextAlign.center,
             softWrap: true,
           ),

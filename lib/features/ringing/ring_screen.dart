@@ -286,9 +286,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     final snoozesLeft = p.maxSnoozes - p.snoozeCount;
     const ink = QuandoColors.ground;
     final left = p.ringSeconds - now.difference(_openedAt).inSeconds;
-    final embedded = p.localAudio && !p.shabbatSafe && !p.gentle && !p.isLock
-        ? EmbeddedMusic.parse(p.song)
-        : null;
+    final embedded = p.localAudio && !p.shabbatSafe && !p.gentle && !p.isLock ? EmbeddedMusic.parse(p.song) : null;
 
     return PopScope(
       canPop: _stage == _Stage.done,
@@ -372,15 +370,18 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                             // Tapping the middle of the screen is the same
                             // as pressing Stop: any task or wake-up check
                             // still comes first.
-                            child: GestureDetector(
-                              key: const Key('ringCentre'),
-                              behavior: HitTestBehavior.opaque,
-                              onTap: _stage == _Stage.ringing ? (p.isCheck ? _stopNow : _onStop) : null,
-                              child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
-                                  ? Center(
-                                      child: _RingLeft(left: left, total: p.ringSeconds),
-                                    )
-                                  : const SizedBox.expand(),
+                            // Hidden from screen readers: the Stop button below says it.
+                            child: ExcludeSemantics(
+                              child: GestureDetector(
+                                key: const Key('ringCentre'),
+                                behavior: HitTestBehavior.opaque,
+                                onTap: _stage == _Stage.ringing ? (p.isCheck ? _stopNow : _onStop) : null,
+                                child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                                    ? Center(
+                                        child: _RingLeft(left: left, total: p.ringSeconds),
+                                      )
+                                    : const SizedBox.expand(),
+                              ),
                             ),
                           ),
                           ..._actions(text, snoozesLeft),
@@ -403,10 +404,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
       case _Stage.sum:
         final (a, b) = _sum;
         return [
-          Text(
-            _forSnooze ? l10n.solveToSnooze : l10n.solveToStop,
-            style: text.labelSmall?.copyWith(color: ink),
-          ),
+          Text(_forSnooze ? l10n.solveToSnooze : l10n.solveToStop, style: text.labelSmall?.copyWith(color: ink)),
           const SizedBox(height: 8),
           Text('$a + $b = ?', style: text.displaySmall?.copyWith(color: ink)),
           const SizedBox(height: 12),
@@ -423,10 +421,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
         ];
       case _Stage.shake:
         return [
-          Text(
-            _forSnooze ? l10n.shakeToSnooze : l10n.shakeToStop,
-            style: text.labelSmall?.copyWith(color: ink),
-          ),
+          Text(_forSnooze ? l10n.shakeToSnooze : l10n.shakeToStop, style: text.labelSmall?.copyWith(color: ink)),
           const SizedBox(height: 8),
           Text('$_shaken / $shakesToStop', style: text.displaySmall?.copyWith(color: ink)),
           const SizedBox(height: 12),
