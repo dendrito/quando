@@ -1,0 +1,12 @@
+{
+  "id": "audit-design-best-practices",
+  "title": "Audit Quando? against design best practices",
+  "status": "review",
+  "group": "Launch",
+  "order": 207,
+  "note": "Read-only audit against Nielsen, HIG, Material 3, WCAG 2.2, Laws of UX, calm tech and ADHD-friendly design. Report in project files audit/design-audit-2026-11-24.md.",
+  "prs": [],
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkWx75NzUua4WWZqTipQHRNb"
+  ]
+}
