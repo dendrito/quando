@@ -1,11 +1,16 @@
 {
   "id": "audit-design-best-practices",
   "title": "Audit Quando? against design best practices",
-  "status": "doing",
+  "status": "review",
   "group": "Launch",
   "order": 207,
-  "note": "Audit in project files audit/design-audit-2026-11-24.md. Fixing all findings in small PRs; light theme last, in its own PR.",
-  "prs": [],
+  "note": "Design audit fixes in four PRs: contrast, screen reader, captions, text-scale and tap targets. Light theme waiting on a decision.",
+  "prs": [
+    84,
+    85,
+    86,
+    87
+  ],
   "threadIds": [
     "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkWx75NzUua4WWZqTipQHRNb"
   ]
