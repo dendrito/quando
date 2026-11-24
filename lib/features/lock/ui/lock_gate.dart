@@ -230,7 +230,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                       height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: QuandoColors.line, width: 1.5),
+                        border: Border.all(color: QuandoColors.outline, width: 1.5),
                         gradient: LinearGradient(
                           colors: [QuandoColors.amber.withValues(alpha: 0.4), Colors.transparent],
                           stops: [_hold.value, _hold.value],

@@ -332,7 +332,7 @@ class _Filter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       color: on ? QuandoColors.raised : QuandoColors.surface,
-      shape: StadiumBorder(side: BorderSide(color: on ? QuandoColors.amber : QuandoColors.line)),
+      shape: StadiumBorder(side: BorderSide(color: on ? QuandoColors.amber : QuandoColors.outline)),
       child: InkWell(
         customBorder: const StadiumBorder(),
         onTap: onTap,
