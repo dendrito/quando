@@ -16,7 +16,10 @@ void main() {
   for (final route in ['/', '/settings', '/alarm/new', '/sounds', '/ready']) {
     for (final simple in [true, false]) {
       testWidgets('$route at 200% text (${simple ? 'Simple' : 'Everything'})', (tester) async {
-        SharedPreferences.setMockInitialValues({'ui_level': simple ? 'simple' : 'everything', 'first_run_done': true});
+        SharedPreferences.setMockInitialValues({
+          'ui_level': simple ? 'simple' : 'everything',
+          'first_run_done': true,
+        });
         final prefs = await SharedPreferences.getInstance();
         UiLevelStore.init(prefs);
         tester.view.physicalSize = const Size(1170, 2532);
@@ -28,7 +31,11 @@ void main() {
           UncontrolledProviderScope(
             container: c,
             child: const MediaQuery(
-              data: MediaQueryData(size: Size(390, 844), disableAnimations: true, textScaler: TextScaler.linear(2)),
+              data: MediaQueryData(
+                size: Size(390, 844),
+                disableAnimations: true,
+                textScaler: TextScaler.linear(2),
+              ),
               child: QuandoApp(),
             ),
           ),

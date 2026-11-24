@@ -157,7 +157,9 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           );
     final messenger = ScaffoldMessenger.of(context);
     Navigator.of(context).pop();
-    messenger.showSnackBar(SnackBar(content: Text(next == null ? l10n.alarmSaved : l10n.alarmSetFor(_until(next)))));
+    messenger.showSnackBar(
+      SnackBar(content: Text(next == null ? l10n.alarmSaved : l10n.alarmSetFor(_until(next)))),
+    );
   }
 
   String _until(DateTime at) {
@@ -281,7 +283,9 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
             ringSeconds: ring,
             gentleMinutes: _alarm.style.gentleMinutes,
             onSound: (id) => setState(
-              () => _alarm = _alarm.copyWith(delivery: _alarm.delivery.copyWith(soundId: id, useDefaultSound: false)),
+              () => _alarm = _alarm.copyWith(
+                delivery: _alarm.delivery.copyWith(soundId: id, useDefaultSound: false),
+              ),
             ),
             onRing: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
             untilDone: _alarm.style.snooze?.isUntilDone ?? false,
@@ -292,7 +296,8 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
                     : _alarm.style.copyWith(defaultSnooze: true),
               ),
             ),
-            onGentle: (m) => setState(() => _alarm = _alarm.copyWith(style: _alarm.style.copyWith(gentleMinutes: m))),
+            onGentle: (m) =>
+                setState(() => _alarm = _alarm.copyWith(style: _alarm.style.copyWith(gentleMinutes: m))),
           ),
           if (!simple) ...[
             const SizedBox(height: 12),
@@ -305,7 +310,10 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
                   onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
                 ),
                 const SizedBox(height: 16),
-                Text(l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()), style: text.labelSmall),
+                Text(
+                  l10n.ringsForHeading(formatSpan(Duration(seconds: ring)).toUpperCase()),
+                  style: text.labelSmall,
+                ),
                 const SizedBox(height: 8),
                 RingLengthPicker(
                   seconds: ring,
