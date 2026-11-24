@@ -191,7 +191,9 @@ class SettingsScreen extends ConsumerWidget {
         leading: const Icon(Icons.translate, color: QuandoColors.amber),
         title: Text(l10n.language),
         subtitle: Text(
-          ref.watch(languageProvider) == null ? l10n.phoneLanguage : languageNames[ref.watch(languageProvider)] ?? '',
+          ref.watch(languageProvider) == null
+              ? l10n.phoneLanguage
+              : languageNames[ref.watch(languageProvider)] ?? '',
         ),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => _pickLanguage(context, ref),
@@ -383,7 +385,12 @@ class SettingsScreen extends ConsumerWidget {
     }
     await ensureAlarmPermissions();
     final at = DateTime.now().add(const Duration(minutes: 1));
-    var p = RingPayload.forAlarm(title: l10n.testAlarm, body: l10n.testAlarmBody, options: o, shabbatSafe: false);
+    var p = RingPayload.forAlarm(
+      title: l10n.testAlarm,
+      body: l10n.testAlarmBody,
+      options: o,
+      shabbatSafe: false,
+    );
     final sound = ref.read(soundsProvider).where((s) => s.id == o.soundId).firstOrNull;
     p = p.withSound(sound?.playbackPath);
     if (sound?.link != null) p = p.withSong(sound!.link!, plays: sound.plays, seconds: sound.playSeconds);
@@ -510,7 +517,8 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                       ],
                     ),
                   ),
-                  if (working) const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
+                  if (working)
+                    const SizedBox.square(dimension: 20, child: CircularProgressIndicator(strokeWidth: 2)),
                 ],
               ),
               if (!working) ...[
@@ -524,7 +532,8 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                 if (on)
                   TextButton(
                     style: TextButton.styleFrom(foregroundColor: Theme.of(context).colorScheme.error),
-                    onPressed: () => showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
+                    onPressed: () =>
+                        showDialog<void>(context: context, builder: (_) => const _DeleteAccountDialog()),
                     child: Text(l10n.deleteAccount),
                   )
                 else if (sync.phase == SyncPhase.verify) ...[
@@ -543,7 +552,8 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                         onPressed: () async {
                           await notifier.resendConfirmation();
                           if (context.mounted) {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(SnackBar(content: Text(l10n.emailSentAgain)));
                           }
                         },
                         child: Text(l10n.emailSendAgain),
@@ -603,7 +613,9 @@ class _EmailDialogState extends ConsumerState<_EmailDialog> {
       _error = null;
       _note = null;
     });
-    final error = await ref.read(syncProvider.notifier).signInWithEmail(_email.text, _password.text, create: _create);
+    final error = await ref
+        .read(syncProvider.notifier)
+        .signInWithEmail(_email.text, _password.text, create: _create);
     if (!mounted) return;
     if (error == null) {
       Navigator.pop(context);
@@ -711,7 +723,8 @@ class _VersionLine extends StatelessWidget {
         // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
         TextButton(
           key: const Key('licences'),
-          onPressed: () => showLicensePage(context: context, applicationName: appTitle, applicationVersion: appVersion),
+          onPressed: () =>
+              showLicensePage(context: context, applicationName: appTitle, applicationVersion: appVersion),
           child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
         ),
       ],

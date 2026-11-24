@@ -57,7 +57,8 @@ class WeatherAlarmsScreen extends ConsumerWidget {
     String clock(int minutes) => loc.formatTimeOfDay(TimeOfDay(hour: minutes ~/ 60, minute: minutes % 60));
     void update(WeatherAlarmSettings Function(WeatherAlarmSettings) f) =>
         ref.read(weatherAlarmSettingsProvider.notifier).update(f);
-    void setReminder(int i, WeatherReminder r) => update((s) => s.copyWith(reminders: [...s.reminders]..[i] = r));
+    void setReminder(int i, WeatherReminder r) =>
+        update((s) => s.copyWith(reminders: [...s.reminders]..[i] = r));
 
     Future<void> pickTime(int current, void Function(int minutes) set) async {
       final t = await showTimePicker(
@@ -236,7 +237,10 @@ class WeatherAlarmsScreen extends ConsumerWidget {
                   title: Text(weatherTitle(a.kind)),
                   subtitle: Text(l10n.weatherRingsAt(when(a.at))),
                 ),
-            if (shabbat) ...[const SizedBox(height: 12), Text(l10n.weatherShabbatNote, style: text.bodySmall)],
+            if (shabbat) ...[
+              const SizedBox(height: 12),
+              Text(l10n.weatherShabbatNote, style: text.bodySmall),
+            ],
           ],
         ],
       ),

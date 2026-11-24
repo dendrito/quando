@@ -58,7 +58,8 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
     }
   }
 
-  void _update(BusySettings Function(BusySettings) change) => ref.read(busySettingsProvider.notifier).update(change);
+  void _update(BusySettings Function(BusySettings) change) =>
+      ref.read(busySettingsProvider.notifier).update(change);
 
   Future<void> _turnReplies(bool on) async {
     if (!on) return _update((s) => s.copyWith(replies: false));
@@ -70,7 +71,10 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
         content: Text(l10n.busyRepliesDisclosure),
         actions: [
           TextButton(onPressed: () => Navigator.pop(context, false), child: Text(l10n.cancel)),
-          FilledButton(onPressed: () => Navigator.pop(context, true), child: Text(l10n.loudNotificationsAgree)),
+          FilledButton(
+            onPressed: () => Navigator.pop(context, true),
+            child: Text(l10n.loudNotificationsAgree),
+          ),
         ],
       ),
     );
