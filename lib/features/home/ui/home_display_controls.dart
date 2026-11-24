@@ -51,9 +51,7 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                             ButtonSegment(value: HomeStyle.classic, label: Text(l10n.homeLayoutClassic)),
                             ButtonSegment(value: HomeStyle.cards, label: Text(l10n.homeLayoutCards)),
                           ],
-                          selected: {
-                            s.cardsOn(MediaQuery.sizeOf(context).width) ? HomeStyle.cards : HomeStyle.classic,
-                          },
+                          selected: {s.cardsOn(MediaQuery.sizeOf(context).width) ? HomeStyle.cards : HomeStyle.classic},
                           onSelectionChanged: (v) => n.set(s.copyWith(style: v.first)),
                         ),
                         const SizedBox(height: 16),
@@ -94,7 +92,6 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                 if (s.moon)
                   SwitchListTile(
                     title: Text(l10n.skyMoonDetailsDisplay),
-                    subtitle: Text(l10n.skyMoonDetailsHint),
                     value: s.moonDetails,
                     onChanged: (v) => n.set(s.copyWith(moonDetails: v)),
                   ),
@@ -122,10 +119,7 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                           showSelectedIcon: false,
                           segments: [
                             ButtonSegment(value: HebrewNames.israeli, label: Text(l10n.hebrewNamesIsraeli)),
-                            ButtonSegment(
-                              value: HebrewNames.ashkenazi,
-                              label: Text(l10n.hebrewNamesAshkenazi),
-                            ),
+                            ButtonSegment(value: HebrewNames.ashkenazi, label: Text(l10n.hebrewNamesAshkenazi)),
                             const ButtonSegment(value: HebrewNames.hebrew, label: Text('תולדות')),
                           ],
                           selected: {s.hebrewNames},
@@ -136,7 +130,6 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   ),
                 SwitchListTile(
                   title: Text(l10n.roshHodeshHeading),
-                  subtitle: Text(l10n.roshHodeshExplain),
                   value: s.roshHodesh,
                   onChanged: (v) => n.set(s.copyWith(roshHodesh: v)),
                 ),
