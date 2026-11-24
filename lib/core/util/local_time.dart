@@ -44,6 +44,9 @@ String monthName(DateTime t) => DateFormat('MMMM', _lang).format(t);
 /// "M" for Monday ([weekday] 1) to "S" for Sunday (7), in the language in use.
 String weekdayNarrow(int weekday) => DateFormat('EEEEE', _lang).format(DateTime(2024, 1, weekday));
 
+/// "Monday" for Monday ([weekday] 1) to "Sunday" for Sunday (7), in the language in use.
+String weekdayLong(int weekday) => DateFormat('EEEE', _lang).format(DateTime(2024, 1, weekday));
+
 /// "Mon" for Monday ([weekday] 1) to "Sun" for Sunday (7), in the language in use.
 String weekdayShort(int weekday) => DateFormat('EEE', _lang).format(DateTime(2024, 1, weekday));
 
