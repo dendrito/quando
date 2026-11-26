@@ -1,0 +1,15 @@
+{
+  "id": "pr-88",
+  "title": "Keep the backup sound silent while an alarm song starts",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    88
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 925,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk1AVZrQbQ2J8V6ZeC9ZGuGy"
+  ]
+}
