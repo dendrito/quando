@@ -158,7 +158,9 @@ void main() {
   musicTest('provider failure leaves the local alarm and duration timer intact', () async {
     providerStarts = false;
     await ring();
-    expect(calls.where((c) => c.method == 'mute'), isEmpty);
+    // Quiet while the song tries to start, then back as soon as it fails.
+    final mutes = calls.where((c) => c.method == 'mute').map((c) => (c.arguments as Map)['muted']).toList();
+    expect(mutes, [true, false]);
     expect(nativeRings, contains(17));
     await Future<void>.delayed(const Duration(seconds: 4));
     await Future<void>.delayed(Duration.zero);
@@ -166,9 +168,15 @@ void main() {
   });
 
   musicTest('a provider that pauses restores the local backup', () async {
-    await ring();
+    AlarmRegistrar.songSilenceGrace = 1;
+    addTearDown(() => AlarmRegistrar.songSilenceGrace = 10);
+    await ring(seconds: 6);
     providerPlaying = false;
-    await Future<void>.delayed(const Duration(seconds: 1));
+    // A short gap does not bring the backup back...
+    await Future<void>.delayed(const Duration(milliseconds: 500));
+    expect(calls.where((c) => c.method == 'mute' && (c.arguments as Map)['muted'] == false), isEmpty);
+    // ...a lasting silence does.
+    await Future<void>.delayed(const Duration(seconds: 3));
     await Future<void>.delayed(Duration.zero);
     expect(calls.lastWhere((c) => c.method == 'mute').arguments, {'id': 17, 'muted': false});
     expect(nativeRings, contains(17));
