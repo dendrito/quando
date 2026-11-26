@@ -1,7 +1,7 @@
 {
   "id": "pr-90",
   "title": "Fix import formatting in alarm_registrar",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     90
