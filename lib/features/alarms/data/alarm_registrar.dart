@@ -187,21 +187,29 @@ class AlarmRegistrar {
   Future<void> _playSong(AlarmSettings settings, RingPayload p) async {
     // The ring timer remains the owner. A successful provider only mutes the
     // local backup; it must not dismiss the card or cancel the alarm's timer.
+    // The backup goes quiet right away: while the song's app opens and buffers
+    // nothing else may sound. It comes back only if the song fails to start,
+    // or stays silent for a long stretch (never on a brief buffering gap).
+    var muted = await AlarmAudio.mute(settings.id, true);
     final ok = await Music.start(
       p.song!,
       playFor: Duration(seconds: p.ringSeconds),
       alarmId: settings.id,
     );
-    if (!ok) return;
+    if (!ok) {
+      if (muted && await Alarm.isRinging(settings.id)) await AlarmAudio.mute(settings.id, false);
+      return;
+    }
     if (!await Alarm.isRinging(settings.id)) {
       await Music.pause(alarmId: settings.id);
       return;
     }
-    if (!await AlarmAudio.mute(settings.id, true)) {
+    if (!muted && !(muted = await AlarmAudio.mute(settings.id, true))) {
       await Music.pause(alarmId: settings.id);
       return;
     }
     var checking = false;
+    var silentTicks = 0;
     _musicMonitors[settings.id]?.cancel();
     _musicMonitors[settings.id] = Timer.periodic(const Duration(seconds: 1), (timer) async {
       if (checking) return;
@@ -212,13 +220,23 @@ class AlarmRegistrar {
           return;
         }
         final audible = await Music.playingFor(settings.id);
-        await AlarmAudio.mute(settings.id, audible);
+        silentTicks = audible ? 0 : silentTicks + 1;
+        // Only change the backup on a real change: every call resets its fade.
+        if (audible && !muted) {
+          muted = await AlarmAudio.mute(settings.id, true);
+        } else if (!audible && muted && silentTicks >= _songSilenceGrace) {
+          muted = !await AlarmAudio.mute(settings.id, false);
+        }
         if (!Music.owns(settings.id)) timer.cancel();
       } finally {
         checking = false;
       }
     });
   }
+
+  /// Seconds the song may stay silent (buffering, between tracks) before the
+  /// backup sound takes over.
+  static const _songSilenceGrace = 10;
 
   Future<void> dispose() async {
     await _ringingSub?.cancel();
