@@ -1,7 +1,7 @@
 {
   "id": "pr-89",
   "title": "Fix music alarm tests after quieter backup",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     89
