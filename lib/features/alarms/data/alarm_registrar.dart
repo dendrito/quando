@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:flutter/foundation.dart' show visibleForTesting;
 
 import 'package:alarm/alarm.dart';
 import 'package:alarm/utils/alarm_set.dart';
@@ -224,7 +225,7 @@ class AlarmRegistrar {
         // Only change the backup on a real change: every call resets its fade.
         if (audible && !muted) {
           muted = await AlarmAudio.mute(settings.id, true);
-        } else if (!audible && muted && silentTicks >= _songSilenceGrace) {
+        } else if (!audible && muted && silentTicks >= songSilenceGrace) {
           muted = !await AlarmAudio.mute(settings.id, false);
         }
         if (!Music.owns(settings.id)) timer.cancel();
@@ -236,7 +237,8 @@ class AlarmRegistrar {
 
   /// Seconds the song may stay silent (buffering, between tracks) before the
   /// backup sound takes over.
-  static const _songSilenceGrace = 10;
+  @visibleForTesting
+  static int songSilenceGrace = 10;
 
   Future<void> dispose() async {
     await _ringingSub?.cancel();
