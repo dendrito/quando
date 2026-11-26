@@ -1,7 +1,7 @@
 {
   "id": "pr-88",
   "title": "Keep the backup sound silent while an alarm song starts",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     88
