@@ -7,6 +7,7 @@ import 'package:alarm/utils/alarm_set.dart';
 
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/platform.dart';
 import '../../integrations/domain/integrations.dart';
 import 'missed_log.dart';
 import '../../ringing/data/music.dart';
@@ -66,7 +67,9 @@ class AlarmRegistrar {
 
   Future<bool> set(int id, DateTime at, RingPayload p) async {
     await init();
-    return Alarm.set(alarmSettings: settingsFor(id, at, p));
+    final ok = await Alarm.set(alarmSettings: settingsFor(id, at, p));
+    if (ok && isAndroid) await AlarmAudio.ringFor(id, p.ringSeconds);
+    return ok;
   }
 
   static AlarmSettings settingsFor(int id, DateTime at, RingPayload p) => AlarmSettings(

@@ -31,7 +31,6 @@ import com.gdelataillade.alarm.services.WarningNotificationState
 import com.gdelataillade.alarm.services.SnoozeCoordinator
 import io.flutter.Log
 import kotlinx.serialization.json.Json
-import org.json.JSONObject
 
 class AlarmService : Service() {
     companion object {
@@ -111,6 +110,22 @@ class AlarmService : Service() {
 
         /** Seconds the app's own timer gets before the fail-safe stop acts. */
         private const val FAIL_SAFE_GRACE_SECONDS = 15
+
+        private const val RING_LENGTHS = "quando_ring_lengths"
+
+        /** The app says how long alarm [id] may ring (the plugin's settings carry no such field). */
+        @JvmStatic
+        fun saveRingLength(context: Context, id: Int, seconds: Int) {
+            val prefs = context.getSharedPreferences(RING_LENGTHS, Context.MODE_PRIVATE)
+            // Stale entries (alarms deleted before they rang) are tiny; start over if they pile up.
+            val edit = prefs.edit()
+            if (prefs.all.size > 1000) edit.clear()
+            edit.putInt(id.toString(), seconds).apply()
+        }
+
+        @JvmStatic
+        fun ringLengthSeconds(context: Context, id: Int): Int =
+            context.getSharedPreferences(RING_LENGTHS, Context.MODE_PRIVATE).getInt(id.toString(), 0)
 
         /** Read live rather than cached: a cache went stale when a non-looping alarm finished on its own. */
         @JvmStatic
@@ -472,15 +487,12 @@ class AlarmService : Service() {
      * running; with the phone in use, Android shows the alarm as a heads-up
      * notification, never opens the app, and a cold process has no engine. The
      * alarm would then loop until someone pressed Stop (on Shabbat: never).
-     * The ring length is read from the app's payload (`ringSeconds`); the app's
-     * own timer fires first, so this only acts as a fallback.
+     * The ring length is what the app told the plugin when it set the alarm
+     * (see [ringLengthSeconds]); the app's own timer fires first, so this only
+     * acts as a fallback.
      */
     private fun scheduleFailSafeStop(id: Int, alarmSettings: AlarmSettings) {
-        val seconds = try {
-            JSONObject(alarmSettings.payload ?: return).optInt("ringSeconds", 0)
-        } catch (e: Exception) {
-            0
-        }
+        val seconds = ringLengthSeconds(this, id)
         if (seconds <= 0) return
         failSafeStops.remove(id)?.let { failSafeHandler.removeCallbacks(it) }
         val stop = Runnable {
