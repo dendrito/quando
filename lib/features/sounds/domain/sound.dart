@@ -96,23 +96,18 @@ class AlarmSound {
 
   AlarmSound rename(String name) => copyWith(name: name);
 
-  AlarmSound copyWith({
-    String? name,
-    String? path,
-    bool? plays,
-    int? playSeconds,
-    bool? repeats,
-  }) => AlarmSound(
-    id: id,
-    name: name ?? this.name,
-    path: path ?? this.path,
-    builtIn: builtIn,
-    link: link,
-    plays: plays ?? this.plays,
-    playSeconds: playSeconds ?? this.playSeconds,
-    drive: drive,
-    repeats: repeats ?? this.repeats,
-  );
+  AlarmSound copyWith({String? name, String? path, bool? plays, int? playSeconds, bool? repeats}) =>
+      AlarmSound(
+        id: id,
+        name: name ?? this.name,
+        path: path ?? this.path,
+        builtIn: builtIn,
+        link: link,
+        plays: plays ?? this.plays,
+        playSeconds: playSeconds ?? this.playSeconds,
+        drive: drive,
+        repeats: repeats ?? this.repeats,
+      );
 
   Map<String, dynamic> toJson() => {
     'id': id,
