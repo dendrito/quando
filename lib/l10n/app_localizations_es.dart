@@ -3719,6 +3719,26 @@ class AppLocalizationsEs extends AppLocalizations {
   String get firstRunEverythingHint => 'Calendario, Shabat, temporizadores, clima y más';
 
   @override
+  String get firstRunEverythingHintPlain => 'Calendario, temporizadores, clima y más';
+
+  @override
+  String get firstRunLoseTrack => 'Pierdo la noción del tiempo';
+
+  @override
+  String missedAsk(String time) {
+    return '¿Sonó la alarma de las $time?';
+  }
+
+  @override
+  String get missedYes => 'Sí';
+
+  @override
+  String get missedNo => 'No';
+
+  @override
+  String get againUntilDone => 'Otra vez hasta terminar';
+
+  @override
   String get firstRunChangeLater => 'Puedes cambiarlo cuando quieras en Ajustes.';
 
   @override

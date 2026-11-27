@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
@@ -75,6 +76,8 @@ String _short(Duration d) {
 }
 
 class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
+  late final Set<String> _collapsed = ref.read(calendarProvider.notifier).collapsedGroups;
+
   late CalendarRule _rule;
   late final bool _isNew;
   late final TextEditingController _name;
@@ -231,35 +234,106 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     for (final c in calendars) {
       groups.putIfAbsent(c.account ?? '', () => []).add(c);
     }
-    Widget row(String label, bool on, VoidCallback tap) => ListTile(
+    Widget row(String label, bool on, VoidCallback tap, {int? index}) => ListTile(
       dense: true,
       contentPadding: EdgeInsets.zero,
       title: Text(label),
-      trailing: on ? Icon(Icons.check, color: Theme.of(context).colorScheme.primary) : null,
+      trailing: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          if (on) Icon(Icons.check, color: Theme.of(context).colorScheme.primary),
+          if (index != null)
+            ReorderableDragStartListener(
+              index: index,
+              child: const Padding(
+                padding: EdgeInsets.only(left: 12, right: 4),
+                child: Icon(Icons.drag_handle, size: 20),
+              ),
+            ),
+        ],
+      ),
       onTap: tap,
     );
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        row(
-          l10n.allMyCalendars,
-          _rule.calendarIds.isEmpty,
-          () => setState(() => _rule = _rule.copyWith(calendarIds: {})),
+        ListTile(
+          dense: true,
+          contentPadding: EdgeInsets.zero,
+          title: Text(l10n.allMyCalendars),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              if (_rule.calendarIds.isEmpty) Icon(Icons.check, color: Theme.of(context).colorScheme.primary),
+              IconButton(
+                icon: const Icon(Icons.sort_by_alpha, size: 20),
+                onPressed: () => ref.read(calendarProvider.notifier).sortCalendarsAlphabetically(),
+              ),
+              IconButton(
+                icon: const Icon(Icons.history, size: 20),
+                onPressed: () => ref.read(calendarProvider.notifier).sortCalendarsByRecent(),
+              ),
+            ],
+          ),
+          onTap: () => setState(() => _rule = _rule.copyWith(calendarIds: {})),
         ),
         for (final g in groups.entries) ...[
           if (g.key.isNotEmpty)
-            Padding(
-              padding: const EdgeInsets.only(top: 12, bottom: 2),
-              child: Text(g.key.toUpperCase(), style: text.labelSmall),
+            InkWell(
+              onTap: () => setState(() {
+                final open = _collapsed.contains(g.key);
+                open ? _collapsed.remove(g.key) : _collapsed.add(g.key);
+                ref.read(calendarProvider.notifier).setGroupCollapsed(g.key, !open);
+              }),
+              child: Padding(
+                padding: const EdgeInsets.only(top: 12, bottom: 2),
+                child: Row(
+                  children: [
+                    Expanded(child: Text(g.key.toUpperCase(), style: text.labelSmall)),
+                    IconButton(
+                      visualDensity: VisualDensity.compact,
+                      icon: Icon(
+                        g.value.every((c) => _rule.calendarIds.contains(c.id))
+                            ? Icons.check_box
+                            : Icons.check_box_outline_blank,
+                        size: 20,
+                      ),
+                      onPressed: () => setState(() {
+                        final ids = {..._rule.calendarIds};
+                        final all = g.value.every((c) => ids.contains(c.id));
+                        for (final c in g.value) {
+                          all ? ids.remove(c.id) : ids.add(c.id);
+                        }
+                        _rule = _rule.copyWith(calendarIds: ids);
+                      }),
+                    ),
+                    Icon(_collapsed.contains(g.key) ? Icons.expand_more : Icons.expand_less, size: 18),
+                  ],
+                ),
+              ),
             ),
-          for (final c in g.value)
-            row(c.name, _rule.calendarIds.contains(c.id), () {
-              setState(() {
-                final ids = {..._rule.calendarIds};
-                ids.contains(c.id) ? ids.remove(c.id) : ids.add(c.id);
-                _rule = _rule.copyWith(calendarIds: ids);
-              });
-            }),
+          if (!_collapsed.contains(g.key))
+            ReorderableListView(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              buildDefaultDragHandles: false,
+              onReorderItem: (from, to) =>
+                  ref.read(calendarProvider.notifier).moveCalendar([for (final c in g.value) c.id], from, to),
+              children: [
+                for (var i = 0; i < g.value.length; i++)
+                  KeyedSubtree(
+                    key: ValueKey(g.value[i].id),
+                    child: row(g.value[i].name, _rule.calendarIds.contains(g.value[i].id), () {
+                      setState(() {
+                        final ids = {..._rule.calendarIds};
+                        final id = g.value[i].id;
+                        ids.contains(id) ? ids.remove(id) : ids.add(id);
+                        _rule = _rule.copyWith(calendarIds: ids);
+                      });
+                    }, index: i),
+                  ),
+              ],
+            ),
         ],
       ],
     );
@@ -269,6 +343,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
     ref
         .read(calendarRulesProvider.notifier)
         .save(_rule.copyWith(name: _name.text.trim(), keyword: _keyword.text.trim()));
+    ref.read(calendarProvider.notifier).markUsed(_rule.calendarIds);
     // The search may now reach further ahead: read the calendars again.
     ref.read(calendarProvider.notifier).refresh();
     Navigator.of(context).pop();
@@ -488,15 +563,16 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
               value: _rule.eventReminders,
               onChanged: (v) => setState(() => _rule = _rule.copyWith(eventReminders: v)),
             ),
-            SwitchListTile(
-              contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
-              title: Text(l10n.busyDuringEvents),
-              subtitle: Text(l10n.busyDuringEventsHint),
-              value: _rule.busy,
-              onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
-            ),
-            if (_rule.busy)
+            if (!kodesh)
+              SwitchListTile(
+                contentPadding: EdgeInsets.zero,
+                secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                title: Text(l10n.busyDuringEvents),
+                subtitle: Text(l10n.busyDuringEventsHint),
+                value: _rule.busy,
+                onChanged: (v) => setState(() => _rule = _rule.copyWith(busy: v)),
+              ),
+            if (!kodesh && _rule.busy)
               Align(
                 alignment: AlignmentDirectional.centerStart,
                 child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),

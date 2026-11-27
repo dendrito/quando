@@ -1,0 +1,12 @@
+{
+  "id": "audit-app-before-release",
+  "title": "Audit the app before release",
+  "status": "doing",
+  "group": "Launch",
+  "order": 206,
+  "note": "Most fixes merged in #82. Matai? permissions trimmed (Busy mode, notification access, exact GPS removed). Next: iPhone alarms with the app closed, on the Mac.",
+  "prs": [],
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzkVHtNRfGCbSgGLgtXnUso99"
+  ]
+}

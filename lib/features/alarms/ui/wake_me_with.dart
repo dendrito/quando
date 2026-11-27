@@ -23,6 +23,8 @@ class WakeMeWith extends ConsumerWidget {
     required this.onSound,
     required this.onRing,
     required this.onGentle,
+    this.untilDone = false,
+    this.onUntilDone,
   });
 
   final String? soundId;
@@ -31,6 +33,10 @@ class WakeMeWith extends ConsumerWidget {
   final ValueChanged<String> onSound;
   final ValueChanged<int> onRing;
   final ValueChanged<int> onGentle;
+
+  /// Rings again every 10 minutes until stopped ("Again until done").
+  final bool untilDone;
+  final ValueChanged<bool>? onUntilDone;
 
   static const ringChoices = [30, 60, 180, 300, 600];
   static const gentleChoices = [0, 5, 10, 20];
@@ -71,7 +77,9 @@ class WakeMeWith extends ConsumerWidget {
           const Key('wakeRing'),
           Icons.timer_outlined,
           l10n.ringsForRow,
-          RingLengthPicker.short(ringSeconds),
+          untilDone
+              ? '${RingLengthPicker.short(ringSeconds)} · ${l10n.againUntilDone}'
+              : RingLengthPicker.short(ringSeconds),
           () => _ring(context, ref),
         ),
         row(
@@ -160,10 +168,22 @@ class WakeMeWith extends ConsumerWidget {
   Future<void> _ring(BuildContext context, WidgetRef ref) async {
     var asDefault = false;
     var now = ringSeconds;
+    var again = untilDone;
     await _menu(
       context,
       title: l10n.ringsForRow,
       body: (context, setState, close) => [
+        if (onUntilDone != null)
+          SwitchListTile(
+            key: const Key('untilDone'),
+            secondary: const Icon(Icons.replay, color: QuandoColors.amber),
+            title: Text(l10n.againUntilDone),
+            value: again,
+            onChanged: (v) {
+              onUntilDone!(v);
+              setState(() => again = v);
+            },
+          ),
         for (final s in {...ringChoices, now}.toList()..sort())
           ListTile(
             leading: Icon(

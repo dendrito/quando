@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../features/alarms/data/missed_log.dart';
 import '../features/alarms/data/permissions.dart';
 import '../features/alarms/ui/edit_alarm_screen.dart';
 import '../features/beta/beta_log.dart';
@@ -98,7 +99,16 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   Timer? _syncTimer;
 
   /// Calendar alarms follow the calendar while the app is open.
-  late final _calendarWatch = CalendarWatch(onChange: () => ref.read(calendarProvider.notifier).refresh());
+  late final _calendarWatch = CalendarWatch(
+    onChange: () => ref.read(calendarProvider.notifier).refresh(),
+    // The 15-minute background check: also plan again from the real time now,
+    // so a daily alarm keeps its place in the 7-day window.
+    onBackground: () async {
+      ref.invalidate(clockProvider);
+      await ref.read(calendarProvider.notifier).refresh();
+      await _sync();
+    },
+  );
 
   @override
   void initState() {
@@ -121,7 +131,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, next) {
         ref.read(calendarProvider.notifier).refresh();
-        if (isAndroid && next.isNotEmpty) CalendarBackground.schedule();
+        if (isAndroid) CalendarBackground.schedule();
       });
       // Signed in to sync: pick up where it left off.
       ref.read(syncProvider);
@@ -167,12 +177,16 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     await ensureAlarmPermissions();
     ref.invalidate(readinessProvider);
     await ref.read(calendarProvider.notifier).refresh();
-    await _weatherFix();
+    // The fix runs alongside: alarms are set without waiting for GPS, and a new
+    // weather place refreshes the forecast by itself.
+    unawaited(_locationFix());
     await ref.read(weatherAlertsProvider.notifier).refresh();
     if (isAndroid) await WeatherBackground.schedule(ref.read(weatherAlarmSettingsProvider).active);
     await _sync();
-    // Android: keep following the calendar with Quando? closed.
-    if (isAndroid && ref.read(calendarRulesProvider).isNotEmpty) unawaited(CalendarBackground.schedule());
+    // Android: plan again in the background (every 15 minutes, after a restart,
+    // an update or a time zone change), also for a user who never opens
+    // Quando? and has no calendar alarms: the plan only reaches a week ahead.
+    if (isAndroid) unawaited(CalendarBackground.schedule());
   }
 
   void _scheduleSync() {
@@ -182,11 +196,19 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
 
   Future<void> _sync() async {
     try {
-      await ref.read(registrarProvider).sync(ref.read(planProvider), ref.read(payloadForProvider));
+      final plan = ref.read(planProvider);
+      await ref.read(registrarProvider).sync(plan, ref.read(payloadForProvider));
+      // Real alarms only: not gentle lead-ups, locks or silent reminders.
+      MissedLog.remember([
+        for (final a in plan)
+          if (a.delivery.localAudio && a.ruleId != 'lock' && !a.ruleId.startsWith('gentle.'))
+            (id: a.id, at: a.at),
+      ], ref.read(clockProvider)());
     } catch (e) {
       debugPrint('Quando?: could not set alarms: $e');
     }
-    if (isAndroid) {
+    // Matai? has no notification listener and no Busy mode (fewer permissions).
+    if (isAndroid && !kodesh) {
       try {
         await ref
             .read(loudNotificationsProvider)
@@ -214,6 +236,8 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       } catch (e) {
         debugPrint('Quando?: could not prepare Busy mode: $e');
       }
+    }
+    if (isAndroid) {
       try {
         final now = DateTime.now();
         final place = ref.read(skyPlaceProvider);
@@ -240,18 +264,28 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       if (ctx != null && BetaLog.surveyDue()) unawaited(askBetaSurvey(ctx));
       ref.invalidate(clockProvider);
       ref.read(calendarProvider.notifier).refresh();
-      _weatherFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
+      _locationFix().then((_) => ref.read(weatherAlertsProvider.notifier).refresh());
       _calendarWatch.start();
     } else if (state == AppLifecycleState.paused) {
       _calendarWatch.stop();
     }
   }
 
-  /// A fresh precise position for the weather, when weather is in use.
-  Future<void> _weatherFix() async {
+  /// One fresh position for every place that follows the phone: Shabbat
+  /// (unless a city was picked by hand), the sky (unless a city was picked for
+  /// it) and the weather (when in use and not picked by hand).
+  Future<void> _locationFix() async {
+    final display = ref.read(homeDisplayProvider);
+    final sky = !display.skyUseShabbat && ref.read(skyLocationProvider) == null;
+    final weather = ref.read(weatherAlarmSettingsProvider).active || display.weather;
     unawaited(ref.read(placeProvider.notifier).refreshPrecise());
-    if (ref.read(weatherAlarmSettingsProvider).active || ref.read(homeDisplayProvider).weather) {
-      await ref.read(weatherLocationProvider.notifier).refreshPrecise();
+    if (weather) await ref.read(weatherLocationProvider.notifier).refreshPrecise();
+    if (sky) {
+      try {
+        await ref.read(hereProvider.notifier).refresh();
+      } catch (e) {
+        debugPrint('Quando?: no location for the sky: $e');
+      }
     }
   }
 

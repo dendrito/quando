@@ -3689,6 +3689,26 @@ class AppLocalizationsHi extends AppLocalizations {
   String get firstRunEverythingHint => 'कैलेंडर, शब्बात, टाइमर, मौसम और बहुत कुछ';
 
   @override
+  String get firstRunEverythingHintPlain => 'कैलेंडर, टाइमर, मौसम और बहुत कुछ';
+
+  @override
+  String get firstRunLoseTrack => 'समय का पता नहीं चलता';
+
+  @override
+  String missedAsk(String time) {
+    return 'क्या $time का अलार्म बजा?';
+  }
+
+  @override
+  String get missedYes => 'हाँ';
+
+  @override
+  String get missedNo => 'नहीं';
+
+  @override
+  String get againUntilDone => 'हो जाने तक दोबारा';
+
+  @override
   String get firstRunChangeLater => 'आप इसे कभी भी सेटिंग में बदल सकते हैं।';
 
   @override

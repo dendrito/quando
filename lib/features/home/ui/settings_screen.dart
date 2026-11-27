@@ -177,7 +177,12 @@ class SettingsScreen extends ConsumerWidget {
         leading: const Icon(Icons.public, color: QuandoColors.amber),
         title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
         subtitle: Text(
-          zones.fixed == null ? l10n.followPhoneNow(cityOf(ref.watch(homeZoneProvider))) : l10n.zoneFixed,
+          zones.fixed == null
+              ? l10n.followPhoneNow(
+                  '${l10n.cityTime(cityOf(ref.watch(homeZoneProvider)))} '
+                  '(${gmtLabel(ref.watch(homeZoneProvider), DateTime.now().toUtc())})',
+                )
+              : l10n.zoneFixed,
         ),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => _pickHomeZone(context, ref),
@@ -229,14 +234,15 @@ class SettingsScreen extends ConsumerWidget {
         trailing: const Icon(Icons.chevron_right),
         onTap: () => context.push('/connections'),
       ),
-      ListTile(
-        contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
-        title: Text(l10n.busyMode),
-        subtitle: Text(l10n.busyModeSubtitle),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () => context.push('/busy'),
-      ),
+      if (!kodesh)
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+          title: Text(l10n.busyMode),
+          subtitle: Text(l10n.busyModeSubtitle),
+          trailing: const Icon(Icons.chevron_right),
+          onTap: () => context.push('/busy'),
+        ),
       ListTile(
         contentPadding: EdgeInsets.zero,
         leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
@@ -295,7 +301,7 @@ class SettingsScreen extends ConsumerWidget {
               children: const [QuickSetupsRow(showTitle: false)],
             ),
             fold(l10n.groupAlarms, alarmRows),
-            fold(l10n.groupCalendarShabbat, calendarShabbat),
+            fold(shabbatOn ? l10n.groupCalendarShabbat : l10n.calendar, calendarShabbat),
             fold(l10n.settingsPlacesTime, places),
             fold(l10n.groupLookQuotes, look),
             fold(l10n.groupConnectionsSync, connections),
@@ -714,8 +720,21 @@ class _VersionLine extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Padding(
-    padding: const EdgeInsets.symmetric(vertical: 16),
-    child: Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+    padding: const EdgeInsets.symmetric(vertical: 8),
+    child: Wrap(
+      crossAxisAlignment: WrapCrossAlignment.center,
+      spacing: 8,
+      children: [
+        Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+        // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
+        TextButton(
+          key: const Key('licences'),
+          onPressed: () =>
+              showLicensePage(context: context, applicationName: appTitle, applicationVersion: appVersion),
+          child: Text(MaterialLocalizations.of(context).viewLicensesButtonLabel),
+        ),
+      ],
+    ),
   );
 }
 

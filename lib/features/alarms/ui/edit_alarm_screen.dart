@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
+import '../../../app/edition.dart';
 import '../../../app/providers.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/format.dart';
@@ -287,6 +288,14 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
               ),
             ),
             onRing: (s) => setState(() => _alarm = _alarm.copyWith(ringSeconds: s)),
+            untilDone: _alarm.style.snooze?.isUntilDone ?? false,
+            onUntilDone: (v) => setState(
+              () => _alarm = _alarm.copyWith(
+                style: v
+                    ? _alarm.style.copyWith(snooze: SnoozePlan.untilDone)
+                    : _alarm.style.copyWith(defaultSnooze: true),
+              ),
+            ),
             onGentle: (m) =>
                 setState(() => _alarm = _alarm.copyWith(style: _alarm.style.copyWith(gentleMinutes: m))),
           ),
@@ -364,28 +373,29 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
                   value: _alarm.style,
                   onChanged: (s) => setState(() => _alarm = _alarm.copyWith(style: s)),
                 ),
-                ListTile(
-                  contentPadding: EdgeInsets.zero,
-                  leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
-                  title: Text(l10n.busyAfterRing),
-                  subtitle: Text(l10n.busyAfterRingHint, style: text.bodySmall),
-                  trailing: ConstrainedBox(
-                    constraints: const BoxConstraints(maxWidth: 96),
-                    child: DropdownButton<int>(
-                      isExpanded: true,
-                      value: _busyChoices.contains(_alarm.busyMinutes) ? _alarm.busyMinutes : 0,
-                      items: [
-                        for (final m in _busyChoices)
-                          DropdownMenuItem(
-                            value: m,
-                            child: Text(m == 0 ? l10n.offLower : formatSpan(Duration(minutes: m))),
-                          ),
-                      ],
-                      onChanged: (m) => setState(() => _alarm = _alarm.copyWith(busyMinutes: m ?? 0)),
+                if (!kodesh)
+                  ListTile(
+                    contentPadding: EdgeInsets.zero,
+                    leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                    title: Text(l10n.busyAfterRing),
+                    subtitle: Text(l10n.busyAfterRingHint, style: text.bodySmall),
+                    trailing: ConstrainedBox(
+                      constraints: const BoxConstraints(maxWidth: 96),
+                      child: DropdownButton<int>(
+                        isExpanded: true,
+                        value: _busyChoices.contains(_alarm.busyMinutes) ? _alarm.busyMinutes : 0,
+                        items: [
+                          for (final m in _busyChoices)
+                            DropdownMenuItem(
+                              value: m,
+                              child: Text(m == 0 ? l10n.offLower : formatSpan(Duration(minutes: m))),
+                            ),
+                        ],
+                        onChanged: (m) => setState(() => _alarm = _alarm.copyWith(busyMinutes: m ?? 0)),
+                      ),
                     ),
                   ),
-                ),
-                if (_alarm.busyMinutes > 0)
+                if (!kodesh && _alarm.busyMinutes > 0)
                   Align(
                     alignment: AlignmentDirectional.centerStart,
                     child: TextButton(onPressed: () => context.push('/busy'), child: Text(l10n.busySettings)),

@@ -3602,6 +3602,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get firstRunEverythingHint => '日历、安息日、计时器、天气等';
 
   @override
+  String get firstRunEverythingHintPlain => '日历、计时器、天气等';
+
+  @override
+  String get firstRunLoseTrack => '我常常忘了时间';
+
+  @override
+  String missedAsk(String time) {
+    return '$time 的闹钟响了吗？';
+  }
+
+  @override
+  String get missedYes => '是';
+
+  @override
+  String get missedNo => '否';
+
+  @override
+  String get againUntilDone => '重复直到完成';
+
+  @override
   String get firstRunChangeLater => '你可以随时在设置中更改。';
 
   @override
@@ -6929,6 +6949,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String get cardWeather => '天氣';
 
   @override
+  String get cardSkyLiving => 'Living sky';
+
+  @override
+  String get cardSkyBand => 'Horizon band';
+
+  @override
+  String get cardSkyRing => 'Day ring';
+
+  @override
+  String get cardSkyTimeline => 'Timeline';
+
+  @override
   String get cardAlarms => '你的鬧鐘';
 
   @override
@@ -7377,6 +7409,26 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get firstRunEverythingHint => '日曆、安息日、計時器、天氣等';
+
+  @override
+  String get firstRunEverythingHintPlain => '日曆、計時器、天氣等';
+
+  @override
+  String get firstRunLoseTrack => '我常常忘了時間';
+
+  @override
+  String missedAsk(String time) {
+    return '$time 的鬧鐘響了嗎？';
+  }
+
+  @override
+  String get missedYes => '是';
+
+  @override
+  String get missedNo => '否';
+
+  @override
+  String get againUntilDone => '重複直到完成';
 
   @override
   String get firstRunChangeLater => '你可以隨時在設定中更改。';

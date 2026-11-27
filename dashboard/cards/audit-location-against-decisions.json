@@ -1,0 +1,9 @@
+{
+  "id": "audit-location-against-decisions",
+  "title": "Audit location against every decision",
+  "status": "review",
+  "group": "Fixes",
+  "thread": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk9HPZkhUyxjDHKS24Bc5RAM",
+  "note": "Sky, Shabbat and weather follow one offline-named phone fix; replaces PR #75.",
+  "order": 905
+}

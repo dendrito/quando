@@ -3771,6 +3771,26 @@ class AppLocalizationsPl extends AppLocalizations {
   String get firstRunEverythingHint => 'Kalendarz, szabat, minutniki, pogoda i więcej';
 
   @override
+  String get firstRunEverythingHintPlain => 'Kalendarz, minutniki, pogoda i więcej';
+
+  @override
+  String get firstRunLoseTrack => 'Tracę poczucie czasu';
+
+  @override
+  String missedAsk(String time) {
+    return 'Czy alarm o $time zadzwonił?';
+  }
+
+  @override
+  String get missedYes => 'Tak';
+
+  @override
+  String get missedNo => 'Nie';
+
+  @override
+  String get againUntilDone => 'Ponownie aż do skutku';
+
+  @override
   String get firstRunChangeLater => 'Możesz to zmienić w każdej chwili w Ustawieniach.';
 
   @override

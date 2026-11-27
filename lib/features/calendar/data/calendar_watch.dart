@@ -15,12 +15,17 @@ import 'package:flutter/services.dart';
 class CalendarWatch {
   CalendarWatch({
     required this.onChange,
+    this.onBackground,
     this.pause = const Duration(seconds: 2),
     this.every = const Duration(minutes: 2),
     MethodChannel? channel,
   }) : _channel = channel ?? const MethodChannel('quando/calendar_watch');
 
   final Future<void> Function() onChange;
+
+  /// Android's background check woke the app: read again, and plan again.
+  /// Defaults to [onChange].
+  final Future<void> Function()? onBackground;
 
   /// Waits this long after a change before reading, so ten edits read once.
   final Duration pause;
@@ -41,7 +46,7 @@ class CalendarWatch {
       if (call.method == 'changed') changed();
       // Android's background check found a change while Quando? sat in
       // the back: read now, even though the watch is paused.
-      if (call.method == 'refresh') await onChange();
+      if (call.method == 'refresh') await (onBackground ?? onChange)();
     });
     _poll = Timer.periodic(every, (_) => changed());
     try {

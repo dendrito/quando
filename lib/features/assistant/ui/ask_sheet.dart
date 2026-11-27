@@ -193,7 +193,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
 
   AlarmPlan? _plan(AlarmRequest? r) {
     if (r == null) return null;
-    final place = ref.read(placeProvider);
+    final place = ref.read(sunPlaceProvider);
     return planFor(
       r,
       now: ref.read(clockProvider)(),
@@ -215,7 +215,7 @@ class _AskSheetState extends ConsumerState<_AskSheet> {
       zone: ref.read(homeZoneProvider),
       calendarEvents: ref.read(calendarProvider).events,
       builtIn: [
-        ...SunTimes(place: ref.read(placeProvider)).events(now, to),
+        ...SunTimes(place: ref.read(sunPlaceProvider)).events(now, to),
         ...ref.read(jewishTimesProvider).events(now, to),
       ],
     );

@@ -122,6 +122,15 @@ class BetaLog {
     });
   }
 
+  /// "Do you lose track of time?": often, sometimes or rarely.
+  static Future<void> answerTime(String answer, {String contact = ''}) => sink.post('/api/feedback', {
+    'kind': 'time',
+    'body': answer,
+    'platform': platform,
+    'version': appVersion,
+    if (contact.isNotEmpty) 'contact': contact,
+  });
+
   /// Feedback is the person's own choice, so it does not need the switch.
   static Future<bool> feedback(String kind, String body, {String contact = ''}) =>
       sink.post('/api/feedback', {

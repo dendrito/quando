@@ -16,6 +16,7 @@ import '../../alarms/domain/user_alarm.dart';
 import '../../calendar/domain/calendar_rule.dart';
 import '../../rules/domain/alarm_rule.dart';
 import '../../ready/ready_screen.dart';
+import '../../alarms/ui/missed_ask.dart';
 import '../../shabbat/ui/city_picker.dart';
 import '../../shabbat/ui/shabbat_card.dart';
 import '../../shabbat/ui/preparation_controls.dart';
@@ -479,6 +480,9 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
     String cityDay(DateTime utc) => dayLabel(inZone(utc, place.timeZone));
     String local(DateTime utc) => hhmm(inZone(utc, home));
     String day(DateTime utc) => dayLabel(inZone(utc, home));
+    // Name the time zone only when it is not the phone's own: Rio and São Paulo
+    // share one, so naming it always would put São Paulo on a phone in Rio.
+    final zoneNote = home == ref.watch(deviceZoneProvider) ? '' : ' · ${cityOf(home)}';
 
     final upcoming = plan.where((a) => a.at.isAfter(now) && a.ruleId != 'lock').toList();
     final next = upcoming.firstOrNull;
@@ -544,7 +548,7 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             // A reminder ahead of an event says so: "Candle lighting ·
             // 6 hours before · Fri 13 Nov · 12:09", never just the
             // event's name at the reminder's time.
-            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)} · ${cityOf(home)}',
+            '${next.title}${next.offset == Duration.zero ? '' : ' · ${describeOffset(next.offset)}'} · ${day(next.at)} · ${local(next.at)}$zoneNote',
             style: text.bodyLarge?.copyWith(color: const Color(0xFFF7DCD0)),
           ),
           const SizedBox(height: 8),
@@ -761,7 +765,14 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
                         icon: const Icon(Icons.dashboard_customize_outlined),
                         onPressed: () => setState(() => _arranging = !_arranging),
                       ),
-                    // Simple: only Settings. Everything: the pills below.
+                    // Simple: Timers and Settings. Everything: the pills below.
+                    if (simple)
+                      IconButton(
+                        key: const ValueKey('simple-timers'),
+                        tooltip: l10n.timersTitle,
+                        icon: const Icon(Icons.timer_outlined),
+                        onPressed: () => context.push('/timers'),
+                      ),
                     if (simple)
                       IconButton(
                         tooltip: l10n.settings,
@@ -935,6 +946,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                // ---- An alarm that may not have rung ----
+                const MissedAsk(),
                 // ---- Something stops alarms from ringing ----
                 if ((ref.watch(readinessProvider).value?.values.where((ok) => !ok).length ?? 0) > 0) ...[
                   Material(

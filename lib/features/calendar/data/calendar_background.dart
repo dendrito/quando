@@ -5,8 +5,9 @@ import '../../../app/providers.dart';
 
 /// Android, with Quando? closed: the phone wakes Quando? a few seconds after
 /// any calendar changes (and every 15 minutes, for Google Calendar read
-/// online). This reads the calendar again and sets the phone's alarms to
-/// match, then tells Android it is done.
+/// online, and after a restart, an app update or a time zone change). This
+/// reads the calendar again and sets the phone's alarms to match, then tells
+/// Android it is done.
 class CalendarBackground {
   static const channel = MethodChannel('quando/calendar_job');
 
@@ -25,6 +26,14 @@ class CalendarBackground {
   /// Leaves the alarms alone unless every calendar was read in full: an
   /// event missing from a failed read must not lose its alarm.
   static Future<bool> run(ProviderContainer container) async {
+    // No calendar alarms: nothing to read. Still plan again, so alarms keep
+    // their place in the week-long window and follow a time zone change.
+    if (container.read(calendarRulesProvider).isEmpty) {
+      await container
+          .read(registrarProvider)
+          .sync(container.read(planProvider), container.read(payloadForProvider));
+      return true;
+    }
     final calendar = container.read(calendarProvider.notifier);
     await calendar.refresh();
     final state = container.read(calendarProvider);

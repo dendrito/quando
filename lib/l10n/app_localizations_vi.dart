@@ -3690,6 +3690,26 @@ class AppLocalizationsVi extends AppLocalizations {
   String get firstRunEverythingHint => 'Lịch, Shabbat, hẹn giờ, thời tiết và hơn thế';
 
   @override
+  String get firstRunEverythingHintPlain => 'Lịch, hẹn giờ, thời tiết và hơn thế';
+
+  @override
+  String get firstRunLoseTrack => 'Tôi hay quên mất thời gian';
+
+  @override
+  String missedAsk(String time) {
+    return 'Báo thức $time có reo không?';
+  }
+
+  @override
+  String get missedYes => 'Có';
+
+  @override
+  String get missedNo => 'Không';
+
+  @override
+  String get againUntilDone => 'Lặp lại đến khi xong';
+
+  @override
   String get firstRunChangeLater => 'Bạn có thể đổi bất cứ lúc nào trong Cài đặt.';
 
   @override

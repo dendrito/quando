@@ -56,4 +56,17 @@ void main() {
     expect(BetaLog.surveyDue(DateTime.now().add(const Duration(days: 8))), isFalse);
     expect(sink.sent.last.$1, '/api/feedback');
   });
+
+  test('"Do you lose track of time?" sends the answer, and an email only if given', () async {
+    await BetaLog.answerTime('often');
+    expect(sink.sent.last.$2, {
+      'kind': 'time',
+      'body': 'often',
+      'platform': BetaLog.platform,
+      'version': isA<String>(),
+    });
+    expect(sink.sent.last.$2.containsKey('contact'), isFalse);
+    await BetaLog.answerTime('sometimes', contact: 'a@b.co');
+    expect(sink.sent.last.$2['contact'], 'a@b.co');
+  });
 }

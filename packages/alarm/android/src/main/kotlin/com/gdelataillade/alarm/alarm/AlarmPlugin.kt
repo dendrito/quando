@@ -40,12 +40,17 @@ class AlarmPlugin : FlutterPlugin, ActivityAware {
         val api = AlarmTriggerApi(binding.binaryMessenger)
         myTriggerApi = api
         synchronized(triggerApis) { triggerApis.add(api) }
+        val appContext = binding.applicationContext
         backupAudioChannel = MethodChannel(binding.binaryMessenger, "quando/alarm_audio").apply {
             setMethodCallHandler { call, result ->
                 val id = call.argument<Int>("id")
                 val muted = call.argument<Boolean>("muted")
+                val seconds = call.argument<Int>("seconds")
                 if (call.method == "mute" && id != null && muted != null) {
                     result.success(AlarmService.instance?.muteBackup(id, muted) ?: false)
+                } else if (call.method == "ringFor" && id != null && seconds != null) {
+                    AlarmService.saveRingLength(appContext, id, seconds)
+                    result.success(true)
                 } else result.notImplemented()
             }
         }

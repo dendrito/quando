@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
+
+import '../shabbat_on.dart';
+
 import 'package:quando/features/calendar/domain/calendar_rule.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
@@ -18,9 +21,9 @@ import 'package:quando/features/sounds/domain/sound.dart';
 import 'package:quando/features/sounds/ui/sound_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-Future<ProviderContainer> _container() async {
+Future<ProviderContainer> _container([Map<String, Object> values = const {}]) async {
   ensureTimeZones();
-  SharedPreferences.setMockInitialValues({});
+  SharedPreferences.setMockInitialValues(values);
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(
     overrides: [
@@ -116,7 +119,7 @@ void main() {
   });
 
   test('a song link can play as the alarm, with a backup sound and a play length', () async {
-    final c = await _container();
+    final c = await _container(shabbatOn);
     const song = AlarmSound(
       id: 'link.2',
       name: 'Wake song',
@@ -171,7 +174,7 @@ void main() {
   });
 
   test('radio rings live, but a built-in sound on Shabbat', () async {
-    final c = await _container();
+    final c = await _container(shabbatOn);
     const radio = AlarmSound(id: 'radio.1', name: 'Jazz', path: 'https://stream.example.com/jazz.mp3');
     expect(radio.isRadio, isTrue);
     c.read(soundsProvider.notifier).add(radio);
@@ -183,6 +186,24 @@ void main() {
     final sat = _payloadOf(c, 'user.sat');
     expect(sat.shabbatSafe, isTrue);
     expect(sat.sound, startsWith('assets/sounds/'));
+  });
+
+  test('without Shabbat in use, a Saturday alarm keeps its song and its radio', () async {
+    final c = await _container();
+    const song = AlarmSound(
+      id: 'link.3',
+      name: 'Wake song',
+      path: 'assets/sounds/soft_chime.wav',
+      link: 'https://music.youtube.com/watch?v=abc',
+      plays: true,
+    );
+    c.read(soundsProvider.notifier).add(song);
+    c
+        .read(userAlarmsProvider.notifier)
+        .save(const UserAlarm(id: 'sat', hour: 10, minute: 0, days: {6}, soundId: 'link.3'));
+    final sat = _payloadOf(c, 'user.sat');
+    expect(sat.shabbatSafe, isFalse);
+    expect(sat.song, song.link);
   });
 
   test('a gentle wake-up is planned before the alarm, quieter', () async {

@@ -11,4 +11,14 @@ class AlarmAudio {
       return false;
     }
   }
+
+  /// Tells the alarm service how long alarm [id] may ring, so it can stop the
+  /// alarm itself if the app is not running to do it (Android).
+  static Future<void> ringFor(int id, int seconds) async {
+    try {
+      await channel.invokeMethod<bool>('ringFor', {'id': id, 'seconds': seconds});
+    } catch (_) {
+      // Not Android: the app's own timer does it.
+    }
+  }
 }
