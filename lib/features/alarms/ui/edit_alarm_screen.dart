@@ -250,11 +250,11 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
           Text(l10n.repeatHeading(_alarm.repeatLabel.toUpperCase()), style: text.labelSmall),
           const SizedBox(height: 8),
           Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               for (var d = 1; d <= 7; d++)
                 _DayChip(
                   letter: letters[d - 1],
+                  name: weekdayLong(d),
                   selected: _alarm.days.contains(d),
                   onTap: () => setState(() {
                     final days = {..._alarm.days};
@@ -413,30 +413,45 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
 }
 
 class _DayChip extends StatelessWidget {
-  const _DayChip({required this.letter, required this.selected, required this.onTap});
+  const _DayChip({required this.letter, required this.name, required this.selected, required this.onTap});
 
   final String letter;
+  final String name;
   final bool selected;
   final VoidCallback onTap;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      customBorder: const CircleBorder(),
-      onTap: onTap,
-      child: Container(
-        width: 44,
-        height: 44,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: selected ? QuandoColors.amber : QuandoColors.surface,
-        ),
-        child: Text(
-          letter,
-          style: TextStyle(
-            color: selected ? QuandoColors.ground : QuandoColors.text,
-            fontWeight: FontWeight.w600,
+    // A 48 high hit area, as wide as the row allows; the circle stays 44.
+    return Expanded(
+      child: Semantics(
+        button: true,
+        selected: selected,
+        label: name,
+        excludeSemantics: true,
+        child: InkWell(
+          customBorder: const StadiumBorder(),
+          onTap: onTap,
+          child: SizedBox(
+            height: 48,
+            child: Center(
+              child: Container(
+                width: 44,
+                height: 44,
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: selected ? QuandoColors.amber : QuandoColors.surface,
+                ),
+                child: Text(
+                  letter,
+                  style: TextStyle(
+                    color: selected ? QuandoColors.ground : QuandoColors.text,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
           ),
         ),
       ),
