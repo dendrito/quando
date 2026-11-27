@@ -2,7 +2,7 @@
 
 _Updated 12 November 2026. Contact: support@quando.day. Operator name must be finalized before public release._
 
-Quando is an alarm and reminder app. Matai is its Jewish edition; Quando Mine is a private edition. Local alarms work without an account. The current apps contain no advertising or analytics SDK and do not sell user data.
+Quando is an alarm and reminder app. Matai is its Jewish edition; Meu Quando is a private edition. Local alarms work without an account. The current apps contain no advertising or analytics SDK and do not sell user data.
 
 ## Local information
 

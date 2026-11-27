@@ -5,7 +5,7 @@ cd "$(dirname "$0")/.."
 case "${1:-}" in
   quando) bundle=com.dendrito.quando.ios; name='Quando?'; icon=AppIcon ;;
   kodesh) bundle=com.dendrito.quando.kodesh; name='Matai?'; icon=AppIcon-Matai ;;
-  mine) bundle=com.dendrito.quando.mine; name='Quando Mine'; icon=AppIcon ;;
+  mine) bundle=com.dendrito.quando.mine; name='Meu Quando'; icon=AppIcon ;;
   *) echo "usage: $0 quando|kodesh|mine" >&2; exit 2 ;;
 esac
 python3 - "$bundle" "$name" "$icon" <<'PYTHON'

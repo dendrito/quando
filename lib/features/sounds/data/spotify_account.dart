@@ -30,7 +30,7 @@ class SpotifyAccount {
   /// Signed in to the library (kept under [prefKey]).
   static bool connected = false;
 
-  // Spotify login is on only in Quando Mine (dev-mode limit of 25 users).
+  // Spotify login is on only in Meu Quando (dev-mode limit of 25 users).
   // Pasted Spotify links keep working everywhere.
   static bool get available => mine && !kIsWeb && SpotifyPlay.clientId.isNotEmpty;
 

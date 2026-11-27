@@ -1,6 +1,6 @@
 # Native Mac development builds
 
-Quando, Matai and Quando Mine share the existing Flutter screens and data models.
+Quando, Matai and Meu Quando share the existing Flutter screens and data models.
 The native macOS runner avoids the iPad-on-Mac launch-constraint failure observed
 on this development Mac. The older installed iPad wrappers must be backed up
 before replacing them. Never change macOS security settings to make a build run.

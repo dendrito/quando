@@ -15,7 +15,7 @@ LSREGISTER = '/System/Library/Frameworks/CoreServices.framework/Frameworks/Launc
 NAMES = {
     'quando': ('Quando?', 'com.dendrito.quando.macos'),
     'kodesh': ('Matai?', 'com.dendrito.quando.kodesh'),
-    'mine': ('Quando Mine', 'com.dendrito.quando.mine'),
+    'mine': ('Meu Quando', 'com.dendrito.quando.mine'),
 }
 KEEP_BACKUPS = 3
 
