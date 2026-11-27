@@ -3,14 +3,17 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/providers.dart';
 import 'package:quando/core/util/local_time.dart';
 import 'package:quando/features/alarms/domain/user_alarm.dart';
+
+import '../shabbat_on.dart';
+
 import 'package:shared_preferences/shared_preferences.dart';
 
 // Tue 3 Nov 2026, 12:00 UTC = 14:00 in Jerusalem.
 final _now = DateTime.utc(2026, 11, 3, 12);
 
-Future<ProviderContainer> _container() async {
+Future<ProviderContainer> _container([Map<String, Object> values = const {}]) async {
   ensureTimeZones();
-  SharedPreferences.setMockInitialValues({});
+  SharedPreferences.setMockInitialValues(values);
   final prefs = await SharedPreferences.getInstance();
   final c = ProviderContainer(
     overrides: [clockProvider.overrideWithValue(() => _now), prefsProvider.overrideWithValue(prefs)],
@@ -61,7 +64,7 @@ void main() {
   });
 
   test('own ring length goes into the payload; Shabbat morning stays hands-free', () async {
-    final c = await _container();
+    final c = await _container(shabbatOn);
     c.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(mathTask: true));
     c
         .read(userAlarmsProvider.notifier)
@@ -75,6 +78,20 @@ void main() {
     expect(saturday.shabbatSafe, isTrue);
     expect(saturday.mathTask, isFalse);
     expect(saturday.ringSeconds, 240);
+  });
+
+  test('without Shabbat in use, a Saturday alarm is an ordinary alarm', () async {
+    final c = await _container();
+    c.read(alarmOptionsProvider.notifier).update((o) => o.copyWith(mathTask: true));
+    c
+        .read(userAlarmsProvider.notifier)
+        .save(const UserAlarm(id: 'f', hour: 8, minute: 0, days: {1, 2, 3, 4, 5, 6, 7}));
+    final saturday = c.read(payloadForProvider)(
+      c.read(planProvider).firstWhere((a) => a.ruleId == 'user.f' && a.at.day == 7),
+    );
+    expect(saturday.shabbatSafe, isFalse);
+    expect(saturday.mathTask, isTrue);
+    expect(saturday.maxSnoozes, greaterThan(0));
   });
 
   test('alarms survive a restart', () async {

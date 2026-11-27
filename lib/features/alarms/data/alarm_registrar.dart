@@ -7,6 +7,7 @@ import 'package:alarm/utils/alarm_set.dart';
 
 import '../../../core/scheduler/scheduler.dart';
 import '../../../core/util/format.dart';
+import '../../../core/util/platform.dart';
 import '../../integrations/domain/integrations.dart';
 import 'missed_log.dart';
 import '../../ringing/data/music.dart';
@@ -49,7 +50,12 @@ class AlarmRegistrar {
 
     for (final e in existing) {
       if (RingPayload.decode(e.payload).transient) continue;
-      if (!wanted.containsKey(e.id)) await Alarm.stop(e.id);
+      if (wanted.containsKey(e.id)) continue;
+      // A ringing alarm is no longer in the plan (its time has passed) but is
+      // still saved: a replan while it rings (app opened by the ring, calendar
+      // job, widget refresh) must not silence it.
+      if (await Alarm.isRinging(e.id)) continue;
+      await Alarm.stop(e.id);
     }
     // Re-set everything so changed options (spoken, snooze...) apply.
     var added = 0;
@@ -61,7 +67,9 @@ class AlarmRegistrar {
 
   Future<bool> set(int id, DateTime at, RingPayload p) async {
     await init();
-    return Alarm.set(alarmSettings: settingsFor(id, at, p));
+    final ok = await Alarm.set(alarmSettings: settingsFor(id, at, p));
+    if (ok && isAndroid) unawaited(AlarmAudio.ringFor(id, p.ringSeconds));
+    return ok;
   }
 
   static AlarmSettings settingsFor(int id, DateTime at, RingPayload p) => AlarmSettings(

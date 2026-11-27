@@ -31,7 +31,30 @@ class CalendarJob : JobService() {
     companion object {
         private const val CHANGE_JOB = 41001
         private const val BACKUP_JOB = 41002
+        private const val NOW_JOB = 41003
         private const val TIMEOUT_MS = 60_000L
+
+        /**
+         * After a restart, an app update or a time zone change: renews both
+         * jobs and plans the alarms again right away. An update clears every
+         * alarm the phone holds for the app, and a new time zone moves the
+         * clock times, so Dart sets them all again.
+         */
+        fun replanNow(context: Context) {
+            schedule(context)
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.N) return
+            val js = context.getSystemService(JobScheduler::class.java) ?: return
+            try {
+                js.schedule(
+                    JobInfo.Builder(NOW_JOB, ComponentName(context, CalendarJob::class.java))
+                        .setMinimumLatency(0)
+                        .setOverrideDeadline(10_000)
+                        .build()
+                )
+            } catch (e: Exception) {
+                // The 15-minute job still plans them soon.
+            }
+        }
 
         /** Starts (or renews) both jobs. Safe to call often. */
         fun schedule(context: Context): Boolean {

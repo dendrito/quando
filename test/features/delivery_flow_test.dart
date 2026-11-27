@@ -10,6 +10,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:go_router/go_router.dart';
+
+import '../shabbat_on.dart';
+
 import 'package:quando/app/providers.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/core/scheduler/scheduler.dart';
@@ -47,8 +50,9 @@ const remote = ReminderDelivery(
 const local = ReminderDelivery(pushoverEnabled: false);
 const both = ReminderDelivery(pushoverEnabled: true);
 
-Future<SharedPreferences> prefs({bool ready = true}) async {
+Future<SharedPreferences> prefs({bool ready = true, Map<String, Object> extra = const {}}) async {
   SharedPreferences.setMockInitialValues({
+    ...extra,
     'integrations': jsonEncode((ready ? connected : const IntegrationSettings()).toJson()),
   });
   return SharedPreferences.getInstance();
@@ -212,7 +216,7 @@ void main() {
   });
 
   test('disabled or Shabbat-paused Pushover keeps a local fallback; remote lead-ups are absent', () async {
-    final saved = await prefs();
+    final saved = await prefs(extra: shabbatOn);
     final c = ProviderContainer(overrides: [prefsProvider.overrideWithValue(saved)]);
     addTearDown(c.dispose);
     ScheduledAlarm alarm(DateTime at) => ScheduledAlarm(

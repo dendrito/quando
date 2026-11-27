@@ -1,0 +1,9 @@
+{
+  "id": "audit-alarms-and-app-27-nov",
+  "title": "Audit the app, focusing on alarms",
+  "status": "doing",
+  "group": "Alarms",
+  "order": 151,
+  "note": "Alarm audit before the 29 Nov beta. Four alarm fixes in one PR, report in the project files.",
+  "thread": "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk3PCXByin6rsv4VbosnMCTL"
+}

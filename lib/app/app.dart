@@ -99,7 +99,16 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   Timer? _syncTimer;
 
   /// Calendar alarms follow the calendar while the app is open.
-  late final _calendarWatch = CalendarWatch(onChange: () => ref.read(calendarProvider.notifier).refresh());
+  late final _calendarWatch = CalendarWatch(
+    onChange: () => ref.read(calendarProvider.notifier).refresh(),
+    // The 15-minute background check: also plan again from the real time now,
+    // so a daily alarm keeps its place in the 7-day window.
+    onBackground: () async {
+      ref.invalidate(clockProvider);
+      await ref.read(calendarProvider.notifier).refresh();
+      await _sync();
+    },
+  );
 
   @override
   void initState() {
@@ -122,7 +131,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       // New calendar rules may reach further ahead: read events again.
       ref.listenManual(calendarRulesProvider, (_, next) {
         ref.read(calendarProvider.notifier).refresh();
-        if (isAndroid && next.isNotEmpty) CalendarBackground.schedule();
+        if (isAndroid) CalendarBackground.schedule();
       });
       // Signed in to sync: pick up where it left off.
       ref.read(syncProvider);
@@ -174,8 +183,10 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
     await ref.read(weatherAlertsProvider.notifier).refresh();
     if (isAndroid) await WeatherBackground.schedule(ref.read(weatherAlarmSettingsProvider).active);
     await _sync();
-    // Android: keep following the calendar with Quando? closed.
-    if (isAndroid && ref.read(calendarRulesProvider).isNotEmpty) unawaited(CalendarBackground.schedule());
+    // Android: plan again in the background (every 15 minutes, after a restart,
+    // an update or a time zone change), also for a user who never opens
+    // Quando? and has no calendar alarms: the plan only reaches a week ahead.
+    if (isAndroid) unawaited(CalendarBackground.schedule());
   }
 
   void _scheduleSync() {

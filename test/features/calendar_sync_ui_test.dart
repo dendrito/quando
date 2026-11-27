@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:quando/app/theme.dart';
 import 'package:quando/features/calendar/data/calendar_watch.dart';
@@ -58,5 +59,21 @@ void main() {
     watch.changed();
     await tester.pump(const Duration(minutes: 5));
     expect(reads, 2);
+  });
+
+  testWidgets("Android's background check plans again, not only reads the calendar", (tester) async {
+    const channel = MethodChannel('quando/calendar_watch');
+    var reads = 0, plans = 0;
+    final watch = CalendarWatch(onChange: () async => reads++, onBackground: () async => plans++);
+    unawaited(watch.start());
+    await tester.binding.defaultBinaryMessenger.handlePlatformMessage(
+      channel.name,
+      channel.codec.encodeMethodCall(const MethodCall('refresh')),
+      (_) {},
+    );
+    await tester.pump();
+    expect(plans, 1);
+    expect(reads, 0);
+    unawaited(watch.stop());
   });
 }
