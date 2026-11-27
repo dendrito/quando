@@ -52,7 +52,11 @@ void main() {
     await registrar.init();
     const payload = RingPayload(title: 'Wake up', body: '', spoken: false, ringSeconds: 60);
     // Rang a few seconds ago, still ringing: it is saved, and no longer in the plan.
-    final ringing = AlarmRegistrar.settingsFor(7, DateTime.now().subtract(const Duration(seconds: 20)), payload);
+    final ringing = AlarmRegistrar.settingsFor(
+      7,
+      DateTime.now().subtract(const Duration(seconds: 20)),
+      payload,
+    );
     await AlarmStorage.saveAlarm(ringing);
     nativeRings.add(7);
     Alarm.alarmRang(ringing);
@@ -79,7 +83,9 @@ void main() {
     final registrar = AlarmRegistrar();
     await registrar.init();
     const payload = RingPayload(title: 'Old', body: '', spoken: false, ringSeconds: 60);
-    await AlarmStorage.saveAlarm(AlarmRegistrar.settingsFor(9, DateTime.now().add(const Duration(hours: 2)), payload));
+    await AlarmStorage.saveAlarm(
+      AlarmRegistrar.settingsFor(9, DateTime.now().add(const Duration(hours: 2)), payload),
+    );
     await registrar.sync(const [], (_) => payload);
     expect(stopped, contains(9));
     await registrar.dispose();
