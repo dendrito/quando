@@ -33,11 +33,14 @@ jobs:
       - run: flutter test
       - name: Test the Jewish edition
         run: flutter test --dart-define=QUANDO_EDITION=kodesh test/edition_test.dart test/quotes_test.dart
+      - name: Test Quando Mine
+        run: flutter test --dart-define=QUANDO_EDITION=mine test/edition_test.dart test/quotes_test.dart
 
       - name: Build release APKs (one per phone type, much smaller)
         run: |
           flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor quando
           flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
+          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor mine --dart-define=QUANDO_EDITION=mine
 
       - uses: actions/upload-artifact@v4
         with:
@@ -77,12 +80,13 @@ jobs:
           cp build/app/outputs/flutter-apk/app-armeabi-v7a-quando-release.apk quando-older-phones.apk
           cp build/app/outputs/flutter-apk/app-arm64-v8a-kodesh-release.apk matai.apk
           cp build/app/outputs/flutter-apk/app-armeabi-v7a-kodesh-release.apk matai-older-phones.apk
+          cp build/app/outputs/flutter-apk/app-arm64-v8a-mine-release.apk quando-mine.apk
           ls -lh quando*.apk matai*.apk
           gh release delete latest --yes --cleanup-tag || true
-          gh release create latest quando.apk quando-older-phones.apk matai.apk matai-older-phones.apk \
+          gh release create latest quando.apk quando-older-phones.apk matai.apk matai-older-phones.apk quando-mine.apk \
             --prerelease \
             --title "Latest test build" \
-            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk. The Jewish edition: matai.apk (matai-older-phones.apk)."
+            --notes "Test build of ${GITHUB_SHA::7}. Most phones: quando.apk. Phones from before about 2017: quando-older-phones.apk. The Jewish edition: matai.apk (matai-older-phones.apk). Quando Mine: quando-mine.apk."
         env:
           GH_TOKEN: ${{ github.token }}
 
@@ -121,7 +125,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        edition: [quando, kodesh]
+        edition: [quando, kodesh, mine]
     name: ios-build (${{ matrix.edition }})
     steps:
       - uses: actions/checkout@v4
