@@ -359,6 +359,9 @@ class RingPayload {
     'gentle': gentle,
     'delivery': delivery.toJson(),
     if (iWill.isNotEmpty) 'iWill': iWill,
+    // Button names for the iPhone's own alarm screen (AlarmKit).
+    'stopLabel': l10n.stop,
+    'snoozeLabel': l10n.snooze,
   });
 
   static RingPayload decode(String? raw, {String? fallbackTitle, String fallbackBody = ''}) {

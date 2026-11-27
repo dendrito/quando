@@ -24,6 +24,11 @@ class AlarmRingManager: NSObject {
     }
 
     @MainActor
+    func isPlaying(id: Int) -> Bool {
+        return currentAlarmId == id && audioPlayer?.isPlaying == true
+    }
+
+    @MainActor
     func muteBackup(id: Int, muted: Bool) -> Bool {
         guard currentAlarmId == id, let player = audioPlayer else { return false }
         if backupMuted == muted { return true }

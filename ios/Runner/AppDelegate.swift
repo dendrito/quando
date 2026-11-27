@@ -1,3 +1,4 @@
+import AppIntents
 import EventKit
 import Flutter
 import MusicKit
@@ -13,6 +14,9 @@ import alarm
     // The alarm plugin schedules a background refresh to keep alarms alive.
     // iOS ends the app if that task isn't registered before launch finishes.
     SwiftAlarmPlugin.registerBackgroundTasks()
+    if #available(iOS 26.0, *) {
+      AlarmKitBackup.snoozeIntent = { SnoozeAlarmIntent(alarmId: $0) }
+    }
     return super.application(application, didFinishLaunchingWithOptions: launchOptions)
   }
 
@@ -24,6 +28,24 @@ import alarm
     if let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "QuandoCalendarWatch") {
       CalendarWatch.register(registrar.messenger())
     }
+  }
+}
+
+/// The Snooze button on the system alarm screen (AlarmKit).
+@available(iOS 26.0, *)
+struct SnoozeAlarmIntent: LiveActivityIntent {
+  static var title: LocalizedStringResource = "Snooze alarm"
+  static var isDiscoverable = false
+
+  @Parameter(title: "Alarm")
+  var alarmId: Int
+
+  init() {}
+  init(alarmId: Int) { self.alarmId = alarmId }
+
+  func perform() async throws -> some IntentResult {
+    await AlarmKitBackup.snooze(id: alarmId)
+    return .result()
   }
 }
 
