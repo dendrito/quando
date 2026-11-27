@@ -20,6 +20,14 @@ s = re.sub(r'ASSETCATALOG_COMPILER_APPICON_NAME = (?:AppIcon|"AppIcon-Matai");',
            f'ASSETCATALOG_COMPILER_APPICON_NAME = "{icon}";' if '-' in icon else
            f'ASSETCATALOG_COMPILER_APPICON_NAME = {icon};', s)
 p.write_text(s)
+# iOS has no Xcode schemes per edition, so the pubspec's flavor-only voice
+# folder is switched here: bundled for Meu Quando?, flavor-only for the rest.
+p = Path('pubspec.yaml')
+s = p.read_text()
+gated = "    - path: assets/mine/\n      flavors:\n        - mine\n"
+plain = "    - assets/mine/\n"
+s = s.replace(plain, gated).replace(gated, plain if bundle.endswith('.mine') else gated)
+p.write_text(s)
 p = Path('ios/Runner/Info.plist')
 s = p.read_text()
 s = re.sub(r'(<key>CFBundleDisplayName</key>\s*<string>)[^<]*(</string>)',
