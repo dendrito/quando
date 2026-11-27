@@ -8,9 +8,12 @@ class QuandoColors {
   static const surface = Color(0xFF2E1B33);
   static const raised = Color(0xFF3D2544);
   static const line = Color(0xFF5A3A55);
+
+  /// Borders that identify a control (chips, outlined buttons, switches): 3:1 on every surface.
+  static const outline = Color(0xFF9A7A95);
   static const text = Color(0xFFFFF4E6);
   static const muted = Color(0xFFCDB8C9);
-  static const faint = Color(0xFF9C8399);
+  static const faint = Color(0xFFAA94A7);
   static const blush = Color(0xFFF3C9B8);
   static const coral = Color(0xFFFF6B4A);
   static const amber = Color(0xFFFFB547);
@@ -32,7 +35,7 @@ ThemeData buildTheme() {
     surfaceContainer: QuandoColors.surface,
     surfaceContainerHigh: QuandoColors.raised,
     surfaceContainerHighest: QuandoColors.raised,
-    outline: QuandoColors.line,
+    outline: QuandoColors.outline,
     outlineVariant: QuandoColors.line,
   );
 
@@ -95,7 +98,7 @@ ThemeData buildTheme() {
       style: OutlinedButton.styleFrom(
         foregroundColor: QuandoColors.text,
         minimumSize: const Size(64, 52),
-        side: const BorderSide(color: QuandoColors.line, width: 1.5),
+        side: const BorderSide(color: QuandoColors.outline, width: 1.5),
         shape: pill,
         textStyle: bold,
       ),
@@ -124,11 +127,13 @@ ThemeData buildTheme() {
       trackColor: WidgetStateProperty.resolveWith(
         (s) => s.contains(WidgetState.selected) ? QuandoColors.coral : QuandoColors.raised,
       ),
-      trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+      trackOutlineColor: WidgetStateProperty.resolveWith(
+        (s) => s.contains(WidgetState.selected) ? Colors.transparent : QuandoColors.outline,
+      ),
     ),
     chipTheme: const ChipThemeData(
       backgroundColor: Colors.transparent,
-      side: BorderSide(color: QuandoColors.line, width: 1.5),
+      side: BorderSide(color: QuandoColors.outline, width: 1.5),
       shape: StadiumBorder(),
       labelStyle: TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w600, color: QuandoColors.text),
     ),
@@ -137,7 +142,7 @@ ThemeData buildTheme() {
       fillColor: QuandoColors.surface,
       border: OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(18)),
-        borderSide: BorderSide.none,
+        borderSide: BorderSide(color: QuandoColors.outline),
       ),
     ),
     snackBarTheme: const SnackBarThemeData(
