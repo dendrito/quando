@@ -64,7 +64,7 @@ class _WeekListState extends State<WeekList> {
             ),
           ),
           Material(
-            color: QuandoColors.surface,
+            color: DuskColors.surface,
             borderRadius: const BorderRadius.all(Radius.circular(24)),
             clipBehavior: Clip.antiAlias,
             child: Column(
@@ -82,8 +82,8 @@ class _WeekListState extends State<WeekList> {
   }
 
   Widget _series(AlarmSeries s, String key, TextTheme text, String Function(DateTime) local) {
-    final timeStyle = text.titleLarge?.copyWith(color: QuandoColors.amber, fontSize: 22);
-    const off = TextStyle(decoration: TextDecoration.lineThrough, color: QuandoColors.faint);
+    final timeStyle = text.titleLarge?.copyWith(color: DuskColors.amber, fontSize: 22);
+    final off = TextStyle(decoration: TextDecoration.lineThrough, color: DuskColors.faint);
     bool skip(ScheduledAlarm a) => widget.skipped.contains(a.id);
     if (s.alarms.length == 1) {
       final a = s.alarms.single;
@@ -128,7 +128,7 @@ class _WeekListState extends State<WeekList> {
               AnimatedRotation(
                 turns: open ? 0.5 : 0,
                 duration: const Duration(milliseconds: 200),
-                child: const Icon(Icons.expand_more, color: QuandoColors.muted),
+                child: Icon(Icons.expand_more, color: DuskColors.muted),
               ),
               if (widget.onSeries != null) _more(() => widget.onSeries!(s)),
             ],
@@ -154,7 +154,7 @@ class _WeekListState extends State<WeekList> {
                                   width: 6,
                                   height: 6,
                                   decoration: BoxDecoration(
-                                    color: skip(a) ? QuandoColors.faint : QuandoColors.coral,
+                                    color: skip(a) ? DuskColors.faint : DuskColors.coral,
                                     shape: BoxShape.circle,
                                   ),
                                 ),
@@ -187,6 +187,6 @@ class _WeekListState extends State<WeekList> {
     tooltip: l10n.more,
     visualDensity: VisualDensity.compact,
     onPressed: onPressed,
-    icon: const Icon(Icons.more_vert, color: QuandoColors.muted),
+    icon: Icon(Icons.more_vert, color: DuskColors.muted),
   );
 }

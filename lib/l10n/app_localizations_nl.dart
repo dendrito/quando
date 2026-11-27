@@ -3708,6 +3708,18 @@ class AppLocalizationsNl extends AppLocalizations {
   String get uiEverything => 'Alles';
 
   @override
+  String get themeTitle => 'Thema';
+
+  @override
+  String get themeAuto => 'Automatisch';
+
+  @override
+  String get themeDark => 'Donker';
+
+  @override
+  String get themeLight => 'Licht';
+
+  @override
   String get firstRunTitle => 'Hoeveel wil je zien?';
 
   @override

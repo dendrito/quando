@@ -3688,6 +3688,18 @@ class AppLocalizationsId extends AppLocalizations {
   String get uiEverything => 'Semua';
 
   @override
+  String get themeTitle => 'Tema';
+
+  @override
+  String get themeAuto => 'Otomatis';
+
+  @override
+  String get themeDark => 'Gelap';
+
+  @override
+  String get themeLight => 'Terang';
+
+  @override
   String get firstRunTitle => 'Seberapa banyak yang ingin kamu lihat?';
 
   @override

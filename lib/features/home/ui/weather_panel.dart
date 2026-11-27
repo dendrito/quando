@@ -99,7 +99,7 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
                     children: [
                       Text(
                         '${current.celsius.round()}°C',
-                        style: text.displaySmall?.copyWith(color: QuandoColors.text),
+                        style: text.displaySmall?.copyWith(color: DuskColors.text),
                       ),
                       Text(weatherLabel(current.kind), style: text.titleMedium),
                       if (thunder != null && current.kind != WeatherKind.thunder)
@@ -119,7 +119,7 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
                 for (final h in upcoming)
                   Text(
                     '${hhmm(inZone(h.at, place.timeZone))}  ${h.celsius.round()}°',
-                    style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                    style: text.bodySmall?.copyWith(color: DuskColors.blush),
                   ),
               ],
             ),
@@ -134,7 +134,7 @@ class _WeatherPanelState extends ConsumerState<WeatherPanel> with WidgetsBinding
                 style: TextButton.styleFrom(
                   padding: EdgeInsets.zero,
                   minimumSize: const Size(0, 32),
-                  foregroundColor: QuandoColors.blush,
+                  foregroundColor: DuskColors.blush,
                 ),
                 onPressed: () => showDialog<void>(
                   context: context,

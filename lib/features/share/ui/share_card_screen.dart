@@ -150,10 +150,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
                   children: [
                     Text(
                       appTitle,
-                      style: text.titleMedium?.copyWith(
-                        color: QuandoColors.amber,
-                        fontWeight: FontWeight.w800,
-                      ),
+                      style: text.titleMedium?.copyWith(color: DuskColors.amber, fontWeight: FontWeight.w800),
                     ),
                     const SizedBox(width: 8),
                     Expanded(
@@ -181,7 +178,7 @@ class _ShareCardScreenState extends ConsumerState<ShareCardScreen> {
           if (_asIs != null)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.movie_outlined, color: QuandoColors.amber),
+              leading: const Icon(Icons.movie_outlined, color: DuskColors.amber),
               title: Text(l10n.shareAsIs),
               subtitle: Text(_asIs!.path.split('/').last, style: text.bodySmall),
               trailing: IconButton(

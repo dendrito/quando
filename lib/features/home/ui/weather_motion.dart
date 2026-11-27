@@ -95,13 +95,13 @@ class WeatherPainter extends CustomPainter {
   void paint(Canvas c, Size s) {
     c.save();
     c.scale(s.width / 108, s.height / 108);
-    final amber = Paint()..color = QuandoColors.amber;
+    final amber = Paint()..color = DuskColors.amber;
     if (!sunless && (kind == WeatherKind.clear || kind == WeatherKind.clouds)) {
       final sun = Offset(kind == WeatherKind.clear ? 54 : 39, kind == WeatherKind.clear ? 49 : 33);
       c.drawCircle(
         sun,
         25 + 3 * m.sin(t * 2 * m.pi),
-        Paint()..color = QuandoColors.coral.withValues(alpha: 0.18 + 0.06 * m.sin(t * 2 * m.pi)),
+        Paint()..color = DuskColors.coral.withValues(alpha: 0.18 + 0.06 * m.sin(t * 2 * m.pi)),
       );
       if (night) {
         c.drawPath(
@@ -120,7 +120,7 @@ class WeatherPainter extends CustomPainter {
             sun + Offset(m.cos(a), m.sin(a)) * 24,
             sun + Offset(m.cos(a), m.sin(a)) * 29,
             Paint()
-              ..color = QuandoColors.amber.withValues(alpha: 0.6)
+              ..color = DuskColors.amber.withValues(alpha: 0.6)
               ..strokeWidth = 2
               ..strokeCap = StrokeCap.round,
           );
@@ -136,7 +136,7 @@ class WeatherPainter extends CustomPainter {
         ..addRRect(RRect.fromRectAndRadius(Rect.fromLTWH(far, 22, 30, 11), const Radius.circular(6)))
         ..addOval(Rect.fromCircle(center: Offset(far + 11, 22), radius: 8))
         ..addOval(Rect.fromCircle(center: Offset(far + 21, 24), radius: 6));
-      c.drawPath(back, Paint()..color = QuandoColors.blush.withValues(alpha: 0.35));
+      c.drawPath(back, Paint()..color = DuskColors.blush.withValues(alpha: 0.35));
       final drift = m.sin(t * 2 * m.pi) * 7, bob = m.sin(t * 4 * m.pi) * 1.8;
       c.save();
       c.translate(0, bob);
@@ -146,7 +146,7 @@ class WeatherPainter extends CustomPainter {
         ..addOval(Rect.fromCircle(center: Offset(66 + drift, 43), radius: 15));
       c.drawPath(
         cloud,
-        Paint()..color = QuandoColors.blush.withValues(alpha: kind == WeatherKind.thunder ? 0.65 : 0.9),
+        Paint()..color = DuskColors.blush.withValues(alpha: kind == WeatherKind.thunder ? 0.65 : 0.9),
       );
       c.restore();
     }
@@ -157,7 +157,7 @@ class WeatherPainter extends CustomPainter {
           Offset(x, y),
           Offset(x - 3, y + 7),
           Paint()
-            ..color = QuandoColors.coral.withValues(alpha: 0.65 * (1 - phase * 0.5))
+            ..color = DuskColors.coral.withValues(alpha: 0.65 * (1 - phase * 0.5))
             ..strokeWidth = 2
             ..strokeCap = StrokeCap.round,
         );
@@ -175,7 +175,7 @@ class WeatherPainter extends CustomPainter {
         ..lineTo(61, 68)
         ..lineTo(70, 53)
         ..close();
-      c.drawPath(bolt, Paint()..color = QuandoColors.amber.withValues(alpha: 0.25 + 0.7 * glow));
+      c.drawPath(bolt, Paint()..color = DuskColors.amber.withValues(alpha: 0.25 + 0.7 * glow));
     }
     if (kind == WeatherKind.snow) {
       for (var i = 0; i < 8; i++) {
@@ -183,7 +183,7 @@ class WeatherPainter extends CustomPainter {
         c.drawCircle(
           Offset(25 + i * 8 + m.sin(t * 6 + i) * 3, 64 + phase * 32),
           2,
-          Paint()..color = QuandoColors.text.withValues(alpha: 0.8),
+          Paint()..color = DuskColors.text.withValues(alpha: 0.8),
         );
       }
     }
@@ -193,7 +193,7 @@ class WeatherPainter extends CustomPainter {
           Offset(24 + m.sin(t * 6 + i) * 4, 73 + i * 8.0),
           Offset(85 + m.sin(t * 6 + i) * 4, 73 + i * 8.0),
           Paint()
-            ..color = QuandoColors.blush.withValues(alpha: 0.5)
+            ..color = DuskColors.blush.withValues(alpha: 0.5)
             ..strokeWidth = 3
             ..strokeCap = StrokeCap.round,
         );

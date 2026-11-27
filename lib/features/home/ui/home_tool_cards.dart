@@ -103,7 +103,7 @@ class ToolLine extends ConsumerWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
             child: Row(
               children: [
-                Icon(icon, color: QuandoColors.amber, size: 26),
+                Icon(icon, color: DuskColors.amber, size: 26),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -119,7 +119,7 @@ class ToolLine extends ConsumerWidget {
                           maxLines: 1,
                           style: text.titleLarge?.copyWith(
                             fontFeatures: const [FontFeature.tabularFigures()],
-                            color: running ? QuandoColors.amber : null,
+                            color: running ? DuskColors.amber : null,
                           ),
                         ),
                       ),
@@ -130,7 +130,7 @@ class ToolLine extends ConsumerWidget {
                   tooltip: running ? l10n.timerPause : l10n.timerStart,
                   onPressed: toggle,
                   icon: Icon(running ? Icons.pause_circle_filled : Icons.play_circle_fill, size: 34),
-                  color: QuandoColors.coral,
+                  color: DuskColors.coral,
                 ),
               ],
             ),

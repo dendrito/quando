@@ -3734,6 +3734,18 @@ class AppLocalizationsAr extends AppLocalizations {
   String get uiEverything => 'كل شيء';
 
   @override
+  String get themeTitle => 'المظهر';
+
+  @override
+  String get themeAuto => 'تلقائي';
+
+  @override
+  String get themeDark => 'داكن';
+
+  @override
+  String get themeLight => 'فاتح';
+
+  @override
   String get firstRunTitle => 'ما مقدار ما تريد رؤيته؟';
 
   @override

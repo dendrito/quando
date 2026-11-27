@@ -3602,6 +3602,18 @@ class AppLocalizationsJa extends AppLocalizations {
   String get uiEverything => 'すべて';
 
   @override
+  String get themeTitle => 'テーマ';
+
+  @override
+  String get themeAuto => '自動';
+
+  @override
+  String get themeDark => 'ダーク';
+
+  @override
+  String get themeLight => 'ライト';
+
+  @override
   String get firstRunTitle => 'どこまで表示しますか？';
 
   @override

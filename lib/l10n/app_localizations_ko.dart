@@ -3602,6 +3602,18 @@ class AppLocalizationsKo extends AppLocalizations {
   String get uiEverything => '전부';
 
   @override
+  String get themeTitle => '테마';
+
+  @override
+  String get themeAuto => '자동';
+
+  @override
+  String get themeDark => '다크';
+
+  @override
+  String get themeLight => '라이트';
+
+  @override
   String get firstRunTitle => '얼마나 보고 싶으세요?';
 
   @override

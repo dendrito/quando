@@ -106,7 +106,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           if (!cal.phone)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.phone_iphone, color: QuandoColors.amber),
+              leading: Icon(Icons.phone_iphone, color: QuandoColors.amber),
               title: Text(l10n.deviceCalendarsTitle),
               subtitle: Text(l10n.deviceCalendarsHint, style: text.bodySmall),
               trailing: FilledButton.tonal(
@@ -123,7 +123,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           if (cal.google == null)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.event_available_outlined, color: QuandoColors.amber),
+              leading: Icon(Icons.event_available_outlined, color: QuandoColors.amber),
               title: Text(
                 online.available ? l10n.googleCalendarSignIn : l10n.googleCalendarNotHere,
                 style: text.bodySmall,
@@ -135,7 +135,7 @@ class _CalendarScreenState extends ConsumerState<CalendarScreen> {
           else ...[
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.check_circle, color: QuandoColors.amber),
+              leading: Icon(Icons.check_circle, color: QuandoColors.amber),
               title: Text(l10n.googleCalendarSignedIn(cal.google!)),
               subtitle: cal.phone ? Text(l10n.googleCalendarTwiceHint, style: text.bodySmall) : null,
               trailing: TextButton(

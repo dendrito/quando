@@ -20,7 +20,7 @@ class GentleTile extends StatelessWidget {
     final on = value.gentleMinutes > 0;
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: const Icon(Icons.wb_twilight, color: QuandoColors.amber),
+      leading: const Icon(Icons.wb_twilight, color: DuskColors.amber),
       title: Text(l10n.gentleWakeUp),
       subtitle: Text(on ? l10n.gentleSummary(value.gentleMinutes, calmName(value.gentleSound)) : l10n.off),
       trailing: const Icon(Icons.chevron_right),
@@ -88,7 +88,7 @@ class _GentleScreenState extends State<GentleScreen> {
               value: on,
               onChanged: (v) => setState(() => _s = _s.copyWith(gentleMinutes: v ? _lastMinutes : 0)),
             ),
-            Text(l10n.gentleExplain, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+            Text(l10n.gentleExplain, style: text.bodyMedium?.copyWith(color: DuskColors.muted)),
             if (on) ...[
               const SizedBox(height: 24),
               Text(l10n.startsBeforeHeading, style: text.labelSmall),
@@ -116,7 +116,7 @@ class _GentleScreenState extends State<GentleScreen> {
                   contentPadding: EdgeInsets.zero,
                   leading: Icon(
                     _s.gentleSound == c.id ? Icons.radio_button_checked : Icons.radio_button_off,
-                    color: QuandoColors.amber,
+                    color: DuskColors.amber,
                   ),
                   title: Text(c.name),
                   trailing: IconButton(

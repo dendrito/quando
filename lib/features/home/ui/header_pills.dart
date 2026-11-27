@@ -30,7 +30,7 @@ class HeaderPills extends StatelessWidget {
     final style = (Theme.of(context).textTheme.labelLarge ?? const TextStyle()).copyWith(
       fontSize: 11,
       fontWeight: FontWeight.w600,
-      color: QuandoColors.text,
+      color: DuskColors.text,
     );
     return LayoutBuilder(
       builder: (context, box) {
@@ -84,7 +84,7 @@ class _Pill extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Material(
-    color: QuandoColors.text.withValues(alpha: 0.12),
+    color: DuskColors.text.withValues(alpha: 0.12),
     shape: const StadiumBorder(),
     clipBehavior: Clip.antiAlias,
     child: InkWell(
@@ -95,7 +95,7 @@ class _Pill extends StatelessWidget {
         child: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Icon(action.icon, size: HeaderPills._icon, color: QuandoColors.text),
+            Icon(action.icon, size: HeaderPills._icon, color: DuskColors.text),
             const SizedBox(width: HeaderPills._gap),
             Text(action.label, style: style, maxLines: 1, softWrap: false),
           ],
@@ -121,7 +121,7 @@ class _Stacked extends StatelessWidget {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(action.icon, color: QuandoColors.text),
+          Icon(action.icon, color: DuskColors.text),
           const SizedBox(height: 2),
           Text(
             action.label,

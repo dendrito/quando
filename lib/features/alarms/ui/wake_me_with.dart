@@ -176,7 +176,7 @@ class WakeMeWith extends ConsumerWidget {
         if (onUntilDone != null)
           SwitchListTile(
             key: const Key('untilDone'),
-            secondary: const Icon(Icons.replay, color: QuandoColors.amber),
+            secondary: Icon(Icons.replay, color: QuandoColors.amber),
             title: Text(l10n.againUntilDone),
             value: again,
             onChanged: (v) {

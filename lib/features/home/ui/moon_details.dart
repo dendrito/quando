@@ -36,7 +36,7 @@ class MoonDetails extends StatelessWidget {
       children: [
         Text(
           label.toUpperCase(),
-          style: text.labelSmall?.copyWith(color: QuandoColors.faint, letterSpacing: 1),
+          style: text.labelSmall?.copyWith(color: DuskColors.faint, letterSpacing: 1),
         ),
         const SizedBox(height: 2),
         Text(value, style: text.bodyMedium),
@@ -58,7 +58,7 @@ class MoonDetails extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Text(phaseName, style: text.headlineMedium?.copyWith(fontWeight: FontWeight.w800)),
-        Text('$lit% ${l10n.moonIlluminated}', style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+        Text('$lit% ${l10n.moonIlluminated}', style: text.bodyMedium?.copyWith(color: DuskColors.muted)),
         const SizedBox(height: 14),
         facts,
         const SizedBox(height: 14),
@@ -72,7 +72,7 @@ class MoonDetails extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 6),
-        Text(l10n.moonLunarDay(day), style: text.bodySmall?.copyWith(color: QuandoColors.faint)),
+        Text(l10n.moonLunarDay(day), style: text.bodySmall?.copyWith(color: DuskColors.faint)),
       ],
     );
     final disc = Semantics(
@@ -116,7 +116,7 @@ class _BigMoonPainter extends CustomPainter {
       radius,
       Paint()
         ..shader = RadialGradient(
-          colors: [QuandoColors.text.withValues(alpha: .12), QuandoColors.text.withValues(alpha: 0)],
+          colors: [DuskColors.text.withValues(alpha: .12), DuskColors.text.withValues(alpha: 0)],
           stops: const [.7, 1],
         ).createShader(Rect.fromCircle(center: center, radius: radius)),
     );
@@ -130,7 +130,7 @@ class _BigMoonPainter extends CustomPainter {
 /// Opens [MoonDetails] over the home screen.
 Future<void> showMoonDetails(BuildContext context, MoonDetails details) => showModalBottomSheet<void>(
   context: context,
-  backgroundColor: QuandoColors.surface,
+  backgroundColor: DuskColors.surface,
   showDragHandle: true,
   isScrollControlled: true,
   builder: (context) => SafeArea(

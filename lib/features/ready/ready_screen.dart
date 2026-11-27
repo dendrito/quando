@@ -197,7 +197,7 @@ class _ReadyScreenState extends ConsumerState<ReadyScreen> with WidgetsBindingOb
               title: Text(c.title),
               subtitle: Text(c.why, style: text.bodySmall),
               trailing: checks[c] ?? true
-                  ? const Icon(Icons.check_circle, color: QuandoColors.amber)
+                  ? Icon(Icons.check_circle, color: QuandoColors.amber)
                   : FilledButton(
                       onPressed: () async {
                         await Readiness.fix(c);

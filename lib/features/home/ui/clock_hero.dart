@@ -58,7 +58,7 @@ class _ClockHeroState extends State<ClockHero> {
       return Text(
         '${hhmm(local)} · $date',
         style: text.titleMedium?.copyWith(
-          color: QuandoColors.blush,
+          color: DuskColors.blush,
           fontFeatures: const [FontFeature.tabularFigures()],
         ),
       );
@@ -72,7 +72,7 @@ class _ClockHeroState extends State<ClockHero> {
             hhmm(local),
             style: text.displayMedium?.copyWith(
               fontSize: 34,
-              color: QuandoColors.text,
+              color: DuskColors.text,
               fontFeatures: const [FontFeature.tabularFigures()],
             ),
           ),
@@ -82,7 +82,7 @@ class _ClockHeroState extends State<ClockHero> {
               date,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: text.titleMedium?.copyWith(color: QuandoColors.blush),
+              style: text.titleMedium?.copyWith(color: DuskColors.blush),
             ),
           ),
         ],
@@ -103,7 +103,7 @@ class _ClockHeroState extends State<ClockHero> {
                   maxLines: 1,
                   style: text.displayLarge?.copyWith(
                     fontSize: 52,
-                    color: QuandoColors.text,
+                    color: DuskColors.text,
                     letterSpacing: -2,
                     fontFeatures: const [FontFeature.tabularFigures()],
                   ),
@@ -119,18 +119,18 @@ class _ClockHeroState extends State<ClockHero> {
                 Text(
                   weekdayName(local).toUpperCase(),
                   style: text.labelLarge?.copyWith(
-                    color: QuandoColors.amber,
+                    color: DuskColors.amber,
                     letterSpacing: 1.6,
                     fontWeight: FontWeight.w800,
                   ),
                 ),
                 Text(
                   '${local.day}',
-                  style: text.displayMedium?.copyWith(fontSize: 32, color: QuandoColors.text, height: 1),
+                  style: text.displayMedium?.copyWith(fontSize: 32, color: DuskColors.text, height: 1),
                 ),
                 Text(
                   monthName(local),
-                  style: text.bodyMedium?.copyWith(color: QuandoColors.blush, fontWeight: FontWeight.w600),
+                  style: text.bodyMedium?.copyWith(color: DuskColors.blush, fontWeight: FontWeight.w600),
                 ),
               ],
             ),

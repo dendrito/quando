@@ -107,7 +107,7 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
             Text(l10n.busyWhileHeading, style: text.labelSmall),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+              secondary: Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
               title: Text(l10n.busyDnd),
               value: s.dnd,
               onChanged: (v) => _update((s) => s.copyWith(dnd: v)),
@@ -124,7 +124,7 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
               ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.quickreply_outlined, color: QuandoColors.amber),
+              secondary: Icon(Icons.quickreply_outlined, color: QuandoColors.amber),
               title: Text(l10n.busyReplies),
               value: s.replies,
               onChanged: _turnReplies,
@@ -192,7 +192,7 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
           ),
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
-            secondary: const Icon(Icons.lock_outline, color: QuandoColors.amber),
+            secondary: Icon(Icons.lock_outline, color: QuandoColors.amber),
             title: Text(l10n.busyDuringLock),
             subtitle: jewishHome ? Text(l10n.busyAskRabbi, style: text.bodySmall) : null,
             value: s.duringLock,

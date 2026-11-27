@@ -3762,6 +3762,18 @@ class AppLocalizationsPl extends AppLocalizations {
   String get uiEverything => 'Wszystko';
 
   @override
+  String get themeTitle => 'Motyw';
+
+  @override
+  String get themeAuto => 'Automatyczny';
+
+  @override
+  String get themeDark => 'Ciemny';
+
+  @override
+  String get themeLight => 'Jasny';
+
+  @override
   String get firstRunTitle => 'Ile chcesz widzieć?';
 
   @override

@@ -3761,6 +3761,18 @@ class AppLocalizationsUk extends AppLocalizations {
   String get uiEverything => 'Усе';
 
   @override
+  String get themeTitle => 'Тема';
+
+  @override
+  String get themeAuto => 'Авто';
+
+  @override
+  String get themeDark => 'Темна';
+
+  @override
+  String get themeLight => 'Світла';
+
+  @override
   String get firstRunTitle => 'Скільки ви хочете бачити?';
 
   @override

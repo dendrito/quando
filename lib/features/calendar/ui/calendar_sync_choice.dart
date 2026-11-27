@@ -45,7 +45,7 @@ class CalendarSyncChoice extends StatelessWidget {
             IconButton(
               key: const Key('syncHelp'),
               tooltip: l10n.syncHelpButton,
-              icon: const Icon(Icons.help_outline, color: QuandoColors.amber),
+              icon: Icon(Icons.help_outline, color: QuandoColors.amber),
               onPressed: () => showHelp(context),
             ),
           ],

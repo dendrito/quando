@@ -53,7 +53,7 @@ class LearningCard extends ConsumerWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Material(
-        color: QuandoColors.surface,
+        color: DuskColors.surface,
         borderRadius: BorderRadius.circular(20),
         child: Padding(
           padding: const EdgeInsets.all(16),

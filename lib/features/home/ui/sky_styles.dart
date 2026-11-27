@@ -108,13 +108,13 @@ class _SkyStyleBody extends StatelessWidget {
             children: [
               Text(
                 '${current!.celsius.round()}°',
-                style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+                style: text.displaySmall?.copyWith(color: DuskColors.text, fontWeight: FontWeight.w800),
               ),
               const SizedBox(width: 10),
               Flexible(
                 child: Text(
                   weatherLabel(current!.kind).toLowerCase(),
-                  style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                  style: text.titleLarge?.copyWith(color: DuskColors.text),
                 ),
               ),
             ],
@@ -122,7 +122,7 @@ class _SkyStyleBody extends StatelessWidget {
     Text line(String value, {TextAlign align = TextAlign.start}) => Text(
       value,
       textAlign: align,
-      style: text.bodySmall?.copyWith(color: QuandoColors.text),
+      style: text.bodySmall?.copyWith(color: DuskColors.text),
     );
     final times = Row(
       textDirection: TextDirection.ltr,
@@ -213,7 +213,7 @@ class _LivingSky extends StatelessWidget {
                     height: 56,
                     decoration: const BoxDecoration(
                       shape: BoxShape.circle,
-                      color: QuandoColors.amber,
+                      color: DuskColors.amber,
                       boxShadow: [BoxShadow(color: Color(0x88FFB547), blurRadius: 40, spreadRadius: 10)],
                     ),
                   ),
@@ -269,7 +269,7 @@ class _HorizonBand extends StatelessWidget {
               child: Container(
                 width: 6,
                 decoration: BoxDecoration(
-                  color: QuandoColors.text,
+                  color: DuskColors.text,
                   borderRadius: BorderRadius.circular(4),
                   boxShadow: const [BoxShadow(color: Color(0x88FFFFFF), blurRadius: 10)],
                 ),
@@ -303,7 +303,7 @@ class _DayRing extends StatelessWidget {
               child: Text(
                 hhmm(local),
                 style: Theme.of(context).textTheme.headlineMedium
-                    ?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+                    ?.copyWith(color: DuskColors.text, fontWeight: FontWeight.w800),
               ),
             ),
           ),
@@ -348,12 +348,12 @@ class _RingPainter extends CustomPainter {
       final r = _dayFraction(rise, zone), s = _dayFraction(set, zone);
       const twilight = 45 / 1440;
       arc(r - twilight, r, const Color(0xFFB5476F));
-      arc(r, s, QuandoColors.amber);
+      arc(r, s, DuskColors.amber);
       arc(s, s + twilight, const Color(0xFFB5476F));
     }
     final f = _dayFraction(sky.now, zone);
     final a = angle(f);
-    canvas.drawCircle(c + Offset(cos(a), sin(a)) * radius, 8, Paint()..color = QuandoColors.text);
+    canvas.drawCircle(c + Offset(cos(a), sin(a)) * radius, 8, Paint()..color = DuskColors.text);
   }
 
   @override
@@ -396,17 +396,17 @@ class _Timeline extends StatelessWidget {
                 top: 44,
                 child: Container(height: 3, color: const Color(0x55FFF4E6)),
               ),
-              mark(rise, QuandoColors.amber),
-              mark(set, QuandoColors.coral),
+              mark(rise, DuskColors.amber),
+              mark(set, DuskColors.coral),
               mark(nightfall, const Color(0xFFB5476F)),
-              mark(sky.now, QuandoColors.text, 30),
+              mark(sky.now, DuskColors.text, 30),
               if (nightfall != null)
                 Positioned(
                   left: x(nightfall!),
                   top: 0,
                   child: Text(
                     '✦ ✦',
-                    style: TextStyle(color: QuandoColors.text.withAlpha(200), letterSpacing: 6),
+                    style: TextStyle(color: DuskColors.text.withAlpha(200), letterSpacing: 6),
                   ),
                 ),
             ],

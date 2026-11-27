@@ -8,7 +8,7 @@ import 'package:quando/l10n/l10n.dart';
 
 /// Colour of an alarm group's dot, the same everywhere. No group is coral.
 Color groupColor(String group) {
-  if (group.isEmpty) return QuandoColors.coral;
+  if (group.isEmpty) return DuskColors.coral;
   const palette = [
     Color(0xFF7FD1AE),
     Color(0xFF7DB7FF),
@@ -68,7 +68,7 @@ class WeekRibbon extends StatelessWidget {
         children: [
           Text(
             weekdayNarrow(d.day.weekday),
-            style: text.labelSmall?.copyWith(color: on ? QuandoColors.amber : QuandoColors.blush),
+            style: text.labelSmall?.copyWith(color: on ? DuskColors.amber : DuskColors.blush),
           ),
           const SizedBox(height: 2),
           Container(
@@ -77,16 +77,16 @@ class WeekRibbon extends StatelessWidget {
             alignment: Alignment.center,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
-              color: d.today ? QuandoColors.coral : (on ? QuandoColors.raised : Colors.transparent),
+              color: d.today ? DuskColors.coral : (on ? DuskColors.raised : Colors.transparent),
               border: d.holy
-                  ? Border.all(color: QuandoColors.amber, width: 2)
+                  ? Border.all(color: DuskColors.amber, width: 2)
                   : on
-                  ? Border.all(color: QuandoColors.text, width: 1.5)
+                  ? Border.all(color: DuskColors.text, width: 1.5)
                   : null,
             ),
             child: Text(
               '${d.day.day}',
-              style: text.titleSmall?.copyWith(color: d.today ? QuandoColors.ground : QuandoColors.text),
+              style: text.titleSmall?.copyWith(color: d.today ? DuskColors.ground : DuskColors.text),
             ),
           ),
           const SizedBox(height: 3),
@@ -113,5 +113,5 @@ class WeekRibbon extends StatelessWidget {
 
   /// A dot's colour key is `g:<group>` for a user alarm or `e` for an event or Shabbat alarm.
   Color _dot(String key) =>
-      key == 'e' ? QuandoColors.amber : groupColor(key.startsWith('g:') ? key.substring(2) : '');
+      key == 'e' ? DuskColors.amber : groupColor(key.startsWith('g:') ? key.substring(2) : '');
 }

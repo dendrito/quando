@@ -284,7 +284,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     final text = Theme.of(context).textTheme;
     final now = DateTime.now();
     final snoozesLeft = p.maxSnoozes - p.snoozeCount;
-    const ink = QuandoColors.ground;
+    const ink = DuskColors.ground;
     final left = p.ringSeconds - now.difference(_openedAt).inSeconds;
     final embedded = p.localAudio && !p.shabbatSafe && !p.gentle && !p.isLock
         ? EmbeddedMusic.parse(p.song)
@@ -293,7 +293,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
     return PopScope(
       canPop: _stage == _Stage.done,
       child: Scaffold(
-        backgroundColor: QuandoColors.coral,
+        backgroundColor: DuskColors.coral,
         body: DefaultTextStyle.merge(
           style: const TextStyle(color: ink),
           child: SafeArea(
@@ -401,7 +401,7 @@ class _RingScreenState extends ConsumerState<RingScreen> {
   }
 
   List<Widget> _actions(TextTheme text, int snoozesLeft) {
-    const ink = QuandoColors.ground;
+    const ink = DuskColors.ground;
     switch (_stage) {
       case _Stage.sum:
         final (a, b) = _sum;
@@ -605,8 +605,8 @@ class _StopButtonState extends State<_StopButton> {
       child: FilledButton(
         onPressed: widget.onPressed,
         style: FilledButton.styleFrom(
-          backgroundColor: QuandoColors.ground,
-          foregroundColor: QuandoColors.text,
+          backgroundColor: DuskColors.ground,
+          foregroundColor: DuskColors.text,
           padding: const EdgeInsets.symmetric(horizontal: _pad),
           textStyle: const TextStyle(fontFamily: quandoFont, fontWeight: FontWeight.w800, fontSize: 22),
         ),
@@ -642,8 +642,8 @@ class _StopButtonState extends State<_StopButton> {
                         child: Container(
                           width: _knob,
                           height: _knob,
-                          decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
-                          child: const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+                          decoration: const BoxDecoration(color: DuskColors.amber, shape: BoxShape.circle),
+                          child: const Icon(Icons.arrow_forward, color: DuskColors.ground, size: 28),
                         ),
                       ),
                     ),
@@ -680,7 +680,7 @@ class _RingLeft extends StatelessWidget {
             Container(
               width: 120,
               height: 120,
-              decoration: const BoxDecoration(color: QuandoColors.amber, shape: BoxShape.circle),
+              decoration: const BoxDecoration(color: DuskColors.amber, shape: BoxShape.circle),
             ),
             SizedBox.square(
               dimension: 170,
@@ -688,18 +688,18 @@ class _RingLeft extends StatelessWidget {
                 value: left / total,
                 strokeWidth: 8,
                 strokeCap: StrokeCap.round,
-                color: QuandoColors.ground,
-                backgroundColor: QuandoColors.ground.withValues(alpha: 0.15),
+                color: DuskColors.ground,
+                backgroundColor: DuskColors.ground.withValues(alpha: 0.15),
               ),
             ),
             ExcludeSemantics(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('$m:$s', style: text.headlineMedium?.copyWith(color: QuandoColors.ground, height: 1)),
+                  Text('$m:$s', style: text.headlineMedium?.copyWith(color: DuskColors.ground, height: 1)),
                   Text(
                     l10n.leftToRing,
-                    style: text.bodySmall?.copyWith(color: QuandoColors.ground, fontWeight: FontWeight.w600),
+                    style: text.bodySmall?.copyWith(color: DuskColors.ground, fontWeight: FontWeight.w600),
                   ),
                 ],
               ),

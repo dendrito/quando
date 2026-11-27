@@ -557,7 +557,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
           ] else if (_step == 1) ...[
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
-              secondary: const Icon(Icons.notifications_active_outlined, color: QuandoColors.amber),
+              secondary: Icon(Icons.notifications_active_outlined, color: QuandoColors.amber),
               title: Text(l10n.ringAtEventReminders),
               subtitle: Text(l10n.ringAtEventRemindersHint),
               value: _rule.eventReminders,
@@ -566,7 +566,7 @@ class _CalendarRuleScreenState extends ConsumerState<CalendarRuleScreen> {
             if (!kodesh)
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
-                secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                secondary: Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
                 title: Text(l10n.busyDuringEvents),
                 subtitle: Text(l10n.busyDuringEventsHint),
                 value: _rule.busy,
@@ -739,7 +739,7 @@ class _Steps extends StatelessWidget {
                       radius: 16,
                       backgroundColor: i <= step ? QuandoColors.coral : QuandoColors.raised,
                       child: i < step
-                          ? const Icon(Icons.check, size: 18, color: QuandoColors.ground)
+                          ? Icon(Icons.check, size: 18, color: QuandoColors.ground)
                           : Text(
                               '${i + 1}',
                               style: TextStyle(

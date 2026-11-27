@@ -34,12 +34,12 @@ class _QMarkPainter extends CustomPainter {
     if (tile) {
       canvas.drawRRect(
         RRect.fromRectAndRadius(const Rect.fromLTWH(0, 0, 180, 180), const Radius.circular(44)),
-        Paint()..color = kodesh ? QuandoColors.ground : QuandoColors.coral,
+        Paint()..color = kodesh ? DuskColors.ground : DuskColors.coral,
       );
     }
     if (kodesh) return _matai(canvas);
-    final ink = tile ? QuandoColors.ground : QuandoColors.coral;
-    final hand = tile ? QuandoColors.text : QuandoColors.coral;
+    final ink = tile ? DuskColors.ground : DuskColors.coral;
+    final hand = tile ? DuskColors.text : DuskColors.coral;
     Paint stroke(Color c, double w) => Paint()
       ..color = c
       ..style = PaintingStyle.stroke
@@ -49,12 +49,12 @@ class _QMarkPainter extends CustomPainter {
     canvas.drawCircle(centre, 46, stroke(ink, 17));
     canvas.drawLine(centre, const Offset(86, 56), stroke(ink, 12));
     canvas.drawLine(centre, const Offset(146, 144), stroke(hand, 17));
-    if (tile) canvas.drawCircle(centre, 9, Paint()..color = QuandoColors.text);
+    if (tile) canvas.drawCircle(centre, 9, Paint()..color = DuskColors.text);
   }
 
   void _matai(Canvas canvas) {
     const centre = Offset(86, 84);
-    final ring = tile ? QuandoColors.amber : QuandoColors.coral;
+    final ring = tile ? DuskColors.amber : DuskColors.coral;
     canvas.drawCircle(
       centre,
       46,
@@ -83,17 +83,17 @@ class _QMarkPainter extends CustomPainter {
         top,
       )
       ..close();
-    canvas.drawPath(flame(50, 11, 82), Paint()..color = QuandoColors.coral);
-    if (tile) canvas.drawPath(flame(62, 5, 78), Paint()..color = QuandoColors.text);
+    canvas.drawPath(flame(50, 11, 82), Paint()..color = DuskColors.coral);
+    if (tile) canvas.drawPath(flame(62, 5, 78), Paint()..color = DuskColors.text);
     canvas.drawLine(
       centre,
       const Offset(146, 144),
       Paint()
-        ..color = tile ? QuandoColors.text : QuandoColors.coral
+        ..color = tile ? DuskColors.text : DuskColors.coral
         ..strokeWidth = 17
         ..strokeCap = StrokeCap.round,
     );
-    if (tile) canvas.drawCircle(centre, 9, Paint()..color = QuandoColors.text);
+    if (tile) canvas.drawCircle(centre, 9, Paint()..color = DuskColors.text);
   }
 
   @override
@@ -136,23 +136,23 @@ class _FlamePainter extends CustomPainter {
           const Offset(32, 36),
           22,
           Paint()
-            ..color = QuandoColors.amber.withValues(alpha: 0.35)
+            ..color = DuskColors.amber.withValues(alpha: 0.35)
             ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 14),
         );
       }
-      canvas.drawPath(_outer(), Paint()..color = QuandoColors.amber);
-      canvas.drawPath(_inner(), Paint()..color = QuandoColors.coral);
+      canvas.drawPath(_outer(), Paint()..color = DuskColors.amber);
+      canvas.drawPath(_inner(), Paint()..color = DuskColors.coral);
       canvas.drawRRect(
         RRect.fromRectAndRadius(const Rect.fromLTWH(20, 60, 24, 90), const Radius.circular(4)),
-        Paint()..color = QuandoColors.text,
+        Paint()..color = DuskColors.text,
       );
     } else {
       // The flame alone, scaled from the 64-wide candle drawing.
       final s = size.height / 52;
       canvas.scale(s);
       canvas.translate(size.width / s / 2 - 32, -4);
-      canvas.drawPath(_outer(), Paint()..color = QuandoColors.coral);
-      canvas.drawPath(_inner(), Paint()..color = QuandoColors.ground.withValues(alpha: 0.25));
+      canvas.drawPath(_outer(), Paint()..color = DuskColors.coral);
+      canvas.drawPath(_inner(), Paint()..color = DuskColors.ground.withValues(alpha: 0.25));
     }
   }
 
