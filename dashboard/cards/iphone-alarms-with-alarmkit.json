@@ -1,13 +1,13 @@
 {
   "id": "iphone-alarms-with-alarmkit",
   "title": "iPhone alarms with AlarmKit",
-  "status": "waiting",
+  "status": "review",
   "tag": "app",
-  "note": "PR open. Needs the five checks on a real iPhone.",
+  "note": "PR #93. Needs the five checks on a real iPhone.",
   "prs": [93],
   "threads": [
     "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk3PCXByin6rsv4VbosnMCTL"
   ],
-  "details": "On iOS 26 and later, a system alarm rings if the app was closed or swiped away.",
+  "details": "On iOS 26 and later, a system alarm rings if the app was closed or swiped away. Not on Shabbat or festivals.",
   "order": 200
 }
