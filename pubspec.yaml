@@ -65,6 +65,9 @@ flutter:
     - assets/sounds/
     - assets/brands/
     - assets/geo/
+    - path: assets/mine/
+      flavors:
+        - mine
     - third_party/suncalc/LICENSE
     - third_party/astronomia/LICENSE
     - third_party/hebcal/LICENSE

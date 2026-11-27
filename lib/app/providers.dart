@@ -1363,7 +1363,7 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
     ref.watch(localeProvider);
     try {
       final raw = _prefs.getString('sounds');
-      final mine = raw == null
+      final own = raw == null
           ? const <AlarmSound>[]
           : [for (final j in jsonDecode(raw) as List) AlarmSound.fromJson(j as Map<String, dynamic>)];
       // Drive songs follow you between devices; each device keeps its own
@@ -1379,9 +1379,9 @@ class SoundsNotifier extends Notifier<List<AlarmSound>> {
             drive: j['drive'] as String,
           ),
       ];
-      return [...AlarmSound.builtIns, ...mine, ...drive];
+      return [...AlarmSound.builtIns, if (mine) ...AlarmSound.mineVoices, ...own, ...drive];
     } catch (_) {
-      return AlarmSound.builtIns;
+      return [...AlarmSound.builtIns, if (mine) ...AlarmSound.mineVoices];
     }
   }
 
