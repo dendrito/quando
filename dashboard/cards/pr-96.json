@@ -1,7 +1,7 @@
 {
   "id": "pr-96",
   "title": "Recorded audio plays once, without the spoken reminder",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     96
