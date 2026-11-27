@@ -742,7 +742,8 @@ class _HomeScreenState extends ConsumerState<HomeScreen> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.zero,
+        // Room under the last item so the When? button never covers it.
+        padding: EdgeInsets.only(bottom: 84 + MediaQuery.paddingOf(context).bottom),
         children: [
           // ---- The living sky ----
           AnimatedContainer(
