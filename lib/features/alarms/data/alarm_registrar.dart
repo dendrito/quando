@@ -77,7 +77,7 @@ class AlarmRegistrar {
     dateTime: at.toLocal(),
     // null = the phone's alarm sound; otherwise built-in or the user's own.
     assetAudioPath: p.localAudio ? p.sound : null,
-    loopAudio: true,
+    loopAudio: p.loop,
     // The gentle lead-up only plays sound: no buzzing, no screen.
     vibrate: p.localAudio && !p.gentle,
     androidFullScreenIntent: p.localAudio && !p.gentle,
