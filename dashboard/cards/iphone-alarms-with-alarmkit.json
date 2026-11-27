@@ -4,7 +4,7 @@
   "status": "waiting",
   "tag": "app",
   "note": "PR open. Needs the five checks on a real iPhone.",
-  "prs": [],
+  "prs": [93],
   "threads": [
     "https://claude.ai/code/project/chan_01S2XqLxGrBPg2Wxfyp1KBzk?thread=cmsg_01S2XqLxGrBPg2Wxfyp1KBzk3PCXByin6rsv4VbosnMCTL"
   ],
