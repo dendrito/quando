@@ -1,5 +1,7 @@
+import '../../../app/edition.dart';
 import '../../events/domain/event.dart';
 import 'alarm_rule.dart';
+import 'reminder_delivery.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -18,6 +20,18 @@ class Presets {
       Duration(minutes: 15),
       Duration(minutes: 5),
     ],
+    // Quando Mine: Iris counts down, Daniel says "Shabat shalom" at lighting.
+    atEvent: mine,
+    deliveries: mine
+        ? {
+            -120: ReminderDelivery(soundId: 'mine.velas.120'),
+            -60: ReminderDelivery(soundId: 'mine.velas.60'),
+            -30: ReminderDelivery(soundId: 'mine.velas.30'),
+            -15: ReminderDelivery(soundId: 'mine.velas.15'),
+            -5: ReminderDelivery(soundId: 'mine.velas.5'),
+            0: ReminderDelivery(soundId: 'mine.shabat'),
+          }
+        : const {},
   );
 
   static AlarmRule get hourly => AlarmRule(
@@ -47,7 +61,16 @@ class Presets {
     name: l10n.havdalah,
     appliesTo: {EventKind.holyDayEnd},
     atEvent: true,
-    after: [Duration(minutes: 15)],
+    // Quando Mine: Iris at 15 and 5 minutes before, Daniel "Shabua tob" at the end.
+    before: mine ? [Duration(minutes: 15), Duration(minutes: 5)] : const [],
+    after: mine ? const [] : [Duration(minutes: 15)],
+    deliveries: mine
+        ? {
+            -15: ReminderDelivery(soundId: 'mine.velas.15'),
+            -5: ReminderDelivery(soundId: 'mine.velas.5'),
+            0: ReminderDelivery(soundId: 'mine.shabua'),
+          }
+        : const {},
   );
 
   static AlarmRule get fridayReminder => AlarmRule(
