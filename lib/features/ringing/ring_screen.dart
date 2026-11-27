@@ -372,15 +372,18 @@ class _RingScreenState extends ConsumerState<RingScreen> {
                             // Tapping the middle of the screen is the same
                             // as pressing Stop: any task or wake-up check
                             // still comes first.
-                            child: GestureDetector(
-                              key: const Key('ringCentre'),
-                              behavior: HitTestBehavior.opaque,
-                              onTap: _stage == _Stage.ringing ? (p.isCheck ? _stopNow : _onStop) : null,
-                              child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
-                                  ? Center(
-                                      child: _RingLeft(left: left, total: p.ringSeconds),
-                                    )
-                                  : const SizedBox.expand(),
+                            // Hidden from screen readers: the Stop button below says it.
+                            child: ExcludeSemantics(
+                              child: GestureDetector(
+                                key: const Key('ringCentre'),
+                                behavior: HitTestBehavior.opaque,
+                                onTap: _stage == _Stage.ringing ? (p.isCheck ? _stopNow : _onStop) : null,
+                                child: _stage == _Stage.ringing && p.ringSeconds > 0 && left > 0
+                                    ? Center(
+                                        child: _RingLeft(left: left, total: p.ringSeconds),
+                                      )
+                                    : const SizedBox.expand(),
+                              ),
                             ),
                           ),
                           ..._actions(text, snoozesLeft),

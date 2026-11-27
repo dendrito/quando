@@ -51,14 +51,16 @@ class AlarmGroupCard extends StatelessWidget {
               padding: const EdgeInsets.fromLTRB(20, 16, 14, 16),
               child: Row(
                 children: [
-                  Container(
-                    width: 44,
-                    height: 44,
-                    alignment: Alignment.center,
-                    decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
-                    child: Text(
-                      name.characters.first.toUpperCase(),
-                      style: text.titleLarge?.copyWith(color: QuandoColors.amber),
+                  ExcludeSemantics(
+                    child: Container(
+                      width: 44,
+                      height: 44,
+                      alignment: Alignment.center,
+                      decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                      child: Text(
+                        name.characters.first.toUpperCase(),
+                        style: text.titleLarge?.copyWith(color: QuandoColors.amber),
+                      ),
                     ),
                   ),
                   const SizedBox(width: 14),

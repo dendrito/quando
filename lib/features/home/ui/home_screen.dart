@@ -1161,7 +1161,10 @@ class _AlarmCard extends StatelessWidget {
                   ],
                 ),
               ),
-              Switch(value: on, onChanged: onToggle),
+              Semantics(
+                label: '${hhmm(DateTime(2000, 1, 1, alarm.hour, alarm.minute))} ${alarm.title}',
+                child: Switch(value: on, onChanged: onToggle),
+              ),
               PopupMenuButton<String>(
                 tooltip: l10n.more,
                 icon: const Icon(Icons.more_vert, color: QuandoColors.muted),
