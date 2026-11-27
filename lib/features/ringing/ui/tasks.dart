@@ -9,7 +9,7 @@ import '../../../app/theme.dart';
 import 'package:quando/l10n/l10n.dart';
 
 /// The ringing screen's tasks, drawn in plum on its coral background.
-const _ink = QuandoColors.ground;
+const _ink = DuskColors.ground;
 
 /// Find the six pairs. A wrong pair turns back over.
 class MemoryTask extends StatefulWidget {
@@ -81,16 +81,16 @@ class _MemoryTaskState extends State<MemoryTask> {
                 decoration: BoxDecoration(
                   color: _matched.contains(i)
                       ? _ink.withValues(alpha: 0.25)
-                      : (_up.contains(i) ? QuandoColors.text : _ink),
+                      : (_up.contains(i) ? DuskColors.text : _ink),
                   borderRadius: BorderRadius.circular(14),
                 ),
                 child: _matched.contains(i) || _up.contains(i)
                     ? Icon(
                         _cards[i],
-                        color: _matched.contains(i) ? QuandoColors.text : QuandoColors.coral,
+                        color: _matched.contains(i) ? DuskColors.text : DuskColors.coral,
                         size: 30,
                       )
-                    : const Icon(Icons.question_mark, color: QuandoColors.faint, size: 22),
+                    : const Icon(Icons.question_mark, color: DuskColors.faint, size: 22),
               ),
             ),
           ),
@@ -157,7 +157,7 @@ class _PhraseTaskState extends State<PhraseTask> {
         Align(
           alignment: Alignment.centerRight,
           child: FilledButton(
-            style: FilledButton.styleFrom(backgroundColor: _ink, foregroundColor: QuandoColors.text),
+            style: FilledButton.styleFrom(backgroundColor: _ink, foregroundColor: DuskColors.text),
             onPressed: _check,
             child: Text(l10n.done),
           ),
@@ -210,7 +210,7 @@ class _ScanTaskState extends State<ScanTask> {
                 color: _ink,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.all(16),
-                child: Text(l10n.cameraUnavailable, style: const TextStyle(color: QuandoColors.text)),
+                child: Text(l10n.cameraUnavailable, style: const TextStyle(color: DuskColors.text)),
               ),
             ),
           ),
@@ -252,7 +252,7 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
       body: ListView(
         padding: const EdgeInsets.fromLTRB(24, 8, 24, 40),
         children: [
-          Text(l10n.saveCodeHint, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+          Text(l10n.saveCodeHint, style: text.bodyMedium?.copyWith(color: DuskColors.muted)),
           const SizedBox(height: 16),
           ClipRRect(
             borderRadius: BorderRadius.circular(20),
@@ -266,7 +266,7 @@ class _ScanSetupScreenState extends State<ScanSetupScreen> {
                   Navigator.of(context).pop(code);
                 },
                 errorBuilder: (context, error) => Container(
-                  color: QuandoColors.surface,
+                  color: DuskColors.surface,
                   alignment: Alignment.center,
                   padding: const EdgeInsets.all(16),
                   child: Text(l10n.cameraUnavailableSettings),

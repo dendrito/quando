@@ -39,7 +39,7 @@ class AlarmGroupCard extends StatelessWidget {
     ].join(' · ');
 
     return Material(
-      color: QuandoColors.surface,
+      color: DuskColors.surface,
       borderRadius: const BorderRadius.all(Radius.circular(28)),
       clipBehavior: Clip.antiAlias,
       child: Column(
@@ -56,10 +56,10 @@ class AlarmGroupCard extends StatelessWidget {
                       width: 44,
                       height: 44,
                       alignment: Alignment.center,
-                      decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                      decoration: BoxDecoration(color: DuskColors.raised, shape: BoxShape.circle),
                       child: Text(
                         name.characters.first.toUpperCase(),
-                        style: text.titleLarge?.copyWith(color: QuandoColors.amber),
+                        style: text.titleLarge?.copyWith(color: DuskColors.amber),
                       ),
                     ),
                   ),
@@ -84,7 +84,7 @@ class AlarmGroupCard extends StatelessWidget {
                   AnimatedRotation(
                     turns: open ? 0.5 : 0,
                     duration: const Duration(milliseconds: 200),
-                    child: const Icon(Icons.expand_more, color: QuandoColors.muted),
+                    child: Icon(Icons.expand_more, color: DuskColors.muted),
                   ),
                   Switch(value: on > 0, onChanged: onToggleAll),
                 ],

@@ -3593,6 +3593,18 @@ class AppLocalizationsZh extends AppLocalizations {
   String get uiEverything => '全部';
 
   @override
+  String get themeTitle => '主题';
+
+  @override
+  String get themeAuto => '自动';
+
+  @override
+  String get themeDark => '深色';
+
+  @override
+  String get themeLight => '浅色';
+
+  @override
   String get firstRunTitle => '你想看到多少？';
 
   @override
@@ -7400,6 +7412,18 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
 
   @override
   String get uiEverything => '全部';
+
+  @override
+  String get themeTitle => '主题';
+
+  @override
+  String get themeAuto => '自动';
+
+  @override
+  String get themeDark => '深色';
+
+  @override
+  String get themeLight => '浅色';
 
   @override
   String get firstRunTitle => '你想看到多少？';

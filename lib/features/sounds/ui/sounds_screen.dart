@@ -707,7 +707,7 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
           if (isAndroid)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
+              leading: Icon(Icons.ios_share, color: QuandoColors.amber),
               title: Text(l10n.shareToQuando),
             ),
           // Signing in to the music services waits on their official

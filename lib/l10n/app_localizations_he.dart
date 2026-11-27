@@ -3675,6 +3675,18 @@ class AppLocalizationsHe extends AppLocalizations {
   String get uiEverything => 'הכול';
 
   @override
+  String get themeTitle => 'ערכת נושא';
+
+  @override
+  String get themeAuto => 'אוטומטי';
+
+  @override
+  String get themeDark => 'כהה';
+
+  @override
+  String get themeLight => 'בהיר';
+
+  @override
   String get firstRunTitle => 'כמה תרצו לראות?';
 
   @override

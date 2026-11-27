@@ -82,7 +82,7 @@ class LockScreen extends ConsumerWidget {
             Card(
               margin: const EdgeInsets.only(top: 12),
               child: ListTile(
-                leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+                leading: const Icon(Icons.local_fire_department_outlined, color: DuskColors.amber),
                 title: Text(l10n.lockShabbatFromCalendar),
                 subtitle: Text(
                   candles != null
@@ -151,7 +151,7 @@ class LockScreen extends ConsumerWidget {
               dense: true,
               title: Text(p.reason),
               subtitle: Text('${at(p.start)} → ${at(p.end)}', style: text.bodySmall),
-              trailing: const Icon(Icons.lock_outline, color: QuandoColors.amber, size: 18),
+              trailing: const Icon(Icons.lock_outline, color: DuskColors.amber, size: 18),
             ),
           const SizedBox(height: 16),
           Text(l10n.leaveLockEarly, style: text.bodySmall),

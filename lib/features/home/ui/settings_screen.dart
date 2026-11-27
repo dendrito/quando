@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+
+import '../../settings/ui/theme_switch.dart';
+
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -161,7 +164,7 @@ class SettingsScreen extends ConsumerWidget {
       if (!kodesh)
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
+          leading: Icon(Icons.local_fire_department_outlined, color: QuandoColors.amber),
           title: Text(l10n.shabbatAndFestivals),
           subtitle: Text(shabbatOn ? l10n.on : l10n.off),
           trailing: const Icon(Icons.chevron_right),
@@ -171,7 +174,7 @@ class SettingsScreen extends ConsumerWidget {
     final places = <Widget>[
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.public, color: QuandoColors.amber),
+        leading: Icon(Icons.public, color: QuandoColors.amber),
         title: Text(zones.fixed == null ? l10n.followPhone : cityOf(zones.fixed!)),
         subtitle: Text(
           zones.fixed == null
@@ -188,7 +191,7 @@ class SettingsScreen extends ConsumerWidget {
     final look = <Widget>[
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.translate, color: QuandoColors.amber),
+        leading: Icon(Icons.translate, color: QuandoColors.amber),
         title: Text(l10n.language),
         subtitle: Text(
           ref.watch(languageProvider) == null
@@ -200,7 +203,7 @@ class SettingsScreen extends ConsumerWidget {
       ),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.format_quote, color: QuandoColors.amber),
+        leading: Icon(Icons.format_quote, color: QuandoColors.amber),
         title: Text(l10n.quotesTitle),
         subtitle: Text(
           ref.watch(quoteSourcesProvider).isEmpty
@@ -225,7 +228,7 @@ class SettingsScreen extends ConsumerWidget {
       if (ref.read(syncProvider.notifier).available) const _AccountCard(),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.hub_outlined, color: QuandoColors.amber),
+        leading: Icon(Icons.hub_outlined, color: QuandoColors.amber),
         title: Text(l10n.connections),
         subtitle: const Text('Pushover, Zapier, IFTTT'),
         trailing: const Icon(Icons.chevron_right),
@@ -234,14 +237,14 @@ class SettingsScreen extends ConsumerWidget {
       if (!kodesh)
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+          leading: Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
           title: Text(l10n.busyMode),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => context.push('/busy'),
         ),
       ListTile(
         contentPadding: EdgeInsets.zero,
-        leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
+        leading: Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
         title: Text(l10n.weatherRemindersTitle),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => context.push('/weather-alarms'),
@@ -249,7 +252,7 @@ class SettingsScreen extends ConsumerWidget {
       if (isAndroid)
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
+          leading: Icon(Icons.ios_share, color: QuandoColors.amber),
           title: Text(l10n.shareCard),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => context.push('/share'),
@@ -268,7 +271,7 @@ class SettingsScreen extends ConsumerWidget {
           if (broken)
             ListTile(
               contentPadding: EdgeInsets.zero,
-              leading: const Icon(Icons.warning_amber_rounded, color: QuandoColors.coral),
+              leading: Icon(Icons.warning_amber_rounded, color: QuandoColors.coral),
               title: Text(l10n.alarmsMayNotRing),
               subtitle: Text(l10n.tapToFixIt),
               trailing: const Icon(Icons.chevron_right),
@@ -277,6 +280,7 @@ class SettingsScreen extends ConsumerWidget {
 
           // ---- Simple or Everything ----
           const LevelSwitch(),
+          const ThemeSwitch(),
 
           if (simple) ...[
             // ---- Quick setups ----
@@ -471,7 +475,7 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
         contentPadding: EdgeInsets.zero,
         leading: on && sync.photo != null
             ? CircleAvatar(radius: 16, foregroundImage: NetworkImage(sync.photo!))
-            : const Icon(Icons.sync, color: QuandoColors.amber),
+            : Icon(Icons.sync, color: QuandoColors.amber),
         title: Text(on && who.isNotEmpty ? who : '${l10n.syncTitle} · ${l10n.off}'),
         subtitle: on ? Text(l10n.syncOn(sync.email ?? '')) : null,
         trailing: const Icon(Icons.expand_more),
@@ -504,7 +508,7 @@ class _AccountCardState extends ConsumerState<_AccountCard> {
                     foregroundImage: on && sync.photo != null ? NetworkImage(sync.photo!) : null,
                     child: on && who.isNotEmpty
                         ? Text(who.characters.first.toUpperCase(), style: text.titleLarge)
-                        : const Icon(Icons.person_outline, color: QuandoColors.amber),
+                        : Icon(Icons.person_outline, color: QuandoColors.amber),
                   ),
                   const SizedBox(width: 14),
                   Expanded(

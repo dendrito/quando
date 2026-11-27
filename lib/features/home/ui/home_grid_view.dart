@@ -143,8 +143,8 @@ class _HomeGridViewState extends State<HomeGridView> {
           child: DecoratedBox(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(22),
-              border: Border.all(color: QuandoColors.amber.withAlpha(150), width: 2),
-              color: QuandoColors.amber.withAlpha(25),
+              border: Border.all(color: DuskColors.amber.withAlpha(150), width: 2),
+              color: DuskColors.amber.withAlpha(25),
             ),
           ),
         ),
@@ -162,9 +162,9 @@ class _HomeGridViewState extends State<HomeGridView> {
     final body = Container(
       clipBehavior: Clip.antiAlias,
       decoration: BoxDecoration(
-        color: spec.fill ?? QuandoColors.surface.withAlpha(150),
+        color: spec.fill ?? DuskColors.surface.withAlpha(150),
         borderRadius: BorderRadius.circular(22),
-        border: editing ? Border.all(color: QuandoColors.amber, width: 2) : null,
+        border: editing ? Border.all(color: DuskColors.amber, width: 2) : null,
         boxShadow: lifted ? const [BoxShadow(color: Color(0x99000000), blurRadius: 24)] : null,
       ),
       child: editing ? IgnorePointer(child: _content(spec)) : _content(spec),
@@ -202,7 +202,7 @@ class _HomeGridViewState extends State<HomeGridView> {
             key: ValueKey('remove-${p.card.name}'),
             tooltip: '${l10n.homeRemoveCard} · ${spec.title}',
             onTap: () => widget.onChanged(widget.grid.remove(p.card)),
-            child: const Icon(Icons.close, size: 16, color: QuandoColors.coral),
+            child: Icon(Icons.close, size: 16, color: DuskColors.coral),
           ),
         ),
         // Size menu: Small, Medium, Large.
@@ -228,7 +228,7 @@ class _HomeGridViewState extends State<HomeGridView> {
             ],
             child: Container(
               padding: const EdgeInsets.fromLTRB(10, 4, 4, 4),
-              decoration: BoxDecoration(color: QuandoColors.amber, borderRadius: BorderRadius.circular(12)),
+              decoration: BoxDecoration(color: DuskColors.amber, borderRadius: BorderRadius.circular(12)),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -236,8 +236,8 @@ class _HomeGridViewState extends State<HomeGridView> {
                     CardSize.small => 'S',
                     CardSize.medium => 'M',
                     CardSize.large => 'L',
-                  }, style: const TextStyle(color: QuandoColors.ground, fontWeight: FontWeight.w800)),
-                  const Icon(Icons.arrow_drop_down, size: 18, color: QuandoColors.ground),
+                  }, style: TextStyle(color: DuskColors.ground, fontWeight: FontWeight.w800)),
+                  Icon(Icons.arrow_drop_down, size: 18, color: DuskColors.ground),
                 ],
               ),
             ),
@@ -275,11 +275,11 @@ class _HomeGridViewState extends State<HomeGridView> {
             key: ValueKey('corner-${p.card.name}'),
             mode: _Drag.corner,
             cursor: SystemMouseCursors.resizeDownRight,
-            child: const Align(
+            child: Align(
               alignment: Alignment.bottomRight,
               child: Padding(
                 padding: EdgeInsets.all(8),
-                child: Icon(Icons.south_east, size: 16, color: QuandoColors.amber),
+                child: Icon(Icons.south_east, size: 16, color: DuskColors.amber),
               ),
             ),
           ),
@@ -291,7 +291,7 @@ class _HomeGridViewState extends State<HomeGridView> {
   Widget _bar({required bool vertical}) => Container(
     width: vertical ? 6 : 44,
     height: vertical ? 44 : 6,
-    decoration: BoxDecoration(color: QuandoColors.amber, borderRadius: BorderRadius.circular(3)),
+    decoration: BoxDecoration(color: DuskColors.amber, borderRadius: BorderRadius.circular(3)),
   );
 
   /// The card's own content, scrolling inside the card when it is taller.
@@ -312,7 +312,7 @@ class _Badge extends StatelessWidget {
   Widget build(BuildContext context) => Tooltip(
     message: tooltip,
     child: Material(
-      color: QuandoColors.ground,
+      color: DuskColors.ground,
       shape: const CircleBorder(),
       child: InkWell(
         customBorder: const CircleBorder(),

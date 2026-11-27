@@ -154,12 +154,12 @@ class _ArcPainter extends CustomPainter {
       i == 0 ? path.moveTo(p.dx, p.dy) : path.lineTo(p.dx, p.dy);
     }
     path.close();
-    canvas.drawCircle(c, r * 1.5, Paint()..color = QuandoColors.amber.withValues(alpha: .3));
-    canvas.drawPath(path, Paint()..color = QuandoColors.text);
+    canvas.drawCircle(c, r * 1.5, Paint()..color = DuskColors.amber.withValues(alpha: .3));
+    canvas.drawPath(path, Paint()..color = DuskColors.text);
     canvas.drawPath(
       path,
       Paint()
-        ..color = QuandoColors.coral
+        ..color = DuskColors.coral
         ..style = PaintingStyle.stroke
         ..strokeWidth = 1.5
         ..strokeJoin = StrokeJoin.round,
@@ -198,12 +198,12 @@ class _ArcPainter extends CustomPainter {
       Offset(0, horizon),
       Offset(w, horizon),
       Paint()
-        ..color = QuandoColors.blush.withValues(alpha: 0.45)
+        ..color = DuskColors.blush.withValues(alpha: 0.45)
         ..strokeWidth = 1.5,
     );
 
     // The whole day, dotted.
-    final dots = Paint()..color = QuandoColors.blush.withValues(alpha: 0.6);
+    final dots = Paint()..color = DuskColors.blush.withValues(alpha: 0.6);
     final day = daylight;
     if (day != null && day.length > 1) {
       // Moon path: amber where the Moon is up in daylight, silver at night.
@@ -211,8 +211,7 @@ class _ArcPainter extends CustomPainter {
         canvas.drawCircle(
           point(i / (day.length - 1)),
           1.8,
-          Paint()
-            ..color = day[i] ? QuandoColors.amber.withValues(alpha: .9) : moonlight.withValues(alpha: .9),
+          Paint()..color = day[i] ? DuskColors.amber.withValues(alpha: .9) : moonlight.withValues(alpha: .9),
         );
       }
     } else {
@@ -230,7 +229,7 @@ class _ArcPainter extends CustomPainter {
       canvas.drawPath(
         arc(0, done),
         Paint()
-          ..color = QuandoColors.amber
+          ..color = DuskColors.amber
           ..style = PaintingStyle.stroke
           ..strokeWidth = 4
           ..strokeCap = StrokeCap.round,
@@ -248,13 +247,13 @@ class _ArcPainter extends CustomPainter {
       final at = point(stop.t.clamp(0.0, 1.0));
       final lived = stop.t <= done;
       if (stop.hour.kind == WeatherKind.clear) {
-        final body = stop.hour.night ? moonlight : QuandoColors.amber;
+        final body = stop.hour.night ? moonlight : DuskColors.amber;
         canvas.drawCircle(at, 9, Paint()..color = lived ? body : body.withValues(alpha: .55));
         canvas.drawCircle(
           at,
           9,
           Paint()
-            ..color = QuandoColors.text
+            ..color = DuskColors.text
             ..style = PaintingStyle.stroke
             ..strokeWidth = 2,
         );
@@ -274,8 +273,8 @@ class _ArcPainter extends CustomPainter {
       final now = nowLabel;
       if (now != null) _label(canvas, size, now, sun - const Offset(0, 42), bold: true);
     } else if (moon == null && p >= 0 && p <= 1) {
-      canvas.drawCircle(sun, 20, Paint()..color = QuandoColors.coral.withValues(alpha: 0.3));
-      canvas.drawCircle(sun, 11, Paint()..color = QuandoColors.amber);
+      canvas.drawCircle(sun, 20, Paint()..color = DuskColors.coral.withValues(alpha: 0.3));
+      canvas.drawCircle(sun, 11, Paint()..color = DuskColors.amber);
       // The Sun behind today's clouds, rain or snow.
       if (kind != null && kind != WeatherKind.clear) _cover(canvas, sun, kind);
       final now = nowLabel;
@@ -285,7 +284,7 @@ class _ArcPainter extends CustomPainter {
         sun,
         8,
         Paint()
-          ..color = QuandoColors.blush
+          ..color = DuskColors.blush
           ..style = PaintingStyle.stroke
           ..strokeWidth = 2,
       );
@@ -312,7 +311,7 @@ class _ArcPainter extends CustomPainter {
       text: TextSpan(
         text: text,
         style: base.copyWith(
-          color: QuandoColors.text,
+          color: DuskColors.text,
           fontWeight: bold ? FontWeight.w700 : null,
           shadows: const [Shadow(color: Color(0x66000000), blurRadius: 4)],
         ),
@@ -412,7 +411,7 @@ class _MoonPainter extends CustomPainter {
 }
 
 void paintMoon(Canvas canvas, Offset center, double radius, MoonIllumination light) {
-  canvas.drawCircle(center, radius, Paint()..color = QuandoColors.ground);
+  canvas.drawCircle(center, radius, Paint()..color = DuskColors.ground);
   final path = Path();
   final side = light.phase < .5 ? 1.0 : -1.0;
   final terminator = 1 - 2 * light.fraction;
@@ -429,12 +428,12 @@ void paintMoon(Canvas canvas, Offset center, double radius, MoonIllumination lig
     );
   }
   path.close();
-  canvas.drawPath(path, Paint()..color = QuandoColors.text);
+  canvas.drawPath(path, Paint()..color = DuskColors.text);
   canvas.drawCircle(
     center,
     radius,
     Paint()
-      ..color = QuandoColors.blush.withValues(alpha: .5)
+      ..color = DuskColors.blush.withValues(alpha: .5)
       ..style = PaintingStyle.stroke
       ..strokeWidth = 1,
   );

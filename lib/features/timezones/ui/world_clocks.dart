@@ -74,7 +74,7 @@ class _WorldClocksState extends ConsumerState<WorldClocks> {
           contentPadding: EdgeInsets.zero,
           dense: true,
           title: Text(l10n.cityHere(cityOf(home)), style: text.bodyMedium),
-          trailing: Text(hhmm(homeLocal), style: text.titleLarge?.copyWith(color: QuandoColors.amber)),
+          trailing: Text(hhmm(homeLocal), style: text.titleLarge?.copyWith(color: DuskColors.amber)),
         ),
         for (final z in zones.clocks)
           Dismissible(

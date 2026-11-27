@@ -6676,6 +6676,30 @@ abstract class AppLocalizations {
   /// **'Everything'**
   String get uiEverything;
 
+  /// No description provided for @themeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Theme'**
+  String get themeTitle;
+
+  /// No description provided for @themeAuto.
+  ///
+  /// In en, this message translates to:
+  /// **'Auto'**
+  String get themeAuto;
+
+  /// No description provided for @themeDark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get themeDark;
+
+  /// No description provided for @themeLight.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get themeLight;
+
   /// No description provided for @firstRunTitle.
   ///
   /// In en, this message translates to:

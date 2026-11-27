@@ -138,7 +138,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
             Expanded(
               child: Text(
                 sky.sunrise == null ? '' : l10n.sunriseAt(time(sky.sunrise, '')),
-                style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                style: text.bodySmall?.copyWith(color: DuskColors.blush),
               ),
             ),
             Flexible(
@@ -149,7 +149,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                     ? '${l10n.sunsetAt(time(sky.sunset, ''))} · ${countdown(sky.sunset!.difference(sky.now))}'
                     : l10n.sunsetAt(time(sky.sunset, '')),
                 textAlign: TextAlign.end,
-                style: text.bodySmall?.copyWith(color: QuandoColors.blush),
+                style: text.bodySmall?.copyWith(color: DuskColors.blush),
               ),
             ),
           ],
@@ -198,7 +198,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                 ? moonSky.colors
                 : nightCard
                 ? const [Color(0xFF141033), Color(0xFF1E1846), Color(0xFF2B1F4E)]
-                : [skyNow.color, Color.lerp(skyNow.color, QuandoColors.ground, .35)!],
+                : [skyNow.color, Color.lerp(skyNow.color, DuskColors.ground, .35)!],
           ),
         ),
         foregroundDecoration: moonSky == null
@@ -233,7 +233,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                             Text(
                               '${current.celsius.round()}°',
                               style: text.displaySmall?.copyWith(
-                                color: QuandoColors.text,
+                                color: DuskColors.text,
                                 fontWeight: FontWeight.w800,
                               ),
                             ),
@@ -241,7 +241,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                             Flexible(
                               child: Text(
                                 weatherLabel(current.kind).toLowerCase(),
-                                style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                                style: text.titleLarge?.copyWith(color: DuskColors.text),
                               ),
                             ),
                           ],
@@ -419,7 +419,7 @@ class _SkyPanelState extends ConsumerState<SkyPanel> {
                             TextButton(
                               onPressed: () => _toPage(context, i),
                               style: TextButton.styleFrom(
-                                foregroundColor: _page == i ? QuandoColors.amber : QuandoColors.blush,
+                                foregroundColor: _page == i ? DuskColors.amber : DuskColors.blush,
                               ),
                               child: Text(pages[i].label),
                             ),
@@ -526,10 +526,10 @@ class _SunWeatherCard extends ConsumerWidget {
       children: [
         Text(
           title.toUpperCase(),
-          style: text.labelSmall?.copyWith(color: QuandoColors.blush, letterSpacing: .8),
+          style: text.labelSmall?.copyWith(color: DuskColors.blush, letterSpacing: .8),
         ),
         const SizedBox(height: 2),
-        Text(describe(h), style: text.bodyMedium?.copyWith(color: QuandoColors.text)),
+        Text(describe(h), style: text.bodyMedium?.copyWith(color: DuskColors.text)),
       ],
     );
     // By day the card's sky runs from sunrise (left) to sunset (right), with
@@ -585,19 +585,19 @@ class _SunWeatherCard extends ConsumerWidget {
                 children: [
                   Text(
                     '${current.celsius.round()}°',
-                    style: text.displaySmall?.copyWith(color: QuandoColors.text, fontWeight: FontWeight.w800),
+                    style: text.displaySmall?.copyWith(color: DuskColors.text, fontWeight: FontWeight.w800),
                   ),
                   const SizedBox(width: 10),
                   Flexible(
                     child: Text(
                       weatherLabel(current.kind).toLowerCase(),
-                      style: text.titleLarge?.copyWith(color: QuandoColors.text),
+                      style: text.titleLarge?.copyWith(color: DuskColors.text),
                     ),
                   ),
                 ],
               ),
               if (subtitle.isNotEmpty)
-                Text(subtitle, style: text.bodySmall?.copyWith(color: QuandoColors.blush)),
+                Text(subtitle, style: text.bodySmall?.copyWith(color: DuskColors.blush)),
               if (isNight)
                 const SizedBox(height: 120)
               else
@@ -612,13 +612,13 @@ class _SunWeatherCard extends ConsumerWidget {
                 textDirection: TextDirection.ltr,
                 children: [
                   Expanded(
-                    child: Text(leftLabel, style: text.bodySmall?.copyWith(color: QuandoColors.text)),
+                    child: Text(leftLabel, style: text.bodySmall?.copyWith(color: DuskColors.text)),
                   ),
                   Expanded(
                     child: Text(
                       rightLabel,
                       textAlign: TextAlign.end,
-                      style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                      style: text.bodySmall?.copyWith(color: DuskColors.text),
                     ),
                   ),
                 ],
@@ -635,7 +635,7 @@ class _SunWeatherCard extends ConsumerWidget {
                         child: Text(
                           nightfall!,
                           textAlign: TextAlign.end,
-                          style: text.bodySmall?.copyWith(color: QuandoColors.text),
+                          style: text.bodySmall?.copyWith(color: DuskColors.text),
                         ),
                       ),
                   ],
@@ -711,7 +711,7 @@ class SkyStars extends CustomPainter {
       canvas.drawCircle(
         Offset(x * size.width, y * size.height),
         r,
-        Paint()..color = QuandoColors.text.withValues(alpha: a * dark),
+        Paint()..color = DuskColors.text.withValues(alpha: a * dark),
       );
     }
   }

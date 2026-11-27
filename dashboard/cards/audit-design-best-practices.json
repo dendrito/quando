@@ -4,7 +4,7 @@
   "status": "done",
   "group": "Launch",
   "order": 207,
-  "note": "Design audit fixes in four PRs: contrast, screen reader, captions, text-scale and tap targets. Light theme waiting on a decision.",
+  "note": "Design audit fixes merged (#84 to #87). Light theme (Auto, Dark, Light in Settings) in its own PR.",
   "prs": [
     84,
     85,

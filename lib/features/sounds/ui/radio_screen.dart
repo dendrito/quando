@@ -294,8 +294,8 @@ class _RadioScreenState extends ConsumerState<RadioScreen> {
                           style: text.bodySmall,
                         ),
                         trailing: mine.contains(s.id)
-                            ? const Icon(Icons.check, color: QuandoColors.muted)
-                            : (playing ? const Icon(Icons.graphic_eq, color: QuandoColors.coral) : null),
+                            ? Icon(Icons.check, color: QuandoColors.muted)
+                            : (playing ? Icon(Icons.graphic_eq, color: QuandoColors.coral) : null),
                         onTap: () => _tap(r),
                       );
                     },

@@ -3763,6 +3763,18 @@ class AppLocalizationsRu extends AppLocalizations {
   String get uiEverything => 'Всё';
 
   @override
+  String get themeTitle => 'Тема';
+
+  @override
+  String get themeAuto => 'Авто';
+
+  @override
+  String get themeDark => 'Тёмная';
+
+  @override
+  String get themeLight => 'Светлая';
+
+  @override
   String get firstRunTitle => 'Сколько вы хотите видеть?';
 
   @override

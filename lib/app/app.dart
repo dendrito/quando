@@ -327,10 +327,16 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
   @override
   Widget build(BuildContext context) {
     final language = ref.watch(languageProvider);
+    final choice = ref.watch(themeChoiceProvider);
+    final light = switch (choice) {
+      ThemeChoice.light => true,
+      ThemeChoice.dark => false,
+      ThemeChoice.auto => MediaQuery.platformBrightnessOf(context) == Brightness.light,
+    };
     return MaterialApp.router(
       onGenerateTitle: (_) => appTitle,
       debugShowCheckedModeBanner: false,
-      theme: buildTheme(),
+      theme: buildTheme(light: light),
       routerConfig: _router,
       scaffoldMessengerKey: _messenger,
       locale: language == null ? null : localeFromTag(language),
@@ -346,7 +352,7 @@ class _QuandoAppState extends ConsumerState<QuandoApp> with WidgetsBindingObserv
       },
       // A new language rebuilds every screen with the new words.
       builder: (context, child) => KeyedSubtree(
-        key: ValueKey(Localizations.localeOf(context)),
+        key: ValueKey((Localizations.localeOf(context), light)),
         child: LockGate(child: child!),
       ),
     );

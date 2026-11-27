@@ -98,7 +98,7 @@ class _LoudNotificationsSectionState extends ConsumerState<LoudNotificationsSect
         Text(l10n.loudNotificationsHeading, style: text.labelSmall),
         SwitchListTile(
           contentPadding: EdgeInsets.zero,
-          secondary: const Icon(Icons.campaign_outlined, color: QuandoColors.amber),
+          secondary: Icon(Icons.campaign_outlined, color: QuandoColors.amber),
           title: Text(l10n.loudNotificationsTitle),
           subtitle: Text(l10n.loudNotificationsHint, style: text.bodySmall),
           value: on,

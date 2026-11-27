@@ -376,7 +376,7 @@ class _EditAlarmScreenState extends ConsumerState<EditAlarmScreen> {
                 if (!kodesh)
                   ListTile(
                     contentPadding: EdgeInsets.zero,
-                    leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
+                    leading: Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
                     title: Text(l10n.busyAfterRing),
                     subtitle: Text(l10n.busyAfterRingHint, style: text.bodySmall),
                     trailing: ConstrainedBox(

@@ -3715,6 +3715,18 @@ class AppLocalizationsDe extends AppLocalizations {
   String get uiEverything => 'Alles';
 
   @override
+  String get themeTitle => 'Design';
+
+  @override
+  String get themeAuto => 'Automatisch';
+
+  @override
+  String get themeDark => 'Dunkel';
+
+  @override
+  String get themeLight => 'Hell';
+
+  @override
   String get firstRunTitle => 'Wie viel möchtest du sehen?';
 
   @override

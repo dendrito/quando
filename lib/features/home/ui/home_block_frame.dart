@@ -42,9 +42,9 @@ class HomeBlockFrame extends StatelessWidget {
     return Container(
       margin: const EdgeInsets.fromLTRB(16, 0, 16, 12),
       decoration: BoxDecoration(
-        color: color ?? QuandoColors.raised.withValues(alpha: .45),
+        color: color ?? DuskColors.raised.withValues(alpha: .45),
         borderRadius: BorderRadius.circular(24),
-        border: editing ? Border.all(color: QuandoColors.amber.withValues(alpha: .8), width: 1.5) : null,
+        border: editing ? Border.all(color: DuskColors.amber.withValues(alpha: .8), width: 1.5) : null,
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,

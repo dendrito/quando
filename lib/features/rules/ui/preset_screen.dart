@@ -211,7 +211,7 @@ Future<Duration?> _askOffset(BuildContext context) {
               final d = Duration(minutes: n * unit);
               Navigator.pop(context, before ? -d : d);
             },
-            child: Text(l10n.add, style: const TextStyle(color: QuandoColors.amber)),
+            child: Text(l10n.add, style: TextStyle(color: QuandoColors.amber)),
           ),
         ],
       ),

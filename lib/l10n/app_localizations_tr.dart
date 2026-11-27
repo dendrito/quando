@@ -3689,6 +3689,18 @@ class AppLocalizationsTr extends AppLocalizations {
   String get uiEverything => 'Her şey';
 
   @override
+  String get themeTitle => 'Tema';
+
+  @override
+  String get themeAuto => 'Otomatik';
+
+  @override
+  String get themeDark => 'Koyu';
+
+  @override
+  String get themeLight => 'Açık';
+
+  @override
   String get firstRunTitle => 'Ne kadarını görmek istersin?';
 
   @override

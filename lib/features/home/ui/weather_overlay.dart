@@ -123,7 +123,7 @@ class WeatherOverlayPainter extends CustomPainter {
         rect,
         Paint()
           ..shader = LinearGradient(
-            colors: [for (final v in stops) QuandoColors.text.withValues(alpha: .16 * v)],
+            colors: [for (final v in stops) DuskColors.text.withValues(alpha: .16 * v)],
           ).createShader(rect),
       );
     }
@@ -142,7 +142,7 @@ class WeatherOverlayPainter extends CustomPainter {
       final len = 9 + _rand(i, 5) * 8;
       // Faint and eased in, so forecast rain reads as a hint, not as lines.
       final soft = strength.clamp(0, 1) * strength.clamp(0, 1);
-      rain.color = QuandoColors.text.withValues(alpha: (.08 + .14 * _rand(i, 6)) * soft);
+      rain.color = DuskColors.text.withValues(alpha: (.08 + .14 * _rand(i, 6)) * soft);
       canvas.drawLine(Offset(x * w, y), Offset(x * w - len * .22, y + len), rain);
     }
 
@@ -156,7 +156,7 @@ class WeatherOverlayPainter extends CustomPainter {
       canvas.drawCircle(
         Offset(x * w + dx, phase * (h + 20) - 10),
         1.2 + _rand(i, 11) * 1.4,
-        Paint()..color = QuandoColors.text.withValues(alpha: .7 * strength.clamp(0, 1)),
+        Paint()..color = DuskColors.text.withValues(alpha: .7 * strength.clamp(0, 1)),
       );
     }
 
@@ -188,7 +188,7 @@ class WeatherOverlayPainter extends CustomPainter {
           Paint()
             ..shader = RadialGradient(
               colors: [
-                QuandoColors.text.withValues(alpha: .38 * glow),
+                DuskColors.text.withValues(alpha: .38 * glow),
                 const Color(0x00FFFFFF),
               ],
             ).createShader(haze),

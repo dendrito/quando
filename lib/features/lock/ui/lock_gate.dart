@@ -161,7 +161,7 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
     return PopScope(
       canPop: false,
       child: Material(
-        color: QuandoColors.night,
+        color: DuskColors.night,
         child: SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(28, 32, 28, 28),
@@ -188,25 +188,25 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                 Text(
                   widget.period.reason,
                   textAlign: TextAlign.center,
-                  style: text.bodyLarge?.copyWith(color: QuandoColors.muted),
+                  style: text.bodyLarge?.copyWith(color: DuskColors.muted),
                 ),
                 const Spacer(),
                 Text(l10n.unlocksHeading, textAlign: TextAlign.center, style: text.labelSmall),
                 Text(
                   hhmm(endLocal),
                   textAlign: TextAlign.center,
-                  style: text.displayLarge?.copyWith(color: QuandoColors.amber, fontSize: 80),
+                  style: text.displayLarge?.copyWith(color: DuskColors.amber, fontSize: 80),
                 ),
                 Text(
                   '${dayLabel(endLocal)} · ${countdown(widget.period.end.difference(now))}',
                   textAlign: TextAlign.center,
-                  style: text.bodyMedium?.copyWith(color: QuandoColors.muted),
+                  style: text.bodyMedium?.copyWith(color: DuskColors.muted),
                 ),
                 const Spacer(),
                 Container(
                   padding: const EdgeInsets.fromLTRB(20, 16, 20, 16),
                   decoration: const BoxDecoration(
-                    color: QuandoColors.surface,
+                    color: DuskColors.surface,
                     borderRadius: BorderRadius.all(Radius.circular(28)),
                   ),
                   child: Column(
@@ -230,9 +230,9 @@ class _LockViewState extends ConsumerState<_LockView> with SingleTickerProviderS
                       height: 60,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(30),
-                        border: Border.all(color: QuandoColors.outline, width: 1.5),
+                        border: Border.all(color: DuskColors.outline, width: 1.5),
                         gradient: LinearGradient(
-                          colors: [QuandoColors.amber.withValues(alpha: 0.4), Colors.transparent],
+                          colors: [DuskColors.amber.withValues(alpha: 0.4), Colors.transparent],
                           stops: [_hold.value, _hold.value],
                         ),
                       ),
@@ -264,7 +264,7 @@ class _Row extends StatelessWidget {
       children: [
         SizedBox(
           width: 96,
-          child: Text(label, style: text.bodyMedium?.copyWith(color: QuandoColors.muted)),
+          child: Text(label, style: text.bodyMedium?.copyWith(color: DuskColors.muted)),
         ),
         Expanded(
           child: Text(value, style: text.bodyLarge?.copyWith(fontWeight: FontWeight.w600)),
@@ -311,16 +311,16 @@ class _CalmOrbState extends State<_CalmOrb> with SingleTickerProviderStateMixin 
               shape: BoxShape.circle,
               gradient: RadialGradient(
                 colors: [
-                  QuandoColors.blush,
-                  QuandoColors.blush.withValues(alpha: 0.85),
-                  QuandoColors.coral.withValues(alpha: 0.3 + 0.15 * t),
+                  DuskColors.blush,
+                  DuskColors.blush.withValues(alpha: 0.85),
+                  DuskColors.coral.withValues(alpha: 0.3 + 0.15 * t),
                   Colors.transparent,
                 ],
                 stops: const [0.0, 0.42, 0.6, 1.0],
               ),
             ),
             alignment: Alignment.center,
-            child: const Icon(Icons.lock_outline, size: 34, color: QuandoColors.night),
+            child: const Icon(Icons.lock_outline, size: 34, color: DuskColors.night),
           ),
         );
       },

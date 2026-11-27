@@ -17,9 +17,9 @@ class ShabbatCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    const ink = QuandoColors.ground;
+    final ink = DuskColors.ground;
     return Material(
-      color: QuandoColors.amber,
+      color: DuskColors.amber,
       borderRadius: const BorderRadius.all(Radius.circular(28)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -27,7 +27,7 @@ class ShabbatCard extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 18, 20, 18),
           child: DefaultTextStyle.merge(
-            style: const TextStyle(color: ink),
+            style: TextStyle(color: ink),
             child: Row(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -42,7 +42,7 @@ class ShabbatCard extends StatelessWidget {
                           Expanded(
                             child: Text(title, style: text.labelSmall?.copyWith(color: ink)),
                           ),
-                          if (onTap != null) const Icon(Icons.chevron_right, color: ink),
+                          if (onTap != null) Icon(Icons.chevron_right, color: ink),
                         ],
                       ),
                       const SizedBox(height: 6),
@@ -71,7 +71,7 @@ class ShabbatTimeRow extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    const ink = QuandoColors.ground;
+    final ink = DuskColors.ground;
     return Row(
       children: [
         Expanded(

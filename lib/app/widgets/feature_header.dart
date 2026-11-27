@@ -22,7 +22,7 @@ class FeatureHeader extends StatelessWidget {
           Container(
             width: 88,
             height: 88,
-            decoration: const BoxDecoration(
+            decoration: BoxDecoration(
               shape: BoxShape.circle,
               gradient: LinearGradient(
                 begin: Alignment.topLeft,

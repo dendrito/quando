@@ -95,6 +95,26 @@ class HomeDisplayNotifier extends Notifier<HomeDisplay> {
 
 final homeDisplayProvider = NotifierProvider<HomeDisplayNotifier, HomeDisplay>(HomeDisplayNotifier.new);
 
+// ---- Theme: the phone's, Dark or Light ----
+
+enum ThemeChoice { auto, dark, light }
+
+class ThemeChoiceNotifier extends Notifier<ThemeChoice> {
+  static const key = 'ui.theme';
+
+  @override
+  ThemeChoice build() =>
+      ThemeChoice.values.where((t) => t.name == ref.read(prefsProvider).getString(key)).firstOrNull ??
+      ThemeChoice.auto;
+
+  void set(ThemeChoice choice) {
+    ref.read(prefsProvider).setString(key, choice.name);
+    state = choice;
+  }
+}
+
+final themeChoiceProvider = NotifierProvider<ThemeChoiceNotifier, ThemeChoice>(ThemeChoiceNotifier.new);
+
 // ---- Simple or Everything ----
 
 class UiLevelNotifier extends Notifier<UiLevel> {

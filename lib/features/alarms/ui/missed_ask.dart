@@ -36,13 +36,13 @@ class _MissedAskState extends ConsumerState<MissedAsk> {
       padding: const EdgeInsets.only(bottom: 12),
       child: Material(
         key: const Key('missedAsk'),
-        color: QuandoColors.surface,
+        color: DuskColors.surface,
         borderRadius: BorderRadius.circular(20),
         child: Padding(
           padding: const EdgeInsets.fromLTRB(18, 8, 8, 8),
           child: Row(
             children: [
-              const Icon(Icons.alarm_off, color: QuandoColors.coral),
+              Icon(Icons.alarm_off, color: DuskColors.coral),
               const SizedBox(width: 12),
               Expanded(child: Text(l10n.missedAsk(time), style: text.titleMedium)),
               TextButton(

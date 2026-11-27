@@ -32,13 +32,13 @@ class PreparationControls extends ConsumerWidget {
       children: [
         ListTile(
           contentPadding: EdgeInsets.zero,
-          leading: const Icon(Icons.place_outlined, color: QuandoColors.amber),
+          leading: Icon(Icons.place_outlined, color: DuskColors.amber),
           title: Text(timesInLabel(place.name, place.timeZone)),
           subtitle: Text(l10n.changeCity),
           onTap: () => pickShabbatPlace(context),
         ),
         Material(
-          color: QuandoColors.surface,
+          color: DuskColors.surface,
           borderRadius: BorderRadius.circular(24),
           child: Padding(
             padding: const EdgeInsets.all(16),

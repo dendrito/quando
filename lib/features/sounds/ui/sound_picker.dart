@@ -121,11 +121,11 @@ class SoundPickerTile extends ConsumerWidget {
                             (const ServiceLogo(MusicService.youTube, size: 20), 'YouTube'),
                             (const ServiceLogo(MusicService.youTubeMusic, size: 20), 'YouTube Music'),
                             (
-                              const Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber),
+                              Icon(Icons.audio_file_outlined, size: 20, color: QuandoColors.amber),
                               l10n.addAFile,
                             ),
                             (
-                              const Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral),
+                              Icon(Icons.radio_outlined, size: 20, color: QuandoColors.coral),
                               l10n.onlineRadio,
                             ),
                           ])
@@ -145,7 +145,7 @@ class SoundPickerTile extends ConsumerWidget {
                 Container(
                   width: 64,
                   height: 64,
-                  decoration: const BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
+                  decoration: BoxDecoration(color: QuandoColors.raised, shape: BoxShape.circle),
                   child: Icon(
                     chosen?.isRadio ?? false ? Icons.radio : Icons.music_note,
                     color: QuandoColors.coral,
@@ -160,7 +160,7 @@ class SoundPickerTile extends ConsumerWidget {
     }
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: const Icon(Icons.music_note_outlined, color: QuandoColors.amber),
+      leading: Icon(Icons.music_note_outlined, color: QuandoColors.amber),
       title: Text(l10n.sound),
       subtitle: Text(label),
       trailing: const Icon(Icons.chevron_right),
@@ -238,7 +238,7 @@ class _SheetState extends ConsumerState<_Sheet> {
               borderRadius: BorderRadius.circular(24),
               clipBehavior: Clip.antiAlias,
               child: Ink(
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   gradient: LinearGradient(
                     begin: Alignment.topLeft,
                     end: Alignment.bottomRight,
@@ -288,7 +288,7 @@ class _SheetState extends ConsumerState<_Sheet> {
                             ],
                           ),
                         ),
-                        const Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
+                        Icon(Icons.arrow_forward, color: QuandoColors.ground, size: 28),
                       ],
                     ),
                   ),

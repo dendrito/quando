@@ -147,7 +147,7 @@ class _CalendarLockSheetState extends ConsumerState<_CalendarLockSheet> {
                 dense: true,
                 title: Text(p.reason),
                 subtitle: Text('${at(p.start)} → ${at(p.end)}', style: text.bodySmall),
-                trailing: const Icon(Icons.lock_outline, color: QuandoColors.amber, size: 18),
+                trailing: Icon(Icons.lock_outline, color: QuandoColors.amber, size: 18),
               ),
             const SizedBox(height: 12),
             Row(

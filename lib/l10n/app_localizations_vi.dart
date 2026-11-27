@@ -3681,6 +3681,18 @@ class AppLocalizationsVi extends AppLocalizations {
   String get uiEverything => 'Tất cả';
 
   @override
+  String get themeTitle => 'Giao diện';
+
+  @override
+  String get themeAuto => 'Tự động';
+
+  @override
+  String get themeDark => 'Tối';
+
+  @override
+  String get themeLight => 'Sáng';
+
+  @override
   String get firstRunTitle => 'Bạn muốn thấy bao nhiêu?';
 
   @override

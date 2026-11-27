@@ -3720,6 +3720,18 @@ class AppLocalizationsFr extends AppLocalizations {
   String get uiEverything => 'Tout';
 
   @override
+  String get themeTitle => 'Thème';
+
+  @override
+  String get themeAuto => 'Auto';
+
+  @override
+  String get themeDark => 'Sombre';
+
+  @override
+  String get themeLight => 'Clair';
+
+  @override
   String get firstRunTitle => 'Combien voulez-vous voir ?';
 
   @override

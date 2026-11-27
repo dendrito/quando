@@ -700,7 +700,7 @@ class UnderstoodText extends StatelessWidget {
       spans.add(
         TextSpan(
           text: t.substring(a, b),
-          style: const TextStyle(color: QuandoColors.amber, fontWeight: FontWeight.w600),
+          style: TextStyle(color: QuandoColors.amber, fontWeight: FontWeight.w600),
         ),
       );
       i = b;
@@ -743,7 +743,7 @@ class _AnswerCard extends ConsumerWidget {
     return Card(
       margin: EdgeInsets.zero,
       child: ListTile(
-        leading: const Icon(Icons.schedule, color: QuandoColors.amber),
+        leading: Icon(Icons.schedule, color: QuandoColors.amber),
         title: Text(
           a == null
               ? anchorName(question.anchor)

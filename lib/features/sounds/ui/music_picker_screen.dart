@@ -157,7 +157,7 @@ class _MusicPickerScreenState extends ConsumerState<MusicPickerScreen> {
           item: it,
           trailing: opens
               ? const Icon(Icons.chevron_right)
-              : const Icon(Icons.add_circle_outline, color: QuandoColors.amber),
+              : Icon(Icons.add_circle_outline, color: QuandoColors.amber),
           onTap: () => opens ? _open(it) : _pick(it),
         );
       },
@@ -232,14 +232,14 @@ class MusicItemTile extends StatelessWidget {
       child: SizedBox.square(
         dimension: 48,
         child: item.image == null
-            ? const ColoredBox(
+            ? ColoredBox(
                 color: QuandoColors.raised,
                 child: Icon(Icons.music_note, color: QuandoColors.amber),
               )
             : Image.network(
                 item.image!,
                 fit: BoxFit.cover,
-                errorBuilder: (_, _, _) => const ColoredBox(color: QuandoColors.raised),
+                errorBuilder: (_, _, _) => ColoredBox(color: QuandoColors.raised),
               ),
       ),
     ),
@@ -283,7 +283,7 @@ class _PlaylistSongsScreenState extends State<PlaylistSongsScreen> {
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
     final songs = _songs;
-    const add = Icon(Icons.add_circle_outline, color: QuandoColors.amber);
+    final add = Icon(Icons.add_circle_outline, color: QuandoColors.amber);
     return Scaffold(
       appBar: AppBar(title: Text(widget.playlist.name, maxLines: 1, overflow: TextOverflow.ellipsis)),
       body: ListView(
@@ -291,7 +291,7 @@ class _PlaylistSongsScreenState extends State<PlaylistSongsScreen> {
         children: [
           ListTile(
             key: const ValueKey('whole-playlist'),
-            leading: const SizedBox.square(
+            leading: SizedBox.square(
               dimension: 48,
               child: DecoratedBox(
                 decoration: BoxDecoration(

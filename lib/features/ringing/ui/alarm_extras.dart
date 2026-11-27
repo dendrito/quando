@@ -162,7 +162,7 @@ class _Row extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      leading: Icon(icon, color: QuandoColors.amber),
+      leading: Icon(icon, color: DuskColors.amber),
       title: Text(title),
       subtitle: Text(subtitle, maxLines: 1, overflow: TextOverflow.ellipsis),
       trailing: on == null ? const Icon(Icons.chevron_right) : Switch(value: on!, onChanged: onSwitch),
@@ -194,13 +194,10 @@ class _ActionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final text = Theme.of(context).textTheme;
-    Widget dot(IconData i, bool lit) => Icon(
-      i,
-      size: 22,
-      color: lit && !off ? QuandoColors.amber : QuandoColors.faint.withValues(alpha: 0.6),
-    );
+    Widget dot(IconData i, bool lit) =>
+        Icon(i, size: 22, color: lit && !off ? DuskColors.amber : DuskColors.faint.withValues(alpha: 0.6));
     return Material(
-      color: QuandoColors.surface,
+      color: DuskColors.surface,
       borderRadius: const BorderRadius.all(Radius.circular(22)),
       clipBehavior: Clip.antiAlias,
       child: InkWell(
@@ -226,7 +223,7 @@ class _ActionCard extends StatelessWidget {
               Text(line, style: text.bodySmall),
               Text(
                 task == StopTask.none ? l10n.noTask : task.label,
-                style: text.bodySmall?.copyWith(color: task == StopTask.none ? null : QuandoColors.blush),
+                style: text.bodySmall?.copyWith(color: task == StopTask.none ? null : DuskColors.blush),
               ),
             ],
           ),
@@ -261,7 +258,7 @@ abstract class _StyleScreenState<T extends _StyleScreen> extends ConsumerState<T
 
   Widget _codeRow() => ListTile(
     contentPadding: EdgeInsets.zero,
-    leading: const Icon(Icons.qr_code_2, color: QuandoColors.amber),
+    leading: const Icon(Icons.qr_code_2, color: DuskColors.amber),
     title: Text(l10n.codeSaved),
     subtitle: Text(l10n.tapToSaveDifferent),
     onTap: () async {
@@ -379,7 +376,7 @@ class _Setting extends StatelessWidget {
       contentPadding: EdgeInsets.zero,
       title: Text(title, style: text.titleMedium),
       subtitle: Text(subtitle),
-      trailing: Text(label(current), style: text.titleMedium?.copyWith(color: QuandoColors.amber)),
+      trailing: Text(label(current), style: text.titleMedium?.copyWith(color: DuskColors.amber)),
       onTap: () async {
         final v = await showDialog<int>(
           context: context,
@@ -393,7 +390,7 @@ class _Setting extends StatelessWidget {
                     children: [
                       Icon(
                         v == current ? Icons.radio_button_checked : Icons.radio_button_off,
-                        color: QuandoColors.amber,
+                        color: DuskColors.amber,
                       ),
                       const SizedBox(width: 14),
                       Text(label(v), style: text.titleMedium),
@@ -709,7 +706,7 @@ class LoudnessEditor extends StatelessWidget {
         if (!fadesOnly && v.volume != null) ...[
           Row(
             children: [
-              const Icon(Icons.volume_down, color: QuandoColors.muted),
+              const Icon(Icons.volume_down, color: DuskColors.muted),
               Expanded(
                 child: Slider(
                   min: 5,

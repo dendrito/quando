@@ -30,7 +30,7 @@ class PlacePill extends ConsumerWidget {
             child: Row(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const Icon(Icons.place_outlined, size: 16, color: QuandoColors.blush),
+                Icon(Icons.place_outlined, size: 16, color: QuandoColors.blush),
                 const SizedBox(width: 4),
                 Flexible(
                   child: Text(
@@ -107,19 +107,19 @@ Future<void> showPlaceSheet(BuildContext context) => showModalBottomSheet<void>(
               const SizedBox(height: 8),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: const Icon(Icons.my_location, color: QuandoColors.amber),
+                leading: Icon(Icons.my_location, color: QuandoColors.amber),
                 title: Text(l10n.useMyLocation),
                 onTap: () => open(const CityPicker(forSky: true, locateOnOpen: true)),
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: const Icon(Icons.search, color: QuandoColors.amber),
+                leading: Icon(Icons.search, color: QuandoColors.amber),
                 title: Text(l10n.skyChooseCity),
                 onTap: () => open(CityPicker(forSky: !options.skyUseShabbat)),
               ),
               ListTile(
                 contentPadding: EdgeInsets.zero,
-                leading: const Icon(Icons.tune, color: QuandoColors.amber),
+                leading: Icon(Icons.tune, color: QuandoColors.amber),
                 title: Text(l10n.homeDisplay),
                 onTap: () {
                   Navigator.of(sheet).pop();

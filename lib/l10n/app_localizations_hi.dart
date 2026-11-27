@@ -3680,6 +3680,18 @@ class AppLocalizationsHi extends AppLocalizations {
   String get uiEverything => 'सब कुछ';
 
   @override
+  String get themeTitle => 'थीम';
+
+  @override
+  String get themeAuto => 'ऑटो';
+
+  @override
+  String get themeDark => 'गहरा';
+
+  @override
+  String get themeLight => 'हल्का';
+
+  @override
   String get firstRunTitle => 'आप कितना देखना चाहते हैं?';
 
   @override
