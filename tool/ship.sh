@@ -17,6 +17,7 @@ case "$2" in mac|ipad|ipad-on-mac|android|windows) targets=$2 ;; all) targets='m
 install=true
 if [[ $# -eq 3 ]]; then [[ $3 == --no-install ]] || usage; install=false; fi
 
+stamp=$(tool/build_stamp.sh)
 team=${QUANDO_MAC_TEAM:-PKZ22BXX3F}
 ipad=${QUANDO_IPAD_ID:-00008103-001A69A022D9001E}
 logs=$PWD/build/ship
@@ -100,7 +101,7 @@ ship_android() {
   local e=$1 apk=build/app/outputs/flutter-apk/app-$1-release.apk jdk=/opt/homebrew/opt/openjdk@17/libexec/openjdk.jdk/Contents/Home
   # macOS has no system Java; fall back to Homebrew's JDK 17 (the project's jvmTarget).
   if [[ -z ${JAVA_HOME:-} ]] && ! /usr/libexec/java_home > /dev/null 2>&1 && [[ -d $jdk ]]; then export JAVA_HOME=$jdk; fi
-  run "$e android build" "$e-android-build" flutter build apk --release --flavor "$e" --dart-define="QUANDO_EDITION=$e"
+  run "$e android build" "$e-android-build" flutter build apk --release --flavor "$e" --dart-define="QUANDO_EDITION=$e" --dart-define="QUANDO_BUILD=$stamp"
   mkdir -p "$logs/android" && cp "$apk" "$logs/android/$e.apk"
   if $install; then run "$e android install" "$e-android-install" adb install -r "$logs/android/$e.apk"; fi
 }
@@ -115,13 +116,13 @@ ship_ipadonmac() (
   trap 'cp "$saved/project.pbxproj" ios/Runner.xcodeproj/; cp "$saved/Info.plist" ios/Runner/' EXIT
   run "$e ipad-on-mac select edition" "$e-ipadmac-edition" tool/ios_edition.sh "$e"
   run "$e ipad-on-mac build" "$e-ipadmac-build" bash -c '
-    flutter build ios --release --config-only --no-pub --no-tree-shake-icons --dart-define="QUANDO_EDITION=$0" &&
+    flutter build ios --release --config-only --no-pub --no-tree-shake-icons --dart-define="QUANDO_EDITION=$0" --dart-define="QUANDO_BUILD=$2" &&
     xcodebuild -workspace ios/Runner.xcworkspace -scheme Runner -configuration Release \
       -derivedDataPath build/ios-on-mac -destination "platform=macOS,arch=arm64,variant=Designed for iPad" \
       -allowProvisioningUpdates DEVELOPMENT_TEAM="$1" build &&
     app=$(find build/ios-on-mac/Build/Products -maxdepth 2 -name Runner.app | head -1) &&
     test -n "$app" && mkdir -p build/ship/ipad-on-mac && rm -rf "build/ship/ipad-on-mac/$0.app" &&
-    cp -R "$app" "build/ship/ipad-on-mac/$0.app"' "$e" "$team"
+    cp -R "$app" "build/ship/ipad-on-mac/$0.app"' "$e" "$team" "$stamp"
 )
 
 # Windows cannot be built from a Mac, and this project has no windows/ runner yet.
@@ -134,7 +135,7 @@ ship_ipad() (
   cp ios/Runner.xcodeproj/project.pbxproj ios/Runner/Info.plist "$saved/"
   trap 'cp "$saved/project.pbxproj" ios/Runner.xcodeproj/; cp "$saved/Info.plist" ios/Runner/' EXIT
   run "$e ipad select edition" "$e-ipad-edition" tool/ios_edition.sh "$e"
-  run "$e ipad build" "$e-ipad-build" flutter build ios --release --no-tree-shake-icons --dart-define="QUANDO_EDITION=$e"
+  run "$e ipad build" "$e-ipad-build" flutter build ios --release --no-tree-shake-icons --dart-define="QUANDO_EDITION=$e" --dart-define="QUANDO_BUILD=$stamp"
   # Keep each edition's app: the next edition's build overwrites build/ios/iphoneos/Runner.app.
   mkdir -p "$logs/ipad" && rm -rf "$logs/ipad/$e.app" && cp -R build/ios/iphoneos/Runner.app "$logs/ipad/$e.app"
   if $install; then

@@ -38,9 +38,9 @@ jobs:
 
       - name: Build release APKs (one per phone type, much smaller)
         run: |
-          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor quando
-          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
-          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --flavor mine --dart-define=QUANDO_EDITION=mine
+          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --flavor quando
+          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
+          flutter build apk --release --split-per-abi --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --flavor mine --dart-define=QUANDO_EDITION=mine
 
       - uses: actions/upload-artifact@v4
         with:
@@ -59,8 +59,8 @@ jobs:
           else
             echo "No upload key in secrets yet: bundle signed with the test key, not for the store"
           fi
-          flutter build appbundle --release --build-number=${{ github.run_number }} --flavor quando
-          flutter build appbundle --release --build-number=${{ github.run_number }} --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
+          flutter build appbundle --release --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --flavor quando
+          flutter build appbundle --release --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --flavor kodesh --dart-define=QUANDO_EDITION=kodesh
         env:
           UPLOAD_KEYSTORE_BASE64: ${{ secrets.QUANDO_UPLOAD_KEYSTORE_BASE64 }}
           QUANDO_UPLOAD_STORE_PASSWORD: ${{ secrets.QUANDO_UPLOAD_STORE_PASSWORD }}
@@ -150,4 +150,4 @@ jobs:
       - name: Build for iPhone and iPad (unsigned)
         run: |
           tool/ios_edition.sh ${{ matrix.edition }}
-          flutter build ios --release --no-codesign --build-number=${{ github.run_number }} --dart-define=QUANDO_EDITION=${{ matrix.edition }}
+          flutter build ios --release --no-codesign --build-number=${{ github.run_number }} --dart-define=QUANDO_BUILD="$(tool/build_stamp.sh)" --dart-define=QUANDO_EDITION=${{ matrix.edition }}

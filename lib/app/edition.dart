@@ -26,3 +26,6 @@ String get appTitle => mine
 
 /// Shown at the bottom of Settings. Keep in step with pubspec.yaml.
 const appVersion = '0.1.0';
+
+/// Which code this build came from: commit and day (tool/build_stamp.sh).
+const buildStamp = String.fromEnvironment('QUANDO_BUILD', defaultValue: 'dev');
