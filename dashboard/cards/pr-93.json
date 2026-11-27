@@ -1,7 +1,7 @@
 {
   "id": "pr-93",
   "title": "iPhone alarms with AlarmKit",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     93
