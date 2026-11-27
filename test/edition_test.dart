@@ -82,7 +82,7 @@ void main() {
     if (kodesh) expect(radioGenres.map((g) => g.$2), isNot(contains('rock')));
     if (mine) {
       expect(radioGenres.map((g) => g.$2), contains('rock'));
-      expect(appTitle, 'Meu Quando');
+      expect(appTitle, 'Meu Quando?');
     }
   });
 
