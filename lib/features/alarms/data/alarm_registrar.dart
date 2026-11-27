@@ -68,7 +68,7 @@ class AlarmRegistrar {
   Future<bool> set(int id, DateTime at, RingPayload p) async {
     await init();
     final ok = await Alarm.set(alarmSettings: settingsFor(id, at, p));
-    if (ok && isAndroid) await AlarmAudio.ringFor(id, p.ringSeconds);
+    if (ok && isAndroid) unawaited(AlarmAudio.ringFor(id, p.ringSeconds));
     return ok;
   }
 
