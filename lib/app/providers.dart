@@ -1626,7 +1626,9 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
   ref.watch(localeProvider);
   final options = ref.watch(alarmOptionsProvider);
   final integrations = ref.watch(integrationsProvider);
-  final periods = ref.watch(periodsProvider);
+  // Shabbat rules (no snooze, no song, nothing to touch) apply only to people
+  // who use Shabbat: a Saturday alarm for anyone else is an ordinary alarm.
+  final periods = ref.watch(shabbatInUseProvider) ? ref.watch(periodsProvider) : const <HolyPeriod>[];
   final sounds = {for (final s in ref.watch(soundsProvider)) s.id: s.path};
   final links = {for (final s in ref.watch(soundsProvider)) s.id: s};
   return (a) {
