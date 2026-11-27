@@ -12,7 +12,9 @@ import android.app.Notification
 import android.content.Intent
 import android.content.Context
 import android.content.pm.ServiceInfo
+import android.os.Handler
 import android.os.IBinder
+import android.os.Looper
 import android.os.PowerManager
 import android.os.Build
 import androidx.core.app.ServiceCompat
@@ -29,6 +31,7 @@ import com.gdelataillade.alarm.services.WarningNotificationState
 import com.gdelataillade.alarm.services.SnoozeCoordinator
 import io.flutter.Log
 import kotlinx.serialization.json.Json
+import org.json.JSONObject
 
 class AlarmService : Service() {
     companion object {
@@ -106,6 +109,9 @@ class AlarmService : Service() {
 
         var instance: AlarmService? = null
 
+        /** Seconds the app's own timer gets before the fail-safe stop acts. */
+        private const val FAIL_SAFE_GRACE_SECONDS = 15
+
         /** Read live rather than cached: a cache went stale when a non-looping alarm finished on its own. */
         @JvmStatic
         val ringingAlarmIds: List<Int>
@@ -125,6 +131,9 @@ class AlarmService : Service() {
     private var showSystemUI: Boolean = true
     // androidStopAlarmOnTermination per alarm that rang and was not stopped yet.
     private val stopOnTermination = mutableMapOf<Int, Boolean>()
+    // Fail-safe stop per ringing alarm: see scheduleFailSafeStop.
+    private val failSafeHandler = Handler(Looper.getMainLooper())
+    private val failSafeStops = mutableMapOf<Int, Runnable>()
     private val ringingQueue = mutableListOf<Int>()
     private val queuedAlarmSettings = mutableMapOf<Int, AlarmSettings>()
 
@@ -313,6 +322,7 @@ class AlarmService : Service() {
         }
 
         stopOnTermination[id] = alarmSettings.androidStopAlarmOnTermination
+        scheduleFailSafeStop(id, alarmSettings)
 
         // Acquire a wake lock to wake up the device
         val lock = wakeLock
@@ -454,6 +464,34 @@ class AlarmService : Service() {
         if (ringingAlarmIds.isEmpty()) {
             stopSelf()
         }
+    }
+
+    /**
+     * Stops an alarm a little after its ring length even when the app never
+     * does. The app's own timer does that, but only once its Flutter engine is
+     * running; with the phone in use, Android shows the alarm as a heads-up
+     * notification, never opens the app, and a cold process has no engine. The
+     * alarm would then loop until someone pressed Stop (on Shabbat: never).
+     * The ring length is read from the app's payload (`ringSeconds`); the app's
+     * own timer fires first, so this only acts as a fallback.
+     */
+    private fun scheduleFailSafeStop(id: Int, alarmSettings: AlarmSettings) {
+        val seconds = try {
+            JSONObject(alarmSettings.payload ?: return).optInt("ringSeconds", 0)
+        } catch (e: Exception) {
+            0
+        }
+        if (seconds <= 0) return
+        failSafeStops.remove(id)?.let { failSafeHandler.removeCallbacks(it) }
+        val stop = Runnable {
+            failSafeStops.remove(id)
+            if (ringingAlarmIds.contains(id)) {
+                Log.w(TAG, "Alarm $id was still ringing after its ring length; stopping it.")
+                handleStopAlarmCommand(id)
+            }
+        }
+        failSafeStops[id] = stop
+        failSafeHandler.postDelayed(stop, (seconds + FAIL_SAFE_GRACE_SECONDS) * 1000L)
     }
 
     fun handleStopAlarmCommand(alarmId: Int) {
@@ -649,6 +687,7 @@ class AlarmService : Service() {
     private fun stopAlarm(id: Int) {
         try {
             stopOnTermination.remove(id)
+            failSafeStops.remove(id)?.let { failSafeHandler.removeCallbacks(it) }
             audioService?.stopAudio(id)
 
             // Remove from queue if present so stopped alarms never get promoted
@@ -706,6 +745,8 @@ class AlarmService : Service() {
         ringingQueue.clear()
         queuedAlarmSettings.clear()
         stopOnTermination.clear()
+        failSafeStops.values.forEach { failSafeHandler.removeCallbacks(it) }
+        failSafeStops.clear()
 
         audioService?.cleanUp()
         vibrationService?.stopVibrating()
