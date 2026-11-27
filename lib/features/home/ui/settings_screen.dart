@@ -719,7 +719,7 @@ class _VersionLine extends StatelessWidget {
       crossAxisAlignment: WrapCrossAlignment.center,
       spacing: 8,
       children: [
-        Text('$appTitle $appVersion', style: Theme.of(context).textTheme.bodySmall),
+        Text('$appTitle $appVersion · $buildStamp', style: Theme.of(context).textTheme.bodySmall),
         // Credits for GeoNames, KosherJava (kosher_dart) and every other package.
         TextButton(
           key: const Key('licences'),
