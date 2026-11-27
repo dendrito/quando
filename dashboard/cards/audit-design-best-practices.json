@@ -1,7 +1,7 @@
 {
   "id": "audit-design-best-practices",
   "title": "Audit Quando? against design best practices",
-  "status": "review",
+  "status": "done",
   "group": "Launch",
   "order": 207,
   "note": "Design audit fixes in four PRs: contrast, screen reader, captions, text-scale and tap targets. Light theme waiting on a decision.",
