@@ -131,14 +131,12 @@ class WeatherAlarmsScreen extends ConsumerWidget {
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.weatherAnytime),
-              subtitle: Text(l10n.weatherAnytimeHint, style: text.bodySmall),
               value: s.anytime,
               onChanged: (v) => update((s) => s.copyWith(anytime: v)),
             ),
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.weatherTied),
-              subtitle: Text(l10n.weatherTiedHint, style: text.bodySmall),
               value: s.tied,
               onChanged: (v) => update((s) => s.copyWith(tied: v)),
             ),
@@ -199,7 +197,6 @@ class WeatherAlarmsScreen extends ConsumerWidget {
             SwitchListTile(
               contentPadding: EdgeInsets.zero,
               title: Text(l10n.weatherQuietSwitch),
-              subtitle: Text(l10n.weatherQuietHint, style: text.bodySmall),
               value: s.quiet,
               onChanged: (v) => update((s) => s.copyWith(quiet: v)),
             ),

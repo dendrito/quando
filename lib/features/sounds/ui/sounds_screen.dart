@@ -709,7 +709,6 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
               contentPadding: EdgeInsets.zero,
               leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
               title: Text(l10n.shareToQuando),
-              subtitle: Text(l10n.shareToQuandoHint, style: text.bodySmall),
             ),
           // Signing in to the music services waits on their official
           // approval; build with --dart-define=MUSIC_SIGN_IN=false to hide it.

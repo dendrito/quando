@@ -109,7 +109,6 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
               contentPadding: EdgeInsets.zero,
               secondary: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
               title: Text(l10n.busyDnd),
-              subtitle: Text(l10n.busyDndHint, style: text.bodySmall),
               value: s.dnd,
               onChanged: (v) => _update((s) => s.copyWith(dnd: v)),
             ),
@@ -127,7 +126,6 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
               contentPadding: EdgeInsets.zero,
               secondary: const Icon(Icons.quickreply_outlined, color: QuandoColors.amber),
               title: Text(l10n.busyReplies),
-              subtitle: Text(l10n.busyRepliesHint, style: text.bodySmall),
               value: s.replies,
               onChanged: _turnReplies,
             ),
@@ -173,7 +171,6 @@ class _BusyScreenState extends ConsumerState<BusyScreen> with WidgetsBindingObse
               SwitchListTile(
                 contentPadding: EdgeInsets.zero,
                 title: Text(l10n.busyGroups),
-                subtitle: Text(l10n.busyGroupsHint, style: text.bodySmall),
                 value: s.groups,
                 onChanged: (v) => _update((s) => s.copyWith(groups: v)),
               ),

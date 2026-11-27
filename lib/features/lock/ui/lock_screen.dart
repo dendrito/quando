@@ -128,7 +128,6 @@ class LockScreen extends ConsumerWidget {
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.openWhenLockStarts),
-            subtitle: Text(l10n.openWhenLockStartsHint),
             value: s.openAtStart,
             onChanged: (v) => n.update((x) => x.copyWith(openAtStart: v)),
           ),

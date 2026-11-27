@@ -73,7 +73,6 @@ class SettingsScreen extends ConsumerWidget {
     final wakeCheck = SwitchListTile(
       contentPadding: EdgeInsets.zero,
       title: Text(l10n.wakeUpCheck),
-      subtitle: Text(l10n.wakeUpCheckHint),
       value: o.wakeCheck,
       onChanged: (v) => setO((x) => x.copyWith(wakeCheck: v)),
     );
@@ -121,7 +120,6 @@ class SettingsScreen extends ConsumerWidget {
       SwitchListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(l10n.sayItOutLoud),
-        subtitle: Text(l10n.sayItOutLoudHint),
         value: o.spoken,
         onChanged: (v) => setO((x) => x.copyWith(spoken: v)),
       ),
@@ -133,7 +131,6 @@ class SettingsScreen extends ConsumerWidget {
           SwitchListTile(
             contentPadding: EdgeInsets.zero,
             title: Text(l10n.solveSum),
-            subtitle: Text(l10n.provesAwake),
             value: o.mathTask,
             onChanged: (v) => setO((x) => x.copyWith(mathTask: v)),
           ),
@@ -239,7 +236,6 @@ class SettingsScreen extends ConsumerWidget {
           contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.do_not_disturb_on_outlined, color: QuandoColors.amber),
           title: Text(l10n.busyMode),
-          subtitle: Text(l10n.busyModeSubtitle),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => context.push('/busy'),
         ),
@@ -247,7 +243,6 @@ class SettingsScreen extends ConsumerWidget {
         contentPadding: EdgeInsets.zero,
         leading: const Icon(Icons.thunderstorm_outlined, color: QuandoColors.amber),
         title: Text(l10n.weatherRemindersTitle),
-        subtitle: Text(l10n.weatherRemindersSubtitle),
         trailing: const Icon(Icons.chevron_right),
         onTap: () => context.push('/weather-alarms'),
       ),
@@ -256,7 +251,6 @@ class SettingsScreen extends ConsumerWidget {
           contentPadding: EdgeInsets.zero,
           leading: const Icon(Icons.ios_share, color: QuandoColors.amber),
           title: Text(l10n.shareCard),
-          subtitle: Text(l10n.shareCardSubtitle),
           trailing: const Icon(Icons.chevron_right),
           onTap: () => context.push('/share'),
         ),

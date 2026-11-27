@@ -94,7 +94,6 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                 if (s.moon)
                   SwitchListTile(
                     title: Text(l10n.skyMoonDetailsDisplay),
-                    subtitle: Text(l10n.skyMoonDetailsHint),
                     value: s.moonDetails,
                     onChanged: (v) => n.set(s.copyWith(moonDetails: v)),
                   ),
@@ -136,7 +135,6 @@ Future<void> showHomeDisplayControls(BuildContext context) => showModalBottomShe
                   ),
                 SwitchListTile(
                   title: Text(l10n.roshHodeshHeading),
-                  subtitle: Text(l10n.roshHodeshExplain),
                   value: s.roshHodesh,
                   onChanged: (v) => n.set(s.copyWith(roshHodesh: v)),
                 ),
