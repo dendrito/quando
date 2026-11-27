@@ -14,6 +14,16 @@ struct AlarmSettings {
     let allowSameSecondScheduling: Bool
     let iOSBackgroundAudio: Bool
 
+    /// The same alarm under another id and time (a snooze).
+    func moved(to newId: Int, at date: Date) -> AlarmSettings {
+        return AlarmSettings(
+            id: newId, dateTime: date, assetAudioPath: assetAudioPath, volumeSettings: volumeSettings,
+            notificationSettings: notificationSettings, loopAudio: loopAudio, vibrate: vibrate,
+            warningNotificationOnKill: warningNotificationOnKill,
+            androidFullScreenIntent: androidFullScreenIntent, allowAlarmOverlap: allowAlarmOverlap,
+            allowSameSecondScheduling: allowSameSecondScheduling, iOSBackgroundAudio: iOSBackgroundAudio)
+    }
+
     /// Converts from wire model to `AlarmSettings`.
     static func from(wire: AlarmSettingsWire) -> AlarmSettings {
         return AlarmSettings(

@@ -35,6 +35,14 @@ class AlarmManager: NSObject {
 
         self.updateState()
 
+        if !ringImmediately {
+            config.systemAlarmAt = await AlarmKitBackup.schedule(alarmSettings, registrar: self.registrar)
+            // Stopped while the system alarm was being set.
+            if self.alarms[alarmSettings.id] == nil {
+                AlarmKitBackup.cancel(id: alarmSettings.id)
+            }
+        }
+
         if ringImmediately {
             os_log(.info, log: AlarmManager.logger, "Ringing alarm ID=%d immediately.", alarmSettings.id)
             Task {
@@ -65,6 +73,8 @@ class AlarmManager: NSObject {
 
         let wasRinging = self.alarms[id]?.state == .ringing
 
+        AlarmKitBackup.cancel(id: id)
+
         await AlarmRingManager.shared.stop(id: id)
 
         if let config = self.alarms[id] {
@@ -94,6 +104,8 @@ class AlarmManager: NSObject {
 
         await AlarmRingManager.shared.stop()
 
+        AlarmKitBackup.cancelUpcoming()
+
         self.ringingQueue.removeAll()
 
         let alarmIds = Array(self.alarms.keys)
@@ -113,8 +125,20 @@ class AlarmManager: NSObject {
     func isRinging(id: Int? = nil) -> Bool {
         guard let alarmId = id else {
             return self.alarms.values.contains(where: { $0.state == .ringing })
+                || AlarmKitBackup.isRinging(id: nil)
         }
-        return self.alarms[alarmId]?.state == .ringing
+        return self.alarms[alarmId]?.state == .ringing || AlarmKitBackup.isRinging(id: alarmId)
+    }
+
+    /// Snooze pressed on the system screen while the app is running.
+    @MainActor
+    func systemSnoozed(from id: Int, to newId: Int, at date: Date) async {
+        guard let old = self.alarms[id]?.settings else {
+            await self.notifyAlarmStopped(id: id)
+            return
+        }
+        await self.stopAlarm(id: id, cancelNotif: true)
+        await self.setAlarm(alarmSettings: old.moved(to: newId, at: date))
     }
 
     /// Ensures all alarm timers are valid and reschedules them if not.
@@ -192,6 +216,12 @@ class AlarmManager: NSObject {
             }
         }
 
+        if let fireAt = config.systemAlarmAt, AlarmKitBackup.wasStopped(id: id, fireAt: fireAt) {
+            os_log(.info, log: AlarmManager.logger, "Alarm %d was already stopped on the system screen.", id)
+            await self.stopAlarm(id: id, cancelNotif: true)
+            return
+        }
+
         if config.state == .ringing {
             os_log(.error, log: AlarmManager.logger, "Alarm %d is already ringing.", id)
             return
@@ -219,6 +249,11 @@ class AlarmManager: NSObject {
                     await self?.stopAlarm(id: id, cancelNotif: false)
                 }
             } : nil)
+
+        // Our own sound is playing: the system alarm is no longer needed.
+        if AlarmRingManager.shared.isPlaying(id: id) {
+            AlarmKitBackup.cancel(id: id)
+        }
 
         self.updateState()
 

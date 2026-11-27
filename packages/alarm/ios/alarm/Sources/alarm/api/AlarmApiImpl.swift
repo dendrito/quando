@@ -78,6 +78,16 @@ public class AlarmApiImpl: NSObject, AlarmApi {
     }
 
     @MainActor
+    func systemSnoozed(from id: Int, to newId: Int, at date: Date) async {
+        await self.manager.systemSnoozed(from: id, to: newId, at: date)
+    }
+
+    @MainActor
+    func systemStopped(id: Int) async {
+        await self.manager.stopAlarm(id: id, cancelNotif: true)
+    }
+
+    @MainActor
     func appRefresh() async {
         BackgroundAudioManager.shared.refresh(registrar: self.registrar)
         await self.manager.checkAlarms()
