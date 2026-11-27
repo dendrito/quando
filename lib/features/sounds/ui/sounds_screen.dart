@@ -680,6 +680,12 @@ class _SoundsScreenState extends ConsumerState<SoundsScreen> {
                   : Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
+                        if (s.isRecorded)
+                          IconButton(
+                            icon: Icon(s.repeats ? Icons.repeat_on : Icons.repeat),
+                            onPressed: () =>
+                                ref.read(soundsProvider.notifier).replace(s.copyWith(repeats: !s.repeats)),
+                          ),
                         if (s.isDrive)
                           IconButton(
                             icon: Icon(s.offline ? Icons.download_done : Icons.cloud_outlined),

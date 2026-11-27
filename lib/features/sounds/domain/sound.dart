@@ -13,6 +13,7 @@ class AlarmSound {
     this.plays = false,
     this.playSeconds = 0,
     this.drive,
+    this.repeats = false,
   });
 
   /// A Google Drive file shared by link. It streams from Drive, or plays from
@@ -39,6 +40,13 @@ class AlarmSound {
       ? '${path.substring(0, path.length - 4)}.m4a'
       : path;
   final bool builtIn;
+
+  /// A voice or recording rings once by default; true loops it until stopped.
+  final bool repeats;
+
+  /// Your own recording or file, or a bundled voice: played once, with no
+  /// spoken reminder over it. The built-in tones and radio are not.
+  bool get isRecorded => !isRadio && !isLink && (id.startsWith('mine.') || !builtIn);
 
   /// A song or playlist in another app, e.g. a Spotify or SoundCloud link.
   /// The alarm rings with [path] (a built-in sound), then opens this when
@@ -88,7 +96,13 @@ class AlarmSound {
 
   AlarmSound rename(String name) => copyWith(name: name);
 
-  AlarmSound copyWith({String? name, String? path, bool? plays, int? playSeconds}) => AlarmSound(
+  AlarmSound copyWith({
+    String? name,
+    String? path,
+    bool? plays,
+    int? playSeconds,
+    bool? repeats,
+  }) => AlarmSound(
     id: id,
     name: name ?? this.name,
     path: path ?? this.path,
@@ -97,6 +111,7 @@ class AlarmSound {
     plays: plays ?? this.plays,
     playSeconds: playSeconds ?? this.playSeconds,
     drive: drive,
+    repeats: repeats ?? this.repeats,
   );
 
   Map<String, dynamic> toJson() => {
@@ -106,6 +121,7 @@ class AlarmSound {
     'link': ?link,
     if (plays) 'plays': true,
     if (playSeconds > 0) 'playSeconds': playSeconds,
+    if (repeats) 'repeats': true,
   };
 
   factory AlarmSound.fromJson(Map<String, dynamic> j) => AlarmSound(
@@ -115,6 +131,7 @@ class AlarmSound {
     link: j['link'] as String?,
     plays: j['plays'] as bool? ?? false,
     playSeconds: (j['playSeconds'] as num?)?.toInt() ?? 0,
+    repeats: j['repeats'] as bool? ?? false,
   );
 
   static List<AlarmSound> get builtIns => [

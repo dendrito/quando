@@ -15,6 +15,7 @@ class RingPayload {
     required this.body,
     required this.ringSeconds,
     this.spoken = true,
+    this.loop = true,
     this.maxSnoozes = 0,
     this.snoozeMinutes = 5,
     this.snoozeCount = 0,
@@ -67,6 +68,9 @@ class RingPayload {
   final String body;
   final int ringSeconds;
   final bool spoken;
+
+  /// The sound repeats until stopped; false = plays once.
+  final bool loop;
   final int maxSnoozes;
   final int snoozeMinutes;
   final int snoozeCount;
@@ -145,6 +149,7 @@ class RingPayload {
     String? body,
     int? ringSeconds,
     bool? spoken,
+    bool? loop,
     int? maxSnoozes,
     int? snoozeCount,
     bool? wakeCheck,
@@ -176,6 +181,7 @@ class RingPayload {
     body: body ?? this.body,
     ringSeconds: ringSeconds ?? this.ringSeconds,
     spoken: spoken ?? this.spoken,
+    loop: loop ?? this.loop,
     maxSnoozes: maxSnoozes ?? this.maxSnoozes,
     snoozeMinutes: snoozeMinutes ?? this.snoozeMinutes,
     snoozeCount: snoozeCount ?? this.snoozeCount,
@@ -223,6 +229,9 @@ class RingPayload {
   RingPayload withIWill(String line) => _copy(iWill: line.trim());
 
   RingPayload withRingSeconds(int seconds) => _copy(ringSeconds: seconds);
+
+  /// A recording rings on its own: no spoken reminder, once unless [loop].
+  RingPayload withRecording({required bool loop}) => _copy(spoken: false, loop: loop);
 
   RingPayload withSound(String? path) => _copy(sound: path, keepSound: false);
 
@@ -334,6 +343,7 @@ class RingPayload {
     'body': body,
     'ringSeconds': ringSeconds,
     'spoken': spoken,
+    'loop': loop,
     'maxSnoozes': maxSnoozes,
     'snoozeMinutes': snoozeMinutes,
     'snoozeCount': snoozeCount,
@@ -372,6 +382,7 @@ class RingPayload {
         body: j['body'] as String? ?? fallbackBody,
         ringSeconds: (j['ringSeconds'] as num?)?.toInt() ?? 60,
         spoken: j['spoken'] as bool? ?? false,
+        loop: j['loop'] as bool? ?? true,
         maxSnoozes: (j['maxSnoozes'] as num?)?.toInt() ?? 0,
         snoozeMinutes: (j['snoozeMinutes'] as num?)?.toInt() ?? 5,
         snoozeCount: (j['snoozeCount'] as num?)?.toInt() ?? 0,

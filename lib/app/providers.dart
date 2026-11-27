@@ -1648,8 +1648,10 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
     final path = sounds[id];
     final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));
     p = _withSound(p, radio && p.shabbatSafe ? AlarmSound.builtIns[1].path : path);
-    // Never open another app on Shabbat or a festival.
     final song = links[id];
+    // A recording plays on its own: once (or repeating), no spoken reminder.
+    if (!p.isLock && song != null && song.isRecorded) p = p.withRecording(loop: song.repeats);
+    // Never open another app on Shabbat or a festival.
     if (!p.isLock && !p.shabbatSafe && song?.link != null) {
       p = p.withSong(song!.link!, plays: song.plays, seconds: song.playSeconds);
     }
