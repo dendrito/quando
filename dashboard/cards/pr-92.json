@@ -1,0 +1,15 @@
+{
+  "id": "pr-92",
+  "title": "Alarm audit fixes: ringing replan, restart and update, native stop, Saturday rules",
+  "status": "review",
+  "tag": "pr",
+  "prs": [
+    92
+  ],
+  "note": "Added automatically from the pull request.",
+  "auto": true,
+  "order": 929,
+  "threadIds": [
+    "cmsg_01S2XqLxGrBPg2Wxfyp1KBzk3PCXByin6rsv4VbosnMCTL"
+  ]
+}
