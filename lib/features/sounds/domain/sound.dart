@@ -138,6 +138,31 @@ class AlarmSound {
     ),
   ];
 
+  /// Curió's own voice recordings for Quando Mine's Shabbat alarms: Iris
+  /// Lettieri counts down to candle lighting and Havdalah, Craque Daniel
+  /// says "Shabat shalom" and "Shabua tob". Bundled in the Mine build only.
+  static List<AlarmSound> get mineVoices => [
+    for (final (m, label) in [(120, '2 h'), (60, '1 h'), (30, '30 min'), (15, '15 min'), (5, '5 min')])
+      AlarmSound(
+        id: 'mine.velas.$m',
+        name: 'Velas · $label · Iris',
+        path: 'assets/mine/velas_$m.mp3',
+        builtIn: true,
+      ),
+    AlarmSound(
+      id: 'mine.shabat',
+      name: 'Shabat shalom · Daniel',
+      path: 'assets/mine/shabat_shalom.mp3',
+      builtIn: true,
+    ),
+    AlarmSound(
+      id: 'mine.shabua',
+      name: 'Shabua tob · Daniel',
+      path: 'assets/mine/shabua_tob.mp3',
+      builtIn: true,
+    ),
+  ];
+
   /// Soft, looping lead-up sounds for the gentle wake-up only; they are not
   /// alarm sounds. Made for Quando by tool/gen_gentle_sounds.py.
   static List<AlarmSound> get calm => [
