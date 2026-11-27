@@ -6,7 +6,7 @@ edition=${1:-quando}
 case "$edition" in
   quando) name='Quando?' ;;
   kodesh) name='Matai?' ;;
-  mine) name='Quando Mine' ;;
+  mine) name='Meu Quando?' ;;
   *) echo 'usage: tool/build_macos.sh quando|kodesh|mine' >&2; exit 2 ;;
 esac
 out=${QUANDO_MAC_OUTPUT:-"$PWD/build/mac-editions"}

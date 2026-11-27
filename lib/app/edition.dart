@@ -19,7 +19,7 @@ const kodeshNameHe = 'מתי? בשבת';
 
 /// The app's name as people see it.
 String get appTitle => mine
-    ? 'Quando Mine'
+    ? 'Meu Quando?'
     : !kodesh
     ? l10n.appName
     : (l10n.localeName == 'he' ? kodeshNameHe : kodeshName);

@@ -2,6 +2,7 @@
 # Build and install the apps, printing one line per step instead of the full
 # build log, with a live progress line on a terminal. On failure it prints only the error lines and the log's path.
 #   tool/ship.sh quando|kodesh|mine|all mac|ipad|ipad-on-mac|android|windows|all [--no-install]
+# One-line Meu Quando? Android build (flavor mine, voices bundled): tool/ship.sh mine android --no-install
 # ipad-on-mac builds the iPad app for this Mac (Designed for iPad); it is never installed.
 # 'all' means mac, ipad and android. Windows builds only on a Windows machine.
 # Logs: build/ship/*.log. Override with QUANDO_MAC_TEAM, QUANDO_IPAD_ID.

@@ -74,7 +74,7 @@ android {
         create("mine") {
             dimension = "edition"
             applicationId = "com.dendrito.quando.mine"
-            manifestPlaceholders["appLabel"] = "Quando Mine"
+            manifestPlaceholders["appLabel"] = "Meu Quando?"
         }
     }
 
