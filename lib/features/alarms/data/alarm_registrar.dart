@@ -49,7 +49,12 @@ class AlarmRegistrar {
 
     for (final e in existing) {
       if (RingPayload.decode(e.payload).transient) continue;
-      if (!wanted.containsKey(e.id)) await Alarm.stop(e.id);
+      if (wanted.containsKey(e.id)) continue;
+      // A ringing alarm is no longer in the plan (its time has passed) but is
+      // still saved: a replan while it rings (app opened by the ring, calendar
+      // job, widget refresh) must not silence it.
+      if (await Alarm.isRinging(e.id)) continue;
+      await Alarm.stop(e.id);
     }
     // Re-set everything so changed options (spoken, snooze...) apply.
     var added = 0;
