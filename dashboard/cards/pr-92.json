@@ -1,7 +1,7 @@
 {
   "id": "pr-92",
   "title": "Alarm audit fixes: ringing replan, restart and update, native stop, Saturday rules",
-  "status": "review",
+  "status": "done",
   "tag": "pr",
   "prs": [
     92
