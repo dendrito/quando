@@ -77,6 +77,11 @@ public enum AlarmKitBackup {
             || payload["isLock"] as? Bool == true {
             return nil
         }
+        // A system alarm rings until it is touched: never on Shabbat or a
+        // festival. Those alarms rely on the app alone, which stops them itself.
+        if payload["shabbatSafe"] as? Bool == true {
+            return nil
+        }
         return await schedule(
             id: settings.id,
             date: settings.dateTime,
