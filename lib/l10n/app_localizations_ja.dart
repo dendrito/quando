@@ -3821,4 +3821,31 @@ class AppLocalizationsJa extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event・$timeごろ';
   }
+
+  @override
+  String get alarmPriority => '優先度';
+
+  @override
+  String get alarmPriorityQuiet => '静か';
+
+  @override
+  String get alarmPriorityQuietHint => '音の出ない通知';
+
+  @override
+  String get alarmPriorityNormal => '通常';
+
+  @override
+  String get alarmPriorityNormalHint => '音の出る通知';
+
+  @override
+  String get alarmPriorityLoud => '大音量';
+
+  @override
+  String get alarmPriorityLoudHint => 'おやすみモードでも全画面で鳴るアラーム';
+
+  @override
+  String get alarmPriorityCritical => '緊急';
+
+  @override
+  String get alarmPriorityCriticalHint => '止めるまで鳴り続けます';
 }

@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "توقّع ثلج",
   "weatherTitleFog": "توقّع ضباب",
   "weatherBodyAny": "حوالي {time}",
-  "weatherBodyTied": "{event} · حوالي {time}"
+  "weatherBodyTied": "{event} · حوالي {time}",
+  "alarmPriority": "الأولوية",
+  "alarmPriorityQuiet": "هادئ",
+  "alarmPriorityQuietHint": "إشعار صامت",
+  "alarmPriorityNormal": "عادي",
+  "alarmPriorityNormalHint": "إشعار بصوت",
+  "alarmPriorityLoud": "عالٍ",
+  "alarmPriorityLoudHint": "منبّه بملء الشاشة، حتى في وضع عدم الإزعاج",
+  "alarmPriorityCritical": "حرج",
+  "alarmPriorityCriticalHint": "يرنّ حتى توقفه"
 }

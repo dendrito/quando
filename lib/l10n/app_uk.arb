@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Прогноз снігу",
   "weatherTitleFog": "Прогноз туману",
   "weatherBodyAny": "Близько {time}",
-  "weatherBodyTied": "{event} · близько {time}"
+  "weatherBodyTied": "{event} · близько {time}",
+  "alarmPriority": "Пріоритет",
+  "alarmPriorityQuiet": "Тихий",
+  "alarmPriorityQuietHint": "Сповіщення без звуку",
+  "alarmPriorityNormal": "Звичайний",
+  "alarmPriorityNormalHint": "Сповіщення зі звуком",
+  "alarmPriorityLoud": "Гучний",
+  "alarmPriorityLoudHint": "Будильник на весь екран, навіть у режимі «Не турбувати»",
+  "alarmPriorityCritical": "Критичний",
+  "alarmPriorityCriticalHint": "Дзвонить, доки ви не зупините"
 }

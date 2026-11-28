@@ -3986,4 +3986,31 @@ class AppLocalizationsRu extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · около $time';
   }
+
+  @override
+  String get alarmPriority => 'Приоритет';
+
+  @override
+  String get alarmPriorityQuiet => 'Тихий';
+
+  @override
+  String get alarmPriorityQuietHint => 'Уведомление без звука';
+
+  @override
+  String get alarmPriorityNormal => 'Обычный';
+
+  @override
+  String get alarmPriorityNormalHint => 'Уведомление со звуком';
+
+  @override
+  String get alarmPriorityLoud => 'Громкий';
+
+  @override
+  String get alarmPriorityLoudHint => 'Будильник на весь экран, даже в режиме «Не беспокоить»';
+
+  @override
+  String get alarmPriorityCritical => 'Критичный';
+
+  @override
+  String get alarmPriorityCriticalHint => 'Звонит, пока вы не остановите';
 }

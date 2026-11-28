@@ -3821,4 +3821,31 @@ class AppLocalizationsKo extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · $time쯤';
   }
+
+  @override
+  String get alarmPriority => '우선순위';
+
+  @override
+  String get alarmPriorityQuiet => '조용히';
+
+  @override
+  String get alarmPriorityQuietHint => '소리 없는 알림';
+
+  @override
+  String get alarmPriorityNormal => '보통';
+
+  @override
+  String get alarmPriorityNormalHint => '소리가 나는 알림';
+
+  @override
+  String get alarmPriorityLoud => '크게';
+
+  @override
+  String get alarmPriorityLoudHint => '방해 금지 모드에서도 전체 화면 알람';
+
+  @override
+  String get alarmPriorityCritical => '긴급';
+
+  @override
+  String get alarmPriorityCriticalHint => '멈출 때까지 울립니다';
 }

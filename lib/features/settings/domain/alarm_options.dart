@@ -1,3 +1,4 @@
+import '../../rules/domain/alarm_priority.dart';
 import '../../sounds/domain/loudness.dart';
 
 /// How alarms behave when they ring. Applied to every alarm.
@@ -13,7 +14,11 @@ class AlarmOptions {
     this.loudness = Loudness.standard,
     this.fadesForAll = false,
     this.gentleMinutes = 0,
+    this.priority = AlarmPriority.loud,
   });
+
+  /// How alarms ring unless one sets its own.
+  final AlarmPriority priority;
 
   /// New alarms start with a gentle wake-up this many minutes before. 0 = off.
   final int gentleMinutes;
@@ -57,6 +62,7 @@ class AlarmOptions {
     Loudness? loudness,
     bool? fadesForAll,
     int? gentleMinutes,
+    AlarmPriority? priority,
   }) => AlarmOptions(
     spoken: spoken ?? this.spoken,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -68,6 +74,7 @@ class AlarmOptions {
     loudness: loudness ?? this.loudness,
     fadesForAll: fadesForAll ?? this.fadesForAll,
     gentleMinutes: gentleMinutes ?? this.gentleMinutes,
+    priority: priority ?? this.priority,
   );
 
   Map<String, dynamic> toJson() => {
@@ -81,6 +88,7 @@ class AlarmOptions {
     'loudness': loudness.toJson(),
     'fadesForAll': fadesForAll,
     'gentleMinutes': gentleMinutes,
+    if (priority != AlarmPriority.loud) 'priority': priority.name,
   };
 
   factory AlarmOptions.fromJson(Map<String, dynamic> j) => AlarmOptions(
@@ -94,5 +102,6 @@ class AlarmOptions {
     loudness: Loudness.fromJson(j['loudness']) ?? Loudness.standard,
     fadesForAll: j['fadesForAll'] as bool? ?? false,
     gentleMinutes: (j['gentleMinutes'] as num?)?.toInt() ?? 0,
+    priority: AlarmPriority.parse(j['priority']) ?? AlarmPriority.loud,
   );
 }

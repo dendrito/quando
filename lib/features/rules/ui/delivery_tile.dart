@@ -10,6 +10,7 @@ import '../../alarms/ui/ring_length_picker.dart';
 import '../../integrations/ui/pushover_icon.dart';
 import '../../integrations/ui/smart_home_tile.dart';
 import '../domain/reminder_delivery.dart';
+import 'priority_picker.dart';
 
 /// Inline controls at the reminder time, shared with the everyday alarm editor.
 class DeliveryTile extends ConsumerStatefulWidget {
@@ -225,6 +226,12 @@ class _DeliveryTileState extends ConsumerState<DeliveryTile> {
               ),
             ],
             if (widget.showSoundPicker) SmartHomeTile(value: value, onChanged: widget.onChanged),
+            PriorityPicker(
+              value: value.priority,
+              onDefault: () => widget.onChanged(value.copyWith(inheritPriority: true)),
+              onChanged: (p) => widget.onChanged(value.copyWith(priority: p)),
+            ),
+            const SizedBox(height: 8),
             Align(
               alignment: AlignmentDirectional.centerEnd,
               child: TextButton(

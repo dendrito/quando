@@ -27,6 +27,7 @@ import '../features/integrations/data/sender.dart';
 import '../features/integrations/data/tuya_client.dart';
 import '../features/integrations/data/tuya_scene_cache.dart';
 import '../features/integrations/domain/tuya.dart';
+import '../features/rules/domain/alarm_priority.dart';
 import '../features/rules/domain/reminder_delivery.dart';
 import '../features/integrations/domain/integrations.dart';
 import '../features/lock/domain/lock.dart';
@@ -1643,7 +1644,22 @@ final payloadForProvider = Provider<RingPayload Function(ScheduledAlarm)>((ref) 
         integrations.pushoverReady &&
         !(integrations.pauseOnShabbat && p.shabbatSafe) &&
         delivery.pushoverEnabled != false;
-    p = p.withDelivery(!delivery.localAudio && !remoteReady ? delivery.copyWith(localAudio: true) : delivery);
+    // Candle lighting and Havdalah ring loud unless that alarm says otherwise.
+    final level = a.ruleId.startsWith('gentle.') || a.ruleId == 'lock'
+        ? AlarmPriority.loud
+        : delivery.priority ??
+              (a.eventId.startsWith('jewish.') && options.priority.index < AlarmPriority.loud.index
+                  ? AlarmPriority.loud
+                  : options.priority);
+    final quiet = level == AlarmPriority.quiet;
+    p = p.withDelivery(
+      quiet
+          ? delivery.copyWith(localAudio: false)
+          : !delivery.localAudio && !remoteReady
+          ? delivery.copyWith(localAudio: true)
+          : delivery,
+    );
+    p = p.withPriority(level);
     // No live radio on Shabbat or a festival: a built-in sound instead.
     final path = sounds[id];
     final radio = path != null && (path.startsWith('http://') || path.startsWith('https://'));

@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "बर्फ़बारी का पूर्वानुमान",
   "weatherTitleFog": "कोहरे का पूर्वानुमान",
   "weatherBodyAny": "लगभग {time} बजे",
-  "weatherBodyTied": "{event} · लगभग {time} बजे"
+  "weatherBodyTied": "{event} · लगभग {time} बजे",
+  "alarmPriority": "प्राथमिकता",
+  "alarmPriorityQuiet": "शांत",
+  "alarmPriorityQuietHint": "बिना आवाज़ की सूचना",
+  "alarmPriorityNormal": "सामान्य",
+  "alarmPriorityNormalHint": "आवाज़ के साथ सूचना",
+  "alarmPriorityLoud": "तेज़",
+  "alarmPriorityLoudHint": "फ़ुल-स्क्रीन अलार्म, परेशान न करें में भी",
+  "alarmPriorityCritical": "अत्यावश्यक",
+  "alarmPriorityCriticalHint": "जब तक आप रोकें नहीं, बजता रहता है"
 }

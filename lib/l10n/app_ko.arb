@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "눈 예보",
   "weatherTitleFog": "안개 예보",
   "weatherBodyAny": "{time}쯤",
-  "weatherBodyTied": "{event} · {time}쯤"
+  "weatherBodyTied": "{event} · {time}쯤",
+  "alarmPriority": "우선순위",
+  "alarmPriorityQuiet": "조용히",
+  "alarmPriorityQuietHint": "소리 없는 알림",
+  "alarmPriorityNormal": "보통",
+  "alarmPriorityNormalHint": "소리가 나는 알림",
+  "alarmPriorityLoud": "크게",
+  "alarmPriorityLoudHint": "방해 금지 모드에서도 전체 화면 알람",
+  "alarmPriorityCritical": "긴급",
+  "alarmPriorityCriticalHint": "멈출 때까지 울립니다"
 }

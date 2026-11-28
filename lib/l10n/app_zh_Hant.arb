@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "降雪預報",
   "weatherTitleFog": "大霧預報",
   "weatherBodyAny": "{time}左右",
-  "weatherBodyTied": "{event} · {time}左右"
+  "weatherBodyTied": "{event} · {time}左右",
+  "alarmPriority": "優先順序",
+  "alarmPriorityQuiet": "安靜",
+  "alarmPriorityQuietHint": "靜音通知",
+  "alarmPriorityNormal": "一般",
+  "alarmPriorityNormalHint": "有聲音的通知",
+  "alarmPriorityLoud": "響亮",
+  "alarmPriorityLoudHint": "全螢幕鬧鐘，勿擾模式下也會響",
+  "alarmPriorityCritical": "緊急",
+  "alarmPriorityCriticalHint": "一直響到你關閉為止"
 }

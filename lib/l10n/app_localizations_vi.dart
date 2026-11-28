@@ -3903,4 +3903,31 @@ class AppLocalizationsVi extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · khoảng $time';
   }
+
+  @override
+  String get alarmPriority => 'Mức ưu tiên';
+
+  @override
+  String get alarmPriorityQuiet => 'Yên lặng';
+
+  @override
+  String get alarmPriorityQuietHint => 'Thông báo im lặng';
+
+  @override
+  String get alarmPriorityNormal => 'Bình thường';
+
+  @override
+  String get alarmPriorityNormalHint => 'Thông báo có âm thanh';
+
+  @override
+  String get alarmPriorityLoud => 'To';
+
+  @override
+  String get alarmPriorityLoudHint => 'Báo thức toàn màn hình, kể cả khi Không làm phiền';
+
+  @override
+  String get alarmPriorityCritical => 'Khẩn cấp';
+
+  @override
+  String get alarmPriorityCriticalHint => 'Reo đến khi bạn tắt';
 }

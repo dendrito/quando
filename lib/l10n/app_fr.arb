@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Neige prévue",
   "weatherTitleFog": "Brouillard prévu",
   "weatherBodyAny": "Vers {time}",
-  "weatherBodyTied": "{event} · vers {time}"
+  "weatherBodyTied": "{event} · vers {time}",
+  "alarmPriority": "Priorité",
+  "alarmPriorityQuiet": "Discret",
+  "alarmPriorityQuietHint": "Notification silencieuse",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Notification avec son",
+  "alarmPriorityLoud": "Fort",
+  "alarmPriorityLoudHint": "Alarme plein écran, même en Ne pas déranger",
+  "alarmPriorityCritical": "Critique",
+  "alarmPriorityCriticalHint": "Sonne jusqu'à ce que vous l'arrêtiez"
 }

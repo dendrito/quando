@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "雪の予報",
   "weatherTitleFog": "霧の予報",
   "weatherBodyAny": "{time}ごろ",
-  "weatherBodyTied": "{event}・{time}ごろ"
+  "weatherBodyTied": "{event}・{time}ごろ",
+  "alarmPriority": "優先度",
+  "alarmPriorityQuiet": "静か",
+  "alarmPriorityQuietHint": "音の出ない通知",
+  "alarmPriorityNormal": "通常",
+  "alarmPriorityNormalHint": "音の出る通知",
+  "alarmPriorityLoud": "大音量",
+  "alarmPriorityLoudHint": "おやすみモードでも全画面で鳴るアラーム",
+  "alarmPriorityCritical": "緊急",
+  "alarmPriorityCriticalHint": "止めるまで鳴り続けます"
 }

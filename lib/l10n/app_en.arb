@@ -2186,7 +2186,13 @@
   "firstRunEverythingHintPlain": "Calendar, timers, weather and more",
   "firstRunLoseTrack": "I lose track of time",
   "missedAsk": "Did {time} ring?",
-  "@missedAsk": {"placeholders": {"time": {"type": "String"}}},
+  "@missedAsk": {
+    "placeholders": {
+      "time": {
+        "type": "String"
+      }
+    }
+  },
   "missedYes": "Yes",
   "missedNo": "No",
   "againUntilDone": "Again until done",
@@ -2303,5 +2309,14 @@
         "type": "String"
       }
     }
-  }
+  },
+  "alarmPriority": "Priority",
+  "alarmPriorityQuiet": "Quiet",
+  "alarmPriorityQuietHint": "Silent notification",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Notification with sound",
+  "alarmPriorityLoud": "Loud",
+  "alarmPriorityLoudHint": "Full-screen alarm, even in Do Not Disturb",
+  "alarmPriorityCritical": "Critical",
+  "alarmPriorityCriticalHint": "Rings until you stop it"
 }

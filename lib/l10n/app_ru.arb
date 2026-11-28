@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Прогноз снега",
   "weatherTitleFog": "Прогноз тумана",
   "weatherBodyAny": "Около {time}",
-  "weatherBodyTied": "{event} · около {time}"
+  "weatherBodyTied": "{event} · около {time}",
+  "alarmPriority": "Приоритет",
+  "alarmPriorityQuiet": "Тихий",
+  "alarmPriorityQuietHint": "Уведомление без звука",
+  "alarmPriorityNormal": "Обычный",
+  "alarmPriorityNormalHint": "Уведомление со звуком",
+  "alarmPriorityLoud": "Громкий",
+  "alarmPriorityLoudHint": "Будильник на весь экран, даже в режиме «Не беспокоить»",
+  "alarmPriorityCritical": "Критичный",
+  "alarmPriorityCriticalHint": "Звонит, пока вы не остановите"
 }

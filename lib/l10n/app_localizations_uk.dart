@@ -3984,4 +3984,31 @@ class AppLocalizationsUk extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · близько $time';
   }
+
+  @override
+  String get alarmPriority => 'Пріоритет';
+
+  @override
+  String get alarmPriorityQuiet => 'Тихий';
+
+  @override
+  String get alarmPriorityQuietHint => 'Сповіщення без звуку';
+
+  @override
+  String get alarmPriorityNormal => 'Звичайний';
+
+  @override
+  String get alarmPriorityNormalHint => 'Сповіщення зі звуком';
+
+  @override
+  String get alarmPriorityLoud => 'Гучний';
+
+  @override
+  String get alarmPriorityLoudHint => 'Будильник на весь екран, навіть у режимі «Не турбувати»';
+
+  @override
+  String get alarmPriorityCritical => 'Критичний';
+
+  @override
+  String get alarmPriorityCriticalHint => 'Дзвонить, доки ви не зупините';
 }
