@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Previsão de neve",
   "weatherTitleFog": "Previsão de neblina",
   "weatherBodyAny": "Por volta das {time}",
-  "weatherBodyTied": "{event} · por volta das {time}"
+  "weatherBodyTied": "{event} · por volta das {time}",
+  "alarmPriority": "Prioridade",
+  "alarmPriorityQuiet": "Silencioso",
+  "alarmPriorityQuietHint": "Notificação silenciosa",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Notificação com som",
+  "alarmPriorityLoud": "Alto",
+  "alarmPriorityLoudHint": "Alarme em tela cheia, até no Não perturbe",
+  "alarmPriorityCritical": "Crítico",
+  "alarmPriorityCriticalHint": "Toca até você parar"
 }

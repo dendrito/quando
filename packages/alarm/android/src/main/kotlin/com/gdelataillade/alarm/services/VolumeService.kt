@@ -161,7 +161,7 @@ class VolumeService(context: Context) {
                 .build()
 
             focusRequest =
-                AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK)
+                AudioFocusRequest.Builder(AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE)
                     .setAudioAttributes(audioAttributes)
                     .build()
 
@@ -178,7 +178,7 @@ class VolumeService(context: Context) {
             val result = audioManager.requestAudioFocus(
                 null,
                 stream,
-                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_MAY_DUCK
+                AudioManager.AUDIOFOCUS_GAIN_TRANSIENT_EXCLUSIVE
             )
             if (result != AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
                 Log.e(TAG, "Audio focus request failed")

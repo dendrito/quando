@@ -14,6 +14,7 @@ import '../../ringing/data/music.dart';
 import '../../ringing/data/alarm_audio.dart';
 import '../../ringing/data/embedded_music.dart';
 import '../../ringing/ring_payload.dart';
+import '../../rules/domain/alarm_priority.dart';
 
 import 'package:quando/l10n/l10n.dart';
 
@@ -72,15 +73,21 @@ class AlarmRegistrar {
     return ok;
   }
 
-  static AlarmSettings settingsFor(int id, DateTime at, RingPayload p) => AlarmSettings(
+  static AlarmSettings settingsFor(int id, DateTime at, RingPayload p) {
+    // Normal and the gentle lead-up only play sound: no buzzing, no screen.
+    final soft = p.gentle || p.priority == AlarmPriority.normal;
+    return _settings(id, at, p, soft);
+  }
+
+  static AlarmSettings _settings(int id, DateTime at, RingPayload p, bool soft) => AlarmSettings(
     id: id,
     dateTime: at.toLocal(),
     // null = the phone's alarm sound; otherwise built-in or the user's own.
     assetAudioPath: p.localAudio ? p.sound : null,
     loopAudio: p.loop,
     // The gentle lead-up only plays sound: no buzzing, no screen.
-    vibrate: p.localAudio && !p.gentle,
-    androidFullScreenIntent: p.localAudio && !p.gentle,
+    vibrate: p.localAudio && !soft,
+    androidFullScreenIntent: p.localAudio && !soft,
     warningNotificationOnKill: true,
     // Each alarm's own volume and fades, shrunk to fit a short ring.
     volumeSettings: !p.localAudio

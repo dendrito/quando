@@ -1,4 +1,5 @@
 import '../../integrations/domain/tuya.dart';
+import 'alarm_priority.dart';
 
 /// Per-reminder overrides. Credentials stay out of alarm/rule data.
 /// Null values inherit existing rule/global choices, preserving old rules.
@@ -13,6 +14,7 @@ class ReminderDelivery {
     this.pushoverEnabled,
     this.pushoverSound,
     this.tuyaScene,
+    this.priority,
   });
 
   static const inherit = ReminderDelivery();
@@ -23,6 +25,9 @@ class ReminderDelivery {
   final int? ringSeconds;
   final bool localAudio;
   final TuyaScene? tuyaScene;
+
+  /// Null = the default in settings.
+  final AlarmPriority? priority;
 
   /// Null inherits the connected account; an empty set targets all devices.
   final Set<String>? pushoverDevices;
@@ -41,6 +46,8 @@ class ReminderDelivery {
     TuyaScene? tuyaScene,
     bool clearTuyaScene = false,
     bool inheritPushoverDevices = false,
+    AlarmPriority? priority,
+    bool inheritPriority = false,
   }) => ReminderDelivery(
     enabled: enabled ?? this.enabled,
     ringSeconds: ringSeconds ?? this.ringSeconds,
@@ -51,6 +58,7 @@ class ReminderDelivery {
     pushoverSound: clearPushoverSound ? null : (pushoverSound ?? this.pushoverSound),
     pushoverDevices: inheritPushoverDevices ? null : pushoverDevices ?? this.pushoverDevices,
     tuyaScene: clearTuyaScene ? null : tuyaScene ?? this.tuyaScene,
+    priority: inheritPriority ? null : priority ?? this.priority,
   );
 
   /// Explicitly use the app default instead of this rule's chosen sound.
@@ -70,6 +78,7 @@ class ReminderDelivery {
     if (pushoverEnabled != null) 'pushoverEnabled': pushoverEnabled,
     if (pushoverSound != null) 'pushoverSound': pushoverSound,
     if (tuyaScene != null) 'tuyaScene': tuyaScene!.toJson(),
+    if (priority != null) 'priority': priority!.name,
   };
 
   factory ReminderDelivery.fromJson(Map<String, dynamic> j) => ReminderDelivery(
@@ -86,6 +95,7 @@ class ReminderDelivery {
     tuyaScene: j['tuyaScene'] is Map
         ? TuyaScene.fromJson((j['tuyaScene'] as Map).cast<String, dynamic>())
         : null,
+    priority: AlarmPriority.parse(j['priority']),
   );
 
   /// JSON object keys are signed minute offsets: negative before, zero at,

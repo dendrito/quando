@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Prakiraan salju",
   "weatherTitleFog": "Prakiraan kabut",
   "weatherBodyAny": "Sekitar pukul {time}",
-  "weatherBodyTied": "{event} · sekitar pukul {time}"
+  "weatherBodyTied": "{event} · sekitar pukul {time}",
+  "alarmPriority": "Prioritas",
+  "alarmPriorityQuiet": "Senyap",
+  "alarmPriorityQuietHint": "Notifikasi senyap",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Notifikasi dengan suara",
+  "alarmPriorityLoud": "Keras",
+  "alarmPriorityLoudHint": "Alarm layar penuh, bahkan saat Jangan Ganggu",
+  "alarmPriorityCritical": "Kritis",
+  "alarmPriorityCriticalHint": "Berbunyi sampai kamu menghentikannya"
 }

@@ -7,6 +7,7 @@ import '../../../core/util/format.dart';
 import '../../alarms/data/permissions.dart';
 import '../../../core/util/platform.dart';
 import '../../alarms/ui/ring_length_picker.dart';
+import '../../rules/ui/priority_picker.dart';
 import '../../../app/theme.dart';
 import '../../../core/util/local_time.dart';
 import '../../sounds/ui/sound_picker.dart';
@@ -86,6 +87,10 @@ class SettingsScreen extends ConsumerWidget {
           icon: const Icon(Icons.mic_none),
           label: Text(l10n.recordOrAddSounds),
         ),
+      ),
+      PriorityPicker(
+        value: o.priority,
+        onChanged: (p) => setO((x) => x.copyWith(priority: p)),
       ),
       Column(
         crossAxisAlignment: CrossAxisAlignment.start,

@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "תחזית שלג",
   "weatherTitleFog": "תחזית ערפל",
   "weatherBodyAny": "בסביבות {time}",
-  "weatherBodyTied": "{event} · בסביבות {time}"
+  "weatherBodyTied": "{event} · בסביבות {time}",
+  "alarmPriority": "עדיפות",
+  "alarmPriorityQuiet": "שקט",
+  "alarmPriorityQuietHint": "התראה שקטה",
+  "alarmPriorityNormal": "רגיל",
+  "alarmPriorityNormalHint": "התראה עם צליל",
+  "alarmPriorityLoud": "חזק",
+  "alarmPriorityLoudHint": "התראה במסך מלא, גם במצב נא לא להפריע",
+  "alarmPriorityCritical": "קריטי",
+  "alarmPriorityCriticalHint": "מצלצל עד שתעצור אותו"
 }

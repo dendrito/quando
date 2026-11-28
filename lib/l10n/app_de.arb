@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Schneevorhersage",
   "weatherTitleFog": "Nebelvorhersage",
   "weatherBodyAny": "Gegen {time}",
-  "weatherBodyTied": "{event} · gegen {time}"
+  "weatherBodyTied": "{event} · gegen {time}",
+  "alarmPriority": "Priorität",
+  "alarmPriorityQuiet": "Leise",
+  "alarmPriorityQuietHint": "Stille Benachrichtigung",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Benachrichtigung mit Ton",
+  "alarmPriorityLoud": "Laut",
+  "alarmPriorityLoudHint": "Vollbild-Alarm, auch bei Nicht stören",
+  "alarmPriorityCritical": "Kritisch",
+  "alarmPriorityCriticalHint": "Klingelt, bis du ihn stoppst"
 }

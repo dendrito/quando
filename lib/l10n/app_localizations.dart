@@ -7083,6 +7083,60 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'{event} · around {time}'**
   String weatherBodyTied(String event, String time);
+
+  /// No description provided for @alarmPriority.
+  ///
+  /// In en, this message translates to:
+  /// **'Priority'**
+  String get alarmPriority;
+
+  /// No description provided for @alarmPriorityQuiet.
+  ///
+  /// In en, this message translates to:
+  /// **'Quiet'**
+  String get alarmPriorityQuiet;
+
+  /// No description provided for @alarmPriorityQuietHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Silent notification'**
+  String get alarmPriorityQuietHint;
+
+  /// No description provided for @alarmPriorityNormal.
+  ///
+  /// In en, this message translates to:
+  /// **'Normal'**
+  String get alarmPriorityNormal;
+
+  /// No description provided for @alarmPriorityNormalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Notification with sound'**
+  String get alarmPriorityNormalHint;
+
+  /// No description provided for @alarmPriorityLoud.
+  ///
+  /// In en, this message translates to:
+  /// **'Loud'**
+  String get alarmPriorityLoud;
+
+  /// No description provided for @alarmPriorityLoudHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Full-screen alarm, even in Do Not Disturb'**
+  String get alarmPriorityLoudHint;
+
+  /// No description provided for @alarmPriorityCritical.
+  ///
+  /// In en, this message translates to:
+  /// **'Critical'**
+  String get alarmPriorityCritical;
+
+  /// No description provided for @alarmPriorityCriticalHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Rings until you stop it'**
+  String get alarmPriorityCriticalHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

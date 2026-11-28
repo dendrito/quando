@@ -3902,4 +3902,31 @@ class AppLocalizationsHi extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · लगभग $time बजे';
   }
+
+  @override
+  String get alarmPriority => 'प्राथमिकता';
+
+  @override
+  String get alarmPriorityQuiet => 'शांत';
+
+  @override
+  String get alarmPriorityQuietHint => 'बिना आवाज़ की सूचना';
+
+  @override
+  String get alarmPriorityNormal => 'सामान्य';
+
+  @override
+  String get alarmPriorityNormalHint => 'आवाज़ के साथ सूचना';
+
+  @override
+  String get alarmPriorityLoud => 'तेज़';
+
+  @override
+  String get alarmPriorityLoudHint => 'फ़ुल-स्क्रीन अलार्म, परेशान न करें में भी';
+
+  @override
+  String get alarmPriorityCritical => 'अत्यावश्यक';
+
+  @override
+  String get alarmPriorityCriticalHint => 'जब तक आप रोकें नहीं, बजता रहता है';
 }

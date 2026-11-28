@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Sneeuwvoorspelling",
   "weatherTitleFog": "Mistvoorspelling",
   "weatherBodyAny": "Rond {time}",
-  "weatherBodyTied": "{event} · rond {time}"
+  "weatherBodyTied": "{event} · rond {time}",
+  "alarmPriority": "Prioriteit",
+  "alarmPriorityQuiet": "Stil",
+  "alarmPriorityQuietHint": "Stille melding",
+  "alarmPriorityNormal": "Normaal",
+  "alarmPriorityNormalHint": "Melding met geluid",
+  "alarmPriorityLoud": "Luid",
+  "alarmPriorityLoudHint": "Alarm op volledig scherm, ook bij Niet storen",
+  "alarmPriorityCritical": "Kritiek",
+  "alarmPriorityCriticalHint": "Gaat af tot je stopt"
 }

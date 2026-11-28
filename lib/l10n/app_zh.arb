@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "降雪预报",
   "weatherTitleFog": "大雾预报",
   "weatherBodyAny": "{time}左右",
-  "weatherBodyTied": "{event} · {time}左右"
+  "weatherBodyTied": "{event} · {time}左右",
+  "alarmPriority": "优先级",
+  "alarmPriorityQuiet": "安静",
+  "alarmPriorityQuietHint": "静音通知",
+  "alarmPriorityNormal": "普通",
+  "alarmPriorityNormalHint": "带声音的通知",
+  "alarmPriorityLoud": "响亮",
+  "alarmPriorityLoudHint": "全屏闹钟，勿扰模式下也会响",
+  "alarmPriorityCritical": "紧急",
+  "alarmPriorityCriticalHint": "一直响到你关闭为止"
 }

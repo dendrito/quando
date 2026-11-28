@@ -3933,4 +3933,31 @@ class AppLocalizationsPt extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · por volta das $time';
   }
+
+  @override
+  String get alarmPriority => 'Prioridade';
+
+  @override
+  String get alarmPriorityQuiet => 'Silencioso';
+
+  @override
+  String get alarmPriorityQuietHint => 'Notificação silenciosa';
+
+  @override
+  String get alarmPriorityNormal => 'Normal';
+
+  @override
+  String get alarmPriorityNormalHint => 'Notificação com som';
+
+  @override
+  String get alarmPriorityLoud => 'Alto';
+
+  @override
+  String get alarmPriorityLoudHint => 'Alarme em tela cheia, até no Não perturbe';
+
+  @override
+  String get alarmPriorityCritical => 'Crítico';
+
+  @override
+  String get alarmPriorityCriticalHint => 'Toca até você parar';
 }

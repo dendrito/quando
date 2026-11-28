@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Dự báo tuyết",
   "weatherTitleFog": "Dự báo sương mù",
   "weatherBodyAny": "Khoảng {time}",
-  "weatherBodyTied": "{event} · khoảng {time}"
+  "weatherBodyTied": "{event} · khoảng {time}",
+  "alarmPriority": "Mức ưu tiên",
+  "alarmPriorityQuiet": "Yên lặng",
+  "alarmPriorityQuietHint": "Thông báo im lặng",
+  "alarmPriorityNormal": "Bình thường",
+  "alarmPriorityNormalHint": "Thông báo có âm thanh",
+  "alarmPriorityLoud": "To",
+  "alarmPriorityLoudHint": "Báo thức toàn màn hình, kể cả khi Không làm phiền",
+  "alarmPriorityCritical": "Khẩn cấp",
+  "alarmPriorityCriticalHint": "Reo đến khi bạn tắt"
 }

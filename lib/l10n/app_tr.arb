@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Kar tahmini",
   "weatherTitleFog": "Sis tahmini",
   "weatherBodyAny": "Saat {time} civarı",
-  "weatherBodyTied": "{event} · saat {time} civarı"
+  "weatherBodyTied": "{event} · saat {time} civarı",
+  "alarmPriority": "Öncelik",
+  "alarmPriorityQuiet": "Sessiz",
+  "alarmPriorityQuietHint": "Sessiz bildirim",
+  "alarmPriorityNormal": "Normal",
+  "alarmPriorityNormalHint": "Sesli bildirim",
+  "alarmPriorityLoud": "Yüksek",
+  "alarmPriorityLoudHint": "Rahatsız Etme'de bile tam ekran alarm",
+  "alarmPriorityCritical": "Kritik",
+  "alarmPriorityCriticalHint": "Sen durdurana kadar çalar"
 }

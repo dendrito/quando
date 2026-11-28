@@ -3908,4 +3908,31 @@ class AppLocalizationsEn extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · around $time';
   }
+
+  @override
+  String get alarmPriority => 'Priority';
+
+  @override
+  String get alarmPriorityQuiet => 'Quiet';
+
+  @override
+  String get alarmPriorityQuietHint => 'Silent notification';
+
+  @override
+  String get alarmPriorityNormal => 'Normal';
+
+  @override
+  String get alarmPriorityNormalHint => 'Notification with sound';
+
+  @override
+  String get alarmPriorityLoud => 'Loud';
+
+  @override
+  String get alarmPriorityLoudHint => 'Full-screen alarm, even in Do Not Disturb';
+
+  @override
+  String get alarmPriorityCritical => 'Critical';
+
+  @override
+  String get alarmPriorityCriticalHint => 'Rings until you stop it';
 }

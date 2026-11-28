@@ -3812,6 +3812,33 @@ class AppLocalizationsZh extends AppLocalizations {
   String weatherBodyTied(String event, String time) {
     return '$event · $time左右';
   }
+
+  @override
+  String get alarmPriority => '优先级';
+
+  @override
+  String get alarmPriorityQuiet => '安静';
+
+  @override
+  String get alarmPriorityQuietHint => '静音通知';
+
+  @override
+  String get alarmPriorityNormal => '普通';
+
+  @override
+  String get alarmPriorityNormalHint => '带声音的通知';
+
+  @override
+  String get alarmPriorityLoud => '响亮';
+
+  @override
+  String get alarmPriorityLoudHint => '全屏闹钟，勿扰模式下也会响';
+
+  @override
+  String get alarmPriorityCritical => '紧急';
+
+  @override
+  String get alarmPriorityCriticalHint => '一直响到你关闭为止';
 }
 
 /// The translations for Chinese, using the Han script (`zh_Hant`).
@@ -7621,4 +7648,31 @@ class AppLocalizationsZhHant extends AppLocalizationsZh {
   String weatherBodyTied(String event, String time) {
     return '$event · $time左右';
   }
+
+  @override
+  String get alarmPriority => '優先順序';
+
+  @override
+  String get alarmPriorityQuiet => '安靜';
+
+  @override
+  String get alarmPriorityQuietHint => '靜音通知';
+
+  @override
+  String get alarmPriorityNormal => '一般';
+
+  @override
+  String get alarmPriorityNormalHint => '有聲音的通知';
+
+  @override
+  String get alarmPriorityLoud => '響亮';
+
+  @override
+  String get alarmPriorityLoudHint => '全螢幕鬧鐘，勿擾模式下也會響';
+
+  @override
+  String get alarmPriorityCritical => '緊急';
+
+  @override
+  String get alarmPriorityCriticalHint => '一直響到你關閉為止';
 }

@@ -1158,5 +1158,14 @@
   "weatherTitleSnow": "Prognoza śniegu",
   "weatherTitleFog": "Prognoza mgły",
   "weatherBodyAny": "Około {time}",
-  "weatherBodyTied": "{event} · około {time}"
+  "weatherBodyTied": "{event} · około {time}",
+  "alarmPriority": "Priorytet",
+  "alarmPriorityQuiet": "Cichy",
+  "alarmPriorityQuietHint": "Powiadomienie bez dźwięku",
+  "alarmPriorityNormal": "Normalny",
+  "alarmPriorityNormalHint": "Powiadomienie z dźwiękiem",
+  "alarmPriorityLoud": "Głośny",
+  "alarmPriorityLoudHint": "Alarm na pełnym ekranie, także w trybie Nie przeszkadzać",
+  "alarmPriorityCritical": "Krytyczny",
+  "alarmPriorityCriticalHint": "Dzwoni, dopóki go nie zatrzymasz"
 }

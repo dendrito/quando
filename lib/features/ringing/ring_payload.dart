@@ -3,6 +3,7 @@ import 'dart:convert';
 import '../settings/domain/alarm_options.dart';
 import '../sounds/domain/loudness.dart';
 import 'ring_style.dart';
+import '../rules/domain/alarm_priority.dart';
 import '../rules/domain/reminder_delivery.dart';
 
 import 'package:quando/l10n/l10n.dart';
@@ -41,6 +42,7 @@ class RingPayload {
     this.gentle = false,
     this.delivery = ReminderDelivery.inherit,
     this.iWill = '',
+    this.priority = AlarmPriority.loud,
   });
 
   /// Builds the payload for an alarm. Inside Shabbat or a festival
@@ -63,6 +65,9 @@ class RingPayload {
     shabbatSafe: shabbatSafe,
     loudness: options.loudness,
   );
+
+  /// Resolved from the alarm's own choice or the default in settings.
+  final AlarmPriority priority;
 
   final String title;
   final String body;
@@ -176,6 +181,7 @@ class RingPayload {
     bool? gentle,
     ReminderDelivery? delivery,
     String? iWill,
+    AlarmPriority? priority,
   }) => RingPayload(
     title: title ?? this.title,
     body: body ?? this.body,
@@ -207,6 +213,7 @@ class RingPayload {
     gentle: gentle ?? this.gentle,
     delivery: delivery ?? this.delivery,
     iWill: iWill ?? this.iWill,
+    priority: priority ?? this.priority,
   );
 
   /// Rung from outside the plan (a calendar notification made loud), so
@@ -225,6 +232,14 @@ class RingPayload {
   RingPayload withFadesOf(Loudness fades) => _copy(
     loudness: loudness.copyWith(fadeInSeconds: fades.fadeInSeconds, fadeOutSeconds: fades.fadeOutSeconds),
   );
+
+  /// Applies [level]. Inside Shabbat or a festival nothing may keep ringing
+  /// until touched, so critical is loud there.
+  RingPayload withPriority(AlarmPriority level) {
+    final l = shabbatSafe && level == AlarmPriority.critical ? AlarmPriority.loud : level;
+    if (isLock || l != AlarmPriority.critical) return _copy(priority: l);
+    return _copy(priority: l, loop: true, ringSeconds: AlarmPriority.criticalSeconds, autoSnoozeMinutes: 0);
+  }
 
   RingPayload withIWill(String line) => _copy(iWill: line.trim());
 
@@ -368,6 +383,7 @@ class RingPayload {
     'scanCode': scanCode,
     'gentle': gentle,
     'delivery': delivery.toJson(),
+    if (priority != AlarmPriority.loud) 'priority': priority.name,
     if (iWill.isNotEmpty) 'iWill': iWill,
     // Button names for the iPhone's own alarm screen (AlarmKit).
     'stopLabel': l10n.stop,
@@ -408,6 +424,7 @@ class RingPayload {
         gentle: j['gentle'] as bool? ?? false,
         delivery: ReminderDelivery.fromJson((j['delivery'] as Map<String, dynamic>?) ?? {}),
         iWill: j['iWill'] as String? ?? '',
+        priority: AlarmPriority.parse(j['priority']) ?? AlarmPriority.loud,
       );
     } catch (_) {
       return RingPayload(title: fallbackTitle ?? l10n.alarm, body: fallbackBody, ringSeconds: 60);
